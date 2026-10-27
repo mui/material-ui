@@ -57,7 +57,7 @@ export default function EmployeeForm(props: EmployeeFormProps) {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const handleSubmit = React.useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
+    async (event: React.SubmitEvent<HTMLFormElement>) => {
       event.preventDefault();
 
       setIsSubmitting(true);
@@ -218,7 +218,7 @@ export default function EmployeeForm(props: EmployeeFormProps) {
           </Grid>
         </Grid>
       </FormGroup>
-      <Stack direction="row" spacing={2} justifyContent="space-between">
+      <Stack direction="row" spacing={2} sx={{ justifyContent: 'space-between' }}>
         <Button
           variant="contained"
           startIcon={<ArrowBackIcon />}

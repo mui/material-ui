@@ -1,30 +1,33 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('ca-ES');
 
 export const caES: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //    expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Mostra el camí',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Ves a la primera pàgina';
+          }
+          if (type === 'last') {
+            return "Ves a l'última pàgina";
+          }
+          if (type === 'next') {
+            return 'Ves a la pàgina següent';
+          }
+          // if (type === 'previous') {
+          return 'Ves a la pàgina anterior';
+        },
         labelRowsPerPage: 'Files per pàgina:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} de ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${formatNumber(from)}–${formatNumber(to)} de ${count !== -1 ? formatNumber(count) : `més de ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {
@@ -47,26 +50,26 @@ export const caES: Localization = {
         closeText: 'Tancat',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navegació entre pàgines',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Ves a la '}pàgina ${page}`;
+          }
+          if (type === 'first') {
+            return 'Ves a la primera pàgina';
+          }
+          if (type === 'last') {
+            return "Ves a l'última pàgina";
+          }
+          if (type === 'next') {
+            return 'Ves a la pàgina següent';
+          }
+          // if (type === 'previous') {
+          return 'Ves a la pàgina anterior';
+        },
+      },
+    },
   },
 };

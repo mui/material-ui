@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { describe, it, expect } from 'vitest';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grid, { gridClasses as classes } from '@mui/system/Grid';
@@ -21,7 +20,7 @@ describe('System <Grid />', () => {
     refInstanceof: window.HTMLElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['classesRoot'],
   }));
 
   describe('prop: container', () => {
@@ -47,28 +46,27 @@ describe('System <Grid />', () => {
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
 
-    it('should apply the styles necessary for variable width nested item when set to auto', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // Need full CSS resolution
-        this.skip();
-      }
-
-      render(
-        <Grid container>
-          <Grid container data-testid="auto" size="auto">
-            <div style={{ width: '300px' }} />
-          </Grid>
-          <Grid size={11} />
-        </Grid>,
-      );
-      expect(screen.getByTestId('auto')).toHaveComputedStyle({
-        flexBasis: 'auto',
-        flexGrow: '0',
-        flexShrink: '0',
-        maxWidth: 'none',
-        width: '300px',
-      });
-    });
+    // Need full CSS resolution
+    it.skipIf(isJsdom())(
+      'should apply the styles necessary for variable width nested item when set to auto',
+      function test() {
+        render(
+          <Grid container>
+            <Grid container data-testid="auto" size="auto">
+              <div style={{ width: '300px' }} />
+            </Grid>
+            <Grid size={11} />
+          </Grid>,
+        );
+        expect(screen.getByTestId('auto')).toHaveComputedStyle({
+          flexBasis: 'auto',
+          flexGrow: '0',
+          flexShrink: '0',
+          maxWidth: 'none',
+          width: '300px',
+        });
+      },
+    );
   });
 
   describe('prop: spacing', () => {
@@ -117,11 +115,7 @@ describe('System <Grid />', () => {
   });
 
   describe('spacing', () => {
-    it('should generate the right values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should generate the right values', function test() {
       const parentWidth = 500;
       const remValue = 16;
       const remTheme = createTheme({
@@ -157,16 +151,6 @@ describe('System <Grid />', () => {
         rowGap: '16px',
         columnGap: '16px',
       });
-    });
-  });
-
-  it('combines system properties with the sx prop', () => {
-    const { container } = render(<Grid mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
-
-    expect(container.firstChild).toHaveComputedStyle({
-      marginTop: '16px',
-      marginRight: '40px',
-      marginBottom: '16px',
     });
   });
 
@@ -250,40 +234,6 @@ describe('System <Grid />', () => {
 
       expect(container.lastChild).to.have.class('MuiGrid-spacing-tablet-2');
       expect(container.lastChild).to.have.class('MuiGrid-spacing-laptop-4');
-    });
-  });
-
-  describe('legacy Grid component warnings', () => {
-    it('should warn once if the `item` prop is used', () => {
-      expect(() => {
-        render(<Grid item />);
-      }).toWarnDev(
-        'MUI Grid: The `item` prop has been removed and is no longer necessary. You can safely remove it.',
-      );
-
-      // Should not warn again
-      expect(() => {
-        render(<Grid item />);
-      }).not.toWarnDev();
-    });
-
-    it('should warn if the `zeroMinWidth` prop is used', () => {
-      expect(() => {
-        render(<Grid zeroMinWidth />);
-      }).toWarnDev(
-        'MUI Grid: The `zeroMinWidth` prop has been removed and is no longer necessary. You can safely remove it.',
-      );
-    });
-
-    createTheme({}).breakpoints.keys.forEach((breakpoint) => {
-      it(`should warn if the \`${breakpoint}\` prop is used`, () => {
-        expect(() => {
-          render(<Grid {...{ [breakpoint]: 8 }} />);
-        }).toWarnDev(
-          // #host-reference
-          `MUI Grid: The \`${breakpoint}\` prop has been removed. See https://mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`,
-        );
-      });
     });
   });
 });

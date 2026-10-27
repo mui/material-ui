@@ -62,11 +62,10 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface AccordionSummaryOwnProps extends AccordionSummarySlotsAndSlotProps {
-  children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AccordionSummaryClasses>;
+  classes?: Partial<AccordionSummaryClasses> | undefined;
   /**
    * The icon to display as the expand indicator.
    */
@@ -74,7 +73,7 @@ export interface AccordionSummaryOwnProps extends AccordionSummarySlotsAndSlotPr
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type AccordionSummaryTypeMap<
@@ -85,19 +84,21 @@ export type AccordionSummaryTypeMap<
   defaultComponent: RootComponent;
 }>;
 
-export interface AccordionSummaryOwnerState
-  extends Omit<AccordionSummaryProps, 'slots' | 'slotProps'> {}
+export interface AccordionSummaryOwnerState extends Omit<
+  AccordionSummaryProps,
+  'slots' | 'slotProps'
+> {}
 
 /**
  *
  * Demos:
  *
- * - [Accordion](https://mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://next.mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [AccordionSummary API](https://mui.com/material-ui/api/accordion-summary/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [AccordionSummary API](https://next.mui.com/material-ui/api/accordion-summary/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
 declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 
@@ -105,7 +106,7 @@ export type AccordionSummaryProps<
   RootComponent extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<AccordionSummaryTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default AccordionSummary;

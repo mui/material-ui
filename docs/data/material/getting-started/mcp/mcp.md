@@ -28,13 +28,11 @@ The sections below detail how to set up the Material UI MCP in popular agentic 
 Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add the following:
 
 ```json
-"mcp": {
-  "servers": {
-    "mui-mcp": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@mui/mcp@latest"]
-    }
+"mcpServers": {
+  "mui-mcp": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@mui/mcp@latest"]
   }
 }
 ```
@@ -76,7 +74,7 @@ Search for `agent: add context server` in the Command Palette and add the follow
   "mui-mcp-server": {
     "command": {
       "path": "npx",
-      "args": ["-y", "@mui/mcp@latest"]
+      "args": ["-y", "@mui/mcp@latest"],
       "env": {}
     }
   }
@@ -101,7 +99,7 @@ If you want the MCP server to always be available to all projects on your machin
 claude mcp add mui-mcp -s user -- npx -y @mui/mcp@latest
 ```
 
-To better understand MCP server scope hierarchy and precedence in Claude Code, see their [official documentation](https://docs.claude.com/en/docs/claude-code/mcp#mcp-installation-scopes).
+To better understand MCP server scope hierarchy and precedence in Claude Code, see their [official documentation](https://code.claude.com/docs/en/mcp#mcp-installation-scopes).
 
 ## Common issues
 

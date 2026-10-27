@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Frame from 'docs/src/components/action/Frame';
+import { Frame } from '@mui/internal-core-docs/AppLayout';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 
 type GridDataType = 'Employee' | 'Commodity';

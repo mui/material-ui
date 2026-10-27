@@ -2,8 +2,9 @@ import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import * as colors from '@mui/material/colors';
 
+// #host-reference
 // use netlify deploy preview if you want to test changes
-const HOST = 'https://mui.com/';
+const HOST = 'https://next.mui.com/';
 
 function getColorHref(name, variant) {
   return `static/colors-preview/${name}-${variant}-24x24.svg`;
@@ -57,11 +58,12 @@ function buildColorPreviews(name, variants) {
   );
 }
 
+// #host-reference
 /**
  * The goal is to have a preview of the actual color and the color string in IntelliSense
  * We create for each color an svg that is filled with that color and reference
  * that svg in the corresponding JSDoc.
- * Since we use https://mui.com as a reference changes are only visible
+ * Since we use https://next.mui.com as a reference changes are only visible
  * after release
  */
 async function main() {

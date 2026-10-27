@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import { SupportedColorScheme, CssVarsTheme } from './createThemeWithVars';
@@ -14,7 +13,6 @@ const {
   getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
 } = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
   themeId: THEME_ID,
-  // @ts-ignore ignore module augmentation tests
   theme: () => createTheme({ cssVariables: true }),
   colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
   modeStorageKey: defaultConfig.modeStorageKey,

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -58,7 +57,7 @@ describe('<MobileStepper />', () => {
         testWithElement: CustomDot,
       },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describeConformance(<MobileStepper {...defaultProps} steps={1} variant="progress" />, () => ({
@@ -103,17 +102,17 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render the back button', () => {
-    const { queryByTestId, getByRole } = render(<MobileStepper {...defaultProps} />);
-    const backButton = getByRole('button', { name: 'back' });
+    render(<MobileStepper {...defaultProps} />);
+    const backButton = screen.getByRole('button', { name: 'back' });
     expect(backButton).not.to.equal(null);
-    expect(queryByTestId('KeyboardArrowLeftIcon')).not.to.equal(null);
+    expect(screen.queryByTestId('KeyboardArrowLeftIcon')).not.to.equal(null);
   });
 
   it('should render next button', () => {
-    const { getByRole, queryByTestId } = render(<MobileStepper {...defaultProps} />);
-    const nextButton = getByRole('button', { name: 'next' });
+    render(<MobileStepper {...defaultProps} />);
+    const nextButton = screen.getByRole('button', { name: 'next' });
     expect(nextButton).not.to.equal(null);
-    expect(queryByTestId('KeyboardArrowRightIcon')).not.to.equal(null);
+    expect(screen.queryByTestId('KeyboardArrowRightIcon')).not.to.equal(null);
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {

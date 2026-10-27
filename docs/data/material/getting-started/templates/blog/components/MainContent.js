@@ -309,7 +309,11 @@ export default function MainContent() {
               <Typography gutterBottom variant="h6" component="div">
                 {cardData[0].title}
               </Typography>
-              <StyledTypography variant="body2" color="text.secondary" gutterBottom>
+              <StyledTypography
+                variant="body2"
+                gutterBottom
+                sx={{ color: 'text.secondary' }}
+              >
                 {cardData[0].description}
               </StyledTypography>
             </StyledCardContent>
@@ -341,7 +345,11 @@ export default function MainContent() {
               <Typography gutterBottom variant="h6" component="div">
                 {cardData[1].title}
               </Typography>
-              <StyledTypography variant="body2" color="text.secondary" gutterBottom>
+              <StyledTypography
+                variant="body2"
+                gutterBottom
+                sx={{ color: 'text.secondary' }}
+              >
                 {cardData[1].description}
               </StyledTypography>
             </StyledCardContent>
@@ -373,7 +381,11 @@ export default function MainContent() {
               <Typography gutterBottom variant="h6" component="div">
                 {cardData[2].title}
               </Typography>
-              <StyledTypography variant="body2" color="text.secondary" gutterBottom>
+              <StyledTypography
+                variant="body2"
+                gutterBottom
+                sx={{ color: 'text.secondary' }}
+              >
                 {cardData[2].description}
               </StyledTypography>
             </StyledCardContent>
@@ -409,8 +421,8 @@ export default function MainContent() {
                   </Typography>
                   <StyledTypography
                     variant="body2"
-                    color="text.secondary"
                     gutterBottom
+                    sx={{ color: 'text.secondary' }}
                   >
                     {cardData[3].description}
                   </StyledTypography>
@@ -443,8 +455,8 @@ export default function MainContent() {
                   </Typography>
                   <StyledTypography
                     variant="body2"
-                    color="text.secondary"
                     gutterBottom
+                    sx={{ color: 'text.secondary' }}
                   >
                     {cardData[4].description}
                   </StyledTypography>
@@ -479,7 +491,11 @@ export default function MainContent() {
               <Typography gutterBottom variant="h6" component="div">
                 {cardData[5].title}
               </Typography>
-              <StyledTypography variant="body2" color="text.secondary" gutterBottom>
+              <StyledTypography
+                variant="body2"
+                gutterBottom
+                sx={{ color: 'text.secondary' }}
+              >
                 {cardData[5].description}
               </StyledTypography>
             </StyledCardContent>

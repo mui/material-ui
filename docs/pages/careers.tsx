@@ -4,118 +4,40 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import OurValues from 'docs/src/components/about/OurValues';
 import PerksBenefits from 'docs/src/components/careers/PerksBenefits';
 import CareersFaq from 'docs/src/components/careers/CareersFaq';
 import RoleEntry from 'docs/src/components/careers/RoleEntry';
+import rolesData from 'docs/data/careers/roles.json';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
-import Head from 'docs/src/modules/components/Head';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 
-const openRolesData = [
-  {
-    title: 'Engineering',
-    roles: [
-      {
-        title: 'React Engineer — Material UI Maintainer',
-        description:
-          'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
-        url: '/careers/react-engineer-material-ui-maintainer/',
-      },
-      {
-        title: 'Product Engineer — Store',
-        description:
-          'You will lead the technical, product, and operational development of the store.',
-        url: '/careers/product-engineer-store/',
-      },
-      // {
-      //   title: 'React Engineer — xCharts',
-      //   description:
-      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-      //   url: '/careers/react-engineer-x-charts/',
-      // },
-      // {
-      //   title: 'React Engineer — eXplore',
-      //   description:
-      //     'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
-      //   url: '/careers/react-engineer-explore/',
-      // },
-      // {
-      //   title: 'React Engineer — X',
-      //   description:
-      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-      //   url: '/careers/react-engineer-x/',
-      // },
-    ],
-  },
-  {
-    title: 'Sales',
-    roles: [
-      {
-        title: 'Account Executive',
-        description:
-          'You will be a key player in driving revenue growth and building strong customer relationships.',
-        url: '/careers/account-executive/',
-      },
-      // {
-      //   title: 'Account Manager',
-      //   description:
-      //     'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
-      //   url: '/careers/account-manager/',
-      // },
-    ],
-  },
-  {
-    title: 'People',
-    roles: [
-      {
-        title: 'Technical Recruiter',
-        description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
-        url: '/careers/technical-recruiter/',
-      },
-    ],
-  },
-  {
-    title: 'Design',
-    roles: [],
-  },
-  {
-    title: 'Developer Experience',
-    roles: [],
-  },
-];
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
-const nextRolesData = [
-  {
-    title: 'Engineering',
-    roles: [
-      // {
-      //   title: 'React Community Engineer — X',
-      //   description:
-      //     'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
-      //   url: '/careers/react-community-engineer/',
-      // },
-    ],
-  },
-  {
-    title: 'Sales',
-    roles: [],
-  },
-  {
-    title: 'People',
-    roles: [],
-  },
-  {
-    title: 'Marketing',
-    roles: [],
-  },
-] as typeof openRolesData;
+interface CareerRole {
+  id: string;
+  title: string;
+  url: string;
+  summary: string;
+}
+
+// Synced from the careers API with `pnpm docs:sync-careers`.
+const {
+  count: openRolesCount,
+  roles: openRolesData,
+  futureRoles: futureRolesData,
+}: {
+  count: number;
+  roles: { title: string; roles: CareerRole[] }[];
+  futureRoles: { title: string; roles: CareerRole[] }[];
+} = rolesData;
+
+const futureRoles = futureRolesData.flatMap((category) => category.roles);
 
 export default function Careers() {
   return (
@@ -127,7 +49,7 @@ export default function Careers() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Section cozy bg="gradient">
           <SectionHeadline
             alwaysCenter
@@ -138,7 +60,7 @@ export default function Careers() {
                 <br /> of tools for UI development
               </Typography>
             }
-            description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
+            description="We give developers and designers the tools to bring stunning user interfaces to life with unrivaled speed and ease."
           />
         </Section>
         <Divider />
@@ -153,91 +75,83 @@ export default function Careers() {
               <Typography variant="h2" id="open-roles" gutterBottom>
                 Open roles
                 <Badge
-                  badgeContent={openRolesData.reduce((acc, item) => acc + item.roles.length, 0)}
+                  badgeContent={openRolesCount}
                   color="success"
-                  showZero
                   sx={{ ml: 3, '& .MuiBadge-badge': { fontWeight: 'bold' } }}
                 />
               </Typography>
             }
-            description="The company was incorporated in mid-2019 and has been bootstrapped so far. We're growing fast—2× YoY—and have kept a steady pace of increasing the team: in 2020, we were 6; 15 in 2021, 25 in 2022, and 32 in 2023. We plan to grow the team to 60 people in 2024 in the following areas:"
+            description={
+              openRolesCount > 0
+                ? 'We are actively hiring for the following roles:'
+                : `We don't have any open roles at the moment.`
+            }
           />
-          <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
-          <Stack spacing={2} divider={<Divider />}>
-            {openRolesData
-              .filter((category) => category.roles.length > 0)
-              .map((category) => {
-                return (
-                  <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
-                      {category.title}
-                    </Typography>
-                    {category.roles.map((role) => (
-                      <RoleEntry
-                        key={role.title}
-                        title={role.title}
-                        description={role.description}
-                        url={role.url}
-                      />
-                    ))}
-                  </React.Fragment>
-                );
-              })}
-          </Stack>
-        </Section>
-        <Divider />
-        {/* Next roles */}
-        {nextRolesData.length > 0 && (
-          <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
-            <Section bg="transparent" cozy>
-              <SectionHeadline
-                alwaysCenter
-                title={
-                  <Typography variant="h2" id="next-roles" gutterBottom>
-                    Next roles
-                  </Typography>
-                }
-                description={
-                  <React.Fragment>
-                    {
-                      'We are not actively hiring for these roles but we will likely focus on them next. '
-                    }
-                    {"If you are passively looking, don't hesitate to apply!"}
-                    <br />
-                    <br />
-                    If none of the roles below fit with what you are looking for, apply to{' '}
-                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                      the Dream job role
-                    </Link>
-                    !
-                  </React.Fragment>
-                }
-              />
+          {openRolesCount > 0 ? (
+            <React.Fragment>
               <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
               <Stack spacing={2} divider={<Divider />}>
-                {nextRolesData
-                  .filter((category) => category.roles.length > 0)
-                  .map((category) => {
-                    return (
-                      <React.Fragment key={category.title}>
-                        <Typography component="h3" variant="h5" sx={{ fontWeight: 'extraBold' }}>
-                          {category.title}
-                        </Typography>
-                        {category.roles.map((role) => (
-                          <RoleEntry
-                            key={role.title}
-                            title={role.title}
-                            description={role.description}
-                            url={role.url}
-                          />
-                        ))}
-                      </React.Fragment>
-                    );
-                  })}
+                {openRolesData.map((category) => {
+                  return (
+                    <React.Fragment key={category.title}>
+                      <Typography component="h3" variant="h5" sx={{ fontWeight: 'semiBold' }}>
+                        {category.title}
+                      </Typography>
+                      {category.roles.map((role) => (
+                        <RoleEntry
+                          key={role.id}
+                          title={role.title}
+                          description={role.summary}
+                          url={role.url}
+                        />
+                      ))}
+                    </React.Fragment>
+                  );
+                })}
               </Stack>
-            </Section>
-          </Box>
-        )}
+            </React.Fragment>
+          ) : null}
+        </Section>
+        <Divider />
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
+          <Section bg="transparent" cozy>
+            <SectionHeadline
+              title={
+                <Typography
+                  variant="h2"
+                  id={futureRoles.length > 0 ? 'future-roles' : 'next-roles'}
+                  gutterBottom
+                >
+                  {futureRoles.length > 0 ? 'Future roles' : 'Next roles'}
+                </Typography>
+              }
+              description={
+                <React.Fragment>
+                  You&apos;re welcome to apply for future consideration. You can apply to{' '}
+                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                    the dream job
+                  </Link>{' '}
+                  and tell us more about what you bring to the table.
+                </React.Fragment>
+              }
+            />
+            {futureRoles.length > 0 ? (
+              <React.Fragment>
+                <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
+                <Stack spacing={2} divider={<Divider />}>
+                  {futureRoles.map((role) => (
+                    <RoleEntry
+                      key={role.id}
+                      title={role.title}
+                      description={role.summary}
+                      url={role.url}
+                    />
+                  ))}
+                </Stack>
+              </React.Fragment>
+            ) : null}
+          </Section>
+        </Box>
         <Divider />
         <CareersFaq />
       </main>

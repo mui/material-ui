@@ -1,7 +1,14 @@
-import * as React from 'react';
 import { mergeSlotProps } from '@mui/material/utils';
 import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
 import { expectType } from '@mui/types';
+
+// slotProps.transition should reject unknown props
+<Snackbar
+  slotProps={{
+    // @ts-expect-error — unknown props should be rejected
+    transition: { randomInvalidProp: 'test' },
+  }}
+/>;
 
 <Snackbar
   slots={{
@@ -78,3 +85,8 @@ function Custom2(props: SnackbarProps) {
     />
   );
 }
+
+const snackbarCloseEvent: Parameters<NonNullable<SnackbarProps['onClose']>>[0] = null;
+
+function handleSnackbarClose(event: React.SyntheticEvent | Event, reason?: string) {}
+<Snackbar open onClose={handleSnackbarClose} />;

@@ -31,7 +31,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     email: '',
     status: 'initial',
   });
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
@@ -45,6 +45,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           EMAIL: form.email,
           email_address_check: '',
           locale: 'en',
+          SOURCE: 'Home form newsletter',
         }),
       });
       setForm((current) => ({ ...current, status: 'sent' }));

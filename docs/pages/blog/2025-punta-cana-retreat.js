@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
 import { docs } from './2025-punta-cana-retreat.md?muiMarkdown';
 

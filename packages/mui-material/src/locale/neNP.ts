@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('ne-NP');
 
 // Nepali-नेपाली
 export const neNP: Localization = {
@@ -25,7 +28,7 @@ export const neNP: Localization = {
         },
         labelRowsPerPage: 'प्रति पृष्ठ पङ्क्तिहरू:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} को ${count !== -1 ? count : `धेरै ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} को ${count !== -1 ? formatNumber(count) : `धेरै ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {
@@ -41,7 +44,7 @@ export const neNP: Localization = {
       defaultProps: {
         clearText: 'खाली गर्नुहोस्',
         closeText: 'बन्द गर्नुहोस्',
-        loadingText: 'लोड हुँदै...',
+        loadingText: 'लोड हुँदै…',
         noOptionsText: 'कुनै विकल्प छैन',
         openText: 'खोल्नुहोस्',
       },

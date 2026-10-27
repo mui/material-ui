@@ -1,15 +1,17 @@
-import { expect } from 'chai';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { beforeAll, afterAll, it, expect, describe } from 'vitest';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import animate from './animate';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-const isJSDOM = window.navigator.userAgent.includes('jsdom');
+const isFirefox = /firefox/i.test(navigator.userAgent);
+const isJSDOM = isJsdom();
 
-describeSkipIf(isJSDOM || isSafari)('animate', () => {
+// Firefox in Vitest browser mode reports fractional `scrollLeft` values, so the exact
+// integer assertions below fail. See https://github.com/vitest-dev/vitest/issues/9223
+describe.skipIf(isJSDOM || isSafari || isFirefox)('animate', () => {
   let container;
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
-  before(function beforeHook() {
+  beforeAll(function beforeHook() {
     container = document.createElement('div');
     container.style.cssText = [
       'height: 100px',
@@ -23,8 +25,7 @@ describeSkipIf(isJSDOM || isSafari)('animate', () => {
     document.body.appendChild(container);
   });
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
-  after(() => {
+  afterAll(() => {
     if (container !== undefined) {
       document.body.removeChild(container);
     }

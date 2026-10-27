@@ -1,8 +1,9 @@
 {
   "name": "@mui/utils",
-  "version": "7.3.2",
+  "version": "10.0.0-alpha.0",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-utils"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -24,34 +24,29 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/utils\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
+    "attw": "attw --pack ./build --entrypoints \".\" \"deepmerge\" \"useId\" \"composeClasses\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.29.7 || ^8.0.5",
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.1.1"
+    "react-is": "^19.3.1"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
-    "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.20",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.15",
-    "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.9",
-    "@types/react-is": "^19.0.0",
-    "@types/sinon": "^17.0.4",
-    "chai": "^6.0.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "sinon": "^21.0.0"
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/react-is": "19.3.0",
+    "@types/sinon": "22.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sinon": "22.1.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
@@ -66,9 +61,6 @@
   "publishConfig": {
     "access": "public",
     "directory": "build"
-  },
-  "engines": {
-    "node": ">=14.0.0"
   },
   "exports": {
     ".": "./src/index.ts",

@@ -31,7 +31,7 @@ function FormFeedback(props) {
 
   return (
     <Root error={error} success={success} className={className} {...other}>
-      <Typography color="inherit">{children}</Typography>
+      <Typography sx={{ color: 'inherit' }}>{children}</Typography>
     </Root>
   );
 }

@@ -1,8 +1,6 @@
-import * as React from 'react';
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { stub, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -27,7 +25,6 @@ describe('<Rating />', () => {
         expectedClassName: classes.label,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   describeConformance(<Rating max={1} />, () => ({
@@ -212,11 +209,7 @@ describe('<Rating />', () => {
     expect(view.container.querySelector('.customized')).to.have.tagName('label');
   });
 
-  it('should apply labelEmptyValueActive styles from theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply labelEmptyValueActive styles from theme', function test() {
     const theme = createTheme({
       components: {
         MuiRating: {
@@ -269,6 +262,14 @@ describe('<Rating />', () => {
     }
   });
 
+  it('should not spread the `value` prop on the icon slot DOM element', () => {
+    const { container } = render(<Rating name="rating-test" value={2} />);
+
+    container.querySelectorAll(`.${classes.icon}`).forEach((icon) => {
+      expect(icon).not.to.have.attribute('value');
+    });
+  });
+
   it('should be able to replace the icon', () => {
     function Icon(props) {
       return <i data-testid="custom" {...props} />;
@@ -305,7 +306,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('<form> integration', () => {
+  describe.skipIf(isJsdom())('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },
@@ -359,5 +360,94 @@ describe('<Rating />', () => {
         }
       });
     });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('draws the curated ring on the active icon only', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Rating defaultValue={3} name="rating-focus-visible" />
+        </ThemeProvider>,
+      );
+
+      const checkedRadio = screen
+        .getAllByRole('radio')
+        .find((radio) => radio.checked && radio.value === '3');
+
+      act(() => {
+        checkedRadio.focus();
+      });
+
+      const root = container.querySelector(`.${classes.focusVisible}`);
+      expect(root).not.to.equal(null);
+
+      const activeIcon = root.querySelector(`.${classes.iconActive}`);
+      expect(activeIcon).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('falls back to the legacy outline when unset', () => {
+      const { container } = render(<Rating defaultValue={3} name="rating-focus-visible-legacy" />);
+
+      const checkedRadio = screen
+        .getAllByRole('radio')
+        .find((radio) => radio.checked && radio.value === '3');
+
+      act(() => {
+        checkedRadio.focus();
+      });
+
+      const root = container.querySelector(`.${classes.focusVisible}`);
+      const activeIcon = root.querySelector(`.${classes.iconActive}`);
+      expect(activeIcon).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '1px',
+      });
+    });
+
+    it.skipIf(isJsdom())('draws the curated ring on the empty-value label', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Rating value={null} name="rating-empty-focus-visible" />
+        </ThemeProvider>,
+      );
+
+      const noValueRadio = screen.getAllByRole('radio').find((radio) => radio.checked);
+
+      act(() => {
+        noValueRadio.focus();
+      });
+
+      const label = container.querySelector(`.${classes.labelEmptyValueActive}`);
+      expect(label).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())(
+      'falls back to the legacy outline on the empty-value label when unset',
+      () => {
+        const { container } = render(
+          <Rating value={null} name="rating-empty-focus-visible-legacy" />,
+        );
+
+        const noValueRadio = screen.getAllByRole('radio').find((radio) => radio.checked);
+
+        act(() => {
+          noValueRadio.focus();
+        });
+
+        const label = container.querySelector(`.${classes.labelEmptyValueActive}`);
+        expect(label).toHaveComputedStyle({
+          outlineStyle: 'solid',
+          outlineWidth: '1px',
+        });
+      },
+    );
   });
 });

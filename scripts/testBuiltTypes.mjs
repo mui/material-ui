@@ -1,12 +1,12 @@
-import glob from 'fast-glob';
+import { globby } from 'globby';
 import fs from 'node:fs/promises';
 import path from 'path';
-import { getWorkspaceRoot } from './utils.mjs';
+import { findWorkspaceDir } from '@pnpm/find-workspace-dir';
 
 async function main() {
-  const workspaceRoot = getWorkspaceRoot();
+  const workspaceRoot = await findWorkspaceDir(process.cwd());
 
-  const declarationFiles = await glob('**/build/**/*.d.ts', {
+  const declarationFiles = await globby('**/build/**/*.d.ts', {
     absolute: true,
     cwd: workspaceRoot,
     ignore: ['node_modules'],

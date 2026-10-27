@@ -5,14 +5,15 @@
     "check": "NODE_OPTIONS=\"--max-old-space-size=4096\" bundle-size-checker --output ../size-snapshot.json"
   },
   "devDependencies": {
-    "fast-glob": "^3.3.3",
-    "path": "^0.12.7"
+    "fast-glob": "3.3.3",
+    "path": "0.12.7"
   },
   "dependencies": {
     "@mui/material": "workspace:*",
     "@mui/lab": "workspace:*",
     "@mui/private-theming": "workspace:*",
     "@mui/system": "workspace:*",
-    "@mui/utils": "workspace:*"
+    "@mui/utils": "workspace:*",
+    "@mui/internal-core-docs": "workspace:*"
   }
 }

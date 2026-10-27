@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -31,9 +30,11 @@ export default function RoleEntry(props: RoleProps) {
           >
             {props.title}
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 550 }}>
-            {props.description}
-          </Typography>
+          {props.description ? (
+            <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 550 }}>
+              {props.description}
+            </Typography>
+          ) : null}
         </div>
         <Button
           component="a"
@@ -54,9 +55,11 @@ export default function RoleEntry(props: RoleProps) {
       <Typography variant="body1" gutterBottom sx={{ color: 'text.primary', fontWeight: 'medium' }}>
         {props.title}
       </Typography>
-      <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 650 }}>
-        {props.description}
-      </Typography>
+      {props.description ? (
+        <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 650 }}>
+          {props.description}
+        </Typography>
+      ) : null}
     </div>
   );
 }
