@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, vi } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -67,37 +67,20 @@ import Slider from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
 import Check from '@mui/icons-material/Check';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, type Theme } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
 import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from './densityScale';
 
-/* eslint-disable vitest/valid-title -- one case per density x component x size, so
-   every title is generated from the matrix rather than written out. */
+/* eslint-disable vitest/valid-title */
 
-/**
- * The density contract, measured in a real engine: every control's box is a
- * stated function of `touchTarget`, and every glyph of `iconSize`. The
- * expectations are arithmetic on the recipe's own numbers — never the
- * expressions `enhanceDensity` writes — so a hardcoded px passes at
- * one level and fails at the others.
- *
- * Only boxes are asserted here. Padding, margin and gap are design values that
- * move with the mapping; pinning them would make this a change-detector.
- */
-
-/** The ladder's shape comes from the implementation, not a second list. */
-type Steps = Record<DensityKey, number>;
 type Density = {
   id: string;
-  step: Steps;
+  step: Record<DensityKey, number>;
   touchTarget: number;
   iconSize: number;
-  typography: Record<string, Record<string, string | number>>;
+  typography?: Record<string, Record<string, string | number>>;
 };
 
-// The three published recipes, each paired with the type ramp a design system
-// would compose alongside it — heights derive from `1lh`, so the ramp is part
-// of the contract rather than decoration.
 const DENSITIES: Density[] = [
   {
     id: 'high',
@@ -125,31 +108,10 @@ const DENSITIES: Density[] = [
     },
   },
   {
-    // The shipped ladder itself — an input to the enhancer, so it is read from
-    // the implementation; the expectations below stay computed independently.
     id: 'medium',
     step: DEFAULT_STEP_PX,
     touchTarget: DEFAULT_SIZING_PX.touchTarget,
     iconSize: DEFAULT_SIZING_PX.iconSize,
-    typography: {
-      h1: { fontSize: '1.75rem', lineHeight: '36px' },
-      h2: { fontSize: '1.5rem', lineHeight: '30px' },
-      h3: { fontSize: '1rem', lineHeight: '26px' },
-      h4: { fontSize: '0.9375rem', lineHeight: '24px' },
-      h5: { fontSize: '0.875rem', lineHeight: '22px' },
-      h6: { fontSize: '0.8125rem', lineHeight: '20px' },
-      subtitle1: { fontSize: '0.875rem', lineHeight: '22px' },
-      subtitle2: { fontSize: '0.8125rem', lineHeight: '20px' },
-      body1: { fontSize: '0.875rem', lineHeight: '20px' },
-      body2: { fontSize: '0.8125rem', lineHeight: '18px' },
-      caption: { fontSize: '0.75rem', lineHeight: '16px' },
-      button: {
-        fontSize: '0.875rem',
-        lineHeight: '20px',
-        textTransform: 'initial',
-        letterSpacing: 0,
-      },
-    },
   },
   {
     id: 'low',
@@ -173,8 +135,7 @@ const DENSITIES: Density[] = [
   },
 ];
 
-// Three themes, not one per case: `enhanceDensity` walks the whole emission map.
-const THEMES = new Map(
+const THEMES: Record<string, Theme> = Object.fromEntries(
   DENSITIES.map((density) => [
     density.id,
     enhanceDensity(createTheme({ typography: density.typography }), {
@@ -184,36 +145,71 @@ const THEMES = new Map(
     }),
   ]),
 );
+const MEDIUM = THEMES.medium;
 
-/**
- * The used height of the first match. Read off `getComputedStyle` rather than
- * the bounding rect: the rect adds borders the box itself doesn't own — a
- * collapsed table border lands half a pixel on each cell.
- */
-const sideOf = (selector: string, axis: Spec['axis'] | 'height' = 'height') => {
-  const element = document.querySelector(selector);
+const VARIANTS = ['outlined', 'filled', 'standard'] as const;
+const SIZES = ['small', 'medium'] as const;
+
+const query = (selector: string, scope: ParentNode = document) => {
+  const element = scope.querySelector(selector);
   if (!element) {
     throw new Error(`no element for ${selector}`);
   }
-  return Math.round(parseFloat(getComputedStyle(element)[axis]) * 100) / 100;
+  return element as HTMLElement;
+};
+const rect = (selector: string, scope?: ParentNode) =>
+  query(selector, scope).getBoundingClientRect();
+const css = (selector: string, scope?: ParentNode) => getComputedStyle(query(selector, scope));
+const inCase = (name: string) => query(`[data-case="${name}"]`);
+const inTheme = (theme: string, name: string) =>
+  query(`[data-theme="${theme}"] [data-case="${name}"]`);
+const textBox = (element: Element) => {
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  range.selectNodeContents(walker.nextNode()!);
+  return range.getBoundingClientRect();
 };
 
+const byName = <T,>(names: string[], read: (name: string) => T) =>
+  Object.fromEntries(names.map((name) => [name, read(name)]));
+
+/** 0 when `diff` is within `tolerance`, the rounded diff otherwise. */
+const drift = (diff: number, tolerance = 0.5) =>
+  Math.abs(diff) <= tolerance ? 0 : Math.round(diff * 100) / 100;
+
+const expectNoDrift = (drifts: Record<string, number>) => {
+  expect(drifts).to.deep.equal(byName(Object.keys(drifts), () => 0));
+};
+
+const cases = (entries: Record<string, React.ReactNode>) => (
+  <React.Fragment>
+    {Object.entries(entries).map(([name, node]) => (
+      <div key={name} data-case={name}>
+        {node}
+      </div>
+    ))}
+  </React.Fragment>
+);
+
+const sideBySide = (themes: Record<string, Theme>, node: React.ReactNode) => (
+  <React.Fragment>
+    {Object.entries(themes).map(([name, theme]) => (
+      <div key={name} data-theme={name}>
+        <ThemeProvider theme={theme}>{node}</ThemeProvider>
+      </div>
+    ))}
+  </React.Fragment>
+);
+
 type Spec = {
-  /** Sizes this family ships; `undefined` renders once, unsized. */
   sizes?: (string | undefined)[];
   render: (size?: any) => React.ReactElement;
   selector: string;
-  /**
-   * Which computed box property the contract names; height unless stated. A
-   * component that declares a floor is asserted on that floor: its used height
-   * also answers to the text inside it, which differs between engines.
-   */
   axis?: 'width' | 'minWidth' | 'minHeight';
-  /** Expected box height in px, from the density's own numbers. */
+  rendered?: boolean;
   height: (density: Density, size: string | undefined) => number;
 };
 
-/** The shared control ramp: one step under the box, the box, one step over. */
 const ramp = (density: Density, size: string | undefined) => {
   if (size === 'small') {
     return density.touchTarget - density.step.xxSmall;
@@ -292,7 +288,6 @@ const CONTROLS: Record<string, Spec> = {
       variant === 'dot' ? density.step.small : 16 + 2 * density.step.xxSmall,
   },
   Fab: {
-    // Circular only — the extended variant is width-led, not a box.
     sizes: ['small', 'medium', 'large'],
     render: (size) => (
       <Fab size={size}>
@@ -314,12 +309,9 @@ const CONTROLS: Record<string, Spec> = {
     sizes: ['small', 'medium'],
     render: (size) => <Chip size={size} label="Chip" />,
     selector: '.MuiChip-root',
-    // Chip authors its own small box; medium sits on the target itself.
     height: (density, size) =>
       size === 'small' ? density.touchTarget - density.step.xxSmall : density.touchTarget,
   },
-
-  // --- input boxes: the headline claim is that every variant lands on one box
   InputBase: {
     sizes: ['small', 'medium'],
     render: (size) => <InputBase size={size} defaultValue="Ada" />,
@@ -339,8 +331,6 @@ const CONTROLS: Record<string, Spec> = {
     height: ramp,
   },
   FilledInput: {
-    // Filled keeps room for the floating label; the box contract applies
-    // without one.
     sizes: ['small', 'medium'],
     render: (size) => <TextField variant="filled" hiddenLabel size={size} defaultValue="Ada" />,
     selector: '.MuiFilledInput-root',
@@ -362,8 +352,6 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiOutlinedInput-root',
     height: ramp,
   },
-
-  // --- declared heights: boxes that are not the interactive target
   AccordionSummary: {
     render: () => (
       <Accordion>
@@ -415,7 +403,8 @@ const CONTROLS: Record<string, Spec> = {
         </TableBody>
       </Table>
     ),
-    selector: '.MuiTableCell-root',
+    selector: '.MuiTableRow-root',
+    rendered: true,
     height: (density, size) =>
       size === 'small'
         ? density.touchTarget + density.step.xxSmall
@@ -444,8 +433,6 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiBottomNavigation-root',
     height: (density) => density.step.xxLarge,
   },
-
-  // --- boxes outside the control ramp
   ButtonGroup: {
     render: () => (
       <ButtonGroup>
@@ -458,7 +445,6 @@ const CONTROLS: Record<string, Spec> = {
     height: (density) => density.touchTarget,
   },
   Breadcrumbs: {
-    // `maxItems` forces the collapsed button, which is the box density sizes.
     render: () => (
       <Breadcrumbs maxItems={2}>
         <span>One</span>
@@ -519,7 +505,6 @@ const CONTROLS: Record<string, Spec> = {
     height: (density) => density.touchTarget,
   },
   LinearProgress: {
-    // A fixed bar thickness, not a scale step — asserted so it stays deliberate.
     render: () => <LinearProgress />,
     selector: '.MuiLinearProgress-root',
     height: () => 4,
@@ -547,38 +532,17 @@ const CONTROLS: Record<string, Spec> = {
   },
 };
 
-/** The glyph ramp, read as a used font-size. */
-const ICONS: Record<
-  string,
-  { render: (size: any) => React.ReactElement; expect: (density: Density, size: string) => number }
-> = {
-  SvgIcon: {
-    render: (size) => (
-      <SvgIcon fontSize={size}>
-        <path d="M0 0h24v24H0z" />
-      </SvgIcon>
-    ),
-    expect: (density, size) => {
-      if (size === 'small') {
-        return density.iconSize - 2;
-      }
-      if (size === 'large') {
-        return density.iconSize + 4;
-      }
-      return density.iconSize;
-    },
-  },
+const ICON_SIZES = {
+  small: (density: Density) => density.iconSize - 2,
+  medium: (density: Density) => density.iconSize,
+  large: (density: Density) => density.iconSize + 4,
 };
 
-/** Properties that state a box rather than space one. */
 const BOX_PROPS = ['height', 'minHeight', 'width', 'minWidth', '--_size', '--_height'];
 
-/** `0`, `auto` and the like reset a box; they don't claim one. */
 const claimsABox = (value: unknown) =>
   value !== 0 && value !== 'auto' && value !== '0' && value !== 'none' && value !== '100%';
 
-/** Does anything in this component's emission set a box? Walks nested variants,
- * selectors and slots, since a size variant is where most boxes are written. */
 function emitsABox(node: unknown): boolean {
   if (Array.isArray(node)) {
     return node.some(emitsABox);
@@ -586,924 +550,651 @@ function emitsABox(node: unknown): boolean {
   if (node === null || typeof node !== 'object') {
     return false;
   }
-  return Object.entries(node as Record<string, unknown>).some(([key, value]) => {
-    if (BOX_PROPS.includes(key)) {
-      return claimsABox(value);
-    }
-    return emitsABox(value);
-  });
+  return Object.entries(node as Record<string, unknown>).some(([key, value]) =>
+    BOX_PROPS.includes(key) ? claimsABox(value) : emitsABox(value),
+  );
 }
+
+test('enhanceDensity accepts a theme without a body2 variant', () => {
+  expect(() => enhanceDensity(createTheme({ typography: { body2: undefined } }))).not.to.throw();
+});
 
 describe.skipIf(isJsdom())('density contract', () => {
   const { render } = createRenderer();
+  const renderIn = (theme: Theme, node: React.ReactNode) =>
+    render(<ThemeProvider theme={theme}>{node}</ThemeProvider>);
 
-  test('every component that sizes a box has a spec', () => {
-    const components = (THEMES.get('medium')!.components ?? {}) as Record<string, any>;
-    const asserted = new Set([
-      ...Object.keys(CONTROLS).map((name) => `Mui${name}`),
-      ...Object.keys(ICONS).map((name) => `Mui${name}`),
-    ]);
-    // Derived, not listed: a component that gains a height starts owing a spec
-    // the moment it emits one, which a hand-kept exemption list would not catch.
-    const unmeasured = Object.entries(components)
-      .filter(([name, value]) => !asserted.has(name) && emitsABox(value?.styleOverrides))
-      .map(([name]) => name);
-    expect(unmeasured).to.deep.equal([]);
-  });
+  describe('boxes', () => {
+    test('every component that sizes a box has a spec', () => {
+      const components = (MEDIUM.components ?? {}) as Record<string, any>;
+      const asserted = new Set([
+        'MuiSvgIcon',
+        ...Object.keys(CONTROLS).map((name) => `Mui${name}`),
+      ]);
+      const unmeasured = Object.entries(components)
+        .filter(([name, value]) => !asserted.has(name) && emitsABox(value?.styleOverrides))
+        .map(([name]) => name);
+      expect(unmeasured).to.deep.equal([]);
+    });
 
-  DENSITIES.forEach((density) => {
-    describe(density.id, () => {
-      Object.entries(ICONS).forEach(([name, spec]) => {
-        ['small', 'medium', 'large'].forEach((size) => {
-          const title = `${name} ${size}`;
-          test(title, () => {
-            render(
-              <ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>,
-            );
-            const icon = document.querySelector('.MuiSvgIcon-root') as HTMLElement;
-            expect(parseFloat(getComputedStyle(icon).fontSize)).to.equal(
-              spec.expect(density, size),
-            );
+    DENSITIES.forEach((density) => {
+      describe(density.id, () => {
+        test('SvgIcon sizes', () => {
+          renderIn(
+            THEMES[density.id],
+            cases(
+              byName(Object.keys(ICON_SIZES), (size) => (
+                <SvgIcon fontSize={size as any}>
+                  <path d="M0 0h24v24H0z" />
+                </SvgIcon>
+              )),
+            ),
+          );
+          expect(
+            byName(Object.keys(ICON_SIZES), (size) =>
+              parseFloat(css('.MuiSvgIcon-root', inCase(size)).fontSize),
+            ),
+          ).to.deep.equal(
+            byName(Object.keys(ICON_SIZES), (size) =>
+              ICON_SIZES[size as keyof typeof ICON_SIZES](density),
+            ),
+          );
+        });
+
+        Object.entries(CONTROLS).forEach(([name, spec]) => {
+          (spec.sizes ?? [undefined]).forEach((size) => {
+            test(`${name}${size ? ` ${size}` : ''}`, () => {
+              renderIn(THEMES[density.id], spec.render(size));
+              const side = spec.rendered
+                ? rect(spec.selector).height
+                : parseFloat(css(spec.selector)[spec.axis ?? 'height']);
+              expect(Math.round(side * 100) / 100).to.equal(spec.height(density, size));
+            });
           });
         });
       });
-      Object.entries(CONTROLS).forEach(([name, spec]) => {
-        const sizes = spec.sizes ?? [undefined];
-        sizes.forEach((size) => {
-          test(`${name}${size ? ` ${size}` : ''}`, () => {
-            render(
-              <ThemeProvider theme={THEMES.get(density.id)!}>{spec.render(size)}</ThemeProvider>,
-            );
-            expect(sideOf(spec.selector, spec.axis)).to.equal(spec.height(density, size));
-          });
-        });
-      });
     });
-  });
-});
 
-describe.skipIf(isJsdom())('filled input label room', () => {
-  const { render } = createRenderer();
-
-  DENSITIES.forEach((density) => {
-    (['small', 'medium'] as const).forEach((size) => {
-      test(`${density.id} ${size}: a standalone FilledInput matches a labeled TextField`, () => {
-        render(
-          <ThemeProvider theme={THEMES.get(density.id)!}>
-            <FilledInput size={size} defaultValue="Ada" />
-            <TextField variant="filled" size={size} label="Label" defaultValue="Ada" />
-          </ThemeProvider>,
-        );
-        const [standalone, field] = document.querySelectorAll('.MuiFilledInput-root');
-        expect(standalone.getBoundingClientRect().height).to.equal(
-          field.getBoundingClientRect().height,
-        );
-      });
-
-      test(`${density.id} ${size}: a one-row hiddenLabel multiline matches the single-line field`, () => {
-        render(
-          <ThemeProvider theme={THEMES.get(density.id)!}>
-            <TextField variant="filled" hiddenLabel size={size} defaultValue="Ada" />
-            <TextField variant="filled" hiddenLabel multiline size={size} defaultValue="Ada" />
-          </ThemeProvider>,
-        );
-        const [single, multiline] = document.querySelectorAll('.MuiFilledInput-root');
-        expect(multiline.getBoundingClientRect().height).to.equal(
-          single.getBoundingClientRect().height,
-        );
-      });
+    test('a region that overrides --mui-touchTarget and --mui-iconSize resizes the controls in it', () => {
+      renderIn(
+        enhanceDensity(createTheme({ cssVariables: true })),
+        <div
+          style={{ '--mui-touchTarget': '44px', '--mui-iconSize': '24px' } as React.CSSProperties}
+        >
+          <Button>Label</Button>
+          <Checkbox />
+          <IconButton>
+            <AddIcon />
+          </IconButton>
+        </div>,
+      );
+      expect({
+        button: rect('.MuiButton-root').height,
+        checkbox: rect('.MuiCheckbox-root').height,
+        iconButton: rect('.MuiIconButton-root').height,
+        icon: parseFloat(css('.MuiIconButton-root svg').fontSize),
+      }).to.deep.equal({ button: 44, checkbox: 44, iconButton: 44, icon: 24 });
     });
-  });
-});
 
-describe.skipIf(isJsdom())('input types share the text box', () => {
-  const { render } = createRenderer();
-  const types = ['date', 'time', 'datetime-local', 'month', 'week', 'color'];
-
-  (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
-    (['small', 'medium'] as const).forEach((size) => {
-      test(`${variant} ${size}`, () => {
-        render(
-          <ThemeProvider theme={THEMES.get('medium')!}>
-            {['text', ...types].map((type) => (
-              <TextField key={type} data-type={type} variant={variant} size={size} type={type} />
-            ))}
-          </ThemeProvider>,
+    test('a size added by the app renders like medium', () => {
+      const added = 'xlarge' as any;
+      renderIn(
+        MEDIUM,
+        cases(
+          byName(['medium', added], (size: any) => (
+            <React.Fragment>
+              <Switch size={size} />
+              <ToggleButton value="a" size={size}>
+                <AddIcon />
+              </ToggleButton>
+              <Chip size={size} label="Chip" onDelete={() => {}} />
+            </React.Fragment>
+          )),
+        ),
+      );
+      const boxes = (size: string) =>
+        byName(
+          [
+            '.MuiSwitch-root',
+            '.MuiSwitch-switchBase',
+            '.MuiSwitch-thumb',
+            '.MuiSwitch-track',
+            '.MuiToggleButton-root',
+            '.MuiChip-root',
+          ],
+          (selector) => {
+            const element = query(selector, inCase(size));
+            const { width, height } = element.getBoundingClientRect();
+            const style = getComputedStyle(element);
+            return {
+              width: Math.round(width * 100) / 100,
+              height: Math.round(height * 100) / 100,
+              radius: style.borderTopLeftRadius,
+              padding: style.padding,
+            };
+          },
         );
-        const height = (type: string) =>
-          document
-            .querySelector(`[data-type="${type}"] .MuiInputBase-root`)!
-            .getBoundingClientRect().height;
-        expect(types.map((type) => `${type} ${height(type)}`)).to.deep.equal(
-          types.map((type) => `${type} ${height('text')}`),
-        );
-      });
-    });
-  });
-});
-
-describe.skipIf(isJsdom())('density without the matching input', () => {
-  const { render } = createRenderer();
-  const plain = createTheme();
-  const enhanced = THEMES.get('medium')!;
-
-  function renderBoth(node: React.ReactNode) {
-    render(
-      <React.Fragment>
-        <div data-testid="plain">
-          <ThemeProvider theme={plain}>{node}</ThemeProvider>
-        </div>
-        <div data-testid="enhanced">
-          <ThemeProvider theme={enhanced}>{node}</ThemeProvider>
-        </div>
-      </React.Fragment>,
-    );
-    const pick = (id: string, selector: string) =>
-      document.querySelector(`[data-testid="${id}"] ${selector}`) as HTMLElement;
-    return {
-      plain: (selector: string) => pick('plain', selector),
-      enhanced: (selector: string) => pick('enhanced', selector),
-    };
-  }
-
-  (['standard', 'filled', 'outlined'] as const).forEach((variant) => {
-    (['small', 'medium'] as const).forEach((size) => {
-      (variant === 'filled' ? [false, true] : [false]).forEach((shrink) => {
-        test(`a ${variant} ${size}${shrink ? ' shrunk' : ''} label keeps master's position when the input does not set it`, () => {
-          const { plain: inPlain, enhanced: inEnhanced } = renderBoth(
-            <FormControl variant={variant} size={size}>
-              <InputLabel shrink={shrink}>Label</InputLabel>
-              <InputBase />
-            </FormControl>,
-          );
-          expect(getComputedStyle(inEnhanced('label')).transform).to.equal(
-            getComputedStyle(inPlain('label')).transform,
-          );
-        });
-      });
+      expect(boxes(added)).to.deep.equal(boxes('medium'));
     });
   });
 
-  test('helper text with inline elements flows as text', () => {
-    const { plain: inPlain, enhanced: inEnhanced } = renderBoth(
-      <TextField
-        sx={{ width: 220 }}
-        helperText={
-          <React.Fragment>
-            Use <strong>letters only</strong> and read the <a href="#rules">naming rules</a> before
-            you continue.
-          </React.Fragment>
-        }
-      />,
-    );
-    const linkWidth = (el: HTMLElement) => el.getBoundingClientRect().width;
-    expect(linkWidth(inEnhanced('.MuiFormHelperText-root a'))).to.equal(
-      linkWidth(inPlain('.MuiFormHelperText-root a')),
-    );
-  });
-
-  test('DialogContent keeps block padding without a title, and none under one', () => {
-    const { enhanced: inEnhanced } = renderBoth(
-      <React.Fragment>
-        <div data-testid="alone">
-          <DialogContent>Body</DialogContent>
-        </div>
-        <div data-testid="titled">
-          <DialogTitle>Title</DialogTitle>
-          <DialogContent>Body</DialogContent>
-        </div>
-      </React.Fragment>,
-    );
-    const alone = getComputedStyle(inEnhanced('[data-testid="alone"] .MuiDialogContent-root'));
-    const titled = getComputedStyle(inEnhanced('[data-testid="titled"] .MuiDialogContent-root'));
-    expect(parseFloat(alone.paddingTop)).to.be.greaterThan(0);
-    expect(parseFloat(alone.paddingBottom)).to.be.greaterThan(0);
-    expect(titled.paddingTop).to.equal('0px');
-  });
-
-  test('wrapped TableCell and AccordionSummary content keeps an xxSmall inset', () => {
-    const longText = 'A value long enough to wrap onto several lines in a narrow column';
-    const { enhanced: inEnhanced } = renderBoth(
-      <React.Fragment>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell sx={{ width: 120 }}>
-                <span data-testid="cell-text">{longText}</span>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-        <Accordion sx={{ width: 200 }}>
-          <AccordionSummary>
-            <span data-testid="summary-text">{longText}</span>
-          </AccordionSummary>
-        </Accordion>
-      </React.Fragment>,
-    );
-    const inset = (outer: string, inner: string) => {
-      const outerBox = inEnhanced(outer).getBoundingClientRect();
-      const innerBox = inEnhanced(inner).getBoundingClientRect();
-      return [innerBox.top - outerBox.top, outerBox.bottom - innerBox.bottom];
-    };
-    const xxSmall = DEFAULT_STEP_PX.xxSmall;
-    inset('.MuiTableCell-root', '[data-testid="cell-text"]').forEach((side) => {
-      expect(side).to.be.at.least(xxSmall);
-    });
-    inset('.MuiAccordionSummary-root', '[data-testid="summary-text"]').forEach((side) => {
-      expect(side).to.be.at.least(xxSmall);
-    });
-  });
-
-  test('CardActions keeps top padding below a CardMedia', () => {
-    const { enhanced: inEnhanced } = renderBoth(
-      <Card>
-        <CardMedia sx={{ height: 40 }} />
-        <CardActions>
-          <Button>Share</Button>
-        </CardActions>
-      </Card>,
-    );
-    expect(
-      parseFloat(getComputedStyle(inEnhanced('.MuiCardActions-root')).paddingTop),
-    ).to.be.greaterThan(0);
-  });
-});
-
-describe.skipIf(isJsdom())('Autocomplete matches TextField', () => {
-  const { render } = createRenderer();
-  const cases = [
-    ...(['outlined', 'filled', 'standard'] as const).flatMap((variant) =>
-      (['small', 'medium'] as const).map((size) => ({ variant, size, hiddenLabel: false })),
-    ),
-    ...(['small', 'medium'] as const).map((size) => ({
-      variant: 'filled' as const,
-      size,
-      hiddenLabel: true,
-    })),
-  ];
-
-  DENSITIES.forEach((density) => {
-    cases.forEach(({ variant, size, hiddenLabel }) => {
-      test(`${density.id} ${variant} ${size}${hiddenLabel ? ' hiddenLabel' : ''}: same height`, () => {
-        render(
-          <ThemeProvider theme={THEMES.get(density.id)!}>
-            <div data-testid="autocomplete">
-              <Autocomplete
-                options={['One', 'Two']}
-                size={size}
-                defaultValue="One"
-                renderInput={(params) => (
+  describe('inputs', () => {
+    DENSITIES.forEach((density) => {
+      test(`${density.id}: filled fields with and without a label share one box`, () => {
+        renderIn(
+          THEMES[density.id],
+          cases(
+            Object.fromEntries(
+              SIZES.flatMap((size) => [
+                [`${size} standalone`, <FilledInput size={size} defaultValue="Ada" />],
+                [
+                  `${size} labeled`,
+                  <TextField variant="filled" size={size} label="Label" defaultValue="Ada" />,
+                ],
+                [
+                  `${size} hiddenLabel`,
+                  <TextField variant="filled" hiddenLabel size={size} defaultValue="Ada" />,
+                ],
+                [
+                  `${size} hiddenLabel multiline`,
                   <TextField
-                    {...params}
-                    variant={variant}
-                    label={hiddenLabel ? undefined : 'Label'}
-                    hiddenLabel={hiddenLabel}
-                  />
-                )}
-              />
-            </div>
-            <div data-testid="textfield">
-              <TextField
-                variant={variant}
-                size={size}
-                label={hiddenLabel ? undefined : 'Label'}
-                hiddenLabel={hiddenLabel}
-                defaultValue="One"
-              />
-            </div>
-          </ThemeProvider>,
+                    variant="filled"
+                    hiddenLabel
+                    multiline
+                    size={size}
+                    defaultValue="Ada"
+                  />,
+                ],
+              ]),
+            ),
+          ),
         );
-        const height = (id: string) =>
-          (
-            document.querySelector(`[data-testid="${id}"] .MuiInputBase-root`) as HTMLElement
-          ).getBoundingClientRect().height;
-        expect(height('autocomplete')).to.be.closeTo(height('textfield'), 0.5);
+        const height = (name: string) => rect('.MuiFilledInput-root', inCase(name)).height;
+        expectNoDrift(
+          Object.fromEntries(
+            SIZES.flatMap((size) => [
+              [
+                `${size} standalone vs labeled`,
+                drift(height(`${size} standalone`) - height(`${size} labeled`), 0),
+              ],
+              [
+                `${size} multiline vs single line`,
+                drift(height(`${size} hiddenLabel multiline`) - height(`${size} hiddenLabel`), 0),
+              ],
+            ]),
+          ),
+        );
       });
-    });
-  });
-});
 
-describe.skipIf(isJsdom())('floating label lines up with the value', () => {
-  const { render } = createRenderer();
-  const textStart = (element: HTMLElement) =>
-    element.getBoundingClientRect().left + parseFloat(getComputedStyle(element).paddingLeft);
-  const labelStart = () => {
-    const range = document.createRange();
-    range.selectNodeContents(document.querySelector('.MuiInputLabel-root')!.firstChild!);
-    return range.getBoundingClientRect().left;
-  };
-  const controls = {
-    TextField: (variant: any, size: any) => (
-      <TextField variant={variant} size={size} label="Label" defaultValue="Value" />
-    ),
-    Select: (variant: any, size: any) => (
-      <TextField select variant={variant} size={size} label="Label" defaultValue="a">
-        <MenuItem value="a">Value</MenuItem>
-      </TextField>
-    ),
-    Autocomplete: (variant: any, size: any) => (
-      <Autocomplete
-        size={size}
-        options={['Value']}
-        defaultValue="Value"
-        renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
-      />
-    ),
-  };
-
-  DENSITIES.forEach((density) => {
-    Object.entries(controls).forEach(([name, control]) => {
-      (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
-        (['small', 'medium'] as const).forEach((size) => {
-          test(`${density.id} ${name} ${variant} ${size}`, () => {
-            render(
-              <ThemeProvider theme={THEMES.get(density.id)!}>
-                {control(variant, size)}
-              </ThemeProvider>,
-            );
-            const value = document.querySelector(
-              'input:not([aria-hidden]), .MuiSelect-select',
-            ) as HTMLElement;
-            expect(textStart(value)).to.be.closeTo(labelStart(), 0.5);
-          });
+      test(`${density.id}: Autocomplete has the TextField box`, () => {
+        const fields: Record<
+          string,
+          { variant: (typeof VARIANTS)[number]; size: any; hidden: boolean }
+        > = {};
+        VARIANTS.forEach((variant) =>
+          SIZES.forEach((size) => {
+            fields[`${variant} ${size}`] = { variant, size, hidden: false };
+          }),
+        );
+        SIZES.forEach((size) => {
+          fields[`filled ${size} hiddenLabel`] = { variant: 'filled', size, hidden: true };
         });
+        renderIn(
+          THEMES[density.id],
+          cases(
+            Object.fromEntries(
+              Object.entries(fields).flatMap(([name, { variant, size, hidden }]) => {
+                const label = hidden ? undefined : 'Label';
+                return [
+                  [
+                    `${name} autocomplete`,
+                    <Autocomplete
+                      options={['One', 'Two']}
+                      size={size}
+                      defaultValue="One"
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant={variant}
+                          label={label}
+                          hiddenLabel={hidden}
+                        />
+                      )}
+                    />,
+                  ],
+                  [
+                    `${name} textfield`,
+                    <TextField
+                      variant={variant}
+                      size={size}
+                      label={label}
+                      hiddenLabel={hidden}
+                      defaultValue="One"
+                    />,
+                  ],
+                ];
+              }),
+            ),
+          ),
+        );
+        const height = (name: string) => rect('.MuiInputBase-root', inCase(name)).height;
+        expectNoDrift(
+          byName(Object.keys(fields), (name) =>
+            drift(height(`${name} autocomplete`) - height(`${name} textfield`)),
+          ),
+        );
       });
-    });
-  });
-});
 
-describe.skipIf(isJsdom())('Autocomplete chips', () => {
-  const { render } = createRenderer();
-
-  (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
-    (['small', 'medium'] as const).forEach((size) => {
-      test(`${variant} ${size}: chips are spaced by a 2px gap, not margins`, () => {
-        render(
-          <ThemeProvider theme={THEMES.get('medium')!}>
+      test(`${density.id}: the floating label starts where the value starts`, () => {
+        const controls: Record<string, (variant: any, size: any) => React.ReactNode> = {
+          TextField: (variant, size) => (
+            <TextField variant={variant} size={size} label="Label" defaultValue="Value" />
+          ),
+          Select: (variant, size) => (
+            <TextField select variant={variant} size={size} label="Label" defaultValue="a">
+              <MenuItem value="a">Value</MenuItem>
+            </TextField>
+          ),
+          Autocomplete: (variant, size) => (
             <Autocomplete
-              multiple
-              sx={{ width: 400 }}
               size={size}
-              options={['Apple', 'Banana']}
-              defaultValue={['Apple', 'Banana']}
+              options={['Value']}
+              defaultValue="Value"
               renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
             />
-          </ThemeProvider>,
+          ),
+        };
+        const fields: Record<string, React.ReactNode> = {};
+        Object.entries(controls).forEach(([name, control]) =>
+          VARIANTS.forEach((variant) =>
+            SIZES.forEach((size) => {
+              fields[`${name} ${variant} ${size}`] = control(variant, size);
+            }),
+          ),
         );
-        const root = document.querySelector('.MuiAutocomplete-inputRoot') as HTMLElement;
-        expect(getComputedStyle(root).columnGap).to.equal('2px');
-        expect(getComputedStyle(root).rowGap).to.equal('2px');
-        expect(
-          getComputedStyle(document.querySelector('.MuiAutocomplete-tag') as HTMLElement).margin,
-        ).to.equal('0px');
+        renderIn(THEMES[density.id], cases(fields));
+        expectNoDrift(
+          byName(Object.keys(fields), (name) => {
+            const value = query('input:not([aria-hidden]), .MuiSelect-select', inCase(name));
+            const valueStart =
+              value.getBoundingClientRect().left + parseFloat(getComputedStyle(value).paddingLeft);
+            return drift(valueStart - textBox(query('.MuiInputLabel-root', inCase(name))).left);
+          }),
+        );
       });
-    });
-  });
-});
 
-describe.skipIf(isJsdom())('Autocomplete chip rows', () => {
-  const { render } = createRenderer();
-  const options = ['Apple', 'Banana', 'Cherry', 'Dragon fruit', 'Elderberry', 'Fig'];
-  const field = (
-    variant: 'outlined' | 'filled' | 'standard',
-    size: 'small' | 'medium',
-    value: string[],
-    width = 400,
-  ) => (
-    <Autocomplete
-      multiple
-      sx={{ width }}
-      size={size}
-      options={options}
-      defaultValue={value}
-      renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
-    />
-  );
-  const rootBox = () =>
-    (document.querySelector('.MuiAutocomplete-inputRoot') as HTMLElement).getBoundingClientRect();
+      test(`${density.id}: Autocomplete chips keep the field height and room around wrapped rows`, () => {
+        const options = ['Apple', 'Banana', 'Cherry', 'Dragon fruit', 'Elderberry', 'Fig'];
+        const field = (variant: any, size: any, value: string[], width = 400) => (
+          <Autocomplete
+            multiple
+            sx={{ width }}
+            size={size}
+            options={options}
+            defaultValue={value}
+            renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
+          />
+        );
+        const names = VARIANTS.flatMap((variant) => SIZES.map((size) => `${variant} ${size}`));
+        renderIn(
+          THEMES[density.id],
+          cases(
+            Object.fromEntries(
+              names.flatMap((name) => {
+                const [variant, size] = name.split(' ');
+                return [
+                  [`${name} empty`, field(variant, size, [])],
+                  [`${name} one`, field(variant, size, ['Apple'])],
+                  [`${name} wrapped`, field(variant, size, options, 220)],
+                ];
+              }),
+            ),
+          ),
+        );
+        const root = (name: string) => rect('.MuiAutocomplete-inputRoot', inCase(name));
+        expect(
+          byName(names, (name) => {
+            const box = root(`${name} wrapped`);
+            const items = Array.from(
+              inCase(`${name} wrapped`).querySelectorAll(
+                '.MuiAutocomplete-tag, .MuiAutocomplete-input',
+              ),
+            ).map((item) => item.getBoundingClientRect());
+            const top = Math.min(...items.map((item) => item.top)) - box.top;
+            const bottom = box.bottom - Math.max(...items.map((item) => item.bottom));
+            return {
+              sameHeight: root(`${name} one`).height === root(`${name} empty`).height,
+              roomBelow: bottom > 1,
+              roomAbove: name.startsWith('filled') ? top > bottom : Math.abs(top - bottom) <= 0.5,
+            };
+          }),
+        ).to.deep.equal(
+          byName(names, () => ({ sameHeight: true, roomBelow: true, roomAbove: true })),
+        );
+      });
 
-  DENSITIES.forEach((density) => {
-    (['outlined', 'filled', 'standard'] as const).forEach((variant) =>
-      (['small', 'medium'] as const).forEach((size) => {
-        test(`${density.id} ${variant} ${size}: selecting a value does not change the height`, () => {
-          const theme = THEMES.get(density.id)!;
-          const { unmount } = render(
-            <ThemeProvider theme={theme}>{field(variant, size, [])}</ThemeProvider>,
-          );
-          const empty = rootBox().height;
-          unmount();
-          render(<ThemeProvider theme={theme}>{field(variant, size, ['Apple'])}</ThemeProvider>);
-          expect(rootBox().height).to.equal(empty);
-        });
-
-        test(`${density.id} ${variant} ${size}: wrapped chip rows keep room at the top and bottom`, () => {
-          render(
-            <ThemeProvider theme={THEMES.get(density.id)!}>
-              {field(variant, size, options, 220)}
-            </ThemeProvider>,
-          );
-          const root = rootBox();
-          const items = Array.from(
-            document.querySelectorAll('.MuiAutocomplete-tag, .MuiAutocomplete-input'),
-          ).map((item) => item.getBoundingClientRect());
-          const top = Math.min(...items.map((item) => item.top)) - root.top;
-          const bottom = root.bottom - Math.max(...items.map((item) => item.bottom));
-          expect(bottom).to.be.greaterThan(1);
-          if (variant === 'filled') {
-            expect(top).to.be.greaterThan(bottom);
-          } else {
-            expect(top).to.be.closeTo(bottom, 0.5);
-          }
-        });
-      }),
-    );
-  });
-});
-
-describe.skipIf(isJsdom())('Autocomplete end buttons', () => {
-  const { render } = createRenderer();
-
-  DENSITIES.forEach((density) => {
-    (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
-      [false, true].forEach((disableClearable) => {
-        test(`${density.id} ${variant}${disableClearable ? ' popup only' : ''}: text stops before the buttons`, () => {
-          render(
-            <ThemeProvider theme={THEMES.get(density.id)!}>
+      test(`${density.id}: the Autocomplete value stops before the end buttons`, () => {
+        const value = 'A long option value that fills the field';
+        const fields: Record<string, React.ReactNode> = {};
+        VARIANTS.forEach((variant) =>
+          [false, true].forEach((disableClearable) => {
+            fields[`${variant}${disableClearable ? ' popup only' : ''}`] = (
               <Autocomplete
                 sx={{ width: 300 }}
-                options={['A long option value that fills the field']}
-                defaultValue="A long option value that fills the field"
+                options={[value]}
+                defaultValue={value}
                 disableClearable={disableClearable}
                 renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
               />
-            </ThemeProvider>,
-          );
-          const input = document.querySelector('.MuiAutocomplete-input') as HTMLElement;
-          const textEnd =
-            input.getBoundingClientRect().right - parseFloat(getComputedStyle(input).paddingRight);
-          const buttons = (
-            document.querySelector('.MuiAutocomplete-endAdornment') as HTMLElement
-          ).getBoundingClientRect();
-          expect(textEnd).to.be.at.most(buttons.left + 0.5);
+            );
+          }),
+        );
+        renderIn(THEMES[density.id], cases(fields));
+        expectNoDrift(
+          byName(Object.keys(fields), (name) => {
+            const input = query('.MuiAutocomplete-input', inCase(name));
+            const textEnd =
+              input.getBoundingClientRect().right -
+              parseFloat(getComputedStyle(input).paddingRight);
+            return drift(
+              Math.max(0, textEnd - rect('.MuiAutocomplete-endAdornment', inCase(name)).left),
+            );
+          }),
+        );
+      });
+
+      test(`${density.id}: the Select value stops before the caret and the end adornment`, () => {
+        const fields: Record<string, React.ReactNode> = {};
+        VARIANTS.forEach((variant) =>
+          [false, true].forEach((adornment) => {
+            fields[`${variant}${adornment ? ' adornment' : ''}`] = (
+              <Select
+                variant={variant}
+                value="a"
+                sx={{ width: 160 }}
+                endAdornment={adornment ? <InputAdornment position="end">x</InputAdornment> : null}
+              >
+                <MenuItem value="a">A long selected option</MenuItem>
+              </Select>
+            );
+          }),
+        );
+        renderIn(THEMES[density.id], cases(fields));
+        expectNoDrift(
+          byName(Object.keys(fields), (name) => {
+            const value = query('.MuiSelect-select', inCase(name));
+            const textEnd =
+              value.getBoundingClientRect().right -
+              parseFloat(getComputedStyle(value).paddingRight);
+            const ends = Array.from(
+              inCase(name).querySelectorAll('.MuiSelect-icon, .MuiInputAdornment-root'),
+            ).map((end) => end.getBoundingClientRect().left);
+            return drift(Math.max(0, textEnd - Math.min(...ends)));
+          }),
+        );
+      });
+    });
+
+    test('every input type shares the text box', () => {
+      const types = ['text', 'date', 'time', 'datetime-local', 'month', 'week', 'color'];
+      const names = VARIANTS.flatMap((variant) => SIZES.map((size) => `${variant} ${size}`));
+      renderIn(
+        MEDIUM,
+        cases(
+          Object.fromEntries(
+            names.flatMap((name) => {
+              const [variant, size] = name.split(' ') as any;
+              return types.map((type) => [
+                `${name} ${type}`,
+                <TextField variant={variant} size={size} type={type} />,
+              ]);
+            }),
+          ),
+        ),
+      );
+      const height = (name: string) => rect('.MuiInputBase-root', inCase(name)).height;
+      expectNoDrift(
+        Object.fromEntries(
+          names.flatMap((name) =>
+            types.map((type) => [
+              `${name} ${type}`,
+              drift(height(`${name} ${type}`) - height(`${name} text`), 0),
+            ]),
+          ),
+        ),
+      );
+    });
+
+    test('a label keeps master position when the input does not set it', () => {
+      const fields: Record<string, React.ReactNode> = {};
+      VARIANTS.forEach((variant) =>
+        SIZES.forEach((size) =>
+          (variant === 'filled' ? [false, true] : [false]).forEach((shrink) => {
+            fields[`${variant} ${size}${shrink ? ' shrunk' : ''}`] = (
+              <FormControl variant={variant} size={size}>
+                <InputLabel shrink={shrink}>Label</InputLabel>
+                <InputBase />
+              </FormControl>
+            );
+          }),
+        ),
+      );
+      render(sideBySide({ master: createTheme(), enhanced: MEDIUM }, cases(fields)));
+      const transforms = (theme: string) =>
+        byName(Object.keys(fields), (name) => css('label', inTheme(theme, name)).transform);
+      expect(transforms('enhanced')).to.deep.equal(transforms('master'));
+    });
+
+    test('helper text with inline elements flows as text', () => {
+      render(
+        sideBySide(
+          { master: createTheme(), enhanced: MEDIUM },
+          cases({
+            field: (
+              <TextField
+                sx={{ width: 220 }}
+                helperText={
+                  <React.Fragment>
+                    Use <strong>letters only</strong> and read the <a href="#rules">naming rules</a>{' '}
+                    before you continue.
+                  </React.Fragment>
+                }
+              />
+            ),
+          }),
+        ),
+      );
+      const linkWidth = (theme: string) =>
+        rect('.MuiFormHelperText-root a', inTheme(theme, 'field')).width;
+      expect(linkWidth('enhanced')).to.equal(linkWidth('master'));
+    });
+
+    describe('outlined label lift', () => {
+      const liftInLines = (name: string) => {
+        const style = css('.MuiInputLabel-root', inCase(name));
+        const translateY = new DOMMatrix(style.transform).f;
+        return Math.round((translateY / parseFloat(style.lineHeight)) * 1000) / 1000;
+      };
+      const field = <TextField label="Label" defaultValue="value" />;
+
+      test('follows touchTarget', () => {
+        render(
+          <React.Fragment>
+            {cases(
+              byName(['24', '32', '44'], (touchTarget) => (
+                <ThemeProvider
+                  theme={enhanceDensity(createTheme(), { touchTarget: Number(touchTarget) })}
+                >
+                  {field}
+                </ThemeProvider>
+              )),
+            )}
+          </React.Fragment>,
+        );
+        expect(byName(['24', '32', '44'], liftInLines)).to.deep.equal({
+          24: -0.475,
+          32: -0.475,
+          44: -0.375,
+        });
+      });
+
+      test('follows a region that overrides --mui-touchTarget', () => {
+        renderIn(
+          enhanceDensity(createTheme({ cssVariables: true })),
+          cases({
+            base: field,
+            roomy: (
+              <div style={{ '--mui-touchTarget': '44px' } as React.CSSProperties}>{field}</div>
+            ),
+            dense: (
+              <div style={{ '--mui-touchTarget': '24px' } as React.CSSProperties}>{field}</div>
+            ),
+          }),
+        );
+        expect(byName(['base', 'roomy', 'dense'], liftInLines)).to.deep.equal({
+          base: -0.475,
+          roomy: -0.375,
+          dense: -0.475,
         });
       });
     });
   });
-});
 
-describe.skipIf(isJsdom())('button boxes give way to content', () => {
-  const { render } = createRenderer();
-  const box = (selector: string) =>
-    (document.querySelector(selector) as HTMLElement).getBoundingClientRect();
-
-  DENSITIES.forEach((density) => {
-    describe(density.id, () => {
-      const theme = THEMES.get(density.id)!;
-
-      test('a wrapped Button label grows the button', () => {
-        render(
-          <ThemeProvider theme={theme}>
-            <Button variant="contained" sx={{ width: 100 }}>
-              Save and continue to checkout
-            </Button>
-          </ThemeProvider>,
-        );
-        const button = document.querySelector('.MuiButton-root') as HTMLElement;
-        expect(button.scrollHeight).to.be.at.most(button.clientHeight);
-        expect(box('.MuiButton-root').height).to.be.greaterThan(density.touchTarget);
-      });
-
-      test('sx block padding grows the Button', () => {
-        render(
-          <ThemeProvider theme={theme}>
-            <Button variant="contained" sx={{ py: '20px' }}>
-              Save
-            </Button>
-          </ThemeProvider>,
-        );
-        expect(box('.MuiButton-root').height).to.be.greaterThan(density.touchTarget);
-      });
-
-      test('an IconButton keeps its box with width: min-content', () => {
-        render(
-          <ThemeProvider theme={theme}>
-            <IconButton sx={{ width: 'min-content' }}>
-              <SearchIcon />
-            </IconButton>
-          </ThemeProvider>,
-        );
-        expect(box('.MuiIconButton-root').width).to.equal(density.touchTarget);
-      });
-
-      test('a small Button inside a ButtonGroup matches the group height', () => {
-        render(
-          <ThemeProvider theme={theme}>
-            <ButtonGroup variant="contained">
-              <Button data-testid="main">Merge</Button>
-              <Button size="small" data-testid="arrow">
-                <ArrowDropDownIcon />
-              </Button>
-            </ButtonGroup>
-          </ThemeProvider>,
-        );
-        expect(box('[data-testid="arrow"]').height).to.equal(box('[data-testid="main"]').height);
-      });
-
-      test('a wrapped ToggleButton label grows the button', () => {
-        render(
-          <ThemeProvider theme={theme}>
-            <ToggleButtonGroup value="a" orientation="vertical" sx={{ width: 100 }}>
-              <ToggleButton value="a">Monthly subscription plan</ToggleButton>
-            </ToggleButtonGroup>
-          </ThemeProvider>,
-        );
-        const button = document.querySelector('.MuiToggleButton-root') as HTMLElement;
-        expect(button.scrollHeight).to.be.at.most(button.clientHeight);
-      });
-    });
-  });
-});
-
-describe.skipIf(isJsdom())('menu inset rows', () => {
-  const { render } = createRenderer();
-  const themes: [string, ReturnType<typeof enhanceDensity>][] = [
-    ...DENSITIES.map((density): [string, ReturnType<typeof enhanceDensity>] => [
-      density.id,
-      THEMES.get(density.id)!,
-    ]),
-    ...(['1.5', '22px', 'normal'] as const).map(
-      (lineHeight): [string, ReturnType<typeof enhanceDensity>] => [
-        `body2 lineHeight ${lineHeight}`,
-        enhanceDensity(createTheme({ typography: { body2: { lineHeight } } })),
-      ],
-    ),
-  ];
-
-  themes.forEach(([name, theme]) => {
-    [false, true].forEach((dense) => {
-      test(`${name}${dense ? ' dense' : ''}: inset text and inset divider line up with the icon row text`, () => {
-        render(
-          <ThemeProvider theme={theme}>
-            <MenuList dense={dense} sx={{ fontFamily: 'serif', fontSize: 16, lineHeight: 1.5 }}>
-              <MenuItem data-testid="inset">
-                <ListItemText inset>Single</ListItemText>
-              </MenuItem>
-              <MenuItem data-testid="icon">
-                <ListItemIcon>
-                  <Check />
-                </ListItemIcon>
-                <ListItemText>Custom</ListItemText>
-              </MenuItem>
-              <Divider variant="inset" component="li" />
-            </MenuList>
-          </ThemeProvider>,
-        );
-        const left = (selector: string) =>
-          (document.querySelector(selector) as HTMLElement).getBoundingClientRect().left;
-        const iconText = left('[data-testid="icon"] .MuiListItemText-root');
-        expect(left('[data-testid="inset"] .MuiTypography-root')).to.be.closeTo(iconText, 0.5);
-        expect(left('.MuiDivider-root')).to.be.closeTo(iconText, 0.5);
-      });
-    });
-  });
-});
-
-describe.skipIf(isJsdom())('density with modularCssLayers', () => {
-  const { render } = createRenderer();
-  const unlayered = THEMES.get('medium')!;
-  const layered = enhanceDensity(createTheme({ modularCssLayers: true }));
-
-  const cases: Record<string, { node: React.ReactNode; selector: string; property: string }[]> = {
-    'Select caret padding': [
-      {
-        node: (
-          <Select value="a" sx={{ width: 160 }}>
-            <MenuItem value="a">A long selected option</MenuItem>
-          </Select>
-        ),
-        selector: '.MuiSelect-select',
-        property: 'padding-right',
-      },
-    ],
-    'DialogContent under a DialogTitle': [
-      {
-        node: (
-          <div>
-            <DialogTitle>Title</DialogTitle>
-            <DialogContent>Body</DialogContent>
-          </div>
-        ),
-        selector: '.MuiDialogContent-root',
-        property: 'padding-top',
-      },
-    ],
-    'Chip avatar and delete icon': (['small', 'medium'] as const).flatMap((size) => [
-      {
-        node: <Chip size={size} avatar={<Avatar>M</Avatar>} label="Chip" onDelete={() => {}} />,
-        selector: '.MuiChip-avatar',
-        property: 'font-size',
-      },
-      {
-        node: <Chip size={size} label="Chip" onDelete={() => {}} />,
-        selector: '.MuiChip-deleteIcon',
-        property: 'font-size',
-      },
-    ]),
-    'TablePagination cell and toolbar padding': ['padding-right', 'padding-left'].flatMap(
-      (property) =>
-        ['.MuiTablePagination-root', '.MuiTablePagination-toolbar'].map((selector) => ({
-          node: (
-            <Table>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    count={100}
-                    page={0}
-                    rowsPerPage={10}
-                    onPageChange={() => {}}
-                    onRowsPerPageChange={() => {}}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
+  describe('content', () => {
+    test('DialogContent keeps block padding without a title, and none under one', () => {
+      renderIn(
+        MEDIUM,
+        cases({
+          alone: <DialogContent>Body</DialogContent>,
+          titled: (
+            <React.Fragment>
+              <DialogTitle>Title</DialogTitle>
+              <DialogContent>Body</DialogContent>
+            </React.Fragment>
           ),
-          selector,
-          property,
-        })),
-    ),
-    'Pagination icon': (['small', 'medium', 'large'] as const).map((size) => ({
-      node: <Pagination size={size} count={3} />,
-      selector: '.MuiPaginationItem-icon',
-      property: 'font-size',
-    })),
-  };
-
-  Object.entries(cases).forEach(([title, list]) => {
-    test(`${title} renders the same with and without layers`, () => {
-      list.forEach(({ node, selector, property }) => {
-        const { unmount } = render(
-          <React.Fragment>
-            <div data-testid="unlayered">
-              <ThemeProvider theme={unlayered}>{node}</ThemeProvider>
-            </div>
-            <div data-testid="layered">
-              <ThemeProvider theme={layered}>{node}</ThemeProvider>
-            </div>
-          </React.Fragment>,
-        );
-        const read = (id: string) =>
-          getComputedStyle(
-            document.querySelector(`[data-testid="${id}"] ${selector}`) as HTMLElement,
-          ).getPropertyValue(property);
-        expect(read('layered'), `${selector} ${property}`).to.equal(read('unlayered'));
-        unmount();
-      });
-    });
-  });
-});
-
-describe.skipIf(isJsdom())('density and user overrides', () => {
-  const { render } = createRenderer();
-  const theme = THEMES.get('medium')!;
-  const label = () => document.querySelector('[data-testid="label"]') as HTMLElement;
-
-  test('Alert icon and action styleOverrides win over density', () => {
-    const overridden = enhanceDensity(
-      createTheme({
-        components: {
-          MuiAlert: {
-            styleOverrides: { icon: { paddingTop: 20 }, action: { paddingTop: 20 } },
-          },
-        },
-      }),
-    );
-    render(
-      <ThemeProvider theme={overridden}>
-        <Alert onClose={() => {}}>Message</Alert>
-      </ThemeProvider>,
-    );
-    const paddingTop = (selector: string) =>
-      getComputedStyle(document.querySelector(selector) as HTMLElement).paddingTop;
-    expect(paddingTop('.MuiAlert-icon')).to.equal('20px');
-    expect(paddingTop('.MuiAlert-action')).to.equal('20px');
-  });
-
-  test('a control pulls its label in through the label root', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <FormControlLabel data-testid="label" control={<Checkbox />} label="a" />
-      </ThemeProvider>,
-    );
-    expect(parseFloat(getComputedStyle(label()).marginLeft)).to.equal(
-      -(DEFAULT_SIZING_PX.touchTarget - DEFAULT_SIZING_PX.iconSize) / 2,
-    );
-  });
-
-  test('sx on the label wins over the pull-in', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <FormControlLabel data-testid="label" sx={{ ml: 0 }} control={<Checkbox />} label="a" />
-      </ThemeProvider>,
-    );
-    expect(getComputedStyle(label()).marginLeft).to.equal('0px');
-  });
-
-  test('a styleOverrides margin on the label wins over the pull-in', () => {
-    const custom = enhanceDensity(
-      createTheme({
-        components: { MuiFormControlLabel: { styleOverrides: { root: { marginLeft: 4 } } } },
-      }),
-    );
-    render(
-      <ThemeProvider theme={custom}>
-        <FormControlLabel data-testid="label" control={<Checkbox />} label="a" />
-      </ThemeProvider>,
-    );
-    expect(getComputedStyle(label()).marginLeft).to.equal('4px');
-  });
-
-  test('a Switch inside a label keeps its offset and a user margin still wins', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <FormControlLabel data-testid="plain" control={<Switch />} label="a" />
-        <FormControlLabel data-testid="with-sx" control={<Switch sx={{ ml: 0 }} />} label="b" />
-      </ThemeProvider>,
-    );
-    // `data-testid` on a Switch lands on its inner SwitchBase, so read the root
-    // through the label.
-    const root = (id: string) =>
-      document.querySelector(`[data-testid="${id}"] .MuiSwitch-root`) as HTMLElement;
-    expect(parseFloat(getComputedStyle(root('plain')).marginLeft)).to.be.lessThan(0);
-    expect(getComputedStyle(root('with-sx')).marginLeft).to.equal('0px');
-  });
-});
-
-describe.skipIf(isJsdom())('tooltip arrow clearance', () => {
-  const { render } = createRenderer();
-
-  (['top', 'bottom', 'left', 'right'] as const).forEach((placement) => {
-    test(`${placement}: the arrow tip keeps the bubble's gap to the anchor`, async () => {
-      render(
-        <ThemeProvider theme={THEMES.get('medium')!}>
-          <div style={{ padding: 150 }}>
-            <Tooltip open placement={placement} title="Copy">
-              <Button data-testid="bubble">Copy</Button>
-            </Tooltip>
-            <Tooltip arrow open placement={placement} title="Copy">
-              <Button data-testid="arrow">Copy</Button>
-            </Tooltip>
-          </div>
-        </ThemeProvider>,
+        }),
       );
-      await new Promise((resolve) => {
-        setTimeout(resolve, 100);
-      });
-      const gap = (anchorId: string, tip: Element) => {
-        const anchor = document
-          .querySelector(`[data-testid="${anchorId}"]`)!
-          .getBoundingClientRect();
-        const rect = tip.getBoundingClientRect();
-        return {
-          top: anchor.top - rect.bottom,
-          bottom: rect.top - anchor.bottom,
-          left: anchor.left - rect.right,
-          right: rect.left - anchor.right,
-        }[placement];
+      const alone = css('.MuiDialogContent-root', inCase('alone'));
+      expect(parseFloat(alone.paddingTop)).to.be.greaterThan(0);
+      expect(parseFloat(alone.paddingBottom)).to.be.greaterThan(0);
+      expect(css('.MuiDialogContent-root', inCase('titled')).paddingTop).to.equal('0px');
+    });
+
+    test('wrapped TableCell and AccordionSummary content keeps an xxSmall inset', () => {
+      const longText = 'A value long enough to wrap onto several lines in a narrow column';
+      renderIn(
+        MEDIUM,
+        <React.Fragment>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell sx={{ width: 120 }}>
+                  <span data-testid="cell-text">{longText}</span>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+          <Accordion sx={{ width: 200 }}>
+            <AccordionSummary>
+              <span data-testid="summary-text">{longText}</span>
+            </AccordionSummary>
+          </Accordion>
+        </React.Fragment>,
+      );
+      const inset = (outer: string, inner: string) => {
+        const outerBox = rect(outer);
+        const innerBox = rect(inner);
+        return Math.min(innerBox.top - outerBox.top, outerBox.bottom - innerBox.bottom);
       };
-      const [bubble] = document.querySelectorAll(
-        '.MuiTooltip-tooltip:not(.MuiTooltip-tooltipArrow)',
+      expect(inset('.MuiTableCell-root', '[data-testid="cell-text"]')).to.be.at.least(
+        DEFAULT_STEP_PX.xxSmall,
       );
-      const arrow = document.querySelector('.MuiTooltip-arrow')!;
-      const { width, height } = arrow.getBoundingClientRect();
-      const vertical = placement === 'top' || placement === 'bottom';
-      const [depth, breadth] = vertical ? [height, width] : [width, height];
-      const paintedTipInset = depth - breadth / 2;
-      expect(gap('arrow', arrow) + paintedTipInset).to.be.closeTo(gap('bubble', bubble), 1);
+      expect(inset('.MuiAccordionSummary-root', '[data-testid="summary-text"]')).to.be.at.least(
+        DEFAULT_STEP_PX.xxSmall,
+      );
+    });
+
+    test('CardActions keeps top padding below a CardMedia', () => {
+      renderIn(
+        MEDIUM,
+        <Card>
+          <CardMedia sx={{ height: 40 }} />
+          <CardActions>
+            <Button>Share</Button>
+          </CardActions>
+        </Card>,
+      );
+      expect(parseFloat(css('.MuiCardActions-root').paddingTop)).to.be.greaterThan(0);
     });
   });
-});
 
-describe.skipIf(isJsdom())('slider mark labels', () => {
-  const { render } = createRenderer();
-  const setCoarse = async (enabled: boolean) => {
-    const { cdp } = await import('vitest/browser' as string);
-    await cdp().send('Emulation.setTouchEmulationEnabled', { enabled, maxTouchPoints: 1 });
-  };
+  describe('buttons', () => {
+    test('a wrapped Button label grows the button', () => {
+      renderIn(
+        MEDIUM,
+        <Button variant="contained" sx={{ width: 100 }}>
+          Save and continue to checkout
+        </Button>,
+      );
+      const button = query('.MuiButton-root');
+      expect(button.scrollHeight).to.be.at.most(button.clientHeight);
+      expect(rect('.MuiButton-root').height).to.be.greaterThan(DEFAULT_SIZING_PX.touchTarget);
+    });
 
-  (['horizontal', 'vertical'] as const).forEach((orientation) => {
-    test(`${orientation}: labels start at the edge of the box on fine and coarse pointers`, async () => {
-      const labelOffset = () => {
-        const { unmount } = render(
-          <ThemeProvider theme={THEMES.get('medium')!}>
-            <div style={{ height: 200 }}>
-              <Slider
-                orientation={orientation}
-                marks={[
-                  { value: 0, label: '0' },
-                  { value: 100, label: '100' },
-                ]}
-              />
-            </div>
-          </ThemeProvider>,
-        );
-        const root = document.querySelector('.MuiSlider-root')!.getBoundingClientRect();
-        const label = document.querySelector('.MuiSlider-markLabel')!.getBoundingClientRect();
-        unmount();
-        return orientation === 'horizontal'
-          ? { box: root.height, label: label.top - root.top }
-          : { box: root.width, label: label.left - root.left };
+    test('sx block padding grows the Button', () => {
+      renderIn(
+        MEDIUM,
+        <Button variant="contained" sx={{ py: '20px' }}>
+          Save
+        </Button>,
+      );
+      expect(rect('.MuiButton-root').height).to.be.greaterThan(DEFAULT_SIZING_PX.touchTarget);
+    });
+
+    test('an IconButton keeps its box with width: min-content', () => {
+      renderIn(
+        MEDIUM,
+        <IconButton sx={{ width: 'min-content' }}>
+          <SearchIcon />
+        </IconButton>,
+      );
+      expect(rect('.MuiIconButton-root').width).to.equal(DEFAULT_SIZING_PX.touchTarget);
+    });
+
+    test('a small Button inside a ButtonGroup matches the group height', () => {
+      renderIn(
+        MEDIUM,
+        <ButtonGroup variant="contained">
+          <Button data-testid="main">Merge</Button>
+          <Button size="small" data-testid="arrow">
+            <ArrowDropDownIcon />
+          </Button>
+        </ButtonGroup>,
+      );
+      expect(rect('[data-testid="arrow"]').height).to.equal(rect('[data-testid="main"]').height);
+    });
+
+    test('a wrapped ToggleButton label grows the button', () => {
+      renderIn(
+        MEDIUM,
+        <ToggleButtonGroup value="a" orientation="vertical" sx={{ width: 100 }}>
+          <ToggleButton value="a">Monthly subscription plan</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+      const button = query('.MuiToggleButton-root');
+      expect(button.scrollHeight).to.be.at.most(button.clientHeight);
+    });
+
+    test('the loading spinner takes the place of the icon', () => {
+      const centerX = (element: Element) => {
+        const box = element.getBoundingClientRect();
+        return box.left + box.width / 2;
       };
-      const fine = labelOffset();
-      expect(fine.label).to.equal(fine.box);
-      const { server } = await import('vitest/browser' as string);
-      if (server.browser !== 'chromium') {
-        return;
-      }
-      await setCoarse(true);
-      try {
-        expect(matchMedia('(pointer: coarse)').matches).to.equal(true);
-        const coarse = labelOffset();
-        expect(coarse.label).to.equal(coarse.box);
-      } finally {
-        await setCoarse(false);
-      }
-    });
-  });
-});
-
-describe.skipIf(isJsdom())('a size added by the app renders like medium', () => {
-  const { render } = createRenderer();
-  const added = 'xlarge' as any;
-  const box = (selector: string) => {
-    const el = document.querySelector(selector) as HTMLElement;
-    const { width, height } = el.getBoundingClientRect();
-    const css = getComputedStyle(el);
-    const round = (value: number) => Math.round(value * 100) / 100;
-    return {
-      width: round(width),
-      height: round(height),
-      radius: css.borderTopLeftRadius,
-      padding: css.padding,
-    };
-  };
-
-  test('Switch', () => {
-    render(
-      <ThemeProvider theme={THEMES.get('medium')!}>
-        <div data-testid="medium">
-          <Switch size="medium" />
-        </div>
-        <div data-testid="added">
-          <Switch size={added} />
-        </div>
-      </ThemeProvider>,
-    );
-    ['root', 'switchBase', 'thumb', 'track'].forEach((slot) => {
-      expect(box(`[data-testid="added"] .MuiSwitch-${slot}`)).to.deep.equal(
-        box(`[data-testid="medium"] .MuiSwitch-${slot}`),
-      );
-    });
-  });
-
-  test('ToggleButton', () => {
-    render(
-      <ThemeProvider theme={THEMES.get('medium')!}>
-        <ToggleButton value="a" size="medium" data-testid="medium">
-          <AddIcon />
-        </ToggleButton>
-        <ToggleButton value="a" size={added} data-testid="added">
-          <AddIcon />
-        </ToggleButton>
-      </ThemeProvider>,
-    );
-    expect(box('[data-testid="added"]')).to.deep.equal(box('[data-testid="medium"]'));
-  });
-
-  test('Chip', () => {
-    render(
-      <ThemeProvider theme={THEMES.get('medium')!}>
-        <Chip size="medium" label="Chip" onDelete={() => {}} data-testid="medium" />
-        <Chip size={added} label="Chip" onDelete={() => {}} data-testid="added" />
-      </ThemeProvider>,
-    );
-    expect(box('[data-testid="added"]')).to.deep.equal(box('[data-testid="medium"]'));
-  });
-});
-
-describe.skipIf(isJsdom())('button loading indicator', () => {
-  const { render } = createRenderer();
-  const centerX = (el: Element) => {
-    const rect = el.getBoundingClientRect();
-    return rect.left + rect.width / 2;
-  };
-
-  (['text', 'outlined', 'contained'] as const).forEach((variant) => {
-    (['small', 'medium', 'large'] as const).forEach((size) => {
-      (['start', 'end'] as const).forEach((position) => {
-        test(`${variant} ${size} ${position}: the spinner replaces the icon`, () => {
-          render(
-            <ThemeProvider theme={THEMES.get('medium')!}>
+      const buttons: Record<string, React.ReactNode> = {};
+      (['text', 'outlined', 'contained'] as const).forEach((variant) =>
+        (['small', 'medium', 'large'] as const).forEach((size) =>
+          (['start', 'end'] as const).forEach((position) => {
+            buttons[`${variant} ${size} ${position}`] = (
               <Button
                 variant={variant}
                 size={size}
@@ -1513,133 +1204,512 @@ describe.skipIf(isJsdom())('button loading indicator', () => {
               >
                 Save
               </Button>
-            </ThemeProvider>,
-          );
-          const spinner = document.querySelector('.MuiButton-loadingIndicator')!;
-          const icon = document.querySelector(`.MuiButton-${position}Icon`)!;
-          expect(Math.abs(centerX(spinner) - centerX(icon))).to.be.lessThan(1);
-        });
+            );
+          }),
+        ),
+      );
+      renderIn(MEDIUM, cases(buttons));
+      expectNoDrift(
+        byName(Object.keys(buttons), (name) =>
+          drift(
+            centerX(query('.MuiButton-loadingIndicator', inCase(name))) -
+              centerX(query(`.MuiButton-${name.split(' ')[2]}Icon`, inCase(name))),
+            1,
+          ),
+        ),
+      );
+    });
+
+    (['start', 'end'] as const).forEach((position) => {
+      test(`fullWidth ${position}: the label stays put and the spinner takes the icon's place`, () => {
+        const node = (loading: boolean) => (
+          <ThemeProvider theme={MEDIUM}>
+            <Button
+              fullWidth
+              loading={loading}
+              loadingPosition={position}
+              {...{ [`${position}Icon`]: <AddIcon /> }}
+            >
+              <span data-testid="label">Save</span>
+            </Button>
+          </ThemeProvider>
+        );
+        const centerX = (box: DOMRect) => box.left + box.width / 2;
+        const { setProps } = render(node(false));
+        const before = rect('[data-testid="label"]').left;
+        const iconCenter = centerX(rect(`.MuiButton-${position}Icon`));
+        setProps({ children: node(true).props.children });
+        expect(rect('[data-testid="label"]').left).to.be.closeTo(before, 0.5);
+        expect(centerX(rect('.MuiButton-loadingIndicator'))).to.be.closeTo(iconCenter, 1);
       });
     });
   });
 
-  (['start', 'end'] as const).forEach((position) => {
-    test(`fullWidth ${position}: the label stays put and the spinner takes the icon's place`, () => {
-      const node = (loading: boolean) => (
-        <ThemeProvider theme={THEMES.get('medium')!}>
-          <Button
-            fullWidth
-            loading={loading}
-            loadingPosition={position}
-            {...{ [`${position}Icon`]: <AddIcon /> }}
-          >
-            <span data-testid="label">Save</span>
-          </Button>
-        </ThemeProvider>
-      );
-      const { setProps } = render(node(false));
-      const label = () => document.querySelector('[data-testid="label"]')!;
-      const before = label().getBoundingClientRect().left;
-      const iconCenter = centerX(document.querySelector(`.MuiButton-${position}Icon`)!);
-      setProps({ children: node(true).props.children });
-      expect(label().getBoundingClientRect().left).to.be.closeTo(before, 0.5);
-      const spinner = document.querySelector('.MuiButton-loadingIndicator')!;
-      expect(Math.abs(centerX(spinner) - iconCenter)).to.be.lessThan(1);
+  describe('lists and menus', () => {
+    const insetThemes: Record<string, Theme> = {
+      ...THEMES,
+      ...Object.fromEntries(
+        ['1.5', '22px', 'normal'].map((lineHeight) => [
+          `body2 lineHeight ${lineHeight}`,
+          enhanceDensity(createTheme({ typography: { body2: { lineHeight } } })),
+        ]),
+      ),
+    };
+    Object.entries(insetThemes).forEach(([name, theme]) => {
+      test(`${name}: inset menu text and inset divider line up with the icon row text`, () => {
+        renderIn(
+          theme,
+          cases(
+            byName(['regular', 'dense'], (kind) => (
+              <MenuList
+                dense={kind === 'dense'}
+                sx={{ fontFamily: 'serif', fontSize: 16, lineHeight: 1.5 }}
+              >
+                <MenuItem data-testid="inset">
+                  <ListItemText inset>Single</ListItemText>
+                </MenuItem>
+                <MenuItem data-testid="icon">
+                  <ListItemIcon>
+                    <Check />
+                  </ListItemIcon>
+                  <ListItemText>Custom</ListItemText>
+                </MenuItem>
+                <Divider variant="inset" component="li" />
+              </MenuList>
+            )),
+          ),
+        );
+        expectNoDrift(
+          Object.fromEntries(
+            ['regular', 'dense'].flatMap((kind) => {
+              const iconText = rect(
+                '[data-testid="icon"] .MuiListItemText-root',
+                inCase(kind),
+              ).left;
+              return [
+                [
+                  `${kind} inset text`,
+                  drift(
+                    rect('[data-testid="inset"] .MuiTypography-root', inCase(kind)).left - iconText,
+                  ),
+                ],
+                [
+                  `${kind} inset divider`,
+                  drift(rect('.MuiDivider-root', inCase(kind)).left - iconText),
+                ],
+              ];
+            }),
+          ),
+        );
+      });
     });
-  });
-});
 
-describe.skipIf(isJsdom())('breadcrumb crumbs keep their own styles', () => {
-  const { render } = createRenderer();
-  const css = (id: string) =>
-    getComputedStyle(document.querySelector(`[data-testid="${id}"]`) as HTMLElement);
+    const groups: [string, React.ReactElement, string, string, number][] = [
+      [
+        'MenuList',
+        <MenuList>
+          <ListSubheader>Edit</ListSubheader>
+          <MenuItem>Copy</MenuItem>
+        </MenuList>,
+        '.MuiListSubheader-root',
+        '.MuiMenuItem-root',
+        0,
+      ],
+      [
+        'grouped Select',
+        <Select open value="a" MenuProps={{ disablePortal: true, transitionDuration: 0 }}>
+          <ListSubheader>Group</ListSubheader>
+          <MenuItem value="a">Apple</MenuItem>
+        </Select>,
+        '.MuiListSubheader-root',
+        '.MuiMenuItem-root',
+        0,
+      ],
+      [
+        'grouped Autocomplete',
+        <Autocomplete
+          open
+          disablePortal
+          options={['Apple']}
+          groupBy={() => 'Group'}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+        '.MuiAutocomplete-groupLabel',
+        '.MuiAutocomplete-option',
+        DEFAULT_STEP_PX.small - DEFAULT_STEP_PX.xSmall,
+      ],
+      [
+        'List with ListItemButton',
+        <List subheader={<ListSubheader>Inbox</ListSubheader>}>
+          <ListItemButton>Drafts</ListItemButton>
+        </List>,
+        '.MuiListSubheader-root',
+        '.MuiListItemButton-root',
+        0,
+      ],
+      [
+        'List with ListItem',
+        <List subheader={<ListSubheader>Contacts</ListSubheader>}>
+          <ListItem>Alice</ListItem>
+        </List>,
+        '.MuiListSubheader-root',
+        '.MuiListItem-root',
+        0,
+      ],
+    ];
+    groups.forEach(([name, element, header, item, indent]) => {
+      test(`${name}: the group header lines up with its items`, () => {
+        renderIn(MEDIUM, element);
+        expect(Math.round(textBox(query(item)).left - textBox(query(header)).left)).to.equal(
+          indent,
+        );
+      });
+    });
 
-  [false, true].forEach((modularCssLayers) => {
-    test(`sx and MuiLink styleOverrides on a crumb link win${modularCssLayers ? ' with layers' : ''}`, () => {
-      const theme = enhanceDensity(
-        createTheme({
-          modularCssLayers,
-          components: { MuiLink: { styleOverrides: { root: { paddingInline: 3 } } } },
-        }),
-      );
+    const insetRows: Record<string, React.ReactNode> = {
+      'ListItem with an avatar': (
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>A</Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Text" />
+        </ListItem>
+      ),
+      'ListItem with an icon': (
+        <ListItem>
+          <ListItemIcon>
+            <AddIcon />
+          </ListItemIcon>
+          <ListItemText primary="Text" />
+        </ListItem>
+      ),
+      'ListItemButton with an icon': (
+        <ListItemButton>
+          <ListItemIcon>
+            <AddIcon />
+          </ListItemIcon>
+          <ListItemText primary="Text" />
+        </ListItemButton>
+      ),
+      'ListItem around a ListItemButton with an avatar': (
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemAvatar>
+              <Avatar>A</Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Text" />
+          </ListItemButton>
+        </ListItem>
+      ),
+    };
+    DENSITIES.forEach((density) => {
+      test(`${density.id}: an inset divider starts where the text above it starts`, () => {
+        renderIn(
+          THEMES[density.id],
+          cases(
+            byName(Object.keys(insetRows), (name) => (
+              <List>
+                {insetRows[name]}
+                <Divider variant="inset" component="li" />
+              </List>
+            )),
+          ),
+        );
+        expectNoDrift(
+          byName(Object.keys(insetRows), (name) =>
+            drift(
+              rect('.MuiDivider-inset', inCase(name)).left -
+                textBox(query('.MuiListItemText-primary', inCase(name))).left,
+            ),
+          ),
+        );
+      });
+    });
+
+    test('a top-aligned list avatar sits xSmall below the row top', () => {
       render(
-        <ThemeProvider theme={theme}>
-          <Link href="#" sx={{ display: 'none' }}>
-            A link rendered before the breadcrumbs
-          </Link>
-          <Breadcrumbs>
-            <Link href="#" data-testid="hidden" sx={{ display: 'none' }}>
-              Hidden
-            </Link>
-            <Link href="#" data-testid="sx" sx={{ px: 0, lineHeight: '10px' }}>
-              Sx
-            </Link>
-            <Link href="#" data-testid="theme">
-              Theme
-            </Link>
-            <Typography>Current</Typography>
-          </Breadcrumbs>
-        </ThemeProvider>,
+        <React.Fragment>
+          {cases(
+            byName(
+              DENSITIES.map((density) => density.id),
+              (id) => (
+                <ThemeProvider theme={THEMES[id]}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar>A</Avatar>
+                      </ListItemAvatar>
+                      <ListItemText primary="Text" secondary="Two lines of secondary text" />
+                    </ListItem>
+                  </List>
+                </ThemeProvider>
+              ),
+            ),
+          )}
+        </React.Fragment>,
       );
-      expect(css('hidden').display).to.equal('none');
-      expect(css('sx').paddingLeft).to.equal('0px');
-      expect(css('sx').lineHeight).to.equal('10px');
-      expect(css('theme').paddingLeft).to.equal('3px');
+      expect(
+        byName(
+          DENSITIES.map((density) => density.id),
+          (id) => css('.MuiListItemAvatar-root', inCase(id)).marginTop,
+        ),
+      ).to.deep.equal(
+        Object.fromEntries(DENSITIES.map((density) => [density.id, `${density.step.xSmall}px`])),
+      );
+    });
+
+    DENSITIES.forEach((density) => {
+      test(`${density.id}: a Checkbox label pulls the glyph onto the container edge`, () => {
+        renderIn(
+          THEMES[density.id],
+          <div data-testid="container">
+            <FormControlLabel control={<Checkbox />} label="a" />
+          </div>,
+        );
+        expect(
+          drift(rect('.MuiCheckbox-root svg').left - rect('[data-testid="container"]').left),
+        ).to.equal(0);
+      });
     });
   });
 
-  test('a plain crumb link sits on the touch target', () => {
-    render(
-      <ThemeProvider theme={THEMES.get('medium')!}>
-        <Breadcrumbs>
-          <Link href="#" data-testid="link">
-            Home
-          </Link>
-          <Typography>Current</Typography>
-        </Breadcrumbs>
-      </ThemeProvider>,
-    );
-    expect(css('link').display).to.equal('inline-flex');
-    expect(document.querySelector('[data-testid="link"]')!.getBoundingClientRect().height).to.equal(
-      DEFAULT_SIZING_PX.touchTarget,
-    );
+  describe('overlays', () => {
+    (['top', 'bottom', 'left', 'right'] as const).forEach((placement) => {
+      test(`${placement}: the tooltip arrow tip keeps the bubble's gap to the anchor`, async () => {
+        renderIn(
+          MEDIUM,
+          <div style={{ padding: 150 }}>
+            <Tooltip open placement={placement} title="Copy">
+              <Button data-testid="bubble">Copy</Button>
+            </Tooltip>
+            <Tooltip arrow open placement={placement} title="Copy">
+              <Button data-testid="arrow">Copy</Button>
+            </Tooltip>
+          </div>,
+        );
+        const gap = (anchorId: string, tip: Element) => {
+          const anchor = rect(`[data-testid="${anchorId}"]`);
+          const box = tip.getBoundingClientRect();
+          return {
+            top: anchor.top - box.bottom,
+            bottom: box.top - anchor.bottom,
+            left: anchor.left - box.right,
+            right: box.left - anchor.right,
+          }[placement];
+        };
+        await vi.waitFor(() => {
+          const bubble = query('.MuiTooltip-tooltip:not(.MuiTooltip-tooltipArrow)');
+          const arrow = query('.MuiTooltip-arrow');
+          const { width, height } = arrow.getBoundingClientRect();
+          const vertical = placement === 'top' || placement === 'bottom';
+          const [depth, breadth] = vertical ? [height, width] : [width, height];
+          expect(gap('arrow', arrow) + depth - breadth / 2).to.be.closeTo(gap('bubble', bubble), 1);
+        });
+      });
+    });
+
+    (['horizontal', 'vertical'] as const).forEach((orientation) => {
+      test(`${orientation} slider labels start at the edge of the box on fine and coarse pointers`, async () => {
+        const setCoarse = async (enabled: boolean) => {
+          const { cdp } = await import('vitest/browser' as string);
+          await cdp().send('Emulation.setTouchEmulationEnabled', { enabled, maxTouchPoints: 1 });
+        };
+        const labelOffset = () => {
+          const { unmount } = renderIn(
+            MEDIUM,
+            <div style={{ height: 200 }}>
+              <Slider
+                orientation={orientation}
+                marks={[
+                  { value: 0, label: '0' },
+                  { value: 100, label: '100' },
+                ]}
+              />
+            </div>,
+          );
+          const root = rect('.MuiSlider-root');
+          const label = rect('.MuiSlider-markLabel');
+          unmount();
+          return orientation === 'horizontal'
+            ? { box: root.height, label: label.top - root.top }
+            : { box: root.width, label: label.left - root.left };
+        };
+        const fine = labelOffset();
+        expect(fine.label).to.equal(fine.box);
+        const { server } = await import('vitest/browser' as string);
+        if (server.browser !== 'chromium') {
+          return;
+        }
+        await setCoarse(true);
+        try {
+          expect(matchMedia('(pointer: coarse)').matches).to.equal(true);
+          const coarse = labelOffset();
+          expect(coarse.label).to.equal(coarse.box);
+        } finally {
+          await setCoarse(false);
+        }
+      });
+    });
   });
 
-  test('the collapsed button is on the touch target and a Chip crumb keeps its size', () => {
-    render(
-      <ThemeProvider theme={THEMES.get('medium')!}>
-        <Chip size="small" label="ref" onDelete={() => {}} data-testid="standalone" />
-        <Breadcrumbs maxItems={2}>
-          <Chip size="small" label="a" onDelete={() => {}} data-testid="crumb" />
-          <Chip size="small" label="b" onDelete={() => {}} />
-          <Chip size="small" label="c" onDelete={() => {}} />
-        </Breadcrumbs>
-      </ThemeProvider>,
+  describe('modularCssLayers', () => {
+    const layered = enhanceDensity(createTheme({ modularCssLayers: true }));
+    const pagination = (
+      <Table>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={100}
+              page={0}
+              rowsPerPage={10}
+              onPageChange={() => {}}
+              onRowsPerPageChange={() => {}}
+            />
+          </TableRow>
+        </TableFooter>
+      </Table>
     );
-    const collapsed = document.querySelector('[aria-label="Show path"]')!;
-    expect(collapsed.getBoundingClientRect().height).to.equal(DEFAULT_SIZING_PX.touchTarget);
-    expect(css('crumb').height).to.equal(css('standalone').height);
+    const layerCases: Record<
+      string,
+      { node: React.ReactNode; selector: string; property: string }
+    > = {
+      'Select caret padding': {
+        node: (
+          <Select value="a" sx={{ width: 160 }}>
+            <MenuItem value="a">A long selected option</MenuItem>
+          </Select>
+        ),
+        selector: '.MuiSelect-select',
+        property: 'padding-right',
+      },
+      'DialogContent under a DialogTitle': {
+        node: (
+          <div>
+            <DialogTitle>Title</DialogTitle>
+            <DialogContent>Body</DialogContent>
+          </div>
+        ),
+        selector: '.MuiDialogContent-root',
+        property: 'padding-top',
+      },
+      ...Object.fromEntries(
+        SIZES.flatMap((size) => [
+          [
+            `Chip ${size} avatar`,
+            {
+              node: <Chip size={size} avatar={<Avatar>M</Avatar>} label="Chip" />,
+              selector: '.MuiChip-avatar',
+              property: 'font-size',
+            },
+          ],
+          [
+            `Chip ${size} delete icon`,
+            {
+              node: <Chip size={size} label="Chip" onDelete={() => {}} />,
+              selector: '.MuiChip-deleteIcon',
+              property: 'font-size',
+            },
+          ],
+        ]),
+      ),
+      ...Object.fromEntries(
+        ['padding-right', 'padding-left'].flatMap((property) =>
+          ['.MuiTablePagination-root', '.MuiTablePagination-toolbar'].map((selector) => [
+            `TablePagination ${selector} ${property}`,
+            { node: pagination, selector, property },
+          ]),
+        ),
+      ),
+      ...Object.fromEntries(
+        (['small', 'medium', 'large'] as const).map((size) => [
+          `Pagination ${size} icon`,
+          {
+            node: <Pagination size={size} count={3} />,
+            selector: '.MuiPaginationItem-icon',
+            property: 'font-size',
+          },
+        ]),
+      ),
+    };
+
+    test('styles render the same with and without layers', () => {
+      const names = Object.keys(layerCases);
+      render(
+        sideBySide(
+          { unlayered: MEDIUM, layered },
+          cases(byName(names, (name) => layerCases[name].node)),
+        ),
+      );
+      const read = (theme: string) =>
+        byName(names, (name) =>
+          css(layerCases[name].selector, inTheme(theme, name)).getPropertyValue(
+            layerCases[name].property,
+          ),
+        );
+      expect(read('layered')).to.deep.equal(read('unlayered'));
+    });
   });
-});
 
-describe.skipIf(isJsdom())('user child-slot overrides win', () => {
-  const { render } = createRenderer();
-  const fontSize = (selector: string) =>
-    getComputedStyle(document.querySelector(selector) as HTMLElement).fontSize;
-  const chips = (theme: ReturnType<typeof createTheme>) => (
-    <ThemeProvider theme={theme}>
-      {(['small', 'medium'] as const).map((size) => (
-        <React.Fragment key={size}>
-          <Chip size={size} data-size={size} icon={<AddIcon />} label="a" onDelete={() => {}} />
-          <Chip size={size} data-size={size} avatar={<Avatar>A</Avatar>} label="b" />
-        </React.Fragment>
-      ))}
-    </ThemeProvider>
-  );
+  describe('user overrides win wherever they win on master', () => {
+    const withUser = (options: Parameters<typeof createTheme>[0]) => ({
+      master: createTheme(options),
+      enhanced: enhanceDensity(createTheme(options)),
+    });
 
-  test('Chip icon, avatar and deleteIcon', () => {
-    render(
-      chips(
+    test('Alert icon and action', () => {
+      renderIn(
+        enhanceDensity(
+          createTheme({
+            components: {
+              MuiAlert: {
+                styleOverrides: { icon: { paddingTop: 20 }, action: { paddingTop: 20 } },
+              },
+            },
+          }),
+        ),
+        <Alert onClose={() => {}}>Message</Alert>,
+      );
+      expect(css('.MuiAlert-icon').paddingTop).to.equal('20px');
+      expect(css('.MuiAlert-action').paddingTop).to.equal('20px');
+    });
+
+    test('FormControlLabel margin from sx and from styleOverrides', () => {
+      render(
+        <React.Fragment>
+          <ThemeProvider theme={MEDIUM}>
+            <FormControlLabel data-testid="sx" sx={{ ml: 0 }} control={<Checkbox />} label="a" />
+          </ThemeProvider>
+          <ThemeProvider
+            theme={enhanceDensity(
+              createTheme({
+                components: {
+                  MuiFormControlLabel: { styleOverrides: { root: { marginLeft: 4 } } },
+                },
+              }),
+            )}
+          >
+            <FormControlLabel data-testid="theme" control={<Checkbox />} label="a" />
+          </ThemeProvider>
+        </React.Fragment>,
+      );
+      expect(css('[data-testid="sx"]').marginLeft).to.equal('0px');
+      expect(css('[data-testid="theme"]').marginLeft).to.equal('4px');
+    });
+
+    test('a Switch inside a label keeps its offset and a user margin still wins', () => {
+      renderIn(
+        MEDIUM,
+        <React.Fragment>
+          <FormControlLabel data-testid="plain" control={<Switch />} label="a" />
+          <FormControlLabel data-testid="with-sx" control={<Switch sx={{ ml: 0 }} />} label="b" />
+        </React.Fragment>,
+      );
+      expect(parseFloat(css('[data-testid="plain"] .MuiSwitch-root').marginLeft)).to.be.lessThan(0);
+      expect(css('[data-testid="with-sx"] .MuiSwitch-root').marginLeft).to.equal('0px');
+    });
+
+    test('Chip icon, avatar and deleteIcon', () => {
+      renderIn(
         enhanceDensity(
           createTheme({
             components: {
@@ -1653,495 +1723,191 @@ describe.skipIf(isJsdom())('user child-slot overrides win', () => {
             },
           }),
         ),
-      ),
-    );
-    ['small', 'medium'].forEach((size) => {
-      expect(fontSize(`[data-size="${size}"] .MuiChip-icon`)).to.equal('30px');
-      expect(fontSize(`[data-size="${size}"] .MuiChip-avatar`)).to.equal('31px');
-      expect(fontSize(`[data-size="${size}"] .MuiChip-deleteIcon`)).to.equal('32px');
-    });
-  });
-
-  test('ButtonGroup grouped', () => {
-    const user = enhanceDensity(
-      createTheme({
-        components: { MuiButtonGroup: { styleOverrides: { grouped: { minWidth: 100 } } } },
-      }),
-    );
-    render(
-      <React.Fragment>
-        <ThemeProvider theme={user}>
-          <ButtonGroup data-testid="user">
-            <Button>a</Button>
-          </ButtonGroup>
-        </ThemeProvider>
-        <ThemeProvider theme={THEMES.get('medium')!}>
-          <ButtonGroup data-testid="density">
-            <Button>a</Button>
-          </ButtonGroup>
-        </ThemeProvider>
-      </React.Fragment>,
-    );
-    const minWidth = (id: string) =>
-      getComputedStyle(document.querySelector(`[data-testid="${id}"] .MuiButtonGroup-grouped`)!)
-        .minWidth;
-    expect(minWidth('user')).to.equal('100px');
-    expect(minWidth('density')).to.equal(`${DEFAULT_SIZING_PX.touchTarget}px`);
-  });
-
-  const pagination = (theme: ReturnType<typeof createTheme>, id: string) => (
-    <ThemeProvider theme={theme}>
-      <Table data-testid={id}>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              count={100}
-              page={0}
-              rowsPerPage={10}
-              onPageChange={() => {}}
-              onRowsPerPageChange={() => {}}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </ThemeProvider>
-  );
-  const paginationUser: Parameters<typeof createTheme>[0] = {
-    components: {
-      MuiTablePagination: {
-        styleOverrides: { toolbar: { minHeight: 64 }, select: { fontSize: 20 } },
-      },
-    },
-  };
-  [
-    ['narrow portrait', 500, 900],
-    ['wide', 1280, 800],
-  ].forEach(([label, width, height]) => {
-    test(`TablePagination toolbar and select on a ${label} screen win wherever they win on master`, async () => {
-      const { page } = await import('vitest/browser' as string);
-      const { innerWidth, innerHeight } = window;
-      await page.viewport(width, height);
-      try {
-        render(
-          <React.Fragment>
-            {pagination(createTheme(paginationUser), 'master')}
-            {pagination(enhanceDensity(createTheme(paginationUser)), 'enhanced')}
-            {pagination(THEMES.get('medium')!, 'density')}
-          </React.Fragment>,
-        );
-        const css = (id: string, slot: string) =>
-          getComputedStyle(
-            document.querySelector(`[data-testid="${id}"] .MuiTablePagination-${slot}`)!,
-          );
-        expect(css('enhanced', 'toolbar').minHeight === '64px').to.equal(
-          css('master', 'toolbar').minHeight === '64px',
-        );
-        expect(css('enhanced', 'select').fontSize === '20px').to.equal(
-          css('master', 'select').fontSize === '20px',
-        );
-        expect(
-          document
-            .querySelector('[data-testid="density"] .MuiTablePagination-toolbar')!
-            .getBoundingClientRect().height,
-        ).to.equal(DEFAULT_SIZING_PX.touchTarget + DEFAULT_STEP_PX.medium);
-      } finally {
-        await page.viewport(innerWidth, innerHeight);
-      }
-    });
-  });
-
-  const inputRootUser: Parameters<typeof createTheme>[0] = {
-    components: {
-      MuiAutocomplete: {
-        styleOverrides: {
-          inputRoot: { gap: 10, paddingLeft: 20, paddingTop: 21, paddingBottom: 22 },
-        },
-      },
-    },
-  };
-  (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
-    (['small', 'medium'] as const).forEach((size) => {
-      [false, true].forEach((hiddenLabel) => {
-        if (hiddenLabel && variant !== 'filled') {
-          return;
-        }
-        test(`Autocomplete inputRoot ${variant} ${size}${hiddenLabel ? ' hiddenLabel' : ''} wins wherever it wins on master`, () => {
-          const autocomplete = (theme: ReturnType<typeof createTheme>, id: string) => (
-            <ThemeProvider theme={theme}>
-              <div data-testid={id}>
-                <Autocomplete
-                  multiple
-                  size={size}
-                  options={['a', 'b']}
-                  defaultValue={['a']}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant={variant}
-                      hiddenLabel={hiddenLabel}
-                      label={hiddenLabel ? undefined : 'L'}
-                    />
-                  )}
-                />
-              </div>
-            </ThemeProvider>
-          );
-          render(
+        cases(
+          byName([...SIZES], (size) => (
             <React.Fragment>
-              {autocomplete(createTheme(inputRootUser), 'master')}
-              {autocomplete(enhanceDensity(createTheme(inputRootUser)), 'enhanced')}
-            </React.Fragment>,
-          );
-          const read = (id: string) => {
-            const css = getComputedStyle(
-              document.querySelector(`[data-testid="${id}"] .MuiAutocomplete-inputRoot`)!,
-            );
-            return {
-              gap: css.columnGap === '10px',
-              paddingLeft: css.paddingLeft === '20px',
-              paddingTop: css.paddingTop === '21px',
-              paddingBottom: css.paddingBottom === '22px',
-            };
-          };
-          expect(read('enhanced')).to.deep.equal(read('master'));
-        });
-      });
-    });
-  });
-
-  test('Chip children keep the density sizes without user overrides', () => {
-    render(chips(THEMES.get('medium')!));
-    const { iconSize } = DEFAULT_SIZING_PX;
-    expect(fontSize('[data-size="medium"] .MuiChip-icon')).to.equal(`${iconSize}px`);
-    expect(fontSize('[data-size="small"] .MuiChip-icon')).to.equal(`${iconSize - 2}px`);
-    expect(fontSize('[data-size="medium"] .MuiChip-avatar')).to.equal('12px');
-    expect(fontSize('[data-size="small"] .MuiChip-avatar')).to.equal('10px');
-    expect(fontSize('[data-size="medium"] .MuiChip-deleteIcon')).to.equal('22px');
-    expect(fontSize('[data-size="small"] .MuiChip-deleteIcon')).to.equal('16px');
-  });
-});
-
-describe('themes without a body2 variant', () => {
-  test('enhanceDensity accepts a theme that disables body2', () => {
-    expect(() => enhanceDensity(createTheme({ typography: { body2: undefined } }))).not.to.throw();
-  });
-});
-
-describe.skipIf(isJsdom())('Select end padding', () => {
-  const { render } = createRenderer();
-  const selectUser: Parameters<typeof createTheme>[0] = {
-    components: { MuiSelect: { styleOverrides: { select: { '&&': { paddingRight: 80 } } } } },
-  };
-  const selects = (theme: ReturnType<typeof createTheme>, id: string) => (
-    <ThemeProvider theme={theme}>
-      <div data-testid={id}>
-        {(['outlined', 'filled', 'standard'] as const).map((variant) =>
-          [false, true].map((adornment) => (
-            <Select
-              key={`${variant}${adornment}`}
-              data-case={`${variant}${adornment ? '-adornment' : ''}`}
-              variant={variant}
-              value="a"
-              endAdornment={adornment ? <InputAdornment position="end">x</InputAdornment> : null}
-            >
-              <MenuItem value="a">a</MenuItem>
-            </Select>
+              <Chip size={size as any} icon={<AddIcon />} label="a" onDelete={() => {}} />
+              <Chip size={size as any} avatar={<Avatar>A</Avatar>} label="b" />
+            </React.Fragment>
           )),
-        )}
-      </div>
-    </ThemeProvider>
-  );
-  const paddingRight = (id: string, name: string) =>
-    getComputedStyle(
-      document.querySelector(`[data-testid="${id}"] [data-case="${name}"] .MuiSelect-select`)!,
-    ).paddingRight;
-  const cases = ['outlined', 'filled', 'standard'].flatMap((variant) => [
-    variant,
-    `${variant}-adornment`,
-  ]);
-
-  [false, true].forEach((modularCssLayers) => {
-    test(`a user paddingRight override wins wherever it wins on master${modularCssLayers ? ' with layers' : ''}`, () => {
-      const user = { ...selectUser, modularCssLayers };
-      render(
-        <React.Fragment>
-          {selects(createTheme(user), 'master')}
-          {selects(enhanceDensity(createTheme(user)), 'enhanced')}
-        </React.Fragment>,
-      );
-      const userWins = (id: string) =>
-        Object.fromEntries(cases.map((name) => [name, paddingRight(id, name) === '80px']));
-      expect(userWins('enhanced')).to.deep.equal(userWins('master'));
-    });
-  });
-
-  test('the value stops before the caret with layers', () => {
-    render(selects(enhanceDensity(createTheme({ modularCssLayers: true })), 'density'));
-    const { iconSize } = DEFAULT_SIZING_PX;
-    expect(
-      Object.fromEntries(cases.map((name) => [name, paddingRight('density', name)])),
-    ).to.deep.equal(
-      Object.fromEntries(
-        cases.map((name) => [
-          name,
-          `${iconSize + DEFAULT_STEP_PX.small + (name.endsWith('-adornment') ? iconSize : 0)}px`,
-        ]),
-      ),
-    );
-  });
-
-  DENSITIES.forEach((density) => {
-    test(`${density.id}: the value stops before the caret and the end adornment`, () => {
-      render(selects(THEMES.get(density.id)!, 'density'));
-      expect(
-        Object.fromEntries(cases.map((name) => [name, paddingRight('density', name)])),
-      ).to.deep.equal(
-        Object.fromEntries(
-          cases.map((name) => [
-            name,
-            `${density.iconSize + density.step.small + (name.endsWith('-adornment') ? density.iconSize : 0)}px`,
-          ]),
         ),
       );
+      expect(
+        byName([...SIZES], (size) => ({
+          icon: css('.MuiChip-icon', inCase(size)).fontSize,
+          avatar: css('.MuiChip-avatar', inCase(size)).fontSize,
+          deleteIcon: css('.MuiChip-deleteIcon', inCase(size)).fontSize,
+        })),
+      ).to.deep.equal(
+        byName([...SIZES], () => ({ icon: '30px', avatar: '31px', deleteIcon: '32px' })),
+      );
     });
-  });
-});
 
-describe.skipIf(isJsdom())('table rows without CssBaseline', () => {
-  const { render } = createRenderer();
-  DENSITIES.forEach((density) => {
-    (['small', 'medium'] as const).forEach((size) => {
-      test(`${density.id} ${size}: the rendered row is the row height`, () => {
-        render(
-          <ThemeProvider theme={THEMES.get(density.id)!}>
+    test('ButtonGroup grouped', () => {
+      renderIn(
+        enhanceDensity(
+          createTheme({
+            components: { MuiButtonGroup: { styleOverrides: { grouped: { minWidth: 100 } } } },
+          }),
+        ),
+        <ButtonGroup>
+          <Button>a</Button>
+        </ButtonGroup>,
+      );
+      expect(css('.MuiButtonGroup-grouped').minWidth).to.equal('100px');
+    });
+
+    [
+      ['narrow portrait', 500, 900],
+      ['wide', 1280, 800],
+    ].forEach(([label, width, height]) => {
+      test(`TablePagination toolbar and select on a ${label} screen`, async () => {
+        const { page } = await import('vitest/browser' as string);
+        const { innerWidth, innerHeight } = window;
+        await page.viewport(width, height);
+        try {
+          const node = (
             <Table>
-              <TableBody>
+              <TableFooter>
                 <TableRow>
-                  <TableCell size={size}>Cell</TableCell>
+                  <TablePagination
+                    count={100}
+                    page={0}
+                    rowsPerPage={10}
+                    onPageChange={() => {}}
+                    onRowsPerPageChange={() => {}}
+                  />
                 </TableRow>
-              </TableBody>
+              </TableFooter>
             </Table>
-          </ThemeProvider>,
-        );
-        const rowHeight =
-          size === 'small'
-            ? density.touchTarget + density.step.xxSmall
-            : density.touchTarget + 2 * density.step.xxSmall;
-        const rendered = document
-          .querySelector('.MuiTableRow-root')!
-          .getBoundingClientRect().height;
-        expect(Math.abs(rendered - rowHeight)).to.be.at.most(1);
+          );
+          render(
+            sideBySide(
+              {
+                ...withUser({
+                  components: {
+                    MuiTablePagination: {
+                      styleOverrides: { toolbar: { minHeight: 64 }, select: { fontSize: 20 } },
+                    },
+                  },
+                }),
+                density: MEDIUM,
+              },
+              cases({ pagination: node }),
+            ),
+          );
+          const userWins = (theme: string) => ({
+            toolbar:
+              css('.MuiTablePagination-toolbar', inTheme(theme, 'pagination')).minHeight === '64px',
+            select:
+              css('.MuiTablePagination-select', inTheme(theme, 'pagination')).fontSize === '20px',
+          });
+          expect(userWins('enhanced')).to.deep.equal(userWins('master'));
+          expect(
+            Math.round(
+              rect('.MuiTablePagination-toolbar', inTheme('density', 'pagination')).height,
+            ),
+          ).to.equal(DEFAULT_SIZING_PX.touchTarget + DEFAULT_STEP_PX.medium);
+        } finally {
+          await page.viewport(innerWidth, innerHeight);
+        }
       });
     });
-  });
-});
 
-describe.skipIf(isJsdom())('badge size', () => {
-  const { render } = createRenderer();
-  [24, 32, 44].forEach((touchTarget) => {
-    test(`touchTarget ${touchTarget}: the badge follows its text, not the touch target`, () => {
-      render(
-        <ThemeProvider theme={enhanceDensity(createTheme(), { touchTarget })}>
-          <Badge badgeContent={4} color="primary">
-            <SvgIcon />
-          </Badge>
-        </ThemeProvider>,
+    test('Autocomplete inputRoot', () => {
+      const fields: Record<string, React.ReactNode> = {};
+      VARIANTS.forEach((variant) =>
+        SIZES.forEach((size) =>
+          (variant === 'filled' ? [false, true] : [false]).forEach((hiddenLabel) => {
+            fields[`${variant} ${size}${hiddenLabel ? ' hiddenLabel' : ''}`] = (
+              <Autocomplete
+                multiple
+                size={size}
+                options={['a', 'b']}
+                defaultValue={['a']}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant={variant}
+                    hiddenLabel={hiddenLabel}
+                    label={hiddenLabel ? undefined : 'L'}
+                  />
+                )}
+              />
+            );
+          }),
+        ),
       );
-      const { width, height } = document.querySelector('.MuiBadge-badge')!.getBoundingClientRect();
-      const size = 16 + 2 * DEFAULT_STEP_PX.xxSmall;
-      expect({ width, height }).to.deep.equal({ width: size, height: size });
-    });
-  });
-});
-
-describe.skipIf(isJsdom())('outlined label lift', () => {
-  const { render } = createRenderer();
-  const liftInLines = (id: string) => {
-    const label = document.querySelector(`[data-testid="${id}"] .MuiInputLabel-root`)!;
-    const css = getComputedStyle(label);
-    const translateY = new DOMMatrix(css.transform).f;
-    return Math.round((translateY / parseFloat(css.lineHeight)) * 1000) / 1000;
-  };
-  const field = (id: string, style?: React.CSSProperties) => (
-    <div data-testid={id} style={style}>
-      <TextField label="Label" defaultValue="value" />
-    </div>
-  );
-
-  [
-    [24, -0.475],
-    [32, -0.475],
-    [44, -0.375],
-  ].forEach(([touchTarget, lift]) => {
-    test(`touchTarget ${touchTarget}: the shrunk label lifts ${lift}lh`, () => {
       render(
-        <ThemeProvider theme={enhanceDensity(createTheme(), { touchTarget })}>
-          {field('field')}
-        </ThemeProvider>,
+        sideBySide(
+          withUser({
+            components: {
+              MuiAutocomplete: {
+                styleOverrides: {
+                  inputRoot: { gap: 10, paddingLeft: 20, paddingTop: 21, paddingBottom: 22 },
+                },
+              },
+            },
+          }),
+          cases(fields),
+        ),
       );
-      expect(liftInLines('field')).to.equal(lift);
+      const userWins = (theme: string) =>
+        byName(Object.keys(fields), (name) => {
+          const style = css('.MuiAutocomplete-inputRoot', inTheme(theme, name));
+          return {
+            gap: style.columnGap === '10px',
+            paddingLeft: style.paddingLeft === '20px',
+            paddingTop: style.paddingTop === '21px',
+            paddingBottom: style.paddingBottom === '22px',
+          };
+        });
+      expect(userWins('enhanced')).to.deep.equal(userWins('master'));
     });
-  });
 
-  test('a region that overrides --mui-touchTarget decides the lift', () => {
-    render(
-      <ThemeProvider theme={enhanceDensity(createTheme({ cssVariables: true }))}>
-        {field('base')}
-        {field('roomy', { '--mui-touchTarget': '44px' } as React.CSSProperties)}
-        {field('dense', { '--mui-touchTarget': '24px' } as React.CSSProperties)}
-      </ThemeProvider>,
-    );
-    expect({
-      base: liftInLines('base'),
-      roomy: liftInLines('roomy'),
-      dense: liftInLines('dense'),
-    }).to.deep.equal({ base: -0.475, roomy: -0.375, dense: -0.475 });
-  });
-});
-
-describe.skipIf(isJsdom())('group headers line up with their items', () => {
-  const { render } = createRenderer();
-  const textLeft = (selector: string) => {
-    const walker = document.createTreeWalker(
-      document.querySelector(selector)!,
-      NodeFilter.SHOW_TEXT,
-    );
-    const range = document.createRange();
-    range.selectNodeContents(walker.nextNode()!);
-    return Math.round(range.getBoundingClientRect().left);
-  };
-  const cases: [string, React.ReactElement, string, string][] = [
-    [
-      'MenuList',
-      <MenuList>
-        <ListSubheader>Edit</ListSubheader>
-        <MenuItem>Copy</MenuItem>
-      </MenuList>,
-      '.MuiListSubheader-root',
-      '.MuiMenuItem-root',
-    ],
-    [
-      'grouped Select',
-      <Select open value="a" MenuProps={{ disablePortal: true, transitionDuration: 0 }}>
-        <ListSubheader>Group</ListSubheader>
-        <MenuItem value="a">Apple</MenuItem>
-      </Select>,
-      '.MuiListSubheader-root',
-      '.MuiMenuItem-root',
-    ],
-    [
-      'grouped Autocomplete',
-      <Autocomplete
-        open
-        disablePortal
-        options={['Apple']}
-        groupBy={() => 'Group'}
-        renderInput={(params) => <TextField {...params} />}
-      />,
-      '.MuiAutocomplete-groupLabel',
-      '.MuiAutocomplete-option',
-    ],
-    [
-      'List with ListItemButton',
-      <List subheader={<ListSubheader>Inbox</ListSubheader>}>
-        <ListItemButton>Drafts</ListItemButton>
-      </List>,
-      '.MuiListSubheader-root',
-      '.MuiListItemButton-root',
-    ],
-    [
-      'List with ListItem',
-      <List subheader={<ListSubheader>Contacts</ListSubheader>}>
-        <ListItem>Alice</ListItem>
-      </List>,
-      '.MuiListSubheader-root',
-      '.MuiListItem-root',
-    ],
-  ];
-  cases.forEach(([name, element, header, item]) => {
-    test(name, () => {
-      render(<ThemeProvider theme={THEMES.get('medium')!}>{element}</ThemeProvider>);
-      const indent =
-        name === 'grouped Autocomplete' ? DEFAULT_STEP_PX.small - DEFAULT_STEP_PX.xSmall : 0;
-      expect(textLeft(item) - textLeft(header)).to.equal(indent);
-    });
-  });
-});
-
-describe.skipIf(isJsdom())('inset divider follows the row above', () => {
-  const { render } = createRenderer();
-  const left = (el: Element) => Math.round(el.getBoundingClientRect().left);
-  const textLeft = (row: Element) => {
-    const range = document.createRange();
-    range.selectNodeContents(row.querySelector('.MuiListItemText-primary')!);
-    return Math.round(range.getBoundingClientRect().left);
-  };
-  const rows: [string, React.ReactElement][] = [
-    [
-      'ListItem with an avatar',
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>A</Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Text" />
-      </ListItem>,
-    ],
-    [
-      'ListItem with an icon',
-      <ListItem>
-        <ListItemIcon>
-          <AddIcon />
-        </ListItemIcon>
-        <ListItemText primary="Text" />
-      </ListItem>,
-    ],
-    [
-      'ListItemButton with an icon',
-      <ListItemButton>
-        <ListItemIcon>
-          <AddIcon />
-        </ListItemIcon>
-        <ListItemText primary="Text" />
-      </ListItemButton>,
-    ],
-    [
-      'ListItem around a ListItemButton with an avatar',
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemAvatar>
-            <Avatar>A</Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Text" />
-        </ListItemButton>
-      </ListItem>,
-    ],
-  ];
-  DENSITIES.forEach((density) => {
-    rows.forEach(([name, row]) => {
-      test(`${density.id} ${name}`, () => {
+    [false, true].forEach((modularCssLayers) => {
+      test(`Select paddingRight${modularCssLayers ? ' with layers' : ''}`, () => {
+        const fields: Record<string, React.ReactNode> = {};
+        VARIANTS.forEach((variant) =>
+          [false, true].forEach((adornment) => {
+            fields[`${variant}${adornment ? ' adornment' : ''}`] = (
+              <Select
+                variant={variant}
+                value="a"
+                endAdornment={adornment ? <InputAdornment position="end">x</InputAdornment> : null}
+              >
+                <MenuItem value="a">a</MenuItem>
+              </Select>
+            );
+          }),
+        );
         render(
-          <ThemeProvider theme={THEMES.get(density.id)!}>
-            <List>
-              {row}
-              <Divider variant="inset" component="li" />
-            </List>
-          </ThemeProvider>,
+          sideBySide(
+            withUser({
+              modularCssLayers,
+              components: {
+                MuiSelect: { styleOverrides: { select: { '&&': { paddingRight: 80 } } } },
+              },
+            }),
+            cases(fields),
+          ),
         );
-        const divider = document.querySelector('.MuiDivider-inset')!;
-        expect(left(divider)).to.equal(textLeft(divider.previousElementSibling!));
+        const userWins = (theme: string) =>
+          byName(
+            Object.keys(fields),
+            (name) => css('.MuiSelect-select', inTheme(theme, name)).paddingRight === '80px',
+          );
+        expect(userWins('enhanced')).to.deep.equal(userWins('master'));
       });
     });
-  });
 
-  test('a user inset override wins', () => {
-    render(
-      <ThemeProvider
-        theme={enhanceDensity(
+    test('a user inset Divider margin', () => {
+      renderIn(
+        enhanceDensity(
           createTheme({
             components: { MuiDivider: { styleOverrides: { inset: { marginLeft: 20 } } } },
           }),
-        )}
-      >
+        ),
         <List>
           <ListItem>
             <ListItemIcon>
@@ -2150,34 +1916,83 @@ describe.skipIf(isJsdom())('inset divider follows the row above', () => {
             <ListItemText primary="Text" />
           </ListItem>
           <Divider variant="inset" component="li" />
-        </List>
-      </ThemeProvider>,
-    );
-    expect(getComputedStyle(document.querySelector('.MuiDivider-inset')!).marginLeft).to.equal(
-      '20px',
-    );
-  });
-});
-
-describe.skipIf(isJsdom())('top-aligned list avatar', () => {
-  const { render } = createRenderer();
-  DENSITIES.forEach((density) => {
-    test(`${density.id}: the avatar sits xSmall below the row top`, () => {
-      render(
-        <ThemeProvider theme={THEMES.get(density.id)!}>
-          <List>
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar>A</Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Text" secondary="Two lines of secondary text" />
-            </ListItem>
-          </List>
-        </ThemeProvider>,
+        </List>,
       );
-      expect(
-        getComputedStyle(document.querySelector('.MuiListItemAvatar-root')!).marginTop,
-      ).to.equal(`${density.step.xSmall}px`);
+      expect(css('.MuiDivider-inset').marginLeft).to.equal('20px');
+    });
+
+    [false, true].forEach((modularCssLayers) => {
+      test(`sx and MuiLink styleOverrides on a breadcrumb link${modularCssLayers ? ' with layers' : ''}`, () => {
+        renderIn(
+          enhanceDensity(
+            createTheme({
+              modularCssLayers,
+              components: { MuiLink: { styleOverrides: { root: { paddingInline: 3 } } } },
+            }),
+          ),
+          <React.Fragment>
+            <Link href="#" sx={{ display: 'none' }}>
+              A link rendered before the breadcrumbs
+            </Link>
+            <Breadcrumbs>
+              <Link href="#" data-testid="hidden" sx={{ display: 'none' }}>
+                Hidden
+              </Link>
+              <Link href="#" data-testid="sx" sx={{ px: 0, lineHeight: '10px' }}>
+                Sx
+              </Link>
+              <Link href="#" data-testid="theme">
+                Theme
+              </Link>
+              <Typography>Current</Typography>
+            </Breadcrumbs>
+          </React.Fragment>,
+        );
+        expect({
+          hidden: css('[data-testid="hidden"]').display,
+          sxPadding: css('[data-testid="sx"]').paddingLeft,
+          sxLineHeight: css('[data-testid="sx"]').lineHeight,
+          themePadding: css('[data-testid="theme"]').paddingLeft,
+        }).to.deep.equal({
+          hidden: 'none',
+          sxPadding: '0px',
+          sxLineHeight: '10px',
+          themePadding: '3px',
+        });
+      });
+    });
+  });
+
+  describe('breadcrumbs', () => {
+    test('a plain crumb link sits on the touch target', () => {
+      renderIn(
+        MEDIUM,
+        <Breadcrumbs>
+          <Link href="#" data-testid="link">
+            Home
+          </Link>
+          <Typography>Current</Typography>
+        </Breadcrumbs>,
+      );
+      expect(css('[data-testid="link"]').display).to.equal('inline-flex');
+      expect(rect('[data-testid="link"]').height).to.equal(DEFAULT_SIZING_PX.touchTarget);
+    });
+
+    test('a Chip crumb keeps its own size', () => {
+      renderIn(
+        MEDIUM,
+        <React.Fragment>
+          <Chip size="small" label="ref" onDelete={() => {}} data-testid="standalone" />
+          <Breadcrumbs maxItems={2}>
+            <Chip size="small" label="a" onDelete={() => {}} data-testid="crumb" />
+            <Chip size="small" label="b" onDelete={() => {}} />
+            <Chip size="small" label="c" onDelete={() => {}} />
+          </Breadcrumbs>
+        </React.Fragment>,
+      );
+      expect(css('[data-testid="crumb"]').height).to.equal(
+        css('[data-testid="standalone"]').height,
+      );
     });
   });
 });
