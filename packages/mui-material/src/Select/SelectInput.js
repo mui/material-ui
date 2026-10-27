@@ -103,7 +103,16 @@ const SelectIcon = styled(StyledSelectIcon, {
     const { ownerState } = props;
     return [styles.icon, ownerState.open && styles.iconOpen];
   },
-})({});
+})({
+  variants: [
+    {
+      props: ({ ownerState }) => ownerState.open,
+      style: {
+        transform: 'rotate(180deg)',
+      },
+    },
+  ],
+});
 
 const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',

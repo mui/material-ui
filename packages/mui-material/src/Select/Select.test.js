@@ -2807,6 +2807,13 @@ describe('<Select />', () => {
     });
   });
 
+  it('should rotate the icon when open', () => {
+    const { container } = render(<Select open value="" />);
+    const icon = container.querySelector(`.${classes.icon}`);
+    expect(icon).to.have.class(classes.iconOpen);
+    expect(icon).not.toHaveComputedStyle({ transform: 'none' });
+  });
+
   describe('prop: input', () => {
     it('merges `ref` of `Select` and `input`', () => {
       const Input = React.forwardRef(function Input(props, ref) {

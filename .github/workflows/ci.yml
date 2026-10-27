@@ -122,4 +122,5 @@ jobs:
       - name: Dry run npm publishing
         env:
           IS_PUBLISH_TEST: 'true'
-        run: pnpm code-infra publish --ci --dry-run
+        # #npm-tag-reference
+        run: pnpm code-infra publish --ci --dry-run --tag next
