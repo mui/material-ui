@@ -461,19 +461,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const childrenArray = React.Children.toArray(children);
 
-  // Support autofill.
-  const handleChange = (event) => {
-    const child = childrenArray.find((childItem) =>
-      areEqualValues(event.target.value, childItem.props.value),
-    );
-
-    if (child === undefined) {
-      return;
-    }
-
-    handleValueChange(event, child, multiple ? [child.props.value] : child.props.value);
-  };
-
   const handleValueChange = (event, child, newValue) => {
     setValueState(newValue);
 
@@ -492,6 +479,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       });
       onChange(clonedEvent, child);
     }
+  };
+
+  // Support autofill.
+  const handleChange = (event) => {
+    const child = childrenArray.find((childItem) =>
+      areEqualValues(event.target.value, childItem.props.value),
+    );
+
+    if (child === undefined) {
+      return;
+    }
+
+    handleValueChange(event, child, multiple ? [child.props.value] : child.props.value);
   };
 
   const handleItemClick = (child) => (event) => {
