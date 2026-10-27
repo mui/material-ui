@@ -1938,3 +1938,48 @@ describe.skipIf(isJsdom())('badge size', () => {
     });
   });
 });
+
+describe.skipIf(isJsdom())('outlined label lift', () => {
+  const { render } = createRenderer();
+  const liftInLines = (id: string) => {
+    const label = document.querySelector(`[data-testid="${id}"] .MuiInputLabel-root`)!;
+    const css = getComputedStyle(label);
+    const translateY = new DOMMatrix(css.transform).f;
+    return Math.round((translateY / parseFloat(css.lineHeight)) * 1000) / 1000;
+  };
+  const field = (id: string, style?: React.CSSProperties) => (
+    <div data-testid={id} style={style}>
+      <TextField label="Label" defaultValue="value" />
+    </div>
+  );
+
+  [
+    [24, -0.475],
+    [32, -0.475],
+    [44, -0.375],
+  ].forEach(([touchTarget, lift]) => {
+    test(`touchTarget ${touchTarget}: the shrunk label lifts ${lift}lh`, () => {
+      render(
+        <ThemeProvider theme={enhanceDensity(createTheme(), { touchTarget })}>
+          {field('field')}
+        </ThemeProvider>,
+      );
+      expect(liftInLines('field')).to.equal(lift);
+    });
+  });
+
+  test('a region that overrides --mui-touchTarget decides the lift', () => {
+    render(
+      <ThemeProvider theme={enhanceDensity(createTheme({ cssVariables: true }))}>
+        {field('base')}
+        {field('roomy', { '--mui-touchTarget': '44px' } as React.CSSProperties)}
+        {field('dense', { '--mui-touchTarget': '24px' } as React.CSSProperties)}
+      </ThemeProvider>,
+    );
+    expect({
+      base: liftInLines('base'),
+      roomy: liftInLines('roomy'),
+      dense: liftInLines('dense'),
+    }).to.deep.equal({ base: -0.475, roomy: -0.375, dense: -0.475 });
+  });
+});

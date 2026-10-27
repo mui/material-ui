@@ -3,7 +3,6 @@ import type { Breakpoint } from '@mui/system';
 import type { Theme } from './createTheme';
 import {
   applyDensity,
-  DEFAULT_SIZING_PX,
   DensityEnhancedTheme,
   DensityScaleOverrides,
   EnhanceableTheme,
@@ -633,11 +632,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { variant: 'outlined', shrink: true },
         style: {
-          transform: `translate(14px, ${
-            (enhanced.unstable_densityScale?.touchTarget ?? DEFAULT_SIZING_PX.touchTarget) <= 32
-              ? '-0.475lh' // 0.475 = sweet spot to make label align nicely without overlapping the chips in Autocomplete
-              : '-0.375lh' // 0.375 = 50% * 0.75 scale factor
-          }) scale(0.75)`,
+          // 0.475 = sweet spot to make label align nicely without overlapping the chips in Autocomplete
+          // 0.375 = 50% * 0.75 scale factor
+          transform: `translate(14px, clamp(-0.475lh, (${touchTarget} - 32.5px) * 999, -0.375lh)) scale(0.75)`,
         },
       },
     ],
