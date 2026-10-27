@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { describe, test, expect } from 'vitest';
 import { createRenderer, ignoreActWarnings, isJsdom } from '@mui/internal-test-utils';
+import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   createTheme,
@@ -8,42 +9,77 @@ import {
   unstable_enhanceDensity as enhanceDensity,
 } from '@mui/material/styles';
 import {
-  Annotate,
   DENSITY_SCALE,
+  DENSITY_STAGE_SX,
   DENSITY_TARGETS,
-  useClaims,
+  resolveClaims,
+  type AnnotateItem,
+  type Claim,
 } from 'docs/data/material/experimental-api/enhance-density/densityAnnotations';
 import {
   DENSITY_COMPONENTS,
   type ControlValue,
 } from 'docs/data/material/experimental-api/enhance-density/densityComponents';
-import {
-  DENSITY_ANNOTATIONS,
-  annotationsFor,
-} from 'docs/data/material/experimental-api/enhance-density/densityAnnotationSpecs';
+import { annotationsFor } from 'docs/data/material/experimental-api/enhance-density/densityAnnotationSpecs';
 
 type State = Record<string, ControlValue>;
 
 const SCALE: Record<string, number> = { ...DENSITY_SCALE, ...DENSITY_TARGETS };
-const THEME = enhanceDensity(createTheme({ colorSchemes: { light: true, dark: true } }));
-const LABEL = /^(.*?)\s*\(([\d.]+)px\)$/;
+const THEME = enhanceDensity(createTheme());
+const TOLERANCE = 0.15;
 
-function evaluateToken(token: string, lineHeight: number): number | null {
-  const arithmetic = token
-    .replace(/×/g, '*')
-    .replace(/([\d.]+)lh/g, (_, multiple) => String(parseFloat(multiple) * lineHeight))
-    .replace(/\b([a-zA-Z][a-zA-Z0-9]*)\b/g, (name) => String(SCALE[name] ?? name))
-    .replace(/px/g, '');
-  if (!/^[\d\s.+\-*/()]+$/.test(arithmetic)) {
-    return null;
+/** Evaluates `+ - * × /`, parentheses, px numbers, `<n>lh` and scale names. */
+function evaluateToken(token: string, lineHeight: number): number {
+  const parts = token.match(/\d*\.?\d+(?:px|lh)?|[a-zA-Z]+|[-+*×/()]/g) ?? [];
+  let index = 0;
+  const atom = (): number => {
+    const part = parts[index];
+    index += 1;
+    if (part === '(') {
+      const value = sum();
+      index += 1;
+      return value;
+    }
+    if (part === '-') {
+      return -atom();
+    }
+    if (part?.endsWith('lh')) {
+      if (Number.isNaN(lineHeight)) {
+        throw new Error(`no line height for ${token}`);
+      }
+      return parseFloat(part) * lineHeight;
+    }
+    if (part !== undefined && /^\d|^\./.test(part)) {
+      return parseFloat(part);
+    }
+    if (part !== undefined && part in SCALE) {
+      return SCALE[part];
+    }
+    throw new Error(`cannot evaluate "${part}" in ${token}`);
+  };
+  const product = (): number => {
+    let value = atom();
+    while (['*', '×', '/'].includes(parts[index])) {
+      const operator = parts[index];
+      index += 1;
+      value = operator === '/' ? value / atom() : value * atom();
+    }
+    return value;
+  };
+  function sum(): number {
+    let value = product();
+    while (parts[index] === '+' || parts[index] === '-') {
+      const operator = parts[index];
+      index += 1;
+      value = operator === '+' ? value + product() : value - product();
+    }
+    return value;
   }
-  try {
-    // eslint-disable-next-line no-new-func
-    const value = Function(`"use strict";return (${arithmetic});`)() as number;
-    return Number.isFinite(value) ? value : null;
-  } catch {
-    return null;
+  const value = sum();
+  if (index !== parts.length) {
+    throw new Error(`cannot evaluate ${token}`);
   }
+  return value;
 }
 
 function toolbarStates(family: string): State[] {
@@ -59,113 +95,101 @@ function toolbarStates(family: string): State[] {
   );
 }
 
-function Stage({ family, state }: { family: string; state: State }) {
-  const stageRef = React.useRef<HTMLDivElement>(null);
-  const demoRef = React.useRef<HTMLDivElement>(null);
-  const claims = React.useMemo(() => annotationsFor(family, state), [family, state]);
-  const resolved = useClaims(stageRef, demoRef, claims, [family, state, claims]);
-  return (
-    <div
-      ref={stageRef}
-      style={{
-        position: 'relative',
-        minWidth: 620,
-        minHeight: 300,
-        padding: '64px 88px',
-        display: 'grid',
-        placeItems: 'center',
-      }}
-    >
-      <div ref={demoRef} style={{ display: 'contents' }}>
-        <ThemeProvider theme={THEME}>{DENSITY_COMPONENTS[family].render(state)}</ThemeProvider>
-      </div>
-      {resolved ? <Annotate items={resolved.items} bounds={resolved.bounds} /> : null}
-    </div>
-  );
-}
-
-async function settledLabels(): Promise<string[]> {
-  const read = () =>
-    Array.from(document.querySelectorAll('[data-annotations] text')).map(
-      (node) => node.textContent ?? '',
-    );
+/** Resolves once every claim drew and the values held for two frames. */
+async function settledItems(claims: Claim[]): Promise<AnnotateItem[]> {
+  await document.fonts.ready;
+  const stage = document.querySelector('[data-stage]') as HTMLElement;
+  const demo = document.querySelector('[data-demo]') as HTMLElement;
+  const isComplete = (items: AnnotateItem[]) =>
+    claims.every((claim) => items.some((item) => item.source?.claim === claim));
   let previous = '';
-  let held = 0;
-  for (let frame = 0; frame < 90; frame += 1) {
+  let items: AnnotateItem[] = [];
+  for (let frame = 0; frame < 120; frame += 1) {
     // eslint-disable-next-line no-await-in-loop
     await new Promise(requestAnimationFrame);
-    const current = read();
-    const key = current.join('|');
-    held = key === previous && current.length > 0 ? held + 1 : 0;
-    previous = key;
-    if (held >= 3) {
+    const current = resolveClaims(stage, demo, claims).items;
+    const key = JSON.stringify(current.map((item) => item.source?.value));
+    if (isComplete(current) && key === previous) {
       return current;
     }
+    previous = key;
+    items = current;
   }
-  throw new Error('annotations never settled');
+  return items;
+}
+
+function mismatchesOf(claims: Claim[], items: AnnotateItem[]) {
+  const mismatches: string[] = [];
+  claims.forEach((claim) => {
+    const drawn = items.filter((item) => item.source?.claim === claim);
+    if (drawn.length === 0) {
+      mismatches.push(`${claim.on} ${claim.aspect}: nothing drawn`);
+      return;
+    }
+    if (claim.token === undefined) {
+      return;
+    }
+    const shown = claim.text ?? claim.token;
+    drawn.forEach(({ label, source }) => {
+      if (!label.startsWith(shown)) {
+        mismatches.push(`${claim.on} ${claim.aspect}: "${claim.token}" dropped, sides differ`);
+        return;
+      }
+      try {
+        const expected = evaluateToken(claim.token!, source!.lineHeight);
+        if (Math.abs(expected - source!.value) > TOLERANCE) {
+          mismatches.push(
+            `${claim.on} ${claim.aspect}: "${claim.token}" measures ${source!.value}px but evaluates to ${expected}px`,
+          );
+        }
+      } catch (error) {
+        mismatches.push(`${claim.on} ${claim.aspect}: ${(error as Error).message}`);
+      }
+    });
+  });
+  return mismatches;
 }
 
 describe.skipIf(isJsdom())('density annotation parity', () => {
   const { render } = createRenderer();
 
-  test('every demo family carries annotations', () => {
-    expect(
-      Object.keys(DENSITY_COMPONENTS).filter((family) => DENSITY_ANNOTATIONS[family] === undefined),
-    ).to.deep.equal([]);
-  });
-
   Object.keys(DENSITY_COMPONENTS).forEach((family) => {
     test(`${family} tokens equal the values they label`, async () => {
       ignoreActWarnings();
-      const mismatches: string[] = [];
-      let checked = 0;
-      const states = toolbarStates(family);
       const view = (state: State) => (
         <React.Fragment>
           <CssBaseline />
-          <Stage family={family} state={state} />
+          <Box data-stage sx={DENSITY_STAGE_SX}>
+            <Box data-demo sx={{ display: 'contents' }}>
+              <ThemeProvider theme={THEME}>
+                {DENSITY_COMPONENTS[family].render(state)}
+              </ThemeProvider>
+            </Box>
+          </Box>
         </React.Fragment>
       );
+      const states = toolbarStates(family);
       const { setProps } = render(view(states[0]));
+      const mismatches: string[] = [];
+      let tokens = 0;
 
       for (const state of states) {
         setProps({ children: view(state).props.children });
-        // eslint-disable-next-line no-await-in-loop
-        const labels = await settledLabels();
         const claims = annotationsFor(family, state);
-        const lineHeightFor = (token: string) => {
-          const claim = claims.find((candidate) => candidate.token === token);
-          const target = claim ? (document.querySelector(claim.on) as HTMLElement | null) : null;
-          if (!target) {
-            return 16;
-          }
-          const source = claim?.aspect === 'icon' ? (target.parentElement ?? target) : target;
-          return parseFloat(getComputedStyle(source).lineHeight) || 16;
-        };
-
-        const evaluated = labels
-          .map((label) => LABEL.exec(label.trim()))
-          .filter((match) => match !== null)
-          .map(([, token, px]) => ({
-            token,
-            px: parseFloat(px),
-            expected: evaluateToken(token, /lh/.test(token) ? lineHeightFor(token) : 0),
-          }))
-          .filter(({ expected }) => expected !== null);
-        checked += evaluated.length;
+        tokens += claims.filter((claim) => claim.token !== undefined).length;
+        // eslint-disable-next-line no-await-in-loop
+        const items = await settledItems(claims);
         const where =
           Object.entries(state)
             .map(([prop, value]) => `${prop}=${value}`)
             .join(' ') || 'default';
-        evaluated
-          .filter(({ expected, px }) => Math.abs(expected! - px) > 1.1)
-          .forEach(({ token, px, expected }) => {
-            mismatches.push(`${where}: "${token}" labels ${px}px but evaluates to ${expected}px`);
-          });
+        mismatchesOf(claims, items).forEach((mismatch) => {
+          mismatches.push(`${where}: ${mismatch}`);
+        });
       }
 
       expect(mismatches).to.deep.equal([]);
-      expect(checked, 'no evaluable token was checked').to.be.greaterThan(0);
+      expect(tokens, 'no claim carries a token').to.be.greaterThan(0);
     });
   });
 });

@@ -22,6 +22,7 @@ import {
   Annotate,
   slotLabel,
   DENSITY_SCALE,
+  DENSITY_STAGE_SX,
   DENSITY_TARGETS,
   useClaims,
 } from './densityAnnotations';
@@ -36,11 +37,6 @@ import {
 const densityTheme = enhanceDensity(
   createTheme({ colorSchemes: { light: true, dark: true } }),
 );
-
-// Wide enough that the captions in the side gutters have room before the canvas
-// starts scrolling.
-const STAGE_WIDTH = 620;
-const STAGE_HEIGHT = 300;
 
 // Stable identity, so a family without controls doesn't re-run the memos.
 const NO_CONTROLS: Control[] = [];
@@ -279,18 +275,7 @@ export default function AllComponentsDemo() {
         </React.Fragment>
       ) : null}
       <Box sx={{ overflowX: 'auto' }}>
-        <Box
-          ref={stageRef}
-          sx={{
-            position: 'relative',
-            minWidth: STAGE_WIDTH,
-            minHeight: STAGE_HEIGHT,
-            px: 11,
-            py: 8,
-            display: 'grid',
-            placeItems: 'center',
-          }}
-        >
+        <Box ref={stageRef} sx={DENSITY_STAGE_SX}>
           <Box ref={demoRef} data-density-demo sx={{ display: 'contents' }}>
             <ThemeProvider theme={densityTheme}>{spec.render(values)}</ThemeProvider>
           </Box>

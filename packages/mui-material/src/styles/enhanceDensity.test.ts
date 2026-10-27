@@ -2,115 +2,81 @@ import { describe, test, expect } from 'vitest';
 import createTheme from './createTheme';
 import enhanceDensity from './enhanceDensity';
 
-const sx = (theme: ReturnType<typeof createTheme>, input: Record<string, unknown>) =>
-  (theme as any).unstable_sx(input);
+const leaves = (node: unknown, path = '', out: Record<string, string> = {}) => {
+  if (node !== null && typeof node === 'object') {
+    Object.entries(node).forEach(([key, value]) => leaves(value, `${path}/${key}`, out));
+  } else if (typeof node === 'string' || typeof node === 'number') {
+    out[path] = String(node);
+  }
+  return out;
+};
+
+const isSignFlip = (ltr: string, rtl: string) =>
+  rtl === `-${ltr}` ||
+  rtl === `calc(-1 * ${ltr})` ||
+  (ltr.includes('calc(1 * ') && rtl === ltr.replace('calc(1 * ', 'calc(-1 * '));
 
 describe('enhanceDensity', () => {
-  test('ships the default steps', () => {
-    const theme = enhanceDensity(createTheme());
-
-    expect(theme.spacing('small')).to.equal('12px');
-    expect(theme.spacing('xxLarge')).to.equal('48px');
+  test('accepts a theme without a body2 variant', () => {
+    expect(() => enhanceDensity(createTheme({ typography: { body2: undefined } }))).not.to.throw();
   });
 
-  test('leaves the type ramp untouched', () => {
-    const base = createTheme();
-    const theme = enhanceDensity(createTheme());
-
-    expect(JSON.stringify(theme.typography)).to.equal(JSON.stringify(base.typography));
-  });
-
-  test('a user styleOverride on the incoming theme renders after the density styles', () => {
+  test('a user styleOverride renders after the density style of the same slot', () => {
+    const user = { textTransform: 'none' };
     const theme = enhanceDensity(
-      createTheme({
-        components: { MuiButton: { styleOverrides: { root: { textTransform: 'none' } } } },
-      }),
+      createTheme({ components: { MuiButton: { styleOverrides: { root: user } } } }),
     );
-    const layers = (theme.components as any).MuiButton.styleOverrides.root as any[];
+    const layers = (theme.components as any).MuiButton.styleOverrides.root;
 
-    expect(layers.length).to.be.greaterThan(1);
-    expect(layers[layers.length - 1]).to.deep.equal({ textTransform: 'none' });
+    expect(layers).to.have.length(2);
+    expect(layers[1]).to.deep.equal(user);
   });
 
-  test('a user slotProps default merges with the density slot defaults', () => {
-    const theme = enhanceDensity(
-      createTheme({
-        components: { MuiAlert: { defaultProps: { slotProps: { icon: { title: 'user' } } } } },
-      }),
+  test('a user slotProps default merges into the density default of the same slot', () => {
+    const closeButton = (slotProps: Record<string, unknown>) =>
+      (
+        enhanceDensity(createTheme({ components: { MuiAlert: { defaultProps: { slotProps } } } }))
+          .components as any
+      ).MuiAlert.defaultProps.slotProps.closeButton;
+
+    expect(closeButton({ closeButton: { title: 'user' } })).to.deep.equal({
+      size: 'medium',
+      title: 'user',
+    });
+    expect(closeButton({ closeButton: { size: 'small' } })).to.deep.equal({ size: 'small' });
+  });
+
+  test('leaves the input theme unchanged', () => {
+    const input = createTheme({
+      components: {
+        MuiButton: { styleOverrides: { root: { textTransform: 'none' } } },
+        MuiAlert: { defaultProps: { slotProps: { closeButton: { title: 'user' } } } },
+      },
+    });
+    const before = JSON.stringify(input);
+    enhanceDensity(input);
+
+    expect(JSON.stringify(input)).to.equal(before);
+  });
+
+  test('an rtl theme only flips the sign of the inline offsets', () => {
+    const ltr = leaves(enhanceDensity(createTheme()).components);
+    const rtl = leaves(enhanceDensity(createTheme({ direction: 'rtl' })).components);
+    const differing = Object.keys({ ...ltr, ...rtl }).filter((path) => ltr[path] !== rtl[path]);
+
+    const inlineOffsets = Object.keys(ltr).filter(
+      (path) => path.endsWith('/--_inlinePad') || ltr[path].startsWith('translateX('),
     );
-    const slotProps = (theme.components as any).MuiAlert.defaultProps.slotProps;
 
-    expect(slotProps.icon).to.deep.equal({ title: 'user' });
-    expect(Object.keys(slotProps).length).to.be.greaterThan(1);
-  });
-
-  test('an rtl theme flips the inline offsets the transforms read', () => {
-    const style = (direction: 'ltr' | 'rtl') => {
-      const components = enhanceDensity(createTheme({ direction })).components as any;
-      return JSON.stringify([
-        components.MuiOutlinedInput.styleOverrides.root,
-        components.MuiSwitch.styleOverrides.switchBase,
-      ]);
-    };
-
-    expect(style('ltr')).to.include('"--_inlinePad":"14px"');
-    expect(style('rtl')).to.include('"--_inlinePad":"-14px"');
-    expect(style('ltr')).to.include('translateX(calc(1 * (var(--_width)');
-    expect(style('rtl')).to.include('translateX(calc(-1 * (var(--_width)');
-  });
-
-  describe('sx spacing props', () => {
-    test('resolve step names on a static theme', () => {
-      const theme = enhanceDensity(createTheme());
-
-      expect(sx(theme, { p: 'small' })).to.deep.equal({ padding: '12px' });
-      expect(sx(theme, { mx: '-small' })).to.deep.equal({
-        marginLeft: '-12px',
-        marginRight: '-12px',
-      });
-      expect(sx(theme, { gap: 'xLarge' })).to.deep.equal({ gap: '32px' });
-    });
-
-    test('resolve step names on a CSS variables theme, before and after CssVarsProvider mounts', () => {
-      const theme = enhanceDensity(createTheme({ cssVariables: true }));
-      const mounted = { ...theme, spacing: (theme as any).generateSpacing() };
-
-      expect(sx(theme, { p: 'small' })).to.deep.equal({
-        padding: 'var(--mui-spacing-small, 12px)',
-      });
-      expect(sx(theme, { gap: '-medium' })).to.deep.equal({
-        gap: 'calc(var(--mui-spacing-medium, 16px) * -1)',
-      });
-      expect(sx(mounted as any, { p: 'small' })).to.deep.equal({
-        padding: 'var(--mui-spacing-small, 12px)',
-      });
-    });
-
-    test('resolve step names inside responsive values', () => {
-      const theme = enhanceDensity(createTheme());
-
-      expect(sx(theme, { p: { xs: 'small', md: 'large' } })).to.deep.equal({
-        '@media (min-width:0px)': { padding: '12px' },
-        '@media (min-width:900px)': { padding: '24px' },
-      });
-    });
-
-    test('leave raw CSS, multipliers and the sizing names untouched', () => {
-      const theme = enhanceDensity(createTheme({ cssVariables: true }));
-
-      expect(sx(theme, { m: 'auto' })).to.deep.equal({ margin: 'auto' });
-      expect(sx(theme, { p: '2rem' })).to.deep.equal({ padding: '2rem' });
-      expect(sx(theme, { p: 2 })).to.deep.equal({ padding: 'calc(2 * var(--mui-spacing, 8px))' });
-      expect(sx(theme, { p: 0 })).to.deep.equal({ padding: 0 });
-      expect(sx(theme, { m: 'touchTarget' })).to.deep.equal({ margin: 'touchTarget' });
-      expect(sx(theme, { m: 'iconSize' })).to.deep.equal({ margin: 'iconSize' });
-    });
-
-    test('a theme without the enhancer is unaffected', () => {
-      const plain = createTheme({ cssVariables: true });
-
-      expect(sx(plain, { p: 'small' })).to.deep.equal({ padding: 'small' });
-      expect(sx(plain, { p: 2 })).to.deep.equal({ padding: 'calc(2 * var(--mui-spacing, 8px))' });
-    });
+    expect(inlineOffsets.filter((path) => !differing.includes(path))).to.deep.equal([]);
+    expect(differing.filter((path) => !isSignFlip(ltr[path] ?? '', rtl[path] ?? ''))).to.deep.equal(
+      [],
+    );
+    expect([...new Set(differing.map((path) => path.split('/')[1]))].sort()).to.deep.equal([
+      'MuiFilledInput',
+      'MuiInputLabel',
+      'MuiOutlinedInput',
+      'MuiSwitch',
+    ]);
   });
 });

@@ -22,6 +22,18 @@ export const DENSITY_TARGETS = {
   iconSize: defaultIconTarget,
 };
 
+// Wide enough that the captions in the side gutters have room before the canvas
+// starts scrolling.
+export const DENSITY_STAGE_SX = {
+  position: 'relative',
+  minWidth: 620,
+  minHeight: 300,
+  px: 11,
+  py: 8,
+  display: 'grid',
+  placeItems: 'center',
+};
+
 // The colors browser devtools use when it highlights a box.
 const PADDING_COLOR = '#c3e5a5';
 const PADDING_EDGE = '#7ba85a';
@@ -1013,6 +1025,11 @@ export function resolveClaims(stage, demo, claims) {
       }
       const box = rel(element.getBoundingClientRect());
       const styles = window.getComputedStyle(element);
+      const lineHeight = parseFloat(
+        window.getComputedStyle(
+          claim.aspect === 'icon' ? (element.parentElement ?? element) : element,
+        ).lineHeight,
+      );
       const num = (value) => parseFloat(value) || 0;
       const edgesOf = (prefix, suffix) => ({
         top: num(styles[`${prefix}Top${suffix}`]),
@@ -1068,6 +1085,7 @@ export function resolveClaims(stage, demo, claims) {
           const gutter = claim.route?.gutter ?? 'right';
           const lead = liveSides.includes(gutter) ? gutter : liveSides[0];
           items.push({
+            source: { claim, value: edges[lead], lineHeight },
             kind: 'band',
             tone: isPad ? 'padding' : 'margin',
             measures: lead === 'left' || lead === 'right' ? 'x' : 'y',
@@ -1103,6 +1121,7 @@ export function resolveClaims(stage, demo, claims) {
           // back action margin prints -8px, matching its -xSmall token
           const signed = edges[group[0]];
           items.push({
+            source: { claim, value: signed, lineHeight },
             kind: 'band',
             tone: isPad ? 'padding' : 'margin',
             measures: axis === 'inline' ? 'x' : 'y',
@@ -1160,6 +1179,7 @@ export function resolveClaims(stage, demo, claims) {
               height: contentBox.height,
             };
         items.push({
+          source: { claim, value: size, lineHeight },
           kind: 'band',
           tone: 'gap',
           measures: stacked ? 'y' : 'x',
@@ -1180,6 +1200,7 @@ export function resolveClaims(stage, demo, claims) {
         }
         const iconBox = rel(svg.getBoundingClientRect());
         items.push({
+          source: { claim, value: iconBox.height, lineHeight },
           kind: 'bound',
           measures: 'y',
           outline: true,
@@ -1202,6 +1223,7 @@ export function resolveClaims(stage, demo, claims) {
         ? claim.axis === 'inline'
         : route.gutter === 'top' || route.gutter === 'bottom';
       items.push({
+        source: { claim, value: measuresWidth ? box.width : box.height, lineHeight },
         kind: 'bound',
         measures: measuresWidth ? 'x' : 'y',
         outline: claim.pointer,
