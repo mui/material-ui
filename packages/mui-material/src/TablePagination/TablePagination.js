@@ -108,9 +108,6 @@ const TablePaginationSelect = styled(Select, {
   },
 });
 
-// The select reads as a toolbar button rather than a form field — it carries no underline or
-// outline — so its ring stays keyboard-only, matching the page buttons beside it. `InputBase` keys
-// its own ring on `.Mui-focused`, which fires on pointer focus too, hence the opt-out.
 const TablePaginationInputBase = styled(InputBase)(
   memoTheme(({ theme }) =>
     theme.focusVisible
