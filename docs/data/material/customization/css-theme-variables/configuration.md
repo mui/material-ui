@@ -280,20 +280,26 @@ In the example below, all the components inside the `div` will always be dark:
 ## Nested and multiple theme providers
 
 A `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
-A nested or `scoped` provider writes them on an element that wraps its children instead, so they only apply there.
+A nested or `scoped` provider sets them on its child element instead, so they only apply there.
 
 ### Nested providers
 
-A nested `ThemeProvider` whose variables differ from the outer theme wraps its children in a `div` with `display: contents` and a generated class.
+When a nested `ThemeProvider`'s variables differ from the outer theme, it adds a generated class to its child.
 The class only sets the variables that differ, and it follows the outer light or dark mode:
 
 ```jsx
 <ThemeProvider theme={appTheme}>
   <Button>Uses appTheme</Button>
   <ThemeProvider theme={promoTheme}>
-    <Button>Uses promoTheme</Button>
+    <section>
+      <Button>Uses promoTheme</Button>
+    </section>
   </ThemeProvider>
 </ThemeProvider>
+```
+
+```html
+<section class="mui-theme-1x2y3z">…</section>
 ```
 
 ```css
@@ -305,11 +311,9 @@ The class only sets the variables that differ, and it follows the outer light or
 }
 ```
 
-A nested provider with the same variables, for example one that only changes `components` defaults, renders no element.
-
-The wrapper is an extra element, so `> *` and `~` selectors, and the spacing of a `Stack`, don't reach through it.
-Since it only renders when the variables differ, switching a nested provider between a theme with the same variables and one with different variables also remounts its children.
-The `component` prop below avoids both: it always renders the element you choose.
+The provider doesn't render any element of its own, so the child has to be a single element that renders the `className` it receives.
+With several children, a Fragment, or text, the variables aren't applied and an error is logged in development: wrap the children in one element, for example a `div`.
+A nested provider whose theme has the same variables, for example one that only changes `components` defaults, accepts any children.
 
 Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
 For elements that other libraries portal, use the `useThemeScope()` hook to get the class:
@@ -323,19 +327,10 @@ function Toast() {
 }
 ```
 
-To put the class on your own element instead of the `div`, for example inside a table or a list, where a `div` isn't valid HTML, use the `component` prop.
-It renders whether the variables differ or not:
-
-```jsx
-<ThemeProvider theme={promoTheme} component="tbody" className="promo">
-  {rows}
-</ThemeProvider>
-```
-
 ### Sibling providers
 
 Two `ThemeProvider`s that aren't nested in each other both write to `:root` and overwrite each other, which logs a warning in development.
-Add the `scoped` prop to the one that should only apply to its children, like an embedded widget:
+Add the `scoped` prop to the one that should only apply to its child, like an embedded widget:
 
 ```jsx
 <React.Fragment>
@@ -343,18 +338,20 @@ Add the `scoped` prop to the one that should only apply to its children, like an
     <App />
   </ThemeProvider>
   <ThemeProvider theme={widgetTheme} scoped="widget">
-    <Widget />
+    <div>
+      <Widget />
+    </div>
   </ThemeProvider>
 </React.Fragment>
 ```
 
-A scoped provider writes all of its variables on its element, and has its own light or dark mode.
+A scoped provider sets all of its variables on its child element, and has its own light or dark mode.
 To remember that mode across visits, give it a name: when `scoped` is a string, it's added to the class name and to the storage keys of the mode and color scheme, for example `mui-mode-widget`.
 Without a name, the mode isn't stored, so it doesn't overwrite the mode of the page's provider.
 
 :::info
 A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.
-Override it on the scoped element instead, for example with the `className` prop.
+Override it on the child element instead, for example with its own class.
 :::
 
 ## Disabling CSS color scheme

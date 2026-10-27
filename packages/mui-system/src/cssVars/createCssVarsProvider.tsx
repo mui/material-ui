@@ -120,7 +120,7 @@ export interface CreateCssVarsProviderResult<
          */
         disableStyleSheetGeneration?: boolean | undefined;
         /**
-         * If `true`, the CSS theme variables are set on an element that wraps the children instead of `:root`,
+         * If `true`, the CSS theme variables are set on its child element instead of `:root`,
          * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
          * like an embedded widget. Nested providers are scoped automatically when their variables differ.
          *
@@ -128,15 +128,6 @@ export interface CreateCssVarsProviderResult<
          * @default false
          */
         scoped?: boolean | string | undefined;
-        /**
-         * The element that wraps the children of a scoped provider.
-         * By default, a `div` with `display: contents`.
-         */
-        component?: React.ElementType | undefined;
-        /**
-         * The class name of the element that wraps the children of a scoped provider.
-         */
-        className?: string | undefined;
       }
     >,
   ) => React.JSX.Element;
@@ -236,7 +227,6 @@ export default function createCssVarsProvider<
 
   const defaultColorSchemes = {};
   const defaultComponents = {};
-  const scopeStyle = { display: 'contents' };
 
   // The scoped stylesheets only depend on the themes, so they're created once per pair of themes
   // instead of once per provider.
@@ -288,8 +278,6 @@ export default function createCssVarsProvider<
       children,
       theme: themeProp,
       scoped = false,
-      component,
-      className,
       disableTransitionOnChange = designSystemTransitionOnChange,
       storageManager,
       storageWindow = typeof window === 'undefined' ? undefined : window,
@@ -657,36 +645,48 @@ export default function createCssVarsProvider<
       }, [shouldGenerateStyleSheet, nested, memoTheme, cssVarPrefix]);
     }
 
-    let element = (
+    // The scope class goes on the single child, so the provider never renders an element of its own.
+    const canCloneChild = React.isValidElement(children) && children.type !== React.Fragment;
+    let scopedChildren = children;
+    if (scopeClassName && canCloneChild) {
+      const child = children as React.ReactElement<{ className?: string | undefined }>;
+      scopedChildren = React.cloneElement(child, {
+        ...colorSchemeAttributes,
+        className: clsx(child.props.className, scopeClassName, colorSchemeClassName),
+      });
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const warnedChildren = React.useRef(false);
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      React.useEffect(() => {
+        if (scopeClassName && !canCloneChild && !warnedChildren.current) {
+          warnedChildren.current = true;
+          console.error(
+            [
+              "MUI: The CSS theme variables of this ThemeProvider can't be applied because its children aren't a single element.",
+              'Wrap its children in one element, for example a `div`, so it can set them on it.',
+            ].join('\n'),
+          );
+        }
+      }, [scopeClassName, canCloneChild]);
+    }
+
+    // The tree is the same whether the theme needs a scope or not, so switching themes keeps the children's state.
+    const element = (
       <React.Fragment>
         <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
-          {children}
+          <ThemeScopeContext.Provider value={scopeProps ?? (nested ? upperScope : undefined)}>
+            {scopedChildren}
+          </ThemeScopeContext.Provider>
         </ThemeProvider>
         {shouldGenerateStyleSheet && (
           <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
         )}
+        {scope && <GlobalStyles styles={scope.styles} />}
       </React.Fragment>
     );
-
-    if (scope || component) {
-      const ScopeComponent = component || 'div';
-      element = (
-        <React.Fragment>
-          {scope && <GlobalStyles styles={scope.styles} />}
-          <ScopeComponent
-            {...colorSchemeAttributes}
-            className={clsx(scopeClassName, colorSchemeClassName, className) || undefined}
-            style={component ? undefined : scopeStyle}
-          >
-            {scopeProps ? (
-              <ThemeScopeContext.Provider value={scopeProps}>{element}</ThemeScopeContext.Provider>
-            ) : (
-              element
-            )}
-          </ScopeComponent>
-        </React.Fragment>
-      );
-    }
 
     if (nested) {
       return element;
@@ -703,10 +703,6 @@ export default function createCssVarsProvider<
      */
     children: PropTypes.node,
     /**
-     * The class name of the element that wraps the children of a scoped provider.
-     */
-    className: PropTypes.string,
-    /**
      * The node used to attach the color-scheme attribute
      */
     colorSchemeNode: PropTypes.any,
@@ -714,10 +710,6 @@ export default function createCssVarsProvider<
      * localStorage key used to store `colorScheme`
      */
     colorSchemeStorageKey: PropTypes.string,
-    /**
-     * The element that wraps the children of a scoped provider.
-     */
-    component: PropTypes.elementType,
     /**
      * The default mode when the storage is empty,
      * require the theme to have `colorSchemes` with light and dark.
@@ -755,7 +747,7 @@ export default function createCssVarsProvider<
      */
     noSsr: PropTypes.bool,
     /**
-     * If `true`, the CSS theme variables are set on an element that wraps the children instead of `:root`.
+     * If `true`, the CSS theme variables are set on its child element instead of `:root`.
      */
     scoped: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     /**

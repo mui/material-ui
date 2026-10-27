@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach } from 'vitest';
 import * as React from 'react';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom, fireEvent } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Popper from '@mui/material/Popper';
@@ -21,23 +21,78 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
   });
 
   describe('nested', () => {
-    it('wraps the children in a scoped element when the variables differ', () => {
+    it('adds the scope class to the child when the variables differ', () => {
       render(
         <ThemeProvider theme={blueTheme}>
           <div data-testid="outer">
             <ThemeProvider theme={redTheme}>
-              <div data-testid="inner" />
+              <div data-testid="inner" className="inner" />
             </ThemeProvider>
           </div>
         </ThemeProvider>,
       );
-      const wrapper = screen.getByTestId('inner').parentElement!;
-      expect(wrapper).not.to.equal(screen.getByTestId('outer'));
-      expect(wrapper.className).to.match(/^mui-theme-[a-z0-9]+$/);
-      expect(wrapper.style.display).to.equal('contents');
+      const inner = screen.getByTestId('inner');
+      expect(inner.parentElement).to.equal(screen.getByTestId('outer'));
+      expect(inner.className).to.match(/^inner mui-theme-[a-z0-9]+$/);
     });
 
-    it('renders no element when the theme is the same', () => {
+    it('keeps the state of the child when the variables start to differ', () => {
+      function Counter() {
+        const [count, setCount] = React.useState(0);
+        return (
+          <button type="button" data-testid="counter" onClick={() => setCount(count + 1)}>
+            {count}
+          </button>
+        );
+      }
+      const { setProps } = render(
+        <ThemeProvider theme={blueTheme}>
+          <ThemeProvider theme={blueTheme}>
+            <Counter />
+          </ThemeProvider>
+        </ThemeProvider>,
+      );
+      fireEvent.click(screen.getByTestId('counter'));
+      setProps({
+        children: (
+          <ThemeProvider theme={redTheme}>
+            <Counter />
+          </ThemeProvider>
+        ),
+      });
+      expect(screen.getByTestId('counter').textContent).to.equal('1');
+    });
+
+    it('logs an error and applies nothing when the children are not a single element', () => {
+      expect(() =>
+        render(
+          <ThemeProvider theme={blueTheme}>
+            <ThemeProvider theme={redTheme}>
+              <div data-testid="first" />
+              <div />
+            </ThemeProvider>
+          </ThemeProvider>,
+        ),
+      ).toErrorDev("MUI: The CSS theme variables of this ThemeProvider can't be applied");
+      expect(screen.getByTestId('first').className).to.equal('');
+    });
+
+    it('logs an error when the child is a Fragment', () => {
+      expect(() =>
+        render(
+          <ThemeProvider theme={blueTheme}>
+            <ThemeProvider theme={redTheme}>
+              <React.Fragment>
+                <div />
+                <div />
+              </React.Fragment>
+            </ThemeProvider>
+          </ThemeProvider>,
+        ),
+      ).toErrorDev("MUI: The CSS theme variables of this ThemeProvider can't be applied");
+    });
+
+    it('leaves any children untouched when the theme is the same', () => {
       render(
         <ThemeProvider theme={blueTheme}>
           <div data-testid="outer">
@@ -47,10 +102,10 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
           </div>
         </ThemeProvider>,
       );
-      expect(screen.getByTestId('inner').parentElement).to.equal(screen.getByTestId('outer'));
+      expect(screen.getByTestId('inner').className).to.equal('');
     });
 
-    it('renders no element when the theme only changes component defaults', () => {
+    it('leaves the child untouched when the theme only changes component defaults', () => {
       const theme = createTheme({
         cssVariables: true,
         palette: { primary: { main: '#0000ff' } },
@@ -65,7 +120,7 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
           </div>
         </ThemeProvider>,
       );
-      expect(screen.getByTestId('inner').parentElement).to.equal(screen.getByTestId('outer'));
+      expect(screen.getByTestId('inner').className).to.equal('');
     });
 
     it.skipIf(isJsdom())('applies the inner variables only to the children', () => {
@@ -103,10 +158,12 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
       render(
         <ThemeProvider theme={blueTheme}>
           <ThemeProvider theme={redTheme}>
-            <Dialog open>
-              <div data-testid="dialog-content" />
-            </Dialog>
-            <Anchored />
+            <div>
+              <Dialog open>
+                <div data-testid="dialog-content" />
+              </Dialog>
+              <Anchored />
+            </div>
           </ThemeProvider>
         </ThemeProvider>,
       );
@@ -187,9 +244,21 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
           <div data-testid="widget" />
         </ThemeProvider>,
       );
-      expect(screen.getByTestId('widget').parentElement!.className).to.match(
-        /^mui-theme-widget-[a-z0-9]+$/,
+      expect(screen.getByTestId('widget').className).to.match(/^mui-theme-widget-[a-z0-9]+$/);
+    });
+
+    it('adds the color scheme attribute to the child', () => {
+      const theme = createTheme({
+        cssVariables: { colorSchemeSelector: 'data' },
+        colorSchemes: { light: true, dark: true },
+      });
+      render(
+        <ThemeProvider theme={theme} scoped defaultMode="dark">
+          <div data-testid="widget" />
+        </ThemeProvider>,
       );
+      expect(screen.getByTestId('widget')).to.have.attribute('data-dark', '');
+      expect(document.documentElement).not.to.have.attribute('data-dark');
     });
 
     it('warns when two providers with different themes write to :root', () => {
@@ -208,18 +277,14 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
     });
   });
 
-  it('renders the `component` with the scope class', () => {
+  it('leaves the children of the top-level provider untouched', () => {
     render(
-      <ThemeProvider theme={blueTheme}>
-        <ThemeProvider theme={redTheme} component="section" className="promo">
-          <div data-testid="inner" />
-        </ThemeProvider>
+      <ThemeProvider theme={redTheme}>
+        <div data-testid="first" />
+        <div />
       </ThemeProvider>,
     );
-    const section = screen.getByTestId('inner').parentElement!;
-    expect(section.tagName).to.equal('SECTION');
-    expect(section.className).to.match(/^mui-theme-[a-z0-9]+ promo$/);
-    expect(section.style.display).to.equal('');
+    expect(screen.getByTestId('first').className).to.equal('');
   });
 
   it('exposes the scope class to elements that are portaled by other libraries', () => {
@@ -230,7 +295,9 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
     render(
       <ThemeProvider theme={blueTheme}>
         <ThemeProvider theme={redTheme}>
-          <Scope />
+          <div>
+            <Scope />
+          </div>
         </ThemeProvider>
       </ThemeProvider>,
     );
