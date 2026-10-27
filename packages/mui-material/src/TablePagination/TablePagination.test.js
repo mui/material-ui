@@ -2,7 +2,15 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, fireEvent, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import {
+  act,
+  fireEvent,
+  createRenderer,
+  focusVisible,
+  isJsdom,
+  screen,
+  simulatePointerDevice,
+} from '@mui/internal-test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -641,6 +649,37 @@ describe('<TablePagination />', () => {
         expect(combobox).toHaveComputedStyle({ outlineStyle: 'none' });
       },
     );
+
+    it.skipIf(isJsdom())('insets the action button ring so the root cannot clip it', () => {
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            focusVisible: true,
+            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+          })}
+        >
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  count={30}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>
+        </ThemeProvider>,
+      );
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
+
+      simulatePointerDevice();
+      focusVisible(nextButton);
+
+      expect(nextButton).toHaveComputedStyle({ outlineStyle: 'solid', outlineOffset: '-2px' });
+    });
   });
 
   describe('prop: rowsPerPage', () => {

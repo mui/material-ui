@@ -8,6 +8,8 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
+import { buttonBaseClasses } from '../ButtonBase';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';
@@ -57,6 +59,9 @@ const TablePaginationToolbar = styled(Toolbar, {
     [`& .${tablePaginationClasses.actions}`]: {
       flexShrink: 0,
       marginLeft: 20,
+      ...(theme.focusVisible && {
+        [`& .${buttonBaseClasses.root}`]: applyInsetFocusVisible(1),
+      }),
     },
   })),
 );
