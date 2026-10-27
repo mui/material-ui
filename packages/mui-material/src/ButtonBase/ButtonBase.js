@@ -486,6 +486,7 @@ ButtonBase.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * The `tabIndex` of the root element.
    * @default 0
    */
   tabIndex: PropTypes.number,

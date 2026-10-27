@@ -122,7 +122,7 @@ function extractClassesFromInterface(
     const classesProperties = classesType.getProperties();
     classesProperties.forEach((symbol) => {
       const tags = getSymbolJSDocTags(symbol);
-      if (tags.ignore) {
+      if (tags.ignore || tags.internal) {
         return;
       }
       result.push({
@@ -170,7 +170,7 @@ function extractClassesFromProps(
       ?.getProperties()
       .forEach((property) => {
         const tags = getSymbolJSDocTags(property);
-        if (tags.ignore) {
+        if (tags.ignore || tags.internal) {
           return;
         }
         const description = getSymbolDescription(property, typescriptProject);
@@ -245,7 +245,7 @@ function extractSlots(
 
   propertiesOnProject.forEach((propertySymbol) => {
     const tags = getSymbolJSDocTags(propertySymbol);
-    if (tags.ignore) {
+    if (tags.ignore || tags.internal) {
       return;
     }
     const slotName = propertySymbol.name;

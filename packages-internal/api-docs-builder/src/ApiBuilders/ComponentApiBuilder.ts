@@ -593,17 +593,25 @@ const attachPropsTable = (
       ];
     }),
   );
-  if (propErrors.length > 0) {
-    throw new Error(
-      `There were errors creating prop descriptions:\n${propErrors
-        .map(([propName, error]) => {
-          return `  - ${propName}: ${error}`;
-        })
-        .join('\n')}`,
-    );
-  }
-
   reactApi.propsTable = componentProps;
+
+  return propErrors.map(([propName, error]) => `${propName}: ${error}`);
+};
+
+const getUndocumentedSlotsAndClassesErrors = (reactApi: ComponentReactApi) => {
+  const hint =
+    'Document it with JSDoc, or add `@ignore` or `@internal` to hide it from the API docs.';
+  return [
+    ...reactApi.slots
+      .filter((slot) => slot.description.trim() === '')
+      .map((slot) => `[${reactApi.name}] slot \`${slot.name}\` is missing a description. ${hint}`),
+    ...reactApi.classes
+      .filter((classDefinition) => classDefinition.description.trim() === '')
+      .map(
+        (classDefinition) =>
+          `[${reactApi.name}] class \`${classDefinition.key}\` is missing a description. ${hint}`,
+      ),
+  ];
 };
 
 /**
@@ -879,7 +887,16 @@ export default async function generateComponentApi(
     project,
   );
 
-  attachPropsTable(reactApi, projectSettings.propsSettings);
+  const errors = [
+    ...attachPropsTable(reactApi, projectSettings.propsSettings),
+    ...getUndocumentedSlotsAndClassesErrors(reactApi),
+  ];
+  if (errors.length > 0) {
+    throw new Error(
+      `There were errors creating the API docs:\n${errors.map((error) => `  - ${error}`).join('\n')}`,
+    );
+  }
+
   attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
   attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);

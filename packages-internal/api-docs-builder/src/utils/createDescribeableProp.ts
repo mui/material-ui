@@ -46,11 +46,14 @@ export default function createDescribeableProp(
     sloppy: true,
   });
 
-  if (
-    annotation.description.trim() === '' ||
-    annotation.tags.some((tag) => tag.title === 'ignore')
-  ) {
+  if (annotation.tags.some((tag) => tag.title === 'ignore' || tag.title === 'internal')) {
     return null;
+  }
+
+  if (annotation.description.trim() === '') {
+    throw new Error(
+      `The "${propName}" prop is missing a description. Document it with JSDoc, or add \`@ignore\` or \`@internal\` to hide it from the API docs.`,
+    );
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {

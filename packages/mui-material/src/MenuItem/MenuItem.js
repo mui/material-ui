@@ -355,7 +355,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * @default 0
+   * The `tabIndex` of the root element.
+   * When not provided, it is managed by the parent menu's keyboard focus handling.
    */
   tabIndex: PropTypes.number,
 };

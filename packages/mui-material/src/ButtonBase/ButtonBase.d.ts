@@ -79,6 +79,7 @@ export interface ButtonBaseOwnProps {
    */
   sx?: SxProps<Theme> | undefined;
   /**
+   * The `tabIndex` of the root element.
    * @default 0
    */
   tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']> | undefined;
