@@ -17,4 +17,4 @@ jobs:
       pull-requests: read
       statuses: write
     # Merge the shared workflow in mui-public before enabling this caller.
-    uses: mui/mui-public/.github/workflows/prs_check-release-up-to-date.yml@83646912341bf94460a90abc4d053d92651102e1 # master
+    uses: mui/mui-public/.github/workflows/prs_check-release-up-to-date.yml@83646912341bf94460a90abc4d053d92651102e1 # mui-public workflow
