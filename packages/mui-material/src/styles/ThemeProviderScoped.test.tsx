@@ -224,18 +224,37 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
       expect(getComputedStyle(screen.getByTestId('widget')).colorScheme).to.equal('dark');
     });
 
-    it('does not store the mode of an unnamed scoped provider', () => {
+    it('only uses the storage for a named scoped provider', () => {
       const theme = createTheme({
         cssVariables: { colorSchemeSelector: 'class' },
         colorSchemes: { light: true, dark: true },
       });
-      window.localStorage.removeItem('mui-mode');
+      const readKeys: string[] = [];
+      const storageWindow = {
+        localStorage: {
+          getItem: (key: string) => {
+            readKeys.push(key);
+            return null;
+          },
+          setItem: () => {},
+        },
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      } as unknown as Window;
       render(
-        <ThemeProvider theme={theme} scoped defaultMode="dark">
-          <div />
-        </ThemeProvider>,
+        <React.Fragment>
+          <ThemeProvider theme={theme} scoped storageWindow={storageWindow}>
+            <div />
+          </ThemeProvider>
+          <ThemeProvider theme={theme} scoped="widget" storageWindow={storageWindow}>
+            <div />
+          </ThemeProvider>
+        </React.Fragment>,
       );
-      expect(window.localStorage.getItem('mui-mode')).to.equal(null);
+      expect(readKeys.length).to.be.greaterThan(0);
+      expect(readKeys.every((key) => key.endsWith('-widget') || key.includes('-widget-'))).to.equal(
+        true,
+      );
     });
 
     it('uses the name in the class name', () => {
