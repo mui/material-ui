@@ -1,0 +1,20 @@
+name: Release branch freshness
+
+on:
+  pull_request_target:
+    # Include retargeting away from master so shared commit statuses are refreshed.
+    types: [opened, reopened, synchronize, labeled, unlabeled, edited, closed]
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  release-freshness:
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
+    # Merge the shared workflow in mui-public before enabling this caller.
+    uses: mui/mui-public/.github/workflows/prs_check-release-up-to-date.yml@437b56640e3b58f70b17de9764c4f981606add19 # master
