@@ -6,13 +6,12 @@ import createCache, { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import {
   ThemeProvider as MaterialThemeProvider,
@@ -20,40 +19,36 @@ import {
   useColorScheme,
   useThemeScope,
 } from '@mui/material/styles';
+import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 // The CSS variables props (`scoped`, `colorSchemeNode`, …) are only typed with the CSS variables augmentation.
 const ThemeProvider = MaterialThemeProvider as React.ComponentType<any>;
 
-const appTheme = createTheme({
-  cssVariables: { colorSchemeSelector: 'class' },
-  colorSchemes: { light: true, dark: true },
-});
+function createColorTheme(light: object, dark: object) {
+  return createTheme({
+    cssVariables: { colorSchemeSelector: 'class' },
+    colorSchemes: { light: { palette: light }, dark: { palette: dark } },
+  });
+}
+
+const appTheme = createColorTheme({}, {});
 const sameVarsTheme = createTheme({
   cssVariables: { colorSchemeSelector: 'class' },
   colorSchemes: { light: true, dark: true },
   components: { MuiButton: { defaultProps: { disableElevation: true } } },
 });
-const promoTheme = createTheme({
-  cssVariables: { colorSchemeSelector: 'class' },
-  colorSchemes: {
-    light: { palette: { primary: { main: '#9c27b0' } } },
-    dark: { palette: { primary: { main: '#ce93d8' } } },
-  },
-});
-const accentTheme = createTheme({
-  cssVariables: { colorSchemeSelector: 'class' },
-  colorSchemes: {
-    light: { palette: { primary: { main: '#9c27b0' }, secondary: { main: '#2e7d32' } } },
-    dark: { palette: { primary: { main: '#ce93d8' }, secondary: { main: '#81c784' } } },
-  },
-});
-const widgetTheme = createTheme({
-  cssVariables: { colorSchemeSelector: 'class' },
-  colorSchemes: {
-    light: { palette: { primary: { main: '#e65100' } } },
-    dark: { palette: { primary: { main: '#ffb74d' } } },
-  },
-});
+const promoTheme = createColorTheme(
+  { primary: { main: '#9c27b0' } },
+  { primary: { main: '#ce93d8' } },
+);
+const accentTheme = createColorTheme(
+  { primary: { main: '#9c27b0' }, secondary: { main: '#2e7d32' } },
+  { primary: { main: '#ce93d8' }, secondary: { main: '#81c784' } },
+);
+const widgetTheme = createColorTheme(
+  { primary: { main: '#e65100' } },
+  { primary: { main: '#ffb74d' } },
+);
 const widgetDataTheme = createTheme({
   cssVariables: { colorSchemeSelector: 'data' },
   colorSchemes: {
@@ -82,36 +77,41 @@ function useFrame() {
 
 let frameCount = 0;
 
-function Frame(props: {
-  children: React.ReactNode;
-  height: number;
-  onReady: (frame: FrameValue) => void;
-}) {
-  const { children, height, onReady } = props;
+function Frame(props: { children: React.ReactNode; onReady: (frame: FrameValue) => void }) {
+  const { children, onReady } = props;
   const ref = React.useRef<HTMLIFrameElement>(null);
   const [frame, setFrame] = React.useState<(FrameValue & { cache: EmotionCache }) | null>(null);
+  const [height, setHeight] = React.useState(80);
 
   React.useEffect(() => {
     const iframe = ref.current!;
+    let observer: ResizeObserver | undefined;
     const init = () => {
+      const doc = iframe.contentDocument!;
       frameCount += 1;
       const value = {
-        document: iframe.contentDocument!,
+        document: doc,
         window: iframe.contentWindow!,
         cache: createCache({
           key: `frame${String.fromCharCode(96 + (frameCount % 26 || 26))}`,
-          container: iframe.contentDocument!.head,
+          container: doc.head,
         }),
       };
+      // The iframe grows with its content, plus some room for menus and tooltips.
+      observer = new ResizeObserver(() => setHeight(doc.body.scrollHeight + 24));
+      observer.observe(doc.body);
       setFrame(value);
       onReady(value);
     };
     if (iframe.contentDocument?.readyState === 'complete' && iframe.contentDocument.body) {
       init();
-      return undefined;
+    } else {
+      iframe.addEventListener('load', init);
     }
-    iframe.addEventListener('load', init);
-    return () => iframe.removeEventListener('load', init);
+    return () => {
+      iframe.removeEventListener('load', init);
+      observer?.disconnect();
+    };
   }, [onReady]);
 
   return (
@@ -148,27 +148,17 @@ function Root(props: Record<string, any>) {
   );
 }
 
-// A scoped sibling: isolated from the docs' provider too, and it manages its own mode on its child.
+// A scoped sibling: isolated from the docs' provider too, it manages its own mode on its child.
 function ScopedRoot(props: Record<string, any>) {
   const { document } = useFrame();
-  return (
-    <ThemeProvider documentNode={document} storageManager={null} disableNestedContext {...props} />
-  );
+  return <ThemeProvider documentNode={document} disableNestedContext scoped {...props} />;
 }
 
 function Swatch({ label }: { label: string }) {
   return (
-    <Stack direction="row" spacing={1} sx={{ alignItems: 'center', my: 0.5 }} data-inspect={label}>
-      <Button variant="contained" size="small">
-        {label}
-      </Button>
-      <Chip label="secondary" color="secondary" size="small" />
-      <Box
-        sx={{ px: 1, py: 0.5, borderRadius: 1, bgcolor: 'background.paper', color: 'text.primary' }}
-      >
-        paper
-      </Box>
-    </Stack>
+    <Button variant="contained" size="small" sx={{ m: 0.5 }}>
+      {label}
+    </Button>
   );
 }
 
@@ -178,6 +168,7 @@ function ModeToggle({ label = 'mode' }: { label?: string }) {
     <Button
       size="small"
       variant="outlined"
+      sx={{ m: 0.5 }}
       onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
     >
       {label}: {mode ?? '…'}
@@ -185,18 +176,19 @@ function ModeToggle({ label = 'mode' }: { label?: string }) {
   );
 }
 
-function PortalDemos({ label }: { label: string }) {
+function Portals({ label }: { label: string }) {
   const { document } = useFrame();
+  const themeScope = useThemeScope();
   const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   return (
-    <Stack direction="row" spacing={1} sx={{ my: 0.5 }}>
+    <div>
       <Button size="small" onClick={() => setDialogOpen(true)}>
         Dialog
       </Button>
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} container={document.body}>
-        <DialogContent>
-          <Swatch label={`${label} dialog`} />
+        <DialogContent data-inspect={`${label}: dialog`}>
+          <Swatch label="in dialog" />
         </DialogContent>
       </Dialog>
       <Button size="small" onClick={(event) => setAnchor(event.currentTarget)}>
@@ -208,49 +200,31 @@ function PortalDemos({ label }: { label: string }) {
         onClose={() => setAnchor(null)}
         container={document.body}
       >
-        <MenuItem data-inspect={`${label} menu item`} sx={{ color: 'primary.main' }}>
+        <MenuItem data-inspect={`${label}: menu item`} sx={{ color: 'primary.main' }}>
           Primary item
         </MenuItem>
       </Menu>
       <Tooltip title="Tooltip" slotProps={{ popper: { container: document.body } }}>
         <Button size="small">Tooltip</Button>
       </Tooltip>
-    </Stack>
-  );
-}
-
-function Toast({ label }: { label: string }) {
-  const { document } = useFrame();
-  const themeScope = useThemeScope();
-  return ReactDOM.createPortal(
-    <Box
-      {...themeScope}
-      data-inspect={label}
-      sx={{
-        position: 'fixed',
-        right: 8,
-        bottom: 8,
-        p: 1,
-        bgcolor: 'primary.main',
-        color: 'primary.contrastText',
-        borderRadius: 1,
-      }}
-    >
-      {label}
-    </Box>,
-    document.body,
+      {ReactDOM.createPortal(
+        <Box
+          {...themeScope}
+          data-inspect={`${label}: createPortal + useThemeScope()`}
+          sx={{ p: 0.5 }}
+        >
+          <Swatch label={`${label} portal`} />
+        </Box>,
+        document.body,
+      )}
+    </div>
   );
 }
 
 function Counter() {
   const [count, setCount] = React.useState(0);
   return (
-    <Button
-      variant="contained"
-      size="small"
-      onClick={() => setCount(count + 1)}
-      data-inspect="counter"
-    >
+    <Button variant="contained" size="small" sx={{ m: 0.5 }} onClick={() => setCount(count + 1)}>
       clicked {count}
     </Button>
   );
@@ -261,7 +235,7 @@ function ThemeSwitcher() {
   return (
     <div>
       <Button size="small" variant="outlined" onClick={() => setDifferent(!different)}>
-        nested theme: {different ? 'promoTheme (different vars)' : 'sameVarsTheme (same vars)'}
+        nested theme: {different ? 'promoTheme' : 'sameVarsTheme'}
       </Button>
       <ThemeProvider theme={different ? promoTheme : sameVarsTheme}>
         <div data-inspect="nested child">
@@ -292,59 +266,61 @@ interface Scenario {
   title: string;
   description: string;
   code: string;
-  height?: number;
   render: () => React.ReactNode;
 }
 
 const scenarios: Scenario[] = [
   {
     title: '1. Single root provider',
-    description: 'Baseline: variables on :root, no class added to the children.',
+    description: 'Baseline: variables on :root, nothing added to the children.',
     code: `<ThemeProvider theme={appTheme}>
-  <Swatch />
+  <Button />
 </ThemeProvider>`,
     render: () => (
       <Root theme={appTheme}>
-        <ModeToggle />
-        <Swatch label="root" />
+        <div data-inspect="child">
+          <Swatch label="root" />
+        </div>
       </Root>
     ),
   },
   {
     title: '2. Two root providers',
     description:
-      'Both write to :root and the last one wins for both. Logs a warning in development.',
-    code: `<ThemeProvider theme={appTheme}><Swatch /></ThemeProvider>
-<ThemeProvider theme={widgetTheme}><Swatch /></ThemeProvider>`,
+      'Both write to :root, and the last one wins for both. Logs a warning in development.',
+    code: `<ThemeProvider theme={appTheme}><Button /></ThemeProvider>
+<ThemeProvider theme={widgetTheme}><Button /></ThemeProvider>`,
     render: () => (
       <React.Fragment>
         <Root theme={appTheme}>
-          <Swatch label="app" />
+          <div data-inspect="app child">
+            <Swatch label="app" />
+          </div>
         </Root>
         <Root theme={widgetTheme}>
-          <Swatch label="widget" />
+          <div data-inspect="widget child">
+            <Swatch label="widget" />
+          </div>
         </Root>
       </React.Fragment>
     ),
   },
   {
     title: '3. Root + scoped sibling',
-    description:
-      'The scoped provider sets all its variables on its child, and has its own mode (toggle both).',
+    description: 'The scoped provider sets all its variables on its child, and has its own mode.',
     code: `<ThemeProvider theme={appTheme}><App /></ThemeProvider>
 <ThemeProvider theme={widgetTheme} scoped>
   <div><Widget /></div>
 </ThemeProvider>`,
-    height: 220,
     render: () => (
       <React.Fragment>
         <Root theme={appTheme}>
-          <div>
+          <div data-inspect="app child">
             <ModeToggle label="app mode" />
             <Swatch label="app" />
           </div>
         </Root>
-        <ScopedRoot theme={widgetTheme} scoped>
+        <ScopedRoot theme={widgetTheme}>
           <div data-inspect="widget child">
             <ModeToggle label="widget mode" />
             <Swatch label="widget" />
@@ -360,9 +336,8 @@ const scenarios: Scenario[] = [
   <div><Widget /></div>
 </ThemeProvider>`,
     render: () => (
-      <ScopedRoot theme={widgetDataTheme} scoped defaultMode="dark">
+      <ScopedRoot theme={widgetDataTheme} defaultMode="dark">
         <div data-inspect="widget child">
-          <ModeToggle label="widget mode" />
           <Swatch label="widget" />
         </div>
       </ScopedRoot>
@@ -373,7 +348,7 @@ const scenarios: Scenario[] = [
     description: 'Only component defaults change: the child is left untouched.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={sameVarsTheme}>
-    <div><Swatch /></div>
+    <div><Button /></div>
   </ThemeProvider>
 </ThemeProvider>`,
     render: () => (
@@ -391,15 +366,14 @@ const scenarios: Scenario[] = [
     description:
       'The child gets a class that only sets the variables that differ. It follows the outer mode.',
     code: `<ThemeProvider theme={appTheme}>
-  <Swatch />
+  <Button />
   <ThemeProvider theme={promoTheme}>
-    <div><Swatch /></div>
+    <div><Button /></div>
   </ThemeProvider>
 </ThemeProvider>`,
-    height: 220,
     render: () => (
       <Root theme={appTheme}>
-        <div>
+        <div data-inspect="outer child">
           <ModeToggle label="outer mode" />
           <Swatch label="outer" />
           <ThemeProvider theme={promoTheme}>
@@ -414,15 +388,11 @@ const scenarios: Scenario[] = [
   {
     title: '7. Nested, children that are not a single element',
     description:
-      'Several children, a Fragment, text and an array: nothing is applied, and an error is logged in development.',
-    code: `<ThemeProvider theme={promoTheme}>
-  <Swatch />
-  <Swatch />
-</ThemeProvider>
+      'Several children, a Fragment, text and an array: the rule is generated, but no element gets the class, and an error is logged in development.',
+    code: `<ThemeProvider theme={promoTheme}><Button /><Button /></ThemeProvider>
 <ThemeProvider theme={promoTheme}><>…</></ThemeProvider>
 <ThemeProvider theme={promoTheme}>text</ThemeProvider>
-<ThemeProvider theme={promoTheme}>{[<Swatch key="a" />]}</ThemeProvider>`,
-    height: 260,
+<ThemeProvider theme={promoTheme}>{[<Button key="a" />]}</ThemeProvider>`,
     render: () => (
       <Root theme={appTheme}>
         <div>
@@ -436,7 +406,7 @@ const scenarios: Scenario[] = [
               <Swatch label="fragment 2" />
             </React.Fragment>
           </ThemeProvider>
-          <ThemeProvider theme={promoTheme}>plain text child</ThemeProvider>
+          <ThemeProvider theme={promoTheme}>text</ThemeProvider>
           <ThemeProvider theme={promoTheme}>{[<Swatch key="a" label="array" />]}</ThemeProvider>
         </div>
       </Root>
@@ -445,14 +415,13 @@ const scenarios: Scenario[] = [
   {
     title: '8. Nested, custom component child',
     description:
-      'A component that forwards className gets the theme. One that drops it silently keeps the outer theme.',
+      'A component that renders the className it receives gets the theme. One that drops it silently keeps the outer theme.',
     code: `<ThemeProvider theme={promoTheme}>
-  <Forwards><Swatch /></Forwards>
+  <Forwards><Button /></Forwards>
 </ThemeProvider>
 <ThemeProvider theme={promoTheme}>
-  <DropsClassName><Swatch /></DropsClassName>
+  <DropsClassName><Button /></DropsClassName>
 </ThemeProvider>`,
-    height: 200,
     render: () => (
       <Root theme={appTheme}>
         <div>
@@ -473,33 +442,33 @@ const scenarios: Scenario[] = [
   {
     title: '9. Directly nested providers and a function theme',
     description:
-      'A provider whose child is another provider passes its class on. The middle theme (primary) and the inner one (secondary) both apply.',
-    code: `<ThemeProvider theme={appTheme}>
-  <ThemeProvider theme={promoTheme}>
-    <ThemeProvider theme={accentTheme}>
-      <div><Swatch /></div>
-    </ThemeProvider>
+      'A provider whose child is another provider passes its class on: the middle theme (primary) and the inner one (secondary) both apply.',
+    code: `<ThemeProvider theme={promoTheme}>
+  <ThemeProvider theme={accentTheme}>
+    <div><Button /></div>
   </ThemeProvider>
-  <ThemeProvider theme={promoTheme}>
-    <ThemeProvider theme={(outer) => ({ ...outer })}>
-      <div><Swatch /></div>
-    </ThemeProvider>
+</ThemeProvider>
+<ThemeProvider theme={promoTheme}>
+  <ThemeProvider theme={(outer) => ({ ...outer })}>
+    <div><Button /></div>
   </ThemeProvider>
 </ThemeProvider>`,
-    height: 200,
     render: () => (
       <Root theme={appTheme}>
         <div>
           <ThemeProvider theme={promoTheme}>
             <ThemeProvider theme={accentTheme}>
-              <div data-inspect="a → b → c child">
+              <div data-inspect="promo → accent child">
                 <Swatch label="direct nesting" />
+                <Button variant="contained" color="secondary" size="small" sx={{ m: 0.5 }}>
+                  secondary
+                </Button>
               </div>
             </ThemeProvider>
           </ThemeProvider>
           <ThemeProvider theme={promoTheme}>
             <ThemeProvider theme={(outer: object) => ({ ...outer })}>
-              <div data-inspect="function theme child">
+              <div data-inspect="promo → function theme child">
                 <Swatch label="function theme" />
               </div>
             </ThemeProvider>
@@ -509,66 +478,47 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '10. Portals in a nested provider',
+    title: '10. Portals',
     description:
-      'Dialog, Menu and Tooltip apply the class to their own root. useThemeScope() does it for other portals.',
+      'Dialog, Menu and Tooltip apply the scope to their own root, in a nested provider and in a scoped sibling. useThemeScope() does it for other portals.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={promoTheme}>
-    <div>
-      <Dialog … /> <Menu … /> <Tooltip … />
-      <Toast /> {/* createPortal + useThemeScope() */}
-    </div>
+    <div><Dialog /><Menu /><Tooltip /><Toast /></div>
   </ThemeProvider>
+</ThemeProvider>
+<ThemeProvider theme={widgetTheme} scoped>
+  <div><Dialog /><Menu /><Tooltip /><Toast /></div>
 </ThemeProvider>`,
-    height: 240,
     render: () => (
-      <Root theme={appTheme}>
-        <div>
-          <ModeToggle label="outer mode" />
+      <React.Fragment>
+        <Root theme={appTheme}>
           <ThemeProvider theme={promoTheme}>
             <div data-inspect="nested child">
-              <PortalDemos label="nested" />
-              <Toast label="toast (nested)" />
+              <Portals label="nested" />
             </div>
           </ThemeProvider>
-        </div>
-      </Root>
+        </Root>
+        <ScopedRoot theme={widgetTheme} defaultMode="dark">
+          <div data-inspect="scoped child">
+            <ModeToggle label="scoped mode" />
+            <Portals label="scoped" />
+          </div>
+        </ScopedRoot>
+      </React.Fragment>
     ),
   },
   {
-    title: '11. Portals in a scoped sibling',
-    description:
-      'Portaled content gets the scope class and the color scheme class of the scoped provider.',
-    code: `<ThemeProvider theme={widgetTheme} scoped>
-  <div>
-    <Dialog … /> <Menu … /> <Tooltip … /> <Toast />
-  </div>
-</ThemeProvider>`,
-    height: 240,
-    render: () => (
-      <ScopedRoot theme={widgetTheme} scoped defaultMode="dark">
-        <div data-inspect="widget child">
-          <ModeToggle label="widget mode" />
-          <PortalDemos label="widget" />
-          <Toast label="toast (scoped)" />
-        </div>
-      </ScopedRoot>
-    ),
-  },
-  {
-    title: '12. Forced single-scheme nested section',
+    title: '11. Forced single-scheme nested section',
     description: 'A nested theme with only a dark scheme stays dark whatever the outer mode is.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={forcedDarkTheme}>
-    <div><Swatch /></div>
+    <div><Button /></div>
   </ThemeProvider>
 </ThemeProvider>`,
-    height: 200,
     render: () => (
       <Root theme={appTheme}>
-        <div>
+        <div data-inspect="outer child">
           <ModeToggle label="outer mode" />
-          <Swatch label="outer" />
           <ThemeProvider theme={forcedDarkTheme}>
             <Box data-inspect="forced dark child" sx={{ p: 1, bgcolor: 'background.default' }}>
               <Swatch label="always dark" />
@@ -579,14 +529,14 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '13. Switching between same and different variables',
-    description: 'Click the counter, then switch the nested theme: the count is kept (no remount).',
+    title: '12. Switching between same and different variables',
+    description:
+      'Click the counter, then switch the nested theme: the count is kept, so nothing remounts.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={different ? promoTheme : sameVarsTheme}>
     <div><Counter /></div>
   </ThemeProvider>
 </ThemeProvider>`,
-    height: 180,
     render: () => (
       <Root theme={appTheme}>
         <ThemeSwitcher />
@@ -598,60 +548,79 @@ const scenarios: Scenario[] = [
 // ---------------------------------------------------------------------------
 // Inspector: reads what ended up in the iframe.
 
-interface Inspection {
-  html: string;
-  rootVars: string;
-  elements: Array<{ label: string; details: string }>;
-  rules: string[];
+const interestingDeclaration = /color-scheme|--mui-palette-(primary|secondary)-main:/;
+
+function describeRule(cssText: string) {
+  const [selector, body = ''] = cssText.split('{');
+  const declarations = body
+    .replace('}', '')
+    .split(';')
+    .map((declaration) => declaration.trim())
+    .filter(Boolean);
+  const shown = declarations.filter((declaration) => interestingDeclaration.test(declaration));
+  const more = declarations.length - shown.length;
+  return [
+    `${selector.trim()} {`,
+    ...shown.map((declaration) => `  ${declaration};`),
+    ...(more ? [`  + ${more} more declarations`] : []),
+    '}',
+  ].join('\n');
 }
 
-function inspect(doc: Document): Inspection {
+function inspect(doc: Document) {
   const view = doc.defaultView!;
-  const read = (element: Element) => {
+  const values = (element: Element) => {
     const style = view.getComputedStyle(element);
-    return `primary ${style.getPropertyValue('--mui-palette-primary-main').trim() || '—'}, color-scheme ${style.colorScheme}`;
+    const primary = style.getPropertyValue('--mui-palette-primary-main').trim() || '—';
+    return `primary ${primary}, color-scheme ${style.colorScheme}`;
   };
-  const interesting = (element: Element) => {
-    const classes = Array.from(element.classList).filter(
-      (name) => name.startsWith('mui-theme-') || name === 'light' || name === 'dark',
-    );
+  const scope = (element: Element) => {
+    const classes = Array.from(element.classList)
+      .filter((name) => name.startsWith('mui-theme-') || name === 'light' || name === 'dark')
+      .map((name) => `.${name}`);
     const attributes = Array.from(element.attributes)
-      .filter(
-        (attribute) => attribute.name.startsWith('data-') && attribute.name !== 'data-inspect',
-      )
-      .map((attribute) => `${attribute.name}="${attribute.value}"`);
-    return [...classes.map((name) => `.${name}`), ...attributes].join(' ') || 'no scope class';
+      .filter(({ name }) => name.startsWith('data-') && name !== 'data-inspect')
+      .map(({ name, value }) => `${name}="${value}"`);
+    return [...classes, ...attributes].join(' ') || 'no scope';
   };
 
-  const rules: string[] = [];
+  const ruleTexts = new Set<string>();
   Array.from(doc.styleSheets).forEach((sheet) => {
-    try {
-      Array.from(sheet.cssRules).forEach((rule) => {
-        if (rule.cssText.includes('mui-theme-')) {
-          rules.push(rule.cssText.replace(/;\s*/g, ';\n  ').replace(/\{\s*/, '{\n  '));
-        }
-      });
-    } catch {
-      // Cross-origin sheet
+    Array.from(sheet.cssRules).forEach((rule) => {
+      if (rule.cssText.includes('mui-theme-')) {
+        ruleTexts.add(rule.cssText);
+      }
+    });
+  });
+  const applied: string[] = [];
+  let unused = 0;
+  ruleTexts.forEach((cssText) => {
+    const className = cssText.match(/mui-theme-[a-z0-9]+/)?.[0];
+    if (className && doc.querySelector(`.${className}`)) {
+      applied.push(describeRule(cssText));
+    } else {
+      unused += 1;
     }
   });
 
-  return {
-    html: `<html ${interesting(doc.documentElement)}>`,
-    rootVars: read(doc.documentElement),
-    elements: Array.from(doc.querySelectorAll('[data-inspect]')).map((element) => {
-      const scoped = element.closest('[class*="mui-theme-"]');
-      return {
-        label: element.getAttribute('data-inspect')!,
-        details: `${interesting(scoped ?? element)} → ${read(element)}`,
-      };
-    }),
-    rules: Array.from(new Set(rules)),
-  };
+  const elements = Array.from(doc.querySelectorAll('[data-inspect]')).map((element) => {
+    const scoped = element.closest('[class*="mui-theme-"]') ?? element;
+    return `[${element.getAttribute('data-inspect')}] ${scope(scoped)} → ${values(element)}`;
+  });
+
+  return [
+    `<html> ${scope(doc.documentElement)}`,
+    `:root → ${values(doc.documentElement)}`,
+    '',
+    ...elements,
+    '',
+    applied.length ? `Scoped rules:\n${applied.join('\n')}` : 'No scoped rules applied',
+    unused ? `\n${unused} rule(s) generated, but no element has the class` : '',
+  ].join('\n');
 }
 
 function Inspector({ frame }: { frame: FrameValue | null }) {
-  const [info, setInfo] = React.useState<Inspection | null>(null);
+  const [text, setText] = React.useState('');
   React.useEffect(() => {
     if (!frame) {
       return undefined;
@@ -659,15 +628,10 @@ function Inspector({ frame }: { frame: FrameValue | null }) {
     let raf = 0;
     const update = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => setInfo(inspect(frame.document)));
+      raf = requestAnimationFrame(() => setText(inspect(frame.document)));
     };
     const observer = new MutationObserver(update);
-    observer.observe(frame.document, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      characterData: true,
-    });
+    observer.observe(frame.document, { subtree: true, childList: true, attributes: true });
     update();
     return () => {
       observer.disconnect();
@@ -675,9 +639,6 @@ function Inspector({ frame }: { frame: FrameValue | null }) {
     };
   }, [frame]);
 
-  if (!info) {
-    return null;
-  }
   return (
     <Box
       component="pre"
@@ -687,15 +648,12 @@ function Inspector({ frame }: { frame: FrameValue | null }) {
         fontSize: 11,
         lineHeight: 1.5,
         bgcolor: 'grey.100',
+        color: 'grey.900',
         borderRadius: 1,
         overflow: 'auto',
-        maxHeight: 320,
-        color: 'grey.900',
       }}
     >
-      {`${info.html}\n:root → ${info.rootVars}\n\n`}
-      {info.elements.map((element) => `[${element.label}] ${element.details}\n`).join('')}
-      {info.rules.length ? `\nScoped rules:\n${info.rules.join('\n')}` : '\nNo scoped rules'}
+      {text}
     </Box>
   );
 }
@@ -710,25 +668,24 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
       <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
         {scenario.description}
       </Typography>
-      <Box
-        component="pre"
-        sx={{
-          m: 0,
-          mb: 1,
-          p: 1,
-          fontSize: 12,
-          bgcolor: 'grey.900',
-          color: 'grey.100',
-          borderRadius: 1,
-          overflow: 'auto',
-        }}
-      >
-        {scenario.code}
-      </Box>
       <Box sx={{ display: 'grid', gap: 1, gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' } }}>
-        <Frame height={scenario.height ?? 160} onReady={setFrame}>
-          {scenario.render()}
-        </Frame>
+        <Stack spacing={1}>
+          <Box
+            component="pre"
+            sx={{
+              m: 0,
+              p: 1,
+              fontSize: 12,
+              bgcolor: 'grey.900',
+              color: 'grey.100',
+              borderRadius: 1,
+              overflow: 'auto',
+            }}
+          >
+            {scenario.code}
+          </Box>
+          <Frame onReady={setFrame}>{scenario.render()}</Frame>
+        </Stack>
         <Inspector frame={frame} />
       </Box>
     </Box>
@@ -745,9 +702,9 @@ if (typeof window !== 'undefined') {
     const original = console[level];
     // eslint-disable-next-line no-console
     console[level] = (...args: unknown[]) => {
-      const text = String(args[0]);
-      if (text.startsWith('MUI:') && !consoleMessages.includes(`${level}: ${text}`)) {
-        consoleMessages.push(`${level}: ${text}`);
+      const text = `${level}: ${String(args[0])}`;
+      if (String(args[0]).startsWith('MUI:') && !consoleMessages.includes(text)) {
+        consoleMessages.push(text);
         consoleListeners.forEach((listener) => listener());
       }
       original(...args);
@@ -755,8 +712,8 @@ if (typeof window !== 'undefined') {
   });
 }
 
-function useMuiConsoleMessages() {
-  return React.useSyncExternalStore(
+function useConsoleMessages() {
+  React.useSyncExternalStore(
     (listener) => {
       consoleListeners.add(listener);
       return () => consoleListeners.delete(listener);
@@ -764,36 +721,39 @@ function useMuiConsoleMessages() {
     () => consoleMessages.length,
     () => 0,
   );
+  return consoleMessages;
 }
 
 export default function ThemeProviderScoping() {
-  useMuiConsoleMessages();
-  const messages = consoleMessages;
+  const messages = useConsoleMessages();
   return (
-    <Box sx={{ p: { xs: 2, md: 4 }, maxWidth: 1400, mx: 'auto' }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        ThemeProvider scoping playground
-      </Typography>
-      <Typography variant="body2" sx={{ mb: 2 }}>
-        Temporary page for #49581. Each scenario renders in its own iframe. The right column shows
-        what ended up in the iframe: the classes and attributes on the scoped elements, the computed
-        primary color and color scheme, and the generated scoped CSS rules. The scenarios share one
-        JS context, so the root-provider warning shows up even though each iframe has its own
-        `:root`.
-      </Typography>
-      <Box
-        component="pre"
-        sx={{ p: 1, fontSize: 12, bgcolor: 'grey.100', borderRadius: 1, whiteSpace: 'pre-wrap' }}
-      >
-        {messages.length
-          ? `MUI console messages (whole page, each logged once per module):\n${messages.join('\n\n')}`
-          : 'No MUI console messages yet.'}
+    <React.Fragment>
+      <Head title="ThemeProvider scoping playground" description="" />
+      <Box sx={{ p: { xs: 2, md: 4 }, maxWidth: 1400, mx: 'auto' }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          ThemeProvider scoping playground
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2 }}>
+          Temporary page for #49581. Each scenario renders in its own iframe. The right column shows
+          what ended up there: the scope classes and attributes, the computed primary color and
+          color scheme, and the scoped CSS rules (palette and color scheme declarations only). The
+          scenarios share one JS context, so the root provider warning shows up even though each
+          iframe has its own <code>:root</code>.
+        </Typography>
+        <Box
+          component="pre"
+          sx={{ p: 1, fontSize: 12, bgcolor: 'grey.100', borderRadius: 1, whiteSpace: 'pre-wrap' }}
+        >
+          {messages.length
+            ? `MUI console messages (whole page):\n${messages.join('\n\n')}`
+            : 'No MUI console messages yet.'}
+        </Box>
+        <Stack spacing={3} sx={{ mt: 2 }}>
+          {scenarios.map((scenario) => (
+            <ScenarioCard key={scenario.title} scenario={scenario} />
+          ))}
+        </Stack>
       </Box>
-      <Stack spacing={3} sx={{ mt: 2 }}>
-        {scenarios.map((scenario) => (
-          <ScenarioCard key={scenario.title} scenario={scenario} />
-        ))}
-      </Stack>
-    </Box>
+    </React.Fragment>
   );
 }
