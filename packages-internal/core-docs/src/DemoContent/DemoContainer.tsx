@@ -265,6 +265,10 @@ export const DemoToolbarRoot = styled('div', {
   }),
 ]);
 
+// `inert` is a boolean prop from React 19 on. React 18 doesn't know it and warns on
+// `true` for a non-boolean attribute, so it needs the empty-string attribute value.
+const inertValue = (parseInt(React.version, 10) >= 19 ? true : '') as boolean;
+
 // File tab bar — shown between toolbar and code when a demo exposes multiple
 // files. Renders as a Base UI `Tabs.List` (must live under a `Tabs.Root`) so
 // the tabs form a single Tab stop with arrow-key roving focus.
@@ -676,7 +680,7 @@ export function DemoContainer(props: DemoContainerProps) {
             role="toolbar"
             aria-label={toolbarLabel}
             aria-busy={toolbarBusy || undefined}
-            inert={toolbarBusy || undefined}
+            inert={toolbarBusy ? inertValue : undefined}
             onKeyDown={onToolbarKeyDown}
             onFocus={onToolbarFocus}
           >
