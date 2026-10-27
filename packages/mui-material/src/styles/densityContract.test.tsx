@@ -26,6 +26,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import TableFooter from '@mui/material/TableFooter';
@@ -1981,5 +1984,74 @@ describe.skipIf(isJsdom())('outlined label lift', () => {
       roomy: liftInLines('roomy'),
       dense: liftInLines('dense'),
     }).to.deep.equal({ base: -0.475, roomy: -0.375, dense: -0.475 });
+  });
+});
+
+describe.skipIf(isJsdom())('group headers line up with their items', () => {
+  const { render } = createRenderer();
+  const textLeft = (selector: string) => {
+    const walker = document.createTreeWalker(
+      document.querySelector(selector)!,
+      NodeFilter.SHOW_TEXT,
+    );
+    const range = document.createRange();
+    range.selectNodeContents(walker.nextNode()!);
+    return Math.round(range.getBoundingClientRect().left);
+  };
+  const cases: [string, React.ReactElement, string, string][] = [
+    [
+      'MenuList',
+      <MenuList>
+        <ListSubheader>Edit</ListSubheader>
+        <MenuItem>Copy</MenuItem>
+      </MenuList>,
+      '.MuiListSubheader-root',
+      '.MuiMenuItem-root',
+    ],
+    [
+      'grouped Select',
+      <Select open value="a" MenuProps={{ disablePortal: true, transitionDuration: 0 }}>
+        <ListSubheader>Group</ListSubheader>
+        <MenuItem value="a">Apple</MenuItem>
+      </Select>,
+      '.MuiListSubheader-root',
+      '.MuiMenuItem-root',
+    ],
+    [
+      'grouped Autocomplete',
+      <Autocomplete
+        open
+        disablePortal
+        options={['Apple']}
+        groupBy={() => 'Group'}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+      '.MuiAutocomplete-groupLabel',
+      '.MuiAutocomplete-option',
+    ],
+    [
+      'List with ListItemButton',
+      <List subheader={<ListSubheader>Inbox</ListSubheader>}>
+        <ListItemButton>Drafts</ListItemButton>
+      </List>,
+      '.MuiListSubheader-root',
+      '.MuiListItemButton-root',
+    ],
+    [
+      'List with ListItem',
+      <List subheader={<ListSubheader>Contacts</ListSubheader>}>
+        <ListItem>Alice</ListItem>
+      </List>,
+      '.MuiListSubheader-root',
+      '.MuiListItem-root',
+    ],
+  ];
+  cases.forEach(([name, element, header, item]) => {
+    test(name, () => {
+      render(<ThemeProvider theme={THEMES.get('medium')!}>{element}</ThemeProvider>);
+      const indent =
+        name === 'grouped Autocomplete' ? DEFAULT_STEP_PX.small - DEFAULT_STEP_PX.xSmall : 0;
+      expect(textLeft(item) - textLeft(header)).to.equal(indent);
+    });
   });
 });

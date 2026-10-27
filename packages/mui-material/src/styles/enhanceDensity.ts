@@ -859,11 +859,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'listbox', {
     // The option list renders in a Popper — emit on the listbox slot.
+    '--_subheaderInline': spacing('xSmall'),
     [`& .${autocompleteClasses.option}`]: {
       minHeight: touchTarget,
       paddingBlock: spacing('xxSmall'),
       paddingInline: spacing('xSmall'),
     },
+  });
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'groupUl', {
+    [`& .${autocompleteClasses.option}`]: { paddingLeft: spacing('small') },
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'tag', {
     margin: 0,
@@ -993,6 +997,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     '--_dialogMargin': spacing('large'),
   });
   addStyleOverride(enhanced.components, 'MuiList', 'root', {
+    '&:where([role="menu"], [role="listbox"])': { '--_subheaderInline': spacing('xSmall') },
     variants: [
       // A subheader keeps master's `paddingTop: 0` — density only pads below.
       {
@@ -1010,7 +1015,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     lineHeight: touchTarget,
   });
   addStyleOverride(enhanced.components, 'MuiListSubheader', 'gutters', {
-    paddingInline: spacing('small'),
+    paddingInline: `var(--_subheaderInline, ${spacing('small')})`,
   });
   addStyleOverride(enhanced.components, 'MuiListSubheader', 'inset', {
     paddingLeft: `calc(${spacing('small')} + ${iconSize} + ${spacing('xSmall')})`,
