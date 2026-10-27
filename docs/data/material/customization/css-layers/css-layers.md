@@ -52,7 +52,7 @@ export default function RootLayout() {
 Start by configuring Material UI with Next.js in the [Pages Router integration guide](/material-ui/integrations/nextjs/#pages-router).
 Then follow these steps:
 
-1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#cascade-layers-optional) in a custom `_document`:
+1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#configuration-2) in a custom `_document`:
 
 ```tsx title="pages/_document.tsx"
 import {
