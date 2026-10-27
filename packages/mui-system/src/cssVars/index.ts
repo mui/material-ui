@@ -13,3 +13,4 @@ export { createGetColorSchemeSelector } from './getColorSchemeSelector';
 export type { StorageManager } from './localStorageManager';
 export { useThemeScope } from './ThemeScopeContext';
 export type { ThemeScopeProps } from './ThemeScopeContext';
+export { applyScopeToChild as unstable_applyScopeToChild } from './scopeCssVars';

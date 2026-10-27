@@ -1,8 +1,10 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import { DefaultTheme } from '@mui/system';
-import { StorageManager } from '@mui/system/cssVars';
+import {
+  StorageManager,
+  unstable_applyScopeToChild as applyScopeToChild,
+} from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
@@ -116,27 +118,17 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   if (noVarsTheme) {
     // It doesn't scope its own theme, but passes on the scope that an outer provider gave it to its child.
     // The system ThemeProvider only accepts its own props, so the forwarded ones don't reach it.
-    const { className: forwardedClassName, ...noVarsProps } = props as typeof props & {
+    const { className, ...noVarsProps } = props as typeof props & {
       className?: string | undefined;
     };
-    const forwarded: Record<string, unknown> = {};
     Object.keys(noVarsProps).forEach((key) => {
       if (key.startsWith('data-')) {
-        forwarded[key] = (noVarsProps as Record<string, unknown>)[key];
         delete (noVarsProps as Record<string, unknown>)[key];
       }
     });
-    let { children } = props;
-    if (forwardedClassName && React.isValidElement(children) && children.type !== React.Fragment) {
-      const child = children as React.ReactElement<{ className?: string | undefined }>;
-      children = React.cloneElement(child, {
-        ...forwarded,
-        className: clsx(child.props.className, forwardedClassName),
-      });
-    }
     return (
       <ThemeProviderNoVars theme={noVarsTheme} {...noVarsProps}>
-        {children}
+        {applyScopeToChild(props.children, props)}
       </ThemeProviderNoVars>
     );
   }

@@ -16,6 +16,7 @@ import useCurrentColorScheme, { type Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 import ThemeScopeContext from './ThemeScopeContext';
 import {
+  applyScopeToChild,
   createScopedStyleSheets,
   getColorSchemeProps,
   type CssVarsByColorScheme,
@@ -648,34 +649,21 @@ export default function createCssVarsProvider<
 
     // The scope class goes on the single child, so the provider never renders an element of its own.
     // When the child is itself a ThemeProvider, it receives the outer scope and passes it on to its own child.
-    const forwardedClassName: string | undefined = props.className;
-    const needsChildScope = !!(scopeClassName || forwardedClassName);
-    const hasChildren = children != null && typeof children !== 'boolean';
-    const canCloneChild = React.isValidElement(children) && children.type !== React.Fragment;
-    let scopedChildren = children;
-    if (needsChildScope && canCloneChild) {
-      const child = children as React.ReactElement<{ className?: string | undefined }>;
-      const forwardedAttributes: Record<string, string> = {};
-      if (forwardedClassName) {
-        Object.keys(props).forEach((key) => {
-          if (key.startsWith('data-')) {
-            forwardedAttributes[key] = props[key];
+    const scopedChildren = applyScopeToChild(
+      children,
+      props,
+      scopeClassName
+        ? {
+            className: clsx(scopeClassName, colorSchemeClassName),
+            attributes: colorSchemeAttributes,
           }
-        });
-      }
-      scopedChildren = React.cloneElement(child, {
-        ...forwardedAttributes,
-        ...colorSchemeAttributes,
-        className: clsx(
-          child.props.className,
-          forwardedClassName,
-          scopeClassName,
-          colorSchemeClassName,
-        ),
-      });
-    }
+        : undefined,
+    );
 
     if (process.env.NODE_ENV !== 'production') {
+      const needsChildScope = !!(scopeClassName || props.className);
+      const hasChildren = children != null && typeof children !== 'boolean';
+      const canCloneChild = React.isValidElement(children) && children.type !== React.Fragment;
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const warnedChildren = React.useRef(false);
       // eslint-disable-next-line react-hooks/rules-of-hooks

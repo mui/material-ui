@@ -1,3 +1,6 @@
+import * as React from 'react';
+import clsx from 'clsx';
+
 type CssDeclarations = Record<string, string | number>;
 
 export interface CssVarsByColorScheme {
@@ -162,4 +165,37 @@ export function createScopedStyleSheets(options: {
   });
 
   return { className, styles };
+}
+
+/**
+ * Adds the scope that an outer ThemeProvider passed in `props` (`className` and `data-*`),
+ * and the provider's own scope, to its single child element.
+ * Returns the children unchanged when there's nothing to add or they aren't a single element.
+ */
+export function applyScopeToChild(
+  children: React.ReactNode,
+  props: Record<string, any>,
+  own?: { className?: string | undefined; attributes?: Record<string, string> | undefined },
+): React.ReactNode {
+  const forwardedClassName: string | undefined = props.className;
+  if (!forwardedClassName && !own?.className) {
+    return children;
+  }
+  if (!React.isValidElement(children) || children.type === React.Fragment) {
+    return children;
+  }
+  const child = children as React.ReactElement<{ className?: string | undefined }>;
+  const forwardedAttributes: Record<string, string> = {};
+  if (forwardedClassName) {
+    Object.keys(props).forEach((key) => {
+      if (key.startsWith('data-')) {
+        forwardedAttributes[key] = props[key];
+      }
+    });
+  }
+  return React.cloneElement(child, {
+    ...forwardedAttributes,
+    ...own?.attributes,
+    className: clsx(child.props.className, forwardedClassName, own?.className),
+  });
 }
