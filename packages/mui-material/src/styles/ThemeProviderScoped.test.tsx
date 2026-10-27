@@ -119,6 +119,22 @@ describe('ThemeProvider with scoped CSS theme variables', () => {
       expect(screen.getByTestId('inner').className).to.match(/^mui-theme-[a-z0-9]+$/);
     });
 
+    it('passes the color scheme attribute of a scoped provider through a function theme', () => {
+      const theme = createTheme({
+        cssVariables: { colorSchemeSelector: 'data' },
+        colorSchemes: { light: true, dark: true },
+      });
+      render(
+        <ThemeProvider theme={theme} scoped defaultMode="dark">
+          <ThemeProvider theme={(outer: object) => ({ ...outer })}>
+            <div data-testid="widget" />
+          </ThemeProvider>
+        </ThemeProvider>,
+      );
+      expect(screen.getByTestId('widget')).to.have.attribute('data-dark', '');
+      expect(screen.getByTestId('widget').className).to.match(/^mui-theme-[a-z0-9]+$/);
+    });
+
     it('logs an error when the child is a Fragment', () => {
       expect(() =>
         render(

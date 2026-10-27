@@ -115,22 +115,27 @@ export default function ThemeProvider<Theme = DefaultTheme>({
 
   if (noVarsTheme) {
     // It doesn't scope its own theme, but passes on the scope that an outer provider gave it to its child.
-    const forwardedClassName = (props as { className?: string | undefined }).className;
+    // The system ThemeProvider only accepts its own props, so the forwarded ones don't reach it.
+    const { className: forwardedClassName, ...noVarsProps } = props as typeof props & {
+      className?: string | undefined;
+    };
+    const forwarded: Record<string, unknown> = {};
+    Object.keys(noVarsProps).forEach((key) => {
+      if (key.startsWith('data-')) {
+        forwarded[key] = (noVarsProps as Record<string, unknown>)[key];
+        delete (noVarsProps as Record<string, unknown>)[key];
+      }
+    });
     let { children } = props;
     if (forwardedClassName && React.isValidElement(children) && children.type !== React.Fragment) {
       const child = children as React.ReactElement<{ className?: string | undefined }>;
-      const forwarded: Record<string, unknown> = {
+      children = React.cloneElement(child, {
+        ...forwarded,
         className: clsx(child.props.className, forwardedClassName),
-      };
-      Object.keys(props).forEach((key) => {
-        if (key.startsWith('data-')) {
-          forwarded[key] = (props as Record<string, unknown>)[key];
-        }
       });
-      children = React.cloneElement(child, forwarded);
     }
     return (
-      <ThemeProviderNoVars theme={noVarsTheme} {...props}>
+      <ThemeProviderNoVars theme={noVarsTheme} {...noVarsProps}>
         {children}
       </ThemeProviderNoVars>
     );
