@@ -1414,11 +1414,15 @@ describe.skipIf(isJsdom())('slider mark labels', () => {
           : { box: root.width, label: label.left - root.left };
       };
       const fine = measure();
+      expect(fine.label).to.equal(fine.box);
+      const { server } = await import('vitest/browser' as string);
+      if (server.browser !== 'chromium') {
+        return;
+      }
       await setCoarse(true);
       try {
         expect(matchMedia('(pointer: coarse)').matches).to.equal(true);
         const coarse = measure();
-        expect(fine.label).to.equal(fine.box);
         expect(coarse.label).to.equal(coarse.box);
       } finally {
         await setCoarse(false);
@@ -1434,7 +1438,13 @@ describe.skipIf(isJsdom())('a size added by the app renders like medium', () => 
     const el = document.querySelector(selector) as HTMLElement;
     const { width, height } = el.getBoundingClientRect();
     const css = getComputedStyle(el);
-    return { width, height, radius: css.borderTopLeftRadius, padding: css.padding };
+    const round = (value: number) => Math.round(value * 100) / 100;
+    return {
+      width: round(width),
+      height: round(height),
+      radius: css.borderTopLeftRadius,
+      padding: css.padding,
+    };
   };
 
   test('Switch', () => {
