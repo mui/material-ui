@@ -20,7 +20,7 @@
     "@testing-library/dom": "10.4.2",
     "@types/react": "19.3.0",
     "@types/react-is": "19.3.0",
-    "@types/sinon": "22.0.0",
+    "@types/sinon": "22.0.2",
     "docs": "workspace:^",
     "es-toolkit": "1.52.0",
     "fast-glob": "3.3.3",
