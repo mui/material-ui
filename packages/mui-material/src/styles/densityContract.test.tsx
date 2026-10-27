@@ -431,6 +431,16 @@ const CONTROLS: Record<string, Spec> = {
     axis: 'minHeight',
     height: (density) => density.touchTarget,
   },
+  ListItemIcon: {
+    render: () => (
+      <ListItemIcon>
+        <Check fontSize="small" />
+      </ListItemIcon>
+    ),
+    selector: '.MuiListItemIcon-root',
+    axis: 'minWidth',
+    height: (density) => density.iconSize,
+  },
 };
 
 const ICON_SIZES = {
@@ -1074,7 +1084,7 @@ describe.skipIf(isJsdom())('density contract', () => {
       ),
     };
     Object.entries(insetThemes).forEach(([name, theme]) => {
-      test(`${name}: inset menu text and inset divider line up with the icon row text`, () => {
+      test(`${name}: inset menu text, inset divider and small-icon text line up with the icon row text`, () => {
         renderIn(
           theme,
           cases(
@@ -1091,6 +1101,12 @@ describe.skipIf(isJsdom())('density contract', () => {
                     <Check />
                   </ListItemIcon>
                   <ListItemText>Custom</ListItemText>
+                </MenuItem>
+                <MenuItem data-testid="icon-small">
+                  <ListItemIcon>
+                    <Check fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText>Small icon</ListItemText>
                 </MenuItem>
                 <Divider variant="inset" component="li" />
               </MenuList>
@@ -1115,6 +1131,64 @@ describe.skipIf(isJsdom())('density contract', () => {
                   `${kind} inset divider`,
                   drift(rect('.MuiDivider-root', inCase(kind)).left - iconText),
                 ],
+                [
+                  `${kind} small icon text`,
+                  drift(
+                    rect('[data-testid="icon-small"] .MuiListItemText-root', inCase(kind)).left -
+                      iconText,
+                  ),
+                ],
+              ];
+            }),
+          ),
+        );
+      });
+    });
+
+    Object.entries(insetThemes).forEach(([name, theme]) => {
+      test(`${name}: inset list text and small-icon text line up with the icon row text`, () => {
+        const rows = (Row: React.ElementType, dense?: boolean) => (
+          <List dense={dense}>
+            <Row data-testid="inset">
+              <ListItemText inset>Single</ListItemText>
+            </Row>
+            <Row data-testid="icon">
+              <ListItemIcon>
+                <Check />
+              </ListItemIcon>
+              <ListItemText>Custom</ListItemText>
+            </Row>
+            <Row data-testid="icon-small">
+              <ListItemIcon>
+                <Check fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Small icon</ListItemText>
+            </Row>
+          </List>
+        );
+        const kinds = ['button', 'dense button', 'item'];
+        renderIn(
+          theme,
+          cases(
+            byName(kinds, (kind) =>
+              rows(kind === 'item' ? ListItem : ListItemButton, kind === 'dense button'),
+            ),
+          ),
+        );
+        expectNoDrift(
+          Object.fromEntries(
+            kinds.flatMap((kind) => {
+              const textLeft = (testId: string) =>
+                rect(`[data-testid="${testId}"] .MuiListItemText-root`, inCase(kind)).left;
+              const iconText = textLeft('icon');
+              return [
+                [
+                  `${kind} inset text`,
+                  drift(
+                    rect('[data-testid="inset"] .MuiTypography-root', inCase(kind)).left - iconText,
+                  ),
+                ],
+                [`${kind} small icon text`, drift(textLeft('icon-small') - iconText)],
               ];
             }),
           ),

@@ -333,6 +333,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: {
           gap: spacing('xSmall'),
           minHeight: smallBox,
+          [`& .${listItemIconClasses.root}`]: { minWidth: '0.8lh' },
           [`& .${listItemIconClasses.root} svg`]: { fontSize: '0.8lh' },
           [`& .${listItemTextClasses.inset}`]: {
             paddingLeft: `calc(0.8lh + ${spacing('xSmall')})`,
@@ -352,7 +353,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`& .${listItemTextClasses.inset}`]: {
       paddingLeft: `calc(${iconSize} + ${spacing('xSmall')})`,
     },
-    [`& .${listItemIconClasses.root}`]: { minWidth: 0 },
+    [`& .${listItemIconClasses.root}`]: { minWidth: iconSize },
   });
 
   addStyleOverride(enhanced.components, 'MuiTooltip', 'tooltip', {
@@ -1045,8 +1046,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // minWidth 0 kills master's 56px column floors — the row gap owns spacing.
-  addStyleOverride(enhanced.components, 'MuiListItemIcon', 'root', { minWidth: 0 });
+  addStyleOverride(enhanced.components, 'MuiListItemIcon', 'root', { minWidth: iconSize });
   addStyleOverride(enhanced.components, 'MuiListItemAvatar', 'root', {
     minWidth: 0,
     variants: [{ props: { alignItems: 'flex-start' }, style: { marginTop: spacing('xSmall') } }],
