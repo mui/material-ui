@@ -2536,6 +2536,26 @@ describe('<Select />', () => {
     });
 
     expect(onChangeHandler.callCount).to.equal(1);
+    expect(onChangeHandler.firstCall.args[0].target.value).to.equal(10);
+    expect(screen.getByRole('combobox')).to.have.text('Ten');
+  });
+
+  it('should handle the browser autofill event when multiple', () => {
+    const onChangeHandler = spy();
+    const { container } = render(
+      <Select multiple onChange={onChangeHandler} defaultValue={[]} name="age">
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+      </Select>,
+    );
+    fireEvent.change(container.querySelector('input[name="age"]'), {
+      target: {
+        value: '10',
+      },
+    });
+
+    expect(onChangeHandler.callCount).to.equal(1);
+    expect(onChangeHandler.firstCall.args[0].target.value).to.deep.equal([10]);
     expect(screen.getByRole('combobox')).to.have.text('Ten');
   });
 

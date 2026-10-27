@@ -471,11 +471,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return;
     }
 
-    setValueState(child.props.value);
-
-    if (onChange) {
-      onChange(event, child);
-    }
+    handleValueChange(event, child, multiple ? [child.props.value] : child.props.value);
   };
 
   const handleValueChange = (event, child, newValue) => {
