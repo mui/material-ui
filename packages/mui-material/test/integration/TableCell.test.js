@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
 import Table from '@mui/material/Table';
@@ -33,7 +33,7 @@ describe('<TableRow> integration', () => {
     expect(screen.getByTestId('cell')).to.have.attribute('scope', 'row');
   });
 
-  it('should render a th with the footer class when in the context of a table footer', () => {
+  it('should render a td with the footer class when in the context of a table footer', () => {
     renderInTable(<TableCell data-testid="cell" />, TableFooter);
     expect(screen.getByTestId('cell')).to.have.tagName('td');
     expect(screen.getByTestId('cell')).to.have.class(classes.root);

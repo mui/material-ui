@@ -1,4 +1,4 @@
-import { NoSsr } from '@mui/base/NoSsr';
+import NoSsr from '@mui/material/NoSsr';
 import Box from '@mui/material/Box';
 
 export default function SxPropBoxMaterialUI() {

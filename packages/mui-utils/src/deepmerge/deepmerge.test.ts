@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { isJsdom } from '@mui/internal-test-utils/env';
 import deepmerge from './deepmerge';
 
@@ -111,7 +111,7 @@ describe('deepmerge', () => {
 
     expect(result).to.deep.equal({ foo: { baz: 'test' } });
 
-    // @ts-ignore
+    // @ts-expect-error: The inferred target type does not include the baz property copied from the source.
     result.foo.baz = 'new test';
 
     expect(result).to.deep.equal({ foo: { baz: 'new test' } });

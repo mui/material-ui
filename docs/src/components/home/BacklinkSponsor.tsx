@@ -1,4 +1,4 @@
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 
 export default function BacklinkSponsor(props: {
@@ -24,7 +24,7 @@ export default function BacklinkSponsor(props: {
       href={item.href}
       title={item.description}
       target="_blank"
-      rel="sponsored noopener"
+      rel="sponsored"
       sx={{ mr: { xs: 1, md: 2 }, mt: 1.5, fontSize: { xs: 13, md: 14 } }}
     >
       {item.name}

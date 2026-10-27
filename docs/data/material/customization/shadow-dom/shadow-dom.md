@@ -64,6 +64,8 @@ const theme = createTheme({
 </ThemeProvider>;
 ```
 
+The `container` prop only needs to be set on the base components that render directly through the `Portal`: `Modal`, `Popover`, and `Popper`. Higher-level components (like `Dialog`, `Menu`, `Tooltip` etc.) render these base components internally and inherit the `container` prop automatically.
+
 ### 3. CSS theme variables (optional)
 
 :::info
@@ -97,4 +99,4 @@ Finally, set the `colorSchemeNode` prop using `shadowRootElement`, from step 1, 
 
 In the example below you can see that the component outside of the shadow DOM is affected by global styles, while the component inside of the shadow DOM is not:
 
-{{"demo": "ShadowDOMDemoNoSnap.js", "hideToolbar": true, "bg": true}}
+{{"component": "file://./demos/demo-no-snap/index.ts", "hideToolbar": true, "bg": true}}

@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/material/ListItemButton';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -18,7 +18,6 @@ describe('<ListItemButton />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
   }));
 
   it('should render with gutters classes', () => {
@@ -34,6 +33,13 @@ describe('<ListItemButton />', () => {
   it('should disable the gutters', () => {
     render(<ListItemButton disableGutters />);
     expect(screen.getByRole('button')).not.to.have.class(classes.gutters);
+  });
+
+  it('does not pass classes.root to ButtonBase classes', () => {
+    render(<ListItemButton classes={{ root: 'my-root-class' }}>Item</ListItemButton>);
+    const button = screen.getByRole('button');
+    const classList = button.className.split(' ');
+    expect(classList.filter((c) => c === 'my-root-class')).to.have.length(1);
   });
 
   describe('context: dense', () => {
@@ -74,7 +80,7 @@ describe('<ListItemButton />', () => {
   describe('prop: href', () => {
     const href = 'example.com';
 
-    it('should rendered as link without specifying component="a"', () => {
+    it('should render as link without specifying component="a"', () => {
       render(<ListItemButton href={href} />);
 
       const link = screen.getByRole('link');
@@ -82,7 +88,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as link when specifying component="div"', () => {
+    it('should render as link when specifying component="div"', () => {
       render(<ListItemButton href={href} component="div" />);
 
       const link = screen.getByRole('link');
@@ -90,7 +96,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as link when specifying component="a"', () => {
+    it('should render as link when specifying component="a"', () => {
       render(<ListItemButton href={href} component="a" />);
 
       const link = screen.getByRole('link');
@@ -98,7 +104,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as specifying component', () => {
+    it('should render as specifying component', () => {
       render(<ListItemButton href={href} component="h1" />);
 
       const heading = screen.getByRole('heading');
@@ -110,7 +116,7 @@ describe('<ListItemButton />', () => {
   describe('prop: to', () => {
     const to = 'example.com';
 
-    it('should rendered as link without specifying component="a"', () => {
+    it('should render as link without specifying component="a"', () => {
       render(<ListItemButton to={to} />);
 
       const link = screen.getByRole('link');
@@ -118,7 +124,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as link when specifying component="div"', () => {
+    it('should render as link when specifying component="div"', () => {
       render(<ListItemButton to={to} component="div" />);
 
       const link = screen.getByRole('link');
@@ -126,7 +132,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as link when specifying component="a"', () => {
+    it('should render as link when specifying component="a"', () => {
       render(<ListItemButton to={to} component="a" />);
 
       const link = screen.getByRole('link');
@@ -134,7 +140,7 @@ describe('<ListItemButton />', () => {
       expect(!!link).to.equal(true);
     });
 
-    it('should rendered as specifying component', () => {
+    it('should render as specifying component', () => {
       render(<ListItemButton to={to} component="h1" />);
 
       const heading = screen.getByRole('heading');
@@ -151,7 +157,7 @@ describe('<ListItemButton />', () => {
       return <a data-testid={customLinkId} ref={ref} {...props} />;
     });
 
-    it('should rendered as LinkComponent when href is provided', () => {
+    it('should render as LinkComponent when href is provided', () => {
       const { container } = render(<ListItemButton href={href} LinkComponent={CustomLink} />);
       const button = container.firstChild;
 
@@ -171,7 +177,7 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    it('should rendered as LinkComponent (from theme) when href is provided', () => {
+    it('should render as LinkComponent (from theme) when href is provided', () => {
       const theme = createTheme({
         components: {
           MuiListItemButton: {
@@ -193,7 +199,7 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
 
-    it('should rendered as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
+    it('should render as LinkComponent (from theme MuiButtonBase) when href is provided', () => {
       const theme = createTheme({
         components: {
           MuiButtonBase: {
@@ -245,6 +251,17 @@ describe('<ListItemButton />', () => {
       expect(screen.getByTestId(customLinkId)).not.to.equal(null);
       expect(button).to.have.property('nodeName', 'A');
       expect(button).to.have.attribute('href', href);
+    });
+  });
+
+  describe('prop: nativeButton', () => {
+    it('uses link mode (not native-button) when href is present', () => {
+      render(<ListItemButton href="https://example.com" />);
+
+      const link = screen.getByRole('link');
+      expect(link).to.have.tagName('A');
+      expect(link).not.to.have.attribute('type', 'button');
+      expect(link).not.to.have.attribute('role', 'button');
     });
   });
 });

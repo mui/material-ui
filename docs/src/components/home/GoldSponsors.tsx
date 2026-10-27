@@ -7,8 +7,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import { Link } from '@mui/internal-core-docs/Link';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const GOLDs = [
   {
@@ -33,21 +33,6 @@ const BACKLINKs = [
     href: 'https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'Buzzoid',
-    description: 'Instant delivery Instagram followers.',
-    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'Twicsy',
-    description: 'Instant delivery Instagram followers.',
-    href: 'https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'Views4You',
-    description: 'Social media growth services.',
-    href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     name: 'Poprey',
     description: 'Buy Instagram likes with crypto.',
     href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
@@ -61,6 +46,21 @@ const BACKLINKs = [
     name: 'Follower24',
     description: 'Social media success.',
     href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Views4You',
+    description: 'Maximize Social Media Impact.',
+    href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'InstantFamous',
+    description: 'Grow Your Social Network.',
+    href: 'https://instant-famous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'TokBoostly',
+    description: 'Premium TikTok Growth.',
+    href: 'https://tokboostly.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -122,7 +122,6 @@ export default function GoldSponsors() {
               component="a"
               href={ROUTES.goldSponsor}
               target="_blank"
-              rel="noopener"
               color="primary"
             >
               <AddRounded />
@@ -133,7 +132,7 @@ export default function GoldSponsors() {
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Find out how{' '}
-                <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener">
+                <Link href={ROUTES.goldSponsor} target="_blank">
                   you can support MUI.
                 </Link>
               </Typography>

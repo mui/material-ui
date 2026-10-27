@@ -1,7 +1,7 @@
 import Section from 'docs/src/layouts/Section';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import SectionHeadline from '../typography/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from '../typography/GradientText';
 
 export default function CustomersHero() {
@@ -17,7 +17,7 @@ export default function CustomersHero() {
             powered by <GradientText color="primary">MUI</GradientText>
           </Typography>
         }
-        description="See how MUI's comprehensive suite of UI tools helps them ship better and faster"
+        description="See how MUI's comprehensive suite of UI tools helps them ship better and faster."
       />
     </Section>
   );

@@ -42,7 +42,6 @@ import { FormControlProps } from '../FormControl';
 import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
-import { GridLegacyProps } from '../GridLegacy';
 import { GridProps } from '../Grid';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
@@ -110,12 +109,12 @@ import { TableSortLabelProps } from '../TableSortLabel';
 import { TableFooterProps } from '../TableFooter';
 import { TabProps } from '../Tab';
 import { TabsProps } from '../Tabs';
+import { TabScrollButtonProps } from '../TabScrollButton';
 import { TextFieldProps } from '../TextField';
 import { ToggleButtonProps } from '../ToggleButton';
 import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
 import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
-import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
 import { PopperProps } from '../Popper';
 
@@ -127,7 +126,8 @@ export interface ComponentsPropsList {
   MuiAlert: AlertProps;
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
-  MuiAutocomplete: AutocompleteProps<any, any, any, any>;
+  // Theme defaults can configure either option values or mapped IDs.
+  MuiAutocomplete: AutocompleteProps<any, any, any, any, any, any>;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;
@@ -168,7 +168,6 @@ export interface ComponentsPropsList {
   MuiFormGroup: FormGroupProps;
   MuiFormHelperText: FormHelperTextProps;
   MuiFormLabel: FormLabelProps;
-  MuiGridLegacy: GridLegacyProps;
   MuiGrid: GridProps;
   MuiImageList: ImageListProps;
   MuiImageListItem: ImageListItemProps;
@@ -236,12 +235,12 @@ export interface ComponentsPropsList {
   MuiTableRow: TableRowProps;
   MuiTableSortLabel: TableSortLabelProps;
   MuiTabs: TabsProps;
+  MuiTabScrollButton: TabScrollButtonProps;
   MuiTextField: TextFieldProps;
   MuiToggleButton: ToggleButtonProps;
   MuiToggleButtonGroup: ToggleButtonGroupProps;
   MuiToolbar: ToolbarProps;
   MuiTooltip: TooltipProps;
-  MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
   MuiUseMediaQuery: UseMediaQueryOptions;
 }

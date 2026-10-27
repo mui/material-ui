@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import ImageList, { imageListClasses as classes } from '@mui/material/ImageList';
 import describeConformance from '../../test/describeConformance';
@@ -31,7 +31,7 @@ describe('<ImageList />', () => {
       testComponentPropWith: 'li',
       muiName: 'MuiImageList',
       testVariantProps: { variant: 'masonry' },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 

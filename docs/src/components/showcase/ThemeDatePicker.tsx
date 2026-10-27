@@ -70,7 +70,7 @@ export default function ThemeDatePicker() {
                 '& .MuiDateCalendar-viewTransitionContainer > div > div': {
                   justifyContent: 'space-around',
                 },
-                '& .MuiPickersDay-root': {
+                '& .MuiPickerDay-root': {
                   width: 24,
                   height: 24,
                   fontWeight: 500,
@@ -81,7 +81,7 @@ export default function ThemeDatePicker() {
                     color: '#fff',
                     bgcolor: 'primary.main',
                   },
-                  '&.MuiPickersDay-today': {
+                  '&.MuiPickerDay-today': {
                     '&:not(.Mui-selected)': {
                       borderColor: 'primary.main',
                     },
@@ -100,7 +100,7 @@ export default function ThemeDatePicker() {
                   color: 'primary.300',
                 },
                 '& .MuiDateCalendar-root': {
-                  '& .MuiPickersDay-root': {
+                  '& .MuiPickerDay-root': {
                     color: 'primary.100',
                   },
                 },

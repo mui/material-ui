@@ -22,6 +22,7 @@ export interface OverridableComponent<TypeMap extends OverridableTypeMap> {
     } & OverrideProps<TypeMap, RootComponent>,
   ): React.JSX.Element | null;
   (props: DefaultComponentProps<TypeMap>): React.JSX.Element | null;
+  propTypes?: any;
 }
 
 /**
@@ -57,8 +58,8 @@ export type BaseProps<TypeMap extends OverridableTypeMap> =
  */
 // each component declares it's classes in a separate interface for proper JSDoc.
 export interface CommonProps extends StyledComponentProps<never> {
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 export interface OverridableTypeMap {

@@ -4,7 +4,7 @@ import createEmotionCache from './createCache';
 import { useRouter as usePagesRouter } from '../nextCompatRouter.cjs';
 
 export interface EmotionCacheProviderProps {
-  emotionCache?: EmotionCache;
+  emotionCache?: EmotionCache | undefined;
 }
 
 const defaultEmotionCache = createEmotionCache();

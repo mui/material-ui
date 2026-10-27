@@ -1,7 +1,7 @@
 {
   "name": "next-webpack5",
   "version": "1.0.0",
-  "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "pnpm next build && concurrently --success first --kill-others \"pnpm next start\" \"node testNextWebpack5Integration\""
   },
@@ -20,7 +20,7 @@
     "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "10.0.3",
     "@playwright/test": "1.54.1"
   },
   "pnpm": {

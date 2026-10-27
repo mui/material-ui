@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import createSpacing, { Spacing } from './createSpacing';
 
 describe('createSpacing', () => {
@@ -61,7 +61,7 @@ describe('createSpacing', () => {
     it('should warn for wrong input', () => {
       expect(() => {
         createSpacing({
-          // @ts-expect-error
+          // @ts-expect-error: The spacing API does not accept an object with a unit property.
           unit: 4,
         });
       }).toErrorDev('MUI: The `theme.spacing` value ([object Object]) is invalid');

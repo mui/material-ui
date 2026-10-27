@@ -1,11 +1,10 @@
+import { it, expect, describe, beforeAll, afterAll } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,
   createRenderer,
   fireEvent,
-  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
@@ -49,7 +48,46 @@ function hasRightScrollButton(container) {
   return !scrollButton.parentElement.classList.contains('Mui-disabled');
 }
 
+// jsdom has no ResizeObserver and no layout, so observed elements are mapped to their callback
+// to let tests fire resizes by hand.
+function mockResizeObserver() {
+  const callbacks = new Map();
+  const original = globalThis.ResizeObserver;
+
+  globalThis.ResizeObserver = class {
+    constructor(callback) {
+      this.callback = callback;
+      this.elements = new Set();
+    }
+
+    observe(element) {
+      this.elements.add(element);
+      callbacks.set(element, this.callback);
+    }
+
+    unobserve(element) {
+      this.elements.delete(element);
+      callbacks.delete(element);
+    }
+
+    disconnect() {
+      this.elements.forEach((element) => {
+        callbacks.delete(element);
+      });
+      this.elements.clear();
+    }
+  };
+
+  return {
+    callbacks,
+    restore() {
+      globalThis.ResizeObserver = original;
+    },
+  };
+}
+
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 describe.skipIf(isSafari)('<Tabs />', () => {
   const { clock, render, renderToString } = createRenderer();
@@ -76,7 +114,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         expectedClassName: classes.indicator,
       },
     },
-    skip: ['componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
   }));
 
   it('can be named via `aria-label`', () => {
@@ -94,6 +132,102 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     );
 
     expect(screen.getByRole('tablist')).toHaveAccessibleName('complex name');
+  });
+
+  it('should not add tabindex to the tabs if the selected tab already has it', () => {
+    render(
+      <Tabs value={0}>
+        <Tab tabIndex={-1} />
+        <Tab tabIndex={0} />
+      </Tabs>,
+    );
+
+    const tabElements = screen.getAllByRole('tab');
+
+    expect(tabElements[0].tabIndex).to.equal(-1);
+    expect(tabElements[1].tabIndex).to.equal(0);
+  });
+
+  describe('keyboard navigation', () => {
+    it('should move focus to the next tab when pressing the right arrow key', async () => {
+      const { user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab disabled />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should preserve keyboard navigation for wrapped Tab children', async () => {
+      const WrappedTab = React.forwardRef(function WrappedTab(props, ref) {
+        return <Tab ref={ref} {...props} />;
+      });
+
+      const { user } = render(
+        <Tabs value={0}>
+          <WrappedTab />
+          <WrappedTab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[1]).toHaveFocus();
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should add tabindex="0" to the focused tab', async () => {
+      const { user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      fireEvent.focus(tabElements[1]);
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.click(tabElements[0]);
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
   });
 
   describe('warnings', () => {
@@ -139,7 +273,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const selector = `.${classes.flexContainer}.${classes.centered}`;
+      const selector = `.${classes.list}.${classes.centered}`;
       expect(container.querySelector(selector).nodeName).to.equal('DIV');
     });
   });
@@ -177,6 +311,31 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(screen.getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([
         0, -1,
       ]);
+    });
+
+    it('keeps the focused tab in tab order when the selected value changes externally', async () => {
+      const { setProps, user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      await user.keyboard('{ArrowRight}{ArrowRight}');
+
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      setProps({ value: 1 });
+
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
     });
   });
 
@@ -356,6 +515,70 @@ describe.skipIf(isSafari)('<Tabs />', () => {
           width: '50px',
         });
       });
+
+      it.skipIf(isJSDOM)(
+        'should align the indicator with the selected tab when an ancestor is scaled',
+        () => {
+          const { container } = render(
+            <div style={{ transform: 'scale(2)' }}>
+              <Tabs value={1} style={{ width: 400 }}>
+                <Tab style={{ width: 120, minWidth: 'auto' }} />
+                <Tab style={{ width: 120, minWidth: 'auto' }} />
+                <Tab style={{ width: 120, minWidth: 'auto' }} />
+              </Tabs>
+            </div>,
+          );
+          const tab = screen.getByRole('tablist').children[1];
+          const indicator = container.querySelector(`.${classes.indicator}`);
+
+          expect(parseFloat(indicator.style.left)).to.be.closeTo(tab.offsetLeft, 0.5);
+          expect(parseFloat(indicator.style.width)).to.be.closeTo(tab.offsetWidth, 0.5);
+        },
+      );
+
+      it.skipIf(isJSDOM)(
+        'should align the indicator with the selected vertical tab when an ancestor is scaled',
+        () => {
+          const { container } = render(
+            <div style={{ transform: 'scaleY(0.5)', transformOrigin: 'top left' }}>
+              <Tabs value={1} orientation="vertical">
+                <Tab style={{ height: 60 }} />
+                <Tab style={{ height: 60 }} />
+                <Tab style={{ height: 60 }} />
+              </Tabs>
+            </div>,
+          );
+          const tab = screen.getByRole('tablist').children[1];
+          const indicator = container.querySelector(`.${classes.indicator}`);
+
+          expect(parseFloat(indicator.style.top)).to.be.closeTo(tab.offsetTop, 0.5);
+          expect(parseFloat(indicator.style.height)).to.be.closeTo(tab.offsetHeight, 0.5);
+        },
+      );
+
+      it.skipIf(isJSDOM)(
+        'should keep the sub-pixel indicator measurement when no transform is applied',
+        () => {
+          const { container } = render(
+            <Tabs value={1} variant="fullWidth" style={{ width: 300.5 }}>
+              <Tab />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const tablistContainer = screen.getByRole('tablist').parentElement;
+          const tab = screen.getByRole('tablist').children[1];
+          const indicator = container.querySelector(`.${classes.indicator}`);
+          const tablistContainerRect = tablistContainer.getBoundingClientRect();
+          const tabRect = tab.getBoundingClientRect();
+
+          expect(parseFloat(indicator.style.left)).to.be.closeTo(
+            tabRect.left - tablistContainerRect.left,
+            0.001,
+          );
+          expect(parseFloat(indicator.style.width)).to.be.closeTo(tabRect.width, 0.001);
+        },
+      );
     });
 
     describe('warnings', () => {
@@ -367,16 +590,8 @@ describe.skipIf(isSafari)('<Tabs />', () => {
               <Tab value={3} />
             </Tabs>,
           );
-        }).toErrorDev([
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-        ]);
+          // The warning is logged only once (see `warnedTabValueInvalid`).
+        }).toErrorDev(['You can provide one of the following values: 1, 3']);
       });
 
       describe.skipIf(!isJsdom())('hidden tab / tabs', () => {
@@ -589,13 +804,13 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
-    it('should append className from TabScrollButtonProps', () => {
+    it('should append className from slotProps.scrollButtons', () => {
       const { container } = render(
         <Tabs
           value={0}
           variant="scrollable"
           scrollButtons
-          TabScrollButtonProps={{ className: 'foo' }}
+          slotProps={{ scrollButtons: { className: 'foo' } }}
         >
           <Tab />
           <Tab />
@@ -691,7 +906,10 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('scroll button behavior', () => {
+  // Firefox reports fractional `scrollLeft`/`scrollTop` in Vitest browser mode, so the
+  // exact integer assertions in these scroll tests fail.
+  // See https://github.com/vitest-dev/vitest/issues/9223
+  describe.skipIf(isFirefox)('scroll button behavior', () => {
     clock.withFakeTimers();
 
     it.skipIf(isJSDOM)('should scroll visible items', async function test() {
@@ -743,6 +961,34 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
+      expect(tablistContainer.scrollLeft).equal(200);
+    });
+
+    it('should not animate scroll buttons when reduced motion is always', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 220, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tablistContainer = screen.getByRole('tablist').parentElement;
+      const tabs = screen.getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[0], 'clientWidth', { value: 220 });
+      Object.defineProperty(tabs[1], 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[2], 'clientWidth', { value: 200 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 620 });
+
+      tablistContainer.scrollLeft = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
       expect(tablistContainer.scrollLeft).equal(200);
     });
 
@@ -806,12 +1052,360 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
+
+    // Firefox reports fractional `scrollLeft` in Vitest browser mode.
+    // See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isFirefox)(
+      'should scroll the selected tab into view when the scroller resizes (scrollButtons="auto")',
+      () => {
+        const { callbacks, restore } = mockResizeObserver();
+
+        try {
+          render(
+            <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+            </Tabs>,
+          );
+
+          const tablist = screen.getByRole('tablist');
+          const tablistContainer = tablist.parentElement;
+          const selectedTab = tablist.children[2];
+
+          // Mounting the scroll buttons narrows the scroller, leaving the selected tab
+          // overhanging its right edge by 110px.
+          tablistContainer.getBoundingClientRect = () => ({ left: 40, right: 160 });
+          selectedTab.getBoundingClientRect = () => ({ left: 150, right: 270 });
+          tablistContainer.scrollLeft = 0;
+
+          const scrollerCallback = callbacks.get(tablistContainer);
+          expect(scrollerCallback).not.to.equal(undefined);
+
+          scrollerCallback([]);
+
+          expect(tablistContainer.scrollLeft).to.equal(110);
+        } finally {
+          restore();
+        }
+      },
+    );
+
+    it('should not observe the scroller when scrollButtons is not "auto"', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        render(
+          <Tabs value={2} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
+      }
+    });
+
+    it('should stop observing the scroller on unmount', () => {
+      const { callbacks, restore } = mockResizeObserver();
+
+      try {
+        const { unmount } = render(
+          <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+        expect(callbacks.has(tablistContainer)).to.equal(true);
+
+        unmount();
+
+        expect(callbacks.has(tablistContainer)).to.equal(false);
+      } finally {
+        restore();
+      }
+    });
+
+    // Firefox reports fractional `scrollLeft`/`scrollTop` in Vitest browser mode, so the exact
+    // integer assertions in the scroll-padding tests fail there.
+    // See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-left when scrolling a tab into view on the left',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingLeft = '15px';
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+        tablistContainer.scrollLeft = 100;
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 10,
+          width: 50,
+          right: 60,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollLeft).to.equal(95);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-right when scrolling a tab into view on the right',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingRight = '20px';
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+        tablistContainer.scrollLeft = 0;
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 100,
+          width: 50,
+          right: 150,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollLeft).to.equal(70);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should resolve a percentage scroll-padding against the scroller clientWidth',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingRight = '10%';
+        // Deliberately wider than the 100px bounding rect below: the expected 70 only holds if
+        // the percentage resolves against `clientWidth` (the scrollport) and not against the rect.
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+        tablistContainer.scrollLeft = 0;
+        tablistContainer.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          left: 100,
+          width: 50,
+          right: 150,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollLeft).to.equal(70);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-bottom when scrolling a vertical tab into view',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" orientation="vertical" style={{ height: 200 }}>
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingBottom = '20px';
+        Object.defineProperty(tablistContainer, 'clientHeight', { value: 200 });
+        tablistContainer.scrollTop = 0;
+        tablistContainer.getBoundingClientRect = () => ({
+          top: 0,
+          bottom: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          top: 100,
+          height: 50,
+          bottom: 150,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollTop).to.equal(70);
+      },
+    );
+
+    it.skipIf(isFirefox)(
+      'should account for scroll-padding-top when scrolling a vertical tab into view',
+      function test() {
+        const { forceUpdate } = render(
+          <Tabs value={0} variant="scrollable" orientation="vertical" style={{ height: 200 }}>
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+            <Tab style={{ height: 120 }} />
+          </Tabs>,
+        );
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const tab = tablist.children[0];
+
+        tablistContainer.style.scrollPaddingTop = '15px';
+        Object.defineProperty(tablistContainer, 'clientHeight', { value: 100 });
+        tablistContainer.scrollTop = 100;
+        tablistContainer.getBoundingClientRect = () => ({
+          top: 0,
+          bottom: 100,
+        });
+        tab.getBoundingClientRect = () => ({
+          top: 10,
+          height: 50,
+          bottom: 60,
+        });
+        forceUpdate();
+        clock.tick(1000);
+        expect(tablistContainer.scrollTop).to.equal(95);
+      },
+    );
+
+    it.skipIf(isFirefox)('should treat a scroll-padding of `auto` as no padding', function test() {
+      const { forceUpdate } = render(
+        <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+          <Tab style={{ width: 120, minWidth: 'auto' }} />
+        </Tabs>,
+      );
+      const tablist = screen.getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[0];
+
+      tablistContainer.style.scrollPaddingRight = 'auto';
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+      tablistContainer.scrollLeft = 0;
+      tablistContainer.getBoundingClientRect = () => ({
+        left: 0,
+        right: 100,
+      });
+      tab.getBoundingClientRect = () => ({
+        left: 100,
+        width: 50,
+        right: 150,
+      });
+      forceUpdate();
+      clock.tick(1000);
+      expect(tablistContainer.scrollLeft).to.equal(50);
+    });
+
+    it.skipIf(isFirefox)(
+      'should align the start edge when the tab is larger than the padded scrollport',
+      function test() {
+        const { callbacks, restore } = mockResizeObserver();
+
+        try {
+          const { forceUpdate } = render(
+            <Tabs value={0} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+            </Tabs>,
+          );
+          const tablist = screen.getByRole('tablist');
+          const tablistContainer = tablist.parentElement;
+          const tab = tablist.children[0];
+
+          // 60 + 120 + 60 doesn't fit in the 200px scrollport, so neither edge can clear its
+          // scroll-padding: aligning the end edge would push the start edge back out.
+          tablistContainer.style.scrollPaddingLeft = '60px';
+          tablistContainer.style.scrollPaddingRight = '60px';
+          Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+          tablistContainer.scrollLeft = 0;
+          tablistContainer.getBoundingClientRect = () => ({
+            left: 0,
+            right: 200,
+          });
+          tab.getBoundingClientRect = () => ({
+            left: 120,
+            width: 120,
+            right: 240,
+          });
+          forceUpdate();
+          clock.tick(1000);
+          expect(tablistContainer.scrollLeft).to.equal(60);
+
+          // The tab now sits at [60, 180] and still overhangs the padded end edge. A second pass
+          // has to leave it alone instead of scrolling it back.
+          tab.getBoundingClientRect = () => ({
+            left: 60,
+            width: 120,
+            right: 180,
+          });
+          callbacks.get(tablistContainer)([]);
+          clock.tick(1000);
+          expect(tablistContainer.scrollLeft).to.equal(60);
+        } finally {
+          restore();
+        }
+      },
+    );
+
+    it.skipIf(isJSDOM)(
+      'should scroll the selected tab into view when an ancestor is scaled',
+      function test() {
+        render(
+          <div style={{ transform: 'scale(0.5)', transformOrigin: 'top left' }}>
+            <Tabs value={3} variant="scrollable" scrollButtons={false} style={{ width: 200 }}>
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+              <Tab style={{ width: 100, minWidth: 'auto' }} />
+            </Tabs>
+          </div>,
+        );
+        const tablistContainer = screen.getByRole('tablist').parentElement;
+
+        expect(tablistContainer.scrollLeft).to.be.closeTo(200, 0.5);
+      },
+    );
   });
 
-  describe('prop: TabIndicatorProps', () => {
+  describe('slotProps: indicator', () => {
     it('should merge the style', () => {
       const { container } = render(
-        <Tabs value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
+        <Tabs value={0} slotProps={{ indicator: { style: { backgroundColor: 'green' } } }}>
           <Tab />
         </Tabs>,
       );
@@ -882,6 +1476,19 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       );
       const indicator = container.firstChild.querySelectorAll(`button > .${classes.indicator}`);
       expect(indicator).to.have.lengthOf(1);
+    });
+
+    it('renders the selected tab as tabbable server-side', () => {
+      const { container } = renderToString(
+        <Tabs value={1}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      const tabElements = container.querySelectorAll('[role="tab"]');
+
+      expect(tabElements[0]).to.have.attribute('tabindex', '-1');
+      expect(tabElements[1]).to.have.attribute('tabindex', '0');
     });
   });
 

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Icon, { iconClasses as classes } from '@mui/material/Icon';
 import describeConformance from '../../test/describeConformance';
@@ -13,7 +13,7 @@ describe('<Icon />', () => {
     muiName: 'MuiIcon',
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
-    skip: ['themeVariants', 'componentsProp'],
+    skip: ['themeVariants'],
   }));
 
   it('renders children by default', () => {

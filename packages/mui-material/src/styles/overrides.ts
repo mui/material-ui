@@ -1,4 +1,4 @@
-import { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
+import type { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
 import { PopperClassKey } from '../Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
@@ -44,7 +44,6 @@ import { FormControlLabelClassKey } from '../FormControlLabel';
 import { FormGroupClassKey } from '../FormGroup';
 import { FormHelperTextClassKey } from '../FormHelperText';
 import { FormLabelClassKey } from '../FormLabel';
-import { GridLegacyClassKey } from '../GridLegacy';
 import { GridClassKey } from '../Grid';
 import { IconButtonClassKey } from '../IconButton';
 import { IconClassKey } from '../Icon';
@@ -110,12 +109,12 @@ import { TablePaginationActionsClassKey } from '../TablePaginationActions';
 import { TableRowClassKey } from '../TableRow';
 import { TableSortLabelClassKey } from '../TableSortLabel';
 import { TabsClassKey } from '../Tabs';
+import { TabScrollButtonClassKey } from '../TabScrollButton';
 import { TextFieldClassKey } from '../TextField';
 import { ToggleButtonClassKey } from '../ToggleButton';
 import { ToggleButtonGroupClassKey } from '../ToggleButtonGroup';
 import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
-import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
 export type OverridesStyleRules<
@@ -143,7 +142,7 @@ export type ComponentsOverrides<Theme = unknown> = {
     OverridesStyleRules<ComponentNameToClassKey[Name], Name, Theme>
   >;
 } & {
-  MuiCssBaseline?: CSSObject | string | ((theme: Theme) => CSSInterpolation);
+  MuiCssBaseline?: CSSObject | string | ((theme: Theme) => CSSInterpolation) | undefined;
 };
 
 export interface ComponentNameToClassKey {
@@ -190,7 +189,6 @@ export interface ComponentNameToClassKey {
   MuiFormGroup: FormGroupClassKey;
   MuiFormHelperText: FormHelperTextClassKey;
   MuiFormLabel: FormLabelClassKey;
-  MuiGridLegacy: GridLegacyClassKey;
   MuiGrid: GridClassKey;
   MuiIcon: IconClassKey;
   MuiIconButton: IconButtonClassKey;
@@ -257,11 +255,11 @@ export interface ComponentNameToClassKey {
   MuiTableRow: TableRowClassKey;
   MuiTableSortLabel: TableSortLabelClassKey;
   MuiTabs: TabsClassKey;
+  MuiTabScrollButton: TabScrollButtonClassKey;
   MuiTextField: TextFieldClassKey;
   MuiToggleButton: ToggleButtonClassKey;
   MuiToggleButtonGroup: ToggleButtonGroupClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
-  MuiTouchRipple: TouchRippleClassKey;
   MuiTypography: TypographyClassKey;
 }

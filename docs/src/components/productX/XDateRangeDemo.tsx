@@ -14,14 +14,12 @@ import {
 } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import dayjs, { Dayjs } from 'dayjs';
-import Frame from 'docs/src/components/action/Frame';
+import { Frame } from '@mui/internal-core-docs/AppLayout';
 
-const startDate = dayjs();
-startDate.date(10);
-const endDate = dayjs();
-endDate.date(endDate.date() + 28);
+const startDate = dayjs().date(10);
+const endDate = dayjs().add(28, 'day');
 
 function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
   const { items, changeImportance = 'accept' } = props;
@@ -130,9 +128,13 @@ export default function XDateRangeDemo() {
               '& .MuiTypography-subtitle1': {
                 fontSize: '0.875rem',
               },
-              '& .MuiTypography-caption': {
-                width: 28,
+              '& .MuiDayCalendar-weekDayLabel': {
+                width: 32,
                 height: 32,
+                margin: 0,
+              },
+              '& .MuiDayCalendar-root': {
+                minWidth: 258,
               },
               '& .MuiPickersSlideTransition-root': {
                 minWidth: 258,
@@ -142,23 +144,19 @@ export default function XDateRangeDemo() {
                 margin: '4px 0',
               },
               '& .MuiDateRangePickerDay-root': {
-                lineHeight: 0,
-                margin: 0,
+                '--PickerDay-horizontalMargin': '0px',
+                '--PickerDay-size': '32px',
+                fontWeight: 'regular',
               },
               '& .MuiPickersArrowSwitcher-root': {
                 padding: 0,
                 paddingTop: 0.5,
               },
-              '& .MuiPickersDay-root': {
-                width: 28,
-                height: 28,
-                fontWeight: 'regular',
-              },
-              '& .MuiDateRangePickerDay-day.Mui-selected': {
+              '& .MuiDateRangePickerDay-selected': {
                 fontWeight: 'semiBold',
               },
-              '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
-                borderColor: 'primary.300',
+              '& .MuiDateRangePickerDay-today': {
+                outlineColor: 'primary.300',
               },
               '& .MuiPickersLayout-actionBar': {
                 borderTop: '1px solid',
@@ -170,7 +168,7 @@ export default function XDateRangeDemo() {
                 '& > div': {
                   bgcolor: 'primaryDark.900',
                 },
-                '& .MuiDateRangePickerDay-day.Mui-selected': {
+                '& .MuiDateRangePickerDay-selected': {
                   color: '#FFF',
                 },
               }),

@@ -1,12 +1,14 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import {
   act,
   createRenderer,
+  isJsdom,
   screen,
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import describeConformance from '../../test/describeConformance';
 
@@ -21,7 +23,6 @@ describe('<Breadcrumbs />', () => {
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
     testVariantProps: { separator: '=' },
-    skip: ['componentsProp'],
   }));
 
   it('should render inaccessible separators between each listitem', () => {
@@ -133,6 +134,29 @@ describe('<Breadcrumbs />', () => {
       );
 
       screen.getByTestId('collapsedIcon-test-label');
+    });
+  });
+
+  it.skipIf(isJsdom())('should apply the dark color scheme styles to the collapsed button', () => {
+    const theme = createTheme({
+      cssVariables: { colorSchemeSelector: 'class' },
+      colorSchemes: { light: true, dark: true },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <div className="dark">
+          <Breadcrumbs maxItems={2}>
+            <span>first</span>
+            <span>second</span>
+            <span>third</span>
+          </Breadcrumbs>
+        </div>
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Show path' })).toHaveComputedStyle({
+      backgroundColor: 'rgb(97, 97, 97)',
     });
   });
 });

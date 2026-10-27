@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
-import IconImage from 'docs/src/components/icon/IconImage';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import {
   DesignKitImagesSet1,
@@ -50,7 +50,7 @@ export default function TemplateHero() {
           <GetStartedButtons
             primaryLabel="Buy now"
             primaryUrl="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
-            secondaryLabel="Figma Preview"
+            secondaryLabel="Figma preview"
             secondaryUrl="https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x"
           />
         </Box>

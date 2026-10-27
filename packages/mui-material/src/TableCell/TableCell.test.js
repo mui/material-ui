@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
@@ -36,7 +36,6 @@ describe('<TableCell />', () => {
     refInstanceof: window.HTMLTableCellElement,
     // invalid nesting otherwise
     testComponentPropWith: 'td',
-    skip: ['componentsProp'],
   }));
 
   describe('prop: padding', () => {

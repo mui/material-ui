@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, within, screen } from '@mui/internal-test-utils';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -25,18 +25,18 @@ function NestedMenu(props) {
       <Menu
         anchorEl={anchorEl}
         hideBackdrop
-        MenuListProps={{ id: 'second-menu' }}
+        slotProps={{ list: { id: 'second-menu' } }}
+        slots={{ transition: NoTransition }}
         open={Boolean(secondMenuOpen && canBeOpen)}
-        TransitionComponent={NoTransition}
       >
         <MenuItem>Second Menu</MenuItem>
       </Menu>
       <Menu
         anchorEl={anchorEl}
         hideBackdrop
-        MenuListProps={{ id: 'first-menu' }}
+        slotProps={{ list: { id: 'first-menu' } }}
+        slots={{ transition: NoTransition }}
         open={Boolean(firstMenuOpen && canBeOpen)}
-        TransitionComponent={NoTransition}
       >
         <MenuItem>Profile 1</MenuItem>
         <MenuItem>My account</MenuItem>

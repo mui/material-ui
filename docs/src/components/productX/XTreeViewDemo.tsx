@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import { animated, useSpring } from '@react-spring/web';
 import { styled } from '@mui/material/styles';
 import { TransitionProps } from '@mui/material/transitions';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import Frame from 'docs/src/components/action/Frame';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
+import { Frame } from '@mui/internal-core-docs/AppLayout';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
@@ -25,7 +25,6 @@ import {
 } from '@mui/x-tree-view/TreeItem';
 import { TreeItemIcon } from '@mui/x-tree-view/TreeItemIcon';
 import { TreeItemProvider } from '@mui/x-tree-view/TreeItemProvider';
-import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 
 type FileType = 'image' | 'pdf' | 'video' | 'folder';
 
@@ -33,9 +32,10 @@ type ExtendedTreeItemProps = {
   fileType?: FileType;
   id: string;
   label: string;
+  children?: ExtendedTreeItemProps[];
 };
 
-const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
+const ITEMS: ExtendedTreeItemProps[] = [
   {
     id: '1',
     label: 'Drive',
@@ -228,6 +228,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     <TreeItemProvider id={id} itemId={itemId}>
       <StyledTreeItemRoot {...getRootProps(other)}>
         <CustomTreeItemContent
+          status={status}
           {...getContentProps({
             className: clsx('content', {
               'Mui-expanded': status.expanded,

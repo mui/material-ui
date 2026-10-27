@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect, beforeEach } from 'vitest';
 import PropTypes from 'prop-types';
 import {
   createRenderer,
@@ -22,7 +22,6 @@ describe('<Paper />', () => {
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'rounded' },
     testStateOverrides: { prop: 'elevation', value: 10, styleKey: 'elevation10' },
-    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {
@@ -143,4 +142,18 @@ describe('<Paper />', () => {
       });
     },
   );
+
+  it.skipIf(isJsdom())('should use the shape.borderRadius CSS variable', () => {
+    const theme = createTheme({ cssVariables: true });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <div style={{ '--mui-shape-borderRadius': '10px' }}>
+          <Paper data-testid="paper" />
+        </div>
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByTestId('paper')).toHaveComputedStyle({ borderTopLeftRadius: '10px' });
+  });
 });

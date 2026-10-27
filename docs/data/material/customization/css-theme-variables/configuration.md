@@ -126,7 +126,7 @@ console.log(systemMode); // undefined
 
 ### Preventing SSR flickering
 
-For SSR (server-side rendering) applications, Material UI can not detected user-selected mode on the server, causing the screen to flicker from light to dark during the hydration phase on the client.
+For SSR (server-side rendering) applications, Material UI cannot detect the user-selected mode on the server, causing the screen to flicker from light to dark during the hydration phase on the client.
 
 To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
 
@@ -308,7 +308,7 @@ To disable CSS transitions when switching between modes, apply the `disableTrans
 <ThemeProvider disableTransitionOnChange />
 ```
 
-{{"demo": "DisableTransitionOnChange.js"}}
+{{"component": "file://./demos/disable-transition-on-change/index.ts"}}
 
 ## Force theme recalculation between modes
 

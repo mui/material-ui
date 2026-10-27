@@ -1,5 +1,5 @@
+import { describe, beforeAll, afterAll, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Popper from '../Popper/BasePopper';
 import { styled } from '../styles';
@@ -8,6 +8,18 @@ import useSlot from './useSlot';
 
 describe('useSlot', () => {
   const { render } = createRenderer();
+
+  let defaultAnchorElm: HTMLDivElement | null = null;
+  beforeAll(() => {
+    defaultAnchorElm = document.createElement('div');
+    document.body.appendChild(defaultAnchorElm);
+  });
+  afterAll(() => {
+    if (defaultAnchorElm !== null) {
+      document.body.removeChild(defaultAnchorElm);
+      defaultAnchorElm = null;
+    }
+  });
 
   describe('single slot', () => {
     const ItemRoot = styled('button')({});
@@ -139,7 +151,7 @@ describe('useSlot', () => {
         ownerState: {},
         additionalProps: {
           open: true, // !!force the popper to always visible for testing
-          anchorEl: () => document.createElement('div'),
+          anchorEl: () => defaultAnchorElm!,
         },
         internalForwardedProps: {
           slots: { root: ItemRoot },
@@ -213,7 +225,7 @@ describe('useSlot', () => {
         additionalProps: {
           open: true, // !!force the popper to always visible for testing
           role: 'menu',
-          anchorEl: () => document.createElement('div'),
+          anchorEl: () => defaultAnchorElm!,
         },
         internalForwardedProps: {
           slots: { root: ItemListbox },

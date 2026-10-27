@@ -1172,7 +1172,7 @@ The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
 ### Upgrade from v1 to v2
 
-Upgrade [Popper.js](https://popper.js.org/) from v1 to v2.
+Upgrade [Popper.js](https://github.com/floating-ui/popper-docs) from v1 to v2.
 
 The CSS prefixes have changed:
 
@@ -1197,7 +1197,7 @@ Method names have changed:
 
 The Modifiers API has been changed too significantly to fully cover here.
 
-Read the [Popper.js migration guide](https://popper.js.org/docs/v2/migration-guide/) for complete details.
+Read the [Popper.js migration guide](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/migration-guide.md) for complete details.
 
 ## Portal
 
@@ -2036,7 +2036,7 @@ This change removes the confusion with the built-in `Omit` helper introduced in 
 
 The built-in `Omit`, while similar, is non-distributive.
 This leads to differences when applied to union types.
-[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
+[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-structure/57103940#57103940).
 
 ```diff
 -import { Omit } from '@mui/types';

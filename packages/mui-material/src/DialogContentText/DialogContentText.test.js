@@ -1,3 +1,4 @@
+import { describe, it } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import DialogContentText, {
@@ -14,7 +15,7 @@ describe('<DialogContentText />', () => {
     render,
     muiName: 'MuiDialogContentText',
     refInstanceof: window.HTMLParagraphElement,
-    skip: ['componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
   }));
 
   describe('prop: children', () => {

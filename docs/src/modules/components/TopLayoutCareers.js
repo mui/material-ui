@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import Head from 'docs/src/modules/components/Head';
-import AppContainer from 'docs/src/modules/components/AppContainer';
+
+import { AppContainer, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import { Link } from '@mui/docs/Link';
-import { useTranslate } from '@mui/docs/i18n';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 const StyledDiv = styled('div')(({ theme }) => ({
   flex: '1 0 100%',
@@ -32,7 +32,7 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
 }));
 
 export default function TopLayoutCareers(props) {
-  const { docs } = props;
+  const { docs, children } = props;
   const { description, rendered, title } = docs.en;
   const t = useTranslate();
 
@@ -57,9 +57,10 @@ export default function TopLayoutCareers(props) {
             <KeyboardArrowLeftIcon fontSize="small" />
             {t('backToOpenRoles')}
           </Link>
-          {rendered.map((chunk, index) => {
-            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
-          })}
+          {children ??
+            rendered.map((chunk, index) => {
+              return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+            })}
         </StyledAppContainer>
         <Divider />
         <AppFooter />
@@ -69,5 +70,6 @@ export default function TopLayoutCareers(props) {
 }
 
 TopLayoutCareers.propTypes = {
+  children: PropTypes.node,
   docs: PropTypes.object.isRequired,
 };

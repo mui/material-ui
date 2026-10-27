@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
@@ -17,7 +17,6 @@ describe('<AppBar />', () => {
     refInstanceof: window.HTMLElement,
     testVariantProps: { position: 'relative' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
-    skip: ['componentsProp'],
   }));
 
   it('should render with the root class and primary', () => {

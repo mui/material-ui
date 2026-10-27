@@ -19,7 +19,7 @@ export interface UseControlledProps<T = unknown> {
   /**
    * The name of the state variable displayed in warnings.
    */
-  state?: string;
+  state?: string | undefined;
 }
 
 export default function useControlled<T = unknown>(

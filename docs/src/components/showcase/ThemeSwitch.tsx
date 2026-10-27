@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Switch, { switchClasses } from '@mui/material/Switch';
 
 export default function ThemeSwitch() {
-  const label = { inputProps: { 'aria-label': 'Themed Switch' } };
+  const label = { slotProps: { input: { 'aria-label': 'Themed Switch' } } };
   return (
     <Box
       sx={{

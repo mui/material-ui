@@ -9,7 +9,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import { Link as InternalLink } from '@mui/docs/Link';
+import { Link as InternalLink } from '@mui/internal-core-docs/Link';
 import Section from 'docs/src/layouts/Section';
 
 const faqData = [
@@ -184,7 +184,7 @@ export default function DesignKitFAQ() {
             </Typography>
             <Button
               component="a"
-              // @ts-expect-error
+              // @ts-expect-error: The branding theme provides link without global Button variant augmentation.
               variant="link"
               size="small"
               href="mailto:sales@mui.com"

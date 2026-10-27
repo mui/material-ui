@@ -232,7 +232,7 @@ Between refined editing, ordering, and selection behaviors, trees hold up better
 
 ## What's next
 
-We're targeting a v9 stable release by the end of March. After that, we'll invest heavily in customization and rewrite our components on top of [Base UI](https://www.base-ui.com/) to fully embrace composition, a cleaner slots API, and a more modern developer experience The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
+We're targeting a v9 stable release by the end of March. After that, we'll invest heavily in customization and rewrite our components on top of [Base UI](https://base-ui.com/) to fully embrace composition, a cleaner slots API, and a more modern developer experience The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
 
 If you rely on deep customization today, now is the perfect time to tell us about your pain points—[your input](https://tally.so/forms/w8X8Po) will shape the plan.
 

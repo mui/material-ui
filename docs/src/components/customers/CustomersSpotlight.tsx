@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BlogPost } from 'docs/lib/sourcing';
 import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -51,13 +51,12 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             sx={(t) => ({
               py: variant === 'primary' ? 3 : 2,
               px: variant === 'primary' ? 4 : 2,
-              minHeight: variant === 'primary' ? '230px' : '150px',
+              minHeight: variant === 'primary' ? '220px' : '150px',
               display: 'flex',
               alignItems: 'start',
               flexDirection: 'column',
               position: 'relative',
               backgroundImage: (t.vars || t).palette.gradients.linearSubtle,
-              boxShadow: '0 4px 12px rgba(170, 180, 190, 0.2)',
               textDecoration: 'none',
               color: 'inherit',
               cursor: 'pointer',
@@ -71,7 +70,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             {post.image && (
               <Box
                 component="img"
-                alt="Company Logo"
+                alt="Company logo"
                 src={post.image}
                 sx={(theme) => ({
                   position: variant === 'primary' ? 'absolute' : 'relative',
@@ -98,7 +97,6 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  textAlign: 'left',
                   mt: 10,
                   gap: 2,
                 }}
@@ -135,7 +133,6 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             )}
             {variant === 'secondary' && (
               <Button
-                endIcon={<ArrowForwardIcon />}
                 size="small"
                 sx={{
                   ml: -1,

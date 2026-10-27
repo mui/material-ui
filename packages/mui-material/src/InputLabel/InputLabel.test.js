@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import PropTypes from 'prop-types';
-import { expect } from 'chai';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -19,7 +19,6 @@ describe('<InputLabel />', () => {
     refInstanceof: window.HTMLLabelElement,
     muiName: 'MuiInputLabel',
     testVariantProps: { size: 'small' },
-    skip: ['componentsProp'],
   }));
 
   it('should render a label with text', () => {

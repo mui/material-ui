@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest';
 import { isJsdom } from '@mui/internal-test-utils/env';
 
 const { execFileSync } = require('child_process');
 const path = require('path');
-const { expect } = require('chai');
 
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;
@@ -32,8 +32,6 @@ describe('@mui/envinfo', () => {
     expect(envinfo).to.have.nested.property('Browsers');
     // Non-exhaustive list of `@mui/*` packages
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/joy');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/base');
     // Other libraries
     expect(envinfo).to.have.nested.property('npmPackages.react');
     expect(envinfo).to.have.nested.property('npmPackages.react-dom');
