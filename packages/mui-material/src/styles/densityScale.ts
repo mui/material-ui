@@ -1,4 +1,4 @@
-import { Theme } from './createTheme';
+import { Theme, ThemeOptions } from './createTheme';
 import { CssVarsTheme } from './createThemeWithVars';
 
 /** Named steps of the spacing scale, surfaced as `--<prefix>-spacing-*` CSS
@@ -79,7 +79,8 @@ export type EnhanceableTheme = Theme &
       CssVarsTheme,
       'rootSelector' | 'cssVarPrefix' | 'generateThemeVars' | 'generateStyleSheets'
     >
-  >;
+  > &
+  Pick<ThemeOptions, 'modularCssLayers'>;
 
 export type DensityEnhancedTheme<T extends EnhanceableTheme> = T & {
   components: NonNullable<EnhanceableTheme['components']>;

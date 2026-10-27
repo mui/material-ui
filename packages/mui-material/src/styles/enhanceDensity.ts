@@ -839,16 +839,20 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         '--_fieldPadTop': inputSmallPadBlock,
         '--_fieldPadBottom': inputSmallPadBlock,
       },
-      [`&:where(.${outlinedInputClasses.root})`]: {
+      ...(!enhanced.modularCssLayers && {
+        [`&:where(.${outlinedInputClasses.root})`]: {
+          paddingTop: rowPad('var(--_fieldPadTop)'),
+          paddingBottom: rowPad('var(--_fieldPadBottom)'),
+        },
+        [`&${filledLabelled}`]: { paddingBottom: rowPad('var(--_fieldPadBottom)') },
+      }),
+    },
+    ...(!enhanced.modularCssLayers && {
+      [`&.${inputBaseClasses.hiddenLabel}:where(.${filledInputClasses.root})`]: {
         paddingTop: rowPad('var(--_fieldPadTop)'),
         paddingBottom: rowPad('var(--_fieldPadBottom)'),
       },
-      [`&${filledLabelled}`]: { paddingBottom: rowPad('var(--_fieldPadBottom)') },
-    },
-    [`&.${inputBaseClasses.hiddenLabel}:where(.${filledInputClasses.root})`]: {
-      paddingTop: rowPad('var(--_fieldPadTop)'),
-      paddingBottom: rowPad('var(--_fieldPadBottom)'),
-    },
+    }),
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'clearIndicator', {
     minWidth: smallBox,
