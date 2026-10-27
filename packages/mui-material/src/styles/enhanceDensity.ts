@@ -25,6 +25,7 @@ import formControlClasses from '../FormControl/formControlClasses';
 import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
+import listItemAvatarClasses from '../ListItemAvatar/listItemAvatarClasses';
 import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 import cardContentClasses from '../CardContent/cardContentClasses';
@@ -1042,13 +1043,29 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   // minWidth 0 kills master's 56px column floors — the row gap owns spacing.
   addStyleOverride(enhanced.components, 'MuiListItemIcon', 'root', { minWidth: 0 });
-  addStyleOverride(enhanced.components, 'MuiListItemAvatar', 'root', { minWidth: 0 });
+  addStyleOverride(enhanced.components, 'MuiListItemAvatar', 'root', {
+    minWidth: 0,
+    variants: [{ props: { alignItems: 'flex-start' }, style: { marginTop: spacing('xSmall') } }],
+  });
   addStyleOverride(enhanced.components, 'MuiListItemText', 'root', {
     margin: 0,
     variants: [
       {
         props: { inset: true },
         style: { paddingLeft: `calc(${iconSize} + ${spacing('xSmall')})` },
+      },
+    ],
+  });
+  addStyleOverride(enhanced.components, 'MuiDivider', 'root', {
+    variants: [
+      {
+        props: { variant: 'inset' },
+        style: {
+          marginLeft: `var(--_insetStart, calc(${spacing('small')} + ${touchTarget} + ${spacing('xSmall')}))`,
+          [`*:not(:has(.${listItemAvatarClasses.root})) + &`]: {
+            '--_insetStart': `calc(${spacing('small')} + ${iconSize} + ${spacing('xSmall')})`,
+          },
+        },
       },
     ],
   });

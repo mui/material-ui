@@ -31,6 +31,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 import TableFooter from '@mui/material/TableFooter';
 import InputLabel from '@mui/material/InputLabel';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -2052,6 +2053,120 @@ describe.skipIf(isJsdom())('group headers line up with their items', () => {
       const indent =
         name === 'grouped Autocomplete' ? DEFAULT_STEP_PX.small - DEFAULT_STEP_PX.xSmall : 0;
       expect(textLeft(item) - textLeft(header)).to.equal(indent);
+    });
+  });
+});
+
+describe.skipIf(isJsdom())('inset divider follows the row above', () => {
+  const { render } = createRenderer();
+  const left = (el: Element) => Math.round(el.getBoundingClientRect().left);
+  const textLeft = (row: Element) => {
+    const range = document.createRange();
+    range.selectNodeContents(row.querySelector('.MuiListItemText-primary')!);
+    return Math.round(range.getBoundingClientRect().left);
+  };
+  const rows: [string, React.ReactElement][] = [
+    [
+      'ListItem with an avatar',
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>A</Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Text" />
+      </ListItem>,
+    ],
+    [
+      'ListItem with an icon',
+      <ListItem>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary="Text" />
+      </ListItem>,
+    ],
+    [
+      'ListItemButton with an icon',
+      <ListItemButton>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary="Text" />
+      </ListItemButton>,
+    ],
+    [
+      'ListItem around a ListItemButton with an avatar',
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemAvatar>
+            <Avatar>A</Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Text" />
+        </ListItemButton>
+      </ListItem>,
+    ],
+  ];
+  DENSITIES.forEach((density) => {
+    rows.forEach(([name, row]) => {
+      test(`${density.id} ${name}`, () => {
+        render(
+          <ThemeProvider theme={THEMES.get(density.id)!}>
+            <List>
+              {row}
+              <Divider variant="inset" component="li" />
+            </List>
+          </ThemeProvider>,
+        );
+        const divider = document.querySelector('.MuiDivider-inset')!;
+        expect(left(divider)).to.equal(textLeft(divider.previousElementSibling!));
+      });
+    });
+  });
+
+  test('a user inset override wins', () => {
+    render(
+      <ThemeProvider
+        theme={enhanceDensity(
+          createTheme({
+            components: { MuiDivider: { styleOverrides: { inset: { marginLeft: 20 } } } },
+          }),
+        )}
+      >
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Text" />
+          </ListItem>
+          <Divider variant="inset" component="li" />
+        </List>
+      </ThemeProvider>,
+    );
+    expect(getComputedStyle(document.querySelector('.MuiDivider-inset')!).marginLeft).to.equal(
+      '20px',
+    );
+  });
+});
+
+describe.skipIf(isJsdom())('top-aligned list avatar', () => {
+  const { render } = createRenderer();
+  DENSITIES.forEach((density) => {
+    test(`${density.id}: the avatar sits xSmall below the row top`, () => {
+      render(
+        <ThemeProvider theme={THEMES.get(density.id)!}>
+          <List>
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                <Avatar>A</Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Text" secondary="Two lines of secondary text" />
+            </ListItem>
+          </List>
+        </ThemeProvider>,
+      );
+      expect(
+        getComputedStyle(document.querySelector('.MuiListItemAvatar-root')!).marginTop,
+      ).to.equal(`${density.step.xSmall}px`);
     });
   });
 });
