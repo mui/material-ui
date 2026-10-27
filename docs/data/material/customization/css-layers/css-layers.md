@@ -52,11 +52,11 @@ export default function RootLayout() {
 Start by configuring Material UI with Next.js in the [Pages Router integration guide](/material-ui/integrations/nextjs/#pages-router).
 Then follow these steps:
 
-1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#configuration-2) in a custom `_document`:
+1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#cascade-layers-optional) in a custom `_document`:
 
 ```tsx title="pages/_document.tsx"
 import {
-  createCache,
+  createEmotionCache,
   documentGetInitialProps,
 } from '@mui/material-nextjs/v15-pagesRouter';
 
@@ -64,22 +64,28 @@ import {
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const finalProps = await documentGetInitialProps(ctx, {
-    emotionCache: createCache({ enableCssLayer: true }),
+    emotionCache: createEmotionCache({ enableCssLayer: true }),
   });
   return finalProps;
 };
 ```
 
-2. Configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4—it must be the first child of the `AppCacheProvider`:
+2. Enable it on the client too, in a custom `_app`, and configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4—it must be the first child of the `AppCacheProvider`:
 
 ```tsx title="pages/_app.tsx"
-import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
+import {
+  AppCacheProvider,
+  createEmotionCache,
+} from '@mui/material-nextjs/v15-pagesRouter';
 import GlobalStyles from '@mui/material/GlobalStyles';
+
+// Used on the client. On the server, `props` carries the cache created in `_document`.
+const clientCache = createEmotionCache({ enableCssLayer: true });
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
-    <AppCacheProvider {...props}>
+    <AppCacheProvider emotionCache={clientCache} {...props}>
       <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
       <Component {...pageProps} />
     </AppCacheProvider>
