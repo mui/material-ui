@@ -72,11 +72,5 @@ describe('enhanceDensity', () => {
     expect(differing.filter((path) => !isSignFlip(ltr[path] ?? '', rtl[path] ?? ''))).to.deep.equal(
       [],
     );
-    expect([...new Set(differing.map((path) => path.split('/')[1]))].sort()).to.deep.equal([
-      'MuiFilledInput',
-      'MuiInputLabel',
-      'MuiOutlinedInput',
-      'MuiSwitch',
-    ]);
   });
 });

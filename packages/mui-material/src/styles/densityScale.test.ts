@@ -73,13 +73,15 @@ describe('densityScale', () => {
         theme.spacing('-small'),
         theme.spacing('medium'),
       ]).to.deep.equal(['6px', '-6px', '16px']);
-      expect([theme.touchTarget, theme.iconSize]).to.deep.equal(['24px', '16px']);
+      expect([theme.touchTarget, theme.iconSize]).to.deep.equal([
+        '24px',
+        `${DEFAULT_SIZING_PX.iconSize}px`,
+      ]);
       expect(
         applyDensity(createTheme({ spacing: [0, 4, 8, 16] }), { spacing: { small: 10 } }).spacing(
           'small',
         ),
       ).to.equal('10px');
-      expect('unstable_densityScale' in createTheme()).to.equal(false);
     });
 
     test('every spacing option form keeps the steps in px and its own meaning for numbers', () => {
@@ -117,6 +119,7 @@ describe('densityScale', () => {
       const theme = applyDensity(input);
 
       expect(input.spacing('small')).to.equal('small');
+      expect('unstable_densityScale' in input).to.equal(false);
       expect(theme.components).to.not.equal(input.components);
       expect(theme.components.MuiButton).to.deep.equal({ defaultProps: { disableRipple: true } });
     });
@@ -243,7 +246,7 @@ describe('densityScale', () => {
       });
     });
 
-    test('leave raw CSS and the sizing names untouched, and plain themes unaffected', () => {
+    test('leave raw CSS and the sizing names untouched', () => {
       const theme = applyDensity(createTheme());
 
       expect(sx(theme, { m: 'auto', p: '2rem' })).to.deep.equal({
@@ -253,6 +256,9 @@ describe('densityScale', () => {
       SIZING_KEYS.forEach((key) => {
         expect(sx(theme, { m: key })).to.deep.equal({ margin: key });
       });
+    });
+
+    test('a theme without applyDensity leaves step names raw', () => {
       expect(sx(createTheme(), { p: 'small' })).to.deep.equal({ padding: 'small' });
     });
   });

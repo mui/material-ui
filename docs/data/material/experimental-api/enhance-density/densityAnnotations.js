@@ -15,6 +15,10 @@ const {
   spacing: defaultSteps,
 } = enhanceDensity(createTheme()).unstable_densityScale;
 
+export const DENSITY_THEME = enhanceDensity(
+  createTheme({ colorSchemes: { light: true, dark: true } }),
+);
+
 export const DENSITY_SCALE = defaultSteps;
 
 export const DENSITY_TARGETS = {
@@ -1026,8 +1030,9 @@ export function resolveClaims(stage, demo, claims) {
       const box = rel(element.getBoundingClientRect());
       const styles = window.getComputedStyle(element);
       const lineHeight = parseFloat(
-        window.getComputedStyle(
-          claim.aspect === 'icon' ? (element.parentElement ?? element) : element,
+        (claim.aspect === 'icon' && element.parentElement
+          ? window.getComputedStyle(element.parentElement)
+          : styles
         ).lineHeight,
       );
       const num = (value) => parseFloat(value) || 0;

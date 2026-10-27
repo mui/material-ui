@@ -3,15 +3,12 @@ import { describe, test, expect } from 'vitest';
 import { createRenderer, ignoreActWarnings, isJsdom } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import {
-  createTheme,
-  ThemeProvider,
-  unstable_enhanceDensity as enhanceDensity,
-} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import {
   DENSITY_SCALE,
   DENSITY_STAGE_SX,
   DENSITY_TARGETS,
+  DENSITY_THEME,
   resolveClaims,
   type AnnotateItem,
   type Claim,
@@ -25,18 +22,23 @@ import { annotationsFor } from 'docs/data/material/experimental-api/enhance-dens
 type State = Record<string, ControlValue>;
 
 const SCALE: Record<string, number> = { ...DENSITY_SCALE, ...DENSITY_TARGETS };
-const THEME = enhanceDensity(createTheme());
 const TOLERANCE = 0.15;
 
 /** Evaluates `+ - * × /`, parentheses, px numbers, `<n>lh` and scale names. */
 function evaluateToken(token: string, lineHeight: number): number {
   const parts = token.match(/\d*\.?\d+(?:px|lh)?|[a-zA-Z]+|[-+*×/()]/g) ?? [];
+  if (parts.join('') !== token.replace(/\s/g, '')) {
+    throw new Error(`cannot evaluate ${token}`);
+  }
   let index = 0;
   const atom = (): number => {
     const part = parts[index];
     index += 1;
     if (part === '(') {
       const value = sum();
+      if (parts[index] !== ')') {
+        throw new Error(`unbalanced parentheses in ${token}`);
+      }
       index += 1;
       return value;
     }
@@ -52,7 +54,7 @@ function evaluateToken(token: string, lineHeight: number): number {
     if (part !== undefined && /^\d|^\./.test(part)) {
       return parseFloat(part);
     }
-    if (part !== undefined && part in SCALE) {
+    if (part !== undefined && Object.prototype.hasOwnProperty.call(SCALE, part)) {
       return SCALE[part];
     }
     throw new Error(`cannot evaluate "${part}" in ${token}`);
@@ -101,14 +103,14 @@ async function settledItems(claims: Claim[]): Promise<AnnotateItem[]> {
   const stage = document.querySelector('[data-stage]') as HTMLElement;
   const demo = document.querySelector('[data-demo]') as HTMLElement;
   const isComplete = (items: AnnotateItem[]) =>
-    claims.every((claim) => items.some((item) => item.source?.claim === claim));
+    claims.every((claim) => items.some((item) => item.source.claim === claim));
   let previous = '';
   let items: AnnotateItem[] = [];
   for (let frame = 0; frame < 120; frame += 1) {
     // eslint-disable-next-line no-await-in-loop
     await new Promise(requestAnimationFrame);
     const current = resolveClaims(stage, demo, claims).items;
-    const key = JSON.stringify(current.map((item) => item.source?.value));
+    const key = JSON.stringify(current.map((item) => item.source.value));
     if (isComplete(current) && key === previous) {
       return current;
     }
@@ -121,7 +123,7 @@ async function settledItems(claims: Claim[]): Promise<AnnotateItem[]> {
 function mismatchesOf(claims: Claim[], items: AnnotateItem[]) {
   const mismatches: string[] = [];
   claims.forEach((claim) => {
-    const drawn = items.filter((item) => item.source?.claim === claim);
+    const drawn = items.filter((item) => item.source.claim === claim);
     if (drawn.length === 0) {
       mismatches.push(`${claim.on} ${claim.aspect}: nothing drawn`);
       return;
@@ -132,14 +134,14 @@ function mismatchesOf(claims: Claim[], items: AnnotateItem[]) {
     const shown = claim.text ?? claim.token;
     drawn.forEach(({ label, source }) => {
       if (!label.startsWith(shown)) {
-        mismatches.push(`${claim.on} ${claim.aspect}: "${claim.token}" dropped, sides differ`);
+        mismatches.push(`${claim.on} ${claim.aspect}: label "${label}" omits "${shown}"`);
         return;
       }
       try {
-        const expected = evaluateToken(claim.token!, source!.lineHeight);
-        if (Math.abs(expected - source!.value) > TOLERANCE) {
+        const expected = evaluateToken(claim.token!, source.lineHeight);
+        if (Math.abs(expected - source.value) > TOLERANCE) {
           mismatches.push(
-            `${claim.on} ${claim.aspect}: "${claim.token}" measures ${source!.value}px but evaluates to ${expected}px`,
+            `${claim.on} ${claim.aspect}: "${claim.token}" measures ${source.value}px but evaluates to ${expected}px`,
           );
         }
       } catch (error) {
@@ -161,7 +163,7 @@ describe.skipIf(isJsdom())('density annotation parity', () => {
           <CssBaseline />
           <Box data-stage sx={DENSITY_STAGE_SX}>
             <Box data-demo sx={{ display: 'contents' }}>
-              <ThemeProvider theme={THEME}>
+              <ThemeProvider theme={DENSITY_THEME}>
                 {DENSITY_COMPONENTS[family].render(state)}
               </ThemeProvider>
             </Box>

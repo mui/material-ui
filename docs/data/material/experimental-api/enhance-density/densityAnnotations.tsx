@@ -14,6 +14,10 @@ const {
   spacing: defaultSteps,
 } = enhanceDensity(createTheme()).unstable_densityScale!;
 
+export const DENSITY_THEME = enhanceDensity(
+  createTheme({ colorSchemes: { light: true, dark: true } }),
+);
+
 export const DENSITY_SCALE = defaultSteps;
 
 export const DENSITY_TARGETS = {
@@ -237,7 +241,7 @@ export type AnnotateItem =
       tone: 'padding' | 'margin' | 'gap';
       label: string;
       route: Route;
-      source?: AnnotateSource;
+      source: AnnotateSource;
     }
   | {
       /** an extent of a box: touch-target, icon. Shown by bracketing its ends. */
@@ -254,7 +258,7 @@ export type AnnotateItem =
       measures: 'x' | 'y';
       label: string;
       route: Route;
-      source?: AnnotateSource;
+      source: AnnotateSource;
     };
 
 // The gutter's first label line, off the demo bounds. `out` steps outward from
@@ -1020,8 +1024,9 @@ export function resolveClaims(
       const box = rel(element.getBoundingClientRect());
       const styles = window.getComputedStyle(element);
       const lineHeight = parseFloat(
-        window.getComputedStyle(
-          claim.aspect === 'icon' ? (element.parentElement ?? element) : element,
+        (claim.aspect === 'icon' && element.parentElement
+          ? window.getComputedStyle(element.parentElement)
+          : styles
         ).lineHeight,
       );
       const num = (value: string) => parseFloat(value) || 0;

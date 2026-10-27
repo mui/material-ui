@@ -20,8 +20,6 @@ import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
 import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
-import Alert from '@mui/material/Alert';
-import Pagination from '@mui/material/Pagination';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -69,118 +67,37 @@ import AddIcon from '@mui/icons-material/Add';
 import Check from '@mui/icons-material/Check';
 import { createTheme, ThemeProvider, type Theme } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
-import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from './densityScale';
+import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX } from './densityScale';
+import {
+  DENSITIES,
+  FIELDS,
+  MEDIUM,
+  SIZES,
+  THEMES,
+  USER_COMPONENTS,
+  VARIANTS,
+  autocompleteField,
+  byName,
+  cases,
+  css,
+  drift,
+  expectNoDrift,
+  fieldProps,
+  grid,
+  inCase,
+  inTheme,
+  overrideCases,
+  query,
+  rect,
+  round2,
+  sideBySide,
+  textBox,
+  userWins,
+  withUser,
+  type Density,
+} from '../../test/densityContract';
 
 /* eslint-disable vitest/valid-title */
-
-type Density = {
-  id: string;
-  step: Record<DensityKey, number>;
-  touchTarget: number;
-  iconSize: number;
-  typography?: Record<string, Record<string, string | number>>;
-};
-
-const DENSITIES: Density[] = [
-  {
-    id: 'high',
-    step: { xxSmall: 2, xSmall: 4, small: 8, medium: 12, large: 16, xLarge: 24, xxLarge: 32 },
-    touchTarget: 24,
-    iconSize: 16,
-    typography: {
-      body1: { fontSize: '0.75rem', lineHeight: '16px' },
-      body2: { fontSize: '0.6875rem', lineHeight: '14px' },
-      caption: { fontSize: '0.6875rem', lineHeight: '14px' },
-      button: { fontSize: '0.75rem', lineHeight: '16px' },
-    },
-  },
-  {
-    id: 'medium',
-    step: DEFAULT_STEP_PX,
-    touchTarget: DEFAULT_SIZING_PX.touchTarget,
-    iconSize: DEFAULT_SIZING_PX.iconSize,
-  },
-];
-
-const THEMES: Record<string, Theme> = Object.fromEntries(
-  DENSITIES.map((density) => [
-    density.id,
-    enhanceDensity(createTheme({ typography: density.typography }), {
-      spacing: density.step,
-      touchTarget: density.touchTarget,
-      iconSize: density.iconSize,
-    }),
-  ]),
-);
-const MEDIUM = THEMES.medium;
-
-const VARIANTS = ['outlined', 'filled', 'standard'] as const;
-const SIZES = ['small', 'medium'] as const;
-
-const query = (selector: string, scope: ParentNode = document) => {
-  const element = scope.querySelector(selector);
-  if (!element) {
-    throw new Error(`no element for ${selector}`);
-  }
-  return element as HTMLElement;
-};
-const rect = (selector: string, scope?: ParentNode) =>
-  query(selector, scope).getBoundingClientRect();
-const css = (selector: string, scope?: ParentNode) => getComputedStyle(query(selector, scope));
-const inCase = (name: string) => query(`[data-case="${name}"]`);
-const inTheme = (theme: string, name: string) =>
-  query(`[data-theme="${theme}"] [data-case="${name}"]`);
-const textBox = (element: Element) => {
-  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-  const range = document.createRange();
-  range.selectNodeContents(walker.nextNode()!);
-  return range.getBoundingClientRect();
-};
-const round2 = (value: number) => Math.round(value * 100) / 100;
-
-const byName = <T,>(names: string[], read: (name: string) => T) =>
-  Object.fromEntries(names.map((name) => [name, read(name)]));
-
-const grid = <A extends string, B extends string>(
-  rows: readonly A[],
-  columns: readonly B[],
-  make: (row: A, column: B) => React.ReactNode,
-): Record<string, React.ReactNode> =>
-  Object.fromEntries(
-    rows.flatMap((row) => columns.map((column) => [`${row} ${column}`, make(row, column)])),
-  );
-
-/** 0 when `diff` is within `tolerance`, the rounded diff otherwise. */
-const drift = (diff: number, tolerance = 0.5) => (Math.abs(diff) <= tolerance ? 0 : round2(diff));
-
-const expectNoDrift = (drifts: Record<string, number>) => {
-  expect(drifts).to.deep.equal(byName(Object.keys(drifts), () => 0));
-};
-
-const cases = (entries: Record<string, React.ReactNode>) => (
-  <React.Fragment>
-    {Object.entries(entries).map(([name, node]) => (
-      <div key={name} data-case={name}>
-        {node}
-      </div>
-    ))}
-  </React.Fragment>
-);
-
-const sideBySide = (themes: Record<string, Theme>, node: React.ReactNode) => (
-  <React.Fragment>
-    {Object.entries(themes).map(([name, theme]) => (
-      <div key={name} data-theme={name}>
-        <ThemeProvider theme={theme}>{node}</ThemeProvider>
-      </div>
-    ))}
-  </React.Fragment>
-);
-
-const withUser = (options: Parameters<typeof createTheme>[0]) => ({
-  master: createTheme(options),
-  enhanced: enhanceDensity(createTheme(options)),
-});
 
 const isChromium = typeof navigator !== 'undefined' && /Chrome\//.test(navigator.userAgent);
 
@@ -658,156 +575,109 @@ describe.skipIf(isJsdom())('density contract', () => {
       test(`${density.id}: filled fields with and without a label share one box`, () => {
         renderIn(
           THEMES[density.id],
-          cases({
-            ...grid(SIZES, ['standalone'], (size) => (
-              <FilledInput size={size} defaultValue="Ada" />
-            )),
-            ...grid(SIZES, ['labeled'], (size) => (
-              <TextField variant="filled" size={size} label="Label" defaultValue="Ada" />
-            )),
-            ...grid(SIZES, ['hiddenLabel'], (size) => (
-              <TextField variant="filled" hiddenLabel size={size} defaultValue="Ada" />
-            )),
-            ...grid(SIZES, ['multiline'], (size) => (
-              <TextField variant="filled" hiddenLabel multiline size={size} defaultValue="Ada" />
-            )),
-          }),
+          cases(
+            grid([SIZES, ['standalone', 'labeled', 'hiddenLabel', 'multiline']], (size, kind) =>
+              kind === 'standalone' ? (
+                <FilledInput size={size} defaultValue="Ada" />
+              ) : (
+                <TextField
+                  variant="filled"
+                  size={size}
+                  label={kind === 'labeled' ? 'Label' : undefined}
+                  hiddenLabel={kind !== 'labeled'}
+                  multiline={kind === 'multiline'}
+                  defaultValue="Ada"
+                />
+              ),
+            ),
+          ),
         );
         const height = (name: string) => rect('.MuiFilledInput-root', inCase(name)).height;
-        expectNoDrift({
-          ...byName([...SIZES], (size) =>
-            drift(height(`${size} standalone`) - height(`${size} labeled`)),
+        expectNoDrift(
+          Object.fromEntries(
+            SIZES.flatMap((size) => [
+              [
+                `${size} standalone vs labeled`,
+                drift(height(`${size} standalone`) - height(`${size} labeled`)),
+              ],
+              [
+                `${size} multiline vs hiddenLabel`,
+                drift(height(`${size} multiline`) - height(`${size} hiddenLabel`)),
+              ],
+            ]),
           ),
-          ...byName(
-            SIZES.map((size) => `${size} multiline`),
-            (name) => drift(height(name) - height(name.replace('multiline', 'hiddenLabel'))),
-          ),
-        });
+        );
       });
 
       test(`${density.id}: Autocomplete has the TextField box`, () => {
-        const fields = [
-          ...Object.keys(grid(VARIANTS, SIZES, () => null)),
-          ...SIZES.map((size) => `filled ${size} hiddenLabel`),
-        ];
         renderIn(
           THEMES[density.id],
           cases(
-            Object.fromEntries(
-              fields.flatMap((name) => {
-                const [variant, size, hidden] = name.split(' ') as any[];
-                const label = hidden ? undefined : 'Label';
-                return [
-                  [
-                    `${name} autocomplete`,
-                    <Autocomplete
-                      options={['One', 'Two']}
-                      size={size}
-                      defaultValue="One"
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          variant={variant}
-                          label={label}
-                          hiddenLabel={!!hidden}
-                        />
-                      )}
-                    />,
-                  ],
-                  [
-                    `${name} textfield`,
-                    <TextField
-                      variant={variant}
-                      size={size}
-                      label={label}
-                      hiddenLabel={!!hidden}
-                      defaultValue="One"
-                    />,
-                  ],
-                ];
-              }),
+            grid([FIELDS, ['autocomplete', 'textfield']], (name, kind) =>
+              kind === 'autocomplete' ? (
+                autocompleteField(name)
+              ) : (
+                <TextField {...fieldProps(name)} defaultValue="One" />
+              ),
             ),
           ),
         );
         const height = (name: string) => rect('.MuiInputBase-root', inCase(name)).height;
         expectNoDrift(
-          byName(fields, (name) =>
+          byName(FIELDS, (name) =>
             drift(height(`${name} autocomplete`) - height(`${name} textfield`)),
           ),
         );
       });
 
       test(`${density.id}: the floating label starts where the value starts`, () => {
-        const fields = {
-          ...grid(['TextField'], VARIANTS, (_, variant) =>
-            SIZES.map((size) => (
-              <div key={size} data-case={size}>
-                <TextField variant={variant} size={size} label="Label" defaultValue="Value" />
-              </div>
-            )),
-          ),
-          ...grid(['Select'], VARIANTS, (_, variant) =>
-            SIZES.map((size) => (
-              <div key={size} data-case={size}>
+        const fields = grid(
+          [['TextField', 'Select', 'Autocomplete'], VARIANTS, SIZES],
+          (control, variant, size) => {
+            if (control === 'Select') {
+              return (
                 <TextField select variant={variant} size={size} label="Label" defaultValue="a">
                   <MenuItem value="a">Value</MenuItem>
                 </TextField>
-              </div>
-            )),
-          ),
-          ...grid(['Autocomplete'], VARIANTS, (_, variant) =>
-            SIZES.map((size) => (
-              <div key={size} data-case={size}>
-                <Autocomplete
-                  size={size}
-                  options={['Value']}
-                  defaultValue="Value"
-                  renderInput={(params) => (
-                    <TextField {...params} variant={variant} label="Label" />
-                  )}
-                />
-              </div>
-            )),
-          ),
-        };
+              );
+            }
+            if (control === 'Autocomplete') {
+              return autocompleteField(`${variant} ${size}`, {
+                options: ['Value'],
+                defaultValue: 'Value',
+              });
+            }
+            return <TextField variant={variant} size={size} label="Label" defaultValue="Value" />;
+          },
+        );
         renderIn(THEMES[density.id], cases(fields));
-        const names = Object.keys(fields).flatMap((name) => SIZES.map((size) => `${name} ${size}`));
         expectNoDrift(
-          byName(names, (name) => {
-            const size = name.split(' ').pop()!;
-            const scope = query(`[data-case="${size}"]`, inCase(name.replace(` ${size}`, '')));
-            const value = query('input:not([aria-hidden]), .MuiSelect-select', scope);
+          byName(Object.keys(fields), (name) => {
+            const value = query('input:not([aria-hidden]), .MuiSelect-select', inCase(name));
             const valueStart =
               value.getBoundingClientRect().left + parseFloat(getComputedStyle(value).paddingLeft);
-            return drift(valueStart - textBox(query('.MuiInputLabel-root', scope)).left);
+            return drift(valueStart - textBox(query('.MuiInputLabel-root', inCase(name))).left);
           }),
         );
       });
 
       test(`${density.id}: Autocomplete chips keep the field height and room around wrapped rows`, () => {
         const options = ['Apple', 'Banana', 'Cherry', 'Dragon fruit', 'Elderberry', 'Fig'];
-        const field = (variant: any, size: any, value: string[], width = 400) => (
-          <Autocomplete
-            multiple
-            sx={{ width }}
-            size={size}
-            options={options}
-            defaultValue={value}
-            renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
-          />
-        );
-        const names = Object.keys(grid(VARIANTS, SIZES, () => null));
+        const values: Record<string, string[]> = {
+          empty: [],
+          one: ['Apple'],
+          wrapped: options,
+        };
+        const names = Object.keys(grid([VARIANTS, SIZES], () => null));
         renderIn(
           THEMES[density.id],
           cases(
-            Object.fromEntries(
-              names.flatMap((name) => {
-                const [variant, size] = name.split(' ');
-                return [
-                  [`${name} empty`, field(variant, size, [])],
-                  [`${name} one`, field(variant, size, ['Apple'])],
-                  [`${name} wrapped`, field(variant, size, options, 220)],
-                ];
+            grid([names, Object.keys(values)], (name, kind) =>
+              autocompleteField(name, {
+                multiple: true,
+                options,
+                defaultValue: values[kind],
+                sx: { width: kind === 'wrapped' ? 220 : 400 },
               }),
             ),
           ),
@@ -836,15 +706,14 @@ describe.skipIf(isJsdom())('density contract', () => {
 
       test(`${density.id}: the Autocomplete value stops before the end buttons`, () => {
         const value = 'A long option value that fills the field';
-        const fields = grid(VARIANTS, ['clearable', 'popup only'], (variant, kind) => (
-          <Autocomplete
-            sx={{ width: 300 }}
-            options={[value]}
-            defaultValue={value}
-            disableClearable={kind === 'popup only'}
-            renderInput={(params) => <TextField {...params} variant={variant} label="Label" />}
-          />
-        ));
+        const fields = grid([VARIANTS, ['clearable', 'popup only']], (variant, kind) =>
+          autocompleteField(`${variant} medium`, {
+            sx: { width: 300 },
+            options: [value],
+            defaultValue: value,
+            disableClearable: kind === 'popup only',
+          }),
+        );
         renderIn(THEMES[density.id], cases(fields));
         expectNoDrift(
           byName(Object.keys(fields), (name) => {
@@ -860,7 +729,7 @@ describe.skipIf(isJsdom())('density contract', () => {
       });
 
       test(`${density.id}: the Select value stops before the caret and the end adornment`, () => {
-        const fields = grid(VARIANTS, ['plain', 'adornment'], (variant, kind) => (
+        const fields = grid([VARIANTS, ['plain', 'adornment']], (variant, kind) => (
           <Select
             variant={variant}
             value="a"
@@ -890,43 +759,25 @@ describe.skipIf(isJsdom())('density contract', () => {
 
     test('every input type shares the text box', () => {
       const types = ['text', 'date', 'time', 'datetime-local', 'month', 'week', 'color'];
-      const fields = grid(VARIANTS, SIZES, (variant, size) =>
-        types.map((type) => (
-          <div key={type} data-case={type}>
-            <TextField variant={variant} size={size} type={type} />
-          </div>
-        )),
-      );
+      const fields = grid([VARIANTS, SIZES, types], (variant, size, type) => (
+        <TextField variant={variant} size={size} type={type} />
+      ));
       renderIn(MEDIUM, cases(fields));
-      const height = (name: string, type: string) =>
-        rect('.MuiInputBase-root', query(`[data-case="${type}"]`, inCase(name))).height;
+      const height = (name: string) => rect('.MuiInputBase-root', inCase(name)).height;
       expectNoDrift(
-        Object.fromEntries(
-          Object.keys(fields).flatMap((name) =>
-            types.map((type) => [
-              `${name} ${type}`,
-              drift(height(name, type) - height(name, 'text')),
-            ]),
-          ),
+        byName(Object.keys(fields), (name) =>
+          drift(height(name) - height(name.replace(/\S+$/, 'text'))),
         ),
       );
     });
 
     test('a label keeps master position when the input does not set it', () => {
-      const fields = {
-        ...grid(VARIANTS, SIZES, (variant, size) => (
-          <FormControl variant={variant} size={size}>
-            <InputLabel>Label</InputLabel>
-            <InputBase />
-          </FormControl>
-        )),
-        ...grid(['filled shrunk'], SIZES, (_, size) => (
-          <FormControl variant="filled" size={size}>
-            <InputLabel shrink>Label</InputLabel>
-            <InputBase />
-          </FormControl>
-        )),
-      };
+      const fields = grid([[...VARIANTS, 'filled shrunk'], SIZES], (variant, size) => (
+        <FormControl variant={variant.split(' ')[0]} size={size}>
+          <InputLabel shrink={variant === 'filled shrunk' || undefined}>Label</InputLabel>
+          <InputBase />
+        </FormControl>
+      ));
       render(sideBySide({ master: createTheme(), enhanced: MEDIUM }, cases(fields)));
       const transforms = (theme: string) =>
         byName(Object.keys(fields), (name) => css('label', inTheme(theme, name)).transform);
@@ -959,24 +810,24 @@ describe.skipIf(isJsdom())('density contract', () => {
 
     test('the outlined label lift follows touchTarget, including a region override', () => {
       const field = <TextField label="Label" defaultValue="value" />;
-      const region = (touchTarget: string) => (
-        <div style={{ '--mui-touchTarget': touchTarget } as React.CSSProperties}>{field}</div>
-      );
       const varsTheme = enhanceDensity(createTheme({ cssVariables: true }));
+      const region = (touchTarget: string) => (
+        <ThemeProvider theme={varsTheme}>
+          <div style={{ '--mui-touchTarget': touchTarget } as React.CSSProperties}>{field}</div>
+        </ThemeProvider>
+      );
       render(
-        <React.Fragment>
-          {cases({
-            ...byName(['24', '32', '44'], (touchTarget) => (
-              <ThemeProvider
-                theme={enhanceDensity(createTheme(), { touchTarget: Number(touchTarget) })}
-              >
-                {field}
-              </ThemeProvider>
-            )),
-            'region 44': <ThemeProvider theme={varsTheme}>{region('44px')}</ThemeProvider>,
-            'region 24': <ThemeProvider theme={varsTheme}>{region('24px')}</ThemeProvider>,
-          })}
-        </React.Fragment>,
+        cases({
+          ...byName(['24', '32', '44'], (touchTarget) => (
+            <ThemeProvider
+              theme={enhanceDensity(createTheme(), { touchTarget: Number(touchTarget) })}
+            >
+              {field}
+            </ThemeProvider>
+          )),
+          'region 44': region('44px'),
+          'region 24': region('24px'),
+        }),
       );
       const liftInLines = (name: string) => {
         const style = css('.MuiInputLabel-root', inCase(name));
@@ -1126,38 +977,30 @@ describe.skipIf(isJsdom())('density contract', () => {
         return box.left + box.width / 2;
       };
       const buttons = grid(
-        ['text', 'outlined', 'contained'] as const,
-        ['small', 'medium', 'large'] as const,
-        (variant, size) =>
-          (['start', 'end'] as const).map((position) => (
-            <div key={position} data-case={position}>
-              <Button
-                variant={variant}
-                size={size}
-                loading
-                loadingPosition={position}
-                {...{ [`${position}Icon`]: <AddIcon /> }}
-              >
-                Save
-              </Button>
-            </div>
-          )),
+        [
+          ['text', 'outlined', 'contained'],
+          ['small', 'medium', 'large'],
+          ['start', 'end'],
+        ],
+        (variant, size, position) => (
+          <Button
+            variant={variant}
+            size={size}
+            loading
+            loadingPosition={position}
+            {...{ [`${position}Icon`]: <AddIcon /> }}
+          >
+            Save
+          </Button>
+        ),
       );
       renderIn(MEDIUM, cases(buttons));
       expectNoDrift(
-        Object.fromEntries(
-          Object.keys(buttons).flatMap((name) =>
-            ['start', 'end'].map((position) => {
-              const scope = query(`[data-case="${position}"]`, inCase(name));
-              return [
-                `${name} ${position}`,
-                drift(
-                  centerX(query('.MuiButton-loadingIndicator', scope)) -
-                    centerX(query(`.MuiButton-${position}Icon`, scope)),
-                  1,
-                ),
-              ];
-            }),
+        byName(Object.keys(buttons), (name) =>
+          drift(
+            centerX(query('.MuiButton-loadingIndicator', inCase(name))) -
+              centerX(query(`.MuiButton-${name.split(' ')[2]}Icon`, inCase(name))),
+            1,
           ),
         ),
       );
@@ -1185,6 +1028,36 @@ describe.skipIf(isJsdom())('density contract', () => {
         expect(rect('[data-testid="label"]').left).to.be.closeTo(before, 0.5);
         expect(centerX(rect('.MuiButton-loadingIndicator'))).to.be.closeTo(iconCenter, 1);
       });
+    });
+  });
+
+  describe('form labels', () => {
+    DENSITIES.forEach((density) => {
+      test(`${density.id}: a Checkbox label pulls the glyph onto the container edge`, () => {
+        renderIn(
+          THEMES[density.id],
+          <div data-testid="container">
+            <FormControlLabel control={<Checkbox />} label="a" />
+          </div>,
+        );
+        expect(
+          drift(rect('.MuiCheckbox-root svg').left - rect('[data-testid="container"]').left),
+        ).to.equal(0);
+      });
+    });
+
+    test('a Switch inside a label is pulled in, and sx margins on the label or the Switch win', () => {
+      renderIn(
+        MEDIUM,
+        <React.Fragment>
+          <FormControlLabel data-testid="label" sx={{ ml: 0 }} control={<Checkbox />} label="a" />
+          <FormControlLabel data-testid="plain" control={<Switch />} label="b" />
+          <FormControlLabel data-testid="with-sx" control={<Switch sx={{ ml: 0 }} />} label="c" />
+        </React.Fragment>,
+      );
+      expect(css('[data-testid="label"]').marginLeft).to.equal('0px');
+      expect(parseFloat(css('[data-testid="plain"] .MuiSwitch-root').marginLeft)).to.be.lessThan(0);
+      expect(css('[data-testid="with-sx"] .MuiSwitch-root').marginLeft).to.equal('0px');
     });
   });
 
@@ -1369,7 +1242,7 @@ describe.skipIf(isJsdom())('density contract', () => {
         );
       });
 
-      test(`${density.id}: a top-aligned list avatar sits xSmall below the row top`, () => {
+      test(`${density.id}: a top-aligned list avatar sits xSmall below the row content edge`, () => {
         renderIn(
           THEMES[density.id],
           <List>
@@ -1381,25 +1254,10 @@ describe.skipIf(isJsdom())('density contract', () => {
             </ListItem>
           </List>,
         );
+        const contentTop =
+          rect('.MuiListItem-root').top + parseFloat(css('.MuiListItem-root').paddingTop);
         expect(
-          drift(
-            rect('.MuiListItemAvatar-root').top -
-              rect('.MuiListItem-root').top -
-              parseFloat(css('.MuiListItem-root').paddingTop) -
-              density.step.xSmall,
-          ),
-        ).to.equal(0);
-      });
-
-      test(`${density.id}: a Checkbox label pulls the glyph onto the container edge`, () => {
-        renderIn(
-          THEMES[density.id],
-          <div data-testid="container">
-            <FormControlLabel control={<Checkbox />} label="a" />
-          </div>,
-        );
-        expect(
-          drift(rect('.MuiCheckbox-root svg').left - rect('[data-testid="container"]').left),
+          drift(rect('.MuiListItemAvatar-root').top - contentTop - density.step.xSmall),
         ).to.equal(0);
       });
     });
@@ -1485,167 +1343,9 @@ describe.skipIf(isJsdom())('density contract', () => {
   });
 
   describe('user overrides win wherever they win on master', () => {
-    const userComponents = {
-      MuiAlert: { styleOverrides: { icon: { paddingTop: 20 }, action: { paddingTop: 20 } } },
-      MuiChip: {
-        styleOverrides: {
-          icon: { fontSize: 30 },
-          avatar: { fontSize: 31 },
-          deleteIcon: { fontSize: 32 },
-        },
-      },
-      MuiButtonGroup: { styleOverrides: { grouped: { minWidth: 100 } } },
-      MuiDivider: { styleOverrides: { inset: { marginLeft: 20 } } },
-      MuiFormControlLabel: { styleOverrides: { root: { marginLeft: 4 } } },
-      MuiSelect: { styleOverrides: { select: { '&&': { paddingRight: 80 } } } },
-      MuiAutocomplete: {
-        styleOverrides: {
-          inputRoot: { gap: 10, paddingLeft: 20, paddingTop: 21, paddingBottom: 22 },
-        },
-      },
-    };
-    type Check = { node: React.ReactNode; reads: Record<string, [string, string, string]> };
-    const checks: Record<string, Check> = {
-      Alert: {
-        node: <Alert onClose={() => {}}>Message</Alert>,
-        reads: {
-          icon: ['.MuiAlert-icon', 'padding-top', '20px'],
-          action: ['.MuiAlert-action', 'padding-top', '20px'],
-        },
-      },
-      ...Object.fromEntries(
-        SIZES.map((size) => [
-          `Chip ${size}`,
-          {
-            node: (
-              <React.Fragment>
-                <Chip size={size} icon={<AddIcon />} label="a" onDelete={() => {}} />
-                <Chip size={size} avatar={<Avatar>A</Avatar>} label="b" />
-              </React.Fragment>
-            ),
-            reads: {
-              icon: ['.MuiChip-icon', 'font-size', '30px'],
-              avatar: ['.MuiChip-avatar', 'font-size', '31px'],
-              deleteIcon: ['.MuiChip-deleteIcon', 'font-size', '32px'],
-            },
-          },
-        ]),
-      ),
-      ButtonGroup: {
-        node: (
-          <ButtonGroup>
-            <Button>a</Button>
-          </ButtonGroup>
-        ),
-        reads: { grouped: ['.MuiButtonGroup-grouped', 'min-width', '100px'] },
-      },
-      Divider: {
-        node: (
-          <List>
-            <ListItem>
-              <ListItemIcon>
-                <AddIcon />
-              </ListItemIcon>
-              <ListItemText primary="Text" />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-          </List>
-        ),
-        reads: { inset: ['.MuiDivider-inset', 'margin-left', '20px'] },
-      },
-      FormControlLabel: {
-        node: <FormControlLabel control={<Checkbox />} label="a" />,
-        reads: { root: ['.MuiFormControlLabel-root', 'margin-left', '4px'] },
-      },
-      ...Object.fromEntries(
-        Object.entries(
-          grid(VARIANTS, ['plain', 'adornment'], (variant, kind) => (
-            <Select
-              variant={variant}
-              value="a"
-              endAdornment={
-                kind === 'adornment' ? <InputAdornment position="end">x</InputAdornment> : null
-              }
-            >
-              <MenuItem value="a">a</MenuItem>
-            </Select>
-          )),
-        ).map(([name, node]) => [
-          `Select ${name}`,
-          { node, reads: { select: ['.MuiSelect-select', 'padding-right', '80px'] } },
-        ]),
-      ),
-      ...Object.fromEntries(
-        [
-          ...Object.keys(grid(VARIANTS, SIZES, () => null)),
-          ...SIZES.map((size) => `filled ${size} hiddenLabel`),
-        ].map((name) => {
-          const [variant, size, hidden] = name.split(' ') as any[];
-          return [
-            `Autocomplete ${name}`,
-            {
-              node: (
-                <Autocomplete
-                  multiple
-                  size={size}
-                  options={['a', 'b']}
-                  defaultValue={['a']}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant={variant}
-                      hiddenLabel={!!hidden}
-                      label={hidden ? undefined : 'L'}
-                    />
-                  )}
-                />
-              ),
-              reads: {
-                gap: ['.MuiAutocomplete-inputRoot', 'column-gap', '10px'],
-                paddingLeft: ['.MuiAutocomplete-inputRoot', 'padding-left', '20px'],
-                paddingTop: ['.MuiAutocomplete-inputRoot', 'padding-top', '21px'],
-                paddingBottom: ['.MuiAutocomplete-inputRoot', 'padding-bottom', '22px'],
-              },
-            },
-          ];
-        }),
-      ),
-    };
-
-    [false, true].forEach((modularCssLayers) => {
-      test(`slot styleOverrides${modularCssLayers ? ' with layers' : ''}`, () => {
-        const names = Object.keys(checks);
-        render(
-          sideBySide(
-            withUser({ modularCssLayers, components: userComponents as any }),
-            cases(byName(names, (name) => checks[name].node)),
-          ),
-        );
-        const userWins = (theme: string) =>
-          byName(names, (name) =>
-            Object.fromEntries(
-              Object.entries(checks[name].reads).map(([slot, [selector, property, value]]) => [
-                slot,
-                css(selector, inTheme(theme, name)).getPropertyValue(property) === value,
-              ]),
-            ),
-          );
-        expect(userWins('enhanced')).to.deep.equal(userWins('master'));
-      });
-    });
-
-    test('FormControlLabel and Switch margins from sx', () => {
-      renderIn(
-        MEDIUM,
-        <React.Fragment>
-          <FormControlLabel data-testid="label" sx={{ ml: 0 }} control={<Checkbox />} label="a" />
-          <FormControlLabel data-testid="plain" control={<Switch />} label="b" />
-          <FormControlLabel data-testid="with-sx" control={<Switch sx={{ ml: 0 }} />} label="c" />
-        </React.Fragment>,
-      );
-      expect(css('[data-testid="label"]').marginLeft).to.equal('0px');
-      expect(parseFloat(css('[data-testid="plain"] .MuiSwitch-root').marginLeft)).to.be.lessThan(0);
-      expect(css('[data-testid="with-sx"] .MuiSwitch-root').marginLeft).to.equal('0px');
+    test('slot styleOverrides', () => {
+      render(sideBySide(withUser({ components: USER_COMPONENTS as any }), overrideCases()));
+      expect(userWins('enhanced')).to.deep.equal(userWins('master'));
     });
 
     [
@@ -1688,13 +1388,13 @@ describe.skipIf(isJsdom())('density contract', () => {
               }),
             ),
           );
-          const userWins = (theme: string) => ({
+          const paginationWins = (theme: string) => ({
             toolbar:
               css('.MuiTablePagination-toolbar', inTheme(theme, 'pagination')).minHeight === '64px',
             select:
               css('.MuiTablePagination-select', inTheme(theme, 'pagination')).fontSize === '20px',
           });
-          expect(userWins('enhanced')).to.deep.equal(userWins('master'));
+          expect(paginationWins('enhanced')).to.deep.equal(paginationWins('master'));
           expect(
             drift(
               rect('.MuiTablePagination-toolbar', inTheme('density', 'pagination')).height -
@@ -1705,47 +1405,6 @@ describe.skipIf(isJsdom())('density contract', () => {
         } finally {
           await page.viewport(innerWidth, innerHeight);
         }
-      });
-    });
-
-    [false, true].forEach((modularCssLayers) => {
-      test(`sx and MuiLink styleOverrides on a breadcrumb link${modularCssLayers ? ' with layers' : ''}`, () => {
-        renderIn(
-          enhanceDensity(
-            createTheme({
-              modularCssLayers,
-              components: { MuiLink: { styleOverrides: { root: { paddingInline: 3 } } } },
-            }),
-          ),
-          <React.Fragment>
-            <Link href="#" sx={{ display: 'none' }}>
-              A link rendered before the breadcrumbs
-            </Link>
-            <Breadcrumbs>
-              <Link href="#" data-testid="hidden" sx={{ display: 'none' }}>
-                Hidden
-              </Link>
-              <Link href="#" data-testid="sx" sx={{ px: 0, lineHeight: '10px' }}>
-                Sx
-              </Link>
-              <Link href="#" data-testid="theme">
-                Theme
-              </Link>
-              <Typography>Current</Typography>
-            </Breadcrumbs>
-          </React.Fragment>,
-        );
-        expect({
-          hidden: css('[data-testid="hidden"]').display,
-          sxPadding: css('[data-testid="sx"]').paddingLeft,
-          sxLineHeight: css('[data-testid="sx"]').lineHeight,
-          themePadding: css('[data-testid="theme"]').paddingLeft,
-        }).to.deep.equal({
-          hidden: 'none',
-          sxPadding: '0px',
-          sxLineHeight: '10px',
-          themePadding: '3px',
-        });
       });
     });
   });
@@ -1779,132 +1438,6 @@ describe.skipIf(isJsdom())('density contract', () => {
       expect(css('[data-testid="crumb"]').height).to.equal(
         css('[data-testid="standalone"]').height,
       );
-    });
-  });
-
-  describe('modularCssLayers', () => {
-    const layered = enhanceDensity(createTheme({ modularCssLayers: true }));
-    const pagination = (
-      <Table>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              count={100}
-              page={0}
-              rowsPerPage={10}
-              onPageChange={() => {}}
-              onRowsPerPageChange={() => {}}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    );
-    const layerCases: Record<
-      string,
-      { node: React.ReactNode; selector: string; property: string }
-    > = {
-      'Select caret padding': {
-        node: (
-          <Select value="a" sx={{ width: 160 }}>
-            <MenuItem value="a">A long selected option</MenuItem>
-          </Select>
-        ),
-        selector: '.MuiSelect-select',
-        property: 'padding-right',
-      },
-      'DialogContent under a DialogTitle': {
-        node: (
-          <div>
-            <DialogTitle>Title</DialogTitle>
-            <DialogContent>Body</DialogContent>
-          </div>
-        ),
-        selector: '.MuiDialogContent-root',
-        property: 'padding-top',
-      },
-      ...Object.fromEntries(
-        SIZES.flatMap((size) => [
-          [
-            `Chip ${size} avatar`,
-            {
-              node: <Chip size={size} avatar={<Avatar>M</Avatar>} label="Chip" />,
-              selector: '.MuiChip-avatar',
-              property: 'font-size',
-            },
-          ],
-          [
-            `Chip ${size} delete icon`,
-            {
-              node: <Chip size={size} label="Chip" onDelete={() => {}} />,
-              selector: '.MuiChip-deleteIcon',
-              property: 'font-size',
-            },
-          ],
-        ]),
-      ),
-      ...Object.fromEntries(
-        ['padding-right', 'padding-left'].flatMap((property) =>
-          ['.MuiTablePagination-root', '.MuiTablePagination-toolbar'].map((selector) => [
-            `TablePagination ${selector} ${property}`,
-            { node: pagination, selector, property },
-          ]),
-        ),
-      ),
-      ...Object.fromEntries(
-        (['small', 'medium', 'large'] as const).map((size) => [
-          `Pagination ${size} icon`,
-          {
-            node: <Pagination size={size} count={3} />,
-            selector: '.MuiPaginationItem-icon',
-            property: 'font-size',
-          },
-        ]),
-      ),
-      ...Object.fromEntries(
-        [
-          ...Object.keys(grid(VARIANTS, SIZES, () => null)),
-          ...SIZES.map((size) => `filled ${size} hiddenLabel`),
-        ].flatMap((name) => {
-          const [variant, size, hidden] = name.split(' ') as any[];
-          const node = (
-            <Autocomplete
-              multiple
-              size={size}
-              options={['a', 'b']}
-              defaultValue={['a']}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant={variant}
-                  hiddenLabel={!!hidden}
-                  label={hidden ? undefined : 'L'}
-                />
-              )}
-            />
-          );
-          return ['padding-top', 'padding-bottom'].map((property) => [
-            `Autocomplete ${name} ${property}`,
-            { node, selector: '.MuiAutocomplete-inputRoot', property },
-          ]);
-        }),
-      ),
-    };
-
-    test('styles render the same with and without layers', () => {
-      const names = Object.keys(layerCases);
-      render(
-        sideBySide(
-          { unlayered: MEDIUM, layered },
-          cases(byName(names, (name) => layerCases[name].node)),
-        ),
-      );
-      const read = (theme: string) =>
-        byName(names, (name) =>
-          css(layerCases[name].selector, inTheme(theme, name)).getPropertyValue(
-            layerCases[name].property,
-          ),
-        );
-      expect(read('layered')).to.deep.equal(read('unlayered'));
     });
   });
 });

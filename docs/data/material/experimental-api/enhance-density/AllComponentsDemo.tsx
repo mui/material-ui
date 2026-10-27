@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  createTheme,
-  unstable_enhanceDensity as enhanceDensity,
-  ThemeProvider,
-} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -24,6 +20,7 @@ import {
   DENSITY_SCALE,
   DENSITY_STAGE_SX,
   DENSITY_TARGETS,
+  DENSITY_THEME,
   useClaims,
 } from './densityAnnotations';
 import { annotationsFor } from './densityAnnotationSpecs';
@@ -33,10 +30,6 @@ import {
   ControlValue,
   DENSITY_COMPONENTS,
 } from './densityComponents';
-
-const densityTheme = enhanceDensity(
-  createTheme({ colorSchemes: { light: true, dark: true } }),
-);
 
 // Stable identity, so a family without controls doesn't re-run the memos.
 const NO_CONTROLS: Control[] = [];
@@ -277,7 +270,9 @@ export default function AllComponentsDemo() {
       <Box sx={{ overflowX: 'auto' }}>
         <Box ref={stageRef} sx={DENSITY_STAGE_SX}>
           <Box ref={demoRef} data-density-demo sx={{ display: 'contents' }}>
-            <ThemeProvider theme={densityTheme}>{spec.render(values)}</ThemeProvider>
+            <ThemeProvider theme={DENSITY_THEME}>
+              {spec.render(values)}
+            </ThemeProvider>
           </Box>
           {resolved ? (
             <Annotate items={resolved.items} bounds={resolved.bounds} />
