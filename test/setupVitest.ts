@@ -12,29 +12,30 @@ const layerStyleElements = new Map<string, HTMLStyleElement>();
 // Unlayered styles then still win over layered ones, as long as their specificity is the same.
 // Browser tests run the real layers.
 if (typeof globalThis.navigator !== 'undefined' && navigator.userAgent.includes('jsdom')) {
-  const appendChild = Node.prototype.appendChild;
-  if (!(appendChild as any).emulatesCssLayers) {
-    const appendChildEmulatingCssLayers = function appendChildEmulatingCssLayers<T extends Node>(
-      this: Node,
-      node: T,
-    ): T {
-      if (
-        node.nodeType === Node.TEXT_NODE &&
-        this instanceof HTMLStyleElement &&
-        this.hasAttribute('data-emotion') &&
-        node.textContent?.startsWith('@layer')
-      ) {
-        const layered = unwrapCssLayer(node.textContent);
-        if (layered) {
-          insertLayeredRule(this.ownerDocument, layered.name, layered.css);
-        }
-        node.textContent = '';
+  // Without test isolation, this file runs again for each test file in the same document:
+  // patch the native method again, so that the cleanup below and the patch share the same elements.
+  const appendChild: Node['appendChild'] =
+    (Node.prototype.appendChild as any).native ?? Node.prototype.appendChild;
+  const appendChildEmulatingCssLayers = function appendChildEmulatingCssLayers<T extends Node>(
+    this: Node,
+    node: T,
+  ): T {
+    if (
+      node.nodeType === Node.TEXT_NODE &&
+      this instanceof HTMLStyleElement &&
+      this.hasAttribute('data-emotion') &&
+      node.textContent?.startsWith('@layer')
+    ) {
+      const layered = unwrapCssLayer(node.textContent);
+      if (layered) {
+        insertLayeredRule(this.ownerDocument, layered.name, layered.css);
       }
-      return appendChild.call(this, node) as T;
-    };
-    (appendChildEmulatingCssLayers as any).emulatesCssLayers = true;
-    Node.prototype.appendChild = appendChildEmulatingCssLayers;
-  }
+      node.textContent = '';
+    }
+    return appendChild.call(this, node) as T;
+  };
+  (appendChildEmulatingCssLayers as any).native = appendChild;
+  Node.prototype.appendChild = appendChildEmulatingCssLayers;
 
   // Each test renders with a fresh Emotion cache, whose style elements are removed afterwards.
   afterEach(() => {
