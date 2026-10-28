@@ -357,6 +357,8 @@ A scoped provider sets all of its variables on its child element, and has its ow
 If the theme's `colorSchemeSelector` uses a data attribute, the child also needs to render the `data-*` props it receives.
 Its mode isn't stored, so it doesn't overwrite the mode of the page's provider.
 To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`.
+`InitColorSchemeScript` only applies to the page's provider, so with server-side rendering and `defaultMode="system"`, a scoped provider shows its default color scheme until the page hydrates.
+To avoid that, give it a fixed `defaultMode`, or render it on the client only.
 
 :::info
 A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.
