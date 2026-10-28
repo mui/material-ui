@@ -60,7 +60,7 @@ export interface Theme extends CssContainerQueries {
   mixins?: Mixins | undefined;
   typography?: Typography | undefined;
   zIndex?: ZIndex | undefined;
-  cssLayers: boolean;
+  cssLayers?: boolean | undefined;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
