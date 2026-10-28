@@ -4,7 +4,7 @@ import { DefaultTheme } from '@mui/system';
 import { StorageManager } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssThemeVariables } from './createThemeNoVars';
-import { CssVarsProvider } from './ThemeProviderWithVars';
+import { InternalCssVarsProvider as CssVarsProvider } from './ThemeProviderWithVars';
 import { CssVarsTheme } from './createThemeWithVars';
 import THEME_ID from './identifier';
 
