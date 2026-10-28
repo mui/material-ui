@@ -248,7 +248,8 @@ function createThemeNoVars(options = {}, ...args) {
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
   // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
-  muiTheme.cssLayers = muiTheme.cssLayers ?? true;
+  // `modularCssLayers: false` opts out too, as it turned the sub-layers off in v9.
+  muiTheme.cssLayers = muiTheme.cssLayers ?? muiTheme.modularCssLayers !== false;
 
   attachColorManipulators(muiTheme);
 

@@ -3,8 +3,8 @@ import { ThemeContext } from '@mui/styled-engine';
 import { createRenderer } from '@mui/internal-test-utils';
 import useLayerOrder from './useLayerOrder';
 
-function TestComponent({ theme }: { theme: any }) {
-  const LayerOrder = useLayerOrder(theme);
+function TestComponent({ theme, themeId }: { theme: any; themeId?: string }) {
+  const LayerOrder = useLayerOrder(theme, themeId);
   return LayerOrder;
 }
 
@@ -53,5 +53,41 @@ describe('useLayerOrder', () => {
       </ThemeContext.Provider>,
     );
     expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
+  });
+
+  it('does not declare the order again under an upper theme with layers', () => {
+    render(
+      <ThemeContext.Provider value={{ modularCssLayers: true }}>
+        <TestComponent theme={{ modularCssLayers: true }} />
+      </ThemeContext.Provider>,
+    );
+    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+  });
+
+  it('declares the order under an upper theme without layers', () => {
+    render(
+      <ThemeContext.Provider value={{ cssLayers: false }}>
+        <TestComponent theme={{ cssLayers: true }} />
+      </ThemeContext.Provider>,
+    );
+    expect(document.head.firstChild?.textContent).to.contain(
+      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
+    );
+  });
+
+  it('reads the theme of the themeId', () => {
+    render(<TestComponent theme={{ $$material: { cssLayers: true } }} themeId="$$material" />);
+    expect(document.head.firstChild?.textContent).to.contain(
+      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
+    );
+  });
+
+  it('reads the upper theme of the themeId', () => {
+    render(
+      <ThemeContext.Provider value={{ $$material: { cssLayers: true } }}>
+        <TestComponent theme={{ $$material: { cssLayers: true } }} themeId="$$material" />
+      </ThemeContext.Provider>,
+    );
+    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
   });
 });

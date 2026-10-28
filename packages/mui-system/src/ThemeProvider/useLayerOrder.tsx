@@ -8,18 +8,21 @@ import { CSS_LAYER_ORDER, CSS_LAYER_ORDER_STATEMENT, hasCssLayers } from '../css
  * This hook returns a `GlobalStyles` component that sets the CSS layer order (for server-side rendering).
  * Then on client-side, it injects the CSS layer order into the document head to ensure that the layer order is always present first before other Emotion styles.
  */
-export default function useLayerOrder(theme: {
-  cssLayers?: boolean | undefined;
-  modularCssLayers?: boolean | string | undefined;
-}) {
-  const upperTheme = useThemeWithoutDefault();
+export default function useLayerOrder(engineTheme: any, themeId?: string | undefined) {
+  const upperTheme: any = useThemeWithoutDefault();
   const id = useId() || '';
+  // With a `themeId`, the theme of the design system is a key of the engine theme.
+  const theme = themeId ? (engineTheme[themeId] ?? engineTheme) : engineTheme;
   const { modularCssLayers } = theme;
+  // An upper ThemeProvider whose theme has layers declared the order already, or one above it did.
+  // When it can't be told, the order is declared again, which is harmless.
+  const upperHasLayers =
+    upperTheme !== null &&
+    (hasCssLayers(upperTheme) || (themeId !== undefined && hasCssLayers(upperTheme[themeId])));
 
   let layerOrder = CSS_LAYER_ORDER;
 
-  if (!hasCssLayers(theme) || upperTheme !== null) {
-    // skip this hook if upper theme exists.
+  if (!hasCssLayers(theme) || upperHasLayers) {
     layerOrder = '';
   } else if (typeof modularCssLayers === 'string') {
     layerOrder = modularCssLayers.replace(/mui(?!\.)/g, layerOrder);

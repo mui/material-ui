@@ -89,7 +89,7 @@ function ThemeProvider<T = DefaultTheme>(
   const privateTheme = useThemeScoping(themeId, upperPrivateTheme, localTheme, true);
   const rtlValue = (themeId ? engineTheme[themeId] : engineTheme).direction === 'rtl';
 
-  const layerOrder = useLayerOrder(engineTheme);
+  const layerOrder = useLayerOrder(engineTheme, themeId);
 
   return (
     <MuiThemeProvider theme={privateTheme}>

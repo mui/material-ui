@@ -48,23 +48,41 @@ export function shouldForwardProp(prop: PropertyKey): boolean {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+// Layered copies of serialized styles, by layer name. Serialized styles are cached and shared by
+// every render of a component, so they're never changed: a component can render with and without
+// layers.
+const layeredStyles = new WeakMap<object, Map<string, object>>();
+
 function shallowLayer(serialized: any, layerName: any): any {
   if (!layerName || !serialized) {
     return serialized;
   }
   if (typeof serialized === 'object' && typeof serialized.styles === 'string') {
-    // only add the layer if it is not already there.
-    if (serialized.styles && !serialized.styles.startsWith('@layer')) {
-      serialized.styles = `@layer ${layerName}{${String(serialized.styles)}}`;
+    // Styles that are already in one of Material UI's sub-layers aren't wrapped again. Other
+    // `@layer` blocks are the author's, so they're wrapped with the rest of the styles.
+    if (!serialized.styles || serialized.styles.startsWith('@layer mui.')) {
+      return serialized;
     }
-    return serialized;
+    let byLayer = layeredStyles.get(serialized);
+    if (!byLayer) {
+      byLayer = new Map();
+      layeredStyles.set(serialized, byLayer);
+    }
+    const cached = byLayer.get(layerName);
+    if (cached) {
+      return cached;
+    }
+    // Keeps `next`, the keyframes the styles reference.
+    const layered = { ...serialized, styles: `@layer ${layerName}{${serialized.styles}}` };
+    byLayer.set(layerName, layered);
+    return layered;
   }
   // styled-components doesn't serialize the styles, so wrap them as they are.
   if (Array.isArray(serialized)) {
     return serialized.map((style) => shallowLayer(style, layerName));
   }
   if (typeof serialized === 'string') {
-    return serialized.startsWith('@layer') ? serialized : `@layer ${layerName}{${serialized}}`;
+    return serialized.startsWith('@layer mui.') ? serialized : `@layer ${layerName}{${serialized}}`;
   }
   if (isPlainObject(serialized)) {
     return { [`@layer ${layerName}`]: serialized };

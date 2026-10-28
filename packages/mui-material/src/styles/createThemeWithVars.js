@@ -1039,7 +1039,8 @@ export default function createThemeWithVars(options = {}, ...args) {
   theme.internal_cache = {};
   theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
   // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
-  theme.cssLayers = theme.cssLayers ?? true;
+  // `modularCssLayers: false` opts out too, as it turned the sub-layers off in v9.
+  theme.cssLayers = theme.cssLayers ?? theme.modularCssLayers !== false;
 
   return theme;
 }

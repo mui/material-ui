@@ -8,7 +8,7 @@ import {
 import { isPlainObject } from '@mui/utils/deepmerge';
 import useTheme from '../useTheme';
 import { Theme as SystemTheme } from '../createTheme';
-import { getCssLayer } from '../cssLayers';
+import { getCssLayer, wrapInCssLayer } from '../cssLayers';
 
 export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;
@@ -16,22 +16,46 @@ export interface GlobalStylesProps<Theme = SystemTheme> {
   themeId?: string | undefined;
 }
 
+// Keys of a style object that stay at the top level, see `wrapInCssLayer`.
+const TOP_LEVEL_KEY = /^@(layer|import|charset|namespace)\b/i;
+
 function wrapGlobalLayer(styles: any, layerName: string) {
   const serialized = serializeStyles(styles) as { styles?: string | undefined };
   if (styles !== serialized && serialized.styles) {
-    if (!serialized.styles.match(/^@layer\s[^{]*$/)) {
-      // If the styles are not already wrapped in a layer, wrap them in a global layer.
-      serialized.styles = `@layer ${layerName}{${serialized.styles}}`;
-    }
+    // `serializeStyles` returned a new object, so it can be changed.
+    serialized.styles = wrapInCssLayer(serialized.styles, layerName);
     return serialized;
   }
   // styled-components doesn't serialize the styles, so wrap them as they are.
-  // Styles that Emotion already serialized come back as they are too, and stay unlayered.
-  if (styles === serialized && typeof styles === 'string') {
-    return styles.match(/^@layer\s[^{]*$/) ? styles : `@layer ${layerName}{${styles}}`;
+  if (typeof styles === 'string') {
+    return wrapInCssLayer(styles, layerName);
   }
-  if (styles === serialized && isPlainObject(styles) && typeof styles.styles !== 'string') {
-    return { [`@layer ${layerName}`]: styles };
+  if (isPlainObject(styles) && typeof styles.styles === 'string') {
+    // Emotion returns styles it already serialized, such as `css` results, as they are. They can
+    // be shared, so wrap a copy, with its own name and the keyframes it references (`next`).
+    return {
+      ...styles,
+      name: `${styles.name}-${layerName.replace('.', '-')}`,
+      styles: wrapInCssLayer(styles.styles, layerName),
+    };
+  }
+  if (isPlainObject(styles)) {
+    // Keep the app's own layers and the at-rules that can't be in a layer at the top level, in order.
+    const result: object[] = [];
+    let run: Record<string, any> | null = null;
+    Object.keys(styles).forEach((key) => {
+      if (TOP_LEVEL_KEY.test(key)) {
+        run = null;
+        result.push({ [key]: styles[key] });
+      } else {
+        if (!run) {
+          run = {};
+          result.push({ [`@layer ${layerName}`]: run });
+        }
+        run[key] = styles[key];
+      }
+    });
+    return result.length === 1 ? result[0] : result;
   }
   return styles;
 }

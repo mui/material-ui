@@ -56,7 +56,8 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     cache.insert = (...args) => {
       // Skip layer order statements and styles that Material UI already put in its sub-layers.
       if (options?.enableCssLayer && !args[1].styles.match(/^@layer\s[^{]*$|@layer mui\./)) {
-        args[1].styles = `@layer mui {${args[1].styles}}`;
+        // The serialized styles can be shared, for example `css` results, so they're copied.
+        args[1] = { ...args[1], styles: `@layer mui {${args[1].styles}}` };
       }
       const [selector, serialized] = args;
       if (cache.inserted[serialized.name] === undefined) {

@@ -42,7 +42,7 @@ export interface ThemeOptions {
   /**
    * Puts the generated styles in the `mui` CSS layer, split into sub-layers:
    * `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
-   * Set it to `false` to opt out.
+   * Set it to `false` to opt out. `modularCssLayers: false` opts out too.
    * @default true
    */
   cssLayers?: boolean | undefined;
@@ -115,7 +115,8 @@ function createTheme(options: ThemeOptions = {}, ...args: object[]): Theme {
   };
 
   // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
-  muiTheme.cssLayers = muiTheme.cssLayers ?? true;
+  // `modularCssLayers: false` opts out too, as it turned the sub-layers off in v9.
+  muiTheme.cssLayers = muiTheme.cssLayers ?? muiTheme.modularCssLayers !== false;
 
   muiTheme.internal_cache = {};
 
