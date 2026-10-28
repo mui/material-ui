@@ -74,6 +74,10 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   focusVisible?: boolean | FocusVisibleOptions | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
+  /**
+   * Sub-layers are on by default, see `cssLayers`.
+   * A string sets where the `mui` layer goes among the app's layers, for example `'@layer theme, base, mui, components, utilities;'`.
+   */
   modularCssLayers?: boolean | string | undefined;
 }
 
