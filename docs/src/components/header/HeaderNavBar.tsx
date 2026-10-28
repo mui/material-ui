@@ -45,10 +45,7 @@ const Navigation = styled('nav')(({ theme }) => [
             // Reset on touch devices, it doesn't add specificity
           },
         },
-        '&:focus-visible': {
-          outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-          outlineOffset: '2px',
-        },
+        '&:focus-visible': theme.focusVisible,
       },
     },
   },

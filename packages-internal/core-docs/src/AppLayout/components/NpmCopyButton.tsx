@@ -3,7 +3,7 @@ import * as React from 'react';
 import copy from 'clipboard-copy';
 import { visuallyHidden } from '@mui/utils';
 import type { SxProps } from '@mui/system';
-import { styled, alpha, type Theme } from '@mui/material/styles';
+import { styled, type Theme } from '@mui/material/styles';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 
@@ -70,10 +70,7 @@ const CopyButton = styled('button')(({ theme }) => ({
   backgroundColor: 'transparent',
   cursor: 'copy',
   WebkitTapHighlightColor: 'transparent',
-  '&:focus-visible': {
-    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-    outlineOffset: '2px',
-  },
+  '&:focus-visible': theme.focusVisible,
 }));
 
 export function NpmCopyButton(

@@ -429,6 +429,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 
 export function getThemedComponents(): ThemeOptions {
   return {
+    focusVisible: {
+      outlineWidth: 3,
+      outlineColor: alpha(blue[500], 0.5),
+    },
     components: {
       MuiAlert: {
         styleOverrides: {
@@ -532,13 +536,9 @@ export function getThemedComponents(): ThemeOptions {
           disableRipple: true,
         },
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             transition: 'all 100ms ease-in',
-            '&:focus-visible': {
-              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-              outlineOffset: 2,
-            },
-          }),
+          },
         },
       },
       MuiButton: {
@@ -1013,9 +1013,6 @@ export function getThemedComponents(): ThemeOptions {
                   backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.text.primary,
                 },
-                '&:focus-visible': {
-                  outline: 'none',
-                },
                 '&.Mui-selected': {
                   fontWeight: 500,
                   color: (theme.vars || theme).palette.primary[600],
@@ -1070,10 +1067,6 @@ export function getThemedComponents(): ThemeOptions {
             },
             '& svg:last-child': {
               marginLeft: 2,
-            },
-            '&:focus-visible': {
-              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-              outlineOffset: 2,
             },
           }),
         },
@@ -1360,10 +1353,7 @@ export function getThemedComponents(): ThemeOptions {
                     borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.primary[100]}`,
                   },
-                  '&:focus-visible': {
-                    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-                    outlineOffset: 2,
-                  },
+                  '&:focus-visible': theme.focusVisible,
                 },
                 '&:is(a, button)': {
                   '&:hover': {
@@ -1476,31 +1466,28 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiSwitch: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             width: 32,
             height: 20,
             padding: 0,
             borderRadius: 10,
-            '&:has(input:focus-visible)': {
-              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-              outlineOffset: 2,
-            },
+            overflow: 'visible',
             '& .MuiSwitch-switchBase': {
               '&.Mui-checked': {
                 transform: 'translateX(12px)',
                 color: '#fff',
               },
             },
-          }),
-          switchBase: {
+          },
+          switchBase: ({ theme }) => ({
             height: 20,
             width: 20,
             padding: 0,
             color: '#fff',
             '&.Mui-checked + .MuiSwitch-track': {
-              opacity: 1,
+              backgroundColor: (theme.vars || theme).palette.primary.main,
             },
-          },
+          }),
           track: ({ theme }) => ({
             opacity: 1,
             borderRadius: 32,
