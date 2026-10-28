@@ -6,7 +6,6 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 const theme = createTheme({
   modularCssLayers: true,
-  cssVariables: true,
 });
 
 export default function CssLayersInput() {

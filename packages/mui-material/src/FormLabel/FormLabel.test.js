@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import FormLabel, { formLabelClasses as classes } from '@mui/material/FormLabel';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { hexToRgb } from '@mui/material/styles';
@@ -160,7 +160,7 @@ describe('<FormLabel />', () => {
       expect(container.firstChild).to.have.class(classes.colorSecondary);
     });
 
-    it('should have the focused class and style', () => {
+    it.skipIf(isJsdom())('should have the focused class and style', () => {
       const { container } = render(<FormLabel data-testid="FormLabel" color="secondary" focused />);
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.focused);
       expect(screen.getByTestId('FormLabel')).toHaveComputedStyle({
@@ -168,7 +168,7 @@ describe('<FormLabel />', () => {
       });
     });
 
-    it('should have the error class and style, even when focused', () => {
+    it.skipIf(isJsdom())('should have the error class and style, even when focused', () => {
       const { container } = render(
         <FormLabel data-testid="FormLabel" color="secondary" focused error />,
       );
@@ -178,7 +178,7 @@ describe('<FormLabel />', () => {
       });
     });
 
-    it('should have the disabled class and style, even when focused', () => {
+    it.skipIf(isJsdom())('should have the disabled class and style, even when focused', () => {
       const { container } = render(
         <FormLabel data-testid="FormLabel" color="secondary" focused disabled />,
       );

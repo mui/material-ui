@@ -14,7 +14,6 @@ export default function CssLayersCaveat() {
   const theme = React.useMemo(() => {
     return createTheme({
       modularCssLayers: cssLayers,
-      cssVariables: true,
       components: {
         MuiAccordion: {
           styleOverrides: {

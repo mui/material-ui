@@ -680,7 +680,7 @@ describe('<Chip />', () => {
       expect(screen.getByTestId('test-icon')).to.have.class(classes.icon);
     });
 
-    it("should not override the icon's custom color", () => {
+    it.skipIf(isJsdom())("should not override the icon's custom color", () => {
       render(
         <React.Fragment>
           <Chip icon={<CheckBox data-testid="test-icon" color="success" />} />,
