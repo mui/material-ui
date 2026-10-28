@@ -13,14 +13,16 @@ import { useDefaultProps } from '../DefaultPropsProvider';
  */
 export interface Menu2Props extends Pick<
   BaseMenu.Root.Props,
-  | 'actionsRef'
-  | 'defaultOpen'
-  | 'disabled'
-  | 'highlightItemOnHover'
-  | 'loopFocus'
-  | 'modal'
-  | 'open'
+  'defaultOpen' | 'disabled' | 'highlightItemOnHover' | 'loopFocus' | 'modal' | 'open'
 > {
+  /**
+   * A ref to imperative actions.
+   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
+   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
+   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2Popup`.
+   * - `close`: Closes the menu imperatively when called.
+   */
+  actionsRef?: BaseMenu.Root.Props['actionsRef'] | undefined;
   /**
    * The menu trigger and popup.
    */
@@ -94,7 +96,7 @@ Menu2.propTypes /* remove-proptypes */ = {
    * A ref to imperative actions.
    * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
    *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
-   *   Whether it leaves the DOM is decided by `keepMounted` on the portal.
+   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2Popup`.
    * - `close`: Closes the menu imperatively when called.
    */
   actionsRef: PropTypes.shape({

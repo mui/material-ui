@@ -13,8 +13,16 @@ import { useDefaultProps } from '../DefaultPropsProvider';
  */
 export interface Menu2SubmenuProps extends Pick<
   BaseMenu.SubmenuRoot.Props,
-  'actionsRef' | 'closeParentOnEsc' | 'defaultOpen' | 'highlightItemOnHover' | 'loopFocus' | 'open'
+  'closeParentOnEsc' | 'defaultOpen' | 'highlightItemOnHover' | 'loopFocus' | 'open'
 > {
+  /**
+   * A ref to imperative actions.
+   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
+   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
+   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2SubmenuPopup`.
+   * - `close`: Closes the menu imperatively when called.
+   */
+  actionsRef?: BaseMenu.SubmenuRoot.Props['actionsRef'] | undefined;
   /**
    * The submenu trigger and popup.
    */
@@ -110,7 +118,7 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
    * A ref to imperative actions.
    * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
    *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
-   *   Whether it leaves the DOM is decided by `keepMounted` on the portal.
+   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2SubmenuPopup`.
    * - `close`: Closes the menu imperatively when called.
    */
   actionsRef: PropTypes.shape({

@@ -151,7 +151,7 @@ export interface Menu2SubmenuPopupOwnerState extends Menu2SubmenuPopupProps {}
 
 export interface Menu2SubmenuPopupSlots {
   /**
-   * The component used for the portal element, which contains the menu and its backdrops.
+   * The component used for the portal element, which contains the menu.
    * @default 'div'
    */
   portal?: React.ElementType | undefined;

@@ -336,7 +336,8 @@ Checked items and their indicators have either `data-checked` or `data-unchecked
 `data-side` and `data-align` contain the resolved placement after collision handling.
 
 Triggers use `data-popup-open`, not `data-open`.
-On the root trigger, `data-pressed` follows the open state and `data-disabled` follows Menu's `disabled` prop.
+On the root trigger, `data-pressed` follows the open state.
+`data-disabled` is present when you set `disabled` on `Menu` or on `MenuTrigger`.
 `data-highlighted` follows pointer and keyboard navigation, including focus on disabled items; use `.Mui-focusVisible` for keyboard focus-visible styles.
 
 The popup's `portal` and `list` slots and the submenu arrow have no automatic state attributes.
@@ -413,7 +414,7 @@ It has `data-ending-style` while it leaves:
 CSS animations need their own reduced-motion handling.
 
 `data-closed` marks the logical closed state, not the end of the exit transition.
-With `keepMounted`, the paper and positioner keep `data-closed` while hidden after the transition.
+With `keepMounted` on `MenuPopup`, the menu surface and the positioner keep `data-closed` while they are hidden after the transition.
 Without it, they unmount.
 
 ### Backdrop

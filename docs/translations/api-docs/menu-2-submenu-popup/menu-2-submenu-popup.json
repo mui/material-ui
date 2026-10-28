@@ -48,7 +48,7 @@
   "classDescriptions": {},
   "slotDescriptions": {
     "list": "The component used for the presentational list wrapper.",
-    "portal": "The component used for the portal element, which contains the menu and its backdrops.",
+    "portal": "The component used for the portal element, which contains the menu.",
     "positioner": "The component used to position the menu surface.",
     "root": "The component used for the menu surface. The popup renders as this element.",
     "transition": "The transition applied to the popup element. Set to null to use CSS animations instead."

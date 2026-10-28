@@ -65,7 +65,7 @@ This reduces new behavior code, but does not remove integration work. We must te
 
 Build on the [proof of concept](https://github.com/mui/material-ui/pull/48663) and [companion experiment](https://github.com/mui/material-ui/pull/48823).
 
-The team chose explicit root, trigger, and popup components, following the [Joy UI experiment](https://github.com/mui/joy-ui/tree/master/packages/react/src/components/menu).
+The team chose explicit root, trigger, and popup components. See [API shape](#api-shape-explicit-root-trigger-and-popup) for the reasons.
 The implementation separates behavior from the trigger and popup surfaces.
 Detached triggers are outside the initial release; their API and recipe have been removed.
 
@@ -131,7 +131,7 @@ A registered trigger supplies these handlers and focuses the first enabled item 
 
 #### Customization targets
 
-`MuiMenu2` and `MuiMenu2Submenu` configure behavioral `defaultProps`. They have no DOM ref, `sx`, slots, style overrides, or theme variants. The surface theme keys are `MuiMenu2Popup` and `MuiMenu2SubmenuPopup`, with their own exported class hooks.
+`MuiMenu2` and `MuiMenu2Submenu` configure behavioral `defaultProps`. They have no DOM ref, `sx`, slots, style overrides, or theme variants. `MuiMenu2Trigger` also supports `defaultProps` only. The surface theme keys are `MuiMenu2Popup` and `MuiMenu2SubmenuPopup`, with their own exported class hooks.
 
 Submenu popups inherit `MuiMenu2Popup` styles for their matching slots. All item roots inherit `MuiMenu2Item` styles. Shared overrides and variants apply first, then the component-specific theme styles, with `sx` last. CSS specificity still applies. Callbacks use the rendered component's state. Utility classes remain component-specific, and `defaultProps` do not pass between theme keys.
 
@@ -255,7 +255,7 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 
    The default light-theme focus tint has approximately 1.3:1 contrast against white. Sharing it with the classic item does not resolve the [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) gap. A library-wide state-style review remains separate work. Under `theme.focusVisible`, the item uses the classic inset ring instead of the focus tint; the inset avoids clipping in a scrolling popup. Shared styles do not imply identical keyboard-to-pointer behavior; see the caveat above.
 
-   Dedicated axe fixtures check open, nested, and non-modal menus. Base UI 1.8.0 [fixes the portal owner role](https://github.com/mui/base-ui/pull/5058); `aria-required-children` now passes without an exception. The `menus.a11y.json` report retains the focus-guard and trigger-reference results. These fixtures have assertion exceptions for `aria-hidden-focus` and `aria-valid-attr-value`. Interaction tests check keyboard opening, Tab navigation, reference IDs, and the trigger's label and expanded state. The closing-state audit found the upstream gap listed under [known issues](#known-issues). Recheck it after the upstream fix.
+   Dedicated axe fixtures check open, nested, and non-modal menus. Base UI 1.8.0 [fixes the portal owner role](https://github.com/mui/base-ui/pull/5058); `aria-required-children` now passes without an exception. In the non-modal fixture, axe reports an `aria-hidden-focus` failure for Base UI's focus guards. The open and nested fixtures report this rule as incomplete. All three fixtures report `aria-valid-attr-value` as incomplete for the trigger's `aria-controls` reference. The fixtures skip assertions for both rules, and `menus.a11y.json` records the results. Interaction tests check keyboard opening, Tab navigation, reference IDs, and the trigger's label and expanded state. The closing-state audit found the upstream gap listed under [known issues](#known-issues). Recheck it after the upstream fix.
 
    Repeat manual screen-reader checks after the composition API changes. Use NVDA with Firefox, and VoiceOver with Safari. Record the browser and screen-reader versions, then check:
 
@@ -307,15 +307,15 @@ Trigger behavior belongs to the trigger component.
 <details>
 <summary>2. Positioning</summary>
 
-| Classic Menu / Popover                                | New equivalent                                                        | Notes                                                                                 |
-| :---------------------------------------------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------ |
-| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements. Defaults to the supplied trigger.             |
-| `anchorOrigin` + `transformOrigin`                    | `side`, `align`, `sideOffset`, `alignOffset`                          | Placement model changes; animation origin follows resolved placement.                 |
-| `anchorReference="anchorPosition"` + `anchorPosition` | Virtual `anchor`                                                      | Caller supplies its rectangle.                                                        |
-| `marginThreshold` (16)                                | `collisionPadding` (5)                                                | Different defaults and collision model.                                               |
-| `anchorReference="none"`                              | No direct equivalent                                                  | Omitting `anchor` uses the trigger; it does not disable positioning.                  |
-| `action.updatePosition()`                             | Automatic tracking                                                    | `disableAnchorTracking` stops anchor tracking; it is not an imperative update method. |
-| No direct equivalent                                  | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | Additional positioning controls.                                                      |
+| Classic Menu / Popover                                | New equivalent                                                        | Notes                                                                                      |
+| :---------------------------------------------------- | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
+| `anchorEl`                                            | `anchor`                                                              | Also accepts refs and virtual elements. Defaults to the supplied trigger.                  |
+| `anchorOrigin` + `transformOrigin`                    | `side`, `align`, `sideOffset`, `alignOffset`                          | Placement model changes; animation origin follows resolved placement.                      |
+| `anchorReference="anchorPosition"` + `anchorPosition` | Virtual `anchor`                                                      | Caller supplies its rectangle.                                                             |
+| `marginThreshold` (16)                                | `collisionPadding` (5)                                                | Different defaults and collision model.                                                    |
+| `anchorReference="none"`                              | No direct equivalent                                                  | Omitting `anchor` uses the trigger. Pass a virtual `anchor` at the position that you want. |
+| `action.updatePosition()`                             | Automatic tracking                                                    | `disableAnchorTracking` stops anchor tracking; it is not an imperative update method.      |
+| No direct equivalent                                  | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod` | Additional positioning controls.                                                           |
 
 </details>
 

@@ -9,7 +9,26 @@
   },
   "name": "Menu2Trigger",
   "imports": ["import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';"],
-  "classes": [],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "open",
+      "className": "Mui-open",
+      "description": "State class applied to the root element if the menu is open.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiMenu2Trigger-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiMenu2Trigger",

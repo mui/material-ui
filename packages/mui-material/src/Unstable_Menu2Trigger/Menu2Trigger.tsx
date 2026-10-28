@@ -9,6 +9,8 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
 import { warnMenu2FragmentTrigger, warnMenu2TriggerRef } from '../Unstable_Menu2/menu2Utils';
 
+export type { Menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
+
 export interface Menu2TriggerProps
   extends
     Omit<React.HTMLAttributes<HTMLElement>, 'children'>,

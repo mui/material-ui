@@ -183,8 +183,11 @@ Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 -  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 -  transformOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 ->
-+<MenuPopup anchor={anchorEl} side="top" align="end">
++<MenuPopup side="top" align="end">
 ```
+
+`MenuPopup` uses the `MenuTrigger` element as its anchor.
+Pass `anchor` only when you omit `MenuTrigger`.
 
 | Menu / Popover                                        | Menu v2                                                               | Notes                                                                                                        |
 | :---------------------------------------------------- | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
@@ -192,7 +195,7 @@ Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 | `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                       | Defaults are `side="bottom"` and `align="start"`.                                                            |
 | Both origins at `top` / `left`                        | `side="bottom"`, `align="start"`, negative `sideOffset`               | See "Place the menu over its trigger" below.                                                                 |
 | `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                             | Give the virtual element the position that you want. For context menus, see [Context menus](#context-menus). |
-| `anchorReference="none"`                              | `anchor={virtualElement}`                                             | Give the virtual element the position that you want.                                                         |
+| `anchorReference="none"`                              | No direct equivalent                                                  | Omitting `anchor` uses the trigger. Pass a virtual `anchor` at the position that you want.                   |
 | `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                        | Same idea.                                                                                                   |
 | `action.updatePosition()`                             | Automatic                                                             | Use `disableAnchorTracking` to stop tracking layout shifts. `actionsRef` provides `close()` and `unmount()`. |
 | `PopoverClasses`                                      | Removed                                                               | Menu v2 doesn't use `Popover`.                                                                               |
@@ -267,7 +270,7 @@ Its target can be a descendant of the item.
 ### 7. Update the theme keys
 
 Menu v2 registers separate theme keys for behavior and presentation.
-`MuiMenu2` and `MuiMenu2Submenu` support behavioral `defaultProps`, but no style overrides or variants.
+`MuiMenu2`, `MuiMenu2Trigger`, and `MuiMenu2Submenu` support behavioral `defaultProps`, but no style overrides or variants.
 `MuiMenu2Popup` has the slots `root`, `portal`, `positioner`, `backdrop`, and `list`.
 `MuiMenu2SubmenuPopup` has `root`, `portal`, `positioner`, and `list`.
 The item parts have their own keys, such as `MuiMenu2Item`.
@@ -332,15 +335,15 @@ The list is now presentational.
 
 ### 8. Check the removed props
 
-| Removed                                                                                  | What to do instead                                                                                       |
-| :--------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------- |
-| `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`                            | Use checkbox or radio items to show a current value. The component controls the initial highlight.       |
-| `MenuItem.autoFocus`, `MenuList.autoFocus`, `MenuList.autoFocusItem`, `MenuList.variant` | The component controls the initial highlight.                                                            |
-| `disableAutoFocus`, `disableEnforceFocus`                                                | No independent equivalents. `modal` controls outside interaction, not the initial focus policy.          |
-| `disableRestoreFocus`                                                                    | Use `finalFocus={false}` to disable focus restoration.                                                   |
-| `disableScrollLock`                                                                      | Use `modal={false}`, which also keeps the rest of the document interactive. There's no exact equivalent. |
-| `disablePortal`                                                                          | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal container.       |
-| `hideBackdrop`                                                                           | Use `slots={{ backdrop: null }}` to omit the optional visual layer. This does not change modal behavior. |
+| Removed                                                                                  | What to do instead                                                                                                                                             |
+| :--------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`                            | Use checkbox or radio items to show a current value. The component controls the initial highlight.                                                             |
+| `MenuItem.autoFocus`, `MenuList.autoFocus`, `MenuList.autoFocusItem`, `MenuList.variant` | The component controls the initial highlight.                                                                                                                  |
+| `disableAutoFocus`, `disableEnforceFocus`                                                | No independent equivalents. `modal` controls outside interaction, not the initial focus policy.                                                                |
+| `disableRestoreFocus`                                                                    | Use `finalFocus={false}` to disable focus restoration.                                                                                                         |
+| `disableScrollLock`                                                                      | Use `modal={false}`, which also keeps the rest of the document interactive. There's no exact equivalent.                                                       |
+| `disablePortal`                                                                          | No equivalent. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal container. See [Portal containers](#portal-containers). |
+| `hideBackdrop`                                                                           | Use `slots={{ backdrop: null }}` to omit the optional visual layer. This does not change modal behavior.                                                       |
 
 ## Behavior changes
 
@@ -385,6 +388,28 @@ The visible menu can then be hidden from assistive technology.
 :::warning
 Leave `keepMounted` disabled on `MenuPopup` inside a kept-mounted Dialog.
 :::
+
+### Portal containers
+
+With `defaultOpen` or `keepMounted`, `MenuPopup` can read a `container` ref before its element is attached.
+The menu then renders in `document.body` instead of the container.
+Keep the container element in state with a callback ref, and pass that element to `container`.
+While the value is `null`, the portal waits.
+
+```jsx
+const [container, setContainer] = React.useState(null);
+
+<div ref={setContainer}>
+  <Menu defaultOpen>
+    <MenuTrigger>
+      <Button>Options</Button>
+    </MenuTrigger>
+    <MenuPopup container={container}>
+      <MenuItem>Profile</MenuItem>
+    </MenuPopup>
+  </Menu>
+</div>;
+```
 
 ### The initial highlight
 

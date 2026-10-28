@@ -104,7 +104,7 @@
   "slots": [
     {
       "name": "portal",
-      "description": "The component used for the portal element, which contains the menu and its backdrops.",
+      "description": "The component used for the portal element, which contains the menu.",
       "default": "'div'",
       "class": "MuiMenu2SubmenuPopup-portal"
     },

@@ -806,9 +806,10 @@ export default function MenuRfcExperiment() {
             <h2 id="classic-parity">Classic vs successor</h2>
             <p>
               The same item set rendered by the classic Menu and the successor, for visual parity
-              checks (dense, dividers, disabled, and elevation knobs apply to both). Only the
-              classic Menu marks My account as selected. Both expose a top-level{' '}
-              <code>elevation</code> prop; the successor forwards it to the Paper slot.
+              checks (dense, dividers, and elevation knobs apply to both). Only the classic Menu
+              marks My account as selected. The classic Menu takes <code>elevation</code> on the
+              root; the successor takes it on <code>Menu2Popup</code>, whose root slot is the Paper
+              surface.
             </p>
             <ThemeProvider theme={playgroundTheme}>
               <ClassicVersusSuccessorDemo settings={settings} />
@@ -841,8 +842,9 @@ export default function MenuRfcExperiment() {
           <section>
             <h2 id="controlled-anchor">Classic-style controlled usage</h2>
             <p>
-              An external button controls this menu through <code>open</code>, <code>anchor</code>,
-              and <code>onOpenChange</code>. The root has no <code>trigger</code> prop.
+              An external button controls this menu through <code>open</code> and{' '}
+              <code>onOpenChange</code> on <code>Menu2</code>, and <code>anchor</code> on{' '}
+              <code>Menu2Popup</code>. This menu has no <code>Menu2Trigger</code>.
             </p>
             <p>
               Open the menu, then click More. Both menus must stay open. You can also focus More
