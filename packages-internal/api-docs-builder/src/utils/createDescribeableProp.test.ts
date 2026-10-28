@@ -28,6 +28,25 @@ describe('createDescribeableProp', () => {
     expect(createDescribeableProp(createProp('@ignore'), 'thing')).to.equal(null);
   });
 
+  it('ignores className even when documented', () => {
+    expect(createDescribeableProp(createProp('The class name.'), 'className')).to.equal(null);
+  });
+
+  it('ignores an undocumented DOM event handler', () => {
+    expect(createDescribeableProp(createProp(''), 'onClick')).to.equal(null);
+  });
+
+  it('describes a documented DOM event handler', () => {
+    const prop = createDescribeableProp(createProp('Callback fired on click.'), 'onClick');
+    expect(prop?.annotation.description).to.equal('Callback fired on click.');
+  });
+
+  it('throws for an undocumented callback that is not a DOM event handler', () => {
+    expect(() => createDescribeableProp(createProp(''), 'onYearFocus')).to.throw(
+      'The "onYearFocus" prop is missing a description.',
+    );
+  });
+
   it('ignores a prop with @internal', () => {
     expect(createDescribeableProp(createProp('@internal\nUsed by the parent.'), 'thing')).to.equal(
       null,

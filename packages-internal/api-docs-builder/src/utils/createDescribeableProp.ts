@@ -1,5 +1,11 @@
 import * as doctrine from 'doctrine';
 import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
+import { DOM_EVENT_HANDLERS } from './domEventHandlers';
+
+/**
+ * Props shared by every component, never listed in the API docs.
+ */
+const HIDDEN_PROPS = new Set(['className', 'style', 'ref']);
 
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
@@ -26,6 +32,10 @@ export default function createDescribeableProp(
   propName: string,
   settings: CreateDescribeablePropSettings = {},
 ): DescribeablePropDescriptor | null {
+  if (HIDDEN_PROPS.has(propName)) {
+    return null;
+  }
+
   const { defaultValue, description, required, type } = prop;
   const jsdocDefaultValue = (prop as any).jsdocDefaultValue as { value: string } | undefined;
 
@@ -51,6 +61,10 @@ export default function createDescribeableProp(
   }
 
   if (annotation.description.trim() === '') {
+    // DOM event handlers are only listed when they have component-specific documentation.
+    if (DOM_EVENT_HANDLERS.has(propName)) {
+      return null;
+    }
     throw new Error(
       `The "${propName}" prop is missing a description. Document it with JSDoc, or add \`@ignore\` or \`@internal\` to hide it from the API docs.`,
     );
