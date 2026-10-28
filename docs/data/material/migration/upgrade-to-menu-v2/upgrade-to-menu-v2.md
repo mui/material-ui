@@ -128,9 +128,6 @@ const open = Boolean(anchorEl);
 Selecting a `MenuItem` closes the menu by default, so its `onClick={handleClose}` is no longer necessary.
 Set `closeOnClick={false}` on a `MenuItem` to keep the menu open.
 
-`MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default.
-Set `closeOnClick` on these items to close the menu after selection.
-
 `MenuTrigger` takes one element as its child and merges the trigger behavior into it, so you keep your own component:
 
 ```jsx
@@ -214,7 +211,7 @@ Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 - `anchorReference="anchorPosition"` with `anchorPosition`, and `anchorReference="none"`, become `anchor={virtualElement}`.
   Give the virtual element the position that you want.
   For context menus, see [Context menus](#context-menus).
-- `marginThreshold` (default 16) becomes `collisionPadding` (default 5).
+- `marginThreshold` (default 16) becomes `collisionPadding` on `MenuPopup` (default 5).
 - `action.updatePosition()` is removed, because the position updates automatically.
   Use `disableAnchorTracking` to stop tracking layout shifts.
   `actionsRef` provides `close()` and `unmount()`.
@@ -276,14 +273,18 @@ Separators, groups, links, and checked items become dedicated parts:
 
 - `<Divider />` between items becomes `MenuSeparator`, which controls its own margins.
 - `ListSubheader` becomes `MenuGroup` with `MenuGroupLabel`, which adds the correct ARIA relationship.
-- `href` and `LinkComponent` become `MenuLinkItem`, which renders a real `<a role="menuitem">`.
+- Items with `href`, `LinkComponent`, or `component="a"` become `MenuLinkItem`, which renders a real `<a role="menuitem">`.
+  For a router link, pass the link component to its `component` prop.
 - Items with `role="menuitemcheckbox"` become `MenuCheckboxItem`.
-  It reports the new state through `onCheckedChange(checked, eventDetails)`.
+  Its `checked` or `defaultChecked` prop replaces `selected`, and it reports the new state through `onCheckedChange(checked, eventDetails)`.
 - Items with `role="menuitemradio"` become `MenuRadioItem` inside a `MenuRadioGroup`.
   The group reports the new value through `onValueChange(value, eventDetails)`.
 
 In both callbacks, `eventDetails.event` is a native event, not a React synthetic event.
 Its target can be a descendant of the item.
+
+`MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default.
+Set `closeOnClick` on these items to close the menu after selection.
 
 These item props work as before:
 
@@ -299,7 +300,7 @@ These `MenuList` props move or change:
 - `MenuList.disableListWrap` becomes `loopFocus` on `Menu` (default `true`), with the value inverted.
 - `MenuList.dense` and `MenuList.disablePadding` move to `slotProps.list` on `MenuPopup`.
   The `list` slot is a `List`, so the props are unchanged.
-- Naming attributes such as `aria-label` move from `slotProps.list` to `MenuPopup`.
+- Naming attributes on `slotProps.list` move to `MenuPopup`.
   See [Move popup props to MenuPopup](#8-move-popup-props-to-menupopup).
 
 Removed item and `MenuList` props, such as `selected`, are listed in [Check the removed props](#9-check-the-removed-props).
@@ -357,6 +358,10 @@ A part's own key applies after the shared key.
 For example, `MuiMenu2CheckboxItem` overrides apply after `MuiMenu2Item` overrides, and `MuiMenu2SubmenuPopup` overrides apply after `MuiMenu2Popup` overrides.
 This includes theme variants, but not `defaultProps`.
 Utility classes remain specific to each part.
+
+Theme `variants` move to the new key the same way as `styleOverrides`.
+A variant that matches on `selected` no longer applies, because Menu v2 items don't have that prop.
+Match on `checked` under `MuiMenu2CheckboxItem` or `MuiMenu2RadioItem` instead.
 
 ### 8. Move popup props to MenuPopup
 
