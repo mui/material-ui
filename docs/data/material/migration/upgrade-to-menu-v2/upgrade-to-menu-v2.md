@@ -223,12 +223,13 @@ Common origin pairs map to these values in left-to-right text:
 <table>
   <thead>
     <tr>
-      <th colspan="2">Menu</th>
-      <th rowspan="2">Menu v2</th>
+      <th colspan="2" style="text-align:left">Menu</th>
+      <th style="text-align:left">Menu v2</th>
     </tr>
     <tr>
-      <th><code>anchorOrigin</code></th>
-      <th><code>transformOrigin</code></th>
+      <th style="text-align:left"><code>anchorOrigin</code></th>
+      <th style="text-align:left"><code>transformOrigin</code></th>
+      <th style="text-align:left"><code>side</code> and <code>align</code></th>
     </tr>
   </thead>
   <tbody>
