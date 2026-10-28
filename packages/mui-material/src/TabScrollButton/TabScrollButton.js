@@ -166,9 +166,6 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
     EndScrollButtonIcon: PropTypes.elementType,
     StartScrollButtonIcon: PropTypes.elementType,
   }),
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

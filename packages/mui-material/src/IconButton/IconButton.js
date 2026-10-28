@@ -302,9 +302,6 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
-  /**
-   * @ignore
-   */
   id: PropTypes.string,
   /**
    * If `true`, the loading indicator is visible and the button is disabled.

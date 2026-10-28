@@ -336,9 +336,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * @ignore
-   */
   role: PropTypes.string,
   /**
    * If `true`, the component is selected.

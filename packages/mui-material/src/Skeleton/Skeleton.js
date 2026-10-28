@@ -305,9 +305,6 @@ Skeleton.propTypes /* remove-proptypes */ = {
    * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
    */
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

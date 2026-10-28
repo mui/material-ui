@@ -192,13 +192,7 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    * The label element.
    */
   label: PropTypes.node,
-  /**
-   * @ignore
-   */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * If `true`, the component appears selected.

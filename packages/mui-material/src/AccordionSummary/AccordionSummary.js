@@ -223,9 +223,6 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * The props used for each slot inside.

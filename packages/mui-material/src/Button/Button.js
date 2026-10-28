@@ -685,9 +685,6 @@ Button.propTypes /* remove-proptypes */ = {
    * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes.string,
-  /**
-   * @ignore
-   */
   id: PropTypes.string,
   /**
    * If `true`, the loading indicator is visible and the button is disabled.
