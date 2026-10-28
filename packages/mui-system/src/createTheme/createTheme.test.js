@@ -207,4 +207,19 @@ describe('createTheme', () => {
 
     expect(() => render(<Test />)).not.to.throw();
   });
+
+  describe('cssLayers', () => {
+    it('is on by default', () => {
+      expect(createTheme().cssLayers).to.equal(true);
+    });
+
+    it('is off with modularCssLayers: false, which turned the sub-layers off in v9', () => {
+      expect(createTheme({ modularCssLayers: false }).cssLayers).to.equal(false);
+    });
+
+    it('keeps an explicit value', () => {
+      expect(createTheme({ cssLayers: true, modularCssLayers: false }).cssLayers).to.equal(true);
+      expect(createTheme({ cssLayers: false, modularCssLayers: true }).cssLayers).to.equal(false);
+    });
+  });
 });
