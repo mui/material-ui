@@ -76,6 +76,9 @@ Each part is the default export of its own subpath:
 +import MenuItem from '@mui/material/Unstable_Menu2Item';
 ```
 
+Every other part follows the same `@mui/material/Unstable_Menu2<Part>` pattern.
+For example, import `MenuSeparator` from `@mui/material/Unstable_Menu2Separator`.
+
 The examples use `Menu`, `MenuItem`, and similar local names for the Menu v2 components imported from the `Unstable_Menu2` subpaths.
 
 ### 2. Replace the anchor state with a trigger
@@ -168,7 +171,15 @@ Update any checks of the close reason:
 | No reason; an item's `onClick` handler closed the menu | `item-press`                  |
 
 The `trigger-press` reason can report either opening or closing.
-Check the `open` argument before you run close-only logic.
+Check the `open` argument before you run close-only logic:
+
+```js
+function handleOpenChange(open, eventDetails) {
+  if (!open && eventDetails.reason === 'outside-press') {
+    saveDraft();
+  }
+}
+```
 
 Tab dismissal reports `focus-out` because focus leaves the menu.
 Other focus changes can report this reason too.
@@ -266,8 +277,8 @@ Separators, groups, links, and checked items become dedicated parts:
 These item props work as before:
 
 - `dense`, `disableGutters`, and `divider` are unchanged.
-- `disabled` is unchanged on supported item parts.
-  Disabled items stay focusable.
+- `disabled` is unchanged on supported item parts, but disabled items now stay focusable.
+  See [Behavior changes](#behavior-changes).
   `MenuLinkItem` does not support this prop.
 - `disableRipple` is unchanged.
   The item root is a `ButtonBase`, so items ripple as before.
@@ -322,35 +333,29 @@ The CSS classes use the same component names as the theme keys:
 For example, change an `& .MuiMenu-list` selector to `& .MuiMenu2Popup-list`.
 The `menu2PopupClasses` and `menu2SubmenuPopupClasses` exports provide these class names from `@mui/material/Unstable_Menu2Popup` and `@mui/material/Unstable_Menu2SubmenuPopup`.
 
-Menu v2 registers separate theme keys for behavior and presentation.
-`MuiMenu2` and `MuiMenu2Submenu` support behavioral `defaultProps`, but no style overrides or variants.
-`MuiMenu2Popup` has the slots `root`, `portal`, `positioner`, `backdrop`, and `list`.
-`MuiMenu2SubmenuPopup` has `root`, `portal`, `positioner`, and `list`.
-The item parts have their own keys, such as `MuiMenu2Item`.
+Menu v2 has separate theme keys for behavior and presentation:
 
-`MuiMenu2Popup` styles also apply to the matching submenu popup slots.
-`MuiMenu2Item` styles apply to all item roots.
+- `MuiMenu2` and `MuiMenu2Submenu` support `defaultProps` only.
+  `Menu` and `MenuSubmenu` render no DOM element, so they have no ref, `sx`, or slots.
+- `MuiMenu2Popup` and `MuiMenu2SubmenuPopup` style the popups.
+  `MuiMenu2Popup` styles also apply to the matching submenu popup slots.
+- Each item part has its own key, such as `MuiMenu2Item`.
+  `MuiMenu2Item` styles apply to all item roots.
+- The trigger element keeps its own styles.
+  Theme its component, or style the `.MuiMenu2Trigger-root` class.
+
 Component-specific overrides apply after the shared styles.
 This includes theme variants, but not `defaultProps`.
 Utility classes remain component-specific.
 
-The supplied trigger element owns its styles.
-Theme its component, or style the `.MuiMenu2Trigger-root` class.
+On `MenuPopup`, each prop targets one element:
 
-Each rendered part has its own class, such as `.MuiMenu2Item-root`, so `sx` and `styleOverrides` can reach it.
-
-Use `slots` and `slotProps` on the popup to customize these elements and the `transition` slot.
-There's no `trigger` slot: put trigger props on `MenuTrigger`.
-`elevation` is a `MenuPopup` prop for its Paper root, with the default 8.
-
-`Menu` and `MenuSubmenu` render no DOM element.
-They have no DOM ref, `sx`, or slots.
-On the popup, `ref`, `className`, `style`, `sx`, event handlers, and HTML attributes target the menu surface.
-Use `slotProps.portal` to set the stacking level for both the menu and its modal interaction layer.
-Use `slotProps.positioner` for styles, placement attributes, and the ref on the positioned element.
-The popup's positioning props such as `side` and `align` target that element.
-
-The popup's `root` slot is the menu surface, not the portal.
+- `ref`, `className`, `style`, `sx`, event handlers, and HTML attributes target the menu surface, which is the `root` slot.
+  `elevation` sets its Paper elevation, with the default 8.
+- `side`, `align`, and `slotProps.positioner` target the positioned element.
+- `slotProps.portal` sets the stacking level for the menu and its modal interaction layer.
+- `slots` and `slotProps` also customize the `list`, `backdrop`, and `transition` slots.
+  There's no `trigger` slot: put trigger props on `MenuTrigger`.
 
 :::warning
 Move menu naming attributes from `slotProps.list` to `MenuPopup` or its `slotProps.root`.
@@ -375,34 +380,36 @@ See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone).
 
 Replace these props as follows:
 
-| Removed                           | What to do instead                                                                                |
-| :-------------------------------- | :------------------------------------------------------------------------------------------------ |
-| `selected`                        | Use `MenuCheckboxItem` or `MenuRadioItem` for checked state.                                      |
-| `focusVisibleClassName`           | Style the `highlighted` state class. It also matches pointer navigation, not only keyboard focus. |
-| `onFocusVisible`                  | No equivalent.                                                                                    |
-| `action.focusVisible()`           | No equivalent.                                                                                    |
-| `MenuList.disabledItemsFocusable` | No equivalent. Disabled items stay focusable with arrow keys, but cannot be activated.            |
-| `disableAutoFocus`                | No equivalent.                                                                                    |
-| `disableEnforceFocus`             | No exact equivalent. `modal` controls outside interaction, not the focus policy.                  |
-| `disableRestoreFocus`             | Use `finalFocus={false}`.                                                                         |
-| `disableScrollLock`               | Use `modal={false}`. It also keeps the rest of the document interactive.                          |
-| `disablePortal`                   | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal target.   |
-| `hideBackdrop`                    | Use `slots={{ backdrop: null }}`. This removes the visual layer only; modal behavior stays.       |
+| Removed                           | What to do instead                                                                                                     |
+| :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `selected`                        | For one current value, use `MenuRadioItem` inside a `MenuRadioGroup`. For independent toggles, use `MenuCheckboxItem`. |
+| `focusVisibleClassName`           | Style the `highlighted` state class. It also matches pointer navigation, not only keyboard focus.                      |
+| `onFocusVisible`                  | No equivalent.                                                                                                         |
+| `action.focusVisible()`           | No equivalent.                                                                                                         |
+| `MenuList.disabledItemsFocusable` | No equivalent, because disabled items are always focusable. See [Behavior changes](#behavior-changes).                 |
+| `disableAutoFocus`                | No equivalent.                                                                                                         |
+| `disableEnforceFocus`             | No exact equivalent. `modal` controls outside interaction, not the focus policy.                                       |
+| `disableRestoreFocus`             | Use `finalFocus={false}`.                                                                                              |
+| `disableScrollLock`               | Use `modal={false}`. It also keeps the rest of the document interactive.                                               |
+| `disablePortal`                   | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal target.                        |
+| `hideBackdrop`                    | Use `slots={{ backdrop: null }}`. This removes the visual layer only; modal behavior stays.                            |
 
 ## Behavior changes
 
 These changes are intentional and mostly bring the menu in line with the [WAI-ARIA menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 
 - **Opened with a pointer:** Menu highlights the selected item, or the first item.
-  Menu v2 highlights nothing, so Enter can't fire an unintended item.
+  Menu v2 highlights nothing.
+  See [The initial highlight](#the-initial-highlight).
 - **Opened with a keyboard:** Menu highlights an item.
   Menu v2 highlights the first enabled item, and ArrowUp highlights the last enabled item.
 - **Disabled items:** Menu skips them with the keyboard by default.
-  Menu v2 keeps them focusable and announces them as disabled.
+  Menu v2 keeps them focusable with arrow keys and announces them as disabled, but they cannot be activated.
 - **Sibling content:** Menu hides it from screen readers with `aria-hidden`.
   Menu v2 keeps it in the accessibility tree.
 - **Backdrop:** Menu renders one by default.
   Menu v2 uses an internal modal layer, with an optional visual backdrop slot.
+  See [Backdrop](#backdrop).
 - **Tab while open:** Menu closes, and focus returns to the trigger.
   Menu v2 closes, and focus moves to the next element.
 - **Submenus:** Menu doesn't support them.
@@ -432,7 +439,6 @@ On touch devices, the menu blocks outside taps, but page scrolling can stay avai
 
 A `MenuPopup` with `keepMounted` inside a kept-mounted Material UI Dialog can remain under `aria-hidden="true"` with the default portal container.
 The visible menu can then be hidden from assistive technology.
-[Base UI issue #5577](https://github.com/mui/base-ui/issues/5577) describes a related portal limitation, not this exact composition.
 
 :::warning
 Leave `keepMounted` disabled on `MenuPopup` inside a kept-mounted Dialog.
@@ -445,7 +451,7 @@ When they open a menu with a pointer, Menu v2 highlights nothing, so pressing En
 Native desktop menus behave this way.
 
 This is a deliberate deviation from the ARIA Authoring Practices Guide (APG), which says that focus moves to an item when the menu opens, with no exception for pointer opens.
-There's no prop to restore the classic behavior: `Menu.Root` in Base UI has no initial-highlight prop and `Menu.Popup` has no `initialFocus`.
+There's no prop to restore the classic behavior.
 See the [Base UI discussion on initial focus](https://github.com/mui/base-ui/issues/2143) for the reasoning.
 
 ### The selectedMenu variant is gone
