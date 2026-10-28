@@ -499,7 +499,7 @@ const attachPropsTable = (
   reactApi: ComponentReactApi,
   settings?: CreateDescribeablePropSettings,
 ) => {
-  const propErrors: Array<[propName: string, error: Error]> = [];
+  const propErrors: string[] = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
   const componentProps: ComponentReactApi['propsTable'] = Object.fromEntries(
     Object.entries(reactApi.props!).flatMap(([propName, propDescriptor]): Pair[] => {
@@ -507,7 +507,7 @@ const attachPropsTable = (
       try {
         prop = createDescribeableProp(propDescriptor, propName, settings);
       } catch (error) {
-        propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
+        propErrors.push(`[${reactApi.name}] \`${propName}\`: ${error}`);
         prop = null;
       }
       if (prop === null) {
@@ -595,28 +595,7 @@ const attachPropsTable = (
   );
   reactApi.propsTable = componentProps;
 
-  return propErrors.map(([propName, error]) => `${propName}: ${error}`);
-};
-
-const getUndocumentedSlotsAndClassesErrors = (
-  reactApi: ComponentReactApi,
-  slotInterfaceName: string,
-) => {
-  const ignoreHint = 'To leave it out of the API docs, add `@ignore` instead.';
-  return [
-    ...reactApi.slots
-      .filter((slot) => slot.description.trim() === '')
-      .map(
-        (slot) =>
-          `[${reactApi.name}] slot \`${slot.name}\` has no description. Add a JSDoc comment to \`${slot.name}\` in the \`${slotInterfaceName}\` interface. ${ignoreHint}`,
-      ),
-    ...reactApi.classes
-      .filter((classDefinition) => classDefinition.description.trim() === '')
-      .map(
-        (classDefinition) =>
-          `[${reactApi.name}] class \`${classDefinition.key}\` has no description. Add a JSDoc comment to \`${classDefinition.key}\` in the type of the \`classes\` prop (usually \`${reactApi.name}Classes\`). ${ignoreHint}`,
-      ),
-  ];
+  return propErrors;
 };
 
 /**
@@ -862,8 +841,9 @@ export default async function generateComponentApi(
     }
   }
 
+  const slotsAndClassesErrors: string[] = [];
   if (!projectSettings.skipSlotsAndClasses) {
-    const { slots, classes } = parseSlotsAndClasses({
+    const { slots, classes, errors } = parseSlotsAndClasses({
       typescriptProject: project,
       projectSettings,
       componentName: reactApi.name,
@@ -873,6 +853,7 @@ export default async function generateComponentApi(
 
     reactApi.slots = slots;
     reactApi.classes = classes;
+    slotsAndClassesErrors.push(...errors);
   }
 
   const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
@@ -894,10 +875,7 @@ export default async function generateComponentApi(
 
   const errors = [
     ...attachPropsTable(reactApi, projectSettings.propsSettings),
-    ...getUndocumentedSlotsAndClassesErrors(
-      reactApi,
-      componentInfo.slotInterfaceName ?? `${reactApi.name}Slots`,
-    ),
+    ...slotsAndClassesErrors,
   ];
   if (errors.length > 0) {
     throw new Error(

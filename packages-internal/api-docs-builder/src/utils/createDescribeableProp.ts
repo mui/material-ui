@@ -1,6 +1,7 @@
 import * as doctrine from 'doctrine';
 import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
 import { DOM_EVENT_HANDLERS } from './domEventHandlers';
+import { HIDDEN_JSDOC_TAGS, IGNORE_HINT } from '../buildApiUtils';
 
 /**
  * Props shared by every component, never listed in the API docs.
@@ -48,17 +49,11 @@ export default function createDescribeableProp(
     renderedDefaultValue.length <= 150,
   );
 
-  const missingDescriptionMessage = `The "${propName}" prop has no description. Add a JSDoc comment to \`${propName}\` in the component's TypeScript props, then run \`pnpm proptypes\`. To leave it out of the API docs, add \`@ignore\` instead.`;
-
-  if (description === undefined) {
-    throw new Error(missingDescriptionMessage);
-  }
-
-  const annotation = doctrine.parse(description, {
+  const annotation = doctrine.parse(description ?? '', {
     sloppy: true,
   });
 
-  if (annotation.tags.some((tag) => tag.title === 'ignore' || tag.title === 'internal')) {
+  if (annotation.tags.some((tag) => HIDDEN_JSDOC_TAGS.includes(tag.title))) {
     return null;
   }
 
@@ -67,7 +62,9 @@ export default function createDescribeableProp(
     if (DOM_EVENT_HANDLERS.has(propName)) {
       return null;
     }
-    throw new Error(missingDescriptionMessage);
+    throw new Error(
+      `The "${propName}" prop has no description. Add a JSDoc comment to \`${propName}\` in the component's TypeScript props, then run \`pnpm proptypes\`. ${IGNORE_HINT}`,
+    );
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {

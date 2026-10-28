@@ -1,7 +1,12 @@
 import { Symbol, isPropertySignature } from '@typescript/typescript6';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { ParsedProperty } from '../types/ApiBuilder.types';
-import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';
+import {
+  getSymbolDescription,
+  getSymbolJSDocTags,
+  isHiddenFromApiDocs,
+  stringifySymbol,
+} from '../buildApiUtils';
 
 const parseProperty = async (
   propertySymbol: Symbol,
@@ -39,7 +44,7 @@ const extractInfoFromType = async (
     );
 
     result = Object.values(properties)
-      .filter((property) => !property.tags.ignore)
+      .filter((property) => !isHiddenFromApiDocs(property.tags))
       .sort((a, b) => a.name.localeCompare(b.name));
   } catch {
     console.error(`No declaration for ${typeName}`);

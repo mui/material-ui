@@ -4,9 +4,6 @@ export interface TextareaAutosizeProps extends Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   'children' | 'rows'
 > {
-  /**
-   * @ignore
-   */
   ref?: React.Ref<HTMLTextAreaElement> | undefined;
   /**
    * Maximum number of rows to display.
