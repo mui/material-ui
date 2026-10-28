@@ -122,10 +122,10 @@ export interface Theme extends BaseTheme, CssVarsProperties {
    * @default 1
    * @example
    * styleOverrides: {
-   *   root: ({ theme }) => theme.applyOffsetFocusVisible(),
+   *   root: ({ theme }) => theme.setFocusVisibleOffset(),
    * }
    */
-  applyOffsetFocusVisible: (offset?: number) => CSSObject;
+  setFocusVisibleOffset: (offset?: number) => CSSObject;
 }
 
 /**

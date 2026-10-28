@@ -39,7 +39,7 @@ const CardActionAreaRoot = styled(ButtonBase, {
     },
     ...(theme.focusVisible
       ? // Inset the ring: Card sets overflow:hidden, which clips an outset ring.
-        theme.applyOffsetFocusVisible(-1)
+        theme.setFocusVisibleOffset(-1)
       : {
           [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
             opacity: (theme.vars || theme).palette.action.focusOpacity,

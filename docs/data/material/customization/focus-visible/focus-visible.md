@@ -101,7 +101,7 @@ Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [
 
 ### Moving the indicator outside or inside
 
-Use `theme.applyOffsetFocusVisible()` to move the indicator of a component outside or inside its edge:
+Use `theme.setFocusVisibleOffset()` to move the indicator of a component outside or inside its edge:
 
 - A positive value draws the indicator outside the component.
 - A negative value draws it inside the component.

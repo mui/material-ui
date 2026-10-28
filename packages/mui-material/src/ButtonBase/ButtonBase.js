@@ -73,7 +73,7 @@ export const ButtonBaseRoot = styled('button', {
       {
         props: { internalDisabledThemeFocusVisible: false },
         style: theme.focusVisible && {
-          ...theme.applyOffsetFocusVisible(1),
+          ...theme.setFocusVisibleOffset(1),
           [`&.${buttonBaseClasses.focusVisible}`]: theme.focusVisible,
         },
       },

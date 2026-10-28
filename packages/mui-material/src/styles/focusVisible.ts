@@ -8,7 +8,9 @@ const focusVisibleShadowVar = '--_focusVisible-shadow';
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
 
-export function applyOffsetFocusVisible(offset: number = 1) {
+// Named `set` instead of `apply` because it does not return the full `theme.focusVisible` styles,
+// it only sets the variables that control the ring's offset.
+export function setFocusVisibleOffset(offset: number = 1) {
   return {
     [focusVisibleOffsetVar]: offset,
     // `initial` reverts the var to guaranteed-invalid so `var(--_focusVisible-behavior, )` falls back to empty — there is no explicit `outset` keyword.
@@ -16,10 +18,10 @@ export function applyOffsetFocusVisible(offset: number = 1) {
   };
 }
 
-export const outsetFocusRing = applyOffsetFocusVisible(1);
+export const outsetFocusRing = setFocusVisibleOffset(1);
 
 export function applyInsetFocusVisible(offset: number) {
-  return applyOffsetFocusVisible(-offset);
+  return setFocusVisibleOffset(-offset);
 }
 
 // Used by the colored-background surfaces (AppBar, Alert, SnackbarContent) to make the focus visible appear through box-shadow

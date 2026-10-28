@@ -108,7 +108,7 @@ const MenuItemRoot = styled(ButtonBase, {
     },
     ...(theme.focusVisible
       ? // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
-        theme.applyOffsetFocusVisible(-1)
+        theme.setFocusVisibleOffset(-1)
       : {
           [`&.${menuItemClasses.focusVisible}`]: {
             backgroundColor: (theme.vars || theme).palette.action.focus,

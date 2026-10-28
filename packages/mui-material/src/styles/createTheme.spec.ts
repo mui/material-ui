@@ -354,26 +354,26 @@ const theme = createTheme();
   });
 }
 
-// theme.applyOffsetFocusVisible
+// theme.setFocusVisibleOffset
 {
   const offsetTheme = createTheme({ focusVisible: true });
-  offsetTheme.applyOffsetFocusVisible();
-  offsetTheme.applyOffsetFocusVisible(1);
-  offsetTheme.applyOffsetFocusVisible(-3);
-  createTheme({ cssVariables: true }).applyOffsetFocusVisible(-1);
+  offsetTheme.setFocusVisibleOffset();
+  offsetTheme.setFocusVisibleOffset(1);
+  offsetTheme.setFocusVisibleOffset(-3);
+  createTheme({ cssVariables: true }).setFocusVisibleOffset(-1);
 
   createTheme({
     components: {
       MuiMenuItem: {
         styleOverrides: {
-          root: ({ theme: t }) => t.applyOffsetFocusVisible(1),
+          root: ({ theme: t }) => t.setFocusVisibleOffset(1),
         },
       },
     },
   });
 
   // @ts-expect-error the offset is a multiplier number, not a CSS length
-  offsetTheme.applyOffsetFocusVisible('2px');
+  offsetTheme.setFocusVisibleOffset('2px');
 }
 
 // `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings

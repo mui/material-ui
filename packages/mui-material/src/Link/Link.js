@@ -58,7 +58,7 @@ const LinkRoot = styled(Typography, {
     return {
       ...(theme.focusVisible && {
         [`&.${linkClasses.focusVisible}`]: {
-          ...theme.applyOffsetFocusVisible(1),
+          ...theme.setFocusVisibleOffset(1),
           ...theme.focusVisible,
         },
       }),

@@ -12,7 +12,7 @@ const theme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: ({ theme }) => ({
-          ...theme.applyOffsetFocusVisible(),
+          ...theme.setFocusVisibleOffset(),
           borderRadius: theme.shape.borderRadius,
         }),
       },

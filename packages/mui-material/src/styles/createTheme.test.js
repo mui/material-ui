@@ -542,19 +542,19 @@ describe('createTheme', () => {
       expect(createTheme({ cssVariables: false }).focusVisible).to.equal(undefined);
     });
 
-    describe('theme.applyOffsetFocusVisible', () => {
+    describe('theme.setFocusVisibleOffset', () => {
       [false, true].forEach((cssVariables) => {
         it(`positive outsets, negative insets, zero stays outset (cssVariables: ${cssVariables})`, () => {
           const theme = createTheme({ cssVariables, focusVisible: true });
-          expect(theme.applyOffsetFocusVisible(1)).to.deep.equal({
+          expect(theme.setFocusVisibleOffset(1)).to.deep.equal({
             '--_focusVisible-offset': 1,
             '--_focusVisible-behavior': 'initial',
           });
-          expect(theme.applyOffsetFocusVisible(-3)).to.deep.equal({
+          expect(theme.setFocusVisibleOffset(-3)).to.deep.equal({
             '--_focusVisible-offset': -3,
             '--_focusVisible-behavior': 'inset',
           });
-          expect(theme.applyOffsetFocusVisible(0)).to.deep.equal({
+          expect(theme.setFocusVisibleOffset(0)).to.deep.equal({
             '--_focusVisible-offset': 0,
             '--_focusVisible-behavior': 'initial',
           });
@@ -563,16 +563,16 @@ describe('createTheme', () => {
 
       it('defaults to the theme ring', () => {
         const theme = createTheme({ focusVisible: true });
-        expect(theme.applyOffsetFocusVisible()).to.deep.equal(theme.applyOffsetFocusVisible(1));
+        expect(theme.setFocusVisibleOffset()).to.deep.equal(theme.setFocusVisibleOffset(1));
       });
 
       it.skipIf(isJSDOM)('scales a custom outlineOffset', () => {
         const theme = createTheme({ focusVisible: { outlineOffset: 4 } });
         render(
           <ThemeProvider theme={theme}>
-            <Box data-testid="default" sx={[theme.focusVisible, theme.applyOffsetFocusVisible()]} />
-            <Box data-testid="inset" sx={[theme.focusVisible, theme.applyOffsetFocusVisible(-1)]} />
-            <Box data-testid="double" sx={[theme.focusVisible, theme.applyOffsetFocusVisible(2)]} />
+            <Box data-testid="default" sx={[theme.focusVisible, theme.setFocusVisibleOffset()]} />
+            <Box data-testid="inset" sx={[theme.focusVisible, theme.setFocusVisibleOffset(-1)]} />
+            <Box data-testid="double" sx={[theme.focusVisible, theme.setFocusVisibleOffset(2)]} />
           </ThemeProvider>,
         );
         expect(screen.getByTestId('default')).toHaveComputedStyle({ outlineOffset: '4px' });
@@ -584,7 +584,7 @@ describe('createTheme', () => {
         const theme = createTheme(createTheme({ focusVisible: true }), {
           palette: { mode: 'dark' },
         });
-        expect(theme.applyOffsetFocusVisible(-1)).to.deep.equal({
+        expect(theme.setFocusVisibleOffset(-1)).to.deep.equal({
           '--_focusVisible-offset': -1,
           '--_focusVisible-behavior': 'inset',
         });
@@ -596,7 +596,7 @@ describe('createTheme', () => {
           components: {
             MuiMenuItem: {
               styleOverrides: {
-                root: ({ theme: t }) => t.applyOffsetFocusVisible(1),
+                root: ({ theme: t }) => t.setFocusVisibleOffset(1),
               },
             },
           },
@@ -605,7 +605,7 @@ describe('createTheme', () => {
           <ThemeProvider theme={theme}>
             <MenuList>
               <MenuItem>Item</MenuItem>
-              <MenuItem sx={(t) => t.applyOffsetFocusVisible(-2)}>Item</MenuItem>
+              <MenuItem sx={(t) => t.setFocusVisibleOffset(-2)}>Item</MenuItem>
             </MenuList>
           </ThemeProvider>,
         );
