@@ -17,6 +17,8 @@ describe('styleFunctionSx', () => {
 
   const theme = createTheme(
     cssContainerQueries({
+      // The layered output is covered by the `@layer` tests below.
+      cssLayers: false,
       spacing: (val) => `${val * 10}px`,
       breakpoints: createBreakpoints({ values: breakpointsValues }),
       palette: {
@@ -574,7 +576,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          modularCssLayers: true,
+          cssLayers: true,
         },
         sx: {
           color: 'primary.main',
@@ -591,7 +593,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           backgroundColor: 'rgb(0, 255, 0)',
           outline: '1px solid',
@@ -610,7 +612,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          modularCssLayers: true,
+          cssLayers: true,
         },
         sx: [
           {
@@ -624,12 +626,12 @@ describe('styleFunctionSx', () => {
 
       expect(result).to.deep.equal([
         {
-          '@layer sx': {
+          '@layer mui.sx': {
             backgroundColor: 'rgb(0, 255, 0)',
           },
         },
         {
-          '@layer sx': {
+          '@layer mui.sx': {
             color: 'rgb(0, 0, 255)',
           },
         },
@@ -640,7 +642,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          modularCssLayers: true,
+          cssLayers: true,
         },
         sx: (t) => ({
           color: t.palette.primary.main,
@@ -649,7 +651,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           backgroundColor: 'rgb(0, 255, 0)',
         },
@@ -660,7 +662,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          modularCssLayers: true,
+          cssLayers: true,
         },
         sx: {
           color: 'primary.main',
@@ -671,7 +673,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           '&:hover': {
             backgroundColor: 'rgb(0, 255, 0)',
@@ -684,7 +686,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          modularCssLayers: true,
+          cssLayers: true,
         },
         sx: {
           color: 'primary.main',
@@ -695,7 +697,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           '&:hover': {
             backgroundColor: 'rgb(0, 255, 0)',

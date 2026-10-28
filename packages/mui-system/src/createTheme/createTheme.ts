@@ -39,6 +39,13 @@ export interface ThemeOptions {
   typography?: Typography | undefined;
   zIndex?: ZIndex | undefined;
   unstable_sxConfig?: SxConfig | undefined;
+  /**
+   * Puts the generated styles in the `mui` CSS layer, split into sub-layers:
+   * `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
+   * Set it to `false` to opt out.
+   * @default true
+   */
+  cssLayers?: boolean | undefined;
 }
 
 export interface Theme extends CssContainerQueries {
@@ -53,6 +60,7 @@ export interface Theme extends CssContainerQueries {
   mixins?: Mixins | undefined;
   typography?: Typography | undefined;
   zIndex?: ZIndex | undefined;
+  cssLayers?: boolean | undefined;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
@@ -101,8 +109,13 @@ function createTheme(options: ThemeOptions = {}, ...args: object[]): Theme {
     return styleFunctionSx({
       sx: props,
       theme: this,
+      // The result goes into other styles, which already sit in a layer.
+      nested: true,
     });
   };
+
+  // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
+  muiTheme.cssLayers = muiTheme.cssLayers ?? true;
 
   muiTheme.internal_cache = {};
 

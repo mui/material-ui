@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { GlobalStyles, internal_useNonce as useNonce } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import { getCssLayer } from '../cssLayers';
 import type InitColorSchemeScript from '../InitColorSchemeScript';
 import ThemeProvider from '../ThemeProvider';
 import {
@@ -124,6 +125,15 @@ export interface CreateCssVarsProviderResult<
  */
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
+
+function getStyleSheets(theme: any): Array<Record<string, any>> {
+  const styleSheets: Array<Record<string, any>> = theme.generateStyleSheets?.() || [];
+  const layerName = getCssLayer(theme, 'global');
+  if (!layerName) {
+    return styleSheets;
+  }
+  return styleSheets.map((styleSheet) => ({ [`@layer ${layerName}`]: styleSheet }));
+}
 
 export default function createCssVarsProvider<
   ColorScheme extends string,
@@ -478,9 +488,7 @@ export default function createCssVarsProvider<
         <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
           {children}
         </ThemeProvider>
-        {shouldGenerateStyleSheet && (
-          <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
-        )}
+        {shouldGenerateStyleSheet && <GlobalStyles styles={getStyleSheets(memoTheme)} />}
       </React.Fragment>
     );
 

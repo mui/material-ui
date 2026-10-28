@@ -5,8 +5,10 @@ import {
   Interpolation,
   internal_serializeStyles as serializeStyles,
 } from '@mui/styled-engine';
+import { isPlainObject } from '@mui/utils/deepmerge';
 import useTheme from '../useTheme';
 import { Theme as SystemTheme } from '../createTheme';
+import { getCssLayer } from '../cssLayers';
 
 export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;
@@ -14,14 +16,22 @@ export interface GlobalStylesProps<Theme = SystemTheme> {
   themeId?: string | undefined;
 }
 
-function wrapGlobalLayer(styles: any) {
+function wrapGlobalLayer(styles: any, layerName: string) {
   const serialized = serializeStyles(styles) as { styles?: string | undefined };
   if (styles !== serialized && serialized.styles) {
     if (!serialized.styles.match(/^@layer\s[^{]*$/)) {
       // If the styles are not already wrapped in a layer, wrap them in a global layer.
-      serialized.styles = `@layer global{${serialized.styles}}`;
+      serialized.styles = `@layer ${layerName}{${serialized.styles}}`;
     }
     return serialized;
+  }
+  // styled-components doesn't serialize the styles, so wrap them as they are.
+  // Styles that Emotion already serialized come back as they are too, and stay unlayered.
+  if (styles === serialized && typeof styles === 'string') {
+    return styles.match(/^@layer\s[^{]*$/) ? styles : `@layer ${layerName}{${styles}}`;
+  }
+  if (styles === serialized && isPlainObject(styles) && typeof styles.styles !== 'string') {
+    return { [`@layer ${layerName}`]: styles };
   }
   return styles;
 }
@@ -35,16 +45,17 @@ function GlobalStyles<Theme = SystemTheme>({
   const resolvedTheme = themeId ? (upperTheme as any)[themeId] || upperTheme : upperTheme;
 
   let globalStyles = typeof styles === 'function' ? styles(resolvedTheme) : styles;
-  if (resolvedTheme.modularCssLayers) {
+  const layerName = getCssLayer(resolvedTheme, 'global');
+  if (layerName) {
     if (Array.isArray(globalStyles)) {
       globalStyles = globalStyles.map((styleArg) => {
         if (typeof styleArg === 'function') {
-          return wrapGlobalLayer(styleArg(resolvedTheme));
+          return wrapGlobalLayer(styleArg(resolvedTheme), layerName);
         }
-        return wrapGlobalLayer(styleArg);
+        return wrapGlobalLayer(styleArg, layerName);
       });
     } else {
-      globalStyles = wrapGlobalLayer(globalStyles);
+      globalStyles = wrapGlobalLayer(globalStyles, layerName);
     }
   }
 

@@ -1032,10 +1032,14 @@ export default function createThemeWithVars(options = {}, ...args) {
     return styleFunctionSx({
       sx: props,
       theme: this,
+      // The result goes into other styles, which already sit in a layer.
+      nested: true,
     });
   };
   theme.internal_cache = {};
   theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
+  // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
+  theme.cssLayers = theme.cssLayers ?? true;
 
   return theme;
 }

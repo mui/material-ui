@@ -10,6 +10,7 @@ import {
   DEFAULT_BREAKPOINTS,
 } from '../breakpoints';
 import { sortContainerQueries } from '../cssContainerQueries';
+import { getCssLayer } from '../cssLayers';
 import defaultSxConfig from './defaultSxConfig';
 import { type StandardCSSProperties } from './StandardCssProperties';
 import { type AliasesCSSProperties } from './AliasesCSSProperties';
@@ -149,9 +150,13 @@ export function unstable_createStyleFunctionSx(): StyleFunctionSx {
         }
       }
 
-      if (!nested && theme.modularCssLayers) {
+      const layerName = nested ? undefined : getCssLayer(theme, 'sx');
+      if (layerName) {
         return {
-          '@layer sx': sortContainerQueries(theme, removeUnusedBreakpoints(breakpoints, css)),
+          [`@layer ${layerName}`]: sortContainerQueries(
+            theme,
+            removeUnusedBreakpoints(breakpoints, css),
+          ),
         };
       }
 
