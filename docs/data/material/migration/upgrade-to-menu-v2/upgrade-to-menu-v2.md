@@ -220,15 +220,55 @@ Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 
 Common origin pairs map to these values in left-to-right text:
 
-| `anchorOrigin` | `transformOrigin` | Menu v2                                                                 |
-| :------------- | :---------------- | :---------------------------------------------------------------------- |
-| bottom, left   | top, left         | `side="bottom" align="start"`                                           |
-| bottom, center | top, center       | `side="bottom" align="center"`                                          |
-| bottom, right  | top, right        | `side="bottom" align="end"`                                             |
-| top, left      | bottom, left      | `side="top" align="start"`                                              |
-| top, right     | bottom, right     | `side="top" align="end"`                                                |
-| top, right     | top, left         | `side="right" align="start"`                                            |
-| top, left      | top, left         | See [Place the menu over its trigger](#place-the-menu-over-its-trigger) |
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Menu</th>
+      <th rowspan="2">Menu v2</th>
+    </tr>
+    <tr>
+      <th><code>anchorOrigin</code></th>
+      <th><code>transformOrigin</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bottom, left</td>
+      <td>top, left</td>
+      <td><code>side="bottom" align="start"</code></td>
+    </tr>
+    <tr>
+      <td>bottom, center</td>
+      <td>top, center</td>
+      <td><code>side="bottom" align="center"</code></td>
+    </tr>
+    <tr>
+      <td>bottom, right</td>
+      <td>top, right</td>
+      <td><code>side="bottom" align="end"</code></td>
+    </tr>
+    <tr>
+      <td>top, left</td>
+      <td>bottom, left</td>
+      <td><code>side="top" align="start"</code></td>
+    </tr>
+    <tr>
+      <td>top, right</td>
+      <td>bottom, right</td>
+      <td><code>side="top" align="end"</code></td>
+    </tr>
+    <tr>
+      <td>top, right</td>
+      <td>top, left</td>
+      <td><code>side="right" align="start"</code></td>
+    </tr>
+    <tr>
+      <td>top, left</td>
+      <td>top, left</td>
+      <td>See <a href="#place-the-menu-over-its-trigger">Place the menu over its trigger</a></td>
+    </tr>
+  </tbody>
+</table>
 
 Use the logical `inline-start` and `inline-end` sides to get the correct direction in right-to-left text.
 
