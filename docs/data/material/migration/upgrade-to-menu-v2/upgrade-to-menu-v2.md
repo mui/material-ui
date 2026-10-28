@@ -278,6 +278,7 @@ Separators, groups, links, and checked items become dedicated parts:
 - Items with `role="menuitemcheckbox"` become `MenuCheckboxItem`.
   Its `checked` or `defaultChecked` prop replaces `selected`, and it reports the new state through `onCheckedChange(checked, eventDetails)`.
 - Items with `role="menuitemradio"` become `MenuRadioItem` inside a `MenuRadioGroup`.
+  Give each item a `value`, and set the current value with `value` or `defaultValue` on the group.
   The group reports the new value through `onValueChange(value, eventDetails)`.
 
 In both callbacks, `eventDetails.event` is a native event, not a React synthetic event.
@@ -383,21 +384,24 @@ The list is now presentational, so a name on it is not announced.
 ### 9. Check the removed props
 
 Delete or replace each removed prop as shown in the tables.
-Props that set the initial focus, such as `autoFocus`, have no replacement, because Menu v2 sets the [initial highlight](#the-initial-highlight) itself.
+A row that says only "Delete it." has no replacement.
+The initial focus props, such as `autoFocus`, have none because Menu v2 sets the [initial highlight](#the-initial-highlight) itself.
 
 **Menu**
 
-| Props to remove          | What to do instead                                                                                                                |
-| :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| `autoFocus`              | Delete it.                                                                                                                        |
-| `disableAutoFocusItem`   | Delete it.                                                                                                                        |
-| `variant="selectedMenu"` | Delete it. To show the current value, use radio items. See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone). |
-| `disableAutoFocus`       | Delete it. Menu v2 has no equivalent.                                                                                             |
-| `disableEnforceFocus`    | Delete it. `modal` controls outside interaction, but not the focus policy.                                                        |
-| `disableRestoreFocus`    | Use `finalFocus={false}` on `MenuPopup`.                                                                                          |
-| `disableScrollLock`      | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                                |
-| `disablePortal`          | Delete it. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target.                        |
-| `hideBackdrop`           | Delete it. Menu v2 renders no visual backdrop unless you set `slots.backdrop` on `MenuPopup`. See [Backdrop](#backdrop).          |
+| Props to remove        | What to do instead                                                                                                                                             |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoFocus`            | Delete it.                                                                                                                                                     |
+| `disableAutoFocusItem` | Delete it.                                                                                                                                                     |
+| `variant`              | Delete it. If you used `"selectedMenu"` to show the current value, use radio items. See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone). |
+| `disableAutoFocus`     | Delete it.                                                                                                                                                     |
+| `disableEnforceFocus`  | Delete it.                                                                                                                                                     |
+| `disableRestoreFocus`  | Use `finalFocus={false}` on `MenuPopup`.                                                                                                                       |
+| `disableScrollLock`    | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                                                             |
+| `disablePortal`        | Delete it. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target.                                                     |
+| `hideBackdrop`         | Delete it. Menu v2 renders no visual backdrop unless you set `slots.backdrop` on `MenuPopup`. See [Backdrop](#backdrop).                                       |
+| `action`               | Delete it. The position updates automatically. See [Update the positioning props](#4-update-the-positioning-props).                                            |
+| `PopoverClasses`       | Delete it. Menu v2 doesn't use `Popover`.                                                                                                                      |
 
 **MenuList**
 
@@ -405,18 +409,18 @@ Props that set the initial focus, such as `autoFocus`, have no replacement, beca
 | :----------------------- | :----------------------------------------------------------------------------------------- |
 | `autoFocus`              | Delete it.                                                                                 |
 | `autoFocusItem`          | Delete it.                                                                                 |
-| `variant`                | Delete it.                                                                                 |
+| `variant`                | Delete it. See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone).      |
 | `disabledItemsFocusable` | Delete it. Disabled items are always focusable. See [Behavior changes](#behavior-changes). |
 
 **MenuItem**
 
-| Props to remove         | What to do instead                                                                                                                 |
-| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `autoFocus`             | Delete it.                                                                                                                         |
-| `selected`              | For one current value, use `MenuRadioItem` inside a `MenuRadioGroup`. For independent toggles, use `MenuCheckboxItem`.             |
-| `focusVisibleClassName` | Style `.MuiMenu2Item-highlighted`, or `menu2ItemClasses.highlighted`. It also matches pointer navigation, not only keyboard focus. |
-| `onFocusVisible`        | Delete it. Menu v2 has no equivalent.                                                                                              |
-| `action`                | Delete it. Menu v2 items have no `action` methods, such as `focusVisible()`.                                                       |
+| Props to remove         | What to do instead                                                                                                                                                                                                         |
+| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoFocus`             | Delete it.                                                                                                                                                                                                                 |
+| `selected`              | For one current value, use `MenuRadioItem` inside a `MenuRadioGroup`, and add `closeOnClick` to close the menu on selection. For independent toggles, use `MenuCheckboxItem`. See [Update the items](#6-update-the-items). |
+| `focusVisibleClassName` | Style `.MuiMenu2Item-highlighted`, or `menu2ItemClasses.highlighted`. It also matches pointer navigation, not only keyboard focus.                                                                                         |
+| `onFocusVisible`        | Delete it.                                                                                                                                                                                                                 |
+| `action`                | Delete it. Menu v2 items have no `action` methods, such as `focusVisible()`.                                                                                                                                               |
 
 ## Behavior changes
 
