@@ -16,10 +16,7 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.grey[100],
   backgroundColor: (theme.vars || theme).palette.grey[50],
-  '&:has(.Mui-focusVisible)': {
-    outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-    outlineOffset: '2px',
-  },
+  '&:has(.Mui-focusVisible)': theme.focusVisible,
   '& .MuiTabs-scroller, & .MuiTab-root': {
     // Override inline-style to see the box-shadow
     overflow: 'visible!important',
