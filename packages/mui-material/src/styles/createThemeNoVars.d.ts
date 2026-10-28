@@ -125,6 +125,19 @@ export interface Theme extends BaseTheme, CssVarsProperties {
    * }
    */
   setFocusVisibleOffset: (offset: number) => CSSObject;
+  /**
+   * Adds a band of `color` around the `theme.focusVisible` ring so the ring stays visible on a background close to its color.
+   * It applies to the element and to every ring inside it, and the ring keeps its own `outlineColor`.
+   *
+   * It has no effect when `theme.focusVisible` sets its own `boxShadow`.
+   *
+   * @param color The band color, usually the color that contrasts with the element's background.
+   * @example
+   * styleOverrides: {
+   *   root: ({ theme }) => theme.setFocusVisibleContrast(theme.palette.primary.contrastText),
+   * }
+   */
+  setFocusVisibleContrast: (color: string) => CSSObject;
 }
 
 /**

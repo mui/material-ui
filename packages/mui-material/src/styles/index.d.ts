@@ -175,6 +175,5 @@ export { default as private_createTypography } from './createTypography';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
 export {
   applyInsetFocusVisible as private_applyInsetFocusVisible,
-  applyChildrenFocusVisible as private_applyChildrenFocusVisible,
   outsetFocusRing as private_outsetFocusRing,
 } from './focusVisible';
