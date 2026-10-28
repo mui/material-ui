@@ -598,18 +598,23 @@ const attachPropsTable = (
   return propErrors.map(([propName, error]) => `${propName}: ${error}`);
 };
 
-const getUndocumentedSlotsAndClassesErrors = (reactApi: ComponentReactApi) => {
-  const hint =
-    'Document it with JSDoc, or add `@ignore` or `@internal` to hide it from the API docs.';
+const getUndocumentedSlotsAndClassesErrors = (
+  reactApi: ComponentReactApi,
+  slotInterfaceName: string,
+) => {
+  const ignoreHint = 'To leave it out of the API docs, add `@ignore` instead.';
   return [
     ...reactApi.slots
       .filter((slot) => slot.description.trim() === '')
-      .map((slot) => `[${reactApi.name}] slot \`${slot.name}\` is missing a description. ${hint}`),
+      .map(
+        (slot) =>
+          `[${reactApi.name}] slot \`${slot.name}\` has no description. Add a JSDoc comment to \`${slot.name}\` in the \`${slotInterfaceName}\` interface. ${ignoreHint}`,
+      ),
     ...reactApi.classes
       .filter((classDefinition) => classDefinition.description.trim() === '')
       .map(
         (classDefinition) =>
-          `[${reactApi.name}] class \`${classDefinition.key}\` is missing a description. ${hint}`,
+          `[${reactApi.name}] class \`${classDefinition.key}\` has no description. Add a JSDoc comment to \`${classDefinition.key}\` in the type of the \`classes\` prop (usually \`${reactApi.name}Classes\`). ${ignoreHint}`,
       ),
   ];
 };
@@ -889,7 +894,10 @@ export default async function generateComponentApi(
 
   const errors = [
     ...attachPropsTable(reactApi, projectSettings.propsSettings),
-    ...getUndocumentedSlotsAndClassesErrors(reactApi),
+    ...getUndocumentedSlotsAndClassesErrors(
+      reactApi,
+      componentInfo.slotInterfaceName ?? `${reactApi.name}Slots`,
+    ),
   ];
   if (errors.length > 0) {
     throw new Error(

@@ -14,13 +14,13 @@ describe('createDescribeableProp', () => {
 
   it('throws for a prop without a description', () => {
     expect(() => createDescribeableProp(createProp(''), 'thing')).to.throw(
-      'The "thing" prop is missing a description.',
+      'The "thing" prop has no description.',
     );
   });
 
   it('throws for a prop with only tags', () => {
     expect(() => createDescribeableProp(createProp('@deprecated'), 'thing')).to.throw(
-      'The "thing" prop is missing a description.',
+      'The "thing" prop has no description.',
     );
   });
 
@@ -43,7 +43,7 @@ describe('createDescribeableProp', () => {
 
   it('throws for an undocumented callback that is not a DOM event handler', () => {
     expect(() => createDescribeableProp(createProp(''), 'onYearFocus')).to.throw(
-      'The "onYearFocus" prop is missing a description.',
+      'The "onYearFocus" prop has no description.',
     );
   });
 

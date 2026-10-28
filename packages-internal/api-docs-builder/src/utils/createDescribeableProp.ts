@@ -48,8 +48,10 @@ export default function createDescribeableProp(
     renderedDefaultValue.length <= 150,
   );
 
+  const missingDescriptionMessage = `The "${propName}" prop has no description. Add a JSDoc comment to \`${propName}\` in the component's TypeScript props, then run \`pnpm proptypes\`. To leave it out of the API docs, add \`@ignore\` instead.`;
+
   if (description === undefined) {
-    throw new Error(`The "${propName}" prop is missing a description.`);
+    throw new Error(missingDescriptionMessage);
   }
 
   const annotation = doctrine.parse(description, {
@@ -65,9 +67,7 @@ export default function createDescribeableProp(
     if (DOM_EVENT_HANDLERS.has(propName)) {
       return null;
     }
-    throw new Error(
-      `The "${propName}" prop is missing a description. Document it with JSDoc, or add \`@ignore\` or \`@internal\` to hide it from the API docs.`,
-    );
+    throw new Error(missingDescriptionMessage);
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
