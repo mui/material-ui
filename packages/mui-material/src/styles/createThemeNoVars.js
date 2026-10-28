@@ -237,10 +237,14 @@ function createThemeNoVars(options = {}, ...args) {
     return styleFunctionSx({
       sx: props,
       theme: this,
+      // The result goes into other styles, which already sit in a layer.
+      nested: true,
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
   muiTheme.applyFocusVisible = applyFocusVisible;
+  // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
+  muiTheme.cssLayers = muiTheme.cssLayers ?? true;
 
   attachColorManipulators(muiTheme);
 
