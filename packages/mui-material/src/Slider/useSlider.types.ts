@@ -64,8 +64,7 @@ export interface UseSliderParameters {
    * @param {number | number[]} value The new value.
    */
   onChangeCommitted?:
-    | ((event: React.SyntheticEvent | Event, value: number | number[]) => void)
-    | undefined;
+    ((event: React.SyntheticEvent | Event, value: number | number[]) => void) | undefined;
   /**
    * The component orientation.
    * @default 'horizontal'

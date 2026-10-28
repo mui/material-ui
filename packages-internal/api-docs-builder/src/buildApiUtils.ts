@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import * as ts from 'typescript';
+import * as ts from '@typescript/typescript6';
 import * as prettier from 'prettier';
 import { kebabCase } from 'es-toolkit/string';
 import { getLineFeed } from '@mui/internal-docs-utils';

@@ -1,5 +1,11 @@
-import createPalette, { type PaletteOptions } from './createPalette';
-import { type ColorSystemOptions } from './createThemeFoundation';
+import createPalette from './createPalette';
+import type { PaletteOptions } from './createPalette';
+import {
+  resolveFocusVisible,
+  mergeFocusVisibleInput,
+  isResolvedFocusVisible,
+} from './focusVisible';
+import type { ColorSystemOptions } from './createThemeFoundation';
 import createThemeWithVars, {
   type CssVarsThemeOptions,
   type ColorSystem,
@@ -11,7 +17,7 @@ import createThemeNoVars, {
   type ThemeOptions as ThemeNoVarsOptions,
 } from './createThemeNoVars';
 
-export type { Theme, CssThemeVariables } from './createThemeNoVars';
+export type { Theme, CssThemeVariables, FocusVisible } from './createThemeNoVars';
 
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
@@ -95,7 +101,6 @@ export default function createTheme(
         if (colorSchemesInput[defaultColorSchemeInput] !== true) {
           paletteOptions = colorSchemesInput[defaultColorSchemeInput].palette;
         } else if (defaultColorSchemeInput === 'dark') {
-          // @ts-ignore to prevent the module augmentation test from failing
           paletteOptions = { mode: 'dark' };
         }
       }
@@ -125,6 +130,33 @@ export default function createTheme(
         palette: theme.palette,
       } as ColorSystem;
       attachColorScheme(theme, 'light', colorSchemesInput.light);
+    }
+
+    if (theme.focusVisible != null && theme.focusVisible !== false) {
+      let focusVisibleInput = theme.focusVisible;
+      const rawFocusVisible = mergeFocusVisibleInput(options.focusVisible, args);
+      const authoredColor =
+        rawFocusVisible && typeof rawFocusVisible === 'object'
+          ? rawFocusVisible.outlineColor
+          : undefined;
+      // A re-composed theme carries a baked default that looks authored, so it falls back to value
+      // equality — the one case where a pinned `primary.main` is indistinguishable and gets reset.
+      if (
+        !authoredColor ||
+        (isResolvedFocusVisible(rawFocusVisible) && authoredColor === theme.palette.primary.main)
+      ) {
+        const { outlineColor, ...rest } = focusVisibleInput;
+        focusVisibleInput = rest;
+      }
+      Object.keys(theme.colorSchemes).forEach((scheme) => {
+        const schemePalette = theme.colorSchemes?.[scheme]?.palette;
+        if (schemePalette?.primary) {
+          theme.colorSchemes![scheme].focusVisible = resolveFocusVisible(
+            focusVisibleInput,
+            schemePalette.primary.main,
+          );
+        }
+      });
     }
 
     return theme;

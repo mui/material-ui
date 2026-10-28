@@ -1,17 +1,12 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { spy } from 'sinon';
 import { screen, isJsdom, createDescribe } from '@mui/internal-test-utils';
 import type { Clock, MuiRenderResult } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 type TransitionCallbackName =
-  | 'onEnter'
-  | 'onEntering'
-  | 'onEntered'
-  | 'onExit'
-  | 'onExiting'
-  | 'onExited';
+  'onEnter' | 'onEntering' | 'onEntered' | 'onExit' | 'onExiting' | 'onExited';
 
 interface TransitionConformanceOptions {
   /**

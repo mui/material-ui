@@ -75,3 +75,5 @@ function Custom(props: MenuProps) {
     </Menu>
   );
 }
+
+const menuCloseReason: Parameters<NonNullable<MenuProps['onClose']>>[1] = 'tabKeyDown';

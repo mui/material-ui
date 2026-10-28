@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { act, createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';

@@ -45,7 +45,7 @@ const theme = createTheme({
 To test a [material.io/design/color](https://m2.material.io/design/color/) color scheme with the Material UI documentation, simply select colors using the palette and sliders below.
 Alternatively, you can enter hex values in the Primary and Secondary text fields.
 
-{{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
+{{"component": "file://./demos/tool/index.ts", "hideToolbar": true, "bg": true}}
 
 The output shown in the color sample can be pasted directly into a [`createTheme()`](/material-ui/customization/theming/#createtheme-options-args-theme) function (to be used with [`ThemeProvider`](/material-ui/customization/theming/#theme-provider)):
 
@@ -74,6 +74,7 @@ If you are using the default primary and / or secondary shades then by providing
 - [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [MUI Theme Builder](https://petertyliu.github.io/mui-theme-builder/): A tool to generate, preview, and edit Material UI themes
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+- [MUI Theme Customizer](https://mansourcodes.github.io/mui-theme-customizer/): A tool to make it easier to experiment with and generate Material UI themes.
 
 ## 2014 Material Design color palettes
 
@@ -97,7 +98,7 @@ import { red } from '@mui/material/colors';
 const color = red[500];
 ```
 
-{{"demo": "Color.js", "hideToolbar": true, "bg": "inline"}}
+{{"component": "file://./demos/color/index.ts", "hideToolbar": true, "bg": "inline"}}
 
 ### Examples
 

@@ -70,9 +70,24 @@ export default class A11yReporter implements Reporter {
 
     // One file per slug, co-located with the component's other files. The docs
     // toolbar reads these via a webpack require.context (eager) at build time.
+    //
+    // Only docs slugs that already exist accept results. Docs-demo routes
+    // always pass; the check exists for a11y fixture suites, whose directory
+    // name doubles as the slug. Compare against the exact on-disk names —
+    // `existsSync` folds case on macOS (`Rating` matches `rating/`), so a
+    // wrong-case suite must fail here on every platform, not only on Linux CI.
+    const docsSlugs = new Set(fs.readdirSync(COMPONENTS_DIR));
     for (const [slug, metas] of bySlug) {
+      if (!docsSlugs.has(slug)) {
+        const routes = metas.map((meta) => `${meta.slug}/${meta.demo}`).join(', ');
+        throw new Error(
+          `a11y slug "${slug}" (from ${routes}) has no directory under ` +
+            `${path.relative(process.cwd(), COMPONENTS_DIR)}. ` +
+            `Name a11y fixture suites after an existing docs slug (lowercase) — ` +
+            `see parseRoute() in test/regressions/demoMeta.ts.`,
+        );
+      }
       const slugDir = path.join(COMPONENTS_DIR, slug);
-      fs.mkdirSync(slugDir, { recursive: true });
       const sorted = [...metas].sort((a, b) => a.demo.localeCompare(b.demo));
       const file: Record<string, DemoEntry> = {};
       for (const meta of sorted) {

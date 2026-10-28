@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
@@ -84,12 +85,14 @@ const MenuItemRoot = styled(ButtonBase, {
         (theme.vars || theme).palette.primary.main,
         (theme.vars || theme).palette.action.selectedOpacity,
       ),
-      [`&.${menuItemClasses.focusVisible}`]: {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.primary.main,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-        ),
-      },
+      ...(!theme.focusVisible && {
+        [`&.${menuItemClasses.focusVisible}`]: {
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          ),
+        },
+      }),
     },
     [`&.${menuItemClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
@@ -104,9 +107,14 @@ const MenuItemRoot = styled(ButtonBase, {
         ),
       },
     },
-    [`&.${menuItemClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
+    ...(theme.focusVisible
+      ? // Inset the ring: a scrolling Menu/MenuList clips an outset ring.
+        applyInsetFocusVisible(1)
+      : {
+          [`&.${menuItemClasses.focusVisible}`]: {
+            backgroundColor: (theme.vars || theme).palette.action.focus,
+          },
+        }),
     [`&.${menuItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
@@ -181,6 +189,11 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...other
   } = props;
 
+  // `menuitemcheckbox`/`menuitemradio` require `aria-checked`; derive it from `selected`
+  // (an omitted `selected` means unchecked). Other roles keep `selected` presentational.
+  const isCheckableRole = role === 'menuitemcheckbox' || role === 'menuitemradio';
+  const ariaChecked = isCheckableRole ? Boolean(props.selected) : undefined;
+
   const focusSource = useSelectFocusSource();
   const context = React.useContext(ListContext);
   const childContext = React.useMemo(
@@ -250,6 +263,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       <MenuItemRoot
         ref={handleRef}
         role={role}
+        aria-checked={ariaChecked}
         tabIndex={tabIndex}
         component={component}
         internalNativeButton={false}
@@ -328,6 +342,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   role: PropTypes.string,
   /**
    * If `true`, the component is selected.
+   * For `menuitemcheckbox` and `menuitemradio` roles, this also drives `aria-checked`.
    * @default false
    */
   selected: PropTypes.bool,

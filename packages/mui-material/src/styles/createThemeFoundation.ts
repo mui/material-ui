@@ -156,6 +156,10 @@ export interface PaletteFilledInput {
   disabledBg: string;
 }
 
+export interface PaletteInput {
+  autofillWebkitBoxShadow: string;
+}
+
 export interface PaletteLinearProgress {
   primaryBg: string;
   secondaryBg: string;
@@ -238,6 +242,7 @@ export interface ColorSystemOptions {
         Button?: Partial<PaletteButton> | undefined;
         Chip?: Partial<PaletteChip> | undefined;
         FilledInput?: Partial<PaletteFilledInput> | undefined;
+        Input?: Partial<PaletteInput> | undefined;
         LinearProgress?: Partial<PaletteLinearProgress> | undefined;
         Skeleton?: Partial<PaletteSkeleton> | undefined;
         Slider?: Partial<PaletteSlider> | undefined;
@@ -272,6 +277,7 @@ export interface CssVarsPalette {
   Button: PaletteButton;
   Chip: PaletteChip;
   FilledInput: PaletteFilledInput;
+  Input: PaletteInput;
   LinearProgress: PaletteLinearProgress;
   Skeleton: PaletteSkeleton;
   Slider: PaletteSlider;
@@ -290,6 +296,9 @@ export interface ColorSystem {
   overlays: Overlays;
 }
 
+type ActionOpacityKey =
+  'hoverOpacity' | 'selectedOpacity' | 'disabledOpacity' | 'focusOpacity' | 'activatedOpacity';
+
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
 export interface ThemeVars {
   font: ExtractTypographyTokens<TypographyVariants>;
@@ -301,13 +310,18 @@ export interface ThemeVars {
     | 'tonalOffset'
     | 'getContrastText'
     | 'augmentColor'
-  >;
-  opacity: Opacity;
+    | 'action'
+  > & {
+    action: Omit<ColorSystem['palette']['action'], ActionOpacityKey> & {
+      [K in ActionOpacityKey]: string;
+    };
+  };
+  opacity: { [K in keyof Opacity]: string };
   overlays: Overlays;
   shadows: Shadows;
   shape: Shape;
   spacing: string;
-  zIndex: ZIndex;
+  zIndex: { [K in keyof ZIndex]: string };
 }
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number

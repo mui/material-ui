@@ -96,12 +96,6 @@ function mergeSlotProps<
       externalSlotProps?.className,
     );
 
-    const mergedStyle = {
-      ...additionalProps?.style,
-      ...externalForwardedProps?.style,
-      ...externalSlotProps?.style,
-    };
-
     const props = {
       ...additionalProps,
       ...externalForwardedProps,
@@ -117,8 +111,15 @@ function mergeSlotProps<
       props.className = joinedClasses;
     }
 
-    if (Object.keys(mergedStyle).length > 0) {
-      props.style = mergedStyle;
+    if (additionalProps?.style || externalForwardedProps?.style || externalSlotProps?.style) {
+      const mergedStyle = {
+        ...additionalProps?.style,
+        ...externalForwardedProps?.style,
+        ...externalSlotProps?.style,
+      };
+      if (Object.keys(mergedStyle).length > 0) {
+        props.style = mergedStyle;
+      }
     }
 
     return {
@@ -148,13 +149,6 @@ function mergeSlotProps<
     externalSlotProps?.className,
   );
 
-  const mergedStyle = {
-    ...internalSlotProps?.style,
-    ...additionalProps?.style,
-    ...externalForwardedProps?.style,
-    ...externalSlotProps?.style,
-  };
-
   const props = {
     ...internalSlotProps,
     ...additionalProps,
@@ -171,8 +165,21 @@ function mergeSlotProps<
     props.className = joinedClasses;
   }
 
-  if (Object.keys(mergedStyle).length > 0) {
-    props.style = mergedStyle;
+  if (
+    internalSlotProps?.style ||
+    additionalProps?.style ||
+    externalForwardedProps?.style ||
+    externalSlotProps?.style
+  ) {
+    const mergedStyle = {
+      ...internalSlotProps?.style,
+      ...additionalProps?.style,
+      ...externalForwardedProps?.style,
+      ...externalSlotProps?.style,
+    };
+    if (Object.keys(mergedStyle).length > 0) {
+      props.style = mergedStyle;
+    }
   }
 
   return {

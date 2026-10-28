@@ -68,7 +68,7 @@ export default function GetStartedButtons(props: GetStartedButtonsProps) {
         </Button>
         {installation ? (
           <Button
-            // @ts-expect-error
+            // @ts-expect-error: The branding theme provides codeOutlined without global Button variant augmentation.
             variant="codeOutlined"
             endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
             onClick={handleCopy}

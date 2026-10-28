@@ -22,7 +22,8 @@ import {
   type TypeScriptProject,
 } from '@mui/internal-api-docs-builder';
 
-import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
+// eslint-disable-next-line import/extensions -- explicit .mjs extension required for tsx to resolve the ESM module
+import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects.mjs';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',

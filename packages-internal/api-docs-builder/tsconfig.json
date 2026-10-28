@@ -7,7 +7,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "types": ["node", "vitest/globals"],
+    "types": ["node"],
     "target": "ES2020",
     "module": "preserve",
     "moduleResolution": "bundler",

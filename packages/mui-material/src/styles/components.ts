@@ -782,6 +782,13 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiTabs'] | undefined;
       }
     | undefined;
+  MuiTabScrollButton?:
+    | {
+        defaultProps?: ComponentsProps['MuiTabScrollButton'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiTabScrollButton'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiTabScrollButton'] | undefined;
+      }
+    | undefined;
   MuiTextField?:
     | {
         defaultProps?: ComponentsProps['MuiTextField'] | undefined;

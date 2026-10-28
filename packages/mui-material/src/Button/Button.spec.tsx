@@ -118,7 +118,7 @@ const buttonTest = () => (
     </Button>
     {
       // Can't have an onClick handler if the overriding component doesn't specify one:
-      // @ts-expect-error
+      // @ts-expect-error: TestOverride does not accept an onClick prop.
       <Button<typeof TestOverride> component={TestOverride} onClick={log}>
         TestOverride
       </Button>

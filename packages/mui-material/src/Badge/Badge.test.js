@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 import describeConformance from '../../test/describeConformance';

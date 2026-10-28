@@ -14,9 +14,11 @@ function extractEventHandlers(object: Record<string, any> | undefined): EventHan
 
   const result: EventHandlers = {};
 
-  for (const prop of Object.keys(object)) {
-    if (isEventHandler(prop, object[prop])) {
-      result[prop] = object[prop];
+  const keys = Object.keys(object);
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    if (isEventHandler(key, object[key])) {
+      result[key] = object[key];
     }
   }
 

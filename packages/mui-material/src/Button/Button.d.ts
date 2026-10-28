@@ -1,14 +1,10 @@
-import type * as React from 'react';
-import { type DistributiveOmit, type OverridableStringUnion } from '@mui/types';
-import { type SxProps } from '@mui/system';
-import { type Theme } from '../styles';
-import { type ExtendButtonBase, type ExtendButtonBaseTypeMap } from '../ButtonBase';
-import {
-  type OverrideProps,
-  type OverridableComponent,
-  type OverridableTypeMap,
-} from '../OverridableComponent';
-import { type ButtonClasses } from './buttonClasses';
+import * as React from 'react';
+import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps, OverridableTypeMap } from '../OverridableComponent';
+import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -128,24 +124,21 @@ export interface ExtendButtonTypeMap<TypeMap extends OverridableTypeMap> {
   defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<TypeMap>, 'a'>,
-) => React.JSX.Element) &
-  OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
+export type ExtendButton<TypeMap extends OverridableTypeMap> = ExtendButtonBase<TypeMap>;
 
 /**
  *
  * Demos:
  *
- * - [Button Group](https://mui.com/material-ui/react-button-group/)
- * - [Button](https://mui.com/material-ui/react-button/)
- * - [Menubar](https://mui.com/material-ui/react-menubar/)
- * - [Number Field](https://mui.com/material-ui/react-number-field/)
+ * - [Button Group](https://next.mui.com/material-ui/react-button-group/)
+ * - [Button](https://next.mui.com/material-ui/react-button/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
+ * - [Number Field](https://next.mui.com/material-ui/react-number-field/)
  *
  * API:
  *
- * - [Button API](https://mui.com/material-ui/api/button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [Button API](https://next.mui.com/material-ui/api/button/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
 declare const Button: ExtendButtonBase<ButtonTypeMap>;
 

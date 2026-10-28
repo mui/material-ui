@@ -117,9 +117,11 @@ const PaginationItemPage = styled(ButtonBase, {
     padding: '0 6px',
     margin: '0 3px',
     color: (theme.vars || theme).palette.text.primary,
-    [`&.${paginationItemClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
+    ...(!theme.focusVisible && {
+      [`&.${paginationItemClasses.focusVisible}`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
+    }),
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
@@ -145,12 +147,14 @@ const PaginationItemPage = styled(ButtonBase, {
           backgroundColor: (theme.vars || theme).palette.action.selected,
         },
       },
-      [`&.${paginationItemClasses.focusVisible}`]: {
-        backgroundColor: theme.alpha(
-          (theme.vars || theme).palette.action.selected,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-        ),
-      },
+      ...(!theme.focusVisible && {
+        [`&.${paginationItemClasses.focusVisible}`]: {
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.action.selected,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          ),
+        },
+      }),
       [`&.${paginationItemClasses.disabled}`]: {
         opacity: 1,
         color: (theme.vars || theme).palette.action.disabled,
@@ -225,9 +229,11 @@ const PaginationItemPage = styled(ButtonBase, {
                   backgroundColor: (theme.vars || theme).palette[color].main,
                 },
               },
-              [`&.${paginationItemClasses.focusVisible}`]: {
-                backgroundColor: (theme.vars || theme).palette[color].dark,
-              },
+              ...(!theme.focusVisible && {
+                [`&.${paginationItemClasses.focusVisible}`]: {
+                  backgroundColor: (theme.vars || theme).palette[color].dark,
+                },
+              }),
               [`&.${paginationItemClasses.disabled}`]: {
                 color: (theme.vars || theme).palette.action.disabled,
               },
@@ -256,12 +262,14 @@ const PaginationItemPage = styled(ButtonBase, {
                   backgroundColor: 'transparent',
                 },
               },
-              [`&.${paginationItemClasses.focusVisible}`]: {
-                backgroundColor: theme.alpha(
-                  (theme.vars || theme).palette[color].main,
-                  `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
-                ),
-              },
+              ...(!theme.focusVisible && {
+                [`&.${paginationItemClasses.focusVisible}`]: {
+                  backgroundColor: theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                  ),
+                },
+              }),
             },
           },
         })),

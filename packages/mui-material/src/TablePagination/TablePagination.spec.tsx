@@ -29,7 +29,7 @@ function classesTest() {
   };
 
   <TablePagination classes={{ actions: 'actions' }} {...defaultProps} />;
-  // @ts-expect-error desired
+  // @ts-expect-error: alignCenter is not a TablePagination class key.
   <TablePagination classes={{ alignCenter: 'center' }} {...defaultProps} />;
 }
 

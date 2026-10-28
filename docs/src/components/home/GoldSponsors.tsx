@@ -33,16 +33,6 @@ const BACKLINKs = [
     href: 'https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'Buzzoid',
-    description: 'Instant delivery Instagram followers.',
-    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'Twicsy',
-    description: 'Instant delivery Instagram followers.',
-    href: 'https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     name: 'Poprey',
     description: 'Buy Instagram likes with crypto.',
     href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
@@ -58,9 +48,19 @@ const BACKLINKs = [
     href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'FollowerFabrik',
-    description: 'Your German Social Media Agency.',
-    href: 'https://followerfabrik.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+    name: 'Views4You',
+    description: 'Maximize Social Media Impact.',
+    href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'InstantFamous',
+    description: 'Grow Your Social Network.',
+    href: 'https://instant-famous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'TokBoostly',
+    description: 'Premium TikTok Growth.',
+    href: 'https://tokboostly.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 

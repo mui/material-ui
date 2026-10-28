@@ -18,7 +18,7 @@ export default function Core() {
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <CoreHero />
         <CoreProducts />
         <Divider />

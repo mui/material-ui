@@ -1,7 +1,7 @@
+import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
-import { expect } from 'chai';
 import describeConformance from '../../test/describeConformance';
 
 describe('<DialogActions />', () => {

@@ -4,7 +4,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
-import { type Plugin, transformWithEsbuild } from 'vite';
+import { Plugin, transformWithOxc } from 'vite';
 import { playwright } from '@vitest/browser-playwright';
 import { type BrowserInstanceOption } from 'vitest/node';
 
@@ -21,8 +21,11 @@ function forceJsxForJsFiles(): Plugin {
         return null;
       }
 
-      const result = await transformWithEsbuild(code, id, {
-        loader: 'jsx',
+      const result = await transformWithOxc(code, id, {
+        lang: 'jsx',
+        jsx: {
+          runtime: 'automatic',
+        },
       });
 
       // @vitejs/plugin-react only adds the React import for .jsx files.
@@ -43,7 +46,7 @@ function getVitestEnvironment(fileName: string): 'browser' | 'node' {
   return 'node';
 }
 
-const MONOREPO_ROOT = path.resolve(__dirname, '.');
+const MONOREPO_ROOT = path.resolve(import.meta.dirname, '.');
 
 export const alias = {
   '@mui/internal-api-docs-builder': path.resolve(
@@ -85,7 +88,9 @@ export default async function create(
   const pkgJson = path.resolve(file, '../package.json');
   const pkg = await fs.readFile(pkgJson, 'utf8').then((content) => JSON.parse(content));
 
-  const name = `${testEnv}:${pkg.name}`;
+  const packageName =
+    pkg.name ?? path.relative(MONOREPO_ROOT, path.dirname(pkgJson)).split(path.sep).join('/');
+  const name = `${testEnv}:${packageName}`;
 
   const ignore = await fs.readFile(path.resolve(MONOREPO_ROOT, './.gitignore'), 'utf8');
   const excludes = ignore
@@ -102,9 +107,12 @@ export default async function create(
     test: {
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
-      globals: true,
       disableConsoleIntercept: true,
-      setupFiles: [path.resolve(MONOREPO_ROOT, './test/setupVitest.ts')],
+      setupFiles: [
+        // Must load before `react-dom`, which `setupVitest.ts` pulls in.
+        path.resolve(MONOREPO_ROOT, './test/setupAnimationEvent.ts'),
+        path.resolve(MONOREPO_ROOT, './test/setupVitest.ts'),
+      ],
       server: {
         deps: {
           inline: ['@mui/internal-test-utils'],
@@ -145,23 +153,22 @@ export default async function create(
     },
     optimizeDeps: {
       include: ['@mui/internal-test-utils/setupVitest'],
-      esbuildOptions: {
+      rolldownOptions: {
         plugins: [
           {
             name: 'js-as-jsx',
-            setup(build) {
-              build.onLoad({ filter: /\.js$/ }, async (args) => {
-                if (args.path.includes('/node_modules/')) {
+            load: {
+              filter: { id: /\.js$/ },
+              async handler(id) {
+                if (id.includes('/node_modules/')) {
                   return null;
                 }
 
-                const contents = await fs.readFile(args.path, 'utf8');
-
                 return {
-                  contents,
-                  loader: 'jsx',
+                  code: await fs.readFile(id, 'utf8'),
+                  moduleType: 'jsx',
                 };
-              });
+              },
             },
           },
         ],

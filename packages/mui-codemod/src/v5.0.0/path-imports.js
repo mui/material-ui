@@ -1,9 +1,7 @@
+import { dirname } from 'path';
 import addImports from 'jscodeshift-add-imports';
+import getJSExports from '../util/getJSExports';
 
-const barrelImportsToTransform = {
-  material: {},
-  'icons-material': {},
-};
 const muiImportRegExp = /^@mui\/([^/]+)$/;
 
 export default function transformer(fileInfo, api, options) {
@@ -11,6 +9,17 @@ export default function transformer(fileInfo, api, options) {
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
+  };
+
+  const styleExports = getJSExports(
+    require.resolve('@mui/material-v5/modern/styles', {
+      paths: [dirname(fileInfo.path)],
+    }),
+  );
+
+  const barrelImportsToTransform = {
+    material: {},
+    'icons-material': {},
   };
 
   const root = j(fileInfo.source);
@@ -51,7 +60,7 @@ export default function transformer(fileInfo, api, options) {
       if (specifier.type === 'ImportSpecifier') {
         const name = specifier.imported.name;
         if (moduleName === 'material') {
-          if (name === 'ThemeProvider' || name === 'createTheme') {
+          if (styleExports.has(name)) {
             importsToAdd.styles ??= [];
             importsToAdd.styles.push(specifier);
             indexesToPrune.push(index);

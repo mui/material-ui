@@ -25,10 +25,15 @@ function round(value) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disableInteractive, arrow, touch, placement } = ownerState;
+  const { classes, disableInteractive, arrow, touch, placement, open } = ownerState;
 
   const slots = {
-    popper: ['popper', !disableInteractive && 'popperInteractive', arrow && 'popperArrow'],
+    popper: [
+      'popper',
+      !disableInteractive && 'popperInteractive',
+      arrow && 'popperArrow',
+      !open && 'popperClose',
+    ],
     tooltip: [
       'tooltip',
       arrow && 'tooltipArrow',
@@ -60,7 +65,7 @@ const TooltipPopper = styled(Popper, {
     pointerEvents: 'none',
     variants: [
       {
-        props: ({ ownerState, open }) => open && !ownerState.disableInteractive,
+        props: ({ ownerState }) => ownerState.open && !ownerState.disableInteractive,
         style: {
           pointerEvents: 'auto',
         },
@@ -264,6 +269,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
+  const openedByDisabledTriggerRef = React.useRef(false);
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
@@ -280,34 +286,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   let open = openState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    const { current: isControlled } = React.useRef(openProp !== undefined);
-
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    React.useEffect(() => {
-      if (
-        childNode &&
-        childNode.disabled &&
-        !isControlled &&
-        title !== '' &&
-        childNode.tagName.toLowerCase() === 'button'
-      ) {
-        console.warn(
-          [
-            'MUI: You are providing a disabled `button` child to the Tooltip component.',
-            'A disabled element does not fire events.',
-            "Tooltip needs to listen to the child element's events to display the title.",
-            '',
-            'Add a simple wrapper element, such as a `span`.',
-          ].join('\n'),
-        );
-      }
-    }, [title, childNode, isControlled]);
-  }
+  const { current: isControlled } = React.useRef(openProp !== undefined);
 
   const id = useId(idProp);
 
@@ -341,6 +320,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
      * @param {React.SyntheticEvent | Event} event
      */
     (event) => {
+      openedByDisabledTriggerRef.current = false;
       hystersisTimer.start(800 + leaveDelay, () => {
         hystersisOpen = false;
       });
@@ -357,9 +337,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   );
 
   const handleMouseOver = (event) => {
-    if (childNode?.disabled) {
-      return;
-    }
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -380,6 +357,31 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     } else {
       handleOpen(event);
     }
+  };
+
+  const handleTriggerMouseOver = (event) => {
+    if (childNode?.disabled && !isControlled) {
+      // A disabled trigger can open the tooltip if it receives pointer events.
+      // However, if the trigger became disabled while the tooltip was already open,
+      // stray mouseover events must not cancel the pending close.
+      if (open && !openedByDisabledTriggerRef.current) {
+        return;
+      }
+
+      openedByDisabledTriggerRef.current = true;
+    } else {
+      openedByDisabledTriggerRef.current = false;
+    }
+
+    handleMouseOver(event);
+  };
+
+  const handleInteractiveWrapperMouseOver = (event) => {
+    if (childNode?.disabled && !isControlled && !openedByDisabledTriggerRef.current) {
+      return;
+    }
+
+    handleMouseOver(event);
   };
 
   const handleMouseLeave = (event) => {
@@ -418,6 +420,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
+    openedByDisabledTriggerRef.current = false;
+
     if (isFocusVisible(event.target)) {
       // Workaround for https://github.com/react/react/issues/9142.
       // React does not fire blur when a focused element becomes disabled.
@@ -455,7 +459,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
     touchTimer.start(enterTouchDelay, () => {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
-      handleMouseOver(event);
+      handleTriggerMouseOver(event);
     });
   };
 
@@ -559,11 +563,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }
 
   if (!disableHoverListener) {
-    childrenProps.onMouseOver = composeEventHandler(handleMouseOver, childrenProps.onMouseOver);
+    childrenProps.onMouseOver = composeEventHandler(
+      handleTriggerMouseOver,
+      childrenProps.onMouseOver,
+    );
     childrenProps.onMouseLeave = composeEventHandler(handleMouseLeave, childrenProps.onMouseLeave);
 
     if (!disableInteractive) {
-      interactiveWrapperListeners.onMouseOver = handleMouseOver;
+      interactiveWrapperListeners.onMouseOver = handleInteractiveWrapperMouseOver;
       interactiveWrapperListeners.onMouseLeave = handleMouseLeave;
     }
   }
@@ -593,6 +600,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ...props,
     arrow,
     disableInteractive,
+    open,
     placement,
     touch: ignoreNonTouchEvents.current,
   };

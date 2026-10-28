@@ -21,7 +21,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
 import PaletteIcon from '@mui/icons-material/PaletteOutlined';
-import { codeSandbox, stackBlitz } from '@mui/internal-core-docs/Demo';
+import { codeSandbox, stackBlitz } from '@mui/internal-core-docs/sandbox';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import { pascalCase } from '@mui/internal-core-docs/helpers';
 
@@ -191,17 +191,17 @@ const brandingTheme = createTheme({
   ...designTokens,
   typography: deepmerge(typography, {
     h1: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-common-white)',
       },
     },
     h2: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-grey-100)',
       },
     },
     h5: {
-      ':where([data-mui-color-scheme="dark"]) &': {
+      '*:where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-primary-300)',
       },
     },

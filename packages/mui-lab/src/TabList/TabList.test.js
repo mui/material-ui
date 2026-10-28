@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -9,7 +9,6 @@ import describeConformance from '../../test/describeConformance';
 describe('<TabList />', () => {
   const { render } = createRenderer();
 
-  // @ts-ignore mui name does not exist for this component
   describeConformance(<TabList />, () => ({
     classes,
     inheritComponent: Tabs,

@@ -14,7 +14,7 @@ export const withPointer = <T extends React.ElementType>(
     const handleMouseOver = React.useContext(PointerContext);
     return (
       <React.Fragment>
-        {/* @ts-ignore */}
+        {/* @ts-expect-error: The generic element type cannot prove support for the injected ref and mouse handler. */}
         <Component
           ref={root}
           {...props}

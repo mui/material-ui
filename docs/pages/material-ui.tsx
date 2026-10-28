@@ -23,7 +23,7 @@ export default function MaterialUI() {
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <MaterialHero />
         <References companies={CORE_CUSTOMERS} />
         <Divider />

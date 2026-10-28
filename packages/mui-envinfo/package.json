@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.50",
+  "version": "2.0.53",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
   "license": "MIT",
@@ -20,10 +20,6 @@
   },
   "dependencies": {
     "envinfo": "^7.21.0"
-  },
-  "devDependencies": {
-    "@types/chai": "5.2.3",
-    "chai": "6.2.2"
   },
   "publishConfig": {
     "access": "public",

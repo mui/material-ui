@@ -58,11 +58,38 @@ pnpm proptypes && pnpm docs:api
 
 ### Docs demos
 
-Always author the TypeScript version of the demos. To generate the JavaScript variant, run:
+Demos live next to their page under `docs/data/<product>/components/<component>/demos/<demo-name>/`. Each demo folder contains three files:
 
-```bash
-pnpm docs:typescript:formatted
+- `<ComponentName>.tsx` — the demo source, authored as TypeScript (`.tsx`).
+- `client.ts` — marks the demo's client boundary:
+
+  ```ts
+  'use client';
+
+  import { createDemoClient } from '@mui/internal-core-docs/utils/createDemoClient';
+
+  export default createDemoClient(import.meta.url);
+  ```
+
+- `index.ts` — wires the demo into the docs pipeline:
+
+  ```ts
+  import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
+  import ClientProvider from './client';
+  import BasicButtons from './BasicButtons';
+
+  export default createDemo(import.meta.url, BasicButtons, { ClientProvider });
+  ```
+
+Reference the demo from the page's markdown via the `component` field. Use a `file://` URL with a path relative to the markdown file:
+
+```md
+{{"component": "file://./demos/basic/index.ts"}}
 ```
+
+Demo options (`bg`, `hideToolbar`, `initialExpanded`, `collapseToEmpty`, `isolated`, `iframe`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`; `defaultCodeOpen` is a legacy alias for `initialExpanded`/`collapseToEmpty`) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`. Use `{/* @focus-start */}` / `{/* @focus-end */}` JSX comments inside the demo to highlight regions in the rendered code viewer.
+
+The demo infrastructure itself is documented at <https://mui-internal.netlify.app/docs-infra/>.
 
 ## Architecture
 
@@ -75,7 +102,8 @@ This is a monorepo managed by Lerna with Nx for caching. Key packages:
 - `@mui/utils` - Internal utilities
 - `@mui/styled-engine` - CSS-in-JS abstraction (Emotion by default)
 
-Internal packages (not published): `@mui-internal/*`, `@mui/internal-*`
+Internal packages use `@mui/internal-*`; repo-only packages declare `"private": true`.
+Private workspaces without workspace dependents omit package names; reference them by path.
 
 ## Code Conventions
 
@@ -166,7 +194,7 @@ axe-core runs inside the visual-regression Playwright loop (`test/regressions/in
 Key files:
 
 - `test/regressions/demoMeta.ts` — `SCREENSHOT_RULES` and `A11Y_RULES` arrays, matched last-wins (no inheritance: overrides restate every field) against `docs/data/material/components/{slug}/{Demo}` (minimatch globs).
-- `test/regressions/a11y/axe.ts` — asserts `color-contrast` and `link-in-text-block` unless listed in `skipAssertions`.
+- `test/regressions/a11y/axe.ts` — asserts `color-contrast` and `link-in-text-block` by default, or all exercised axe rules when the matching a11y rule sets `assertions: 'all'`; `skipAssertions` suppresses selected rule assertions.
 - `test/regressions/a11y/a11yReporter.ts` — writes one file per slug at `docs/data/material/components/{slug}/{slug}.a11y.json`. Each file is keyed by demo name, then by axe rule ID. Each rule records a `status` (`pass`, `fail`, or `incomplete`) and WCAG tags.
 
 Enroll a component (slug-wide, or narrow with brace-glob):
@@ -174,7 +202,7 @@ Enroll a component (slug-wide, or narrow with brace-glob):
 ```ts
 // test/regressions/demoMeta.ts
 { test: 'docs/data/material/components/alert/*', enabled: true, skipAssertions: ['color-contrast'] },
-{ test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+{ test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true, assertions: 'all' },
 ```
 
 Override a specific demo: append a per-demo rule _after_ the slug-wide rule (last-match-wins; the override must restate every field it wants):
@@ -228,8 +256,7 @@ Read the relevant `AGENTS.md` when helping users with those topics.
 3. `pnpm typescript` - Pass type checking
 4. `pnpm test:unit` - Pass unit tests
 5. If API changed: `pnpm proptypes && pnpm docs:api`
-6. If demos changed: `pnpm docs:typescript:formatted`
-7. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
+6. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
 
 ## PR Title Format
 

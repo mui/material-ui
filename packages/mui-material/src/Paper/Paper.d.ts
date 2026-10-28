@@ -40,8 +40,7 @@ export interface PaperOwnProps {
    * @default 'elevation'
    */
   variant?:
-    | OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides> | undefined;
 }
 
 export interface PaperTypeMap<
@@ -56,13 +55,13 @@ export interface PaperTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
- * - [Menubar](https://mui.com/material-ui/react-menubar/)
- * - [Paper](https://mui.com/material-ui/react-paper/)
+ * - [Card](https://next.mui.com/material-ui/react-card/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
+ * - [Paper](https://next.mui.com/material-ui/react-paper/)
  *
  * API:
  *
- * - [Paper API](https://mui.com/material-ui/api/paper/)
+ * - [Paper API](https://next.mui.com/material-ui/api/paper/)
  */
 declare const Paper: OverridableComponent<PaperTypeMap>;
 

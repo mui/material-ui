@@ -3,6 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
@@ -46,6 +48,13 @@ const RadioRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
+        ...outsetFocusRing,
+        borderRadius: 99,
+        ...theme.focusVisible,
+      },
+    }),
     [`&.${radioClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
     },
@@ -195,6 +204,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       disabled,
       name,
       checked,
+      // Forward the raw prop so an unset value stays `undefined` and ButtonBase resolves its
+      // own default — letting a global `MuiButtonBase.defaultProps.disableRipple` apply here.
+      disableRipple: props.disableRipple,
       slots,
       slotProps: {
         // Do not forward `slotProps.root` again because it's already handled by the `RootSlot` in this file.

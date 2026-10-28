@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { describe, beforeAll, it, expect } from 'vitest';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
 

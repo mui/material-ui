@@ -25,6 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
+import { resolveFocusVisible, mergeFocusVisibleInput } from './focusVisible';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -58,6 +59,16 @@ function setColorChannel(obj, key) {
         `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.`,
     );
   }
+}
+
+// Removes the channel tokens of the colors that `input` replaces, unless `input` provides them,
+// so that they're generated again for the new colors.
+function removeReplacedChannels(obj, input) {
+  Object.keys(input).forEach((key) => {
+    if (!(`${key}Channel` in input)) {
+      delete obj[`${key}Channel`];
+    }
+  });
 }
 
 function getSpacingVal(spacingInput) {
@@ -162,7 +173,8 @@ export default function createThemeWithVars(options = {}, ...args) {
 
   if (!defaultScheme) {
     throw /* minify-error */ new Error(
-      `MUI: The \`colorSchemes.${defaultColorScheme}\` option is either missing or invalid.`,
+      `MUI: The \`colorSchemes.${defaultColorScheme}\` option is either missing or invalid. ` +
+        'Ensure the default color scheme is defined in colorSchemes with a valid palette configuration.',
     );
   }
 
@@ -188,6 +200,26 @@ export default function createThemeWithVars(options = {}, ...args) {
   if (builtInDark && !colorSchemes.dark) {
     attachColorScheme(colorSpace, colorSchemes, builtInDark, undefined, 'dark');
   }
+
+  // A `palette` passed as an extra argument, for example `createTheme(theme, { palette: { salmon } })`,
+  // goes to the default color scheme, like the `palette` option of `createTheme()`.
+  // It's merged before the color schemes are processed so that its colors get CSS variables.
+  const otherArgs = args.map((argument) => {
+    if (!argument?.palette) {
+      return argument;
+    }
+    const { palette, ...other } = argument;
+    const schemePalette = deepmerge(colorSchemes[defaultColorScheme].palette, palette);
+    // The options can be a previous theme, whose palette has the channels of the colors replaced here.
+    removeReplacedChannels(schemePalette, palette);
+    Object.keys(palette).forEach((color) => {
+      if (palette[color] && typeof palette[color] === 'object') {
+        removeReplacedChannels(schemePalette[color], palette[color]);
+      }
+    });
+    colorSchemes[defaultColorScheme].palette = schemePalette;
+    return other;
+  });
 
   let theme = {
     defaultColorScheme,
@@ -221,6 +253,12 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.common, 'onBackground', '#fff');
     }
 
+    // Generate `text.primaryChannel` before the component tokens:
+    // `palette.Skeleton.bg` uses it as its CSS variable fallback.
+    if (!nativeColor) {
+      setColorChannel(palette.text, 'primary');
+    }
+
     function colorMix(method, color, coefficient) {
       if (colorSpace) {
         let mixer;
@@ -246,6 +284,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       'Button',
       'Chip',
       'FilledInput',
+      'Input',
       'LinearProgress',
       'Skeleton',
       'Slider',
@@ -368,6 +407,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
+      setColor(palette.Input, 'autofillWebkitBoxShadow', 'none');
       setColor(
         palette.LinearProgress,
         'primaryBg',
@@ -693,6 +733,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
+      setColor(palette.Input, 'autofillWebkitBoxShadow', '0 0 0 100px #266798 inset');
       setColor(
         palette.LinearProgress,
         'primaryBg',
@@ -953,7 +994,15 @@ export default function createThemeWithVars(options = {}, ...args) {
     });
   });
 
-  theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+  theme = otherArgs.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  // Default color is the palette var, not a hex: `focusVisible` is spread inline (skipped from var
+  // generation, see `shouldSkipGeneratingVar`), so the var adapts per scheme at the CSS level — no
+  // per-scheme copy needed here, unlike the no-vars path in `createTheme`.
+  const focusVisibleInput = mergeFocusVisibleInput(options.focusVisible, args);
+  if (focusVisibleInput != null && focusVisibleInput !== false) {
+    theme.focusVisible = resolveFocusVisible(focusVisibleInput, getCssVar('palette-primary-main'));
+  }
 
   const parserConfig = {
     prefix: cssVarPrefix,

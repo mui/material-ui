@@ -31,20 +31,23 @@ export const projectSettings: ProjectSettings = {
     {
       name: 'lab',
       rootPath: path.join(process.cwd(), 'packages/mui-lab'),
-      entryPointPath: 'src/index.d.ts',
+      entryPointPath: 'src/index.ts',
     },
   ],
   getApiPages: () => findApiPages('docs/pages/material-ui/api'),
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider)/) !== null;
+    return (
+      filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider|RovingToggleButton)/) !==
+      null
+    );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName,
   isGlobalClassName: isGlobalState,
   // #host-reference
-  baseApiUrl: 'https://mui.com',
+  baseApiUrl: 'https://next.mui.com',
   pagesManifestPath: path.join(process.cwd(), 'docs/data/material/pages.ts'),
   nonComponentFolders: [
     'material/getting-started',

@@ -3,7 +3,7 @@ import { type ProjectSettings, buildApi } from '@mui/internal-api-docs-builder';
 import {
   materialUiProjectSettings,
   muiSystemProjectSettings,
-} from '@mui-internal/api-docs-builder-core';
+} from '../../packages-internal/api-docs-builder-core';
 
 const projectSettings: ProjectSettings[] = [materialUiProjectSettings, muiSystemProjectSettings];
 

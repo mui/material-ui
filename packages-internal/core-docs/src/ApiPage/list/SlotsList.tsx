@@ -28,7 +28,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .global-class-value': {
         borderColor: alpha(darkTheme.palette.primary[400], 0.1),
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),

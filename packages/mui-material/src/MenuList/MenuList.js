@@ -10,6 +10,7 @@ import focusWithVisible from '../utils/focusWithVisible';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 import ownerWindow from '../utils/ownerWindow';
 import List from '../List';
@@ -75,7 +76,8 @@ function focusInitialItem(element, focusSource) {
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.
  */
-const MenuList = React.forwardRef(function MenuList(props, ref) {
+const MenuList = React.forwardRef(function MenuList(inProps, ref) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenuList' });
   const {
     // private
     // eslint-disable-next-line react/prop-types
@@ -194,10 +196,21 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
-          const scrollbarSize = `${getScrollbarSize(ownerWindow(containerElement))}px`;
-          listRef.current.style[direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
-            scrollbarSize;
-          listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
+          const win = ownerWindow(containerElement);
+          const scrollbarSize = getScrollbarSize(win);
+          // Overlay scrollbars (e.g. macOS, Windows 11) have zero width — there is
+          // nothing to compensate for, and writing the inline styles anyway would
+          // freeze the current padding, overriding later theme/CSS changes.
+          if (scrollbarSize > 0) {
+            const scrollbarSizePx = `${scrollbarSize}px`;
+            const paddingKey = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+            // Preserve any existing padding (e.g. set via theme/CSS) by adding to it
+            // rather than replacing it with the scrollbar width alone.
+            const existingPadding =
+              parseFloat(win.getComputedStyle(listRef.current)[paddingKey]) || 0;
+            listRef.current.style[paddingKey] = `${existingPadding + scrollbarSize}px`;
+            listRef.current.style.width = `calc(100% + ${scrollbarSizePx})`;
+          }
         }
         return listRef.current;
       },
@@ -218,7 +231,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     [focusInitialTarget],
   );
 
-  const rovingContainerProps = getContainerProps();
+  const rovingContainerProps = getContainerProps(undefined, other.onFocus);
   const handleRef = useForkRef(listRef, rovingContainerProps.ref, ref);
   const menuListContextValue = React.useMemo(
     () => ({
@@ -289,9 +302,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       ref={handleRef}
       className={className}
       onKeyDown={handleKeyDown}
-      onFocus={rovingContainerProps.onFocus}
       tabIndex={-1}
       {...other}
+      onFocus={rovingContainerProps.onFocus}
     >
       <MenuListContext.Provider value={menuListContextValue}>
         <RovingTabIndexContext.Provider value={rovingContainer}>
@@ -336,6 +349,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableListWrap: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
   /**
    * @ignore
    */

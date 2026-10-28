@@ -118,7 +118,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
     },
   }),
   ({ theme }) => ({
-    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+    [`*:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiApi-item-header': {
         '&>span, &>div': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,

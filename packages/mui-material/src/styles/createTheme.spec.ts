@@ -1,4 +1,4 @@
-import { createTheme, type ThemeOptions } from '@mui/material/styles';
+import { createTheme, ThemeOptions, FocusVisible } from '@mui/material/styles';
 import { buttonClasses } from '@mui/material/Button';
 
 const theme = createTheme();
@@ -155,6 +155,16 @@ const theme = createTheme();
         styleOverrides: {
           row: {
             justifyContent: 'space-between',
+          },
+        },
+      },
+      MuiTabScrollButton: {
+        defaultProps: {
+          disableRipple: true,
+        },
+        styleOverrides: {
+          vertical: {
+            height: 32,
           },
         },
       },
@@ -316,4 +326,40 @@ const theme = createTheme();
       mergeClassNameAndStyle: true,
     },
   });
+}
+
+// focusVisible theme key
+{
+  createTheme({ focusVisible: true });
+  createTheme({ focusVisible: { outlineColor: 'red', outlineWidth: 2, outlineOffset: 3 } });
+  createTheme({ focusVisible: { outlineColor: 'red' } });
+  createTheme({ focusVisible: { outlineStyle: 'dashed' } });
+  createTheme({ focusVisible: { boxShadow: '0 0 0 4px #fff' } });
+  createTheme({ focusVisible: { boxShadow: '0 0 0 4px #fff', outlineColor: 'transparent' } });
+  createTheme({ focusVisible: false });
+  createTheme({ focusVisible: undefined });
+
+  // Resolved theme always exposes the merged object (never the boolean).
+  const focusVisible: FocusVisible | false | undefined = theme.focusVisible;
+  createTheme({ focusVisible });
+
+  createTheme({
+    // @ts-expect-error outlineWidth must be a number or string
+    focusVisible: { outlineWidth: true },
+  });
+
+  createTheme({
+    // @ts-expect-error focusVisible must be a boolean or a CSS properties object
+    focusVisible: 'solid',
+  });
+}
+
+// `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings
+{
+  const varsTheme = createTheme({ cssVariables: true });
+  const zIndexVar: string = varsTheme.vars.zIndex.appBar;
+  const opacityVar: string = varsTheme.vars.opacity.inputPlaceholder;
+  const hoverOpacityVar: string = varsTheme.vars.palette.action.hoverOpacity;
+  // Non-opacity action colors are unchanged
+  const activeColor: string = varsTheme.vars.palette.action.active;
 }

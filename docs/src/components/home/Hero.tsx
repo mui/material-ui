@@ -107,9 +107,7 @@ export default function Hero() {
           },
         },
         '&& *': {
-          fontFamily: ['"IBM Plex Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: (theme) => theme.typography.fontFamily,
         },
       }}
       right={

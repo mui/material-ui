@@ -1,12 +1,12 @@
 import {
-  type Symbol,
+  Symbol,
   isPropertySignature,
   isEnumDeclaration,
   forEachChild,
-  type Node,
-} from 'typescript';
-import { type TypeScriptProject } from './createTypeScriptProject';
-import { type ParsedProperty } from '../types/ApiBuilder.types';
+  Node,
+} from '@typescript/typescript6';
+import { TypeScriptProject } from './createTypeScriptProject';
+import { ParsedProperty } from '../types/ApiBuilder.types';
 import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';
 
 const parseProperty = async (
@@ -48,14 +48,13 @@ const extractInfoFromEnum = async (
 
     const type = project.checker.getDeclaredTypeOfSymbol(enumSymbol!);
 
-    // @ts-ignore
+    // @ts-expect-error: Enum union members are exposed on UnionType, not the base Type interface.
     const typeDeclaration = type?.types ?? [type];
     if (!typeDeclaration) {
       return [];
     }
     const properties: Record<string, ParsedProperty> = {};
 
-    // @ts-ignore
     await Promise.all(
       typeDeclaration.map(async (t: any) => {
         const propertySymbol = t.symbol;

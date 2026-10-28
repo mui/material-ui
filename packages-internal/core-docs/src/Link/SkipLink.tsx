@@ -57,5 +57,9 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
 export function SkipLink() {
   const t = useTranslate();
 
-  return <StyledLink href="#main-content">{t('appFrame.skipToContent')}</StyledLink>;
+  return (
+    <StyledLink href="#main-content" data-no-markdown-link="true">
+      {t('appFrame.skipToContent')}
+    </StyledLink>
+  );
 }

@@ -21,7 +21,7 @@ export default function About() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <AboutHero />
         <Divider />
         <OurValues />

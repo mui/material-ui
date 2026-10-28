@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
+import selectClasses from '../Select/selectClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -163,35 +164,12 @@ const FilledInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 12,
-          },
-        },
-        {
-          props: ({ ownerState }) => ownerState.multiline,
-          style: {
-            padding: '25px 12px 8px',
-          },
-        },
-        {
-          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
-          style: {
-            paddingTop: 21,
-            paddingBottom: 4,
-          },
-        },
-        {
-          props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
-          style: {
-            paddingTop: 16,
-            paddingBottom: 17,
-          },
-        },
-        {
-          props: ({ ownerState }) =>
-            ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
-          style: {
-            paddingTop: 8,
-            paddingBottom: 9,
+            // use CSS variable to keep specificity
+            '--_trailingPad': '12px',
+            paddingRight: 'var(--_trailingPad)',
+            [`&.${selectClasses.root}`]: {
+              '--_trailingPad': '0px',
+            },
           },
         },
       ],
@@ -217,12 +195,13 @@ const FilledInputInput = styled(InputBaseInput, {
       }),
       borderTopLeftRadius: 'inherit',
       borderTopRightRadius: 'inherit',
-      ...(theme.vars &&
-        theme.applyStyles('dark', {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
+      ...(theme.vars && {
+        WebkitBoxShadow: theme.vars.palette.Input.autofillWebkitBoxShadow,
+        ...theme.applyStyles('dark', {
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        })),
+        }),
+      }),
     },
     variants: [
       {
@@ -258,15 +237,6 @@ const FilledInputInput = styled(InputBaseInput, {
         style: {
           paddingTop: 8,
           paddingBottom: 9,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
         },
       },
     ],
@@ -314,6 +284,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
       slotProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
+      internalDisabledThemeFocusVisible={!disableUnderline}
       multiline={multiline}
       ref={ref}
       type={type}

@@ -10,12 +10,10 @@ const linkStyleOverrides = (theme: Theme) => ({
   '&:hover': {
     color: (theme.vars || theme).palette.primary[200],
   },
-  ...theme.applyDarkStyles({
-    color: 'inherit',
-    '&:hover': {
-      color: (theme.vars || theme).palette.primary[200],
-    },
-  }),
+  '&:focus-visible': {
+    outline: '3px solid #fff',
+    outlineOffset: '2px',
+  },
 });
 
 function getCustomMessage() {
