@@ -304,12 +304,6 @@ export const CodeSource = styled('div', {
     color: '#FFF',
     borderRadius: 6,
     fontSize: theme.typography.pxToRem(13),
-    // `outline` paints the ring outside the popup without stacking under it.
-    outlineStyle: 'solid',
-    outlineColor: alpha(theme.palette.primary[500], 0),
-    outlineWidth: 0,
-    outlineOffset: 0,
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
     visibility: 'hidden',
     opacity: 0,
     pointerEvents: 'none',
@@ -319,8 +313,8 @@ export const CodeSource = styled('div', {
     top: theme.spacing(1),
     visibility: 'visible',
     opacity: 1,
-    outlineColor: alpha(theme.palette.primary[500], 0.8),
-    outlineWidth: 3,
+    ...theme.focusVisible,
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
   },
   '& .editable-code-wrapper .editable-code-overlay kbd': {
     padding: theme.spacing(0.2, 0.4),

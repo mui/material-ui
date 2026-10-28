@@ -208,7 +208,7 @@ const Root = styled('div')(
           verticalAlign: 'middle',
         },
       },
-      '&:hover .anchor-icon': {
+      '&:hover .anchor-icon, & .title-link-to-anchor:focus-visible .anchor-icon': {
         visibility: 'visible',
       },
       '& .comment-link': {
