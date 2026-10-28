@@ -429,10 +429,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 
 export function getThemedComponents(): ThemeOptions {
   return {
-    focusVisible: {
-      outlineWidth: 3,
-      outlineColor: alpha(blue[500], 0.5),
-    },
+    focusVisible: true,
     components: {
       MuiAlert: {
         styleOverrides: {
