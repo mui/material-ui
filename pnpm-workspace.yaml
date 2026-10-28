@@ -7,7 +7,6 @@ packages:
   - test/*
 
 engineStrict: true
-enablePrePostScripts: true
 updateNotifier: false
 autoDedupe: true
 blockExoticSubdeps: true
