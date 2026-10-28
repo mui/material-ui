@@ -208,13 +208,24 @@ The `ListItemIcon` default min-width has changed to `36px` (previously `56px`) t
 ### Material Icons
 
 23 legacy icon exports that ended with `Outline` (without the "d") have been removed.
-These were exact duplicates of their `Outlined` counterparts (for example, `InfoOutline` had the same SVG as `InfoOutlined`).
+Some of these icons have the same SVG as their `Outlined` counterparts, but others do not.
+For example, `InfoOutline` and `InfoOutlined` have the same SVG, while `ErrorOutlined` uses a filled circle instead of the outline in `ErrorOutline`.
 
-To migrate, rename the import to use the `Outlined` suffix:
+To migrate, choose the replacement that preserves the appearance you need.
+For icons with the same SVG, rename the import to use the `Outlined` suffix:
 
 ```diff
 -import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
 +import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+```
+
+For `ErrorOutline` and `HelpOutline`, use their remaining `OutlineOutlined` variants to preserve the outline:
+
+```diff
+-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
++import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlineOutlined';
+-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
++import HelpOutlineIcon from '@mui/icons-material/HelpOutlineOutlined';
 ```
 
 The full list of removed exports: `AddCircleOutline`, `ChatBubbleOutline`, `CheckCircleOutline`, `DeleteOutline`, `DoneOutline`, `DriveFileMoveOutline`, `ErrorOutline`, `HelpOutline`, `InfoOutline`, `LabelImportantOutline`, `LightbulbOutline`, `LockOutline`, `MailOutline`, `ModeEditOutline`, `PauseCircleOutline`, `PeopleOutline`, `PersonOutline`, `PieChartOutline`, `PlayCircleOutline`, `RemoveCircleOutline`, `StarOutline`, `WorkOutline`, `WorkspacesOutline`.
