@@ -60,8 +60,9 @@ Omitting `MenuTrigger` does not make Menu v2 a static list; `MenuPopup` still re
 ### Context menus
 
 Menu v2 doesn't support context menus.
-A separate component will cover them with the correct accessibility behavior.
-Until then, keep using Menu for context menus, as in the [Context menu](/material-ui/react-menu/#context-menu) demo.
+Keep using Menu for them, as in the [Context menu](/material-ui/react-menu/#context-menu) demo.
+Material UI plans to add a separate context menu component.
+See [Context menu](/material-ui/react-menu2/#context-menu) for the reasons.
 
 ### 1. Update the imports
 

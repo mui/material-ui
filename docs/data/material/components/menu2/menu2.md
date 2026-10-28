@@ -255,16 +255,29 @@ The menu can't connect to that element, so you do the wiring:
 - Give `MenuPopup` an accessible name with `aria-label` or `aria-labelledby`.
 - Pass `finalFocus` to `MenuPopup` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element.
 
-:::info
-Menu v2 doesn't support context menus.
-:::
-
 ## Max height menu
 
 The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content.
 To set a smaller limit with the `sx` prop on `MenuPopup`, use `min(320px, var(--available-height))` to keep it within short screens.
 
 {{"component": "file://./demos/long/index.ts"}}
+
+## Context menu
+
+The classic Menu has a [context menu](/material-ui/react-menu/#context-menu) demo, but Menu v2 doesn't support context menus.
+
+A context menu has different interaction and accessibility requirements than a menu that opens from a button:
+
+- It opens from an area of the page: with a right-click, with the context menu key or Shift+F10, or with a long press on touch devices.
+- It opens at the pointer position, or near the focused element when it opens from the keyboard.
+- It has no trigger button to give it an accessible name or to receive focus when it closes.
+
+Menu v2 follows the [menu button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/).
+In this pattern, the trigger button opens the menu, anchors it, gives it an accessible name, and receives focus when the menu closes.
+A context menu built on Menu v2 must meet these requirements in application code.
+
+Material UI plans to add a separate context menu component that meets these requirements.
+Until it is available, keep using the [Menu](/material-ui/react-menu/#context-menu) for context menus.
 
 ## Customization
 
