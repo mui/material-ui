@@ -27,7 +27,7 @@ const theme = createTheme({
 function Menu({ label, contrast }: { label: string; contrast?: boolean }) {
   return (
     <div>
-      <Typography variant="subtitle2" gutterBottom>
+      <Typography variant="subtitle2" component="p" gutterBottom>
         {label}
       </Typography>
       <Paper sx={{ width: 200 }}>
