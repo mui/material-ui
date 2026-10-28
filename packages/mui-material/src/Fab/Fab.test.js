@@ -201,18 +201,17 @@ describe('<Fab />', () => {
   });
 
   describe('theme.focusVisible', () => {
-    // The effective box-shadow is the last matching rule in source order (equal specificity here).
-    // Read it from the CSSOM rather than getComputedStyle, which returns a mid-transition value.
+    // The effective box-shadow is the last matching rule in source order (equal specificity and
+    // CSS layer here). Read it from the CSSOM rather than getComputedStyle, which returns a
+    // mid-transition value.
     function effectiveBoxShadow(el) {
       let shadow = '';
-      for (const sheet of Array.from(document.styleSheets)) {
-        let rules;
-        try {
-          rules = sheet.cssRules;
-        } catch {
-          continue;
-        }
+      const visit = (rules) => {
         for (const rule of Array.from(rules)) {
+          if (rule instanceof CSSLayerBlockRule) {
+            visit(rule.cssRules);
+            continue;
+          }
           if (!rule.style || !rule.style.boxShadow || !rule.selectorText) {
             continue;
           }
@@ -227,6 +226,15 @@ describe('<Fab />', () => {
             shadow = rule.style.boxShadow;
           }
         }
+      };
+      for (const sheet of Array.from(document.styleSheets)) {
+        let rules;
+        try {
+          rules = sheet.cssRules;
+        } catch {
+          continue;
+        }
+        visit(rules);
       }
       return shadow;
     }

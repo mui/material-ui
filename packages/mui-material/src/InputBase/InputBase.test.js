@@ -813,8 +813,12 @@ describe('<InputBase />', () => {
 
         try {
           // Confirm the real MUI keyframes are present and no longer animate display.
+          const getRules = (rules) =>
+            Array.from(rules).flatMap((rule) =>
+              rule instanceof CSSLayerBlockRule ? getRules(rule.cssRules) : [rule],
+            );
           const keyframesRules = Array.from(document.styleSheets).flatMap((sheet) =>
-            Array.from(sheet.cssRules).filter((rule) => rule.type === CSSRule.KEYFRAMES_RULE),
+            getRules(sheet.cssRules).filter((rule) => rule.type === CSSRule.KEYFRAMES_RULE),
           );
           const autofillRule = keyframesRules.find((rule) => rule.name === 'mui-auto-fill');
           const autofillCancelRule = keyframesRules.find(
