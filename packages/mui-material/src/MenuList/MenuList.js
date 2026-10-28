@@ -336,7 +336,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
