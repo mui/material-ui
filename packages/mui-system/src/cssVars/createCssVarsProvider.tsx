@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { GlobalStyles } from '@mui/styled-engine';
+import { GlobalStyles, internal_useNonce as useNonce } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import type InitColorSchemeScript from '../InitColorSchemeScript';
@@ -230,6 +230,7 @@ export default function createCssVarsProvider<
       noSsr,
     } = props;
     const hasMounted = React.useRef(false);
+    const nonce = useNonce();
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
@@ -400,6 +401,9 @@ export default function createCssVarsProvider<
       let timer: any;
       if (disableTransitionOnChange && hasMounted.current && documentNode) {
         const css = documentNode.createElement('style');
+        if (nonce) {
+          css.setAttribute('nonce', nonce);
+        }
         css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
         documentNode.head.appendChild(css);
 
@@ -413,7 +417,7 @@ export default function createCssVarsProvider<
       return () => {
         clearTimeout(timer);
       };
-    }, [colorScheme, disableTransitionOnChange, documentNode]);
+    }, [colorScheme, disableTransitionOnChange, documentNode, nonce]);
     React.useEffect(() => {
       hasMounted.current = true;
       return () => {
