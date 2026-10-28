@@ -382,35 +382,35 @@ The list is now presentational, so a name on it is not announced.
 
 ### 9. Check the removed props
 
-Delete these props.
-Menu v2 sets the initial highlight itself, as described in [The initial highlight](#the-initial-highlight):
+Delete or replace each removed prop as shown in the tables.
+Props marked "Delete it" have no replacement, because Menu v2 sets the [initial highlight](#the-initial-highlight) itself.
 
-- `autoFocus`
-- `disableAutoFocusItem`
-- `variant="selectedMenu"`
-- `MenuItem.autoFocus`
-- `MenuList.autoFocus`
-- `MenuList.autoFocusItem`
-- `MenuList.variant`
+| Removed `Menu` prop      | What to do instead                                                                                                                |
+| :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| `autoFocus`              | Delete it.                                                                                                                        |
+| `disableAutoFocusItem`   | Delete it.                                                                                                                        |
+| `variant="selectedMenu"` | Delete it. To show the current value, use radio items. See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone). |
+| `disableAutoFocus`       | No equivalent.                                                                                                                    |
+| `disableEnforceFocus`    | No exact equivalent. `modal` controls outside interaction, not the focus policy.                                                  |
+| `disableRestoreFocus`    | Use `finalFocus={false}` on `MenuPopup`.                                                                                          |
+| `disableScrollLock`      | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                                |
+| `disablePortal`          | No equivalent. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target.                    |
+| `hideBackdrop`           | Use `slots={{ backdrop: null }}`. This removes the visual layer only; modal behavior stays.                                       |
 
-To show the current value that `variant="selectedMenu"` used to highlight, use radio items.
-See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone).
+| Removed `MenuItem` prop | What to do instead                                                                                                     |
+| :---------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `autoFocus`             | Delete it.                                                                                                             |
+| `selected`              | For one current value, use `MenuRadioItem` inside a `MenuRadioGroup`. For independent toggles, use `MenuCheckboxItem`. |
+| `focusVisibleClassName` | Style the `highlighted` state class. It also matches pointer navigation, not only keyboard focus.                      |
+| `onFocusVisible`        | No equivalent.                                                                                                         |
+| `action.focusVisible()` | No equivalent.                                                                                                         |
 
-Replace these props as follows:
-
-| Removed                           | What to do instead                                                                                                     |
-| :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
-| `selected`                        | For one current value, use `MenuRadioItem` inside a `MenuRadioGroup`. For independent toggles, use `MenuCheckboxItem`. |
-| `focusVisibleClassName`           | Style the `highlighted` state class. It also matches pointer navigation, not only keyboard focus.                      |
-| `onFocusVisible`                  | No equivalent.                                                                                                         |
-| `action.focusVisible()`           | No equivalent.                                                                                                         |
-| `MenuList.disabledItemsFocusable` | No equivalent, because disabled items are always focusable. See [Behavior changes](#behavior-changes).                 |
-| `disableAutoFocus`                | No equivalent.                                                                                                         |
-| `disableEnforceFocus`             | No exact equivalent. `modal` controls outside interaction, not the focus policy.                                       |
-| `disableRestoreFocus`             | Use `finalFocus={false}` on `MenuPopup`.                                                                               |
-| `disableScrollLock`               | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                     |
-| `disablePortal`                   | No equivalent. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target.         |
-| `hideBackdrop`                    | Use `slots={{ backdrop: null }}`. This removes the visual layer only; modal behavior stays.                            |
+| Removed `MenuList` prop  | What to do instead                                                                                     |
+| :----------------------- | :----------------------------------------------------------------------------------------------------- |
+| `autoFocus`              | Delete it.                                                                                             |
+| `autoFocusItem`          | Delete it.                                                                                             |
+| `variant`                | Delete it.                                                                                             |
+| `disabledItemsFocusable` | No equivalent, because disabled items are always focusable. See [Behavior changes](#behavior-changes). |
 
 ## Behavior changes
 
