@@ -20,7 +20,8 @@ import createDescribeableProp, {
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
+import parseSlotsAndClasses, { getComponentDeclaration } from '../utils/parseSlotsAndClasses';
+import { getPropsFromComponentNode } from '../utils/getPropsFromComponentNode';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
 import {
@@ -394,7 +395,8 @@ export default function Page() {
 const attachTranslations = (
   reactApi: ComponentReactApi,
   deprecationInfo: string | undefined,
-  settings?: CreateDescribeablePropSettings,
+  settings: CreateDescribeablePropSettings | undefined,
+  externalProps: ReadonlySet<string>,
 ) => {
   const translations: ComponentReactApi['translations'] = {
     componentDescription: reactApi.description,
@@ -405,7 +407,12 @@ const attachTranslations = (
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(propDescriptor, propName, settings);
+      prop = createDescribeableProp(
+        propDescriptor,
+        propName,
+        settings,
+        externalProps.has(propName),
+      );
     } catch (error) {
       prop = null;
     }
@@ -495,9 +502,35 @@ const attachTranslations = (
   reactApi.translations = translations;
 };
 
+/**
+ * Names of the props only declared in dependencies, like React's DOM attributes.
+ */
+function getExternalProps(project: TypeScriptProject, componentName: string): Set<string> {
+  const declaration = getComponentDeclaration(project, componentName);
+  if (!declaration) {
+    return new Set();
+  }
+  const props =
+    getPropsFromComponentNode({ node: declaration, project, checkDeclarations: true })?.props ?? {};
+  return new Set(
+    Object.entries(props)
+      .filter(([, prop]) =>
+        prop.signatures.every(({ symbol }) => {
+          const declarations = symbol.declarations ?? [];
+          return (
+            declarations.length > 0 &&
+            declarations.every((node) => node.getSourceFile().fileName.includes('/node_modules/'))
+          );
+        }),
+      )
+      .map(([name]) => name),
+  );
+}
+
 const attachPropsTable = (
   reactApi: ComponentReactApi,
-  settings?: CreateDescribeablePropSettings,
+  settings: CreateDescribeablePropSettings | undefined,
+  externalProps: ReadonlySet<string>,
 ) => {
   const propErrors: string[] = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
@@ -505,7 +538,12 @@ const attachPropsTable = (
     Object.entries(reactApi.props!).flatMap(([propName, propDescriptor]): Pair[] => {
       let prop: DescribeablePropDescriptor | null;
       try {
-        prop = createDescribeableProp(propDescriptor, propName, settings);
+        prop = createDescribeableProp(
+          propDescriptor,
+          propName,
+          settings,
+          externalProps.has(propName),
+        );
       } catch (error) {
         propErrors.push(`[${reactApi.name}] \`${propName}\`: ${error}`);
         prop = null;
@@ -873,8 +911,9 @@ export default async function generateComponentApi(
     project,
   );
 
+  const externalProps = getExternalProps(project, reactApi.name);
   const errors = [
-    ...attachPropsTable(reactApi, projectSettings.propsSettings),
+    ...attachPropsTable(reactApi, projectSettings.propsSettings, externalProps),
     ...slotsAndClassesErrors,
   ];
   if (errors.length > 0) {
@@ -885,7 +924,7 @@ export default async function generateComponentApi(
 
   attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
-  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings, externalProps);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

@@ -38,7 +38,7 @@ function getClassDeprecationObject(symbol: ts.Symbol): {
   return {};
 }
 
-function getComponentDeclaration(
+export function getComponentDeclaration(
   project: TypeScriptProject,
   componentName: string,
 ): ts.Node | null {

@@ -1,6 +1,5 @@
 import * as doctrine from 'doctrine';
 import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
-import { DOM_EVENT_HANDLERS } from './domEventHandlers';
 import { HIDDEN_JSDOC_TAGS, IGNORE_HINT } from '../buildApiUtils';
 
 /**
@@ -27,11 +26,14 @@ export type CreateDescribeablePropSettings = {
  * Throws if it is invalid.
  * @param prop
  * @param propName
+ * @param settings
+ * @param isExternal If `true`, the prop is only declared in dependencies, like React's DOM attributes.
  */
 export default function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
   settings: CreateDescribeablePropSettings = {},
+  isExternal = false,
 ): DescribeablePropDescriptor | null {
   if (HIDDEN_PROPS.has(propName)) {
     return null;
@@ -58,8 +60,8 @@ export default function createDescribeableProp(
   }
 
   if (annotation.description.trim() === '') {
-    // DOM event handlers are only listed when they have component-specific documentation.
-    if (DOM_EVENT_HANDLERS.has(propName)) {
+    // Props from dependencies are only listed when they have component-specific documentation.
+    if (isExternal) {
       return null;
     }
     throw new Error(

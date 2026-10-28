@@ -32,18 +32,23 @@ describe('createDescribeableProp', () => {
     expect(createDescribeableProp(createProp('The class name.'), 'className')).to.equal(null);
   });
 
-  it('ignores an undocumented DOM event handler', () => {
-    expect(createDescribeableProp(createProp(''), 'onClick')).to.equal(null);
+  it('ignores an undocumented prop declared in a dependency', () => {
+    expect(createDescribeableProp(createProp(''), 'onClick', {}, true)).to.equal(null);
   });
 
-  it('describes a documented DOM event handler', () => {
-    const prop = createDescribeableProp(createProp('Callback fired on click.'), 'onClick');
+  it('describes a documented prop declared in a dependency', () => {
+    const prop = createDescribeableProp(
+      createProp('Callback fired on click.'),
+      'onClick',
+      {},
+      true,
+    );
     expect(prop?.annotation.description).to.equal('Callback fired on click.');
   });
 
-  it('throws for an undocumented callback that is not a DOM event handler', () => {
-    expect(() => createDescribeableProp(createProp(''), 'onYearFocus')).to.throw(
-      'The "onYearFocus" prop has no description.',
+  it('throws for an undocumented prop declared in the project, whatever its name', () => {
+    expect(() => createDescribeableProp(createProp(''), 'onChange')).to.throw(
+      'The "onChange" prop has no description.',
     );
   });
 
