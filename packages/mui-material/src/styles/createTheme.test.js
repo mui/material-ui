@@ -482,10 +482,9 @@ describe('createTheme', () => {
         // Offset is a fixed curated 2px, wrapped in a per-component sign flip
         // (`--_focusVisible-offset`: 1 outset / -1 inset) so a clip-prone component insets it.
         outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)',
-        // Transparent until `theme.setFocusVisibleContrast(color)` sets `--_focusVisible-contrast`.
-        // The spread covers the gap and the outline: |offset| + width.
-        boxShadow:
-          'var(--_focusVisible-behavior, ) 0 0 0 calc(max(var(--_focusVisible-offset, 1) * 2px, -1 * var(--_focusVisible-offset, 1) * 2px) + 2px) var(--_focusVisible-contrast, transparent)',
+        // Invisible by default (`0 0` is clipped away); a solid-background parent (AppBar, Alert,
+        // SnackbarContent) sets `--_focusVisible-shadow` to draw a contrasting ring behind the outline.
+        boxShadow: 'var(--_focusVisible-behavior, ) var(--_focusVisible-shadow, 0 0)',
       });
     });
 
@@ -610,59 +609,6 @@ describe('createTheme', () => {
           getComputedStyle(element).getPropertyValue('--_focusVisible-offset').trim();
         expect(offsetOf(outset)).to.equal('1');
         expect(offsetOf(inset)).to.equal('-2');
-      });
-    });
-
-    describe('theme.setFocusVisibleContrast', () => {
-      [false, true].forEach((cssVariables) => {
-        it(`sets the contrast color (cssVariables: ${cssVariables})`, () => {
-          const theme = createTheme({ cssVariables, focusVisible: true });
-          expect(theme.setFocusVisibleContrast('#fff')).to.deep.equal({
-            '--_focusVisible-contrast': '#fff',
-          });
-        });
-      });
-
-      it.skipIf(isJSDOM)('draws a band that covers the gap and the outline', () => {
-        const theme = createTheme({ focusVisible: true });
-        const custom = createTheme({ focusVisible: { outlineOffset: 4, outlineWidth: 3 } });
-        const contrast = theme.setFocusVisibleContrast('rgb(255, 0, 0)');
-        render(
-          <div>
-            <Box data-testid="none" sx={theme.focusVisible} />
-            <Box data-testid="outset" sx={[theme.focusVisible, contrast]} />
-            <Box
-              data-testid="inset"
-              sx={[theme.focusVisible, contrast, theme.setFocusVisibleOffset(-1)]}
-            />
-            <Box data-testid="custom" sx={[custom.focusVisible, contrast]} />
-            <Box data-testid="inherited" sx={contrast}>
-              <Box data-testid="child" sx={theme.focusVisible} />
-            </Box>
-          </div>,
-        );
-        expect(screen.getByTestId('none')).toHaveComputedStyle({
-          boxShadow: 'rgba(0, 0, 0, 0) 0px 0px 0px 4px',
-        });
-        expect(screen.getByTestId('outset')).toHaveComputedStyle({
-          boxShadow: 'rgb(255, 0, 0) 0px 0px 0px 4px',
-        });
-        expect(screen.getByTestId('inset')).toHaveComputedStyle({
-          boxShadow: 'rgb(255, 0, 0) 0px 0px 0px 4px inset',
-        });
-        expect(screen.getByTestId('custom')).toHaveComputedStyle({
-          boxShadow: 'rgb(255, 0, 0) 0px 0px 0px 7px',
-        });
-        expect(screen.getByTestId('child')).toHaveComputedStyle({
-          boxShadow: 'rgb(255, 0, 0) 0px 0px 0px 4px',
-        });
-      });
-
-      it('has no effect on a custom boxShadow', () => {
-        const theme = createTheme({ focusVisible: { boxShadow: '0 0 0 4px #193146' } });
-        expect(theme.focusVisible.boxShadow).to.equal(
-          'var(--_focusVisible-behavior, ) 0 0 0 4px #193146',
-        );
       });
     });
 

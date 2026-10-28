@@ -35,7 +35,7 @@ To see the full list of components that show inner focus indicator, check out th
 
 ### Colored surface container
 
-Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. These containers call [`theme.setFocusVisibleContrast()`](#keeping-the-indicator-visible-on-a-colored-background) with the page background color. This comes by default when the focus visible feature is enabled, unless a custom box-shadow is provided.
+Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. This comes by default when the focus visible feature is enabled, unless a custom box-shadow is provided.
 
 {{"component": "file://./demos/colored-surface/index.ts"}}
 
@@ -112,27 +112,6 @@ The value is a multiplier, not a pixel value. `1` is the indicator's default pos
 
 :::warning
 Only move the indicator outside when the container leaves enough room for it. Otherwise, the container clips the indicator or the indicator overlaps neighboring elements.
-:::
-
-### Keeping the indicator visible on a colored background
-
-When a component's background is close to the indicator's color, for example a selected item with a `primary` background, the indicator disappears. Use `theme.setFocusVisibleContrast(color)` to add a band of `color` around the indicator:
-
-```js
-<MenuList
-  sx={(theme) =>
-    theme.setFocusVisibleContrast((theme.vars || theme).palette.primary.contrastText)
-  }
->
-```
-
-- The band applies to the element and to every indicator inside it, so you can set it once on a container.
-- The indicator keeps its own `outlineColor`. The band covers the gap between the component and the indicator, and follows a custom `outlineOffset` and `outlineWidth`.
-
-{{"component": "file://./demos/contrast/index.ts"}}
-
-:::info
-The band uses the indicator's box-shadow. When `focusVisible` sets its own `boxShadow`, `theme.setFocusVisibleContrast()` has no effect.
 :::
 
 ## Full focus visible demo

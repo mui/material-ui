@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import { applyChildrenFocusVisible } from '../styles/focusVisible';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
@@ -31,7 +32,7 @@ const SnackbarContentRoot = styled(Paper, {
 
     return {
       ...(theme.focusVisible &&
-        theme.setFocusVisibleContrast((theme.vars || theme).palette.background.default)),
+        applyChildrenFocusVisible(`0 0 0 4px ${(theme.vars || theme).palette.background.default}`)),
       ...theme.typography.body2,
       color: theme.vars
         ? theme.vars.palette.SnackbarContent.color

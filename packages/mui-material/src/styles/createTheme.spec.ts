@@ -377,26 +377,6 @@ const theme = createTheme();
   offsetTheme.setFocusVisibleOffset('2px');
 }
 
-// theme.setFocusVisibleContrast
-{
-  const contrastTheme = createTheme({ focusVisible: true });
-  contrastTheme.setFocusVisibleContrast('#fff');
-  createTheme({ cssVariables: true }).setFocusVisibleContrast('var(--mui-palette-primary-main)');
-
-  createTheme({
-    components: {
-      MuiAppBar: {
-        styleOverrides: {
-          root: ({ theme: t }) => t.setFocusVisibleContrast(t.palette.background.default),
-        },
-      },
-    },
-  });
-
-  // @ts-expect-error the color is required
-  contrastTheme.setFocusVisibleContrast();
-}
-
 // `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings
 {
   const varsTheme = createTheme({ cssVariables: true });

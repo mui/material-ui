@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { applyChildrenFocusVisible } from '../styles/focusVisible';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
@@ -125,7 +126,9 @@ const AppBarRoot = styled(Paper, {
             '--AppBar-background': (theme.vars ?? theme).palette[color].main,
             '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
             ...(theme.focusVisible &&
-              theme.setFocusVisibleContrast((theme.vars || theme).palette.background.default)),
+              applyChildrenFocusVisible(
+                `0 0 0 4px ${(theme.vars || theme).palette.background.default}`,
+              )),
           },
         })),
       {

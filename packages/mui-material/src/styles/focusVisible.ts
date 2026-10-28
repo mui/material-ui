@@ -3,17 +3,13 @@ import deepmerge from '@mui/utils/deepmerge';
 
 const focusVisibleOffsetVar = '--_focusVisible-offset';
 const focusVisibleBehaviorVar = '--_focusVisible-behavior';
-const focusVisibleContrastVar = '--_focusVisible-contrast';
+const focusVisibleShadowVar = '--_focusVisible-shadow';
 
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
 
-function toLength(value: number | string) {
-  return typeof value === 'number' ? `${value}px` : value;
-}
-
-// Named `set` instead of `apply` because these do not return the full `theme.focusVisible` styles,
-// they only set the variables that control one part of the ring.
+// Named `set` instead of `apply` because it does not return the full `theme.focusVisible` styles,
+// it only sets the variables that control the ring's offset.
 export function setFocusVisibleOffset(offset: number) {
   return {
     [focusVisibleOffsetVar]: offset,
@@ -28,15 +24,11 @@ export function applyInsetFocusVisible(offset: number) {
   return setFocusVisibleOffset(-offset);
 }
 
-export function setFocusVisibleContrast(color: string) {
+// Used by the colored-background surfaces (AppBar, Alert, SnackbarContent) to make the focus visible appear through box-shadow
+export function applyChildrenFocusVisible(color: string) {
   return {
-    [focusVisibleContrastVar]: color,
+    [focusVisibleShadowVar]: color,
   };
-}
-
-function contrastBoxShadow(outlineOffset: number | string, outlineWidth: number | string) {
-  const offset = `${offsetValue} * ${toLength(outlineOffset)}`;
-  return `0 0 0 calc(max(${offset}, -1 * ${offset}) + ${toLength(outlineWidth)}) var(${focusVisibleContrastVar}, transparent)`;
 }
 
 export type FocusVisibleInput = boolean | React.CSSProperties | null | undefined;
@@ -76,17 +68,15 @@ export function resolveFocusVisible(
   input: true | React.CSSProperties,
   outlineColor: string,
 ): React.CSSProperties {
-  const resolved: React.CSSProperties = {
+  return wireFocusVisibleVars({
     outlineStyle: 'solid',
     outlineColor,
     outlineWidth: 2,
     outlineOffset: 2,
+    // invisible shadow for parent component with solid background (AppBar, Snackbar, Alert) can control the ring color.
+    boxShadow: `var(${focusVisibleShadowVar}, 0 0)`,
     ...(input === true ? null : input),
-  };
-  if (resolved.boxShadow === undefined) {
-    resolved.boxShadow = contrastBoxShadow(resolved.outlineOffset ?? 0, resolved.outlineWidth ?? 0);
-  }
-  return wireFocusVisibleVars(resolved);
+  });
 }
 
 /**
@@ -98,7 +88,8 @@ export function wireFocusVisibleVars(resolved: React.CSSProperties): React.CSSPr
   // already wired: re-composing a resolved theme must not wrap the calc twice and invert the sign.
   const offset = resolved.outlineOffset ?? 0;
   if (typeof offset !== 'string' || !offset.includes(focusVisibleOffsetVar)) {
-    resolved.outlineOffset = `calc(${offsetValue} * ${toLength(offset)})`;
+    const offsetPx = typeof offset === 'number' ? `${offset}px` : offset;
+    resolved.outlineOffset = `calc(${offsetValue} * ${offsetPx})`;
   }
   // Prefix a box-shadow with the behavior var so it insets there too, unless it already opts in.
   // Standalone keywords are complete values — prefixing would produce an invalid `inset none`.
