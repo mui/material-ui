@@ -8,8 +8,7 @@ import {
   isHiddenFromApiDocs,
 } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
-import { getPropsFromComponentNode } from './getPropsFromComponentNode';
-import { resolveExportSpecifier } from './resolveExportSpecifier';
+import { getComponentDeclaration, getPropsFromComponentNode } from './getPropsFromComponentNode';
 import { ProjectSettings } from '../ProjectSettings';
 import { Slot } from '../types/utils.types';
 
@@ -36,21 +35,6 @@ function getClassDeprecationObject(symbol: ts.Symbol): {
     };
   }
   return {};
-}
-
-export function getComponentDeclaration(
-  project: TypeScriptProject,
-  componentName: string,
-): ts.Node | null {
-  const unstableName = `Unstable_${componentName}`;
-  const componentSymbol = project.exports[componentName] ?? project.exports[unstableName];
-
-  if (!componentSymbol) {
-    return null;
-  }
-
-  const localeSymbol = resolveExportSpecifier(componentSymbol, project);
-  return localeSymbol.valueDeclaration ?? null;
 }
 
 interface ParseSlotsAndClassesParameters {

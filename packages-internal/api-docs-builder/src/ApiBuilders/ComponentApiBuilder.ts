@@ -20,8 +20,8 @@ import createDescribeableProp, {
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlotsAndClasses, { getComponentDeclaration } from '../utils/parseSlotsAndClasses';
-import { getPropsFromComponentNode } from '../utils/getPropsFromComponentNode';
+import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
+import { getExternalProps } from '../utils/getPropsFromComponentNode';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
 import {
@@ -395,8 +395,7 @@ export default function Page() {
 const attachTranslations = (
   reactApi: ComponentReactApi,
   deprecationInfo: string | undefined,
-  settings: CreateDescribeablePropSettings | undefined,
-  externalProps: ReadonlySet<string>,
+  settings?: CreateDescribeablePropSettings,
 ) => {
   const translations: ComponentReactApi['translations'] = {
     componentDescription: reactApi.description,
@@ -407,12 +406,7 @@ const attachTranslations = (
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(
-        propDescriptor,
-        propName,
-        settings,
-        externalProps.has(propName),
-      );
+      prop = createDescribeableProp(propDescriptor, propName, settings);
     } catch (error) {
       prop = null;
     }
@@ -501,31 +495,6 @@ const attachTranslations = (
 
   reactApi.translations = translations;
 };
-
-/**
- * Names of the props only declared in dependencies, like React's DOM attributes.
- */
-function getExternalProps(project: TypeScriptProject, componentName: string): Set<string> {
-  const declaration = getComponentDeclaration(project, componentName);
-  if (!declaration) {
-    return new Set();
-  }
-  const props =
-    getPropsFromComponentNode({ node: declaration, project, checkDeclarations: true })?.props ?? {};
-  return new Set(
-    Object.entries(props)
-      .filter(([, prop]) =>
-        prop.signatures.every(({ symbol }) => {
-          const declarations = symbol.declarations ?? [];
-          return (
-            declarations.length > 0 &&
-            declarations.every((node) => node.getSourceFile().fileName.includes('/node_modules/'))
-          );
-        }),
-      )
-      .map(([name]) => name),
-  );
-}
 
 const attachPropsTable = (
   reactApi: ComponentReactApi,
@@ -924,7 +893,7 @@ export default async function generateComponentApi(
 
   attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
-  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings, externalProps);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

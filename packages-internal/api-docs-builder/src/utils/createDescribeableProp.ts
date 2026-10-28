@@ -26,8 +26,7 @@ export type CreateDescribeablePropSettings = {
  * Throws if it is invalid.
  * @param prop
  * @param propName
- * @param settings
- * @param isExternal If `true`, the prop is only declared in dependencies, like React's DOM attributes.
+ * @param isExternal If `true`, the prop is only declared in dependencies.
  */
 export default function createDescribeableProp(
   prop: PropDescriptor,
