@@ -119,13 +119,12 @@ export interface Theme extends BaseTheme, CssVarsProperties {
    * - Negative = inset: the ring is drawn inside the element.
    *
    * @param offset A multiplier, not pixels. `1` is the ring's default position, `-1` mirrors it inward, and `2` doubles its distance from the edge.
-   * @default 1
    * @example
    * styleOverrides: {
-   *   root: ({ theme }) => theme.setFocusVisibleOffset(),
+   *   root: ({ theme }) => theme.setFocusVisibleOffset(1),
    * }
    */
-  setFocusVisibleOffset: (offset?: number) => CSSObject;
+  setFocusVisibleOffset: (offset: number) => CSSObject;
 }
 
 /**

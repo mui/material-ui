@@ -561,16 +561,11 @@ describe('createTheme', () => {
         });
       });
 
-      it('defaults to the theme ring', () => {
-        const theme = createTheme({ focusVisible: true });
-        expect(theme.setFocusVisibleOffset()).to.deep.equal(theme.setFocusVisibleOffset(1));
-      });
-
       it.skipIf(isJSDOM)('scales a custom outlineOffset', () => {
         const theme = createTheme({ focusVisible: { outlineOffset: 4 } });
         render(
           <ThemeProvider theme={theme}>
-            <Box data-testid="default" sx={[theme.focusVisible, theme.setFocusVisibleOffset()]} />
+            <Box data-testid="default" sx={[theme.focusVisible, theme.setFocusVisibleOffset(1)]} />
             <Box data-testid="inset" sx={[theme.focusVisible, theme.setFocusVisibleOffset(-1)]} />
             <Box data-testid="double" sx={[theme.focusVisible, theme.setFocusVisibleOffset(2)]} />
           </ThemeProvider>,

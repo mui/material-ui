@@ -101,12 +101,12 @@ Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [
 
 ### Moving the indicator outside or inside
 
-Use `theme.setFocusVisibleOffset()` to move the indicator of a component outside or inside its edge:
+Use `theme.setFocusVisibleOffset(value)` to move the indicator of a component outside or inside its edge:
 
 - A positive value draws the indicator outside the component.
 - A negative value draws it inside the component.
 
-The value is a multiplier, not a pixel value. It defaults to `1`, the indicator's default position. `-1` mirrors it inward, and `2` doubles its distance from the edge.
+The value is a multiplier, not a pixel value. `1` is the indicator's default position, `-1` mirrors it inward, and `2` doubles its distance from the edge.
 
 {{"component": "file://./demos/offset/index.ts"}}
 

@@ -10,7 +10,7 @@ const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
 
 // Named `set` instead of `apply` because it does not return the full `theme.focusVisible` styles,
 // it only sets the variables that control the ring's offset.
-export function setFocusVisibleOffset(offset: number = 1) {
+export function setFocusVisibleOffset(offset: number) {
   return {
     [focusVisibleOffsetVar]: offset,
     // `initial` reverts the var to guaranteed-invalid so `var(--_focusVisible-behavior, )` falls back to empty — there is no explicit `outset` keyword.

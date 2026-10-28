@@ -357,6 +357,7 @@ const theme = createTheme();
 // theme.setFocusVisibleOffset
 {
   const offsetTheme = createTheme({ focusVisible: true });
+  // @ts-expect-error the offset is required
   offsetTheme.setFocusVisibleOffset();
   offsetTheme.setFocusVisibleOffset(1);
   offsetTheme.setFocusVisibleOffset(-3);
