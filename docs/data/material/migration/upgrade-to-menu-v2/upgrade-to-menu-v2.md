@@ -54,7 +54,7 @@ This also applies to the static list in [Menu List composition](/material-ui/rea
 
 To change a static list into a popup, put `MenuTrigger` and `MenuPopup` inside `Menu`.
 `MenuPopup` replaces the `Paper` and `MenuList` wrapper.
-Then migrate the items as described below.
+Then migrate the items as described in [Update the items](#6-update-the-items).
 Omitting `MenuTrigger` does not make Menu v2 a static list; `MenuPopup` still renders a positioned popup in a portal.
 
 ### Context menus
@@ -84,36 +84,45 @@ The examples use `Menu`, `MenuItem`, and similar local names for the Menu v2 com
 ### 2. Replace the anchor state with a trigger
 
 `Menu` owns state and behavior, `MenuTrigger` connects the button, and `MenuPopup` contains the items.
-The anchor state and ARIA wiring go away:
+The anchor state and ARIA wiring go away.
 
-```diff
--const [anchorEl, setAnchorEl] = React.useState(null);
--const open = Boolean(anchorEl);
--
--<Button
--  id="basic-button"
--  aria-controls={open ? 'basic-menu' : undefined}
--  aria-haspopup="true"
--  aria-expanded={open}
--  onClick={(event) => setAnchorEl(event.currentTarget)}
-->
--  Dashboard
--</Button>
--<Menu
--  id="basic-menu"
--  anchorEl={anchorEl}
--  open={open}
--  onClose={() => setAnchorEl(null)}
--  slotProps={{ list: { 'aria-labelledby': 'basic-button' } }}
-->
--  <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
--</Menu>
-+<Menu>
-+  <MenuTrigger><Button>Dashboard</Button></MenuTrigger>
-+  <MenuPopup>
-+    <MenuItem>Profile</MenuItem>
-+  </MenuPopup>
-+</Menu>
+After, with Menu v2:
+
+```jsx
+<Menu>
+  <MenuTrigger>
+    <Button>Dashboard</Button>
+  </MenuTrigger>
+  <MenuPopup>
+    <MenuItem>Profile</MenuItem>
+  </MenuPopup>
+</Menu>
+```
+
+Before, with Menu:
+
+```jsx
+const [anchorEl, setAnchorEl] = React.useState(null);
+const open = Boolean(anchorEl);
+
+<Button
+  id="basic-button"
+  aria-controls={open ? 'basic-menu' : undefined}
+  aria-haspopup="true"
+  aria-expanded={open}
+  onClick={(event) => setAnchorEl(event.currentTarget)}
+>
+  Dashboard
+</Button>
+<Menu
+  id="basic-menu"
+  anchorEl={anchorEl}
+  open={open}
+  onClose={() => setAnchorEl(null)}
+  slotProps={{ list: { 'aria-labelledby': 'basic-button' } }}
+>
+  <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+</Menu>
 ```
 
 Selecting a `MenuItem` closes the menu by default, so its `onClick={handleClose}` is no longer necessary.
@@ -202,7 +211,6 @@ Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
   It also accepts refs and virtual elements.
 - `anchorOrigin` and `transformOrigin` become `side`, `align`, `sideOffset`, and `alignOffset`.
   The defaults are `side="bottom"` and `align="start"`.
-  See the table below for common pairs.
 - `anchorReference="anchorPosition"` with `anchorPosition`, and `anchorReference="none"`, become `anchor={virtualElement}`.
   Give the virtual element the position that you want.
   For context menus, see [Context menus](#context-menus).
@@ -270,9 +278,12 @@ Separators, groups, links, and checked items become dedicated parts:
 - `ListSubheader` becomes `MenuGroup` with `MenuGroupLabel`, which adds the correct ARIA relationship.
 - `href` and `LinkComponent` become `MenuLinkItem`, which renders a real `<a role="menuitem">`.
 - Items with `role="menuitemcheckbox"` become `MenuCheckboxItem`.
-  It reports changes through `onCheckedChange(checked, eventDetails)`.
+  It reports the new state through `onCheckedChange(checked, eventDetails)`.
 - Items with `role="menuitemradio"` become `MenuRadioItem` inside a `MenuRadioGroup`.
-  The group reports changes through `onValueChange(value, eventDetails)`.
+  The group reports the new value through `onValueChange(value, eventDetails)`.
+
+In both callbacks, `eventDetails.event` is a native event, not a React synthetic event.
+Its target can be a descendant of the item.
 
 These item props work as before:
 
@@ -285,18 +296,16 @@ These item props work as before:
 
 These `MenuList` props move or change:
 
-- `MenuList.disableListWrap` becomes `loopFocus` (default `true`), with the value inverted.
-- `MenuList.dense` and `MenuList.disablePadding` move to `slotProps.list`.
+- `MenuList.disableListWrap` becomes `loopFocus` on `Menu` (default `true`), with the value inverted.
+- `MenuList.dense` and `MenuList.disablePadding` move to `slotProps.list` on `MenuPopup`.
   The `list` slot is a `List`, so the props are unchanged.
+- Naming attributes such as `aria-label` move from `slotProps.list` to `MenuPopup`.
+  See [Move popup props to MenuPopup](#8-move-popup-props-to-menupopup).
 
-Removed item and `MenuList` props, such as `selected`, are listed in [Check the removed props](#8-check-the-removed-props).
+Removed item and `MenuList` props, such as `selected`, are listed in [Check the removed props](#9-check-the-removed-props).
 
 Composed list primitives still work inside items, so `ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged.
 `ListItemText inset` still aligns with the icon column.
-
-Checkbox items and radio groups report the new checked state or value in the first callback argument.
-The event at `eventDetails.event` is native, not a React synthetic event.
-Its target can be a descendant of the item.
 
 ### 7. Update the theme keys
 
@@ -344,11 +353,15 @@ Menu v2 has separate theme keys for behavior and presentation:
 - The trigger element keeps its own styles.
   Theme its component, or style the `.MuiMenu2Trigger-root` class.
 
-Component-specific overrides apply after the shared styles.
+A part's own key applies after the shared key.
+For example, `MuiMenu2CheckboxItem` overrides apply after `MuiMenu2Item` overrides, and `MuiMenu2SubmenuPopup` overrides apply after `MuiMenu2Popup` overrides.
 This includes theme variants, but not `defaultProps`.
-Utility classes remain component-specific.
+Utility classes remain specific to each part.
 
-On `MenuPopup`, each prop targets one element:
+### 8. Move popup props to MenuPopup
+
+Props that styled or named the menu surface now go on `MenuPopup`.
+Each prop targets one element:
 
 - `ref`, `className`, `style`, `sx`, event handlers, and HTML attributes target the menu surface, which is the `root` slot.
   `elevation` sets its Paper elevation, with the default 8.
@@ -358,11 +371,11 @@ On `MenuPopup`, each prop targets one element:
   There's no `trigger` slot: put trigger props on `MenuTrigger`.
 
 :::warning
-Move menu naming attributes from `slotProps.list` to `MenuPopup` or its `slotProps.root`.
-The list is now presentational.
+Move menu naming attributes, such as `aria-label` and `aria-labelledby`, from `slotProps.list` to `MenuPopup` or its `slotProps.root`.
+The list is now presentational, so a name on it is not announced.
 :::
 
-### 8. Check the removed props
+### 9. Check the removed props
 
 Delete these props.
 Menu v2 sets the initial highlight itself, as described in [The initial highlight](#the-initial-highlight):
@@ -389,9 +402,9 @@ Replace these props as follows:
 | `MenuList.disabledItemsFocusable` | No equivalent, because disabled items are always focusable. See [Behavior changes](#behavior-changes).                 |
 | `disableAutoFocus`                | No equivalent.                                                                                                         |
 | `disableEnforceFocus`             | No exact equivalent. `modal` controls outside interaction, not the focus policy.                                       |
-| `disableRestoreFocus`             | Use `finalFocus={false}`.                                                                                              |
-| `disableScrollLock`               | Use `modal={false}`. It also keeps the rest of the document interactive.                                               |
-| `disablePortal`                   | No equivalent. Menu v2 always renders in a portal. Use `container` to choose the portal target.                        |
+| `disableRestoreFocus`             | Use `finalFocus={false}` on `MenuPopup`.                                                                               |
+| `disableScrollLock`               | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                     |
+| `disablePortal`                   | No equivalent. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target.         |
 | `hideBackdrop`                    | Use `slots={{ backdrop: null }}`. This removes the visual layer only; modal behavior stays.                            |
 
 ## Behavior changes
