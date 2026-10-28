@@ -2,25 +2,29 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useId from '@mui/utils/useId';
 import GlobalStyles from '../GlobalStyles';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
+import { CSS_LAYER_ORDER, CSS_LAYER_ORDER_STATEMENT, hasCssLayers } from '../cssLayers';
 
 /**
  * This hook returns a `GlobalStyles` component that sets the CSS layer order (for server-side rendering).
  * Then on client-side, it injects the CSS layer order into the document head to ensure that the layer order is always present first before other Emotion styles.
  */
-export default function useLayerOrder(theme: { modularCssLayers?: boolean | string | undefined }) {
+export default function useLayerOrder(theme: {
+  cssLayers?: boolean | undefined;
+  modularCssLayers?: boolean | string | undefined;
+}) {
   const upperTheme = useThemeWithoutDefault();
   const id = useId() || '';
   const { modularCssLayers } = theme;
 
-  let layerOrder = 'mui.global, mui.components, mui.theme, mui.custom, mui.sx';
+  let layerOrder = CSS_LAYER_ORDER;
 
-  if (!modularCssLayers || upperTheme !== null) {
+  if (!hasCssLayers(theme) || upperTheme !== null) {
     // skip this hook if upper theme exists.
     layerOrder = '';
   } else if (typeof modularCssLayers === 'string') {
     layerOrder = modularCssLayers.replace(/mui(?!\.)/g, layerOrder);
   } else {
-    layerOrder = `@layer ${layerOrder};`;
+    layerOrder = CSS_LAYER_ORDER_STATEMENT;
   }
 
   useEnhancedEffect(() => {

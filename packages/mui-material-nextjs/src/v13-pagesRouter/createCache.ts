@@ -24,7 +24,8 @@ export default function createEmotionCache(
     const prevInsert = emotionCache.insert;
     emotionCache.insert = (...args) => {
       // ignore styles that contain layer order (`@layer a, b, c;` without `{`)
-      if (!args[1].styles.match(/^@layer\s[^{]*$/)) {
+      // and styles that Material UI already put in its sub-layers.
+      if (!args[1].styles.match(/^@layer\s[^{]*$|@layer mui\./)) {
         args[1].styles = `@layer mui {${args[1].styles}}`;
       }
       return prevInsert(...args);
