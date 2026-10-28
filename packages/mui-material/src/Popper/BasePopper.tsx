@@ -6,31 +6,25 @@ import useForkRef from '@mui/utils/useForkRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import refType from '@mui/utils/refType';
-import {
-  createPopper,
-  type Instance,
-  type Modifier,
-  type Placement,
-  type State,
-  type VirtualElement,
-} from '@popperjs/core';
+import type { Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import { createPopper } from '@popperjs/core';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
-import { type WithOptionalOwnerState } from '../utils/types';
-import { type PolymorphicComponent } from '../utils/PolymorphicComponent';
-import {
-  type PopperPlacementType,
-  type PopperTooltipProps,
-  type PopperTooltipTypeMap,
-  type PopperChildrenProps,
-  type PopperProps,
-  type PopperRootSlotProps,
-  type PopperTransitionProps,
-  type PopperTypeMap,
+import type { WithOptionalOwnerState } from '../utils/types';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type {
+  PopperPlacementType,
+  PopperTooltipProps,
+  PopperTooltipTypeMap,
+  PopperChildrenProps,
+  PopperProps,
+  PopperRootSlotProps,
+  PopperTransitionProps,
+  PopperTypeMap,
 } from './BasePopper.types';
 
 function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl') {

@@ -1,5 +1,5 @@
-import { type ThemeOptions, type Theme } from './createThemeNoVars';
-import { type Components } from './components';
+import { ThemeOptions, Theme } from './createThemeNoVars';
+import { Components } from './components';
 import {
   DefaultColorScheme,
   ColorSchemeOverrides,

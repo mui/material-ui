@@ -1,7 +1,8 @@
 import type * as React from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { type Simplify } from '@mui/types';
-import { type EventHandlers } from '../types';
+import type { ClassValue } from 'clsx';
+import clsx from 'clsx';
+import type { Simplify } from '@mui/types';
+import type { EventHandlers } from '../types';
 import extractEventHandlers from '../extractEventHandlers';
 import omitEventHandlers from '../omitEventHandlers';
 

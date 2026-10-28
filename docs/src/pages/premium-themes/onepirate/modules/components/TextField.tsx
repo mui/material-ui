@@ -1,13 +1,15 @@
 import clsx from 'clsx';
-import { styled, type Theme } from '@mui/material/styles';
-import MuiTextField, {
-  type FilledTextFieldProps,
-  type StandardTextFieldProps,
+import type { Theme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+import type {
+  FilledTextFieldProps,
+  StandardTextFieldProps,
 } from '@mui/material/TextField';
+import MuiTextField from '@mui/material/TextField';
 import { selectClasses } from '@mui/material/Select';
 import { inputLabelClasses } from '@mui/material/InputLabel';
-import { type FilledInputProps } from '@mui/material/FilledInput';
-import { type InputProps as StandardInputProps } from '@mui/material/Input';
+import type { FilledInputProps } from '@mui/material/FilledInput';
+import type { InputProps as StandardInputProps } from '@mui/material/Input';
 
 const inputStyleMappingClasses = {
   small: 'OnePirateTextField-inputSizeSmall',

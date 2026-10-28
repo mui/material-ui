@@ -1,13 +1,6 @@
 import * as React from 'react';
-import {
-  styled,
-  type Theme,
-  type ThemeOptions,
-  alpha,
-  extendTheme,
-  createTheme,
-  ThemeProvider,
-} from '@mui/material/styles';
+import type { Theme, ThemeOptions } from '@mui/material/styles';
+import { styled, alpha, extendTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';

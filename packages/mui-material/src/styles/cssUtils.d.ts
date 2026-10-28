@@ -1,4 +1,4 @@
-import { type CSSProperties } from './createMixins';
+import { CSSProperties } from './createMixins';
 
 export function isUnitless(value: string): boolean;
 

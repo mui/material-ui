@@ -1,21 +1,21 @@
-import { type OverridableStringUnion } from '@mui/types';
-import {
-  type SxConfig,
-  type SxProps,
-  type CSSObject,
-  type ApplyStyles,
-  type Theme as SystemTheme,
-  type Shape as SystemShape,
-  type ShapeOptions as SystemShapeOptions,
+import type { OverridableStringUnion } from '@mui/types';
+import type {
+  SxConfig,
+  SxProps,
+  CSSObject,
+  ApplyStyles,
+  Theme as SystemTheme,
+  Shape as SystemShape,
+  ShapeOptions as SystemShapeOptions,
 } from '@mui/system';
-import { type ExtractTypographyTokens } from '@mui/system/cssVars';
-import { type Palette, type PaletteOptions } from './createPalette';
-import { type Shadows } from './shadows';
-import { type Motion } from './createMotion';
-import { type Transitions } from './createTransitions';
-import { type Mixins } from './createMixins';
-import { type TypographyVariants } from './createTypography';
-import { type ZIndex } from './zIndex';
+import type { ExtractTypographyTokens } from '@mui/system/cssVars';
+import type { Palette, PaletteOptions } from './createPalette';
+import type { Shadows } from './shadows';
+import type { Motion } from './createMotion';
+import type { Transitions } from './createTransitions';
+import type { Mixins } from './createMixins';
+import type { TypographyVariants } from './createTypography';
+import type { ZIndex } from './zIndex';
 
 /**
  * default MD color-schemes

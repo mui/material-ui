@@ -1,5 +1,5 @@
 import type * as React from 'react';
-import { type DistributiveOmit } from '@mui/types';
+import type { DistributiveOmit } from '@mui/types';
 
 declare module '@mui/material/OverridableComponent' {
   /**

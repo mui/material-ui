@@ -1,6 +1,6 @@
-import { type ComponentsProps } from './props';
-import { type ComponentsOverrides } from './overrides';
-import { type ComponentsVariants } from './variants';
+import type { ComponentsProps } from './props';
+import type { ComponentsOverrides } from './overrides';
+import type { ComponentsVariants } from './variants';
 
 export interface Components<Theme = unknown> {
   /**

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type ShowNotification, type CloseNotification } from './useNotifications';
+import type { ShowNotification, CloseNotification } from './useNotifications';
 
 const NotificationsContext = React.createContext<{
   show: ShowNotification;

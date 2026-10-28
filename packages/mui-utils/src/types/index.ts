@@ -1,5 +1,5 @@
 import type * as React from 'react';
-import { type WithDataAttributes } from './DataAttributes';
+import type { WithDataAttributes } from './DataAttributes';
 
 // Re-export only what consumers need: `DataAttributesOverrides` to augment and
 // `WithDataAttributes` for typing custom slot props. `DataAttributes` stays

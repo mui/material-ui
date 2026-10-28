@@ -1,8 +1,8 @@
-import {
-  type ComponentsProps,
-  type ComponentsOverrides,
-  type ComponentsVariants,
-  type Theme as MuiTheme,
+import type {
+  ComponentsProps,
+  ComponentsOverrides,
+  ComponentsVariants,
+  Theme as MuiTheme,
 } from '@mui/material/styles';
 
 type Theme = Omit<MuiTheme, 'components'>;

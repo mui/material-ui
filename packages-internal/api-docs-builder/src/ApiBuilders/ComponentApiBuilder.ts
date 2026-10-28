@@ -7,30 +7,32 @@ import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
-import { parse as parseDoctrine, type Annotation } from 'doctrine';
+import type { Annotation } from 'doctrine';
+import { parse as parseDoctrine } from 'doctrine';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
-import { type ProjectSettings, type SortingStrategiesType } from '../ProjectSettings';
+import type { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
-import createDescribeableProp, {
-  type CreateDescribeablePropSettings,
-  type DescribeablePropDescriptor,
+import type {
+  CreateDescribeablePropSettings,
+  DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
+import createDescribeableProp from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import { type TypeScriptProject } from '../utils/createTypeScriptProject';
+import type { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
-import {
-  type AdditionalPropsInfo,
-  type ComponentApiContent,
-  type ComponentReactApi,
-  type ParsedProperty,
-  type TypeDescriptions,
+import type {
+  AdditionalPropsInfo,
+  ComponentApiContent,
+  ComponentReactApi,
+  ParsedProperty,
+  TypeDescriptions,
 } from '../types/ApiBuilder.types';
-import { type Slot, type ComponentInfo, type ApiItemDescription } from '../types/utils.types';
+import type { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
 /**

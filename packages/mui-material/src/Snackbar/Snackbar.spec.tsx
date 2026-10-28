@@ -1,5 +1,6 @@
 import { mergeSlotProps } from '@mui/material/utils';
-import Snackbar, { type SnackbarProps } from '@mui/material/Snackbar';
+import type { SnackbarProps } from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import { expectType } from '@mui/types';
 
 // slotProps.transition should reject unknown props

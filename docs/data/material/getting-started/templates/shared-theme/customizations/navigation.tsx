@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { type Theme, alpha, type Components } from '@mui/material/styles';
-import { type SvgIconProps } from '@mui/material/SvgIcon';
+import type { Theme, Components } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
+import type { SvgIconProps } from '@mui/material/SvgIcon';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { dividerClasses } from '@mui/material/Divider';
 import { menuItemClasses } from '@mui/material/MenuItem';

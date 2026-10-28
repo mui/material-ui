@@ -1,4 +1,4 @@
-import { type DistributiveOmit } from '@mui/types';
+import { DistributiveOmit } from '@mui/types';
 
 export { default as THEME_ID } from './identifier';
 export {

@@ -1,15 +1,15 @@
-import type * as React from 'react';
-import { type SxProps } from '@mui/system';
-import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
-import { type Theme } from '../styles';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import {
-  type ButtonBaseProps,
-  type ButtonBaseTypeMap,
-  type ExtendButtonBase,
-  type ExtendButtonBaseTypeMap,
+  ButtonBaseProps,
+  ButtonBaseTypeMap,
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
 } from '../ButtonBase';
-import { type OverrideProps } from '../OverridableComponent';
-import { type BottomNavigationActionClasses } from './bottomNavigationActionClasses';
+import { OverrideProps } from '../OverridableComponent';
+import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
 
 export interface BottomNavigationActionRootSlotPropsOverrides {}
 export interface BottomNavigationActionLabelSlotPropsOverrides {}

@@ -1,5 +1,5 @@
-import { type DistributiveOmit } from '@mui/types';
-import { type StyledComponentProps } from '../styles';
+import type { DistributiveOmit } from '@mui/types';
+import type { StyledComponentProps } from '../styles';
 
 /**
  * @internal

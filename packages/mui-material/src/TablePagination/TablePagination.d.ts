@@ -1,17 +1,17 @@
-import type * as React from 'react';
-import { type SxProps } from '@mui/system';
-import { type Theme } from '../styles';
-import { type OverridableComponent, type OverrideProps } from '../OverridableComponent';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import {
-  type TablePaginationActionsProps,
-  type TablePaginationActionsSlots,
+  TablePaginationActionsProps,
+  TablePaginationActionsSlots,
 } from '../TablePaginationActions';
-import { type TableCellProps } from '../TableCell';
-import { type SelectProps } from '../Select';
-import { type TablePaginationClasses } from './tablePaginationClasses';
-import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
-import { type ToolbarProps } from '../Toolbar';
-import { type MenuItemProps } from '../MenuItem';
+import { TableCellProps } from '../TableCell';
+import { SelectProps } from '../Select';
+import { TablePaginationClasses } from './tablePaginationClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { ToolbarProps } from '../Toolbar';
+import { MenuItemProps } from '../MenuItem';
 
 export interface LabelDisplayedRowsArgs {
   from: number;

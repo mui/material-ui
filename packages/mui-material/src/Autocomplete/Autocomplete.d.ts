@@ -15,6 +15,9 @@ import useAutocomplete, {
   AutocompleteMappedValue,
   AutocompleteValue,
   createFilterOptions,
+  UseAutocompleteProps,
+  AutocompleteFreeSoloValueMapping,
+  AutocompleteValueOrFreeSoloValueMapping,
 } from '../useAutocomplete';
 import { AutocompleteResolvedValue } from '../useAutocomplete/useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';

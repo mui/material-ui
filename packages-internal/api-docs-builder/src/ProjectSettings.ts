@@ -1,11 +1,11 @@
-import { type CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
-import { type CreateDescribeablePropSettings } from './utils/createDescribeableProp';
-import {
-  type ComponentClassDefinition,
-  type ComponentReactApi,
-  type HookReactApi,
+import type { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
+import type { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
+import type {
+  ComponentClassDefinition,
+  ComponentReactApi,
+  HookReactApi,
 } from './types/ApiBuilder.types';
-import { type Slot, type ComponentInfo, type HookInfo } from './types/utils.types';
+import type { Slot, ComponentInfo, HookInfo } from './types/utils.types';
 
 export type SortingStrategiesType = {
   /**

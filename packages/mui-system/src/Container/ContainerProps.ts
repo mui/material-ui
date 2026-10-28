@@ -1,8 +1,8 @@
 import type * as React from 'react';
-import { type OverrideProps } from '@mui/types';
-import { type SxProps } from '../styleFunctionSx';
-import { type Theme, type Breakpoint } from '../createTheme';
-import { type ContainerClasses } from './containerClasses';
+import type { OverrideProps } from '@mui/types';
+import type { SxProps } from '../styleFunctionSx';
+import type { Theme, Breakpoint } from '../createTheme';
+import type { ContainerClasses } from './containerClasses';
 
 export interface ContainerTypeMap<
   AdditionalProps = {},

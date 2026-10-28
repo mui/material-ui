@@ -6,8 +6,8 @@ import {
   isElementTypeAcceptingRefProp,
   isElementAcceptingRefProp,
 } from './generatePropTypeDescription';
-import { type DescribeablePropDescriptor } from './createDescribeableProp';
-import { type SeeMore } from '../types/utils.types';
+import type { DescribeablePropDescriptor } from './createDescribeableProp';
+import type { SeeMore } from '../types/utils.types';
 
 function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   if (type.type === 'AllLiteral') {

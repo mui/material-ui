@@ -1,21 +1,21 @@
-import ts from '@typescript/typescript6';
+import type ts from '@typescript/typescript6';
 import { uniqBy } from 'es-toolkit/array';
-import {
-  type PropType,
-  type ArrayType,
-  type LiteralType,
-  type BooleanType,
-  type AnyType,
-  type UnionType,
-  type BasePropType,
-  type ElementType,
-  type DOMElementType,
-  type InstanceOfType,
-  type InterfaceType,
-  type FunctionType,
-  type StringType,
-  type ObjectType,
-  type NumericType,
+import type {
+  PropType,
+  ArrayType,
+  LiteralType,
+  BooleanType,
+  AnyType,
+  UnionType,
+  BasePropType,
+  ElementType,
+  DOMElementType,
+  InstanceOfType,
+  InterfaceType,
+  FunctionType,
+  StringType,
+  ObjectType,
+  NumericType,
 } from './models';
 import getTypeHash from './getTypeHash';
 

@@ -10,15 +10,15 @@ import isFocusVisible from '@mui/utils/isFocusVisible';
 import visuallyHidden from '@mui/utils/visuallyHidden';
 import clamp from '@mui/utils/clamp';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
-import {
-  type Mark,
-  type UseSliderHiddenInputProps,
-  type UseSliderParameters,
-  type UseSliderReturnValue,
-  type UseSliderRootSlotProps,
-  type UseSliderThumbSlotProps,
+import type {
+  Mark,
+  UseSliderHiddenInputProps,
+  UseSliderParameters,
+  UseSliderReturnValue,
+  UseSliderRootSlotProps,
+  UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { type EventHandlers } from '../utils/types';
+import type { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
 import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';

@@ -1,4 +1,5 @@
-import { type PaletteColor, styled } from '@mui/material/styles';
+import type { PaletteColor } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 type Color = 'primary' | 'error' | 'success' | 'warning';
 
