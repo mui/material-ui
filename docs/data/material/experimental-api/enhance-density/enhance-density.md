@@ -60,6 +60,10 @@ const theme = enhanceDensity(createTheme(), {
 
 {{"demo": "TouchTargetDemo.js"}}
 
+:::info
+Interactive components with a single size, or with `size="medium"`, take up at least `touchTarget`.
+:::
+
 ### Spacing scale
 
 Every component draws its spacing and sizing from the same fixed set of steps, so the parts that should line up across components share the same values:
