@@ -349,6 +349,17 @@ describe('<FormControlLabel />', () => {
   // Deterministic checks for the WCAG success criteria the FormControlLabel
   // report rates as the label's own. See ./accessibility.md.
   describe('WCAG 2.2 conformance', () => {
+    it('1.3.1 Info and Relationships: associates the control with its label by wrapping it', () => {
+      const { container } = render(
+        <FormControlLabel control={<Checkbox />} label="Email notifications" />,
+      );
+      const label = container.firstChild;
+
+      expect(label).to.have.tagName('label');
+      expect(label).to.contain(screen.getByRole('checkbox'));
+      expect(label).to.contain(screen.getByText('Email notifications'));
+    });
+
     it('2.5.3 Label in Name: a Checkbox exposes the visible label as its accessible name', () => {
       render(<FormControlLabel control={<Checkbox />} label="Email notifications" />);
       // getByRole with `name` only resolves if the accessible name matches the visible label.

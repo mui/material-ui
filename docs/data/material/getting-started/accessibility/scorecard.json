@@ -1541,24 +1541,15 @@
     {
       "component": "FormControlLabel",
       "counts": {
-        "supports": 15,
+        "supports": 14,
         "partiallySupports": 0,
         "doesNotSupport": 0,
-        "notApplicable": 40,
+        "notApplicable": 41,
         "flagged": 1,
-        "rated": 15
+        "rated": 14
       },
       "gaps": [],
       "criteria": [
-        {
-          "number": "1.1.1",
-          "name": "Non-text Content",
-          "level": "A",
-          "conformance": "Supports",
-          "responsibility": "Shared",
-          "group": "Hybrid",
-          "flagged": false
-        },
         {
           "number": "1.3.1",
           "name": "Info and Relationships",
@@ -1573,7 +1564,7 @@
           "name": "Meaningful Sequence",
           "level": "A",
           "conformance": "Supports",
-          "responsibility": "Author",
+          "responsibility": "Shared",
           "group": "Manual",
           "flagged": false
         },
@@ -1687,13 +1678,13 @@
         }
       ],
       "summary": {
-        "rated": 15,
-        "levelA": 8,
+        "rated": 14,
+        "levelA": 7,
         "levelAA": 7,
-        "supports": 15,
+        "supports": 14,
         "partiallySupports": 0,
         "doesNotSupport": 0,
-        "verified": 14,
+        "verified": 13,
         "automated": 5
       }
     },

@@ -12,11 +12,11 @@ FormControlLabel attaches a visible, clickable label to a wrapped [Checkbox](../
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 15    |
+| ✅ Supports           | 14    |
 | ⚠️ Partially Supports | 0     |
 | ❌ Does Not Support   | 0     |
-| ➖ Not Applicable     | 40    |
-| 🚩 Flagged            | 1/15  |
+| ➖ Not Applicable     | 41    |
+| 🚩 Flagged            | 1/14  |
 
 ## Known gaps
 
@@ -28,7 +28,7 @@ None.
 
 #### 1.3.2 Meaningful Sequence · A
 
-`✅ Supports` · `○ Author`
+`✅ Supports` · `◐ Shared`
 
 <!-- 1.3.2:start -->
 
@@ -82,26 +82,11 @@ None.
 
 ### 🔁 Hybrid
 
-#### 1.1.1 Non-text Content · A
-
-`✅ Supports` · `◐ Shared`
-
-<!-- 1.1.1:start -->
-
-- The label is author-supplied text rendered through `Typography`; it carries no images or other non-text content that would need a text alternative.
-- The only non-text mark is the required `*`, which is decorative and `aria-hidden`, so assistive technology skips it. The required state is conveyed natively on the control.
-
-**Manual testing steps**
-
-1. Inspect a required label in the accessibility tree and confirm the asterisk is `aria-hidden` and absent from the control's name.
-
-<!-- 1.1.1:end -->
-
-**Pass:** <!-- 1.1.1:pass:start -->the label exposes its text directly; the decorative required asterisk is hidden from assistive technology.<!-- 1.1.1:pass:end -->
-
 #### 1.3.1 Info and Relationships · A
 
 `✅ Supports` · `◐ Shared`
+
+Tested by: unit `FormControlLabel.test.js`
 
 <!-- 1.3.1:start -->
 
@@ -285,6 +270,7 @@ Tested by: axe-core `target-size` ✅
 
 ## Not applicable
 
+- **1.1.1 Non-text Content (A).** <!-- 1.1.1:start -->The label renders no non-text content; the required `*` is decorative (`aria-hidden`) text duplicating the native `required` state it forwards to the control.<!-- 1.1.1:end -->
 - **1.2.1 Audio-only and Video-only (Prerecorded) (A), 1.2.2 Captions (Prerecorded) (A), 1.2.3 Audio Description or Media Alternative (Prerecorded) (A), 1.2.4 Captions (Live) (AA), 1.2.5 Audio Description (Prerecorded) (AA).** No audio or video.
 - **1.3.4 Orientation (AA).** Sets no orientation lock; a layout concern.
 - **1.3.5 Identify Input Purpose (AA).** Collects no information about the user through `autocomplete`.
