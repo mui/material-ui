@@ -1,6 +1,8 @@
 'use client';
 import { SxProps } from '@mui/system';
 import { useRtl } from '@mui/system/RtlProvider';
+import { useThemeScope } from '@mui/system/cssVars';
+import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
@@ -45,6 +47,8 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const isRtl = useRtl();
+  // The popper is portaled out of a scoped ThemeProvider's element, so it applies the scope itself.
+  const { className: themeScopeClassName, ...themeScopeAttributes } = useThemeScope();
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiPopper',
@@ -86,7 +90,9 @@ const Popper = React.forwardRef(function Popper(
       direction={isRtl ? 'rtl' : 'ltr'}
       slots={slots}
       slotProps={slotProps}
+      {...themeScopeAttributes}
       {...otherProps}
+      className={clsx(themeScopeClassName, otherProps.className) || undefined}
       ref={ref}
     />
   );

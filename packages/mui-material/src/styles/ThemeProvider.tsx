@@ -1,7 +1,10 @@
 'use client';
 import * as React from 'react';
 import { DefaultTheme } from '@mui/system';
-import { StorageManager } from '@mui/system/cssVars';
+import {
+  StorageManager,
+  unstable_applyScopeToChild as applyScopeToChild,
+} from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
@@ -32,6 +35,15 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       forceThemeRerender?: boolean | undefined;
+      /**
+       * If `true`, the CSS theme variables are set on its child element instead of `:root`,
+       * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
+       * like an embedded widget. Nested providers are scoped automatically when their variables differ.
+       * Either way, the provider needs a single child element that renders the `className` it receives.
+       * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
+       * @default false
+       */
+      scoped?: boolean | undefined;
     }
   : {};
 
@@ -103,7 +115,21 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   }, [theme]);
 
   if (noVarsTheme) {
-    return <ThemeProviderNoVars theme={noVarsTheme} {...props} />;
+    // It doesn't scope its own theme, but passes on the scope that an outer provider gave it to its child.
+    // The system ThemeProvider only accepts its own props, so the forwarded ones don't reach it.
+    const { className, ...noVarsProps } = props as typeof props & {
+      className?: string | undefined;
+    };
+    Object.keys(noVarsProps).forEach((key) => {
+      if (key.startsWith('data-')) {
+        delete (noVarsProps as Record<string, unknown>)[key];
+      }
+    });
+    return (
+      <ThemeProviderNoVars theme={noVarsTheme} {...noVarsProps}>
+        {applyScopeToChild(props.children, props)}
+      </ThemeProviderNoVars>
+    );
   }
   return <CssVarsProvider theme={theme as unknown as CssVarsTheme} {...props} />;
 }

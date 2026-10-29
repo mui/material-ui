@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { GlobalStyles, internal_useNonce as useNonce } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
@@ -13,6 +14,13 @@ import {
 } from '../InitColorSchemeScript/InitColorSchemeScript';
 import useCurrentColorScheme, { type Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
+import ThemeScopeContext from './ThemeScopeContext';
+import {
+  applyScopeToChild,
+  createScopedStyleSheets,
+  getColorSchemeProps,
+  type CssVarsByColorScheme,
+} from './scopeCssVars';
 
 export interface ColorSchemeContextValue<
   SupportedColorScheme extends string,
@@ -112,6 +120,15 @@ export interface CreateCssVarsProviderResult<
          * @default false
          */
         disableStyleSheetGeneration?: boolean | undefined;
+        /**
+         * If `true`, the CSS theme variables are set on its child element instead of `:root`,
+         * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
+         * like an embedded widget. Nested providers are scoped automatically when their variables differ.
+         * Either way, the provider needs a single child element that renders the `className` it receives.
+         * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
+         * @default false
+         */
+        scoped?: boolean | undefined;
       }
     >,
   ) => React.JSX.Element;
@@ -212,10 +229,54 @@ export default function createCssVarsProvider<
   const defaultColorSchemes = {};
   const defaultComponents = {};
 
+  // The scoped stylesheets only depend on the themes, so they're created once per pair of themes
+  // instead of once per provider.
+  type ScopedStyleSheets = ReturnType<typeof createScopedStyleSheets>;
+  const scopedStyleSheetsCache: WeakMap<
+    () => CssVarsByColorScheme,
+    WeakMap<object, Map<string, ScopedStyleSheets>>
+  > = new WeakMap();
+  const noUpper = {};
+  function getScopedStyleSheets(
+    generate: () => CssVarsByColorScheme,
+    upperGenerate: (() => CssVarsByColorScheme) | undefined,
+    colorSchemeSelector: string | undefined,
+    prefix: string,
+  ) {
+    let byUpper = scopedStyleSheetsCache.get(generate);
+    if (!byUpper) {
+      byUpper = new WeakMap();
+      scopedStyleSheetsCache.set(generate, byUpper);
+    }
+    let byOptions = byUpper.get(upperGenerate ?? noUpper);
+    if (!byOptions) {
+      byOptions = new Map();
+      byUpper.set(upperGenerate ?? noUpper, byOptions);
+    }
+    const key = `${colorSchemeSelector}|${prefix}`;
+    if (!byOptions.has(key)) {
+      byOptions.set(
+        key,
+        createScopedStyleSheets({
+          css: generate(),
+          upper: upperGenerate?.(),
+          colorSchemeSelector,
+          prefix,
+        }),
+      );
+    }
+    return byOptions.get(key) as ScopedStyleSheets;
+  }
+
+  // Stylesheets of the mounted providers that write to `:root`, to warn when they overwrite each other.
+  const rootStyleSheets: Map<string, string[]> = new Map();
+  let warnedMultipleRoots = false;
+
   function CssVarsProvider(props: any) {
     const {
       children,
       theme: themeProp,
+      scoped = false,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
       disableTransitionOnChange = designSystemTransitionOnChange,
@@ -233,7 +294,10 @@ export default function createCssVarsProvider<
     const nonce = useNonce();
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
+    const upperScope = React.useContext(ThemeScopeContext);
     const nested = !!ctx && !disableNestedContext;
+    // A scoped provider that isn't nested manages its own color scheme on its element.
+    const isScopedRoot = !nested && scoped;
 
     const initialTheme = React.useMemo(() => {
       if (themeProp) {
@@ -281,7 +345,14 @@ export default function createCssVarsProvider<
       modeStorageKey,
       colorSchemeStorageKey,
       defaultMode,
-      storageManager,
+      // With the default storage keys, a scoped provider would overwrite the mode of the page's provider.
+      storageManager:
+        isScopedRoot &&
+        props.storageManager === undefined &&
+        props.modeStorageKey === undefined &&
+        props.colorSchemeStorageKey === undefined
+          ? null
+          : storageManager,
       storageWindow,
       noSsr,
     });
@@ -351,9 +422,12 @@ export default function createCssVarsProvider<
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
+    // A scoped root sets it on its child instead.
     const colorSchemeSelector = restThemeProp.colorSchemeSelector;
+    const ownsColorSchemeNode = !isScopedRoot || props.colorSchemeNode !== undefined;
     useEnhancedEffect(() => {
       if (
+        ownsColorSchemeNode &&
         colorScheme &&
         colorSchemeNode &&
         colorSchemeSelector &&
@@ -393,7 +467,7 @@ export default function createCssVarsProvider<
           }
         }
       }
-    }, [colorScheme, colorSchemeSelector, colorSchemeNode, allColorSchemes]);
+    }, [colorScheme, colorSchemeSelector, colorSchemeNode, allColorSchemes, ownsColorSchemeNode]);
 
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
@@ -464,23 +538,159 @@ export default function createCssVarsProvider<
       ],
     );
 
+    const canGenerateStyleSheet =
+      !disableStyleSheetGeneration && restThemeProp.cssVariables !== false;
+    const samePrefixAsUpper = nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix;
+
+    // 6. Scope the CSS theme variables that can't go to `:root` to the provider's child.
+    const generateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined =
+      restThemeProp.generateCssVarsByColorScheme;
+    const upperGenerateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined =
+      samePrefixAsUpper ? (upperTheme as any).generateCssVarsByColorScheme : undefined;
+    const upperColorSchemeSelector = nested ? (upperTheme as any)?.colorSchemeSelector : undefined;
+    const scope = React.useMemo(() => {
+      if (!canGenerateStyleSheet || !generateCssVarsByColorScheme) {
+        return null;
+      }
+      if (nested) {
+        // A nested theme with another prefix doesn't clash with the outer one, so it writes to `:root`.
+        if (!upperGenerateCssVarsByColorScheme) {
+          return null;
+        }
+        // It follows the outer color scheme.
+        return getScopedStyleSheets(
+          generateCssVarsByColorScheme,
+          upperGenerateCssVarsByColorScheme,
+          upperColorSchemeSelector,
+          cssVarPrefix,
+        );
+      }
+      if (scoped) {
+        return getScopedStyleSheets(
+          generateCssVarsByColorScheme,
+          undefined,
+          colorSchemeSelector,
+          cssVarPrefix,
+        );
+      }
+      return null;
+    }, [
+      canGenerateStyleSheet,
+      generateCssVarsByColorScheme,
+      upperGenerateCssVarsByColorScheme,
+      upperColorSchemeSelector,
+      colorSchemeSelector,
+      cssVarPrefix,
+      nested,
+      scoped,
+    ]);
+
+    const scopeClassName = scope?.className;
+    const colorSchemeProps = React.useMemo(
+      () =>
+        isScopedRoot
+          ? getColorSchemeProps(colorSchemeSelector, colorScheme)
+          : ({} as Record<string, string>),
+      [isScopedRoot, colorSchemeSelector, colorScheme],
+    );
+    const { className: colorSchemeClassName, ...colorSchemeAttributes } = colorSchemeProps;
+    const scopeProps = React.useMemo(() => {
+      if (!scopeClassName) {
+        return undefined;
+      }
+      // Portaled elements aren't under the outer scopes' elements either, so they get them too.
+      return {
+        ...(nested ? upperScope : undefined),
+        ...colorSchemeProps,
+        className: clsx(nested && upperScope?.className, scopeClassName, colorSchemeClassName),
+      };
+    }, [scopeClassName, colorSchemeClassName, colorSchemeProps, nested, upperScope]);
+
     let shouldGenerateStyleSheet = true;
     if (
       disableStyleSheetGeneration ||
       restThemeProp.cssVariables === false ||
-      (nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix)
+      (nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix) ||
+      isScopedRoot
     ) {
       shouldGenerateStyleSheet = false;
     }
 
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      React.useEffect(() => {
+        if (!shouldGenerateStyleSheet || nested || !memoTheme.generateStyleSheets) {
+          return undefined;
+        }
+        const key = cssVarPrefix ?? '';
+        const styleSheet = JSON.stringify(memoTheme.generateStyleSheets());
+        const mounted = rootStyleSheets.get(key) ?? [];
+        rootStyleSheets.set(key, [...mounted, styleSheet]);
+        if (!warnedMultipleRoots && mounted.some((other) => other !== styleSheet)) {
+          warnedMultipleRoots = true;
+          console.warn(
+            [
+              'MUI: Several ThemeProviders with different themes write their CSS theme variables to `:root`, so they overwrite each other.',
+              'Add the `scoped` prop to the ThemeProviders that should only apply to their children, like an embedded widget.',
+            ].join('\n'),
+          );
+        }
+        return () => {
+          const current = rootStyleSheets.get(key) ?? [];
+          const index = current.indexOf(styleSheet);
+          rootStyleSheets.set(
+            key,
+            current.filter((_, i) => i !== index),
+          );
+        };
+      }, [shouldGenerateStyleSheet, nested, memoTheme, cssVarPrefix]);
+    }
+
+    // The scope class goes on the single child, so the provider never renders an element of its own.
+    // When the child is itself a ThemeProvider, it receives the outer scope and passes it on to its own child.
+    const scopedChildren = applyScopeToChild(
+      children,
+      props,
+      scopeClassName
+        ? {
+            className: clsx(scopeClassName, colorSchemeClassName),
+            attributes: colorSchemeAttributes,
+          }
+        : undefined,
+    );
+
+    if (process.env.NODE_ENV !== 'production') {
+      const needsChildScope = !!(scopeClassName || props.className);
+      const hasChildren = children != null && typeof children !== 'boolean';
+      const canCloneChild = React.isValidElement(children) && children.type !== React.Fragment;
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const warnedChildren = React.useRef(false);
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      React.useEffect(() => {
+        if (needsChildScope && hasChildren && !canCloneChild && !warnedChildren.current) {
+          warnedChildren.current = true;
+          console.error(
+            [
+              "MUI: The CSS theme variables of this ThemeProvider can't be applied because its children aren't a single element.",
+              'Wrap its children in one element, for example a `div`, so it can set them on it.',
+            ].join('\n'),
+          );
+        }
+      }, [needsChildScope, hasChildren, canCloneChild]);
+    }
+
+    // The tree is the same whether the theme needs a scope or not, so switching themes keeps the children's state.
     const element = (
       <React.Fragment>
         <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
-          {children}
+          <ThemeScopeContext.Provider value={scopeProps ?? (nested ? upperScope : undefined)}>
+            {scopedChildren}
+          </ThemeScopeContext.Provider>
         </ThemeProvider>
         {shouldGenerateStyleSheet && (
           <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
         )}
+        {scope && <GlobalStyles styles={scope.styles} />}
       </React.Fragment>
     );
 
@@ -542,6 +752,10 @@ export default function createCssVarsProvider<
      * You should use this option in conjunction with `InitColorSchemeScript` component.
      */
     noSsr: PropTypes.bool,
+    /**
+     * If `true`, the CSS theme variables are set on its child element instead of `:root`.
+     */
+    scoped: PropTypes.bool,
     /**
      * The storage manager to be used for storing the mode and color scheme
      * @default using `window.localStorage`
