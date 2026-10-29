@@ -12,16 +12,16 @@ FormLabel labels a field or, as a `legend`, names a group. It is not focusable. 
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 12    |
+| ✅ Supports           | 11    |
 | ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
-| ➖ Not Applicable     | 41    |
-| 🚩 Flagged            | 3/14  |
+| ➖ Not Applicable     | 42    |
+| 🚩 Flagged            | 3/13  |
 
 ## Known gaps
 
 - ⚠️ **1.3.1 Info and Relationships.** <!-- 1.3.1:gap:start -->On a `required` group legend, the asterisk is `aria-hidden`, and Checkbox, Radio, and Switch do not take `required` from FormControl. Assistive technology then gets no required state.<!-- 1.3.1:gap:end -->
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->A focused label takes the `main` color of its field. In light mode, `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. In dark mode, the error label is about `3.1:1` in a Dialog, because the elevation overlay lightens the surface.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->A focused label takes the `main` color of its field. In light mode, `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. In dark mode, the error label falls below `4.5:1` on a Paper with elevation 2 or more, such as a Menu or Dialog, because the elevation overlay lightens the surface.<!-- 1.4.3:gap:end -->
 
 ## Success criteria
 
@@ -77,23 +77,6 @@ FormLabel labels a field or, as a `legend`, names a group. It is not focusable. 
 
 **Pass:** <!-- 1.4.5:pass:start -->the mouse selects the label text character by character.<!-- 1.4.5:pass:end -->
 
-#### 3.2.4 Consistent Identification · AA
-
-`✅ Supports` · `○ Author`
-
-<!-- 3.2.4:start -->
-
-- The label text identifies the field. Consistency across pages is an authoring concern.
-
-**Manual testing steps**
-
-1. Find fields with the same function on different pages.
-2. Compare their labels.
-
-<!-- 3.2.4:end -->
-
-**Pass:** <!-- 3.2.4:pass:start -->fields with the same function have the same label.<!-- 3.2.4:pass:end -->
-
 ### 🔁 Hybrid
 
 #### 1.3.1 Info and Relationships · A
@@ -104,7 +87,7 @@ Tested by: unit `FormLabel.test.js`
 
 <!-- 1.3.1:start -->
 
-- The root is a `<label>` and sets no `htmlFor` of its own. The author connects it to the field with `htmlFor` and `id`. As the first `legend` of a `fieldset`, for example in `FormControl component="fieldset"`, it names the group. For a RadioGroup, the author can also give the label an `id` and set `aria-labelledby` on the group. Unit tests confirm the `htmlFor` and `legend` patterns.
+- The root is a `<label>` and sets no `htmlFor` of its own. The author connects it to the field with `htmlFor` and `id`. As the first `legend` of a `fieldset`, for example in `FormControl component="fieldset"`, it names the group. For a RadioGroup, the author can also give the label an `id` and set `aria-labelledby` on the group. Unit tests confirm that FormLabel renders a `legend` element that names the group, and forwards `htmlFor` as the `for` attribute.
 - Inside a `FormControl`, the label takes the `required`, `error`, `disabled`, and `focused` states of the field. The field itself must expose these states.
 - Only fields based on InputBase take `required` from FormControl: Input, OutlinedInput, FilledInput, and Select. Checkbox, Radio, and Switch do not, and RadioGroup has no `required` prop. On a `required` group legend, the asterisk is `aria-hidden`, so assistive technology gets no required state. A unit test confirms this gap for Checkbox.
 
@@ -159,14 +142,14 @@ Tested by: unit `FormLabel.test.js` · axe-core `color-contrast` ❌
   | Error                |              4.98:1 |                5.09:1 |
 
 - A unit test compares the focused colors with the [palette contrast contract](../../test/contrastContract.ts). Only `info` and `warning` fail. axe-core `color-contrast` fails on the light color fixture. It passes on the dark one and on the states fixture, which has the error and disabled labels.
-- In dark mode, a Paper lightens its surface with an elevation overlay. The error label is about `4.52:1` on a Card, `3.7:1` in a Menu, and `3.1:1` in a Dialog.
+- In dark mode, a Paper lightens its surface with an elevation overlay. The error label is about `4.52:1` on a Card at its default elevation 1. On a Paper with elevation 2 or more, such as a Menu or Dialog, it falls below `4.5:1`: about `4.30:1` at elevation 2, `3.68:1` at elevation 8 (Menu), and `3.13:1` at elevation 24 (Dialog). A unit test confirms elevation 2 and 24.
 - A disabled label is `text.disabled` (`2.68:1` light, `5.32:1` dark). When the field is also disabled, the label is part of an inactive component, so 1.4.3 does not apply.
 
 **Manual testing steps**
 
 1. With a contrast checker, measure the label in the resting, focused, and error states, for each `color` in use.
 2. Switch to dark mode and measure again.
-3. Measure the error label inside a Dialog in dark mode.
+3. Measure the error label inside a Menu and a Dialog in dark mode.
 
 <!-- 1.4.3:end -->
 
@@ -197,12 +180,12 @@ Tested by: unit `FormLabel.test.js` · axe-core `form-field-multiple-labels` ✅
 <!-- 3.3.2:start -->
 
 - The label is the visible instruction for the field. With `required`, it shows an asterisk, which is `aria-hidden`.
-- The screen reader announces "required" from the field. Inside a `FormControl` with `required`, an Input gets the `required` attribute. A unit test confirms this. Checkbox, Radio, and Switch do not, see 1.3.1. Set `aria-required="true"` on a RadioGroup, or `required` on a single Checkbox or Switch. `required` on each checkbox of a group makes every box mandatory, so for a checkbox group, state the requirement in the legend text.
+- The screen reader announces "required" from the field. Inside a `FormControl` with `required`, the label shows the asterisk and an Input gets the `required` attribute. A unit test confirms this. Checkbox, Radio, and Switch do not, see 1.3.1. Set `aria-required="true"` on a RadioGroup, or `required` on a single Checkbox or Switch. `required` on each checkbox of a group makes every box mandatory, so for a checkbox group, state the requirement in the legend text.
 - The author tells the user what the asterisk means, for example at the top of the form.
 
 **Manual testing steps**
 
-1. Render a required Input and a required radio group with `FormLabel component="legend"`.
+1. Render a required Input and a required radio group with `FormLabel component="legend"`. Set `aria-required="true"` on the RadioGroup, because RadioGroup does not take `required` from FormControl (see 1.3.1).
 2. Make sure that the asterisk shows after each label.
 3. Start a screen reader.
 4. Press <kbd>Tab</kbd> to each field.
@@ -292,7 +275,7 @@ Tested by: unit `FormLabel.test.js`
 
 ## Not applicable
 
-- **1.1.1 Non-text Content (A).** <!-- 1.1.1:start -->The label renders text only.<!-- 1.1.1:end -->
+- **1.1.1 Non-text Content (A).** <!-- 1.1.1:start -->The label renders no non-text content. The required `*` is decorative (`aria-hidden`) text that duplicates the native `required` state of the field. On a group legend, nothing duplicates the asterisk, see 1.3.1.<!-- 1.1.1:end -->
 - **1.2.1 Audio-only and Video-only (Prerecorded) (A), 1.2.2 Captions (Prerecorded) (A), 1.2.3 Audio Description or Media Alternative (Prerecorded) (A), 1.2.4 Captions (Live) (AA), 1.2.5 Audio Description (Prerecorded) (AA).** No audio or video.
 - **1.3.4 Orientation (AA).** Sets no orientation lock; a layout concern.
 - **1.3.5 Identify Input Purpose (AA).** Collects no information about the user through `autocomplete`.
@@ -311,6 +294,7 @@ Tested by: unit `FormLabel.test.js`
 - **2.5.7 Dragging Movements (AA).** No drag interactions.
 - **3.1.1 Language of Page (A), 3.1.2 Language of Parts (AA).** The component emits no `<html lang>` and no text of its own. A foreign-language label is the author's phrase to mark.
 - **3.2.3 Consistent Navigation (AA).** Covers repeated navigation across a set of pages, not a single component.
+- **3.2.4 Consistent Identification (AA).** <!-- 3.2.4:start -->The label is not interactive. Each control report rates 3.2.4 for the control and its label.<!-- 3.2.4:end -->
 - **3.2.6 Consistent Help (A).** Covers consistent placement of help across pages.
 - **3.3.1 Error Identification (A), 3.3.3 Error Suggestion (AA), 3.3.4 Error Prevention (Legal, Financial, Data) (AA).** Collects and validates no input; these belong to the form or process.
 - **3.3.7 Redundant Entry (A).** Captures no previously entered data to repopulate.

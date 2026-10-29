@@ -172,7 +172,7 @@ Run the rows matching what you touched, for the component you touched.
 
 - [ ] 🔁 **1.3.1 Info and Relationships** — label, description, required, and invalid relationships are programmatically determinable.
 - [ ] 🔁 **1.4.1 Use of Color** — the error state is conveyed by more than color (the `helperText` message), not the red alone.
-- [ ] 🔁 **1.4.3 Contrast (Minimum)** — label, value, placeholder, and error text meet `4.5:1` (`3:1` for large text) against the actual background. The placeholder, focused `warning`, and filled-surface error text are the known failures.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — label, value, placeholder, and error text meet `4.5:1` (`3:1` for large text) against the actual background. The placeholder, focused `warning`, filled-surface error text, and dark-mode error text on elevated Paper are the known failures.
 - [ ] 🔍 **1.4.11 Non-text Contrast** — the resting boundary and the focus indicator are each `3:1` against adjacent colors. Today the resting `outlined` border is the known failure.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every provided label describes its field.
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused field shows a visible indicator.
