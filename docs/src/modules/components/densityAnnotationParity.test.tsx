@@ -13,6 +13,7 @@ import {
 } from 'docs/data/material/experimental-api/enhance-density/densityAnnotations';
 import type {
   AnnotateItem,
+  AnnotateSource,
   Claim,
 } from 'docs/data/material/experimental-api/enhance-density/densityAnnotations';
 import { DENSITY_COMPONENTS } from 'docs/data/material/experimental-api/enhance-density/densityComponents';
@@ -24,9 +25,12 @@ type State = Record<string, ControlValue>;
 const SCALE: Record<string, number> = { ...DENSITY_SCALE, ...DENSITY_TARGETS };
 const TOLERANCE = 0.15;
 
-/** Evaluates `+ - * × /`, parentheses, px numbers, `<n>lh` and scale names. */
-function evaluateToken(token: string, lineHeight: number): number {
-  const parts = token.match(/\d*\.?\d+(?:px|lh)?|[a-zA-Z]+|[-+*×/()]/g) ?? [];
+/** Evaluates `+ - * × /`, parentheses, `min()`/`max()`, px numbers, `<n>lh`, `<n>em` and scale names. */
+function evaluateToken(
+  token: string,
+  { lineHeight, fontSize }: Pick<AnnotateSource, 'lineHeight' | 'fontSize'>,
+): number {
+  const parts = token.match(/\d*\.?\d+(?:px|lh|em)?|[a-zA-Z]+|[-+*×/(),]/g) ?? [];
   if (parts.join('') !== token.replace(/\s/g, '')) {
     throw new Error(`cannot evaluate ${token}`);
   }
@@ -44,6 +48,22 @@ function evaluateToken(token: string, lineHeight: number): number {
     }
     if (part === '-') {
       return -atom();
+    }
+    if ((part === 'min' || part === 'max') && parts[index] === '(') {
+      index += 1;
+      const args = [sum()];
+      while (parts[index] === ',') {
+        index += 1;
+        args.push(sum());
+      }
+      if (parts[index] !== ')') {
+        throw new Error(`unbalanced parentheses in ${token}`);
+      }
+      index += 1;
+      return part === 'min' ? Math.min(...args) : Math.max(...args);
+    }
+    if (part !== undefined && /^\d*\.?\d+em$/.test(part)) {
+      return parseFloat(part) * fontSize;
     }
     if (part?.endsWith('lh')) {
       if (Number.isNaN(lineHeight)) {
@@ -139,7 +159,7 @@ function mismatchesOf(claims: Claim[], items: AnnotateItem[]) {
         return;
       }
       try {
-        const expected = evaluateToken(token, source.lineHeight);
+        const expected = evaluateToken(token, source);
         if (Math.abs(expected - source.value) > TOLERANCE) {
           mismatches.push(
             `${claim.on} ${claim.aspect}: "${token}" measures ${source.value}px but evaluates to ${expected}px`,

@@ -1035,6 +1035,7 @@ export function resolveClaims(stage, demo, claims) {
           : styles
         ).lineHeight,
       );
+      const fontSize = parseFloat(styles.fontSize);
       const num = (value) => parseFloat(value) || 0;
       const edgesOf = (prefix, suffix) => ({
         top: num(styles[`${prefix}Top${suffix}`]),
@@ -1090,7 +1091,7 @@ export function resolveClaims(stage, demo, claims) {
           const gutter = claim.route?.gutter ?? 'right';
           const lead = liveSides.includes(gutter) ? gutter : liveSides[0];
           items.push({
-            source: { claim, value: edges[lead], lineHeight },
+            source: { claim, value: edges[lead], lineHeight, fontSize },
             kind: 'band',
             tone: isPad ? 'padding' : 'margin',
             measures: lead === 'left' || lead === 'right' ? 'x' : 'y',
@@ -1126,7 +1127,7 @@ export function resolveClaims(stage, demo, claims) {
           // back action margin prints -8px, matching its -xSmall token
           const signed = edges[group[0]];
           items.push({
-            source: { claim, value: signed, lineHeight },
+            source: { claim, value: signed, lineHeight, fontSize },
             kind: 'band',
             tone: isPad ? 'padding' : 'margin',
             measures: axis === 'inline' ? 'x' : 'y',
@@ -1184,7 +1185,7 @@ export function resolveClaims(stage, demo, claims) {
               height: contentBox.height,
             };
         items.push({
-          source: { claim, value: size, lineHeight },
+          source: { claim, value: size, lineHeight, fontSize },
           kind: 'band',
           tone: 'gap',
           measures: stacked ? 'y' : 'x',
@@ -1205,7 +1206,7 @@ export function resolveClaims(stage, demo, claims) {
         }
         const iconBox = rel(svg.getBoundingClientRect());
         items.push({
-          source: { claim, value: iconBox.height, lineHeight },
+          source: { claim, value: iconBox.height, lineHeight, fontSize },
           kind: 'bound',
           measures: 'y',
           outline: true,
@@ -1228,7 +1229,12 @@ export function resolveClaims(stage, demo, claims) {
         ? claim.axis === 'inline'
         : route.gutter === 'top' || route.gutter === 'bottom';
       items.push({
-        source: { claim, value: measuresWidth ? box.width : box.height, lineHeight },
+        source: {
+          claim,
+          value: measuresWidth ? box.width : box.height,
+          lineHeight,
+          fontSize,
+        },
         kind: 'bound',
         measures: measuresWidth ? 'x' : 'y',
         outline: claim.pointer,
