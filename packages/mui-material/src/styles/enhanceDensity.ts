@@ -727,17 +727,20 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
+  const switchThumbPadding =
+    'calc((var(--_touchSize) - var(--_thumbHeight)) / 2) calc((var(--_touchSize) - var(--_thumbWidth)) / 2)';
+  const switchCheckedTransform = `translateX(calc(${dirSign} * (var(--_trackWidth) - var(--_trackHeight) - (var(--_thumbWidth) - var(--_thumbHeight)))))`;
   addStyleOverride(enhanced.components, 'MuiSwitch', 'root', {
-    '--_height': touchTarget,
     '--_touchSize': touchTarget,
-    '--_thumbHeight': spacing('medium'),
     '--_thumbWidth': spacing('medium'),
-    '--_pad': `calc((var(--_height) - var(--_thumbHeight)/1.4285714286) / 2)`, // to maintain the original ratio
-    '--_width': `calc(var(--_thumbHeight)*1.7 + var(--_pad)*2)`, // to maintain the original ratio
-    '--_offset': 'calc(-1 * (var(--_height)/2 - var(--_thumbHeight)/2))',
-    width: 'var(--_width)',
-    height: 'var(--_height)',
-    padding: 'var(--_pad)',
+    '--_thumbHeight': spacing('medium'),
+    '--_trackWidth': 'calc(var(--_thumbHeight) * 1.7)',
+    '--_trackHeight': 'calc(var(--_thumbHeight) * 0.7)',
+    // this variable is not meant to be overridden directly
+    '--_offset': 'calc((max(var(--_thumbWidth), var(--_trackHeight)) - var(--_touchSize)) / 2)',
+    width: 'calc(var(--_trackWidth) + var(--_touchSize) - var(--_trackHeight))',
+    height: 'var(--_touchSize)',
+    padding: 'calc((var(--_touchSize) - var(--_trackHeight)) / 2)',
     // The label pull-in is written as a variable and read here, so the
     // descendant rule never competes with a user margin on the Switch.
     marginLeft: 'var(--_switchMarginLeft, 0px)',
@@ -752,11 +755,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { size: 'small' },
         style: {
-          '--_height': smallBox,
-          // Invariant: --_touchSize >= --_thumbHeight (see medium — padding clips).
           '--_touchSize': smallBox,
-          '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
           '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
+          '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
           // Master's small rules sit nested under the root variant at higher
           // specificity — re-assert the derivations there or they lose for small.
           [`& .${switchClasses.thumb}`]: {
@@ -764,10 +765,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
             height: 'var(--_thumbHeight)',
           },
           [`& .${switchClasses.switchBase}`]: {
-            padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
-            [`&.${switchClasses.checked}`]: {
-              transform: `translateX(calc(${dirSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
-            },
+            padding: switchThumbPadding,
+            [`&.${switchClasses.checked}`]: { transform: switchCheckedTransform },
           },
         },
       },
@@ -776,21 +775,17 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiSwitch', 'switchBase', {
-    top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
-    padding: 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)',
-    // Touch target taller than the root: re-anchor on the track's end caps
-    // (0 when touch <= height).
-    left: 'calc((var(--_height) - var(--_touchSize)) / 2)',
-    [`&.${switchClasses.checked}`]: {
-      transform: `translateX(calc(${dirSign} * (var(--_width) - var(--_height) - (var(--_thumbWidth) - var(--_thumbHeight)))))`,
-    },
+    padding: switchThumbPadding,
+    [`&.${switchClasses.checked}`]: { transform: switchCheckedTransform },
   });
   addStyleOverride(enhanced.components, 'MuiSwitch', 'thumb', {
     width: 'var(--_thumbWidth)',
     height: 'var(--_thumbHeight)',
     borderRadius: 'var(--_touchSize)',
   });
-  addStyleOverride(enhanced.components, 'MuiSwitch', 'track', { borderRadius: 'var(--_height)' });
+  addStyleOverride(enhanced.components, 'MuiSwitch', 'track', {
+    borderRadius: 'var(--_trackHeight)',
+  });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'root', {
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: { paddingLeft: '6px' },
     [`& .${autocompleteClasses.inputRoot} .${autocompleteClasses.input}.${inputBaseClasses.input}`]:
