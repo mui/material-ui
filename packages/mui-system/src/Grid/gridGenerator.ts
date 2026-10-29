@@ -1,8 +1,8 @@
-import { Breakpoints } from '../createBreakpoints/createBreakpoints';
-import { Spacing } from '../createTheme/createSpacing';
+import type { Breakpoints } from '../createBreakpoints/createBreakpoints';
+import type { Spacing } from '../createTheme/createSpacing';
 import { getValue } from '../spacing';
-import { ResponsiveStyleValue } from '../styleFunctionSx';
-import { GridDirection, GridOwnerState } from './GridProps';
+import type { ResponsiveStyleValue } from '../styleFunctionSx';
+import type { GridDirection, GridOwnerState } from './GridProps';
 import { traverseBreakpoints } from './traverseBreakpoints';
 
 interface Props {
