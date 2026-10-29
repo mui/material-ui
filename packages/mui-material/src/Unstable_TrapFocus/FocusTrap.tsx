@@ -155,7 +155,9 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       return;
     }
 
-    activated.current = !disableAutoFocus;
+    activated.current =
+      !disableAutoFocus ||
+      contains(rootRef.current, getActiveElement(ownerDocument(rootRef.current)));
   }, [disableAutoFocus, open]);
 
   React.useEffect(() => {
