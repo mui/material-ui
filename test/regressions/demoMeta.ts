@@ -179,7 +179,7 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     test: 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup',
     enabled: true,
     viewportWidth: 320,
-  }, // Visual record of a wide horizontal group at 320 CSS px (1.4.10)
+  }, // Visual record of a wide horizontal group, clipped at 320 CSS px (1.4.10)
   {
     test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
     enabled: true,

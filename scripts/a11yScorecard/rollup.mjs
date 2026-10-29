@@ -22,8 +22,9 @@ const ratingOf = (fields) => Object.fromEntries(RATING_KEYS.map((key) => [key, f
  * criterion unless its own `notApplicable` lists it or it is not applicable by
  * default. Keying a default not-applicable criterion in `criteria` rates it. A
  * component with `inherits` rates only the criteria it keys, and inherits the
- * rest that its parent rates, including default not-applicable ones. It cannot
- * list those in `notApplicable`.
+ * rest that its parent rates, including default not-applicable ones. Its own
+ * `notApplicable` takes precedence over both, so it can opt out of a criterion
+ * that the parent rates.
  */
 function resolveReport(source, defaults, resolveParent) {
   const { component, data, regions, axe, ownTests, extraTests } = source;

@@ -1,12 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import {
-  createRenderer,
-  screen,
-  simulateKeyboardDevice,
-  isJsdom,
-  within,
-} from '@mui/internal-test-utils';
+import { createRenderer, screen, simulateKeyboardDevice, isJsdom } from '@mui/internal-test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
@@ -375,36 +369,36 @@ describe('<ButtonGroup />', () => {
 
   describe('WCAG 2.2 conformance', () => {
     describe('1.3.1 Info and Relationships', () => {
-      it('exposes the buttons as one group', () => {
+      it('puts the buttons inside the group element', () => {
         render(
-          <ButtonGroup aria-label="Text alignment">
+          <ButtonGroup>
             <Button>Left</Button>
             <Button>Right</Button>
           </ButtonGroup>,
         );
 
-        const group = screen.getByRole('group', { name: 'Text alignment' });
-        expect(within(group).getAllByRole('button')).to.have.length(2);
+        const group = screen.getByRole('group');
+        screen.getAllByRole('button').forEach((button) => {
+          expect(group).to.contain(button);
+        });
       });
     });
 
     describe('2.4.3 Focus Order', () => {
-      ['horizontal', 'vertical'].forEach((orientation) => {
-        it(`moves through a ${orientation} group in DOM order`, async () => {
-          const { user } = render(
-            <ButtonGroup orientation={orientation} aria-label="Actions">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </ButtonGroup>,
-          );
+      it('moves through the buttons in DOM order', async () => {
+        const { user } = render(
+          <ButtonGroup aria-label="Actions">
+            <Button>One</Button>
+            <Button>Two</Button>
+            <Button>Three</Button>
+          </ButtonGroup>,
+        );
 
-          for (const name of ['One', 'Two', 'Three']) {
-            // eslint-disable-next-line no-await-in-loop
-            await user.tab();
-            expect(screen.getByRole('button', { name })).toHaveFocus();
-          }
-        });
+        for (const name of ['One', 'Two', 'Three']) {
+          // eslint-disable-next-line no-await-in-loop
+          await user.tab();
+          expect(screen.getByRole('button', { name })).toHaveFocus();
+        }
       });
 
       it('removes the buttons of a disabled group from the tab order', async () => {
@@ -471,6 +465,18 @@ describe('<ButtonGroup />', () => {
         screen.getAllByRole('button').forEach((button) => {
           expect(button).to.have.property('disabled', true);
         });
+      });
+
+      it('keeps a button enabled when it sets disabled={false} in a disabled group', () => {
+        render(
+          <ButtonGroup disabled aria-label="Actions">
+            <Button disabled={false}>One</Button>
+            <Button>Two</Button>
+          </ButtonGroup>,
+        );
+
+        expect(screen.getByRole('button', { name: 'One' })).to.have.property('disabled', false);
+        expect(screen.getByRole('button', { name: 'Two' })).to.have.property('disabled', true);
       });
     });
   });

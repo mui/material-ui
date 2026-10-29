@@ -56,7 +56,7 @@ A ButtonGroup puts several Buttons in one set. This report rates only what the g
 <!-- 1.4.11:start -->
 
 - The dividers between the buttons have these contrasts against the adjacent colors, in light mode:
-  - `outlined` and `text`: the `main` color at `50%` on a white page, `1.77:1` (`warning`) to `2.39:1` (`secondary`). With `color="inherit"`, `1.74:1`.
+  - `outlined` and `text`: the `main` color at `50%` on a white page, `1.76:1` (`warning`) to `2.39:1` (`secondary`). With `color="inherit"`, `1.74:1`.
   - `contained`: the `dark` color between two `main` fills, `1.13:1` (`error`) to `1.92:1` (`info`). With `color="inherit"`, `grey[400]` on `grey[300]` is `1.42:1`.
 - In an `outlined` group, the divider is the border of the next button. So the `outlined` border has the same contrast.
 - WCAG does not require a boundary when text or an icon identifies the control (Understanding 1.4.11). Each button has its own label, so the dividers do not need `3:1`.
@@ -101,7 +101,7 @@ Tested by: unit `ButtonGroup.test.js`
 
 <!-- 1.3.1:start -->
 
-- The root has `role="group"`, so assistive technology reports the buttons as one set. A unit test confirms the role. An author can replace it with the `role` prop.
+- The root has `role="group"`, so assistive technology reports the buttons as one set. A unit test confirms that the buttons are inside the group element. An author can replace it with the `role` prop.
 - The author names the group with `aria-label` or `aria-labelledby`. The component does not warn when the name is missing. A group without a name still conveys the grouping.
 
 **Manual testing steps**
@@ -146,7 +146,8 @@ Tested by: unit `ButtonGroup.test.js` · axe-core `aria-allowed-attr` ✅, `aria
 
 <!-- 4.1.2:start -->
 
-- The group has `role="group"` and the name from `aria-label`. `disabled` on the group disables each button that does not set its own `disabled` prop. Unit tests confirm this. The axe-core ARIA rules pass on the demos.
+- The group has `role="group"` and the name from `aria-label`. `disabled` on the group disables each button that does not set its own `disabled` prop. A button with `disabled={false}` stays enabled. Unit tests confirm this. The axe-core ARIA rules pass on the demos.
+- The group does not keep a pressed or selected state. For a set of toggles, the author sets `aria-pressed` on each button, as in the `ButtonGroupA11ySemanticStates` fixture, or uses ToggleButtonGroup. axe-core checks these attributes on the fixture.
 - In a split button, the author sets `aria-haspopup="menu"`, `aria-expanded`, and `aria-label` on the arrow button. The SplitButton demo and the `ButtonGroupA11ySemanticStates` fixture show this pattern.
 
 **Manual testing steps**
@@ -184,8 +185,8 @@ Tested by: Playwright
 
 <!-- 1.4.10:start -->
 
-- A horizontal group is an `inline-flex` row that does not wrap. When the group is too wide, each button wraps its label first. When that is not enough, the page scrolls horizontally.
-- A Playwright test confirms that the three-button variant demo does not scroll at 320 px. A browser probe measured the `ButtonGroupA11yWideGroup` fixture, with five buttons: the page scrolls horizontally by about 126 px at 320 px.
+- A horizontal group is an `inline-flex` row that does not wrap. When the group is too wide, each button wraps its label first. When that is not enough, the group overflows its container, and the page scrolls horizontally.
+- A Playwright test confirms that the three-button variant demo does not scroll at 320 px. A screenshot records the `ButtonGroupA11yWideGroup` fixture, with five buttons, at 320 px. The test viewer hides horizontal overflow, so the screenshot shows the group clipped at the right edge.
 - The number of buttons is an author decision. To fix a wide group, set `orientation="vertical"` on small screens, for example with `useMediaQuery`.
 
 <!-- 1.4.10:end -->
@@ -210,7 +211,7 @@ Tested by: unit `ButtonGroup.test.js`
 
 <!-- 2.4.3:start -->
 
-- Each button is a tab stop in DOM order, in both orientations. A disabled group removes its buttons from the tab order. Unit tests confirm this. For the manual check, see 1.3.2.
+- Each button is a tab stop in DOM order. `orientation` changes only the layout, so the order is the same in both orientations. A disabled group removes its buttons from the tab order. Unit tests confirm this. For the manual check, see 1.3.2.
 
 <!-- 2.4.3:end -->
 
