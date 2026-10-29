@@ -4,7 +4,7 @@ import * as url from 'url';
 import * as fs from 'fs';
 import * as semver from 'semver';
 import { createRequire } from 'module';
-import { NextConfig } from 'next';
+import type { NextConfig } from 'next';
 import { withDeploymentConfig } from '@mui/internal-docs-infra/withDocsInfra';
 import { findPages } from './src/modules/utils/find';
 
