@@ -84,7 +84,11 @@ const TranspileResult = {
 async function transpileFile(tsxPath, project) {
   const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
-    const source = await fs.promises.readFile(tsxPath, 'utf8');
+    // `import type` statements are erased, but `retainLines` would leave their lines blank
+    const source = (await fs.promises.readFile(tsxPath, 'utf8')).replace(
+      /^import type [^;]*;\r?\n/gm,
+      '',
+    );
 
     const transformOptions = { ...babelConfig, filename: tsxPath };
     const enableJSXPreview =

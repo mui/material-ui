@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import Menu, { MenuProps } from '@mui/material/Menu';
+import type { MenuProps } from '@mui/material/Menu';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';

@@ -1,4 +1,4 @@
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { MarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
 import rolesData from 'docs/data/careers/roles.json';
 import TopLayoutCareers from 'docs/src/modules/components/TopLayoutCareers';

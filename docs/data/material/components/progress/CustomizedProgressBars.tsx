@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
+import type { CircularProgressProps } from '@mui/material/CircularProgress';
 import CircularProgress, {
   circularProgressClasses,
-  CircularProgressProps,
 } from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 

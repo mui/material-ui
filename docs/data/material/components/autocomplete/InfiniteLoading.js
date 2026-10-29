@@ -11,7 +11,6 @@ import {
 import { useEventCallback, useForkRef } from '@mui/material/utils';
 import useTimeout from '@mui/utils/useTimeout';
 import { useVirtualizer } from '@tanstack/react-virtual';
-
 import { fetchMovies, getMovieLabel, normalizeMovieQuery } from './server';
 
 const ITEM_HEIGHT_PX = 36;
