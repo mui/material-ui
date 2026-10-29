@@ -342,7 +342,7 @@
         "tags": ["wcag2a"]
       },
       "color-contrast": {
-        "status": "pass",
+        "status": "incomplete",
         "tags": ["wcag2aa"]
       },
       "duplicate-id-aria": {
