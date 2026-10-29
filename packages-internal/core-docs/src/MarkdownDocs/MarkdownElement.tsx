@@ -405,6 +405,10 @@ const Root = styled('div')(
         '& svg': {
           fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
         },
+        // primary-600 linked code is under 4.5:1 on the code pill over this background.
+        '& a': {
+          color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+        },
       },
       '&.MuiCallout-success': {
         color: `var(--muidocs-palette-success-900, ${lightTheme.palette.success[900]})`,
@@ -759,6 +763,10 @@ const Root = styled('div')(
           },
           '& svg': {
             fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
+          },
+          // Undoes the light info link color, which outranks the dark `'& a'`.
+          '& a': {
+            color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
           },
         },
         '&.MuiCallout-success': {
