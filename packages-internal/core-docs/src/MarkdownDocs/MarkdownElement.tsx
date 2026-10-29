@@ -335,6 +335,7 @@ const Root = styled('div')(
       },
       '& :not(pre) > code': {
         backgroundColor: alpha(lightTheme.palette.grey[900], 0.06),
+        borderColor: alpha(lightTheme.palette.grey[900], 0.18),
       },
       '& p': {
         marginBottom: '8px',
@@ -739,6 +740,7 @@ const Root = styled('div')(
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         '& :not(pre) > code': {
           backgroundColor: alpha(darkTheme.palette.grey[50], 0.12),
+          borderColor: alpha(darkTheme.palette.grey[50], 0.2),
         },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
