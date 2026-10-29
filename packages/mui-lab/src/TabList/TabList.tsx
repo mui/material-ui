@@ -25,12 +25,12 @@ export interface TabListTypeMap<
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [TabList API](https://mui.com/material-ui/api/tab-list/)
- * - inherits [Tabs API](https://mui.com/material-ui/api/tabs/)
+ * - [TabList API](https://next.mui.com/material-ui/api/tab-list/)
+ * - inherits [Tabs API](https://next.mui.com/material-ui/api/tabs/)
  */
 const TabList = React.forwardRef(function TabList(
   props: TabListOwnProps,
@@ -39,7 +39,12 @@ const TabList = React.forwardRef(function TabList(
   const { children: childrenProp, ...other } = props;
   const context = useTabContext();
   if (context === null) {
-    throw new TypeError('No TabContext provided');
+    throw /* minify-error */ new TypeError(
+      'MUI: No TabContext provided. ' +
+        'TabList must be used within a TabContext. ' +
+        'Wrap your Tabs with <TabContext value={...}>. ' +
+        'See https://mui.com/material-ui/react-tabs/#experimental-api for more info.',
+    );
   }
   const children = React.Children.map(childrenProp, (child) => {
     if (!React.isValidElement<{ value?: string | number | undefined }>(child)) {

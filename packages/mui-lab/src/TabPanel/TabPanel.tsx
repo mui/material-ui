@@ -57,11 +57,11 @@ const TabPanelRoot = styled('div', {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [TabPanel API](https://mui.com/material-ui/api/tab-panel/)
+ * - [TabPanel API](https://next.mui.com/material-ui/api/tab-panel/)
  */
 const TabPanel = React.forwardRef(function TabPanel(
   inProps: TabPanelProps,
@@ -79,7 +79,12 @@ const TabPanel = React.forwardRef(function TabPanel(
 
   const context = useTabContext();
   if (context === null) {
-    throw new TypeError('No TabContext provided');
+    throw /* minify-error */ new TypeError(
+      'MUI: No TabContext provided. ' +
+        'TabPanel must be used within a TabContext. ' +
+        'Wrap your TabPanel with <TabContext value={...}>. ' +
+        'See https://mui.com/material-ui/react-tabs/#experimental-api for more info.',
+    );
   }
   const id = getPanelId(context, value as string);
   const tabId = getTabId(context, value as string);
