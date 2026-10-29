@@ -581,6 +581,28 @@ describe('ModalManager', () => {
       expect(document.documentElement.style.cssText).to.equal(initialHtmlStyle);
     });
 
+    ['hidden auto', 'scroll'].forEach((overflow) => {
+      it(`locks html and a body that scrolls on its own under html overflow=${overflow}`, () => {
+        document.documentElement.style.overflow = overflow;
+        content.style.height = '50px';
+        const initialBodyStyle = document.body.style.cssText;
+        const initialHtmlStyle = document.documentElement.style.cssText;
+        expect(document.body.scrollHeight).to.equal(document.body.clientHeight);
+
+        manager.add(modal, document.body);
+        manager.mount(modal, {});
+        content.style.height = '200px';
+        expect(document.body.scrollHeight).to.be.greaterThan(document.body.clientHeight);
+
+        expect(document.documentElement.style.overflow).to.equal('hidden');
+        expect(document.body.style.overflow).to.equal('hidden');
+
+        manager.remove(modal);
+        expect(document.body.style.cssText).to.equal(initialBodyStyle);
+        expect(document.documentElement.style.cssText).to.equal(initialHtmlStyle);
+      });
+    });
+
     it('does not take over a released html lock after the modal closes', async () => {
       document.documentElement.style.overflow = 'hidden';
       manager.add(modal, document.body);

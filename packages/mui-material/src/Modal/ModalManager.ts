@@ -265,6 +265,20 @@ function handleContainer(
 
     scrollContainer.style.overflow = 'hidden';
 
+    const body = containerDocument.body;
+    if (
+      scrollContainer === containerDocument.documentElement &&
+      getOverflowValues(body).some((overflow) => /auto|scroll/.test(overflow))
+    ) {
+      // Body can scroll on its own inside html, e.g. with `html, body { height: 100% }`.
+      restoreStyle.push(
+        { value: body.style.overflow, property: 'overflow', el: body },
+        { value: body.style.overflowX, property: 'overflow-x', el: body },
+        { value: body.style.overflowY, property: 'overflow-y', el: body },
+      );
+      body.style.overflow = 'hidden';
+    }
+
     if (
       scrollContainer === containerDocument.body &&
       getOverflowValues(containerDocument.documentElement).some(isHidden)
