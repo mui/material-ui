@@ -3,8 +3,8 @@
   "componentCount": 14,
   "totals": {
     "rated": 32,
-    "supports": 20,
-    "partiallySupports": 12,
+    "supports": 21,
+    "partiallySupports": 11,
     "doesNotSupport": 0,
     "flagged": 16
   },
@@ -69,9 +69,9 @@
       "number": "1.4.4",
       "name": "Resize Text",
       "level": "AA",
-      "conformance": "Partially Supports",
+      "conformance": "Supports",
       "flagged": true,
-      "affected": ["Chip"]
+      "affected": []
     },
     {
       "number": "1.4.5",
@@ -1403,8 +1403,8 @@
     {
       "component": "Chip",
       "counts": {
-        "supports": 15,
-        "partiallySupports": 9,
+        "supports": 16,
+        "partiallySupports": 8,
         "doesNotSupport": 0,
         "notApplicable": 31,
         "flagged": 9,
@@ -1419,11 +1419,6 @@
         {
           "number": "1.4.3",
           "name": "Contrast (Minimum)",
-          "conformance": "Partially Supports"
-        },
-        {
-          "number": "1.4.4",
-          "name": "Resize Text",
           "conformance": "Partially Supports"
         },
         {
@@ -1516,7 +1511,7 @@
           "number": "1.4.4",
           "name": "Resize Text",
           "level": "AA",
-          "conformance": "Partially Supports",
+          "conformance": "Supports",
           "responsibility": "Shared",
           "group": "Hybrid",
           "flagged": false
@@ -1563,7 +1558,7 @@
           "level": "A",
           "conformance": "Supports",
           "responsibility": "Component",
-          "group": "Automated",
+          "group": "Hybrid",
           "flagged": false
         },
         {
@@ -1679,11 +1674,11 @@
         "rated": 24,
         "levelA": 13,
         "levelAA": 11,
-        "supports": 15,
-        "partiallySupports": 9,
+        "supports": 16,
+        "partiallySupports": 8,
         "doesNotSupport": 0,
         "verified": 15,
-        "automated": 5
+        "automated": 4
       }
     },
     {

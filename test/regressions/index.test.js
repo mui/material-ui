@@ -507,8 +507,8 @@ async function main() {
       });
     });
     describe('Chip', () => {
-      // A tripwire for the documented 1.4.4, 1.4.10, and 1.4.12 gaps: the label does
-      // not wrap, so text that fits at the default size ends with an ellipsis. When
+      // A tripwire for the text-only resize limitation (1.4.4) and the 1.4.10 and
+      // 1.4.12 gaps: the label does not wrap, so text that fits ends with an ellipsis. When
       // this fails, Chip wraps its label: update Chip/accessibility.md and knownGaps.json.
       const ROUTE = '/a11y-chips/ChipA11yLongLabel';
       const truncated = (page, index) =>
@@ -516,14 +516,23 @@ async function main() {
           const label = document.querySelectorAll('.MuiChip-label')[i];
           return label.scrollWidth > label.clientWidth + 1;
         }, index);
+      const whiteSpace = (page, index) =>
+        page.evaluate(
+          (i) => getComputedStyle(document.querySelectorAll('.MuiChip-label')[i]).whiteSpace,
+          index,
+        );
 
-      test('known gap: a label that fits at 100% is truncated at 200% text and with WCAG text spacing', async ({
+      test('known gap: a label that fits at 100% is truncated at 200% text-only resize and with WCAG text spacing', async ({
         pooled,
       }) => {
         const { page } = pooled;
         await renderFixture(page, ROUTE);
         if (await truncated(page, 0)) {
           throw new Error('ChipA11yLongLabel no longer fits at 100%; pick a shorter label');
+        }
+        // The spacing step has about 5 px of margin, so also pin the cause: the label does not wrap.
+        if ((await whiteSpace(page, 0)) !== 'nowrap') {
+          throw new Error('Chip label can wrap now; the gap may be fixed');
         }
         for (const css of [
           'html { font-size: 200% !important; }',

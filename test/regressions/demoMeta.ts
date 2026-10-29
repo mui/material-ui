@@ -428,8 +428,9 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // axe cannot resolve the label background next to the image avatar, so
-  // `color-contrast` returns incomplete.
+  // `color-contrast` returns incomplete: axe cannot resolve the label background
+  // next to the image avatar, and it does not rate the one-letter avatar text.
+  // `ChipA11yKnownGaps` records the letter avatar fail with a two-letter avatar.
   {
     test: 'docs/data/material/components/chips/AvatarChips',
     enabled: true,

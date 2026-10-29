@@ -6,8 +6,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 15    |
-| ⚠️ Partially Supports | 9     |
+| ✅ Supports           | 16    |
+| ⚠️ Partially Supports | 8     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 31    |
 | 🚩 Flagged            | 9/24  |
@@ -15,14 +15,13 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Known gaps
 
 - ⚠️ **1.1.1 Non-text Content.** <!-- 1.1.1:gap:start -->The delete icon tells sighted users that the chip can be deleted. No text gives this information to a screen-reader user.<!-- 1.1.1:gap:end -->
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` labels are less than `4.5:1` in the `filled` and `outlined` variants. A letter avatar is `3.30:1`.<!-- 1.4.3:gap:end -->
-- ⚠️ **1.4.4 Resize Text.** <!-- 1.4.4:gap:start -->The label does not wrap. At a 200% text size, a label that fits at 100% ends with an ellipsis and hides text.<!-- 1.4.4:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` labels are less than `4.5:1` in the `filled` and `outlined` variants. A letter avatar is `3.30:1`. On a focused `outlined` chip, all colors except `secondary` are less than `4.5:1`. On a hovered clickable `outlined` chip, `primary` is also less than `4.5:1`. The faded label of a disabled delete-only chip is `2.14:1`.<!-- 1.4.3:gap:end -->
 - ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->The label does not wrap. At 320 CSS px, a label that fits a wide layout ends with an ellipsis.<!-- 1.4.10:gap:end -->
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default delete icon is `1.86:1` on a `filled` chip and `1.88:1` on an `outlined` chip. The focused background is `1.61:1` against the page.<!-- 1.4.11:gap:end -->
 - ⚠️ **1.4.12 Text Spacing.** <!-- 1.4.12:gap:start -->The label does not wrap. With the WCAG text-spacing values, a label that fits at default spacing can end with an ellipsis.<!-- 1.4.12:gap:end -->
 - ⚠️ **2.4.3 Focus Order.** <!-- 2.4.3:gap:start -->The component does not move focus after a deletion. In the ChipsArray demo, a keyboard deletion moves focus to the page body.<!-- 2.4.3:gap:end -->
 - ⚠️ **2.5.8 Target Size (Minimum).** <!-- 2.5.8:gap:start -->The delete icon is 22 px on a `medium` chip. It is 16 px on a `small` chip. On a clickable and deletable chip, the chip itself is a target, so the spacing exception does not apply.<!-- 2.5.8:gap:end -->
-- ⚠️ **4.1.2 Name, Role, Value.** <!-- 4.1.2:gap:start -->The component does not set `aria-disabled` on a disabled delete-only chip. The chip stays focusable, and <kbd>Backspace</kbd> still deletes it.<!-- 4.1.2:gap:end -->
+- ⚠️ **4.1.2 Name, Role, Value.** <!-- 4.1.2:gap:start -->The component does not set `aria-disabled` on a disabled delete-only chip. The chip stays focusable, and <kbd>Backspace</kbd> still deletes it. A delete-only chip has the button role, but <kbd>Enter</kbd> and <kbd>Space</kbd> do nothing.<!-- 4.1.2:gap:end -->
 
 ## Success criteria
 
@@ -190,41 +189,46 @@ Tested by: unit `Chip.test.js` · axe-core `color-contrast` ❌
 - A `filled` chip renders `contrastText` on `main`. An `outlined` chip renders `main` on the page. In both variants, `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`.
 - Unit tests compare the results with the [palette contrast contract](../../test/contrastContract.ts). Only these colors fail. axe-core `color-contrast` fails on the color fixture.
 - The `default` color is `text.primary` on `action.selected`, about `13.9:1`.
-- A letter avatar in a chip renders `grey[700]` on `grey[400]`, `3.30:1`.
+- On a focused `outlined` chip, the background is `main` at `focusOpacity` (`0.12`) on the page, and the label stays `main`. Only `secondary` stays at `4.5:1` or more: `primary` `3.93:1`, `secondary` `5.21:1`, `error` `4.15:1`, `info` `3.33:1`, `success` `4.37:1`, `warning` `2.73:1`. A unit test confirms this set.
+- On a hovered clickable `outlined` chip, the background is `main` at `hoverOpacity` (`0.04`). `primary` (`4.37:1`), `info` (`3.67:1`), and `warning` (`2.98:1`) are less than `4.5:1`. `secondary` is `5.92:1`, `error` is `4.69:1`, and `success` is `4.87:1`.
+- A letter avatar in a chip renders `grey[700]` on `grey[400]`, `3.30:1`. axe-core marks one-letter text as incomplete, so the `ChipA11yKnownGaps` fixture uses a two-letter avatar to record the failure.
 - A disabled chip is exempt. But a disabled delete-only chip still deletes on <kbd>Backspace</kbd>, so it is not an inactive component, and its faded label (`2.14:1`, measured by axe-core) is a real failure.
 - All values are for the light palette.
 
 **Manual testing steps**
 
 1. With a contrast checker, measure the label against the chip background, for each color and variant in use.
-2. Measure the letter of any letter avatar.
+2. Press <kbd>Tab</kbd> to an `outlined` deletable chip, and measure the label against the focused background.
+3. Move the pointer over an `outlined` clickable chip, and measure the label against the hovered background.
+4. Measure the letter of any letter avatar.
+5. Measure the label of any disabled delete-only chip.
 
 <!-- 1.4.3:end -->
 
-**Pass:** <!-- 1.4.3:pass:start -->each label is at least `4.5:1`. `info`, `warning`, and the letter avatar fail.<!-- 1.4.3:pass:end -->
+**Pass:** <!-- 1.4.3:pass:start -->each label is at least `4.5:1` at rest, on hover, and on focus. `info` and `warning` fail. On an `outlined` chip, all focused labels except `secondary` fail, and the hovered `primary` label fails. The letter avatar and the disabled delete-only label fail.<!-- 1.4.3:pass:end -->
 
 #### 1.4.4 Resize Text · AA
 
-`⚠️ Partially Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 Tested by: Playwright
 
 <!-- 1.4.4:start -->
 
-- The label uses `rem`, so it scales with the text size. A Playwright test confirms that the ChipsArray demo, with short labels, does not overflow at a 200% text size.
-- The label does not wrap, and it ends with an ellipsis when the chip is too narrow. In the `ChipA11yLongLabel` fixture, a label fits its 240 px container at 100% (177 px). At a 200% text size, 219 px of the 331 px label is visible. A Playwright test confirms this gap.
-- Full-page zoom scales the container too, so it does not cause this. Text-only resize does, and the library tests 1.4.4 with text-only resize.
-- To fix it, let the label wrap with `height: 'auto'` on the chip, and `display: 'block'` and `whiteSpace: 'normal'` on the label, as the MultilineChips demo does.
+- Under 200% page zoom, the chip, its container, and the label scale together, so a label that fits at 100% still fits. Page zoom decides the 1.4.4 rating (WCAG technique G142). The automated page-zoom check comes with the layout suite change in #49550, so this report confirms it with a manual step until then.
+- Under text-only resize, the label grows but a px-wide container does not. The label does not wrap, so it ends with an ellipsis. In the `ChipA11yLongLabel` fixture, a label fits its 240 px container at 100% (177 px). At a 200% text size, 219 px of the 331 px label is visible. A Playwright test confirms this.
+- A Playwright test confirms that the ChipsArray demo, with short labels, survives a 200% text-only resize.
+- To make long labels safe under text-only resize, let the label wrap with `height: 'auto'` on the chip, and `display: 'block'` and `whiteSpace: 'normal'` on the label, as the MultilineChips demo does.
 
 **Manual testing steps**
 
 1. Render a chip with a label that just fits its container.
-2. Set the browser text size to 200%.
+2. Set the browser zoom to 200%.
 3. Make sure that the full label stays visible.
 
 <!-- 1.4.4:end -->
 
-**Pass:** <!-- 1.4.4:pass:start -->the full label stays visible. A long label fails with the default styles.<!-- 1.4.4:pass:end -->
+**Pass:** <!-- 1.4.4:pass:start -->the full label stays visible at 200% page zoom.<!-- 1.4.4:pass:end -->
 
 #### 1.4.10 Reflow · AA
 
@@ -255,7 +259,7 @@ Tested by: unit `Chip.test.js`
 
 <!-- 1.4.11:start -->
 
-- The delete icon is the only visual sign of the delete control. It is less than `3:1` in most combinations, in the light palette:
+- The delete icon is the only visual sign of the delete control. It is less than `3:1` in 8 of the 14 color and variant combinations, in the light palette:
   - `default` `filled`: `text.primary` at `26%` on `action.selected`, `1.86:1`.
   - `default` `outlined`: `1.88:1` against white.
   - Palette `filled`: `contrastText` at `70%` on `main`, `2.22:1` (`warning`) to `3.83:1` (`secondary`).
@@ -296,6 +300,27 @@ Tested by: Playwright · axe-core `avoid-inline-spacing` ✅
 <!-- 1.4.12:end -->
 
 **Pass:** <!-- 1.4.12:pass:start -->the full label stays visible. A long label fails with the default styles.<!-- 1.4.12:pass:end -->
+
+#### 2.1.1 Keyboard · A
+
+`✅ Supports` · `● Component`
+
+Tested by: unit `Chip.test.js`, `ButtonBase.test.js`
+
+<!-- 2.1.1:start -->
+
+- A clickable chip activates with <kbd>Enter</kbd> and <kbd>Space</kbd>. A deletable chip calls `onDelete` on the release of <kbd>Backspace</kbd> or <kbd>Delete</kbd>. Unit tests confirm both. The author's `onDelete` removes the chip.
+
+**Manual testing steps**
+
+1. Press <kbd>Tab</kbd> to a deletable chip in the ChipsArray demo.
+2. Press <kbd>Backspace</kbd> or <kbd>Delete</kbd>.
+3. Press <kbd>Tab</kbd> to a clickable chip.
+4. Press <kbd>Enter</kbd>, then <kbd>Space</kbd>.
+
+<!-- 2.1.1:end -->
+
+**Pass:** <!-- 2.1.1:pass:start -->the deletable chip is removed, and the clickable chip activates on each key.<!-- 2.1.1:pass:end -->
 
 #### 2.4.3 Focus Order · A
 
@@ -422,27 +447,6 @@ Tested by: unit `Chip.test.js` · axe-core `aria-allowed-attr` ✅, `aria-comman
 **Pass:** <!-- 4.1.2:pass:start -->each chip announces its label and "button". The disabled chip announces "disabled" and cannot be deleted. The disabled delete-only chip fails.<!-- 4.1.2:pass:end -->
 
 ### ⚙️ Automated
-
-#### 2.1.1 Keyboard · A
-
-`✅ Supports` · `● Component`
-
-Tested by: unit `Chip.test.js`, `ButtonBase.test.js`
-
-<!-- 2.1.1:start -->
-
-- A clickable chip activates with <kbd>Enter</kbd> and <kbd>Space</kbd>. A deletable chip calls `onDelete` on the release of <kbd>Backspace</kbd> or <kbd>Delete</kbd>. Unit tests confirm both. The author's `onDelete` removes the chip.
-
-**Manual testing steps**
-
-1. Press <kbd>Tab</kbd> to a deletable chip in the ChipsArray demo.
-2. Press <kbd>Backspace</kbd> or <kbd>Delete</kbd>.
-3. Press <kbd>Tab</kbd> to a clickable chip.
-4. Press <kbd>Enter</kbd>, then <kbd>Space</kbd>.
-
-<!-- 2.1.1:end -->
-
-**Pass:** <!-- 2.1.1:pass:start -->the deletable chip is removed, and the clickable chip activates on each key.<!-- 2.1.1:pass:end -->
 
 #### 2.1.2 No Keyboard Trap · A
 

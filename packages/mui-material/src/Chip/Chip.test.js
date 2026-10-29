@@ -880,6 +880,32 @@ describe('<Chip />', () => {
           ...FAILING_PALETTE_COLORS,
         ]);
       });
+
+      it('focused outlined labels fall short of 4.5:1 in every palette color except secondary', () => {
+        render(
+          <React.Fragment>
+            {PALETTE_CONTRAST_COLORS.map((color) => (
+              <Chip
+                key={color}
+                label={color}
+                color={color}
+                variant="outlined"
+                onDelete={() => {}}
+                className={classes.focusVisible}
+              />
+            ))}
+          </React.Fragment>,
+        );
+        const failing = PALETTE_CONTRAST_COLORS.filter((color) => {
+          const chip = screen.getByRole('button', { name: color });
+          const { color: textColor, backgroundColor } = window.getComputedStyle(chip);
+          // The focus tint is `main` at `focusOpacity`, so composite it over the paper.
+          const fill = blend(backgroundColor, 1, theme.palette.background.paper);
+          return contrastRatio(textColor, fill) < WCAG_MINIMUM_RATIO.normalText;
+        });
+        // When this changes, update Chip/accessibility.md and knownGaps.json.
+        expect(failing).to.deep.equal(['primary', 'error', 'info', 'success', 'warning']);
+      });
     });
 
     it('1.4.11 Non-text Contrast: the default delete icon falls short of 3:1 (documented gap)', () => {
