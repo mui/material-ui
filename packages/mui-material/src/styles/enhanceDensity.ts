@@ -1307,10 +1307,19 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     },
     [smUp]: { minHeight: hugeBox, paddingRight: 2 },
   });
-  // `theme.mixins.toolbar` is deliberately NOT synced: the enhancement only
-  // touches component styleOverrides and defaultProps (RFC scope). Apps using
-  // the mixin spacer pattern with density should offset off the toolbar
-  // itself.
+  const toolbarHeight = `calc(${touchTarget} + 2*${spacing('xSmall')})`;
+  const toolbarDenseHeight = `calc(${touchTarget} + 2*${spacing('xxSmall')})`;
+  const toolbarRegular = {
+    minHeight: toolbarHeight,
+    [enhanced.breakpoints.up('xs' as Breakpoint)]: {
+      '@media (orientation: landscape)': { minHeight: toolbarDenseHeight },
+    },
+    [smUp]: { minHeight: toolbarHeight },
+  };
+  enhanced.mixins = {
+    ...enhanced.mixins,
+    toolbar: { ...enhanced.mixins.toolbar, ...toolbarRegular },
+  };
   addStyleOverride(enhanced.components, 'MuiToolbar', 'root', {
     variants: [
       {
@@ -1320,24 +1329,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           [smUp]: { paddingInline: spacing('medium') },
         },
       },
-      {
-        props: { variant: 'dense' },
-        style: { minHeight: `calc(${touchTarget} + 2*${spacing('xxSmall')})` },
-      },
-      {
-        props: { variant: 'regular' },
-        style: {
-          minHeight: `calc(${touchTarget} + 2*${spacing('xSmall')})`,
-          [enhanced.breakpoints.up('xs' as Breakpoint)]: {
-            '@media (orientation: landscape)': {
-              minHeight: `calc(${touchTarget} + 2*${spacing('xxSmall')})`,
-            },
-          },
-          [smUp]: {
-            minHeight: `calc(${touchTarget} + 2*${spacing('xSmall')})`,
-          },
-        },
-      },
+      { props: { variant: 'dense' }, style: { minHeight: toolbarDenseHeight } },
+      { props: { variant: 'regular' }, style: toolbarRegular },
     ],
   });
   // Circular-scoped: the extended variant stays frozen at master.

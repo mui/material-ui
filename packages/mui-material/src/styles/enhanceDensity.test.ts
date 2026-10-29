@@ -46,6 +46,21 @@ describe('enhanceDensity', () => {
     expect(closeButton({ closeButton: { size: 'small' } })).to.deep.equal({ size: 'small' });
   });
 
+  test('the toolbar mixin matches the regular Toolbar height', () => {
+    const theme = enhanceDensity(createTheme());
+    const regular = (theme.components as any).MuiToolbar.styleOverrides.root[0].variants.find(
+      (variant: { props: { variant?: string } }) => variant.props.variant === 'regular',
+    ).style;
+
+    expect(theme.mixins.toolbar).to.deep.equal(regular);
+  });
+
+  test('the toolbar mixin keeps the keys it does not size', () => {
+    const theme = enhanceDensity(createTheme({ mixins: { toolbar: { gap: 4 } } }));
+
+    expect(theme.mixins.toolbar).to.include({ gap: 4, minHeight: 'calc(32px + 2*8px)' });
+  });
+
   test('leaves the input theme unchanged', () => {
     const input = createTheme({
       components: {
