@@ -104,7 +104,7 @@ export const DENSITY_ANNOTATIONS: Record<
       on: '.MuiAlert-icon',
       aspect: 'padding',
       axis: 'block',
-      token: '6px',
+      token: '(touchTarget - 1em) / 2',
       label: 'Icon',
       route: { gutter: 'bottom' },
     },
@@ -112,7 +112,7 @@ export const DENSITY_ANNOTATIONS: Record<
       on: '.MuiAlert-message',
       aspect: 'padding',
       axis: 'block',
-      token: '7px',
+      token: '(touchTarget - 1lh) / 2',
       label: 'Message',
       route: { gutter: 'bottom', at: 0.85 },
     },
@@ -614,7 +614,7 @@ export const DENSITY_ANNOTATIONS: Record<
       {
         on: '.MuiMenuItem-root:nth-of-type(2)',
         aspect: 'touch-target',
-        token: dense ? 'touchTarget - xxSmall' : 'touchTarget',
+        token: dense ? 'max(24px, touchTarget - xxSmall)' : 'max(28px, touchTarget)',
         label: 'Item',
       },
       {
