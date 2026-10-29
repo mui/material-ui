@@ -1541,12 +1541,12 @@
     {
       "component": "FormGroup",
       "counts": {
-        "supports": 11,
+        "supports": 7,
         "partiallySupports": 0,
         "doesNotSupport": 0,
-        "notApplicable": 44,
-        "flagged": 4,
-        "rated": 11
+        "notApplicable": 48,
+        "flagged": 3,
+        "rated": 7
       },
       "gaps": [],
       "criteria": [
@@ -1578,35 +1578,8 @@
           "flagged": false
         },
         {
-          "number": "1.4.1",
-          "name": "Use of Color",
-          "level": "A",
-          "conformance": "Supports",
-          "responsibility": "Shared",
-          "group": "Manual",
-          "flagged": true
-        },
-        {
-          "number": "1.4.4",
-          "name": "Resize Text",
-          "level": "AA",
-          "conformance": "Supports",
-          "responsibility": "Shared",
-          "group": "Automated",
-          "flagged": false
-        },
-        {
           "number": "1.4.10",
           "name": "Reflow",
-          "level": "AA",
-          "conformance": "Supports",
-          "responsibility": "Shared",
-          "group": "Automated",
-          "flagged": false
-        },
-        {
-          "number": "1.4.12",
-          "name": "Text Spacing",
           "level": "AA",
           "conformance": "Supports",
           "responsibility": "Shared",
@@ -1639,26 +1612,17 @@
           "responsibility": "Shared",
           "group": "Hybrid",
           "flagged": true
-        },
-        {
-          "number": "4.1.2",
-          "name": "Name, Role, Value",
-          "level": "A",
-          "conformance": "Supports",
-          "responsibility": "Shared",
-          "group": "Hybrid",
-          "flagged": false
         }
       ],
       "summary": {
-        "rated": 11,
-        "levelA": 7,
-        "levelAA": 4,
-        "supports": 11,
+        "rated": 7,
+        "levelA": 5,
+        "levelAA": 2,
+        "supports": 7,
         "partiallySupports": 0,
         "doesNotSupport": 0,
-        "verified": 7,
-        "automated": 4
+        "verified": 4,
+        "automated": 2
       }
     },
     {

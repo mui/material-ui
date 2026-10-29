@@ -45,45 +45,61 @@ describe('<FormGroup />', () => {
     });
   });
 
-  describe('WCAG 2.2 conformance', () => {
-    describe('1.3.1 Info and Relationships', () => {
-      it('renders no role of its own', () => {
-        const { container } = render(
+  describe('accessibility', () => {
+    it('renders no role of its own', () => {
+      const { container } = render(
+        <FormGroup>
+          <input type="checkbox" aria-label="Cheese" />
+        </FormGroup>,
+      );
+
+      expect(container.firstChild).not.to.have.attribute('role');
+      expect(screen.queryByRole('group')).to.equal(null);
+    });
+
+    it('gets its group name from a fieldset legend', () => {
+      render(
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Toppings</FormLabel>
           <FormGroup>
             <input type="checkbox" aria-label="Cheese" />
-          </FormGroup>,
-        );
+          </FormGroup>
+        </FormControl>,
+      );
 
-        expect(container.firstChild).not.to.have.attribute('role');
-        expect(screen.queryByRole('group')).to.equal(null);
-      });
+      const group = screen.getByRole('group', { name: 'Toppings' });
+      expect(within(group).getByRole('checkbox', { name: 'Cheese' })).not.to.equal(null);
+    });
 
-      it('gets its group name from a fieldset legend', () => {
-        render(
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Toppings</FormLabel>
-            <FormGroup>
-              <input type="checkbox" aria-label="Cheese" />
-            </FormGroup>
-          </FormControl>,
-        );
+    it('makes the controls of a row group tab stops in DOM order', async () => {
+      const { user } = render(
+        <FormGroup row>
+          <input type="checkbox" aria-label="Email" />
+          <input type="checkbox" aria-label="Push" />
+          <input type="checkbox" aria-label="Text message" />
+        </FormGroup>,
+      );
 
-        const group = screen.getByRole('group', { name: 'Toppings' });
-        expect(within(group).getByRole('checkbox', { name: 'Cheese' })).not.to.equal(null);
-      });
+      for (const name of ['Email', 'Push', 'Text message']) {
+        // eslint-disable-next-line no-await-in-loop
+        await user.tab();
+        expect(screen.getByRole('checkbox', { name })).toHaveFocus();
+      }
+    });
+  });
 
-      it('accepts role="group" with aria-labelledby', () => {
-        render(
-          <React.Fragment>
-            <span id="share">Share with</span>
-            <FormGroup role="group" aria-labelledby="share">
-              <input type="checkbox" aria-label="Team" />
-            </FormGroup>
-          </React.Fragment>,
-        );
+  describe('WCAG 2.2 conformance', () => {
+    it('1.3.1 Info and Relationships: becomes a named group with role="group" and aria-labelledby', () => {
+      render(
+        <React.Fragment>
+          <span id="share">Share with</span>
+          <FormGroup role="group" aria-labelledby="share">
+            <input type="checkbox" aria-label="Team" />
+          </FormGroup>
+        </React.Fragment>,
+      );
 
-        expect(screen.getByRole('group')).toHaveAccessibleName('Share with');
-      });
+      expect(screen.getByRole('group')).toHaveAccessibleName('Share with');
     });
 
     // JSDOM has no layout
@@ -110,21 +126,5 @@ describe('<FormGroup />', () => {
         }
       },
     );
-
-    it('2.4.3 Focus Order: the controls of a row group are tab stops in DOM order', async () => {
-      const { user } = render(
-        <FormGroup row>
-          <input type="checkbox" aria-label="Email" />
-          <input type="checkbox" aria-label="Push" />
-          <input type="checkbox" aria-label="Text message" />
-        </FormGroup>,
-      );
-
-      for (const name of ['Email', 'Push', 'Text message']) {
-        // eslint-disable-next-line no-await-in-loop
-        await user.tab();
-        expect(screen.getByRole('checkbox', { name })).toHaveFocus();
-      }
-    });
   });
 });
