@@ -316,15 +316,16 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // Mirrors MenuItem's own sm-up reset, which hardcodes the same key. Cast so
   // the file still compiles against an augmented BreakpointOverrides.
   const smUp = enhanced.breakpoints.up('sm' as Breakpoint);
+  const menuItemHeight = `max(28px, ${touchTarget})`;
   addStyleOverride(enhanced.components, 'MuiMenuItem', 'root', {
     paddingBlock: spacing('xxSmall'),
     variants: [
       {
         props: { dense: false },
         style: {
-          minHeight: touchTarget,
+          minHeight: menuItemHeight,
           gap: spacing('xSmall'),
-          [smUp]: { minHeight: touchTarget },
+          [smUp]: { minHeight: menuItemHeight },
         },
       },
       { props: { disableGutters: false }, style: { paddingInline: spacing('xSmall') } },
@@ -332,7 +333,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { dense: true },
         style: {
           gap: spacing('xSmall'),
-          minHeight: smallBox,
+          minHeight: `max(24px, ${smallBox})`,
           [`& .${listItemIconClasses.root}`]: { minWidth: '0.8lh' },
           [`& .${listItemIconClasses.root} svg`]: { fontSize: '0.8lh' },
           [`& .${listItemTextClasses.inset}`]: {
@@ -1152,18 +1153,19 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiAlert', 'icon', {
     marginRight: 0,
-    paddingBlock: 6,
+    paddingBlock: `max(0px, calc((${touchTarget} - 1em) / 2))`,
     fontSize: '1.1lh',
   });
   addStyleOverride(enhanced.components, 'MuiAlert', 'action', {
     padding: 0,
     marginRight: 0,
-    alignSelf: 'center',
   });
   addDefaultProps(enhanced.components, 'MuiAlert', {
     slotProps: { closeButton: { size: 'medium' } },
   });
-  addStyleOverride(enhanced.components, 'MuiAlert', 'message', { paddingBlock: 7 });
+  addStyleOverride(enhanced.components, 'MuiAlert', 'message', {
+    paddingBlock: `max(0px, calc((${touchTarget} - 1lh) / 2))`,
+  });
   addStyleOverride(enhanced.components, 'MuiTab', 'root', {
     minHeight: touchTarget,
     lineHeight: enhanced.typography?.button?.lineHeight,

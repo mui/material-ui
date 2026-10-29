@@ -423,7 +423,7 @@ const CONTROLS: Record<string, Spec> = {
     ),
     selector: '.MuiMenuItem-root',
     axis: 'minHeight',
-    height: (density) => density.touchTarget,
+    height: (density) => Math.max(28, density.touchTarget),
   },
   ListItemButton: {
     render: () => <ListItemButton>Item</ListItemButton>,
