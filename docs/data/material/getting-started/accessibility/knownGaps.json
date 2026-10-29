@@ -27,7 +27,7 @@
     "workaround": "Add a non-color cue to the selected state, such as an icon"
   },
   {
-    "gap": "Links without an underline rely on color, and several palette colors are below 3:1 against body text",
+    "gap": "Links without an underline rely on color, and several link colors are below 3:1 against body text",
     "criteria": ["1.4.1"],
     "affected": [{ "component": "Link", "note": "`underline=\"none\"`, `underline=\"hover\"`" }],
     "workaround": "Keep the default `underline=\"always\"` for links in body text"

@@ -14,7 +14,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.1 Use of Color.** <!-- 1.4.1:gap:start -->The default `underline="always"` passes. With `underline="none"`, a link in body text relies on color. With `underline="hover"`, `secondary` and `textSecondary` are less than `3:1` against body text in light mode, and all colors except `error` in dark mode.<!-- 1.4.1:gap:end -->
+- ⚠️ **1.4.1 Use of Color.** <!-- 1.4.1:gap:start -->The default `underline="always"` passes. With `underline="none"`, a link in body text relies on color. With `underline="hover"`, `secondary`, `textSecondary`, `textPrimary`, and `inherit` are less than `3:1` against body text in light mode. In dark mode, all colors except `error` and `textDisabled` are less than `3:1`.<!-- 1.4.1:gap:end -->
 - ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->In light mode, `info` (`3.86:1`), `warning` (`3.11:1`), and `textDisabled` (`2.68:1`) links are less than `4.5:1`.<!-- 1.4.3:gap:end -->
 
 ## Success criteria
@@ -156,8 +156,10 @@ Tested by: unit `Link.test.js` · axe-core `link-in-text-block` ❌
 <!-- 1.4.1:start -->
 
 - With the default `underline="always"`, the underline marks the link, so it does not rely on color. A unit test in a real browser confirms the default underline. The underline uses 40% of the link color, about `1.7:1` against white for `primary`. It is still a non-color cue. On hover, it changes to the full link color.
-- With `underline="hover"`, the underline shows only on hover. With `underline="none"`, no underline shows at all. Inside body text, the link must then be at least `3:1` against the body text, and show a non-color cue on hover and focus. `underline="none"` has no hover cue, so it always fails.
-- With `underline="hover"`, the hover underline and the browser focus outline are the cues. In light mode, `primary`, `error`, `info`, `success`, and `warning` pass. In dark mode, only `error` passes.
+- With `underline="hover"`, the underline shows only on hover. With `underline="none"`, no underline shows at all. Inside body text, the link must then be at least `3:1` against the body text, and show a non-color cue on hover and focus. `underline="none"` has no hover cue, so it fails unless the author adds another non-color cue.
+- With `underline="hover"`, the hover underline and the browser focus outline are the cues. In light mode, `primary`, `error`, `info`, `success`, `warning`, and `textDisabled` pass. In dark mode, only `error` and `textDisabled` pass.
+- `textPrimary` and `inherit` have the same color as the body text, so without an underline they always fail the `3:1` check. A custom `color` value needs its own check.
+- Unit tests compute each link color against `text.primary`, in light and dark mode, and confirm the failing set.
 - Link colors against `text.primary` body text:
 
   | Color           | Light mode | Dark mode |
@@ -168,7 +170,10 @@ Tested by: unit `Link.test.js` · axe-core `link-in-text-block` ❌
   | `info`          |     4.17:1 |    2.30:1 |
   | `success`       |     3.13:1 |    2.36:1 |
   | `warning`       |     5.16:1 |    1.94:1 |
+  | `textPrimary`   |     1.00:1 |    1.00:1 |
   | `textSecondary` |     2.80:1 |    1.99:1 |
+  | `textDisabled`  |     6.01:1 |    3.52:1 |
+  | `inherit`       |     1.00:1 |    1.00:1 |
 
 - axe-core `link-in-text-block` records these failures on the `LinkA11yInTextBlock` fixtures, in light and dark mode. axe rounds some dark-mode values down by 0.01.
 - Links outside body text, such as in a navigation list, do not need this cue.
@@ -184,7 +189,7 @@ Tested by: unit `Link.test.js` · axe-core `link-in-text-block` ❌
 
 <!-- 1.4.1:end -->
 
-**Pass:** <!-- 1.4.1:pass:start -->the link is at least `3:1` against the body text and shows a non-color cue on hover and on focus. Otherwise, the link fails. `underline="none"` always fails.<!-- 1.4.1:pass:end -->
+**Pass:** <!-- 1.4.1:pass:start -->the link is at least `3:1` against the body text and shows a non-color cue on hover and on focus. Otherwise, the link fails. `underline="none"` fails unless the author adds another non-color cue.<!-- 1.4.1:pass:end -->
 
 #### 1.4.3 Contrast (Minimum) · AA
 
@@ -195,7 +200,7 @@ Tested by: unit `Link.test.js` · axe-core `color-contrast` ❌
 <!-- 1.4.3:start -->
 
 - The link text is `palette[color].main`, or `text.primary`, `text.secondary`, or `text.disabled` for the `text*` colors. On hover, only the underline changes.
-- Among the six palette colors, a unit test confirms that only `info` and `warning` fail in light mode. It reads the [palette contrast contract](../../test/contrastContract.ts). axe-core `color-contrast` records the failure.
+- Unit tests rate the six palette colors and the three `text*` colors. In light mode, only `info`, `warning`, and `textDisabled` fail. In dark mode, all colors pass. The palette part reads the [palette contrast contract](../../test/contrastContract.ts). axe-core `color-contrast` records the light-mode failure.
 - In light mode, `color="textDisabled"` is `2.68:1`. It looks disabled, but the link stays active, so the exemption for inactive components does not apply. The `LinkA11yInTextBlock` fixture includes it.
 - Link colors against the page background:
 
@@ -428,7 +433,7 @@ Tested by: axe-core `target-size` ✅
 
 <!-- 2.5.8:start -->
 
-- A link inside a sentence is exempt. A standalone `body2` link, or a `component="button"` link, is 16 to 20 px high. It passes only through the spacing exception, so keep 24 px between targets. axe-core `target-size` confirms this on the demos.
+- A link inside a sentence is exempt. A standalone `body2` link, or a `component="button"` link, is 16 to 20 px high. It passes only through the spacing exception, so keep each target center at least 24 px from the next target's center. axe-core `target-size` confirms this on the demos.
 
 <!-- 2.5.8:end -->
 

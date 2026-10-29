@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
-import { contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
+import { blend, contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
 import { FAILING_PALETTE_COLORS, PALETTE_CONTRAST_COLORS } from '../../test/contrastContract';
 
 function focusVisible(element) {
@@ -181,28 +181,108 @@ describe('<Link />', () => {
   });
 
   describe('WCAG 2.2 conformance', () => {
-    it('1.4.3 Contrast (Minimum): only the documented palette colors fall short of 4.5:1', () => {
-      const theme = createTheme();
-      render(
-        <React.Fragment>
-          {PALETTE_CONTRAST_COLORS.map((color) => (
-            <Link key={color} href="#" color={color}>
-              {color}
-            </Link>
-          ))}
-        </React.Fragment>,
-      );
+    describe('1.4.3 Contrast (Minimum)', () => {
+      // `inherit` takes the color of the text around it, so it is not rated here.
+      const TEXT_COLORS = ['textPrimary', 'textSecondary', 'textDisabled'];
+      const COLORS = [...PALETTE_CONTRAST_COLORS, ...TEXT_COLORS];
 
-      // The link text is `main` on the paper background.
-      const failing = PALETTE_CONTRAST_COLORS.filter((color) => {
-        const { color: textColor } = window.getComputedStyle(
-          screen.getByRole('link', { name: color }),
+      function renderFailingColors(theme) {
+        render(
+          <ThemeProvider theme={theme}>
+            {COLORS.map((color) => (
+              <Link key={color} href="#" color={color}>
+                {color}
+              </Link>
+            ))}
+          </ThemeProvider>,
         );
-        return (
-          contrastRatio(textColor, theme.palette.background.paper) < WCAG_MINIMUM_RATIO.normalText
-        );
+
+        // The link text is on the page background.
+        return COLORS.filter((color) => {
+          const { color: textColor } = window.getComputedStyle(
+            screen.getByRole('link', { name: color }),
+          );
+          return (
+            contrastRatio(textColor, theme.palette.background.default) <
+            WCAG_MINIMUM_RATIO.normalText
+          );
+        });
+      }
+
+      it('only the documented colors fall short of 4.5:1 in light mode', () => {
+        expect(renderFailingColors(createTheme())).to.deep.equal([
+          ...FAILING_PALETTE_COLORS,
+          'textDisabled',
+        ]);
       });
-      expect(failing).to.deep.equal([...FAILING_PALETTE_COLORS]);
+
+      it('every color meets 4.5:1 in dark mode', () => {
+        expect(renderFailingColors(createTheme({ palette: { mode: 'dark' } }))).to.deep.equal([]);
+      });
+    });
+
+    describe('1.4.1 Use of Color', () => {
+      // G183: a link without an underline needs 3:1 against the body text.
+      const COLORS = [
+        ...PALETTE_CONTRAST_COLORS,
+        'textPrimary',
+        'textSecondary',
+        'textDisabled',
+        'inherit',
+      ];
+
+      function renderFailingColors(theme) {
+        const background = theme.palette.background.default;
+        render(
+          <ThemeProvider theme={theme}>
+            {/* Body text as with `CssBaseline`, inline so that JSDOM resolves it. */}
+            <p data-testid="body" style={{ color: theme.palette.text.primary }}>
+              {COLORS.map((color) => (
+                <Link key={color} href="#" color={color} underline="none">
+                  {color}
+                </Link>
+              ))}
+            </p>
+          </ThemeProvider>,
+        );
+
+        // Both colors are painted on the page background.
+        const body = blend(
+          window.getComputedStyle(screen.getByTestId('body')).color,
+          1,
+          background,
+        );
+        return COLORS.filter((color) => {
+          const link = blend(
+            window.getComputedStyle(screen.getByRole('link', { name: color })).color,
+            1,
+            background,
+          );
+          return contrastRatio(link, body) < WCAG_MINIMUM_RATIO.largeText;
+        });
+      }
+
+      it('only the documented colors fall short of 3:1 against body text in light mode', () => {
+        expect(renderFailingColors(createTheme())).to.deep.equal([
+          'secondary',
+          'textPrimary',
+          'textSecondary',
+          'inherit',
+        ]);
+      });
+
+      it('only the documented colors fall short of 3:1 against body text in dark mode', () => {
+        expect(renderFailingColors(createTheme({ palette: { mode: 'dark' } }))).to.deep.equal([
+          'primary',
+          'secondary',
+          'info',
+          'success',
+          'warning',
+          'textPrimary',
+          'textSecondary',
+          'inherit',
+        ]);
+      });
     });
 
     // JSDOM doesn't expand the text-decoration shorthand

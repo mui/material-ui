@@ -125,7 +125,7 @@ Run the rows matching what you touched, for the component you touched.
 
 - [ ] 🔁 **1.1.1 Non-text Content** — each image link announces its destination or action.
 - [ ] 🔁 **1.3.1 Info and Relationships** — an `href` link announces "link", and a `component="button"` link announces "button".
-- [ ] 🔁 **1.4.1 Use of Color** — the link is at least `3:1` against the body text and shows a non-color cue on hover and on focus. Otherwise, the link fails. `underline="none"` always fails.
+- [ ] 🔁 **1.4.1 Use of Color** — the link is at least `3:1` against the body text and shows a non-color cue on hover and on focus. Otherwise, the link fails. `underline="none"` fails unless the author adds another non-color cue.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — each link is at least `4.5:1` in light and dark mode. `info`, `warning`, and `textDisabled` fail in light mode.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — the focus indicator is at least `3:1` against the colors next to it, or it is the unchanged browser outline.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — the purpose of each link is clear, for example "account settings page", not "click here".
