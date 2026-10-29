@@ -333,6 +333,9 @@ const Root = styled('div')(
       '& code': {
         height: 'fit-content',
       },
+      '& :not(pre) > code': {
+        backgroundColor: alpha(lightTheme.palette.grey[900], 0.06),
+      },
       '& p': {
         marginBottom: '8px',
         '& > p:last-child, & > ul:last-child': {
@@ -401,9 +404,6 @@ const Root = styled('div')(
         },
         '& svg': {
           fill: `var(--muidocs-palette-grey-600, ${lightTheme.palette.grey[600]})`,
-        },
-        '& a': {
-          color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
         },
       },
       '&.MuiCallout-success': {
@@ -733,6 +733,9 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+        '& :not(pre) > code': {
+          backgroundColor: alpha(darkTheme.palette.grey[50], 0.12),
+        },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
@@ -756,9 +759,6 @@ const Root = styled('div')(
           },
           '& svg': {
             fill: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
-          },
-          '& a': {
-            color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
           },
         },
         '&.MuiCallout-success': {
