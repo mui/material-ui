@@ -1,5 +1,5 @@
 import * as ts from '@typescript/typescript6';
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
 import { resolveExportSpecifier } from './resolveExportSpecifier';
 
 export interface ParsedProp {

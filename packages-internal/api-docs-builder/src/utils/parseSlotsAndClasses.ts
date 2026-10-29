@@ -7,10 +7,10 @@ import {
   IGNORE_HINT,
   isHiddenFromApiDocs,
 } from '../buildApiUtils';
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
 import { getComponentDeclaration, getPropsFromComponentNode } from './getPropsFromComponentNode';
-import { ProjectSettings } from '../ProjectSettings';
-import { Slot } from '../types/utils.types';
+import type { ProjectSettings } from '../ProjectSettings';
+import type { Slot } from '../types/utils.types';
 
 interface ClassInfo {
   description: string;
