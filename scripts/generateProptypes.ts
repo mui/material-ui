@@ -46,30 +46,6 @@ const useExternalPropsFromInputBase = [
   'value',
 ];
 
-// The public popups validate props passed to the shared popup implementation.
-const useExternalPropsFromMenu2Popup = [
-  'align',
-  'alignOffset',
-  'anchor',
-  'classes',
-  'className',
-  'collisionAvoidance',
-  'collisionBoundary',
-  'collisionPadding',
-  'container',
-  'disableAnchorTracking',
-  'elevation',
-  'finalFocus',
-  'keepMounted',
-  'positionMethod',
-  'side',
-  'sideOffset',
-  'sticky',
-  'style',
-  'sx',
-  'transitionDuration',
-];
-
 /**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
@@ -88,26 +64,9 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   FilledInput: useExternalPropsFromInputBase,
   IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
-  Menu2: [
-    'actionsRef',
-    'defaultOpen',
-    'disabled',
-    'highlightItemOnHover',
-    'loopFocus',
-    'modal',
-    'open',
-  ],
-  Menu2Popup: useExternalPropsFromMenu2Popup,
-  Menu2Trigger: ['closeDelay', 'delay', 'disabled', 'nativeButton', 'openOnHover'],
-  Menu2Submenu: [
-    'actionsRef',
-    'closeParentOnEsc',
-    'defaultOpen',
-    'highlightItemOnHover',
-    'loopFocus',
-    'open',
-  ],
-  Menu2SubmenuPopup: useExternalPropsFromMenu2Popup,
+  Menu2: ['defaultOpen', 'disabled', 'highlightItemOnHover', 'loopFocus', 'modal', 'open'],
+  Menu2Trigger: ['closeDelay', 'delay', 'disabled', 'openOnHover'],
+  Menu2Submenu: ['closeParentOnEsc', 'defaultOpen', 'highlightItemOnHover', 'loopFocus', 'open'],
   MenuItem: ['dense'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],

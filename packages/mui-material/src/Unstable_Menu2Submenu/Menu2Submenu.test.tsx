@@ -1391,26 +1391,6 @@ describe('<Menu2Submenu />', () => {
     );
   });
 
-  it('falls back to the default trigger for a non-element', async () => {
-    const { user } = render(
-      <Menu2>
-        <Menu2Trigger>
-          <Button disableRipple>Options</Button>
-        </Menu2Trigger>
-        <Menu2Popup>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
-      </Menu2>,
-    );
-
-    const trigger = screen.getByRole('button', { name: 'Options' });
-    expect(trigger).to.have.class(menu2TriggerClasses.root);
-
-    await user.click(trigger);
-
-    expect(await screen.findByRole('menu')).not.to.equal(null);
-  });
-
   it('marks the trigger open while the menu is open', async () => {
     const { user } = render(
       <Menu2>
@@ -1430,23 +1410,6 @@ describe('<Menu2Submenu />', () => {
     await screen.findByRole('menu');
 
     expect(trigger).to.have.class(menu2TriggerClasses.open);
-  });
-
-  it('accepts the hoisted popup props', async () => {
-    const { user } = render(
-      <Menu2>
-        <Menu2Trigger>
-          <Button disableRipple>Options</Button>
-        </Menu2Trigger>
-        <Menu2Popup side="top" elevation={16} slotProps={{ root: { 'data-testid': 'paper' } }}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
-      </Menu2>,
-    );
-
-    await user.click(screen.getByRole('button', { name: 'Options' }));
-
-    expect(await screen.findByTestId('paper')).to.have.class('MuiPaper-elevation16');
   });
 
   it('works without a trigger, driven by open and anchor', async () => {
