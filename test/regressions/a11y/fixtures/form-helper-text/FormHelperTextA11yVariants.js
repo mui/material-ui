@@ -2,8 +2,10 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
 // Helper text in each TextField variant, where TextField connects it with
-// aria-describedby, in the resting and error states. A disabled field is left
-// out: its helper text is part of an inactive component, which axe cannot see.
+// aria-describedby, in the resting and error states. The red label of the
+// filled error field is a known TextField 1.4.3 failure that this fixture shows.
+// A disabled field is left out: its helper text is part of an inactive user
+// interface component, which axe cannot see.
 export default function FormHelperTextA11yVariants() {
   return (
     <Stack spacing={3} sx={{ maxWidth: 360 }}>
@@ -20,13 +22,12 @@ export default function FormHelperTextA11yVariants() {
         defaultValue="name@"
         helperText="Enter a valid email address."
       />
-      {/* No visible label: the red label on the filled surface is a TextField gap. */}
       <TextField
+        label="Postcode"
         variant="filled"
         error
         defaultValue="1"
         helperText="Enter five digits."
-        slotProps={{ htmlInput: { 'aria-label': 'Postcode' } }}
       />
       <TextField
         label="Country"

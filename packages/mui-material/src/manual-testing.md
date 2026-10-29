@@ -112,7 +112,7 @@ Run the rows matching what you touched, for the component you touched.
 
 - [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader reads the helper text as the description, after the name of the field.
 - [ ] 🔁 **1.4.1 Use of Color** — the error message shows the error in words, not only in red.
-- [ ] 🔁 **1.4.3 Contrast (Minimum)** — the resting and error helper text is at least `4.5:1` in each variant.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — the resting and error helper text is at least `4.5:1` on its actual background. Expected result: dark error text on a Paper with elevation 2 or more falls short.
 - [ ] 🔁 **3.3.1 Error Identification** — the helper text names the error in words, for example "Enter a valid email address."
 - [ ] 🔁 **3.3.2 Labels or Instructions** — each field that needs a format or a rule has helper text that explains it.
 - [ ] 🔁 **4.1.3 Status Messages** — the screen reader announces the new error. Expected result from the source: it does not.

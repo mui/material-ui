@@ -413,10 +413,11 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // `color-contrast` is recorded but not asserted: axe returns `incomplete` for
-  // the empty outlined input (no value to test), and for the other outlined input
-  // and the `standard` label, which the notched outline and the floating label
-  // overlap. The helper text itself passes.
+  // `color-contrast` is recorded but not asserted. The red label of the filled
+  // error field is a known TextField 1.4.3 failure that this fixture shows. axe
+  // also returns `incomplete` for the empty outlined input (no value to test),
+  // and for the other outlined input and the `standard` label, which the notched
+  // outline and the floating label overlap. The helper text itself passes.
   {
     test: 'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yVariants',
     enabled: true,

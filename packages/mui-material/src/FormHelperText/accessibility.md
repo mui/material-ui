@@ -12,14 +12,15 @@ FormHelperText shows a hint or an error message below a field. It is not focusab
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 12    |
-| ⚠️ Partially Supports | 1     |
+| ✅ Supports           | 11    |
+| ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 42    |
 | 🚩 Flagged            | 3/13  |
 
 ## Known gaps
 
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->In dark mode, the default `error.main` text falls below 4.5:1 on a Paper with elevation 2 or more, for example `3.13:1` in a Dialog.<!-- 1.4.3:gap:end -->
 - ⚠️ **4.1.3 Status Messages.** <!-- 4.1.3:gap:start -->The helper text has no live region. A screen reader probably does not announce a new error message until the user moves focus to the field.<!-- 4.1.3:gap:end -->
 
 ## Success criteria
@@ -126,6 +127,7 @@ Tested by: unit `FormHelperText.test.js`
 <!-- 1.4.1:start -->
 
 - In the error state, the helper text turns red. The text of the message also shows the error, so color is not the only cue. The author writes the message.
+- The CheckboxesGroup docs demo shows "You can display an error" in both the valid and the error state. In that demo, the red color is the only error cue.
 
 **Manual testing steps**
 
@@ -139,13 +141,13 @@ Tested by: unit `FormHelperText.test.js`
 
 #### 1.4.3 Contrast (Minimum) · AA
 
-`✅ Supports` · `◐ Shared`
+`⚠️ Partially Supports` · `● Component`
 
-Tested by: unit `FormHelperText.test.js` · axe-core `color-contrast` ❔
+Tested by: unit `FormHelperText.test.js` · axe-core `color-contrast` ❌
 
 <!-- 1.4.3:start -->
 
-- The helper text renders below the field, on the page background, in every variant. Its colors in the default theme:
+- FormHelperText sets its own text color: `text.secondary` at rest and `error.main` in the error state. It renders below the field. Its colors in the default theme, on the page background:
 
   | State                     | Light mode (`#fff`) | Dark mode (`#121212`) |
   | :------------------------ | ------------------: | --------------------: |
@@ -153,8 +155,10 @@ Tested by: unit `FormHelperText.test.js` · axe-core `color-contrast` ❔
   | Error, `error.main`       |              4.98:1 |                5.09:1 |
   | Disabled, `text.disabled` |              2.68:1 |                5.32:1 |
 
-- A unit test confirms the resting and error colors in light mode. axe-core `color-contrast` passes on the helper text in both fixtures. On the variants fixture, axe returns `incomplete` for three elements. The empty outlined input has no value to test. The notched outline and the floating label overlap the other outlined input and the `standard` label.
-- The helper text of a disabled field is the description of an inactive component, so 1.4.3 does not apply. axe-core cannot see this link and reports a failure, so the fixtures leave out a disabled field. The TextField report takes the same position. A disabled FormHelperText with no disabled field is not exempt.
+- In dark mode, a Paper with elevation adds a white overlay. The default `error.main` (`#f44336`) then falls below 4.5:1 from elevation 2: `4.30:1` at elevation 2, `3.68:1` at elevation 8 (Menu, Popover), and `3.13:1` at elevation 24 (Dialog). At elevation 1, it is `4.52:1`. A unit test confirms the elevation 2 and 24 values. The resting text stays above 4.5:1.
+- A unit test confirms the resting and error colors in light mode. axe-core `color-contrast` passes on the helper text in both fixtures. The variants fixture also shows the red label of the filled error field. That label is a known TextField 1.4.3 failure, so the fixture does not assert `color-contrast`. On the variants fixture, axe can also return `incomplete` results: an empty outlined input has no value to test, and the notched outline and the floating label overlap some inputs.
+- When the field is disabled, the helper text is part of the disabled TextField. WCAG exempts text that is part of an inactive user interface component, so 1.4.3 does not apply. axe-core cannot see this link and reports a failure, so the fixtures leave out a disabled field. The TextField report takes the same position. A disabled FormHelperText with no disabled field is not exempt.
+- Helper text that tells why a field is disabled is content that the user needs. Keep this text readable, for example with `text.secondary`.
 
 **Manual testing steps**
 
@@ -162,10 +166,13 @@ Tested by: unit `FormHelperText.test.js` · axe-core `color-contrast` ❔
 2. With a contrast checker, measure the helper text of each variant.
 3. Put each field in the error state.
 4. Measure the error text of each variant.
+5. Set the theme to dark mode.
+6. Open a Dialog that contains a TextField in the error state.
+7. Measure the error text on the Dialog surface.
 
 <!-- 1.4.3:end -->
 
-**Pass:** <!-- 1.4.3:pass:start -->the resting and error helper text is at least `4.5:1` in each variant.<!-- 1.4.3:pass:end -->
+**Pass:** <!-- 1.4.3:pass:start -->the resting and error helper text is at least `4.5:1` on its actual background. Expected result: dark error text on a Paper with elevation 2 or more falls short.<!-- 1.4.3:pass:end -->
 
 #### 3.3.1 Error Identification · A
 
@@ -175,7 +182,7 @@ Tested by: unit `FormHelperText.test.js`
 
 <!-- 3.3.1:start -->
 
-- In the error state, the helper text gives the error in words. InputBase sets `aria-invalid` on the input from the `error` state of the FormControl. A unit test confirms both. The author writes the message.
+- In the error state, the helper text gives the error in words. InputBase sets `aria-invalid` on the input from the `error` state of the FormControl. A unit test confirms both for a standalone Input that the author connects with `aria-describedby`. The author writes the message.
 - `error` without helper text gives only a color cue, as the TextField report notes.
 
 **Manual testing steps**
@@ -214,7 +221,7 @@ Tested by: unit `FormHelperText.test.js`
 
 <!-- 4.1.3:start -->
 
-- The helper text is a `<p>` with no `role="status"` and no `aria-live`. A unit test confirms this. The source has no live region, so a screen reader probably does not announce an error message that appears on blur. A review with assistive technology must confirm this.
+- The helper text is a `<p>` with no `role="status"` and no `aria-live`. A unit test confirms this. A second unit test confirms that a TextField in the error state adds no live region at all. The source has no live region, so a screen reader probably does not announce an error message that appears on blur. A review with assistive technology must confirm this.
 - When the helper text is the description of the field, the screen reader reads it when the user moves focus back to the field.
 - With `helperText=" "`, the `<p>` stays in the page, so an `aria-live` region from the author can work. A helper text that appears with the error cannot.
 - To announce the error at once, add a live region in the application.

@@ -1,6 +1,7 @@
 {
   "axe": "docs/data/material/components/form-helper-text/form-helper-text.a11y.json",
   "criteria": {
+    "1.4.3": { "conformance": "Partially Supports", "responsibility": "Component" },
     "3.3.1": { "group": "Hybrid" },
     "3.3.2": { "flagged": true },
     "3.3.3": {},

@@ -63,7 +63,7 @@
       "level": "AA",
       "conformance": "Partially Supports",
       "flagged": true,
-      "affected": ["Avatar", "Button", "TextField", "ToggleButton"]
+      "affected": ["Avatar", "Button", "FormHelperText", "TextField", "ToggleButton"]
     },
     {
       "number": "1.4.4",
@@ -1541,14 +1541,19 @@
     {
       "component": "FormHelperText",
       "counts": {
-        "supports": 12,
-        "partiallySupports": 1,
+        "supports": 11,
+        "partiallySupports": 2,
         "doesNotSupport": 0,
         "notApplicable": 42,
         "flagged": 3,
         "rated": 13
       },
       "gaps": [
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "conformance": "Partially Supports"
+        },
         {
           "number": "4.1.3",
           "name": "Status Messages",
@@ -1596,8 +1601,8 @@
           "number": "1.4.3",
           "name": "Contrast (Minimum)",
           "level": "AA",
-          "conformance": "Supports",
-          "responsibility": "Shared",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
           "group": "Hybrid",
           "flagged": false
         },
@@ -1678,8 +1683,8 @@
         "rated": 13,
         "levelA": 6,
         "levelAA": 7,
-        "supports": 12,
-        "partiallySupports": 1,
+        "supports": 11,
+        "partiallySupports": 2,
         "doesNotSupport": 0,
         "verified": 10,
         "automated": 3

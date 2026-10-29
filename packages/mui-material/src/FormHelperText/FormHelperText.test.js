@@ -3,10 +3,12 @@ import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import FormHelperText, { formHelperTextClasses as classes } from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
 import TextField from '@mui/material/TextField';
 import { createTheme } from '@mui/material/styles';
+import getOverlayAlpha from '../styles/getOverlayAlpha';
 import describeConformance from '../../test/describeConformance';
-import { contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
+import { blend, contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
 
 describe('<FormHelperText />', () => {
   const { render } = createRenderer();
@@ -104,7 +106,7 @@ describe('<FormHelperText />', () => {
       it('describes a standalone input only when the author connects it', () => {
         render(
           <FormControl>
-            <input aria-label="Promo code" />
+            <Input inputProps={{ 'aria-label': 'Promo code' }} />
             <FormHelperText id="promo-help">Promo codes are not case sensitive.</FormHelperText>
           </FormControl>,
         );
@@ -126,26 +128,50 @@ describe('<FormHelperText />', () => {
       });
     });
 
-    it('1.4.3 Contrast (Minimum): resting and error text reach 4.5:1 on the page background', () => {
-      const theme = createTheme();
-      render(
-        <React.Fragment>
-          <FormHelperText>Resting</FormHelperText>
-          <FormHelperText error>Error</FormHelperText>
-        </React.Fragment>,
-      );
-
-      ['Resting', 'Error'].forEach((text) => {
-        const { color } = window.getComputedStyle(screen.getByText(text));
-        expect(contrastRatio(color, theme.palette.background.default)).to.be.at.least(
-          WCAG_MINIMUM_RATIO.normalText,
-          text,
+    describe('1.4.3 Contrast (Minimum)', () => {
+      it('resting and error text reach 4.5:1 on the light page background', () => {
+        const theme = createTheme();
+        render(
+          <React.Fragment>
+            <FormHelperText>Resting</FormHelperText>
+            <FormHelperText error>Error</FormHelperText>
+          </React.Fragment>,
         );
+
+        ['Resting', 'Error'].forEach((text) => {
+          const { color } = window.getComputedStyle(screen.getByText(text));
+          expect(contrastRatio(color, theme.palette.background.default)).to.be.at.least(
+            WCAG_MINIMUM_RATIO.normalText,
+            text,
+          );
+        });
+      });
+
+      it('dark error text falls below 4.5:1 on Paper with elevation 2 and 24 (documented gap)', () => {
+        const { palette } = createTheme({ palette: { mode: 'dark' } });
+
+        [2, 24].forEach((elevation) => {
+          const surface = blend('#fff', getOverlayAlpha(elevation), palette.background.paper);
+          // When this fails, the gap may be fixed: update FormHelperText/accessibility.md and knownGaps.json.
+          expect(contrastRatio(palette.error.main, surface)).to.be.below(
+            WCAG_MINIMUM_RATIO.normalText,
+            `dark error.main on elevation ${elevation}`,
+          );
+        });
       });
     });
 
-    it('3.3.1 Error Identification: describes the invalid input in words', () => {
-      render(<TextField label="Email address" error helperText="Enter a valid email address." />);
+    it('3.3.1 Error Identification: marks a standalone input invalid and describes the error in words', () => {
+      render(
+        <FormControl error>
+          <Input
+            defaultValue="name@"
+            inputProps={{ 'aria-label': 'Email address' }}
+            aria-describedby="email-error"
+          />
+          <FormHelperText id="email-error">Enter a valid email address.</FormHelperText>
+        </FormControl>,
+      );
 
       const input = screen.getByRole('textbox');
       expect(input).to.have.attribute('aria-invalid', 'true');
@@ -159,6 +185,17 @@ describe('<FormHelperText />', () => {
       // When this fails, the gap may be fixed: update FormHelperText/accessibility.md.
       expect(helperText).not.to.have.attribute('aria-live');
       expect(helperText).not.to.have.attribute('role');
+    });
+
+    it('4.1.3 Status Messages: a TextField error adds no live region anywhere (documented gap)', () => {
+      const { container } = render(
+        <TextField label="Email address" error helperText="Enter a valid email address." />,
+      );
+
+      // When this fails, the gap may be fixed: update FormHelperText/accessibility.md.
+      expect(container.querySelector('[aria-live], [role="status"], [role="alert"]')).to.equal(
+        null,
+      );
     });
   });
 });
