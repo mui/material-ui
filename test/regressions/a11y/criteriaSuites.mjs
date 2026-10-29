@@ -13,12 +13,9 @@ export const CSS_LAYOUT_SUITES = [
   {
     component: 'Avatar',
     route: '/docs-components-avatars/LetterAvatars',
-    // 1.4.4 is asserted here as *text-only* resize, which the Avatar report
-    // explicitly treats as out of scope: its fixed 40px box scales under
-    // full-page zoom (the mechanism the criterion assumes) but not under
-    // text-only zoom, which the report calls an author concern. Left rated
-    // Manual rather than silently downgraded. See Avatar/accessibility.md.
-    skipCriteria: ['1.4.4'],
+    // The fixed 40px box scales under page zoom, which decides 1.4.4, but not
+    // under text-only resize. The report states the text-only result.
+    textOnlyResize: false,
   },
   { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
   { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },

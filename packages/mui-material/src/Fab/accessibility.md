@@ -6,19 +6,18 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 20    |
-| ⚠️ Partially Supports | 5     |
+| ✅ Supports           | 21    |
+| ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
 | 🚩 Flagged            | 6/25  |
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->Extended labels in `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. On keyboard focus and on press, the ripple lowers every palette color to `2.23:1` to `4.16:1`.<!-- 1.4.3:gap:end -->
-- ⚠️ **1.4.4 Resize Text.** <!-- 1.4.4:gap:start -->The extended Fab has a fixed height. At a 200% text size, a label that wraps spills out of it and can become invisible.<!-- 1.4.4:gap:end -->
-- ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->The extended Fab has a fixed height. At 320 CSS px, a label that wraps spills out of it.<!-- 1.4.10:gap:end -->
-- ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default focus indicator is the focus ripple, at `1.39:1` to `1.87:1` against the fill. On the ripple, `primary`, `info`, `success`, and `warning` icons are less than `3:1`.<!-- 1.4.11:gap:end -->
-- ⚠️ **1.4.12 Text Spacing.** <!-- 1.4.12:gap:start -->The extended Fab has a fixed height. With the WCAG text-spacing values, a label that wraps spills out of it.<!-- 1.4.12:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->Extended labels in `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. On keyboard focus, the focus ripple behind the label lowers each palette color to `2.23:1` (`warning`) to `3.57:1` (`secondary`), and `primary` to `2.80:1`. A press lowers them to `4.16:1` or less. Use `disableFocusRipple` with the `focusVisible` theme ring.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->The extended Fab has a fixed height. At 320 CSS px, a label that wraps is taller than the Fab and spills out of it.<!-- 1.4.10:gap:end -->
+- ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default focus indicator is the focus ripple, at `1.39:1` to `1.85:1` against the fill. On the ripple, `primary`, `info`, `success`, and `warning` icons are less than `3:1`. The `focusVisible` theme ring does not remove the ripple, so also set `disableFocusRipple`.<!-- 1.4.11:gap:end -->
+- ⚠️ **1.4.12 Text Spacing.** <!-- 1.4.12:gap:start -->The extended Fab has a fixed height. The WCAG letter and word spacing can make a one-line label wrap. Two lines are taller than the `medium` and `small` Fabs, so the label spills out.<!-- 1.4.12:gap:end -->
 
 ## Success criteria
 
@@ -193,6 +192,7 @@ Tested by: unit `Fab.test.js` · axe-core `color-contrast` ❌
 - An extended Fab renders `contrastText` on `main`, like a contained Button. `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. A unit test confirms that only these colors fail, from the [palette contrast contract](../../test/contrastContract.ts). axe-core `color-contrast` records the failure.
 - On hover, the fill changes to `dark`. Each color then reaches `4.5:1`, except `warning` at `3.79:1`.
 - On keyboard focus and on press, the ripple paints `contrastText` at `30%` over the label. Each palette color is then less than `4.5:1`: `2.23:1` (`warning`) to `3.57:1` (`secondary`) on focus, and up to `4.16:1` on a mouse press. This also applies to a contained Button.
+- The `focusVisible` theme ring does not remove the focus ripple. To keep the label on the plain fill, set `disableFocusRipple` with the ring.
 - The `default` color is `rgba(0, 0, 0, 0.87)` on `grey[300]`, at `12.77:1` (`grey[900]`, `12.20:1`, with CSS theme variables). It stays at `7.43:1` or more on the ripple.
 - With `color="inherit"`, the label takes the parent text color on a `grey[300]` fill. The author must check this pair. Disabled Fabs are exempt.
 
@@ -207,29 +207,6 @@ Tested by: unit `Fab.test.js` · axe-core `color-contrast` ❌
 
 **Pass:** <!-- 1.4.3:pass:start -->the label is at least `4.5:1` in the resting, hover, focused, and pressed states. `info` and `warning` fail at rest, and each palette color fails on the ripple.<!-- 1.4.3:pass:end -->
 
-#### 1.4.4 Resize Text · AA
-
-`⚠️ Partially Supports` · `◐ Shared`
-
-Tested by: Playwright
-
-<!-- 1.4.4:start -->
-
-- The label and the icon use `rem`, so they scale with the text size. A Playwright test confirms that the extended-size demo, with short labels, does not clip or overflow at a 200% text size.
-- The extended Fab has a fixed height (48, 40, or 34 px). A label that wraps grows taller than the Fab. In a 280 px container at a 200% text size, the label spills about 90 px above and below the Fab. The spilled `contrastText` can be invisible on the page.
-- Full-page zoom scales the height too, so it does not cause this. Text-only resize does, and the library tests 1.4.4 with text-only resize.
-- To fix it, set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`. Then the Fab grows with its label.
-
-**Manual testing steps**
-
-1. Render an extended Fab with a long label in a narrow container.
-2. Set the browser text size to 200%.
-3. Make sure that the full label stays inside the Fab.
-
-<!-- 1.4.4:end -->
-
-**Pass:** <!-- 1.4.4:pass:start -->the full label stays readable inside the Fab. A label that wraps fails with the default styles.<!-- 1.4.4:pass:end -->
-
 #### 1.4.10 Reflow · AA
 
 `⚠️ Partially Supports` · `◐ Shared`
@@ -239,7 +216,7 @@ Tested by: Playwright
 <!-- 1.4.10:start -->
 
 - A circular Fab has a fixed size of 40 to 56 CSS px. An extended Fab is as wide as its label. A Playwright test confirms that the extended-size demo does not scroll horizontally at 320 px.
-- At 320 px, a long label wraps. The fixed height does not grow, so the label spills out of the Fab, as in 1.4.4. The `FabA11yLongLabel` fixture records this in a screenshot.
+- At 320 px, a label wider than the viewport wraps. Two lines at line-height 1.75 are 49 px high. The fixed height does not grow, so the label spills out of the Fab, as under text-only resize in 1.4.4.
 
 **Manual testing steps**
 
@@ -260,8 +237,9 @@ Tested by: unit `Fab.test.js`
 <!-- 1.4.11:start -->
 
 - The icon is `contrastText` on `main`. A unit test confirms that it reaches `3:1` against the fill at rest, in each of the six palette colors (`primary` to `warning`). `warning` is the lowest, at `3.11:1`.
-- The focus indicator is the focus ripple: `contrastText` at `30%` opacity over the fill. It is `1.39:1` (`warning`) to `1.87:1` (`default`) against the fill, which is less than `3:1`. The box-shadow does not change on focus.
+- The focus indicator is the focus ripple: `contrastText` at `30%` opacity over the fill. It is `1.39:1` (`warning`) to `1.85:1` (`default`) against the fill, which is less than `3:1`. The box-shadow does not change on focus.
 - On the ripple, the icon is less than `3:1` in `warning` (`2.23:1`), `info` (`2.54:1`), `primary` (`2.80:1`), and `success` (`2.92:1`).
+- The `focusVisible` theme ring does not remove the focus ripple. Set `disableFocusRipple` with the ring, so that the icon stays on the plain fill.
 - The `default` fill (`grey[300]`) is `1.32:1` against a white page. The icon or label identifies the Fab, so the fill boundary does not need `3:1`.
 
 **Manual testing steps**
@@ -270,11 +248,12 @@ Tested by: unit `Fab.test.js`
 2. Press <kbd>Tab</kbd> to the Fab so that the focus indicator shows.
 3. Sample the rendered ripple color with the DevTools color picker.
 4. Measure the ripple against the fill, and the icon against the ripple.
-5. With the `focusVisible` theme ring, measure the ring against the page behind the Fab.
+5. Set the `focusVisible` theme ring and `disableFocusRipple`.
+6. Measure the ring against the page behind the Fab.
 
 <!-- 1.4.11:end -->
 
-**Pass:** <!-- 1.4.11:pass:start -->the icon and the focus indicator are at least `3:1`. Disabled Fabs are exempt. The default focus ripple fails. The `focusVisible` theme ring fixes it on a light page. On a colored or dark page, measure the ring.<!-- 1.4.11:pass:end -->
+**Pass:** <!-- 1.4.11:pass:start -->the icon and the focus indicator are at least `3:1`. Disabled Fabs are exempt. The default focus ripple fails. The `focusVisible` theme ring with `disableFocusRipple` fixes it on a light page. On a colored or dark page, measure the ring.<!-- 1.4.11:pass:end -->
 
 #### 1.4.12 Text Spacing · AA
 
@@ -285,17 +264,19 @@ Tested by: Playwright
 <!-- 1.4.12:start -->
 
 - A Playwright test applies the WCAG text-spacing values to the extended-size demo. Its short labels do not overflow.
-- A label that wraps has the same problem as in 1.4.4. The fixed height does not grow, so the text spills out of the Fab.
+- The label already has line-height 1.75, so the WCAG value of 1.5 does not make it taller.
+- The letter and word spacing make the label wider, so a one-line label can wrap. Two lines are 42 px high at line-height 1.5, and 49 px at 1.75. This is more than the `medium` (40 px) and `small` (34 px) heights, so the text spills out of the Fab.
+- The second column of the `FabA11yLongLabel` fixture shows this. Each label fits on one line at the default spacing, and wraps to two lines with the WCAG values.
 
 **Manual testing steps**
 
-1. Render an extended Fab with a long label in a narrow container.
+1. Render a `small` extended Fab whose label fits on one line, in a container a little wider than the Fab.
 2. Apply the WCAG text-spacing values, for example with a text-spacing bookmarklet.
 3. Make sure that the full label stays inside the Fab.
 
 <!-- 1.4.12:end -->
 
-**Pass:** <!-- 1.4.12:pass:start -->the full label stays inside the Fab. A label that wraps fails with the default styles.<!-- 1.4.12:pass:end -->
+**Pass:** <!-- 1.4.12:pass:start -->the full label stays inside the Fab. A label that wraps to two lines fails in the `medium` and `small` sizes with the default styles.<!-- 1.4.12:pass:end -->
 
 #### 2.4.4 Link Purpose (In Context) · A
 
@@ -384,6 +365,23 @@ In NVDA, move the cursor with the arrow keys. In VoiceOver, use <kbd>VO</kbd>+<k
 **Pass:** <!-- 4.1.2:pass:start -->the name, role, and state are correct for each kind. The disabled one announces "disabled", and the `href` one "link".<!-- 4.1.2:pass:end -->
 
 ### ⚙️ Automated
+
+#### 1.4.4 Resize Text · AA
+
+`✅ Supports` · `◐ Shared`
+
+Tested by: Playwright
+
+<!-- 1.4.4:start -->
+
+- The label and the icon use `rem`, and the extended Fab has a fixed px height (48, 40, or 34 px). Under 200% page zoom, the height and the label scale together, so the label stays inside the Fab. Page zoom decides the 1.4.4 rating (WCAG technique G142). A Playwright test confirms this on the extended-size demo.
+- Under text-only resize, the label grows but the height does not. A label that wraps then grows taller than the Fab, and the spilled `contrastText` can be invisible on the page. The third column of the `FabA11yLongLabel` fixture shows this: it doubles the rem sizes, and each label wraps to two or three lines of 49 px. Three lines are 147 px high, so they spill about 50 px above and below the 48 px Fab.
+- A second Playwright test confirms that the extended-size demo, with short labels, survives a 200% text-only resize.
+- To make long labels safe under text-only resize, set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`. Then the Fab grows with its label.
+
+<!-- 1.4.4:end -->
+
+**Pass:** <!-- 1.4.4:pass:start -->the full label stays readable inside the Fab at 200% page zoom.<!-- 1.4.4:pass:end -->
 
 #### 2.1.1 Keyboard · A
 
@@ -478,7 +476,8 @@ Tested by: unit `Fab.test.js`
 
 <!-- 3.2.2:start -->
 
-- A change to `aria-pressed` does not move focus and does not run `onClick`. A unit test confirms this. Only a real activation runs the handler.
+- A unit test activates a toggle Fab with <kbd>Enter</kbd>. `aria-pressed` changes, and focus stays on the Fab.
+- A second unit test changes `aria-pressed` from the parent. Focus stays, and `onClick` does not run.
 
 <!-- 3.2.2:end -->
 
@@ -510,7 +509,7 @@ Tested by: unit `Fab.test.js`
 <!-- level-aaa:start -->
 
 - **2.5.5 Target Size (Enhanced), 44 px.** `large` (56 px) and `medium` (48 px) circular Fabs are larger than 44 px. A `small` Fab (40 px) and the `small` and `medium` extended Fabs (34 and 40 px high) are smaller. `🚩`
-- **2.4.13 Focus Appearance.** The focus ripple does not meet it, because its contrast against the fill is `1.39:1` to `1.87:1`, less than `3:1`. `🚩`
+- **2.4.13 Focus Appearance.** The focus ripple does not meet it, because its contrast against the fill is `1.39:1` to `1.85:1`, less than `3:1`. `🚩`
 - **1.4.6 Contrast (Enhanced), 7:1.** Each palette color is less than 7:1 with `contrastText`. Only `default` passes. `🚩`
 - **2.3.3 Animation from Interactions.** The ripple honors `prefers-reduced-motion` when the theme sets `motion.reducedMotion`. The default is `never`. `disableRipple` also removes it. `🚩`
 

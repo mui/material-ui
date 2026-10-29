@@ -178,7 +178,7 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   {
     test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
     enabled: true,
-  }, // Visual record of the long-label gap in the fixed-height extended Fab (1.4.4, 1.4.10, 1.4.12)
+  }, // Fab labels fit at default, then wrap under text spacing and 200% text (1.4.4, 1.4.10, 1.4.12)
   {
     test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
     enabled: true,
@@ -396,9 +396,10 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // The long labels spill out of the fixed-height extended Fab, the documented
-  // 1.4.4/1.4.10/1.4.12 gap. axe cannot resolve the background of the spilled
-  // text, so `color-contrast` is recorded as incomplete without failing CI.
+  // Under text spacing and 200% text, the labels spill out of the fixed-height
+  // extended Fab, the documented 1.4.4/1.4.10/1.4.12 gap. axe cannot resolve the
+  // background of the spilled text, so `color-contrast` is recorded as incomplete
+  // without failing CI.
   {
     test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
     enabled: true,

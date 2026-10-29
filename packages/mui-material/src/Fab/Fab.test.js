@@ -429,27 +429,54 @@ describe('<Fab />', () => {
       expect(handleClick).toHaveBeenCalledTimes(0);
     });
 
-    it('3.2.2 On Input: changing the pressed state keeps focus and does not activate the Fab', async () => {
-      const handleClick = vi.fn();
-      const { rerender, user } = render(
-        <Fab aria-label="Favorite" onClick={handleClick} aria-pressed={false}>
-          {icon}
-        </Fab>,
-      );
-      await user.tab();
-      const fab = screen.getByRole('button');
+    describe('3.2.2 On Input', () => {
+      it('a toggle activated with Enter changes aria-pressed and keeps focus', async () => {
+        function ToggleFab() {
+          const [pressed, setPressed] = React.useState(false);
+          return (
+            <Fab
+              aria-label="Favorite"
+              aria-pressed={pressed}
+              onClick={() => setPressed((previous) => !previous)}
+            >
+              {icon}
+            </Fab>
+          );
+        }
+        const { user } = render(<ToggleFab />);
+        const fab = screen.getByRole('button', { name: 'Favorite' });
 
-      rerender(
-        <Fab aria-label="Favorite" onClick={handleClick} aria-pressed>
-          {icon}
-        </Fab>,
-      );
-      // The change of setting moves no focus and runs no action.
-      expect(fab).toHaveFocus();
-      expect(handleClick).toHaveBeenCalledTimes(0);
+        await user.tab();
+        expect(fab).to.have.attribute('aria-pressed', 'false');
 
-      await user.keyboard('{Enter}');
-      expect(handleClick).toHaveBeenCalledTimes(1);
+        await user.keyboard('{Enter}');
+        expect(fab).to.have.attribute('aria-pressed', 'true');
+        expect(fab).toHaveFocus();
+
+        await user.keyboard('{Enter}');
+        expect(fab).to.have.attribute('aria-pressed', 'false');
+        expect(fab).toHaveFocus();
+      });
+
+      it('a change of aria-pressed from the parent does not run onClick', async () => {
+        const handleClick = vi.fn();
+        const { rerender, user } = render(
+          <Fab aria-label="Favorite" onClick={handleClick} aria-pressed={false}>
+            {icon}
+          </Fab>,
+        );
+        await user.tab();
+        const fab = screen.getByRole('button');
+
+        rerender(
+          <Fab aria-label="Favorite" onClick={handleClick} aria-pressed>
+            {icon}
+          </Fab>,
+        );
+        expect(fab).to.have.attribute('aria-pressed', 'true');
+        expect(fab).toHaveFocus();
+        expect(handleClick).toHaveBeenCalledTimes(0);
+      });
     });
 
     describe('4.1.2 Name, Role, Value', () => {

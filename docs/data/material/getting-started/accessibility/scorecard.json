@@ -3,10 +3,10 @@
   "componentCount": 14,
   "totals": {
     "rated": 32,
-    "supports": 24,
-    "partiallySupports": 8,
+    "supports": 25,
+    "partiallySupports": 7,
     "doesNotSupport": 0,
-    "flagged": 13
+    "flagged": 12
   },
   "criteria": [
     {
@@ -69,9 +69,9 @@
       "number": "1.4.4",
       "name": "Resize Text",
       "level": "AA",
-      "conformance": "Partially Supports",
-      "flagged": true,
-      "affected": ["Fab"]
+      "conformance": "Supports",
+      "flagged": false,
+      "affected": []
     },
     {
       "number": "1.4.5",
@@ -735,7 +735,7 @@
         "partiallySupports": 2,
         "doesNotSupport": 0,
         "notApplicable": 44,
-        "flagged": 5,
+        "flagged": 4,
         "rated": 11
       },
       "gaps": [
@@ -811,8 +811,8 @@
           "level": "AA",
           "conformance": "Supports",
           "responsibility": "Component",
-          "group": "Manual",
-          "flagged": true
+          "group": "Automated",
+          "flagged": false
         },
         {
           "number": "1.4.5",
@@ -858,8 +858,8 @@
         "supports": 9,
         "partiallySupports": 2,
         "doesNotSupport": 0,
-        "verified": 6,
-        "automated": 2
+        "verified": 7,
+        "automated": 3
       }
     },
     {
@@ -1542,8 +1542,8 @@
     {
       "component": "Fab",
       "counts": {
-        "supports": 20,
-        "partiallySupports": 5,
+        "supports": 21,
+        "partiallySupports": 4,
         "doesNotSupport": 0,
         "notApplicable": 30,
         "flagged": 6,
@@ -1553,11 +1553,6 @@
         {
           "number": "1.4.3",
           "name": "Contrast (Minimum)",
-          "conformance": "Partially Supports"
-        },
-        {
-          "number": "1.4.4",
-          "name": "Resize Text",
           "conformance": "Partially Supports"
         },
         {
@@ -1635,9 +1630,9 @@
           "number": "1.4.4",
           "name": "Resize Text",
           "level": "AA",
-          "conformance": "Partially Supports",
+          "conformance": "Supports",
           "responsibility": "Shared",
-          "group": "Hybrid",
+          "group": "Automated",
           "flagged": false
         },
         {
@@ -1807,11 +1802,11 @@
         "rated": 25,
         "levelA": 14,
         "levelAA": 11,
-        "supports": 20,
-        "partiallySupports": 5,
+        "supports": 21,
+        "partiallySupports": 4,
         "doesNotSupport": 0,
         "verified": 19,
-        "automated": 8
+        "automated": 9
       }
     },
     {

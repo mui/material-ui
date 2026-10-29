@@ -23,13 +23,13 @@ export default function FabA11ySemanticStates() {
       <Fab href="#fab-a11y-link" color="secondary" aria-label="Edit profile">
         <EditIcon />
       </Fab>
-      <Fab disabled aria-label="Add item">
+      <Fab disabled aria-label="Add item (disabled)">
         <AddIcon />
       </Fab>
       <Fab aria-label="Add to favorites" aria-pressed="true" color="error">
         <FavoriteIcon />
       </Fab>
-      <Fab component={CustomDivButton} nativeButton={false} aria-label="Add item" size="small">
+      <Fab component={CustomDivButton} nativeButton={false} aria-label="Add note" size="small">
         <AddIcon />
       </Fab>
     </Stack>
