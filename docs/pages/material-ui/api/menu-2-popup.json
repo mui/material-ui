@@ -41,10 +41,7 @@
       "default": "5"
     },
     "container": {
-      "type": {
-        "name": "union",
-        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
-      }
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;object" }
     },
     "disableAnchorTracking": { "type": { "name": "bool" }, "default": "false" },
     "elevation": { "type": { "name": "number" }, "default": "8" },

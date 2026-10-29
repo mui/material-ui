@@ -392,6 +392,9 @@ Leave `keepMounted` disabled on `MenuPopup` inside a kept-mounted Dialog.
 
 ### Portal containers
 
+`container` on `MenuPopup` accepts an element or a ref, but not a function.
+Replace `container={() => element}` with `container={element}`.
+
 With `defaultOpen` or `keepMounted`, `MenuPopup` can read a `container` ref before its element is attached.
 The menu then renders in `document.body` instead of the container.
 Keep the container element in state with a callback ref, and pass that element to `container`.

@@ -357,7 +357,6 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
     PropTypes.object,
-    PropTypes.func,
   ]),
   /**
    * Whether to disable the popup from tracking layout shifts of its positioning anchor.

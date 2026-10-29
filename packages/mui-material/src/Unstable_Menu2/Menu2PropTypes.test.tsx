@@ -200,7 +200,7 @@ describe('Menu2 public popup prop validation', () => {
         });
       });
 
-      it('accepts DOM and shadow-root containers, refs, and legacy callbacks', () => {
+      it('accepts DOM and shadow-root containers and refs', () => {
         const element = document.createElement('div');
         const shadowRoot = element.attachShadow({ mode: 'open' });
         [
@@ -209,7 +209,6 @@ describe('Menu2 public popup prop validation', () => {
           { current: element },
           { current: shadowRoot },
           { current: null },
-          () => element,
           null,
           undefined,
         ].forEach((container) => {
