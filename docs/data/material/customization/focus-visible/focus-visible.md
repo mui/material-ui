@@ -101,24 +101,22 @@ Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [
 
 ### Moving the indicator outside or inside
 
-Starting from v9.6, use `theme.scaleFocusVisibleOffset(value)` to move the indicator of a component outside or inside its edge.
-The value multiplies the theme's `outlineOffset`, so it is not a pixel value:
+Starting from v9.6, use `theme.scaleFocusVisibleOffset(number)` to move the indicator of a component outside or inside its edge.
+For example, a menu with padding leaves room to draw the [inner focus indicator](#inner-focus-indicator) of `MenuItem` outside.
+The number multiplies the theme's `outlineOffset`, so it is not a pixel value:
 
-- `1` keeps the indicator at the theme's offset.
-- `-1` mirrors it to the other side of the component's edge.
+- `1` keeps the indicator at the theme's offset, which is outside the edge by default.
+- `-1` mirrors it to the other side of the edge, which is inside by default.
 - `2` doubles its distance from the edge.
-
-With the default indicator, a positive value draws it outside the component and a negative value draws it inside.
 
 {{"component": "file://./demos/offset/index.ts"}}
 
-:::info
-A negative value mirrors the theme's `outlineOffset`, so it moves the outline inside only when the theme's `outlineOffset` is positive.
-With `outlineOffset: 0` or a negative value, a negative scale keeps the outline outside the component.
-:::
+A negative number draws the outline inside only when the theme's `outlineOffset` is positive.
+With `outlineOffset: 0` or a negative value, a negative number keeps the outline outside the component.
 
 :::warning
-Only move the indicator outside when the container leaves enough room for it. Otherwise, the container clips the indicator or the indicator overlaps neighboring elements.
+Move the indicator outside only when the container leaves room for it.
+Otherwise, the container clips the indicator, or the indicator overlaps neighboring elements.
 :::
 
 ## Full focus visible demo
