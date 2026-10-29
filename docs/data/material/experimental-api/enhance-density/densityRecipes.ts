@@ -58,6 +58,7 @@ const densityRecipes: DensityRecipe[] = [
         xxLarge: 32,
       },
       touchTarget: 24,
+      iconSize: 12,
     },
     typography: {
       body1: { fontSize: '0.75rem', lineHeight: '16px' },

@@ -135,8 +135,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
   const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`; // 48px
   // Icons ride the glyph constant the same way boxes ride the interactive one.
-  const iconSmall = `calc(${iconSize} - 2px)`;
-  const iconLarge = `calc(${iconSize} + 4px)`;
+  const iconSmall = `calc(${iconSize} - ${spacing('xxSmall')})`;
+  const iconLarge = `calc(${iconSize} + 8px)`;
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
   const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
   const filledInputMediumPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`;

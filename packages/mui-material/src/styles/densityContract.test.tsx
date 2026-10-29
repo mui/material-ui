@@ -444,9 +444,9 @@ const CONTROLS: Record<string, Spec> = {
 };
 
 const ICON_SIZES = {
-  small: (density: Density) => density.iconSize - 2,
+  small: (density: Density) => density.iconSize - density.step.xxSmall,
   medium: (density: Density) => density.iconSize,
-  large: (density: Density) => density.iconSize + 4,
+  large: (density: Density) => density.iconSize + 8,
 };
 
 const BOX_PROPS = ['height', 'minHeight', 'width', 'minWidth', '--_size', '--_height'];

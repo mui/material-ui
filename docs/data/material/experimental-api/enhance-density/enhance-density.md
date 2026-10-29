@@ -45,7 +45,7 @@ The enhancer also modernizes components like Button that use the margin-based sp
 The enhancer lets you set 2 sizing variables:
 
 - `touchTarget` (default 32px): the height of a medium interactive control, applied across the library so controls of the same size share the same box. By default, small controls are 28px and large controls are 44px.
-- `iconSize` (default 16px): the size of a medium icon, applied to `SvgIcon` and to the icons inside IconButton, Checkbox, Radio, Chip (except its delete icon), and the Select caret. By default, small icons are 14px and large icons are 20px.
+- `iconSize` (default 16px): the size of a medium icon, applied to `SvgIcon` and to the icons inside IconButton, Checkbox, Radio, Chip (except its delete icon), and the Select caret. By default, small icons are 12px and large icons are 24px.
 
 :::info
 Without the enhancer, a medium icon is 24px. With the default `iconSize`, the icons listed above render at 16px. These icons keep their own sizes: the Button start and end icons, the Alert icon, StepIcon, the Pagination arrows, and the Chip delete icon.
@@ -203,7 +203,7 @@ const theme = enhanceDensity(
       xxLarge: 32,
     },
     touchTarget: 24,
-    iconSize: 14,
+    iconSize: 12,
   },
 );
 ```

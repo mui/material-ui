@@ -438,7 +438,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiCheckbox-root',
         aspect: 'icon',
-        token: small ? 'iconSize - 2px' : 'iconSize',
+        token: small ? 'iconSize - xxSmall' : 'iconSize',
         label: 'Checkbox icon',
         route: { gutter: 'top' },
       },
@@ -733,7 +733,7 @@ export const DENSITY_ANNOTATIONS = {
       {
         on: '.MuiRadio-root',
         aspect: 'icon',
-        token: small ? 'iconSize - 2px' : 'iconSize',
+        token: small ? 'iconSize - xxSmall' : 'iconSize',
         label: 'Radio icon',
         route: { gutter: 'top' },
       },
@@ -962,9 +962,9 @@ export const DENSITY_ANNOTATIONS = {
       on: '.MuiSvgIcon-root',
       aspect: 'icon',
       token: {
-        small: 'iconSize - 2px',
+        small: 'iconSize - xxSmall',
         medium: 'iconSize',
-        large: 'iconSize + 4px',
+        large: 'iconSize + 8px',
       }[values.fontSize],
       label: 'Icon',
     },

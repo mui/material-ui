@@ -38,7 +38,7 @@ export const DENSITIES: Density[] = [
     id: 'high',
     step: { xxSmall: 2, xSmall: 4, small: 8, medium: 12, large: 16, xLarge: 24, xxLarge: 32 },
     touchTarget: 24,
-    iconSize: 16,
+    iconSize: 12,
     typography: {
       body1: { fontSize: '0.75rem', lineHeight: '16px' },
       body2: { fontSize: '0.6875rem', lineHeight: '14px' },
