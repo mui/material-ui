@@ -78,6 +78,23 @@ export interface BaseTheme extends SystemTheme {
   focusVisible?: FocusVisible | false | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
+  /**
+   * Scales the `theme.focusVisible` ring's `outlineOffset` on the element.
+   *
+   * - `1` keeps the ring at the theme's offset.
+   * - `-1` mirrors it to the other side of the element's edge, and also insets the ring's `boxShadow`.
+   * - `2` doubles its distance from the edge.
+   *
+   * With the default ring, a positive value draws it outside the element and a negative value draws it inside.
+   * A theme `outlineOffset` of zero or less doesn't move the outline inside with a negative value.
+   *
+   * @param scale A multiplier of the theme's `outlineOffset`, not a pixel value.
+   * @example
+   * styleOverrides: {
+   *   root: ({ theme }) => theme.scaleFocusVisibleOffset(1),
+   * }
+   */
+  scaleFocusVisibleOffset: (scale: number) => CSSObject;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
@@ -112,19 +129,6 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   alpha: (color: string, value: number | string) => string;
   lighten: (color: string, coefficient: number | string) => string;
   darken: (color: string, coefficient: number | string) => string;
-  /**
-   * Moves the `theme.focusVisible` ring relative to the element's edge.
-   *
-   * - Positive = outset: the ring is drawn outside the element.
-   * - Negative = inset: the ring is drawn inside the element.
-   *
-   * @param offset A multiplier, not pixels. `1` is the ring's default position, `-1` mirrors it inward, and `2` doubles its distance from the edge.
-   * @example
-   * styleOverrides: {
-   *   root: ({ theme }) => theme.setFocusVisibleOffset(1),
-   * }
-   */
-  setFocusVisibleOffset: (offset: number) => CSSObject;
 }
 
 /**

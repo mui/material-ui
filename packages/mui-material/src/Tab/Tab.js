@@ -62,7 +62,7 @@ const TabRoot = styled(ButtonBase, {
     textAlign: 'center',
     lineHeight: 1.25,
     // Inset the ring: the Tabs scroller clips an outset ring.
-    ...(theme.focusVisible && theme.setFocusVisibleOffset(-3)),
+    ...(theme.focusVisible && theme.scaleFocusVisibleOffset(-3)),
     variants: [
       {
         props: ({ ownerState }) =>

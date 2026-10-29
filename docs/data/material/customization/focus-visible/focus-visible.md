@@ -2,7 +2,7 @@
 
 <p class="description">Apply an outline or inset keyboard focus across Material UI components.</p>
 
-Starting from v9.6, Material UI provides built-in support for visual keyboard focus indicator through CSS. The demos on this page opt out of the ripple to show only the focus visible indicator.
+Starting from v9.4, Material UI provides built-in support for visual keyboard focus indicator through CSS. The demos on this page opt out of the ripple to show only the focus visible indicator.
 
 ## Usage
 
@@ -101,14 +101,21 @@ Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [
 
 ### Moving the indicator outside or inside
 
-Use `theme.setFocusVisibleOffset(value)` to move the indicator of a component outside or inside its edge:
+Starting from v9.6, use `theme.scaleFocusVisibleOffset(value)` to move the indicator of a component outside or inside its edge.
+The value multiplies the theme's `outlineOffset`, so it is not a pixel value:
 
-- A positive value draws the indicator outside the component.
-- A negative value draws it inside the component.
+- `1` keeps the indicator at the theme's offset.
+- `-1` mirrors it to the other side of the component's edge.
+- `2` doubles its distance from the edge.
 
-The value is a multiplier, not a pixel value. `1` is the indicator's default position, `-1` mirrors it inward, and `2` doubles its distance from the edge.
+With the default indicator, a positive value draws it outside the component and a negative value draws it inside.
 
 {{"component": "file://./demos/offset/index.ts"}}
+
+:::info
+A negative value mirrors the theme's `outlineOffset`, so it moves the outline inside only when the theme's `outlineOffset` is positive.
+With `outlineOffset: 0` or a negative value, a negative scale keeps the outline outside the component.
+:::
 
 :::warning
 Only move the indicator outside when the container leaves enough room for it. Otherwise, the container clips the indicator or the indicator overlaps neighboring elements.

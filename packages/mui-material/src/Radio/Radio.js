@@ -49,7 +49,7 @@ const RadioRoot = styled(SwitchBase, {
     color: (theme.vars || theme).palette.text.secondary,
     ...(theme.focusVisible && {
       [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
-        ...theme.setFocusVisibleOffset(1),
+        ...theme.scaleFocusVisibleOffset(1),
         borderRadius: 99,
         ...theme.focusVisible,
       },

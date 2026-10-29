@@ -36,7 +36,7 @@ const DialogContentRoot = styled('div', {
     padding: '20px 24px',
     ...(theme.focusVisible && {
       '&:focus-visible': {
-        ...theme.setFocusVisibleOffset(-1),
+        ...theme.scaleFocusVisibleOffset(-1),
         ...theme.focusVisible,
       },
     }),
