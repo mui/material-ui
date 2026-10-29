@@ -10,6 +10,7 @@ import Switch from '@mui/material/Switch';
 import ToggleButton from '@mui/material/ToggleButton';
 import Chip from '@mui/material/Chip';
 import Fab from '@mui/material/Fab';
+import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import PaginationItem from '@mui/material/PaginationItem';
@@ -1056,6 +1057,39 @@ describe.skipIf(isJsdom())('density contract', () => {
           drift(rect('.MuiCheckbox-root svg').left - rect('[data-testid="container"]').left),
         ).to.equal(0);
       });
+
+      test(`${density.id}: a Switch with its thumb inside the track pulls the track onto the container edge`, () => {
+        renderIn(
+          THEMES[density.id],
+          <div data-testid="container">
+            <FormControlLabel
+              control={
+                <Switch
+                  sx={{
+                    '--_trackWidth': 'calc(2 * var(--_thumbHeight) + 4px)',
+                    '--_trackHeight': 'calc(var(--_thumbHeight) + 4px)',
+                  }}
+                />
+              }
+              label="a"
+            />
+          </div>,
+        );
+        expect(
+          drift(rect('.MuiSwitch-track').left - rect('[data-testid="container"]').left),
+        ).to.equal(0);
+      });
+
+      test(`${density.id}: a Switch takes its track size from the track inputs`, () => {
+        renderIn(
+          THEMES[density.id],
+          <Switch sx={{ '--_trackWidth': '36px', '--_trackHeight': '20px' }} />,
+        );
+        const track = rect('.MuiSwitch-track');
+
+        expect([round2(track.width), round2(track.height)]).to.deep.equal([36, 20]);
+        expect(round2(rect('.MuiSwitch-root').height)).to.equal(density.touchTarget);
+      });
     });
 
     test('a Switch inside a label is pulled in, and sx margins on the label or the Switch win', () => {
@@ -1070,6 +1104,26 @@ describe.skipIf(isJsdom())('density contract', () => {
       expect(css('[data-testid="label"]').marginLeft).to.equal('0px');
       expect(parseFloat(css('[data-testid="plain"] .MuiSwitch-root').marginLeft)).to.be.lessThan(0);
       expect(css('[data-testid="with-sx"] .MuiSwitch-root').marginLeft).to.equal('0px');
+    });
+  });
+
+  describe('alerts', () => {
+    DENSITIES.forEach((density) => {
+      test(`${density.id}: an Alert is touchTarget + 2 × xSmall tall with or without a close button`, () => {
+        renderIn(
+          THEMES[density.id],
+          cases(
+            byName(['plain', 'closable'], (kind) => (
+              <Alert onClose={kind === 'closable' ? () => {} : undefined}>Message</Alert>
+            )),
+          ),
+        );
+        const expected = density.touchTarget + 2 * density.step.xSmall;
+
+        ['plain', 'closable'].forEach((kind) => {
+          expect(rect('.MuiAlert-root', inCase(kind)).height).to.be.closeTo(expected, 0.1);
+        });
+      });
     });
   });
 
