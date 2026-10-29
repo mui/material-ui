@@ -1,4 +1,4 @@
-import { OverridableStringUnion } from '@mui/types';
+import type { OverridableStringUnion } from '@mui/types';
 import { createUnarySpacing } from '../spacing';
 
 export type SpacingOptions =

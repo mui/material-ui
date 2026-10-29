@@ -21,9 +21,11 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
-import { createTheme, ThemeProvider, type Theme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import enhanceDensity from '../src/styles/enhanceDensity';
-import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX, type DensityKey } from '../src/styles/densityScale';
+import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX } from '../src/styles/densityScale';
+import type { DensityKey } from '../src/styles/densityScale';
 
 export type Density = {
   id: string;

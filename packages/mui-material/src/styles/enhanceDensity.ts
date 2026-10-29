@@ -1,12 +1,8 @@
 import deepmerge from '@mui/utils/deepmerge';
 import type { Breakpoint } from '@mui/system';
 import type { Theme } from './createTheme';
-import {
-  applyDensity,
-  DensityEnhancedTheme,
-  DensityScaleOverrides,
-  EnhanceableTheme,
-} from './densityScale';
+import type { DensityEnhancedTheme, DensityScaleOverrides, EnhanceableTheme } from './densityScale';
+import { applyDensity } from './densityScale';
 import switchClasses from '../Switch/switchClasses';
 import breadcrumbsClasses from '../Breadcrumbs/breadcrumbsClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';

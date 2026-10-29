@@ -1,5 +1,5 @@
-import { Theme, ThemeOptions } from './createTheme';
-import { CssVarsTheme } from './createThemeWithVars';
+import type { Theme, ThemeOptions } from './createTheme';
+import type { CssVarsTheme } from './createThemeWithVars';
 
 /** Named steps of the spacing scale, surfaced as `--<prefix>-spacing-*` CSS
  * vars and resolvable through `theme.spacing('<key>')`. */

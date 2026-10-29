@@ -18,7 +18,8 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 import InboxIcon from '@mui/icons-material/Inbox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import StarIcon from '@mui/icons-material/Star';
-import { Annotate, Claim, useClaims } from './densityAnnotations';
+import type { Claim } from './densityAnnotations';
+import { Annotate, useClaims } from './densityAnnotations';
 
 // A row of body text floors at 32px (a 24px line plus its padding), so the
 // steps below that would leave the list where it is.

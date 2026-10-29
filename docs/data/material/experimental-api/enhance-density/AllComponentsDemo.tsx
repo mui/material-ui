@@ -24,12 +24,8 @@ import {
   useClaims,
 } from './densityAnnotations';
 import { annotationsFor } from './densityAnnotationSpecs';
-import {
-  COMPONENT_NAMES,
-  Control,
-  ControlValue,
-  DENSITY_COMPONENTS,
-} from './densityComponents';
+import type { Control, ControlValue } from './densityComponents';
+import { COMPONENT_NAMES, DENSITY_COMPONENTS } from './densityComponents';
 
 // Stable identity, so a family without controls doesn't re-run the memos.
 const NO_CONTROLS: Control[] = [];

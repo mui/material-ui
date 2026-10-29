@@ -10,13 +10,13 @@ import {
   DENSITY_TARGETS,
   DENSITY_THEME,
   resolveClaims,
-  type AnnotateItem,
-  type Claim,
 } from 'docs/data/material/experimental-api/enhance-density/densityAnnotations';
-import {
-  DENSITY_COMPONENTS,
-  type ControlValue,
-} from 'docs/data/material/experimental-api/enhance-density/densityComponents';
+import type {
+  AnnotateItem,
+  Claim,
+} from 'docs/data/material/experimental-api/enhance-density/densityAnnotations';
+import { DENSITY_COMPONENTS } from 'docs/data/material/experimental-api/enhance-density/densityComponents';
+import type { ControlValue } from 'docs/data/material/experimental-api/enhance-density/densityComponents';
 import { annotationsFor } from 'docs/data/material/experimental-api/enhance-density/densityAnnotationSpecs';
 
 type State = Record<string, ControlValue>;

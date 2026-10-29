@@ -14,7 +14,8 @@ import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
 import densityRecipes from './densityRecipes';
 import recipeUis from './recipeUis';
-import { Annotate, Claim, useClaims } from './densityAnnotations';
+import type { Claim } from './densityAnnotations';
+import { Annotate, useClaims } from './densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 

@@ -13,7 +13,8 @@ import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
-import { Annotate, Claim, useClaims } from './densityAnnotations';
+import type { Claim } from './densityAnnotations';
+import { Annotate, useClaims } from './densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 

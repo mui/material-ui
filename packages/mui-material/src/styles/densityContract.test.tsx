@@ -66,7 +66,8 @@ import Slider from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
 import Check from '@mui/icons-material/Check';
-import { createTheme, ThemeProvider, type Theme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
 import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX } from './densityScale';
 import {
@@ -97,8 +98,8 @@ import {
   userWins,
   winsExcept,
   withUser,
-  type Density,
 } from '../../test/densityContract';
+import type { Density } from '../../test/densityContract';
 
 /* eslint-disable vitest/valid-title */
 

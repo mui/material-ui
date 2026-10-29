@@ -1,4 +1,4 @@
-import { Claim } from './densityAnnotations';
+import type { Claim } from './densityAnnotations';
 
 // The authored control height per `size` — the same ladder for every sized
 // button family (Button, Pagination, ToggleButton).
