@@ -3,9 +3,14 @@ import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
 import { HIDDEN_JSDOC_TAGS, IGNORE_HINT } from '../buildApiUtils';
 
 /**
- * Props shared by every component, never listed in the API docs.
+ * Props shared by every component, never listed in the API docs when they have their usual type.
+ * `null` hides the prop whatever its type.
  */
-const HIDDEN_PROPS = new Set(['className', 'style', 'ref']);
+const HIDDEN_PROPS: Record<string, string | null> = {
+  className: 'string',
+  style: 'object',
+  ref: null,
+};
 
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
@@ -34,7 +39,8 @@ export default function createDescribeableProp(
   settings: CreateDescribeablePropSettings = {},
   isExternal = false,
 ): DescribeablePropDescriptor | null {
-  if (HIDDEN_PROPS.has(propName)) {
+  const hiddenType = HIDDEN_PROPS[propName];
+  if (hiddenType !== undefined && (hiddenType === null || prop.type?.name === hiddenType)) {
     return null;
   }
 
