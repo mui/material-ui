@@ -65,13 +65,14 @@ Run the rows matching what you touched, for the component you touched.
 
 ## Button
 
-11 checks · full procedures in [`Button/accessibility.md`](./Button/accessibility.md)
+12 checks · full procedures in [`Button/accessibility.md`](./Button/accessibility.md)
 
 - [ ] 🔁 **1.1.1 Non-text Content** — every button's announced name matches its purpose, and decorative icons are silent.
 - [ ] 🔁 **1.3.1 Info and Relationships** — role and state match the visual presentation for every variant.
 - [ ] 🔁 **1.4.1 Use of Color** — meaning/purpose of the Button can be understood without color.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning` are the known failures.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — border, focus indicator, and any meaningful icon are each at least `3:1`. Disabled and purely decorative parts are exempt.
+- [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where the link goes. Replace vague labels like "Learn more" or "click here".
 - [ ] 🔁 **2.4.6 Headings and Labels** — every label describes its action ("Submit order", not "OK").
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused button shows a visible indicator. Under `disableRipple`, `disableFocusRipple`, and `disableElevation`, the indicator comes from the `focusVisible` theme ring or from author styles.
@@ -114,15 +115,15 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces "button", "link", the disabled state, and the pressed state where they apply.
 - [ ] 🔁 **1.4.1 Use of Color** — the purpose of each icon button stays clear without color.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — the text is at least `4.5:1`. `info` and `warning` are the known failures.
-- [ ] 🔁 **1.4.11 Non-text Contrast** — each icon and the focus indicator are at least `3:1`. Disabled buttons are exempt. The default focus ripple fails. Enable the `focusVisible` theme ring to fix it.
+- [ ] 🔁 **1.4.11 Non-text Contrast** — each icon and the focus indicator are at least `3:1`. Disabled buttons are exempt. The default focus ripple fails. To fix it, enable the `focusVisible` theme ring and set `disableFocusRipple`.
 - [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the spinner shows for less than five seconds, or the user can pause or hide it. With the default styles, the user cannot pause it. Keep `loading` short, or show the progress elsewhere.
-- [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button. It moves to the top of the page, because the button loses focus. Move focus to a nearby element before you set `loading`.
+- [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where each link goes, for example "Open settings" and not "Link".
 - [ ] 🔁 **2.4.6 Headings and Labels** — each label tells the action, for example "Delete file", not "delete icon".
 - [ ] 🔁 **2.4.7 Focus Visible** — each icon button shows a visible indicator on keyboard focus. With `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **2.5.8 Target Size (Minimum)** — the width and height are at least 24 CSS px, or a 24 px circle on the target does not touch another target.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the name, role, and state are correct for each kind, and the disabled one announces "disabled" and the `href` one "link".
-- [ ] 🔍 **4.1.3 Status Messages** — the screen reader announces the change without a focus move. It does not, because the component adds no live region. Put the status in a `role="status"` region to fix it.
+- [ ] 🔍 **4.1.3 Status Messages** — the screen reader announces the change without a focus move.
 
 ## LinearProgress
 

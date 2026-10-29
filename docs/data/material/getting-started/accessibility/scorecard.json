@@ -155,7 +155,7 @@
       "level": "A",
       "conformance": "Partially Supports",
       "flagged": true,
-      "affected": ["IconButton"]
+      "affected": ["Button", "IconButton"]
     },
     {
       "number": "2.4.4",
@@ -865,11 +865,11 @@
     {
       "component": "Button",
       "counts": {
-        "supports": 24,
-        "partiallySupports": 3,
+        "supports": 23,
+        "partiallySupports": 4,
         "doesNotSupport": 0,
         "notApplicable": 28,
-        "flagged": 7,
+        "flagged": 8,
         "rated": 27
       },
       "gaps": [
@@ -881,6 +881,11 @@
         {
           "number": "1.4.11",
           "name": "Non-text Contrast",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
           "conformance": "Partially Supports"
         },
         {
@@ -1011,10 +1016,10 @@
           "number": "2.4.3",
           "name": "Focus Order",
           "level": "A",
-          "conformance": "Supports",
+          "conformance": "Partially Supports",
           "responsibility": "Shared",
-          "group": "Automated",
-          "flagged": false
+          "group": "Hybrid",
+          "flagged": true
         },
         {
           "number": "2.4.4",
@@ -1138,11 +1143,11 @@
         "rated": 27,
         "levelA": 15,
         "levelAA": 12,
-        "supports": 24,
-        "partiallySupports": 3,
+        "supports": 23,
+        "partiallySupports": 4,
         "doesNotSupport": 0,
-        "verified": 20,
-        "automated": 11
+        "verified": 19,
+        "automated": 10
       }
     },
     {

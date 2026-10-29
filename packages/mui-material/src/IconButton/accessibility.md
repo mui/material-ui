@@ -15,7 +15,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Known gaps
 
 - ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->Text inside the button takes the icon color. In `info` (`3.86:1`) and `warning` (`3.11:1`), it is less than `4.5:1` on the default background.<!-- 1.4.3:gap:end -->
-- ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default focus indicator is the focus ripple, at `1.40:1` to `1.65:1` against white. On the ripple, `info` and `warning` icons are less than `3:1`.<!-- 1.4.11:gap:end -->
+- ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default focus indicator is the focus ripple, at `1.40:1` to `1.65:1` against white. On the ripple, `info` and `warning` icons are less than `3:1`. A hovered `warning` icon is `2.98:1`.<!-- 1.4.11:gap:end -->
 - ⚠️ **2.2.2 Pause, Stop, Hide.** <!-- 2.2.2:gap:start -->The `loading` spinner turns until `loading` ends, and the user cannot pause it.<!-- 2.2.2:gap:end -->
 - ⚠️ **2.4.3 Focus Order.** <!-- 2.4.3:gap:start -->A focused button that turns `loading` becomes disabled, and the browser moves focus to the page body.<!-- 2.4.3:gap:end -->
 - ⚠️ **4.1.3 Status Messages.** <!-- 4.1.3:gap:start -->The `loading` state adds no live region, so a screen reader can miss the change.<!-- 4.1.3:gap:end -->
@@ -145,6 +145,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - The `loading` state renders a `CircularProgress` with `role="progressbar"`, named after the button. The component adds no `aria-live` or `role="status"` region, so a screen reader can miss the change.
 - A focused button that turns `loading` also loses focus, see 2.4.3.
 - This applies only when `loading` shows a background task. If the result must be announced, add a live region in the application.
+- With the default component, the screen reader does not announce the change. To fix this, put the status in a `role="status"` region.
 
 **Manual testing steps**
 
@@ -154,7 +155,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 <!-- 4.1.3:end -->
 
-**Pass:** <!-- 4.1.3:pass:start -->the screen reader announces the change without a focus move. It does not, because the component adds no live region. Put the status in a `role="status"` region to fix it.<!-- 4.1.3:pass:end -->
+**Pass:** <!-- 4.1.3:pass:start -->the screen reader announces the change without a focus move.<!-- 4.1.3:pass:end -->
 
 ### 🔁 Hybrid
 
@@ -227,7 +228,8 @@ Tested by: unit `IconButton.test.js` · axe-core `color-contrast` ✅
 
 - The documented content is an icon, which 1.4.11 covers. A `Badge` inside the button sets its own colors.
 - Text inside the button takes the icon color: `main` for each palette color. A unit test confirms that only `info` and `warning` are less than `4.5:1` on `background.paper`, from the [palette contrast contract](../../test/contrastContract.ts). This is the same as for a `text` Button.
-- axe-core `color-contrast` passes on the IconButton demos, which have no colored text.
+- The `default` color is `action.active`, at about `4.59:1` on `background.paper`. A unit test confirms that it reaches `4.5:1`.
+- axe-core `color-contrast` passes on the IconButton demos. Their only text is the white count on the `primary` badge in `IconButtonWithBadge`, and `Badge` sets those colors.
 
 **Manual testing steps**
 
@@ -247,10 +249,12 @@ Tested by: unit `IconButton.test.js`
 <!-- 1.4.11:start -->
 
 - The icon is a graphical object, so it needs `3:1` against the background. A unit test confirms that the icon reaches `3:1` against `background.paper` in the light theme, for `default` and each palette color. `warning` is the lowest, at `3.11:1`.
-- On hover, the background gets a `4%` tint of the icon color. A `warning` icon then drops to about `2.98:1`.
+- On hover, the background gets a `4%` tint of the icon color. A hovered `warning` icon is `2.98:1`, which is less than `3:1`.
 - The focus indicator is the focus ripple: the icon color at `30%` opacity. Against white, it is `1.40:1` (`warning`) to `1.65:1` (`secondary`), which is less than `3:1`. `disableRipple` and `disableFocusRipple` remove it.
 - The ripple also sits behind the icon. On it, `info` (`2.64:1`) and `warning` (`2.22:1`) icons are less than `3:1`.
 - The `loading` spinner uses `action.disabled`, about `1.88:1` against white. The button is disabled while it shows, so the exemption for inactive components can apply. This needs a review.
+- The `focusVisible` theme ring does not remove the focus ripple. To replace the ripple with the ring, also set `disableFocusRipple`.
+- The dark theme passes for the icons. Each icon reaches `3:1` on `#121212`, also on hover and on the ripple. `error` is the lowest, at `5.09:1`. The focus ripple itself stays less than `3:1`.
 
 **Manual testing steps**
 
@@ -261,7 +265,7 @@ Tested by: unit `IconButton.test.js`
 
 <!-- 1.4.11:end -->
 
-**Pass:** <!-- 1.4.11:pass:start -->each icon and the focus indicator are at least `3:1`. Disabled buttons are exempt. The default focus ripple fails. Enable the `focusVisible` theme ring to fix it.<!-- 1.4.11:pass:end -->
+**Pass:** <!-- 1.4.11:pass:start -->each icon and the focus indicator are at least `3:1`. Disabled buttons are exempt. The default focus ripple fails. To fix it, enable the `focusVisible` theme ring and set `disableFocusRipple`.<!-- 1.4.11:pass:end -->
 
 #### 2.4.3 Focus Order · A
 
@@ -273,6 +277,7 @@ Tested by: unit `IconButton.test.js`
 
 - The button is one tab stop in DOM order, with no positive `tabIndex`. A disabled or loading button leaves the tab order. Unit tests confirm this.
 - A focused button that turns `loading` becomes disabled. Chromium then moves focus to the page body, so the next <kbd>Tab</kbd> starts again from the top of the page. The unit tests run in jsdom too, which keeps focus on the button, so they do not show this.
+- To prevent this, move focus to a nearby element before you set `loading`.
 
 **Manual testing steps**
 
@@ -282,7 +287,7 @@ Tested by: unit `IconButton.test.js`
 
 <!-- 2.4.3:end -->
 
-**Pass:** <!-- 2.4.3:pass:start -->focus moves to the next element after the button. It moves to the top of the page, because the button loses focus. Move focus to a nearby element before you set `loading`.<!-- 2.4.3:pass:end -->
+**Pass:** <!-- 2.4.3:pass:start -->focus moves to the next element after the button.<!-- 2.4.3:pass:end -->
 
 #### 2.4.4 Link Purpose (In Context) · A
 
@@ -499,7 +504,9 @@ Tested by: unit `IconButton.test.js`
 
 <!-- 3.2.2:start -->
 
-- A change to `aria-pressed` does not move focus and does not run `onClick`. A unit test confirms this. Only a real activation runs the handler. A change to `loading` moves focus, see 2.4.3.
+- A unit test toggles `aria-pressed` with <kbd>Enter</kbd> and <kbd>Space</kbd>. Focus stays on the button after each toggle.
+- A unit test changes `aria-pressed` and then `loading` from code. Neither change runs `onClick`, and the `aria-pressed` change keeps focus on the button. Only a real activation runs the handler.
+- A focused button that turns `loading` loses focus in the browser. The 2.4.3 gap covers this.
 
 <!-- 3.2.2:end -->
 
@@ -530,7 +537,7 @@ Tested by: unit `IconButton.test.js`
 
 - **2.5.5 Target Size (Enhanced), 44 px.** `small` and `medium` are smaller than 44 px. Only `large` (52 px) is larger. `🚩`
 - **2.4.13 Focus Appearance.** The focus ripple does not meet it, because its contrast is `1.40:1` to `1.65:1`. `🚩`
-- **2.3.3 Animation from Interactions.** The ripple honors `prefers-reduced-motion` when the theme sets `motion.reducedMotion`. The default is `never`. `disableRipple` also removes it. `🚩`
+- **2.3.3 Animation from Interactions.** The ripple honors `prefers-reduced-motion` when the theme sets `motion.reducedMotion` to `system` or `always`. The default is `never`. `disableRipple` also removes the ripple. `🚩`
 
 <!-- level-aaa:end -->
 

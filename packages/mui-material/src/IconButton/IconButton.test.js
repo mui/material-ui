@@ -296,6 +296,18 @@ describe('<IconButton />', () => {
       expect(failing).to.deep.equal([...FAILING_PALETTE_COLORS]);
     });
 
+    it('1.4.3 Contrast (Minimum): text children in the default color reach 4.5:1', () => {
+      const theme = createTheme();
+      render(<IconButton aria-label="Default">A</IconButton>);
+
+      // The default color is `action.active`, about 4.59:1 on the paper background.
+      const { color: textColor } = window.getComputedStyle(screen.getByRole('button'));
+      expect(
+        contrastRatio(textColor, theme.palette.background.paper),
+        `default text color ${textColor}`,
+      ).to.be.at.least(WCAG_MINIMUM_RATIO.normalText);
+    });
+
     it('1.4.11 Non-text Contrast: the icon reaches 3:1 against the paper background in every color', () => {
       const theme = createTheme();
       const colors = ['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'];
@@ -432,30 +444,62 @@ describe('<IconButton />', () => {
       expect(handleClick).toHaveBeenCalledTimes(0);
     });
 
-    it('3.2.2 On Input: toggling the pressed state keeps focus and changes no context', async () => {
-      function FavoriteToggle() {
-        const [pressed, setPressed] = React.useState(false);
-        return (
+    describe('3.2.2 On Input', () => {
+      it('toggling the pressed state with the keyboard keeps focus and changes no context', async () => {
+        function FavoriteToggle() {
+          const [pressed, setPressed] = React.useState(false);
+          return (
+            <IconButton
+              aria-label="Favorite"
+              aria-pressed={pressed}
+              onClick={() => setPressed((previous) => !previous)}
+            >
+              {icon}
+            </IconButton>
+          );
+        }
+        const { user } = render(<FavoriteToggle />);
+        await user.tab();
+        const button = screen.getByRole('button', { name: 'Favorite' });
+
+        await user.keyboard('{Enter}');
+        expect(button).to.have.attribute('aria-pressed', 'true');
+        expect(button).toHaveFocus();
+
+        await user.keyboard(' ');
+        expect(button).to.have.attribute('aria-pressed', 'false');
+        expect(button).toHaveFocus();
+      });
+
+      it('a programmatic change to aria-pressed or loading does not activate the button', async () => {
+        const handleClick = vi.fn();
+        const { setProps, user } = render(
           <IconButton
             aria-label="Favorite"
-            aria-pressed={pressed}
-            onClick={() => setPressed((previous) => !previous)}
+            aria-pressed={false}
+            loading={false}
+            onClick={handleClick}
           >
             {icon}
-          </IconButton>
+          </IconButton>,
         );
-      }
-      const { user } = render(<FavoriteToggle />);
-      await user.tab();
-      const button = screen.getByRole('button', { name: 'Favorite' });
+        const button = screen.getByRole('button', { name: 'Favorite' });
 
-      await user.keyboard('{Enter}');
-      expect(button).to.have.attribute('aria-pressed', 'true');
-      expect(button).toHaveFocus();
+        await user.tab();
+        setProps({ 'aria-pressed': true });
+        expect(button).to.have.attribute('aria-pressed', 'true');
+        expect(button).toHaveFocus();
+        expect(handleClick).toHaveBeenCalledTimes(0);
 
-      await user.keyboard(' ');
-      expect(button).to.have.attribute('aria-pressed', 'false');
-      expect(button).toHaveFocus();
+        // `loading` disables the button. Where focus goes then is a 2.4.3 gap.
+        setProps({ loading: true });
+        expect(handleClick).toHaveBeenCalledTimes(0);
+
+        // Only an explicit activation runs the handler.
+        setProps({ loading: false });
+        await user.click(button);
+        expect(handleClick).toHaveBeenCalledTimes(1);
+      });
     });
 
     describe('4.1.2 Name, Role, Value', () => {

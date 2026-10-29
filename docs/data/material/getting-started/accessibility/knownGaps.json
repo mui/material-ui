@@ -6,7 +6,7 @@
       "AccordionSummary",
       "Button",
       "Checkbox",
-      "IconButton",
+      { "component": "IconButton", "note": "the ring needs `disableFocusRipple` too" },
       "Radio",
       "Switch",
       "ToggleButton"
@@ -59,7 +59,10 @@
   {
     "gap": "A focused button that turns `loading` loses keyboard focus to the page",
     "criteria": ["2.4.3"],
-    "affected": [{ "component": "IconButton", "note": "`loading`" }],
+    "affected": [
+      { "component": "Button", "note": "`loading`" },
+      { "component": "IconButton", "note": "`loading`" }
+    ],
     "workaround": "Move focus to a nearby element before you set `loading`, and back when it ends"
   }
 ]
