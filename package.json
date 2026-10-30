@@ -74,7 +74,6 @@
     "typescript": "lerna run --no-bail typescript",
     "typescript:ci": "lerna run --concurrency 2 --no-bail typescript",
     "typescript:module-augmentation": "lerna run --concurrency 1 --no-bail typescript:module-augmentation",
-    "use-react-version": "node ./scripts/useReactVersion.mjs",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
@@ -163,22 +162,5 @@
   "engines": {
     "pnpm": "10.28.2",
     "node": ">=22.18.0"
-  },
-  "resolutions": {
-    "@babel/core": "7.28.6",
-    "@babel/plugin-transform-runtime": "^7.28.5",
-    "@babel/preset-env": "^7.28.6",
-    "@babel/preset-react": "^7.28.5",
-    "@babel/preset-typescript": "^7.28.5",
-    "@babel/runtime": "^7.28.6",
-    "@definitelytyped/header-parser": "^0.2.20",
-    "@definitelytyped/typescript-versions": "^0.1.9",
-    "@definitelytyped/utils": "^0.1.8",
-    "@types/node": "20.19.30",
-    "cross-fetch": "^4.1.0",
-    "@pigment-css/react": "0.0.30",
-    "@pigment-css/unplugin": "0.0.30",
-    "@pigment-css/nextjs-plugin": "0.0.30",
-    "@pigment-css/vite-plugin": "0.0.30"
   }
 }
