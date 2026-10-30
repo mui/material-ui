@@ -182,15 +182,16 @@ Check the `open` argument before you run close-only logic:
 
 ```js
 function handleOpenChange(open, eventDetails) {
-  if (!open && eventDetails.reason === 'outside-press') {
+  if (!open && eventDetails.reason === 'trigger-press') {
     saveDraft();
   }
 }
 ```
 
-Tab dismissal reports `focus-out` because focus leaves the menu.
+Tab and Shift+Tab report `focus-out`.
 Other focus changes can report this reason too.
-Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
+After Tab, `eventDetails.event` is a native `FocusEvent`.
+After Shift+Tab, it is a native `KeyboardEvent`.
 
 ### 4. Update the positioning props
 
@@ -206,7 +207,7 @@ Its `eventDetails.event` is a native `FocusEvent`, not a keyboard event.
 ```
 
 `MenuPopup` uses the `MenuTrigger` element as its anchor.
-Pass `anchor` only when you omit `MenuTrigger`.
+Pass `anchor` to position the menu against another element, or when you omit `MenuTrigger`.
 
 - `anchorEl` becomes `anchor`.
   It also accepts refs and virtual elements.
@@ -273,7 +274,7 @@ Common origin pairs map to these values in left-to-right text:
     <tr>
       <td>top, left</td>
       <td>top, left</td>
-      <td>See <a href="#place-the-menu-over-its-trigger">Place the menu over its trigger</a></td>
+      <td><code>side="bottom" align="start"</code> with a negative <code>sideOffset</code>. See "Place the menu over its trigger" below.</td>
     </tr>
   </tbody>
 </table>
@@ -409,9 +410,13 @@ For example, `MuiMenu2CheckboxItem` overrides apply after `MuiMenu2Item` overrid
 This includes theme variants, but not `defaultProps`.
 Utility classes remain specific to each part.
 
-Theme `variants` move to the new key the same way as `styleOverrides`.
+Item `variants` move from `MuiMenuItem` to `MuiMenu2Item` the same way as `styleOverrides`.
 A variant that matches on `selected` no longer applies, because Menu v2 items don't have that prop.
 Match on `checked` under `MuiMenu2CheckboxItem` or `MuiMenu2RadioItem` instead.
+
+`MuiMenu2Popup` variants style only the menu surface, which is the `root` slot.
+They don't style the portal that replaces `.MuiMenu-root`.
+If a `MuiMenu` variant uses a `& .MuiMenu-paper` selector, move those styles to the top level of the variant `style`.
 
 ### 8. Move popup props to MenuPopup
 
@@ -438,19 +443,19 @@ The initial focus props, such as `autoFocus`, have none because Menu v2 sets the
 
 **Menu**
 
-| Props to remove        | What to do instead                                                                                                                                             |
-| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `autoFocus`            | Delete it.                                                                                                                                                     |
-| `disableAutoFocusItem` | Delete it.                                                                                                                                                     |
-| `variant`              | Delete it. If you used `"selectedMenu"` to show the current value, use radio items. See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone). |
-| `disableAutoFocus`     | Delete it.                                                                                                                                                     |
-| `disableEnforceFocus`  | Delete it.                                                                                                                                                     |
-| `disableRestoreFocus`  | Use `finalFocus={false}` on `MenuPopup`.                                                                                                                       |
-| `disableScrollLock`    | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                                                             |
-| `disablePortal`        | Delete it. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target. See [Portal containers](#portal-containers).        |
-| `hideBackdrop`         | Delete it. Menu v2 renders no visual backdrop unless you set `slots.backdrop` on `MenuPopup`. See [Backdrop](#backdrop).                                       |
-| `action`               | Delete it. The position updates automatically. See [Update the positioning props](#4-update-the-positioning-props).                                            |
-| `PopoverClasses`       | Delete it. Menu v2 doesn't use `Popover`.                                                                                                                      |
+| Props to remove        | What to do instead                                                                                                                                                                                        |
+| :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoFocus`            | Delete it.                                                                                                                                                                                                |
+| `disableAutoFocusItem` | Delete it.                                                                                                                                                                                                |
+| `variant`              | Delete it. If you used `"selectedMenu"` to show the current value, use radio items. See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone).                                            |
+| `disableAutoFocus`     | Delete it.                                                                                                                                                                                                |
+| `disableEnforceFocus`  | Delete it.                                                                                                                                                                                                |
+| `disableRestoreFocus`  | Use `finalFocus={false}` on `MenuPopup`.                                                                                                                                                                  |
+| `disableScrollLock`    | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                                                                                                        |
+| `disablePortal`        | Delete it. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target. See [Portal containers](#portal-containers).                                                   |
+| `hideBackdrop`         | Delete it. The Menu backdrop is invisible, so this prop only stopped outside clicks from closing the menu. To keep that behavior, see [Keep the menu open](/material-ui/react-menu2/#keep-the-menu-open). |
+| `action`               | Delete it. The position updates automatically. See [Update the positioning props](#4-update-the-positioning-props).                                                                                       |
+| `PopoverClasses`       | Delete it. Menu v2 doesn't use `Popover`.                                                                                                                                                                 |
 
 **MenuList**
 
@@ -467,7 +472,7 @@ The initial focus props, such as `autoFocus`, have none because Menu v2 sets the
 | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `autoFocus`             | Delete it.                                                                                                                                                                                                                 |
 | `selected`              | For one current value, use `MenuRadioItem` inside a `MenuRadioGroup`, and add `closeOnClick` to close the menu on selection. For independent toggles, use `MenuCheckboxItem`. See [Update the items](#6-update-the-items). |
-| `focusVisibleClassName` | Style `.MuiMenu2Item-highlighted`, or `menu2ItemClasses.highlighted`. It also matches pointer navigation, not only keyboard focus.                                                                                         |
+| `focusVisibleClassName` | Style `.Mui-focusVisible` for keyboard focus only. Style `.MuiMenu2Item-highlighted`, or `menu2ItemClasses.highlighted`, to also match pointer navigation.                                                                 |
 | `onFocusVisible`        | Delete it.                                                                                                                                                                                                                 |
 | `action`                | Delete it. Menu v2 items have no `action` methods, such as `focusVisible()`.                                                                                                                                               |
 
@@ -489,6 +494,7 @@ These changes are intentional and mostly bring the menu in line with the [WAI-AR
   See [Backdrop](#backdrop).
 - **Tab while open:** Menu closes, and focus returns to the trigger.
   Menu v2 closes, and focus moves to the next element.
+  Shift+Tab also closes Menu v2, and focus returns to the trigger.
 - **Submenus:** Menu doesn't support them.
   Menu v2 opens them on mouse hover after 100 ms, touch tap, or keyboard activation.
 
@@ -501,7 +507,7 @@ See [Submenu](/material-ui/react-menu2/#submenu).
 
 ### Backdrop
 
-Base UI supplies a transparent backdrop for modal interaction, except when the menu opens on hover.
+Base UI supplies a transparent backdrop for modal interaction, except when the menu opens on hover or has `modal={false}`.
 The separate visual backdrop is absent by default.
 Set `slots.backdrop` or `slotProps.backdrop` on `MenuPopup` to render it.
 This optional layer is not hidden on hover.
@@ -559,7 +565,8 @@ See the [Base UI discussion on initial focus](https://github.com/mui/base-ui/is
 ### The selectedMenu variant is gone
 
 This is a lost feature rather than a changed one.
-`variant="selectedMenu"` selected which item took focus when the menu opened and hid the focus ring at that first moment.
+`variant="selectedMenu"` selected which item took focus when the menu opened.
+`variant="menu"` focused the first item and, after a pointer open, hid its focus ring when another item was selected.
 The new foundation can't express either behavior.
 
 Radio items are the closest replacement, because they show the current value.
