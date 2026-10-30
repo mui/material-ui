@@ -1,0 +1,35 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": {
+      "description": "The element that opens the menu. It must forward its props and ref. Set visual props, such as <code>sx</code> and <code>variant</code>, on this element.",
+      "requiresRef": true
+    },
+    "closeDelay": {
+      "description": "How long to wait before closing the menu that was opened on hover. Specified in milliseconds.<br>Requires the <code>openOnHover</code> prop."
+    },
+    "delay": {
+      "description": "How long to wait before the menu may be opened on hover. Specified in milliseconds.<br>Requires the <code>openOnHover</code> prop."
+    },
+    "disabled": { "description": "Whether the component should ignore user interaction." },
+    "nativeButton": {
+      "description": "Whether the child renders a native <code>&lt;button&gt;</code> element. Set to <code>false</code> when the child renders a different element."
+    },
+    "openOnHover": {
+      "description": "Whether the menu should also open when the trigger is hovered."
+    }
+  },
+  "classDescriptions": {
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "open": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the menu is open"
+    },
+    "root": { "description": "Styles applied to the root element." }
+  }
+}
