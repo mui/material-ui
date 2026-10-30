@@ -242,12 +242,20 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 You can check integration of different versions of React (for example different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running:
 
 ```bash
-pnpm use-react-version <version>
+pnpm dlx @mui/internal-code-infra@canary set-version-overrides --pkg react@<version>
+```
+
+The command pins `react`, `react-dom` and `react-is` in the `overrides` field of `pnpm-workspace.yaml`, then runs `pnpm dedupe`.
+
+To go back to the React version from the lockfile, revert those changes and reinstall:
+
+```bash
+git checkout pnpm-workspace.yaml pnpm-lock.yaml
+pnpm install
 ```
 
 Possible values for `version`:
 
-- default: `stable` (minimum supported React version)
 - a tag on npm, for example `next`, `experimental` or `latest`
 - an older version, for example `^17.0.0`
 
