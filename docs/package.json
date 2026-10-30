@@ -74,7 +74,7 @@
     "next": "16.4.3",
     "notistack": "3.0.2",
     "nprogress": "^0.2.0",
-    "postcss": "^8.5.30",
+    "postcss": "^8.5.32",
     "postcss-import": "^17.0.1",
     "prop-types": "^15.8.1",
     "react": "^19.3.1",
