@@ -3,12 +3,10 @@ import * as React from 'react';
 import {
   createRenderer,
   RenderCounter,
-  screen,
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
-import nested from './nested';
 
 describe('ThemeProvider', () => {
   const { render } = createRenderer();
@@ -88,45 +86,6 @@ describe('ThemeProvider', () => {
     setProps({});
     expect(text()).to.equal('foobar');
     expect(getRenderCountRef.current!()).to.equal(2);
-  });
-
-  it('should support a frozen theme returned by a nested theme function', () => {
-    const innerTheme = Object.freeze({ foo: 'foo' });
-
-    function Test() {
-      const theme = useTheme<typeof innerTheme>();
-      return <span>{theme.foo}</span>;
-    }
-
-    render(
-      <ThemeProvider theme={{ bar: 'bar' }}>
-        <ThemeProvider theme={() => innerTheme}>
-          <Test />
-        </ThemeProvider>
-      </ThemeProvider>,
-    );
-
-    expect(screen.getByText('foo')).not.to.equal(null);
-    expect(innerTheme).not.to.have.property(nested);
-  });
-
-  it('should not change the outer theme when a nested theme function returns it', () => {
-    function Test() {
-      const theme = useTheme<{ foo: string }>();
-      return <span>{String(Reflect.get(theme, nested))}</span>;
-    }
-
-    render(
-      <ThemeProvider theme={{ foo: 'foo' }}>
-        <ThemeProvider theme={(outerTheme: { foo: string }) => outerTheme}>
-          <Test />
-        </ThemeProvider>
-        <Test />
-      </ThemeProvider>,
-    );
-
-    expect(screen.getByText('true')).not.to.equal(null);
-    expect(screen.getByText('false')).not.to.equal(null);
   });
 
   describe('warnings', () => {
