@@ -540,4 +540,46 @@ describe('useRovingTabIndexRoot + useRovingTabIndexItem', () => {
     await user.keyboard('{Enter}');
     expect(onKeyDownSpy.callCount).to.equal(1);
   });
+
+  test('re-renders only the items whose tab stop changes when the root passes its children through', async () => {
+    const renderCounts: Record<string, number> = { a: 0, b: 0, c: 0 };
+
+    function CountingItem(props: { id: string }) {
+      renderCounts[props.id] += 1;
+      const rovingItemProps = useRovingTabIndexItem({ id: props.id });
+      return (
+        <button {...rovingItemProps} data-testid={props.id}>
+          {props.id}
+        </button>
+      );
+    }
+
+    function PassThroughRoot(props: { children: React.ReactNode }) {
+      const root = useRovingTabIndexRoot<string>({ orientation: 'horizontal' });
+      return (
+        <RovingTabIndexContext.Provider value={root as UseRovingTabIndexReturnValue<unknown>}>
+          <div {...root.getContainerProps()}>{props.children}</div>
+        </RovingTabIndexContext.Provider>
+      );
+    }
+
+    const { user } = render(
+      <PassThroughRoot>
+        <CountingItem id="a" />
+        <CountingItem id="b" />
+        <CountingItem id="c" />
+      </PassThroughRoot>,
+    );
+    await user.click(screen.getByTestId('a'));
+    const before = { ...renderCounts };
+
+    await user.keyboard('{ArrowRight}');
+
+    expect(screen.getByTestId('b')).toHaveFocus();
+    expect(screen.getByTestId('a')).to.have.attribute('tabindex', '-1');
+    expect(screen.getByTestId('b')).to.have.attribute('tabindex', '0');
+    expect(renderCounts.a).to.be.greaterThan(before.a);
+    expect(renderCounts.b).to.be.greaterThan(before.b);
+    expect(renderCounts.c).to.equal(before.c);
+  });
 });

@@ -569,7 +569,9 @@ describe('<Menu /> integration', () => {
       );
     }
 
-    render(<ButtonMenuWithDivider />);
+    // `userEvent` requires real timers in this file because the parent suite uses fake timers.
+    clock.restore();
+    const { user } = renderRealTime(<ButtonMenuWithDivider />);
 
     const button = screen.getByRole('button', { name: 'open menu' });
     await act(async () => {
@@ -580,10 +582,10 @@ describe('<Menu /> integration', () => {
     const menuitems = screen.getAllByRole('menuitem');
     expect(menuitems[0]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
+    await user.keyboard('{ArrowDown}');
     expect(menuitems[1]).toHaveFocus();
 
-    fireEvent.keyDown(menuitems[1], { key: 'ArrowDown' });
+    await user.keyboard('{ArrowDown}');
     expect(menuitems[2]).toHaveFocus();
 
     expect(screen.getByRole('separator')).not.to.have.attribute('tabIndex');

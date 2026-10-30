@@ -1551,6 +1551,9 @@ importers:
       react-is:
         specifier: ^19.3.1
         version: 19.3.1
+      use-sync-external-store:
+        specifier: ^1.7.0
+        version: 1.7.0(react@19.3.1)
     devDependencies:
       '@types/node':
         specifier: 22.20.5
@@ -1567,6 +1570,9 @@ importers:
       '@types/sinon':
         specifier: 22.0.0
         version: 22.0.0
+      '@types/use-sync-external-store':
+        specifier: 1.7.0
+        version: 1.7.0
       react:
         specifier: 19.3.1
         version: 19.3.1
@@ -5776,6 +5782,9 @@ packages:
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+
+  '@types/use-sync-external-store@1.7.0':
+    resolution: {integrity: sha512-v8435kzWm3FuxyUa4r8o4sG6b0D+r+uOrzF5MXHxZKW4Haoo6txu/lq56Vio45e2i1nkmFPA+R7myWcmV7Z7Bg==}
 
   '@types/whatwg-mimetype@3.0.2':
     resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
@@ -16551,6 +16560,8 @@ snapshots:
   '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
+
+  '@types/use-sync-external-store@1.7.0': {}
 
   '@types/whatwg-mimetype@3.0.2': {}
 
