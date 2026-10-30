@@ -68,3 +68,5 @@ allowBuilds:
 
 lockfile:
   includeResolutionSettings: true
+
+verifyDepsBeforeRun: false

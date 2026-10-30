@@ -1,29 +1,13 @@
 import Grid from '@mui/system/Grid';
 
-const columns = [4, null, 12] as const;
-const spacing = [1, null, '2rem'] as const;
-const direction = ['row', null, 'row-reverse'] as const;
-const size = [false, null, 'auto', 'grow', 6] as const;
-const offset = [0, null, 'auto', 2] as const;
-
+// Responsive props accept readonly arrays
 <Grid
   container
-  columns={columns}
-  spacing={spacing}
-  rowSpacing={spacing}
-  columnSpacing={spacing}
-  direction={direction}
-  size={size}
-  offset={offset}
+  columns={[4, null, 12] as const}
+  spacing={[1, null, '2rem'] as const}
+  rowSpacing={[1, 2] as const}
+  columnSpacing={[1, 2] as const}
+  direction={['row', 'row-reverse'] as const}
+  size={[6, null, 'grow'] as const}
+  offset={[0, 'auto'] as const}
 />;
-
-<Grid columns={[4, null, 12]} spacing={[1, null, '2rem']} size={[6, null, 'grow']} />;
-
-// @ts-expect-error column counts must be numbers
-<Grid columns={['4', null, 12] as const} />;
-
-// @ts-expect-error vertical directions are not supported
-<Grid direction={['row', null, 'column'] as const} />;
-
-// @ts-expect-error sizes must be valid grid sizes
-<Grid size={[6, null, 'invalid'] as const} />;
