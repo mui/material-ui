@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@babel/core": "^8.0.9",
-    "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^8.0.1",
     "@babel/plugin-syntax-typescript": "^8.0.3",
     "@babel/types": "^8.0.8",
@@ -41,7 +40,6 @@
   },
   "devDependencies": {
     "@babel/register": "8.0.6",
-    "@types/babel__core": "7.20.5",
     "@types/doctrine": "0.0.9",
     "@types/node": "22.20.5",
     "@types/react": "19.3.0",
