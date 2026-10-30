@@ -1968,6 +1968,31 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     expect(handleChangeCommitted.args[3][1]).to.equal(0);
   });
 
+  it('should not pass a stale value to onChangeCommitted after a drag interrupted by disabling', () => {
+    const handleChange = spy();
+    const handleChangeCommitted = spy();
+    const { container, setProps } = render(
+      <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+    );
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+
+    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 30 }]));
+    setProps({ disabled: true });
+    fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 30 }]));
+    setProps({ disabled: false });
+
+    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 2, clientX: 0 }]));
+    fireEvent.touchEnd(document.body, createTouches([{ identifier: 2, clientX: 0 }]));
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChangeCommitted.callCount).to.equal(1);
+    expect(handleChangeCommitted.args[0][1]).to.equal(0);
+  });
+
   it.skipIf(isJsdom())('should not crash when unmounted during a pointer drag (#26754)', () => {
     const { container, unmount } = render(<Slider defaultValue={50} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({

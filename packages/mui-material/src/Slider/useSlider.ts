@@ -726,6 +726,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (disabled) {
       stopListening();
       cancelFocusFrame();
+      lastChangedValueRef.current = null;
     }
   }, [disabled, stopListening, cancelFocusFrame]);
 
