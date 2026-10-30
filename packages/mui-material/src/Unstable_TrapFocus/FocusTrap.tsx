@@ -155,6 +155,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       return;
     }
 
+    // A child (e.g. MenuList) may have already moved focus inside.
     activated.current =
       !disableAutoFocus ||
       contains(rootRef.current, getActiveElement(ownerDocument(rootRef.current)));
