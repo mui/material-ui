@@ -1,4 +1,4 @@
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
 
 /**
  * Resolve a subpath-only component without adding its exports to the shared project.

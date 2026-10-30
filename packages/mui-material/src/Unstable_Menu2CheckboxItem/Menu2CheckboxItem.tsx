@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/types';
+import type { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
@@ -11,27 +11,27 @@ import { styled } from '../zero-styled';
 import Menu2ItemBase from '../internal/Menu2ItemBase';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
-import Menu2IndicatorBase, { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
+import type { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
+import Menu2IndicatorBase from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
-import {
-  getMenu2RootRender,
-  isMenu2RootNativeButton,
-  Menu2RootSlotProps,
-} from '../Unstable_Menu2/menu2Utils';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import { getMenu2RootRender, isMenu2RootNativeButton } from '../Unstable_Menu2/menu2Utils';
+import type {
+  Menu2ItemBaseOwnerState,
+  Menu2ItemBaseProps,
+  Menu2ItemVisualProps,
+} from '../Unstable_Menu2/menu2ItemShared';
 import {
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
-  Menu2ItemBaseOwnerState,
-  Menu2ItemBaseProps,
   Menu2ItemRootSlot,
-  Menu2ItemVisualProps,
   useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
+import type { Menu2CheckboxItemClasses } from '../Unstable_Menu2/menu2Classes';
 import {
   getMenu2CheckboxItemUtilityClass,
-  Menu2CheckboxItemClasses,
   menu2CheckboxItemClasses,
   menu2CheckboxItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';

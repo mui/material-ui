@@ -3,7 +3,8 @@ import os from 'os';
 import path from 'path';
 import * as ts from '@typescript/typescript6';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { createTypeScriptProject, TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
+import { createTypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
 import { resolveExportSpecifier } from './resolveExportSpecifier';
 

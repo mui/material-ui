@@ -1,23 +1,22 @@
 'use client';
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/types';
+import type { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Separator as BaseSeparator } from '@base-ui/react/separator';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import Divider from '../Divider';
-import { Theme } from '../styles';
+import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
-import {
-  getMenu2SeparatorUtilityClass,
-  Menu2SeparatorClasses,
-} from '../Unstable_Menu2/menu2Classes';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
+import type { Menu2SeparatorClasses } from '../Unstable_Menu2/menu2Classes';
+import { getMenu2SeparatorUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2SeparatorSlots {
   /**

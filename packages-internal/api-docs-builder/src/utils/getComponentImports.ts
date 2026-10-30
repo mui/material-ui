@@ -1,6 +1,6 @@
 import path from 'path';
 import { toGitHubPath } from '../buildApiUtils';
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
 
 /**
  * Gets the subpath import and, when exported by the package root, the barrel import.

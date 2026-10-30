@@ -1,5 +1,7 @@
-import Menu2Trigger, { Menu2TriggerProps } from '@mui/material/Unstable_Menu2Trigger';
-import Menu2Popup, { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2TriggerProps } from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+import type { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import * as React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';

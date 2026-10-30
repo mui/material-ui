@@ -3,21 +3,16 @@ import * as React from 'react';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 import { mergeProps } from '@base-ui/react/merge-props';
 import type { HTMLProps } from '@base-ui/react/types';
-import { Theme } from '../styles';
+import type { Theme } from '../styles';
 import ListContext from '../List/ListContext';
 import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import useSlot from '../utils/useSlot';
-import {
-  getMenu2RootRender,
-  Menu2RootSlotProps,
-  Menu2RootSlots,
-  StateClassName,
-  mergeStateClassName,
-} from './menu2Utils';
+import type { Menu2RootSlotProps, Menu2RootSlots, StateClassName } from './menu2Utils';
+import { getMenu2RootRender, mergeStateClassName } from './menu2Utils';
 
 // The owner state from the props. Each part adds the live Base UI state.
 export interface Menu2ItemBaseOwnerState {

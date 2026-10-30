@@ -4,27 +4,25 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
-import { Theme } from '../styles';
+import type { Theme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import {
-  Menu2PopupBase,
+import type {
   Menu2PopupPublicProps,
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
 } from '../Unstable_Menu2/menu2PopupShared';
+import { Menu2PopupBase } from '../Unstable_Menu2/menu2PopupShared';
 import {
   Menu2ListBase,
   Menu2PortalBase,
   Menu2PositionerBase,
   Menu2RootBase,
 } from '../Unstable_Menu2/Menu2PopupSlotBases';
-import {
-  getMenu2SubmenuPopupUtilityClass,
-  Menu2SubmenuPopupClasses,
-} from '../Unstable_Menu2/menu2Classes';
+import type { Menu2SubmenuPopupClasses } from '../Unstable_Menu2/menu2Classes';
+import { getMenu2SubmenuPopupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 
 export interface Menu2SubmenuPopupProps extends Omit<

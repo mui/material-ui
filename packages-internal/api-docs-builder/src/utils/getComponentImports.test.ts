@@ -1,7 +1,7 @@
 import path from 'path';
 import * as ts from '@typescript/typescript6';
 import { describe, expect, it } from 'vitest';
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
 import getComponentImports from './getComponentImports';
 
 function createProject({

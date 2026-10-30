@@ -2,7 +2,7 @@ import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
-import { BaseUIEvent } from '@base-ui/react/types';
+import type { BaseUIEvent } from '@base-ui/react/types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';

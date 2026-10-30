@@ -2,14 +2,18 @@ import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Menu2Trigger from '../Unstable_Menu2Trigger';
-import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
-import Menu2Popup, { Menu2PopupProps } from '../Unstable_Menu2Popup';
+import type { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuPopup from '../Unstable_Menu2SubmenuPopup';
+import type { Menu2PopupProps } from '../Unstable_Menu2Popup';
+import Menu2Popup from '../Unstable_Menu2Popup';
 import Menu2 from './Menu2';
-import { Menu2PopupSharedSlotProps } from './menu2PopupShared';
+import type { Menu2PopupSharedSlotProps } from './menu2PopupShared';
 import Menu2Item from '../Unstable_Menu2Item';
-import Menu2Submenu, { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
+import type { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
+import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
-import Paper, { PaperProps } from '../Paper';
+import type { PaperProps } from '../Paper';
+import Paper from '../Paper';
 
 interface TestMenuProps
   extends

@@ -2,7 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { ProjectSettings } from '../ProjectSettings';
+import type { ProjectSettings } from '../ProjectSettings';
 import { createTypeScriptProject } from './createTypeScriptProject';
 import parseSlotsAndClasses from './parseSlotsAndClasses';
 import getComponentTypeScriptProject from './getComponentTypeScriptProject';

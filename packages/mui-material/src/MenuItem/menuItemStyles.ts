@@ -1,6 +1,6 @@
-import { CSSInterpolation } from '@mui/system';
-import { Theme } from '../styles';
-import { MenuItemProps } from './MenuItem';
+import type { CSSInterpolation } from '@mui/system';
+import type { Theme } from '../styles';
+import type { MenuItemProps } from './MenuItem';
 import menuItemClasses from './menuItemClasses';
 
 export function menuItemOverridesResolver(

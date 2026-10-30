@@ -1,9 +1,10 @@
 'use client';
 import * as React from 'react';
-import ListItemIcon, { ListItemIconProps } from '../ListItemIcon';
+import type { ListItemIconProps } from '../ListItemIcon';
+import ListItemIcon from '../ListItemIcon';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { SlotProps } from '../utils/types';
+import type { SlotProps } from '../utils/types';
 
 interface IndicatorSlotProps {
   /**

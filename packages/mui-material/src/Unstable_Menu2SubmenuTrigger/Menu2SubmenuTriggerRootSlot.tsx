@@ -11,7 +11,7 @@ import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
-import { Theme } from '../styles';
+import type { Theme } from '../styles';
 import { Menu2ItemRootSlot } from '../Unstable_Menu2/menu2ItemShared';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
 import type {

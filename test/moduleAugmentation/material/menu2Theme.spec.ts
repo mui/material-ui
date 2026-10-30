@@ -6,7 +6,8 @@ import {
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import { menu2RadioGroupClasses } from '@mui/material/Unstable_Menu2RadioGroup';
 import { menu2SubmenuTriggerClasses } from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import { createTheme, Components, ComponentsOverrides } from '@mui/material/styles';
+import type { Components, ComponentsOverrides } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Theme {

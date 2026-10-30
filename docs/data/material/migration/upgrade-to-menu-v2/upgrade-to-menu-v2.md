@@ -579,7 +579,7 @@ They keep the tab order and the accessibility tree correct.
 The focus guards among them have a `data-base-ui-focus-guard` attribute.
 
 :::warning
-CSS sibling selectors (`+`, `~`, `:last-child`) near a trigger can match these hidden elements.
+Sibling selectors in CSS (`+`, `~`, `:last-child`) near a trigger can match these hidden elements.
 Style each part directly instead.
 :::
 

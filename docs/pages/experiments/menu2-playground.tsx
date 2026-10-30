@@ -14,13 +14,8 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
-import {
-  ThemeProvider,
-  createTheme,
-  enhanceHighContrast,
-  type SxProps,
-  type Theme,
-} from '@mui/material/styles';
+import { ThemeProvider, createTheme, enhanceHighContrast } from '@mui/material/styles';
+import type { SxProps, Theme } from '@mui/material/styles';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
 import Menu2 from '@mui/material/Unstable_Menu2';

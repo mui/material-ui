@@ -13,9 +13,9 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import type { Menu2SeparatorProps } from '@mui/material/Unstable_Menu2Separator';
 import Menu2Separator, {
   menu2SeparatorClasses as classes,
-  Menu2SeparatorProps,
 } from '@mui/material/Unstable_Menu2Separator';
 import describeConformance from '../../test/describeConformance';
 

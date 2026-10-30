@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Button from '@mui/material/Button';
-import Menu2Trigger, { Menu2TriggerProps } from '@mui/material/Unstable_Menu2Trigger';
+import type { Menu2TriggerProps } from '@mui/material/Unstable_Menu2Trigger';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { createTheme } from '@mui/material/styles';
 import {
   // @ts-expect-error Menu2Trigger is not exported from the root barrel for this POC.

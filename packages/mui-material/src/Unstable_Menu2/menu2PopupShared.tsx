@@ -7,15 +7,16 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 import { useRtl } from '@mui/system/RtlProvider';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import useSlot from '../utils/useSlot';
-import { Theme } from '../styles';
-import Grow, { GrowProps } from '../Grow';
-import { PaperProps } from '../Paper';
-import { ListProps } from '../List';
-import { SlotProps } from './menu2Utils';
+import type { Theme } from '../styles';
+import type { GrowProps } from '../Grow';
+import Grow from '../Grow';
+import type { PaperProps } from '../Paper';
+import type { ListProps } from '../List';
+import type { SlotProps } from './menu2Utils';
 import { Menu2SubmenuClosingState } from './Menu2SubmenuClosingContext';
 
 type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {

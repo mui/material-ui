@@ -1,26 +1,33 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import type { Menu as BaseMenu } from '@base-ui/react/menu';
-import Menu2, { Menu2Props } from '@mui/material/Unstable_Menu2';
+import type { Menu2Props } from '@mui/material/Unstable_Menu2';
+import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
-import Menu2Popup, {
-  getMenu2PopupUtilityClass,
-  menu2PopupClasses,
+import type {
   Menu2PopupClassKey,
   Menu2PopupClasses,
   Menu2PopupProps,
 } from '@mui/material/Unstable_Menu2Popup';
-import Menu2SubmenuPopup, {
-  getMenu2SubmenuPopupUtilityClass,
-  menu2SubmenuPopupClasses,
+import Menu2Popup, {
+  getMenu2PopupUtilityClass,
+  menu2PopupClasses,
+} from '@mui/material/Unstable_Menu2Popup';
+import type {
   Menu2SubmenuPopupClassKey,
   Menu2SubmenuPopupClasses,
 } from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuPopup, {
+  getMenu2SubmenuPopupUtilityClass,
+  menu2SubmenuPopupClasses,
+} from '@mui/material/Unstable_Menu2SubmenuPopup';
+import type {
+  Menu2CheckboxItemIndicatorClassKey,
+  Menu2CheckboxItemIndicatorClasses,
+} from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemIndicatorUtilityClass,
   menu2CheckboxItemIndicatorClasses,
-  Menu2CheckboxItemIndicatorClassKey,
-  Menu2CheckboxItemIndicatorClasses,
   // @ts-expect-error The default indicator is private. Use the item's indicator slot.
   Menu2CheckboxItemIndicator,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
@@ -29,11 +36,13 @@ import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import type {
+  Menu2RadioItemIndicatorClassKey,
+  Menu2RadioItemIndicatorClasses,
+} from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2RadioItem, {
   getMenu2RadioItemIndicatorUtilityClass,
   menu2RadioItemIndicatorClasses,
-  Menu2RadioItemIndicatorClassKey,
-  Menu2RadioItemIndicatorClasses,
   // @ts-expect-error The default indicator is private. Use the item's indicator slot.
   Menu2RadioItemIndicator,
 } from '@mui/material/Unstable_Menu2RadioItem';

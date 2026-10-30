@@ -1,28 +1,29 @@
 'use client';
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/types';
+import type { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { SlotProps } from '../utils/types';
+import type { SlotProps } from '../utils/types';
 import Menu2SubmenuTriggerRootSlot from './Menu2SubmenuTriggerRootSlot';
-import { isMenu2RootNativeButton, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
-import {
-  getMenu2ItemClassName,
-  getMenu2ItemOwnerState,
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import { isMenu2RootNativeButton } from '../Unstable_Menu2/menu2Utils';
+import type {
   Menu2ItemBaseOwnerState,
   Menu2ItemVisualProps,
   Menu2SubmenuTriggerBaseProps,
+} from '../Unstable_Menu2/menu2ItemShared';
+import {
+  getMenu2ItemClassName,
+  getMenu2ItemOwnerState,
   useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
-import {
-  getMenu2SubmenuTriggerUtilityClass,
-  Menu2SubmenuTriggerClasses,
-} from '../Unstable_Menu2/menu2Classes';
+import type { Menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
+import { getMenu2SubmenuTriggerUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2SubmenuTriggerSlots {
   /**

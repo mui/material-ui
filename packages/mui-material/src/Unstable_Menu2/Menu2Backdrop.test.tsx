@@ -1,4 +1,5 @@
-import Menu2Popup, { Menu2PopupProps, menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import Menu2Popup, { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';

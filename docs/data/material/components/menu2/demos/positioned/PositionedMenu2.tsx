@@ -6,9 +6,8 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Unstable_Menu2';
-import MenuPopup, {
-  Menu2PopupProps as PopupProps,
-} from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2PopupProps as PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import MenuPopup from '@mui/material/Unstable_Menu2Popup';
 import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
 import MenuItem from '@mui/material/Unstable_Menu2Item';
 

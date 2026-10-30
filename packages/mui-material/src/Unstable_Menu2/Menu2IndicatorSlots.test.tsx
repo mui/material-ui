@@ -6,11 +6,11 @@ import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-uti
 import { StyledEngineProvider } from '@mui/styled-engine';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
+import type { Menu2CheckboxItemSlotProps } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemIndicatorUtilityClass,
   menu2CheckboxItemClasses,
   menu2CheckboxItemIndicatorClasses,
-  Menu2CheckboxItemSlotProps,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem, {

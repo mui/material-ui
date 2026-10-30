@@ -1,8 +1,9 @@
+import type { Menu2SubmenuPopupProps } from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuPopup, {
-  Menu2SubmenuPopupProps,
   menu2SubmenuPopupClasses,
 } from '@mui/material/Unstable_Menu2SubmenuPopup';
-import Menu2Popup, { Menu2PopupProps, menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import Menu2Popup, { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as React from 'react';
@@ -12,9 +13,10 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
-import { Menu2PopupSharedSlotProps } from '@mui/material/Unstable_Menu2/menu2PopupShared';
+import type { Menu2PopupSharedSlotProps } from '@mui/material/Unstable_Menu2/menu2PopupShared';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
-import Menu2Submenu, { Menu2SubmenuProps } from '@mui/material/Unstable_Menu2Submenu';
+import type { Menu2SubmenuProps } from '@mui/material/Unstable_Menu2Submenu';
+import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
   menu2SubmenuTriggerClasses,
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';

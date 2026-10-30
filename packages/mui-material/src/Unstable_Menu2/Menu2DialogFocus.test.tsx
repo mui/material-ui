@@ -1,5 +1,6 @@
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
-import Menu2Popup, { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';

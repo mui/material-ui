@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/types';
+import type { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
@@ -8,18 +8,21 @@ import { styled } from '../zero-styled';
 import Menu2ItemBase from '../internal/Menu2ItemBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
-import { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
-import {
-  getMenu2ItemOwnerState,
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import type {
   Menu2ItemBaseOwnerState,
-  Menu2ItemRootSlot,
   Menu2LinkItemBaseProps,
   Menu2ItemVisualProps,
+} from '../Unstable_Menu2/menu2ItemShared';
+import {
+  getMenu2ItemOwnerState,
+  Menu2ItemRootSlot,
   mergeMenu2ItemClassName,
   useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
-import { getMenu2LinkItemUtilityClass, Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
+import type { Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
+import { getMenu2LinkItemUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2LinkItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether Base UI currently highlights the item. */

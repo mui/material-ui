@@ -7,9 +7,8 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Unstable_Menu2';
 import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
-import MenuPopup, {
-  Menu2PopupProps as PopupProps,
-} from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2PopupProps as PopupProps } from '@mui/material/Unstable_Menu2Popup';
+import MenuPopup from '@mui/material/Unstable_Menu2Popup';
 import MenuItem from '@mui/material/Unstable_Menu2Item';
 import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 
