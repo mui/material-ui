@@ -372,8 +372,14 @@ export interface StyledConfig<O extends object = {}> {
     ((prop: keyof O, defaultValidatorFn: (prop: keyof O) => boolean) => boolean) | undefined;
 }
 
+type PickForwardedProps<Props, ForwardedProps extends PropertyKey> = Props extends unknown
+  ? Pick<Props, Extract<ForwardedProps, keyof Props>> & {
+      [Key in keyof Props as Key extends ForwardedProps ? Key : never]: Props[Key];
+    }
+  : never;
+
 /** Same as StyledConfig but shouldForwardProp must be a type guard */
-export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {
+export interface FilteringStyledOptions<Props, ForwardedProps extends PropertyKey = keyof Props> {
   componentId?: string | undefined;
   displayName?: string | undefined;
   label?: string | undefined;
@@ -444,11 +450,16 @@ export interface ThemedBaseStyledInterface<
 
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+    ForwardedProps extends PropertyKey = keyof React.ComponentProps<C>,
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
-  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps, {}, {}, Theme>;
+  ): CreateStyledComponent<
+    PickForwardedProps<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps,
+    {},
+    {},
+    Theme
+  >;
 
   <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
     component: C,
