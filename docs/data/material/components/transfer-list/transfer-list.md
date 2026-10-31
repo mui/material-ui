@@ -1,15 +1,21 @@
 ---
 productId: material-ui
-title: Transfer list React component
+title: Transfer list composition example
 components: List, ListItem, Checkbox, Switch
 githubLabel: 'scope: transfer list'
 ---
 
 # Transfer List
 
-<p class="description">A Transfer List (or "shuttle") enables the user to move one or more list items between lists.</p>
+<p class="description">A transfer list (or "shuttle") lets users move one or more items between lists. This page is a composition example. Material UI does not export a dedicated Transfer List component.</p>
 
-{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
+
+:::info
+Transfer lists are **not** part of the [Material Design](https://m2.material.io/) guidelines, and there is no `<TransferList />` package export.
+
+The demos below show what's possible by composing [`List`](/material-ui/react-list/), [`Checkbox`](/material-ui/react-checkbox/), and buttons. Copy the pattern and adapt it to your product rather than expecting a drop-in component.
+:::
 
 ## Basic transfer list
 
@@ -25,13 +31,13 @@ This example exchanges the "move all" buttons for a "select all / select none" c
 
 ## Limitations
 
-The component comes with a couple of limitations:
+These demos come with a couple of limitations:
 
-- It only works on desktop.
+- They only work well on desktop.
   If you have a limited amount of options to select, prefer the [Autocomplete](/material-ui/react-autocomplete/#multiple-values) component.
   If mobile support is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).
-- There are no high-level components exported from npm. The demos are based on composition.
-  If this is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).
+- There is no high-level Transfer List component on npm; the demos rely on composition.
+  If packaging this pattern as a reusable component is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).
 
 ## Accessibility
 
