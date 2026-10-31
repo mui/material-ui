@@ -8,27 +8,24 @@ const focusVisibleShadowVar = '--_focusVisible-shadow';
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
 
-// Spread on a root whose ring must stay outset: the inset vars inherit, so a clip-prone ancestor
-// would otherwise inset a descendant's ring too.
-export const outsetFocusRing = {
-  [focusVisibleOffsetVar]: 1,
-  [focusVisibleBehaviorVar]: 'initial', // reverts the var to guaranteed-invalid so `var(--_focusVisible-behavior, )` falls back to empty — there is no explicit `outset` keyword.
-};
+export function scaleFocusVisibleOffset(scale: number) {
+  return {
+    [focusVisibleOffsetVar]: scale,
+    // `initial` reverts the var to guaranteed-invalid so `var(--_focusVisible-behavior, )` falls back to empty — there is no explicit `outset` keyword.
+    [focusVisibleBehaviorVar]: scale < 0 ? 'inset' : 'initial',
+  };
+}
+
+export const outsetFocusRing = scaleFocusVisibleOffset(1);
+
+export function applyInsetFocusVisible(offset: number) {
+  return scaleFocusVisibleOffset(-offset);
+}
 
 // Used by the colored-background surfaces (AppBar, Alert, SnackbarContent) to make the focus visible appear through box-shadow
 export function applyChildrenFocusVisible(color: string) {
   return {
     [focusVisibleShadowVar]: color,
-  };
-}
-
-// Clip-prone components (Tab, MenuItem, …) spread this on their root to inset the ring, so an
-// `overflow: hidden` ancestor cannot clip it — without the component knowing the ring width.
-// `offset` multiplies the ring's own outlineOffset, so 1 = mirror it inward.
-export function applyInsetFocusVisible(offset: number) {
-  return {
-    [focusVisibleOffsetVar]: -offset,
-    [focusVisibleBehaviorVar]: 'inset',
   };
 }
 

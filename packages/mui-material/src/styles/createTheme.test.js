@@ -8,6 +8,8 @@ import {
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import OutlinedInput, { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import SystemThemeProvider from '@mui/system/ThemeProvider';
@@ -592,6 +594,92 @@ describe('createTheme', () => {
         false,
       );
       expect(createTheme({ cssVariables: false }).focusVisible).to.equal(undefined);
+    });
+
+    describe('theme.scaleFocusVisibleOffset', () => {
+      [false, true].forEach((cssVariables) => {
+        it(`positive outsets, negative insets, zero stays outset (cssVariables: ${cssVariables})`, () => {
+          const theme = createTheme({ cssVariables, focusVisible: true });
+          expect(theme.scaleFocusVisibleOffset(1)).to.deep.equal({
+            '--_focusVisible-offset': 1,
+            '--_focusVisible-behavior': 'initial',
+          });
+          expect(theme.scaleFocusVisibleOffset(-3)).to.deep.equal({
+            '--_focusVisible-offset': -3,
+            '--_focusVisible-behavior': 'inset',
+          });
+          expect(theme.scaleFocusVisibleOffset(0)).to.deep.equal({
+            '--_focusVisible-offset': 0,
+            '--_focusVisible-behavior': 'initial',
+          });
+        });
+      });
+
+      it.skipIf(isJSDOM)('scales a custom outlineOffset', () => {
+        const theme = createTheme({ focusVisible: { outlineOffset: 4 } });
+        render(
+          <ThemeProvider theme={theme}>
+            <Box
+              data-testid="default"
+              sx={[theme.focusVisible, theme.scaleFocusVisibleOffset(1)]}
+            />
+            <Box data-testid="inset" sx={[theme.focusVisible, theme.scaleFocusVisibleOffset(-1)]} />
+            <Box data-testid="double" sx={[theme.focusVisible, theme.scaleFocusVisibleOffset(2)]} />
+          </ThemeProvider>,
+        );
+        expect(screen.getByTestId('default')).toHaveComputedStyle({ outlineOffset: '4px' });
+        expect(screen.getByTestId('inset')).toHaveComputedStyle({ outlineOffset: '-4px' });
+        expect(screen.getByTestId('double')).toHaveComputedStyle({ outlineOffset: '8px' });
+      });
+
+      it.skipIf(isJSDOM)('mirrors a negative outlineOffset outward', () => {
+        const theme = createTheme({ focusVisible: { outlineOffset: -2 } });
+        render(
+          <ThemeProvider theme={theme}>
+            <Box
+              data-testid="mirrored"
+              sx={[theme.focusVisible, theme.scaleFocusVisibleOffset(-1)]}
+            />
+          </ThemeProvider>,
+        );
+        expect(screen.getByTestId('mirrored')).toHaveComputedStyle({ outlineOffset: '2px' });
+      });
+
+      it('survives recomposing a theme', () => {
+        const theme = createTheme(createTheme({ focusVisible: true }), {
+          palette: { mode: 'dark' },
+        });
+        expect(theme.scaleFocusVisibleOffset(-1)).to.deep.equal({
+          '--_focusVisible-offset': -1,
+          '--_focusVisible-behavior': 'inset',
+        });
+      });
+
+      it.skipIf(isJSDOM)('a styleOverride outsets the ring of an inset component', () => {
+        const theme = createTheme({
+          focusVisible: true,
+          components: {
+            MuiMenuItem: {
+              styleOverrides: {
+                root: ({ theme: t }) => t.scaleFocusVisibleOffset(1),
+              },
+            },
+          },
+        });
+        render(
+          <ThemeProvider theme={theme}>
+            <MenuList>
+              <MenuItem>Item</MenuItem>
+              <MenuItem sx={(t) => t.scaleFocusVisibleOffset(-2)}>Item</MenuItem>
+            </MenuList>
+          </ThemeProvider>,
+        );
+        const [outset, inset] = screen.getAllByRole('menuitem');
+        const offsetOf = (element) =>
+          getComputedStyle(element).getPropertyValue('--_focusVisible-offset').trim();
+        expect(offsetOf(outset)).to.equal('1');
+        expect(offsetOf(inset)).to.equal('-2');
+      });
     });
 
     it('vars theme: curated color is a scheme-reactive palette var, focusVisible is kept inline', () => {

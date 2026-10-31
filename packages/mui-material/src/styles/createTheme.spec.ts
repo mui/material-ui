@@ -355,6 +355,37 @@ const theme = createTheme();
   });
 }
 
+// theme.scaleFocusVisibleOffset
+{
+  const offsetTheme = createTheme({ focusVisible: true });
+  // @ts-expect-error the scale is required
+  offsetTheme.scaleFocusVisibleOffset();
+  offsetTheme.scaleFocusVisibleOffset(1);
+  offsetTheme.scaleFocusVisibleOffset(-3);
+  createTheme({ cssVariables: true }).scaleFocusVisibleOffset(-1);
+
+  createTheme({
+    components: {
+      MuiMenuItem: {
+        styleOverrides: {
+          root: ({ theme: t }) => t.scaleFocusVisibleOffset(1),
+        },
+      },
+    },
+  });
+
+  // @ts-expect-error the scale is a multiplier number, not a CSS length
+  offsetTheme.scaleFocusVisibleOffset('2px');
+
+  offsetTheme.components = {
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ theme: t }) => t.scaleFocusVisibleOffset(1),
+      },
+    },
+  };
+}
+
 // `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings
 {
   const varsTheme = createTheme({ cssVariables: true });

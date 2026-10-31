@@ -78,6 +78,23 @@ export interface BaseTheme extends SystemTheme {
   focusVisible?: FocusVisible | false | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
+  /**
+   * Scales the `theme.focusVisible` ring's `outlineOffset` on the element.
+   *
+   * - `1` keeps the ring at the theme's offset.
+   * - `-1` mirrors it to the other side of the element's edge, and also insets the ring's `boxShadow`.
+   * - `2` doubles its distance from the edge.
+   *
+   * With the default ring, a positive value draws it outside the element and a negative value draws it inside.
+   * A theme `outlineOffset` of zero or less doesn't move the outline inside with a negative value.
+   *
+   * @param scale A multiplier of the theme's `outlineOffset`, not a pixel value.
+   * @example
+   * styleOverrides: {
+   *   root: ({ theme }) => theme.scaleFocusVisibleOffset(1),
+   * }
+   */
+  scaleFocusVisibleOffset: (scale: number) => CSSObject;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
