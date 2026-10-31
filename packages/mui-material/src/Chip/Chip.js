@@ -523,10 +523,13 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     },
     getSlotProps: (handlers) => ({
       ...handlers,
-      onClick: (event) => {
-        handlers.onClick?.(event);
-        onClick?.(event);
-      },
+      onClick:
+        handlers.onClick || onClick
+          ? (event) => {
+              handlers.onClick?.(event);
+              onClick?.(event);
+            }
+          : undefined,
       onKeyDown: (event) => {
         handlers.onKeyDown?.(event);
         handleKeyDown(event);
