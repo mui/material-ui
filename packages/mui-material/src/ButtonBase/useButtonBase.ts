@@ -314,6 +314,10 @@ export default function useButtonBase(
         onBeforeKeyUp?.(event);
         externalOnKeyUp?.(event);
 
+        if (isBaseUIHandlerPrevented(event)) {
+          return;
+        }
+
         if (
           !event.defaultMuiPrevented &&
           event.target === event.currentTarget &&
