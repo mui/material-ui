@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import {
   menu2CheckboxItemClasses,
@@ -148,8 +147,17 @@ createTheme({
     MuiMenu2CheckboxItem: {
       defaultProps: {
         defaultChecked: true,
-        icon: React.createElement('span'),
-        checkedIcon: React.createElement('span'),
+        slots: { indicatorIcon: 'span' },
+        slotProps: {
+          indicatorIcon: (ownerState) => {
+            ownerState.checked satisfies boolean;
+            ownerState.highlighted satisfies boolean;
+            return {
+              fontSize: 'small',
+              sx: (theme) => ({ color: theme.menu2TestColor }),
+            };
+          },
+        },
         onCheckedChange: (checked, eventDetails) => {
           checked satisfies boolean;
           eventDetails.cancel();
@@ -186,8 +194,17 @@ createTheme({
     MuiMenu2RadioItem: {
       defaultProps: {
         value: 'one',
-        icon: React.createElement('span'),
-        checkedIcon: React.createElement('span'),
+        slots: { indicatorIcon: 'span' },
+        slotProps: {
+          indicatorIcon: (ownerState) => {
+            ownerState.checked satisfies boolean;
+            ownerState.highlighted satisfies boolean;
+            return {
+              fontSize: 'small',
+              sx: (theme) => ({ color: theme.menu2TestColor }),
+            };
+          },
+        },
       },
       styleOverrides: {
         root: ({ ownerState }) => {
