@@ -4,8 +4,8 @@ import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import rtlPlugin from '@mui/stylis-plugin-rtl';
 import { Field } from '@base-ui/react/field';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -33,7 +33,7 @@ const rtlCache = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 const variants = ['outlined', 'filled', 'standard'] as const;
-const positions = ['start', 'end', 'split'] as const;
+const positions = ['end', 'split', 'stacked'] as const;
 const colors = ['primary', 'secondary', 'error', 'info', 'success', 'warning'] as const;
 const sections = [
   ['playground', 'Playground'],
@@ -57,8 +57,8 @@ const gridStyles = {
   gap: 2,
 };
 const customIconProps = {
-  incrementButton: { children: <KeyboardArrowUpIcon fontSize="inherit" /> },
-  decrementButton: { children: <KeyboardArrowDownIcon fontSize="inherit" /> },
+  incrementButton: { children: <ArrowDropUpIcon fontSize="inherit" /> },
+  decrementButton: { children: <ArrowDropDownIcon fontSize="inherit" /> },
 };
 
 type RecordEvent = (source: string, details?: unknown) => void;
@@ -174,7 +174,7 @@ function Playground({ record }: { record: RecordEvent }) {
           {`Color: ${colors[colorIndex]}`}
         </Button>
         <Toggle label="Full width" checked={fullWidth} onChange={setFullWidth} />
-        <Toggle label="Use custom chevron icons" checked={customIcons} onChange={setCustomIcons} />
+        <Toggle label="Use custom arrow icons" checked={customIcons} onChange={setCustomIcons} />
         <Button
           variant="outlined"
           onClick={() => setVariant(variants[(variants.indexOf(variant) + 1) % variants.length])}
@@ -233,9 +233,9 @@ function AppearanceCases() {
   return (
     <Section id="appearance" title="Variants, sizes, and control positions">
       <Alert severity="info">
-        These fields use the default plus/minus icons and control styles. Check hover, focus,
-        disabled controls at bounds, narrow widths, light/dark mode, and RTL. The playground can
-        replace the icons with chevrons.
+        End and split controls use plus/minus icons; stacked controls use chevrons. Check hover,
+        focus, disabled controls at bounds, narrow widths, light/dark mode, and RTL. The playground
+        can replace the icons with filled arrows.
       </Alert>
       <Box
         sx={{ ...gridStyles, gridTemplateColumns: { xs: '1fr', lg: 'repeat(3, minmax(0, 1fr))' } }}
@@ -477,7 +477,7 @@ function ControlCases({ record }: { record: RecordEvent }) {
         </Example>
         <Example
           title="Both consumer adornments"
-          expected="For start: controls, $, input, USD. For end: $, input, USD, controls. For split: decrement, $, input, USD, increment. Each adornment keeps its own wrapper."
+          expected="For end and stacked: $, input, USD, controls. For split: decrement, $, input, USD, increment. Stacked increment is above decrement. Each adornment keeps its own wrapper."
         >
           {positions.map((controlsPosition) => (
             <NumberField
@@ -498,7 +498,7 @@ function ControlCases({ record }: { record: RecordEvent }) {
         </Example>
         <Example
           title="Move controls after editing"
-          expected="Type a value, then move the controls. The edited value and native input stay intact. Consumer $/kg adornments keep their order, and an empty label shrinks when controls move to start or split."
+          expected="Type a value, then move the controls. The edited value and native input stay intact. Consumer $/kg adornments keep their order. The empty companion field's label shrinks only for split controls. Stacked controls switch to chevrons."
         >
           <Stack direction="row" spacing={1}>
             {positions.map((option) => (
@@ -1239,7 +1239,7 @@ function SsrCases() {
     { name: 'empty-end', value: null, controlsPosition: 'end', shrink: false },
     { name: 'zero', value: 0, controlsPosition: 'end', shrink: true },
     { name: 'filled', value: 42, controlsPosition: 'end', shrink: true },
-    { name: 'empty-start', value: null, controlsPosition: 'start', shrink: true },
+    { name: 'empty-stacked', value: null, controlsPosition: 'stacked', shrink: false },
     { name: 'empty-split', value: null, controlsPosition: 'split', shrink: true },
   ] as const;
 
@@ -1257,7 +1257,7 @@ function SsrCases() {
           <Example
             key={variant}
             title={`${variant} initial state`}
-            expected="Zero, formatted values, and empty start adornments shrink immediately; empty end controls do not. Explicit shrink=false wins. Server attributes must match the expected values before hydration."
+            expected="Zero, formatted values, and empty start adornments shrink immediately; empty end and stacked controls do not. Explicit shrink=false wins. Server attributes must match the expected values before hydration."
           >
             {cases.map(({ name, value, controlsPosition, shrink }) => (
               <NumberField
@@ -1303,7 +1303,7 @@ function SsrCases() {
               data-expected-shrink="false"
               variant={variant}
               label="Explicit shrink false"
-              controlsPosition="start"
+              controlsPosition="split"
               slotProps={{ inputLabel: { shrink: false } }}
             />
           </Example>

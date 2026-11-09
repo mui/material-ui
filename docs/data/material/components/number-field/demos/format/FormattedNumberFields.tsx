@@ -22,6 +22,8 @@ export default function FormattedNumberFields() {
         defaultValue={0.125}
         locale="en-US"
         step={0.01}
+        smallStep={0.001}
+        largeStep={0.1}
         format={{ style: 'percent', maximumFractionDigits: 1 }}
       />
       {/* @focus-end */}

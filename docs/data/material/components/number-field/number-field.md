@@ -82,8 +82,7 @@ For example, a value of `0.125` is displayed as `12.5%` with percent formatting.
 
 ## Control placement
 
-Use `controlsPosition` to place both buttons at the `start` or `end` of the input, or `split` them across both sides.
-The default position is `end`.
+Set `controlsPosition` to `end` (default), `split`, or `stacked` to change the control layout.
 Start and end follow the text direction.
 
 {{"component": "file://./demos/controls-position/index.ts"}}
@@ -113,8 +112,8 @@ Both slots support custom content through `children` and styles through `sx`.
 
 ## Input adornments
 
-Use `slotProps.input` to add an [`InputAdornment`](/material-ui/api/input-adornment/) as a prefix, suffix, or action.
-Consumer adornments can share either side of the input with the built-in controls.
+Use `slotProps.input` to add an [`InputAdornment`](/material-ui/api/input-adornment/) alongside the built-in controls.
+This example adds a button to clear the value.
 
 {{"component": "file://./demos/adornments/index.ts"}}
 
@@ -178,25 +177,10 @@ Use `slotProps.input` to configure the Material UI `Input`, `FilledInput`, or `
 The forwarded `ref` points to the root element.
 Use `inputRef` to access or focus the visible input.
 
-## Customization
-
-### Spinner
-
-Combine `controlsPosition="split"` with custom styles to create a spinner using the default plus/minus icons.
-The built-in controls retain their labels, stepping behavior, and disabled states.
-
-{{"component": "file://./demos/spinner-demo/index.ts"}}
-
-### Stacked controls
-
-Use the button slots to replace the icons with chevrons, and style the controls to stack them vertically at the end of the input.
-
-{{"component": "file://./demos/stacked-controls/index.ts"}}
-
-### Theme overrides
+## Theme overrides
 
 Use `MuiNumberField` in the theme to set default props or override the `root`, `controls`, `incrementButton`, and `decrementButton` styles.
-The following example stacks the controls vertically and replaces the plus/minus icons with arrows through `slotProps`.
+The following example sets small, stacked controls as theme defaults and gives the buttons different colors through `styleOverrides`.
 
 {{"component": "file://./demos/theme/index.ts"}}
 
