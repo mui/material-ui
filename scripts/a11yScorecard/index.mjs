@@ -33,6 +33,7 @@ import {
   replaceBlock,
   scorecardPath,
 } from './files.mjs';
+import { demoNames, unclaimedDemoNames } from './axe.mjs';
 import readReports, { readDefaults, readJson } from './read.mjs';
 import {
   validateDefaults,
@@ -51,6 +52,36 @@ import {
   renderManualChecklist,
   renderReport,
 } from './render.mjs';
+
+async function unclaimedSharedDemos(sources) {
+  const byFile = new Map();
+  sources.forEach((source) => {
+    if (typeof source.data.axe !== 'string') {
+      return;
+    }
+    const group = byFile.get(source.data.axe) ?? [];
+    group.push(source);
+    byFile.set(source.data.axe, group);
+  });
+
+  // A component without `axeDemos` reads every demo, so none of that file's demos go unclaimed.
+  const claimed = [...byFile.entries()].filter(([, group]) =>
+    group.every((source) => Array.isArray(source.data.axeDemos)),
+  );
+  const namesByFile = await Promise.all(claimed.map(async ([ref]) => [ref, await demoNames(ref)]));
+  const violations = [];
+  namesByFile.forEach(([ref, names]) => {
+    const group = byFile.get(ref);
+    const who = group.map((source) => source.component).join(', ');
+    unclaimedDemoNames(
+      names,
+      group.map((source) => source.data.axeDemos),
+    ).forEach((name) => {
+      violations.push(`axe: demo "${name}" in ${ref} is not claimed by ${who}`);
+    });
+  });
+  return violations;
+}
 
 async function run(argv) {
   const check = argv.includes('--check');
@@ -72,6 +103,7 @@ async function run(argv) {
   fail([
     ...validateDefaults(defaults, check),
     ...(await Promise.all(sources.map((source) => validateSource(source, defaults)))).flat(),
+    ...(await unclaimedSharedDemos(sources)),
   ]);
 
   // A conformance report is a statement about one release, so each report names the version.

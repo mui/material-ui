@@ -7,6 +7,7 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
+import useTimeout from '@mui/utils/useTimeout';
 import useOptionValue from './utils/useOptionValue';
 
 function areArraysSame({ array1, array2, parser = (value) => value }) {
@@ -1264,9 +1265,29 @@ function useAutocomplete(props) {
     handleClose(event, 'blur');
   };
 
+  const inlineCompletionTimeout = useTimeout();
+  const completeInline = useEventCallback(() => {
+    const option = filteredOptions[highlightedIndexRef.current];
+    if (!popupOpen || option === undefined) {
+      return;
+    }
+
+    const optionLabel = getOptionLabel(option);
+    if (optionLabel.toLowerCase().startsWith(inputValue.toLowerCase())) {
+      inputRef.current.value = optionLabel;
+      inputRef.current.setSelectionRange(inputValue.length, optionLabel.length);
+    }
+  });
+
   const handleInputChange = (event) => {
     const newValue = event.target.value;
     const valueChanged = inputValue !== newValue;
+
+    // Complete the auto highlighted option inline, only when typing forward so that characters
+    // can still be deleted. Deferred until React has restored the controlled input value.
+    if (autoComplete && autoHighlight && newValue.length > inputValue.length) {
+      inlineCompletionTimeout.start(0, completeInline);
+    }
 
     if (valueChanged) {
       inputValueEditedRef.current = true;
