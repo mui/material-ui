@@ -1,4 +1,4 @@
-import deepmerge from '@mui/utils/deepmerge';
+import deepmerge, { isPlainObject } from '@mui/utils/deepmerge';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -82,6 +82,13 @@ export default function createTypography(palette, typography) {
     },
   };
 
+  const customVariants = {};
+  Object.keys(other).forEach((key) => {
+    if (!(key in variants) && isPlainObject(other[key])) {
+      customVariants[key] = { fontFamily, ...allVariants };
+    }
+  });
+
   return deepmerge(
     {
       htmlFontSize,
@@ -93,6 +100,7 @@ export default function createTypography(palette, typography) {
       fontWeightMedium,
       fontWeightBold,
       ...variants,
+      ...customVariants,
     },
     other,
     {
