@@ -58,11 +58,8 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 ## Flexbox gap
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) for the spacing implementation, set the `useFlexGap` prop to true.
-
-It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
-
-We recommend checking the [support percentage](https://caniuse.com/?search=flex%20gap) before using it.
+Stack uses [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) to space its children.
+Spacing keeps working when the children wrap onto multiple lines, and the children's own margins are applied on top of it.
 
 {{"component": "file://./demos/flexbox-gap/index.ts", "bg": true}}
 
@@ -82,24 +79,6 @@ Below is an example of how to apply center align items using this prop:
 ```
 
 ## Limitations
-
-### Margin on the children
-
-Customizing the margin on the children is not supported by default.
-
-For instance, the top-margin on the `button` component below will be ignored.
-
-```jsx
-<Stack>
-  <button style={{ marginTop: '30px' }}>...</button>
-</Stack>
-```
-
-:::success
-To overcome this limitation, set [`useFlexGap`](#flexbox-gap) prop to true to switch to CSS flexbox gap implementation.
-
-You can learn more about this limitation by visiting this [RFC](https://github.com/mui/material-ui/issues/33754).
-:::
 
 ### white-space: nowrap
 
