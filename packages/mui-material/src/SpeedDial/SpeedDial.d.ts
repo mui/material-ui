@@ -58,7 +58,6 @@ export interface SpeedDialProps
   classes?: Partial<SpeedDialClasses> | undefined;
   /**
    * The aria-label of the button element.
-   * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: string;
   /**
@@ -81,6 +80,11 @@ export interface SpeedDialProps
    * provides a default Icon with animation.
    */
   icon?: React.ReactNode;
+  /**
+   * The id of the root element. It is also the base of the ids of the actions container (`${id}-actions`)
+   * and of each action (`${id}-action-${index}`). If not provided, a unique id is generated.
+   */
+  id?: string | undefined;
   /**
    * Callback fired when the component requests to be closed.
    *

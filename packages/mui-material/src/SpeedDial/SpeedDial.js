@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import setRef from '@mui/utils/setRef';
+import useId from '@mui/utils/useId';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -350,8 +351,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     }
   };
 
-  // Filter the label for valid id characters.
-  const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
+  const id = useId(other.id);
 
   const allItems = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -485,7 +485,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The aria-label of the button element.
-   * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: PropTypes.string.isRequired,
   /**
@@ -520,6 +519,11 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * provides a default Icon with animation.
    */
   icon: PropTypes.node,
+  /**
+   * The id of the root element. It is also the base of the ids of the actions container (`${id}-actions`)
+   * and of each action (`${id}-action-${index}`). If not provided, a unique id is generated.
+   */
+  id: PropTypes.string,
   /**
    * @ignore
    */
