@@ -1,10 +1,6 @@
 import * as React from 'react';
-import dynamic from 'next/dynamic';
 import { HighlightedCodeWithTabs } from '../HighlightedCodeWithTabs';
 import { MarkdownElement } from './MarkdownElement';
-
-// Legacy pages load their demo renderer only when a demo directive is encountered.
-const LegacyMarkdownDemo = dynamic(() => import('./LegacyMarkdownDemo'));
 
 export interface RichMarkdownElementProps {
   activeTab?: string;
@@ -62,5 +58,5 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
     );
   }
 
-  return <LegacyMarkdownDemo {...props} />;
+  throw new Error(`Unsupported markdown entry in '${localizedDoc.location}'`);
 }
