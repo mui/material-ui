@@ -386,6 +386,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (onChangeCommitted) {
       onChangeCommitted(event, lastChangedValueRef.current ?? newValue);
     }
+
+    lastChangedValueRef.current = null;
   };
 
   const createHandleHiddenInputKeyDown =
@@ -648,6 +650,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
     touchIdRef.current = undefined;
     activePointerIdRef.current = -1;
+    lastChangedValueRef.current = null;
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     stopListening();
@@ -725,6 +728,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (disabled) {
       stopListening();
       cancelFocusFrame();
+      lastChangedValueRef.current = null;
     }
   }, [disabled, stopListening, cancelFocusFrame]);
 
