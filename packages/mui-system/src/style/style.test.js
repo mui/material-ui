@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import style from './style';
+import style, { getStyleValue } from './style';
 
 describe('style', () => {
   const bgcolor = style({
@@ -62,6 +62,23 @@ describe('style', () => {
     expect(output).to.deep.equal({
       boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
     });
+  });
+
+  it('should preserve zero from an array theme value', () => {
+    const shadows = ['none', 0];
+
+    expect(boxShadow({ theme: { shadows }, boxShadow: 1 })).to.deep.equal({ boxShadow: 0 });
+    expect(getStyleValue(shadows, undefined, 1)).to.equal(0);
+  });
+
+  it('should preserve zero from an object theme value', () => {
+    const zIndex = style({ prop: 'zIndex', themeKey: 'zIndex' });
+    const mapping = { mobileStepper: 0 };
+
+    expect(zIndex({ theme: { zIndex: mapping }, zIndex: 'mobileStepper' })).to.deep.equal({
+      zIndex: 0,
+    });
+    expect(getStyleValue(mapping, undefined, 'mobileStepper')).to.equal(0);
   });
 
   it('should fallback to value if theme value is an array and index missing', () => {
