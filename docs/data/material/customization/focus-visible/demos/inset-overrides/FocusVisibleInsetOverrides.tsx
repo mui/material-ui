@@ -2,8 +2,6 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuList from '@mui/material/MenuList';
@@ -27,13 +25,9 @@ const theme = createTheme({
 
 export default function FocusVisibleInsetOverrides() {
   // @focus-start @padding 1
-  const [cardTab, setCardTab] = React.useState(0);
-  const [appBarTab, setAppBarTab] = React.useState(0);
-  const handleCardChange = (event: React.SyntheticEvent, newValue: number) => {
-    setCardTab(newValue);
-  };
-  const handleAppBarChange = (event: React.SyntheticEvent, newValue: number) => {
-    setAppBarTab(newValue);
+  const [tab, setTab] = React.useState(0);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setTab(newValue);
   };
   return (
     <ThemeProvider theme={theme}>
@@ -57,27 +51,11 @@ export default function FocusVisibleInsetOverrides() {
             <MenuItem selected>Selected item</MenuItem>
             <MenuItem>Item</MenuItem>
           </MenuList>
-          <Tabs value={cardTab} onChange={handleCardChange}>
+          <Tabs value={tab} onChange={handleChange}>
             <Tab label="Tab one" />
             <Tab label="Tab two" />
           </Tabs>
         </Card>
-        <AppBar position="static" sx={{ borderRadius: 1 }}>
-          <Toolbar sx={{ gap: 3 }}>
-            <Button variant="outlined" color="inherit">
-              Tab to me
-            </Button>
-            <Tabs
-              value={appBarTab}
-              onChange={handleAppBarChange}
-              textColor="inherit"
-              indicatorColor="secondary"
-            >
-              <Tab label="Tab one" />
-              <Tab label="Tab two" />
-            </Tabs>
-          </Toolbar>
-        </AppBar>
       </Stack>
     </ThemeProvider>
   );
