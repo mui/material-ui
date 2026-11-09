@@ -1146,6 +1146,7 @@ function useAutocomplete(props) {
             handleClose(event, 'escape');
           } else if (
             clearOnEscape &&
+            !readOnly &&
             (inputValue !== '' || (multiple && value.length > 0) || renderValue)
           ) {
             // Avoid Opera to exit fullscreen mode.
