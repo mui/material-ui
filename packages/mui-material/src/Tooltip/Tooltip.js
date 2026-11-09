@@ -349,8 +349,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childNode.removeAttribute('title');
     }
 
-    enterTimer.clear();
     leaveTimer.clear();
+    if (enterTimer.currentId !== null) {
+      return;
+    }
+
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
       enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
         handleOpen(event);
