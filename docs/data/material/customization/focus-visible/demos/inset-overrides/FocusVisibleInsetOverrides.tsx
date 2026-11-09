@@ -47,7 +47,8 @@ export default function FocusVisibleInsetOverrides() {
     <ThemeProvider theme={theme}>
       <Stack spacing={2} sx={{ width: '100%', alignItems: 'center' }}>
         <Typography variant="body2" color="text.secondary">
-          Press <kbd>Tab</kbd> and the arrow keys.
+          Click <strong>Reset focus</strong> in the toolbar below the demo, then
+          press <kbd>Tab</kbd> and the arrow keys.
         </Typography>
         <Card sx={{ width: '100%', maxWidth: 360 }}>
           <Tabs
