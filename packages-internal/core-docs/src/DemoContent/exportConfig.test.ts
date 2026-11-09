@@ -11,11 +11,9 @@ describe('demo sandbox dependencies', () => {
       useTypescriptRef: { current: true },
     });
 
-    // New docs-infra versions retain all import paths in the optional third argument.
-    const dependencies = Reflect.apply(config.resolveDependencies!, undefined, [
-      '@mui/x-date-pickers',
-      undefined,
-      ['@mui/x-date-pickers/DatePicker', '@mui/x-date-pickers/AdapterLuxon'],
+    const dependencies = config.resolveDependencies!('@mui/x-date-pickers', undefined, [
+      '@mui/x-date-pickers/DatePicker',
+      '@mui/x-date-pickers/AdapterLuxon',
     ]);
 
     expect(postProcessImport.mock.calls.map(([name]) => name)).to.deep.equal([
