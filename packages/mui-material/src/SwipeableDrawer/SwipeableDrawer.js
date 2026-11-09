@@ -252,8 +252,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       setMaybeSwiping(false);
     });
 
-    // The swipe wasn't started.
-    if (!swipeInstance.current.isSwiping) {
+    // The swipe wasn't started, or the drawer unmounted while it was active.
+    if (!swipeInstance.current.isSwiping || !paperRef.current) {
       swipeInstance.current.isSwiping = null;
       return;
     }
