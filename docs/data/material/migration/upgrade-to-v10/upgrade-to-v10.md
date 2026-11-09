@@ -69,21 +69,5 @@ If you need the previous margin-based spacing, set it on the Stack with the `sx`
 #### DialogActions, CardActions and AccordionActions
 
 The space between the actions is now `gap: 8px` on the root element instead of `margin-left: 8px` on every child after the first one.
-If you overrode that margin, override `gap` instead:
-
-```diff
- const theme = createTheme({
-   components: {
-     MuiDialogActions: {
-       styleOverrides: {
-         spacing: {
--          '& > :not(style) ~ :not(style)': { marginLeft: 16 },
-+          gap: 16,
-         },
-       },
-     },
-   },
- });
-```
-
+If you customized that spacing, through the `spacing` style override or a margin on the actions, set `gap` on the root instead.
 The `disableSpacing` prop works as before and removes the gap.
