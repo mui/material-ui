@@ -23,4 +23,30 @@ npm install @mui/material@next
 
 ## Documentation
 
-We have no documentation for these components.
+### Next.js consumers
+
+Transpile the published package so Next.js can transform its dynamic imports and preload legacy demo chunks before hydration.
+DocSearch also needs transpilation for its CommonJS autocomplete dependency during SSR.
+
+With webpack, parse the published markdown renderer as `javascript/auto` so webpack resolves Next.js's generated `require.resolveWeak` calls.
+Without this rule, the published ESM renderer can build and render on the server but fail during hydration.
+The rule is needed even when a page contains no legacy demos.
+Turbopack does not need this parser rule.
+
+```js
+export default {
+  transpilePackages: ['@mui/internal-core-docs', '@docsearch/react'],
+  webpack(config) {
+    config.module.rules.push({
+      test: /[/\\]@mui[/\\]internal-core-docs[/\\]MarkdownDocs[/\\]RichMarkdownElement\.js$/,
+      type: 'javascript/auto',
+    });
+    return config;
+  },
+};
+```
+
+Legacy demo rendering remains enabled on the server.
+On client-side navigation, uncached legacy demos can briefly render nothing until their shared chunk loads.
+Cached or prefetched chunks can avoid this delay.
+Migrated demos do not use this legacy renderer.
