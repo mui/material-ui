@@ -24,5 +24,5 @@
   "23": "MUI: No TabContext provided. TabList must be used within a TabContext. Wrap your Tabs with <TabContext value={...}>. See https://mui.com/material-ui/react-tabs/#experimental-api for more info.",
   "24": "MUI: No TabContext provided. TabPanel must be used within a TabContext. Wrap your TabPanel with <TabContext value={...}>. See https://mui.com/material-ui/react-tabs/#experimental-api for more info.",
   "25": "MUI: The `colorSchemes.%s` option is either missing or invalid. Ensure the default color scheme is defined in colorSchemes with a valid palette configuration.",
-  "26": "MUI: Cannot position NumberField controls because \"controlsPosition\" is invalid: %s. Use \"start\", \"end\", or \"split\"."
+  "26": "MUI: Cannot position NumberField controls because \"controlsPosition\" is invalid: %s. Use \"stacked\", \"end\", or \"split\"."
 }

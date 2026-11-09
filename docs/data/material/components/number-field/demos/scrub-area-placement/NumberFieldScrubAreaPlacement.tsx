@@ -10,13 +10,7 @@ export default function NumberFieldScrubAreaPlacement() {
         label="End handle"
         defaultValue={5}
         scrubArea="end"
-        controlsPosition="start"
-      />
-      <NumberField
-        label="Split controls"
-        defaultValue={5}
-        scrubArea="start"
-        controlsPosition="split"
+        controlsPosition="stacked"
       />
       {/* @focus-end */}
     </Box>

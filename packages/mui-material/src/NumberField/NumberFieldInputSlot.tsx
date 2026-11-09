@@ -7,6 +7,8 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 
 import AddIcon from '../internal/svg-icons/Add';
 import RemoveIcon from '../internal/svg-icons/Remove';
+import KeyboardArrowDownIcon from '../internal/svg-icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '../internal/svg-icons/KeyboardArrowUp';
 import ImportExportIcon from '../internal/svg-icons/ImportExport';
 import OpenInFullIcon from '../internal/svg-icons/OpenInFull';
 
@@ -16,6 +18,7 @@ import OutlinedInput from '../OutlinedInput';
 import type { OutlinedInputProps } from '../OutlinedInput';
 import FilledInput from '../FilledInput';
 import Input from '../Input';
+import inputBaseClasses from '../InputBase/inputBaseClasses';
 import InputAdornment from '../InputAdornment';
 import { getControlElements, resolveInputProps, useUtilityClasses } from './utils';
 import IconButton from '../IconButton';
@@ -34,16 +37,15 @@ interface NumberFieldInputProps {
 
 // Control buttons provide their own spacing against the input's outer edges.
 const inputStyles = {
+  paddingRight: 0,
   variants: [
     {
       props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
-        ownerState.controlsPosition === 'start' || ownerState.controlsPosition === 'split',
-      style: { paddingLeft: 0 },
-    },
-    {
-      props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
-        ownerState.controlsPosition === 'end' || ownerState.controlsPosition === 'split',
-      style: { paddingRight: 0 },
+        ownerState.controlsPosition === 'split',
+      style: {
+        paddingLeft: 0,
+        [`& > .${inputBaseClasses.input}`]: { textAlign: 'center' },
+      },
     },
   ],
 };
@@ -70,6 +72,33 @@ const buttonStyles = memoTheme(({ theme }) => ({
       props: { variant: 'standard' },
       // The standard input has no vertical padding to accommodate taller controls.
       style: { padding: 4 },
+    },
+    {
+      props: { controlsPosition: 'stacked' },
+      style: { flex: '1 1 0', padding: '0 4px', fontSize: theme.typography.pxToRem(28) },
+    },
+    {
+      props: ({
+        ownerState,
+        size,
+      }: { ownerState: NumberFieldOwnerState } & Pick<IconButtonProps, 'size'>) =>
+        ownerState.controlsPosition === 'stacked' && size === 'small',
+      style: { fontSize: theme.typography.pxToRem(20) },
+    },
+    {
+      props: { controlsPosition: 'stacked', variant: 'standard' },
+      // Fit both chevrons within the standard input's existing height.
+      style: { padding: '0 6px', fontSize: theme.typography.pxToRem(16) },
+    },
+    {
+      props: ({
+        ownerState,
+        size,
+      }: { ownerState: NumberFieldOwnerState } & Pick<IconButtonProps, 'size'>) =>
+        ownerState.controlsPosition === 'stacked' &&
+        ownerState.variant === 'standard' &&
+        size === 'small',
+      style: { fontSize: theme.typography.pxToRem(14) },
     },
   ],
 }));
@@ -248,6 +277,10 @@ const NumberFieldInputSlot = React.forwardRef(
       },
     });
 
+    const [DecrementIcon, IncrementIcon] =
+      ownerState.controlsPosition === 'stacked'
+        ? [KeyboardArrowDownIcon, KeyboardArrowUpIcon]
+        : [RemoveIcon, AddIcon];
     const [DecrementButtonSlot, decrementButtonProps] = useSlot('decrementButton', {
       elementType: NumberFieldDecrementButton,
       externalForwardedProps,
@@ -255,7 +288,7 @@ const NumberFieldInputSlot = React.forwardRef(
       className: classes.decrementButton,
       additionalProps: {
         size: ownerState.size,
-        children: <RemoveIcon fontSize="inherit" />,
+        children: <DecrementIcon fontSize="inherit" />,
       },
       shouldForwardComponentProp: true,
     });
@@ -266,7 +299,7 @@ const NumberFieldInputSlot = React.forwardRef(
       className: classes.incrementButton,
       additionalProps: {
         size: ownerState.size,
-        children: <AddIcon fontSize="inherit" />,
+        children: <IncrementIcon fontSize="inherit" />,
       },
       shouldForwardComponentProp: true,
     });

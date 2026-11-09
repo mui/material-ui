@@ -13,7 +13,6 @@ export default function CustomizedNumberFieldScrubArea() {
         scrubArea: {
           children: <DragIndicatorIcon fontSize="small" />,
           sx: {
-            borderRadius: 2,
             color: 'primary.main',
           },
         },

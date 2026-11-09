@@ -1,33 +1,37 @@
-import Box from '@mui/material/Box';
+import * as React from 'react';
+import ClearIcon from '@mui/icons-material/Clear';
+import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import NumberField from '@mui/material/NumberField';
 
 export default function NumberFieldAdornments() {
+  // @focus-start @padding 1
+  const [value, setValue] = React.useState<number | null>(5);
+
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-      {/* @focus-start */}
-      <NumberField
-        label="Weight"
-        defaultValue={5}
-        min={0}
-        slotProps={{
-          input: {
-            endAdornment: <InputAdornment position="end">kg</InputAdornment>,
-          },
-        }}
-      />
-      <NumberField
-        label="Price"
-        defaultValue={25}
-        min={0}
-        controlsPosition="split"
-        slotProps={{
-          input: {
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          },
-        }}
-      />
-      {/* @focus-end */}
-    </Box>
+    <NumberField
+      label="Quantity"
+      value={value}
+      onValueChange={setValue}
+      min={0}
+      controlsPosition="stacked"
+      slotProps={{
+        input: {
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="Clear quantity"
+                size="small"
+                disabled={value === null}
+                onClick={() => setValue(null)}
+              >
+                <ClearIcon fontSize="small" />
+              </IconButton>
+            </InputAdornment>
+          ),
+        },
+      }}
+    />
   );
+  // @focus-end
 }
