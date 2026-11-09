@@ -987,6 +987,36 @@ describe('<Popover />', () => {
         expect(style.left).to.equal(`${valueOutsideWindow}px`);
         expect(style.transformOrigin).to.match(/0px 0px( 0px)?/);
       });
+
+      it('should not constrain the right or bottom edges when marginThreshold is null', () => {
+        const mockedAnchor = document.createElement('div');
+        const top = window.innerHeight + 100;
+        const left = window.innerWidth + 100;
+        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({ top, left }));
+
+        let style;
+        render(
+          <Popover
+            anchorEl={mockedAnchor}
+            open
+            marginThreshold={null}
+            slotProps={{
+              transition: {
+                onEntering: (node) => {
+                  style = node.style;
+                },
+              },
+              paper: { component: FakePaper },
+            }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(style.top).to.equal(`${top}px`);
+        expect(style.left).to.equal(`${left}px`);
+        expect(style.transformOrigin).to.match(/0px 0px( 0px)?/);
+      });
     });
   });
 
