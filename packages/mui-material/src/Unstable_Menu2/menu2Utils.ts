@@ -76,28 +76,12 @@ export function mergeStateClassName<State>(
 export type SlotProps<SlotPropsValue, OwnerState> =
   SlotPropsValue | ((ownerState: OwnerState) => SlotPropsValue) | undefined;
 
-export interface Menu2RootSlots {
-  root?: React.ElementType | undefined;
-}
-
-export interface Menu2RootSlotProps<OwnerState> {
-  root?: SlotProps<Record<string, any>, OwnerState>;
-}
-
 export function getMenu2RootRender<OwnerState>(
   RootSlot: React.ElementType,
   ownerState: OwnerState,
   props?: Record<string, any>,
-  defaultRootSlot?: React.ElementType,
 ) {
   const rootProps = { ...(props ?? {}) };
-
-  // These props are internal to `ButtonBase`. Only the default root reaches it,
-  // so a custom slot would spread them onto the DOM and React would warn.
-  if (defaultRootSlot != null && RootSlot !== defaultRootSlot) {
-    delete rootProps.disableRipple;
-    delete rootProps.nativeButton;
-  }
 
   if (isHostComponent(RootSlot)) {
     delete rootProps.as;
