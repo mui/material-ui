@@ -1370,6 +1370,10 @@ function useAutocomplete(props) {
   };
 
   const handleOptionClick = (event) => {
+    if (disabledProp) {
+      return;
+    }
+
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     selectNewValue(event, filteredOptions[index], 'selectOption');
 

@@ -2570,6 +2570,25 @@ describe('<Autocomplete />', () => {
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
 
+    it('should ignore clicks on options when disabled with a controlled open popup', async () => {
+      const onChange = spy();
+      const view = render(
+        <Autocomplete
+          open
+          defaultValue="one"
+          options={['one', 'two', 'three']}
+          onChange={onChange}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      view.setProps({ disabled: true });
+      await view.user.click(screen.getByRole('option', { name: 'two' }));
+
+      expect(onChange.callCount).to.equal(0);
+      expect(screen.getByRole('combobox')).to.have.value('one');
+    });
+
     it('should not crash when autoSelect & freeSolo are set, text is focused & disabled gets truthy', () => {
       const view = render(
         <Autocomplete
