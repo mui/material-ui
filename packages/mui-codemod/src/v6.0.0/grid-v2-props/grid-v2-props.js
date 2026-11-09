@@ -205,7 +205,7 @@ export default function gridV2Props(file, api, options) {
 
       if (itemProp) {
         el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
-          (attr) => attr.type === 'JSXAttribute' && attr.name.name !== 'item',
+          (attr) => attr.name?.name !== 'item',
         );
       }
 
@@ -215,7 +215,7 @@ export default function gridV2Props(file, api, options) {
 
       if (zeroMinWidthProp) {
         el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
-          (attr) => attr.type === 'JSXAttribute' && attr.name.name !== 'zeroMinWidth',
+          (attr) => attr.name?.name !== 'zeroMinWidth',
         );
       }
     });
