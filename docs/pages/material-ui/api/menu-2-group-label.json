@@ -3,11 +3,16 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "className": { "type": { "name": "string" } },
-    "component": { "type": { "name": "elementType" } },
-    "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'"
+      },
+      "default": "'default'"
     },
-    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
@@ -19,15 +24,14 @@
   },
   "name": "Menu2GroupLabel",
   "imports": ["import MenuGroupLabel from '@mui/material/Unstable_Menu2GroupLabel';"],
-  "slots": [
+  "classes": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "ListSubheader",
-      "class": "MuiMenu2GroupLabel-root"
+      "key": "root",
+      "className": "MuiMenu2GroupLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
     }
   ],
-  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiMenu2GroupLabel",

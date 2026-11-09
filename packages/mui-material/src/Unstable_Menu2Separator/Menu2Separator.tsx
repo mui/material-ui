@@ -1,34 +1,29 @@
 'use client';
 import * as React from 'react';
-import type { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
+import useForkRef from '@mui/utils/useForkRef';
 import { Separator as BaseSeparator } from '@base-ui/react/separator';
+import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import type { SxProps } from '@mui/system';
-import mergeSlotProps from '../utils/mergeSlotProps';
 import Divider from '../Divider';
+import type { DividerOwnProps } from '../Divider';
 import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
-import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
+import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import type { Menu2SeparatorClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SeparatorUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
-export interface Menu2SeparatorSlots {
-  /**
-   * The component that renders the root.
-   * @default Divider
-   */
-  root?: React.ElementType | undefined;
-}
+export interface Menu2SeparatorOwnerState extends BaseSeparator.State {}
 
-export interface Menu2SeparatorSlotProps extends Menu2RootSlotProps<Menu2SeparatorProps> {}
-
-export interface Menu2SeparatorOwnProps extends Pick<BaseSeparator.Props, 'orientation'> {
+export interface Menu2SeparatorProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
+    Pick<DividerOwnProps, 'absolute' | 'children' | 'flexItem' | 'textAlign' | 'variant'>,
+    Pick<BaseSeparator.Props, 'orientation'> {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -38,13 +33,13 @@ export interface Menu2SeparatorOwnProps extends Pick<BaseSeparator.Props, 'orien
    */
   className?: string | undefined;
   /**
-   * The components used for each slot inside.
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles and separator semantics.
    */
-  slots?: Menu2SeparatorSlots | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: Menu2SeparatorSlotProps | undefined;
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SeparatorOwnerState>
+    | undefined;
   /**
    * Styles applied to the root element.
    */
@@ -54,24 +49,6 @@ export interface Menu2SeparatorOwnProps extends Pick<BaseSeparator.Props, 'orien
    */
   sx?: SxProps<Theme> | undefined;
 }
-
-export interface Menu2SeparatorTypeMap<
-  AdditionalProps = {},
-  RootComponent extends React.ElementType = 'div',
-> {
-  props: AdditionalProps & Menu2SeparatorOwnProps;
-  defaultComponent: RootComponent;
-}
-
-export type Menu2SeparatorProps<
-  RootComponent extends React.ElementType = Menu2SeparatorTypeMap['defaultComponent'],
-  AdditionalProps = {},
-> = OverrideProps<Menu2SeparatorTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
-};
 
 const useUtilityClasses = (ownerState: Menu2SeparatorProps) => {
   const { classes } = ownerState;
@@ -86,7 +63,10 @@ const useUtilityClasses = (ownerState: Menu2SeparatorProps) => {
 const Menu2SeparatorRoot = styled(Divider, {
   name: 'MuiMenu2Separator',
   slot: 'root',
-})(
+})<{
+  component: React.ElementType;
+  ownerState: Menu2SeparatorProps & Menu2SeparatorOwnerState;
+}>(
   // Own the classic item/divider spacing instead of relying on the legacy
   // `[item] + divider` adjacency rule: Base UI mounts inline focus-guard
   // nodes next to an open submenu trigger, which breaks that selector and
@@ -95,7 +75,7 @@ const Menu2SeparatorRoot = styled(Divider, {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   })),
-) as any;
+);
 
 /**
  *
@@ -109,7 +89,7 @@ const Menu2SeparatorRoot = styled(Divider, {
  */
 const Menu2Separator = React.forwardRef(function Menu2Separator(
   inProps: Menu2SeparatorProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
+  ref: React.ForwardedRef<HTMLElement>,
 ) {
   const props = useDefaultProps({
     props: inProps,
@@ -117,14 +97,16 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
   });
 
   const {
+    absolute,
     className,
     classes: classesProp,
-    component,
+    flexItem,
     orientation = 'horizontal',
-    slotProps,
-    slots,
+    render: renderProp,
     sx,
     style,
+    textAlign,
+    variant,
     ...other
   } = props;
   const ownerState = {
@@ -133,31 +115,44 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
     orientation,
   };
   const classes = useUtilityClasses(ownerState);
-  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
+  const handleRef = useForkRef(ref);
 
   return (
     <BaseSeparator
-      ref={ref}
+      ref={handleRef}
       data-mui-menu-separator=""
       orientation={orientation}
-      render={getMenu2RootRender(slots?.root ?? Menu2SeparatorRoot, ownerState, {
-        ...rootSlotProps,
-        component: component ?? 'div',
-        orientation,
-        ownerState,
-      })}
+      render={(renderProps, state) => (
+        <Menu2SeparatorRoot
+          {...renderProps}
+          component={renderProp ? Menu2RenderRoot : 'div'}
+          {...(renderProp && { internalRender: renderProp, internalRenderState: state })}
+          absolute={absolute}
+          flexItem={flexItem}
+          orientation={orientation}
+          ownerState={ownerState}
+          sx={sx}
+          textAlign={textAlign}
+          variant={variant}
+        />
+      )}
       className={clsx(className, classes.root)}
       style={style}
       {...other}
     />
   );
-}) as OverridableComponent<Menu2SeparatorTypeMap>;
+});
 
 Menu2Separator.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * Absolutely position the element.
+   * @default false
+   */
+  absolute: PropTypes.bool,
   /**
    * @ignore
    */
@@ -171,27 +166,21 @@ Menu2Separator.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * If `true`, a vertical divider will have the correct height when used in flex container.
+   * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
+   * @default false
    */
-  component: PropTypes.elementType,
+  flexItem: PropTypes.bool,
   /**
    * The orientation of the separator.
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The props used for each slot inside.
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles and separator semantics.
    */
-  slotProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * The components used for each slot inside.
-   */
-  slots: PropTypes.shape({
-    root: PropTypes.elementType,
-  }),
+  render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * Styles applied to the root element.
    */
@@ -204,6 +193,16 @@ Menu2Separator.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The text alignment.
+   * @default 'center'
+   */
+  textAlign: PropTypes.oneOf(['center', 'left', 'right']),
+  /**
+   * The variant to use.
+   * @default 'fullWidth'
+   */
+  variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
 } as any;
 
 export default Menu2Separator;

@@ -1,33 +1,27 @@
 'use client';
 import * as React from 'react';
-import type { OverridableComponent, OverrideProps } from '@mui/types';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
+import useForkRef from '@mui/utils/useForkRef';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import type { SxProps } from '@mui/system';
-import mergeSlotProps from '../utils/mergeSlotProps';
 import ListSubheader from '../ListSubheader';
+import type { ListSubheaderOwnProps } from '../ListSubheader';
 import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
-import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
+import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import type { Menu2GroupLabelClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2GroupLabelUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
-export interface Menu2GroupLabelSlots {
-  /**
-   * The component that renders the root.
-   * @default ListSubheader
-   */
-  root?: React.ElementType | undefined;
-}
+export interface Menu2GroupLabelOwnerState extends BaseMenu.GroupLabel.State {}
 
-export interface Menu2GroupLabelSlotProps extends Menu2RootSlotProps<Menu2GroupLabelProps> {}
-
-export interface Menu2GroupLabelOwnProps {
+export interface Menu2GroupLabelProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
+    Pick<ListSubheaderOwnProps, 'color' | 'disableGutters' | 'inset'> {
   /**
    * The content of the label.
    */
@@ -41,13 +35,13 @@ export interface Menu2GroupLabelOwnProps {
    */
   className?: string | undefined;
   /**
-   * The components used for each slot inside.
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles and accessibility.
    */
-  slots?: Menu2GroupLabelSlots | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: Menu2GroupLabelSlotProps | undefined;
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupLabelOwnerState>
+    | undefined;
   /**
    * Styles applied to the root element.
    */
@@ -57,24 +51,6 @@ export interface Menu2GroupLabelOwnProps {
    */
   sx?: SxProps<Theme> | undefined;
 }
-
-export interface Menu2GroupLabelTypeMap<
-  AdditionalProps = {},
-  RootComponent extends React.ElementType = 'div',
-> {
-  props: AdditionalProps & Menu2GroupLabelOwnProps;
-  defaultComponent: RootComponent;
-}
-
-export type Menu2GroupLabelProps<
-  RootComponent extends React.ElementType = Menu2GroupLabelTypeMap['defaultComponent'],
-  AdditionalProps = {},
-> = OverrideProps<Menu2GroupLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  /**
-   * The component used for the root node.
-   */
-  component?: React.ElementType | undefined;
-};
 
 const useUtilityClasses = (ownerState: Menu2GroupLabelProps) => {
   const { classes } = ownerState;
@@ -89,7 +65,7 @@ const useUtilityClasses = (ownerState: Menu2GroupLabelProps) => {
 const Menu2GroupLabelRoot = styled(ListSubheader, {
   name: 'MuiMenu2GroupLabel',
   slot: 'root',
-})({}) as any;
+})<{ component?: React.ElementType | undefined; ownerState: Menu2GroupLabelProps }>({});
 
 /**
  *
@@ -103,7 +79,7 @@ const Menu2GroupLabelRoot = styled(ListSubheader, {
  */
 const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
   inProps: Menu2GroupLabelProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
+  ref: React.ForwardedRef<HTMLElement>,
 ) {
   const props = useDefaultProps({
     props: inProps,
@@ -113,9 +89,10 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
   const {
     className,
     classes: classesProp,
-    component,
-    slotProps,
-    slots,
+    color,
+    disableGutters,
+    inset,
+    render: renderProp,
     sx,
     style,
     ...other
@@ -125,25 +102,30 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     classes: classesProp,
   };
   const classes = useUtilityClasses(ownerState);
-  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
-  const RootSlot = slots?.root ?? Menu2GroupLabelRoot;
+  const handleRef = useForkRef(ref);
 
   return (
     <BaseMenu.GroupLabel
-      ref={ref}
-      render={getMenu2RootRender(RootSlot, ownerState, {
-        ...rootSlotProps,
-        component: component ?? 'div',
-        // Only the default ListSubheader root consumes this prop.
-        ...(RootSlot === Menu2GroupLabelRoot && { disableSticky: true }),
-        ownerState,
-      })}
+      ref={handleRef}
+      render={(renderProps: Omit<HTMLProps, 'color'>, state) => (
+        <Menu2GroupLabelRoot
+          {...renderProps}
+          component={renderProp ? Menu2RenderRoot : 'div'}
+          {...(renderProp && { internalRender: renderProp, internalRenderState: state })}
+          color={color}
+          disableGutters={disableGutters}
+          disableSticky
+          inset={inset}
+          ownerState={ownerState}
+          sx={sx}
+        />
+      )}
       className={clsx(className, classes.root)}
       style={style}
       {...other}
     />
   );
-}) as OverridableComponent<Menu2GroupLabelTypeMap>;
+});
 
 Menu2GroupLabel.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -163,22 +145,25 @@ Menu2GroupLabel.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'default'
    */
-  component: PropTypes.elementType,
+  color: PropTypes.oneOf(['default', 'inherit', 'primary']),
   /**
-   * The props used for each slot inside.
+   * If `true`, the List Subheader will not have gutters.
+   * @default false
    */
-  slotProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  disableGutters: PropTypes.bool,
   /**
-   * The components used for each slot inside.
+   * If `true`, the List Subheader is indented.
+   * @default false
    */
-  slots: PropTypes.shape({
-    root: PropTypes.elementType,
-  }),
+  inset: PropTypes.bool,
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles and accessibility.
+   */
+  render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * Styles applied to the root element.
    */

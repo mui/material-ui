@@ -354,6 +354,13 @@ See [Item customization](/material-ui/react-menu2/#item).
 Forward props, ref, and children to keep group labels and behavior.
 See [Group customization](/material-ui/react-menu2/#groups).
 
+`MenuGroupLabel` and `MenuSeparator` also use `render` in place of `component` and their root slot APIs.
+Both keep their default Material styles when you use `render`.
+Set `color`, `disableGutters`, and `inset` directly on `MenuGroupLabel`, and use `sx` for style overrides.
+Labels stay non-sticky; there is no `disableSticky` prop.
+For a separator, the default Divider styles remain: put visual props directly on `MenuSeparator`, such as `variant="inset"`, and use `sx` for custom margins or other style overrides.
+See [Label and separator customization](/material-ui/react-menu2/#labels-and-separators).
+
 These item props work as before:
 
 - `dense`, `disableGutters`, and `divider` are unchanged.

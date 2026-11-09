@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -10,6 +11,7 @@ import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import type { Menu2GroupOwnerState } from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import type { Menu2GroupLabelOwnerState } from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
@@ -17,6 +19,7 @@ import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type { Menu2RadioGroupOwnerState } from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import type { Menu2SeparatorOwnerState } from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
@@ -69,7 +72,24 @@ export default function Menu2Consumer() {
             event.currentTarget satisfies HTMLElement;
           }}
         >
-          <Menu2GroupLabel>Projects</Menu2GroupLabel>
+          <Menu2GroupLabel
+            color="primary"
+            disableGutters
+            inset
+            sx={{ fontWeight: 700 }}
+            render={(props, state) => {
+              state satisfies Menu2GroupLabelOwnerState;
+              // @ts-expect-error GroupLabel render state has no fields.
+              'disabled' satisfies keyof typeof state;
+              // @ts-expect-error Visual props are not part of the render state.
+              'inset' satisfies keyof typeof state;
+              // @ts-expect-error Render props omit the legacy HTML color attribute.
+              'color' satisfies keyof typeof props;
+              return <p {...props} />;
+            }}
+          >
+            Projects
+          </Menu2GroupLabel>
           <Menu2Item>Open project</Menu2Item>
           <Menu2LinkItem href="/projects" ref={React.createRef<HTMLElement>()}>
             All projects
@@ -118,7 +138,22 @@ export default function Menu2Consumer() {
           >
             Show archived
           </Menu2CheckboxItem>
-          <Menu2Separator />
+          <Menu2Separator
+            variant="inset"
+            flexItem
+            textAlign="right"
+            render={(props, state) => {
+              state satisfies Menu2SeparatorOwnerState;
+              state.orientation satisfies 'horizontal' | 'vertical';
+              // @ts-expect-error Separators have no item state.
+              'highlighted' satisfies keyof typeof state;
+              // @ts-expect-error Visual props are not part of the render state.
+              'variant' satisfies keyof typeof state;
+              // @ts-expect-error Render props omit the legacy HTML color attribute.
+              'color' satisfies keyof typeof props;
+              return <Divider {...props} orientation={state.orientation} />;
+            }}
+          />
           <Menu2Submenu>
             <Menu2SubmenuTrigger
               render={(props, state) => {
@@ -403,6 +438,35 @@ const CustomIndicatorIcon = React.forwardRef<SVGSVGElement, CustomIndicatorIconP
 
 createTheme({
   components: {
+    MuiMenu2GroupLabel: {
+      defaultProps: {
+        color: 'primary',
+        disableGutters: true,
+        inset: true,
+        render: (props, state) => {
+          state satisfies Menu2GroupLabelOwnerState;
+          return <p {...props} />;
+        },
+      },
+    },
+    MuiMenu2Separator: {
+      defaultProps: {
+        absolute: false,
+        flexItem: true,
+        textAlign: 'left',
+        variant: 'inset',
+        render: (props, state) => {
+          state.orientation satisfies 'horizontal' | 'vertical';
+          return <Divider {...props} orientation={state.orientation} />;
+        },
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          ownerState.orientation satisfies 'horizontal' | 'vertical';
+          return { marginTop: ownerState.orientation === 'horizontal' ? 8 : 0 };
+        },
+      },
+    },
     MuiMenu2Group: {
       defaultProps: {
         render: (props, state) => {
@@ -629,6 +693,77 @@ createTheme({
 <Menu2RadioGroup render="ul" />;
 // @ts-expect-error Omit render to use the default element.
 <Menu2RadioGroup render={null} />;
+
+<Menu2GroupLabel
+  color="default"
+  disableGutters={false}
+  inset={false}
+  render={undefined}
+  ref={(node) => {
+    node satisfies HTMLElement | null;
+  }}
+/>;
+<Menu2GroupLabel render={<p title="Section" ref={React.createRef<HTMLParagraphElement>()} />} />;
+<Menu2GroupLabel color="inherit" render={<div ref={React.createRef<HTMLDivElement>()} />} />;
+<Menu2GroupLabel
+  render={<CustomItemRoot trackingId="label" ref={React.createRef<HTMLDivElement>()} />}
+/>;
+<Menu2GroupLabel render={(props) => <CustomItemRoot {...props} trackingId="label" />} />;
+// @ts-expect-error Custom props belong to the render element.
+<Menu2GroupLabel trackingId="label" />;
+// @ts-expect-error The custom root requires its own props.
+<Menu2GroupLabel render={<CustomItemRoot />} />;
+// @ts-expect-error Use render to select the label root.
+<Menu2GroupLabel component="p" />;
+// @ts-expect-error GroupLabel has no internal slots.
+<Menu2GroupLabel slots={{ root: 'p' }} />;
+// @ts-expect-error Put root props on the label or its render element.
+<Menu2GroupLabel slotProps={{ root: { title: 'Projects' } }} />;
+// @ts-expect-error GroupLabel is always non-sticky.
+<Menu2GroupLabel disableSticky />;
+// @ts-expect-error Use a supported ListSubheader color.
+<Menu2GroupLabel color="secondary" />;
+// @ts-expect-error The gutters option requires a boolean.
+<Menu2GroupLabel disableGutters="true" />;
+// @ts-expect-error The inset option requires a boolean.
+<Menu2GroupLabel inset="true" />;
+// @ts-expect-error The render prop requires an element or a callback.
+<Menu2GroupLabel render="p" />;
+// @ts-expect-error Omit render to use the default element.
+<Menu2GroupLabel render={null} />;
+
+<Menu2Separator
+  render={undefined}
+  ref={(node) => {
+    node satisfies HTMLElement | null;
+  }}
+/>;
+<Menu2Separator render={<hr ref={React.createRef<HTMLHRElement>()} />} />;
+<Menu2Separator
+  render={<CustomItemRoot trackingId="separator" ref={React.createRef<HTMLDivElement>()} />}
+/>;
+<Menu2Separator render={(props) => <CustomItemRoot {...props} trackingId="separator" />} />;
+// @ts-expect-error Custom props belong to the render element.
+<Menu2Separator trackingId="separator" />;
+// @ts-expect-error The custom root requires its own props.
+<Menu2Separator render={<CustomItemRoot />} />;
+// @ts-expect-error Use render to select the separator root.
+<Menu2Separator component="hr" />;
+// @ts-expect-error Separator has no internal slots.
+<Menu2Separator slots={{ root: 'hr' }} />;
+// @ts-expect-error Put root props on the separator or its render element.
+<Menu2Separator slotProps={{ root: { title: 'Section end' } }} />;
+// @ts-expect-error Set color on the render element.
+<Menu2Separator color="red" />;
+// @ts-expect-error The render prop requires an element or a callback.
+<Menu2Separator render="hr" />;
+// @ts-expect-error Omit render to use the default element.
+<Menu2Separator render={null} />;
+<Menu2Separator absolute variant="middle" textAlign="left" sx={{ my: 2 }} />;
+// @ts-expect-error Use a supported Divider variant.
+<Menu2Separator variant="outlined" />;
+// @ts-expect-error Use a supported Divider text alignment.
+<Menu2Separator textAlign="justify" />;
 
 <Menu2Trigger render={<Button />}>Project actions</Menu2Trigger>;
 

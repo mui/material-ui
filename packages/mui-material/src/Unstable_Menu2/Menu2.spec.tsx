@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expectType } from '@mui/types';
 import type { Menu as BaseMenu } from '@base-ui/react/menu';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import SvgIcon from '@mui/material/SvgIcon';
 import type { SvgIconProps } from '@mui/material/SvgIcon';
@@ -40,6 +41,7 @@ import Menu2CheckboxItem, {
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import type { Menu2GroupOwnerState } from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import type { Menu2GroupLabelOwnerState } from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
@@ -57,6 +59,7 @@ import Menu2RadioItem, {
   Menu2RadioItemIndicator,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import type { Menu2SeparatorOwnerState } from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
   menu2SubmenuTriggerClasses,
@@ -887,7 +890,7 @@ const controlledPopupProps: Menu2PopupProps = {
   </Menu2Popup>
 </Menu2>;
 
-// Item and group roots use render; labels and separators still support component.
+// Item, group, label, and separator roots use render.
 <Menu2>
   <Menu2Trigger render={<button type="button">Open</button>} />
   <Menu2Popup>
@@ -914,7 +917,7 @@ const controlledPopupProps: Menu2PopupProps = {
     >
       Checkbox
     </Menu2CheckboxItem>
-    <Menu2Separator ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
+    <Menu2Separator ref={(node) => expectType<HTMLElement | null, typeof node>(node)} />
     <Menu2Submenu>
       <Menu2SubmenuTrigger
         render={<li ref={(node) => expectType<HTMLLIElement | null, typeof node>(node)} />}
@@ -1260,8 +1263,152 @@ createTheme({
 // @ts-expect-error Omit render to use the default element.
 <Menu2RadioGroup render={null} />;
 
+<Menu2GroupLabel
+  color="default"
+  disableGutters={false}
+  inset={false}
+  render={undefined}
+  ref={(node) => expectType<HTMLElement | null, typeof node>(node)}
+>
+  Projects
+</Menu2GroupLabel>;
+<Menu2GroupLabel
+  render={
+    <p title="Section" ref={(node) => expectType<HTMLParagraphElement | null, typeof node>(node)} />
+  }
+>
+  Projects
+</Menu2GroupLabel>;
+<Menu2GroupLabel
+  color="primary"
+  disableGutters
+  inset
+  sx={{ fontWeight: 700 }}
+  render={(props, state) => {
+    expectType<Menu2GroupLabelOwnerState, typeof state>(state);
+    expectType<BaseMenu.GroupLabel.State, typeof state>(state);
+    // @ts-expect-error GroupLabel render state has no fields.
+    state.disabled;
+    // @ts-expect-error Visual props are not part of the render state.
+    state.inset;
+    // @ts-expect-error Render props omit the legacy HTML color attribute.
+    props.color;
+    return <p {...props} />;
+  }}
+>
+  Projects
+</Menu2GroupLabel>;
+<Menu2GroupLabel color="inherit" render={<div ref={React.createRef<HTMLDivElement>()} />} />;
+<Menu2GroupLabel
+  render={<CustomItemRoot trackingId="label" ref={React.createRef<HTMLDivElement>()} />}
+/>;
+<Menu2GroupLabel render={(props) => <CustomItemRoot {...props} trackingId="label" />} />;
+// @ts-expect-error Custom props belong to the render element.
+<Menu2GroupLabel trackingId="label" />;
+// @ts-expect-error The custom root requires its own props.
+<Menu2GroupLabel render={<CustomItemRoot />} />;
+// @ts-expect-error Use render to select the label root.
+<Menu2GroupLabel component="p" />;
+// @ts-expect-error GroupLabel has no internal slots.
+<Menu2GroupLabel slots={{ root: 'p' }} />;
+// @ts-expect-error Put root props on the label or its render element.
+<Menu2GroupLabel slotProps={{ root: { title: 'Projects' } }} />;
+// @ts-expect-error GroupLabel is always non-sticky.
+<Menu2GroupLabel disableSticky />;
+// @ts-expect-error Use a supported ListSubheader color.
+<Menu2GroupLabel color="secondary" />;
+// @ts-expect-error The gutters option requires a boolean.
+<Menu2GroupLabel disableGutters="true" />;
+// @ts-expect-error The inset option requires a boolean.
+<Menu2GroupLabel inset="true" />;
+// @ts-expect-error The render prop requires an element or a callback.
+<Menu2GroupLabel render="p" />;
+// @ts-expect-error Omit render to use the default element.
+<Menu2GroupLabel render={null} />;
+
+<Menu2Separator
+  render={undefined}
+  ref={(node) => expectType<HTMLElement | null, typeof node>(node)}
+/>;
+<Menu2Separator
+  render={<hr ref={(node) => expectType<HTMLHRElement | null, typeof node>(node)} />}
+/>;
+<Menu2Separator
+  orientation="vertical"
+  variant="inset"
+  flexItem
+  textAlign="right"
+  render={(props, state) => {
+    expectType<Menu2SeparatorOwnerState, typeof state>(state);
+    expectType<'horizontal' | 'vertical', typeof state.orientation>(state.orientation);
+    // @ts-expect-error The separator has no item state.
+    state.highlighted;
+    // @ts-expect-error Visual props are not part of the render state.
+    state.variant;
+    // @ts-expect-error Render props omit the legacy HTML color attribute.
+    props.color;
+    return <Divider {...props} orientation={state.orientation} />;
+  }}
+/>;
+<Menu2Separator absolute variant="middle" textAlign="left" sx={{ my: 2 }} />;
+<Menu2Separator
+  render={<CustomItemRoot trackingId="separator" ref={React.createRef<HTMLDivElement>()} />}
+/>;
+<Menu2Separator render={(props) => <CustomItemRoot {...props} trackingId="separator" />} />;
+// @ts-expect-error Custom props belong to the render element.
+<Menu2Separator trackingId="separator" />;
+// @ts-expect-error The custom root requires its own props.
+<Menu2Separator render={<CustomItemRoot />} />;
+// @ts-expect-error Use render to select the separator root.
+<Menu2Separator component="hr" />;
+// @ts-expect-error Separator has no internal slots.
+<Menu2Separator slots={{ root: 'hr' }} />;
+// @ts-expect-error Put root props on the separator or its render element.
+<Menu2Separator slotProps={{ root: { title: 'Section end' } }} />;
+// @ts-expect-error Use a supported Divider variant.
+<Menu2Separator variant="outlined" />;
+// @ts-expect-error Use a supported Divider text alignment.
+<Menu2Separator textAlign="justify" />;
+// @ts-expect-error Set color on the render element.
+<Menu2Separator color="red" />;
+// @ts-expect-error The render prop requires an element or a callback.
+<Menu2Separator render="hr" />;
+// @ts-expect-error Omit render to use the default element.
+<Menu2Separator render={null} />;
+
 createTheme({
   components: {
+    MuiMenu2GroupLabel: {
+      defaultProps: {
+        color: 'primary',
+        disableGutters: true,
+        inset: true,
+        render: (props, state) => {
+          expectType<Menu2GroupLabelOwnerState, typeof state>(state);
+          return <p {...props} />;
+        },
+      },
+    },
+    MuiMenu2Separator: {
+      defaultProps: {
+        absolute: false,
+        flexItem: true,
+        textAlign: 'left',
+        variant: 'inset',
+        render: (props, state) => {
+          expectType<'horizontal' | 'vertical', typeof state.orientation>(state.orientation);
+          return <Divider {...props} orientation={state.orientation} />;
+        },
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<'horizontal' | 'vertical', typeof ownerState.orientation>(
+            ownerState.orientation,
+          );
+          return { marginTop: ownerState.orientation === 'horizontal' ? 8 : 0 };
+        },
+      },
+    },
     MuiMenu2Group: {
       defaultProps: {
         render: (props, state) => {

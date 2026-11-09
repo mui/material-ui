@@ -373,6 +373,38 @@ The `MenuGroup` render state has no fields.
 The `MenuRadioGroup` render state contains only `disabled`, not the selected value.
 Use `value` and `onValueChange` to control that value.
 
+### Labels and separators
+
+`MenuGroupLabel` uses a non-sticky `ListSubheader` rendered as a `<div>` by default.
+Set `color`, `disableGutters`, and `inset` on `MenuGroupLabel` to use the corresponding ListSubheader styles.
+Use `sx` on `MenuGroupLabel` for style overrides:
+
+```jsx
+<MenuGroupLabel color="primary" inset sx={{ fontWeight: 700 }} render={<p />}>
+  Projects
+</MenuGroupLabel>
+```
+
+The optional `render` changes the root element or composes another component while keeping the default Material styles.
+The label stays non-sticky; there is no `disableSticky` prop.
+The `MuiMenu2GroupLabel` theme overrides, utility classes, and `sx` also apply to the render element.
+Forward props, ref, and children to preserve the group label.
+
+`MenuSeparator` uses a `Divider` rendered as a `<div>`, with menu spacing.
+Set `absolute`, `flexItem`, `textAlign`, and `variant` on `MenuSeparator` to use the corresponding Divider styles.
+Use `sx` on `MenuSeparator` for custom spacing and other style overrides:
+
+```jsx
+<MenuSeparator variant="inset" sx={{ my: 1.5 }} />
+```
+
+For a separator, `render` also keeps the default Material styles.
+Use it to change the root element or compose another component, not to replace these visual props.
+
+Neither the label nor the separator has internal slots.
+The label render state has no fields.
+The separator render state contains `orientation`, which is `"horizontal"` or `"vertical"`.
+
 ### Shared theme styles
 
 `MuiMenu2Popup.styleOverrides` also applies to matching submenu popup slots.

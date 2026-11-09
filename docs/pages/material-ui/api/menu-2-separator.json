@@ -1,16 +1,14 @@
 {
   "props": {
+    "absolute": { "type": { "name": "bool" }, "default": "false" },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "className": { "type": { "name": "string" } },
-    "component": { "type": { "name": "elementType" } },
+    "flexItem": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
-    },
-    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
@@ -18,19 +16,32 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
       "additionalInfo": { "sx": true }
+    },
+    "textAlign": {
+      "type": {
+        "name": "enum",
+        "description": "'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+      },
+      "default": "'center'"
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'"
+      },
+      "default": "'fullWidth'"
     }
   },
   "name": "Menu2Separator",
   "imports": ["import MenuSeparator from '@mui/material/Unstable_Menu2Separator';"],
-  "slots": [
+  "classes": [
     {
-      "name": "root",
-      "description": "The component that renders the root.",
-      "default": "Divider",
-      "class": "MuiMenu2Separator-root"
+      "key": "root",
+      "className": "MuiMenu2Separator-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
     }
   ],
-  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiMenu2Separator",
