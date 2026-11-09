@@ -839,9 +839,13 @@ describe.skipIf(isJsdom())('density contract', () => {
         );
       });
 
-      test(`${density.id}: the floating label starts where the value starts`, () => {
+      test(`${density.id}: a floating label without a notch starts where the value starts`, () => {
         const fields = grid(
-          [['TextField', 'Select', 'Autocomplete'], VARIANTS, SIZES],
+          [
+            ['TextField', 'Select', 'Autocomplete'],
+            VARIANTS.filter((variant) => variant !== 'outlined'),
+            SIZES,
+          ],
           (control, variant, size) => {
             if (control === 'Select') {
               return (

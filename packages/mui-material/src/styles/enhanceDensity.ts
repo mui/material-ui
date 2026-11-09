@@ -456,7 +456,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': 'var(--_outlinedInputPadBlock)',
-      '--_inlinePad': `${dirSign * 14}px`,
+      '--_inlinePad': dirSign === 1 ? spacing('small') : `calc(-1 * ${spacing('small')})`,
     },
     variants: [
       {
@@ -471,6 +471,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { multiline: true },
         style: {
           paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+          paddingInline: spacing('small'),
         },
       },
       {
@@ -479,10 +480,19 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           paddingBlock: `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
         },
       },
+      {
+        props: ({ ownerState }) => !!ownerState.startAdornment,
+        style: { paddingLeft: spacing('small') },
+      },
+      {
+        props: ({ ownerState }) => !!ownerState.endAdornment,
+        style: { '--_trailingPad': spacing('small') },
+      },
     ],
   });
   addStyleOverride(enhanced.components, 'MuiOutlinedInput', 'input', {
     paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+    paddingInline: spacing('small'),
     variants: [
       {
         props: { size: 'small' },
@@ -490,7 +500,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: { multiline: true },
-        style: { paddingBlock: 0 },
+        style: { paddingBlock: 0, paddingInline: 0 },
+      },
+      {
+        props: ({ ownerState }) => !!ownerState.startAdornment,
+        style: { paddingLeft: 0 },
+      },
+      {
+        props: ({ ownerState }) => !!ownerState.endAdornment,
+        style: { paddingRight: 0 },
       },
     ],
   });
@@ -851,7 +869,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     borderRadius: 'var(--_trackHeight)',
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'root', {
-    [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: { paddingLeft: '6px' },
+    [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}, & .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
+      { paddingLeft: '4px' },
     [`& .${autocompleteClasses.inputRoot} .${autocompleteClasses.input}.${inputBaseClasses.input}`]:
       {
         paddingBlock: 0,
@@ -876,7 +895,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`&:where(.${outlinedInputClasses.root})`]: {
       '--_fieldPadTop': 'var(--_outlinedInputPadBlock)',
       '--_fieldPadBottom': 'var(--_outlinedInputPadBlock)',
-      '--_fieldPadLeft': '8px',
+      '--_fieldPadLeft': `calc(${spacing('small')} - 4px)`,
     },
     [`&${filledLabelled}`]: {
       '--_fieldPadTop': 'var(--_filledInputPadTop)',
@@ -904,6 +923,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         [`&:where(.${outlinedInputClasses.root})`]: {
           paddingTop: rowPad('var(--_fieldPadTop)'),
           paddingBottom: rowPad('var(--_fieldPadBottom)'),
+          paddingLeft: 'var(--_fieldPadLeft)',
         },
         [`&${filledLabelled}`]: { paddingBottom: rowPad('var(--_fieldPadBottom)') },
       }),
