@@ -42,15 +42,25 @@ describe('<DialogActions />', () => {
     'should not shift children when an out-of-flow element is inserted',
     function test() {
       render(
-        <DialogActions>
-          <Button data-testid="child-1">Agree</Button>
-          <span data-testid="focus-guard" style={{ position: 'fixed' }} />
-          <Button data-testid="child-2">Agree</Button>
-        </DialogActions>,
+        <div>
+          <DialogActions>
+            <span style={{ position: 'fixed' }} />
+            <Button data-testid="with-guard-1">Agree</Button>
+            <span style={{ position: 'fixed' }} />
+            <Button data-testid="with-guard-2">Agree</Button>
+          </DialogActions>
+          <DialogActions>
+            <Button data-testid="without-guard-1">Agree</Button>
+            <Button data-testid="without-guard-2">Agree</Button>
+          </DialogActions>
+        </div>,
       );
 
-      expect(screen.getByTestId('focus-guard')).toHaveComputedStyle({ marginLeft: '0px' });
-      expect(screen.getByTestId('child-2')).toHaveComputedStyle({ marginLeft: '0px' });
+      [1, 2].forEach((index) => {
+        expect(screen.getByTestId(`with-guard-${index}`).getBoundingClientRect().left).to.equal(
+          screen.getByTestId(`without-guard-${index}`).getBoundingClientRect().left,
+        );
+      });
     },
   );
 
