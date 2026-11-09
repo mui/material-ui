@@ -14,10 +14,9 @@ export default function NumberFieldSteps() {
       <NumberField
         label="Modifier steps"
         defaultValue={5}
-        step={1}
-        smallStep={0.1}
-        largeStep={10}
-        helperText="Hold Alt for 0.1 or Shift for 10."
+        smallStep={0.25}
+        largeStep={5}
+        helperText="Hold Alt for 0.25 or Shift for 5."
       />
       <NumberField
         label="Snap to steps"

@@ -15,7 +15,7 @@ export default function NumberFieldScrubAreaOptions() {
         label="Vertical dragging"
         defaultValue={5}
         scrubArea="start"
-        helperText="Drag up or down with lower sensitivity."
+        helperText="Move at least 8 pixels to change the value."
         slotProps={{ scrubArea: { direction: 'vertical', pixelSensitivity: 8 } }}
       />
       {/* @focus-end */}

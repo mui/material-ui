@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { describe, it, expect, vi } from 'vitest';
-import { act, createRenderer, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { Field as BaseField } from '@base-ui/react/field';
 import type { BaseUIEvent } from '@base-ui/react/types';
 import FormControl from '@mui/material/FormControl';
@@ -1034,23 +1034,34 @@ describe('<NumberField />', () => {
     // Defaults must remain visible and inherit the field size, while replacing the
     // icon content must leave button names and stepping behavior intact.
     describe('icons and size', () => {
-      it('renders default plus/minus icons and forwards the field size to both controls', () => {
-        render(<NumberField label="Amount" size="small" />);
-        const increment = screen.getByRole('button', { name: 'Increase' });
-        const decrement = screen.getByRole('button', { name: 'Decrease' });
-        const addIcon = screen.getByTestId('AddIcon');
-        const removeIcon = screen.getByTestId('RemoveIcon');
+      const iconCases = [
+        { controlsPosition: 'end', incrementIcon: 'AddIcon', decrementIcon: 'RemoveIcon' },
+        {
+          controlsPosition: 'stacked',
+          incrementIcon: 'KeyboardArrowUpIcon',
+          decrementIcon: 'KeyboardArrowDownIcon',
+        },
+      ] as const;
 
-        expect(increment).to.contain(addIcon);
-        expect(decrement).to.contain(removeIcon);
-        for (const button of [increment, decrement]) {
-          expect(button).to.have.attribute('type', 'button');
-          expect(button).to.have.class('MuiIconButton-sizeSmall');
-        }
-        for (const icon of [addIcon, removeIcon]) {
-          expect(icon).to.have.class('MuiSvgIcon-fontSizeInherit');
-          expect(icon).to.have.attribute('aria-hidden', 'true');
-        }
+      iconCases.forEach(({ controlsPosition, incrementIcon, decrementIcon }) => {
+        it(`renders the default ${controlsPosition} icons and forwards the field size to both controls`, () => {
+          render(<NumberField label="Amount" controlsPosition={controlsPosition} size="small" />);
+          const increment = screen.getByRole('button', { name: 'Increase' });
+          const decrement = screen.getByRole('button', { name: 'Decrease' });
+          const incrementIconElement = screen.getByTestId(incrementIcon);
+          const decrementIconElement = screen.getByTestId(decrementIcon);
+
+          expect(increment).to.contain(incrementIconElement);
+          expect(decrement).to.contain(decrementIconElement);
+          for (const button of [increment, decrement]) {
+            expect(button).to.have.attribute('type', 'button');
+            expect(button).to.have.class('MuiIconButton-sizeSmall');
+          }
+          for (const icon of [incrementIconElement, decrementIconElement]) {
+            expect(icon).to.have.class('MuiSvgIcon-fontSizeInherit');
+            expect(icon).to.have.attribute('aria-hidden', 'true');
+          }
+        });
       });
 
       it('replaces the default icons with consumer children while preserving stepping', async () => {
@@ -1058,6 +1069,7 @@ describe('<NumberField />', () => {
           <NumberField
             label="Amount"
             defaultValue={5}
+            controlsPosition="stacked"
             slotProps={{
               incrementButton: { children: <span>Plus</span> },
               decrementButton: { children: <span>Minus</span> },
@@ -1070,8 +1082,8 @@ describe('<NumberField />', () => {
 
         expect(increment).to.contain(screen.getByText('Plus'));
         expect(decrement).to.contain(screen.getByText('Minus'));
-        expect(screen.queryByTestId('AddIcon')).to.equal(null);
-        expect(screen.queryByTestId('RemoveIcon')).to.equal(null);
+        expect(screen.queryByTestId('KeyboardArrowUpIcon')).to.equal(null);
+        expect(screen.queryByTestId('KeyboardArrowDownIcon')).to.equal(null);
         await user.click(increment);
         expect(input).to.have.value('6');
         await user.click(decrement);
@@ -1411,9 +1423,64 @@ describe('<NumberField />', () => {
   });
 
   // Controls must occupy the requested adornment, with consumer adornments kept
-  // beside the input. Shared groups put decrement before increment; check DOM order
-  // and grouping without depending on layout measurements.
+  // beside the input. Stacked controls put increment above decrement; horizontal
+  // controls keep decrement first. Check DOM order and grouping independently of CSS.
   describe('controls placement', () => {
+    // Stacked buttons fill the input height without increasing it or narrowing the controls.
+    // Variants and sizes have different available heights, so exercise each geometry.
+    (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
+      (['small', 'medium'] as const).forEach((size) => {
+        it.skipIf(isJsdom())(`fits stacked controls within the ${size} ${variant} input`, () => {
+          render(
+            <React.Fragment>
+              <NumberField label="End" variant={variant} size={size} defaultValue={5} />
+              <NumberField
+                label="Stacked"
+                variant={variant}
+                size={size}
+                defaultValue={5}
+                controlsPosition="stacked"
+              />
+            </React.Fragment>,
+          );
+          const endInput = screen.getByRole('textbox', { name: 'End' });
+          const stackedInput = screen.getByRole('textbox', { name: 'Stacked' });
+          const wrapper = stackedInput.closest('.MuiInputBase-root')!;
+          const group = wrapper.querySelector(`.${classes.controls}`)!;
+          const increment = group
+            .querySelector(`.${classes.incrementButton}`)!
+            .getBoundingClientRect();
+          const decrement = group
+            .querySelector(`.${classes.decrementButton}`)!
+            .getBoundingClientRect();
+          const groupRect = group.getBoundingClientRect();
+          const wrapperRect = wrapper.getBoundingClientRect();
+          const endButtonRect = endInput
+            .closest('.MuiInputBase-root')!
+            .querySelector(`.${classes.incrementButton}`)!
+            .getBoundingClientRect();
+
+          expect(wrapperRect.height).to.equal(
+            endInput.closest('.MuiInputBase-root')!.getBoundingClientRect().height,
+          );
+          expect(window.getComputedStyle(wrapper).paddingRight).to.equal('0px');
+          expect(increment.left).to.equal(decrement.left);
+          expect(increment.bottom).to.be.at.most(decrement.top);
+          expect(increment.top).to.be.at.least(wrapperRect.top);
+          expect(decrement.bottom).to.be.at.most(wrapperRect.bottom);
+          expect(groupRect.top).to.be.closeTo(increment.top, 0.01);
+          expect(groupRect.bottom).to.be.closeTo(decrement.bottom, 0.01);
+          expect(groupRect.top).to.be.closeTo(wrapperRect.top, 0.01);
+          expect(groupRect.bottom).to.be.closeTo(wrapperRect.bottom, 0.01);
+          expect(increment.height).to.be.closeTo(wrapperRect.height / 2, 0.1);
+          expect(decrement.height).to.be.closeTo(wrapperRect.height / 2, 0.1);
+          expect(increment.width).to.equal(groupRect.width);
+          expect(decrement.width).to.equal(groupRect.width);
+          expect(groupRect.width).to.be.at.least(endButtonRect.width);
+        });
+      });
+    });
+
     const placements = [
       {
         controlsPosition: undefined,
@@ -1426,9 +1493,9 @@ describe('<NumberField />', () => {
         endButtons: ['Decrease', 'Increase'],
       },
       {
-        controlsPosition: 'start',
-        startButtons: ['Decrease', 'Increase'],
-        endButtons: [],
+        controlsPosition: 'stacked',
+        startButtons: [],
+        endButtons: ['Increase', 'Decrease'],
       },
       {
         controlsPosition: 'split',
@@ -1563,9 +1630,9 @@ describe('<NumberField />', () => {
               onClick={() =>
                 setControlsPosition((position) => {
                   if (position === 'end') {
-                    return 'start';
+                    return 'stacked';
                   }
-                  return position === 'start' ? 'split' : 'end';
+                  return position === 'stacked' ? 'split' : 'end';
                 })
               }
             >
@@ -1593,12 +1660,18 @@ describe('<NumberField />', () => {
         const decrement = screen.getByRole('button', { name: 'Decrease' });
 
         expect(increment.closest(`.${classes.controls}`)).to.have.class(
-          position === 'start'
+          'MuiInputAdornment-positionEnd',
+        );
+        expect(decrement.closest(`.${classes.controls}`)).to.have.class(
+          position === 'split'
             ? 'MuiInputAdornment-positionStart'
             : 'MuiInputAdornment-positionEnd',
         );
-        expect(decrement.closest(`.${classes.controls}`)).to.have.class(
-          position === 'end' ? 'MuiInputAdornment-positionEnd' : 'MuiInputAdornment-positionStart',
+        expect(increment).to.contain(
+          screen.getByTestId(position === 'stacked' ? 'KeyboardArrowUpIcon' : 'AddIcon'),
+        );
+        expect(decrement).to.contain(
+          screen.getByTestId(position === 'stacked' ? 'KeyboardArrowDownIcon' : 'RemoveIcon'),
         );
 
         await user.click(increment);
@@ -1607,7 +1680,7 @@ describe('<NumberField />', () => {
         expect(input).to.have.value('8');
       };
 
-      await moveAndCheckControls('start');
+      await moveAndCheckControls('stacked');
       await moveAndCheckControls('split');
       await moveAndCheckControls('end');
     });
@@ -3158,7 +3231,7 @@ describe('<NumberField />', () => {
       expect(container.querySelector(`.${classes.scrubArea}`)).to.equal(null);
     });
 
-    (['start', 'end', 'split'] as const).forEach((controlsPosition) => {
+    (['stacked', 'end', 'split'] as const).forEach((controlsPosition) => {
       (['start', 'end'] as const).forEach((scrubArea) => {
         it(`places the ${scrubArea} scrub area with ${controlsPosition} controls and consumer adornments`, () => {
           const { container } = render(
@@ -3181,12 +3254,12 @@ describe('<NumberField />', () => {
           const suffix = screen.getByText('kg');
           const wrapper = input.closest('.MuiInputBase-root')!;
           const startButtons = {
-            start: [decrease, increase],
+            stacked: [],
             end: [],
             split: [decrease],
           }[controlsPosition];
           const endButtons = {
-            start: [],
+            stacked: [increase, decrease],
             end: [decrease, increase],
             split: [increase],
           }[controlsPosition];
@@ -3408,13 +3481,16 @@ describe('<NumberField />', () => {
         });
       });
 
-      (['start', 'split'] as const).forEach((controlsPosition) => {
-        it(`shrinks an empty label before hydration with ${controlsPosition} controls`, () => {
+      (['stacked', 'split'] as const).forEach((controlsPosition) => {
+        it(`preserves an empty label through hydration with ${controlsPosition} controls`, () => {
           const { hydrate } = renderToString(
             <NumberField label="Amount" controlsPosition={controlsPosition} />,
           );
 
-          expectStableHydration(hydrate, { displayValue: '', shrink: true });
+          expectStableHydration(hydrate, {
+            displayValue: '',
+            shrink: controlsPosition === 'split',
+          });
         });
       });
 
@@ -3460,7 +3536,7 @@ describe('<NumberField />', () => {
         const { hydrate } = renderToString(
           <NumberField
             label="Amount"
-            controlsPosition="start"
+            controlsPosition="split"
             slotProps={{ inputLabel: { shrink: false } }}
           />,
         );

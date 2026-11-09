@@ -168,6 +168,9 @@ function ValueCallbacks(props: NumberFieldProps) {
 <NumberField defaultValue={null} />;
 // @ts-expect-error Controls have three supported positions.
 <NumberField controlsPosition="top" />;
+<NumberField controlsPosition="stacked" />;
+// @ts-expect-error Placing both controls at the start is not supported.
+<NumberField controlsPosition="start" />;
 
 // Root and visible-input refs expose different DOM elements.
 <NumberField
@@ -268,7 +271,7 @@ function ValueCallbacks(props: NumberFieldProps) {
     },
     incrementButton: (ownerState) => {
       expectType<NumberFieldOwnerState, typeof ownerState>(ownerState);
-      expectType<'start' | 'end' | 'split', typeof ownerState.controlsPosition>(
+      expectType<'stacked' | 'end' | 'split', typeof ownerState.controlsPosition>(
         ownerState.controlsPosition,
       );
       return { disabled: ownerState.disabled };

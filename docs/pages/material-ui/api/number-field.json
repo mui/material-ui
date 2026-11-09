@@ -14,7 +14,7 @@
     "controlsPosition": {
       "type": {
         "name": "enum",
-        "description": "'end'<br>&#124;&nbsp;'split'<br>&#124;&nbsp;'start'"
+        "description": "'end'<br>&#124;&nbsp;'split'<br>&#124;&nbsp;'stacked'"
       },
       "default": "'end'"
     },

@@ -7,7 +7,21 @@ import type { NumberFieldClasses } from '../numberFieldClasses';
 const Controls = styled(InputAdornment, {
   name: 'MuiNumberField',
   slot: 'Controls',
-})<{ ownerState: NumberFieldOwnerState }>({});
+})<{ ownerState: NumberFieldOwnerState }>({
+  variants: [
+    {
+      props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
+        ownerState.controlsPosition === 'stacked',
+      style: {
+        flexDirection: 'column',
+        alignItems: 'stretch',
+        alignSelf: 'stretch',
+        height: 'auto',
+        maxHeight: 'none',
+      },
+    },
+  ],
+});
 
 interface GetControlElementsOptions {
   controlsPosition: ControlsPosition;
@@ -56,19 +70,19 @@ function getControlElements({
           </Controls>
         ),
       };
-    case 'start':
+    case 'stacked':
       return {
-        startControls: (
-          <Controls position="start" {...controlProps}>
-            {DecrementButton}
+        startControls: null,
+        endControls: (
+          <Controls position="end" {...controlProps}>
             {IncrementButton}
+            {DecrementButton}
           </Controls>
         ),
-        endControls: null,
       };
     default:
       throw /* minify-error */ new Error(
-        `MUI: Cannot position NumberField controls because "controlsPosition" is invalid: ${controlsPosition}. Use "start", "end", or "split".`,
+        `MUI: Cannot position NumberField controls because "controlsPosition" is invalid: ${controlsPosition}. Use "stacked", "end", or "split".`,
       );
   }
 }
