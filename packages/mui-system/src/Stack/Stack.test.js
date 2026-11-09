@@ -18,12 +18,6 @@ describe('<Stack />', () => {
 
   const theme = createTheme();
 
-  it('should not forward the removed `useFlexGap` prop to the DOM', () => {
-    const { container } = render(<Stack useFlexGap />);
-    expect(container.firstChild).not.to.have.attribute('useFlexGap');
-    expect(container.firstChild).not.to.have.attribute('useflexgap');
-  });
-
   it('should handle breakpoints with a missing key', () => {
     expect(
       style({

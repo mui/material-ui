@@ -125,7 +125,7 @@ export default function createStack(
 
   const Stack = React.forwardRef(function Grid(inProps, ref) {
     const themeProps = useThemeProps<
-      typeof inProps & { component?: React.ElementType | undefined; useFlexGap?: unknown }
+      typeof inProps & { component?: React.ElementType | undefined }
     >(inProps);
     const {
       component = 'div',
@@ -134,8 +134,6 @@ export default function createStack(
       divider,
       children,
       className,
-      // TODO v11: remove. `useFlexGap` was removed in v10, this keeps it from reaching the DOM.
-      useFlexGap,
       ...other
     } = themeProps;
 
