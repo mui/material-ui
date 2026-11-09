@@ -58,10 +58,9 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 {{"component": "file://./demos/responsive/index.ts", "bg": true}}
 
-## Flexbox gap
+## Wrapping
 
-Stack uses [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) to space its children.
-Spacing keeps working when the children wrap onto multiple lines, and the children's own margins are applied on top of it.
+The spacing also applies between lines when the children wrap.
 
 {{"component": "file://./demos/flexbox-gap/index.ts", "bg": true}}
 
