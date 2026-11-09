@@ -176,6 +176,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     renderValue,
     required,
     SelectDisplayProps = {},
+    // eslint-disable-next-line react/prop-types
+    size,
     tabIndex: tabIndexProp,
     // catching `type` from Input which makes no sense for SelectInput
     type,
