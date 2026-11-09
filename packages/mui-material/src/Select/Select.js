@@ -73,7 +73,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const [fcs] = useFormControlState({
     props,
-    states: ['variant', 'error'],
+    states: ['variant', 'error', 'size'],
   });
 
   const variant = fcs.variant || variantProp;
@@ -117,6 +117,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 onOpen,
                 open,
                 renderValue,
+                size: other.size ?? input?.props.size ?? fcs.size,
                 SelectDisplayProps: { id, ...SelectDisplayProps },
               }),
           ...inputProps,
