@@ -7,6 +7,131 @@ import MenuRfcExperiment from '../../../../pages/experiments/menu2-playground';
 vi.mock('next/link', () => ({ __esModule: true, default: 'a' }));
 vi.mock('@mui/internal-core-docs/AppLayout', () => ({ AppLayoutHead: () => null }));
 
+// TODO: Remove this trace after the WebKit exit failure in CI is understood.
+function tracePopupExit(popup: HTMLElement, trigger: HTMLElement) {
+  const startedAt = performance.now();
+  const events: object[] = [];
+  const animationIds = new Map<Animation, number>();
+  const observedPromises = new Set<Promise<Animation>>();
+  const eventLog = document
+    .getElementById('playground')
+    ?.closest('section')
+    ?.querySelector('pre');
+  let active = true;
+  let frame: number | undefined;
+  let frameRan = false;
+
+  function record(event: string, details: object = {}) {
+    if (active && events.length < 100) {
+      events.push({ ms: performance.now() - startedAt, event, ...details });
+    }
+  }
+
+  function popupState() {
+    return {
+      connected: popup.isConnected,
+      starting: popup.hasAttribute('data-starting-style'),
+      ending: popup.hasAttribute('data-ending-style'),
+      closed: popup.hasAttribute('data-closed'),
+      expanded: trigger.getAttribute('aria-expanded'),
+    };
+  }
+
+  function animationState(animation: Animation) {
+    if (!animationIds.has(animation)) {
+      animationIds.set(animation, animationIds.size + 1);
+    }
+    return {
+      id: animationIds.get(animation),
+      playState: animation.playState,
+      pending: animation.pending,
+      currentTime: String(animation.currentTime),
+      transitionProperty:
+        'transitionProperty' in animation ? animation.transitionProperty : undefined,
+      animationName:
+        'animationName' in animation ? animation.animationName : undefined,
+      timing: animation.effect?.getTiming(),
+    };
+  }
+
+  const getAnimations = popup.getAnimations.bind(popup);
+  const spy = vi.spyOn(popup, 'getAnimations').mockImplementation((options) => {
+    const animations = getAnimations(options);
+    record('getAnimations', {
+      ...popupState(),
+      animations: animations.map(animationState),
+    });
+    animations.forEach((animation) => {
+      const finished = animation.finished;
+      if (!observedPromises.has(finished)) {
+        observedPromises.add(finished);
+        finished.then(
+          () => record('animation finished', { id: animationIds.get(animation) }),
+          () => record('animation canceled', { id: animationIds.get(animation) }),
+        );
+      }
+    });
+    return animations;
+  });
+  record('before backdrop click', { ...popupState(), log: eventLog?.textContent });
+
+  return {
+    record,
+    afterClick() {
+      record('after backdrop click', {
+        ...popupState(),
+        log: eventLog?.textContent,
+      });
+      // Do not replace requestAnimationFrame: Base UI checks its identity.
+      frame = requestAnimationFrame(() => {
+        frameRan = true;
+        record('native animation frame', popupState());
+      });
+    },
+    onTimeout(error: Error) {
+      // Snapshot only on failure. Style reads can change animation timing.
+      try {
+        const style = getComputedStyle(popup);
+        const snapshot = {
+          ms: performance.now() - startedAt,
+          ...popupState(),
+          frameRan,
+          visibility: document.visibilityState,
+          fakeTimers: vi.isFakeTimers(),
+          menus: screen.queryAllByRole('menu').map((menu) => ({
+            id: menu.id,
+            labelledBy: menu.getAttribute('aria-labelledby'),
+          })),
+          transition: style.transition,
+          animation: style.animation,
+          animations: getAnimations().map(animationState),
+          log: eventLog?.textContent,
+        };
+        error.message += `\nMenu2 exit diagnostics:\n${JSON.stringify(
+          { events, snapshot },
+          (_key, value) =>
+            typeof value === 'number' && !Number.isFinite(value)
+              ? String(value)
+              : value,
+        )}`;
+      } catch (snapshotError) {
+        error.message += `\nMenu2 exit diagnostics:\n${JSON.stringify({
+          events,
+          snapshotError: String(snapshotError),
+        })}`;
+      }
+      return error;
+    },
+    cleanup() {
+      active = false;
+      if (frame !== undefined) {
+        cancelAnimationFrame(frame);
+      }
+      spy.mockRestore();
+    },
+  };
+}
+
 describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
   const { render } = createRenderer();
 
@@ -28,7 +153,7 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
       const trigger = screen.getByRole('button', { name: triggerName });
 
       await user.click(trigger);
-      await screen.findByRole('menu', { name: triggerName });
+      const popup = await screen.findByRole('menu', { name: triggerName });
 
       const backdrop = baseElement.querySelector<HTMLElement>(
         `.${menu2PopupClasses.backdrop}`,
@@ -39,10 +164,27 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
       );
       expect(getComputedStyle(backdrop).pointerEvents).to.equal('auto');
 
-      await user.click(backdrop);
+      const trace = tracePopupExit(popup, trigger);
+      try {
+        await user.click(backdrop);
+        trace.afterClick();
 
-      await waitFor(() => expect(screen.queryByRole('menu')).to.equal(null));
-      expect(trigger).to.have.attribute('aria-expanded', 'false');
+        await waitFor(
+          () => {
+            const queryStartedAt = performance.now();
+            const menu = screen.queryByRole('menu');
+            trace.record('queryByRole', {
+              durationMs: performance.now() - queryStartedAt,
+              menuId: menu?.id ?? null,
+            });
+            expect(menu).to.equal(null);
+          },
+          { onTimeout: trace.onTimeout },
+        );
+        expect(trigger).to.have.attribute('aria-expanded', 'false');
+      } finally {
+        trace.cleanup();
+      }
     });
 
     it(`omits the backdrop when None is selected for ${triggerName}`, async () => {
