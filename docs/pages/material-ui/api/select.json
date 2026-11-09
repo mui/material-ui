@@ -40,6 +40,7 @@
       "signature": { "type": "function(value: any) => ReactNode", "describedArgs": ["value"] }
     },
     "SelectDisplayProps": { "type": { "name": "object" } },
+    "size": { "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" } },
     "sx": {
       "type": {
         "name": "union",

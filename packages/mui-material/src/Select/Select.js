@@ -267,6 +267,10 @@ Select.propTypes /* remove-proptypes */ = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
+   * The size of the component.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
