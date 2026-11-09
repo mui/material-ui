@@ -14,6 +14,7 @@ import {
   getLuminance,
   lighten,
   colorChannel,
+  private_safeEmphasize,
 } from '@mui/system/colorManipulator';
 
 describe('utils/colorManipulator', () => {
@@ -105,6 +106,23 @@ describe('utils/colorManipulator', () => {
     it('allow to convert values only', () => {
       expect(hslToRgb(decomposeColor('hsl(281, 60%, 57%)'))).to.equal('rgb(169, 80, 211)');
     });
+
+    it('normalizes hues outside one turn before converting to rgb', () => {
+      expect(hslToRgb('hsl(-240, 100%, 50%)')).to.equal('rgb(0, 255, 0)');
+      expect(hslToRgb('hsl(-480, 100%, 50%)')).to.equal('rgb(0, 0, 255)');
+      expect(hslToRgb('hsl(-720, 100%, 50%)')).to.equal('rgb(255, 0, 0)');
+      expect(hslToRgb('hsl(480, 100%, 50%)')).to.equal('rgb(0, 255, 0)');
+    });
+
+    it('preserves alpha and rounding when converting a negative fractional hue', () => {
+      expect(hslToRgb('hsla(-720.5, 50%, 25%, 0.25)')).to.equal('rgba(96, 32, 32, 0.25)');
+    });
+
+    it('converts a decomposed negative hue without modifying the input', () => {
+      const color = decomposeColor('hsla(-480, 100%, 50%, 0.5)');
+      expect(hslToRgb(color)).to.equal('rgba(0, 0, 255, 0.5)');
+      expect(color.values).to.deep.equal([-480, 100, 50, 0.5]);
+    });
   });
 
   describe('decomposeColor', () => {
@@ -187,6 +205,12 @@ describe('utils/colorManipulator', () => {
     it('returns a ratio for black : light-grey', () => {
       expect(getContrastRatio('#000', '#888')).to.be.approximately(5.92, 0.01);
     });
+
+    it('returns the same contrast ratio for equivalent negative and positive hues', () => {
+      expect(getContrastRatio('hsl(-240, 100%, 30%)', '#fff')).to.equal(
+        getContrastRatio('hsl(120, 100%, 30%)', '#fff'),
+      );
+    });
   });
 
   describe('getLuminance', () => {
@@ -226,6 +250,11 @@ describe('utils/colorManipulator', () => {
       expect(getLuminance('hsla(100, 100%, 50%, 1)')).to.equal(0.735);
     });
 
+    it('returns a valid luminance for negative hsl and hsla hues', () => {
+      expect(getLuminance('hsl(-240, 100%, 50%)')).to.equal(0.715);
+      expect(getLuminance('hsla(-480, 100%, 50%, 0.25)')).to.equal(0.072);
+    });
+
     it('returns an equal luminance for the same color in different formats', () => {
       const hsl = 'hsl(100, 100%, 50%)';
       const rgb = 'rgb(85, 255, 0)';
@@ -244,6 +273,11 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('emphasize', () => {
+    it('lightens a dark negative-hue color through both emphasize functions', () => {
+      expect(emphasize('hsl(-240, 100%, 40%)')).to.equal('hsl(-240, 100%, 49%)');
+      expect(private_safeEmphasize('hsl(-240, 100%, 40%)')).to.equal('hsl(-240, 100%, 49%)');
+    });
+
     it('lightens a dark rgb color with the coefficient provided', () => {
       expect(emphasize('rgb(1, 2, 3)', 0.4)).to.equal(lighten('rgb(1, 2, 3)', 0.4));
     });
