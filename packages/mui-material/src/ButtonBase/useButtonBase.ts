@@ -102,10 +102,6 @@ export interface UseButtonBaseReturnValue {
 
 const EMPTY = {};
 
-function isBaseUIHandlerPrevented(event: React.KeyboardEvent<HTMLElement>) {
-  return 'baseUIHandlerPrevented' in event && event.baseUIHandlerPrevented === true;
-}
-
 export default function useButtonBase(
   parameters: UseButtonBaseParameters,
 ): UseButtonBaseReturnValue {
@@ -282,11 +278,7 @@ export default function useButtonBase(
         onBeforeKeyDown?.(event);
         externalOnKeyDown?.(event);
 
-        if (
-          event.target !== event.currentTarget ||
-          hasNativeKeyboardActivation() ||
-          isBaseUIHandlerPrevented(event)
-        ) {
+        if (event.target !== event.currentTarget || hasNativeKeyboardActivation()) {
           return;
         }
 
@@ -295,7 +287,7 @@ export default function useButtonBase(
           return;
         }
 
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && !event.defaultPrevented) {
           event.preventDefault();
           event.currentTarget.click();
         }
@@ -308,10 +300,6 @@ export default function useButtonBase(
 
         onBeforeKeyUp?.(event);
         externalOnKeyUp?.(event);
-
-        if (isBaseUIHandlerPrevented(event)) {
-          return;
-        }
 
         if (
           event.target === event.currentTarget &&
