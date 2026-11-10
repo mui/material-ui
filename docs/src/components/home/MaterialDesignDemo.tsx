@@ -16,10 +16,10 @@ export const componentCode = `
     alt="Yosemite National Park"
     image="/static/images/cards/yosemite.jpeg"
   />
-  <Stack direction="row" spacing={3} sx={{ alignItems: 'center', p: 2 }} useFlexGap>
-    <Stack direction="column" spacing={0.5} useFlexGap>
+  <Stack direction="row" spacing={3} sx={{ alignItems: 'center', p: 2 }}>
+    <Stack direction="column" spacing={0.5}>
       <Typography>Yosemite National Park, California, USA</Typography>
-      <Stack direction="row" spacing={1} useFlexGap>
+      <Stack direction="row" spacing={1}>
         <Chip
           size="small"
           label={active ? 'Active' : 'Inactive'}
@@ -54,12 +54,12 @@ export default function MaterialDesignDemo(props: CardProps) {
         image="/static/images/cards/yosemite.jpeg"
         sx={{ borderRadius: 0.5 }}
       />
-      <Stack direction="row" spacing={3} sx={{ alignItems: 'center', mt: 2 }} useFlexGap>
-        <Stack2 direction="column" spacing={0.5} useFlexGap>
+      <Stack direction="row" spacing={3} sx={{ alignItems: 'center', mt: 2 }}>
+        <Stack2 direction="column" spacing={0.5}>
           <Typography sx={{ fontWeight: 'semiBold' }}>
             Yosemite National Park, California, USA
           </Typography>
-          <Stack3 direction="row" spacing={1} useFlexGap>
+          <Stack3 direction="row" spacing={1}>
             <Chip
               label={active ? 'Active' : 'Inactive'}
               color={active ? 'success' : 'default'}
