@@ -169,7 +169,7 @@ export function AppFrame(props: AppFrameProps) {
                 marginLeft
               />
             </Box>
-            <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
+            <Stack direction="row" spacing={1} sx={{ ml: 'auto' }}>
               {BannerComponent ? <BannerComponent /> : null}
               <DeferredAppSearch />
               <Tooltip title={t('appFrame.github')} enterDelay={300}>
