@@ -1,0 +1,26 @@
+{
+  "name": "material-ui",
+  "description": "Material UI agent skills",
+  "author": {
+    "name": "MUI",
+    "url": "https://github.com/mui"
+  },
+  "homepage": "https://mui.com/material-ui/",
+  "repository": "https://github.com/mui/material-ui",
+  "license": "MIT",
+  "keywords": ["material-ui", "mui", "react", "material-design", "design-system"],
+  "skills": [
+    "./material-ui-nextjs",
+    "./material-ui-styling",
+    "./material-ui-tailwind",
+    "./material-ui-theming"
+  ],
+  "interface": {
+    "displayName": "Material UI",
+    "shortDescription": "Material UI agent skills",
+    "longDescription": "Agent skills for working with Material UI, installed from the skills already in this repository.",
+    "developerName": "MUI",
+    "category": "Developer Tools",
+    "websiteURL": "https://mui.com/material-ui/"
+  }
+}

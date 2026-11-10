@@ -1,0 +1,31 @@
+{
+  "name": "material-ui",
+  "owner": {
+    "name": "MUI"
+  },
+  "description": "Material UI agent skills",
+  "plugins": [
+    {
+      "name": "material-ui",
+      "displayName": "Material UI",
+      "description": "Material UI agent skills for Claude Code",
+      "source": "./skills",
+      "strict": false,
+      "skills": [
+        "./material-ui-nextjs",
+        "./material-ui-styling",
+        "./material-ui-tailwind",
+        "./material-ui-theming"
+      ],
+      "author": {
+        "name": "MUI",
+        "url": "https://github.com/mui"
+      },
+      "homepage": "https://mui.com/material-ui/",
+      "repository": "https://github.com/mui/material-ui",
+      "license": "MIT",
+      "keywords": ["material-ui", "mui", "react", "material-design", "design-system"],
+      "category": "development"
+    }
+  ]
+}
