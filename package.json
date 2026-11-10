@@ -72,7 +72,7 @@
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
-    "@netlify/functions": "^6.0.3",
+    "@netlify/functions": "^6.1.1",
     "@slack/bolt": "^5.1.0",
     "execa": "^10.2.1"
   },
@@ -116,7 +116,7 @@
     "cross-env": "10.1.0",
     "dotenv": "18.0.8",
     "es-toolkit": "1.52.0",
-    "eslint": "10.13.0",
+    "eslint": "10.14.0",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
@@ -146,9 +146,9 @@
   "config": {
     "valeVersion": "3.26.0"
   },
-  "packageManager": "pnpm@12.16.1",
+  "packageManager": "pnpm@12.18.0",
   "engines": {
-    "pnpm": "12.16.1",
+    "pnpm": "12.18.0",
     "node": ">=22.23.4"
   }
 }
