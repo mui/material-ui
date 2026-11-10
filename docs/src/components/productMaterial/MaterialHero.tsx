@@ -296,7 +296,7 @@ export default function MaterialHero() {
               },
             }}
           >
-            <Stack spacing={4} useFlexGap>
+            <Stack spacing={4}>
               <div>
                 <Accordion
                   elevation={0}
@@ -395,11 +395,7 @@ export default function MaterialHero() {
                 </List>
               </Paper>
             </Stack>
-            <Stack
-              spacing={4}
-              useFlexGap
-              sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}
-            >
+            <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <Box sx={{ display: 'flex', gap: 2, '& button': { textWrap: 'nowrap' } }}>
                 <Button variant="contained" startIcon={<DownloadIcon fontSize="small" />} fullWidth>
                   Install library
