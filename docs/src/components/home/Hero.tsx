@@ -114,7 +114,7 @@ export default function Hero() {
       right={
         <React.Fragment>
           {isMdUp && (
-            <Stack spacing={3} useFlexGap sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+            <Stack spacing={3} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <TaskCard />
               <ThemeChip />
               <ThemeDatePicker />
@@ -123,11 +123,7 @@ export default function Hero() {
             </Stack>
           )}
           {isMdUp && (
-            <Stack
-              spacing={3}
-              useFlexGap
-              sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}
-            >
+            <Stack spacing={3} sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <ThemeTimeline />
               <ThemeToggleButton />
               <ThemeSlider />
