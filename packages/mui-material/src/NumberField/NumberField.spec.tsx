@@ -271,7 +271,7 @@ function ValueCallbacks(props: NumberFieldProps) {
     },
     incrementButton: (ownerState) => {
       expectType<NumberFieldOwnerState, typeof ownerState>(ownerState);
-      expectType<'stacked' | 'end' | 'split', typeof ownerState.controlsPosition>(
+      expectType<'stacked' | 'end' | 'split' | false, typeof ownerState.controlsPosition>(
         ownerState.controlsPosition,
       );
       return { disabled: ownerState.disabled };

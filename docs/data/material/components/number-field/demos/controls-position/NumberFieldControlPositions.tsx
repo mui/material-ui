@@ -8,6 +8,7 @@ export default function NumberFieldControlPositions() {
       <NumberField label="End" controlsPosition="end" defaultValue={5} />
       <NumberField label="Split" controlsPosition="split" defaultValue={5} />
       <NumberField label="Stacked" controlsPosition="stacked" defaultValue={5} />
+      <NumberField label="None" controlsPosition={false} defaultValue={5} />
       {/* @focus-end */}
     </Box>
   );

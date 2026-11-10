@@ -20,7 +20,7 @@ import type {
 
 type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
 
-export type ControlsPosition = 'stacked' | 'end' | 'split';
+export type ControlsPosition = 'stacked' | 'end' | 'split' | false;
 
 export interface NumberFieldSlots {
   /**
@@ -212,7 +212,8 @@ export interface BaseNumberFieldProps extends StandardProps<
   /**
    * The arrangement of the control buttons.
    * Use `'end'` for horizontal minus/plus buttons at the end, `'split'` for a minus button
-   * at the start and a plus button at the end, or `'stacked'` for up/down chevrons at the end.
+   * at the start and a plus button at the end, `'stacked'` for up/down chevrons at the end,
+   * or `false` for no control buttons.
    * @default 'end'
    */
   controlsPosition?: ControlsPosition | undefined;

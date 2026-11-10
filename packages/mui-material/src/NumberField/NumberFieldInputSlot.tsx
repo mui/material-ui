@@ -37,8 +37,14 @@ interface NumberFieldInputProps {
 
 // Control buttons provide their own spacing against the input's outer edges.
 const inputStyles = {
-  paddingRight: 0,
   variants: [
+    {
+      props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
+        ownerState.controlsPosition !== false,
+      style: {
+        paddingRight: 0,
+      },
+    },
     {
       props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
         ownerState.controlsPosition === 'split',
