@@ -445,4 +445,23 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
       null,
     );
   });
+
+  // TODO: Remove these render-only controls with the frame probes above.
+  ['plain div', 'full playground'].forEach((content) => {
+    it(`records render-only frames for ${content}`, async () => {
+      await traceFrames(`render-only ${content} before render`);
+      const { container } = render(
+        content === 'plain div' ? (
+          <div>Frame delivery control</div>
+        ) : (
+          <MenuRfcExperiment />
+        ),
+      );
+      await act(async () => {
+        await traceFrames(`render-only ${content} after render`);
+      });
+      // Record frame delivery without asserting a timing limit.
+      expect(container.firstElementChild).not.to.equal(null);
+    });
+  });
 });

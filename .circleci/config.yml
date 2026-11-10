@@ -199,6 +199,18 @@ jobs:
           command: pnpm test:browser --no-isolate --no-file-parallelism
       # Temporary isolation check for the Menu2 exit failure.
       - run:
+          name: Tests WebKit render-only plain div
+          when: always
+          environment:
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser docs/data/material/components/menu2/Menu2Playground.test.tsx --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism --disableConsoleIntercept=false --reporter=default -t 'records render-only frames for plain div$'
+      - run:
+          name: Tests WebKit render-only playground
+          when: always
+          environment:
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser docs/data/material/components/menu2/Menu2Playground.test.tsx --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism --disableConsoleIntercept=false --reporter=default -t 'records render-only frames for full playground$'
+      - run:
           name: Tests WebKit Menu2 playground only
           environment:
             VITEST_BROWSERS: 'webkit'
