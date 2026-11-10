@@ -148,7 +148,7 @@ export interface UseAutocompleteProps<
   disableClearable?: DisableClearable | undefined;
   /**
    * If `true`, the input (search text) won't be cleared when a value is selected.
-   * @default false
+   * @default props.multiple && props.disableCloseOnSelect
    */
   disableClearOnSelect?: boolean | undefined;
   /**

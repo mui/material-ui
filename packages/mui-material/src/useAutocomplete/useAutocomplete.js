@@ -109,7 +109,7 @@ function useAutocomplete(props) {
     componentName = 'useAutocomplete',
     defaultValue = props.multiple ? MULTIPLE_DEFAULT_VALUE : null,
     disableClearable = false,
-    disableClearOnSelect = false,
+    disableClearOnSelect = props.multiple && props.disableCloseOnSelect,
     disableCloseOnSelect = false,
     disabled: disabledProp,
     disabledItemsFocusable = false,

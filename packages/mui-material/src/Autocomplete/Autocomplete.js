@@ -446,7 +446,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     closeText = 'Close',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
-    disableClearOnSelect = false,
+    disableClearOnSelect = props.multiple && props.disableCloseOnSelect,
     disableCloseOnSelect = false,
     disabled = false,
     disabledItemsFocusable = false,
@@ -978,7 +978,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   disableClearable: PropTypes.bool,
   /**
    * If `true`, the input (search text) won't be cleared when a value is selected.
-   * @default false
+   * @default props.multiple && props.disableCloseOnSelect
    */
   disableClearOnSelect: PropTypes.bool,
   /**
