@@ -47,6 +47,11 @@ function getControlElements({
   const controlProps = { className: classes.controls, ownerState };
 
   switch (controlsPosition) {
+    case false:
+      return {
+        startControls: null,
+        endControls: null,
+      };
     case 'end':
       return {
         startControls: null,

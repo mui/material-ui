@@ -178,10 +178,11 @@ NumberField.propTypes /* remove-proptypes */ = {
   /**
    * The arrangement of the control buttons.
    * Use `'end'` for horizontal minus/plus buttons at the end, `'split'` for a minus button
-   * at the start and a plus button at the end, or `'stacked'` for up/down chevrons at the end.
+   * at the start and a plus button at the end, `'stacked'` for up/down chevrons at the end,
+   * or `false` for no control buttons.
    * @default 'end'
    */
-  controlsPosition: PropTypes.oneOf(['end', 'split', 'stacked']),
+  controlsPosition: PropTypes.oneOf(['end', 'split', 'stacked', false]),
   /**
    * The default value of the number input element.
    */

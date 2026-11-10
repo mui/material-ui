@@ -84,6 +84,7 @@ For example, a value of `0.125` is displayed as `12.5%` with percent formatting.
 
 Set `controlsPosition` to `end` (default), `split`, or `stacked` to change the control layout.
 Start and end follow the text direction.
+Use `false` to render no buttons at all.
 
 {{"component": "file://./demos/controls-position/index.ts"}}
 
