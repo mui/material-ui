@@ -12,7 +12,8 @@ import DemoContext from '../DemoContext';
 import { AdCarbonInline } from '../Ad/AdCarbon';
 import { CODE_VARIANTS, stylingSolutionMapping } from '../constants/constants';
 import { DemoAiSuggestionHero } from './DemoAiSuggestionHero';
-import { DemoAnchorLink, DemoContainer, DemoFileTabBar } from './DemoContainer';
+import { DemoAnchorLink, DemoFileTabBar } from './DemoContainer';
+import { DemoFrameContent } from './DemoFrameContext';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 import { CodeSource, FileTab } from './CodeSource';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
@@ -529,7 +530,7 @@ export default function DemoContent(props: DemoContentProps) {
   }, [maxWidth, height]);
 
   return (
-    <DemoContainer
+    <DemoFrameContent
       anchorId={anchorName}
       anchors={anchors}
       sourceAnchorIds={sourceAnchorIds}
