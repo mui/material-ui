@@ -5,9 +5,11 @@ import { Meter as BaseMeter } from '@base-ui/react/meter';
 import type { SlotComponentProps } from '@mui/utils/types';
 import type { OverridableStringUnion } from '@mui/types';
 import type { SxProps } from '@mui/system';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import type { Theme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import omitComponentFromSlotProps from '../utils/omitComponentFromSlotProps';
+import useId from '../utils/useId';
 import MeterRootSlot from './MeterRootSlot';
 import MeterInnerSlot from './MeterInnerSlot';
 import type { MeterClasses } from './meterClasses';
@@ -158,9 +160,11 @@ const Meter = React.forwardRef(function Meter(
   const slotProps = omitComponentFromSlotProps(slotPropsProp);
   const ownerState: MeterOwnerState = { ...props, slotProps, color, showValue };
   const hasValue = showValue || renderValue !== undefined;
+  const labelId = useId(resolveComponentProps(slotProps?.label, ownerState)?.id);
 
   return (
     <BaseMeter.Root
+      aria-labelledby={label != null ? labelId : undefined}
       value={value}
       min={min}
       max={max}
@@ -179,6 +183,7 @@ const Meter = React.forwardRef(function Meter(
     >
       {label != null && (
         <BaseMeter.Label
+          id={labelId}
           render={(baseProps) => (
             <MeterInnerSlot name="label" baseProps={baseProps} ownerState={ownerState} />
           )}

@@ -2,7 +2,7 @@
   "componentDescription": "Groups the trigger and the popup of a preview card and holds its open state.",
   "propDescriptions": {
     "actionsRef": {
-      "description": "<p>A ref to imperative actions.</p>\n<ul>\n<li><code>unmount</code>: Ends the closing phase of the preview card after an externally controlled closing animation finishes.\nCall <code>preventUnmountOnClose()</code> in <code>onOpenChange</code> first, otherwise the preview card completes closing on its own.\nWhether it leaves the DOM is decided by <code>keepMounted</code> on the portal.</li>\n<li><code>close</code>: Closes the preview card imperatively when called.</li>\n</ul>\n"
+      "description": "<p>A ref to imperative actions.</p>\n<ul>\n<li><code>unmount</code>: Ends the closing phase of the preview card after an externally controlled closing animation finishes.\nCall <code>preventUnmountOnClose()</code> in <code>onOpenChange</code> first, otherwise the preview card completes closing on its own.\nWhether it leaves the DOM is decided by <code>keepMounted</code> on <code>PreviewCardPopup</code>.</li>\n<li><code>close</code>: Closes the preview card imperatively when called.</li>\n</ul>\n"
     },
     "children": {
       "description": "The content of the preview card. This can be a regular React node or a render function that receives the <code>payload</code> of the active trigger."

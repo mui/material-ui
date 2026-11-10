@@ -6,42 +6,47 @@ import PreviewCardPopup, {
 } from '@mui/material/PreviewCardPopup';
 import PreviewCardTrigger from '@mui/material/PreviewCardTrigger';
 import Typography from '@mui/material/Typography';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 
 // @focus-start
-const theme = createTheme({
-  components: {
-    MuiPreviewCardTrigger: {
-      defaultProps: { delay: 200 },
-    },
-    MuiPreviewCardPopup: {
-      defaultProps: { elevation: 2 },
-      styleOverrides: {
-        root: ({ theme: t }) => ({
-          borderRadius: t.spacing(1),
-          [`&.${previewCardPopupClasses.open}`]: {
-            borderTop: `4px solid ${(t.vars || t).palette.primary.main}`,
-          },
-          [`&[${PreviewCardPopupDataAttributes.side}="top"]`]: {
-            borderTop: 'none',
-            borderBottom: `4px solid ${(t.vars || t).palette.primary.main}`,
-          },
-        }),
+const customTheme = (outerTheme: Theme) =>
+  createTheme({
+    palette: { mode: outerTheme.palette.mode },
+    components: {
+      MuiPreviewCardTrigger: {
+        defaultProps: { delay: 200 },
       },
-      variants: [
-        {
-          props: { elevation: 2 },
-          style: { maxWidth: 280 },
+      MuiPreviewCardPopup: {
+        defaultProps: { elevation: 2 },
+        styleOverrides: {
+          root: ({ theme: t }) => ({
+            borderRadius: t.spacing(1),
+            [`&.${previewCardPopupClasses.open}`]: {
+              borderTop: `4px solid ${(t.vars || t).palette.primary.main}`,
+            },
+            [`&[${PreviewCardPopupDataAttributes.side}="top"]`]: {
+              borderTop: 'none',
+              borderBottom: `4px solid ${(t.vars || t).palette.primary.main}`,
+            },
+          }),
         },
-      ],
+        variants: [
+          {
+            props: { elevation: 2 },
+            style: { maxWidth: 280 },
+          },
+        ],
+      },
     },
-  },
-});
+  });
 // @focus-end
 
 export default function ThemedPreviewCard() {
+  const outerTheme = useTheme();
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme(outerTheme)}>
       <Typography>
         Read the{' '}
         <PreviewCard>

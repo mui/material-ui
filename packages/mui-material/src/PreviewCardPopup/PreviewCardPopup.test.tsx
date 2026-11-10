@@ -270,6 +270,38 @@ describe('<PreviewCardPopup />', () => {
     });
   });
 
+  describe.skipIf(isJsdom())('prop: sideOffset', () => {
+    async function measureGap(popup: React.ReactElement) {
+      await render(renderOpen(popup));
+      const trigger = screen.getByText('Link');
+      const surface = screen.getByText('Content');
+      let gap = 0;
+      await waitFor(() => {
+        gap = surface.getBoundingClientRect().top - trigger.getBoundingClientRect().bottom;
+        expect(gap).to.be.greaterThan(0);
+      });
+      return gap;
+    }
+
+    it('places the popup 8px from the trigger by default', async () => {
+      const gap = await measureGap(
+        <PreviewCardPopup side="bottom" slots={{ transition: null }}>
+          Content
+        </PreviewCardPopup>,
+      );
+      expect(gap).to.be.closeTo(8, 0.5);
+    });
+
+    it('uses the sideOffset prop', async () => {
+      const gap = await measureGap(
+        <PreviewCardPopup side="bottom" sideOffset={12} slots={{ transition: null }}>
+          Content
+        </PreviewCardPopup>,
+      );
+      expect(gap).to.be.closeTo(12, 0.5);
+    });
+  });
+
   it.skipIf(isJsdom())('uses the tooltip stacking layer', async () => {
     const theme = createTheme();
     await render(renderOpen(<PreviewCardPopup>Content</PreviewCardPopup>));

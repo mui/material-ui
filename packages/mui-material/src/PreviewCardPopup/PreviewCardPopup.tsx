@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PreviewCard as BasePreviewCard } from '@base-ui/react/preview-card';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import type { SxProps } from '@mui/system';
 import type { SlotComponentProps } from '@mui/utils/types';
 import type { Theme } from '../styles';
@@ -63,6 +64,7 @@ export interface PreviewCardPopupSlotProps {
 export interface PreviewCardPopupProps
   extends
     Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'color'>,
+    Pick<PaperProps, 'square' | 'variant'>,
     Pick<
       BasePreviewCard.Positioner.Props,
       | 'align'
@@ -279,41 +281,10 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
    * An element to position the popup against.
    * By default, the popup will be positioned against the trigger.
    */
-  anchor: PropTypes.oneOfType([
-    (props, propName) => {
-      if (props[propName] == null) {
-        return new Error(`Prop '${propName}' is required but wasn't specified`);
-      }
-      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-        return new Error(`Expected prop '${propName}' to be of type Element`);
-      }
-      return null;
-    },
+  anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.object,
     PropTypes.func,
-    PropTypes.shape({
-      current: (props, propName) => {
-        if (props[propName] == null) {
-          return null;
-        }
-        if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-          return new Error(`Expected prop '${propName}' to be of type Element`);
-        }
-        return null;
-      },
-    }),
-    PropTypes.shape({
-      contextElement: (props, propName) => {
-        if (props[propName] == null) {
-          return null;
-        }
-        if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-          return new Error(`Expected prop '${propName}' to be of type Element`);
-        }
-        return null;
-      },
-      getBoundingClientRect: PropTypes.func.isRequired,
-      getClientRects: PropTypes.func,
-    }),
   ]),
   /**
    * The content of the component.
@@ -381,32 +352,11 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
    * An element or a rectangle that delimits the area that the popup is confined to.
    * @default 'clipping-ancestors'
    */
-  collisionBoundary: PropTypes.oneOfType([
+  collisionBoundary: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['clipping-ancestors']),
-    PropTypes.arrayOf((props, propName) => {
-      if (props[propName] == null) {
-        return new Error(`Prop '${propName}' is required but wasn't specified`);
-      }
-      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-        return new Error(`Expected prop '${propName}' to be of type Element`);
-      }
-      return null;
-    }),
-    (props, propName) => {
-      if (props[propName] == null) {
-        return new Error(`Prop '${propName}' is required but wasn't specified`);
-      }
-      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-        return new Error(`Expected prop '${propName}' to be of type Element`);
-      }
-      return null;
-    },
-    PropTypes.shape({
-      height: PropTypes.number.isRequired,
-      width: PropTypes.number.isRequired,
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
-    }),
+    HTMLElementType,
+    PropTypes.arrayOf(HTMLElementType),
+    PropTypes.object,
   ]),
   /**
    * Additional space to maintain from the edge of the collision boundary.
@@ -424,31 +374,9 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
   /**
    * A parent element to render the portal element into.
    */
-  container: PropTypes.oneOfType([
-    (props, propName) => {
-      if (props[propName] == null) {
-        return new Error(`Prop '${propName}' is required but wasn't specified`);
-      }
-      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-        return new Error(`Expected prop '${propName}' to be of type Element`);
-      }
-      return null;
-    },
+  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
     PropTypes.object,
-    PropTypes.shape({
-      current: PropTypes.oneOfType([
-        (props, propName) => {
-          if (props[propName] == null) {
-            return new Error(`Prop '${propName}' is required but wasn't specified`);
-          }
-          if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-            return new Error(`Expected prop '${propName}' to be of type Element`);
-          }
-          return null;
-        },
-        PropTypes.object,
-      ]),
-    }),
   ]),
   /**
    * Whether to disable the popup from tracking any layout shift of its positioning anchor.

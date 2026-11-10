@@ -1,3 +1,4 @@
+import * as React from 'react';
 import PreviewCard, { createPreviewCardHandle } from '@mui/material/PreviewCard';
 import PreviewCardTrigger from '@mui/material/PreviewCardTrigger';
 import PreviewCardPopup, {
@@ -44,6 +45,16 @@ const handle = createPreviewCardHandle<{ title: string }>();
 <PreviewCard handle={handle}>
   {({ payload }) => <PreviewCardPopup>{payload?.title}</PreviewCardPopup>}
 </PreviewCard>;
+
+// @ts-expect-error the payload must match the handle
+<PreviewCardTrigger handle={handle} payload={42} render={<a href="#">Link</a>} />;
+
+const buttonRef = React.createRef<HTMLButtonElement>();
+<PreviewCardTrigger ref={buttonRef} render={<Button>Open</Button>} />;
+
+<PreviewCardPopup variant="outlined" square>
+  Content
+</PreviewCardPopup>;
 
 // @ts-expect-error component is not supported
 <PreviewCardPopup component="section">Content</PreviewCardPopup>;

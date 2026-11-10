@@ -14,7 +14,7 @@
     "anchor": {
       "type": {
         "name": "union",
-        "description": "(props, propName) => {\n  if (props[propName] == null) {\n    return new Error(`Prop '${propName}' is required but wasn't specified`);\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n}<br>&#124;&nbsp;func<br>&#124;&nbsp;{ current?: (props, propName) => {\n  if (props[propName] == null) {\n    return null;\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n} }<br>&#124;&nbsp;{ contextElement?: (props, propName) => {\n  if (props[propName] == null) {\n    return null;\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n}, getBoundingClientRect: func, getClientRects?: func }"
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
       }
     },
     "children": { "type": { "name": "node" } },
@@ -28,7 +28,7 @@
     "collisionBoundary": {
       "type": {
         "name": "union",
-        "description": "'clipping-ancestors'<br>&#124;&nbsp;Array&lt;(props, propName) => {\n  if (props[propName] == null) {\n    return new Error(`Prop '${propName}' is required but wasn't specified`);\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n}&gt;<br>&#124;&nbsp;(props, propName) => {\n  if (props[propName] == null) {\n    return new Error(`Prop '${propName}' is required but wasn't specified`);\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n}<br>&#124;&nbsp;{ height: number, width: number, x: number, y: number }"
+        "description": "'clipping-ancestors'<br>&#124;&nbsp;HTML element<br>&#124;&nbsp;Array&lt;HTML element&gt;<br>&#124;&nbsp;object"
       },
       "default": "'clipping-ancestors'"
     },
@@ -40,10 +40,7 @@
       "default": "5"
     },
     "container": {
-      "type": {
-        "name": "union",
-        "description": "(props, propName) => {\n  if (props[propName] == null) {\n    return new Error(`Prop '${propName}' is required but wasn't specified`);\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n}<br>&#124;&nbsp;object<br>&#124;&nbsp;{ current?: (props, propName) => {\n  if (props[propName] == null) {\n    return new Error(`Prop '${propName}' is required but wasn't specified`);\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n}<br>&#124;&nbsp;object }"
-      }
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;object" }
     },
     "disableAnchorTracking": { "type": { "name": "bool" }, "default": "false" },
     "elevation": { "type": { "name": "number" }, "default": "8" },

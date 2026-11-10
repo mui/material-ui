@@ -18,7 +18,7 @@
     "import { PreviewCard } from '@mui/material';"
   ],
   "classes": [],
-  "spread": true,
+  "spread": false,
   "themeDefaultProps": null,
   "muiName": "MuiPreviewCard",
   "filename": "/packages/mui-material/src/PreviewCard/PreviewCard.tsx",

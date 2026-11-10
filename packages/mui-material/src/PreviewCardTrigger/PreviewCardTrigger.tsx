@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { PreviewCard as BasePreviewCard } from '@base-ui/react/preview-card';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
-export interface PreviewCardTriggerProps
+export interface PreviewCardTriggerProps<Payload = unknown>
   extends
     Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'color'>,
-    Pick<BasePreviewCard.Trigger.Props, 'closeDelay' | 'delay' | 'payload'> {
+    Pick<BasePreviewCard.Trigger.Props<Payload>, 'closeDelay' | 'delay' | 'payload'> {
   /**
    * @ignore
    */
@@ -16,7 +16,7 @@ export interface PreviewCardTriggerProps
    * A handle that connects the trigger with a `PreviewCard` rendered elsewhere.
    * Create one with `createPreviewCardHandle()`.
    */
-  handle?: BasePreviewCard.Trigger.Props['handle'] | undefined;
+  handle?: BasePreviewCard.Trigger.Props<Payload>['handle'] | undefined;
   /**
    * The id of the trigger. Pass it to `triggerId` on `PreviewCard` to open the card from this trigger.
    */
@@ -41,7 +41,7 @@ export interface PreviewCardTriggerProps
  */
 const PreviewCardTrigger = React.forwardRef(function PreviewCardTrigger(
   inProps: PreviewCardTriggerProps,
-  ref: React.ForwardedRef<HTMLAnchorElement>,
+  ref: React.ForwardedRef<HTMLElement>,
 ) {
   const props = useDefaultProps({ props: inProps, name: 'MuiPreviewCardTrigger' });
   const { children, closeDelay, delay, handle, id, payload, render, ...other } = props;
@@ -49,7 +49,7 @@ const PreviewCardTrigger = React.forwardRef(function PreviewCardTrigger(
   return (
     <BasePreviewCard.Trigger
       {...other}
-      ref={ref}
+      ref={ref as React.Ref<HTMLAnchorElement>}
       closeDelay={closeDelay}
       delay={delay}
       handle={handle}
@@ -100,5 +100,17 @@ PreviewCardTrigger.propTypes /* remove-proptypes */ = {
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
 } as any;
-
-export default PreviewCardTrigger;
+/**
+ * The link that opens a preview card on hover or focus.
+ *
+ * Demos:
+ *
+ * - [Preview Card](https://next.mui.com/material-ui/react-preview-card/)
+ *
+ * API:
+ *
+ * - [PreviewCardTrigger API](https://next.mui.com/material-ui/api/preview-card-trigger/)
+ */
+export default PreviewCardTrigger as <Payload = unknown>(
+  props: PreviewCardTriggerProps<Payload> & React.RefAttributes<HTMLElement>,
+) => React.JSX.Element;

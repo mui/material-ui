@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { PreviewCard as BasePreviewCard } from '@base-ui/react/preview-card';
 import { DirectionProvider } from '@base-ui/react/direction-provider';
 import { useRtl } from '@mui/system/RtlProvider';
+import exactProp from '@mui/utils/exactProp';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 export interface PreviewCardProps<Payload = unknown> extends Pick<
   BasePreviewCard.Root.Props<Payload>,
-  | 'actionsRef'
   | 'children'
   | 'defaultOpen'
   | 'defaultTriggerId'
@@ -17,6 +17,14 @@ export interface PreviewCardProps<Payload = unknown> extends Pick<
   | 'open'
   | 'triggerId'
 > {
+  /**
+   * A ref to imperative actions.
+   * - `unmount`: Ends the closing phase of the preview card after an externally controlled closing animation finishes.
+   * Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the preview card completes closing on its own.
+   * Whether it leaves the DOM is decided by `keepMounted` on `PreviewCardPopup`.
+   * - `close`: Closes the preview card imperatively when called.
+   */
+  actionsRef?: BasePreviewCard.Root.Props<Payload>['actionsRef'] | undefined;
   /**
    * A handle that connects the preview card with triggers rendered outside of it.
    * Create one with `createPreviewCardHandle()`.
@@ -77,7 +85,7 @@ PreviewCard.propTypes /* remove-proptypes */ = {
    * A ref to imperative actions.
    * - `unmount`: Ends the closing phase of the preview card after an externally controlled closing animation finishes.
    * Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the preview card completes closing on its own.
-   * Whether it leaves the DOM is decided by `keepMounted` on the portal.
+   * Whether it leaves the DOM is decided by `keepMounted` on `PreviewCardPopup`.
    * - `close`: Closes the preview card imperatively when called.
    */
   actionsRef: PropTypes.shape({
@@ -130,5 +138,10 @@ PreviewCard.propTypes /* remove-proptypes */ = {
    */
   triggerId: PropTypes.string,
 } as any;
+
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
+  (PreviewCard as any)['propTypes' + ''] = exactProp(PreviewCard.propTypes);
+}
 
 export default PreviewCard;

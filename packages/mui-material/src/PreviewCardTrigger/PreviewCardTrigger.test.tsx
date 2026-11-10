@@ -7,10 +7,11 @@ import PreviewCardTrigger, {
   PreviewCardTriggerDataAttributes,
 } from '@mui/material/PreviewCardTrigger';
 import PreviewCardPopup from '@mui/material/PreviewCardPopup';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<PreviewCardTrigger />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   describeConformance(<PreviewCardTrigger render={<a href="#">Link</a>} />, () => ({
     classes: { root: '' },
@@ -170,6 +171,76 @@ describe('<PreviewCardTrigger />', () => {
     });
     expect(handleOpenChange.args[0][0]).to.equal(false);
     expect(handleOpenChange.args[0][1].reason).to.equal('outside-press');
+  });
+
+  describe('delays', () => {
+    clock.withFakeTimers();
+
+    function hover(trigger: HTMLElement) {
+      fireEvent.pointerEnter(trigger, { pointerType: 'mouse' });
+      fireEvent.mouseEnter(trigger);
+      fireEvent.mouseMove(trigger);
+    }
+
+    function leave(trigger: HTMLElement) {
+      fireEvent.pointerLeave(trigger, { pointerType: 'mouse' });
+      fireEvent.mouseLeave(trigger);
+    }
+
+    it('opens after the delay', async () => {
+      const handleOpenChange = spy();
+      await render(
+        <PreviewCard onOpenChange={handleOpenChange}>
+          <PreviewCardTrigger delay={200} render={<a href="#">Link</a>} />
+          <PreviewCardPopup>Content</PreviewCardPopup>
+        </PreviewCard>,
+      );
+      hover(screen.getByText('Link'));
+      clock.tick(199);
+      expect(handleOpenChange.callCount).to.equal(0);
+      clock.tick(1);
+      expect(handleOpenChange.callCount).to.equal(1);
+      expect(handleOpenChange.args[0][0]).to.equal(true);
+    });
+
+    it('closes after the closeDelay', async () => {
+      const handleOpenChange = spy();
+      await render(
+        <PreviewCard onOpenChange={handleOpenChange}>
+          <PreviewCardTrigger delay={0} closeDelay={200} render={<a href="#">Link</a>} />
+          <PreviewCardPopup>Content</PreviewCardPopup>
+        </PreviewCard>,
+      );
+      const trigger = screen.getByText('Link');
+      hover(trigger);
+      clock.tick(0);
+      expect(handleOpenChange.lastCall.args[0]).to.equal(true);
+      leave(trigger);
+      clock.tick(199);
+      expect(handleOpenChange.lastCall.args[0]).to.equal(true);
+      clock.tick(1);
+      expect(handleOpenChange.lastCall.args[0]).to.equal(false);
+    });
+
+    it('reads the delay from the theme defaultProps', async () => {
+      const handleOpenChange = spy();
+      const theme = createTheme({
+        components: { MuiPreviewCardTrigger: { defaultProps: { delay: 50 } } },
+      });
+      await render(
+        <ThemeProvider theme={theme}>
+          <PreviewCard onOpenChange={handleOpenChange}>
+            <PreviewCardTrigger render={<a href="#">Link</a>} />
+            <PreviewCardPopup>Content</PreviewCardPopup>
+          </PreviewCard>
+        </ThemeProvider>,
+      );
+      hover(screen.getByText('Link'));
+      clock.tick(49);
+      expect(handleOpenChange.callCount).to.equal(0);
+      clock.tick(1);
+      expect(handleOpenChange.callCount).to.equal(1);
+    });
   });
 
   it('passes HTML attributes to the rendered element', async () => {

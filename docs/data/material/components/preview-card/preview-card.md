@@ -24,7 +24,9 @@ The trigger renders the element you pass to its `render` prop, usually a `Link`.
 
 ## Positioning
 
-Use `side` and `align` to place the popup relative to the trigger, and `sideOffset` and `alignOffset` to move it away from the trigger.
+Use `side` and `align` to place the popup relative to the trigger.
+`sideOffset` sets the distance from the trigger: 8px by default, where Base UI defaults to 0.
+`alignOffset` shifts the popup along the trigger's edge.
 The popup flips to the other side when there is not enough space.
 
 {{"component": "file://./demos/positioning/index.ts"}}

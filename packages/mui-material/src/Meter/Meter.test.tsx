@@ -65,6 +65,28 @@ describe('<Meter />', () => {
       expect(screen.getByText('Battery')).to.have.class(classes.label);
     });
 
+    it('keeps the accessible name when slotProps.label sets the id', () => {
+      render(<Meter value={50} label="Battery" slotProps={{ label: { id: 'battery-label' } }} />);
+
+      const meter = screen.getByRole('meter', { name: 'Battery' });
+      expect(meter).to.have.attribute('aria-labelledby', 'battery-label');
+    });
+
+    it('lets aria-labelledby override the label', () => {
+      render(<Meter value={50} label="Battery" aria-labelledby="custom-label" />);
+
+      expect(screen.getByRole('meter')).to.have.attribute('aria-labelledby', 'custom-label');
+    });
+
+    it('links the label on the server', () => {
+      const { container } = renderToString(<Meter value={50} label="Battery" />);
+
+      const meter = container.querySelector('[role="meter"]')!;
+      const label = container.querySelector(`.${classes.label}`)!;
+      expect(label.id).not.to.equal('');
+      expect(meter).to.have.attribute('aria-labelledby', label.id);
+    });
+
     it('names the meter with aria-label when there is no label', () => {
       render(<Meter value={50} aria-label="Battery" />);
 
