@@ -34,6 +34,32 @@ export function getCssLayer(theme: any, layer: CssLayer): string | undefined {
 }
 
 /**
+ * Returns the sub-layer that one part of a component's styles goes in, such as its theme overrides
+ * or its `sx`, or `undefined` when the parts aren't layered one by one. With `cssLayers: 'single'`,
+ * the component's styles are wrapped in `@layer mui` as a whole, so that they keep v9's order: the
+ * declarations of every part come first, and the media queries after them.
+ */
+export function getCssSubLayer(theme: any, layer: CssLayer): string | undefined {
+  return isSingleCssLayer(theme) ? undefined : getCssLayer(theme, layer);
+}
+
+/**
+ * Opens the `mui` layer around a component's styles with `cssLayers: 'single'`, as v9's
+ * `enableCssLayer` did, so that the declarations of every part come first and the media queries
+ * after them. With sub-layers, each part goes in its own sub-layer instead.
+ */
+export function styleCssLayerStart(props: { theme?: any }) {
+  return isSingleCssLayer(props.theme) ? '@layer mui{' : null;
+}
+
+/**
+ * Closes the layer that `styleCssLayerStart` opens.
+ */
+export function styleCssLayerEnd(props: { theme?: any }) {
+  return isSingleCssLayer(props.theme) ? '}' : null;
+}
+
+/**
  * Returns the statement that declares the order of the theme's layers, or `''` if there's none.
  * A `modularCssLayers` string sets where `mui` goes among the app's layers.
  * With `cssLayers: 'single'` and no string, nothing is declared: as with v9's `enableCssLayer`,

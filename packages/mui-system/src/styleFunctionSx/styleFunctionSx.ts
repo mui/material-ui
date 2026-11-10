@@ -10,7 +10,7 @@ import {
   DEFAULT_BREAKPOINTS,
 } from '../breakpoints';
 import { sortContainerQueries } from '../cssContainerQueries';
-import { getCssLayer } from '../cssLayers';
+import { getCssSubLayer } from '../cssLayers';
 import defaultSxConfig from './defaultSxConfig';
 import type { StandardCSSProperties } from './StandardCssProperties';
 import type { AliasesCSSProperties } from './AliasesCSSProperties';
@@ -150,7 +150,7 @@ export function unstable_createStyleFunctionSx(): StyleFunctionSx {
         }
       }
 
-      const layerName = nested ? undefined : getCssLayer(theme, 'sx');
+      const layerName = nested ? undefined : getCssSubLayer(theme, 'sx');
       if (layerName) {
         return {
           [`@layer ${layerName}`]: sortContainerQueries(
