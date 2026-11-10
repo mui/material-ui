@@ -15,7 +15,7 @@
       "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
     "controlsPosition": {
-      "description": "The arrangement of the control buttons. Use <code>&#39;end&#39;</code> for horizontal minus/plus buttons at the end, <code>&#39;split&#39;</code> for a minus button at the start and a plus button at the end, or <code>&#39;stacked&#39;</code> for up/down chevrons at the end."
+      "description": "The arrangement of the control buttons. Use <code>&#39;end&#39;</code> for horizontal minus/plus buttons at the end, <code>&#39;split&#39;</code> for a minus button at the start and a plus button at the end, <code>&#39;stacked&#39;</code> for up/down chevrons at the end, or <code>false</code> for no control buttons."
     },
     "defaultValue": { "description": "The default value of the number input element." },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },

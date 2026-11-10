@@ -1,6 +1,7 @@
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 
 import type { NumberFieldOwnerState, NumberFieldProps } from '../NumberField.types';
+import omitNullishEventHandlers from './omitNullishEventHandlers';
 
 type HtmlInputSlotProps = NonNullable<NumberFieldProps['slotProps']>['htmlInput'];
 type ResolvedInputSlotProps = Exclude<
@@ -61,11 +62,7 @@ export default function resolveInputProps<T extends ResolvedInputSlotProps>({
 
   // Clear overridden consumer handlers without letting undefined/null erase
   // Base UI's internal handlers in useSlot's subsequent prop merge.
-  const nativeSlotProps: HtmlInputSlotProps = Object.fromEntries(
-    Object.entries(consumerNativeProps).filter(
-      ([key, value]) => !(/^on[A-Z]/.test(key) && value == null),
-    ),
-  );
+  const nativeSlotProps: HtmlInputSlotProps = omitNullishEventHandlers(consumerNativeProps);
 
   return {
     materialInputProps: {

@@ -195,6 +195,7 @@ export interface ComponentsPropsList {
   MuiMobileStepper: MobileStepperProps;
   MuiModal: ModalProps;
   MuiNativeSelect: NativeSelectProps;
+  MuiNumberField: NumberFieldProps;
   MuiOutlinedInput: OutlinedInputProps;
   MuiPagination: PaginationProps;
   MuiPaginationItem: PaginationItemProps;
@@ -210,7 +211,6 @@ export interface ComponentsPropsList {
   MuiSlider: SliderProps;
   MuiSnackbar: SnackbarProps;
   MuiSnackbarContent: SnackbarContentProps;
-  MuiNumberField: NumberFieldProps;
   MuiSpeedDial: SpeedDialProps;
   MuiSpeedDialAction: SpeedDialActionProps;
   MuiSpeedDialIcon: SpeedDialIconProps;

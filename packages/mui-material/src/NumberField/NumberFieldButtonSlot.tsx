@@ -8,6 +8,7 @@ import appendOwnerState from '@mui/utils/appendOwnerState';
 
 import type { NumberFieldOwnerState } from './NumberField.types';
 import type { IconButtonProps } from '../IconButton';
+import { omitNullishEventHandlers } from './utils';
 
 interface NumberFieldButtonProps {
   ButtonSlot: React.ElementType;
@@ -32,19 +33,17 @@ const NumberFieldButtonSlot = React.forwardRef<HTMLButtonElement, NumberFieldBut
     // Material should also display read-only controls as unavailable.
     const disabled = baseState.disabled || baseState.readOnly;
 
-    // Keep nativeButton off the DOM and prevent unset handlers from replacing Base UI handlers.
-    const consumerButtonProps = Object.fromEntries(
-      Object.entries(buttonProps).filter(
-        ([key, value]) =>
-          !(key === 'nativeButton' && typeof ButtonSlot === 'string') &&
-          !(/^on[A-Z]/.test(key) && value == null),
-      ),
+    // Keep nativeButton off the DOM when the slot is a host element.
+    const consumerButtonProps = omitNullishEventHandlers(
+      buttonProps,
+      ([key]) => !(key === 'nativeButton' && typeof ButtonSlot === 'string'),
     );
 
     // Consumer handlers run first and can prevent Base's behavior.
+    // Custom Material slots also support a broader `type` prop than native buttons.
     const mergedButtonProps: React.ComponentPropsWithRef<'button'> = mergeProps<'button'>(
       baseProps,
-      consumerButtonProps,
+      consumerButtonProps as React.ComponentPropsWithRef<'button'>,
     );
     const mergedProps = appendOwnerState(
       ButtonSlot,
