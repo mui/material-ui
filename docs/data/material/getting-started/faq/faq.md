@@ -25,14 +25,24 @@ There are many ways to support us:
 ## Why do the fixed positioned elements move when a modal is opened?
 
 Scrolling is blocked as soon as a modal is opened.
-This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move.
-In this situation, you can apply a global `.mui-fixed` class name to tell Material UI to handle those elements.
+This prevents interacting with the background when the modal should be the only interactive content.
+Blocking the scroll hides the scrollbar, which widens the page and can make your **fixed positioned elements** move.
 
-Alternatively, set `scrollbar-gutter: stable` on the scroll container.
-For page scrolling that is the root `html` element, because a gutter on `body` isn't propagated to the viewport and so reserves nothing.
-The scrollbar space then stays reserved while the scroll is blocked, so nothing moves and the compensation is skipped.
-That covers every fixed positioned element, whether or not it carries `.mui-fixed`.
-Browsers without support for `scrollbar-gutter` keep the `.mui-fixed` behavior.
+To prevent this, reserve the scrollbar space with `scrollbar-gutter: stable` on the `html` element:
+
+```css
+html {
+  scrollbar-gutter: stable;
+}
+```
+
+The space stays reserved while the scroll is blocked, so nothing moves.
+Set it on `html`, not `body`: only the root element's gutter applies to the page scrollbar.
+If the modal blocks the scroll of a custom scroll container, set it on that container instead.
+
+Without `scrollbar-gutter`, for example in browsers that don't support it, Material UI pads the scroll container by the width of the scrollbar instead.
+Fixed positioned elements aren't padded automatically.
+Add the global `.mui-fixed` class name to them so Material UI pads them too.
 
 ## How can I disable the ripple effect globally?
 
