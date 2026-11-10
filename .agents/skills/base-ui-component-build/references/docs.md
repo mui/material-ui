@@ -30,7 +30,8 @@ githubSource: packages/mui-material/src/PreviewCard
 
 1. Title, description, and `{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}`.
 2. A basic demo, then one section per feature from the Base UI docs that the component exposes.
-3. **Anatomy**: the parts and how they nest, as a `text` code block (Prettier rewrites comments inside a `jsx` block):
+3. **Accessibility**: port every item of the Base UI "Usage guidelines" section, and say how to give the component an accessible name (`label`, or `aria-label` when there is no visible label). Add what the Base UI source shows but its docs leave out, such as a trigger that ignores touch input.
+4. **Anatomy**: the parts and how they nest, as a `text` code block (Prettier rewrites comments inside a `jsx` block):
 
    ```text
    PreviewCard
@@ -38,8 +39,8 @@ githubSource: packages/mui-material/src/PreviewCard
    └── PreviewCardPopup
    ```
 
-4. **Customization**:
-   - `render`, including a render function that reads the Base UI state.
+5. **Customization**:
+   - `render`: a short paragraph that says the part keeps its styles and that a render function receives the Base UI state. Add a demo only for a real use case, such as rendering a router link; a demo that swaps in an arbitrary element (`<aside>`) teaches nothing the API page does not.
    - `slots` and `slotProps`.
    - Theme `styleOverrides` and `variants`, with a live-state rule that uses the classes and data attribute constants.
    - Utility classes.

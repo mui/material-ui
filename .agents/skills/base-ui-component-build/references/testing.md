@@ -43,7 +43,8 @@ describeConformance(<PreviewCardPopup>Content</PreviewCardPopup>, () => ({
 
 Test through the Material UI parts, not the Base UI ones:
 
-- Each behavior the docs page shows: open and close (pointer, keyboard, Escape, outside press), value changes, disabled and read-only states.
+- Each behavior the docs page shows: value changes, disabled and read-only states, and opening.
+- Each way the component closes, one test each, asserting `eventDetails.reason`: for a hover card, the pointer leaving the trigger (`trigger-hover`), the trigger losing focus (`trigger-focus`), Escape (`escape-key`), and a press outside (`outside-press`). Read the reasons from the Base UI `ChangeEventReason` type and test each one that a user can cause.
 - Controlled and uncontrolled state, with the Base UI callback signature (`onOpenChange(open, eventDetails)`, asserting `eventDetails.reason`).
 - Theme `defaultProps`, `styleOverrides`, and `variants` reaching each part, and a `styleOverrides` rule that targets a live-state class.
 - Server rendering with `createRenderer().renderToString` for parts whose first render depends on state (form fields, formatted values).
@@ -81,6 +82,8 @@ expect(popup).to.have.attribute(PreviewCardPopupDataAttributes.open);
 - Parts reject `component`, including `slotProps.root.component`, and any Base UI prop that was not picked.
 - Parts that render an element accept HTML attributes (`id`, `onClick`, `aria-label`).
 - Theme entries accept `defaultProps`, `styleOverrides`, and `variants` for each part.
+
+Leave `data-*` keys out of `slotProps` in the spec, and never cast them in. Slot props accept `data-*` only when the user augments `DataAttributesOverrides` (`docs/data/material/guides/typescript/typescript.md`), the same as every other Material UI component.
 
 ## Visual and accessibility
 

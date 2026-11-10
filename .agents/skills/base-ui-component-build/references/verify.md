@@ -43,7 +43,7 @@ Every check below is a bug that a previous build of a Material UI component on B
 - [ ] **Swapping the element keeps keyboard activation.** Every part that declares `nativeButton` exposes it, the `nativeButton` test passes, and the console shows no Base UI `nativeButton` error. Links use a `LinkItem` part. [compound-parts.md, Trigger and Items]
 - [ ] **Spacing survives focus guards.** No style relies on a sibling combinator (`item + divider`); each part owns its spacing.
 - [ ] **State selectors use presence.** Styles and tests select `[data-open]`, not `[data-open="true"]`.
-- [ ] **Closing tests pass in both jsdom and Chromium.** [testing.md, Behavior]
+- [ ] **Every way to close is tested.** Each `ChangeEventReason` a user can cause (pointer leave, blur, Escape, outside press) has its own test that asserts the reason, and the tests pass in both jsdom and Chromium. [testing.md, Behavior]
 - [ ] **Server and browser render the same text.** Every `Intl` formatting in demos and tests passes a `locale`. [docs.md, Demos]
 
 ## Tests
@@ -58,6 +58,8 @@ Every check below is a bug that a previous build of a Material UI component on B
 - [ ] **Every demo renders without console errors**, in `pnpm docs:dev` or, when no browser is available, in a temporary test that renders each demo in Chromium and fails on `console.error`. The first Chromium run can fail with "Vite unexpectedly reloaded" while dependencies are optimized; run it again before reading the result. Delete that test before committing.
 - [ ] **Demo links resolve.** Every `href="#…"` in the demos matches a heading anchor on the page. Detect: `grep -rn 'href="#' docs/data/material/components/<kebab-name>` and compare with the page headings, or run `pnpm docs:build`, which ends with the link check. [docs.md, Demos]
 - [ ] **Vale passes on the docs page.** `pnpm code-infra vale --vale-version <config.valeVersion in package.json> --filter='.Level=="error"' <page>.md` reports 0 errors. The usual failure is a normal space in a brand name. [docs.md]
+- [ ] **The page has an Accessibility section.** It covers every item of the Base UI "Usage guidelines" section, and says how to give the component an accessible name. [docs.md, Page outline]
+- [ ] **Every `render` demo shows a real use case.** A demo that only swaps in an arbitrary element (`<aside>`, `<section>`) is a short paragraph instead. [docs.md, Page outline]
 - [ ] **The anatomy is a `text` block**, and the route file has no leftover name from the file it was copied from. [docs.md]
 
 ## Repository
