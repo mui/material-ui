@@ -109,6 +109,7 @@ function useAutocomplete(props) {
     componentName = 'useAutocomplete',
     defaultValue = props.multiple ? MULTIPLE_DEFAULT_VALUE : null,
     disableClearable = false,
+    disableClearOnSelect = false,
     disableCloseOnSelect = false,
     disabled: disabledProp,
     disabledItemsFocusable = false,
@@ -321,7 +322,7 @@ function useAutocomplete(props) {
   });
 
   React.useEffect(() => {
-    const valueChange = value !== previousProps.value;
+    const shouldClearForValueChange = !disableClearOnSelect && value !== previousProps.value;
     const shouldSyncResolvedOption =
       getOptionValueProp !== undefined &&
       previousProps.hasSelectedOption === false &&
@@ -329,7 +330,7 @@ function useAutocomplete(props) {
       inputValue === '' &&
       !inputValueEditedRef.current;
 
-    if (focused && !valueChange && !shouldSyncResolvedOption) {
+    if (focused && !shouldClearForValueChange && !shouldSyncResolvedOption) {
       return;
     }
 
@@ -337,7 +338,7 @@ function useAutocomplete(props) {
     // Also prevent the initial default value of `null` from clearing controlled values.
     const shouldSkipFreeSoloReset =
       freeSolo &&
-      ((!valueChange && !shouldSyncResolvedOption) ||
+      ((!shouldClearForValueChange && !shouldSyncResolvedOption) ||
         (value == null && previousProps.value === undefined));
     if (shouldSkipFreeSoloReset) {
       return;
@@ -354,6 +355,7 @@ function useAutocomplete(props) {
     getOptionValueProp,
     hasSelectedOption,
     inputValue,
+    disableClearOnSelect,
   ]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
@@ -883,7 +885,9 @@ function useAutocomplete(props) {
       rememberSelectedOption(option, optionValue);
     }
 
-    resetInputValue(event, newValue, reason);
+    if (!disableClearOnSelect) {
+      resetInputValue(event, newValue, reason);
+    }
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {

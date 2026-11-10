@@ -147,6 +147,11 @@ export interface UseAutocompleteProps<
    */
   disableClearable?: DisableClearable | undefined;
   /**
+   * If `true`, the input (search text) won't be cleared when a value is selected.
+   * @default false
+   */
+  disableClearOnSelect?: boolean | undefined;
+  /**
    * If `true`, the popup won't close when a value is selected.
    * @default false
    */
