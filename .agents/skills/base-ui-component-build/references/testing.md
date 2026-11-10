@@ -36,7 +36,7 @@ describeConformance(<PreviewCardPopup>Content</PreviewCardPopup>, () => ({
 
 - `skip: ['componentProp']` on every part, because no part accepts `component`.
 - Parts that live in a portal need `getRootElement`. Parts that need a parent (a popup needs its root) wrap the node in `render`.
-- A standalone trigger only forwards its picked props to the user's element, so it runs `only: ['refForwarding']` with `classes: { root: '' }`. A styled trigger runs the full suite.
+- A standalone trigger has no classes or styles of its own, so it runs `only: ['refForwarding', 'propsSpread']` with `classes: { root: '' }`. A styled trigger runs the full suite.
 - Parts that render no element (root) get behavior tests only.
 
 ## Behavior
