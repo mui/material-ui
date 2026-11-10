@@ -1559,6 +1559,13 @@ describe('<NumberField />', () => {
       });
     });
 
+    it('renders no buttons when controlsPosition is false', () => {
+      render(<NumberField label="Amount" controlsPosition={false} />);
+
+      expect(screen.queryByRole('button', { name: 'Increase' })).to.equal(null);
+      expect(screen.queryByRole('button', { name: 'Decrease' })).to.equal(null);
+    });
+
     const placements = [
       {
         controlsPosition: undefined,
