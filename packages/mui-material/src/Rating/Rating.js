@@ -87,12 +87,9 @@ const RatingRoot = styled('span', {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
-    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      // Legacy default, superseded when the curated ring is opted in.
-      ...(!theme.focusVisible && {
-        outline: '1px solid #999',
-      }),
-      ...(theme.focusVisible && theme.focusVisible),
+    // Legacy default, superseded when the curated ring is opted in.
+    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: theme.focusVisible || {
+      outline: '1px solid #999',
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -142,10 +139,7 @@ const RatingLabel = styled('label', {
           position: 'absolute',
           width: '100%',
           // Legacy default, superseded when the curated ring is opted in.
-          ...(!theme.focusVisible && {
-            outline: '1px solid #999',
-          }),
-          ...(theme.focusVisible && theme.focusVisible),
+          ...(theme.focusVisible || { outline: '1px solid #999' }),
         },
       },
     ],
