@@ -83,4 +83,4 @@ Run, in this order:
 
 Then go through every check in [references/verify.md](references/verify.md).
 
-Done when every command passes and every check in `verify.md` is ticked, with the evidence (test name, command output, or file and line) written next to it in your final report.
+Done when every command passes and every check in `verify.md` is ticked, with the evidence (test name, command output, or file and line) written next to it in your final report. The report also tells the author that the component is not in the accessibility suite yet (see [references/testing.md](references/testing.md#visual-and-accessibility)).
