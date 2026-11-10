@@ -46,6 +46,20 @@ If you didn't use `useFlexGap`, check your layouts for these differences:
 
 - `spacing` also applies between lines when the children wrap.
 
+- Negative `spacing` values and `'auto'` are no longer supported. Remove `spacing` and apply margins to the children instead. For example, to preserve overlapping children in a row:
+
+  ```diff
+  -<Stack direction="row" spacing={-1}>
+  +<Stack
+  +  direction="row"
+  +  sx={{ '& > :not(style) ~ :not(style)': { ml: -1 } }}
+  +>
+  ```
+
+  Use `ml: 'auto'` to preserve `spacing="auto"`, or `mt` instead of `ml` for a column.
+
+- Percentage spacing is now relative to the container's width for horizontal gaps and height for vertical gaps. Previously, percentage margins used the container's width in both directions. For example, `spacing="10%"` now produces no gap in a column whose height is determined by its children. Use a numeric spacing value or a length such as `'1rem'` for spacing that does not depend on the container's dimensions.
+
 #### DialogActions, CardActions and AccordionActions
 
 If you customized the space between the actions, through the `spacing` style override or a margin on the actions, set `gap` on the root instead.

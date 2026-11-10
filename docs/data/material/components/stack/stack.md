@@ -28,9 +28,14 @@ import Stack from '@mui/material/Stack';
 
 The Stack component acts as a generic container, wrapping around the elements to be arranged.
 
-Use the `spacing` prop to control the space between children.
-The spacing value can be any number, including decimals, or a string.
-(The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.)
+Use the `spacing` prop to set the CSS `gap` between children.
+Pass a non-negative number, including decimals, to scale the spacing with the [`theme.spacing()`](/material-ui/customization/spacing/) helper, or a string with a valid CSS `gap` value, such as `'16px'` or `'1rem'`.
+Negative values and `'auto'` are not supported. For overlapping children or automatic margins, apply margins directly to the children instead.
+
+Percentage spacing is relative to the container's width for horizontal gaps and height for vertical gaps.
+If that dimension depends on the children, the percentage gap resolves to zero.
+For example, `spacing="10%"` produces no gap in a column whose height is determined by its children.
+Use a numeric spacing value or a length such as `'1rem'` for spacing that does not depend on the container's dimensions.
 
 {{"component": "file://./demos/basic/index.ts", "bg": true}}
 
