@@ -218,6 +218,13 @@ jobs:
             MENU2_FRAME_CONTROL: 'without-menu2'
           command: pnpm test:browser docs/data/material/components/menu2/Menu2PlaygroundWithoutMenu2.diagnostic.tsx --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism --disableConsoleIntercept=false --reporter=default
       - run:
+          name: Tests WebKit render-only playground without popups
+          when: always
+          environment:
+            VITEST_BROWSERS: 'webkit'
+            MENU2_FRAME_CONTROL: 'without-popups'
+          command: pnpm test:browser docs/data/material/components/menu2/Menu2PlaygroundWithoutPopups.diagnostic.tsx --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism --disableConsoleIntercept=false --reporter=default
+      - run:
           name: Tests WebKit Menu2 playground only
           environment:
             VITEST_BROWSERS: 'webkit'
