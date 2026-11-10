@@ -260,19 +260,6 @@ describe('createTheme', () => {
       );
     });
 
-    it('should make the TableCell border opaque with nativeColor', () => {
-      const theme = createTheme({
-        cssVariables: { nativeColor: true },
-        colorSchemes: { light: true, dark: true },
-      });
-      expect(theme.colorSchemes.light.palette.TableCell.border).to.equal(
-        'color-mix(in oklch, oklch(from var(--mui-palette-divider) l c h / 1), #fff 88%)',
-      );
-      expect(theme.colorSchemes.dark.palette.TableCell.border).to.equal(
-        'color-mix(in oklch, oklch(from var(--mui-palette-divider) l c h / 1), #000 68%)',
-      );
-    });
-
     it('should generate variables for a palette color added in a second call', () => {
       let theme = createTheme({ cssVariables: true });
       // `cssVariables` isn't stored on the theme, so it's passed again
@@ -1248,6 +1235,19 @@ describe('createTheme', () => {
           },
         }),
       ).not.toWarnDev();
+    });
+
+    it('should make the TableCell border opaque with nativeColor', () => {
+      const theme = createTheme({
+        cssVariables: { nativeColor: true },
+        colorSchemes: { light: true, dark: true },
+      });
+      expect(theme.colorSchemes.light.palette.TableCell.border).to.equal(
+        'color-mix(in oklch, oklch(from var(--mui-palette-divider) l c h / 1), #fff 88%)',
+      );
+      expect(theme.colorSchemes.dark.palette.TableCell.border).to.equal(
+        'color-mix(in oklch, oklch(from var(--mui-palette-divider) l c h / 1), #000 68%)',
+      );
     });
 
     it.skipIf(isJSDOM)(
