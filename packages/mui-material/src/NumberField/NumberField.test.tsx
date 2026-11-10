@@ -1108,6 +1108,82 @@ describe('<NumberField />', () => {
       return <span {...props} ref={ref} />;
     });
 
+    it('preserves Enter and Space activation for a Material button rendered as a link', async () => {
+      const Link = React.forwardRef<HTMLAnchorElement, React.ComponentPropsWithoutRef<'a'>>(
+        function Link({ children, ...other }, ref) {
+          return (
+            <a {...other} href="#number-field-step" ref={ref}>
+              {children}
+            </a>
+          );
+        },
+      );
+      const onValueChange = vi.fn();
+      const onValueCommitted = vi.fn();
+      const { user } = render(
+        <NumberField
+          label="Amount"
+          defaultValue={5}
+          onValueChange={onValueChange}
+          onValueCommitted={onValueCommitted}
+          slotProps={{ incrementButton: { component: Link, nativeButton: false, tabIndex: 0 } }}
+        />,
+      );
+      expect(screen.getByRole('button', { name: 'Increase' }).tagName).to.equal('A');
+
+      await user.tab();
+      await user.tab();
+      await user.keyboard('{Enter}');
+      await user.keyboard(' ');
+
+      expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('7');
+      expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, 7]);
+      expect(onValueCommitted.mock.calls.map(([value]) => value)).to.deep.equal([6, 7]);
+    });
+
+    // Base UI owns activation on non-native steppers, including consumer cancellation.
+    // Material must not synthesize another click when the composed handler returns.
+    (['Enter', ' '] as const).forEach((key) => {
+      it(`allows a consumer to cancel non-native ${key === 'Enter' ? 'Enter' : 'Space'} stepping`, async () => {
+        const onValueChange = vi.fn();
+        const onValueCommitted = vi.fn();
+        const cancelBase = vi.fn((event: BaseUIEvent<React.KeyboardEvent<HTMLButtonElement>>) => {
+          if (event.key === key) {
+            event.preventBaseUIHandler();
+          }
+        });
+        const { user } = render(
+          <NumberField
+            label="Amount"
+            defaultValue={5}
+            onValueChange={onValueChange}
+            onValueCommitted={onValueCommitted}
+            slotProps={{
+              incrementButton: {
+                component: 'span',
+                nativeButton: false,
+                tabIndex: 0,
+                onKeyDown: cancelBase,
+                onKeyUp: cancelBase,
+              },
+            }}
+          />,
+        );
+
+        await user.tab();
+        await user.tab();
+        await user.keyboard(key === 'Enter' ? '{Enter}' : ' ');
+
+        expect(cancelBase).toHaveBeenCalledWith(expect.objectContaining({ key }));
+        expect(
+          cancelBase.mock.calls.find(([event]) => event.key === key)![0].defaultPrevented,
+        ).to.equal(true);
+        expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('5');
+        expect(onValueChange).toHaveBeenCalledTimes(0);
+        expect(onValueCommitted).toHaveBeenCalledTimes(0);
+      });
+    });
+
     (
       [
         { slot: 'incrementButton', name: 'Increase', nextValue: 6 },
@@ -1236,14 +1312,15 @@ describe('<NumberField />', () => {
 
               expect(button.tagName).to.equal('SPAN');
               expect(button).not.to.have.attribute('nativebutton');
-              await user.tab();
-              await user.tab();
-              expect(document.activeElement).to.equal(button);
 
+              await user.tab();
+              await user.tab();
               await user.keyboard('{Enter}');
               expect(input).to.have.value(String(nextValue));
+
               await user.keyboard(' ');
               expect(input).to.have.value(String(nextValue + step));
+
               await user.click(button);
               expect(input).to.have.value(String(nextValue + step * 2));
 
@@ -1295,7 +1372,7 @@ describe('<NumberField />', () => {
             );
           });
 
-          it('composes a keyboard click handler before Base UI changes the value', async () => {
+          it('composes native Enter and Space clicks before Base UI changes the value', async () => {
             const calls: string[] = [];
             const targets: EventTarget[] = [];
             const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -1317,11 +1394,12 @@ describe('<NumberField />', () => {
             await user.tab();
             expect(document.activeElement).to.equal(button);
             await user.keyboard('{Enter}');
+            await user.keyboard(' ');
 
-            expect(calls).to.deep.equal(['click', 'change', 'commit']);
-            expect(targets).to.deep.equal([button]);
+            expect(calls).to.deep.equal(['click', 'change', 'commit', 'click', 'change', 'commit']);
+            expect(targets).to.deep.equal([button, button]);
             expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value(
-              String(nextValue),
+              String(nextValue + (nextValue - 5)),
             );
           });
 

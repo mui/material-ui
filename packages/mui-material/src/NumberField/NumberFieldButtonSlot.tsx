@@ -41,11 +41,15 @@ const NumberFieldButtonSlot = React.forwardRef<HTMLButtonElement, NumberFieldBut
       ),
     );
 
+    // Consumer handlers run first and can prevent Base's behavior.
+    const mergedButtonProps: React.ComponentPropsWithRef<'button'> = mergeProps<'button'>(
+      baseProps,
+      consumerButtonProps,
+    );
     const mergedProps = appendOwnerState(
       ButtonSlot,
       {
-        // Consumer handlers run first and can prevent Base's behavior.
-        ...mergeProps(baseProps, consumerButtonProps),
+        ...mergedButtonProps,
         // Preserve Base's resolved availability after consumer props.
         disabled,
         ref,
@@ -57,7 +61,33 @@ const NumberFieldButtonSlot = React.forwardRef<HTMLButtonElement, NumberFieldBut
       },
     );
 
-    return <ButtonSlot {...mergedProps} />;
+    const isNonNativeActivation = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      const element = event.currentTarget;
+      return (
+        buttonProps.nativeButton === false &&
+        event.target === element &&
+        element.tagName !== 'BUTTON' &&
+        !(element.tagName === 'A' && element.hasAttribute('href'))
+      );
+    };
+
+    // Base UI owns non-native activation. Prevent Material's fallback after the
+    // composed handlers run, preserving consumer cancellation and native buttons/links.
+    const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
+      mergedProps.onKeyDown?.(event);
+      if (isNonNativeActivation(event) && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+      }
+    };
+
+    const handleKeyUp: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
+      mergedProps.onKeyUp?.(event);
+      if (isNonNativeActivation(event) && event.key === ' ') {
+        event.preventDefault();
+      }
+    };
+
+    return <ButtonSlot {...mergedProps} onKeyDown={handleKeyDown} onKeyUp={handleKeyUp} />;
   },
 );
 

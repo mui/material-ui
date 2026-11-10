@@ -300,7 +300,7 @@ export default function useButtonBase(
           return;
         }
 
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && !event.defaultPrevented) {
           event.preventDefault();
           event.currentTarget.click();
         }
@@ -313,10 +313,6 @@ export default function useButtonBase(
 
         onBeforeKeyUp?.(event);
         externalOnKeyUp?.(event);
-
-        if (isBaseUIHandlerPrevented(event)) {
-          return;
-        }
 
         if (
           !event.defaultMuiPrevented &&
