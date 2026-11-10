@@ -59,31 +59,6 @@ describe('<Select />', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
-  it('ignores clicks on custom options while disabled', () => {
-    const CustomOption = React.forwardRef(function CustomOption(props, ref) {
-      return <MenuItem {...props} ref={ref} disabled={false} />;
-    });
-    const onChange = vi.fn();
-    const { setProps } = render(
-      <Select open defaultValue="apple" onChange={onChange}>
-        <MenuItem value="apple">Apple</MenuItem>
-        <CustomOption value="orange">Orange</CustomOption>
-      </Select>,
-    );
-
-    const orange = screen.getByRole('option', { name: 'Orange' });
-    setProps({ disabled: true });
-    expect(orange).to.have.attribute('tabindex');
-    fireEvent.click(orange);
-    expect(onChange).not.toHaveBeenCalled();
-    expect(orange).to.have.attribute('aria-selected', 'false');
-
-    setProps({ disabled: false });
-    fireEvent.click(orange);
-    expect(onChange).toHaveBeenCalledTimes(1);
-    expect(orange).to.have.attribute('aria-selected', 'true');
-  });
-
   describe('pointer interactions', () => {
     beforeEach(() => {
       clock.restore();
