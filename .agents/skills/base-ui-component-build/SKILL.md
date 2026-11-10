@@ -29,7 +29,7 @@ These rules were decided by the Material UI team on 2026-11-04. Apply every one 
 
 ### 1. Read the approved shape
 
-Find the RFC that `base-ui-component-shape` produced and read its "Approved shape" section: the approved part table, with each fork's decision applied. If there is no RFC, or that section is empty, stop and ask the author to run `base-ui-component-shape` and get the team's decision first.
+Find the RFC that `base-ui-component-shape` produced. By default it is `.shape/<kebab-name>/<kebab-name>-shape.md` in the checkout that ran the shape skill; when the author published it (an issue, a discussion, or a PR), read it from the link they give. Read its "Approved shape" section: the approved part table, with each fork's decision applied. If there is no RFC, or that section is empty, stop and ask the author to run `base-ui-component-shape` and get the team's decision first.
 
 Read the Base UI docs and types for the component. They ship with the package installed for the docs: `docs/node_modules/@base-ui/react/docs/react/components/<kebab-name>.md` and `docs/node_modules/@base-ui/react/<kebab-name>/**/*.d.ts`.
 
@@ -38,7 +38,7 @@ Then read the reference for the approved shape:
 - One public component configured by props, like `TextField` or `LinearProgress`: [references/single-component.md](references/single-component.md).
 - Several public parts that users compose (a trigger, a popup, items): [references/compound-parts.md](references/compound-parts.md).
 
-Done when a table that matches the approved part table, written into the PR description (or your final report when there is no PR), lists every export of the Base UI component (every part, plus helpers such as `createHandle`) with its role: public part, slot of a named part, internal, or not exposed with the reason. Each rendered row names the existing Material UI component it builds on (`Paper`, `ButtonBase`, `FormControl`, `List`) or says it is a new styled element, and gives its slot name.
+Done when a table that matches the approved part table, written into the PR description (or your final report when there is no PR), lists every export of the Base UI component (every part, plus helpers such as `createHandle`) with its role, named as in the shape RFC: `public part <Name><Part>` (for a trigger, followed by `standalone trigger` or `styled trigger`), `slot of <Name><Part>`, `prop of <Name><Part>`, or `not exposed: <reason>`. Each rendered row names the existing Material UI component it builds on (`Paper`, `ButtonBase`, `FormControl`, `List`) or says it is a new styled element, and gives its slot name.
 
 ### 2. Write the types
 

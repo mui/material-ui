@@ -25,11 +25,16 @@ The output is a local markdown RFC. Publishing it is the author's decision.
 
 Read the Base UI docs and types for the component in `docs/node_modules/@base-ui/react/` (`docs/react/components/<kebab-name>.md` and `<kebab-name>/**/*.d.ts`).
 Find the closest existing Material UI component (`Menu` for a menubar, `Tooltip` for a preview card).
-Search `mui/base-ui` issues and discussions with `gh` for each part: does anyone ask to customize, move, or replace it on its own?
+For each part, search for issues where users ask to customize, move, or replace it on its own. Search open and closed issues in two repositories:
+
+- `mui/base-ui`, with the component's label: `gh search issues --repo mui/base-ui --label "component: <kebab name with spaces>" "<Part>" --limit 50`. Repeat without the label for a part that other components share (`Positioner`), because its issues are often filed under another component.
+- `mui/material-ui`, with the closest component's label and its matching concept: `gh search issues --repo mui/material-ui --label "scope: <closest>" "<concept>" --limit 50` (`anchorEl`, `Paper`, `backdrop`).
+
+`mui/base-ui` discussions are few and missing from the search index; skip them. Open every issue you cite. Under the inventory table, list every search command with its number of results, so another run can repeat it and reach the same evidence.
 
 List the parts from the "Anatomy" section of the Base UI docs, not only the package export. Some components reuse another component's parts: a Base UI menubar is built from `Menu` parts. Parts that the reused component exports but the Anatomy section leaves out (such as preview parts) go to the RFC's open questions.
 
-Done when a table lists every part in the Anatomy section plus helpers such as `createHandle`, each with its customization evidence (issue links, or "none found") and the matching piece of the closest Material UI component, if any.
+Done when a table lists every part in the Anatomy section plus helpers such as `createHandle`, each with its customization evidence (issue links, or "none found") and the matching piece of the closest Material UI component, if any, and the searches are listed under it.
 
 ### 2. Scenarios
 
@@ -39,9 +44,23 @@ Done when all three categories in `scenarios.md` are present, every scenario nam
 
 ### 3. Recommended shape
 
-Give every Base UI part one role: its own public part, a slot of a named part, a prop, or hidden. Apply these rules in order:
+Give every Base UI part one role. Use these exact names; `base-ui-component-build` reads them from the approved shape:
 
-1. **Merge only parts without customization evidence.** A part joins a neighbor (as a slot or a prop) only when the step 1 inventory found no issue or discussion where users customize it alone, meaning they move it, replace its element, or put their own content in it. A request for a value that a prop can carry (a positioner's `side` or `align`) does not count: the merged part takes that prop. Portal and Positioner usually qualify; a trigger usually does not.
+- `public part <Name><Part>`: its own export.
+- `slot of <Name><Part>`: merged into a public part as a slot.
+- `prop of <Name><Part>`: merged into a public part as a prop.
+- `not exposed: <reason>`.
+
+A public trigger also names its kind, which decides how it is built:
+
+- `public part <Name>Trigger, standalone trigger`: users place and style it next to their own content (a preview card link, a menu button).
+- `public part <Name>Trigger, styled trigger`: the component lays it out and styles it (the triggers in a menubar row).
+
+When the kind is unclear, the trigger is a fork (step 4).
+
+Apply these rules in order:
+
+1. **Merge only parts without customization evidence.** A part joins a neighbor (as a slot or a prop) only when the step 1 searches found no issue where users customize it alone, meaning they move it, replace its element, or put their own content in it. A request for a value that a prop can carry (a positioner's `side` or `align`) does not count: the merged part takes that prop. Portal and Positioner usually qualify; a trigger usually does not.
 2. **Nested structures repeat the top-level shape.** A submenu has the same parts as a menu (root, trigger, popup), so users learn one pattern.
 3. **Follow the closest Material UI component** where it already answers the question, so users meet patterns they know.
 4. **When the evidence is neutral, keep the part public.** The team's direction is toward more open components.
@@ -50,7 +69,7 @@ Done when a table gives every inventory row a role and names the rule and the ev
 
 ### 4. Forks
 
-A **fork** is a part where the recommendation is not settled by the rules: the evidence is thin (one old issue), two rules point different ways, or the answer is a product decision (exposing a part that Base UI marks as preview).
+A **fork** is a part where the recommendation is not settled by the rules: the evidence is thin (one old issue), two rules point different ways, or the answer is a product decision (exposing a part that Base UI marks as preview, or whether a trigger is standalone or styled).
 Each fork has two choices, the recommended one and the alternative.
 
 Keep at most five forks, ranked by how many scenarios they change. Move the rest to the RFC's open questions.

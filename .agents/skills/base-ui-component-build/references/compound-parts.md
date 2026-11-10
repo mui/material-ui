@@ -38,7 +38,7 @@ return (
 
 ## Trigger
 
-A trigger is one of two kinds, and the approved shape says which:
+A trigger is one of two kinds, and its role in the approved shape says which (`public part <Name>Trigger, standalone trigger` or `styled trigger`). If the role names no kind, ask the author; do not guess.
 
 - A **standalone trigger** is placed and styled by the user, next to their own content (a preview card link, a menu button). It has no Material styles.
 - A **styled trigger** is laid out and styled by the component (the triggers in a menubar row). Build it like any styled part, on `ButtonBase`, with an optional `render` that keeps its styles (see "Public `render`" in [adapter.md](adapter.md)) and documented `children`.

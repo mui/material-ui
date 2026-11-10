@@ -13,11 +13,13 @@ Write `.shape/<kebab-name>/<kebab-name>-shape.md`. The team reads it to approve 
 
 ## Recommended shape
 
-| Base UI part | Role                  | Rule and evidence                       |
-| :----------- | :-------------------- | :-------------------------------------- |
-| `Root`       | `<Name>`              | Public: …                               |
-| `Portal`     | slot of `<Name>Popup` | Merged: no customization evidence found |
-| …            | …                     | …                                       |
+| Base UI part | Role                                            | Rule and evidence                       |
+| :----------- | :---------------------------------------------- | :-------------------------------------- |
+| `Root`       | public part `<Name>`                            | Public: …                               |
+| `Trigger`    | public part `<Name>Trigger`, standalone trigger | Public: …                               |
+| `Portal`     | slot of `<Name>Popup`                           | Merged: no customization evidence found |
+| `Arrow`      | not exposed: <reason>                           | …                                       |
+| …            | …                                               | …                                       |
 
 <One sentence on what users write. Then the median lines of user code, the number of public parts, docs pages, and test suites, and the slots.>
 
@@ -93,12 +95,14 @@ Other states: [default](screenshots/<scenario>/recommended-default.png), [dark](
 
 ## Inventory
 
-<The step 1 table: every Base UI part, its customization evidence, and the matching piece of the closest Material UI component.>
+<The step 1 table: every Base UI part, its customization evidence, and the matching piece of the closest Material UI component. Under it, every search command with its number of results.>
 
 ## Approved shape
 
 <Left empty. The team writes the approved part table here, with each fork's decision applied. base-ui-component-build reads this section.>
 ````
+
+Write the roles with the names from step 3 of the skill, which `base-ui-component-build` reads.
 
 Show the `open` state when the component has a popup; otherwise show `default`.
 
