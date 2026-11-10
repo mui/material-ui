@@ -1,5 +1,5 @@
-import { alpha } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import { Global, type CSSObject } from '@emotion/react';
+import { alpha, useTheme } from '@mui/material/styles';
 
 export default function XGridGlobalStyles({
   selector = 'body',
@@ -8,9 +8,12 @@ export default function XGridGlobalStyles({
   selector?: string;
   pro?: boolean;
 }) {
+  const theme = useTheme();
+  // Emotion's `Global` keeps these styles out of the CSS layers. `GlobalStyles` would put them in
+  // `mui.global`, the lowest layer, where they lose to the Data Grid's own styles.
   return (
-    <GlobalStyles
-      styles={(theme) => [
+    <Global
+      styles={[
         {
           [selector]: {
             '& .MuiDataGrid-root': {
@@ -146,7 +149,7 @@ export default function XGridGlobalStyles({
               },
             },
           },
-        }),
+        }) as CSSObject,
       ]}
     />
   );

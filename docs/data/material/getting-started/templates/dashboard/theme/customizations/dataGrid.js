@@ -128,6 +128,11 @@ export const dataGridCustomizations = {
         flexGrow: 1,
         justifyContent: 'space-between',
       },
+      'columnHeader--alignCenter': {
+        [`& .${gridClasses.columnHeaderTitleContainer}`]: {
+          justifyContent: 'center',
+        },
+      },
       columnHeaderDraggableContainer: { paddingRight: 2 },
     },
   },
