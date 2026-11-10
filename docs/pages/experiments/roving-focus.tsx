@@ -1,5 +1,6 @@
 import * as React from 'react';
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import type { LinkProps as NextLinkProps } from 'next/link';
+import NextLink from 'next/link';
 import useEventCallback from '@mui/utils/useEventCallback';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -175,7 +176,7 @@ function ConditionalInsertExample() {
       description="This example inserts a fragment before the selected item while the menu is already open."
       instructions='Open the menu, then toggle the extra block. Focus should stay anchored to "Reports" instead of jumping back to the start.'
     >
-      <Stack direction="row" spacing={1.5} useFlexGap sx={{ flexWrap: 'wrap' }}>
+      <Stack direction="row" spacing={1.5} sx={{ flexWrap: 'wrap' }}>
         <Button ref={buttonRef} variant="contained" onClick={() => setOpen(true)}>
           Open conditional menu
         </Button>
@@ -238,7 +239,7 @@ function ReorderingExample() {
       description="This example moves an entire keyed fragment from the top of the menu to the bottom while the menu is already open."
       instructions='Open the menu and move the priority fragment. Focus should stay on "Duplicate" even as the block moves around it.'
     >
-      <Stack direction="row" spacing={1.5} useFlexGap sx={{ flexWrap: 'wrap' }}>
+      <Stack direction="row" spacing={1.5} sx={{ flexWrap: 'wrap' }}>
         <Button ref={buttonRef} variant="contained" onClick={() => setOpen(true)}>
           Open reordering menu
         </Button>

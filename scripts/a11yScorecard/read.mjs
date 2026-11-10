@@ -85,7 +85,9 @@ export default async function readReports() {
           data,
           regions: readRegions(await readOptional(reportPath)),
           axe:
-            typeof data.axe === 'string' ? await readAxeResults(data.axe).catch(() => null) : null,
+            typeof data.axe === 'string'
+              ? await readAxeResults(data.axe, data.axeDemos).catch(() => null)
+              : null,
           ownTests: await scanTests(entry.name),
           extraTests: await Promise.all(extraTests.map(scanTests)),
         };

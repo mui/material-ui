@@ -376,5 +376,22 @@ describe('<MenuList />', () => {
 
       expect(onKeyDownSpy.callCount).to.equal(2);
     });
+
+    it('should not hang on the up arrow key when focus is on a non-item element and no item is focusable', async () => {
+      const { user } = render(
+        <MenuList>
+          <li>
+            <input aria-label="search" />
+          </li>
+          <MenuItem disabled>No results</MenuItem>
+        </MenuList>,
+      );
+
+      const input = screen.getByRole('textbox');
+      await user.click(input);
+      await user.keyboard('{ArrowUp}');
+
+      expect(input).toHaveFocus();
+    });
   });
 });

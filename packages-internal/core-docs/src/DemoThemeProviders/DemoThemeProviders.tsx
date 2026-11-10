@@ -2,6 +2,7 @@ import * as React from 'react';
 import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { ThemeProvider, createTheme, useTheme, enhanceHighContrast } from '@mui/material/styles';
+import * as jsxRuntime from 'react/jsx-runtime';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
 import { DemoIframe, IsolatedDemo } from '../DemoContent/DemoSandbox';
@@ -28,7 +29,7 @@ function loadInjectedTheme(): Promise<Record<string, unknown> | undefined> {
   }
   const runtimeWindow = window as typeof window & {
     React?: typeof React;
-    jsx?: typeof import('react/jsx-runtime');
+    jsx?: typeof jsxRuntime;
     getInjectTheme?: GetInjectTheme;
   };
   const source = runtimeWindow.getInjectTheme;
@@ -42,7 +43,7 @@ function loadInjectedTheme(): Promise<Record<string, unknown> | undefined> {
   const promise = (async () => {
     try {
       runtimeWindow.React = React;
-      runtimeWindow.jsx = await import('react/jsx-runtime');
+      runtimeWindow.jsx = jsxRuntime;
       const injectTheme = source();
       if (typeof injectTheme !== 'function') {
         return undefined;

@@ -386,6 +386,37 @@ If you're using a custom input component inside the Autocomplete, make sure that
 
 {{"component": "file://./demos/custom-input/index.ts"}}
 
+### Wrapping with `styled()`
+
+Autocomplete is a generic component: TypeScript infers the option type from the `options` prop and uses it to type props like `getOptionLabel`, `renderOption`, and `onChange`.
+Wrapping it with the `styled()` utility loses these generic types, so the options are typed as `unknown`.
+To keep them, cast the styled component back to `typeof Autocomplete`:
+
+```tsx
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
+
+interface Film {
+  label: string;
+  year: number;
+}
+
+const StyledAutocomplete = styled(Autocomplete)({
+  // your custom styles go here
+}) as typeof Autocomplete;
+
+function FilmPicker({ films }: { films: Film[] }) {
+  return (
+    <StyledAutocomplete
+      options={films}
+      getOptionLabel={(option) => option.label} // option is typed as Film
+      renderInput={(params) => <TextField {...params} label="Film" />}
+    />
+  );
+}
+```
+
 ### Globally customized options
 
 To globally customize the Autocomplete options for all components in your app,

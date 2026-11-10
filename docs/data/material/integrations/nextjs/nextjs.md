@@ -224,7 +224,6 @@ function OrdersToolbarFallback() {
     <Stack
       direction="row"
       spacing={2}
-      useFlexGap
       sx={{ flexWrap: 'wrap', alignItems: 'center', minHeight: 56 }}
     >
       <Skeleton
@@ -373,7 +372,7 @@ To enable [cascade layers](https://developer.mozilla.org/en-US/docs/Learn_web_de
 +import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
   ...
 
- const clientCache = createEmotionCache({ enableCssLayer: true });
++const clientCache = createEmotionCache({ enableCssLayer: true });
 
 + export default function MyApp({ emotionCache = clientCache }) {
     return (

@@ -1,4 +1,4 @@
-import { Tabs } from '@base-ui/react/tabs';
+import { Tabs, TabsTabDataAttributes } from '@base-ui/react/tabs';
 import { alpha, styled } from '@mui/material/styles';
 import { blueDark } from '../branding';
 import { CODE_BG } from './DemoContainer';
@@ -37,7 +37,7 @@ export const FileTab = styled(Tabs.Tab)(({ theme }) => ({
     outlineOffset: '1px',
     outlineColor: (theme.vars || theme).palette.primary.light,
   },
-  '&[data-active]': {
+  [`&[${TabsTabDataAttributes.active}]`]: {
     color: (theme.vars || theme).palette.primary[700],
     backgroundColor: (theme.vars || theme).palette.primary[50],
     borderColor: (theme.vars || theme).palette.primary[200],
