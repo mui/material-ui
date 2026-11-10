@@ -12,7 +12,8 @@ import {
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
 } from '../InitColorSchemeScript/InitColorSchemeScript';
-import useCurrentColorScheme, { type Result } from './useCurrentColorScheme';
+import useCurrentColorScheme from './useCurrentColorScheme';
+import type { Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 import ThemeScopeContext from './ThemeScopeContext';
 import {

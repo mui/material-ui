@@ -2,24 +2,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import deepmerge from '@mui/utils/deepmerge';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import createTheme from '../createTheme';
-import { CreateMUIStyled } from '../createStyled';
-import { StackTypeMap, StackOwnerState } from './StackProps';
-import type { Breakpoint } from '../createTheme';
-import { Breakpoints } from '../createBreakpoints/createBreakpoints';
+import type { CreateMUIStyled } from '../createStyled';
+import type { StackTypeMap, StackOwnerState } from './StackProps';
+import type { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import {
   handleBreakpoints,
   mergeBreakpointsInOrder,
   resolveBreakpointValues,
 } from '../breakpoints';
 import { createUnarySpacing, getValue } from '../spacing';
-import { Spacing } from '../createTheme/createSpacing';
+import type { Spacing } from '../createTheme/createSpacing';
 
 const defaultTheme = createTheme();
 
@@ -63,15 +62,6 @@ function joinChildren(children: React.ReactNode, separator: React.ReactElement<u
   }, []);
 }
 
-const getSideFromDirection = (direction: StackOwnerState['direction']) => {
-  return {
-    row: 'Left',
-    'row-reverse': 'Right',
-    column: 'Top',
-    'column-reverse': 'Bottom',
-  }[direction as string];
-};
-
 export const style = ({ ownerState, theme }: StyleFunctionProps) => {
   let styles = {
     display: 'flex',
@@ -91,59 +81,14 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
   if (ownerState.spacing) {
     const transformer = createUnarySpacing(theme);
 
-    const base = Object.keys(theme.breakpoints.values).reduce<Record<string, boolean>>(
-      (acc, breakpoint) => {
-        if (
-          (typeof ownerState.spacing === 'object' &&
-            (ownerState.spacing as any)[breakpoint] != null) ||
-          (typeof ownerState.direction === 'object' &&
-            (ownerState.direction as any)[breakpoint] != null)
-        ) {
-          acc[breakpoint] = true;
-        }
-        return acc;
-      },
-      {},
-    );
-
-    const directionValues = resolveBreakpointValues({
-      values: ownerState.direction,
-      base,
-    });
-
     const spacingValues = resolveBreakpointValues({
       values: ownerState.spacing,
-      base,
+      breakpoints: theme.breakpoints.values,
     });
 
-    if (typeof directionValues === 'object') {
-      Object.keys(directionValues).forEach((breakpoint, index, breakpoints) => {
-        const directionValue = directionValues[breakpoint];
-        if (!directionValue) {
-          const previousDirectionValue =
-            index > 0 ? directionValues[breakpoints[index - 1]] : 'column';
-          directionValues[breakpoint] = previousDirectionValue;
-        }
-      });
-    }
-
-    const styleFromPropValue = (propValue: string | number | null, breakpoint?: Breakpoint) => {
-      if (ownerState.useFlexGap) {
-        return { gap: getValue(transformer, propValue) };
-      }
-      return {
-        // The useFlexGap={false} implement relies on each child to give up control of the margin.
-        // We need to reset the margin to avoid double spacing.
-        '& > :not(style):not(style)': {
-          margin: 0,
-        },
-        '& > :not(style) ~ :not(style)': {
-          [`margin${getSideFromDirection(
-            breakpoint ? directionValues[breakpoint] : ownerState.direction,
-          )}`]: getValue(transformer, propValue),
-        },
-      };
-    };
+    const styleFromPropValue = (propValue: string | number | null) => ({
+      gap: getValue(transformer, propValue),
+    });
     styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
   }
 
@@ -189,14 +134,12 @@ export default function createStack(
       divider,
       children,
       className,
-      useFlexGap = false,
       ...other
     } = themeProps;
 
     const ownerState = {
       direction,
       spacing,
-      useFlexGap,
     };
 
     const classes = useUtilityClasses();
