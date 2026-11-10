@@ -34,7 +34,7 @@ const code = `
     sx={{    width: { xs: '100%', sm: 100 },
     }}
   />
-  <Stack direction="column" sx={{ alignItems: 'center' }} spacing={1} useFlexGap>
+  <Stack direction="column" sx={{ alignItems: 'center' }} spacing={1}>
     <div>
       <Typography sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
         Contemplative Reptile
@@ -46,7 +46,7 @@ const code = `
         Sounds of Nature
       </Typography>
     </div>
-    <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1} useFlexGap>
+    <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
       <IconButton aria-label="Shuffle" disabled size="small">
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>
