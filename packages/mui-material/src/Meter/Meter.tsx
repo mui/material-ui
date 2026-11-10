@@ -7,6 +7,7 @@ import type { OverridableStringUnion } from '@mui/types';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import omitComponentFromSlotProps from '../utils/omitComponentFromSlotProps';
 import MeterRootSlot from './MeterRootSlot';
 import MeterInnerSlot from './MeterInnerSlot';
 import type { MeterClasses } from './meterClasses';
@@ -150,11 +151,12 @@ const Meter = React.forwardRef(function Meter(
     renderValue,
     showValue = false,
     slots,
-    slotProps,
+    slotProps: slotPropsProp,
     value,
     ...other
   } = props;
-  const ownerState: MeterOwnerState = { ...props, color, showValue };
+  const slotProps = omitComponentFromSlotProps(slotPropsProp);
+  const ownerState: MeterOwnerState = { ...props, slotProps, color, showValue };
   const hasValue = showValue || renderValue !== undefined;
 
   return (

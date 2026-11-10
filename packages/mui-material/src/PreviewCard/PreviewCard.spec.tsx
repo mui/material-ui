@@ -49,8 +49,12 @@ const handle = createPreviewCardHandle<{ title: string }>();
 // @ts-expect-error component is not supported in slotProps
 <PreviewCardPopup slotProps={{ root: { component: 'section' } }}>Content</PreviewCardPopup>;
 
-// @ts-expect-error Base UI positioner props that were not picked are rejected
-<PreviewCardPopup sticky>Content</PreviewCardPopup>;
+// @ts-expect-error the arrow is not exposed, so its positioner prop is rejected
+<PreviewCardPopup arrowPadding={4}>Content</PreviewCardPopup>;
+
+<PreviewCardPopup sticky positionMethod="fixed" collisionAvoidance={{ side: 'shift' }}>
+  Content
+</PreviewCardPopup>;
 
 <PreviewCardPopup id="popup" onClick={() => {}} aria-label="Preview">
   Content

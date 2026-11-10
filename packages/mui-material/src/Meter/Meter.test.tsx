@@ -212,6 +212,24 @@ describe('<Meter />', () => {
     expect(screen.getByRole('meter').tagName).to.equal('DIV');
   });
 
+  it('ignores a component in slotProps passed without types', () => {
+    render(
+      <Meter
+        value={50}
+        label="Battery"
+        render={<div />}
+        // @ts-expect-error component is not supported in slotProps
+        slotProps={{ root: { component: 'section' }, label: () => ({ component: 'h2' }) }}
+      />,
+    );
+
+    const meter = screen.getByRole('meter');
+    expect(meter.tagName).to.equal('DIV');
+    expect(meter).not.to.have.attribute('render');
+    expect(meter).not.to.have.attribute('renderstate');
+    expect(screen.getByText('Battery').tagName).to.equal('SPAN');
+  });
+
   it('puts no internal prop on the DOM', () => {
     render(
       <Meter

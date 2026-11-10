@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import PreviewCard from '@mui/material/PreviewCard';
 import PreviewCardTrigger from '@mui/material/PreviewCardTrigger';
 import PreviewCardPopup, {
@@ -192,6 +192,24 @@ describe('<PreviewCardPopup />', () => {
     expect(popup).not.to.have.attribute('component');
   });
 
+  it('ignores a component in slotProps', async () => {
+    await render(
+      renderOpen(
+        <PreviewCardPopup
+          render={<div />}
+          // @ts-expect-error component is not supported in slotProps
+          slotProps={{ root: { component: 'section' } }}
+        >
+          Content
+        </PreviewCardPopup>,
+      ),
+    );
+    const popup = getPopup();
+    expect(popup.tagName).to.equal('DIV');
+    expect(popup).not.to.have.attribute('render');
+    expect(popup).not.to.have.attribute('renderstate');
+  });
+
   describe('slots', () => {
     it('gives the portal slot no live state', async () => {
       const ownerStates: Array<Record<string, unknown>> = [];
@@ -307,11 +325,8 @@ describe('<PreviewCardPopup />', () => {
     expect(handleOpenChange.callCount).to.equal(1);
     expect(handleOpenChange.args[0][0]).to.equal(false);
     expect(handleOpenChange.args[0][1].reason).to.equal('escape-key');
-    const popup = screen.queryByText('Content');
-    if (popup) {
-      expect(popup.closest(`.${previewCardPopupClasses.root}`)).to.have.attribute(
-        PreviewCardPopupDataAttributes.closed,
-      );
-    }
+    await waitFor(() => {
+      expect(screen.queryByText('Content')).to.equal(null);
+    });
   });
 });

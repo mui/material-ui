@@ -8,6 +8,7 @@ import type { Theme } from '../styles';
 import type { TransitionProps } from '../transitions/types';
 import type { PaperProps } from '../Paper';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import omitComponentFromSlotProps from '../utils/omitComponentFromSlotProps';
 import type { PreviewCardPopupClasses } from './previewCardPopupClasses';
 import PreviewCardPopupPortalSlot from './PreviewCardPopupPortalSlot';
 import PreviewCardPopupPositionerSlot from './PreviewCardPopupPositionerSlot';
@@ -64,7 +65,16 @@ export interface PreviewCardPopupProps
     Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'color'>,
     Pick<
       BasePreviewCard.Positioner.Props,
-      'align' | 'alignOffset' | 'anchor' | 'collisionPadding' | 'side'
+      | 'align'
+      | 'alignOffset'
+      | 'anchor'
+      | 'collisionAvoidance'
+      | 'collisionBoundary'
+      | 'collisionPadding'
+      | 'disableAnchorTracking'
+      | 'positionMethod'
+      | 'side'
+      | 'sticky'
     >,
     Pick<BasePreviewCard.Portal.Props, 'container' | 'keepMounted'> {
   /**
@@ -152,20 +162,27 @@ const PreviewCardPopup = React.forwardRef(function PreviewCardPopup(
     children,
     className,
     classes,
+    collisionAvoidance,
+    collisionBoundary,
     collisionPadding,
     container,
+    disableAnchorTracking,
     elevation = 8,
     keepMounted,
+    positionMethod,
     render,
     side,
     sideOffset = 8,
     slots,
-    slotProps,
+    slotProps: slotPropsProp,
+    sticky,
     transitionDuration = 'auto',
     ...other
   } = props;
+  const slotProps = omitComponentFromSlotProps(slotPropsProp);
   const ownerStateProps: PreviewCardPopupProps = {
     ...props,
+    slotProps,
     elevation,
     sideOffset,
     transitionDuration,
@@ -188,9 +205,14 @@ const PreviewCardPopup = React.forwardRef(function PreviewCardPopup(
         align={align}
         alignOffset={alignOffset}
         anchor={anchor}
+        collisionAvoidance={collisionAvoidance}
+        collisionBoundary={collisionBoundary}
         collisionPadding={collisionPadding}
+        disableAnchorTracking={disableAnchorTracking}
+        positionMethod={positionMethod}
         side={side}
         sideOffset={sideOffset}
+        sticky={sticky}
         render={(positionerProps, positionerState) => (
           <PreviewCardPopupPositionerSlot
             baseProps={positionerProps}
@@ -306,6 +328,87 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * Determines how to handle collisions when positioning the popup.
+   *
+   * `side` controls overflow on the preferred placement axis (`top`/`bottom` or `left`/`right`):
+   * - `'flip'`: keep the requested side when it fits; otherwise try the opposite side
+   *   (`top` and `bottom`, or `left` and `right`).
+   * - `'shift'`: never change side; keep the requested side and move the popup within
+   *   the clipping boundary so it stays visible.
+   * - `'none'`: do not correct side-axis overflow.
+   *
+   * `align` controls overflow on the alignment axis (`start`/`center`/`end`):
+   * - `'flip'`: keep side, but swap `start` and `end` when the requested alignment overflows.
+   * - `'shift'`: keep side and requested alignment, then nudge the popup along the
+   *   alignment axis to fit.
+   * - `'none'`: do not correct alignment-axis overflow.
+   *
+   * `fallbackAxisSide` controls fallback behavior on the perpendicular axis when the
+   * preferred axis cannot fit:
+   * - `'start'`: allow perpendicular fallback and try the logical start side first
+   *   (`top` before `bottom`, or `left` before `right` in LTR).
+   * - `'end'`: allow perpendicular fallback and try the logical end side first
+   *   (`bottom` before `top`, or `right` before `left` in LTR).
+   * - `'none'`: do not fallback to the perpendicular axis.
+   *
+   * When `side` is `'shift'`, explicitly setting `align` only supports `'shift'` or `'none'`.
+   * If `align` is omitted, it defaults to `'flip'`.
+   *
+   * @example
+   * ```jsx
+   * <Positioner
+   *   collisionAvoidance={{
+   *     side: 'shift',
+   *     align: 'shift',
+   *     fallbackAxisSide: 'none',
+   *   }}
+   * />
+   * ```
+   */
+  collisionAvoidance: PropTypes.oneOfType([
+    PropTypes.shape({
+      align: PropTypes.oneOf(['flip', 'none', 'shift']),
+      fallbackAxisSide: PropTypes.oneOf(['end', 'none', 'start']),
+      side: PropTypes.oneOf(['flip', 'none']),
+    }),
+    PropTypes.shape({
+      align: PropTypes.oneOf(['none', 'shift']),
+      fallbackAxisSide: PropTypes.oneOf(['end', 'none', 'start']),
+      side: PropTypes.oneOf(['none', 'shift']),
+    }),
+  ]),
+  /**
+   * An element or a rectangle that delimits the area that the popup is confined to.
+   * @default 'clipping-ancestors'
+   */
+  collisionBoundary: PropTypes.oneOfType([
+    PropTypes.oneOf(['clipping-ancestors']),
+    PropTypes.arrayOf((props, propName) => {
+      if (props[propName] == null) {
+        return new Error(`Prop '${propName}' is required but wasn't specified`);
+      }
+      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+        return new Error(`Expected prop '${propName}' to be of type Element`);
+      }
+      return null;
+    }),
+    (props, propName) => {
+      if (props[propName] == null) {
+        return new Error(`Prop '${propName}' is required but wasn't specified`);
+      }
+      if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+        return new Error(`Expected prop '${propName}' to be of type Element`);
+      }
+      return null;
+    },
+    PropTypes.shape({
+      height: PropTypes.number.isRequired,
+      width: PropTypes.number.isRequired,
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    }),
+  ]),
+  /**
    * Additional space to maintain from the edge of the collision boundary.
    * @default 5
    */
@@ -348,6 +451,11 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
+   * Whether to disable the popup from tracking any layout shift of its positioning anchor.
+   * @default false
+   */
+  disableAnchorTracking: PropTypes.bool,
+  /**
    * The elevation of the popup surface.
    * @default 8
    */
@@ -357,6 +465,11 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
+  /**
+   * Determines which CSS `position` property to use.
+   * @default 'absolute'
+   */
+  positionMethod: PropTypes.oneOf(['absolute', 'fixed']),
   /**
    * Replaces the rendered element while keeping the popup styles.
    * Accepts an element or a function that receives the props and the Base UI state.
@@ -394,6 +507,12 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
     transition: PropTypes.func,
   }),
+  /**
+   * Whether to maintain the popup in the viewport after
+   * the anchor element was scrolled out of view.
+   * @default false
+   */
+  sticky: PropTypes.bool,
   /**
    * @ignore
    */
