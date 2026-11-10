@@ -16,12 +16,8 @@ import useCurrentColorScheme from './useCurrentColorScheme';
 import type { Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 import ThemeScopeContext from './ThemeScopeContext';
-import {
-  applyScopeToChild,
-  createScopedStyleSheets,
-  getColorSchemeProps,
-  type CssVarsByColorScheme,
-} from './scopeCssVars';
+import { applyScopeToChild, createScopedStyleSheets, getColorSchemeProps } from './scopeCssVars';
+import type { CssVarsByColorScheme } from './scopeCssVars';
 
 export interface ColorSchemeContextValue<
   SupportedColorScheme extends string,

@@ -2,7 +2,8 @@
 // Temporary playground for https://github.com/mui/material-ui/pull/49581. Remove before merging.
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import createCache, { EmotionCache } from '@emotion/cache';
+import type { EmotionCache } from '@emotion/cache';
+import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
