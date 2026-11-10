@@ -62,7 +62,7 @@ export function ComponentShowcaseCard(props: ComponentShowcaseCardProps) {
         <Typography component="h2" variant="body2" sx={{ fontWeight: 'semiBold' }}>
           {name}
         </Typography>
-        <Stack direction="row" spacing={0.5} useFlexGap>
+        <Stack direction="row" spacing={0.5}>
           {md1 && <Chip label="MD1" size="small" variant="outlined" color="primary" />}
           {md2 && <Chip label="MD2" size="small" variant="outlined" color="primary" />}
           {md3 && <Chip label="MD3" size="small" variant="outlined" color="success" />}
