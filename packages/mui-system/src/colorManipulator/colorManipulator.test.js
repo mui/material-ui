@@ -73,6 +73,14 @@ describe('utils/colorManipulator', () => {
         }),
       ).to.equal('hsla(100, 50%, 25%, 0.5)');
     });
+
+    it('does not modify the decomposed hsl color object', () => {
+      const color = { type: 'hsl', values: [100, 50, 25] };
+
+      expect(recomposeColor(color)).to.equal('hsl(100, 50%, 25%)');
+      expect(recomposeColor(color)).to.equal('hsl(100, 50%, 25%)');
+      expect(color.values).to.deep.equal([100, 50, 25]);
+    });
   });
 
   describe('hexToRgb', () => {
