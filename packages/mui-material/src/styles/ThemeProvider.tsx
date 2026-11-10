@@ -3,41 +3,35 @@ import * as React from 'react';
 import type { DefaultTheme } from '@mui/system';
 import type { StorageManager } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
-import type { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
 import type { CssVarsTheme } from './createThemeWithVars';
 import THEME_ID from './identifier';
 
-type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: false }
-  ? {}
-  : {
-      /**
-       * The node for attaching the `theme.colorSchemeSelector`.
-       * @default document
-       */
-      colorSchemeNode?: Element | null | undefined;
-      /**
-       * If `true`, the provider creates its own context and generate stylesheet as if it is a root `ThemeProvider`.
-       */
-      disableNestedContext?: boolean | undefined;
-      /**
-       * If `true`, the style sheet for CSS theme variables won't be generated.
-       *
-       * This is useful for controlling nested ThemeProvider behavior.
-       * @default false
-       */
-      disableStyleSheetGeneration?: boolean | undefined;
-      /**
-       * If `true`, theme values are recalculated when the mode changes.
-       * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
-       * @default false
-       */
-      forceThemeRerender?: boolean | undefined;
-    };
-
-export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderCssVariablesProps {
+export interface ThemeProviderProps<Theme = DefaultTheme> {
   children?: React.ReactNode;
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme);
+  /**
+   * The node for attaching the `theme.colorSchemeSelector`.
+   * @default document
+   */
+  colorSchemeNode?: Element | null | undefined;
+  /**
+   * If `true`, the provider creates its own context and generate stylesheet as if it is a root `ThemeProvider`.
+   */
+  disableNestedContext?: boolean | undefined;
+  /**
+   * If `true`, the style sheet for CSS theme variables won't be generated.
+   *
+   * This is useful for controlling nested ThemeProvider behavior.
+   * @default false
+   */
+  disableStyleSheetGeneration?: boolean | undefined;
+  /**
+   * If `true`, theme values are recalculated when the mode changes.
+   * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+   * @default false
+   */
+  forceThemeRerender?: boolean | undefined;
   /**
    * The document used to perform `disableTransitionOnChange` feature
    * @default document
@@ -82,6 +76,9 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
   disableTransitionOnChange?: boolean | undefined;
 }
 
+// Themes that were already warned about, to warn once per theme.
+const warnedThemes = new WeakSet<object>();
+
 export default function ThemeProvider<Theme = DefaultTheme>({
   theme,
   ...props
@@ -92,6 +89,17 @@ export default function ThemeProvider<Theme = DefaultTheme>({
     }
     const muiTheme = (THEME_ID in theme ? theme[THEME_ID] : theme) as ThemeProviderProps['theme'];
     if (!('colorSchemes' in muiTheme)) {
+      if (process.env.NODE_ENV !== 'production') {
+        if ('palette' in muiTheme && !warnedThemes.has(muiTheme)) {
+          warnedThemes.add(muiTheme);
+          console.warn(
+            [
+              'MUI: The theme passed to the `ThemeProvider` has no CSS theme variables, it was not created with `createTheme()`.',
+              'Create it with `createTheme()` so that it generates CSS theme variables.',
+            ].join('\n'),
+          );
+        }
+      }
       if (!('vars' in muiTheme)) {
         // For non-CSS variables themes, set `vars` to null to prevent theme inheritance from the upper theme.
         // The example use case is the docs demo that uses ThemeProvider to customize the theme while the upper theme is using CSS variables.

@@ -119,7 +119,7 @@ function App() {
 ## Toggling color mode
 
 To give your users a way to toggle between modes for [built-in support](#built-in-support), use the `useColorScheme` hook to read and update the mode.
-With CSS theme variables, set a [`colorSchemeSelector`](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually) so that the mode can be toggled manually.
+Set a [`colorSchemeSelector`](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually) so that the mode can be toggled manually. With the default `media` selector, `setMode()` has no effect.
 
 :::info
 The `mode` is always `undefined` on first render, so make sure to handle this case as shown in the demo below—otherwise you may encounter a hydration mismatch error.
@@ -312,7 +312,7 @@ import Button from '@mui/material/Button';
 ```
 
 :::warning
-With CSS theme variables, styles applied with `theme.applyStyles()` have higher specificity than those defined outside of it.
+Styles applied with `theme.applyStyles()` have higher specificity than those defined outside of it.
 So if you need to override styles, you must also use `theme.applyStyles()` as shown below:
 
 ```jsx

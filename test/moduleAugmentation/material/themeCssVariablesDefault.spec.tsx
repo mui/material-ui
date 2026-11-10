@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createTheme, styled, ThemeProvider, useTheme } from '@mui/material/styles';
 
-// The theme is typed with CSS theme variables without any module augmentation.
+// The theme is always typed with CSS theme variables, without any module augmentation.
 
 const theme = createTheme();
 
@@ -39,3 +39,6 @@ function Component() {
 </ThemeProvider>;
 
 export { vars, channel, varsChannel };
+
+// @ts-expect-error CSS theme variables can't be turned off
+createTheme({ cssVariables: false });

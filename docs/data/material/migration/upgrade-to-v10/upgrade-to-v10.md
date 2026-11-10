@@ -50,38 +50,47 @@ If you didn't use `useFlexGap`, check your layouts for these differences:
 
 If you customized the space between the actions, through the `spacing` style override or a margin on the actions, set `gap` on the root instead.
 
-### Theme
+### CSS theme variables are always on
 
-#### CSS theme variables are enabled by default
-
-`createTheme()` now generates [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) by default.
+`createTheme()` always generates [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), and they can't be turned off.
 Components read theme values such as colors, shadows, and spacing from CSS variables, for example `var(--mui-palette-primary-main)`.
 
-To keep the previous behavior, set `cssVariables` to `false`:
+Remove `cssVariables: true` from your theme.
+To configure the variables, keep passing an object, for example `cssVariables: { colorSchemeSelector: 'class' }`.
 
 ```diff
  const theme = createTheme({
-+  cssVariables: false,
+-  cssVariables: true,
  });
 ```
 
-The theme types follow the same default: `theme.vars` is always defined, the palette includes channel tokens such as `theme.palette.primary.mainChannel`, and the `ThemeProvider` accepts props such as `colorSchemeNode` and `disableNestedContext`.
-The `@mui/material/themeCssVarsAugmentation` import is no longer needed and can be removed.
-If you set `cssVariables: false`, remove these from the types with module augmentation:
+`cssVariables: false` is no longer supported.
+It's ignored, and logs an error in development.
 
-```ts
-declare module '@mui/material/styles' {
-  interface CssThemeVariables {
-    enabled: false;
-  }
-}
-```
+A theme object that wasn't created with `createTheme()` has no CSS theme variables, so the `ThemeProvider` warns about it in development.
+
+The theme types include the CSS theme variables: `theme.vars` is always defined, the palette includes channel tokens such as `theme.palette.primary.mainChannel`, and the `ThemeProvider` accepts props such as `colorSchemeNode` and `disableNestedContext`.
+Remove the `@mui/material/themeCssVarsAugmentation` import and any `CssThemeVariables` module augmentation, they're no longer needed.
 
 If your theme defines both light and dark color schemes:
 
-- The color scheme follows the `prefers-color-scheme` media query by default, so `setMode()` from `useColorScheme()` has no effect.
+- The color scheme follows the `prefers-color-scheme` media query by default, so `setMode()` from `useColorScheme()` has no effect and logs an error in development.
   To toggle the mode manually, set `colorSchemeSelector` as described in [Toggling dark mode manually](/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually).
-- The theme object no longer changes between modes.
-  Read values from `theme.vars` or use `theme.applyStyles()`, or pass the `forceThemeRerender` prop to the `ThemeProvider` as described in [Force theme recalculation between modes](/material-ui/customization/css-theme-variables/configuration/#force-theme-recalculation-between-modes).
+- The theme object no longer changes between modes, so `theme.palette.mode` stays on the default color scheme.
+  Use `theme.applyStyles()` or read values from `theme.vars`, or pass the `forceThemeRerender` prop to the `ThemeProvider` as described in [Force theme recalculation between modes](/material-ui/customization/css-theme-variables/configuration/#force-theme-recalculation-between-modes).
 
-`theme.spacing()` returns a `calc()` expression based on the `--mui-spacing` variable, for example `calc(2 * var(--mui-spacing, 8px))`, instead of `16px`.
+Code that computes colors from the theme needs these changes:
+
+- `alpha()`, `lighten()` and `darken()` from `@mui/material/styles`, and `theme.lighten()` and `theme.darken()`, throw an error when given a value from `theme.vars`, because they can't parse `var()`.
+  This includes the `(theme.vars || theme).palette` pattern, which now always returns `theme.vars`.
+  Use `theme.alpha()` with values from `theme.vars`, or pass the raw value from `theme.palette` to the other functions.
+
+  ```diff
+  -backgroundColor: alpha((theme.vars || theme).palette.primary.main, 0.5),
+  +backgroundColor: theme.alpha(theme.vars.palette.primary.main, 0.5),
+  ```
+
+- `theme.spacing()` returns a `calc()` expression based on the `--mui-spacing` variable, for example `calc(2 * var(--mui-spacing, 8px))`, instead of `16px`.
+
+jsdom doesn't resolve `var()`, so tests that assert computed colors or sizes in jsdom see unresolved values.
+Run those tests in a browser, or compare against the values from `theme.vars`.

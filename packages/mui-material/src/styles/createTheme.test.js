@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
-import {
-  alpha as systemAlpha,
-  lighten as systemLighten,
-  darken as systemDarken,
-} from '@mui/system/colorManipulator';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -23,14 +18,17 @@ const isJSDOM = isJsdom();
 describe('createTheme', () => {
   const { render } = createRenderer();
 
-  it('should not create vars if cssVariables: false', () => {
-    const theme = createTheme({ cssVariables: false });
-    expect(theme.cssVariables).to.equal(false);
-    expect('vars' in theme).to.equal(false);
+  it('should log an error and still create vars if cssVariables: false', () => {
+    let theme;
+    expect(() => {
+      theme = createTheme({ cssVariables: false });
+    }).toErrorDev('MUI: `cssVariables: false` is no longer supported');
+    expect(theme.vars).not.to.equal(undefined);
+    expect('cssVariables' in theme).to.equal(false);
   });
 
   it('color schemes dark: true', () => {
-    const theme = createTheme({ cssVariables: false, colorSchemes: { dark: true } });
+    const theme = createTheme({ colorSchemes: { dark: true } });
     const { light, dark } = theme.colorSchemes;
     expect(light.palette.primary.main).to.deep.equal(lightPalette.primary.main);
     expect(dark.palette.primary.main).to.deep.equal(darkPalette.primary.main);
@@ -38,18 +36,12 @@ describe('createTheme', () => {
 
   it('color schemes light: true', () => {
     const theme = createTheme({
-      cssVariables: false,
       colorSchemes: { light: true },
       palette: { mode: 'dark' },
     });
     const { light, dark } = theme.colorSchemes || {};
     expect(light?.palette.primary.main).to.deep.equal(lightPalette.primary.main);
     expect(dark?.palette.primary.main).to.deep.equal(darkPalette.primary.main);
-  });
-
-  it('should provide spacing in px', () => {
-    const theme = createTheme({ cssVariables: false });
-    expect(theme.spacing(1)).to.equal('8px');
   });
 
   it('should have a palette', () => {
@@ -154,7 +146,6 @@ describe('createTheme', () => {
 
   it('should work with `palette` and a custom `colorSchemes.dark`', () => {
     const theme = createTheme({
-      cssVariables: false,
       palette: {
         background: {
           default: '#f5f5f5',
@@ -164,7 +155,7 @@ describe('createTheme', () => {
         dark: {
           palette: {
             background: {
-              default: 'red',
+              default: '#ff0000',
             },
           },
         },
@@ -172,13 +163,12 @@ describe('createTheme', () => {
     });
     expect(theme.palette.background.default).to.equal('#f5f5f5');
     expect(theme.colorSchemes.light.palette.background.default).to.equal('#f5f5f5');
-    expect(theme.colorSchemes.dark.palette.background.default).to.equal('red');
+    expect(theme.colorSchemes.dark.palette.background.default).to.equal('#ff0000');
   });
 
   describe('CSS variables', () => {
     it('should enable CSS theme variables by default', () => {
       expect(createTheme().vars).not.to.equal(undefined);
-      expect(createTheme({ cssVariables: false }).vars).to.equal(undefined);
     });
 
     it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
@@ -532,11 +522,11 @@ describe('createTheme', () => {
 
   describe('focusVisible', () => {
     it('`true` resolves to the curated ring using the palette primary color', () => {
-      const theme = createTheme({ cssVariables: false, focusVisible: true });
+      const theme = createTheme({ focusVisible: true });
       expect(theme.focusVisible).to.deep.equal({
         outlineStyle: 'solid',
         outlineWidth: 2,
-        outlineColor: theme.palette.primary.main,
+        outlineColor: 'var(--mui-palette-primary-main)',
         // Offset is a fixed curated 2px, wrapped in a per-component sign flip
         // (`--_focusVisible-offset`: 1 outset / -1 inset) so a clip-prone component insets it.
         outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)',
@@ -547,7 +537,7 @@ describe('createTheme', () => {
     });
 
     it('an object merges over the curated default, keeping geometry', () => {
-      const theme = createTheme({ cssVariables: false, focusVisible: { outlineColor: 'red' } });
+      const theme = createTheme({ focusVisible: { outlineColor: 'red' } });
       expect(theme.focusVisible.outlineColor).to.equal('red');
       expect(theme.focusVisible.outlineStyle).to.equal('solid');
       expect(theme.focusVisible.outlineWidth).to.equal(2);
@@ -555,7 +545,6 @@ describe('createTheme', () => {
 
     it('`outlineColor: transparent` removes the visible outline but keeps the object', () => {
       const theme = createTheme({
-        cssVariables: false,
         focusVisible: { outlineColor: 'transparent' },
       });
       expect(theme.focusVisible.outlineColor).to.equal('transparent');
@@ -564,19 +553,17 @@ describe('createTheme', () => {
 
     it('a boxShadow is additive on the outline and gets the inset behavior var prepended', () => {
       const theme = createTheme({
-        cssVariables: false,
         focusVisible: { boxShadow: '0 0 0 4px #fff' },
       });
       expect(theme.focusVisible.boxShadow).to.equal(
         'var(--_focusVisible-behavior, ) 0 0 0 4px #fff',
       );
       expect(theme.focusVisible.outlineStyle).to.equal('solid');
-      expect(theme.focusVisible.outlineColor).to.equal(theme.palette.primary.main);
+      expect(theme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
     });
 
     it('does not prepend the behavior var to a boxShadow that already opts into inset', () => {
       const theme = createTheme({
-        cssVariables: false,
         focusVisible: { boxShadow: 'inset 0 0 0 4px #fff' },
       });
       expect(theme.focusVisible.boxShadow).to.equal('inset 0 0 0 4px #fff');
@@ -585,7 +572,6 @@ describe('createTheme', () => {
     it('does not prepend the behavior var to standalone box-shadow keywords', () => {
       ['none', 'inherit', 'unset'].forEach((keyword) => {
         const theme = createTheme({
-          cssVariables: false,
           focusVisible: { boxShadow: keyword },
         });
         // prefixing would produce e.g. `inset none` — an invalid declaration on clip-prone components
@@ -594,10 +580,8 @@ describe('createTheme', () => {
     });
 
     it('`false` and `undefined` leave focusVisible off (non-breaking)', () => {
-      expect(createTheme({ cssVariables: false, focusVisible: false }).focusVisible).to.equal(
-        false,
-      );
-      expect(createTheme({ cssVariables: false }).focusVisible).to.equal(undefined);
+      expect(createTheme({ focusVisible: false }).focusVisible).to.equal(false);
+      expect(createTheme().focusVisible).to.equal(undefined);
     });
 
     it('vars theme: curated color is a scheme-reactive palette var, focusVisible is kept inline', () => {
@@ -613,25 +597,23 @@ describe('createTheme', () => {
     });
 
     it('outlineOffset is a fixed curated 2px, a custom width does not scale it, a custom offset is inset-aware', () => {
-      const auto = createTheme({ cssVariables: false, focusVisible: true });
+      const auto = createTheme({ focusVisible: true });
       expect(auto.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      const wide = createTheme({ cssVariables: false, focusVisible: { outlineWidth: 4 } });
+      const wide = createTheme({ focusVisible: { outlineWidth: 4 } });
       expect(wide.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      const fixed = createTheme({ cssVariables: false, focusVisible: { outlineOffset: 6 } });
+      const fixed = createTheme({ focusVisible: { outlineOffset: 6 } });
       expect(fixed.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 6px)',
       );
     });
 
-    it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {
-      const merged = createTheme({ cssVariables: false }, { focusVisible: true }).focusVisible;
-      expect(merged.outlineStyle).to.equal('solid');
-      expect(merged.outlineColor).to.equal(createTheme().palette.primary.main);
-      const varsTheme = createTheme({ cssVariables: true }, { focusVisible: true });
+    it('normalizes `focusVisible` passed as a merge argument', () => {
+      const varsTheme = createTheme({}, { focusVisible: true });
+      expect(varsTheme.focusVisible.outlineStyle).to.equal('solid');
       expect(varsTheme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
       expect(varsTheme.vars.focusVisible).to.equal(undefined);
     });
@@ -639,186 +621,24 @@ describe('createTheme', () => {
     it('re-composing a resolved theme does not double-wrap the offset (idempotent)', () => {
       // Wrapping the offset calc twice would be `(-1 * -1)` = outset on clip-prone components,
       // clipping the ring after re-composition.
-      const base = createTheme({ cssVariables: false, focusVisible: true });
-      const recomposed = createTheme({ cssVariables: false, focusVisible: base.focusVisible });
+      const base = createTheme({ focusVisible: true });
+      const recomposed = createTheme({ focusVisible: base.focusVisible });
       expect(recomposed.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      const merged = createTheme(base, { cssVariables: false });
+      const merged = createTheme(base);
       expect(merged.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
     });
 
-    it('no-vars colorSchemes: each scheme carries its own primary so dark mode stays reactive', () => {
-      // Regression: without a per-scheme copy the outline froze to the light primary in dark mode.
-      const theme = createTheme({
-        cssVariables: false,
-        focusVisible: true,
-        colorSchemes: { light: true, dark: true },
-      });
-      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal(
-        theme.colorSchemes.light.palette.primary.main,
-      );
-      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
-        theme.colorSchemes.dark.palette.primary.main,
-      );
-      // else the test is vacuous
-      expect(theme.colorSchemes.light.palette.primary.main).not.to.equal(
-        theme.colorSchemes.dark.palette.primary.main,
-      );
-    });
-
-    it('no-vars colorSchemes: a custom outlineColor stays identical across schemes', () => {
-      const theme = createTheme({
-        cssVariables: false,
-        focusVisible: { outlineColor: 'rgb(255, 0, 0)' },
-        colorSchemes: { light: true, dark: true },
-      });
-      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
-      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
-    });
-
-    it('no-vars colorSchemes: an explicit outlineColor equal to the default stays pinned', () => {
-      const pinned = createTheme({ cssVariables: false }).palette.primary.main;
-      const theme = createTheme({
-        cssVariables: false,
-        focusVisible: { outlineColor: pinned },
-        colorSchemes: { light: true, dark: true },
-      });
-      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal(pinned);
-      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(pinned);
-      // else the test is vacuous — dark would otherwise resolve to its own primary
-      expect(theme.colorSchemes.dark.palette.primary.main).not.to.equal(pinned);
-    });
-
-    it('no-vars colorSchemes: an explicit outlineColor from a merge argument stays pinned', () => {
-      const pinned = createTheme({ cssVariables: false }).palette.primary.main;
+    it('deep-merges focusVisible across options and merge arguments', () => {
       const theme = createTheme(
-        { cssVariables: false, colorSchemes: { light: true, dark: true }, focusVisible: true },
-        { focusVisible: { outlineColor: pinned } },
-      );
-      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(pinned);
-    });
-
-    it('no-vars colorSchemes: an unset outlineColor still resolves per scheme', () => {
-      const theme = createTheme({
-        cssVariables: false,
-        focusVisible: { outlineWidth: 4 },
-        colorSchemes: { light: true, dark: true },
-      });
-      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
-        theme.colorSchemes.dark.palette.primary.main,
-      );
-      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal(
-        theme.colorSchemes.light.palette.primary.main,
-      );
-    });
-
-    it('resolves the ring color against the merged palette, not the options palette', () => {
-      const theme = createTheme(
-        { cssVariables: false, focusVisible: true },
-        { palette: { primary: { main: '#e91e63' } } },
-      );
-      expect(theme.palette.primary.main).to.equal('#e91e63');
-      expect(theme.focusVisible.outlineColor).to.equal('#e91e63');
-    });
-
-    it('deep-merges focusVisible across options and merge arguments (both var modes)', () => {
-      [false, true].forEach((cssVariables) => {
-        const theme = createTheme(
-          { cssVariables, focusVisible: { outlineStyle: 'dashed' } },
-          { focusVisible: { outlineWidth: 4 } },
-        );
-        expect(theme.focusVisible.outlineStyle).to.equal('dashed');
-        expect(theme.focusVisible.outlineWidth).to.equal(4);
-      });
-    });
-
-    it('no-vars colorSchemes: scheme copies use the same merged input as the root', () => {
-      const theme = createTheme(
-        {
-          cssVariables: false,
-          colorSchemes: { light: true, dark: true },
-          focusVisible: { outlineStyle: 'dashed' },
-        },
+        { focusVisible: { outlineStyle: 'dashed' } },
         { focusVisible: { outlineWidth: 4 } },
       );
       expect(theme.focusVisible.outlineStyle).to.equal('dashed');
       expect(theme.focusVisible.outlineWidth).to.equal(4);
-      expect(theme.colorSchemes.light.focusVisible.outlineStyle).to.equal('dashed');
-      expect(theme.colorSchemes.light.focusVisible.outlineWidth).to.equal(4);
-      expect(theme.colorSchemes.dark.focusVisible.outlineStyle).to.equal('dashed');
-      expect(theme.colorSchemes.dark.focusVisible.outlineWidth).to.equal(4);
-    });
-
-    it('recomposing a no-vars colorSchemes theme keeps the ring scheme-reactive', () => {
-      const base = createTheme({
-        cssVariables: false,
-        colorSchemes: { light: true, dark: true },
-        focusVisible: true,
-      });
-      const recomposed = createTheme(base, {});
-      // the baked light hex must not leak into the dark scheme through re-resolution
-      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal(
-        base.colorSchemes.dark.palette.primary.main,
-      );
-      expect(recomposed.colorSchemes.light.focusVisible.outlineColor).to.equal(
-        base.colorSchemes.light.palette.primary.main,
-      );
-    });
-
-    it('recomposing keeps an explicit custom outlineColor on every scheme', () => {
-      const base = createTheme({
-        cssVariables: false,
-        colorSchemes: { light: true, dark: true },
-        focusVisible: { outlineColor: 'rgb(255, 0, 0)' },
-      });
-      const recomposed = createTheme(base, {});
-      expect(recomposed.colorSchemes.light.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
-      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
-    });
-
-    it('recompose + palette change: re-passing focusVisible re-derives the ring color (the documented workaround)', () => {
-      // Without re-passing, the baked color from the old palette is kept (accepted limitation).
-      const base = createTheme({ cssVariables: false, focusVisible: true });
-      const recomposed = createTheme({
-        ...base,
-        palette: { primary: { main: '#2e7d32' } },
-        focusVisible: true,
-      });
-      expect(recomposed.palette.primary.main).to.equal('#2e7d32');
-      expect(recomposed.focusVisible.outlineColor).to.equal('#2e7d32');
-    });
-
-    it('recompose + palette change on a colorSchemes theme: re-passing focusVisible keeps every scheme reactive', () => {
-      const base = createTheme({
-        cssVariables: false,
-        colorSchemes: { light: true, dark: true },
-        focusVisible: true,
-      });
-      // The root `palette` key feeds the default (light) scheme — overriding via
-      // `colorSchemes.light.palette` is a no-op here because the spread root palette wins.
-      const recomposed = createTheme({
-        ...base,
-        palette: { primary: { main: '#2e7d32' } },
-        focusVisible: true,
-      });
-      expect(recomposed.colorSchemes.light.focusVisible.outlineColor).to.equal('#2e7d32');
-      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal(
-        recomposed.colorSchemes.dark.palette.primary.main,
-      );
-      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).not.to.equal('#2e7d32');
-    });
-
-    it('recompose + palette change via the merge-argument path: re-passing focusVisible re-derives', () => {
-      const base = createTheme({ cssVariables: false, focusVisible: true });
-      const recomposed = createTheme(base, {
-        palette: { primary: { main: '#2e7d32' } },
-        focusVisible: true,
-      });
-      expect(recomposed.palette.primary.main).to.equal('#2e7d32');
-      expect(recomposed.focusVisible.outlineColor).to.equal('#2e7d32');
     });
   });
 
@@ -1044,26 +864,6 @@ describe('createTheme', () => {
       expect(typeof theme.alpha).to.equal('function');
       expect(typeof theme.lighten).to.equal('function');
       expect(typeof theme.darken).to.equal('function');
-    });
-
-    it('[without CSS variables] should use system color manipulators', () => {
-      const theme = createTheme({ cssVariables: false });
-      expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
-        systemAlpha(theme.palette.primary.main, 0.5),
-      );
-      expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
-        systemLighten(theme.palette.primary.main, 0.5),
-      );
-      expect(theme.darken(theme.palette.primary.main, 0.5)).to.equal(
-        systemDarken(theme.palette.primary.main, 0.5),
-      );
-    });
-
-    it('[without CSS variables] `alpha()` should work with coefficient as string', () => {
-      const theme = createTheme({ cssVariables: false });
-      expect(theme.alpha(theme.palette.primary.main, '0.3+0.2')).to.equal(
-        systemAlpha(theme.palette.primary.main, 0.5),
-      );
     });
 
     it('[CSS variables] `alpha()` should work with string and number coefficient', () => {

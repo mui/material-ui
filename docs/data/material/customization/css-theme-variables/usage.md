@@ -4,7 +4,7 @@
 
 ## Getting started
 
-`createTheme()` generates CSS theme variables by default. To use them, wrap your app with `ThemeProvider`.
+`createTheme()` always generates CSS theme variables. To use them, wrap your app with `ThemeProvider`.
 
 After rendering, you'll see CSS variables in the `:root` stylesheet of your HTML document.
 By default, these variables are flattened and prefixed with `--mui`:
@@ -33,12 +33,6 @@ function App() {
 
 </codeblock>
 
-To create a theme without CSS theme variables, set `cssVariables` to `false`:
-
-```js
-const theme = createTheme({ cssVariables: false });
-```
-
 :::info
 If you're using the experimental `CssVarsProvider` API, replace it with `ThemeProvider`.
 All features that were previously available to the `CssVarsProvider` are now available with the `ThemeProvider`.
@@ -46,7 +40,7 @@ All features that were previously available to the `CssVarsProvider` are now ava
 
 ## Light and dark modes
 
-When the [built-in dark color scheme](/material-ui/customization/dark-mode/#built-in-support) and `cssVariables` are enabled, both light and dark CSS variables are generated with the default CSS media `prefers-color-scheme` method.
+When the [built-in dark color scheme](/material-ui/customization/dark-mode/#built-in-support) is enabled, both light and dark CSS variables are generated with the default CSS media `prefers-color-scheme` method.
 
 This method works with server-side rendering without extra configuration. However, users won't be able to toggle between modes because the styles are based on the browser media.
 
@@ -91,18 +85,6 @@ This `vars` object mirrors the structure of a serializable theme, with each valu
     color: theme.vars.palette.primary.contrastText, // var(--mui-palette-primary-contrastText)
   }));
   ```
-
-  For **TypeScript**, the typings are not enabled by default.
-  Follow the [TypeScript setup](#typescript) to enable the typings.
-
-  :::success
-  If the components need to render outside of the `CssVarsProvider`, add fallback to the theme object.
-
-  ```js
-  backgroundColor: (theme.vars || theme).palette.primary.main;
-  ```
-
-  :::
 
 - **Native CSS**: if you can't access the theme object, for example in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/var) directly:
 
@@ -222,7 +204,7 @@ For **TypeScript**, you need to augment the [palette interfaces](#palette-interf
 
 ## TypeScript
 
-The theme is typed with CSS theme variables by default, so `theme.vars` and the palette channel tokens are available without extra setup:
+The theme is always typed with CSS theme variables, so `theme.vars` and the palette channel tokens are available without extra setup:
 
 ```ts
 import { styled } from '@mui/material/styles';
@@ -232,17 +214,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
   color: theme.vars.palette.primary.main,
   backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`,
 }));
-```
-
-If you create the theme with `cssVariables: false`, augment the `CssThemeVariables` interface to remove the CSS theme variables from the types:
-
-```ts
-// The declaration can be in any file that is included in your `tsconfig.json`
-declare module '@mui/material/styles' {
-  interface CssThemeVariables {
-    enabled: false;
-  }
-}
 ```
 
 ### Palette interfaces
