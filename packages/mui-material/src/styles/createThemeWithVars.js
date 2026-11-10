@@ -25,11 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
-import {
-  resolveFocusVisible,
-  mergeFocusVisibleInput,
-  mergeFocusVisibleInsetOverrides,
-} from './focusVisible';
+import { resolveFocusVisible, mergeFocusVisibleInput } from './focusVisible';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -1005,8 +1001,14 @@ export default function createThemeWithVars(options = {}, ...args) {
   // per-scheme copy needed here, unlike the no-vars path in `createTheme`.
   const focusVisibleInput = mergeFocusVisibleInput(options.focusVisible, args);
   if (focusVisibleInput != null && focusVisibleInput !== false) {
+    const { insetOverrides } = focusVisibleInput === true ? {} : focusVisibleInput;
     theme.focusVisible = resolveFocusVisible(focusVisibleInput, getCssVar('palette-primary-main'));
-    theme.unstable_focusVisibleInsetOverrides = mergeFocusVisibleInsetOverrides([options, ...args]);
+    if (insetOverrides) {
+      theme.unstable_focusVisibleInsetOverrides = deepmerge(
+        theme.unstable_focusVisibleInsetOverrides ?? {},
+        insetOverrides,
+      );
+    }
   }
 
   const parserConfig = {

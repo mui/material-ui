@@ -34,24 +34,6 @@ export function mergeFocusVisibleInput(
   ).focusVisible;
 }
 
-export function mergeFocusVisibleInsetOverrides(
-  sources: readonly any[],
-): React.CSSProperties | undefined {
-  return sources.reduce<React.CSSProperties | undefined>((merged, source) => {
-    if (!source) {
-      return merged;
-    }
-    const inputOverrides =
-      source.focusVisible && typeof source.focusVisible === 'object'
-        ? source.focusVisible.insetOverrides
-        : undefined;
-    return [source.unstable_focusVisibleInsetOverrides, inputOverrides].reduce(
-      (acc, overrides) => (overrides ? deepmerge(acc ?? {}, overrides) : acc),
-      merged,
-    );
-  }, undefined);
-}
-
 const resolvedRings = new WeakSet<object>();
 
 /**
