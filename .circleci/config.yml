@@ -197,6 +197,12 @@ jobs:
       - run:
           name: Tests Chromium
           command: pnpm test:browser --no-isolate --no-file-parallelism
+      # Temporary isolation check for the Menu2 exit failure.
+      - run:
+          name: Tests WebKit docs only
+          environment:
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism
       - run:
           name: Tests WebKit
           environment:
