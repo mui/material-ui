@@ -209,17 +209,28 @@ describe('createTheme', () => {
   });
 
   describe('cssLayers', () => {
-    it('is on by default', () => {
+    it('uses sub-layers by default', () => {
       expect(createTheme().cssLayers).to.equal(true);
     });
 
-    it('is off with modularCssLayers: false, which turned the sub-layers off in v9', () => {
-      expect(createTheme({ modularCssLayers: false }).cssLayers).to.equal(false);
+    it('uses a single layer with modularCssLayers: false, which turned the sub-layers off in v9', () => {
+      expect(createTheme({ modularCssLayers: false }).cssLayers).to.equal('single');
     });
 
     it('keeps an explicit value', () => {
+      expect(createTheme({ cssLayers: 'single' }).cssLayers).to.equal('single');
       expect(createTheme({ cssLayers: true, modularCssLayers: false }).cssLayers).to.equal(true);
-      expect(createTheme({ cssLayers: false, modularCssLayers: true }).cssLayers).to.equal(false);
+      expect(createTheme({ cssLayers: 'single', modularCssLayers: true }).cssLayers).to.equal(
+        'single',
+      );
+    });
+
+    it('logs an error and keeps the layers with cssLayers: false', () => {
+      let theme;
+      expect(() => {
+        theme = createTheme({ cssLayers: false });
+      }).toErrorDev('MUI: `cssLayers: false` is no longer supported');
+      expect(theme.cssLayers).to.equal(true);
     });
   });
 });
