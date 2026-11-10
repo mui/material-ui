@@ -10,7 +10,14 @@ import './syncDataGridGenerator';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+} from 'react-router';
 import { Globals } from '@react-spring/web';
 import loadFonts from '@mui/internal-test-utils/loadFonts';
 // Static font files, installed from npm instead of loaded from Google Fonts. Google
@@ -95,34 +102,6 @@ FixtureRenderer.propTypes = {
   path: PropTypes.string.isRequired,
 };
 
-function subscribeToHash(callback) {
-  window.addEventListener('hashchange', callback);
-  return () => {
-    window.removeEventListener('hashchange', callback);
-  };
-}
-
-function getHash() {
-  return window.location.hash;
-}
-
-function getServerHash() {
-  return '';
-}
-
-function useHashLegacy() {
-  const [hash, setHash] = React.useState(getHash);
-  React.useEffect(() => subscribeToHash(() => setHash(getHash())), []);
-  return hash;
-}
-
-function useHashModern() {
-  return React.useSyncExternalStore(subscribeToHash, getHash, getServerHash);
-}
-
-// React 17 has no `useSyncExternalStore`.
-const useHash = React.useSyncExternalStore ? useHashModern : useHashLegacy;
-
 function computeIsDev(hash) {
   if (hash === '#dev') {
     return true;
@@ -136,7 +115,7 @@ function computeIsDev(hash) {
 function App(props) {
   const { fixtures } = props;
 
-  const hash = useHash();
+  const { hash } = useLocation();
   const isDev = computeIsDev(hash);
 
   function computePath(fixture) {

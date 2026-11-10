@@ -203,6 +203,24 @@ async function main() {
       await browser.close();
     });
 
+    test('updates devtools visibility after router and hash navigation', async ({ pooled }) => {
+      const { page } = pooled;
+      await page.evaluate(() => {
+        window.location.hash = '#dev';
+      });
+      await page.waitForSelector('#tests', { state: 'attached' });
+
+      await renderFixture(page, '/regression-Rating/FocusVisibleRating');
+      await page.waitForSelector('#tests', { state: 'detached' });
+
+      await page.evaluate(() => {
+        window.location.hash = '#dev';
+      });
+      await page.waitForSelector('#tests', { state: 'attached' });
+      await page.getByRole('link', { name: 'Hide devtools' }).click();
+      await page.waitForSelector('#tests', { state: 'detached' });
+    });
+
     describe.concurrent('routes', () => {
       routes.forEach((route) => {
         const parsed = parseRoute(route);

@@ -31,8 +31,11 @@ function* walkTests(node: TestModule | TestSuite): Generator<TestCase, undefined
 }
 
 // A route below its React floor keeps the results that a run with a newer React committed.
-function readCommittedEntry({ slug, demo }: Pick<A11yMeta, 'slug' | 'demo'>): A11yMeta | undefined {
-  const file = path.join(COMPONENTS_DIR, slug, `${slug}.a11y.json`);
+function readCommittedEntry(
+  componentsDir: string,
+  { slug, demo }: Pick<A11yMeta, 'slug' | 'demo'>,
+): A11yMeta | undefined {
+  const file = path.join(componentsDir, slug, `${slug}.a11y.json`);
   if (!fs.existsSync(file)) {
     return undefined;
   }
@@ -50,10 +53,12 @@ function hasStatus(meta: A11yMeta, status: 'fail' | 'incomplete'): boolean {
 }
 
 export default class A11yReporter implements Reporter {
-  private filtered = false;
+  private testNamePattern?: RegExp;
+
+  constructor(private readonly componentsDir = COMPONENTS_DIR) {}
 
   onInit(ctx: Vitest) {
-    this.filtered = ctx.config.testNamePattern != null;
+    this.testNamePattern = ctx.config.testNamePattern;
   }
 
   onTestRunEnd(
@@ -64,11 +69,16 @@ export default class A11yReporter implements Reporter {
     const entries: A11yMeta[] = [];
     for (const mod of testModules) {
       for (const test of walkTests(mod)) {
+        // Static metadata survives test-name filtering, including `a11yKept`
+        // on routes skipped for this React version. Do not rewrite those slugs.
+        if (this.testNamePattern && !test.fullName.match(this.testNamePattern)) {
+          continue;
+        }
         const { a11y, a11yKept } = test.meta() as {
           a11y?: A11yMeta;
           a11yKept?: Pick<A11yMeta, 'slug' | 'demo'>;
         };
-        const meta = a11y ?? (a11yKept && readCommittedEntry(a11yKept));
+        const meta = a11y ?? (a11yKept && readCommittedEntry(this.componentsDir, a11yKept));
         if (meta) {
           entries.push(meta);
         }
@@ -90,18 +100,18 @@ export default class A11yReporter implements Reporter {
     // name doubles as the slug. Compare against the exact on-disk names —
     // `existsSync` folds case on macOS (`Rating` matches `rating/`), so a
     // wrong-case suite must fail here on every platform, not only on Linux CI.
-    const docsSlugs = new Set(fs.readdirSync(COMPONENTS_DIR));
+    const docsSlugs = new Set(fs.readdirSync(this.componentsDir));
     for (const [slug, metas] of bySlug) {
       if (!docsSlugs.has(slug)) {
         const routes = metas.map((meta) => `${meta.slug}/${meta.demo}`).join(', ');
         throw new Error(
           `a11y slug "${slug}" (from ${routes}) has no directory under ` +
-            `${path.relative(process.cwd(), COMPONENTS_DIR)}. ` +
+            `${path.relative(process.cwd(), this.componentsDir)}. ` +
             `Name a11y fixture suites after an existing docs slug (lowercase) — ` +
             `see parseRoute() in test/regressions/demoMeta.ts.`,
         );
       }
-      const slugDir = path.join(COMPONENTS_DIR, slug);
+      const slugDir = path.join(this.componentsDir, slug);
       const sorted = [...metas].sort((a, b) => a.demo.localeCompare(b.demo));
       const file: Record<string, DemoEntry> = {};
       for (const meta of sorted) {
@@ -119,8 +129,8 @@ export default class A11yReporter implements Reporter {
     // tests crashed before recording, so pruning then would delete tracked
     // JSON for still-enrolled demos.
     const ranVrtSuite = testModules.some((m) => m.moduleId === VRT_MODULE_PATH);
-    if (ranVrtSuite && !this.filtered && reason === 'passed') {
-      for (const file of globbySync('*/*.a11y.json', { cwd: COMPONENTS_DIR, absolute: true })) {
+    if (ranVrtSuite && !this.testNamePattern && reason === 'passed') {
+      for (const file of globbySync('*/*.a11y.json', { cwd: this.componentsDir, absolute: true })) {
         const slug = path.basename(path.dirname(file));
         if (!bySlug.has(slug)) {
           fs.unlinkSync(file);
@@ -143,7 +153,7 @@ export default class A11yReporter implements Reporter {
       [
         '',
         chalk.bold(
-          `a11y results (${entries.length} demos, ${slugs.length} slugs) -> ${path.relative(process.cwd(), COMPONENTS_DIR)}/{slug}/{slug}.a11y.json`,
+          `a11y results (${entries.length} demos, ${slugs.length} slugs) -> ${path.relative(process.cwd(), this.componentsDir)}/{slug}/{slug}.a11y.json`,
         ),
         '',
         `  ✅ Pass (${pass.length}):         ${pass.join(', ') || '—'}`,
