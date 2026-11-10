@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  isJsdom,
+  screen,
+  waitFor,
+} from '@mui/internal-test-utils';
 import { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import MenuRfcExperiment from '../../../../pages/experiments/menu2-playground';
 
@@ -54,6 +60,48 @@ function tracePopupExit(popup: HTMLElement, trigger: HTMLElement) {
     };
   }
 
+  function frameState() {
+    const parent = window.parent;
+    const ancestors = [];
+    let element = window.frameElement;
+    while (element) {
+      const rect = element.getBoundingClientRect();
+      const style = parent.getComputedStyle(element);
+      ancestors.push({
+        tag: element.tagName,
+        id: element.id,
+        rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+        display: style.display,
+        visibility: style.visibility,
+        opacity: style.opacity,
+        transform: style.transform,
+        overflow: style.overflow,
+        contentVisibility: style.contentVisibility,
+      });
+      element = element.parentElement;
+    }
+    return {
+      child: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scrollX: window.scrollX,
+        scrollY: window.scrollY,
+        focused: document.hasFocus(),
+        raf: Function.prototype.toString.call(window.requestAnimationFrame),
+      },
+      parent: {
+        width: parent.innerWidth,
+        height: parent.innerHeight,
+        scrollX: parent.scrollX,
+        scrollY: parent.scrollY,
+        visibility: parent.document.visibilityState,
+        focused: parent.document.hasFocus(),
+        raf: Function.prototype.toString.call(parent.requestAnimationFrame),
+      },
+      ancestors,
+    };
+  }
+
   const getAnimations = popup.getAnimations.bind(popup);
   const spy = vi.spyOn(popup, 'getAnimations').mockImplementation((options) => {
     const animations = getAnimations(options);
@@ -98,6 +146,7 @@ function tracePopupExit(popup: HTMLElement, trigger: HTMLElement) {
           frameRan,
           visibility: document.visibilityState,
           fakeTimers: vi.isFakeTimers(),
+          frame: frameState(),
           menus: screen.queryAllByRole('menu').map((menu) => ({
             id: menu.id,
             labelledBy: menu.getAttribute('aria-labelledby'),
@@ -121,6 +170,47 @@ function tracePopupExit(popup: HTMLElement, trigger: HTMLElement) {
         })}`;
       }
       return error;
+    },
+    async afterFailure(error: unknown) {
+      // Probe the parent only after failure: its frame request can wake the iframe.
+      const probeStartedAt = performance.now();
+      const result: { childMs: number | null; parentMs: number | null } = {
+        childMs: null,
+        parentMs: null,
+      };
+      let childFrame: number | undefined;
+      let parentFrame: number | undefined;
+      try {
+        await act(async () => {
+          childFrame = requestAnimationFrame(() => {
+            result.childMs = performance.now() - probeStartedAt;
+          });
+          parentFrame = window.parent.requestAnimationFrame(() => {
+            result.parentMs = performance.now() - probeStartedAt;
+          });
+          await new Promise((resolve) => {
+            setTimeout(resolve, 250);
+          });
+        });
+        if (error instanceof Error) {
+          error.message += `\nMenu2 frames after failure:\n${JSON.stringify({
+            ...result,
+            ...popupState(),
+            elapsedMs: performance.now() - probeStartedAt,
+          })}`;
+        }
+      } catch (probeError) {
+        if (error instanceof Error) {
+          error.message += `\nMenu2 frame probe failed: ${String(probeError)}`;
+        }
+      } finally {
+        if (childFrame !== undefined) {
+          cancelAnimationFrame(childFrame);
+        }
+        if (parentFrame !== undefined) {
+          window.parent.cancelAnimationFrame(parentFrame);
+        }
+      }
     },
     cleanup() {
       active = false;
@@ -182,6 +272,9 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
           { onTimeout: trace.onTimeout },
         );
         expect(trigger).to.have.attribute('aria-expanded', 'false');
+      } catch (error) {
+        await trace.afterFailure(error);
+        throw error;
       } finally {
         trace.cleanup();
       }
