@@ -456,11 +456,10 @@ export function AppSearch(props: AppSearchProps) {
             },
           },
           body: {
-            // DocSearch unconditionally sets `margin-right: <scrollbar width>` on the body to
-            // compensate for the scrollbar it expects to hide. The docs reserve that space on
-            // <html> and only ever hide the overflow of <body>, so nothing disappears and the
-            // compensation shifts the whole page sideways instead.
-            // It sets `margin-inline-end`, so overriding `margin-right` would miss it in RTL.
+            // DocSearch unconditionally sets `margin-inline-end: <scrollbar width>` on the body to
+            // compensate for the scrollbar it expects to hide. The docs reserve that space with
+            // `scrollbar-gutter: stable` on <html>, so nothing disappears and the compensation
+            // shifts the whole page sideways instead.
             '&.DocSearch--active': {
               marginInlineEnd: '0 !important',
             },

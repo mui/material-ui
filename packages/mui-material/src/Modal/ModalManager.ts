@@ -185,14 +185,16 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     }
 
     const scrollWindow = ownerWindow(scrollContainer);
-    const gutterElement = getGutterElement(scrollContainer, ownerDocument(scrollContainer));
+    const scrollDoc = ownerDocument(scrollContainer);
+    const gutterElement = getGutterElement(scrollContainer, scrollDoc);
     const gutterIsStable = hasStableScrollbarGutter(gutterElement, scrollWindow);
 
     // Blocking the scroll below makes the container a scroll container, which would start
     // reserving a gutter that is inert right now. Hold it at `auto` for the duration.
+    // The viewport is always a scroll container, so a document scroller's gutter is never inert.
     if (
       gutterIsStable &&
-      gutterElement === scrollContainer &&
+      !isDocumentScroller(scrollContainer, scrollDoc) &&
       !isScrollContainer(scrollContainer, scrollWindow)
     ) {
       restoreStyle.push({

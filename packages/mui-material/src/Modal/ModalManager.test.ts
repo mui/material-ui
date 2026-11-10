@@ -153,10 +153,18 @@ describe('ModalManager', () => {
         fixedNode.style.paddingRight = '14.4px';
       });
 
+      // Unmounts modals left behind by a failed assertion, before the inline styles below are
+      // cleared, so restoring them can't write the styles back.
+      let unmountLeftovers: Array<() => void> = [];
+
       afterEach(() => {
+        unmountLeftovers.forEach((unmount) => unmount());
+        unmountLeftovers = [];
         container1.style.removeProperty('overflow');
         container1.style.removeProperty('scrollbar-gutter');
         document.documentElement.style.removeProperty('scrollbar-gutter');
+        document.documentElement.style.removeProperty('overflow');
+        document.documentElement.style.removeProperty('padding-right');
         document.body.style.removeProperty('scrollbar-gutter');
         document.body.style.removeProperty('padding-right');
         document.body.style.removeProperty('overflow');
@@ -207,17 +215,41 @@ describe('ModalManager', () => {
         // shared one when an assertion fails before the modal is removed.
         const bodyModalManager = new ModalManager();
         document.documentElement.style.setProperty('scrollbar-gutter', 'stable');
-        const widthBefore = document.documentElement.clientWidth;
+        // clientWidth excludes a rendered scrollbar but not an empty gutter, so it can't tell
+        // whether the gutter holds. The body's box can.
+        const widthBefore = document.body.getBoundingClientRect().width;
 
         const modal = getDummyModal();
         bodyModalManager.add(modal, document.body);
         bodyModalManager.mount(modal, {});
         expect(document.body.style.overflow).to.equal('hidden');
-        expect(document.documentElement.clientWidth).to.equal(widthBefore);
+        expect(document.body.getBoundingClientRect().width).to.equal(widthBefore);
         expect(document.body.style.paddingRight).to.equal('');
         expect(fixedNode.style.paddingRight).to.equal('14.4px');
         bodyModalManager.remove(modal);
         expect(document.body.style.overflow).to.equal('');
+      });
+
+      // The root element's gutter belongs to the viewport, which is always a scroll container,
+      // so it is never inert and must not be held at auto.
+      it('should keep the root gutter when the container is the root element', () => {
+        const rootModalManager = new ModalManager();
+        document.documentElement.style.setProperty('scrollbar-gutter', 'stable');
+        const widthBefore = document.body.getBoundingClientRect().width;
+
+        const modal = getDummyModal();
+        rootModalManager.add(modal, document.documentElement);
+        // Locking the root hides every sibling, <body> included.
+        unmountLeftovers.push(() => rootModalManager.remove(modal));
+        rootModalManager.mount(modal, {});
+        expect(document.documentElement.style.overflow).to.equal('hidden');
+        expect(document.documentElement.style.getPropertyValue('scrollbar-gutter')).to.equal(
+          'stable',
+        );
+        expect(document.body.getBoundingClientRect().width).to.equal(widthBefore);
+        expect(document.documentElement.style.paddingRight).to.equal('');
+        rootModalManager.remove(modal);
+        expect(document.documentElement.style.overflow).to.equal('');
       });
 
       // scrollbar-gutter propagates to the viewport from the root element only, so a gutter
