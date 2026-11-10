@@ -1566,6 +1566,26 @@ describe('<NumberField />', () => {
       expect(screen.queryByRole('button', { name: 'Decrease' })).to.equal(null);
     });
 
+    it('shows an error for invalid controlsPosition and default to "end"', () => {
+      const consoleError = console.error;
+      console.error = vi.fn();
+
+      try {
+        // @ts-expect-error We expect an invalid controlsPosition to trigger a console error.
+        render(<NumberField label="Amount" controlsPosition="invalid" />);
+
+        expect(console.error).toHaveBeenCalledWith(
+          'MUI: "controlsPosition" is invalid: invalid. Use "stacked", "end", "split" or false. Falling back to "end".',
+        );
+        expect(screen.getByRole('textbox', { name: 'Amount' })).not.toBeNull();
+        const [expectedDecreaseButton, expectedIncreaseButton] = screen.getAllByRole('button');
+        expect(expectedDecreaseButton).to.have.attribute('aria-label', 'Decrease');
+        expect(expectedIncreaseButton).to.have.attribute('aria-label', 'Increase');
+      } finally {
+        console.error = consoleError;
+      }
+    });
+
     const placements = [
       {
         controlsPosition: undefined,
