@@ -16,14 +16,33 @@ A Base UI successor to an existing component (Menu v2 replacing Menu) ships unde
 
 ## API rules
 
-These rules were decided by the Material UI team on 2026-11-04. Apply every one of them.
+Apply every one of these rules. Each names where the team decided it: the [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549), a later decision in the same Slack thread, or [#49684](https://github.com/mui/material-ui/pull/49684), where the PR review confirms it.
 
-1. **`render`, not `component`.** Parts that change their rendered element take a public `render` prop. A **standalone trigger**, which users place and style themselves, requires `render`, because users choose the element they want (`<PreviewCardTrigger render={<Button>Open</Button>} />`). It also passes `children` through to Base UI, which places them inside the `render` element; blocking them takes more code than it saves. Keep standalone trigger `children` out of the docs, demos, and API page. A **styled trigger**, which the component lays out and styles (the triggers in a menubar row), is a styled part like any other: `render` is optional and its `children` are its documented content. No part accepts `component`. On a styled part, `render` keeps the part's styles; `slots.root` replaces them (see [references/adapter.md](references/adapter.md#public-render)).
-2. **Merged parts use slots.** Which parts are public is the approved shape's decision. When it merges several Base UI parts into one public part, as a popup wraps Portal, Positioner, and Popup, `slots` and `slotProps` reach each merged part.
+1. **`render`, not `component`.** Parts that change their rendered element take a public `render` prop. No part accepts `component`. On a styled part, `render` keeps the part's styles; `slots.root` replaces them (see [references/adapter.md](references/adapter.md#public-render)).
+   - A **standalone trigger**, which users place and style themselves, requires `render`, because users choose the element they want (`<PreviewCardTrigger render={<Button>Open</Button>} />`). It also passes `children` through to Base UI, which places them inside the `render` element; blocking them takes more code than it saves. Keep standalone trigger `children` out of the docs, demos, and API page.
+   - A **styled trigger**, which the component lays out and styles (the triggers in a menubar row), is a styled part like any other: `render` is optional and its `children` are its documented content.
+
+   Sources: `render` and no `component`, [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549); `render` keeps styles and `slots.root` replaces them, [2026-11-09](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1794236587393649?thread_ts=1793793908.228549&cid=C061V6JNZ9Q); standalone trigger `children` and the two trigger kinds, [#49684](https://github.com/mui/material-ui/pull/49684).
+
+2. **Every styled part takes `slots` and `slotProps`**, including a part that renders a single element (`slots.root`), at least for v9. `render` does not replace them: it keeps the styles, while `slots.root` replaces the styled component. A part that renders no styled element (a root, a standalone trigger) has none. When a public part merges several Base UI parts, as a popup wraps Portal, Positioner, and Popup, `slots` and `slotProps` reach each merged part. Which parts are public is the approved shape's decision.
+
+   Sources: merged parts with slots, [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549); slots on single-element parts, [2026-11-10](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1794299063463459?thread_ts=1793793908.228549&cid=C061V6JNZ9Q); public parts from the approved shape, [#49684](https://github.com/mui/material-ui/pull/49684).
+
 3. **Flat names.** Export PascalCase parts (`PreviewCardTrigger`). There is no namespace object (`PreviewCard.Trigger`).
+
+   Source: [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549).
+
 4. **Base UI names for behavior.** Props for logic and event handlers keep Base UI names and signatures (`onOpenChange(open, eventDetails)`, `side`, `align`, `delay`), selected from Base UI types with `Pick`. Presentation props keep Material UI names (`size`, `color`, `variant`, `elevation`, `disableRipple`).
+
+   Source: [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549).
+
 5. **Styling hooks.** Utility classes and `ownerState` carry live Base UI state. The Base UI data attributes are re-exported from Base UI and documented. Users style live state with these classes and data attribute constants in `styleOverrides`; `variants` match props only.
-6. **Stable exports.** Each public part is a `@mui/material/<Name><Part>` subpath and a root `@mui/material` export, with a `Mui<Name><Part>` theme key.
+
+   Sources: exposing the data attributes, [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549); re-exporting them and `variants` matching props only, [#49684](https://github.com/mui/material-ui/pull/49684).
+
+6. **Stable exports.** Each public part is a `@mui/material/<Name><Part>` subpath and a root `@mui/material` export, with a `Mui<Name><Part>` theme key. The `Unstable_` prefix is only for a Base UI successor to an existing component.
+
+   Source: [#49684](https://github.com/mui/material-ui/pull/49684).
 
 ## Steps
 
