@@ -199,10 +199,10 @@ jobs:
           command: pnpm test:browser --no-isolate --no-file-parallelism
       # Temporary isolation check for the Menu2 exit failure.
       - run:
-          name: Tests WebKit docs only
+          name: Tests WebKit Menu2 playground only
           environment:
             VITEST_BROWSERS: 'webkit'
-          command: pnpm test:browser --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism
+          command: pnpm test:browser docs/data/material/components/menu2/Menu2Playground.test.tsx --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism
       - run:
           name: Tests WebKit
           environment:
