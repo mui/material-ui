@@ -15,7 +15,11 @@ function UpperProvider({ children }: React.PropsWithChildren) {
     <ThemeProvider
       storageManager={null}
       defaultMode="light"
-      theme={createTheme({ cssVariables: false, colorSchemes: { light: true, dark: true } })}
+      forceThemeRerender
+      theme={createTheme({
+        cssVariables: { colorSchemeSelector: 'data-mui-color-scheme' },
+        colorSchemes: { light: true, dark: true },
+      })}
     >
       <DarkMode />
       {children}
