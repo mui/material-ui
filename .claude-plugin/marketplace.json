@@ -1,16 +1,18 @@
 {
   "name": "material-ui",
   "owner": {
-    "name": "MUI"
+    "name": "MUI",
+    "url": "https://mui.com"
   },
-  "description": "Material UI agent skills",
+  "description": "Material UI agent skills for Claude Code",
   "plugins": [
     {
       "name": "material-ui",
       "displayName": "Material UI",
-      "description": "Material UI agent skills for Claude Code",
+      "description": "Material UI agent skills for styling (sx, styled, theme overrides, global CSS), theming and design tokens (createTheme, colorSchemes, CSS variables), Next.js App/Pages Router integration, and Tailwind CSS v4/v3 interoperability. Use when building or customizing @mui/material UI.",
       "source": "./skills",
       "strict": false,
+      "version": "0.1.1",
       "skills": [
         "./material-ui-nextjs",
         "./material-ui-styling",
@@ -19,12 +21,23 @@
       ],
       "author": {
         "name": "MUI",
-        "url": "https://github.com/mui"
+        "url": "https://mui.com"
       },
       "homepage": "https://mui.com/material-ui/",
       "repository": "https://github.com/mui/material-ui",
       "license": "MIT",
-      "keywords": ["material-ui", "mui", "react", "material-design", "design-system"],
+      "keywords": [
+        "material-ui",
+        "mui",
+        "react",
+        "material-design",
+        "design-system",
+        "styling",
+        "theming",
+        "nextjs",
+        "tailwind",
+        "coding-agents"
+      ],
       "category": "development"
     }
   ]
