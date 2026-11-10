@@ -500,7 +500,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     let newValue;
 
     // We use the tabindex attribute to signal the available options.
-    if (!event.currentTarget.hasAttribute('tabindex')) {
+    if (disabled || !event.currentTarget.hasAttribute('tabindex')) {
       return;
     }
 
