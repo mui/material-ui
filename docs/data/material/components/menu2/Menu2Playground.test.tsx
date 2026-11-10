@@ -277,8 +277,13 @@ function tracePopupExit(popup: HTMLElement, trigger: HTMLElement) {
 describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
   const { render } = createRenderer();
 
-  async function renderPlayground() {
+  async function renderPlayground({ traceAfterRender = false } = {}) {
     const view = render(<MenuRfcExperiment />);
+    if (traceAfterRender) {
+      await act(async () => {
+        await traceFrames('after render before selectOptions');
+      });
+    }
     await view.user.selectOptions(
       screen.getByRole('combobox', { name: 'animation' }),
       'off',
@@ -291,7 +296,9 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
       if (triggerName === 'Project') {
         await traceFrames('before first render');
       }
-      const { baseElement, user } = await renderPlayground();
+      const { baseElement, user } = await renderPlayground({
+        traceAfterRender: triggerName === 'Project',
+      });
       expect(
         screen.getByRole('combobox', { name: 'visual backdrop' }),
       ).to.have.value('default');
