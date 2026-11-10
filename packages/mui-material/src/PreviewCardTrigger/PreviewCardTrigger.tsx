@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { PreviewCard as BasePreviewCard } from '@base-ui/react/preview-card';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
-export interface PreviewCardTriggerProps extends Pick<
-  BasePreviewCard.Trigger.Props,
-  'closeDelay' | 'delay' | 'payload'
-> {
+export interface PreviewCardTriggerProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'color'>,
+    Pick<BasePreviewCard.Trigger.Props, 'closeDelay' | 'delay' | 'payload'> {
   /**
    * @ignore
    */
@@ -44,10 +44,11 @@ const PreviewCardTrigger = React.forwardRef(function PreviewCardTrigger(
   ref: React.ForwardedRef<HTMLAnchorElement>,
 ) {
   const props = useDefaultProps({ props: inProps, name: 'MuiPreviewCardTrigger' });
-  const { children, closeDelay, delay, handle, id, payload, render } = props;
+  const { children, closeDelay, delay, handle, id, payload, render, ...other } = props;
 
   return (
     <BasePreviewCard.Trigger
+      {...other}
       ref={ref}
       closeDelay={closeDelay}
       delay={delay}

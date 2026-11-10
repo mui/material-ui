@@ -17,7 +17,7 @@ describe('<PreviewCardTrigger />', () => {
     render: (node) => render(<PreviewCard>{node}</PreviewCard>),
     muiName: 'MuiPreviewCardTrigger',
     refInstanceof: window.HTMLAnchorElement,
-    only: ['refForwarding'],
+    only: ['refForwarding', 'propsSpread'],
   }));
 
   it("renders the user's element with Base UI attributes and keeps its handlers", async () => {
@@ -170,6 +170,15 @@ describe('<PreviewCardTrigger />', () => {
     });
     expect(handleOpenChange.args[0][0]).to.equal(false);
     expect(handleOpenChange.args[0][1].reason).to.equal('outside-press');
+  });
+
+  it('passes HTML attributes to the rendered element', async () => {
+    await render(
+      <PreviewCard>
+        <PreviewCardTrigger aria-label="Open the preview" render={<a href="#">Link</a>} />
+      </PreviewCard>,
+    );
+    expect(screen.getByRole('link')).to.have.attribute('aria-label', 'Open the preview');
   });
 
   it('passes the id to the rendered element', async () => {

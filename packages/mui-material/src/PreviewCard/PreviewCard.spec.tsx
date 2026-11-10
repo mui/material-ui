@@ -32,8 +32,10 @@ import Button from '@mui/material/Button';
 // @ts-expect-error render is required
 <PreviewCardTrigger />;
 
-// @ts-expect-error triggers accept only their picked props
-<PreviewCardTrigger render={<a href="#">Link</a>} className="link" />;
+<PreviewCardTrigger render={<a href="#">Link</a>} className="link" aria-label="Open the preview" />;
+
+// @ts-expect-error component is not supported
+<PreviewCardTrigger render={<a href="#">Link</a>} component="span" />;
 
 <PreviewCardTrigger render={<a href="#">Link</a>} delay={100} closeDelay={100} id="trigger" />;
 
