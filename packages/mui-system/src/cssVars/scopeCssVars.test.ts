@@ -68,6 +68,18 @@ describe('createScopedStyleSheets', () => {
     expect(result.styles).to.deep.equal([{ [`.${result.className}`]: upper.colorSchemes[1][1] }]);
   });
 
+  it('only writes the default color scheme when the outer theme has no color scheme selector', () => {
+    const result = createScopedStyleSheets({
+      css: upper,
+      upper: { root: upper.root, colorSchemes: [['light', { colorScheme: 'light' }]] },
+      colorSchemeSelector: undefined,
+      prefix: 'mui',
+    })!;
+    expect(result.styles).to.deep.equal([
+      { [`.${result.className}`]: { '--mui-primary': 'blue', '--mui-text': 'black' } },
+    ]);
+  });
+
   it('uses media queries with the media selector', () => {
     const result = createScopedStyleSheets({
       css: upper,

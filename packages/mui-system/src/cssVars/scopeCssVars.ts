@@ -106,7 +106,9 @@ export function createScopedStyleSheets(options: {
     const [key, declarations] = defaultScheme;
     const changed = pickChanged(declarations, isForcedScheme ? undefined : upperSchemes[key]);
     schemes.push([key, changed]);
-    otherSchemes.forEach(([otherKey, otherDeclarations]) => {
+    // Without a color scheme rule, nothing selects the other color schemes,
+    // and writing them on the scope would override the default one.
+    (rule ? otherSchemes : []).forEach(([otherKey, otherDeclarations]) => {
       const otherChanged = pickChanged(otherDeclarations, upperSchemes[otherKey]);
       // The default color scheme's rule applies in every color scheme, so each declaration
       // it writes has to be written again for the other color schemes.
