@@ -216,11 +216,11 @@ export interface ComponentNameToClassKey {
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;
+  MuiNumberField: NumberFieldClassKey;
   MuiOutlinedInput: OutlinedInputClassKey;
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
-  MuiNumberField: NumberFieldClassKey;
   MuiPopover: PopoverClassKey;
   MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;

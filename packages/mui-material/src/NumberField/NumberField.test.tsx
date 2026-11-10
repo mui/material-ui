@@ -1578,9 +1578,14 @@ describe('<NumberField />', () => {
           'MUI: "controlsPosition" is invalid: invalid. Use "stacked", "end", "split" or false. Falling back to "end".',
         );
         expect(screen.getByRole('textbox', { name: 'Amount' })).not.toBeNull();
+
         const [expectedDecreaseButton, expectedIncreaseButton] = screen.getAllByRole('button');
         expect(expectedDecreaseButton).to.have.attribute('aria-label', 'Decrease');
         expect(expectedIncreaseButton).to.have.attribute('aria-label', 'Increase');
+
+        const group = expectedDecreaseButton.parentElement;
+        expect(expectedIncreaseButton.parentElement).to.equal(group);
+        expect(group).to.have.class('MuiInputAdornment-positionEnd');
       } finally {
         console.error = consoleError;
       }

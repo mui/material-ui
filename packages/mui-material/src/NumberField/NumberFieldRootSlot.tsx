@@ -48,8 +48,10 @@ const NumberFieldRootSlot = React.forwardRef(
     };
     const { id, label, helperText } = materialProps;
 
-    const labelId = label && id ? `${id}-label` : undefined;
-    const helperTextId = id ? `${id}-helper-text` : undefined;
+    const hasLabel = label != null && label !== '';
+    const hasHelperText = helperText != null && helperText !== '';
+    const labelId = hasLabel && id ? `${id}-label` : undefined;
+    const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
 
     const classes = useUtilityClasses(ownerState);
 
@@ -83,9 +85,6 @@ const NumberFieldRootSlot = React.forwardRef(
       ownerState,
       className: undefined,
     });
-
-    const hasLabel = label != null && label !== '';
-    const hasHelperText = helperText != null && helperText !== '';
 
     // FormControl needs the adornment before effects run to initialize label shrink.
     const resolvedInputSlotProps = resolveComponentProps(

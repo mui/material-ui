@@ -20,7 +20,12 @@ import FilledInput from '../FilledInput';
 import Input from '../Input';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
 import InputAdornment from '../InputAdornment';
-import { getControlElements, resolveInputProps, useUtilityClasses } from './utils';
+import {
+  getControlElements,
+  omitNullishEventHandlers,
+  resolveInputProps,
+  useUtilityClasses,
+} from './utils';
 import IconButton from '../IconButton';
 import type { IconButtonProps } from '../IconButton';
 import NumberFieldButtonSlot from './NumberFieldButtonSlot';
@@ -184,7 +189,7 @@ const NumberFieldInputSlot = React.forwardRef(
 
     const classes = useUtilityClasses(ownerState);
 
-    const InputComponent = variantComponent[materialProps.variant ?? 'standard'];
+    const InputComponent = variantComponent[materialProps.variant];
     const inputLabelSlotProps = resolveComponentProps(
       externalForwardedProps.slotProps?.inputLabel,
       ownerState,
@@ -317,12 +322,7 @@ const NumberFieldInputSlot = React.forwardRef(
       children: scrubAreaChildren,
       ...restScrubAreaProps
     } = scrubAreaSlotProps;
-    // Unset consumer handlers must preserve Base UI's internal handlers.
-    const scrubAreaProps = Object.fromEntries(
-      Object.entries(restScrubAreaProps).filter(
-        ([key, value]) => !(/^on[A-Z]/.test(key) && value == null),
-      ),
-    ) as typeof restScrubAreaProps;
+    const scrubAreaProps = omitNullishEventHandlers(restScrubAreaProps);
 
     const { disabled: decrementButtonDisabled, ...restDecrementButtonProps } =
       decrementButtonProps as IconButtonProps;
