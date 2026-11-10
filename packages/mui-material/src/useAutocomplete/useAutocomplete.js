@@ -165,24 +165,25 @@ function useAutocomplete(props) {
 
   const id = useId(idProp);
 
-  let getOptionLabel = getOptionLabelProp;
-
-  getOptionLabel = (option) => {
-    const optionLabel = getOptionLabelProp(option);
-    if (typeof optionLabel !== 'string') {
-      if (process.env.NODE_ENV !== 'production') {
-        const erroneousReturn =
-          optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
-        console.error(
-          `MUI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
-            option,
-          )}.`,
-        );
+  const getOptionLabel = React.useCallback(
+    (option) => {
+      const optionLabel = getOptionLabelProp(option);
+      if (typeof optionLabel !== 'string') {
+        if (process.env.NODE_ENV !== 'production') {
+          const erroneousReturn =
+            optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
+          console.error(
+            `MUI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
+              option,
+            )}.`,
+          );
+        }
+        return String(optionLabel);
       }
-      return String(optionLabel);
-    }
-    return optionLabel;
-  };
+      return optionLabel;
+    },
+    [componentName, getOptionLabelProp],
+  );
 
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
