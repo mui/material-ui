@@ -49,3 +49,18 @@ If you didn't use `useFlexGap`, check your layouts for these differences:
 #### DialogActions, CardActions and AccordionActions
 
 If you customized the space between the actions, through the `spacing` style override or a margin on the actions, set `gap` on the root instead.
+
+### SpeedDial generated ids
+
+`SpeedDial` no longer derives the ids of its actions container and actions from `ariaLabel`.
+The ids are now based on the `id` prop, or on a generated unique id when it is omitted.
+This avoids duplicate ids when several speed dials share the same `ariaLabel`.
+
+If you target these ids in CSS or tests, pass an explicit `id`:
+
+```diff
+-<SpeedDial ariaLabel="Actions" />
++<SpeedDial ariaLabel="Actions" id="Actions" />
+```
+
+The ids are then `Actions-actions` for the actions container and `Actions-action-0`, `Actions-action-1`, and so on for each action.
