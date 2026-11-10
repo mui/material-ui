@@ -4,10 +4,10 @@ Every check below is a bug that a previous build of a Material UI component on B
 
 ## Composition
 
-- [ ] **A styled part's `render` keeps its Material base.** With `render={<section />}`, the element is a `<section>` that still has the base's classes (`MuiPaper-root`, `MuiPaper-elevation8`) and no Material prop as a DOM attribute (`elevation`). Detect: the `render` test. [adapter.md, Public `render`]
-- [ ] **A render function receives the Base UI state.** A test reads `state.open` or `state.side` inside `render`. [adapter.md, Public `render`]
+- [ ] **A styled part's `render` keeps its Material base.** With `render={<section />}`, the element is a `<section>` that still has its own root class, the classes of its Material base if it has one (`MuiPaper-root`, `MuiPaper-elevation8`), and no Material prop as a DOM attribute (`elevation`). Detect: the `render` test. [adapter.md, Public `render`]
+- [ ] **A render function receives the Base UI state.** A test reads a Base UI state field inside `render` (`state.open`, `state.side`), or, when the state is empty (Meter), asserts that it receives an object. [adapter.md, Public `render`]
 - [ ] **A custom `slots.root` receives no render wiring.** No `render`, `renderState`, `component`, or `as` prop arrives. Detect: the `slots.root` test. [adapter.md, Public `render`]
-- [ ] **`component` does nothing.** The types reject it on the part and on `slotProps.<slot>`, and a `component` passed from JavaScript does not change the element. Detect: the spec file and a runtime test. [adapter.md, Public component]
+- [ ] **`component` does nothing.** The types reject it on the part and on `slotProps.<slot>`, and a `component` passed from JavaScript, at the top level or in `slotProps.root` with `render`, does not change the element or leak `render` onto it. Detect: the spec file and the runtime tests. [adapter.md, Public component]
 - [ ] **No internal prop reaches the DOM.** Inspect the rendered root in a test: no `render`, `classes`, `ownerState`, `elevation`, or unpicked Base UI prop. [adapter.md, Public component]
 
 ## Props and types

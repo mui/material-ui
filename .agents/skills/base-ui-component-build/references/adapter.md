@@ -178,7 +178,7 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
 
 - The description JSDoc (one sentence, then the Demos and API links) sits directly above `const <Name><Part> = React.forwardRef`. `pnpm docs:api` reads the API page description from it.
 - Take `render`, `className`, and `classes` out of `other`. The adapter applies them; left in `other`, `useSlot` would also spread them onto the slot.
-- Pass `component: undefined` in `externalForwardedProps`. The types already reject `component`, but `useSlot` would still honor one passed from JavaScript.
+- Pass `component: undefined` in `externalForwardedProps`, and pass `slotProps` through `omitComponentFromSlotProps` (`packages/mui-material/src/utils/omitComponentFromSlotProps.ts`) as you destructure it. The types already reject `component`, but `useSlot` would still honor one passed from JavaScript, at the top level or in `slotProps.<slot>`. A `slotProps.root.component` also skips the `render` check in `useSlot`, which then leaks `render` and `renderState` onto the element. Put the cleaned `slotProps` in `ownerState` too when a slot reads it from there.
 - Pass each picked behavior prop to the Base UI part by name. `undefined` is fine for these; Base UI applies its own default.
 - Choose Material defaults where Material design differs from Base UI (a popup offset of 8, `elevation` 8), and document them with `@default`.
 - Run `pnpm proptypes` to generate `propTypes`; never write them by hand. Some Base UI types expand into huge or machine-specific shapes. For these props, write the value yourself with the ignore marker inside it, and the generator keeps it:

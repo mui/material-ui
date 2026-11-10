@@ -83,4 +83,4 @@ Run, in this order:
 
 Then go through every check in [references/verify.md](references/verify.md).
 
-Done when every command passes and every check in `verify.md` is ticked, with the evidence (test name, command output, or file and line) written next to it in your final report. The report also tells the author that the component is not in the accessibility suite yet (see [references/testing.md](references/testing.md#visual-and-accessibility)).
+Done when every command passes and every check in `verify.md` is ticked, with the evidence (test name, command output, or file and line) written next to it in your final report. A check that cannot apply to the component (item checks for a meter) is marked `N/A: <reason>` instead. The report also tells the author that the component is not in the accessibility suite yet (see [references/testing.md](references/testing.md#visual-and-accessibility)).

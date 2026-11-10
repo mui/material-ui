@@ -49,7 +49,7 @@ Test through the Material UI parts, not the Base UI ones:
 - Theme `defaultProps`, `styleOverrides`, and `variants` reaching each part, and a `styleOverrides` rule that targets a live-state class.
 - Server rendering with `createRenderer().renderToString` for parts whose first render depends on state (form fields, formatted values).
 
-jsdom runs no CSS animations, so a closing popup unmounts at once; in Chromium the exit transition keeps it mounted with the closed data attribute. Assert the close through `onOpenChange`, plus "absent, or present with the closed data attribute".
+After a close, wait until the popup is removed (`await waitFor(() => expect(screen.queryByText(…)).to.equal(null))`), then assert that `onOpenChangeComplete` was called once, with `false`; reset its spy after the first render, because a `defaultOpen` popup calls it with `true` on mount. This passes in jsdom, which removes the popup at once, and in Chromium, where the exit transition runs first. Never guard the assertion with `if (popup)`, which passes without checking anything.
 
 ## `render`
 
@@ -62,7 +62,7 @@ For each part with a public `render` prop:
 - A render function receives the Base UI state (`state.open`, `state.side`).
 - The user's `render` element's own children replace the part's children, as Base UI defines.
 - With `slots.root` set, the custom root receives no `render` or `component` prop.
-- A `component` prop passed without types (`// @ts-expect-error`) does not change the element.
+- A `component` prop passed without types (`// @ts-expect-error`), at the top level or in `slotProps.root` together with `render`, does not change the element and puts no `render` or `renderstate` attribute on it.
 - For a part that declares `nativeButton`: rendered as a different tag with the matching `nativeButton` (`render={<div />}` with `nativeButton={false}` on a trigger, `render={<button />}` with `nativeButton` on an item), it still activates with Enter and Space.
 
 ## Data attributes
