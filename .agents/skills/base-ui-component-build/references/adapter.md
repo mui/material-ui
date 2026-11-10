@@ -105,7 +105,9 @@ export interface PreviewCardPopupOwnerState extends PreviewCardPopupProps {
 - Pick behavior props only. ARIA and HTML props that Base UI computes (`aria-valuetext`, `id`) come through the HTML attributes, so they override Base UI only when the user sets them.
 - A picked prop whose default you change (`sideOffset` above) leaves `Pick` and is redeclared with indexed access and its own JSDoc `@default`. `pnpm docs:api` fails when the JSDoc default and the runtime default disagree.
 - Every prop gets a JSDoc comment with its `@default`; optional props are typed `| undefined`. `pnpm proptypes` and the API docs read these comments.
-- Picked props bring Base UI's JSDoc, which can name Base UI APIs (`PreviewCard.createHandle()`). Redeclare such a prop with indexed access and Material wording (`createPreviewCardHandle()`).
+- Picked props bring Base UI's JSDoc, which can name Base UI APIs (`PreviewCard.createHandle()`) or parts that are not public in Material UI (`keepMounted` "on the portal"). Redeclare such a prop with indexed access and Material wording (`createPreviewCardHandle()`, `keepMounted` on `PreviewCardPopup`).
+- A part built on a Material component (`Paper`) gets an API page that says it inherits that component's API. Accept that component's own presentation props too (`Pick<PaperProps, 'square' | 'variant'>`), so the claim holds for TypeScript users.
+- A Base UI part that is generic over a payload (a trigger with `handle` and `payload`) stays generic: declare `<Name><Part>Props<Payload = unknown>` and cast the default export to `<Payload = unknown>(props: <Name><Part>Props<Payload> & React.RefAttributes<HTMLElement>) => React.JSX.Element`. Type the ref as `HTMLElement`, because users render any element.
 - Type `slotProps.<slot>` with `SlotComponentProps<'<tag>', { sx?: … }, OwnerState>` from `@mui/utils/types`. The repo's `SlotProps` type includes `component`, which no part accepts. For a slot built on a Material component, pass that component's props without `component` as the second argument: `SlotComponentProps<'div', Omit<PaperProps, 'component'>, OwnerState>`, so users can still set `variant` or `square`.
 - Export `<Name><Part>Props`, `<Name><Part>OwnerState`, `<Name><Part>Slots`, and `<Name><Part>SlotProps`.
 
@@ -183,10 +185,11 @@ PreviewCardPopup.propTypes /* remove-proptypes */ = {
 - Choose Material defaults where Material design differs from Base UI (a popup offset of 8, `elevation` 8), and document them with `@default`.
 - Run `pnpm proptypes` to generate `propTypes`; never write them by hand. Some Base UI types expand into huge or machine-specific shapes. For these props, write the value yourself with the ignore marker inside it, and the generator keeps it:
 
-  | Prop type                                            | Value                                                                                                         |
-  | :--------------------------------------------------- | :------------------------------------------------------------------------------------------------------------ |
-  | A class instance: a `handle`, `Intl.LocalesArgument` | `PropTypes /* @typescript-to-proptypes-ignore */.object` (or `.oneOfType` with `string`/`array` for a locale) |
-  | `children` that is a node or a function              | `PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([PropTypes.node, PropTypes.func])`                 |
+  | Prop type                                              | Value                                                                                                                            |
+  | :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+  | A class instance: a `handle`, `Intl.LocalesArgument`   | `PropTypes /* @typescript-to-proptypes-ignore */.object` (or `.oneOfType` with `string`/`array` for a locale)                    |
+  | `children` that is a node or a function                | `PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([PropTypes.node, PropTypes.func])`                                    |
+  | An element: `anchor`, `container`, `collisionBoundary` | `PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([HTMLElementType, PropTypes.object, …])`, as `Popper` and `Portal` do |
 
   A `slots.transition` typed `React.ElementType | null` expands into every HTML tag; type it `React.JSXElementConstructor<TransitionProps & { children: React.ReactElement }> | null` instead.
 

@@ -47,6 +47,8 @@ Test through the Material UI parts, not the Base UI ones:
 - Each way the component closes, one test each, asserting `eventDetails.reason`: for a hover card, the pointer leaving the trigger (`trigger-hover`), the trigger losing focus (`trigger-focus`), Escape (`escape-key`), and a press outside (`outside-press`). Read the reasons from the Base UI `ChangeEventReason` type and test each one that a user can cause.
 - Controlled and uncontrolled state, with the Base UI callback signature (`onOpenChange(open, eventDetails)`, asserting `eventDetails.reason`).
 - Theme `defaultProps`, `styleOverrides`, and `variants` reaching each part, and a `styleOverrides` rule that targets a live-state class.
+- Timing props (`delay`, `closeDelay`) with a fake clock (`clock.withFakeTimers()` in a `describe`): nothing happens 1ms before the delay, and the change happens at the delay. Do not test them only with `delay={0}`.
+- Every default that differs from Base UI, measured in Chromium (`it.skipIf(isJsdom())`): the 8px gap between the trigger and the popup, and the gap with an explicit `sideOffset`.
 - Server rendering with `createRenderer().renderToString` for parts whose first render depends on state (form fields, formatted values).
 
 After a close, wait until the popup is removed (`await waitFor(() => expect(screen.queryByText(…)).to.equal(null))`), then assert that `onOpenChangeComplete` was called once, with `false`; reset its spy after the first render, because a `defaultOpen` popup calls it with `true` on mount. This passes in jsdom, which removes the popup at once, and in Chromium, where the exit transition runs first. Never guard the assertion with `if (popup)`, which passes without checking anything.

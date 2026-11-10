@@ -20,7 +20,7 @@ A Base UI part that the Material design does not need (an arrow, a viewport) can
 
 - Pick the state and behavior props: `open`, `defaultOpen`, `onOpenChange`, `onOpenChangeComplete`, `actionsRef`, and the component-specific ones.
 - Wrap children in Base UI `DirectionProvider` fed by Material UI's `useRtl()`, so Base UI keyboard handling follows the theme direction.
-- The root has no slots, classes, or styles. Its theme entry supports `defaultProps` only.
+- The root has no slots, classes, or styles. Its theme entry supports `defaultProps` only. It drops every prop it does not pick, so wrap its `propTypes` with `exactProp` in development, as `NoSsr` and `Portal` do; the API page then says it does not spread props.
 
 ```tsx
 import { DirectionProvider } from '@base-ui/react/direction-provider';

@@ -14,6 +14,7 @@ Every check below is a bug that a previous build of a Material UI component on B
 
 - [ ] **Parts that render an element accept HTML attributes.** `<Part id="x" onClick={fn} aria-label="y">` type-checks. Detect: the spec file. [adapter.md, Types]
 - [ ] **ARIA values that Base UI computes survive.** With the ARIA prop omitted, the attribute Base UI computes (`aria-valuetext`, `aria-labelledby`) is present. Detect: a behavior test without the prop. [adapter.md, Types]
+- [ ] **Ids that Base UI links survive `slotProps`.** With `slotProps.label.id` set, the root's `aria-labelledby` points at it and the accessible name holds, and `renderToString` output already has `aria-labelledby`. Detect: both tests. [single-component.md, Structure]
 - [ ] **Changed defaults are redeclared.** Every prop whose Material default differs from Base UI's is outside `Pick`, with its own `@default`. Detect: `pnpm docs:api` passes. [adapter.md, Types]
 - [ ] **Optional props are typed `| undefined`.** Detect: eslint `mui/add-undef-to-optional`.
 
@@ -25,6 +26,7 @@ Every check below is a bug that a previous build of a Material UI component on B
 - [ ] **No giant propTypes from Base UI types.** Every prop in the ignore-marker table of `adapter.md` (a `handle` or other class instance, `Intl.LocalesArgument`, `children` that is a node or a function) has its value written with `/* @typescript-to-proptypes-ignore */`; `slots` does not. [adapter.md, Public component]
 - [ ] **The API JSON is complete.** For each part, `docs/pages/material-ui/api/<kebab-part>.json` has non-empty `props`, its classes under `classes` or under `slots`, both `@mui/material/<Name><Part>` and `@mui/material` imports, and a non-empty `componentDescription` in the matching translations file. [adapter.md, Public component]
 - [ ] **`docs:api` deleted nothing.** `git status` shows no deleted files under `docs/pages/system/api/`. A failed `docs:api` run deletes them; fix the failure and run it again.
+- [ ] **API types are readable.** No `type.description` in the API JSON contains `(props, propName)`; an element-typed prop is written by hand with `HTMLElementType`. [adapter.md, Public component]
 - [ ] **Formatting runs last.** `pnpm prettier` after `docs:api` leaves no diff.
 
 ## Overlays

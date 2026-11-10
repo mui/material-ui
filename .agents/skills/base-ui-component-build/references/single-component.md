@@ -20,6 +20,7 @@ Base Root  → slot `root`  (an existing Material container, for example FormCon
 - The public component renders the Base UI `Root` and passes each picked behavior prop to it.
 - `Root`'s `render` callback renders the root slot adapter. Each inner Base UI part has its own `render` callback. Inner slots that differ only in slot name and styled element can share one adapter that takes the slot name.
 - Slots that have no Base UI part (label, helper text) still go through `useSlot`, with `elementType` set to the Material component.
+- Base UI links some parts by id: `Meter.Label` registers its `id` prop with the root, which points `aria-labelledby` at it. A `slotProps.label.id` only reaches the DOM element, so `aria-labelledby` would point at an id that no longer exists. Resolve the slot props (`resolveComponentProps(slotProps?.label, ownerState)`), fall back to `useId()`, and pass the id to the Base UI part's `id` prop. Base UI registers the id in a layout effect, so the server output has no `aria-labelledby`; pass `aria-labelledby={labelId}` to the root yourself while the label is rendered.
 - Presentation props follow the closest existing Material component: a field takes `variant`, `size`, `color`, `fullWidth`, `label`, `helperText`, and `error` like `TextField`; a meter takes `color` like `LinearProgress`.
 
 ## Display components

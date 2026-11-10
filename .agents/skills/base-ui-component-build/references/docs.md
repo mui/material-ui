@@ -55,6 +55,8 @@ In page prose, write the brand names with a non-breaking space (`Material UI`, `
 - Every `href` in a demo points at a heading anchor that exists on the page (`#detached-triggers`) or at an external URL. `pnpm docs:build` ends with a link check that fails the build on any other in-page anchor.
 - Wrap the code readers should see in `// @focus-start` and `// @focus-end` comments; the `docs-infra/require-demo-focus` lint rule requires them.
 - Pass an explicit `locale` to anything that formats numbers or dates, so the server and the browser render the same text.
+- A demo that builds its own theme keeps the docs color mode: build it from the outer theme with `palette: { mode: outerTheme.palette.mode }` and `useTheme()`, as `CustomizedInputsStyleOverrides.tsx` does. A theme without it renders light text colors on the dark docs page.
+- Document every default that differs from Base UI on the page, with both values ("8px by default, where Base UI defaults to 0").
 - Keep demos short: inline the parts, use minimal `sx`, and use `component="p"` on `Typography` headings inside demos so the page keeps valid heading levels.
 
 Done when each demo renders in `pnpm docs:dev` without console errors, and its interaction (open, select, type) works by hand or in a browser check.
