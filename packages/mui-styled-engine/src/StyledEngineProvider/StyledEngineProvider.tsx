@@ -103,8 +103,8 @@ function getCache(injectFirst?: boolean, enableCssLayer?: boolean) {
     if (enableCssLayer) {
       const prevInsert = emotionCache.insert;
       (emotionCache as any).insert = (...args: any[]) => {
-        // Skip layer order statements and styles that Material UI already put in its sub-layers.
-        if (!args[1].styles.match(/^@layer\s[^{]*$|@layer mui\./)) {
+        // Skip layer order statements and styles already in Material UI's layer or sub-layers.
+        if (!args[1].styles.match(/^@layer\s[^{]*$|@layer mui[.{]/)) {
           // The serialized styles can be shared, for example `css` results, so they're copied.
           args[1] = { ...args[1], styles: `@layer mui {${args[1].styles}}` };
         }
