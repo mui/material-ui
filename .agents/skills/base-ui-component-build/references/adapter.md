@@ -272,7 +272,14 @@ A standalone trigger forwards `render` straight to the Base UI part, because the
 
 Make `render` required in the standalone trigger's props type. A styled trigger is a part with Material styles and follows the next paragraph.
 
-A part with Material styles keeps them when the user swaps the element. Its root slot renders `RenderElement`, which calls Base UI `useRender` with the Base UI state:
+A part with Material styles has two ways to change what renders, and they mean different things:
+
+- **`render` changes the element and keeps the styles.** `<GroupLabel render={<span className="custom" />}>` renders a `span` with the part's default styles plus `custom`. Users who want a different look override the styles, as in any styled library.
+- **`slots.root` replaces the styles.** The user's component renders instead of the styled slot, keeping Base UI behavior but none of the Material presentation.
+
+The split matches `component` and `slots` in the rest of Material UI (`docs/data/material/customization/overriding-component-structure/overriding-component-structure.md`, "Best practices"). It also matches other styled libraries: Chakra UI (`as`, `asChild`), shadcn/ui (`asChild`, and `render` on its Base UI version), Radix Themes, Mantine (`component`), HeroUI v2 (`as`), and Fluent UI v9 (`as`) all keep the default styles on the swapped element. None was found where the element-swap prop drops them. Base UI itself is unstyled, so its `render` does not settle the question; the team decided on keeping styles in November 2026.
+
+To keep the styles, the root slot renders `RenderElement`, which calls Base UI `useRender` with the Base UI state:
 
 ```tsx
 import { useRender } from '@base-ui/react/use-render';
