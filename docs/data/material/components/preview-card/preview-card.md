@@ -15,9 +15,6 @@ githubSource: packages/mui-material/src/PreviewCard
 The preview card is built on the [Base UI Preview Card](https://base-ui.com/react/components/preview-card).
 Base UI handles opening, closing, and positioning; Material UI handles the styles.
 
-The preview is a visual enhancement for sighted mouse and keyboard users.
-Screen readers only announce the link, so keep every piece of information in the popup available on the linked page too.
-
 ## Basic preview card
 
 Wrap the trigger and the popup in `PreviewCard`.
@@ -44,6 +41,10 @@ Change these values with the `delay` and `closeDelay` props on `PreviewCardTrigg
 Use the `open` and `onOpenChange` props to control the open state.
 `onOpenChange` receives the new state and the event details, including the `reason` for the change.
 
+A press outside the popup closes it with the `outside-press` reason, and that press can land on your own control.
+In this demo, pressing the switch would close the card, and the switch's change would open it again.
+To avoid this, ignore an `outside-press` change whose event target is inside the control.
+
 {{"component": "file://./demos/controlled/index.ts"}}
 
 ## Detached triggers
@@ -53,6 +54,16 @@ Create a handle with `createPreviewCardHandle()` and pass it to the `handle` pro
 Each trigger can pass a `payload`, which `PreviewCard` receives when its children is a function.
 
 {{"component": "file://./demos/detached-triggers/index.ts"}}
+
+## Accessibility
+
+The preview is a visual enhancement for sighted mouse and keyboard users.
+Screen readers announce only the link, and the popup content can't be reached by touch, keyboard, or screen reader.
+Touch input never opens the popup.
+
+- Render the trigger as a link to the page that the popup previews.
+- Keep the popup content supplementary: make every piece of information in it available on the linked page too.
+- Don't put interactive elements, such as buttons, links, or form fields, in the popup.
 
 ## Anatomy
 
@@ -87,8 +98,6 @@ You can then animate it with CSS on the `data-starting-style` and `data-ending-s
 Use the `render` prop on `PreviewCardPopup` to change the rendered element.
 The popup keeps its Material UI styles.
 A render function receives the props and the Base UI state, such as `state.open` and `state.side`.
-
-{{"component": "file://./demos/render/index.ts"}}
 
 ### Slots
 

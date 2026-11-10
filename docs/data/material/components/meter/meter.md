@@ -51,6 +51,13 @@ The `color` prop accepts the theme palette colors and `inherit`.
 
 {{"component": "file://./demos/colors/index.ts"}}
 
+## Accessibility
+
+The meter has the `meter` role, and Base UI sets `aria-valuenow`, `aria-valuemin`, `aria-valuemax`, and `aria-valuetext` on it.
+
+- Give every meter an accessible name: set `label`, or set `aria-label` when the meter has no visible label.
+- When the formatted value doesn't describe the measurement on its own, set `getAriaValueText`, as in [Custom value text](#custom-value-text).
+
 ## Anatomy
 
 ```text
@@ -67,8 +74,6 @@ Meter
 
 The `render` prop replaces the root element while keeping the meter styles and behavior.
 It accepts an element, or a function that receives the props and the Base UI state.
-
-{{"component": "file://./demos/render/index.ts"}}
 
 ### Slots
 

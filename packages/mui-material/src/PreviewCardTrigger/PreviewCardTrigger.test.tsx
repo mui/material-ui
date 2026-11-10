@@ -101,6 +101,77 @@ describe('<PreviewCardTrigger />', () => {
     expect(handleOpenChange.args[0][1].reason).to.equal('trigger-hover');
   });
 
+  it('closes the popup when the pointer leaves the trigger', async () => {
+    const handleOpenChange = spy();
+    await render(
+      <PreviewCard onOpenChange={handleOpenChange}>
+        <PreviewCardTrigger delay={0} closeDelay={0} render={<a href="#">Link</a>} />
+        <PreviewCardPopup>Content</PreviewCardPopup>
+      </PreviewCard>,
+    );
+    const trigger = screen.getByText('Link');
+    fireEvent.pointerEnter(trigger, { pointerType: 'mouse' });
+    fireEvent.mouseEnter(trigger);
+    fireEvent.mouseMove(trigger);
+    await waitFor(() => {
+      expect(handleOpenChange.lastCall.args[0]).to.equal(true);
+    });
+    fireEvent.pointerLeave(trigger, { pointerType: 'mouse' });
+    fireEvent.mouseLeave(trigger);
+    await waitFor(() => {
+      expect(handleOpenChange.lastCall.args[0]).to.equal(false);
+    });
+    expect(handleOpenChange.lastCall.args[1].reason).to.equal('trigger-hover');
+  });
+
+  it('closes the popup when the trigger loses focus', async () => {
+    const handleOpenChange = spy();
+    await render(
+      <PreviewCard onOpenChange={handleOpenChange}>
+        <PreviewCardTrigger delay={0} render={<a href="#">Link</a>} />
+        <PreviewCardPopup>Content</PreviewCardPopup>
+      </PreviewCard>,
+    );
+    const trigger = screen.getByText('Link');
+    await act(async () => {
+      trigger.focus();
+    });
+    await waitFor(() => {
+      expect(handleOpenChange.lastCall.args[0]).to.equal(true);
+    });
+    await act(async () => {
+      trigger.blur();
+    });
+    await waitFor(() => {
+      expect(handleOpenChange.lastCall.args[0]).to.equal(false);
+    });
+    expect(handleOpenChange.lastCall.args[1].reason).to.equal('trigger-focus');
+  });
+
+  it('closes the popup on a press outside', async () => {
+    const handleOpenChange = spy();
+    await render(
+      <div>
+        <button type="button">Outside</button>
+        <PreviewCard defaultOpen onOpenChange={handleOpenChange}>
+          <PreviewCardTrigger render={<a href="#">Link</a>} />
+          <PreviewCardPopup>Content</PreviewCardPopup>
+        </PreviewCard>
+      </div>,
+    );
+    const outside = screen.getByRole('button', { name: 'Outside' });
+    fireEvent.pointerDown(outside, { pointerType: 'mouse' });
+    fireEvent.mouseDown(outside);
+    fireEvent.pointerUp(outside, { pointerType: 'mouse' });
+    fireEvent.mouseUp(outside);
+    fireEvent.click(outside);
+    await waitFor(() => {
+      expect(handleOpenChange.callCount).to.equal(1);
+    });
+    expect(handleOpenChange.args[0][0]).to.equal(false);
+    expect(handleOpenChange.args[0][1].reason).to.equal('outside-press');
+  });
+
   it('passes the id to the rendered element', async () => {
     await render(
       <PreviewCard>

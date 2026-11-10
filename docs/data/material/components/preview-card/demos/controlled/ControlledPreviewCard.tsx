@@ -11,10 +11,12 @@ import Typography from '@mui/material/Typography';
 export default function ControlledPreviewCard() {
   const [open, setOpen] = React.useState(false);
   const [reason, setReason] = React.useState('none');
+  const switchLabelRef = React.useRef<HTMLLabelElement>(null);
 
   return (
     <Stack spacing={2} sx={{ alignItems: 'center' }}>
       <FormControlLabel
+        ref={switchLabelRef}
         control={
           <Switch
             checked={open}
@@ -27,6 +29,12 @@ export default function ControlledPreviewCard() {
       <PreviewCard
         open={open}
         onOpenChange={(nextOpen, eventDetails) => {
+          const pressedSwitch =
+            eventDetails.reason === 'outside-press' &&
+            switchLabelRef.current?.contains(eventDetails.event.target as Node);
+          if (pressedSwitch) {
+            return;
+          }
           setOpen(nextOpen);
           setReason(eventDetails.reason);
         }}

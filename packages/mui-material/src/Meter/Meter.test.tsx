@@ -64,6 +64,12 @@ describe('<Meter />', () => {
       expect(screen.getByRole('meter', { name: 'Battery' })).not.to.equal(null);
       expect(screen.getByText('Battery')).to.have.class(classes.label);
     });
+
+    it('names the meter with aria-label when there is no label', () => {
+      render(<Meter value={50} aria-label="Battery" />);
+
+      expect(screen.getByRole('meter', { name: 'Battery' })).not.to.equal(null);
+    });
   });
 
   describe('prop: label', () => {

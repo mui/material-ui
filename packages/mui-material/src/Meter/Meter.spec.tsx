@@ -36,7 +36,7 @@ import { createTheme } from '@mui/material/styles';
 <Meter
   value={50}
   slotProps={{
-    root: { 'data-testid': 'root' } as React.HTMLAttributes<HTMLDivElement>,
+    root: { id: 'storage' },
     label: { sx: { fontWeight: 500 } },
     value: (ownerState) => ({ sx: { color: `${ownerState.color}.main` } }),
     track: { style: { height: 8 } },
