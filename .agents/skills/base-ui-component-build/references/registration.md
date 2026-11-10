@@ -33,7 +33,7 @@ const previewCardPopupClasses: PreviewCardPopupClasses = generateUtilityClasses(
 export default previewCardPopupClasses;
 ```
 
-Add a class for each slot and for each Base UI state that users style (`open`, `highlighted`, `checked`). State names in `generateUtilityClass`'s global list (`open`, `disabled`, `checked`, `selected`, `focusVisible`, …) produce the global class (`Mui-open`), not `Mui<Name><Part>-open`, so scope selectors under the part's `root` key. Parts without styles (a root, a trigger) have no classes file.
+Add a class for each slot and for each Base UI state that users style (`open`, `highlighted`, `checked`). State names in `generateUtilityClass`'s global list (`open`, `disabled`, `checked`, `selected`, `focusVisible`, …) produce the global class (`Mui-open`), not `Mui<Name><Part>-open`, so scope selectors under the part's `root` key. Parts without styles (a root, a standalone trigger) have no classes file.
 
 ## Data attributes
 
@@ -100,7 +100,7 @@ import type { PreviewCardPopupClassKey } from '../PreviewCardPopup';
 MuiPreviewCardPopup: PreviewCardPopupClassKey;
 ```
 
-Parts without styles (root, trigger) get only `defaultProps` in `components.ts` and an entry in `props.ts`.
+Parts without styles (root, standalone trigger) get only `defaultProps` in `components.ts` and an entry in `props.ts`.
 
 Theme `variants` type `ownerState` as the component's props, so a `variants` matcher cannot read live Base UI state. Users style live state in `styleOverrides` with the classes and data attribute constants:
 

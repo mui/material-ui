@@ -64,7 +64,7 @@ Base Popup      → slot `transition`  (Grow by default)
 ```
 
 - `slots` and `slotProps` reach every element in the chain.
-- Expose a `backdrop` slot only for click-opened overlays, rendered only when the user provides it. A hover-opened overlay has none: the backdrop would catch the pointer leaving the trigger.
+- Expose a `backdrop` slot only for click-opened overlays, rendered only when the user provides it. A hover-opened overlay has none, as `Tooltip` has none.
 - A slot whose Base UI part has no state (the portal) gets the props-only `ownerState`, without live fields such as `open`.
 - Positioning props (`side`, `align`, `sideOffset`, `alignOffset`, `collisionPadding`, `anchor`) are picked from the Base UI `Positioner` and passed to it. Portal props (`container`, `keepMounted`) are picked from the Base UI `Portal`.
 - `elevation` (default 8) passes to the `Paper` root.
@@ -107,26 +107,60 @@ With `keepMounted`, Base UI hides the positioner but keeps the portal. Hide the 
 Base UI animates the popup element itself, so the Material transition clones that element without adding a wrapper. The transition is a slot like any other, created with `useSlot` as `Popover` does:
 
 ```tsx
-const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
-  elementType: Grow,
-  externalForwardedProps,
-  ownerState,
-  className: undefined,
-  additionalProps: {
-    appear: false,
-    in: baseState.open && baseState.transitionStatus !== 'starting',
-  },
+const PreviewCardPopupTransitionSlot = React.forwardRef(function PreviewCardPopupTransitionSlot(
+  props: PreviewCardPopupTransitionSlotProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const { baseProps, baseState, ownerState, externalForwardedProps, transitionDuration } = props;
+
+  const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps: {
+      slots: { transition: externalForwardedProps.slots?.transition ?? undefined },
+      slotProps: {
+        transition: externalForwardedProps.slotProps?.transition as
+          | Record<string, unknown>
+          | ((ownerState: PreviewCardPopupOwnerState) => Record<string, unknown>)
+          | undefined,
+      },
+    },
+    ownerState,
+    className: undefined,
+    additionalProps: {
+      appear: false,
+      in: baseState.open && baseState.transitionStatus !== 'starting',
+    },
+  });
+
+  const rootSlot = (
+    <PreviewCardPopupRootSlot
+      ref={ref}
+      baseProps={baseProps}
+      baseState={baseState}
+      ownerState={ownerState}
+      externalForwardedProps={externalForwardedProps}
+    />
+  );
+
+  if (externalForwardedProps.slots?.transition === null) {
+    return rootSlot;
+  }
+
+  const timeout =
+    transitionDuration === 'auto' &&
+    !(TransitionSlot as { muiSupportAuto?: boolean | undefined }).muiSupportAuto
+      ? undefined
+      : transitionDuration;
+
+  return (
+    <TransitionSlot {...transitionSlotProps} timeout={timeout}>
+      {rootSlot}
+    </TransitionSlot>
+  );
 });
-
-const timeout =
-  transitionDuration === 'auto' && !TransitionSlot.muiSupportAuto ? undefined : transitionDuration;
-
-return (
-  <TransitionSlot {...transitionSlotProps} timeout={timeout}>
-    <PreviewCardPopupRootSlot baseProps={baseProps} baseState={baseState} ownerState={ownerState} />
-  </TransitionSlot>
-);
 ```
+
+This is `packages/mui-material/src/PreviewCardPopup/PreviewCardPopupTransitionSlot.tsx`; read the file for its imports and props interface.
 
 - `Grow` clones its child and injects `style` and `ref`. The root slot adapter accepts those extra props and merges them: `getSlotProps: (handlers) => mergeProps(baseProps, transitionChildProps, handlers)`.
 - Base UI `mergeProps` does not merge `ref`. Combine the transition's ref, the Base UI popup ref (`baseProps.ref`), and the forwarded ref with `useForkRef`.
@@ -140,7 +174,7 @@ return (
 - Build the item root on `ButtonBase` (or the existing Material item styles), so ripple, focus-visible, and `disableRipple` behave like other Material UI items.
 - Pick `nativeButton` on every item part that declares it (`Item`, `CheckboxItem`, `RadioItem`, `SubmenuTrigger`). Base UI defaults it to `false` for items, so a user who renders a real `<button>` must set it to `true`.
 - Build links on Base UI `LinkItem` as their own public part (`<Name>LinkItem`), not as an item with `render={<a />}`. Base UI added `LinkItem` because items rendered as `<a>` broke Enter and Space navigation and allowed disabled links ([base-ui#1225](https://github.com/mui/base-ui/issues/1225), [#1746](https://github.com/mui/base-ui/issues/1746), [#2126](https://github.com/mui/base-ui/issues/2126)).
-- Set `event.defaultMuiPrevented = true` in the slot's `onKeyDown` and `onKeyUp`. Base UI already activates the item on Enter and Space; without this, `ButtonBase` activates it a second time.
+- Base UI already activates the item on Enter and Space, and `ButtonBase` rendered as a non-button element activates it a second time. Set `event.defaultMuiPrevented = true` in the slot's `onKeyDown` and `onKeyUp` to stop `ButtonBase`, as Menu v2 does ([#48823](https://github.com/mui/material-ui/pull/48823)). Only `useButtonBase` versions that read the flag honor it: check that `packages/mui-material/src/ButtonBase/useButtonBase.ts` reads `defaultMuiPrevented`. If it does not, #48823 has not landed yet; stop and report it, because items would activate twice.
 - Merge Base UI item state (`highlighted`, `checked`, `disabled`) into `ownerState` and add utility classes for it (`highlighted`, plus the global `Mui-disabled`).
 - Style keyboard focus with `.Mui-focusVisible` and pointer hover with `:hover`. The highlighted state follows both, so it is not a hover style.
 - Indicators are an `indicator` slot of their item, rendered with `keepMounted`, so checked and unchecked rows keep the same layout.

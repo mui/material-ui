@@ -55,7 +55,6 @@ Write the parts like this:
 A scenario file is the code an end user would write, and the RFC quotes it as is. Keep it free of capture logic. For example, `.shape/menubar/scenarios/basic/recommended.tsx`:
 
 ```tsx
-import Button from '@mui/material/Button';
 import {
   Menubar,
   MenubarMenu,
@@ -68,7 +67,7 @@ export default function Example({ defaultOpen }: { defaultOpen?: boolean }) {
   return (
     <Menubar>
       <MenubarMenu defaultOpen={defaultOpen}>
-        <MenubarTrigger render={<Button>File</Button>} />
+        <MenubarTrigger>File</MenubarTrigger>
         <MenubarPopup>
           <MenubarItem>New file</MenubarItem>
         </MenubarPopup>

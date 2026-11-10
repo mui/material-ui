@@ -9,7 +9,7 @@ Base UI owns behavior; Material UI owns presentation.
 The finished component is _indistinguishable_ from any other Material UI component in theming, imports, tests, and docs.
 The only new thing is the Base UI part underneath.
 
-Scope: **new components**, ones Material UI has never had (number field, preview card, menubar).
+Scope: **new components**, ones Material UI has never had (for example: number field, preview card, menubar).
 A Base UI successor to an existing component (Menu v2 replacing Menu) ships under `Unstable_<Name>2` subpaths with a migration guide; this skill does not cover it.
 
 `<Name>` below stands for the component name, such as `PreviewCard`; `<name>` is its camelCase form and `<kebab-name>` its kebab-case form.

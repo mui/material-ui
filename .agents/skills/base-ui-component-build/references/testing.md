@@ -89,7 +89,7 @@ Leave `data-*` keys out of `slotProps` in the spec, and never cast them in. Slot
 
 - Every docs demo is a visual regression fixture automatically (`test/regressions/README.md`). Add a fixture under `test/regressions/fixtures/<Name>/` only for a state no demo shows, such as an open popup on each side.
 - For an overlay, add accessibility fixtures under `test/regressions/a11y/fixtures/<kebab-name>/` that render the open state.
-- CI runs the visual and accessibility suites; a local run needs a build and is optional.
+- CI runs the visual suite on every demo and fixture. The accessibility suite runs only on paths that `A11Y_RULES` in `test/regressions/demoMeta.ts` enables; add a rule for the accessibility fixtures, or they never run. A local run needs a build and is optional.
 
 ## Components without Base UI state
 
