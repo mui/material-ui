@@ -90,6 +90,64 @@ This changes which styles win:
   Put resets in a layer that comes before `mui`, and declare the order with the `modularCssLayers` theme option, for example `modularCssLayers: '@layer reset, mui;'`.
 - Theme `styleOverrides` and `variants`, `styled()` and the `sx` prop now override the components' state styles, such as `:hover`, `.Mui-disabled` and `.Mui-selected`, even when they're less specific.
 
+These are the patterns that most often need a change:
+
+- **A style that should only apply in the default state.**
+  Exclude the states, or set their values too:
+
+  ```diff
+   <FormLabel
+     sx={{
+  -    color: 'text.primary',
+  +    '&:not(.Mui-focused, .Mui-error, .Mui-disabled)': {
+  +      color: 'text.primary',
+  +    },
+     }}
+   />
+  ```
+
+  ```diff
+   MuiIconButton: {
+     styleOverrides: {
+       root: ({ theme }) => ({
+         color: theme.palette.text.primary,
+  +      [`&.${iconButtonClasses.disabled}`]: {
+  +        color: theme.palette.action.disabled,
+  +      },
+       }),
+     },
+   },
+  ```
+
+- **An override that undoes a component's more specific rule.**
+  For example, an `input` override of `MuiOutlinedInput` with `padding: 0` now also removes the room that the Select leaves for its icon.
+  Set the value back for that case:
+
+  ```diff
+   MuiOutlinedInput: {
+     styleOverrides: {
+       input: {
+         padding: 0,
+  +      [`&.${selectClasses.select}`]: {
+  +        paddingRight: 32,
+  +      },
+       },
+     },
+   },
+  ```
+
+- **An `sx` value that the component sets for some breakpoints.**
+  The `sx` prop now wins at every breakpoint, so `<Grid size={{ md: 7 }} sx={{ width: '100%' }}>` is full width on large screens too.
+  Use the component's own prop instead: `<Grid size={{ xs: 12, md: 7 }}>`.
+
+- **A component's styles for its children.**
+  Rules such as the margin reset of a `Stack` with `spacing`, or the inner corners of a `ButtonGroup`, are in `mui.components`, so the children's own theme overrides, `styled()` and `sx` now win over them.
+  Drop the conflicting value from the child's styles.
+
+- **`GlobalStyles` that target Material UI components.**
+  `GlobalStyles` go in `mui.global`, the lowest sub-layer, so they no longer override the components' styles.
+  Move these rules to the theme's `styleOverrides`, to `sx` or `styled()`, or to a stylesheet outside the layers.
+
 To keep the v9 precedence between Material UI's own styles, put them all in the `mui` layer, without sub-layers:
 
 ```js
