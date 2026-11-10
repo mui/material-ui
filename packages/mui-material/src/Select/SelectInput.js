@@ -497,6 +497,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleItemClick = (child) => (event) => {
     didPointerDownOnItemRef.current = false;
 
+    if (disabled || readOnly) {
+      return;
+    }
+
     let newValue;
 
     // We use the tabindex attribute to signal the available options.

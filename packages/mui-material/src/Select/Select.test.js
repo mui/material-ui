@@ -59,6 +59,32 @@ describe('<Select />', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
+  it.each(['disabled', 'readOnly'])('ignores clicks on custom options while %s', (prop) => {
+    const CustomOption = React.forwardRef(function CustomOption(props, ref) {
+      return <MenuItem {...props} ref={ref} disabled={false} />;
+    });
+    const onChange = vi.fn();
+    const { setProps } = render(
+      <Select open defaultValue="apple" onChange={onChange}>
+        <MenuItem value="apple">Apple</MenuItem>
+        <CustomOption value="orange">Orange</CustomOption>
+      </Select>,
+    );
+
+    const orange = screen.getByRole('option', { name: 'Orange' });
+    setProps({ [prop]: true });
+    expect(screen.getByRole('listbox')).not.to.equal(null);
+    expect(orange).to.have.attribute('tabindex');
+    fireEvent.click(orange);
+    expect(onChange).not.toHaveBeenCalled();
+    expect(orange).to.have.attribute('aria-selected', 'false');
+
+    setProps({ [prop]: false });
+    fireEvent.click(orange);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(orange).to.have.attribute('aria-selected', 'true');
+  });
+
   describe('pointer interactions', () => {
     beforeEach(() => {
       clock.restore();
