@@ -2,7 +2,8 @@
 // Temporary playground for https://github.com/mui/material-ui/pull/49601. Remove before merging.
 import * as React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
-import createCache, { type EmotionCache } from '@emotion/cache';
+import createCache from '@emotion/cache';
+import type { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -397,7 +398,7 @@ function Scenario(props: {
         {description}
       </Typography>
       <Box sx={{ mb: 2 }}>{verdicts}</Box>
-      <Stack direction="row" useFlexGap sx={{ flexWrap: 'wrap', gap: 3 }}>
+      <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 3 }}>
         {children}
       </Stack>
     </Box>
