@@ -1,5 +1,7 @@
 import { alpha } from '@mui/material/styles';
+import { iconButtonClasses } from '@mui/material/IconButton';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { selectClasses } from '@mui/material/Select';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import { toggleButtonClasses } from '@mui/material/ToggleButton';
@@ -238,6 +240,10 @@ export const inputsCustomizations = {
         '&:active': {
           backgroundColor: gray[200],
         },
+        [`&.${iconButtonClasses.disabled}`]: {
+          color: (theme.vars || theme).palette.action.disabled,
+          backgroundColor: 'transparent',
+        },
         ...theme.applyStyles('dark', {
           backgroundColor: gray[800],
           borderColor: gray[700],
@@ -378,6 +384,10 @@ export const inputsCustomizations = {
     styleOverrides: {
       input: {
         padding: 0,
+        [`&.${selectClasses.select}`]: {
+          // Leave room for the Select's icon.
+          paddingRight: 32,
+        },
       },
       root: ({ theme }) => ({
         padding: '8px 12px',

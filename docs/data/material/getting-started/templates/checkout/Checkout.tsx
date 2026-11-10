@@ -90,12 +90,11 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
           </Box>
         </Grid>
         <Grid
-          size={{ sm: 12, md: 7, lg: 8 }}
+          size={{ xs: 12, md: 7, lg: 8 }}
           sx={{
             display: 'flex',
             flexDirection: 'column',
             maxWidth: '100%',
-            width: '100%',
             backgroundColor: { xs: 'transparent', sm: 'background.default' },
             alignItems: 'start',
             pt: { xs: 0, sm: 16 },

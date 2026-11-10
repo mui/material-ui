@@ -62,10 +62,13 @@ export default function NumberSpinner({
             display: 'inline-block',
             cursor: 'ew-resize',
             fontSize: '0.875rem',
-            color: 'text.primary',
             fontWeight: 500,
             lineHeight: 1.5,
             mb: 0.5,
+            // Only in the default state, to keep the focused, error and disabled colors.
+            '&:not(.Mui-focused, .Mui-error, .Mui-disabled)': {
+              color: 'text.primary',
+            },
           }}
         >
           {label}
