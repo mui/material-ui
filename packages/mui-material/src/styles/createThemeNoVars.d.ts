@@ -64,7 +64,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   /**
-   * Sub-layers are on by default, see `cssLayers`.
+   * Sub-layers are on by default, see `cssLayers`. `false` is the same as `cssLayers: 'single'`.
    * A string sets where the `mui` layer goes among the app's layers, for example `'@layer theme, base, mui, components, utilities;'`.
    */
   modularCssLayers?: boolean | string | undefined;

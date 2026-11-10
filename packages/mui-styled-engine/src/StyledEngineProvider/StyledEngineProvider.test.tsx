@@ -53,6 +53,15 @@ describe('[Emotion] StyledEngineProvider', () => {
     expect(rule).to.equal('@layer mui{@layer components{html{color:red;}}}');
   });
 
+  it('does not wrap styles that are in the mui layer already', () => {
+    render(
+      <StyledEngineProvider enableCssLayer>
+        <GlobalStyles styles={{ '@layer mui': { html: { color: 'red' } } }} />
+      </StyledEngineProvider>,
+    );
+    expect(rule).to.equal('@layer mui{html{color:red;}}');
+  });
+
   it('able to config layer order through GlobalStyles', () => {
     render(
       <StyledEngineProvider enableCssLayer>

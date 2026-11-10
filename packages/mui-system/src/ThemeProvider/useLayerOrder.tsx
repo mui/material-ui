@@ -3,7 +3,7 @@ import useId from '@mui/utils/useId';
 import { internal_useNonce as useNonce } from '@mui/styled-engine';
 import GlobalStyles from '../GlobalStyles';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
-import { CSS_LAYER_ORDER, CSS_LAYER_ORDER_STATEMENT, hasCssLayers } from '../cssLayers';
+import { getCssLayerOrderStatement } from '../cssLayers';
 
 /**
  * This hook returns a `GlobalStyles` component that sets the CSS layer order (for server-side rendering).
@@ -15,22 +15,14 @@ export default function useLayerOrder(engineTheme: any, themeId?: string | undef
   const nonce = useNonce();
   // With a `themeId`, the theme of the design system is a key of the engine theme.
   const theme = themeId ? (engineTheme[themeId] ?? engineTheme) : engineTheme;
-  const { modularCssLayers } = theme;
-  // An upper ThemeProvider whose theme has layers declared the order already, or one above it did.
+  // An upper ThemeProvider whose theme has an order declared it already, or one above it did.
   // When it can't be told, the order is declared again, which is harmless.
-  const upperHasLayers =
+  const upperDeclaredOrder =
     upperTheme !== null &&
-    (hasCssLayers(upperTheme) || (themeId !== undefined && hasCssLayers(upperTheme[themeId])));
+    (getCssLayerOrderStatement(upperTheme) !== '' ||
+      (themeId !== undefined && getCssLayerOrderStatement(upperTheme[themeId]) !== ''));
 
-  let layerOrder = CSS_LAYER_ORDER;
-
-  if (!hasCssLayers(theme) || upperHasLayers) {
-    layerOrder = '';
-  } else if (typeof modularCssLayers === 'string') {
-    layerOrder = modularCssLayers.replace(/mui(?!\.)/g, layerOrder);
-  } else {
-    layerOrder = CSS_LAYER_ORDER_STATEMENT;
-  }
+  const layerOrder = upperDeclaredOrder ? '' : getCssLayerOrderStatement(theme);
 
   useEnhancedEffect(() => {
     const head = document.querySelector('head');

@@ -29,7 +29,7 @@ function getLayerNames() {
 describe.skipIf(isJsdom())('CSS layers', () => {
   const { render } = createRenderer();
 
-  const accordionTheme = (cssLayers?: boolean) =>
+  const accordionTheme = (cssLayers?: true | 'single') =>
     createTheme({
       cssLayers,
       components: { MuiAccordion: { styleOverrides: { root: { margin: 0 } } } },
@@ -94,9 +94,9 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     });
   });
 
-  it('keeps the v9 precedence with `cssLayers: false`', () => {
+  it("keeps the v9 precedence with `cssLayers: 'single'`", () => {
     render(
-      <ThemeProvider theme={accordionTheme(false)}>
+      <ThemeProvider theme={accordionTheme('single')}>
         <Accordion defaultExpanded data-testid="accordion">
           <AccordionSummary>Summary</AccordionSummary>
         </Accordion>
@@ -107,6 +107,37 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     );
 
     expect(screen.getByTestId('accordion')).toHaveComputedStyle({ marginBottom: '16px' });
+  });
+
+  it("keeps mui where the app's CSS declares it with `cssLayers: 'single'`", () => {
+    removeLayerOrders();
+    // Tailwind CSS v4's setup: the layer order, then preflight in `base`, before Material UI.
+    const appStyles = document.createElement('style');
+    appStyles.textContent =
+      '@layer theme, base, mui, components, utilities; @layer base { button { padding-top: 0; } }';
+    document.head.prepend(appStyles);
+    try {
+      render(
+        <ThemeProvider theme={createTheme({ cssLayers: 'single' })}>
+          <Button>Hello</Button>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '6px' });
+    } finally {
+      appStyles.remove();
+    }
+  });
+
+  it("lets unlayered CSS override the component styles with `cssLayers: 'single'`", () => {
+    render(
+      <ThemeProvider theme={createTheme({ cssLayers: 'single' })}>
+        <style>{'.MuiButton-root { padding-top: 3px; }'}</style>
+        <Button>Hello</Button>
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '3px' });
   });
 });
 
@@ -144,23 +175,25 @@ describe('CSS layers: generated styles', () => {
     return (container.firstChild as HTMLElement).className;
   }
 
-  function renderWithLayersInBetween(element: React.ReactElement) {
-    const v9Theme = createTheme({ cssLayers: false });
-    const { container, unmount } = render(<ThemeProvider theme={v9Theme}>{element}</ThemeProvider>);
+  function renderWithSubLayersInBetween(element: React.ReactElement) {
+    const singleTheme = createTheme({ cssLayers: 'single' });
+    const { container, unmount } = render(
+      <ThemeProvider theme={singleTheme}>{element}</ThemeProvider>,
+    );
     const className = getClassName(container);
     unmount();
     render(<ThemeProvider theme={createTheme()}>{element}</ThemeProvider>).unmount();
-    const view = render(<ThemeProvider theme={v9Theme}>{element}</ThemeProvider>);
+    const view = render(<ThemeProvider theme={singleTheme}>{element}</ThemeProvider>);
     return [className, getClassName(view.container)];
   }
 
-  it('keeps the styles of a component without layers after rendering it with layers', () => {
-    const [before, after] = renderWithLayersInBetween(<PlainDiv />);
+  it('keeps the styles of a component in a single layer after rendering it with sub-layers', () => {
+    const [before, after] = renderWithSubLayersInBetween(<PlainDiv />);
     expect(after).to.equal(before);
   });
 
-  it('keeps the styles with variants without layers after rendering them with layers', () => {
-    const [before, after] = renderWithLayersInBetween(<VariantsDiv tone="blue" />);
+  it('keeps the styles with variants in a single layer after rendering them with sub-layers', () => {
+    const [before, after] = renderWithSubLayersInBetween(<VariantsDiv tone="blue" />);
     expect(after).to.equal(before);
   });
 
@@ -209,16 +242,19 @@ describe('CSS layers: generated styles', () => {
     expect(shared.styles).to.equal(styles);
   });
 
-  it('declares the layer order under a ThemeProvider without layers', () => {
+  it('declares the sub-layer order under a ThemeProvider with a single layer', () => {
     removeLayerOrders();
     render(
-      <ThemeProvider theme={createTheme({ cssLayers: false })}>
+      <ThemeProvider theme={createTheme({ cssLayers: 'single' })}>
         <ThemeProvider theme={createTheme()}>
           <Button>Hello</Button>
         </ThemeProvider>
       </ThemeProvider>,
     );
-    expect(document.head.querySelector('style[data-mui-layer-order]')).not.to.equal(null);
+    const orders = Array.from(document.head.querySelectorAll('style[data-mui-layer-order]')).map(
+      (element) => element.textContent,
+    );
+    expect(orders).to.include('@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;');
   });
 
   it('declares the layer order for a scoped theme', () => {
@@ -231,8 +267,52 @@ describe('CSS layers: generated styles', () => {
     expect(document.head.querySelector('style[data-mui-layer-order]')).not.to.equal(null);
   });
 
-  it('turns layers off with modularCssLayers: false', () => {
-    expect(createTheme({ modularCssLayers: false }).cssLayers).to.equal(false);
-    expect(createTheme({ cssVariables: true, modularCssLayers: false }).cssLayers).to.equal(false);
+  it("puts every style in the mui layer with cssLayers: 'single'", () => {
+    removeLayerOrders();
+    const inserted: string[] = [];
+    const theme = createTheme({
+      cssLayers: 'single',
+      components: { MuiButton: { styleOverrides: { root: { paddingTop: 3 } } } },
+    });
+    const CustomButton = styled(Button)({ paddingBottom: 3 });
+    render(
+      <ThemeProvider theme={theme}>
+        <CaptureStyles inserted={inserted} />
+        <GlobalStyles styles={{ html: { color: 'blue' } }} />
+        <CustomButton sx={{ color: 'rgb(255, 0, 0)' }}>Hello</CustomButton>
+      </ThemeProvider>,
+    );
+
+    const styles = inserted.join('');
+    expect(new Set(styles.match(/@layer [^{;]+/g))).to.deep.equal(new Set(['@layer mui']));
+    // The global styles, the theme overrides, `styled()` and `sx`.
+    expect(styles).to.include('@layer mui{html{color:blue;}}');
+    expect(styles).to.include('@layer mui{padding-top:3px;');
+    expect(styles).to.include('@layer mui{padding-bottom:3px;}');
+    expect(styles).to.include('@layer mui{color:rgb(255, 0, 0);}');
+    // As with v9's `enableCssLayer`, `mui` takes its place among the app's layers.
+    expect(document.head.querySelector('style[data-mui-layer-order]')).to.equal(null);
+  });
+
+  it('uses a single layer with modularCssLayers: false', () => {
+    expect(createTheme({ modularCssLayers: false }).cssLayers).to.equal('single');
+    expect(createTheme({ cssVariables: true, modularCssLayers: false }).cssLayers).to.equal(
+      'single',
+    );
+  });
+
+  it('logs an error and keeps the layers with cssLayers: false', () => {
+    let theme: any;
+    expect(() => {
+      // @ts-expect-error CSS layers can't be turned off
+      theme = createTheme({ cssLayers: false });
+    }).toErrorDev('MUI: `cssLayers: false` is no longer supported');
+    expect(theme.cssLayers).to.equal(true);
+
+    expect(() => {
+      // @ts-expect-error CSS layers can't be turned off
+      theme = createTheme({ cssVariables: true, cssLayers: false });
+    }).toErrorDev('MUI: `cssLayers: false` is no longer supported');
+    expect(theme.cssLayers).to.equal(true);
   });
 });

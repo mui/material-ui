@@ -2,7 +2,9 @@ import deepmerge from '@mui/utils/deepmerge';
 import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
-import systemCreateTheme from '@mui/system/createTheme';
+import systemCreateTheme, {
+  private_resolveCssLayersOption as resolveCssLayersOption,
+} from '@mui/system/createTheme';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
@@ -128,6 +130,8 @@ function createThemeNoVars(options = {}, ...args) {
     typography: typographyInput = {},
     shape: shapeInput,
     colorSpace,
+    // Resolved by `systemCreateTheme()`.
+    cssLayers: cssLayersInput,
     ...other
   } = options;
 
@@ -247,9 +251,7 @@ function createThemeNoVars(options = {}, ...args) {
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
-  // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
-  // `modularCssLayers: false` opts out too, as it turned the sub-layers off in v9.
-  muiTheme.cssLayers = muiTheme.cssLayers ?? muiTheme.modularCssLayers !== false;
+  muiTheme.cssLayers = resolveCssLayersOption(muiTheme.cssLayers, muiTheme.modularCssLayers);
 
   attachColorManipulators(muiTheme);
 

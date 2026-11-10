@@ -78,3 +78,25 @@ If you target these ids in CSS or tests, pass an explicit `id`:
 ```
 
 The ids are then `Actions-actions` for the actions container and `Actions-action-0`, `Actions-action-1`, and so on for each action.
+
+### CSS layers are always on
+
+Material UI puts its styles in the `mui` [cascade layer](/material-ui/customization/css-layers/), split into sub-layers: `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
+This can't be turned off: `cssLayers: false` is ignored and logs an error in development.
+
+This changes which styles win:
+
+- CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles whatever its specificity.
+  Put resets in a layer that comes before `mui`, and declare the order with the `modularCssLayers` theme option, for example `modularCssLayers: '@layer reset, mui;'`.
+- Theme `styleOverrides` and `variants`, `styled()` and the `sx` prop now override the components' state styles, such as `:hover`, `.Mui-disabled` and `.Mui-selected`, even when they're less specific.
+
+To keep the v9 precedence between Material UI's own styles, put them all in the `mui` layer, without sub-layers:
+
+```js
+const theme = createTheme({
+  cssLayers: 'single',
+});
+```
+
+This matches v9's `enableCssLayer`: `mui` goes where your CSS declares it, for example `@layer theme, base, mui, components, utilities;`.
+`modularCssLayers: false` now does the same as `cssLayers: 'single'`, and `modularCssLayers: true` can be removed, since sub-layers are the default.

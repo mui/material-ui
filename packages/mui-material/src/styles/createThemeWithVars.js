@@ -1,6 +1,7 @@
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
+import { private_resolveCssLayersOption as resolveCssLayersOption } from '@mui/system/createTheme';
 import {
   prepareCssVars,
   prepareTypographyVars,
@@ -1042,9 +1043,7 @@ export default function createThemeWithVars(options = {}, ...args) {
   };
   theme.internal_cache = {};
   theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
-  // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
-  // `modularCssLayers: false` opts out too, as it turned the sub-layers off in v9.
-  theme.cssLayers = theme.cssLayers ?? theme.modularCssLayers !== false;
+  theme.cssLayers = resolveCssLayersOption(theme.cssLayers, theme.modularCssLayers);
 
   return theme;
 }

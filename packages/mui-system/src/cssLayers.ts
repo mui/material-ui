@@ -6,25 +6,85 @@ export type CssLayer = 'global' | 'components' | 'theme' | 'custom' | 'sx';
 export const CSS_LAYER_ORDER = 'mui.global, mui.components, mui.theme, mui.custom, mui.sx';
 
 /**
- * Declares the order of Material UI's sub-layers.
- */
-export const CSS_LAYER_ORDER_STATEMENT = `@layer ${CSS_LAYER_ORDER};`;
-
-/**
  * Whether the theme puts Material UI's styles in CSS layers.
- * `createTheme()` turns them on by default, and `cssLayers: false` opts out.
+ * `createTheme()` always does: it sets `cssLayers` to `true` or `'single'`.
  * A theme object made by hand opts in with `modularCssLayers`, as in v9.
  */
 export function hasCssLayers(theme: any): boolean {
-  return theme?.cssLayers ?? Boolean(theme?.modularCssLayers);
+  return Boolean(theme?.cssLayers || theme?.modularCssLayers);
 }
 
 /**
- * Returns the full name of a sub-layer, such as `mui.sx`, or `undefined` when layers are off.
+ * Whether the theme puts all of Material UI's styles in the `mui` layer, without sub-layers.
+ */
+export function isSingleCssLayer(theme: any): boolean {
+  return theme?.cssLayers === 'single';
+}
+
+/**
+ * Returns the full name of the layer for a kind of styles, such as `mui.sx`, `mui` with
+ * `cssLayers: 'single'`, or `undefined` when the theme has no layers.
  * Full names work without an Emotion cache that wraps the styles in `@layer mui`.
  */
 export function getCssLayer(theme: any, layer: CssLayer): string | undefined {
-  return hasCssLayers(theme) ? `mui.${layer}` : undefined;
+  if (!hasCssLayers(theme)) {
+    return undefined;
+  }
+  return isSingleCssLayer(theme) ? 'mui' : `mui.${layer}`;
+}
+
+/**
+ * Returns the statement that declares the order of the theme's layers, or `''` if there's none.
+ * A `modularCssLayers` string sets where `mui` goes among the app's layers.
+ * With `cssLayers: 'single'` and no string, nothing is declared: as with v9's `enableCssLayer`,
+ * `mui` takes its place among the app's layers when its first style is inserted. Declaring it
+ * at the start of `<head>` would make it the lowest layer.
+ */
+export function getCssLayerOrderStatement(theme: any): string {
+  if (!hasCssLayers(theme)) {
+    return '';
+  }
+  const { modularCssLayers } = theme;
+  if (isSingleCssLayer(theme)) {
+    return typeof modularCssLayers === 'string' ? modularCssLayers : '';
+  }
+  if (typeof modularCssLayers === 'string') {
+    return modularCssLayers.replace(/mui(?!\.)/g, CSS_LAYER_ORDER);
+  }
+  return `@layer ${CSS_LAYER_ORDER};`;
+}
+
+/**
+ * Whether CSS is already in Material UI's layer or one of its sub-layers, such as `@layer mui{…}`
+ * or `@layer mui.sx{…}`.
+ */
+export function isInMuiCssLayer(css: string): boolean {
+  return /^@layer mui[.{]/.test(css);
+}
+
+/**
+ * Returns the `cssLayers` value of a theme created with `createTheme()`: CSS layers can't be turned
+ * off. `modularCssLayers: false` turned the sub-layers off in v9, so it means a single layer.
+ */
+export function resolveCssLayersOption(
+  cssLayers: unknown,
+  modularCssLayers: unknown,
+): true | 'single' {
+  if (process.env.NODE_ENV !== 'production') {
+    if (cssLayers === false) {
+      console.error(
+        [
+          'MUI: `cssLayers: false` is no longer supported, Material UI always puts its styles in CSS layers.',
+          "Use `cssLayers: 'single'` to put them all in the `mui` layer, without sub-layers.",
+          'See https://mui.com/material-ui/migration/upgrade-to-v10/#css-layers-are-always-on',
+        ].join('\n'),
+      );
+    }
+  }
+  if (cssLayers === 'single' || (cssLayers !== true && modularCssLayers === false)) {
+    return 'single';
+  }
+  return true;
 }
 
 // Splits CSS into its top-level rules: statements such as `@import …;` and blocks such as `a {…}`.
@@ -104,8 +164,6 @@ export function wrapInCssLayer(css: string, layerName: string): string {
  */
 export function createStyleCssLayerOrder(defaultTheme: unknown) {
   return function styleCssLayerOrder(props: { theme?: any }) {
-    return props.theme === defaultTheme && hasCssLayers(props.theme)
-      ? CSS_LAYER_ORDER_STATEMENT
-      : null;
+    return (props.theme === defaultTheme && getCssLayerOrderStatement(props.theme)) || null;
   };
 }

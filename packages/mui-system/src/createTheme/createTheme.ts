@@ -12,6 +12,7 @@ import styleFunctionSx from '../styleFunctionSx/styleFunctionSx';
 import defaultSxConfig from '../styleFunctionSx/defaultSxConfig';
 import applyStyles from './applyStyles';
 import type { ApplyStyles } from './applyStyles';
+import { resolveCssLayersOption } from '../cssLayers';
 import type { SxConfig, SxProps } from '../styleFunctionSx';
 
 export type {
@@ -42,12 +43,14 @@ export interface ThemeOptions {
   zIndex?: ZIndex | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   /**
-   * Puts the generated styles in the `mui` CSS layer, split into sub-layers:
+   * The generated styles always go in the `mui` CSS layer. By default, it's split into sub-layers:
    * `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
-   * Set it to `false` to opt out. `modularCssLayers: false` opts out too.
+   * Set it to `'single'` to put all the styles in `mui`, without sub-layers. Then they keep the v9
+   * precedence among themselves, and other layers and unlayered CSS still override them.
+   * `modularCssLayers: false` does the same.
    * @default true
    */
-  cssLayers?: boolean | undefined;
+  cssLayers?: true | 'single' | undefined;
 }
 
 export interface Theme extends CssContainerQueries {
@@ -62,7 +65,7 @@ export interface Theme extends CssContainerQueries {
   mixins?: Mixins | undefined;
   typography?: Typography | undefined;
   zIndex?: ZIndex | undefined;
-  cssLayers?: boolean | undefined;
+  cssLayers?: true | 'single' | undefined;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
@@ -116,9 +119,7 @@ function createTheme(options: ThemeOptions = {}, ...args: object[]): Theme {
     });
   };
 
-  // Layers are on unless the theme opts out, also when `cssLayers: undefined` is passed explicitly.
-  // `modularCssLayers: false` opts out too, as it turned the sub-layers off in v9.
-  muiTheme.cssLayers = muiTheme.cssLayers ?? muiTheme.modularCssLayers !== false;
+  muiTheme.cssLayers = resolveCssLayersOption(muiTheme.cssLayers, muiTheme.modularCssLayers);
 
   muiTheme.internal_cache = {};
 

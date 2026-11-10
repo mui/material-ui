@@ -16,7 +16,7 @@ import type { Theme as DefaultTheme } from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
 import type { SxProps } from '../styleFunctionSx';
 import preprocessStyles from '../preprocessStyles';
-import { createStyleCssLayerOrder, getCssLayer } from '../cssLayers';
+import { createStyleCssLayerOrder, getCssLayer, isInMuiCssLayer } from '../cssLayers';
 
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-labels */
@@ -62,9 +62,9 @@ function shallowLayer(serialized: any, layerName: any): any {
     return serialized;
   }
   if (typeof serialized === 'object' && typeof serialized.styles === 'string') {
-    // Styles that are already in one of Material UI's sub-layers aren't wrapped again. Other
-    // `@layer` blocks are the author's, so they're wrapped with the rest of the styles.
-    if (!serialized.styles || serialized.styles.startsWith('@layer mui.')) {
+    // Styles that are already in Material UI's layer or one of its sub-layers aren't wrapped again.
+    // Other `@layer` blocks are the author's, so they're wrapped with the rest of the styles.
+    if (!serialized.styles || isInMuiCssLayer(serialized.styles)) {
       return serialized;
     }
     let byLayer = layeredStyles.get(serialized);
@@ -86,7 +86,7 @@ function shallowLayer(serialized: any, layerName: any): any {
     return serialized.map((style) => shallowLayer(style, layerName));
   }
   if (typeof serialized === 'string') {
-    return serialized.startsWith('@layer mui.') ? serialized : `@layer ${layerName}{${serialized}}`;
+    return isInMuiCssLayer(serialized) ? serialized : `@layer ${layerName}{${serialized}}`;
   }
   if (isPlainObject(serialized)) {
     return { [`@layer ${layerName}`]: serialized };
