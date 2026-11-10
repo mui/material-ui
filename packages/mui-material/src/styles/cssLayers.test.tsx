@@ -25,6 +25,8 @@ function getLayerNames() {
   return Array.from(names);
 }
 
+const MediaDiv = styled('div')({ width: 10, '@media (min-width: 0px)': { width: 20 } });
+
 // jsdom doesn't implement cascade layers, so these only run in browsers.
 describe.skipIf(isJsdom())('CSS layers', () => {
   const { render } = createRenderer();
@@ -92,6 +94,26 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     expect(screen.getByRole('button')).toHaveComputedStyle({
       backgroundColor: 'rgb(255, 0, 0)',
     });
+  });
+
+  it('lets `sx` win over the media queries of the component', () => {
+    render(<MediaDiv data-testid="sx" sx={{ width: 30 }} />);
+
+    expect(screen.getByTestId('sx')).toHaveComputedStyle({ width: '30px' });
+  });
+
+  it("keeps the declarations before the media queries with `cssLayers: 'single'`", () => {
+    // As in v9, where Emotion puts the declarations of a component's styles first, `sx` included.
+    const ComposedDiv = styled(MediaDiv)({ width: 30 });
+    render(
+      <ThemeProvider theme={createTheme({ cssLayers: 'single' })}>
+        <MediaDiv data-testid="sx" sx={{ width: 30 }} />
+        <ComposedDiv data-testid="composed" />
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByTestId('sx')).toHaveComputedStyle({ width: '20px' });
+    expect(screen.getByTestId('composed')).toHaveComputedStyle({ width: '20px' });
   });
 
   it("keeps the v9 precedence with `cssLayers: 'single'`", () => {
@@ -285,13 +307,37 @@ describe('CSS layers: generated styles', () => {
 
     const styles = inserted.join('');
     expect(new Set(styles.match(/@layer [^{;]+/g))).to.deep.equal(new Set(['@layer mui']));
-    // The global styles, the theme overrides, `styled()` and `sx`.
+    // The global styles, and `styled()` with `sx`.
     expect(styles).to.include('@layer mui{html{color:blue;}}');
-    expect(styles).to.include('@layer mui{padding-top:3px;');
-    expect(styles).to.include('@layer mui{padding-bottom:3px;}');
-    expect(styles).to.include('@layer mui{color:rgb(255, 0, 0);}');
+    expect(styles).to.match(/@layer mui\{padding-bottom:3px;+color:rgb\(255, 0, 0\);\}/);
     // As with v9's `enableCssLayer`, `mui` takes its place among the app's layers.
     expect(document.head.querySelector('style[data-mui-layer-order]')).to.equal(null);
+  });
+
+  it("keeps the styles of a component in one block with cssLayers: 'single'", () => {
+    const inserted: string[] = [];
+    const theme = createTheme({
+      cssLayers: 'single',
+      components: { MuiButton: { styleOverrides: { root: { paddingTop: 3 } } } },
+    });
+    const ComposedDiv = styled(VariantsDiv)({ paddingTop: 3 });
+    render(
+      <ThemeProvider theme={theme}>
+        <CaptureStyles inserted={inserted} />
+        <Button sx={{ color: 'rgb(255, 0, 0)' }}>Hello</Button>
+        <ComposedDiv tone="blue" sx={{ paddingBottom: '3px' }} />
+      </ThemeProvider>,
+    );
+
+    // The base styles, the theme overrides and `sx`.
+    const buttonStyles = inserted.find((styles) => styles.startsWith('label:MuiButton-root;'))!;
+    expect(buttonStyles.match(/@layer/g)).to.have.length(1);
+    expect(buttonStyles).to.include('padding-top:3px;');
+    expect(buttonStyles).to.include('color:rgb(255, 0, 0);');
+    // The styles of the styled component it's made from, its own and `sx`.
+    expect(inserted.join('')).to.match(
+      /@layer mui\{color:rgb\(255, 0, 0\);+color:rgb\(0, 0, 255\);+padding-top:3px;+padding-bottom:3px;\}/,
+    );
   });
 
   it('uses a single layer with modularCssLayers: false', () => {

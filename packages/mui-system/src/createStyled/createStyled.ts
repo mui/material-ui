@@ -16,7 +16,13 @@ import type { Theme as DefaultTheme } from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
 import type { SxProps } from '../styleFunctionSx';
 import preprocessStyles from '../preprocessStyles';
-import { createStyleCssLayerOrder, getCssLayer, isInMuiCssLayer } from '../cssLayers';
+import {
+  createStyleCssLayerOrder,
+  getCssSubLayer,
+  isInMuiCssLayer,
+  styleCssLayerEnd,
+  styleCssLayerStart,
+} from '../cssLayers';
 
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-labels */
@@ -271,14 +277,14 @@ export default function createStyled<Theme extends object = DefaultTheme>(
           return processStyle(
             props,
             style,
-            skipLayer ? undefined : getCssLayer(props.theme, layer),
+            skipLayer ? undefined : getCssSubLayer(props.theme, layer),
           );
         };
       }
       if (isPlainObject(style)) {
         const serialized = preprocessStyles(style);
         return function styleObjectProcessor(props: any) {
-          const layerName = skipLayer ? undefined : getCssLayer(props.theme, layer);
+          const layerName = skipLayer ? undefined : getCssSubLayer(props.theme, layer);
           if (!serialized.variants) {
             return layerName ? shallowLayer(serialized.style, layerName) : serialized.style;
           }
@@ -301,15 +307,16 @@ export default function createStyled<Theme extends object = DefaultTheme>(
       // This must run before any other expression.
       expressionsHead.push(styleAttachTheme);
       expressionsHead.push(styleCssLayerOrder);
+      expressionsHead.push(styleCssLayerStart);
 
       if (isTaggedTemplate) {
         // Open the layer right before the template's first string and close it right after its last one.
         expressionsHead.push(function styleTemplateLayerStart(props: any) {
-          const layerName = getCssLayer(props.theme, layer);
+          const layerName = getCssSubLayer(props.theme, layer);
           return layerName ? `@layer ${layerName}{` : null;
         });
         expressionsTail.push(function styleTemplateLayerEnd(props: any) {
-          return getCssLayer(props.theme, layer) ? '}' : null;
+          return getCssSubLayer(props.theme, layer) ? '}' : null;
         });
       }
 
@@ -332,7 +339,7 @@ export default function createStyled<Theme extends object = DefaultTheme>(
           // Layer what the resolver returns rather than each slot, so that resolvers that spread
           // the slot styles into one object keep working.
           const resolvedStyles = overridesResolver(props, resolvedStyleOverrides);
-          const layerName = getCssLayer(theme, 'theme');
+          const layerName = getCssSubLayer(theme, 'theme');
           return layerName && resolvedStyles
             ? shallowLayer(serializeStyles(resolvedStyles), layerName)
             : resolvedStyles;
@@ -346,13 +353,20 @@ export default function createStyled<Theme extends object = DefaultTheme>(
           if (!themeVariants) {
             return null;
           }
-          return processStyleVariants(props, themeVariants, [], getCssLayer(props.theme, 'theme'));
+          return processStyleVariants(
+            props,
+            themeVariants,
+            [],
+            getCssSubLayer(props.theme, 'theme'),
+          );
         });
       }
 
       if (!skipSx) {
         expressionsTail.push(styleFunctionSx);
       }
+
+      expressionsTail.push(styleCssLayerEnd);
 
       // This function can be called as a tagged template, so the first argument would contain
       // CSS `string[]` values.
@@ -378,6 +392,23 @@ export default function createStyled<Theme extends object = DefaultTheme>(
       const expressions = [...expressionsHead, ...expressionsBody, ...expressionsTail];
 
       const Component: any = defaultStyledResolver(...expressions);
+      // When `tag` is a styled component, Emotion puts its styles ahead of these ones, with their own
+      // `cssLayers: 'single'` block. Keep one block around all of them, so that the declarations of
+      // both come before the media queries, as in v9. The array is the one Emotion renders with, so
+      // it's changed in place.
+      mutateStyles(Component, (styles: any[]) => {
+        const start = styles.indexOf(styleCssLayerStart);
+        const end = styles.lastIndexOf(styleCssLayerEnd);
+        for (let index = styles.length - 1; index >= 0; index -= 1) {
+          if (
+            (styles[index] === styleCssLayerStart && index !== start) ||
+            (styles[index] === styleCssLayerEnd && index !== end)
+          ) {
+            styles.splice(index, 1);
+          }
+        }
+        return styles;
+      });
       if (tag.muiName) {
         Component.muiName = tag.muiName;
       }
