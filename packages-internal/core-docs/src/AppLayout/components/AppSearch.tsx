@@ -17,7 +17,7 @@ import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha } from '@mui/material/styles';
-import type { SxProps, Theme } from '@mui/material/styles';
+import type { SxProps } from '@mui/material/styles';
 import { pathnameToLanguage } from '../../helpers';
 import { Link } from '../../Link';
 import { useTranslate, useUserLanguage } from '../../i18n';
@@ -28,7 +28,8 @@ import { SearchButton } from './SearchButton';
 import { convertProductIdToName } from '../../utils/convertProductIdToName';
 
 // Set with `sx`, since `GlobalStyles` can't override the icon's own font size.
-const startScreenIconSx: SxProps<Theme> = { fontSize: (theme) => theme.typography.pxToRem(18) };
+// 1.125rem is `theme.typography.pxToRem(18)`.
+const startScreenIconSx = { fontSize: '1.125rem' };
 
 interface StartScreenItem {
   name: string;
