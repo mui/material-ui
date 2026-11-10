@@ -141,8 +141,9 @@ These are the patterns that most often need a change:
   Use the component's own prop instead: `<Grid size={{ xs: 12, md: 7 }}>`.
 
 - **A component's styles for its children.**
-  Rules such as the margin reset of a `Stack` with `spacing`, or the inner corners of a `ButtonGroup`, are in `mui.components`, so the children's own theme overrides, `styled()` and `sx` now win over them.
-  Drop the conflicting value from the child's styles.
+  Rules such as the padding that an `Autocomplete` sets on its input, or the inner corners of a `ButtonGroup`, are in `mui.components`, so the children's own theme overrides, `styled()` and `sx` now win over them.
+  For example, a `MuiOutlinedInput` root override with `padding: '8px 12px'` now also replaces the room that the Autocomplete leaves for its buttons.
+  Drop the conflicting value from the child's styles, or set it back for that case.
 
 - **`GlobalStyles` that target Material UI components.**
   `GlobalStyles` go in `mui.global`, the lowest sub-layer, so they no longer override the components' styles.

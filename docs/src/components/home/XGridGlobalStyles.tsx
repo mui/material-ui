@@ -1,4 +1,5 @@
-import { Global, type CSSObject } from '@emotion/react';
+import { Global } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 import { alpha, useTheme } from '@mui/material/styles';
 
 export default function XGridGlobalStyles({
