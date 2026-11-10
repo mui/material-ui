@@ -66,7 +66,7 @@ export default function Footer() {
               Subscribe for weekly updates. No spams ever!
             </Typography>
             <InputLabel htmlFor="email-newsletter">Email</InputLabel>
-            <Stack direction="row" spacing={1} useFlexGap>
+            <Stack direction="row" spacing={1}>
               <TextField
                 id="email-newsletter"
                 hiddenLabel
@@ -264,7 +264,6 @@ export default function Footer() {
         <Stack
           direction="row"
           spacing={1}
-          useFlexGap
           sx={{ justifyContent: 'left', color: 'text.secondary' }}
         >
           <IconButton

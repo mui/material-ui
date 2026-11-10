@@ -23,8 +23,7 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
       "additionalInfo": { "sx": true }
-    },
-    "useFlexGap": { "type": { "name": "bool" }, "default": "false" }
+    }
   },
   "name": "Stack",
   "imports": ["import Stack from '@mui/material/Stack';", "import { Stack } from '@mui/material';"],
