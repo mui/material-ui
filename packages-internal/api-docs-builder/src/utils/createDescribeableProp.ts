@@ -4,12 +4,10 @@ import { HIDDEN_JSDOC_TAGS, IGNORE_HINT } from '../buildApiUtils';
 
 /**
  * Props shared by every component, never listed in the API docs when they have their usual type.
- * `null` hides the prop whatever its type.
  */
-const HIDDEN_PROPS: Record<string, string | null> = {
+const HIDDEN_PROPS: Record<string, string> = {
   className: 'string',
   style: 'object',
-  ref: null,
 };
 
 export interface DescribeablePropDescriptor {
@@ -39,8 +37,12 @@ export default function createDescribeableProp(
   settings: CreateDescribeablePropSettings = {},
   isExternal = false,
 ): DescribeablePropDescriptor | null {
-  const hiddenType = HIDDEN_PROPS[propName];
-  if (hiddenType !== undefined && (hiddenType === null || prop.type?.name === hiddenType)) {
+  // Props only found in the TypeScript types, without a PropTypes validator, are not listed.
+  if (!prop.type?.name) {
+    return null;
+  }
+
+  if (prop.type.name === HIDDEN_PROPS[propName]) {
     return null;
   }
 
@@ -65,7 +67,7 @@ export default function createDescribeableProp(
   }
 
   if (annotation.description.trim() === '') {
-    // Props from dependencies are only listed when they have component-specific documentation.
+    // Undocumented props from dependencies are hidden instead of failing.
     if (isExternal) {
       return null;
     }

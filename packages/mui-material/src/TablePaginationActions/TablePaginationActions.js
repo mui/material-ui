@@ -253,6 +253,8 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The total number of rows.
+   *
+   * `-1` means the total is unknown (server-side pagination): the next-page button stays enabled and the last-page button is disabled.
    */
   count: PropTypes.number.isRequired,
   /**
@@ -283,6 +285,8 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
   page: PropTypes.number.isRequired,
   /**
    * The number of rows per page.
+   *
+   * `-1` means all the rows are shown on one page.
    */
   rowsPerPage: PropTypes.number.isRequired,
   /**

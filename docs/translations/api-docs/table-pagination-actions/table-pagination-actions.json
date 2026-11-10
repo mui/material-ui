@@ -2,7 +2,9 @@
   "componentDescription": "",
   "propDescriptions": {
     "classes": { "description": "Override or extend the styles applied to the component." },
-    "count": { "description": "The total number of rows." },
+    "count": {
+      "description": "The total number of rows.<br><code>-1</code> means the total is unknown (server-side pagination): the next-page button stays enabled and the last-page button is disabled."
+    },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "getItemAriaLabel": {
       "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
@@ -21,7 +23,9 @@
       }
     },
     "page": { "description": "The zero-based index of the current page." },
-    "rowsPerPage": { "description": "The number of rows per page." },
+    "rowsPerPage": {
+      "description": "The number of rows per page.<br><code>-1</code> means all the rows are shown on one page."
+    },
     "showFirstButton": { "description": "If <code>true</code>, show the first-page button." },
     "showLastButton": { "description": "If <code>true</code>, show the last-page button." },
     "slotProps": { "description": "The props used for each slot inside." },

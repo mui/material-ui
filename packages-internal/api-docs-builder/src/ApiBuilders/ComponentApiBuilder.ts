@@ -397,7 +397,8 @@ export default function Page() {
 const attachTranslations = (
   reactApi: ComponentReactApi,
   deprecationInfo: string | undefined,
-  settings?: CreateDescribeablePropSettings,
+  settings: CreateDescribeablePropSettings | undefined,
+  externalProps: ReadonlySet<string>,
 ) => {
   const translations: ComponentReactApi['translations'] = {
     componentDescription: reactApi.description,
@@ -408,8 +409,14 @@ const attachTranslations = (
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(propDescriptor, propName, settings);
+      prop = createDescribeableProp(
+        propDescriptor,
+        propName,
+        settings,
+        externalProps.has(propName),
+      );
     } catch (error) {
+      // Reported by attachPropsTable.
       prop = null;
     }
     if (prop) {
@@ -531,8 +538,8 @@ const attachPropsTable = (
         signatureReturn,
         seeMore,
       } = generatePropDescription(prop, propName);
-      const propType = propDescriptor.type;
-      const propTypeDescription = propType ? generatePropTypeDescription(propType) : undefined;
+      const propType = prop.type;
+      const propTypeDescription = generatePropTypeDescription(propType);
       const chainedPropType = getChained(prop.type);
 
       const requiredProp =
@@ -574,10 +581,6 @@ const attachPropsTable = (
           describedArgs: signatureArgs?.map((arg) => arg.name),
           returned: signatureReturn?.name,
         };
-      }
-      // Skip props with unknown/undefined types
-      if (!propType?.name) {
-        return [];
       }
 
       return [
@@ -895,7 +898,7 @@ export default async function generateComponentApi(
 
   attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
-  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings, externalProps);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

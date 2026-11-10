@@ -404,7 +404,8 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   focusVisibleClassName: PropTypes.string,
   formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**
-   * @ignore
+   * The URL to link to when the button is clicked.
+   * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**

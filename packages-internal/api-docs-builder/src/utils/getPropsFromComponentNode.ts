@@ -371,14 +371,26 @@ export function getComponentDeclaration(
   return localeSymbol.valueDeclaration ?? null;
 }
 
-function isDeclaredOnlyInDependencies(prop: ParsedProp) {
-  return prop.signatures.every(({ symbol }) => {
-    const declarations = symbol.declarations ?? [];
-    return (
-      declarations.length > 0 &&
-      declarations.every((node) => node.getSourceFile().fileName.includes('/node_modules/'))
-    );
-  });
+/**
+ * Returns `true` if the symbol is only declared in dependencies, like React's DOM attributes.
+ * Packages resolved from `node_modules` are dependencies, even when linked from another folder.
+ */
+export function isSymbolDeclaredOnlyInDependencies(project: TypeScriptProject, symbol: ts.Symbol) {
+  const declarations = symbol.declarations ?? [];
+  return (
+    declarations.length > 0 &&
+    declarations.every((node) => {
+      const sourceFile = node.getSourceFile();
+      return (
+        project.program.isSourceFileFromExternalLibrary(sourceFile) ||
+        project.program.isSourceFileDefaultLibrary(sourceFile)
+      );
+    })
+  );
+}
+
+function isDeclaredOnlyInDependencies(project: TypeScriptProject, prop: ParsedProp) {
+  return prop.signatures.every(({ symbol }) => isSymbolDeclaredOnlyInDependencies(project, symbol));
 }
 
 /**
@@ -389,7 +401,7 @@ export function getExternalProps(project: TypeScriptProject, componentName: stri
   const props = node ? getPropsFromComponentNode({ node, project, checkDeclarations: true }) : null;
   return new Set(
     Object.entries(props?.props ?? {})
-      .filter(([, prop]) => isDeclaredOnlyInDependencies(prop))
+      .filter(([, prop]) => isDeclaredOnlyInDependencies(project, prop))
       .map(([name]) => name),
   );
 }

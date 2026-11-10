@@ -124,12 +124,12 @@ const ignoreExternalDocumentation: Record<string, readonly string[]> = {
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,
   ListItem: ['focusVisibleClassName'],
-  InputBase: ['aria-describedby'],
+  InputBase: ['aria-describedby', 'aria-label', 'onFocus', 'onKeyDown', 'onKeyUp', 'renderSuffix'],
   Menu: ['PaperProps'],
   MenuItem: ['disabled'],
   Slide: transitionCallbacks,
   SwipeableDrawer: ['anchor', 'hideBackdrop', 'ModalProps', 'PaperProps', 'variant'],
-  TextField: ['hiddenLabel'],
+  TextField: ['hiddenLabel', 'onBlur', 'onFocus'],
   Zoom: transitionCallbacks,
 };
 
@@ -190,11 +190,12 @@ async function generateProptypes(
 
   cleanComponents.forEach((component) => {
     component.types.forEach((prop) => {
-      if (
-        project.name !== 'base' &&
-        ignoreExternalDocumentation[component.name] &&
-        ignoreExternalDocumentation[component.name].includes(prop.name)
-      ) {
+      if (ignoreExternalDocumentation[component.name]?.includes(prop.name)) {
+        if (!prop.jsDoc) {
+          console.warn(
+            `[${component.name}] \`${prop.name}\` is hidden from the API docs and has no JSDoc, so it has no description in IntelliSense.`,
+          );
+        }
         prop.jsDoc = '@ignore';
       }
     });

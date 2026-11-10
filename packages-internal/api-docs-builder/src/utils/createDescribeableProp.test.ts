@@ -44,6 +44,11 @@ describe('createDescribeableProp', () => {
     );
   });
 
+  it('ignores a prop without a PropTypes validator', () => {
+    const prop: PropDescriptor = { description: '', required: false };
+    expect(createDescribeableProp(prop, 'style')).to.equal(null);
+  });
+
   it('ignores an undocumented prop declared in a dependency', () => {
     expect(createDescribeableProp(createProp(''), 'thing', {}, true)).to.equal(null);
   });

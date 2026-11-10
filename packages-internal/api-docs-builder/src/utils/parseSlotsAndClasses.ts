@@ -8,7 +8,11 @@ import {
   isHiddenFromApiDocs,
 } from '../buildApiUtils';
 import type { TypeScriptProject } from './createTypeScriptProject';
-import { getComponentDeclaration, getPropsFromComponentNode } from './getPropsFromComponentNode';
+import {
+  getComponentDeclaration,
+  getPropsFromComponentNode,
+  isSymbolDeclaredOnlyInDependencies,
+} from './getPropsFromComponentNode';
 import type { ProjectSettings } from '../ProjectSettings';
 import type { Slot } from '../types/utils.types';
 
@@ -59,12 +63,16 @@ export default function parseSlotsAndClasses({
    */
   errors: string[];
 } {
+  const classSymbols = new Map<string, ts.Symbol>();
+  const slotSymbols = new Map<string, ts.Symbol>();
+
   // Obtain an array of classes for the given component
   const { classDefinitions, classesLocation } = extractClasses(
     typescriptProject,
     projectSettings,
     componentName,
     muiName,
+    classSymbols,
   );
   const slotsInterfaceName = slotInterfaceName ?? `${componentName}Slots`;
   const slots = extractSlots(
@@ -72,31 +80,63 @@ export default function parseSlotsAndClasses({
     componentName,
     classDefinitions,
     slotsInterfaceName,
+    slotSymbols,
   );
 
   const nonSlotClassDefinitions = classDefinitions.filter(
     (classDefinition) => !Object.keys(slots).includes(classDefinition.key),
   );
 
-  const missingDescription = (kind: string, key: string, location: string) =>
-    `[${componentName}] ${kind} \`${key}\` has no description. Add a JSDoc comment to \`${key}\` in ${location}. ${IGNORE_HINT}`;
+  const getMissingDescriptionErrors = (
+    kind: string,
+    entries: { key: string; description: string }[],
+    symbols: Map<string, ts.Symbol>,
+    defaultLocation: string,
+  ) =>
+    entries.flatMap(({ key, description }) => {
+      if (description.trim() !== '') {
+        return [];
+      }
+      const symbol = symbols.get(key);
+      // Undocumented slots and classes from dependencies are listed without a description.
+      if (symbol && isSymbolDeclaredOnlyInDependencies(typescriptProject, symbol)) {
+        return [];
+      }
+      const location = getDeclaringInterfaceLocation(symbol) ?? defaultLocation;
+      return [
+        `[${componentName}] ${kind} \`${key}\` has no description. Add a JSDoc comment to \`${key}\` in ${location}. ${IGNORE_HINT}`,
+      ];
+    });
 
   return {
     slots: Object.values(slots),
     classes: nonSlotClassDefinitions,
     errors: [
-      ...Object.values(slots)
-        .filter((slot) => slot.description.trim() === '')
-        .map((slot) =>
-          missingDescription('slot', slot.name, `the \`${slotsInterfaceName}\` interface`),
-        ),
-      ...nonSlotClassDefinitions
-        .filter((classDefinition) => classDefinition.description.trim() === '')
-        .map((classDefinition) =>
-          missingDescription('class', classDefinition.key, classesLocation),
-        ),
+      ...getMissingDescriptionErrors(
+        'slot',
+        Object.values(slots).map((slot) => ({ key: slot.name, description: slot.description })),
+        slotSymbols,
+        `the \`${slotsInterfaceName}\` interface`,
+      ),
+      ...getMissingDescriptionErrors(
+        'class',
+        nonSlotClassDefinitions,
+        classSymbols,
+        classesLocation,
+      ),
     ],
   };
+}
+
+/**
+ * Names the interface that declares the symbol, which can be an interface it extends.
+ */
+function getDeclaringInterfaceLocation(symbol: ts.Symbol | undefined): string | null {
+  const parent = symbol?.declarations?.[0]?.parent;
+  if (parent && ts.isInterfaceDeclaration(parent)) {
+    return `the \`${parent.name.text}\` interface`;
+  }
+  return null;
 }
 
 function extractClasses(
@@ -104,12 +144,14 @@ function extractClasses(
   projectSettings: ProjectSettings,
   componentName: string,
   muiName: string,
+  symbols: Map<string, ts.Symbol>,
 ): { classDefinitions: ComponentClassDefinition[]; classesLocation: string } {
   const fromProps = extractClassesFromProps(
     typescriptProject,
     projectSettings,
     componentName,
     muiName,
+    symbols,
   );
   if (fromProps) {
     return { classDefinitions: fromProps, classesLocation: 'the type of the `classes` prop' };
@@ -120,6 +162,7 @@ function extractClasses(
       projectSettings,
       componentName,
       muiName,
+      symbols,
     ),
     classesLocation: `the \`${componentName}Classes\` interface`,
   };
@@ -133,6 +176,7 @@ function extractClassesFromInterface(
   projectSettings: ProjectSettings,
   componentName: string,
   muiName: string,
+  symbols: Map<string, ts.Symbol>,
 ): ComponentClassDefinition[] {
   const result: ComponentClassDefinition[] = [];
 
@@ -153,6 +197,7 @@ function extractClassesFromInterface(
       if (isHiddenFromApiDocs(tags)) {
         return;
       }
+      symbols.set(symbol.name, symbol);
       result.push({
         key: symbol.name,
         className: projectSettings.generateClassName(muiName, symbol.name),
@@ -171,6 +216,7 @@ function extractClassesFromProps(
   projectSettings: ProjectSettings,
   componentName: string,
   muiName: string,
+  symbols: Map<string, ts.Symbol>,
 ): ComponentClassDefinition[] | null {
   const declaration = getComponentDeclaration(typescriptProject, componentName);
 
@@ -202,6 +248,7 @@ function extractClassesFromProps(
           return;
         }
         const description = getSymbolDescription(property, typescriptProject);
+        symbols.set(property.escapedName.toString(), property);
         classes[property.escapedName.toString()] = {
           description,
           ...getClassDeprecationObject(property),
@@ -224,6 +271,7 @@ function extractSlots(
   componentName: string,
   classDefinitions: ComponentClassDefinition[],
   slotsInterfaceName: string,
+  symbols: Map<string, ts.Symbol>,
 ): Record<string, Slot> {
   const exportedSymbol = project.exports[slotsInterfaceName];
 
@@ -276,6 +324,7 @@ function extractSlots(
     }
     const slotName = propertySymbol.name;
     const slotClassDefinition = classDefMap.get(slotName);
+    symbols.set(slotName, propertySymbol);
 
     slots[slotName] = {
       name: slotName,
