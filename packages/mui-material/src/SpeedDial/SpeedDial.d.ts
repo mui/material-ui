@@ -81,8 +81,8 @@ export interface SpeedDialProps
    */
   icon?: React.ReactNode;
   /**
-   * The id of the root element. It is also the base of the ids of the actions container (`${id}-actions`)
-   * and of each action (`${id}-action-${index}`). If not provided, a unique id is generated.
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id?: string | undefined;
   /**

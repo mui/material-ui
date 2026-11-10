@@ -165,6 +165,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     direction = 'up',
     hidden = false,
     icon,
+    id: idProp,
     onBlur,
     onClose,
     onFocus,
@@ -351,7 +352,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     }
   };
 
-  const id = useId(other.id);
+  const id = useId(idProp);
 
   const allItems = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -413,6 +414,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     className: clsx(classes.root, className),
     additionalProps: {
       role: 'presentation',
+      id: idProp,
     },
     getSlotProps: (handlers) => ({
       ...handlers,
@@ -520,8 +522,8 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   icon: PropTypes.node,
   /**
-   * The id of the root element. It is also the base of the ids of the actions container (`${id}-actions`)
-   * and of each action (`${id}-action-${index}`). If not provided, a unique id is generated.
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**

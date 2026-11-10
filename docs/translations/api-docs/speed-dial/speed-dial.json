@@ -17,7 +17,7 @@
       "description": "The icon to display in the SpeedDial Fab. The <code>SpeedDialIcon</code> component provides a default Icon with animation."
     },
     "id": {
-      "description": "The id of the root element. It is also the base of the ids of the actions container (<code>${id}-actions</code>) and of each action (<code>${id}-action-${index}</code>). If not provided, a unique id is generated."
+      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id."
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
