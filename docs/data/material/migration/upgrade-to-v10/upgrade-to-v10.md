@@ -56,7 +56,7 @@ If you didn't use `useFlexGap`, check your layouts for these differences:
   +>
   ```
 
-  Use `ml: 'auto'` to preserve `spacing="auto"`, or `mt` instead of `ml` for a column.
+  Put the margin on the side that faces the previous child: `ml` for `row`, `mr` for `row-reverse`, `mt` for `column`, and `mb` for `column-reverse`. Use the value `'auto'` to preserve `spacing="auto"`.
 
 - Percentage spacing is now relative to the container's width for horizontal gaps and height for vertical gaps. Previously, percentage margins used the container's width in both directions. For example, `spacing="10%"` now produces no gap in a column whose height is determined by its children. Use a numeric spacing value or a length such as `'1rem'` for spacing that does not depend on the container's dimensions.
 
