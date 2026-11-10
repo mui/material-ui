@@ -14,7 +14,7 @@ vi.mock('next/link', () => ({ __esModule: true, default: 'a' }));
 vi.mock('@mui/internal-core-docs/AppLayout', () => ({ AppLayoutHead: () => null }));
 
 // TODO: Remove this probe after the WebKit exit failure in CI is understood.
-async function traceFramesBeforeRender() {
+async function traceFrames(stage: string) {
   const parent = window.parent;
   const startedAt = performance.now();
   const result: { childMs: number | null; parentMs: number | null } = {
@@ -55,7 +55,7 @@ async function traceFramesBeforeRender() {
 
   // Log passing runs too: waiting for these frames can change the test timing.
   console.info(
-    `Menu2 frames before first render:\n${JSON.stringify({
+    `Menu2 frames ${stage}:\n${JSON.stringify({
       ...result,
       elapsedMs: performance.now() - startedAt,
       childVisibility: document.visibilityState,
@@ -289,7 +289,7 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
   ['Project', 'Successor'].forEach((triggerName) => {
     it(`uses a transparent click-away backdrop by default for ${triggerName}`, async () => {
       if (triggerName === 'Project') {
-        await traceFramesBeforeRender();
+        await traceFrames('before first render');
       }
       const { baseElement, user } = await renderPlayground();
       expect(
@@ -297,6 +297,11 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
       ).to.have.value('default');
       const trigger = screen.getByRole('button', { name: triggerName });
 
+      if (triggerName === 'Project') {
+        await act(async () => {
+          await traceFrames('after playground setup');
+        });
+      }
       await user.click(trigger);
       const popup = await screen.findByRole('menu', { name: triggerName });
 
