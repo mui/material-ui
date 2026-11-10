@@ -57,7 +57,7 @@ Every check below is a bug that a previous build of a Material UI component on B
 - [ ] **Every demo has `@focus-start` and `@focus-end`.** Detect: eslint `docs-infra/require-demo-focus`. [docs.md, Demos]
 - [ ] **Every demo renders without console errors**, in `pnpm docs:dev` or, when no browser is available, in a temporary test that renders each demo in Chromium and fails on `console.error`. The first Chromium run can fail with "Vite unexpectedly reloaded" while dependencies are optimized; run it again before reading the result. Delete that test before committing.
 - [ ] **Demo links resolve.** Every `href="#…"` in the demos matches a heading anchor on the page. Detect: `grep -rn 'href="#' docs/data/material/components/<kebab-name>` and compare with the page headings, or run `pnpm docs:build`, which ends with the link check. [docs.md, Demos]
-- [ ] **Vale passes on the docs page.** `pnpm code-infra vale --vale-version <config.valeVersion in package.json> --filter='.Level=="error"' <page>.md` reports 0 errors. The usual failure is a normal space in a brand name. [docs.md]
+- [ ] **Vale passes on the docs page.** Run `pnpm code-infra vale sync --vale-version <config.valeVersion in package.json>` first: the styles in `.github/styles/` are git-ignored, so a fresh worktree has none. Then `pnpm code-infra vale --vale-version <config.valeVersion in package.json> --filter='.Level=="error"' <page>.md` reports 0 errors. The usual failure is a normal space in a brand name. [docs.md]
 - [ ] **The page has an Accessibility section.** It covers every item of the Base UI "Usage guidelines" section, and says how to give the component an accessible name. [docs.md, Page outline]
 - [ ] **Every `render` demo shows a real use case.** A demo that only swaps in an arbitrary element (`<aside>`, `<section>`) is a short paragraph instead. [docs.md, Page outline]
 - [ ] **The anatomy is a `text` block**, and the route file has no leftover name from the file it was copied from. [docs.md]
@@ -66,4 +66,4 @@ Every check below is a bug that a previous build of a Material UI component on B
 
 - [ ] **The lockfile changed with the dependency.** `git diff --stat` includes `pnpm-lock.yaml` when `@base-ui/react` was added. [registration.md]
 - [ ] **Base UI was read from this checkout.** The version you read docs from equals `docs/node_modules/@base-ui/react/package.json`.
-- [ ] **Lint ran on the changed files.** `pnpm exec eslint --max-warnings 0 $(git diff --name-only <base>)` passes.
+- [ ] **Lint ran on the changed files.** `pnpm exec eslint --max-warnings 0 --no-warn-ignored $(git diff --name-only --diff-filter=d <base>)` passes. Without `--no-warn-ignored`, an ignored file in the diff (`pnpm-lock.yaml`) is a warning that fails the run; without `--diff-filter=d`, a deleted file is.

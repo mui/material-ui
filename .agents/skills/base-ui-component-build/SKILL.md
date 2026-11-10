@@ -79,7 +79,7 @@ Run, in this order:
 1. `pnpm proptypes`, then `pnpm docs:api`. Both write files; keep their output.
 2. `pnpm prettier`. `docs:api` writes JSDoc into component files, so format after it.
 3. `pnpm typescript` and `pnpm test:unit <Name>`.
-4. `pnpm exec eslint --max-warnings 0 <changed files>`. The full `pnpm eslint` run also reports errors from outside your change.
+4. `pnpm exec eslint --max-warnings 0 --no-warn-ignored <changed files>`, listing the changed files with `git diff --name-only --diff-filter=d <base>`. The full `pnpm eslint` run also reports errors from outside your change.
 
 Then go through every check in [references/verify.md](references/verify.md).
 

@@ -111,7 +111,8 @@ export default function Frame(props: {
     <ThemeProvider theme={themes[state]}>
       <CssBaseline />
       <Box
-        data-testid={props.fullPage ? undefined : 'screenshot-target'}
+        data-testid="screenshot-target"
+        data-full-page={props.fullPage ? '' : undefined}
         sx={
           props.fullPage
             ? undefined
@@ -127,7 +128,7 @@ export default function Frame(props: {
 
 The four capture states are `default`, `open`, `dark` (open, dark mode), and `brand` (open, the brand theme). The theming scenarios set their own theme inside the scenario, so capture them in the `open` state only; their other states repeat it.
 
-A scenario that opens a modal (a `Dialog`) centers it in the page, outside the frame. Its fixture renders `<Frame fullPage>`, and the capture script then screenshots the whole page.
+A scenario that opens a modal (a `Dialog`) centers it in the page, outside the frame. Its fixture renders `<Frame fullPage>`, which marks the target with `data-full-page`, and the capture script then screenshots the whole page.
 
 ## Render and capture
 
@@ -146,8 +147,7 @@ A scenario that opens a modal (a `Dialog`) centers it in the page, outside the f
    - Use the build, not `pnpm test:regressions:dev`. The dev server's dependency pre-bundling fails on `sinon`, which `test/regressions/syncDataGridGenerator.ts` imports.
    - If port 5001 is taken, serve on another port with `pnpm exec vite preview test/regressions --port <port> --strictPort`, and pass `--url http://localhost:<port>` to the capture script.
    - Rebuild after every change to a prototype or scenario; the server serves the last build.
-   - The first capture after a build can fail while the browser loads; run it again before reading the result.
-3. Capture the fixtures. The script writes `<out>/<scenario>/<variant>-<state>.png`. Capture the recommended shape in every state, except the theming scenarios, and the fork variants in the `open` state:
+3. Capture the fixtures. The script writes `<out>/<scenario>/<variant>-<state>.png`. It waits for the fonts and the fixture the way the regression tests do, and fails when a fixture renders no screenshot target, when `--match` selects no fixture, or when a state is not one of `default`, `open`, `dark`, `brand`. Capture the recommended shape in every state, except the theming scenarios, and the fork variants in the `open` state:
 
    ```bash
    node .agents/skills/base-ui-component-shape/scripts/capture.mjs --suite MenubarShape --out .shape/menubar/screenshots --match '^(?!theme-).*--recommended$'
