@@ -156,16 +156,36 @@ describe('useButtonBase', () => {
         expect(handleClick).toHaveBeenCalledTimes(1);
       });
 
-      it('does not activate when onKeyDown prevents Enter', async () => {
+      [
+        { key: 'Enter', sequence: '{Enter}' },
+        { key: 'Space', sequence: ' ' },
+      ].forEach(({ key, sequence }) => {
+        it(`does not activate when onKeyDown prevents ${key}`, async () => {
+          const onClick = vi.fn();
+          const { user } = render(
+            <NonNativeButton onClick={onClick} onKeyDown={(event) => event.preventDefault()} />,
+          );
+
+          await user.tab();
+          await user.keyboard(sequence);
+
+          expect(onClick).toHaveBeenCalledTimes(0);
+        });
+      });
+
+      it('keeps Space cancellation through repeated keydowns and clears it after release', async () => {
         const onClick = vi.fn();
-        const { user } = render(
-          <NonNativeButton onClick={onClick} onKeyDown={(event) => event.preventDefault()} />,
-        );
+        const onKeyDown = vi.fn().mockImplementationOnce((event: React.KeyboardEvent) => {
+          event.preventDefault();
+        });
+        const { user } = render(<NonNativeButton onClick={onClick} onKeyDown={onKeyDown} />);
 
         await user.tab();
-        await user.keyboard('{Enter}');
-
+        await user.keyboard('[Space>2/]');
         expect(onClick).toHaveBeenCalledTimes(0);
+
+        await user.keyboard(' ');
+        expect(onClick).toHaveBeenCalledTimes(1);
       });
 
       it("keeps keyboard activation independent of another library's event flag", async () => {
