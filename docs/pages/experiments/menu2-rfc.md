@@ -84,7 +84,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 
 ### Rules for Base UI-backed components (Menu is the first)
 
-- **Customization:** use `render` for `Menu2Trigger`, groups, labels, separators, and all item roots, including `Menu2SubmenuTrigger`. Items keep Material styles, indicators, and ripple without a `component` prop. Forward the supplied children to keep indicators and ripple. All item parts also provide `slots.root` to replace the styled root. Use Material UI `slots`/`slotProps` for popup layers and indicators.
+- **Customization:** use `render` for `Menu2Trigger`, groups, labels, separators, and all item roots, including `Menu2SubmenuTrigger`. Items keep Material styles, indicators, and ripple without a `component` prop. Forward the supplied children to keep indicators and ripple. All item parts and groups also provide `slots.root` to replace the styled root. Use Material UI `slots`/`slotProps` for popup layers and indicators.
 - **Slot handling:** use `useSlot` for the popup list. At Base UI render boundaries, reuse `appendOwnerState`, `resolveComponentProps`, and Material UI's `mergeSlotProps`. Use Base UI's `mergeProps` for behavioral props and compose refs. Keep adapters local until another integration needs them. These adapters filter Material props from host elements, combine state-based classes, infer native buttons, and prevent duplicate keyboard activation.
 - **Style reuse:** share styled elements where practical; otherwise share style functions. Audit each consumer. Viewport-relative heights and item-adjacent divider rules do not transfer unchanged to Base UI's popup tree. New parts own their spacing; use `Menu2Separator` between items.
 - **Presentation:** retain `dense`, `disableGutters`, and `divider`. Omit the visual-only `selected` prop; checkbox and radio items express checked state. Base UI owns behavior; Material UI owns styles.
@@ -138,7 +138,7 @@ Checkbox and radio items expose `checked` in render functions and root-slot call
 
 `Menu2SubmenuTrigger` follows this contract with `open` in the render state. This is the logical open state, not the retained exit tint. Its `indicator` slot remains separate, including `null` to omit it.
 
-`Menu2Group` and `Menu2RadioGroup` accept optional `render` without a `component` prop or internal slots. Forward props, ref, and children to preserve styles, labels, and group behavior. Group render state is empty; radio group render state contains only `disabled`, not the selected value.
+`Menu2Group` and `Menu2RadioGroup` accept optional `render` without a `component` prop. Forward props, ref, and children to preserve styles, labels, and group behavior. Use `slotProps.root` for attributes, a ref, and `sx`. Use `slots.root` to replace the styled root; it takes precedence over `render`. The replacement keeps utility classes and Base UI behavior, but does not get theme styles or `sx` processing automatically. It must forward behavior props, ref, and children to keep the group label and items. Group render state is empty; radio group render state contains only `disabled`, not the selected value. Root-slot callbacks expose the same public state fields.
 
 `Menu2GroupLabel` and `Menu2Separator` also accept optional `render` without a `component` prop or internal slots. Label render state is empty; separator render state contains `orientation`. Both default to a `div` root.
 

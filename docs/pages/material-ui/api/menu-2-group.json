@@ -4,6 +4,10 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "className": { "type": { "name": "string" } },
     "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
     "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
@@ -15,14 +19,15 @@
   },
   "name": "Menu2Group",
   "imports": ["import MenuGroup from '@mui/material/Unstable_Menu2Group';"],
-  "classes": [
+  "slots": [
     {
-      "key": "root",
-      "className": "MuiMenu2Group-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
+      "name": "root",
+      "description": "The component that renders the root.\nReplaces the default styled root and takes precedence over `render`.",
+      "default": "Menu2GroupRoot",
+      "class": "MuiMenu2Group-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiMenu2Group",

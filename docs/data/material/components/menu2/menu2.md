@@ -399,10 +399,14 @@ Set `nativeButton` for a custom root component that returns a native button.
 
 `MenuGroup` and `MenuRadioGroup` render a `<div>` by default and accept an optional `render` prop.
 Forward props, ref, and children to preserve styles, labels, and group behavior.
-Put root attributes on the group or its render element; neither group has internal slots.
+Use `slotProps.root` for root attributes, a ref, and `sx`.
+Use `slots.root` to replace the styled root; it takes precedence over `render`.
+The replacement keeps utility classes and Base UI behavior, but theme styles and `sx` processing are not added automatically.
+Forward behavior props, ref, and children to preserve the group label and items.
 
 The `MenuGroup` render state has no fields.
 The `MenuRadioGroup` render state contains only `disabled`, not the selected value.
+Root-slot callbacks expose the same public state fields.
 Use `value` and `onValueChange` to control that value.
 
 ### Labels and separators

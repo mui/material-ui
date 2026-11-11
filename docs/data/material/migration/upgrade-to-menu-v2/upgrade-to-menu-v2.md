@@ -357,8 +357,10 @@ Checkbox and radio items have separate `indicator` and `indicatorIcon` slots for
 `MenuSubmenuTrigger` keeps its `indicator` slot and accepts `slots={{ indicator: null }}` to omit it.
 See [Item customization](/material-ui/react-menu2/#item).
 
-`MenuGroup` and `MenuRadioGroup` also use optional `render` instead of `component` or a root slot.
-Forward props, ref, and children to keep group labels and behavior.
+`MenuGroup` and `MenuRadioGroup` also use optional `render` instead of `component`.
+Use `slotProps.root` for root attributes, a ref, and `sx`.
+Use `slots.root` to replace the styled root; it takes precedence over `render` and does not add theme styles or `sx` processing automatically.
+With either customization path, forward props, ref, and children to keep group labels and behavior.
 See [Group customization](/material-ui/react-menu2/#groups).
 
 `MenuGroupLabel` and `MenuSeparator` also use `render` in place of `component` and their root slot APIs.

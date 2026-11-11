@@ -42,7 +42,11 @@ import Menu2CheckboxItem, {
   Menu2CheckboxItemIndicator,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
-import type { Menu2GroupOwnerState } from '@mui/material/Unstable_Menu2Group';
+import type {
+  Menu2GroupOwnerState,
+  Menu2GroupSlotProps,
+  Menu2GroupSlots,
+} from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import type { Menu2GroupLabelOwnerState } from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
@@ -58,7 +62,11 @@ import type {
   Menu2LinkItemSlots,
 } from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import type { Menu2RadioGroupOwnerState } from '@mui/material/Unstable_Menu2RadioGroup';
+import type {
+  Menu2RadioGroupOwnerState,
+  Menu2RadioGroupSlotProps,
+  Menu2RadioGroupSlots,
+} from '@mui/material/Unstable_Menu2RadioGroup';
 import type {
   Menu2RadioItemIndicatorClassKey,
   Menu2RadioItemIndicatorClasses,
@@ -1399,12 +1407,30 @@ createTheme({
 <Menu2Group trackingId="group" />;
 // @ts-expect-error The custom root requires its own props.
 <Menu2Group render={<CustomItemRoot />} />;
-// @ts-expect-error Use render to select the group root.
+const menuGroupSlots = { root: 'section' } satisfies Menu2GroupSlots;
+const menuGroupSlotProps: Menu2GroupSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2GroupOwnerState, typeof ownerState>(ownerState);
+    // @ts-expect-error Group state has no fields.
+    ownerState.disabled;
+    return {
+      title: 'Projects',
+      'data-group': 'projects',
+      sx: { px: 2 },
+      ref: (node) => expectType<HTMLDivElement | null, typeof node>(node),
+      onClick: (event) =>
+        expectType<EventTarget & HTMLDivElement, typeof event.currentTarget>(event.currentTarget),
+    };
+  },
+};
+<Menu2Group slots={menuGroupSlots} slotProps={menuGroupSlotProps} render={<section />} />;
+<Menu2Group slotProps={{ root: { title: 'Projects', ref: React.createRef<HTMLDivElement>() } }} />;
+// @ts-expect-error Use render or slots.root to select the group root.
 <Menu2Group component="ul" />;
-// @ts-expect-error Group has no internal slots.
-<Menu2Group slots={{ root: 'ul' }} />;
-// @ts-expect-error Put root props on the group or its render element.
-<Menu2Group slotProps={{ root: { title: 'Projects' } }} />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2Group slots={{ root: <section /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2Group slotProps={{ root: { component: 'section' } }} />;
 // @ts-expect-error The render prop requires an element or a callback.
 <Menu2Group render="ul" />;
 // @ts-expect-error Omit render to use the default element.
@@ -1441,12 +1467,39 @@ createTheme({
 <Menu2RadioGroup trackingId="radio-group" />;
 // @ts-expect-error The custom root requires its own props.
 <Menu2RadioGroup render={<CustomItemRoot />} />;
-// @ts-expect-error Use render to select the radio group root.
+const menuRadioGroupSlots = { root: 'section' } satisfies Menu2RadioGroupSlots;
+const menuRadioGroupSlotProps: Menu2RadioGroupSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2RadioGroupOwnerState, typeof ownerState>(ownerState);
+    expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
+    // @ts-expect-error Disabled is a boolean.
+    expectType<string, typeof ownerState.disabled>(ownerState.disabled);
+    // @ts-expect-error Radio group state does not expose its value.
+    ownerState.value;
+    return {
+      title: 'Layout',
+      'data-disabled': ownerState.disabled,
+      sx: { opacity: ownerState.disabled ? 0.5 : 1 },
+      ref: (node) => expectType<HTMLDivElement | null, typeof node>(node),
+      onClick: (event) =>
+        expectType<EventTarget & HTMLDivElement, typeof event.currentTarget>(event.currentTarget),
+    };
+  },
+};
+<Menu2RadioGroup
+  slots={menuRadioGroupSlots}
+  slotProps={menuRadioGroupSlotProps}
+  render={<section />}
+/>;
+<Menu2RadioGroup
+  slotProps={{ root: { title: 'Layout', ref: React.createRef<HTMLDivElement>() } }}
+/>;
+// @ts-expect-error Use render or slots.root to select the radio group root.
 <Menu2RadioGroup component="ul" />;
-// @ts-expect-error RadioGroup has no internal slots.
-<Menu2RadioGroup slots={{ root: 'ul' }} />;
-// @ts-expect-error Put root props on the group or its render element.
-<Menu2RadioGroup slotProps={{ root: { title: 'Layout' } }} />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2RadioGroup slots={{ root: <section /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2RadioGroup slotProps={{ root: { component: 'section' } }} />;
 // @ts-expect-error The render prop requires an element or a callback.
 <Menu2RadioGroup render="ul" />;
 // @ts-expect-error Omit render to use the default element.
@@ -1600,6 +1653,13 @@ createTheme({
     },
     MuiMenu2Group: {
       defaultProps: {
+        slots: { root: 'section' },
+        slotProps: {
+          root: (ownerState) => {
+            expectType<Menu2GroupOwnerState, typeof ownerState>(ownerState);
+            return { title: 'Projects', sx: { px: 2 } };
+          },
+        },
         render: (props, state) => {
           expectType<Menu2GroupOwnerState, typeof state>(state);
           return <div {...props} />;
@@ -1608,6 +1668,13 @@ createTheme({
     },
     MuiMenu2RadioGroup: {
       defaultProps: {
+        slots: { root: 'section' },
+        slotProps: {
+          root: (ownerState) => {
+            expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
+            return { 'data-disabled': ownerState.disabled };
+          },
+        },
         render: (props, state) => {
           expectType<boolean, typeof state.disabled>(state.disabled);
           return <div {...props} data-disabled={state.disabled} />;

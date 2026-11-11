@@ -10,11 +10,25 @@ import type { SxProps } from '@mui/system';
 import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import Menu2RenderRoot from '../internal/Menu2RenderRoot';
+import Menu2RootSlot from '../internal/Menu2RootSlot';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RadioGroupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2RadioGroupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2RadioGroupOwnerState extends BaseMenu.RadioGroup.State {}
+
+export interface Menu2RadioGroupSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2RadioGroupRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2RadioGroupSlotProps {
+  root?: Menu2RootSlotProps<Menu2RadioGroupOwnerState>['root'] | undefined;
+}
 
 export interface Menu2RadioGroupProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   /**
@@ -46,11 +60,20 @@ export interface Menu2RadioGroupProps extends Omit<React.HTMLAttributes<HTMLElem
   /**
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles, the group label, and radio items.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
     | React.ReactElement
     | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioGroupOwnerState>
     | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2RadioGroupSlotProps | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2RadioGroupSlots | undefined;
   /**
    * Styles applied to the root element.
    */
@@ -109,6 +132,8 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
     classes: classesProp,
     onValueChange,
     render: renderProp,
+    slots,
+    slotProps,
     sx,
     style,
     ...other
@@ -124,11 +149,14 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
     <BaseMenu.RadioGroup
       ref={handleRef}
       render={(renderProps, state) => (
-        <Menu2RadioGroupRoot
-          {...renderProps}
-          as={renderProp ? Menu2RenderRoot : undefined}
-          {...(renderProp && { internalRender: renderProp, internalRenderState: state })}
+        <Menu2RootSlot<Menu2RadioGroupOwnerState>
+          baseProps={renderProps}
+          elementType={Menu2RadioGroupRoot}
           ownerState={{ ...ownerState, ...state }}
+          render={renderProp}
+          renderState={state}
+          slots={slots}
+          slotProps={slotProps}
           sx={sx}
         />
       )}
@@ -175,8 +203,21 @@ Menu2RadioGroup.propTypes /* remove-proptypes */ = {
   /**
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles, the group label, and radio items.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * Styles applied to the root element.
    */
