@@ -68,6 +68,7 @@
         }
       }
     },
+    "placeholder": { "description": "The placeholder text for the input element." },
     "readOnly": { "description": "If <code>true</code>, the input element is read-only." },
     "required": {
       "description": "If <code>true</code>, the label is displayed as required and the <code>input</code> element is required."

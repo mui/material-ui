@@ -176,7 +176,7 @@ const NumberFieldInputSlot = React.forwardRef(
   (props: NumberFieldInputProps, ref: React.Ref<HTMLDivElement>) => {
     const { baseProps, baseState, materialProps, externalForwardedProps } = props;
     const { inputValue } = baseState;
-    const { autoFocus, variant, label, id, fullWidth, inputRef } = materialProps;
+    const { autoFocus, variant, label, id, fullWidth, inputRef, placeholder } = materialProps;
     const ownerState = {
       ...materialProps,
       disabled: baseState.disabled,
@@ -439,6 +439,7 @@ const NumberFieldInputSlot = React.forwardRef(
         inputRef={inputRef}
         onBlur={materialProps.onBlur}
         onFocus={materialProps.onFocus}
+        placeholder={placeholder}
         slots={{
           input: externalForwardedProps.slots.htmlInput ? HtmlInputSlot : undefined,
         }}

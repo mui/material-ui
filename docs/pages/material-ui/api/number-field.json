@@ -61,6 +61,7 @@
         "describedArgs": ["value", "eventDetails"]
       }
     },
+    "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "scrubArea": {

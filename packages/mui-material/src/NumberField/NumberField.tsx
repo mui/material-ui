@@ -52,6 +52,7 @@ const NumberField = React.forwardRef(function NumberField(
     onFocus,
     onValueChange,
     onValueCommitted,
+    placeholder,
     readOnly = false,
     required = false,
     scrubArea = false,
@@ -79,6 +80,7 @@ const NumberField = React.forwardRef(function NumberField(
     error,
     fullWidth,
     id,
+    placeholder,
     readOnly,
     required,
     scrubArea,
@@ -340,6 +342,10 @@ NumberField.propTypes /* remove-proptypes */ = {
    * `"wheel"`, `"scrub"`, or `"none"`.
    */
   onValueCommitted: PropTypes.func,
+  /**
+   * The placeholder text for the input element.
+   */
+  placeholder: PropTypes.string,
   /**
    * If `true`, the input element is read-only.
    * @default false

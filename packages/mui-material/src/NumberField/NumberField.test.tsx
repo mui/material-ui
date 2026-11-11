@@ -3203,9 +3203,34 @@ describe('<NumberField />', () => {
     });
   });
 
-  // NumberField owns the label/helper relationships and the visible input's focus
-  // entry points. Cover that wiring without repeating state styling or SSR checks.
-  describe('labels, helper text and focus', () => {
+  // NumberField owns the label/helper relationships, passes the placeholder, and the
+  // visible input's focus entry points. Cover that wiring without repeating state styling
+  // or SSR checks.
+  describe('labels, helper text, placeholder and focus', () => {
+    it('forwards the placeholder to the input element', () => {
+      render(<NumberField placeholder="Enter amount" />);
+
+      const input = screen.getByRole('textbox');
+      expect(input).to.have.attribute('placeholder', 'Enter amount');
+      expect(input.closest(`.${classes.root}`)).not.to.have.attribute('placeholder');
+    });
+
+    [undefined, 'Public placeholder'].forEach((placeholder) => {
+      it(`uses the Material input placeholder when the public placeholder is ${placeholder === undefined ? 'absent' : 'set'}`, () => {
+        render(
+          <NumberField
+            placeholder={placeholder}
+            slotProps={{ input: { placeholder: 'Material placeholder' } }}
+          />,
+        );
+
+        expect(screen.getByRole('textbox')).to.have.attribute(
+          'placeholder',
+          'Material placeholder',
+        );
+      });
+    });
+
     it('links an explicit input ID to its label and accessible description', async () => {
       const { user } = render(
         <NumberField id="amount" label="Amount" helperText="Enter the quantity" defaultValue={5} />,
