@@ -175,12 +175,13 @@ NumberField.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * If `true`, the number input element will allow values outside the specified range.
+   * If `true`, values entered by typing or pasting are not clamped to `min` and `max`.
+   * Stepping with the buttons, keyboard, mouse wheel, or scrub area still respects the bounds.
    * @default false
    */
   allowOutOfRange: PropTypes.bool,
   /**
-   * If `true`, the number input element will respond to wheel scrub gestures.
+   * If `true`, the mouse wheel adjusts the value while the input is focused and hovered.
    * @default false
    */
   allowWheelScrub: PropTypes.bool,
@@ -213,7 +214,9 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   controlsPosition: PropTypes.oneOf(['end', 'split', 'stacked', false]),
   /**
-   * The default value of the number input element.
+   * The initial numeric value for an uncontrolled field.
+   * Omit this prop to start with an empty field.
+   * Use `value` for a controlled field.
    */
   defaultValue: PropTypes.number,
   /**
@@ -222,18 +225,20 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label is displayed in an error state.
+   * If `true`, the field is displayed in an error state.
    * @default false
    */
   error: PropTypes.bool,
   /**
-   * Identifies the form that owns the input element.
+   * The `id` of the form that owns the field.
+   * Use this prop when the field is rendered outside the form.
    */
   form: PropTypes.string,
   /**
-   * Options to format the input value.
+   * Options passed to `Intl.NumberFormat` to format the displayed value.
+   * The `value` prop and value callbacks use numbers or `null`, regardless of the display format.
    *
-   * See [MDN - Intl](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl).
+   * See [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat).
    */
   format: PropTypes.shape({
     compactDisplay: PropTypes.oneOf(['long', 'short']),
@@ -264,11 +269,12 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   helperText: PropTypes.node,
   /**
-   * The id of the input element.
+   * The `id` of the visible input, used to associate its label and helper text.
+   * If omitted, an ID is generated.
    */
   id: PropTypes.string,
   /**
-   * The ref of the input element.
+   * A ref to the visible `<input>` element.
    */
   inputRef: PropTypes.oneOfType([
     PropTypes.func,
@@ -286,9 +292,10 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   largeStep: PropTypes.number,
   /**
-   * The locale used for number formatting and parsing.
+   * The locale or locales used to format and parse the value.
+   * Defaults to the runtime's locale.
    *
-   * See [MDN - Intl Number Format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat).
+   * See [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat).
    */
   locale: PropTypes.oneOfType([
     PropTypes.arrayOf(
@@ -329,23 +336,26 @@ NumberField.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The maximum value allowed for the number input element.
+   * The upper bound for the numeric value.
+   * The increment button is disabled at or above this value.
    */
   max: PropTypes.number,
   /**
-   * The minimum value allowed for the number input element.
+   * The lower bound for the numeric value.
+   * The decrement button is disabled at or below this value.
    */
   min: PropTypes.number,
   /**
-   * Name attribute of the `input` element.
+   * Identifies the field when a form is submitted.
+   * The submitted value is the unformatted number.
    */
   name: PropTypes.string,
   /**
-   * The blur event handler of the input element.
+   * Callback fired when the input loses focus.
    */
   onBlur: PropTypes.func,
   /**
-   * The focus event handler of the input element.
+   * Callback fired when the input receives focus.
    */
   onFocus: PropTypes.func,
   /**
@@ -359,8 +369,9 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   onValueChange: PropTypes.func,
   /**
-   * Callback fired when a value is committed.
-   * Typing commits on blur. Button and scrub interactions commit on pointer release.
+   * Callback fired when the value is committed.
+   * Direct text entry commits on blur.
+   * Pointer presses on the stepper buttons and scrub interactions commit on pointer release.
    * Keyboard and wheel changes commit immediately.
    *
    * @param {number|null} value The committed numeric value, or `null` when the input is empty.
@@ -370,21 +381,24 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   onValueCommitted: PropTypes.func,
   /**
-   * The placeholder text for the input element.
+   * The short hint displayed in the input when it is empty.
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the input element is read-only.
+   * If `true`, the value cannot be changed through user interaction.
+   * The input can still receive focus.
    * @default false
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the label is displayed as required and the `input` element is required.
+   * If `true`, a value is required for form submission and the label is marked as required.
    * @default false
    */
   required: PropTypes.bool,
   /**
-   * The area of the input element where the scrub control is displayed. Set to false to hide it.
+   * The placement of the drag handle used to adjust the value.
+   * Use `'start'` or `'end'` to show the handle, or `false` to hide it.
+   * Its position is independent of `controlsPosition`.
    * @default false
    */
   scrubArea: PropTypes.oneOf(['end', 'start', false]),
@@ -429,12 +443,13 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   smallStep: PropTypes.number,
   /**
-   * If `true`, the number input element will snap to the nearest step value.
+   * If `true`, stepping snaps the value to intervals starting at `min`, or `0` if `min` is omitted.
+   * Modifier keys use the corresponding `smallStep` or `largeStep` intervals.
    * @default false
    */
   snapOnStep: PropTypes.bool,
   /**
-   * The amount to increment or decrement with the buttons, arrow keys, or scrub area.
+   * The amount to increment or decrement with the buttons, arrow keys, mouse wheel, or scrub area.
    * Set `min` explicitly to enable step validation on form submission.
    * Set to `"any"` to disable step validation; interactive stepping then uses `1`,
    * while the Alt and Shift keys still use `smallStep` and `largeStep`.
@@ -450,7 +465,8 @@ NumberField.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The value of the number input element.
+   * The controlled numeric value.
+   * Use `null` to display an empty field and `onValueChange` to update the value.
    */
   value: PropTypes.number,
   /**

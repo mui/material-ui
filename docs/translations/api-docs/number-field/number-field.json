@@ -2,10 +2,10 @@
   "componentDescription": "",
   "propDescriptions": {
     "allowOutOfRange": {
-      "description": "If <code>true</code>, the number input element will allow values outside the specified range."
+      "description": "If <code>true</code>, values entered by typing or pasting are not clamped to <code>min</code> and <code>max</code>. Stepping with the buttons, keyboard, mouse wheel, or scrub area still respects the bounds."
     },
     "allowWheelScrub": {
-      "description": "If <code>true</code>, the number input element will respond to wheel scrub gestures."
+      "description": "If <code>true</code>, the mouse wheel adjusts the value while the input is focused and hovered."
     },
     "autoFocus": {
       "description": "If <code>true</code>, the <code>input</code> element is focused during the first mount."
@@ -17,31 +17,43 @@
     "controlsPosition": {
       "description": "The arrangement of the control buttons. Use <code>&#39;end&#39;</code> for horizontal minus/plus buttons at the end, <code>&#39;split&#39;</code> for a minus button at the start and a plus button at the end, <code>&#39;stacked&#39;</code> for up/down chevrons at the end, or <code>false</code> for no control buttons."
     },
-    "defaultValue": { "description": "The default value of the number input element." },
+    "defaultValue": {
+      "description": "The initial numeric value for an uncontrolled field. Omit this prop to start with an empty field. Use <code>value</code> for a controlled field."
+    },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
-    "error": { "description": "If <code>true</code>, the label is displayed in an error state." },
-    "form": { "description": "Identifies the form that owns the input element." },
+    "error": { "description": "If <code>true</code>, the field is displayed in an error state." },
+    "form": {
+      "description": "The <code>id</code> of the form that owns the field. Use this prop when the field is rendered outside the form."
+    },
     "format": {
-      "description": "Options to format the input value.<br>See <a href=\"https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl\">MDN - Intl</a>."
+      "description": "Options passed to <code>Intl.NumberFormat</code> to format the displayed value. The <code>value</code> prop and value callbacks use numbers or <code>null</code>, regardless of the display format.<br>See <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat\">Intl.NumberFormat</a>."
     },
     "fullWidth": {
       "description": "If <code>true</code>, the input will take up the full width of its container."
     },
     "helperText": { "description": "The helper text content." },
-    "id": { "description": "The id of the input element." },
-    "inputRef": { "description": "The ref of the input element." },
+    "id": {
+      "description": "The <code>id</code> of the visible input, used to associate its label and helper text. If omitted, an ID is generated."
+    },
+    "inputRef": { "description": "A ref to the visible <code>&lt;input&gt;</code> element." },
     "label": { "description": "The label content." },
     "largeStep": {
       "description": "The amount to increment or decrement while holding the Shift key."
     },
     "locale": {
-      "description": "The locale used for number formatting and parsing.<br>See <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat\">MDN - Intl Number Format</a>."
+      "description": "The locale or locales used to format and parse the value. Defaults to the runtime&#39;s locale.<br>See <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat\">Intl.NumberFormat</a>."
     },
-    "max": { "description": "The maximum value allowed for the number input element." },
-    "min": { "description": "The minimum value allowed for the number input element." },
-    "name": { "description": "Name attribute of the <code>input</code> element." },
-    "onBlur": { "description": "The blur event handler of the input element." },
-    "onFocus": { "description": "The focus event handler of the input element." },
+    "max": {
+      "description": "The upper bound for the numeric value. The increment button is disabled at or above this value."
+    },
+    "min": {
+      "description": "The lower bound for the numeric value. The decrement button is disabled at or below this value."
+    },
+    "name": {
+      "description": "Identifies the field when a form is submitted. The submitted value is the unformatted number."
+    },
+    "onBlur": { "description": "Callback fired when the input loses focus." },
+    "onFocus": { "description": "Callback fired when the input receives focus." },
     "onValueChange": {
       "description": "Callback fired when the numeric value changes. Call <code>eventDetails.cancel()</code> to reject the proposed change.",
       "typeDescriptions": {
@@ -56,7 +68,7 @@
       }
     },
     "onValueCommitted": {
-      "description": "Callback fired when a value is committed. Typing commits on blur. Button and scrub interactions commit on pointer release. Keyboard and wheel changes commit immediately.",
+      "description": "Callback fired when the value is committed. Direct text entry commits on blur. Pointer presses on the stepper buttons and scrub interactions commit on pointer release. Keyboard and wheel changes commit immediately.",
       "typeDescriptions": {
         "value": {
           "name": "value",
@@ -68,13 +80,15 @@
         }
       }
     },
-    "placeholder": { "description": "The placeholder text for the input element." },
-    "readOnly": { "description": "If <code>true</code>, the input element is read-only." },
+    "placeholder": { "description": "The short hint displayed in the input when it is empty." },
+    "readOnly": {
+      "description": "If <code>true</code>, the value cannot be changed through user interaction. The input can still receive focus."
+    },
     "required": {
-      "description": "If <code>true</code>, the label is displayed as required and the <code>input</code> element is required."
+      "description": "If <code>true</code>, a value is required for form submission and the label is marked as required."
     },
     "scrubArea": {
-      "description": "The area of the input element where the scrub control is displayed. Set to false to hide it."
+      "description": "The placement of the drag handle used to adjust the value. Use <code>&#39;start&#39;</code> or <code>&#39;end&#39;</code> to show the handle, or <code>false</code> to hide it. Its position is independent of <code>controlsPosition</code>."
     },
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
@@ -83,15 +97,17 @@
       "description": "The amount to increment or decrement while holding the Alt key (Option on macOS)."
     },
     "snapOnStep": {
-      "description": "If <code>true</code>, the number input element will snap to the nearest step value."
+      "description": "If <code>true</code>, stepping snaps the value to intervals starting at <code>min</code>, or <code>0</code> if <code>min</code> is omitted. Modifier keys use the corresponding <code>smallStep</code> or <code>largeStep</code> intervals."
     },
     "step": {
-      "description": "The amount to increment or decrement with the buttons, arrow keys, or scrub area. Set <code>min</code> explicitly to enable step validation on form submission. Set to <code>&quot;any&quot;</code> to disable step validation; interactive stepping then uses <code>1</code>, while the Alt and Shift keys still use <code>smallStep</code> and <code>largeStep</code>."
+      "description": "The amount to increment or decrement with the buttons, arrow keys, mouse wheel, or scrub area. Set <code>min</code> explicitly to enable step validation on form submission. Set to <code>&quot;any&quot;</code> to disable step validation; interactive stepping then uses <code>1</code>, while the Alt and Shift keys still use <code>smallStep</code> and <code>largeStep</code>."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
-    "value": { "description": "The value of the number input element." },
+    "value": {
+      "description": "The controlled numeric value. Use <code>null</code> to display an empty field and <code>onValueChange</code> to update the value."
+    },
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
@@ -103,12 +119,12 @@
   "slotDescriptions": {
     "decrementButton": "The component that renders the decrement button.",
     "formHelperText": "The component that renders the helper text.",
-    "htmlInput": "The html input element.",
+    "htmlInput": "The component that renders the native input element.",
     "incrementButton": "The component that renders the increment button.",
-    "input": "The component that renders the input.",
+    "input": "The component that renders the Material input wrapper.",
     "inputLabel": "The component that renders the input&#39;s label.",
-    "root": "The component that renders the root",
-    "scrubArea": "The component that renders the scrub area.",
-    "scrubAreaCursor": "The component that renders the scrub area cursor."
+    "root": "The component that renders the root.",
+    "scrubArea": "The component that renders the drag handle for adjusting the value.",
+    "scrubAreaCursor": "The component that renders the custom cursor while dragging the scrub area."
   }
 }
