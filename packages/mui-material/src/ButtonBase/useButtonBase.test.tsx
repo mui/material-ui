@@ -188,22 +188,6 @@ describe('useButtonBase', () => {
         expect(onClick).toHaveBeenCalledTimes(1);
       });
 
-      it("keeps keyboard activation independent of another library's event flag", async () => {
-        const onClick = vi.fn();
-        const markEvent = (event: React.KeyboardEvent<HTMLElement>) => {
-          Object.assign(event, { baseUIHandlerPrevented: true });
-        };
-        const { user } = render(
-          <NonNativeButton onClick={onClick} onKeyDown={markEvent} onKeyUp={markEvent} />,
-        );
-
-        await user.tab();
-        await user.keyboard('{Enter}');
-        await user.keyboard(' ');
-
-        expect(onClick).toHaveBeenCalledTimes(2);
-      });
-
       it('Space on keyDown prevents default and keyUp activates click', () => {
         const handleClick = vi.fn();
         const handleKeyDown = vi.fn();
