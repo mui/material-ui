@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
-import type * as BaseMenuModule from '@base-ui/react/menu';
 import { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import { menu2SubmenuPopupClasses } from '@mui/material/Unstable_Menu2SubmenuPopup';
 import { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
@@ -10,23 +9,17 @@ import traceFrames from './traceFrames';
 
 vi.mock('next/link', () => ({ __esModule: true, default: 'a' }));
 vi.mock('@mui/internal-core-docs/AppLayout', () => ({ AppLayoutHead: () => null }));
-vi.mock('@base-ui/react/menu', async (importOriginal) => {
-  const original = await importOriginal<typeof BaseMenuModule>();
-  // Keep the import sequence and export shape from the wrapper control.
-  await import('react');
-  return { ...original, Menu: { ...original.Menu, Portal: original.Menu.Portal } };
-});
 
 // TODO: Remove this diagnostic after the WebKit exit failure in CI is understood.
-// Run only through MENU2_FRAME_CONTROL so the mock cannot affect normal tests.
-describe.skipIf(isJsdom())('Menu2 playground passthrough portal', () => {
+// Run only through MENU2_FRAME_CONTROL to keep this control out of normal tests.
+describe.skipIf(isJsdom())('Menu2 playground unmocked portal', () => {
   const { render } = createRenderer();
 
-  it('records the real portal DOM without a React wrapper', async () => {
-    await traceFrames('passthrough portal before render');
+  it('records the real portal DOM without a Base UI mock', async () => {
+    await traceFrames('unmocked portal before render');
     const { baseElement } = render(<MenuRfcExperiment />);
     await act(async () => {
-      await traceFrames('passthrough portal after render');
+      await traceFrames('unmocked portal after render');
     });
 
     // Read DOM only after the probe. Do not force layout with geometry or style reads.
@@ -70,7 +63,7 @@ describe.skipIf(isJsdom())('Menu2 playground passthrough portal', () => {
       backdrops: readElements(`.${menu2PopupClasses.backdrop}`),
     };
     console.info(
-      `Menu2 passthrough portal DOM after frame probe:\n${JSON.stringify({ dom, triggers })}`,
+      `Menu2 unmocked portal DOM after frame probe:\n${JSON.stringify({ dom, triggers })}`,
     );
 
     // Record unexpected mounted DOM as evidence, not as a timing assertion failure.
