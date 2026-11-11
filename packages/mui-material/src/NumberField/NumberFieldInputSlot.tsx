@@ -374,18 +374,19 @@ const NumberFieldInputSlot = React.forwardRef(
       />
     );
 
-    const { startControls, endControls } = getControlElements({
-      controlsPosition: ownerState.controlsPosition,
-      IncrementButton: incrementButton,
-      DecrementButton: decrementButton,
-      classes,
-      ownerState,
-    });
-
     const consumerStartAdornment =
       'startAdornment' in materialInputProps ? materialInputProps.startAdornment : undefined;
     const consumerEndAdornment =
       'endAdornment' in materialInputProps ? materialInputProps.endAdornment : undefined;
+
+    const { startControls, endControls, adornedStart } = getControlElements({
+      controlsPosition: ownerState.controlsPosition,
+      IncrementButton: incrementButton,
+      DecrementButton: decrementButton,
+      startAdornment: consumerStartAdornment,
+      classes,
+      ownerState,
+    });
 
     const startScrubArea = ownerState.scrubArea === 'start' && (
       <InputAdornment position="start">{scrubAreaElement}</InputAdornment>
@@ -395,16 +396,15 @@ const NumberFieldInputSlot = React.forwardRef(
     );
 
     // An empty fragment would still mark the input as adorned and shrink its label.
-    const startAdornment =
-      startControls || startScrubArea ? (
-        <React.Fragment>
-          {startControls}
-          {startScrubArea}
-          {consumerStartAdornment}
-        </React.Fragment>
-      ) : (
-        consumerStartAdornment
-      );
+    const startAdornment = adornedStart ? (
+      <React.Fragment>
+        {startControls}
+        {startScrubArea}
+        {consumerStartAdornment}
+      </React.Fragment>
+    ) : (
+      consumerStartAdornment
+    );
     const endAdornment =
       endControls || endScrubArea ? (
         <React.Fragment>

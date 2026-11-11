@@ -10,7 +10,7 @@ import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import FormControl from '../FormControl';
 import useSlot from '../utils/useSlot';
-import { useUtilityClasses } from './utils';
+import { getControlElements, useUtilityClasses } from './utils';
 import { styled } from '../zero-styled';
 import InputLabel from '../InputLabel';
 import type { InputLabelProps } from '../InputLabel';
@@ -95,14 +95,16 @@ const NumberFieldRootSlot = React.forwardRef(
       resolvedInputSlotProps && 'startAdornment' in resolvedInputSlotProps
         ? resolvedInputSlotProps.startAdornment
         : undefined;
-    const hasStartAdornment =
-      ownerState.controlsPosition === 'split' ||
-      ownerState.scrubArea === 'start' ||
-      Boolean(startAdornment);
+    const { adornedStart } = getControlElements({
+      controlsPosition: ownerState.controlsPosition,
+      startAdornment,
+      classes,
+      ownerState,
+    });
 
     return (
       <RootSlot {...rootProps} disabled={ownerState.disabled} required={ownerState.required}>
-        <SSRInitialFilled value={baseState.inputValue} startAdornment={hasStartAdornment} />
+        <SSRInitialFilled value={baseState.inputValue} startAdornment={adornedStart} />
         {hasLabel && (
           <InputLabelSlot htmlFor={id} id={labelId} {...(inputLabelProps as InputLabelProps)}>
             {label}
