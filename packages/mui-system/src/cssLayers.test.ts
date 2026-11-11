@@ -89,6 +89,33 @@ describe('wrapInCssLayer', () => {
     ).to.equal('@charset "utf-8";@import url("a.css");@layer mui.global{a{color:red;}}');
   });
 
+  it('keeps a comment before an @import or a layer order statement with it, at the top level', () => {
+    expect(
+      wrapInCssLayer('/* vendor */ @import url("a.css");html{color:red;}', 'mui.global'),
+    ).to.equal('/* vendor */ @import url("a.css");@layer mui.global{html{color:red;}}');
+    expect(
+      wrapInCssLayer('/* order */\n@layer theme, base, mui;\nhtml{color:red;}', 'mui.global'),
+    ).to.equal('/* order */\n@layer theme, base, mui;@layer mui.global{\nhtml{color:red;}}');
+  });
+
+  it('keeps comments between wrapped rules in the layer, and trailing comments out of it', () => {
+    expect(wrapInCssLayer('a{color:red;}/* b */b{color:blue;}/* end */', 'mui.global')).to.equal(
+      '@layer mui.global{a{color:red;}/* b */b{color:blue;}}/* end */',
+    );
+    expect(wrapInCssLayer(' /* only a comment */ ', 'mui.global')).to.equal(
+      ' /* only a comment */ ',
+    );
+  });
+
+  it('keeps a comment inside a rule in the rule', () => {
+    expect(wrapInCssLayer('a /* x */ {color:red;}', 'mui.global')).to.equal(
+      '@layer mui.global{a /* x */ {color:red;}}',
+    );
+    expect(wrapInCssLayer('@import /* x */ url("a.css");', 'mui.global')).to.equal(
+      '@import /* x */ url("a.css");',
+    );
+  });
+
   it('ignores braces and semicolons in strings, comments and escapes', () => {
     const css = 'a::before{content:"}{;";}/* } @layer x{ */b{color:red;}.c\\{{color:blue;}';
     expect(wrapInCssLayer(css, 'mui.global')).to.equal(`@layer mui.global{${css}}`);
