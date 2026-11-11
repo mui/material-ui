@@ -315,6 +315,10 @@ export interface BaseNumberFieldProps extends StandardProps<
    */
   onValueCommitted?: BaseNumberField.Root.Props['onValueCommitted'] | undefined;
   /**
+   * The placeholder text for the input element.
+   */
+  placeholder?: string | undefined;
+  /**
    * If `true`, the input element is read-only.
    * @default false
    */
