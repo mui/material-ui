@@ -1022,6 +1022,42 @@ describe('<SwipeableDrawer />', () => {
 
       expect(handleClose.callCount).to.equal(0);
     });
+
+    // Need layout
+    it.skipIf(isJsdom())(
+      'should not close while a scrollable ancestor outside a nested shadow root can scroll',
+      () => {
+        function NestedShadowContent() {
+          const attachShadowRoot = React.useCallback((nestedHost) => {
+            if (nestedHost && !nestedHost.shadowRoot) {
+              const content = document.createElement('div');
+              content.setAttribute('data-testid', 'nested-content');
+              content.style.width = '1000px';
+              content.style.height = '100px';
+              nestedHost.attachShadow({ mode: 'open' }).appendChild(content);
+            }
+          }, []);
+
+          return <div data-testid="nested-host" ref={attachShadowRoot} />;
+        }
+
+        const handleClose = spy();
+        const shadowRoot = mountInShadowRoot(
+          { onClose: handleClose, open: true },
+          <div data-testid="scroller" style={{ overflowX: 'auto', width: 100 }}>
+            <NestedShadowContent />
+          </div>,
+        );
+        shadowRoot.querySelector('[data-testid=scroller]').scrollLeft = 10;
+        const nestedContent = shadowRoot
+          .querySelector('[data-testid=nested-host]')
+          .shadowRoot.querySelector('[data-testid=nested-content]');
+
+        swipe(nestedContent, [200, 180, 10]);
+
+        expect(handleClose.callCount).to.equal(0);
+      },
+    );
   });
 
   describe('native scroll', () => {
