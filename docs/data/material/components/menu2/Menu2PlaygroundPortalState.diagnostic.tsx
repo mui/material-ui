@@ -15,6 +15,24 @@ vi.mock('@mui/internal-core-docs/AppLayout', () => ({ AppLayoutHead: () => null 
 describe.skipIf(isJsdom())('Menu2 playground unmocked portal', () => {
   const { render } = createRenderer();
 
+  // Match the main file registrations. The name filter must exclude these bodies.
+  [
+    'uses a transparent click-away backdrop by default for Project',
+    'omits the backdrop when None is selected for Project',
+    'dims the backdrop only when Dimmed is selected for Project',
+    'uses a transparent click-away backdrop by default for Successor',
+    'omits the backdrop when None is selected for Successor',
+    'dims the backdrop only when Dimmed is selected for Successor',
+    'uses a modal click-away backdrop for the focus comparison',
+    'does not force a backdrop on a non-modal menu with Default selected',
+    'does not force a backdrop on a hover-opened menu with Default selected',
+    'records render-only frames for plain div',
+  ].forEach((testName) => {
+    it(testName, () => {
+      expect.fail('This registration must be excluded by the test-name filter.');
+    });
+  });
+
   it('records the real portal DOM without a Base UI mock', async () => {
     await traceFrames('unmocked portal before render');
     const { baseElement } = render(<MenuRfcExperiment />);
