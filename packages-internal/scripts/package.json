@@ -28,10 +28,10 @@
     "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^8.0.9",
+    "@babel/core": "^8.1.0",
     "@babel/plugin-syntax-jsx": "^8.0.1",
     "@babel/plugin-syntax-typescript": "^8.0.3",
-    "@babel/types": "^8.0.8",
+    "@babel/types": "^8.1.0",
     "@mui/internal-docs-infra": "catalog:docs",
     "@mui/internal-docs-utils": "workspace:^",
     "@typescript/typescript6": "^6.0.2",
