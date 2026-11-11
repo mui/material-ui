@@ -87,7 +87,7 @@ describe('styleFunctionSx', () => {
         },
       }),
     ),
-    cssLayers: undefined,
+    modularCssLayers: undefined,
   };
 
   describe('system', () => {
@@ -615,7 +615,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          cssLayers: true,
+          modularCssLayers: true,
         },
         sx: {
           color: 'primary.main',
@@ -651,7 +651,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          cssLayers: true,
+          modularCssLayers: true,
         },
         sx: [
           {
@@ -681,7 +681,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          cssLayers: true,
+          modularCssLayers: true,
         },
         sx: (t) => ({
           color: t.palette.primary.main,
@@ -701,7 +701,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          cssLayers: true,
+          modularCssLayers: true,
         },
         sx: {
           color: 'primary.main',
@@ -725,7 +725,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
-          cssLayers: true,
+          modularCssLayers: true,
         },
         sx: {
           color: 'primary.main',
