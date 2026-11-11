@@ -809,8 +809,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  const switchThumbPadding =
-    'calc((var(--_touchSize) - var(--_thumbHeight)) / 2) calc((var(--_touchSize) - var(--_thumbWidth)) / 2)';
+  const switchThumbPadding = 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)';
   const switchCheckedTransform = `translateX(calc(${dirSign} * (var(--_trackWidth) - var(--_trackHeight) - (var(--_thumbWidth) - var(--_thumbHeight)))))`;
   addStyleOverride(enhanced.components, 'MuiSwitch', 'root', {
     '--_touchSize': touchTarget,
@@ -819,7 +818,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     '--_trackWidth': 'calc(var(--_thumbHeight) * 1.7)',
     '--_trackHeight': 'calc(var(--_thumbHeight) * 0.7)',
     // this variable is not meant to be overridden directly
-    '--_offset': 'calc((max(var(--_thumbWidth), var(--_trackHeight)) - var(--_touchSize)) / 2)',
+    '--_offset': 'calc((max(var(--_thumbHeight), var(--_trackHeight)) - var(--_touchSize)) / 2)',
     width: 'calc(var(--_trackWidth) + var(--_touchSize) - var(--_trackHeight))',
     height: 'var(--_touchSize)',
     padding: 'calc((var(--_touchSize) - var(--_trackHeight)) / 2)',
@@ -858,6 +857,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiSwitch', 'switchBase', {
     padding: switchThumbPadding,
+    borderRadius: 'var(--_touchSize)',
     [`&.${switchClasses.checked}`]: { transform: switchCheckedTransform },
   });
   addStyleOverride(enhanced.components, 'MuiSwitch', 'thumb', {
