@@ -6,9 +6,10 @@ import type { HTMLProps } from '@base-ui/react/types';
 import { mergeProps } from '@base-ui/react/merge-props';
 
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
+import type { NumberFieldClasses } from './numberFieldClasses';
 import FormControl from '../FormControl';
 import useSlot from '../utils/useSlot';
-import { getControlElements, useUtilityClasses } from './utils';
+import { getControlElements } from './utils';
 import { styled } from '../zero-styled';
 import InputLabel from '../InputLabel';
 import type { InputLabelProps } from '../InputLabel';
@@ -18,6 +19,7 @@ interface NumberFieldRootProps {
   baseProps: HTMLProps;
   baseState: BaseNumberField.Root.State;
   children: React.ReactNode;
+  classes: NumberFieldClasses;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
@@ -38,7 +40,8 @@ SSRInitialFilled.muiName = 'Input';
  */
 const NumberFieldRootSlot = React.forwardRef(
   (props: NumberFieldRootProps, ref: React.Ref<HTMLDivElement>) => {
-    const { baseProps, baseState, children, materialProps, externalForwardedProps } = props;
+    const { baseProps, baseState, children, classes, materialProps, externalForwardedProps } =
+      props;
     const ownerState = {
       ...materialProps,
       disabled: baseState.disabled,
@@ -51,8 +54,6 @@ const NumberFieldRootSlot = React.forwardRef(
     const hasHelperText = helperText != null && helperText !== '';
     const labelId = hasLabel && id ? `${id}-label` : undefined;
     const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
-
-    const classes = useUtilityClasses(ownerState);
 
     const [RootSlot, rootProps] = useSlot('root', {
       elementType: NumberFieldRoot,

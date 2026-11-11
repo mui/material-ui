@@ -1319,29 +1319,32 @@ describe('<NumberField />', () => {
       expect(screen.queryByRole('button', { name: 'Decrease' })).to.equal(null);
     });
 
-    it('shows an error for invalid controlsPosition and default to "end"', () => {
-      const consoleError = console.error;
-      console.error = vi.fn();
+    it('falls back to end placement for invalid controlsPosition in theme defaults', () => {
+      const theme = createTheme({
+        components: {
+          MuiNumberField: {
+            defaultProps: {
+              // @ts-expect-error Test an invalid value from JavaScript configuration.
+              controlsPosition: 'invalid',
+            },
+          },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <NumberField label="Amount" />
+        </ThemeProvider>,
+      );
 
-      try {
-        // @ts-expect-error We expect an invalid controlsPosition to trigger a console error.
-        render(<NumberField label="Amount" controlsPosition="invalid" />);
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+      const [decrease, increase] = screen.getAllByRole('button');
+      expect(decrease).to.have.attribute('aria-label', 'Decrease');
+      expect(increase).to.have.attribute('aria-label', 'Increase');
 
-        expect(console.error).toHaveBeenCalledWith(
-          'MUI: "controlsPosition" is invalid: invalid. Use "stacked", "end", "split" or false. Falling back to "end".',
-        );
-        expect(screen.getByRole('textbox', { name: 'Amount' })).not.toBeNull();
-
-        const [expectedDecreaseButton, expectedIncreaseButton] = screen.getAllByRole('button');
-        expect(expectedDecreaseButton).to.have.attribute('aria-label', 'Decrease');
-        expect(expectedIncreaseButton).to.have.attribute('aria-label', 'Increase');
-
-        const group = expectedDecreaseButton.parentElement;
-        expect(expectedIncreaseButton.parentElement).to.equal(group);
-        expect(group).to.have.class('MuiInputAdornment-positionEnd');
-      } finally {
-        console.error = consoleError;
-      }
+      const group = decrease.parentElement;
+      expect(increase.parentElement).to.equal(group);
+      expect(group).to.have.class('MuiInputAdornment-positionEnd');
+      expect(input.compareDocumentPosition(group!)).to.equal(Node.DOCUMENT_POSITION_FOLLOWING);
     });
 
     const placements = [

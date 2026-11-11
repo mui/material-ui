@@ -13,6 +13,7 @@ import ImportExportIcon from '../internal/svg-icons/ImportExport';
 import OpenInFullIcon from '../internal/svg-icons/OpenInFull';
 
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
+import type { NumberFieldClasses } from './numberFieldClasses';
 import useSlot from '../utils/useSlot';
 import OutlinedInput from '../OutlinedInput';
 import type { OutlinedInputProps } from '../OutlinedInput';
@@ -20,12 +21,7 @@ import FilledInput from '../FilledInput';
 import Input from '../Input';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
 import InputAdornment from '../InputAdornment';
-import {
-  getControlElements,
-  omitNullishEventHandlers,
-  resolveInputProps,
-  useUtilityClasses,
-} from './utils';
+import { getControlElements, omitNullishEventHandlers, resolveInputProps } from './utils';
 import IconButton from '../IconButton';
 import type { IconButtonProps } from '../IconButton';
 import NumberFieldButtonSlot from './NumberFieldButtonSlot';
@@ -36,6 +32,7 @@ import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 interface NumberFieldInputProps {
   baseProps: React.ComponentPropsWithRef<'input'>;
   baseState: BaseNumberField.Input.State;
+  classes: NumberFieldClasses;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Required<Pick<NumberFieldProps, 'slots' | 'slotProps'>>;
 }
@@ -174,7 +171,7 @@ const NumberFieldScrubAreaCursor = styled('span', {
  */
 const NumberFieldInputSlot = React.forwardRef(
   (props: NumberFieldInputProps, ref: React.Ref<HTMLDivElement>) => {
-    const { baseProps, baseState, materialProps, externalForwardedProps } = props;
+    const { baseProps, baseState, classes, materialProps, externalForwardedProps } = props;
     const { inputValue } = baseState;
     const { autoFocus, variant, label, id, fullWidth, inputRef, placeholder } = materialProps;
     const ownerState = {
@@ -186,8 +183,6 @@ const NumberFieldInputSlot = React.forwardRef(
 
     const hasHelperText = materialProps.helperText != null && materialProps.helperText !== '';
     const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
-
-    const classes = useUtilityClasses(ownerState);
 
     const InputComponent = variantComponent[materialProps.variant];
     const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;

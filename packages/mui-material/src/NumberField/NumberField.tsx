@@ -12,6 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import type { NumberFieldProps } from './NumberField.types';
 import RootSlot from './NumberFieldRootSlot';
 import InputSlot from './NumberFieldInputSlot';
+import { useUtilityClasses } from './utils';
 /**
  *
  * Demos:
@@ -91,6 +92,8 @@ const NumberField = React.forwardRef(function NumberField(
     variant,
   };
 
+  const classes = useUtilityClasses(ownerState);
+
   const externalForwardedProps = {
     slots,
     slotProps,
@@ -138,6 +141,7 @@ const NumberField = React.forwardRef(function NumberField(
           <RootSlot
             baseProps={baseProps}
             baseState={baseState}
+            classes={classes}
             materialProps={resolvedOwnerState}
             ref={ref}
             externalForwardedProps={resolvedExternalForwardedProps}
@@ -148,6 +152,7 @@ const NumberField = React.forwardRef(function NumberField(
                 <InputSlot
                   baseProps={inputBaseProps}
                   baseState={inputBaseState}
+                  classes={classes}
                   materialProps={resolvedOwnerState}
                   externalForwardedProps={resolvedExternalForwardedProps}
                 />
@@ -185,13 +190,13 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the

@@ -188,10 +188,6 @@ export interface BaseNumberFieldProps extends StandardProps<
    */
   autoFocus?: boolean | undefined;
   /**
-   * @ignore
-   */
-  children?: FormControlProps['children'] | undefined;
-  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<NumberFieldClasses> | undefined;
