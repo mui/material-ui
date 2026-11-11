@@ -10,6 +10,9 @@ import type {
   OutlinedNumberFieldProps,
 } from '@mui/material/NumberField';
 
+// @ts-expect-error NumberField owns its content; use slot props to customize it.
+<NumberField>Unsupported content</NumberField>;
+
 // The default variant exposes OutlinedInput's slots.
 <NumberField slotProps={{ input: { slotProps: { notchedOutline: { className: 'outline' } } } }} />;
 

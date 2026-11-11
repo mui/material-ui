@@ -75,22 +75,13 @@ function getControlElements({
       );
       break;
     case 'end':
-    default: {
-      if (process.env.NODE_ENV !== 'production') {
-        if (controlsPosition !== 'end') {
-          console.error(
-            `MUI: "controlsPosition" is invalid: ${controlsPosition}. Use "stacked", "end", "split" or false. Falling back to "end".`,
-          );
-        }
-      }
-
+    default:
       endControls = (
         <Controls position="end" {...controlProps}>
           {DecrementButton}
           {IncrementButton}
         </Controls>
       );
-    }
   }
 
   return {
