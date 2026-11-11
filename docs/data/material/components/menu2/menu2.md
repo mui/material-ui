@@ -263,6 +263,11 @@ The menu can't connect to that element, so you do the wiring:
 - Give `MenuPopup` an accessible name with `aria-label` or `aria-labelledby`.
 - Pass `finalFocus` to `MenuPopup` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element.
 
+This wiring does not provide the keyboard behavior of `MenuTrigger`.
+If the external button only uses `onClick` to open the menu, Enter focuses the menu container, not the first item.
+ArrowDown and ArrowUp do not open the menu.
+Use `MenuTrigger` for keyboard opening and initial item focus; `finalFocus` only controls focus on close.
+
 ## Max height menu
 
 The menu limits its height to the viewport and to the space available at the anchor, and scrolls its content.
