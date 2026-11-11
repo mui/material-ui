@@ -31,6 +31,7 @@ const NumberField = React.forwardRef(function NumberField(
     allowOutOfRange = false,
     allowWheelScrub = false,
     autoFocus = false,
+    className,
     color = 'primary',
     controlsPosition = 'end',
     defaultValue,
