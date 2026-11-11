@@ -98,6 +98,8 @@ function Menu2SubmenuTriggerRootSlot(
   return (
     <Menu2ItemRootSlot
       {...other}
+      slots={slots}
+      slotProps={slotProps}
       ownerState={ownerState}
       elementType={Menu2SubmenuTriggerRoot}
       component={renderProp ? Menu2RenderRoot : undefined}

@@ -204,7 +204,7 @@ export interface Menu2ItemRootSlotProps<OwnerState extends object> {
   internalRenderState?: OwnerState | undefined;
   nativeButton?: boolean | undefined;
   slots?: Menu2RootSlots | undefined;
-  slotProps?: Menu2RootSlotProps<OwnerState> | undefined;
+  slotProps?: Menu2RootSlotProps<OwnerState, 'a' | 'div'> | undefined;
   sx?: SxProps<Theme> | undefined;
   startIndicator?: React.ReactNode;
   endIndicator?: React.ReactNode;

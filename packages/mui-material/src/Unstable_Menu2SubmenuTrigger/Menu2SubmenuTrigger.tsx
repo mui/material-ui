@@ -22,8 +22,15 @@ import {
 } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SubmenuTriggerUtilityClass } from '../Unstable_Menu2/menu2Classes';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 
 export interface Menu2SubmenuTriggerSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2SubmenuTriggerRoot
+   */
+  root?: React.ElementType | undefined;
   /**
    * The component that renders the submenu indicator.
    * Set to `null` to omit the indicator. Custom indicators are not mirrored in RTL.
@@ -40,6 +47,7 @@ export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemBaseOwnerState {
 }
 
 export interface Menu2SubmenuTriggerSlotProps {
+  root?: Menu2RootSlotProps<Menu2SubmenuTriggerOwnerState>['root'] | undefined;
   indicator?: SlotProps<'span', {}, Menu2SubmenuTriggerOwnerState> | undefined;
 }
 
@@ -99,7 +107,7 @@ export interface Menu2SubmenuTriggerProps
   disableRipple?: boolean | undefined;
   /**
    * Whether the trigger renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
    * Set to `true` for a custom component or render function that returns a button.
    * @default false
    */
@@ -108,6 +116,7 @@ export interface Menu2SubmenuTriggerProps
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
    * Put content in the children prop of Menu2SubmenuTrigger. Replacing the supplied children can remove the indicator and ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
     | React.ReactElement
@@ -162,7 +171,10 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     getMenu2SubmenuTriggerUtilityClass,
   );
   const nativeButton =
-    nativeButtonProp ?? (React.isValidElement(renderProp) && renderProp.type === 'button');
+    nativeButtonProp ??
+    (slots?.root
+      ? slots.root === 'button'
+      : React.isValidElement(renderProp) && renderProp.type === 'button');
   const { closing, retainClosingTint } = React.useContext(Menu2SubmenuClosingContext);
 
   return (
@@ -263,7 +275,7 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
   label: PropTypes.string,
   /**
    * Whether the trigger renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
    * Set to `true` for a custom component or render function that returns a button.
    * @default false
    */
@@ -277,6 +289,7 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
    * Put content in the children prop of Menu2SubmenuTrigger. Replacing the supplied children can remove the indicator and ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
@@ -284,12 +297,14 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    */
   slots: PropTypes.shape({
     indicator: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * Styles applied to the root element.

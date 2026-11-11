@@ -346,12 +346,12 @@ Put root attributes on the item or its render element.
 A render function also receives the typed item state.
 Forward its supplied props, ref, and children to the root element to preserve Material styles, indicators, and ripple.
 
-`MenuItem` also accepts `slotProps.root` for attributes, a ref, and `sx` on the default styled root.
+All item parts, including `MenuSubmenuTrigger`, also accept `slotProps.root` for attributes, a ref, and `sx` on the default styled root.
 Its callback receives the live item state.
 Use `slots.root` to replace that root and its render adapter; it takes precedence over `render`.
 A replacement must forward behavior props, ref, and children.
 Utility classes remain, but default Material styles, theme style overrides, ripple, and `sx` processing are not added automatically.
-The other item parts do not have a root slot.
+The replacement still receives indicators as children where applicable.
 
 Checkbox and radio items have separate `indicator` and `indicatorIcon` slots for the container and icon.
 `MenuSubmenuTrigger` keeps its `indicator` slot and accepts `slots={{ indicator: null }}` to omit it.

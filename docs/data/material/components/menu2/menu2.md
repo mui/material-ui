@@ -199,8 +199,10 @@ Use `render` for a router link that forwards props, ref, and children to an anch
 </MenuLinkItem>
 ```
 
-`MenuLinkItem` follows the same [render contract as MenuItem](#item), including Material styles and ripple.
+`MenuLinkItem` follows the same [render and root-slot contracts as MenuItem](#item).
+Its default root keeps Material styles and ripple.
 Its render function receives anchor props and the item state.
+A custom root must also forward props, ref, and children to an anchor.
 
 :::warning
 Unlike a classic `MenuItem` with `href`, `MenuLinkItem` does not support `disabled`.
@@ -384,12 +386,14 @@ Utility classes and Base UI data attributes remain available.
 The replacement does not get the default Material styles, theme style overrides, ripple, or `sx` processing automatically.
 Provide these features in the replacement if needed.
 
-`MenuCheckboxItem`, `MenuRadioItem`, and `MenuSubmenuTrigger` use the same render contract and native-button detection.
-Checkbox and radio render functions also receive `checked`; the submenu trigger receives `open`.
+`MenuLinkItem`, `MenuCheckboxItem`, `MenuRadioItem`, and `MenuSubmenuTrigger` use the same render and root-slot contracts.
+Checkbox and radio render functions and root-slot callbacks also receive `checked`; the submenu trigger receives `open`.
 The `open` state becomes false when closing starts, even while the exit animation runs.
 Forward `props.children` to keep both the indicator and ripple.
 Use `slots.indicator` and `slotProps.indicator` to customize the indicator separately.
-These parts and `MenuLinkItem` do not have a root slot.
+The indicator remains a child of the replacement root when you use `slots.root`.
+For button-capable items, a `button` root slot sets `nativeButton` automatically.
+Set `nativeButton` for a custom root component that returns a native button.
 
 ### Groups
 

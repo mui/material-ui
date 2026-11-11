@@ -16,6 +16,7 @@ import Menu2IndicatorBase from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type {
   Menu2ItemBaseOwnerState,
   Menu2ItemBaseProps,
@@ -44,6 +45,12 @@ export interface Menu2RadioItemOwnerState extends Menu2ItemBaseOwnerState {
 
 export interface Menu2RadioItemSlots {
   /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2RadioItemRoot
+   */
+  root?: React.ElementType | undefined;
+  /**
    * The component that renders the check indicator.
    * @default Menu2RadioItemIndicator
    */
@@ -56,6 +63,7 @@ export interface Menu2RadioItemSlots {
 }
 
 export interface Menu2RadioItemSlotProps {
+  root?: Menu2RootSlotProps<Menu2RadioItemOwnerState>['root'] | undefined;
   indicator?: Menu2IndicatorSlotProps<Menu2RadioItemOwnerState> | undefined;
   indicatorIcon?:
     | SlotProps<
@@ -105,7 +113,7 @@ export interface Menu2RadioItemProps
   disableRipple?: boolean | undefined;
   /**
    * Whether the item renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
    * Set to `true` for a custom component or render function that returns a button.
    * @default false
    */
@@ -114,6 +122,7 @@ export interface Menu2RadioItemProps
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
    * Put content in the children prop of Menu2RadioItem. Replacing the supplied children can remove the indicator and ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
     | React.ReactElement
@@ -179,6 +188,8 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
   return (
     <Menu2ItemRootSlot
       {...other}
+      slots={slots}
+      slotProps={slotProps}
       ownerState={ownerState}
       elementType={Menu2RadioItemRoot}
       component={renderProp ? Menu2RenderRoot : undefined}
@@ -220,7 +231,7 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
   disableRipple: PropTypes.bool,
   /**
    * Whether the item renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
    * Set to `true` for a custom component or render function that returns a button.
    * @default false
    */
@@ -233,6 +244,7 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
    * Put content in the children prop of Menu2RadioItem. Replacing the supplied children can remove the indicator and ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
@@ -241,6 +253,7 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     indicatorIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -248,6 +261,7 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     indicator: PropTypes.elementType,
     indicatorIcon: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
 } as any;
 
@@ -299,7 +313,10 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     getMenu2RadioItemUtilityClass,
   );
   const nativeButton =
-    nativeButtonProp ?? (React.isValidElement(renderProp) && renderProp.type === 'button');
+    nativeButtonProp ??
+    (slots?.root
+      ? slots.root === 'button'
+      : React.isValidElement(renderProp) && renderProp.type === 'button');
 
   return (
     <ListContext.Provider value={childContext}>
@@ -388,7 +405,7 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
   label: PropTypes.string,
   /**
    * Whether the item renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
    * Set to `true` for a custom component or render function that returns a button.
    * @default false
    */
@@ -397,6 +414,7 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
    * Put content in the children prop of Menu2RadioItem. Replacing the supplied children can remove the indicator and ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
@@ -405,6 +423,7 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     indicatorIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -412,6 +431,7 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     indicator: PropTypes.elementType,
     indicatorIcon: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * Styles applied to the root element.

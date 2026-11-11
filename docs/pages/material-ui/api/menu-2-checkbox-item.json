@@ -24,13 +24,13 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ indicator?: func<br>&#124;&nbsp;object, indicatorIcon?: func<br>&#124;&nbsp;object }"
+        "description": "{ indicator?: func<br>&#124;&nbsp;object, indicatorIcon?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       }
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ indicator?: elementType, indicatorIcon?: elementType }"
+        "description": "{ indicator?: elementType, indicatorIcon?: elementType, root?: elementType }"
       }
     },
     "style": { "type": { "name": "object" } },
@@ -45,6 +45,12 @@
   "name": "Menu2CheckboxItem",
   "imports": ["import MenuCheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';"],
   "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.\nReplaces the default styled root and takes precedence over `render`.",
+      "default": "Menu2CheckboxItemRoot",
+      "class": "MuiMenu2CheckboxItem-root"
+    },
     {
       "name": "indicator",
       "description": "The component that renders the check indicator.",
@@ -93,12 +99,6 @@
       "key": "highlighted",
       "className": "MuiMenu2CheckboxItem-highlighted",
       "description": "State class applied to the root element if highlighted.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiMenu2CheckboxItem-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

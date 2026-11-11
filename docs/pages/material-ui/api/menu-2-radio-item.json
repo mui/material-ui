@@ -16,13 +16,13 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ indicator?: func<br>&#124;&nbsp;object, indicatorIcon?: func<br>&#124;&nbsp;object }"
+        "description": "{ indicator?: func<br>&#124;&nbsp;object, indicatorIcon?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       }
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ indicator?: elementType, indicatorIcon?: elementType }"
+        "description": "{ indicator?: elementType, indicatorIcon?: elementType, root?: elementType }"
       }
     },
     "style": { "type": { "name": "object" } },
@@ -37,6 +37,12 @@
   "name": "Menu2RadioItem",
   "imports": ["import MenuRadioItem from '@mui/material/Unstable_Menu2RadioItem';"],
   "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.\nReplaces the default styled root and takes precedence over `render`.",
+      "default": "Menu2RadioItemRoot",
+      "class": "MuiMenu2RadioItem-root"
+    },
     {
       "name": "indicator",
       "description": "The component that renders the check indicator.",
@@ -85,12 +91,6 @@
       "key": "highlighted",
       "className": "MuiMenu2RadioItem-highlighted",
       "description": "State class applied to the root element if highlighted.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiMenu2RadioItem-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

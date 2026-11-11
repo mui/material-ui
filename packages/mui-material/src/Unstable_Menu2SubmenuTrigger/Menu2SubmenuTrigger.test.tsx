@@ -22,11 +22,14 @@ const CustomIndicator = styled('span')({});
 const renderCases: {
   name: string;
   render: Menu2SubmenuTriggerProps['render'];
+  slots?: Menu2SubmenuTriggerProps['slots'];
   nativeButton?: boolean;
 }[] = [
   { name: 'render element', render: <div /> },
   { name: 'render callback', render: (props) => <div {...props} /> },
   { name: 'native button', render: <button type="button" /> },
+  { name: 'root slot div', slots: { root: 'div' }, render: <button /> },
+  { name: 'root slot button', slots: { root: 'button' }, render: <div /> },
   {
     name: 'native button callback',
     render: (props) => <button {...props} type="button" />,
@@ -41,6 +44,7 @@ describe('<Menu2SubmenuTrigger />', () => {
     let received: string[] = [];
     const triggerRef = React.createRef<HTMLElement>();
     const renderRef = React.createRef<HTMLDivElement>();
+    const slotRef = React.createRef<HTMLDivElement>();
     const onClick = vi.fn();
     const onRenderClick = vi.fn();
     const CustomRoot = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -60,6 +64,7 @@ describe('<Menu2SubmenuTrigger />', () => {
               onClick={onClick}
               className="external-root"
               title="More actions"
+              slotProps={{ root: { ref: slotRef, className: 'slot-root' } }}
               render={
                 <CustomRoot
                   ref={renderRef}
@@ -81,10 +86,12 @@ describe('<Menu2SubmenuTrigger />', () => {
     const trigger = screen.getByRole('menuitem', { name: 'More' });
     expect(triggerRef.current).to.equal(trigger);
     expect(renderRef.current).to.equal(trigger);
+    expect(slotRef.current).to.equal(trigger);
     expect(trigger).to.have.attribute('title', 'More actions');
     expect(trigger).to.have.attribute('data-custom', 'value');
     expect(trigger).to.have.class('external-root');
     expect(trigger).to.have.class('custom-root');
+    expect(trigger).to.have.class('slot-root');
     expect(trigger.querySelector(`.${classes.indicator}`)).not.to.equal(null);
     [
       'ownerState',
@@ -106,9 +113,57 @@ describe('<Menu2SubmenuTrigger />', () => {
     unmount();
     expect(triggerRef.current).to.equal(null);
     expect(renderRef.current).to.equal(null);
+    expect(slotRef.current).to.equal(null);
   });
 
-  renderCases.forEach(({ name, render: renderProp, nativeButton }) => {
+  it('replaces the styled root and keeps the open state and indicator slot', async () => {
+    const renderTrigger = vi.fn(() => <div />);
+    const slotRef = React.createRef<HTMLDivElement>();
+    const { user } = render(
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Trigger render={<button type="button">Options</button>} />
+        <Menu2Popup transitionDuration={0}>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger
+              openOnHover={false}
+              render={renderTrigger}
+              slots={{ root: 'div', indicator: CustomIndicator }}
+              slotProps={{
+                root: (state) => ({ ref: slotRef, 'data-slot-open': String(state.open) }),
+                indicator: { children: '+', id: 'custom-indicator' },
+              }}
+              sx={{ paddingLeft: '31px' }}
+            >
+              More
+            </Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup transitionDuration={0}>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
+      </Menu2>,
+    );
+    const trigger = screen.getByRole('menuitem', { name: 'More' });
+    const indicator = trigger.querySelector('#custom-indicator')!;
+    expect(slotRef.current).to.equal(trigger);
+    expect(trigger).to.have.attribute('data-slot-open', 'false');
+    expect(trigger).to.have.attribute('aria-haspopup', 'menu');
+    expect(trigger).not.to.have.class('MuiButtonBase-root');
+    expect(getComputedStyle(trigger).display).not.to.equal('flex');
+    expect(getComputedStyle(trigger).paddingLeft).not.to.equal('31px');
+    expect(indicator).to.have.class(classes.indicator);
+    expect(indicator).to.have.text('+');
+    expect(renderTrigger).not.toHaveBeenCalled();
+    await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
+    await user.click(trigger);
+    expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    expect(trigger).to.have.attribute('aria-expanded', 'true');
+    expect(trigger).to.have.attribute('data-slot-open', 'true');
+    expect(slotRef.current).to.equal(trigger);
+    expect(trigger.querySelector('#custom-indicator')).to.equal(indicator);
+  });
+
+  renderCases.forEach(({ name, render: renderProp, nativeButton, slots }) => {
     (['pointer', 'Enter', 'Space'] as const).forEach((activation) => {
       it(`opens once after ${activation} activation with a ${name}`, async () => {
         const onOpenChange = vi.fn();
@@ -120,6 +175,7 @@ describe('<Menu2SubmenuTrigger />', () => {
               <Menu2Submenu onOpenChange={onOpenChange}>
                 <Menu2SubmenuTrigger
                   render={renderProp}
+                  slots={slots}
                   nativeButton={nativeButton}
                   openOnHover={false}
                   onClick={onClick}
@@ -271,6 +327,7 @@ describe('<Menu2SubmenuTrigger />', () => {
     muiName: 'MuiMenu2SubmenuTrigger',
     testVariantProps: { dense: true },
     slots: {
+      root: { expectedClassName: classes.root },
       indicator: { expectedClassName: classes.indicator },
     },
     testDeepOverrides: { slotName: 'indicator', slotClassName: classes.indicator },

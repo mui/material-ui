@@ -87,10 +87,10 @@ interface Menu2RootVisualProps {
   sx?: SxProps<Theme> | undefined;
 }
 
-export interface Menu2RootSlotProps<OwnerState> {
+export interface Menu2RootSlotProps<OwnerState, RootComponent extends React.ElementType = 'div'> {
   root?:
     | SlotComponentProps<
-        'div',
+        RootComponent,
         Menu2RootVisualProps | (Menu2RootVisualProps & { [attribute: `data-${string}`]: unknown }),
         OwnerState
       >

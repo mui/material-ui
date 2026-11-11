@@ -28,10 +28,15 @@ const RouterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function
   );
 });
 
-const renderCases: { name: string; render?: Menu2LinkItemProps['render'] }[] = [
+const renderCases: {
+  name: string;
+  render?: Menu2LinkItemProps['render'];
+  slots?: Menu2LinkItemProps['slots'];
+}[] = [
   { name: 'default link' },
   { name: 'Material Link', render: <Link /> },
   { name: 'router link', render: <RouterLink to="/profile" /> },
+  { name: 'root slot link', slots: { root: 'a' } },
 ];
 
 describe('<Menu2LinkItem />', () => {
@@ -47,7 +52,8 @@ describe('<Menu2LinkItem />', () => {
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLAnchorElement,
-    skip: ['componentProp', 'slotsProp'],
+    skip: ['componentProp'],
+    slots: { root: { expectedClassName: classes.root } },
     muiName: 'MuiMenu2LinkItem',
     testVariantProps: { 'data-variant': 'probe' },
   }));
@@ -56,6 +62,7 @@ describe('<Menu2LinkItem />', () => {
     let received: string[] = [];
     const rootRef = React.createRef<HTMLElement>();
     const renderRef = React.createRef<HTMLAnchorElement>();
+    const slotRef = React.createRef<HTMLAnchorElement>();
     const CustomLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
       function CustomLink(props, ref) {
         received = Object.keys(props);
@@ -71,6 +78,7 @@ describe('<Menu2LinkItem />', () => {
             rel="noopener"
             download="profile.html"
             render={<CustomLink to="/profile" ref={renderRef} data-custom="value" />}
+            slotProps={{ root: { ref: slotRef, className: 'slot-link' } }}
           >
             Profile
           </Menu2LinkItem>
@@ -87,10 +95,60 @@ describe('<Menu2LinkItem />', () => {
     expect(item).to.have.attribute('data-custom', 'value');
     expect(rootRef.current).to.equal(item);
     expect(renderRef.current).to.equal(item);
+    expect(slotRef.current).to.equal(item);
+    expect(item).to.have.class('slot-link');
     expect(received).to.include('className');
     ['ownerState', 'sx', 'disableRipple', 'internalRender', 'internalRenderState'].forEach((prop) =>
       expect(received).not.to.include(prop),
     );
+  });
+
+  it('replaces the styled link root while keeping link props and slot state', async () => {
+    const renderItem = vi.fn(() => <a>Unused render</a>);
+    const rootRef = React.createRef<HTMLElement>();
+    const slotRef = React.createRef<HTMLAnchorElement>();
+    const { user } = render(
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2LinkItem
+            ref={rootRef}
+            href="/profile"
+            target="_blank"
+            rel="noopener"
+            dense
+            render={renderItem}
+            slots={{ root: 'a' }}
+            slotProps={{
+              root: (state) => ({
+                ref: slotRef,
+                'data-slot-dense': String(state.dense),
+                'data-slot-disabled': String(state.disabled),
+                onClick: (event) => event.preventDefault(),
+              }),
+            }}
+            sx={{ paddingLeft: '31px' }}
+          >
+            Profile
+          </Menu2LinkItem>
+        </Menu2Popup>
+      </Menu2>,
+    );
+    const item = screen.getByRole('menuitem', { name: 'Profile' });
+    expect(item.tagName).to.equal('A');
+    expect(item).to.have.attribute('href', '/profile');
+    expect(item).to.have.attribute('target', '_blank');
+    expect(item).to.have.attribute('rel', 'noopener');
+    expect(item).to.have.attribute('data-slot-dense', 'true');
+    expect(item).to.have.attribute('data-slot-disabled', 'false');
+    expect(rootRef.current).to.equal(item);
+    expect(slotRef.current).to.equal(item);
+    expect(item).not.to.have.class('MuiButtonBase-root');
+    expect(getComputedStyle(item).display).not.to.equal('flex');
+    expect(getComputedStyle(item).paddingLeft).not.to.equal('31px');
+    expect(renderItem).not.toHaveBeenCalled();
+    await user.click(item);
+    expect(item.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
+    expect(screen.getByRole('menu')).not.to.equal(null);
   });
 
   it('keeps Material styles, theme defaults, and sx with a Material Link render element', () => {
@@ -160,7 +218,7 @@ describe('<Menu2LinkItem />', () => {
     expect(screen.getByRole('menu')).not.to.equal(null);
   });
 
-  renderCases.forEach(({ name, render: renderProp }) => {
+  renderCases.forEach(({ name, render: renderProp, slots }) => {
     (['pointer', 'Enter', 'Space'] as const).forEach((activation) => {
       it(`preserves a ${name} after ${activation} activation without closing by default`, async () => {
         const onClick = spy((event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -171,7 +229,7 @@ describe('<Menu2LinkItem />', () => {
         const { user } = render(
           <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
             <Menu2Popup anchor={document.body}>
-              <Menu2LinkItem href="/profile" onClick={onClick} render={renderProp}>
+              <Menu2LinkItem href="/profile" onClick={onClick} render={renderProp} slots={slots}>
                 Profile
               </Menu2LinkItem>
             </Menu2Popup>
@@ -213,6 +271,7 @@ describe('<Menu2LinkItem />', () => {
             <Menu2LinkItem
               href="/profile"
               render={renderProp}
+              slots={slots}
               onClick={onClick}
               onAuxClick={onAuxClick}
             >

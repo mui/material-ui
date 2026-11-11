@@ -11,6 +11,10 @@
     "href": { "type": { "name": "string" } },
     "label": { "type": { "name": "string" } },
     "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
     "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
@@ -22,6 +26,14 @@
   },
   "name": "Menu2LinkItem",
   "imports": ["import MenuLinkItem from '@mui/material/Unstable_Menu2LinkItem';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.\nReplaces the default styled root and takes precedence over `render`.",
+      "default": "Menu2LinkItemRoot",
+      "class": "MuiMenu2LinkItem-root"
+    }
+  ],
   "classes": [
     {
       "key": "dense",
@@ -51,12 +63,6 @@
       "key": "highlighted",
       "className": "MuiMenu2LinkItem-highlighted",
       "description": "State class applied to the root element if highlighted.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiMenu2LinkItem-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

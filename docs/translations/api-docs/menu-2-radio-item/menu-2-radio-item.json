@@ -20,10 +20,10 @@
       "description": "Overrides the text label to use when the item is matched during keyboard text navigation."
     },
     "nativeButton": {
-      "description": "Whether the item renders a native <code>&lt;button&gt;</code> element. Inferred from a button element passed to <code>render</code>. Set to <code>true</code> for a custom component or render function that returns a button."
+      "description": "Whether the item renders a native <code>&lt;button&gt;</code> element. Inferred from <code>slots.root=&quot;button&quot;</code> or a button element passed to <code>render</code>. Set to <code>true</code> for a custom component or render function that returns a button."
     },
     "render": {
-      "description": "The element to render, or a function that returns it. Forward the props, ref, and children to preserve Material styles, the indicator, and ripple. Put content in the children prop of Menu2RadioItem. Replacing the supplied children can remove the indicator and ripple."
+      "description": "The element to render, or a function that returns it. Forward the props, ref, and children to preserve Material styles, the indicator, and ripple. Put content in the children prop of Menu2RadioItem. Replacing the supplied children can remove the indicator and ripple. Applies to the default root only. Use <code>slots.root</code> to replace the styled root."
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
@@ -63,11 +63,11 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "highlighted"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
   },
   "slotDescriptions": {
     "indicator": "The component that renders the check indicator.",
-    "indicatorIcon": "The component that renders the icon inside the indicator."
+    "indicatorIcon": "The component that renders the icon inside the indicator.",
+    "root": "The component that renders the root. Replaces the default styled root and takes precedence over <code>render</code>."
   }
 }

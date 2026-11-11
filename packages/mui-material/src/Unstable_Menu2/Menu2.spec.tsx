@@ -29,6 +29,9 @@ import Menu2SubmenuPopup, {
 import type {
   Menu2CheckboxItemIndicatorClassKey,
   Menu2CheckboxItemIndicatorClasses,
+  Menu2CheckboxItemOwnerState,
+  Menu2CheckboxItemSlotProps,
+  Menu2CheckboxItemSlots,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemUtilityClass,
@@ -49,11 +52,19 @@ import type {
   Menu2ItemSlots,
 } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
+import type {
+  Menu2LinkItemOwnerState,
+  Menu2LinkItemSlotProps,
+  Menu2LinkItemSlots,
+} from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type { Menu2RadioGroupOwnerState } from '@mui/material/Unstable_Menu2RadioGroup';
 import type {
   Menu2RadioItemIndicatorClassKey,
   Menu2RadioItemIndicatorClasses,
+  Menu2RadioItemOwnerState,
+  Menu2RadioItemSlotProps,
+  Menu2RadioItemSlots,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2RadioItem, {
   getMenu2RadioItemUtilityClass,
@@ -68,6 +79,11 @@ import type { Menu2SeparatorOwnerState } from '@mui/material/Unstable_Menu2Separ
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
   menu2SubmenuTriggerClasses,
+} from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import type {
+  Menu2SubmenuTriggerOwnerState,
+  Menu2SubmenuTriggerSlotProps,
+  Menu2SubmenuTriggerSlots,
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme } from '@mui/material/styles';
 // @ts-expect-error Menu2 is intentionally not exported from the root barrel for this POC.
@@ -467,7 +483,13 @@ createTheme({
       },
     },
     MuiMenu2SubmenuTrigger: {
-      defaultProps: { openOnHover: false, dense: true, disableRipple: true },
+      defaultProps: {
+        openOnHover: false,
+        dense: true,
+        disableRipple: true,
+        slots: { root: 'div' },
+        slotProps: { root: { title: 'More actions' } },
+      },
       styleOverrides: {
         root: { [`&.${menu2SubmenuTriggerClasses.highlighted}`]: { color: 'red' } },
       },
@@ -500,8 +522,9 @@ createTheme({
 
     MuiMenu2CheckboxItem: {
       defaultProps: {
-        slots: { indicatorIcon: CustomIndicatorIcon },
+        slots: { root: 'div', indicatorIcon: CustomIndicatorIcon },
         slotProps: {
+          root: { title: 'Checkbox' },
           indicator: { keepMounted: false, sx: { color: 'primary.main' } },
           indicatorIcon: { fontSize: 'small', 'data-testid': 'icon' },
         },
@@ -510,8 +533,9 @@ createTheme({
     },
     MuiMenu2RadioItem: {
       defaultProps: {
-        slots: { indicatorIcon: CustomIndicatorIcon },
+        slots: { root: 'div', indicatorIcon: CustomIndicatorIcon },
         slotProps: {
+          root: { title: 'Radio' },
           indicator: { keepMounted: false, sx: { color: 'primary.main' } },
           indicatorIcon: { fontSize: 'small', 'data-testid': 'icon' },
         },
@@ -525,6 +549,10 @@ createTheme({
       ],
     },
     MuiMenu2LinkItem: {
+      defaultProps: {
+        slots: { root: 'a' },
+        slotProps: { root: { target: '_blank', rel: 'noopener' } },
+      },
       variants: [
         {
           props: { href: '/profile' },
@@ -1089,12 +1117,40 @@ const RouterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function
 <Menu2LinkItem to="/profile" render={<RouterLink to="/profile" />} />;
 // @ts-expect-error The router link requires its own destination.
 <Menu2LinkItem render={<RouterLink />} />;
-// @ts-expect-error Use render to select the link item root.
+const menuLinkItemSlots: Menu2LinkItemSlots = { root: 'a' };
+const menuLinkItemSlotProps: Menu2LinkItemSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2LinkItemOwnerState, typeof ownerState>(ownerState);
+    expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // @ts-expect-error Link item state does not include an open state.
+    ownerState.open;
+    return {
+      href: '/profile',
+      target: '_blank',
+      rel: 'noopener',
+      'data-highlighted': ownerState.highlighted,
+      sx: { px: ownerState.dense ? 1 : 2 },
+      ref: React.createRef<HTMLAnchorElement>(),
+      onClick: (event) => {
+        expectType<EventTarget & HTMLAnchorElement, typeof event.currentTarget>(
+          event.currentTarget,
+        );
+      },
+    };
+  },
+};
+<Menu2LinkItem
+  slots={menuLinkItemSlots}
+  slotProps={menuLinkItemSlotProps}
+  render={<a href="/projects">Projects</a>}
+/>;
+<Menu2LinkItem slotProps={{ root: { href: '/profile', download: true, title: 'Profile' } }} />;
+// @ts-expect-error Use render or slots.root to select the link item root.
 <Menu2LinkItem component="a" />;
-// @ts-expect-error Use render instead of the root slot.
-<Menu2LinkItem slots={{ root: 'a' }} />;
-// @ts-expect-error Put root props on the link item or its render element.
-<Menu2LinkItem slotProps={{ root: { title: 'Profile' } }} />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2LinkItem slots={{ root: <a href="/projects">Projects</a> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2LinkItem slotProps={{ root: { component: 'a' } }} />;
 // @ts-expect-error Link items do not support disabled.
 <Menu2LinkItem disabled />;
 // @ts-expect-error The render prop requires an element or a callback.
@@ -1127,12 +1183,39 @@ const RouterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function
 <Menu2CheckboxItem trackingId="checkbox" />;
 // @ts-expect-error The custom root requires its own props.
 <Menu2CheckboxItem render={<CustomItemRoot />} />;
-// @ts-expect-error Use render to select the checkbox item root.
-<Menu2CheckboxItem component="li" />;
-// @ts-expect-error The root is not an internal slot.
-<Menu2CheckboxItem slots={{ root: 'li' }} />;
-// @ts-expect-error Put root props on the checkbox item or its render element.
+const menuCheckboxItemSlots: Menu2CheckboxItemSlots = {
+  root: 'li',
+  indicator: 'span',
+  indicatorIcon: CustomIndicatorIcon,
+};
+const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2CheckboxItemOwnerState, typeof ownerState>(ownerState);
+    expectType<boolean, typeof ownerState.checked>(ownerState.checked);
+    expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // @ts-expect-error Checkbox item state does not include an open state.
+    ownerState.open;
+    return {
+      'data-checked': ownerState.checked,
+      ref: React.createRef<HTMLDivElement>(),
+      sx: { opacity: ownerState.disabled ? 0.5 : 1 },
+    };
+  },
+  indicator: { keepMounted: true },
+  indicatorIcon: { fontSize: 'small' },
+};
+<Menu2CheckboxItem
+  slots={menuCheckboxItemSlots}
+  slotProps={menuCheckboxItemSlotProps}
+  render={<div />}
+/>;
 <Menu2CheckboxItem slotProps={{ root: { title: 'Checkbox' } }} />;
+// @ts-expect-error Use render or slots.root to select the checkbox item root.
+<Menu2CheckboxItem component="li" />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2CheckboxItem slots={{ root: <div /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2CheckboxItem slotProps={{ root: { component: 'li' } }} />;
 // @ts-expect-error The render prop requires an element or a callback.
 <Menu2CheckboxItem render="li" />;
 // @ts-expect-error Omit render to use the default element.
@@ -1174,12 +1257,40 @@ const RouterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function
 <Menu2RadioItem value="one" trackingId="radio" />;
 // @ts-expect-error The custom root requires its own props.
 <Menu2RadioItem value="one" render={<CustomItemRoot />} />;
-// @ts-expect-error Use render to select the radio item root.
-<Menu2RadioItem value="one" component="li" />;
-// @ts-expect-error The root is not an internal slot.
-<Menu2RadioItem value="one" slots={{ root: 'li' }} />;
-// @ts-expect-error Put root props on the radio item or its render element.
+const menuRadioItemSlots: Menu2RadioItemSlots = {
+  root: 'li',
+  indicator: 'span',
+  indicatorIcon: CustomIndicatorIcon,
+};
+const menuRadioItemSlotProps: Menu2RadioItemSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2RadioItemOwnerState, typeof ownerState>(ownerState);
+    expectType<boolean, typeof ownerState.checked>(ownerState.checked);
+    expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // @ts-expect-error Radio item state does not include an open state.
+    ownerState.open;
+    return {
+      'data-checked': ownerState.checked,
+      ref: React.createRef<HTMLDivElement>(),
+      sx: { opacity: ownerState.disabled ? 0.5 : 1 },
+    };
+  },
+  indicator: { keepMounted: true },
+  indicatorIcon: { fontSize: 'small' },
+};
+<Menu2RadioItem
+  value="one"
+  slots={menuRadioItemSlots}
+  slotProps={menuRadioItemSlotProps}
+  render={<div />}
+/>;
 <Menu2RadioItem value="one" slotProps={{ root: { title: 'Radio' } }} />;
+// @ts-expect-error Use render or slots.root to select the radio item root.
+<Menu2RadioItem value="one" component="li" />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2RadioItem value="one" slots={{ root: <div /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2RadioItem value="one" slotProps={{ root: { component: 'li' } }} />;
 // @ts-expect-error The render prop requires an element or a callback.
 <Menu2RadioItem value="one" render="li" />;
 // @ts-expect-error Omit render to use the default element.
@@ -1210,12 +1321,34 @@ const RouterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(function
 <Menu2SubmenuTrigger trackingId="submenu" />;
 // @ts-expect-error The custom root requires its own props.
 <Menu2SubmenuTrigger render={<CustomItemRoot />} />;
-// @ts-expect-error Use render to select the submenu trigger root.
-<Menu2SubmenuTrigger component="li" />;
-// @ts-expect-error The root is not an internal slot.
-<Menu2SubmenuTrigger slots={{ root: 'li' }} />;
-// @ts-expect-error Put root props on the trigger or its render element.
+const menuSubmenuTriggerSlots: Menu2SubmenuTriggerSlots = { root: 'li', indicator: 'span' };
+const menuSubmenuTriggerSlotProps: Menu2SubmenuTriggerSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2SubmenuTriggerOwnerState, typeof ownerState>(ownerState);
+    expectType<boolean, typeof ownerState.open>(ownerState.open);
+    expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // @ts-expect-error The open state is a boolean.
+    expectType<string, typeof ownerState.open>(ownerState.open);
+    return {
+      'data-open': ownerState.open,
+      ref: React.createRef<HTMLDivElement>(),
+      sx: { opacity: ownerState.disabled ? 0.5 : 1 },
+    };
+  },
+  indicator: { children: 'More' },
+};
+<Menu2SubmenuTrigger
+  slots={menuSubmenuTriggerSlots}
+  slotProps={menuSubmenuTriggerSlotProps}
+  render={<div />}
+/>;
 <Menu2SubmenuTrigger slotProps={{ root: { title: 'More actions' } }} />;
+// @ts-expect-error Use render or slots.root to select the submenu trigger root.
+<Menu2SubmenuTrigger component="li" />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2SubmenuTrigger slots={{ root: <div /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2SubmenuTrigger slotProps={{ root: { component: 'li' } }} />;
 // @ts-expect-error The render prop requires an element or a callback.
 <Menu2SubmenuTrigger render="li" />;
 // @ts-expect-error Omit render to use the default element.
