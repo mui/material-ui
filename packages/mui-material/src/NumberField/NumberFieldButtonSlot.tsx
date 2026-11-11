@@ -8,6 +8,7 @@ import appendOwnerState from '@mui/utils/appendOwnerState';
 
 import type { NumberFieldOwnerState } from './NumberField.types';
 import type { IconButtonProps } from '../IconButton';
+import hasNativeKeyboardActivation from '../utils/hasNativeKeyboardActivation';
 import { omitNullishEventHandlers } from './utils';
 
 interface NumberFieldButtonProps {
@@ -60,15 +61,10 @@ const NumberFieldButtonSlot = React.forwardRef<HTMLButtonElement, NumberFieldBut
       },
     );
 
-    const isNonNativeActivation = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-      const element = event.currentTarget;
-      return (
-        buttonProps.nativeButton === false &&
-        event.target === element &&
-        element.tagName !== 'BUTTON' &&
-        !(element.tagName === 'A' && element.hasAttribute('href'))
-      );
-    };
+    const isNonNativeActivation = (event: React.KeyboardEvent<HTMLButtonElement>) =>
+      buttonProps.nativeButton === false &&
+      event.target === event.currentTarget &&
+      !hasNativeKeyboardActivation(event.currentTarget);
 
     // Base UI owns non-native activation. Prevent Material's fallback after the
     // composed handlers run, preserving consumer cancellation and native buttons/links.
