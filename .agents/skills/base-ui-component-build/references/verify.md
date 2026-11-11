@@ -1,0 +1,71 @@
+# Verify
+
+Every check below is a bug that a previous build of a Material UI component on Base UI shipped. Read this file once before step 3, then go through every check in step 7. Each check names how to detect the bug; the fix lives in the reference file in brackets.
+
+## Composition
+
+- [ ] **A styled part's `render` keeps its Material base.** With `render={<section />}`, the element is a `<section>` that still has its own root class, the classes of its Material base if it has one (`MuiPaper-root`, `MuiPaper-elevation8`), and no Material prop as a DOM attribute (`elevation`). Detect: the `render` test. [adapter.md, Public `render`]
+- [ ] **A render function receives the Base UI state.** A test reads a Base UI state field inside `render` (`state.open`, `state.side`), or, when the state is empty (Meter), asserts that it receives an object. [adapter.md, Public `render`]
+- [ ] **A custom `slots.root` receives no render wiring.** No `render`, `renderState`, `component`, or `as` prop arrives. Detect: the `slots.root` test. [adapter.md, Public `render`]
+- [ ] **`component` does nothing.** The types reject it on the part and on `slotProps.<slot>`, and a `component` passed from JavaScript, at the top level or in `slotProps.root` with `render`, does not change the element or leak `render` onto it. Detect: the spec file and the runtime tests. [adapter.md, Public component]
+- [ ] **No internal prop reaches the DOM.** Inspect the rendered root in a test: no `render`, `classes`, `ownerState`, `elevation`, or unpicked Base UI prop. [adapter.md, Public component]
+
+## Props and types
+
+- [ ] **Parts that render an element accept HTML attributes.** `<Part id="x" onClick={fn} aria-label="y">` type-checks. Detect: the spec file. [adapter.md, Types]
+- [ ] **ARIA values that Base UI computes survive.** With the ARIA prop omitted, the attribute Base UI computes (`aria-valuetext`, `aria-labelledby`) is present. Detect: a behavior test without the prop. [adapter.md, Types]
+- [ ] **Ids that Base UI links survive `slotProps`.** With `slotProps.label.id` set, the root's `aria-labelledby` points at it and the accessible name holds, and `renderToString` output already has `aria-labelledby`. Detect: both tests. [single-component.md, Structure]
+- [ ] **Changed defaults are redeclared.** Every prop whose Material default differs from Base UI's is outside `Pick`, with its own `@default`. Detect: `pnpm docs:api` passes. [adapter.md, Types]
+- [ ] **Optional props are typed `| undefined`.** Detect: eslint `mui/add-undef-to-optional`.
+
+## Generated files
+
+- [ ] **propTypes are generated, not written.** `pnpm proptypes` leaves no diff after your final commit.
+- [ ] **Public part files are visible to `docs:api`.** `grep -l "@ignore - internal component" <public part files>` prints nothing; the API builder skips any file containing that marker, silently. [adapter.md, Files]
+- [ ] **Internal components live in their own files.** Slot adapters and `RenderElement` are in separate files marked `@ignore - internal component`, and `pnpm proptypes` added no `propTypes` to them. [adapter.md, Files]
+- [ ] **No giant propTypes from Base UI types.** Every prop in the ignore-marker table of `adapter.md` (a `handle` or other class instance, `Intl.LocalesArgument`, `children` that is a node or a function) has its value written with `/* @typescript-to-proptypes-ignore */`; `slots` does not. [adapter.md, Public component]
+- [ ] **The API JSON is complete.** For each part, `docs/pages/material-ui/api/<kebab-part>.json` has non-empty `props`, its classes under `classes` or under `slots`, both `@mui/material/<Name><Part>` and `@mui/material` imports, and a non-empty `componentDescription` in the matching translations file. [adapter.md, Public component]
+- [ ] **`docs:api` deleted nothing.** `git status` shows no deleted files under `docs/pages/system/api/`. A failed `docs:api` run deletes them; fix the failure and run it again.
+- [ ] **API types are readable.** No `type.description` in the API JSON contains `(props, propName)`; an element-typed prop is written by hand with `HTMLElementType`. [adapter.md, Public component]
+- [ ] **Formatting runs last.** `pnpm prettier` after `docs:api` leaves no diff.
+
+## Overlays
+
+- [ ] **`slots.transition = null` renders no `Grow`.** [compound-parts.md, Transition]
+- [ ] **Refs reach the popup element.** The forwarded ref, the Base UI popup ref, and the transition's ref all point at the popup element. [compound-parts.md, Transition]
+- [ ] **The transition's styles land on the popup.** In Chromium, the popup has the `transform` that `Grow` sets while opening. [compound-parts.md, Transition]
+- [ ] **`transitionDuration="auto"` works with a custom transition slot** that lacks `muiSupportAuto`. [compound-parts.md, Transition]
+- [ ] **The stacking layer matches the closest Material component**: `zIndex.tooltip` for hover-opened, `zIndex.modal` for click-opened. [compound-parts.md, Popup]
+- [ ] **A `keepMounted` popup leaves no visible portal when closed.** [compound-parts.md, Popup]
+- [ ] **Slots without Base UI state report no live state.** The portal's `ownerState` has no `open` field. [compound-parts.md, Popup]
+
+## Behavior
+
+- [ ] **Items activate once.** Enter and Space on an item built on `ButtonBase` call the action once. [compound-parts.md, Items]
+- [ ] **Swapping the element keeps keyboard activation.** Every part that declares `nativeButton` exposes it, the `nativeButton` test passes, and the console shows no Base UI `nativeButton` error. Links use a `LinkItem` part. [compound-parts.md, Trigger and Items]
+- [ ] **Spacing survives focus guards.** No style relies on a sibling combinator (`item + divider`); each part owns its spacing.
+- [ ] **State selectors use presence.** Styles and tests select `[data-open]`, not `[data-open="true"]`.
+- [ ] **Every way to close is tested.** Each `ChangeEventReason` a user can cause (pointer leave, blur, Escape, outside press) has its own test that asserts the reason, and the tests pass in both jsdom and Chromium. [testing.md, Behavior]
+- [ ] **Server and browser render the same text.** Every `Intl` formatting in demos and tests passes a `locale`. [docs.md, Demos]
+
+## Tests
+
+- [ ] **Test files import from `vitest`** and render to a string with `createRenderer().renderToString`. [testing.md]
+- [ ] **Every rendered part runs `describeConformance`** with `skip: ['componentProp']`; a standalone trigger runs `only: ['refForwarding', 'propsSpread']`. [testing.md, Conformance]
+- [ ] **Data attributes are asserted with the re-exported constants**, not strings. [testing.md, Data attributes]
+
+## Docs
+
+- [ ] **Every demo has `@focus-start` and `@focus-end`.** Detect: eslint `docs-infra/require-demo-focus`. [docs.md, Demos]
+- [ ] **Every demo renders without console errors**, in `pnpm docs:dev` or, when no browser is available, in a temporary test that renders each demo in Chromium and fails on `console.error`. The first Chromium run can fail with "Vite unexpectedly reloaded" while dependencies are optimized; run it again before reading the result. Delete that test before committing.
+- [ ] **Demo links resolve.** Every `href="#…"` in the demos matches a heading anchor on the page. Detect: `grep -rn 'href="#' docs/data/material/components/<kebab-name>` and compare with the page headings, or run `pnpm docs:build`, which ends with the link check. [docs.md, Demos]
+- [ ] **Vale passes on the docs page.** Run `pnpm code-infra vale sync --vale-version <config.valeVersion in package.json>` first: the styles in `.github/styles/` are git-ignored, so a fresh worktree has none. Then `pnpm code-infra vale --vale-version <config.valeVersion in package.json> --filter='.Level=="error"' <page>.md` reports 0 errors. The usual failure is a normal space in a brand name. [docs.md]
+- [ ] **The page has an Accessibility section.** It covers every item of the Base UI "Usage guidelines" section, and says how to give the component an accessible name. [docs.md, Page outline]
+- [ ] **Every `render` demo shows a real use case.** A demo that only swaps in an arbitrary element (`<aside>`, `<section>`) is a short paragraph instead. [docs.md, Page outline]
+- [ ] **The anatomy is a `text` block**, and the route file has no leftover name from the file it was copied from. [docs.md]
+
+## Repository
+
+- [ ] **The lockfile changed with the dependency.** `git diff --stat` includes `pnpm-lock.yaml` when `@base-ui/react` was added. [registration.md]
+- [ ] **Base UI was read from this checkout.** The version you read docs from equals `docs/node_modules/@base-ui/react/package.json`.
+- [ ] **Lint ran on the changed files.** `pnpm exec eslint --max-warnings 0 --no-warn-ignored $(git diff --name-only --diff-filter=d <base>)` passes. Without `--no-warn-ignored`, an ignored file in the diff (`pnpm-lock.yaml`) is a warning that fails the run; without `--diff-filter=d`, a deleted file is.

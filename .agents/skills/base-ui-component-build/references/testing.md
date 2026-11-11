@@ -1,0 +1,98 @@
+# Testing
+
+Unit tests live next to each part: `packages/mui-material/src/<Name><Part>/<Name><Part>.test.tsx`. Run them with `pnpm test:unit <Name>`; each file runs in jsdom and in Chromium.
+
+Import `describe`, `it`, and `expect` from `vitest`. Mark tests that need real layout or computed styles `it.skipIf(isJsdom())`, with `isJsdom` from `@mui/internal-test-utils`.
+
+## Conformance
+
+Every part that renders an element runs `describeConformance` from `packages/mui-material/test/describeConformance`:
+
+```tsx
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import describeConformance from '../../test/describeConformance';
+
+describeConformance(<PreviewCardPopup>Content</PreviewCardPopup>, () => ({
+  classes: previewCardPopupClasses,
+  render: (node) =>
+    render(
+      <PreviewCard defaultOpen>
+        <PreviewCardTrigger render={<a href="#">Link</a>} />
+        {node}
+      </PreviewCard>,
+    ),
+  getRootElement: () => screen.getByText('Content').closest(`.${previewCardPopupClasses.root}`),
+  inheritComponent: Paper,
+  muiName: 'MuiPreviewCardPopup',
+  refInstanceof: window.HTMLDivElement,
+  testVariantProps: { elevation: 2 },
+  skip: ['componentProp'],
+  slots: {
+    portal: { expectedClassName: previewCardPopupClasses.portal },
+    positioner: { expectedClassName: previewCardPopupClasses.positioner },
+  },
+}));
+```
+
+- `skip: ['componentProp']` on every part, because no part accepts `component`.
+- Parts that live in a portal need `getRootElement`. Parts that need a parent (a popup needs its root) wrap the node in `render`.
+- A standalone trigger has no classes or styles of its own, so it runs `only: ['refForwarding', 'propsSpread']` with `classes: { root: '' }`. A styled trigger runs the full suite.
+- Parts that render no element (root) get behavior tests only.
+
+## Behavior
+
+Test through the Material UI parts, not the Base UI ones:
+
+- Each behavior the docs page shows: value changes, disabled and read-only states, and opening.
+- Each way the component closes, one test each, asserting `eventDetails.reason`: for a hover card, the pointer leaving the trigger (`trigger-hover`), the trigger losing focus (`trigger-focus`), Escape (`escape-key`), and a press outside (`outside-press`). Read the reasons from the Base UI `ChangeEventReason` type and test each one that a user can cause.
+- Controlled and uncontrolled state, with the Base UI callback signature (`onOpenChange(open, eventDetails)`, asserting `eventDetails.reason`).
+- Theme `defaultProps`, `styleOverrides`, and `variants` reaching each part, and a `styleOverrides` rule that targets a live-state class.
+- Timing props (`delay`, `closeDelay`) with a fake clock (`clock.withFakeTimers()` in a `describe`): nothing happens 1ms before the delay, and the change happens at the delay. Do not test them only with `delay={0}`.
+- Every default that differs from Base UI, measured in Chromium (`it.skipIf(isJsdom())`): the 8px gap between the trigger and the popup, and the gap with an explicit `sideOffset`.
+- Server rendering with `createRenderer().renderToString` for parts whose first render depends on state (form fields, formatted values).
+
+After a close, wait until the popup is removed (`await waitFor(() => expect(screen.queryByText(…)).to.equal(null))`), then assert that `onOpenChangeComplete` was called once, with `false`; reset its spy after the first render, because a `defaultOpen` popup calls it with `true` on mount. This passes in jsdom, which removes the popup at once, and in Chromium, where the exit transition runs first. Never guard the assertion with `if (popup)`, which passes without checking anything.
+
+## `render`
+
+For each part with a public `render` prop:
+
+- A standalone trigger renders the user's element with Base UI's attributes and handlers, the user's handlers still run, and opening works.
+- A standalone trigger's `children` render inside the `render` element, and the `render` element's own children win when both are set.
+- A styled trigger follows the styled part tests below.
+- A styled part rendered with `render={<section />}` is a `<section>` that keeps its own root class, the classes of its Material base (`MuiPaper-root`, `MuiPaper-elevation8`), its theme styles, and its Base UI behavior and data attributes. No Material prop such as `elevation` appears as a DOM attribute.
+- A render function receives the Base UI state (`state.open`, `state.side`).
+- The user's `render` element's own children replace the part's children, as Base UI defines.
+- With `slots.root` set, the custom root receives no `render` or `component` prop.
+- A `component` prop passed without types (`// @ts-expect-error`), at the top level or in `slotProps.root` together with `render`, does not change the element and puts no `render` or `renderstate` attribute on it.
+- For a part that declares `nativeButton`: rendered as a different tag with the matching `nativeButton` (`render={<div />}` with `nativeButton={false}` on a trigger, `render={<button />}` with `nativeButton` on an item), it still activates with Enter and Space.
+
+## Data attributes
+
+One test per part asserts each re-exported data attribute in its state, using the constants rather than strings:
+
+```tsx
+expect(popup).to.have.attribute(PreviewCardPopupDataAttributes.side, 'bottom');
+expect(popup).to.have.attribute(PreviewCardPopupDataAttributes.open);
+```
+
+## Types
+
+`<Name>.spec.tsx` next to the component, type-checked by `pnpm typescript`:
+
+- A standalone trigger rejects a missing `render`.
+- Parts reject `component`, including `slotProps.root.component`, and any Base UI prop that was not picked.
+- Parts that render an element accept HTML attributes (`id`, `onClick`, `aria-label`).
+- Theme entries accept `defaultProps`, `styleOverrides`, and `variants` for each part.
+
+Leave `data-*` keys out of `slotProps` in the spec, and never cast them in. Slot props accept `data-*` only when the user augments `DataAttributesOverrides` (`docs/data/material/guides/typescript/typescript.md`), the same as every other Material UI component.
+
+## Visual and accessibility
+
+- Every docs demo is a visual regression fixture automatically (`test/regressions/README.md`). Add a fixture under `test/regressions/fixtures/<Name>/` only for a state no demo shows, such as an open popup on each side.
+- CI runs the visual suite on every demo and fixture. A local run needs a build and is optional.
+- Do not add accessibility fixtures or `A11Y_RULES` entries. Components join the accessibility suite one at a time, each in its own PR with axe fixtures, an `A11Y_RULES` entry in `test/regressions/demoMeta.ts`, and a WCAG conformance report (`packages/mui-material/src/<Name>/accessibility.md`) that includes manual testing steps ([#48918](https://github.com/mui/material-ui/pull/48918)). In your final report, tell the author that the component is not in the accessibility suite yet.
+
+## Components without Base UI state
+
+Some Base UI components have an empty state and no data attributes (Meter). Assert that a render function receives an object, skip the data attribute tests, and say on the docs page that the component has no data attributes.

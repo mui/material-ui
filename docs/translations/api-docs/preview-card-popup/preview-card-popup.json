@@ -1,0 +1,67 @@
+{
+  "componentDescription": "The floating surface of a preview card, positioned next to its trigger.",
+  "propDescriptions": {
+    "align": { "description": "How to align the popup relative to the specified side." },
+    "alignOffset": {
+      "description": "Additional offset along the alignment axis in pixels. Also accepts a function that returns the offset to read the dimensions of the anchor and positioner elements, along with its side and alignment.<br>The function takes a <code>data</code> object parameter with the following properties: - <code>data.anchor</code>: the dimensions of the anchor element with properties <code>width</code> and <code>height</code>. - <code>data.positioner</code>: the dimensions of the positioner element with properties <code>width</code> and <code>height</code>. - <code>data.side</code>: which side of the anchor element the positioner is aligned against. - <code>data.align</code>: how the positioner is aligned relative to the specified side."
+    },
+    "anchor": {
+      "description": "An element to position the popup against. By default, the popup will be positioned against the trigger."
+    },
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "collisionAvoidance": {
+      "description": "Determines how to handle collisions when positioning the popup.<br><code>side</code> controls overflow on the preferred placement axis (<code>top</code>/<code>bottom</code> or <code>left</code>/<code>right</code>): - <code>&#39;flip&#39;</code>: keep the requested side when it fits; otherwise try the opposite side   (<code>top</code> and <code>bottom</code>, or <code>left</code> and <code>right</code>). - <code>&#39;shift&#39;</code>: never change side; keep the requested side and move the popup within   the clipping boundary so it stays visible. - <code>&#39;none&#39;</code>: do not correct side-axis overflow.<br><code>align</code> controls overflow on the alignment axis (<code>start</code>/<code>center</code>/<code>end</code>): - <code>&#39;flip&#39;</code>: keep side, but swap <code>start</code> and <code>end</code> when the requested alignment overflows. - <code>&#39;shift&#39;</code>: keep side and requested alignment, then nudge the popup along the   alignment axis to fit. - <code>&#39;none&#39;</code>: do not correct alignment-axis overflow.<br><code>fallbackAxisSide</code> controls fallback behavior on the perpendicular axis when the preferred axis cannot fit: - <code>&#39;start&#39;</code>: allow perpendicular fallback and try the logical start side first   (<code>top</code> before <code>bottom</code>, or <code>left</code> before <code>right</code> in LTR). - <code>&#39;end&#39;</code>: allow perpendicular fallback and try the logical end side first   (<code>bottom</code> before <code>top</code>, or <code>right</code> before <code>left</code> in LTR). - <code>&#39;none&#39;</code>: do not fallback to the perpendicular axis.<br>When <code>side</code> is <code>&#39;shift&#39;</code>, explicitly setting <code>align</code> only supports <code>&#39;shift&#39;</code> or <code>&#39;none&#39;</code>. If <code>align</code> is omitted, it defaults to <code>&#39;flip&#39;</code>."
+    },
+    "collisionBoundary": {
+      "description": "An element or a rectangle that delimits the area that the popup is confined to."
+    },
+    "collisionPadding": {
+      "description": "Additional space to maintain from the edge of the collision boundary."
+    },
+    "container": { "description": "A parent element to render the portal element into." },
+    "disableAnchorTracking": {
+      "description": "Whether to disable the popup from tracking any layout shift of its positioning anchor."
+    },
+    "elevation": { "description": "The elevation of the popup surface." },
+    "keepMounted": {
+      "description": "Whether to keep the portal mounted in the DOM while the popup is hidden."
+    },
+    "positionMethod": {
+      "description": "Determines which CSS <code>position</code> property to use."
+    },
+    "render": {
+      "description": "Replaces the rendered element while keeping the popup styles. Accepts an element or a function that receives the props and the Base UI state."
+    },
+    "side": {
+      "description": "Which side of the anchor element to align the popup against. May automatically change to avoid collisions."
+    },
+    "sideOffset": {
+      "description": "Distance between the anchor and the popup in pixels. Also accepts a function that returns the distance from the anchor and positioner dimensions."
+    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
+    "sticky": {
+      "description": "Whether to maintain the popup in the viewport after the anchor element was scrolled out of view."
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "transitionDuration": {
+      "description": "The duration of the transition, in milliseconds. Set to &#39;auto&#39; to calculate the duration from the popup height."
+    }
+  },
+  "classDescriptions": {
+    "open": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the popup is open"
+    }
+  },
+  "slotDescriptions": {
+    "portal": "The component that renders the portal element.",
+    "positioner": "The component that positions the popup next to the trigger.",
+    "root": "The component that renders the popup surface.",
+    "transition": "The component used for the transition. Set to <code>null</code> to render the popup without a Material UI transition."
+  }
+}
