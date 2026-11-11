@@ -10,13 +10,11 @@ import type { NumberFieldClasses } from './numberFieldClasses';
 import type { FormHelperTextProps } from '../FormHelperText';
 import type { InputLabelProps } from '../InputLabel';
 import type { Theme } from '../styles/createTheme';
-import type {
-  FilledInputProps,
-  IconButtonProps,
-  InputBaseProps,
-  OutlinedInputProps,
-  SxProps,
-} from '..';
+import type { FilledInputProps } from '../FilledInput';
+import type { IconButtonProps } from '../IconButton';
+import type { InputBaseProps } from '../InputBase';
+import type { OutlinedInputProps } from '../OutlinedInput';
+import type { SxProps } from '../styles';
 
 type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
 
