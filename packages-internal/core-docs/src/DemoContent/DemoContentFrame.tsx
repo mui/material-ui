@@ -1,12 +1,15 @@
+'use client';
+
 import * as React from 'react';
-import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
+import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
+import type { ContentFrameProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import type { DemoOptions } from './DemoContent';
 import { DemoContainer } from './DemoContainer';
 import type { DemoContainerProps } from './DemoContainer';
 import { createFrameStore, DemoFrameContext } from './DemoFrameContext';
 import { useDemoLoading } from './useDemoLoading';
 
-type DemoFrameProps = ContentLoadingProps<DemoOptions> & { children: React.ReactNode };
+type DemoFrameProps = ContentFrameProps<DemoOptions>;
 
 function FrameView({ loading }: { loading: DemoContainerProps }) {
   const frame = React.useContext(DemoFrameContext)!;
@@ -15,12 +18,18 @@ function FrameView({ loading }: { loading: DemoContainerProps }) {
     frame.getSnapshot,
     frame.getSnapshot,
   );
-  return <DemoContainer {...(snapshot.content ?? loading)} previewEpoch={snapshot.epoch} />;
+  return (
+    <DemoContainer
+      {...(snapshot.content ?? loading)}
+      preview={loading.preview}
+      previewEpoch={snapshot.epoch}
+    />
+  );
 }
 
 export default function DemoContentFrame(props: DemoFrameProps) {
   const [frame] = React.useState(createFrameStore);
-  const loading = useDemoLoading(props);
+  const loading = useDemoLoading(props, useCodeFallback(props));
 
   // Only the view subscribes; chrome updates must not rerender their publisher.
   return (
