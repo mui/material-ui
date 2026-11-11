@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContentFrame } from '@mui/internal-docs-infra/CodeHighlighter';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { DemoContainer } from './DemoContainer';
 import type { DemoContainerProps } from './DemoContainer';
@@ -53,16 +54,23 @@ export function createFrameStore(): FrameStore {
 
 export function DemoFrameContent(props: DemoContainerProps) {
   const frame = React.useContext(DemoFrameContext);
+  const { framed } = useContentFrame();
   const owner = React.useRef({});
 
   useEnhancedEffect(() => {
-    frame?.update(owner.current, props);
-  }, [frame, props]);
+    if (framed) {
+      frame?.update(owner.current, props);
+    }
+  }, [frame, framed, props]);
 
   useEnhancedEffect(() => {
     const id = owner.current;
-    return () => frame?.remove(id);
-  }, [frame]);
+    return () => {
+      if (framed) {
+        frame?.remove(id);
+      }
+    };
+  }, [frame, framed]);
 
-  return frame ? null : <DemoContainer {...props} />;
+  return framed ? null : <DemoContainer {...props} />;
 }

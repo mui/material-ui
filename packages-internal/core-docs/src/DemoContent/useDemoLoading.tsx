@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
-import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
+import type { UseCodeFallbackResult } from '@mui/internal-docs-infra/CodeHighlighter';
 import { useUrlHashState } from '@mui/internal-docs-infra/useUrlHashState';
 import { CodeSource } from './CodeSource';
 import { DemoFileTabBarSkeleton } from './DemoContainer';
@@ -10,25 +10,17 @@ import { useTranslate } from '../i18n';
 import type { DemoOptions } from './DemoContent';
 import { demoAnchorId, fileSourceAnchorIds } from './sourceAnchors';
 import { resolveDemoSourceView } from './DemoContent.helpers';
-import { loadDemoContent } from './loadDemoContent';
 
 export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions>;
 
 const noop = () => {};
 const noopAsync = async () => {};
 
-export function useDemoLoading(props: DemoContentLoadingProps): DemoContainerProps {
-  const {
-    code: fallbackCode,
-    focusedLines = 0,
-    collapsible = false,
-    canLoadContent,
-  } = useCodeFallback(props);
-  React.useEffect(() => {
-    if (canLoadContent) {
-      void loadDemoContent().catch(() => {});
-    }
-  }, [canLoadContent]);
+export function useDemoLoading(
+  props: DemoContentLoadingProps,
+  fallback: UseCodeFallbackResult,
+): DemoContainerProps {
+  const { code: fallbackCode, focusedLines = 0, collapsible = false } = fallback;
   const {
     hideToolbar,
     initialExpanded,

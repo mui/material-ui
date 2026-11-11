@@ -12,11 +12,17 @@ import { DemoFrameContent } from './DemoFrameContext';
 
 const mocks = vi.hoisted(() => ({
   canLoadContent: false,
+  framed: false,
+  fallbackCalls: vi.fn(),
   loadDemoContent: vi.fn(() => Promise.resolve({ default: () => null })),
 }));
 
 vi.mock('@mui/internal-docs-infra/CodeHighlighter', () => ({
-  useCodeFallback: () => ({ canLoadContent: mocks.canLoadContent }),
+  useCodeFallback: (props: unknown) => {
+    mocks.fallbackCalls(props);
+    return { canLoadContent: mocks.canLoadContent };
+  },
+  useContentFrame: () => ({ framed: mocks.framed }),
 }));
 
 vi.mock('./loadDemoContent', () => ({
@@ -25,6 +31,8 @@ vi.mock('./loadDemoContent', () => ({
 
 beforeEach(() => {
   mocks.canLoadContent = false;
+  mocks.framed = false;
+  mocks.fallbackCalls.mockClear();
   mocks.loadDemoContent.mockClear();
 });
 
@@ -40,6 +48,18 @@ describe('DemoContentLoading', () => {
       </UserLanguageProvider>
     );
   }
+
+  it('registers framed loading metadata without rendering a second preview', () => {
+    mocks.framed = true;
+    render(
+      <Providers>
+        <DemoContentLoading component={<span>Owned by frame</span>} />
+      </Providers>,
+    );
+
+    expect(mocks.fallbackCalls).toHaveBeenCalled();
+    expect(screen.queryByText('Owned by frame')).to.equal(null);
+  });
 
   it('renders inert toolbar controls before hydration', () => {
     const view = ReactDOM.renderToString(
@@ -134,6 +154,10 @@ function Providers({ children }: React.PropsWithChildren) {
 describe('DemoContentFrame', () => {
   const { render } = createRenderer();
 
+  beforeEach(() => {
+    mocks.framed = true;
+  });
+
   function view(phase: 'loading' | 'ready', epoch = 0) {
     return (
       <Providers>
@@ -214,6 +238,39 @@ describe('DemoContentFrame', () => {
     expect(screen.queryByText('TS source')).to.equal(null);
     await user.click(screen.getByRole('button', { name: 'French' }));
     expect(screen.getByRole('button', { name: 'JS 1 fr' })).to.equal(preview);
+  });
+
+  it('follows the live frame component while retaining preview state', async () => {
+    const chrome = <DemoFrameContent preview={<Preview label="Stale" />} hideToolbar />;
+    function frame(label: string) {
+      return (
+        <Providers>
+          <DemoContentFrame component={<Preview label={label} />} hideToolbar>
+            {chrome}
+          </DemoContentFrame>
+        </Providers>
+      );
+    }
+    const { rerender, user } = render(frame('First'));
+    const preview = screen.getByRole('button', { name: 'First 0 en' });
+    await user.click(preview);
+    rerender(frame('Second'));
+
+    expect(screen.getByRole('button', { name: 'Second 1 en' })).to.equal(preview);
+  });
+
+  it('keeps nested unframed content outside its parent frame store', () => {
+    mocks.framed = false;
+    render(
+      <Providers>
+        <DemoContentFrame component={<span>Outer preview</span>} hideToolbar>
+          <DemoFrameContent preview={<span>Nested preview</span>} hideToolbar />
+        </DemoContentFrame>
+      </Providers>,
+    );
+
+    expect(screen.getByText('Outer preview')).not.to.equal(null);
+    expect(screen.getByText('Nested preview')).not.to.equal(null);
   });
 
   it('does not rerender the publisher when its slots update', () => {
