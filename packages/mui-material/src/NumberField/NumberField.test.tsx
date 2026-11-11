@@ -3157,21 +3157,28 @@ describe('<NumberField />', () => {
         });
       });
 
-      it('shrinks an empty adorned label before hydration with callback slot props', () => {
+      it('resolves shared slot callbacks once for server-rendered adornments', () => {
         const adornment = <InputAdornment position="start">$</InputAdornment>;
+        const getInputProps = vi.fn((ownerState: NumberFieldOwnerState) => ({
+          startAdornment: ownerState.disabled ? adornment : undefined,
+        }));
+        const getInputLabelProps = vi.fn((ownerState: NumberFieldOwnerState) => ({
+          className: ownerState.disabled ? 'disabled-label' : undefined,
+        }));
         const { hydrate } = renderToString(
           <NumberField
             label="Amount"
-            slotProps={{
-              input: (ownerState) => ({
-                startAdornment: ownerState.label === 'Amount' ? adornment : undefined,
-              }),
-            }}
+            disabled
+            slotProps={{ input: getInputProps, inputLabel: getInputLabelProps }}
           />,
         );
+        // Assert server evaluation counts before hydration can trigger additional renders.
+        expect(getInputProps).toHaveBeenCalledTimes(1);
+        expect(getInputLabelProps).toHaveBeenCalledTimes(1);
         const adornmentNode = screen.getByText('$');
         const input = screen.getByRole('textbox', { name: 'Amount' });
         expect(input.closest('.MuiInputBase-root')).to.contain(adornmentNode);
+        expect(screen.getByText('Amount', { selector: 'label' })).to.have.class('disabled-label');
 
         expectStableHydration(hydrate, { displayValue: '', shrink: true });
         expect(screen.getByText('$')).to.equal(adornmentNode);

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 
 import useId from '@mui/utils/useId';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
 import type { NumberFieldProps } from './NumberField.types';
@@ -114,32 +115,52 @@ const NumberField = React.forwardRef(function NumberField(
       onValueCommitted={onValueCommitted}
       readOnly={readOnly}
       required={required}
-      render={(baseProps, baseState) => (
-        <RootSlot
-          baseProps={baseProps}
-          baseState={baseState}
-          materialProps={ownerState}
-          ref={ref}
-          externalForwardedProps={externalForwardedProps}
-        />
-      )}
+      render={(baseProps, baseState) => {
+        const resolvedOwnerState = {
+          ...ownerState,
+          disabled: baseState.disabled,
+          required: baseState.required,
+          readOnly: baseState.readOnly,
+        };
+
+        // Share these props between the root's label/adornment setup and the input's
+        // rendering so each callback runs once with Base UI's resolved flags.
+        const resolvedExternalForwardedProps = {
+          ...externalForwardedProps,
+          slotProps: {
+            ...slotProps,
+            input: resolveComponentProps(slotProps.input, resolvedOwnerState),
+            inputLabel: resolveComponentProps(slotProps.inputLabel, resolvedOwnerState),
+          },
+        };
+
+        return (
+          <RootSlot
+            baseProps={baseProps}
+            baseState={baseState}
+            materialProps={resolvedOwnerState}
+            ref={ref}
+            externalForwardedProps={resolvedExternalForwardedProps}
+          >
+            <BaseNumberField.Input
+              form={form}
+              render={(inputBaseProps, inputBaseState) => (
+                <InputSlot
+                  baseProps={inputBaseProps}
+                  baseState={inputBaseState}
+                  materialProps={resolvedOwnerState}
+                  externalForwardedProps={resolvedExternalForwardedProps}
+                />
+              )}
+            />
+          </RootSlot>
+        );
+      }}
       smallStep={smallStep}
       snapOnStep={snapOnStep}
       step={step}
       value={value}
-    >
-      <BaseNumberField.Input
-        form={form}
-        render={(baseProps, baseState) => (
-          <InputSlot
-            baseProps={baseProps}
-            baseState={baseState}
-            materialProps={ownerState}
-            externalForwardedProps={externalForwardedProps}
-          />
-        )}
-      />
-    </BaseNumberField.Root>
+    />
   );
 });
 
