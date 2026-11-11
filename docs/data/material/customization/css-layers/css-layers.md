@@ -139,9 +139,9 @@ export default function AppTheme({ children }: { children: ReactNode }) {
 
 When this feature is enabled, Material UI generates these layers:
 
-- `@layer mui.global`: Material UI's own global styles: the `CssBaseline` component and the CSS theme variables.
-- `@layer mui.components`: Base styles for all Material UI components, and the styles of the `GlobalStyles` component.
-  They compete by specificity, as without layers: a reset such as `button { padding: 0 }` loses to a component's class, and a more specific rule such as `.app .MuiButton-root` wins.
+- `@layer mui.global`: The CSS theme variables.
+- `@layer mui.components`: Base styles for all Material UI components, and the global styles of the `GlobalStyles` and `CssBaseline` components.
+  They compete by specificity and order, as without layers: a reset such as `button { padding: 0 }` loses to a component's class, and a more specific rule such as `.app .MuiButton-root` wins.
 - `@layer mui.theme`: Theme styles for all Material UI components.
 - `@layer mui.custom`: Custom styles for non-Material UI styled components.
 - `@layer mui.sx`: Styles from the `sx` prop.

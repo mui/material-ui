@@ -14,11 +14,6 @@ export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;
   defaultTheme?: object | undefined;
   themeId?: string | undefined;
-  /**
-   * @ignore
-   * Material UI's own global styles, such as `CssBaseline`, go in `mui.global`, below everything.
-   */
-  internal_baseline?: boolean | undefined;
 }
 
 // Keys of a style object that stay at the top level, see `wrapInCssLayer`.
@@ -69,17 +64,16 @@ function GlobalStyles<Theme = SystemTheme>({
   styles,
   themeId,
   defaultTheme = {},
-  internal_baseline: baseline = false,
 }: GlobalStylesProps<Theme>) {
   const upperTheme = useTheme(defaultTheme);
   const resolvedTheme = themeId ? (upperTheme as any)[themeId] || upperTheme : upperTheme;
 
   let globalStyles = typeof styles === 'function' ? styles(resolvedTheme) : styles;
-  // The app's global styles share `mui.components` with the components' own styles, so the two
-  // compete by specificity and order, as they did without layers: a reset like `button {…}` loses
-  // to a component's class, and a more specific rule like `.app .MuiButton-root {…}` wins.
-  // Material UI's baseline goes in `mui.global`, below everything.
-  const layerName = getCssLayer(resolvedTheme, baseline ? 'global' : 'components');
+  // Global styles, the app's and `CssBaseline`'s, share `mui.components` with the components' own
+  // styles, so they all compete by specificity and order, as they did without layers: a reset like
+  // `button {…}` loses to a component's class, and a more specific rule like
+  // `.app .MuiButton-root {…}` wins.
+  const layerName = getCssLayer(resolvedTheme, 'components');
   if (layerName) {
     if (Array.isArray(globalStyles)) {
       globalStyles = globalStyles.map((styleArg) => {
@@ -108,11 +102,6 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   defaultTheme: PropTypes.object,
-  /**
-   * @ignore
-   * Material UI's own global styles, such as `CssBaseline`, go in `mui.global`, below everything.
-   */
-  internal_baseline: PropTypes.bool,
   /**
    * @ignore
    */
