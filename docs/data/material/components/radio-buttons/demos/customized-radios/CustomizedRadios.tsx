@@ -87,8 +87,10 @@ export default function CustomizedRadios() {
   // @focus-start @padding 1
   const id = React.useId();
   return (
-    <FormControl>
-      <FormLabel id={`${id}-label`}>Gender</FormLabel>
+    <FormControl component="fieldset">
+      <FormLabel component="legend" id={`${id}-label`}>
+        Gender
+      </FormLabel>
       <RadioGroup
         defaultValue="female"
         aria-labelledby={`${id}-label`}
