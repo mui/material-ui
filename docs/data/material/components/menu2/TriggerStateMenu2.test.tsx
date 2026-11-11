@@ -32,27 +32,35 @@ describe('Menu2 trigger state demo', () => {
     ).to.include(getComputedStyle(arrow).transform);
   }
 
-  it('rotates the arrow on opening and resets it after item selection', async () => {
-    const { user } = renderDemo();
+  it('configures an arrow transition when motion is not reduced', () => {
+    renderDemo();
+    const arrow = screen.getByTestId('KeyboardArrowDownIcon');
+
+    expect(getComputedStyle(arrow).transition).to.contain('transform');
+    expectArrowRotation(arrow, false);
+  });
+
+  it('updates the arrow state on opening and after item selection', async () => {
+    const { user } = renderDemo('always');
     const trigger = screen.getByRole('button', { name: 'Actions' });
     const arrow = screen.getByTestId('KeyboardArrowDownIcon');
 
     expect(trigger).to.have.attribute('aria-expanded', 'false');
     expect(arrow).to.have.attribute('aria-hidden', 'true');
-    expect(getComputedStyle(arrow).transition).to.contain('transform');
+    expect(getComputedStyle(arrow).transition).to.contain('none');
     expectArrowRotation(arrow, false);
 
     await user.click(trigger);
 
     expect(await screen.findByRole('menu', { name: 'Actions' })).not.to.equal(null);
     expect(trigger).to.have.attribute('aria-expanded', 'true');
-    await waitFor(() => expectArrowRotation(arrow, true));
+    expectArrowRotation(arrow, true);
 
     await user.click(screen.getByRole('menuitem', { name: 'Duplicate' }));
 
     await waitFor(() => expect(screen.queryByRole('menu')).to.equal(null));
     expect(trigger).to.have.attribute('aria-expanded', 'false');
-    await waitFor(() => expectArrowRotation(arrow, false));
+    expectArrowRotation(arrow, false);
   });
 
   it.each(['{Enter}', '{ArrowDown}'])(
