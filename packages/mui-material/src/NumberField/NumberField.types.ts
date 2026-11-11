@@ -20,7 +20,7 @@ import type {
 
 type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
 
-export type ControlsPosition = 'stacked' | 'end' | 'split' | false;
+type ControlsPosition = 'stacked' | 'end' | 'split' | false;
 
 export interface NumberFieldSlots {
   /**
