@@ -25,56 +25,55 @@ const Controls = styled(InputAdornment, {
 
 interface GetControlElementsOptions {
   controlsPosition: NumberFieldOwnerState['controlsPosition'];
-  IncrementButton: React.ReactNode;
-  DecrementButton: React.ReactNode;
+  IncrementButton?: React.ReactNode;
+  DecrementButton?: React.ReactNode;
+  startAdornment?: React.ReactNode;
   classes: Pick<NumberFieldClasses, 'controls'>;
   ownerState: NumberFieldOwnerState;
 }
 
 /**
- * Places the built-in controls in the input's start/end adornments.
+ * Resolves control placement and whether the input has a start adornment.
  */
 function getControlElements({
   controlsPosition,
   IncrementButton,
   DecrementButton,
+  startAdornment,
   classes,
   ownerState,
 }: GetControlElementsOptions): {
   startControls: React.ReactNode | null;
   endControls: React.ReactNode | null;
+  adornedStart: boolean;
 } {
   const controlProps = { className: classes.controls, ownerState };
+  let startControls: React.ReactNode = null;
+  let endControls: React.ReactNode = null;
 
   switch (controlsPosition) {
     case false:
-      return {
-        startControls: null,
-        endControls: null,
-      };
+      break;
     case 'split':
-      return {
-        startControls: (
-          <Controls position="start" {...controlProps}>
-            {DecrementButton}
-          </Controls>
-        ),
-        endControls: (
-          <Controls position="end" {...controlProps}>
-            {IncrementButton}
-          </Controls>
-        ),
-      };
+      startControls = (
+        <Controls position="start" {...controlProps}>
+          {DecrementButton}
+        </Controls>
+      );
+      endControls = (
+        <Controls position="end" {...controlProps}>
+          {IncrementButton}
+        </Controls>
+      );
+      break;
     case 'stacked':
-      return {
-        startControls: null,
-        endControls: (
-          <Controls position="end" {...controlProps}>
-            {IncrementButton}
-            {DecrementButton}
-          </Controls>
-        ),
-      };
+      endControls = (
+        <Controls position="end" {...controlProps}>
+          {IncrementButton}
+          {DecrementButton}
+        </Controls>
+      );
+      break;
     case 'end':
     default: {
       if (process.env.NODE_ENV !== 'production') {
@@ -85,17 +84,20 @@ function getControlElements({
         }
       }
 
-      return {
-        startControls: null,
-        endControls: (
-          <Controls position="end" {...controlProps}>
-            {DecrementButton}
-            {IncrementButton}
-          </Controls>
-        ),
-      };
+      endControls = (
+        <Controls position="end" {...controlProps}>
+          {DecrementButton}
+          {IncrementButton}
+        </Controls>
+      );
     }
   }
+
+  return {
+    startControls,
+    endControls,
+    adornedStart: Boolean(startControls || ownerState.scrubArea === 'start' || startAdornment),
+  };
 }
 
 export default getControlElements;
