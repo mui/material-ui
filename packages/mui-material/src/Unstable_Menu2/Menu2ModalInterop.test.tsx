@@ -386,6 +386,8 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
     openOnHover = false,
     onOutside = () => {},
     onOpenChange,
+    onOpenChangeComplete,
+    popupSlots,
     children,
   }: {
     modal?: boolean;
@@ -393,19 +395,25 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
     openOnHover?: boolean;
     onOutside?: () => void;
     onOpenChange?: (open: boolean, details: { reason: string }) => void;
+    onOpenChangeComplete?: (open: boolean) => void;
+    popupSlots?: Menu2PopupProps['slots'];
     children?: React.ReactNode;
   }) {
     return (
       <div
         style={{ minHeight: '200vh', display: 'flex', alignItems: 'start', gap: 32, padding: 24 }}
       >
-        <Menu2 modal={modal} onOpenChange={onOpenChange}>
+        <Menu2
+          modal={modal}
+          onOpenChange={onOpenChange}
+          onOpenChangeComplete={onOpenChangeComplete}
+        >
           <Menu2Trigger
             openOnHover={openOnHover}
             delay={0}
             render={<button type="button">Options</button>}
           />
-          <Menu2Popup slots={nullBackdrop ? { backdrop: null } : undefined}>
+          <Menu2Popup slots={nullBackdrop ? { backdrop: null } : popupSlots}>
             {children ?? <Menu2Item>Profile</Menu2Item>}
           </Menu2Popup>
         </Menu2>
@@ -428,26 +436,46 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
 
   const getBackdrops = () => document.querySelectorAll(`.${menu2PopupClasses.backdrop}`);
 
-  it('locks the page and blocks the first outside click', async () => {
-    const initialOverflow = document.body.style.overflow;
-    const onOutside = vi.fn();
-    const { user } = render(<TestMenu onOutside={onOutside} />);
-    const outside = screen.getByRole('button', { name: 'Outside' });
+  [
+    { name: 'the default transition', popupSlots: undefined },
+    { name: 'no transition', popupSlots: { transition: null } },
+  ].forEach(({ name, popupSlots }) => {
+    it(`locks the page and blocks the first outside click with ${name}`, async () => {
+      const initialOverflow = document.body.style.overflow;
+      const onOutside = vi.fn();
+      const onOpenChangeComplete = vi.fn();
+      const { user } = render(
+        <TestMenu
+          onOutside={onOutside}
+          onOpenChangeComplete={onOpenChangeComplete}
+          popupSlots={popupSlots}
+        />,
+      );
+      const outside = screen.getByRole('button', { name: 'Outside' });
+      const trigger = screen.getByRole('button', { name: 'Options' });
 
-    await user.click(screen.getByRole('button', { name: 'Options' }));
-    const menu = await screen.findByRole('menu');
-    expect(document.body.style.overflow).to.equal('hidden');
-    const blocker = getClickTarget(outside);
-    expect(blocker).to.have.class(menu2PopupClasses.backdrop);
-    expect(blocker).to.have.attribute('data-base-ui-inert', '');
+      await user.click(trigger);
+      const menu = await screen.findByRole('menu');
+      expect(trigger).to.have.attribute('aria-expanded', 'true');
+      expect(document.body.style.overflow).to.equal('hidden');
+      const blocker = getClickTarget(outside);
+      expect(blocker).to.have.class(menu2PopupClasses.backdrop);
+      expect(blocker).to.have.attribute('data-base-ui-inert', '');
 
-    await user.click(blocker);
-    await waitFor(() => expect(menu.isConnected).to.equal(false));
-    expect(onOutside).not.toHaveBeenCalled();
-    expect(document.body.style.overflow).to.equal(initialOverflow);
+      await user.click(blocker);
+      await waitFor(() => {
+        expect(menu.isConnected).to.equal(false);
+        expect(blocker.isConnected).to.equal(false);
+        expect(onOpenChangeComplete).toHaveBeenCalledWith(false);
+      });
+      expect(getBackdrops()).to.have.length(0);
+      expect(trigger).to.have.attribute('aria-expanded', 'false');
+      expect(onOutside).not.toHaveBeenCalled();
+      expect(document.body.style.overflow).to.equal(initialOverflow);
 
-    await user.click(getClickTarget(outside));
-    expect(onOutside).toHaveBeenCalledTimes(1);
+      await user.click(getClickTarget(outside));
+      expect(onOutside).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('does not lock the page or block outside clicks when modal is false', async () => {

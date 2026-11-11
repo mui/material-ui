@@ -78,12 +78,11 @@ export const alias = {
 export interface CreateOptions {
   jsdom?: boolean;
   enableScrollbars?: boolean;
-  initialViewport?: boolean;
 }
 
 export default async function create(
   fileUrl: string,
-  { jsdom = false, enableScrollbars = false, initialViewport = false }: CreateOptions = {},
+  { jsdom = false, enableScrollbars = false }: CreateOptions = {},
 ) {
   const file = fileURLToPath(fileUrl);
   const testEnv = getVitestEnvironment(file);
@@ -100,7 +99,6 @@ export default async function create(
     .split('\n')
     .filter((line) => line.startsWith('#'))
     .map((line) => (line.startsWith('/') ? line.slice(1) : line));
-  const viewport = { width: 1024, height: 896 };
 
   return defineProject({
     plugins: [react(), forceJsxForJsFiles()],
@@ -133,10 +131,12 @@ export default async function create(
           launchOptions: {
             ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
           },
-          contextOptions: initialViewport ? { viewport } : undefined,
         }),
         headless: true,
-        viewport,
+        viewport: {
+          width: 1024,
+          height: 896,
+        },
         instances: (process.env.VITEST_BROWSERS || 'chromium')
           .split(',')
           .map((browser) => ({ browser }) as BrowserInstanceOption),
