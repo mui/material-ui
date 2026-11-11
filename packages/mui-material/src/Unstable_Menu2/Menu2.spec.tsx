@@ -48,7 +48,11 @@ import type {
   Menu2GroupSlots,
 } from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
-import type { Menu2GroupLabelOwnerState } from '@mui/material/Unstable_Menu2GroupLabel';
+import type {
+  Menu2GroupLabelOwnerState,
+  Menu2GroupLabelSlotProps,
+  Menu2GroupLabelSlots,
+} from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import type {
   Menu2ItemOwnerState,
@@ -83,7 +87,11 @@ import Menu2RadioItem, {
   Menu2RadioItemIndicator,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
-import type { Menu2SeparatorOwnerState } from '@mui/material/Unstable_Menu2Separator';
+import type {
+  Menu2SeparatorOwnerState,
+  Menu2SeparatorSlotProps,
+  Menu2SeparatorSlots,
+} from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
   menu2SubmenuTriggerClasses,
@@ -1549,12 +1557,36 @@ const menuRadioGroupSlotProps: Menu2RadioGroupSlotProps = {
 <Menu2GroupLabel trackingId="label" />;
 // @ts-expect-error The custom root requires its own props.
 <Menu2GroupLabel render={<CustomItemRoot />} />;
-// @ts-expect-error Use render to select the label root.
+const menuGroupLabelSlots = { root: 'p' } satisfies Menu2GroupLabelSlots;
+const menuGroupLabelSlotProps: Menu2GroupLabelSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2GroupLabelOwnerState, typeof ownerState>(ownerState);
+    // @ts-expect-error GroupLabel state has no fields.
+    ownerState.disabled;
+    // @ts-expect-error Visual props are not part of the public slot state.
+    ownerState.inset;
+    return {
+      title: 'Projects',
+      'data-label': 'projects',
+      sx: { fontWeight: 700 },
+      ref: (node) => expectType<HTMLDivElement | null, typeof node>(node),
+      onClick: (event) =>
+        expectType<EventTarget & HTMLDivElement, typeof event.currentTarget>(event.currentTarget),
+    };
+  },
+};
+<Menu2GroupLabel slots={menuGroupLabelSlots} slotProps={menuGroupLabelSlotProps} render={<p />} />;
+<Menu2GroupLabel
+  slotProps={{ root: { title: 'Projects', ref: React.createRef<HTMLDivElement>() } }}
+/>;
+// @ts-expect-error Use render or slots.root to select the label root.
 <Menu2GroupLabel component="p" />;
-// @ts-expect-error GroupLabel has no internal slots.
-<Menu2GroupLabel slots={{ root: 'p' }} />;
-// @ts-expect-error Put root props on the label or its render element.
-<Menu2GroupLabel slotProps={{ root: { title: 'Projects' } }} />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2GroupLabel slots={{ root: <p /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2GroupLabel slotProps={{ root: { component: 'p' } }} />;
+// @ts-expect-error Visual props belong on Menu2GroupLabel.
+<Menu2GroupLabel slotProps={{ root: { disableGutters: true } }} />;
 // @ts-expect-error GroupLabel is always non-sticky.
 <Menu2GroupLabel disableSticky />;
 // @ts-expect-error Use a supported ListSubheader color.
@@ -1601,12 +1633,37 @@ const menuRadioGroupSlotProps: Menu2RadioGroupSlotProps = {
 <Menu2Separator trackingId="separator" />;
 // @ts-expect-error The custom root requires its own props.
 <Menu2Separator render={<CustomItemRoot />} />;
-// @ts-expect-error Use render to select the separator root.
+const menuSeparatorSlots = { root: 'hr' } satisfies Menu2SeparatorSlots;
+const menuSeparatorSlotProps: Menu2SeparatorSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2SeparatorOwnerState, typeof ownerState>(ownerState);
+    expectType<'horizontal' | 'vertical', typeof ownerState.orientation>(ownerState.orientation);
+    // @ts-expect-error The separator has no item state.
+    ownerState.highlighted;
+    // @ts-expect-error Visual props are not part of the public slot state.
+    ownerState.variant;
+    return {
+      title: 'Section end',
+      'data-direction': ownerState.orientation,
+      sx: { my: ownerState.orientation === 'horizontal' ? 1 : 0 },
+      ref: (node) => expectType<HTMLDivElement | null, typeof node>(node),
+      onClick: (event) =>
+        expectType<EventTarget & HTMLDivElement, typeof event.currentTarget>(event.currentTarget),
+    };
+  },
+};
+<Menu2Separator slots={menuSeparatorSlots} slotProps={menuSeparatorSlotProps} render={<hr />} />;
+<Menu2Separator
+  slotProps={{ root: { title: 'Section end', ref: React.createRef<HTMLDivElement>() } }}
+/>;
+// @ts-expect-error Use render or slots.root to select the separator root.
 <Menu2Separator component="hr" />;
-// @ts-expect-error Separator has no internal slots.
-<Menu2Separator slots={{ root: 'hr' }} />;
-// @ts-expect-error Put root props on the separator or its render element.
-<Menu2Separator slotProps={{ root: { title: 'Section end' } }} />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2Separator slots={{ root: <hr /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2Separator slotProps={{ root: { component: 'hr' } }} />;
+// @ts-expect-error Visual props belong on Menu2Separator.
+<Menu2Separator slotProps={{ root: { variant: 'inset' } }} />;
 // @ts-expect-error Use a supported Divider variant.
 <Menu2Separator variant="outlined" />;
 // @ts-expect-error Use a supported Divider text alignment.
@@ -1625,6 +1682,13 @@ createTheme({
         color: 'primary',
         disableGutters: true,
         inset: true,
+        slots: { root: 'p' },
+        slotProps: {
+          root: (ownerState) => {
+            expectType<Menu2GroupLabelOwnerState, typeof ownerState>(ownerState);
+            return { title: 'Section', sx: { fontWeight: 700 } };
+          },
+        },
         render: (props, state) => {
           expectType<Menu2GroupLabelOwnerState, typeof state>(state);
           return <p {...props} />;
@@ -1637,6 +1701,15 @@ createTheme({
         flexItem: true,
         textAlign: 'left',
         variant: 'inset',
+        slots: { root: 'hr' },
+        slotProps: {
+          root: (ownerState) => {
+            expectType<'horizontal' | 'vertical', typeof ownerState.orientation>(
+              ownerState.orientation,
+            );
+            return { 'data-direction': ownerState.orientation, sx: { my: 1 } };
+          },
+        },
         render: (props, state) => {
           expectType<'horizontal' | 'vertical', typeof state.orientation>(state.orientation);
           return <Divider {...props} orientation={state.orientation} />;

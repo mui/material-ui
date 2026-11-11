@@ -9,8 +9,10 @@
     },
     "orientation": { "description": "The orientation of the separator." },
     "render": {
-      "description": "The element to render, or a function that returns it. Forward the props, ref, and children to preserve Material styles and separator semantics."
+      "description": "The element to render, or a function that returns it. Forward the props, ref, and children to preserve Material styles and separator semantics. Applies to the default root only. Use <code>slots.root</code> to replace the styled root."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "style": { "description": "Styles applied to the root element." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -18,5 +20,8 @@
     "textAlign": { "description": "The text alignment." },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "root": "The component that renders the root. Replaces the default styled root and takes precedence over <code>render</code>."
+  }
 }

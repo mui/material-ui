@@ -38,16 +38,74 @@ describe('<Menu2GroupLabel />', () => {
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    slots: { root: { expectedClassName: classes.root } },
     muiName: 'MuiMenu2GroupLabel',
     testVariantProps: { 'data-variant': 'probe' },
   }));
 
   groupCases.forEach(({ name, Group, item }) => {
+    [false, true].forEach((replaceRoot) => {
+      [false, true].forEach((callback) => {
+        it(`registers the ${name} label id from ${callback ? 'callback' : 'object'} slot props, replacement=${replaceRoot}`, () => {
+          const rootProps = { id: 'slot-label' };
+          render(
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body}>
+                <Group>
+                  <Menu2GroupLabel
+                    id="top-level-label"
+                    slots={replaceRoot ? { root: 'div' } : undefined}
+                    slotProps={{ root: callback ? () => rootProps : rootProps }}
+                  >
+                    Account
+                  </Menu2GroupLabel>
+                  {item}
+                </Group>
+              </Menu2Popup>
+            </Menu2>,
+          );
+          const label = screen.getByText('Account');
+          const group = screen.getByRole('group', { name: 'Account' });
+          expect(label.id).to.equal('slot-label');
+          expect(group).to.have.attribute('aria-labelledby', label.id);
+          expect(label.parentElement).to.equal(group);
+        });
+      });
+    });
+
+    [undefined, 'top-level-label'].forEach((id) => {
+      it(`keeps the ${name} label association when the root-slot id is undefined, explicit id=${Boolean(id)}`, () => {
+        render(
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>
+              <Group>
+                <Menu2GroupLabel id={id} slotProps={{ root: { id: undefined } }}>
+                  Account
+                </Menu2GroupLabel>
+                {item}
+              </Group>
+            </Menu2Popup>
+          </Menu2>,
+        );
+        const label = screen.getByText('Account');
+        const group = screen.getByRole('group', { name: 'Account' });
+        expect(label.id).not.to.equal('');
+        if (id) {
+          expect(label.id).to.equal(id);
+        }
+        expect(group).to.have.attribute('aria-labelledby', label.id);
+      });
+    });
+  });
+
+  groupCases.forEach(({ name, Group, item }) => {
     it(`keeps the ${name} label association, refs, and handlers on a custom render element`, async () => {
       const labelRef = React.createRef<HTMLElement>();
       const renderRef = React.createRef<HTMLHeadingElement>();
+      const slotRef = React.createRef<HTMLDivElement>();
       const onClick = vi.fn();
       const onRenderClick = vi.fn();
+      const onSlotClick = vi.fn();
       let received: string[] = [];
       const CustomLabel = React.forwardRef<
         HTMLHeadingElement,
@@ -69,6 +127,9 @@ describe('<Menu2GroupLabel />', () => {
                 onClick={onClick}
                 className="external-label"
                 title="Account actions"
+                slotProps={{
+                  root: { ref: slotRef, onClick: onSlotClick, className: 'slot-label' },
+                }}
                 render={
                   <CustomLabel
                     ref={renderRef}
@@ -90,15 +151,20 @@ describe('<Menu2GroupLabel />', () => {
       expect(label.tagName).to.equal('H3');
       expect(labelRef.current).to.equal(label);
       expect(renderRef.current).to.equal(label);
+      expect(slotRef.current).to.equal(label);
       expect(label.parentElement).to.equal(group);
       expect(label.id).not.to.equal('');
       expect(group).to.have.attribute('aria-labelledby', label.id);
       expect(label).to.have.attribute('aria-hidden', 'true');
       expect(label).to.have.attribute('title', 'Account actions');
       expect(label).to.have.attribute('data-custom', 'value');
-      [classes.root, 'MuiListSubheader-root', 'external-label', 'custom-label'].forEach(
-        (className) => expect(label).to.have.class(className),
-      );
+      [
+        classes.root,
+        'MuiListSubheader-root',
+        'external-label',
+        'custom-label',
+        'slot-label',
+      ].forEach((className) => expect(label).to.have.class(className));
       expect(getComputedStyle(label).lineHeight).to.equal('48px');
       expect(getComputedStyle(label).paddingLeft).to.equal('16px');
       expect(label).not.to.have.class('MuiListSubheader-sticky');
@@ -118,9 +184,11 @@ describe('<Menu2GroupLabel />', () => {
       await user.click(label);
       expect(onClick).toHaveBeenCalledTimes(1);
       expect(onRenderClick).toHaveBeenCalledTimes(1);
+      expect(onSlotClick).toHaveBeenCalledTimes(1);
       unmount();
       expect(labelRef.current).to.equal(null);
       expect(renderRef.current).to.equal(null);
+      expect(slotRef.current).to.equal(null);
     });
   });
 
@@ -150,6 +218,7 @@ describe('<Menu2GroupLabel />', () => {
                 <Menu2GroupLabel
                   title="Actions"
                   sx={[false, (t) => ({ paddingRight: t.spacing(3) })]}
+                  slotProps={{ root: { sx: { marginLeft: '23px' } } }}
                 >
                   Account
                 </Menu2GroupLabel>
@@ -174,10 +243,98 @@ describe('<Menu2GroupLabel />', () => {
       expect(styles.paddingTop).to.equal('13px');
       expect(styles.paddingBottom).to.equal('19px');
       expect(styles.paddingRight).to.equal('30px');
+      expect(styles.marginLeft).to.equal('23px');
       expect(states.length).to.be.greaterThan(0);
       states.forEach((state) => expect(state).to.deep.equal({}));
       expect(label).not.to.have.attribute('ownerState');
       expect(label).not.to.have.attribute('sx');
+    });
+  });
+
+  groupCases.forEach(({ name, Group, item }) => {
+    [false, true].forEach((custom) => {
+      it(`replaces the ${name} label root with a ${custom ? 'custom' : 'host'} slot without Material styles`, async () => {
+        const renderLabel = vi.fn(() => <span />);
+        const labelRef = React.createRef<HTMLElement>();
+        const slotRef = React.createRef<HTMLDivElement>();
+        const onClick = vi.fn();
+        const onSlotClick = vi.fn();
+        let received: string[] = [];
+        const CustomLabel = React.forwardRef<
+          HTMLDivElement,
+          React.HTMLAttributes<HTMLDivElement> & { ownerState?: unknown; sx?: unknown }
+        >(function CustomLabel({ ownerState, sx, ...props }, ref) {
+          received = Object.keys(props);
+          return <div {...props} ref={ref} />;
+        });
+        const theme = createTheme({
+          components: {
+            MuiListSubheader: { styleOverrides: { root: { paddingTop: '11px' } } },
+            MuiMenu2GroupLabel: { styleOverrides: { root: { paddingBottom: '13px' } } },
+          },
+        });
+        const { user, unmount } = render(
+          <ThemeProvider theme={theme}>
+            <Menu2 defaultOpen modal={false}>
+              <Menu2Popup anchor={document.body}>
+                <Group>
+                  <Menu2GroupLabel
+                    ref={labelRef}
+                    color="primary"
+                    disableGutters
+                    inset
+                    onClick={onClick}
+                    render={renderLabel}
+                    slots={{ root: custom ? CustomLabel : 'div' }}
+                    slotProps={{
+                      root: { ref: slotRef, onClick: onSlotClick, 'data-label': 'slot' },
+                    }}
+                    sx={{ paddingLeft: '31px' }}
+                  >
+                    Account
+                  </Menu2GroupLabel>
+                  {item}
+                </Group>
+              </Menu2Popup>
+            </Menu2>
+          </ThemeProvider>,
+        );
+        const group = screen.getByRole('group', { name: 'Account' });
+        const label = screen.getByText('Account');
+        expect(labelRef.current).to.equal(label);
+        expect(slotRef.current).to.equal(label);
+        expect(label.parentElement).to.equal(group);
+        expect(label.id).not.to.equal('');
+        expect(group).to.have.attribute('aria-labelledby', label.id);
+        expect(label).to.have.attribute('aria-hidden', 'true');
+        expect(label).to.have.attribute('data-label', 'slot');
+        expect(label).to.have.class(classes.root);
+        expect(label).not.to.have.class('MuiListSubheader-root');
+        const styles = getComputedStyle(label);
+        expect(styles.lineHeight).not.to.equal('48px');
+        expect(styles.paddingTop).not.to.equal('11px');
+        expect(styles.paddingBottom).not.to.equal('13px');
+        expect(styles.paddingLeft).not.to.equal('31px');
+        expect(renderLabel).not.toHaveBeenCalled();
+        [
+          'color',
+          'component',
+          'disableSticky',
+          'disableGutters',
+          'inset',
+          'internalRender',
+          'internalRenderState',
+        ].forEach((prop) => {
+          expect(label).not.to.have.attribute(prop);
+          expect(received).not.to.include(prop);
+        });
+        await user.click(label);
+        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(onSlotClick).toHaveBeenCalledTimes(1);
+        unmount();
+        expect(labelRef.current).to.equal(null);
+        expect(slotRef.current).to.equal(null);
+      });
     });
   });
 

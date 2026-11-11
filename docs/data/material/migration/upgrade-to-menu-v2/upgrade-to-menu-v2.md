@@ -363,11 +363,17 @@ Use `slots.root` to replace the styled root; it takes precedence over `render` a
 With either customization path, forward props, ref, and children to keep group labels and behavior.
 See [Group customization](/material-ui/react-menu2/#groups).
 
-`MenuGroupLabel` and `MenuSeparator` also use `render` in place of `component` and their root slot APIs.
+`MenuGroupLabel` and `MenuSeparator` also use `render` in place of `component`.
 Both keep their default Material styles when you use `render`.
 Set `color`, `disableGutters`, and `inset` directly on `MenuGroupLabel`, and use `sx` for style overrides.
-Labels stay non-sticky; there is no `disableSticky` prop.
+Default labels stay non-sticky; there is no `disableSticky` prop.
 For a separator, the default Divider styles remain: put visual props directly on `MenuSeparator`, such as `variant="inset"`, and use `sx` for custom margins or other style overrides.
+Both parts accept `slotProps.root` for attributes, a ref, and `sx`.
+Use `slots.root` to replace the styled root; it takes precedence over `render`.
+The replacement keeps utility classes and Base UI props, but default Material styles, theme styles, and `sx` processing are not added automatically.
+Top-level visual props apply only to the default root; provide appearance in the replacement component.
+The `orientation` prop still controls separator semantics.
+Forward props, ref, and children to preserve label associations and separator semantics.
 See [Label and separator customization](/material-ui/react-menu2/#labels-and-separators).
 
 These item props work as before:

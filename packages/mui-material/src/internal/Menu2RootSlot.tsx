@@ -15,8 +15,10 @@ interface Menu2RootSlotComponentProps<State extends object> {
   baseProps: HTMLProps;
   elementType: React.ElementType;
   ownerState: State;
+  internalForwardedProps?: Record<string, unknown> | undefined;
   render?: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, State> | undefined;
   renderState: State;
+  shouldForwardComponentProp?: boolean | undefined;
   slots?: Menu2RootSlots | undefined;
   slotProps?: Menu2RootSlotProps<State> | undefined;
   sx?: SxProps<Theme> | undefined;
@@ -28,19 +30,37 @@ interface Menu2RootSlotComponentProps<State extends object> {
 export default function Menu2RootSlot<State extends object>(
   props: Menu2RootSlotComponentProps<State>,
 ) {
-  const { baseProps, elementType, ownerState, render, renderState, slots, slotProps, sx } = props;
+  const {
+    baseProps,
+    elementType,
+    ownerState,
+    internalForwardedProps,
+    render,
+    renderState,
+    shouldForwardComponentProp = false,
+    slots,
+    slotProps,
+    sx,
+  } = props;
   const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
   const [RootSlot, rootProps] = useSlot('root', {
     elementType,
+    shouldForwardComponentProp,
     externalForwardedProps: { slots, slotProps: { root: rootSlotProps } },
     ownerState,
     className: undefined,
     ref: null,
     getSlotProps: (handlers): HTMLProps => mergeProps(baseProps, handlers),
     // Replacing the root also replaces the styled render adapter.
-    internalForwardedProps: render
-      ? { as: Menu2RenderRoot, internalRender: render, internalRenderState: renderState }
-      : undefined,
+    internalForwardedProps: {
+      ...internalForwardedProps,
+      ...(render && {
+        // Keep ListSubheader and Divider in the styled render path.
+        ...(shouldForwardComponentProp ? { component: Menu2RenderRoot } : { as: Menu2RenderRoot }),
+        internalRender: render,
+        internalRenderState: renderState,
+      }),
+    },
   });
 
   return getMenu2RootRender(RootSlot, ownerState, rootProps);

@@ -13,11 +13,25 @@ import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import Menu2RenderRoot from '../internal/Menu2RenderRoot';
+import Menu2RootSlot from '../internal/Menu2RootSlot';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2SeparatorClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SeparatorUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2SeparatorOwnerState extends BaseSeparator.State {}
+
+export interface Menu2SeparatorSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2SeparatorRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2SeparatorSlotProps {
+  root?: Menu2RootSlotProps<Menu2SeparatorOwnerState>['root'] | undefined;
+}
 
 export interface Menu2SeparatorProps
   extends
@@ -35,11 +49,20 @@ export interface Menu2SeparatorProps
   /**
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles and separator semantics.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
     | React.ReactElement
     | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SeparatorOwnerState>
     | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2SeparatorSlotProps | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2SeparatorSlots | undefined;
   /**
    * Styles applied to the root element.
    */
@@ -103,6 +126,8 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
     flexItem,
     orientation = 'horizontal',
     render: renderProp,
+    slots,
+    slotProps,
     sx,
     style,
     textAlign,
@@ -123,17 +148,24 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
       data-mui-menu-separator=""
       orientation={orientation}
       render={(renderProps, state) => (
-        <Menu2SeparatorRoot
-          {...renderProps}
-          component={renderProp ? Menu2RenderRoot : 'div'}
-          {...(renderProp && { internalRender: renderProp, internalRenderState: state })}
-          absolute={absolute}
-          flexItem={flexItem}
-          orientation={orientation}
+        <Menu2RootSlot<Menu2SeparatorOwnerState>
+          baseProps={renderProps}
+          elementType={Menu2SeparatorRoot}
           ownerState={ownerState}
+          internalForwardedProps={{
+            component: 'div',
+            absolute,
+            flexItem,
+            orientation,
+            textAlign,
+            variant,
+          }}
+          render={renderProp}
+          renderState={state}
+          shouldForwardComponentProp
+          slots={slots}
+          slotProps={slotProps}
           sx={sx}
-          textAlign={textAlign}
-          variant={variant}
         />
       )}
       className={clsx(className, classes.root)}
@@ -179,8 +211,21 @@ Menu2Separator.propTypes /* remove-proptypes */ = {
   /**
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles and separator semantics.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * Styles applied to the root element.
    */

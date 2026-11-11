@@ -422,7 +422,7 @@ Use `sx` on `MenuGroupLabel` for style overrides:
 ```
 
 The optional `render` changes the root element or composes another component while keeping the default Material styles.
-The label stays non-sticky; there is no `disableSticky` prop.
+The default label stays non-sticky; there is no `disableSticky` prop.
 The `MuiMenu2GroupLabel` theme overrides, utility classes, and `sx` also apply to the render element.
 Forward props, ref, and children to preserve the group label.
 
@@ -437,9 +437,16 @@ Use `sx` on `MenuSeparator` for custom spacing and other style overrides:
 For a separator, `render` also keeps the default Material styles.
 Use it to change the root element or compose another component, not to replace these visual props.
 
-Neither the label nor the separator has internal slots.
+Both parts accept `slotProps.root` for root attributes, a ref, and `sx`.
+Use `slots.root` to replace the styled root; it takes precedence over `render`.
+The replacement keeps utility classes and Base UI props, but does not get default Material styles, theme styles, or `sx` processing automatically.
+The top-level visual props apply only to the default root; provide appearance in the replacement component.
+The `orientation` prop still controls separator semantics.
+Forward props, ref, and children to preserve label associations and separator semantics.
+
 The label render state has no fields.
 The separator render state contains `orientation`, which is `"horizontal"` or `"vertical"`.
+Root-slot callbacks expose the same public state fields.
 
 ### Shared theme styles
 

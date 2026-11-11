@@ -13,6 +13,10 @@
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "inset": { "type": { "name": "bool" }, "default": "false" },
     "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
     "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
@@ -24,14 +28,15 @@
   },
   "name": "Menu2GroupLabel",
   "imports": ["import MenuGroupLabel from '@mui/material/Unstable_Menu2GroupLabel';"],
-  "classes": [
+  "slots": [
     {
-      "key": "root",
-      "className": "MuiMenu2GroupLabel-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
+      "name": "root",
+      "description": "The component that renders the root.\nReplaces the default styled root and takes precedence over `render`.",
+      "default": "Menu2GroupLabelRoot",
+      "class": "MuiMenu2GroupLabel-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiMenu2GroupLabel",

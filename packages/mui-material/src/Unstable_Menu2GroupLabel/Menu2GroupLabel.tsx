@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useForkRef from '@mui/utils/useForkRef';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
@@ -12,11 +13,25 @@ import type { ListSubheaderOwnProps } from '../ListSubheader';
 import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import Menu2RenderRoot from '../internal/Menu2RenderRoot';
+import Menu2RootSlot from '../internal/Menu2RootSlot';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2GroupLabelClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2GroupLabelUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2GroupLabelOwnerState extends BaseMenu.GroupLabel.State {}
+
+export interface Menu2GroupLabelSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2GroupLabelRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2GroupLabelSlotProps {
+  root?: Menu2RootSlotProps<Menu2GroupLabelOwnerState>['root'] | undefined;
+}
 
 export interface Menu2GroupLabelProps
   extends
@@ -37,11 +52,20 @@ export interface Menu2GroupLabelProps
   /**
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles and accessibility.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
     | React.ReactElement
     | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupLabelOwnerState>
     | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2GroupLabelSlotProps | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2GroupLabelSlots | undefined;
   /**
    * Styles applied to the root element.
    */
@@ -93,6 +117,8 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     disableGutters,
     inset,
     render: renderProp,
+    slots,
+    slotProps,
     sx,
     style,
     ...other
@@ -103,26 +129,36 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
   };
   const classes = useUtilityClasses(ownerState);
   const handleRef = useForkRef(ref);
+  // Base UI must register the same ID that is rendered on the label.
+  const { id: rootId, ...rootSlotProps } = resolveComponentProps(slotProps?.root, ownerState) ?? {};
 
   return (
     <BaseMenu.GroupLabel
       ref={handleRef}
-      render={(renderProps: Omit<HTMLProps, 'color'>, state) => (
-        <Menu2GroupLabelRoot
-          {...renderProps}
-          component={renderProp ? Menu2RenderRoot : 'div'}
-          {...(renderProp && { internalRender: renderProp, internalRenderState: state })}
-          color={color}
-          disableGutters={disableGutters}
-          disableSticky
-          inset={inset}
+      render={(renderProps, state) => (
+        <Menu2RootSlot<Menu2GroupLabelOwnerState>
+          baseProps={renderProps}
+          elementType={Menu2GroupLabelRoot}
           ownerState={ownerState}
+          internalForwardedProps={{
+            component: 'div',
+            color,
+            disableGutters,
+            disableSticky: true,
+            inset,
+          }}
+          render={renderProp}
+          renderState={state}
+          shouldForwardComponentProp
+          slots={slots}
+          slotProps={{ root: rootSlotProps }}
           sx={sx}
         />
       )}
       className={clsx(className, classes.root)}
       style={style}
       {...other}
+      id={rootId ?? other.id}
     />
   );
 });
@@ -162,8 +198,21 @@ Menu2GroupLabel.propTypes /* remove-proptypes */ = {
   /**
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to preserve Material styles and accessibility.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * Styles applied to the root element.
    */

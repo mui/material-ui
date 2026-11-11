@@ -13,7 +13,10 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import type { Menu2SeparatorProps } from '@mui/material/Unstable_Menu2Separator';
+import type {
+  Menu2SeparatorOwnerState,
+  Menu2SeparatorProps,
+} from '@mui/material/Unstable_Menu2Separator';
 import Menu2Separator, {
   menu2SeparatorClasses as classes,
 } from '@mui/material/Unstable_Menu2Separator';
@@ -33,6 +36,7 @@ describe('<Menu2Separator />', () => {
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    slots: { root: { expectedClassName: classes.root } },
     muiName: 'MuiMenu2Separator',
     testVariantProps: { orientation: 'vertical' },
   }));
@@ -40,8 +44,10 @@ describe('<Menu2Separator />', () => {
   it('merges custom render props, refs, and handlers without private props', async () => {
     const separatorRef = React.createRef<HTMLElement>();
     const renderRef = React.createRef<HTMLSpanElement>();
+    const slotRef = React.createRef<HTMLDivElement>();
     const onClick = vi.fn();
     const onRenderClick = vi.fn();
+    const onSlotClick = vi.fn();
     let received: string[] = [];
     const CustomRoot = React.forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLSpanElement>>(
       function CustomRoot(props, ref) {
@@ -55,6 +61,7 @@ describe('<Menu2Separator />', () => {
         onClick={onClick}
         className="external-separator"
         title="Section boundary"
+        slotProps={{ root: { ref: slotRef, onClick: onSlotClick, className: 'slot-separator' } }}
         render={
           <CustomRoot
             ref={renderRef}
@@ -71,11 +78,16 @@ describe('<Menu2Separator />', () => {
     expect(separator.childElementCount).to.equal(0);
     expect(separatorRef.current).to.equal(separator);
     expect(renderRef.current).to.equal(separator);
+    expect(slotRef.current).to.equal(separator);
     expect(separator).to.have.attribute('title', 'Section boundary');
     expect(separator).to.have.attribute('data-custom', 'value');
-    [classes.root, 'MuiDivider-root', 'external-separator', 'custom-separator'].forEach(
-      (className) => expect(separator).to.have.class(className),
-    );
+    [
+      classes.root,
+      'MuiDivider-root',
+      'external-separator',
+      'custom-separator',
+      'slot-separator',
+    ].forEach((className) => expect(separator).to.have.class(className));
     [
       'component',
       'orientation',
@@ -90,9 +102,11 @@ describe('<Menu2Separator />', () => {
     await user.click(separator);
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onRenderClick).toHaveBeenCalledTimes(1);
+    expect(onSlotClick).toHaveBeenCalledTimes(1);
     unmount();
     expect(separatorRef.current).to.equal(null);
     expect(renderRef.current).to.equal(null);
+    expect(slotRef.current).to.equal(null);
   });
 
   (['horizontal', 'vertical'] as const).forEach((orientation) => {
@@ -132,6 +146,103 @@ describe('<Menu2Separator />', () => {
     });
   });
 
+  (['horizontal', 'vertical'] as const).forEach((orientation) => {
+    [false, true].forEach((custom) => {
+      it(`preserves ${orientation} semantics with a ${custom ? 'custom' : 'host'} root slot without Material styles`, async () => {
+        const renderSeparator = vi.fn(() => <span />);
+        const separatorRef = React.createRef<HTMLElement>();
+        const slotRef = React.createRef<HTMLDivElement>();
+        const onClick = vi.fn();
+        const onSlotClick = vi.fn();
+        let received: string[] = [];
+        const CustomSeparator = React.forwardRef<
+          HTMLDivElement,
+          React.HTMLAttributes<HTMLDivElement> & {
+            ownerState?: Menu2SeparatorOwnerState;
+            sx?: unknown;
+          }
+        >(function CustomSeparator({ ownerState, sx, ...props }, ref) {
+          received = Object.keys(props);
+          return <div {...props} ref={ref} data-root-orientation={ownerState?.orientation} />;
+        });
+        const theme = createTheme({
+          components: {
+            MuiDivider: { styleOverrides: { root: { marginLeft: '11px' } } },
+            MuiMenu2Separator: { styleOverrides: { root: { marginBottom: '13px' } } },
+          },
+        });
+        const { user, unmount } = render(
+          <ThemeProvider theme={theme}>
+            <Menu2Separator
+              ref={separatorRef}
+              orientation={orientation}
+              absolute
+              flexItem
+              textAlign="right"
+              variant="inset"
+              onClick={onClick}
+              render={renderSeparator}
+              slots={{ root: custom ? CustomSeparator : 'div' }}
+              slotProps={{
+                root: (state) => ({
+                  ref: slotRef,
+                  onClick: onSlotClick,
+                  'data-slot-orientation': state.orientation,
+                  style: { opacity: 0.7 },
+                }),
+              }}
+              style={{ color: 'red', opacity: 0.4 }}
+              sx={{ marginRight: '31px' }}
+            >
+              Section
+            </Menu2Separator>
+          </ThemeProvider>,
+        );
+        const separator = screen.getByRole('separator');
+        expect(separatorRef.current).to.equal(separator);
+        expect(slotRef.current).to.equal(separator);
+        expect(separator).to.have.attribute('aria-orientation', orientation);
+        expect(separator).to.have.attribute('data-orientation', orientation);
+        expect(separator).to.have.attribute('data-slot-orientation', orientation);
+        expect(separator).to.have.attribute('data-mui-menu-separator');
+        if (custom) {
+          expect(separator).to.have.attribute('data-root-orientation', orientation);
+        }
+        expect(separator).to.have.class(classes.root);
+        expect(separator).not.to.have.class('MuiDivider-root');
+        expect(separator).to.have.text('Section');
+        expect(separator.querySelector('.MuiDivider-wrapper')).to.equal(null);
+        expect(separator.style.color).to.equal('red');
+        expect(separator.style.opacity).to.equal('0.7');
+        const styles = getComputedStyle(separator);
+        expect(styles.marginTop).not.to.equal('8px');
+        expect(styles.marginLeft).not.to.equal('11px');
+        expect(styles.marginBottom).not.to.equal('13px');
+        expect(styles.marginRight).not.to.equal('31px');
+        expect(renderSeparator).not.toHaveBeenCalled();
+        [
+          'component',
+          'orientation',
+          'variant',
+          'absolute',
+          'flexItem',
+          'textAlign',
+          'internalRender',
+          'internalRenderState',
+        ].forEach((prop) => {
+          expect(separator).not.to.have.attribute(prop);
+          expect(received).not.to.include(prop);
+        });
+        await user.click(separator);
+        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(onSlotClick).toHaveBeenCalledTimes(1);
+        unmount();
+        expect(separatorRef.current).to.equal(null);
+        expect(slotRef.current).to.equal(null);
+      });
+    });
+  });
+
   it('keeps theme defaults, variants, and sx with the resolved render orientation', () => {
     const states: object[] = [];
     const theme = createTheme({
@@ -151,7 +262,11 @@ describe('<Menu2Separator />', () => {
     });
     render(
       <ThemeProvider theme={theme}>
-        <Menu2Separator title="Section" sx={[false, (t) => ({ marginRight: t.spacing(3) })]} />
+        <Menu2Separator
+          title="Section"
+          sx={[false, (t) => ({ marginRight: t.spacing(3) })]}
+          slotProps={{ root: { sx: { paddingLeft: '23px' } } }}
+        />
       </ThemeProvider>,
     );
     const separator = screen.getByRole('separator');
@@ -163,6 +278,7 @@ describe('<Menu2Separator />', () => {
     expect(styles.marginLeft).to.equal('13px');
     expect(styles.marginBottom).to.equal('19px');
     expect(styles.marginRight).to.equal('30px');
+    expect(styles.paddingLeft).to.equal('23px');
     expect(states.length).to.be.greaterThan(0);
     states.forEach((state) => expect(state).to.deep.equal({ orientation: 'horizontal' }));
     expect(separator).not.to.have.attribute('ownerState');
