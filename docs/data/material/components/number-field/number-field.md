@@ -175,6 +175,16 @@ Use `slotProps.input` to configure the Material UI `Input`, `FilledInput`, or `
 />
 ```
 
+Native input props are resolved from lowest to highest precedence:
+
+1. `onKeyDown` and `onKeyUp` from `slotProps.input`.
+2. `slotProps.htmlInput`, replaced entirely by `slotProps.input.inputProps` when provided, even if `inputProps` is explicitly `undefined`.
+3. `slotProps.input.slotProps.input`.
+
+Later values override earlier ones, including consumer event handlers.
+NumberField composes the selected handlers with Base UI's internal handlers.
+The field's resolved `disabled`, `readOnly`, and `required` states take precedence over conflicting slot props.
+
 The forwarded `ref` points to the root element.
 Use `inputRef` to access or focus the visible input.
 
@@ -189,6 +199,8 @@ See [themed components](/material-ui/customization/theme-components/) for more d
 
 ## Accessibility
 
+NumberField renders a native text input with the implicit `textbox` role.
+
 Provide a `label` to name the input.
 NumberField links the label and helper text to the input automatically and generates an ID when `id` is omitted.
 For a field without a visible label, provide an accessible name through `slotProps.htmlInput`:
@@ -197,6 +209,8 @@ For a field without a visible label, provide an accessible name through `slotPro
 <NumberField slotProps={{ htmlInput: { 'aria-label': 'Quantity' } }} />
 ```
 
-The stepper buttons are excluded from the tab order; users can adjust the value from the input with the [keyboard shortcuts described above](#stepping).
+The stepper buttons use `tabIndex={-1}` by default to avoid redundant tab stops.
+Keyboard users can adjust the value from the input with the [keyboard shortcuts described above](#stepping).
+The buttons remain exposed to screen readers, including on touch devices.
 
 NumberField uses [Base UI](https://base-ui.com/react/components/number-field) for numeric input behavior and Material UI components for its appearance.
