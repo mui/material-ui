@@ -27,10 +27,6 @@ import { useDocsConfig } from '../../DocsProvider';
 import { SearchButton } from './SearchButton';
 import { convertProductIdToName } from '../../utils/convertProductIdToName';
 
-// Set with `sx`, since `GlobalStyles` can't override the icon's own font size.
-// 1.125rem is `theme.typography.pxToRem(18)`.
-const startScreenIconSx = { fontSize: '1.125rem' };
-
 interface StartScreenItem {
   name: string;
   href: string;
@@ -52,42 +48,22 @@ function NewStartScreen() {
         {
           name: 'Installation',
           href: '/material-ui/getting-started/installation/',
-          icon: (
-            <DownloadRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Components',
           href: '/material-ui/getting-started/supported-components/',
-          icon: (
-            <SmartButtonRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Example projects',
           href: '/material-ui/getting-started/example-projects/',
-          icon: (
-            <LibraryBooksRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Templates',
           href: '/material-ui/getting-started/templates/',
-          icon: (
-            <CollectionsBookmarkRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -99,32 +75,17 @@ function NewStartScreen() {
         {
           name: 'Overview',
           href: '/x/introduction/',
-          icon: (
-            <StickyNote2RoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Licensing',
           href: '/x/introduction/licensing/',
-          icon: (
-            <CopyrightRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <CopyrightRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'What is new in MUI X',
           href: '/x/whats-new/',
-          icon: (
-            <NewspaperRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <NewspaperRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -136,32 +97,17 @@ function NewStartScreen() {
         {
           name: 'Overview',
           href: '/toolpad/studio/getting-started/',
-          icon: (
-            <StickyNote2RoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Why Toolpad?',
           href: '/toolpad/studio/getting-started/why-toolpad/',
-          icon: (
-            <ChecklistRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <ChecklistRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Example applications',
           href: '/toolpad/studio/examples/',
-          icon: (
-            <LibraryBooksRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -173,32 +119,19 @@ function NewStartScreen() {
         {
           name: 'Overview',
           href: '/system/getting-started/',
-          icon: (
-            <StickyNote2RoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Usage',
           href: '/system/getting-started/usage/',
           icon: (
-            <IntegrationInstructionsRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
+            <IntegrationInstructionsRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />
           ),
         },
         {
           name: 'The sx prop',
           href: '/system/getting-started/the-sx-prop/',
-          icon: (
-            <SettingsRoundedIcon
-              className="DocSearch-NewStartScreenTitleIcon"
-              sx={startScreenIconSx}
-            />
-          ),
+          icon: <SettingsRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -560,6 +493,7 @@ export function AppSearch(props: AppSearchProps) {
               color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
+              fontSize: theme.typography.pxToRem(18),
               color: (theme.vars || theme).palette.primary[500],
               marginRight: theme.spacing(1.5),
               opacity: 0.6,
