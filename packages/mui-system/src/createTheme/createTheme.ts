@@ -12,7 +12,7 @@ import styleFunctionSx from '../styleFunctionSx/styleFunctionSx';
 import defaultSxConfig from '../styleFunctionSx/defaultSxConfig';
 import applyStyles from './applyStyles';
 import type { ApplyStyles } from './applyStyles';
-import { resolveCssLayersOption } from '../cssLayers';
+import { resolveModularCssLayers } from '../cssLayers';
 import type { SxConfig, SxProps } from '../styleFunctionSx';
 
 export type {
@@ -45,12 +45,13 @@ export interface ThemeOptions {
   /**
    * The generated styles always go in the `mui` CSS layer. By default, it's split into sub-layers:
    * `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
-   * Set it to `'single'` to put all the styles in `mui`, without sub-layers. Then they keep the v9
+   * Set it to `false` to put all the styles in `mui`, without sub-layers. Then they keep the v9
    * precedence among themselves, and other layers and unlayered CSS still override them.
-   * `modularCssLayers: false` does the same.
+   * A string sets where the sub-layers go among the app's layers, for example
+   * `'@layer theme, base, mui, components, utilities;'`.
    * @default true
    */
-  cssLayers?: true | 'single' | undefined;
+  modularCssLayers?: boolean | string | undefined;
 }
 
 export interface Theme extends CssContainerQueries {
@@ -65,7 +66,7 @@ export interface Theme extends CssContainerQueries {
   mixins?: Mixins | undefined;
   typography?: Typography | undefined;
   zIndex?: ZIndex | undefined;
-  cssLayers?: true | 'single' | undefined;
+  modularCssLayers?: boolean | string | undefined;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
@@ -119,7 +120,7 @@ function createTheme(options: ThemeOptions = {}, ...args: object[]): Theme {
     });
   };
 
-  muiTheme.cssLayers = resolveCssLayersOption(muiTheme.cssLayers, muiTheme.modularCssLayers);
+  muiTheme.modularCssLayers = resolveModularCssLayers(muiTheme.modularCssLayers);
 
   muiTheme.internal_cache = {};
 

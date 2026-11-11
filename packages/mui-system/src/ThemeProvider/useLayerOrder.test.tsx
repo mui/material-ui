@@ -80,8 +80,8 @@ describe('useLayerOrder', () => {
 
   it('declares the order under an upper theme without layers', () => {
     render(
-      <ThemeContext.Provider value={{ cssLayers: false }}>
-        <TestComponent theme={{ cssLayers: true }} />
+      <ThemeContext.Provider value={{ direction: 'ltr' }}>
+        <TestComponent theme={{ modularCssLayers: true }} />
       </ThemeContext.Provider>,
     );
     expect(document.head.firstChild?.textContent).to.contain(
@@ -90,20 +90,14 @@ describe('useLayerOrder', () => {
   });
 
   it('declares no order with a single layer', () => {
-    render(<TestComponent theme={{ cssLayers: 'single' }} />);
+    render(<TestComponent theme={{ modularCssLayers: false }} />);
     expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
-  });
-
-  it('uses a custom layer order string as written with a single layer', () => {
-    const theme = { cssLayers: 'single', modularCssLayers: '@layer theme, base, mui, utilities;' };
-    render(<TestComponent theme={theme} />);
-    expect(document.head.firstChild?.textContent).to.equal('@layer theme, base, mui, utilities;');
   });
 
   it('declares the sub-layers under an upper theme with a single layer', () => {
     render(
-      <ThemeContext.Provider value={{ cssLayers: 'single' }}>
-        <TestComponent theme={{ cssLayers: true }} />
+      <ThemeContext.Provider value={{ modularCssLayers: false }}>
+        <TestComponent theme={{ modularCssLayers: true }} />
       </ThemeContext.Provider>,
     );
     expect(document.head.firstChild?.textContent).to.contain(
@@ -113,15 +107,17 @@ describe('useLayerOrder', () => {
 
   it('does not declare a single layer under an upper theme with sub-layers', () => {
     render(
-      <ThemeContext.Provider value={{ cssLayers: true }}>
-        <TestComponent theme={{ cssLayers: 'single' }} />
+      <ThemeContext.Provider value={{ modularCssLayers: true }}>
+        <TestComponent theme={{ modularCssLayers: false }} />
       </ThemeContext.Provider>,
     );
     expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
   });
 
   it('reads the theme of the themeId', () => {
-    render(<TestComponent theme={{ $$material: { cssLayers: true } }} themeId="$$material" />);
+    render(
+      <TestComponent theme={{ $$material: { modularCssLayers: true } }} themeId="$$material" />,
+    );
     expect(document.head.firstChild?.textContent).to.contain(
       '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
     );
@@ -129,8 +125,8 @@ describe('useLayerOrder', () => {
 
   it('reads the upper theme of the themeId', () => {
     render(
-      <ThemeContext.Provider value={{ $$material: { cssLayers: true } }}>
-        <TestComponent theme={{ $$material: { cssLayers: true } }} themeId="$$material" />
+      <ThemeContext.Provider value={{ $$material: { modularCssLayers: true } }}>
+        <TestComponent theme={{ $$material: { modularCssLayers: true } }} themeId="$$material" />
       </ThemeContext.Provider>,
     );
     expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);

@@ -208,29 +208,16 @@ describe('createTheme', () => {
     expect(() => render(<Test />)).not.to.throw();
   });
 
-  describe('cssLayers', () => {
+  describe('modularCssLayers', () => {
     it('uses sub-layers by default', () => {
-      expect(createTheme().cssLayers).to.equal(true);
+      expect(createTheme().modularCssLayers).to.equal(true);
     });
 
-    it('uses a single layer with modularCssLayers: false, which turned the sub-layers off in v9', () => {
-      expect(createTheme({ modularCssLayers: false }).cssLayers).to.equal('single');
-    });
-
-    it('keeps an explicit value', () => {
-      expect(createTheme({ cssLayers: 'single' }).cssLayers).to.equal('single');
-      expect(createTheme({ cssLayers: true, modularCssLayers: false }).cssLayers).to.equal(true);
-      expect(createTheme({ cssLayers: 'single', modularCssLayers: true }).cssLayers).to.equal(
-        'single',
+    it('keeps false, which puts the styles in a single layer, and strings', () => {
+      expect(createTheme({ modularCssLayers: false }).modularCssLayers).to.equal(false);
+      expect(createTheme({ modularCssLayers: '@layer base, mui;' }).modularCssLayers).to.equal(
+        '@layer base, mui;',
       );
-    });
-
-    it('logs an error and keeps the layers with cssLayers: false', () => {
-      let theme;
-      expect(() => {
-        theme = createTheme({ cssLayers: false });
-      }).toErrorDev('MUI: `cssLayers: false` is no longer supported');
-      expect(theme.cssLayers).to.equal(true);
     });
   });
 });
