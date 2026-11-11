@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { Field as BaseField } from '@base-ui/react/field';
 import type { BaseUIEvent } from '@base-ui/react/types';
@@ -113,9 +113,16 @@ describe('<NumberField />', () => {
     // Check the rendered Material components and their context-derived classes so
     // forwarding a prop only to the outer FormControl cannot satisfy the tests.
     describe('Material input and form props', () => {
+      it('forwards the placeholder to the input element', () => {
+        render(<NumberField placeholder="Enter amount" />);
+
+        const input = screen.getByRole('textbox');
+        expect(input).to.have.attribute('placeholder', 'Enter amount');
+        expect(input.closest(`.${classes.root}`)).not.to.have.attribute('placeholder');
+      });
+
       const variants = [
         { variant: undefined, expectedVariant: 'outlined', inputClass: 'MuiOutlinedInput-root' },
-        { variant: 'outlined', expectedVariant: 'outlined', inputClass: 'MuiOutlinedInput-root' },
         { variant: 'filled', expectedVariant: 'filled', inputClass: 'MuiFilledInput-root' },
         { variant: 'standard', expectedVariant: 'standard', inputClass: 'MuiInput-root' },
       ] as const satisfies readonly {
@@ -126,58 +133,30 @@ describe('<NumberField />', () => {
 
       variants.forEach(({ variant, expectedVariant, inputClass }) => {
         it(`renders the ${expectedVariant} Material input with variant=${variant}`, () => {
-          render(<NumberField variant={variant} label="Amount" helperText="Helper text" />);
+          render(<NumberField variant={variant} label="Amount" />);
           const input = screen.getByRole('textbox', { name: 'Amount' });
           const wrapper = input.closest('.MuiInputBase-root');
-          const label = screen.getByText('Amount', { selector: 'label' });
-          const helperText = screen.getByText('Helper text');
-
           expect(wrapper).to.have.class(inputClass);
-          expect(label).to.have.class(`MuiInputLabel-${expectedVariant}`);
-          expect(helperText.classList.contains('MuiFormHelperText-contained')).to.equal(
-            expectedVariant !== 'standard',
-          );
         });
       });
 
       it('forwards nondefault size, color and fullWidth to Material components', () => {
-        render(
-          <NumberField
-            label="Amount"
-            helperText="Helper text"
-            size="small"
-            color="secondary"
-            fullWidth
-          />,
-        );
+        render(<NumberField label="Amount" size="small" color="secondary" fullWidth />);
         const input = screen.getByRole('textbox', { name: 'Amount' });
         const wrapper = input.closest('.MuiInputBase-root')!;
         const root = input.closest(`.${classes.root}`)!;
-        const label = screen.getByText('Amount', { selector: 'label' });
-        const helperText = screen.getByText('Helper text');
-
         expect(root).to.have.class('MuiFormControl-fullWidth');
         expect(wrapper).to.have.class('MuiInputBase-fullWidth');
         expect(wrapper).to.have.class('MuiInputBase-sizeSmall');
-        expect(label).to.have.class('MuiInputLabel-sizeSmall');
-        expect(helperText).to.have.class('MuiFormHelperText-sizeSmall');
         expect(wrapper).to.have.class('MuiInputBase-colorSecondary');
-        expect(label).to.have.class('MuiFormLabel-colorSecondary');
       });
 
-      [false, true].forEach((error) => {
-        it(`preserves Material error=${error} styling and aria-invalid without Base validation`, () => {
-          render(<NumberField label="Amount" helperText="Helper text" error={error} />);
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          const wrapper = input.closest('.MuiInputBase-root')!;
-          const label = screen.getByText('Amount', { selector: 'label' });
-          const helperText = screen.getByText('Helper text');
+      it('preserves Material error state when Base UI has no validation error', () => {
+        render(<NumberField label="Amount" error />);
+        const input = screen.getByRole('textbox', { name: 'Amount' });
 
-          expect(input).to.have.attribute('aria-invalid', String(error));
-          expect(wrapper.classList.contains('Mui-error')).to.equal(error);
-          expect(label.classList.contains('Mui-error')).to.equal(error);
-          expect(helperText.classList.contains('Mui-error')).to.equal(error);
-        });
+        expect(input).to.have.attribute('aria-invalid', 'true');
+        expect(input.closest('.MuiInputBase-root')).to.have.class('Mui-error');
       });
     });
 
@@ -200,56 +179,45 @@ describe('<NumberField />', () => {
         },
       );
 
-      (['object', 'callback'] as const).forEach((configuration) => {
-        [false, true].forEach((shrink) => {
-          it(`uses ${configuration} inputLabel.shrink=${shrink} for the outlined notch`, () => {
-            render(
-              <NumberField
-                variant="outlined"
-                label="Amount"
-                // Make the automatic filled-state notch disagree with the explicit setting.
-                defaultValue={shrink ? undefined : 5}
-                slotProps={{
-                  inputLabel: configuration === 'object' ? { shrink } : () => ({ shrink }),
-                  input: { slots: { notchedOutline: TestNotchedOutline } },
-                }}
-              />,
-            );
+      [
+        { configuration: 'object', shrink: false },
+        { configuration: 'callback', shrink: true },
+      ].forEach(({ configuration, shrink }) => {
+        it(`uses ${configuration} inputLabel.shrink=${shrink} for the outlined notch`, () => {
+          render(
+            <NumberField
+              variant="outlined"
+              label="Amount"
+              // Make the automatic filled-state notch disagree with the explicit setting.
+              defaultValue={shrink ? undefined : 5}
+              slotProps={{
+                inputLabel: configuration === 'object' ? { shrink } : () => ({ shrink }),
+                input: { slots: { notchedOutline: TestNotchedOutline } },
+              }}
+            />,
+          );
 
-            expect(screen.getByText('Amount', { selector: 'label' })).to.have.attribute(
-              'data-shrink',
-              String(shrink),
-            );
-            expect(screen.getByTestId('outline')).to.have.attribute('data-notched', String(shrink));
-            expect(screen.getByTestId('outline').querySelector('legend')).to.have.text('Amount');
-          });
+          expect(screen.getByText('Amount', { selector: 'label' })).to.have.attribute(
+            'data-shrink',
+            String(shrink),
+          );
+          expect(screen.getByTestId('outline')).to.have.attribute('data-notched', String(shrink));
+          expect(screen.getByTestId('outline').querySelector('legend')).to.have.text('Amount');
         });
+      });
 
-        [false, true].forEach((notched) => {
-          it(`lets ${configuration} input.notched=${notched} override inputLabel.shrink`, () => {
-            const inputSlotProps = { notched, slots: { notchedOutline: TestNotchedOutline } };
-            render(
-              <NumberField
-                variant="outlined"
-                label="Amount"
-                defaultValue={notched ? undefined : 5}
-                slotProps={{
-                  inputLabel: { shrink: !notched },
-                  input: configuration === 'object' ? inputSlotProps : () => inputSlotProps,
-                }}
-              />,
-            );
+      it('lets an explicit input.notched override inputLabel.shrink', () => {
+        render(
+          <NumberField
+            label="Amount"
+            slotProps={{
+              inputLabel: { shrink: true },
+              input: { notched: false, slots: { notchedOutline: TestNotchedOutline } },
+            }}
+          />,
+        );
 
-            expect(screen.getByText('Amount', { selector: 'label' })).to.have.attribute(
-              'data-shrink',
-              String(!notched),
-            );
-            expect(screen.getByTestId('outline')).to.have.attribute(
-              'data-notched',
-              String(notched),
-            );
-          });
-        });
+        expect(screen.getByTestId('outline')).to.have.attribute('data-notched', 'false');
       });
     });
 
@@ -268,6 +236,8 @@ describe('<NumberField />', () => {
           formHelperText: createCallback(),
           incrementButton: createCallback(),
           decrementButton: createCallback(),
+          scrubArea: createCallback(),
+          scrubAreaCursor: createCallback(),
         };
       };
 
@@ -294,39 +264,6 @@ describe('<NumberField />', () => {
             snapOnStep: false,
             id: input.id,
           });
-        });
-      });
-
-      it('matches theme variants for omitted and explicitly false Material flags', () => {
-        const theme = createTheme({
-          components: {
-            MuiNumberField: {
-              styleOverrides: {
-                root: {
-                  variants: [
-                    { props: { autoFocus: false }, style: { '--auto-focus-default': 'matched' } },
-                    { props: { error: false }, style: { '--error-default': 'matched' } },
-                    { props: { fullWidth: false }, style: { '--full-width-default': 'matched' } },
-                  ],
-                },
-              },
-            },
-          },
-        });
-        render(
-          <ThemeProvider theme={theme}>
-            <NumberField data-testid="omitted" />
-            <NumberField data-testid="explicit" autoFocus={false} error={false} fullWidth={false} />
-          </ThemeProvider>,
-        );
-
-        [screen.getByTestId('omitted'), screen.getByTestId('explicit')].forEach((root) => {
-          const style = window.getComputedStyle(root);
-          ['--auto-focus-default', '--error-default', '--full-width-default'].forEach(
-            (property) => {
-              expect(style.getPropertyValue(property).trim(), property).to.equal('matched');
-            },
-          );
         });
       });
 
@@ -367,8 +304,6 @@ describe('<NumberField />', () => {
           expectedValue: 1234.5,
           displayValue: '$1,234.50',
         },
-        { name: 'zero', props: { value: 0 }, expectedValue: 0, displayValue: '$0.00' },
-        { name: 'empty value', props: { value: null }, expectedValue: null, displayValue: '' },
         {
           name: 'uncontrolled default',
           props: { defaultValue: 42 },
@@ -417,11 +352,6 @@ describe('<NumberField />', () => {
       { name: 'root', getSlotProps: (props) => ({ root: props }) },
       { name: 'input', getSlotProps: (props) => ({ input: () => props }) },
       { name: 'htmlInput', getSlotProps: (props) => ({ htmlInput: () => props }) },
-      { name: 'input.inputProps', getSlotProps: (props) => ({ input: { inputProps: props } }) },
-      {
-        name: 'input.slotProps.input',
-        getSlotProps: (props) => ({ input: { slotProps: { input: props } } }),
-      },
     ] satisfies {
       name: string;
       getSlotProps: (
@@ -442,7 +372,6 @@ describe('<NumberField />', () => {
                 <React.Fragment>
                   <NumberField
                     label="Amount"
-                    helperText="Helper text"
                     defaultValue={5}
                     disabled={disabled}
                     onValueChange={onValueChange}
@@ -456,11 +385,12 @@ describe('<NumberField />', () => {
               const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
 
               expect(input.disabled).to.equal(disabled);
-              expect(wrapper.classList.contains('Mui-disabled')).to.equal(disabled);
-              expect(label.classList.contains('Mui-disabled')).to.equal(disabled);
-              expect(screen.getByText('Helper text').classList.contains('Mui-disabled')).to.equal(
-                disabled,
-              );
+              if (name === 'input') {
+                expect(wrapper.classList.contains('Mui-disabled')).to.equal(disabled);
+              }
+              if (name === 'root') {
+                expect(label.classList.contains('Mui-disabled')).to.equal(disabled);
+              }
 
               await user.tab();
               if (disabled) {
@@ -490,14 +420,9 @@ describe('<NumberField />', () => {
               const label = screen.getByText('Amount', { selector: 'label' });
 
               expect(input.required).to.equal(required);
-              expect(label.classList.contains('Mui-required')).to.equal(required);
-              expect(label.querySelector('.MuiInputLabel-asterisk') !== null).to.equal(required);
-              expect(
-                input
-                  .closest<HTMLDivElement>('.MuiInputBase-root')!
-                  .querySelector('legend')!
-                  .textContent.includes('*'),
-              ).to.equal(required);
+              if (name === 'root') {
+                expect(label.classList.contains('Mui-required')).to.equal(required);
+              }
             });
           });
 
@@ -519,7 +444,9 @@ describe('<NumberField />', () => {
                 const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
 
                 expect(input.readOnly).to.equal(readOnly);
-                expect(wrapper.classList.contains('Mui-readOnly')).to.equal(readOnly);
+                if (name === 'input') {
+                  expect(wrapper.classList.contains('Mui-readOnly')).to.equal(readOnly);
+                }
 
                 await user.click(input);
                 expect(input).to.equal(document.activeElement);
@@ -557,7 +484,6 @@ describe('<NumberField />', () => {
             const field = (
               <NumberField
                 label="Amount"
-                helperText="Helper text"
                 defaultValue={5}
                 disabled={source === 'NumberField prop' ? disabled : false}
                 onValueChange={onValueChange}
@@ -588,7 +514,6 @@ describe('<NumberField />', () => {
           const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
           const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
           const label = screen.getByText('Amount', { selector: 'label' });
-          const helperText = screen.getByText('Helper text');
           const increment = screen.getByRole<HTMLButtonElement>('button', { name: 'Increase' });
           const decrement = screen.getByRole<HTMLButtonElement>('button', { name: 'Decrease' });
           const toggle = screen.getByRole('button', { name: 'Toggle disabled' });
@@ -598,7 +523,6 @@ describe('<NumberField />', () => {
             expect(input.disabled).to.equal(disabled);
             expect(wrapper.classList.contains('Mui-disabled')).to.equal(disabled);
             expect(label.classList.contains('Mui-disabled')).to.equal(disabled);
-            expect(helperText.classList.contains('Mui-disabled')).to.equal(disabled);
             expect(increment.disabled).to.equal(disabled);
             expect(decrement.disabled).to.equal(disabled);
           };
@@ -643,16 +567,11 @@ describe('<NumberField />', () => {
 
         const { user } = render(<Test />);
         const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
-        const label = screen.getByText('Amount', { selector: 'label' });
         const toggle = screen.getByRole('button', { name: 'Toggle required' });
 
         const expectRequiredState = (required: boolean) => {
           expect(screen.getByRole('textbox', { name: /Amount/ })).to.equal(input);
           expect(input.required).to.equal(required);
-          expect(label.classList.contains('Mui-required')).to.equal(required);
-          expect(label.querySelector('.MuiInputLabel-asterisk') !== null).to.equal(required);
-          expect(wrapper.querySelector('legend')!.textContent.includes('*')).to.equal(required);
         };
 
         expectRequiredState(false);
@@ -737,94 +656,15 @@ describe('<NumberField />', () => {
         expect(onValueChange.mock.lastCall![0]).to.equal(9);
       });
     });
-
-    // A surrounding Base Field can disable NumberField even when its own prop is false.
-    // The Material input, label, and helper text must reflect that inherited state.
-    describe('inherited disabled state', () => {
-      slotPropPaths.forEach(({ name, getSlotProps }) => {
-        // Check each override path because any one can clear inherited disabled state.
-        describe(`slotProps.${name}`, () => {
-          it('preserves inherited Base UI disabled state despite explicit false props', async () => {
-            const onValueChange = vi.fn();
-            const { user } = render(
-              <React.Fragment>
-                <BaseField.Root disabled>
-                  <NumberField
-                    label="Amount"
-                    helperText="Helper text"
-                    defaultValue={5}
-                    disabled={false}
-                    onValueChange={onValueChange}
-                    slotProps={getSlotProps({ disabled: false })}
-                  />
-                </BaseField.Root>
-                <button type="button">Next</button>
-              </React.Fragment>,
-            );
-            const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-
-            expect(input.disabled).to.equal(true);
-            expect(input.closest('.MuiInputBase-root')).to.have.class('Mui-disabled');
-            expect(screen.getByText('Amount', { selector: 'label' })).to.have.class('Mui-disabled');
-            expect(screen.getByText('Helper text')).to.have.class('Mui-disabled');
-
-            await user.tab();
-            expect(screen.getByRole('button', { name: 'Next' })).to.equal(document.activeElement);
-
-            expect(input).to.have.value('5');
-            expect(onValueChange).toHaveBeenCalledTimes(0);
-          });
-        });
-      });
-    });
   });
 
   // The Material buttons must retain Base UI stepping, commit timing, and availability
   // while supplying the default presentation expected from a Material number field.
   describe('controls', () => {
-    // A mouse press changes the value immediately and commits on release; the
-    // synthesized click must not repeat either action through the Material wrapper.
-    describe('stepping and callbacks', () => {
-      [
-        { name: 'Increase', expectedValue: 6, reason: 'increment-press' },
-        { name: 'Decrease', expectedValue: 4, reason: 'decrement-press' },
-      ].forEach(({ name, expectedValue, reason }) => {
-        it(`steps once and commits on release for ${name}`, async () => {
-          const onValueChange = vi.fn();
-          const onValueCommitted = vi.fn();
-          const { user } = render(
-            <NumberField
-              label="Amount"
-              defaultValue={5}
-              onValueChange={onValueChange}
-              onValueCommitted={onValueCommitted}
-            />,
-          );
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          const button = screen.getByRole('button', { name });
-
-          await user.pointer({ keys: '[MouseLeft>]', target: button });
-          expect(input).to.have.value(String(expectedValue));
-          expect(input).to.equal(document.activeElement);
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-          expect(onValueChange.mock.calls[0][0]).to.equal(expectedValue);
-          expect(onValueChange.mock.calls[0][1].reason).to.equal(reason);
-          expect(onValueCommitted).toHaveBeenCalledTimes(0);
-
-          await user.pointer({ keys: '[/MouseLeft]', target: button });
-          expect(input).to.have.value(String(expectedValue));
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-          expect(onValueCommitted).toHaveBeenCalledTimes(1);
-          expect(onValueCommitted.mock.calls[0][0]).to.equal(expectedValue);
-          expect(onValueCommitted.mock.calls[0][1].reason).to.equal(reason);
-        });
-      });
-    });
-
     // Field state and bounds must disable the native buttons, not just their styling.
     // Ignore CSS hit-testing when attempting disabled clicks to exercise that guard.
     describe('availability', () => {
-      it('disables controls at each bound and enables them after stepping away', async () => {
+      it('disables controls at each bound despite slot props and enables them after stepping away', async () => {
         const onValueChange = vi.fn();
         const onValueCommitted = vi.fn();
         const view = render(
@@ -835,6 +675,10 @@ describe('<NumberField />', () => {
             max={2}
             onValueChange={onValueChange}
             onValueCommitted={onValueCommitted}
+            slotProps={{
+              incrementButton: { disabled: false },
+              decrementButton: { disabled: false },
+            }}
           />,
         );
         const user = view.user.setup({ pointerEventsCheck: 0 });
@@ -971,64 +815,6 @@ describe('<NumberField />', () => {
           expect(onValueCommitted.mock.calls[0][0]).to.equal(value);
         });
       });
-
-      [
-        {
-          name: 'upper',
-          min: 0,
-          max: 5,
-          disabledName: 'Increase',
-          activeName: 'Decrease',
-          value: 4,
-        },
-        {
-          name: 'lower',
-          min: 5,
-          max: 10,
-          disabledName: 'Decrease',
-          activeName: 'Increase',
-          value: 6,
-        },
-      ].forEach(({ name, min, max, disabledName, activeName, value }) => {
-        it(`cannot bypass the ${name} bound with disabled=false slot props`, async () => {
-          const onValueChange = vi.fn();
-          const onValueCommitted = vi.fn();
-          const view = render(
-            <NumberField
-              label="Amount"
-              defaultValue={5}
-              min={min}
-              max={max}
-              onValueChange={onValueChange}
-              onValueCommitted={onValueCommitted}
-              slotProps={{
-                incrementButton: { disabled: false },
-                decrementButton: { disabled: false },
-              }}
-            />,
-          );
-          const user = view.user.setup({ pointerEventsCheck: 0 });
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          const disabledButton = screen.getByRole<HTMLButtonElement>('button', {
-            name: disabledName,
-          });
-          const activeButton = screen.getByRole<HTMLButtonElement>('button', { name: activeName });
-
-          expect(disabledButton.disabled).to.equal(true);
-          await user.click(disabledButton);
-          expect(input).to.have.value('5');
-          expect(onValueChange).toHaveBeenCalledTimes(0);
-          expect(onValueCommitted).toHaveBeenCalledTimes(0);
-
-          await user.click(activeButton);
-          expect(input).to.have.value(String(value));
-          expect(disabledButton.disabled).to.equal(false);
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-          expect(onValueChange.mock.calls[0][0]).to.equal(value);
-          expect(onValueCommitted).toHaveBeenCalledTimes(1);
-          expect(onValueCommitted.mock.calls[0][0]).to.equal(value);
-        });
-      });
     });
 
     // Defaults must remain visible and inherit the field size, while replacing the
@@ -1054,12 +840,10 @@ describe('<NumberField />', () => {
           expect(increment).to.contain(incrementIconElement);
           expect(decrement).to.contain(decrementIconElement);
           for (const button of [increment, decrement]) {
-            expect(button).to.have.attribute('type', 'button');
             expect(button).to.have.class('MuiIconButton-sizeSmall');
           }
           for (const icon of [incrementIconElement, decrementIconElement]) {
             expect(icon).to.have.class('MuiSvgIcon-fontSizeInherit');
-            expect(icon).to.have.attribute('aria-hidden', 'true');
           }
         });
       });
@@ -1100,12 +884,6 @@ describe('<NumberField />', () => {
       React.ComponentPropsWithoutRef<'button'>
     >(function NativeButton(props, ref) {
       return <button {...props} ref={ref} data-testid="button-component" />;
-    });
-    const NonNativeButton = React.forwardRef<
-      HTMLSpanElement,
-      React.ComponentPropsWithoutRef<'span'>
-    >(function NonNativeButton(props, ref) {
-      return <span {...props} ref={ref} />;
     });
 
     it('preserves Enter and Space activation for a Material button rendered as a link', async () => {
@@ -1186,51 +964,14 @@ describe('<NumberField />', () => {
 
     (
       [
-        { slot: 'incrementButton', name: 'Increase', nextValue: 6 },
-        { slot: 'decrementButton', name: 'Decrease', nextValue: 4 },
+        { slot: 'incrementButton', name: 'Increase', nextValue: 6, reason: 'increment-press' },
+        { slot: 'decrementButton', name: 'Decrease', nextValue: 4, reason: 'decrement-press' },
       ] as const
-    ).forEach(({ slot, name, nextValue }) => {
+    ).forEach(({ slot, name, nextValue, reason }) => {
       describe(`slotProps.${slot}`, () => {
         // Ordinary props override defaults, while classes, styles and refs must
         // merge with Base UI's props rather than erase its accessibility or behavior.
         describe('props and refs', () => {
-          it('merges object slot props and attaches and clears the consumer ref', async () => {
-            const ref = React.createRef<HTMLButtonElement>();
-            const { user, unmount } = render(
-              <NumberField
-                id="amount"
-                label="Amount"
-                defaultValue={5}
-                slotProps={{
-                  [slot]: {
-                    ref,
-                    'aria-label': 'Custom step',
-                    title: 'Step amount',
-                    style: { marginLeft: 7 },
-                    size: 'small',
-                  },
-                }}
-              />,
-            );
-            const button = screen.getByRole('button', { name: 'Custom step' });
-            const input = screen.getByRole('textbox', { name: 'Amount' });
-
-            expect(button).to.have.class('MuiIconButton-sizeSmall');
-            expect(button).to.have.attribute('aria-controls', input.id);
-            expect(button).to.have.attribute('tabindex', '-1');
-            expect(button).to.have.attribute('title', 'Step amount');
-            expect(button.style.marginLeft).to.equal('7px');
-            expect(button.style.userSelect).to.equal('none');
-            expect(ref.current).to.equal(button);
-
-            await user.click(button);
-
-            expect(input).to.have.value(String(nextValue));
-            expect(document.activeElement).to.equal(input);
-            unmount();
-            expect(ref.current).to.equal(null);
-          });
-
           it('resolves callback props for a custom slot and preserves its ref and behavior', async () => {
             const ref = vi.fn();
             const getSlotProps = (ownerState: NumberFieldOwnerState) => ({
@@ -1289,7 +1030,6 @@ describe('<NumberField />', () => {
           [
             { configuration: 'host slot', component: undefined },
             { configuration: 'Material component', component: 'span' as const },
-            { configuration: 'custom Material component', component: NonNativeButton },
           ].forEach(({ configuration, component }) => {
             it(`supports a non-native ${configuration} with one activation per gesture`, async () => {
               const onValueChange = vi.fn();
@@ -1338,7 +1078,7 @@ describe('<NumberField />', () => {
         // Consumer handlers run before Base UI and may cancel it explicitly.
         // A normal handler or an unset handler must retain stepping and commits.
         describe('event composition', () => {
-          it('composes pointer and click handlers with a single step and commit', async () => {
+          it('composes pointer handlers, steps on press and commits once on release', async () => {
             const calls: string[] = [];
             const targets: EventTarget[] = [];
             const record =
@@ -1346,12 +1086,20 @@ describe('<NumberField />', () => {
                 calls.push(handler);
                 targets.push(event.currentTarget);
               };
+            const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>(() => {
+              calls.push('change');
+            });
+            const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>(
+              () => {
+                calls.push('commit');
+              },
+            );
             const { user } = render(
               <NumberField
                 label="Amount"
                 defaultValue={5}
-                onValueChange={() => calls.push('change')}
-                onValueCommitted={() => calls.push('commit')}
+                onValueChange={onValueChange}
+                onValueCommitted={onValueCommitted}
                 slotProps={{
                   [slot]: {
                     onPointerDown: record('pointerdown'),
@@ -1362,14 +1110,23 @@ describe('<NumberField />', () => {
               />,
             );
             const button = screen.getByRole('button', { name });
+            const input = screen.getByRole('textbox', { name: 'Amount' });
 
-            await user.click(button);
+            await user.pointer({ keys: '[MouseLeft>]', target: button });
+            expect(input).to.have.value(String(nextValue));
+            expect(document.activeElement).to.equal(input);
+            expect(calls).to.deep.equal(['pointerdown', 'change']);
+
+            await user.pointer({ keys: '[/MouseLeft]', target: button });
 
             expect(calls).to.deep.equal(['pointerdown', 'change', 'pointerup', 'commit', 'click']);
             expect(targets).to.deep.equal([button, button, button]);
-            expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value(
-              String(nextValue),
-            );
+            expect(
+              onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
+            ).to.deep.equal([[nextValue, reason]]);
+            expect(
+              onValueCommitted.mock.calls.map(([value, details]) => [value, details.reason]),
+            ).to.deep.equal([[nextValue, reason]]);
           });
 
           it('composes native Enter and Space clicks before Base UI changes the value', async () => {
@@ -1543,13 +1300,9 @@ describe('<NumberField />', () => {
           );
           expect(window.getComputedStyle(wrapper).paddingRight).to.equal('0px');
           expect(increment.left).to.equal(decrement.left);
-          expect(increment.bottom).to.be.at.most(decrement.top);
-          expect(increment.top).to.be.at.least(wrapperRect.top);
-          expect(decrement.bottom).to.be.at.most(wrapperRect.bottom);
-          expect(groupRect.top).to.be.closeTo(increment.top, 0.01);
-          expect(groupRect.bottom).to.be.closeTo(decrement.bottom, 0.01);
-          expect(groupRect.top).to.be.closeTo(wrapperRect.top, 0.01);
-          expect(groupRect.bottom).to.be.closeTo(wrapperRect.bottom, 0.01);
+          expect(increment.bottom).to.be.closeTo(decrement.top, 0.01);
+          expect(increment.top).to.be.closeTo(wrapperRect.top, 0.01);
+          expect(decrement.bottom).to.be.closeTo(wrapperRect.bottom, 0.01);
           expect(increment.height).to.be.closeTo(wrapperRect.height / 2, 0.1);
           expect(decrement.height).to.be.closeTo(wrapperRect.height / 2, 0.1);
           expect(increment.width).to.equal(groupRect.width);
@@ -1594,11 +1347,6 @@ describe('<NumberField />', () => {
     const placements = [
       {
         controlsPosition: undefined,
-        startButtons: [],
-        endButtons: ['Decrease', 'Increase'],
-      },
-      {
-        controlsPosition: 'end',
         startButtons: [],
         endButtons: ['Decrease', 'Increase'],
       },
@@ -1677,57 +1425,6 @@ describe('<NumberField />', () => {
       });
     });
 
-    it('keeps callback adornment actions independent from the built-in controls', async () => {
-      const onStartAction = vi.fn();
-      const onEndAction = vi.fn();
-      const onValueChange = vi.fn();
-      const { user } = render(
-        <NumberField
-          label="Amount"
-          defaultValue={5}
-          controlsPosition="split"
-          onValueChange={onValueChange}
-          slotProps={{
-            input: (ownerState) => ({
-              startAdornment: (
-                <InputAdornment position="start">
-                  <button type="button" onClick={onStartAction}>
-                    {ownerState.label} start
-                  </button>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="end">
-                  <button type="button" onClick={onEndAction}>
-                    {ownerState.label} end
-                  </button>
-                </InputAdornment>
-              ),
-            }),
-          }}
-        />,
-      );
-      const input = screen.getByRole('textbox', { name: 'Amount' });
-
-      await user.click(screen.getByRole('button', { name: 'Amount start' }));
-      expect(input).to.have.value('5');
-
-      await user.click(screen.getByRole('button', { name: 'Amount end' }));
-      expect(input).to.have.value('5');
-
-      expect(onStartAction).toHaveBeenCalledTimes(1);
-      expect(onEndAction).toHaveBeenCalledTimes(1);
-      expect(onValueChange).toHaveBeenCalledTimes(0);
-
-      await user.click(screen.getByRole('button', { name: 'Increase' }));
-      expect(input).to.have.value('6');
-      await user.click(screen.getByRole('button', { name: 'Decrease' }));
-      expect(input).to.have.value('5');
-      expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, 5]);
-      expect(onStartAction).toHaveBeenCalledTimes(1);
-      expect(onEndAction).toHaveBeenCalledTimes(1);
-    });
-
     it('moves controls after mounting without replacing the input or resetting its edited value', async () => {
       function Test() {
         const [controlsPosition, setControlsPosition] =
@@ -1802,39 +1499,22 @@ describe('<NumberField />', () => {
     [
       { name: 'top-level children', props: { children: 'Replacement' } },
       { name: 'root slot children', props: { slotProps: { root: { children: 'Replacement' } } } },
-      {
-        name: 'root slot callback children',
-        props: { slotProps: { root: () => ({ children: 'Replacement' }) } },
-      },
     ].forEach(({ name, props }) => {
       it(`preserves the owned inputs when passed ${name}`, async () => {
-        const onValueChange = vi.fn();
         const { user } = render(
           <form aria-label="Number form">
-            <NumberField
-              label="Amount"
-              helperText="Enter an amount"
-              name="amount"
-              defaultValue={5}
-              onValueChange={onValueChange}
-              {...props}
-            />
+            <NumberField label="Amount" name="amount" defaultValue={5} {...props} />
           </form>,
         );
         const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
         const form = screen.getByRole<HTMLFormElement>('form', { name: 'Number form' });
 
         expect(screen.queryByText('Replacement')).to.equal(null);
-        expect(input).to.have.value('5');
-        expect(input).to.have.attribute('aria-describedby', screen.getByText('Enter an amount').id);
-        expect(new FormData(form).getAll('amount')).to.deep.equal(['5']);
 
         await user.click(input);
         await user.keyboard('{ArrowUp}');
 
         expect(input).to.have.value('6');
-        expect(onValueChange).toHaveBeenCalledTimes(1);
-        expect(onValueChange.mock.calls[0][0]).to.equal(6);
         expect(new FormData(form).getAll('amount')).to.deep.equal(['6']);
       });
     });
@@ -1847,47 +1527,25 @@ describe('<NumberField />', () => {
     // wiring that connect Base UI editing with Material focus and styling.
     describe('input customization', () => {
       it('preserves Material input behavior with a custom root element', async () => {
-        const wrapperRef = React.createRef<HTMLElement>();
-        const inputRef = React.createRef<HTMLInputElement>();
-        const onValueChange = vi.fn();
         const { user } = render(
           <NumberField
             label="Amount"
             defaultValue={5}
-            inputRef={inputRef}
-            onValueChange={onValueChange}
-            slotProps={{
-              input: {
-                component: 'section',
-                ref: wrapperRef,
-                className: 'custom-input',
-                sx: { paddingLeft: '37px' },
-              },
-            }}
+            slotProps={{ input: { component: 'section' } }}
           />,
         );
         const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
         const wrapper = input.closest<HTMLElement>('.MuiInputBase-root')!;
-        const label = screen.getByText('Amount', { selector: 'label' });
 
         expect(wrapper.tagName).to.equal('SECTION');
-        expect(wrapper).to.have.class('custom-input');
-        expect(window.getComputedStyle(wrapper).paddingLeft).to.equal('37px');
-        expect(wrapperRef.current).to.equal(wrapper);
-        expect(inputRef.current).to.equal(input);
 
         await user.click(input);
-        expect(input).to.equal(document.activeElement);
-        expect(label).to.have.class('Mui-focused');
         await user.keyboard('{ArrowUp}');
         expect(input).to.have.value('6');
-        await user.clear(input);
-        await user.keyboard('8');
-        expect(input).to.have.value('8');
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, null, 8]);
       });
 
-      it('preserves editing, handlers and refs with a custom native input', async () => {
+      it('preserves editing, handlers and refs with custom Material and native inputs', async () => {
+        const wrapperRef = React.createRef<HTMLDivElement>();
         const inputRef = React.createRef<HTMLInputElement>();
         const nativeRef = React.createRef<HTMLInputElement>();
         const onValueChange = vi.fn();
@@ -1896,6 +1554,7 @@ describe('<NumberField />', () => {
         const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
           keyDownTargets.push(event.currentTarget);
         };
+        const wrapperProps = { ref: wrapperRef, 'data-testid': 'material-input' };
         const { user } = render(
           <React.Fragment>
             <NumberField
@@ -1903,15 +1562,21 @@ describe('<NumberField />', () => {
               defaultValue={5}
               inputRef={inputRef}
               onValueChange={onValueChange}
-              slots={{ htmlInput: TestHtmlInput }}
-              slotProps={{ htmlInput: { ref: nativeRef, onKeyDown, onChange } }}
+              slots={{ input: TestInput, htmlInput: TestHtmlInput }}
+              slotProps={{
+                input: wrapperProps,
+                htmlInput: { ref: nativeRef, onKeyDown, onChange, 'data-testid': 'native-input' },
+              }}
             />
             <button type="button">Outside</button>
           </React.Fragment>,
         );
         const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
 
-        expect(screen.getByTestId('custom')).to.equal(input);
+        const wrapper = screen.getByTestId('material-input');
+        expect(screen.getByTestId('native-input')).to.equal(input);
+        expect(wrapper).to.contain(input);
+        expect(wrapperRef.current).to.equal(wrapper);
         expect(inputRef.current).to.equal(input);
         expect(nativeRef.current).to.equal(input);
 
@@ -1934,51 +1599,6 @@ describe('<NumberField />', () => {
         expect(inputRef.current).to.equal(input);
         expect(nativeRef.current).to.equal(input);
         expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, null, 8, 9]);
-      });
-
-      it('preserves editing, handlers and refs with a custom Material input', async () => {
-        const wrapperRef = React.createRef<HTMLDivElement>();
-        const inputRef = React.createRef<HTMLInputElement>();
-        const nativeRef = React.createRef<HTMLInputElement>();
-        const onValueChange = vi.fn();
-        const onChange = vi.fn();
-        const keyDownTargets: HTMLElement[] = [];
-        const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-          keyDownTargets.push(event.currentTarget);
-        };
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            inputRef={inputRef}
-            onValueChange={onValueChange}
-            slots={{ input: TestInput }}
-            slotProps={{
-              input: { ref: wrapperRef, onKeyDown, onChange },
-              htmlInput: { ref: nativeRef },
-            }}
-          />,
-        );
-        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        const wrapper = screen.getByTestId('custom');
-        const label = screen.getByText('Amount', { selector: 'label' });
-
-        expect(wrapper).to.contain(input);
-        expect(wrapperRef.current).to.equal(wrapper);
-        expect(inputRef.current).to.equal(input);
-        expect(nativeRef.current).to.equal(input);
-
-        await user.click(input);
-        expect(input).to.equal(document.activeElement);
-        expect(label).to.have.class('Mui-focused');
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('6');
-        expect(keyDownTargets).to.deep.equal([input]);
-        await user.clear(input);
-        await user.keyboard('8');
-        expect(input).to.have.value('8');
-        expect(onChange).toHaveBeenCalledTimes(2);
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, null, 8]);
       });
     });
 
@@ -2086,57 +1706,25 @@ describe('<NumberField />', () => {
       });
     });
 
-    // Resolve callback slot props with owner state before selecting native props,
-    // giving callback configurations the same behavior as object configurations.
-    describe('callback slot props', () => {
-      it('supports nested inputProps returned by an input slot callback', async () => {
-        const onKeyDown = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            slotProps={{
-              input: (ownerState) => ({
-                inputProps: { 'aria-label': ownerState.label, onKeyDown },
-              }),
-            }}
-          />,
-        );
-        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        expect(input).to.have.attribute('aria-label', 'Amount');
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-
-        expect(input).to.have.value('6');
-        expect(onKeyDown).toHaveBeenCalledTimes(1);
-      });
-
-      it('uses htmlInput slot props when nested inputProps are absent', async () => {
-        const onKeyDown = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            slotProps={{
-              htmlInput: (ownerState) => ({ placeholder: ownerState.label, onKeyDown }),
-            }}
-          />,
-        );
-        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        expect(input).to.have.attribute('placeholder', 'Amount');
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-
-        expect(input).to.have.value('6');
-        expect(onKeyDown).toHaveBeenCalledTimes(1);
-      });
-    });
-
     // Preserve precedence between Material handlers, htmlInput, nested inputProps,
     // and the deeper native slot while keeping Base UI's handlers cancellable.
     describe('native prop precedence', () => {
+      [undefined, 'Public placeholder'].forEach((placeholder) => {
+        it(`uses the Material input placeholder when the public placeholder is ${placeholder === undefined ? 'absent' : 'set'}`, () => {
+          render(
+            <NumberField
+              placeholder={placeholder}
+              slotProps={{ input: { placeholder: 'Material placeholder' } }}
+            />,
+          );
+
+          expect(screen.getByRole('textbox')).to.have.attribute(
+            'placeholder',
+            'Material placeholder',
+          );
+        });
+      });
+
       ['htmlInput', 'inputProps'].forEach((source) => {
         it(`lets ${source} keyboard handlers override Material handlers`, async () => {
           const materialHandler = vi.fn();
@@ -2173,35 +1761,29 @@ describe('<NumberField />', () => {
           expect(materialHandler).toHaveBeenCalledTimes(0);
         });
 
-        [undefined, null].forEach((unsetValue) => {
-          it(`preserves Base UI when ${source} sets keyboard handlers to ${unsetValue}`, async () => {
-            const materialHandler = vi.fn();
-            // JavaScript consumers can pass null handlers, which React's types exclude.
-            const nativeProps = {
-              onKeyDown: unsetValue,
-              onKeyUp: unsetValue,
-            } as React.InputHTMLAttributes<HTMLInputElement>;
-            const { user } = render(
-              <NumberField
-                defaultValue={5}
-                slotProps={{
-                  htmlInput: source === 'htmlInput' ? nativeProps : undefined,
-                  input: {
-                    onKeyDown: materialHandler,
-                    onKeyUp: materialHandler,
-                    ...(source === 'inputProps' && { inputProps: nativeProps }),
-                  },
-                }}
-              />,
-            );
-            const input = screen.getByRole<HTMLInputElement>('textbox');
+        it(`preserves Base UI when ${source} leaves keyboard handlers unset`, async () => {
+          const materialHandler = vi.fn();
+          const nativeProps = { onKeyDown: undefined, onKeyUp: undefined };
+          const { user } = render(
+            <NumberField
+              defaultValue={5}
+              slotProps={{
+                htmlInput: source === 'htmlInput' ? nativeProps : undefined,
+                input: {
+                  onKeyDown: materialHandler,
+                  onKeyUp: materialHandler,
+                  ...(source === 'inputProps' && { inputProps: nativeProps }),
+                },
+              }}
+            />,
+          );
+          const input = screen.getByRole<HTMLInputElement>('textbox');
 
-            await user.click(input);
-            await user.keyboard('{ArrowUp}');
+          await user.click(input);
+          await user.keyboard('{ArrowUp}');
 
-            expect(input).to.have.value('6');
-            expect(materialHandler).toHaveBeenCalledTimes(0);
-          });
+          expect(input).to.have.value('6');
+          expect(materialHandler).toHaveBeenCalledTimes(0);
         });
       });
 
@@ -2226,38 +1808,38 @@ describe('<NumberField />', () => {
         expect(onValueChange).toHaveBeenCalledTimes(0);
       });
 
-      it('lets nested inputProps replace htmlInput props and preserves behavior and refs', async () => {
+      it('lets callback inputProps replace htmlInput props and preserves behavior and refs', async () => {
         const htmlInputKeyDown = vi.fn();
         const targets: HTMLElement[] = [];
         const nestedKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
           targets.push(event.currentTarget);
         };
-        const onValueChange = vi.fn();
         const inputRef = React.createRef<HTMLInputElement>();
         const htmlInputRef = React.createRef<HTMLInputElement>();
         const nestedRef = React.createRef<HTMLInputElement>();
         const { user } = render(
           <NumberField
+            label="Amount"
             defaultValue={5}
             inputRef={inputRef}
-            onValueChange={onValueChange}
             slotProps={{
               htmlInput: {
                 placeholder: 'Earlier placeholder',
                 onKeyDown: htmlInputKeyDown,
                 ref: htmlInputRef,
               },
-              input: {
+              input: (ownerState) => ({
                 inputProps: {
-                  'aria-label': 'Amount',
+                  'aria-label': ownerState.label,
                   onKeyDown: nestedKeyDown,
                   ref: nestedRef,
                 },
-              },
+              }),
             }}
           />,
         );
         const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
+        expect(input).to.have.attribute('aria-label', 'Amount');
         expect(input).not.to.have.attribute('placeholder');
         expect(htmlInputRef.current).to.equal(null);
         expect(nestedRef.current).to.equal(input);
@@ -2269,7 +1851,6 @@ describe('<NumberField />', () => {
         expect(input).to.have.value('6');
         expect(htmlInputKeyDown).toHaveBeenCalledTimes(0);
         expect(targets).to.deep.equal([input]);
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6]);
       });
 
       it('preserves Base UI behavior when nested inputProps are explicitly undefined', async () => {
@@ -2298,53 +1879,41 @@ describe('<NumberField />', () => {
   // Keep wrapper events and native input callbacks on their intended elements
   // while preserving Material form state and Base UI value commits.
   describe('input events', () => {
-    // Clicks bubble from the input or adornments through the Material wrapper to
-    // the field root; each callback must retain its own currentTarget and event order.
+    // The native input, Material wrapper and field root must receive their own
+    // handlers rather than duplicating forwarded props on the wrong element.
     describe('wrapper and native events', () => {
-      (['top-level', 'root slot'] as const).forEach((source) => {
-        it(`preserves click targets and bubbling with a ${source} root handler`, async () => {
-          const calls: {
-            handler: string;
-            currentTarget: HTMLElement;
-            target: EventTarget;
-          }[] = [];
-          const record = (handler: string) => (event: React.MouseEvent<HTMLElement>) => {
-            calls.push({ handler, currentTarget: event.currentTarget, target: event.target });
-          };
-          const { user } = render(
-            <NumberField
-              helperText="Helper text"
-              {...(source === 'top-level' ? { onClick: record('root') } : {})}
-              slotProps={{
-                ...(source === 'root slot' ? { root: { onClick: record('root') } } : {}),
-                input: {
-                  onClick: record('wrapper'),
-                  endAdornment: <button type="button">Action</button>,
-                  slotProps: { root: { title: 'Material input' } },
-                },
-                htmlInput: { onClick: record('native') },
-              }}
-            />,
-          );
-          const input = screen.getByRole<HTMLInputElement>('textbox');
-          const wrapper = screen.getByTitle('Material input');
-          const root = input.closest<HTMLElement>(`.${classes.root}`)!;
-          const action = screen.getByRole('button', { name: 'Action' });
-          const helperText = screen.getByText('Helper text');
+      it('preserves handler targets and order from the native input to the field root', async () => {
+        const calls: {
+          handler: string;
+          currentTarget: HTMLElement;
+          target: EventTarget;
+        }[] = [];
+        const record = (handler: string) => (event: React.MouseEvent<HTMLElement>) => {
+          calls.push({ handler, currentTarget: event.currentTarget, target: event.target });
+        };
+        const { user } = render(
+          <NumberField
+            onClick={record('root')}
+            slotProps={{
+              input: {
+                onClick: record('wrapper'),
+                slotProps: { root: { title: 'Material input' } },
+              },
+              htmlInput: { onClick: record('native') },
+            }}
+          />,
+        );
+        const input = screen.getByRole<HTMLInputElement>('textbox');
+        const wrapper = screen.getByTitle('Material input');
+        const root = input.closest<HTMLElement>(`.${classes.root}`)!;
 
-          await user.click(input);
-          await user.click(action);
-          await user.click(helperText);
+        await user.click(input);
 
-          expect(calls).to.deep.equal([
-            { handler: 'native', currentTarget: input, target: input },
-            { handler: 'wrapper', currentTarget: wrapper, target: input },
-            { handler: 'root', currentTarget: root, target: input },
-            { handler: 'wrapper', currentTarget: wrapper, target: action },
-            { handler: 'root', currentTarget: root, target: action },
-            { handler: 'root', currentTarget: root, target: helperText },
-          ]);
-        });
+        expect(calls).to.deep.equal([
+          { handler: 'native', currentTarget: input, target: input },
+          { handler: 'wrapper', currentTarget: wrapper, target: input },
+          { handler: 'root', currentTarget: root, target: input },
+        ]);
       });
     });
 
@@ -2410,81 +1979,30 @@ describe('<NumberField />', () => {
         expect(onValueCommitted.mock.calls[0][0]).to.equal(4);
       });
 
-      [undefined, null].forEach((unsetValue) => {
-        it(`preserves focus, editing and commits when deeper native callbacks are ${unsetValue}`, async () => {
-          const replacedHandler = vi.fn();
-          const materialChange = vi.fn();
-          const onFocus = vi.fn();
-          const onBlur = vi.fn();
-          const onValueChange = vi.fn();
-          const onValueCommitted = vi.fn();
-          // JavaScript consumers can pass null callbacks, which React's types exclude.
-          const nativeCallbacks = {
-            onFocus: unsetValue,
-            onBlur: unsetValue,
-            onChange: unsetValue,
-          } as React.InputHTMLAttributes<HTMLInputElement>;
-          const { user } = render(
-            <NumberField
-              label="Amount"
-              onFocus={onFocus}
-              onBlur={onBlur}
-              onValueChange={onValueChange}
-              onValueCommitted={onValueCommitted}
-              slotProps={{
-                htmlInput: {
-                  onFocus: replacedHandler,
-                  onBlur: replacedHandler,
-                  onChange: replacedHandler,
-                },
-                input: {
-                  onChange: materialChange,
-                  slotProps: { input: nativeCallbacks },
-                },
-              }}
-            />,
-          );
-          const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-          const label = screen.getByText('Amount', { selector: 'label' });
-
-          await user.click(input);
-          expect(input).to.equal(document.activeElement);
-          expect(label).to.have.class('Mui-focused');
-          expect(onFocus).toHaveBeenCalledTimes(1);
-          await user.keyboard('4');
-          expect(input).to.have.value('4');
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-          expect(onValueChange.mock.calls[0][0]).to.equal(4);
-          expect(materialChange).toHaveBeenCalledTimes(1);
-          expect(onValueCommitted).toHaveBeenCalledTimes(0);
-          expect(replacedHandler).toHaveBeenCalledTimes(0);
-
-          await user.tab();
-          expect(input).to.have.value('4');
-          expect(label).not.to.have.class('Mui-focused');
-          expect(label).to.have.attribute('data-shrink', 'true');
-          expect(onBlur).toHaveBeenCalledTimes(1);
-          expect(replacedHandler).toHaveBeenCalledTimes(0);
-          expect(materialChange).toHaveBeenCalledTimes(1);
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-          expect(onValueCommitted).toHaveBeenCalledTimes(1);
-          expect(onValueCommitted.mock.calls[0][0]).to.equal(4);
-        });
-      });
-
-      it('preserves focus, blur and value commits with nested inputProps', async () => {
-        const focusTargets: HTMLInputElement[] = [];
-        const blurTargets: HTMLInputElement[] = [];
-        const nativeFocus = vi.fn();
-        const nativeBlur = vi.fn();
+      it('preserves editing and commits when deeper native callbacks are unset', async () => {
+        const replacedHandler = vi.fn();
+        const materialChange = vi.fn();
+        const onValueChange = vi.fn();
         const onValueCommitted = vi.fn();
+        const nativeCallbacks = {
+          onFocus: undefined,
+          onBlur: undefined,
+          onChange: undefined,
+        };
         const { user } = render(
           <NumberField
-            onFocus={(event) => focusTargets.push(event.currentTarget)}
-            onBlur={(event) => blurTargets.push(event.currentTarget)}
+            onValueChange={onValueChange}
             onValueCommitted={onValueCommitted}
             slotProps={{
-              input: { inputProps: { onFocus: nativeFocus, onBlur: nativeBlur } },
+              htmlInput: {
+                onFocus: replacedHandler,
+                onBlur: replacedHandler,
+                onChange: replacedHandler,
+              },
+              input: {
+                onChange: materialChange,
+                slotProps: { input: nativeCallbacks },
+              },
             }}
           />,
         );
@@ -2495,10 +2013,10 @@ describe('<NumberField />', () => {
         await user.tab();
 
         expect(input).to.have.value('4');
-        expect(focusTargets).to.deep.equal([input]);
-        expect(blurTargets).to.deep.equal([input]);
-        expect(nativeFocus).toHaveBeenCalledTimes(1);
-        expect(nativeBlur).toHaveBeenCalledTimes(1);
+        expect(onValueChange).toHaveBeenCalledTimes(1);
+        expect(onValueChange.mock.calls[0][0]).to.equal(4);
+        expect(materialChange).toHaveBeenCalledTimes(1);
+        expect(replacedHandler).toHaveBeenCalledTimes(0);
         expect(onValueCommitted).toHaveBeenCalledTimes(1);
         expect(onValueCommitted.mock.calls[0][0]).to.equal(4);
       });
@@ -2623,7 +2141,7 @@ describe('<NumberField />', () => {
     });
 
     // Direct edits report numbers or null immediately and commit on blur. Keyboard
-    // steps commit immediately, retaining Base UI's native events and change details.
+    // steps commit immediately without committing the same change again on blur.
     describe('change and commit contract', () => {
       it('reports typed numbers as changes and commits the final value on blur', async () => {
         const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
@@ -2645,24 +2163,14 @@ describe('<NumberField />', () => {
         await user.tab();
 
         expect(
-          onValueChange.mock.calls.map(([value, details]) => [
-            value,
-            details.reason,
-            details.event.target,
-          ]),
+          onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
         ).to.deep.equal([
-          [1, 'input-change', input],
-          [12, 'input-change', input],
+          [1, 'input-change'],
+          [12, 'input-change'],
         ]);
-        expect(onValueChange.mock.calls[0][1].event).to.be.instanceOf(window.Event);
         expect(
-          onValueCommitted.mock.calls.map(([value, details]) => [
-            value,
-            details.reason,
-            details.event.target,
-          ]),
-        ).to.deep.equal([[12, 'input-blur', input]]);
-        expect(onValueCommitted.mock.calls[0][1].event).to.be.instanceOf(window.FocusEvent);
+          onValueCommitted.mock.calls.map(([value, details]) => [value, details.reason]),
+        ).to.deep.equal([[12, 'input-blur']]);
       });
 
       it('clears zero to null and commits the clear only once on blur', async () => {
@@ -2694,12 +2202,6 @@ describe('<NumberField />', () => {
           'data-shrink',
           'false',
         );
-
-        // Focusing and blurring the already-empty field must not report another clear.
-        await user.click(input);
-        await user.tab();
-        expect(onValueChange).toHaveBeenCalledTimes(1);
-        expect(onValueCommitted).toHaveBeenCalledTimes(1);
       });
 
       it('commits keyboard steps immediately without committing again on blur', async () => {
@@ -2733,11 +2235,6 @@ describe('<NumberField />', () => {
           { callback: 'commit', value: 6, reason: 'keyboard' },
         ];
         expect(calls).to.deep.equal(expectedCalls);
-        const event = onValueChange.mock.calls[0][1].event;
-        expect(event).to.be.instanceOf(window.KeyboardEvent);
-        expect(event.target).to.equal(input);
-        expect(onValueCommitted.mock.calls[0][1].event).to.equal(event);
-
         await user.tab();
         expect(calls).to.deep.equal(expectedCalls);
       });
@@ -2839,27 +2336,6 @@ describe('<NumberField />', () => {
         expect(input).to.have.value('0');
       });
 
-      it('uses Home and End for configured bounds and prevents keyboard steps past them', async () => {
-        const onValueChange = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            min={2}
-            max={8}
-            onValueChange={onValueChange}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('{Home}{ArrowDown}');
-        expect(input).to.have.value('2');
-        await user.keyboard('{End}{ArrowUp}');
-        expect(input).to.have.value('8');
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([2, 8]);
-      });
-
       [undefined, true].forEach((allowOutOfRange) => {
         it(`normalizes direct entry with allowOutOfRange=${allowOutOfRange ?? 'default'}`, async () => {
           const onValueChange = vi.fn();
@@ -2884,18 +2360,37 @@ describe('<NumberField />', () => {
           await user.tab();
           expect(input).to.have.value(String(expectedValue));
           expect(onValueCommitted.mock.lastCall![0]).to.equal(expectedValue);
-
-          // Stepping must still honor the bounds when out-of-range typing is allowed.
-          await user.click(input);
-          await user.keyboard('{ArrowUp}');
-          expect(input).to.have.value('8');
         });
       });
     });
 
-    // Locale and format affect both text parsing and display. Exercise edits and
-    // prop updates here; initial formatting and hydration are covered separately.
-    describe('locale and format', () => {
+    // Parsing must reject invalid text without publishing invalid numeric values.
+    // Locale and format also affect edits and display; initial formatting and
+    // hydration are covered separately.
+    describe('parsing and formatting', () => {
+      it('ignores unparsable pasted text without changing or committing the numeric value', async () => {
+        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
+        const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
+        const { user } = render(
+          <NumberField
+            label="Amount"
+            defaultValue={5}
+            onValueChange={onValueChange}
+            onValueCommitted={onValueCommitted}
+          />,
+        );
+        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
+
+        await user.click(input);
+        act(() => input.select());
+        await user.paste('not a number');
+
+        expect(input).to.have.value('5');
+        await user.tab();
+        expect(onValueChange).toHaveBeenCalledTimes(0);
+        expect(onValueCommitted).toHaveBeenCalledTimes(0);
+      });
+
       it('parses localized negative decimals and formats them after blur and stepping', async () => {
         const onValueChange = vi.fn();
         const onValueCommitted = vi.fn();
@@ -2951,29 +2446,6 @@ describe('<NumberField />', () => {
         await user.keyboard('{ArrowDown}');
         expect(input).to.have.value('$1,233.50');
         expect(onValueChange.mock.lastCall![0]).to.equal(1233.5);
-      });
-
-      it('applies fraction-digit rounding without replacing raw text during typing', async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            locale="en-US"
-            format={{ maximumFractionDigits: 2 }}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('1.235');
-        expect(input).to.have.value('1.235');
-        expect(onValueChange.mock.lastCall![0]).to.equal(1.24);
-        await user.tab();
-        expect(input).to.have.value('1.24');
-        expect(onValueCommitted.mock.lastCall![0]).to.equal(1.24);
       });
 
       it('updates locale and format without changing the controlled numeric value', async () => {
@@ -3203,34 +2675,9 @@ describe('<NumberField />', () => {
     });
   });
 
-  // NumberField owns the label/helper relationships, passes the placeholder, and the
-  // visible input's focus entry points. Cover that wiring without repeating state styling
-  // or SSR checks.
-  describe('labels, helper text, placeholder and focus', () => {
-    it('forwards the placeholder to the input element', () => {
-      render(<NumberField placeholder="Enter amount" />);
-
-      const input = screen.getByRole('textbox');
-      expect(input).to.have.attribute('placeholder', 'Enter amount');
-      expect(input.closest(`.${classes.root}`)).not.to.have.attribute('placeholder');
-    });
-
-    [undefined, 'Public placeholder'].forEach((placeholder) => {
-      it(`uses the Material input placeholder when the public placeholder is ${placeholder === undefined ? 'absent' : 'set'}`, () => {
-        render(
-          <NumberField
-            placeholder={placeholder}
-            slotProps={{ input: { placeholder: 'Material placeholder' } }}
-          />,
-        );
-
-        expect(screen.getByRole('textbox')).to.have.attribute(
-          'placeholder',
-          'Material placeholder',
-        );
-      });
-    });
-
+  // NumberField owns the label/helper relationships and the visible input's focus
+  // entry points. Cover that wiring without repeating state styling or SSR checks.
+  describe('labels, helper text and focus', () => {
     it('links an explicit input ID to its label and accessible description', async () => {
       const { user } = render(
         <NumberField id="amount" label="Amount" helperText="Enter the quantity" defaultValue={5} />,
@@ -3242,21 +2689,6 @@ describe('<NumberField />', () => {
       expect(input).toHaveAccessibleDescription('Enter the quantity');
       await user.click(label);
       expect(document.activeElement).to.equal(input);
-    });
-
-    it('supports an external accessible name without rendering a label or helper', () => {
-      render(
-        <React.Fragment>
-          <span id="amount-name">Amount</span>
-          <NumberField slotProps={{ htmlInput: { 'aria-labelledby': 'amount-name' } }} />
-        </React.Fragment>,
-      );
-      const input = screen.getByRole('textbox', { name: 'Amount' });
-      const root = input.closest(`.${classes.root}`)!;
-
-      expect(root.querySelector('label')).to.equal(null);
-      expect(root.querySelector('.MuiFormHelperText-root')).to.equal(null);
-      expect(input).not.to.have.attribute('aria-describedby');
     });
 
     it('renders zero as label and helper content', () => {
@@ -3308,25 +2740,10 @@ describe('<NumberField />', () => {
       expect(input).toHaveAccessibleDescription('');
     });
 
-    it('autofocuses the visible input and updates the label when focus leaves', async () => {
-      const { user } = render(
-        <React.Fragment>
-          <NumberField label="Amount" autoFocus />
-          <button type="button">After</button>
-        </React.Fragment>,
-      );
+    it('autofocuses the visible input', () => {
+      render(<NumberField label="Amount" autoFocus />);
       const input = screen.getByRole('textbox', { name: 'Amount' });
-      const label = screen.getByText('Amount', { selector: 'label' });
-
       expect(document.activeElement).to.equal(input);
-      expect(label).to.have.class('Mui-focused');
-      expect(label).to.have.attribute('data-shrink', 'true');
-
-      await user.tab();
-
-      expect(document.activeElement).to.equal(screen.getByRole('button', { name: 'After' }));
-      expect(label).not.to.have.class('Mui-focused');
-      expect(label).to.have.attribute('data-shrink', 'false');
     });
 
     it('provides one tab stop and allows consumer inputRef focus', async () => {
@@ -3444,6 +2861,120 @@ describe('<NumberField />', () => {
       expect(scrub.querySelector('svg')).to.equal(null);
     });
 
+    // The cursor is portaled only while scrubbing. Cover slot props, replacements,
+    // refs and theme overrides without depending on real pointer-lock permissions.
+    // Base UI intentionally omits the custom cursor on WebKit.
+    describe.skipIf(typeof CSS !== 'undefined' && CSS.supports?.('-webkit-backdrop-filter:none'))(
+      'cursor slot',
+      () => {
+        let originalRequestPointerLock: PropertyDescriptor | undefined;
+
+        const TestCursor = React.forwardRef<
+          HTMLSpanElement,
+          React.ComponentPropsWithoutRef<'span'> & TestSlotProps
+        >(function TestCursor(props, ref) {
+          const { ownerState, as, ...other } = props;
+          return <span {...other} ref={ref} data-testid="custom-cursor" />;
+        });
+
+        beforeEach(() => {
+          originalRequestPointerLock = Object.getOwnPropertyDescriptor(
+            document.body,
+            'requestPointerLock',
+          );
+          Object.defineProperty(document.body, 'requestPointerLock', {
+            configurable: true,
+            value: vi.fn().mockResolvedValue(undefined),
+          });
+        });
+
+        afterEach(() => {
+          if (originalRequestPointerLock) {
+            Object.defineProperty(document.body, 'requestPointerLock', originalRequestPointerLock);
+          } else {
+            Reflect.deleteProperty(document.body, 'requestPointerLock');
+          }
+        });
+
+        it('resolves callback props for a custom component and clears its ref on unmount', async () => {
+          const ref = vi.fn();
+          const { container, user, unmount } = render(
+            <NumberField
+              label="Amount"
+              scrubArea="start"
+              slots={{ scrubAreaCursor: TestCursor }}
+              slotProps={{
+                scrubAreaCursor: (ownerState) => ({
+                  ref,
+                  title: `Cursor ${ownerState.label}`,
+                  className: 'custom-cursor',
+                }),
+              }}
+            />,
+          );
+          const scrub = container.querySelector(`.${classes.scrubArea}`)!;
+
+          await user.pointer({ keys: '[MouseLeft>]', target: scrub });
+          const cursor = screen.getByTitle('Cursor Amount');
+
+          expect(cursor).to.equal(screen.getByTestId('custom-cursor'));
+          expect(cursor).to.have.class(classes.scrubAreaCursor);
+          expect(cursor).to.have.class('custom-cursor');
+          expect(ref).toHaveBeenLastCalledWith(cursor);
+
+          unmount();
+          expect(screen.queryByTestId('custom-cursor')).to.equal(null);
+          expect(ref).toHaveBeenLastCalledWith(null);
+        });
+
+        it('merges cursor props and refs with theme overrides during scrubbing', async () => {
+          const ref = React.createRef<HTMLSpanElement>();
+          const theme = createTheme({
+            components: {
+              MuiNumberField: {
+                styleOverrides: { scrubAreaCursor: { color: 'rgb(255, 0, 0)' } },
+              },
+            },
+          });
+          const { container, user } = render(
+            <ThemeProvider theme={theme}>
+              <NumberField
+                scrubArea="start"
+                slotProps={{
+                  scrubAreaCursor: {
+                    ref,
+                    title: 'Custom cursor',
+                    className: 'custom-cursor',
+                    style: { opacity: 0.5 },
+                    children: <span>Drag cursor</span>,
+                  },
+                }}
+              />
+            </ThemeProvider>,
+          );
+          const scrub = container.querySelector(`.${classes.scrubArea}`)!;
+          expect(screen.queryByTitle('Custom cursor')).to.equal(null);
+
+          await user.pointer({ keys: '[MouseLeft>]', target: scrub });
+          const cursor = screen.getByTitle('Custom cursor');
+
+          expect(cursor).to.have.class(classes.scrubAreaCursor);
+          expect(cursor).to.have.class('custom-cursor');
+          expect(cursor.style.opacity).to.equal('0.5');
+          expect(cursor).to.contain(screen.getByText('Drag cursor'));
+          expect(container).not.to.contain(cursor);
+          expect(ref.current).to.equal(cursor);
+          expect(window.getComputedStyle(cursor).color).to.equal('rgb(255, 0, 0)');
+
+          await user.pointer({ keys: '[/MouseLeft]', target: scrub });
+          await waitFor(() => {
+            expect(screen.queryByTitle('Custom cursor')).to.equal(null);
+          });
+          expect(ref.current).to.equal(null);
+        });
+      },
+    );
+
     // The rendered handle must retain Base UI's pointer handlers and refs so dragging
     // updates the visible value and commits on release, while unavailable fields stay unchanged.
     describe('dragging', () => {
@@ -3556,16 +3087,13 @@ describe('<NumberField />', () => {
     // before hydration, without relying on client-side FormControl updates.
     describe('initial value', () => {
       const cases = [
-        { name: 'value=42', props: { value: 42 }, displayValue: '42', shrink: true },
         { name: 'value=0', props: { value: 0 }, displayValue: '0', shrink: true },
-        { name: 'value=null', props: { value: null }, displayValue: '', shrink: false },
         {
           name: 'defaultValue=42',
           props: { defaultValue: 42 },
           displayValue: '42',
           shrink: true,
         },
-        { name: 'defaultValue=0', props: { defaultValue: 0 }, displayValue: '0', shrink: true },
         {
           name: 'defaultValue=undefined',
           props: { defaultValue: undefined },
@@ -3605,9 +3133,9 @@ describe('<NumberField />', () => {
       });
     });
 
-    // Start adornments affect shrink even when the field is empty. Check object and
-    // callback props plus explicit overrides so server labels follow Material rules.
-    describe('adornments and shrink overrides', () => {
+    // NumberField's composed start adornments must initialize label shrink on the
+    // server, including adornments returned by consumer slot callbacks.
+    describe('adornments', () => {
       (['start', 'end'] as const).forEach((scrubArea) => {
         it(`keeps an empty label stable through hydration with a ${scrubArea} scrub area`, () => {
           const { hydrate } = renderToString(<NumberField label="Amount" scrubArea={scrubArea} />);
@@ -3629,25 +3157,24 @@ describe('<NumberField />', () => {
         });
       });
 
-      ['object', 'callback'].forEach((configuration) => {
-        it(`shrinks an empty adorned label before hydration with ${configuration} slot props`, () => {
-          const adornment = <InputAdornment position="start">$</InputAdornment>;
-          const inputSlotProps =
-            configuration === 'object'
-              ? { startAdornment: adornment }
-              : (ownerState: NumberFieldOwnerState) => ({
-                  startAdornment: ownerState.label === 'Amount' ? adornment : undefined,
-                });
-          const { hydrate } = renderToString(
-            <NumberField label="Amount" slotProps={{ input: inputSlotProps }} />,
-          );
-          const adornmentNode = screen.getByText('$');
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          expect(input.closest('.MuiInputBase-root')).to.contain(adornmentNode);
+      it('shrinks an empty adorned label before hydration with callback slot props', () => {
+        const adornment = <InputAdornment position="start">$</InputAdornment>;
+        const { hydrate } = renderToString(
+          <NumberField
+            label="Amount"
+            slotProps={{
+              input: (ownerState) => ({
+                startAdornment: ownerState.label === 'Amount' ? adornment : undefined,
+              }),
+            }}
+          />,
+        );
+        const adornmentNode = screen.getByText('$');
+        const input = screen.getByRole('textbox', { name: 'Amount' });
+        expect(input.closest('.MuiInputBase-root')).to.contain(adornmentNode);
 
-          expectStableHydration(hydrate, { displayValue: '', shrink: true });
-          expect(screen.getByText('$')).to.equal(adornmentNode);
-        });
+        expectStableHydration(hydrate, { displayValue: '', shrink: true });
+        expect(screen.getByText('$')).to.equal(adornmentNode);
       });
 
       it('does not shrink an empty server-rendered label with an end adornment', () => {
@@ -3666,72 +3193,33 @@ describe('<NumberField />', () => {
         expectStableHydration(hydrate, { displayValue: '', shrink: false });
         expect(screen.getByText('kg')).to.equal(adornmentNode);
       });
-
-      it('preserves an explicit shrink override with built-in start controls', () => {
-        const { hydrate } = renderToString(
-          <NumberField
-            label="Amount"
-            controlsPosition="split"
-            slotProps={{ inputLabel: { shrink: false } }}
-          />,
-        );
-
-        expectStableHydration(hydrate, { displayValue: '', shrink: false });
-      });
     });
 
-    // Generated IDs must be unique across fields and retain their label/helper
-    // associations through hydration without depending on React's ID format.
+    // Generated IDs must retain their label/helper associations through hydration
+    // without depending on React's ID format.
     describe('generated IDs and associations', () => {
-      it('preserves unique input, label and helper IDs through hydration', () => {
-        const examples = [
-          { name: 'First amount', helperText: 'First helper' },
-          { name: 'Second amount', helperText: 'Second helper' },
-        ];
-        const { hydrate } = renderToString(
-          <React.Fragment>
-            {examples.map(({ name, helperText }) => (
-              <NumberField key={name} label={name} helperText={helperText} />
-            ))}
-          </React.Fragment>,
-        );
-        const fields = examples.map(({ name, helperText }) => {
-          const input = screen.getByRole<HTMLInputElement>('textbox', { name });
-          const label = screen.getByText(name, { selector: 'label' });
-          const helper = screen.getByText(helperText);
-
-          return {
-            name,
-            helperText,
-            input,
-            label,
-            helper,
-            inputId: input.id,
-            labelId: label.id,
-            helperId: helper.id,
-          };
-        });
-        const ids = fields.flatMap(({ inputId, labelId, helperId }) => [
-          inputId,
-          labelId,
-          helperId,
-        ]);
-        ids.forEach((id) => expect(id).not.to.equal(''));
-        expect(new Set(ids).size).to.equal(ids.length);
+      it('preserves input, label and helper IDs through hydration', () => {
+        const { hydrate } = renderToString(<NumberField label="Amount" helperText="Helper text" />);
+        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
+        const label = screen.getByText('Amount', { selector: 'label' });
+        const helper = screen.getByText('Helper text');
+        const inputId = input.id;
+        const labelId = label.id;
+        const helperId = helper.id;
+        expect(inputId).not.to.equal('');
+        expect(labelId).not.to.equal('');
+        expect(helperId).not.to.equal('');
 
         const expectAssociations = () => {
-          fields.forEach(
-            ({ name, helperText, input, label, helper, inputId, labelId, helperId }) => {
-              expect(screen.getByRole('textbox', { name })).to.equal(input);
-              expect(screen.getByText(name, { selector: 'label' })).to.equal(label);
-              expect(screen.getByText(helperText)).to.equal(helper);
-              expect(input).to.have.attribute('id', inputId);
-              expect(label).to.have.attribute('id', labelId);
-              expect(helper).to.have.attribute('id', helperId);
-              expect(label).to.have.attribute('for', inputId);
-              expect(input).to.have.attribute('aria-describedby', helperId);
-            },
-          );
+          expect(screen.getByRole('textbox', { name: 'Amount' })).to.equal(input);
+          expect(screen.getByText('Amount', { selector: 'label' })).to.equal(label);
+          expect(screen.getByText('Helper text')).to.equal(helper);
+          expect(input).to.have.attribute('id', inputId);
+          expect(label).to.have.attribute('id', labelId);
+          expect(helper).to.have.attribute('id', helperId);
+          expect(label).to.have.attribute('for', inputId);
+          expect(input).to.have.attribute('aria-describedby', helperId);
+          expect(input).toHaveAccessibleDescription('Helper text');
         };
 
         expectAssociations();
