@@ -146,7 +146,7 @@ These are the patterns that most often need a change:
   Drop the conflicting value from the child's styles, or set it back for that case.
 
 - **`GlobalStyles` that override a component's theme overrides, `styled()` or `sx`.**
-  `GlobalStyles` share `mui.components` with the components' base styles, so they still override those by specificity, as in v9.
+  `GlobalStyles` and `CssBaseline`, with its theme overrides, share `mui.components` with the components' base styles, so they still override those by specificity, as in v9.
   Theme overrides, `styled()` and `sx` are in higher sub-layers, so a global rule no longer wins over them, however specific.
   Move these rules to the theme's `styleOverrides`, to `sx` or `styled()`, or to a stylesheet outside the layers.
 

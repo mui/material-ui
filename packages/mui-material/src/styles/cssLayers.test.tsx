@@ -92,18 +92,43 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '6px' });
   });
 
-  it("keeps CssBaseline below the app's GlobalStyles", () => {
-    // Inserted after the app's rule, so without layers CssBaseline's `strong { font-weight: 700 }`
-    // would win.
-    render(
+  it("lets CssBaseline and the app's GlobalStyles compete by order, as without layers", () => {
+    const { unmount } = render(
       <React.Fragment>
         <GlobalStyles styles={{ strong: { fontWeight: 300 } }} />
         <CssBaseline />
         <strong data-testid="strong">Hello</strong>
       </React.Fragment>,
     );
+    // CssBaseline's `strong { font-weight: 700 }` comes after the app's rule.
+    expect(screen.getByTestId('strong')).toHaveComputedStyle({ fontWeight: '700' });
+    unmount();
 
+    render(
+      <React.Fragment>
+        <CssBaseline />
+        <GlobalStyles styles={{ strong: { fontWeight: 300 } }} />
+        <strong data-testid="strong">Hello</strong>
+      </React.Fragment>,
+    );
     expect(screen.getByTestId('strong')).toHaveComputedStyle({ fontWeight: '300' });
+  });
+
+  it('lets the CssBaseline theme overrides override the component styles with a more specific selector', () => {
+    render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiCssBaseline: { styleOverrides: { 'body .MuiButton-root': { paddingTop: 3 } } },
+          },
+        })}
+      >
+        <CssBaseline />
+        <Button>Hello</Button>
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '3px' });
   });
 
   it('applies theme overrides that are less specific than the base styles', () => {
@@ -283,7 +308,7 @@ describe('CSS layers: generated styles', () => {
     );
   });
 
-  it("puts the app's GlobalStyles in mui.components, and CssBaseline in mui.global", () => {
+  it("puts the app's GlobalStyles and CssBaseline in mui.components", () => {
     const inserted: string[] = [];
     render(
       <ThemeProvider theme={createTheme()}>
@@ -294,7 +319,7 @@ describe('CSS layers: generated styles', () => {
     );
     expect(inserted).to.include('@layer mui.components{.app{color:blue;}}');
     const baseline = inserted.find((styles) => styles.includes('box-sizing:inherit'));
-    expect(baseline).to.match(/^@layer mui\.global\{/);
+    expect(baseline).to.match(/^@layer mui\.components\{/);
   });
 
   it('layers styles that are serialized already, without changing them', () => {
