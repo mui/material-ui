@@ -32,6 +32,44 @@ describe.skipIf(!isJsdom())('useLocalStorageState React 17 fallback', () => {
     window.localStorage.removeItem(OTHER_STORAGE_KEY);
   });
 
+  [
+    { storedValue: 'stored', expectedValue: 'STORED' },
+    { storedValue: null, expectedValue: 'INITIAL' },
+  ].forEach(({ storedValue, expectedValue }) => {
+    [false, true].forEach((hydrate) => {
+      it(`uses the ${storedValue === null ? 'initial' : 'stored'} value for functional updates in mount effects${hydrate ? ' during hydration' : ''}`, () => {
+        if (storedValue !== null) {
+          window.localStorage.setItem(STORAGE_KEY, storedValue);
+        }
+
+        function TestComponent() {
+          const [value, setValue] = useLocalStorageState(STORAGE_KEY, 'initial');
+
+          React.useEffect(() => {
+            setValue((previousValue) => String(previousValue).toUpperCase());
+          }, [setValue]);
+
+          return <div data-testid="value">{String(value)}</div>;
+        }
+
+        if (hydrate) {
+          const view = renderToString(<TestComponent />);
+          const serverElement = view.container.querySelector('[data-testid="value"]');
+          expect(serverElement).to.have.text('null');
+
+          view.hydrate();
+
+          expect(screen.getByTestId('value')).to.equal(serverElement);
+        } else {
+          render(<TestComponent />);
+        }
+
+        expect(window.localStorage.getItem(STORAGE_KEY)).to.equal(expectedValue);
+        expect(screen.getByTestId('value')).to.have.text(expectedValue);
+      });
+    });
+  });
+
   it('uses the new key snapshot for functional updates in effects', async () => {
     window.localStorage.setItem(STORAGE_KEY, 'first');
     window.localStorage.setItem(OTHER_STORAGE_KEY, 'second');

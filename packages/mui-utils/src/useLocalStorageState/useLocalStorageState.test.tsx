@@ -82,6 +82,30 @@ describe('useLocalStorageState', () => {
     expect(screen.getByTestId('value')).to.have.text('from-other-tab');
   });
 
+  it('applies consecutive functional updates to the latest stored value', async () => {
+    function TestComponent() {
+      const [value, setValue] = useLocalStorageState(STORAGE_KEY, 'initial');
+
+      return (
+        <button
+          onClick={() => {
+            setValue((previousValue) => `${previousValue}-first`);
+            setValue((previousValue) => `${previousValue}-second`);
+          }}
+        >
+          {value}
+        </button>
+      );
+    }
+
+    const { user } = render(<TestComponent />);
+
+    await user.click(screen.getByRole('button'));
+
+    expect(window.localStorage.getItem(STORAGE_KEY)).to.equal('initial-first-second');
+    expect(screen.getByRole('button')).to.have.text('initial-first-second');
+  });
+
   it('keeps the value in React state when the key is null', () => {
     const setValueRef = React.createRef<SetValue>();
     render(<TestComponent storageKey={null} initialValue="initial" setValueRef={setValueRef} />);

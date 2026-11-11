@@ -176,10 +176,11 @@ function useLocalStorageStateBrowser(
 
   const setStoredValue = React.useCallback(
     (value: React.SetStateAction<string | null>) => {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      // The rendered snapshot can still be null on mount, or stale after another update.
+      const valueToStore = value instanceof Function ? value(getKeySnapshot()) : value;
       setValue(area, key, valueToStore);
     },
-    [area, key, storedValue],
+    [area, getKeySnapshot, key],
   );
 
   const [nonStoredValue, setNonStoredValue] = React.useState(initialValue);
