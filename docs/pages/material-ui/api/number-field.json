@@ -131,7 +131,7 @@
     },
     {
       "name": "htmlInput",
-      "description": "The html input element.",
+      "description": "The component that renders the native input element.",
       "default": "'input'",
       "class": null
     },
@@ -143,7 +143,7 @@
     },
     {
       "name": "input",
-      "description": "The component that renders the input.",
+      "description": "The component that renders the Material input wrapper.",
       "default": "OutlinedInput",
       "class": null
     },
@@ -155,19 +155,19 @@
     },
     {
       "name": "root",
-      "description": "The component that renders the root",
+      "description": "The component that renders the root.",
       "default": "FormControl",
       "class": "MuiNumberField-root"
     },
     {
       "name": "scrubArea",
-      "description": "The component that renders the scrub area.",
+      "description": "The component that renders the drag handle for adjusting the value.",
       "default": "'span'",
       "class": "MuiNumberField-scrubArea"
     },
     {
       "name": "scrubAreaCursor",
-      "description": "The component that renders the scrub area cursor.",
+      "description": "The component that renders the custom cursor while dragging the scrub area.",
       "default": "'span'",
       "class": "MuiNumberField-scrubAreaCursor"
     }
