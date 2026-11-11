@@ -13,6 +13,8 @@ export default sharedConfig(import.meta.url, {
     diagnosticFile = 'Menu2PlaygroundWithoutBasePortal.diagnostic.tsx';
   } else if (process.env.MENU2_FRAME_CONTROL === 'portal-state') {
     diagnosticFile = 'Menu2PlaygroundPortalState.diagnostic.tsx';
+  } else if (process.env.MENU2_FRAME_CONTROL === 'original-file') {
+    diagnosticFile = 'Menu2Playground.test.tsx';
   } else {
     return config;
   }
