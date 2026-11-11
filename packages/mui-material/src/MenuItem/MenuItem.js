@@ -216,7 +216,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
-    if (shouldAutoFocusOnMount) {
+    if (shouldAutoFocusOnMount && (!props.disabled || itemsFocusableWhenDisabled)) {
       if (menuItemRef.current) {
         focusWithVisible(menuItemRef.current, focusSource);
       } else if (process.env.NODE_ENV !== 'production') {

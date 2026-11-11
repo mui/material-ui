@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { spy } from 'sinon';
 import {
   act,
   createRenderer,
@@ -405,19 +406,21 @@ describe('<Menu /> integration', () => {
 
     // no case for variant=selectedMenu
     it('[variant=menu] prioritizes `autoFocus` on `MenuItem`', () => {
+      const handleBlur = spy();
+
       render(
         <OpenMenu variant="menu">
           <MenuItem />
           <MenuItem />
-          <MenuItem autoFocus />
+          <MenuItem autoFocus onBlur={handleBlur} />
         </OpenMenu>,
-        // The second effect run in StrictMode refocuses the item and hides a focus override.
-        { strictEffects: false },
       );
 
       const menuitems = screen.getAllByRole('menuitem');
 
       expect(menuitems[2]).toHaveFocus();
+      // StrictMode focuses the item again, so also check that focus never moved away.
+      expect(handleBlur.callCount).to.equal(0);
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);

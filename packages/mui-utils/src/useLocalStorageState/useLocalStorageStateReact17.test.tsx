@@ -1,7 +1,7 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import * as React from 'react';
-import { createRenderer, screen } from '@mui/internal-test-utils';
-import useLocalStorageState from './useLocalStorageState';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import type useLocalStorageStateType from './useLocalStorageState';
 
 // Exercise the fallback in the regular test run, including when React 18+ is installed.
 vi.mock('react', async (importOriginal) => ({
@@ -12,8 +12,20 @@ vi.mock('react', async (importOriginal) => ({
 const STORAGE_KEY = 'mui-use-local-storage-state-react-17-test';
 const OTHER_STORAGE_KEY = `${STORAGE_KEY}-other`;
 
-describe('useLocalStorageState React 17 fallback', () => {
+// The browser cannot load a module again, so the module mock only works in jsdom.
+describe.skipIf(!isJsdom())('useLocalStorageState React 17 fallback', () => {
   const { render, renderToString } = createRenderer();
+  let useLocalStorageState: typeof useLocalStorageStateType;
+
+  // CI runs test files without isolation, so load a fresh module with the mock and drop it after.
+  beforeAll(async () => {
+    vi.resetModules();
+    useLocalStorageState = (await import('./useLocalStorageState')).default;
+  });
+
+  afterAll(() => {
+    vi.resetModules();
+  });
 
   afterEach(() => {
     window.localStorage.removeItem(STORAGE_KEY);
