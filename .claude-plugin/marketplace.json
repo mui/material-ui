@@ -4,7 +4,7 @@
     "name": "MUI",
     "url": "https://mui.com"
   },
-  "description": "Material UI agent skills for Claude Code",
+  "description": "Material UI agent skills",
   "plugins": [
     {
       "name": "material-ui",
