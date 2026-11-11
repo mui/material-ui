@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import setRef from '@mui/utils/setRef';
+import useId from '@mui/utils/useId';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -164,6 +165,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     direction = 'up',
     hidden = false,
     icon,
+    id: idProp,
     onBlur,
     onClose,
     onFocus,
@@ -354,8 +356,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     }
   };
 
-  // Filter the label for valid id characters.
-  const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
+  const id = useId(idProp);
 
   const allItems = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -417,6 +418,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     className: clsx(classes.root, className),
     additionalProps: {
       role: 'presentation',
+      id: idProp,
     },
     getSlotProps: (handlers) => ({
       ...handlers,
@@ -489,7 +491,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The aria-label of the button element.
-   * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: PropTypes.string.isRequired,
   /**
@@ -524,6 +525,11 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * provides a default Icon with animation.
    */
   icon: PropTypes.node,
+  /**
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
+   */
+  id: PropTypes.string,
   /**
    * @ignore
    */

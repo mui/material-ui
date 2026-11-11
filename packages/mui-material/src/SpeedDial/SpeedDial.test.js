@@ -17,7 +17,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDial />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { clock, render, renderToString } = createRenderer({ clock: 'fake' });
 
   const icon = <Icon>font_icon</Icon>;
   function FakeAction() {
@@ -801,6 +801,107 @@ describe('<SpeedDial />', () => {
         transitionDuration: '0s',
         transitionDelay: '0s',
       });
+    });
+  });
+
+  describe('prop: id', () => {
+    const actions = [
+      <SpeedDialAction key="1" icon={icon} slotProps={{ tooltip: { title: 'One', open: true } }} />,
+      <SpeedDialAction key="2" icon={icon} slotProps={{ tooltip: { title: 'Two', open: true } }} />,
+    ];
+
+    function TwoSpeedDials(props) {
+      return (
+        <React.Fragment>
+          <SpeedDial {...defaultProps} ariaLabel="Same label" {...props}>
+            {actions}
+          </SpeedDial>
+          <SpeedDial {...defaultProps} ariaLabel="Same label" {...props}>
+            {actions}
+          </SpeedDial>
+        </React.Fragment>
+      );
+    }
+
+    function getIds(container) {
+      return Array.from(container.querySelectorAll('[id]')).map((element) => element.id);
+    }
+
+    it('does not produce duplicate ids for speed dials with the same ariaLabel', () => {
+      const { container } = render(<TwoSpeedDials />);
+
+      const ids = getIds(container);
+      expect(ids.length).to.be.greaterThan(0);
+      expect(new Set(ids).size).to.equal(ids.length);
+    });
+
+    it('resolves aria-controls and aria-labelledby inside its own menu', () => {
+      const { container } = render(<TwoSpeedDials />);
+
+      const fabs = screen.getAllByRole('button', { expanded: true });
+      const menus = screen.getAllByRole('menu');
+      expect(fabs).to.have.lengthOf(2);
+      expect(menus).to.have.lengthOf(2);
+
+      fabs.forEach((fab, index) => {
+        const controlsId = fab.getAttribute('aria-controls');
+        expect(container.querySelectorAll(`[id="${controlsId}"]`)).to.have.lengthOf(1);
+        expect(menus[index]).to.have.attribute('id', controlsId);
+
+        const items = menus[index].querySelectorAll('[aria-labelledby]');
+        expect(items).to.have.lengthOf(2);
+        items.forEach((item) => {
+          const labelId = item.getAttribute('aria-labelledby');
+          expect(container.querySelectorAll(`[id="${labelId}"]`)).to.have.lengthOf(1);
+          expect(menus[index].querySelectorAll(`[id="${labelId}"]`)).to.have.lengthOf(1);
+        });
+      });
+    });
+
+    it('uses the id prop as the base of the generated ids', () => {
+      const { container } = render(
+        <SpeedDial {...defaultProps} id="custom">
+          {actions}
+        </SpeedDial>,
+      );
+
+      expect(container.firstChild).to.have.attribute('id', 'custom');
+      expect(screen.getByRole('button', { expanded: true })).to.have.attribute(
+        'aria-controls',
+        'custom-actions',
+      );
+      expect(screen.getByRole('menu')).to.have.attribute('id', 'custom-actions');
+      expect(container.querySelector('#custom-action-0')).not.to.equal(null);
+      expect(container.querySelector('#custom-action-1')).not.to.equal(null);
+      expect(container.querySelector('#custom-action-0-label')).not.to.equal(null);
+      expect(container.querySelector('#custom-action-1-label')).not.to.equal(null);
+    });
+
+    it('does not derive the ids from ariaLabel', () => {
+      const { container } = render(
+        <SpeedDial {...defaultProps} ariaLabel="derivedFromLabel">
+          {actions}
+        </SpeedDial>,
+      );
+
+      getIds(container).forEach((id) => {
+        expect(id).not.to.contain('derivedFromLabel');
+      });
+      expect(screen.getByRole('menu').id).not.to.contain('derivedFromLabel');
+    });
+
+    it('generates the same ids after server-side rendering and hydration', () => {
+      function App() {
+        return <TwoSpeedDials />;
+      }
+
+      const { container, hydrate } = renderToString(<App />);
+      const serverIds = getIds(container);
+      expect(serverIds.length).to.be.greaterThan(0);
+
+      hydrate();
+
+      expect(getIds(container)).to.deep.equal(serverIds);
     });
   });
 });

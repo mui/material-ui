@@ -27,9 +27,13 @@ import Stack from '@mui/system/Stack';
 
 The Stack component acts as a generic container, wrapping around the elements to be arranged.
 
-Use the `spacing` prop to control the space between children.
-The spacing value can be any number, including decimals, or a string.
-(The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.)
+Use the `spacing` prop to set the CSS `gap` between children.
+Pass a non-negative number, including decimals, to scale the spacing with the [`theme.spacing()`](/material-ui/customization/spacing/) helper, or a string with a valid CSS `gap` value, such as `'16px'` or `'1rem'`.
+Negative values and `'auto'` are not supported. For overlapping children or automatic margins, apply margins directly to the children instead.
+
+Percentage spacing is relative to the container's width for horizontal gaps and height for vertical gaps.
+In a column whose height depends on its children, a percentage gap resolves to zero.
+Use a numeric spacing value or a length such as `'1rem'` for spacing that does not depend on the container's dimensions.
 
 {{"component": "file://./demos/basic/index.ts", "bg": true}}
 
@@ -56,13 +60,9 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 {{"component": "file://./demos/responsive/index.ts", "bg": true}}
 
-## Flexbox gap
+## Wrapping
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) for the spacing implementation, set the `useFlexGap` prop to true.
-
-It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
-
-We recommend checking the [support percentage](https://caniuse.com/?search=flex%20gap) before using it.
+The spacing also applies between lines when the children wrap.
 
 {{"component": "file://./demos/flexbox-gap/index.ts", "bg": true}}
 
@@ -82,24 +82,6 @@ Below is an example of how to apply center align items using this prop:
 ```
 
 ## Limitations
-
-### Margin on the children
-
-Customizing the margin on the children is not supported by default.
-
-For instance, the top-margin on the `button` component below will be ignored.
-
-```jsx
-<Stack>
-  <button style={{ marginTop: '30px' }}>...</button>
-</Stack>
-```
-
-:::success
-To overcome this limitation, set [`useFlexGap`](#flexbox-gap) prop to true to switch to CSS flexbox gap implementation.
-
-You can learn more about this limitation by visiting this [RFC](https://github.com/mui/material-ui/issues/33754).
-:::
 
 ### white-space: nowrap
 
