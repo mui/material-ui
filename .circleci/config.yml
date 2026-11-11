@@ -251,6 +251,13 @@ jobs:
             VITEST_BROWSERS: 'webkit'
           command: pnpm test:browser docs/data/material/components/menu2/Menu2Playground.test.tsx --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism --disableConsoleIntercept=false --reporter=default
       - run:
+          name: Tests WebKit Menu2 playground with explicit include
+          when: always
+          environment:
+            VITEST_BROWSERS: 'webkit'
+            MENU2_FRAME_CONTROL: 'original-file'
+          command: pnpm test:browser docs/data/material/components/menu2/Menu2Playground.test.tsx --project 'browser:docs (webkit)' --no-isolate --no-file-parallelism --disableConsoleIntercept=false --reporter=default
+      - run:
           name: Tests WebKit
           environment:
             VITEST_BROWSERS: 'webkit'
