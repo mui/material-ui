@@ -4,6 +4,7 @@ import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
 import ListItemButton from '@mui/material/ListItemButton';
 import { __unsafe_useEmotionCache } from '@emotion/react';
 import GlobalStyles from '@mui/material/GlobalStyles';
@@ -67,6 +68,42 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     );
 
     expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '3px' });
+  });
+
+  it("lets the app's GlobalStyles override the component styles with a more specific selector", () => {
+    render(
+      <React.Fragment>
+        <GlobalStyles styles={{ 'body .MuiButton-root': { paddingTop: 3 } }} />
+        <Button>Hello</Button>
+      </React.Fragment>,
+    );
+
+    expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '3px' });
+  });
+
+  it("keeps the component styles over the app's GlobalStyles resets", () => {
+    render(
+      <React.Fragment>
+        <GlobalStyles styles={{ button: { paddingTop: 0 } }} />
+        <Button>Hello</Button>
+      </React.Fragment>,
+    );
+
+    expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '6px' });
+  });
+
+  it("keeps CssBaseline below the app's GlobalStyles", () => {
+    // Inserted after the app's rule, so without layers CssBaseline's `strong { font-weight: 700 }`
+    // would win.
+    render(
+      <React.Fragment>
+        <GlobalStyles styles={{ strong: { fontWeight: 300 } }} />
+        <CssBaseline />
+        <strong data-testid="strong">Hello</strong>
+      </React.Fragment>,
+    );
+
+    expect(screen.getByTestId('strong')).toHaveComputedStyle({ fontWeight: '300' });
   });
 
   it('applies theme overrides that are less specific than the base styles', () => {
@@ -233,7 +270,7 @@ describe('CSS layers: generated styles', () => {
     );
   });
 
-  it("keeps the app's layers, layer order statements and @import out of mui.global", () => {
+  it("keeps the app's layers, layer order statements and @import out of the layer of GlobalStyles", () => {
     const inserted: string[] = [];
     render(
       <ThemeProvider theme={createTheme()}>
@@ -242,8 +279,22 @@ describe('CSS layers: generated styles', () => {
       </ThemeProvider>,
     );
     expect(inserted.find((styles) => styles.includes('reset'))).to.equal(
-      '@import url("a.css"); @layer theme, base; @layer reset { .x { color: red; } }@layer mui.global{ html { color: blue; }}',
+      '@import url("a.css"); @layer theme, base; @layer reset { .x { color: red; } }@layer mui.components{ html { color: blue; }}',
     );
+  });
+
+  it("puts the app's GlobalStyles in mui.components, and CssBaseline in mui.global", () => {
+    const inserted: string[] = [];
+    render(
+      <ThemeProvider theme={createTheme()}>
+        <CaptureStyles inserted={inserted} />
+        <CssBaseline />
+        <GlobalStyles styles={{ '.app': { color: 'blue' } }} />
+      </ThemeProvider>,
+    );
+    expect(inserted).to.include('@layer mui.components{.app{color:blue;}}');
+    const baseline = inserted.find((styles) => styles.includes('box-sizing:inherit'));
+    expect(baseline).to.match(/^@layer mui\.global\{/);
   });
 
   it('layers styles that are serialized already, without changing them', () => {
@@ -260,7 +311,7 @@ describe('CSS layers: generated styles', () => {
         <GlobalStyles styles={shared} />
       </ThemeProvider>,
     );
-    expect(inserted).to.include(`@layer mui.global{${styles}}`);
+    expect(inserted).to.include(`@layer mui.components{${styles}}`);
     expect(shared.styles).to.equal(styles);
   });
 
