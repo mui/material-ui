@@ -130,6 +130,7 @@ export default function useButtonBase(
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement | null>(null);
+  const spaceKeyDownPreventedRef = React.useRef(false);
   const focusableWhenDisabled = focusableWhenDisabledParam === true;
   const focusableWhenDisabledProps = useFocusableWhenDisabled({
     focusableWhenDisabled,
@@ -296,6 +297,10 @@ export default function useButtonBase(
         }
 
         if (event.key === ' ') {
+          // Remember consumer cancellation before preventing scrolling ourselves.
+          // Repeated keydowns must not undo cancellation of the same press.
+          spaceKeyDownPreventedRef.current =
+            event.defaultPrevented || (event.repeat && spaceKeyDownPreventedRef.current);
           event.preventDefault();
           return;
         }
@@ -319,6 +324,7 @@ export default function useButtonBase(
           event.target === event.currentTarget &&
           !hasNativeKeyboardActivation() &&
           event.key === ' ' &&
+          !spaceKeyDownPrevented &&
           !event.defaultPrevented
         ) {
           event.currentTarget.click();
