@@ -191,7 +191,7 @@ catalogs:
       version: 4.2.0
 
 overrides:
-  '@mui/internal-docs-infra': 0.13.1-canary.30
+  '@mui/internal-docs-infra': 0.13.1-canary.31
   docs>stylis: 4.2.0
   docs>react-is: 19.3.1
   caniuse-lite: ^1.0.30001823
@@ -241,8 +241,8 @@ importers:
         specifier: 0.1.1-canary.31
         version: 0.1.1-canary.31(@next/eslint-plugin-next@16.4.3(eslint@10.14.0(jiti@2.7.0)(supports-color@11.0.0)))(@octokit/core@7.0.7)(@types/estree@1.0.9)(@types/node@22.20.5)(@typescript-eslint/eslint-plugin@8.72.1(@typescript-eslint/parser@8.72.1(@typescript/typescript6@6.0.2)(eslint@10.14.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(eslint@10.14.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript-eslint/parser@8.72.1(@typescript/typescript6@6.0.2)(eslint@10.14.0(jiti@2.7.0)(supports-color@11.0.0))(supports-color@11.0.0))(@typescript/typescript6@6.0.2)(@vitest/expect@4.1.10)(eslint-import-resolver-node@0.3.10(supports-color@11.0.0))(eslint@10.14.0(jiti@2.7.0)(supports-color@11.0.0))(postcss@8.5.32)(prettier@3.9.10)(stylelint@18.0.0)(supports-color@11.0.0)(vitest@5.0.0)
       '@mui/internal-docs-infra':
-        specifier: 0.13.1-canary.30
-        version: 0.13.1-canary.30(@types/react@19.3.0)(next@16.4.3(@babel/core@8.1.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
+        specifier: 0.13.1-canary.31
+        version: 0.13.1-canary.31(@types/react@19.3.0)(next@16.4.3(@babel/core@8.1.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -445,8 +445,8 @@ importers:
         specifier: workspace:^
         version: link:../packages-internal/core-docs/build
       '@mui/internal-docs-infra':
-        specifier: 0.13.1-canary.30
-        version: 0.13.1-canary.30(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.13(supports-color@11.0.0))(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
+        specifier: 0.13.1-canary.31
+        version: 0.13.1-canary.31(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.13(supports-color@11.0.0))(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages-internal/markdown
@@ -863,8 +863,8 @@ importers:
         specifier: catalog:docs
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0)
       '@mui/internal-docs-infra':
-        specifier: 0.13.1-canary.30
-        version: 0.13.1-canary.30(@types/react@19.3.0)(next@16.4.3(@babel/core@8.1.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
+        specifier: 0.13.1-canary.31
+        version: 0.13.1-canary.31(@types/react@19.3.0)(next@16.4.3(@babel/core@8.1.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -1001,8 +1001,8 @@ importers:
         specifier: ^7.29.11
         version: 7.29.11
       '@mui/internal-docs-infra':
-        specifier: 0.13.1-canary.30
-        version: 0.13.1-canary.30(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.13(supports-color@11.0.0))(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
+        specifier: 0.13.1-canary.31
+        version: 0.13.1-canary.31(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.13(supports-color@11.0.0))(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils/build
@@ -4138,8 +4138,8 @@ packages:
       typescript:
         optional: true
 
-  '@mui/internal-docs-infra@0.13.1-canary.30':
-    resolution: {integrity: sha512-6KBxp4RjVQ6GKulPTbAT5jO9LhM1xNnTfkI9wk9ZaAxV3X5o3DPUeFE38EGYSqFh/TiV1OuKQCBJdkKktd7M8g==}
+  '@mui/internal-docs-infra@0.13.1-canary.31':
+    resolution: {integrity: sha512-ifPlkUAlMp8buID/tBkvPCtiFnI3h9GO+yL0D/0/7o27DWt/jzAt6nTTLam1APxo0+15HJ/mf3jexn5u4Egfqw==}
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
@@ -14745,7 +14745,7 @@ snapshots:
       - ts-declaration-location
       - vitest
 
-  '@mui/internal-docs-infra@0.13.1-canary.30(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.13(supports-color@11.0.0))(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)':
+  '@mui/internal-docs-infra@0.13.1-canary.31(@types/react@19.3.0)(next@16.4.3(@babel/core@7.29.13(supports-color@11.0.0))(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)':
     dependencies:
       '@babel/runtime': 8.1.0
       '@csstools/postcss-light-dark-function': 3.0.8(postcss@8.5.32)
@@ -14781,6 +14781,7 @@ snapshots:
       remark-gfm: 4.0.1(supports-color@11.0.0)
       remark-mdx: 3.1.1(supports-color@11.0.0)
       remark-parse: 11.0.0(supports-color@11.0.0)
+      remark-rehype: 11.1.2
       remark-stringify: 11.0.0
       remark-typography: 0.8.11
       sucrase: 3.35.1
@@ -14798,7 +14799,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-docs-infra@0.13.1-canary.30(@types/react@19.3.0)(next@16.4.3(@babel/core@8.1.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)':
+  '@mui/internal-docs-infra@0.13.1-canary.31(@types/react@19.3.0)(next@16.4.3(@babel/core@8.1.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.9.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)':
     dependencies:
       '@babel/runtime': 8.1.0
       '@csstools/postcss-light-dark-function': 3.0.8(postcss@8.5.32)
@@ -14834,6 +14835,7 @@ snapshots:
       remark-gfm: 4.0.1(supports-color@11.0.0)
       remark-mdx: 3.1.1(supports-color@11.0.0)
       remark-parse: 11.0.0(supports-color@11.0.0)
+      remark-rehype: 11.1.2
       remark-stringify: 11.0.0
       remark-typography: 0.8.11
       sucrase: 3.35.1
