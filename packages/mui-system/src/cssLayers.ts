@@ -96,13 +96,24 @@ export function resolveModularCssLayers(modularCssLayers: unknown): boolean | st
     : true;
 }
 
-// Splits CSS into its top-level rules: statements such as `@import …;` and blocks such as `a {…}`.
-// Skips braces and semicolons in strings, comments and escapes.
-function splitTopLevelRules(css: string): string[] {
-  const rules: string[] = [];
+interface TopLevelToken {
+  // A rule, such as `@import …;` or `a {…}`, or the comments and whitespace between two rules.
+  kind: 'rule' | 'trivia';
+  text: string;
+}
+
+// Splits CSS into its top-level rules and the comments and whitespace between them. A comment
+// between two rules isn't part of the next one. Skips braces and semicolons in strings, comments
+// and escapes.
+function tokenizeTopLevel(css: string): TopLevelToken[] {
+  const tokens: TopLevelToken[] = [];
   let depth = 0;
   let start = 0;
   let quote: string | null = null;
+  const push = (end: number, kind: TopLevelToken['kind']) => {
+    tokens.push({ kind, text: css.slice(start, end) });
+    start = end;
+  };
   for (let index = 0; index < css.length; index += 1) {
     const char = css[index];
     if (char === '\\') {
@@ -114,25 +125,27 @@ function splitTopLevelRules(css: string): string[] {
     } else if (char === '"' || char === "'") {
       quote = char;
     } else if (char === '/' && css[index + 1] === '*') {
-      const end = css.indexOf('*/', index + 2);
-      index = end === -1 ? css.length : end + 1;
+      const close = css.indexOf('*/', index + 2);
+      const end = close === -1 ? css.length : close + 2;
+      if (depth === 0 && css.slice(start, index).trim() === '') {
+        push(end, 'trivia');
+      }
+      index = end - 1;
     } else if (char === '{') {
       depth += 1;
     } else if (char === '}') {
       depth -= 1;
       if (depth === 0) {
-        rules.push(css.slice(start, index + 1));
-        start = index + 1;
+        push(index + 1, 'rule');
       }
     } else if (char === ';' && depth === 0) {
-      rules.push(css.slice(start, index + 1));
-      start = index + 1;
+      push(index + 1, 'rule');
     }
   }
   if (start < css.length) {
-    rules.push(css.slice(start));
+    push(css.length, css.slice(start).trim() ? 'rule' : 'trivia');
   }
-  return rules;
+  return tokens;
 }
 
 // Rules that stay at the top level: the app's own layers and layer order statements, and at-rules
@@ -142,27 +155,38 @@ const TOP_LEVEL_RULE = /^@(layer|import|charset|namespace)\b/i;
 /**
  * Wraps CSS in a layer block, such as `@layer mui.global{…}`, but keeps the app's own `@layer`
  * blocks and statements, `@import`, `@charset` and `@namespace` at the top level. The rules in
- * between are wrapped in runs, so their order doesn't change.
+ * between are wrapped in runs, so their order doesn't change. Comments stay with the rule that
+ * follows them.
  */
 export function wrapInCssLayer(css: string, layerName: string): string {
   let result = '';
   let run = '';
+  let trivia = '';
   const flush = () => {
-    if (run.trim()) {
+    if (run) {
       result += `@layer ${layerName}{${run}}`;
     }
     run = '';
   };
-  splitTopLevelRules(css).forEach((rule) => {
-    if (TOP_LEVEL_RULE.test(rule.trim())) {
+  tokenizeTopLevel(css).forEach((token) => {
+    if (token.kind === 'trivia') {
+      trivia += token.text;
+    } else if (TOP_LEVEL_RULE.test(token.text.trim())) {
       flush();
-      result += rule;
+      result += trivia + token.text;
+      trivia = '';
     } else {
-      run += rule;
+      run += trivia + token.text;
+      trivia = '';
     }
   });
+  if (run && !trivia.trim()) {
+    // Trailing whitespace stays in the layer block.
+    run += trivia;
+    trivia = '';
+  }
   flush();
-  return result;
+  return result + trivia;
 }
 
 /**
