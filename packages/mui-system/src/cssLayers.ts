@@ -7,23 +7,23 @@ export const CSS_LAYER_ORDER = 'mui.global, mui.components, mui.theme, mui.custo
 
 /**
  * Whether the theme puts Material UI's styles in CSS layers.
- * `createTheme()` always does: it sets `cssLayers` to `true` or `'single'`.
- * A theme object made by hand opts in with `modularCssLayers`, as in v9.
+ * `createTheme()` always does: it sets `modularCssLayers` to `true`, `false` or a string.
+ * A theme object made by hand, without `modularCssLayers`, has no layers.
  */
 export function hasCssLayers(theme: any): boolean {
-  return Boolean(theme?.cssLayers || theme?.modularCssLayers);
+  return theme?.modularCssLayers != null;
 }
 
 /**
  * Whether the theme puts all of Material UI's styles in the `mui` layer, without sub-layers.
  */
 export function isSingleCssLayer(theme: any): boolean {
-  return theme?.cssLayers === 'single';
+  return theme?.modularCssLayers === false;
 }
 
 /**
  * Returns the full name of the layer for a kind of styles, such as `mui.sx`, `mui` with
- * `cssLayers: 'single'`, or `undefined` when the theme has no layers.
+ * `modularCssLayers: false`, or `undefined` when the theme has no layers.
  * Full names work without an Emotion cache that wraps the styles in `@layer mui`.
  */
 export function getCssLayer(theme: any, layer: CssLayer): string | undefined {
@@ -35,16 +35,16 @@ export function getCssLayer(theme: any, layer: CssLayer): string | undefined {
 
 /**
  * Returns the sub-layer that one part of a component's styles goes in, such as its theme overrides
- * or its `sx`, or `undefined` when the parts aren't layered one by one. With `cssLayers: 'single'`,
- * the component's styles are wrapped in `@layer mui` as a whole, so that they keep v9's order: the
- * declarations of every part come first, and the media queries after them.
+ * or its `sx`, or `undefined` when the parts aren't layered one by one. With
+ * `modularCssLayers: false`, the component's styles are wrapped in `@layer mui` as a whole, so that
+ * they keep v9's order: the declarations of every part come first, and the media queries after them.
  */
 export function getCssSubLayer(theme: any, layer: CssLayer): string | undefined {
   return isSingleCssLayer(theme) ? undefined : getCssLayer(theme, layer);
 }
 
 /**
- * Opens the `mui` layer around a component's styles with `cssLayers: 'single'`, as v9's
+ * Opens the `mui` layer around a component's styles with `modularCssLayers: false`, as v9's
  * `enableCssLayer` did, so that the declarations of every part come first and the media queries
  * after them. With sub-layers, each part goes in its own sub-layer instead.
  */
@@ -62,18 +62,15 @@ export function styleCssLayerEnd(props: { theme?: any }) {
 /**
  * Returns the statement that declares the order of the theme's layers, or `''` if there's none.
  * A `modularCssLayers` string sets where `mui` goes among the app's layers.
- * With `cssLayers: 'single'` and no string, nothing is declared: as with v9's `enableCssLayer`,
- * `mui` takes its place among the app's layers when its first style is inserted. Declaring it
- * at the start of `<head>` would make it the lowest layer.
+ * With `modularCssLayers: false`, nothing is declared: as with v9's `enableCssLayer`, `mui` takes
+ * its place among the app's layers when its first style is inserted. Declaring it at the start of
+ * `<head>` would make it the lowest layer.
  */
 export function getCssLayerOrderStatement(theme: any): string {
-  if (!hasCssLayers(theme)) {
+  if (!hasCssLayers(theme) || isSingleCssLayer(theme)) {
     return '';
   }
   const { modularCssLayers } = theme;
-  if (isSingleCssLayer(theme)) {
-    return typeof modularCssLayers === 'string' ? modularCssLayers : '';
-  }
   if (typeof modularCssLayers === 'string') {
     return modularCssLayers.replace(/mui(?!\.)/g, CSS_LAYER_ORDER);
   }
@@ -89,28 +86,14 @@ export function isInMuiCssLayer(css: string): boolean {
 }
 
 /**
- * Returns the `cssLayers` value of a theme created with `createTheme()`: CSS layers can't be turned
- * off. `modularCssLayers: false` turned the sub-layers off in v9, so it means a single layer.
+ * Returns the `modularCssLayers` value of a theme created with `createTheme()`. CSS layers can't be
+ * turned off, so it's `true` (sub-layers), `false` (a single `mui` layer) or a string (sub-layers
+ * in a custom order).
  */
-export function resolveCssLayersOption(
-  cssLayers: unknown,
-  modularCssLayers: unknown,
-): true | 'single' {
-  if (process.env.NODE_ENV !== 'production') {
-    if (cssLayers === false) {
-      console.error(
-        [
-          'MUI: `cssLayers: false` is no longer supported, Material UI always puts its styles in CSS layers.',
-          "Use `cssLayers: 'single'` to put them all in the `mui` layer, without sub-layers.",
-          'See https://mui.com/material-ui/migration/upgrade-to-v10/#css-layers-are-always-on',
-        ].join('\n'),
-      );
-    }
-  }
-  if (cssLayers === 'single' || (cssLayers !== true && modularCssLayers === false)) {
-    return 'single';
-  }
-  return true;
+export function resolveModularCssLayers(modularCssLayers: unknown): boolean | string {
+  return modularCssLayers === false || typeof modularCssLayers === 'string'
+    ? modularCssLayers
+    : true;
 }
 
 // Splits CSS into its top-level rules: statements such as `@import …;` and blocks such as `a {…}`.

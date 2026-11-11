@@ -82,7 +82,7 @@ The ids are then `Actions-actions` for the actions container and `Actions-action
 ### CSS layers are always on
 
 Material UI puts its styles in the `mui` [cascade layer](/material-ui/customization/css-layers/), split into sub-layers: `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
-This can't be turned off: `cssLayers: false` is ignored and logs an error in development.
+This can't be turned off.
 
 This changes which styles win:
 
@@ -153,9 +153,9 @@ To keep the v9 precedence between Material UI's own styles, put them all in the
 
 ```js
 const theme = createTheme({
-  cssLayers: 'single',
+  modularCssLayers: false,
 });
 ```
 
 This matches v9's `enableCssLayer`: `mui` goes where your CSS declares it, for example `@layer theme, base, mui, components, utilities;`.
-`modularCssLayers: false` now does the same as `cssLayers: 'single'`, and `modularCssLayers: true` can be removed, since sub-layers are the default.
+`modularCssLayers: true` can be removed, since sub-layers are the default, and a `modularCssLayers` string still sets where the sub-layers go among your layers.

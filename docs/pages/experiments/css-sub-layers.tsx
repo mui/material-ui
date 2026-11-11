@@ -25,18 +25,18 @@ const RED = 'rgb(255, 0, 0)';
 const PRIMARY = 'rgb(25, 118, 210)';
 const LIGHT_GREEN = 'rgb(200, 230, 201)';
 
-// `false` stands for v9 without layers. `createTheme()` can't turn them off anymore, so those themes
-// are made by hand, see `withoutLayers()`.
-type CssLayersOption = boolean | 'single';
+// `'none'` stands for v9 without layers. `createTheme()` can't turn them off anymore, so those
+// themes are made by hand, see `withoutLayers()`.
+type LayersMode = 'none' | 'single' | 'sub';
 
-// A theme object made by hand, without `cssLayers`, keeps the v9 behavior: no layers.
+// A theme object made by hand, without `modularCssLayers`, keeps the v9 behavior: no layers.
 function withoutLayers<T extends object>(theme: T): T {
-  return { ...theme, cssLayers: undefined };
+  return { ...theme, modularCssLayers: undefined };
 }
 
-function createOverridesTheme(cssLayers: true | 'single') {
+function createOverridesTheme(modularCssLayers: boolean) {
   return createTheme({
-    cssLayers,
+    modularCssLayers,
     components: {
       MuiButton: { styleOverrides: { root: { backgroundColor: RED } } },
       MuiAccordion: { styleOverrides: { root: { margin: 0 } } },
@@ -45,14 +45,14 @@ function createOverridesTheme(cssLayers: true | 'single') {
 }
 
 const overridesThemes = {
-  true: createOverridesTheme(true),
-  single: createOverridesTheme('single'),
-  false: withoutLayers(createOverridesTheme(true)),
+  sub: createOverridesTheme(true),
+  single: createOverridesTheme(false),
+  none: withoutLayers(createOverridesTheme(true)),
 };
 const defaultTheme = createTheme();
-const singleTheme = createTheme({ cssLayers: 'single' });
+const singleTheme = createTheme({ modularCssLayers: false });
 const v9Theme = withoutLayers(createTheme());
-const themes = { true: defaultTheme, single: singleTheme, false: v9Theme };
+const themes = { sub: defaultTheme, single: singleTheme, none: v9Theme };
 
 const TAILWIND_ORDER = '@layer theme, base, mui, components, utilities;';
 const modularStringTheme = createTheme({ modularCssLayers: TAILWIND_ORDER });
@@ -337,13 +337,13 @@ function Frame(props: {
 // The three ways Material UI can ship its styles.
 const SETUPS: Array<{
   title: string;
-  cssLayers: CssLayersOption;
+  layers: LayersMode;
   enableCssLayer: boolean;
   baseline?: boolean;
 }> = [
-  { title: 'v9: no layers', cssLayers: false, enableCssLayer: false, baseline: true },
-  { title: "Single @layer mui (cssLayers: 'single')", cssLayers: 'single', enableCssLayer: false },
-  { title: 'Sub-layers (this PR)', cssLayers: true, enableCssLayer: false },
+  { title: 'v9: no layers', layers: 'none', enableCssLayer: false, baseline: true },
+  { title: 'Single @layer mui (modularCssLayers: false)', layers: 'single', enableCssLayer: false },
+  { title: 'Sub-layers (this PR)', layers: 'sub', enableCssLayer: false },
 ];
 
 // ---------------------------------------------------------------------------
@@ -481,13 +481,13 @@ function Summary() {
 // ---------------------------------------------------------------------------
 // Demos
 
-function OverridesDemo(props: { cssLayers: CssLayersOption }) {
-  const { cssLayers } = props;
+function OverridesDemo(props: { layers: LayersMode }) {
+  const { layers } = props;
   const disabledRef = React.useRef<HTMLButtonElement>(null);
   const listItemRef = React.useRef<HTMLDivElement>(null);
   const accordionRef = React.useRef<HTMLDivElement>(null);
   return (
-    <ThemeProvider theme={overridesThemes[String(cssLayers) as keyof typeof overridesThemes]}>
+    <ThemeProvider theme={overridesThemes[layers]}>
       <Stack spacing={1} sx={{ alignItems: 'flex-start' }}>
         <Button variant="contained">Hover me</Button>
         <Button variant="contained" disabled ref={disabledRef}>
@@ -523,11 +523,11 @@ const GLOBAL_CSS = [
   'button { font-family: inherit; font-size: 100%; line-height: 1.15; margin: 0; text-transform: none; }',
 ].join('\n');
 
-function GlobalCssDemo(props: { cssLayers: CssLayersOption }) {
-  const { cssLayers } = props;
+function GlobalCssDemo(props: { layers: LayersMode }) {
+  const { layers } = props;
   const ref = React.useRef<HTMLButtonElement>(null);
   return (
-    <ThemeProvider theme={themes[String(cssLayers) as keyof typeof themes]}>
+    <ThemeProvider theme={themes[layers]}>
       <Button variant="contained" className="my-button" ref={ref}>
         Contained
       </Button>
@@ -562,18 +562,18 @@ function TailwindDemo(props: { theme: object }) {
 
 const VARS_CSS = ':root { --mui-palette-primary-main: rgb(255, 0, 0); }';
 
-function CssVarsDemo(props: { cssLayers: CssLayersOption }) {
-  const { cssLayers } = props;
+function CssVarsDemo(props: { layers: LayersMode }) {
+  const { layers } = props;
   const { doc } = useFrame();
   const ref = React.useRef<HTMLButtonElement>(null);
   const theme = React.useMemo(() => {
     const created = createTheme({
-      cssLayers: cssLayers || undefined,
+      modularCssLayers: layers !== 'single',
       cssVariables: { colorSchemeSelector: 'class' },
       colorSchemes: { light: true, dark: true },
     });
-    return cssLayers ? created : withoutLayers(created);
-  }, [cssLayers]);
+    return layers === 'none' ? withoutLayers(created) : created;
+  }, [layers]);
   // The provider writes the color scheme class to `colorSchemeNode`, which defaults to the
   // top-level document.
   return (
@@ -643,9 +643,9 @@ export default function CssSubLayers() {
         <Typography variant="body1" sx={{ mb: 1, maxWidth: 800 }}>
           What changes for apps when Material UI puts its styles in CSS layers by default. Each case
           compares v9 (no layers), a single <code>@layer mui</code> (the{' '}
-          <code>cssLayers: &apos;single&apos;</code> opt-out) and this PR&apos;s sub-layers, the
-          default. The values come from <code>getComputedStyle</code>, next to the v9 value when
-          it&apos;s different.
+          <code>modularCssLayers: false</code> opt-out) and this PR&apos;s sub-layers, the default.
+          The values come from <code>getComputedStyle</code>, next to the v9 value when it&apos;s
+          different.
         </Typography>
         <Typography variant="body2" sx={{ mb: 3, maxWidth: 800, color: 'text.secondary' }}>
           Each demo runs in a frame with its own document, React root and Emotion cache in
@@ -689,7 +689,7 @@ export default function CssSubLayers() {
               enableCssLayer={setup.enableCssLayer}
               baseline={setup.baseline}
             >
-              <OverridesDemo cssLayers={setup.cssLayers} />
+              <OverridesDemo layers={setup.layers} />
             </Frame>
           ))}
         </Scenario>
@@ -725,7 +725,7 @@ export default function CssSubLayers() {
               enableCssLayer={setup.enableCssLayer}
               baseline={setup.baseline}
             >
-              <GlobalCssDemo cssLayers={setup.cssLayers} />
+              <GlobalCssDemo layers={setup.layers} />
             </Frame>
           ))}
         </Scenario>
@@ -759,7 +759,7 @@ export default function CssSubLayers() {
           <Frame title="v9 (single layer)" css={TAILWIND_CSS} enableCssLayer baseline>
             <TailwindDemo theme={v9Theme} />
           </Frame>
-          <Frame title="cssLayers: 'single'" css={TAILWIND_CSS} enableCssLayer>
+          <Frame title="modularCssLayers: false" css={TAILWIND_CSS} enableCssLayer>
             <TailwindDemo theme={singleTheme} />
           </Frame>
           <Frame title="This PR" css={TAILWIND_CSS} enableCssLayer>
@@ -804,7 +804,7 @@ export default function CssSubLayers() {
               enableCssLayer={setup.enableCssLayer}
               baseline={setup.baseline}
             >
-              <CssVarsDemo cssLayers={setup.cssLayers} />
+              <CssVarsDemo layers={setup.layers} />
             </Frame>
           ))}
         </Scenario>

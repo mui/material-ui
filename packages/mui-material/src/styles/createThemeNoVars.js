@@ -3,7 +3,7 @@ import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
 import systemCreateTheme, {
-  private_resolveCssLayersOption as resolveCssLayersOption,
+  private_resolveModularCssLayers as resolveModularCssLayers,
 } from '@mui/system/createTheme';
 import {
   alpha as systemAlpha,
@@ -130,8 +130,6 @@ function createThemeNoVars(options = {}, ...args) {
     typography: typographyInput = {},
     shape: shapeInput,
     colorSpace,
-    // Resolved by `systemCreateTheme()`.
-    cssLayers: cssLayersInput,
     ...other
   } = options;
 
@@ -251,7 +249,7 @@ function createThemeNoVars(options = {}, ...args) {
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
-  muiTheme.cssLayers = resolveCssLayersOption(muiTheme.cssLayers, muiTheme.modularCssLayers);
+  muiTheme.modularCssLayers = resolveModularCssLayers(muiTheme.modularCssLayers);
 
   attachColorManipulators(muiTheme);
 

@@ -393,7 +393,7 @@ export default function createStyled<Theme extends object = DefaultTheme>(
 
       const Component: any = defaultStyledResolver(...expressions);
       // When `tag` is a styled component, Emotion puts its styles ahead of these ones, with their own
-      // `cssLayers: 'single'` block. Keep one block around all of them, so that the declarations of
+      // `modularCssLayers: false` block. Keep one block around all of them, so that the declarations of
       // both come before the media queries, as in v9. The array is the one Emotion renders with, so
       // it's changed in place.
       mutateStyles(Component, (styles: any[]) => {
