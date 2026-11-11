@@ -190,10 +190,7 @@ const NumberFieldInputSlot = React.forwardRef(
     const classes = useUtilityClasses(ownerState);
 
     const InputComponent = variantComponent[materialProps.variant];
-    const inputLabelSlotProps = resolveComponentProps(
-      externalForwardedProps.slotProps?.inputLabel,
-      ownerState,
-    );
+    const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
     const inputAdditionalProps: Pick<OutlinedInputProps, 'label' | 'notched'> = {};
 
     if (variant === 'outlined') {

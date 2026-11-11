@@ -5,8 +5,6 @@ import type { NumberField as BaseNumberField } from '@base-ui/react/number-field
 import type { HTMLProps } from '@base-ui/react/types';
 import { mergeProps } from '@base-ui/react/merge-props';
 
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
-
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import FormControl from '../FormControl';
 import useSlot from '../utils/useSlot';
@@ -19,6 +17,7 @@ import FormHelperText from '../FormHelperText';
 interface NumberFieldRootProps {
   baseProps: HTMLProps;
   baseState: BaseNumberField.Root.State;
+  children: React.ReactNode;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
@@ -39,7 +38,7 @@ SSRInitialFilled.muiName = 'Input';
  */
 const NumberFieldRootSlot = React.forwardRef(
   (props: NumberFieldRootProps, ref: React.Ref<HTMLDivElement>) => {
-    const { baseProps, baseState, materialProps, externalForwardedProps } = props;
+    const { baseProps, baseState, children, materialProps, externalForwardedProps } = props;
     const ownerState = {
       ...materialProps,
       disabled: baseState.disabled,
@@ -87,10 +86,7 @@ const NumberFieldRootSlot = React.forwardRef(
     });
 
     // FormControl needs the adornment before effects run to initialize label shrink.
-    const resolvedInputSlotProps = resolveComponentProps(
-      externalForwardedProps.slotProps?.input,
-      ownerState,
-    );
+    const resolvedInputSlotProps = externalForwardedProps.slotProps?.input;
     const startAdornment =
       resolvedInputSlotProps && 'startAdornment' in resolvedInputSlotProps
         ? resolvedInputSlotProps.startAdornment
@@ -110,7 +106,7 @@ const NumberFieldRootSlot = React.forwardRef(
             {label}
           </InputLabelSlot>
         )}
-        {baseProps.children}
+        {children}
         {hasHelperText && (
           <FormHelperTextSlot id={helperTextId} {...formHelperTextProps}>
             {helperText}
