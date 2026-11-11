@@ -265,21 +265,21 @@ export default function BasicButtons() {
     test('opens matching source and renders relative modules as read-only tabs', async ({
       page,
     }) => {
-      await page.goto('/material-ui/react-number-field/#FieldDemo.js');
+      await page.goto('/material-ui/react-autocomplete/#ComboBox.js');
 
-      const demo = getDemo(page, 'FieldDemo');
+      const demo = getDemo(page, 'ComboBox');
       await expect(demo.getByRole('button', { name: 'Collapse code' })).toBeVisible();
       const tabs = demo.getByRole('tab');
       await expect(tabs).toHaveCount(2);
-      await expect(tabs.first()).toHaveText('./FieldDemo.js');
-      await expect(tabs.nth(1)).toHaveText('./components/NumberField.js');
+      await expect(tabs.first()).toHaveText('./ComboBox.js');
+      await expect(tabs.nth(1)).toHaveText('./top100Films.js');
       await expect(demo.locator('textarea:visible')).toHaveCount(1);
 
       await tabs.nth(1).click();
 
       await expect(tabs.nth(1)).toHaveAttribute('data-active', '');
       await expect(demo.locator('textarea:visible')).toHaveCount(0);
-      await expect(demo.locator('pre code:visible')).toContainText('NumberField');
+      await expect(demo.locator('pre code:visible')).toContainText('The Shawshank Redemption');
     });
 
     test('copies source from the active relative module tab', async ({ browser }) => {
@@ -289,20 +289,20 @@ export default function BasicButtons() {
         viewport: { width: 1280, height: 800 },
       });
       const page = await context.newPage();
-      await page.goto('/material-ui/react-number-field/#FieldDemo.js');
+      await page.goto('/material-ui/react-autocomplete/#ComboBox.js');
 
-      const demo = getDemo(page, 'FieldDemo');
-      await demo.locator('textarea').fill('export default function FieldDemo() { return null; }');
+      const demo = getDemo(page, 'ComboBox');
+      await demo.locator('textarea').fill('export default function ComboBox() { return null; }');
       await demo.getByRole('button', { name: 'Copy the source' }).click();
       await expect
         .poll(async () => page.evaluate(() => navigator.clipboard.readText()))
-        .toContain("import Box from '@mui/material/Box';");
+        .toContain("import TextField from '@mui/material/TextField';");
 
       await demo.getByRole('tab').nth(1).click();
       await demo.getByRole('button', { name: 'Copy the source' }).click();
       await expect
         .poll(async () => page.evaluate(() => navigator.clipboard.readText()))
-        .toContain('function SSRInitialFilled');
+        .toContain('const top100Films = [');
 
       await context.close();
     });
@@ -464,9 +464,9 @@ export default function BasicButtons() {
           });
         };
       });
-      await page.goto('/material-ui/react-number-field/#FieldDemo.tsx');
+      await page.goto('/material-ui/react-autocomplete/#ComboBox.tsx');
 
-      const demo = getDemo(page, 'FieldDemo');
+      const demo = getDemo(page, 'ComboBox');
       await demo.getByRole('button', { name: 'Edit in StackBlitz' }).click();
       await demo.getByRole('button', { name: 'Edit in CodeSandbox' }).click();
 
@@ -478,18 +478,18 @@ export default function BasicButtons() {
             }
           ).demoSubmissions,
       );
-      expect(submissions[0].fields['project[files][src/NumberField.tsx]']).toContain(
-        'function SSRInitialFilled',
+      expect(submissions[0].fields['project[files][src/top100Films.ts]']).toContain(
+        'const top100Films = [',
       );
       expect(submissions[0].fields['project[files][src/Demo.tsx]']).toContain(
-        "from './NumberField'",
+        "from './top100Films'",
       );
 
       const codeSandboxProject = decodeCodeSandboxParameters(submissions[1].fields.parameters);
-      expect(codeSandboxProject.files['src/NumberField.tsx'].content).toContain(
-        'function SSRInitialFilled',
+      expect(codeSandboxProject.files['src/top100Films.ts'].content).toContain(
+        'const top100Films = [',
       );
-      expect(codeSandboxProject.files['src/Demo.tsx'].content).toContain("from './NumberField'");
+      expect(codeSandboxProject.files['src/Demo.tsx'].content).toContain("from './top100Films'");
     });
 
     test('supports keyboard navigation', async ({ page }) => {
