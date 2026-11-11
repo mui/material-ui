@@ -43,6 +43,11 @@ import type { Menu2GroupOwnerState } from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import type { Menu2GroupLabelOwnerState } from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
+import type {
+  Menu2ItemOwnerState,
+  Menu2ItemSlotProps,
+  Menu2ItemSlots,
+} from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type { Menu2RadioGroupOwnerState } from '@mui/material/Unstable_Menu2RadioGroup';
@@ -471,6 +476,16 @@ createTheme({
     MuiMenu2Item: {
       defaultProps: {
         dense: true,
+        slots: { root: 'div' },
+        slotProps: {
+          root: (ownerState) => {
+            expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+            return {
+              'data-highlighted': ownerState.highlighted,
+              sx: { px: ownerState.dense ? 1 : 2 },
+            };
+          },
+        },
       },
       styleOverrides: {
         root: { [`&.${menu2ItemClasses.highlighted}`]: { color: 'red' } },
@@ -967,12 +982,53 @@ const CustomItemRoot = React.forwardRef<HTMLDivElement, CustomItemRootProps>(
 </Menu2Item>;
 <Menu2Item render={(props) => <CustomItemRoot {...props} trackingId="item" />} />;
 
-// @ts-expect-error Use render to select the item root.
+const menuItemSlots: Menu2ItemSlots = { root: 'li' };
+const menuItemSlotProps: Menu2ItemSlotProps = {
+  root: (ownerState) => {
+    expectType<Menu2ItemOwnerState, typeof ownerState>(ownerState);
+    expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    expectType<boolean, typeof ownerState.dense>(ownerState.dense);
+    expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
+    expectType<boolean, typeof ownerState.disableGutters>(ownerState.disableGutters);
+    expectType<boolean, typeof ownerState.divider>(ownerState.divider);
+    // @ts-expect-error Item state does not include an open state.
+    ownerState.open;
+    return {
+      ref: React.createRef<HTMLDivElement>(),
+      title: 'Item',
+      'data-highlighted': ownerState.highlighted,
+      sx: { px: ownerState.dense ? 1 : 2 },
+    };
+  },
+};
+<Menu2Item slots={menuItemSlots} slotProps={menuItemSlotProps} />;
+<Menu2Item
+  slotProps={{
+    root: {
+      id: 'custom-item',
+      title: 'Item',
+      tabIndex: -1,
+      'aria-label': 'Item',
+      'data-testid': 'item-root',
+      style: { color: 'red' },
+      sx: { py: 1 },
+      ref: (node) => expectType<HTMLDivElement | null, typeof node>(node),
+      onClick: (event) => {
+        expectType<EventTarget & HTMLDivElement, typeof event.currentTarget>(event.currentTarget);
+      },
+    },
+  }}
+/>;
+<Menu2Item slots={{ root: 'li' }} render={<div />}>
+  Replacement root
+</Menu2Item>;
+
+// @ts-expect-error Use render or slots.root instead of component.
 <Menu2Item component="li" />;
-// @ts-expect-error Use render instead of the root slot.
-<Menu2Item slots={{ root: 'li' }} />;
-// @ts-expect-error Put root props on the item or its render element.
-<Menu2Item slotProps={{ root: { title: 'Item' } }} />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2Item slots={{ root: <div /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2Item slotProps={{ root: { component: 'li' } }} />;
 // @ts-expect-error Custom props belong to the render element.
 <Menu2Item trackingId="item" render={<CustomItemRoot trackingId="item" />} />;
 // @ts-expect-error The render prop requires an element or a callback.

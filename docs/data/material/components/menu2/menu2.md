@@ -362,11 +362,34 @@ Children set on the render element, or replacement of `props.children` in a rend
 An element such as `render={<button />}` sets `nativeButton` automatically.
 For a custom component or render function that returns a native button, set `nativeButton` on `MenuItem`.
 
+Use `slotProps.root` to pass HTML attributes, a ref, or `sx` to the default styled root.
+Its callback receives the same live item state as `render`:
+
+```jsx
+<MenuItem
+  slotProps={{
+    root: ({ highlighted }) => ({
+      sx: { fontWeight: highlighted ? 700 : 400 },
+    }),
+  }}
+>
+  File
+</MenuItem>
+```
+
+Use `slots.root` to replace the styled root, including the adapter that handles `render`.
+If both props are set, `slots.root` takes precedence and `render` is not used.
+A custom root must forward the behavior props, ref, and children to its DOM element.
+Utility classes and Base UI data attributes remain available.
+The replacement does not get the default Material styles, theme style overrides, ripple, or `sx` processing automatically.
+Provide these features in the replacement if needed.
+
 `MenuCheckboxItem`, `MenuRadioItem`, and `MenuSubmenuTrigger` use the same render contract and native-button detection.
 Checkbox and radio render functions also receive `checked`; the submenu trigger receives `open`.
 The `open` state becomes false when closing starts, even while the exit animation runs.
 Forward `props.children` to keep both the indicator and ripple.
 Use `slots.indicator` and `slotProps.indicator` to customize the indicator separately.
+These parts and `MenuLinkItem` do not have a root slot.
 
 ### Groups
 
@@ -413,7 +436,7 @@ The separator render state contains `orientation`, which is `"horizontal"` or `"
 ### Shared theme styles
 
 `MuiMenu2Popup.styleOverrides` also applies to matching submenu popup slots.
-`MuiMenu2Item.styleOverrides` applies to all item roots, including link, checkbox, and radio items and submenu triggers.
+`MuiMenu2Item.styleOverrides` applies to the default styled item roots, including link, checkbox, and radio items and submenu triggers.
 The `dense`, `divider`, and `gutters` overrides apply when the corresponding state matches.
 Theme variants are shared too; menu variants apply only to the `root` slot.
 

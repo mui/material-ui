@@ -2,12 +2,16 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import type { SxProps } from '@mui/system';
+import { mergeProps } from '@base-ui/react/merge-props';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import type { Theme } from '../styles';
 import ListContext from '../List/ListContext';
 import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
-import type { StateClassName } from './menu2Utils';
+import mergeSlotProps from '../utils/mergeSlotProps';
+import useSlot from '../utils/useSlot';
+import type { Menu2RootSlotProps, Menu2RootSlots, StateClassName } from './menu2Utils';
 import { getMenu2RootRender, mergeStateClassName } from './menu2Utils';
 
 // The owner state from the props. Each part adds the live Base UI state.
@@ -199,12 +203,14 @@ export interface Menu2ItemRootSlotProps<OwnerState extends object> {
     React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, OwnerState> | undefined;
   internalRenderState?: OwnerState | undefined;
   nativeButton?: boolean | undefined;
+  slots?: Menu2RootSlots | undefined;
+  slotProps?: Menu2RootSlotProps<OwnerState> | undefined;
   sx?: SxProps<Theme> | undefined;
   startIndicator?: React.ReactNode;
   endIndicator?: React.ReactNode;
 }
 
-// All item parts use the live Base UI state for their root styles.
+// Resolve root slots with live Base UI state, like the default root styles.
 export function Menu2ItemRootSlot<OwnerState extends object>(
   props: Menu2ItemRootSlotProps<OwnerState>,
 ) {
@@ -219,27 +225,38 @@ export function Menu2ItemRootSlot<OwnerState extends object>(
     internalRenderState,
     nativeButton,
     ownerState,
+    slotProps,
+    slots,
     startIndicator,
     sx,
   } = props;
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType,
+    externalForwardedProps: { slots, slotProps: { root: rootSlotProps } },
+    ownerState,
+    className: undefined,
+    ref: null,
+    // Base UI lets an external handler cancel its internal handler.
+    getSlotProps: (handlers): HTMLProps => mergeProps(baseProps, handlers),
+    // Only the default root uses ButtonBase and the Material render adapter.
+    internalForwardedProps: {
+      component: component ?? defaultComponent,
+      ...(internalRender && { internalRender, internalRenderState }),
+      // Leave the ButtonBase theme default intact when the prop is omitted.
+      ...(disableRipple !== undefined && { disableRipple }),
+      ...(nativeButton !== undefined && { nativeButton }),
+    },
+  });
 
-  return getMenu2RootRender(elementType, ownerState, {
-    ...baseProps,
-    sx,
-    ...(internalRender && { internalRender, internalRenderState }),
-    // ButtonBase renders a <button> by default; the items keep their element.
-    component: component ?? defaultComponent,
-    // Pass it only when the caller sets it. An explicit prop beats the
-    // `MuiButtonBase` default props, so ButtonBase resolves the default.
-    ...(disableRipple !== undefined && { disableRipple }),
-    // ButtonBase cannot infer it from a custom `component`.
-    ...(nativeButton !== undefined && { nativeButton }),
+  return getMenu2RootRender(RootSlot, ownerState, {
+    ...rootProps,
     // Base UI owns the Enter and Space activation of the item.
-    ...suppressButtonBaseKeyboardActivation(baseProps),
+    ...suppressButtonBaseKeyboardActivation(rootProps),
     children: (
       <React.Fragment>
         {startIndicator}
-        {baseProps.children}
+        {rootProps.children}
         {endIndicator}
       </React.Fragment>
     ),

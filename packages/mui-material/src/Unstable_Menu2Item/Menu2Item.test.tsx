@@ -3,12 +3,13 @@ import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import type { BaseUIEvent } from '@base-ui/react/types';
 import Tooltip from '@mui/material/Tooltip';
 import { touchRippleClasses } from '@mui/material/ButtonBase';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
-import type { Menu2ItemProps } from '@mui/material/Unstable_Menu2Item';
+import type { Menu2ItemOwnerState, Menu2ItemProps } from '@mui/material/Unstable_Menu2Item';
 import Menu2Item, { menu2ItemClasses as classes } from '@mui/material/Unstable_Menu2Item';
 import describeConformance from '../../test/describeConformance';
 
@@ -25,7 +26,8 @@ describe('<Menu2Item />', () => {
       ),
     getRootElement: ({ baseElement }) => baseElement.querySelector(`.${classes.root}`),
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'slotsProp'],
+    skip: ['componentProp'],
+    slots: { root: { expectedClassName: classes.root } },
     muiName: 'MuiMenu2Item',
     testVariantProps: { dense: true },
   }));
@@ -33,6 +35,7 @@ describe('<Menu2Item />', () => {
   it('forwards DOM props and refs to a custom render element without internal props', async () => {
     let received: string[] = [];
     const rootRef = React.createRef<HTMLElement>();
+    const slotRef = React.createRef<HTMLDivElement>();
     const renderRef = React.createRef<HTMLDivElement>();
     const CustomRoot = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
       function CustomRoot(props, ref) {
@@ -44,7 +47,11 @@ describe('<Menu2Item />', () => {
     render(
       <Menu2 defaultOpen modal={false}>
         <Menu2Popup anchor={document.body}>
-          <Menu2Item ref={rootRef} render={<CustomRoot ref={renderRef} data-custom="value" />}>
+          <Menu2Item
+            ref={rootRef}
+            render={<CustomRoot ref={renderRef} data-custom="value" />}
+            slotProps={{ root: { ref: slotRef } }}
+          >
             Item
           </Menu2Item>
         </Menu2Popup>
@@ -53,6 +60,7 @@ describe('<Menu2Item />', () => {
 
     const item = await screen.findByRole('menuitem', { name: 'Item' });
     expect(rootRef.current).to.equal(item);
+    expect(slotRef.current).to.equal(item);
     expect(renderRef.current).to.equal(item);
     expect(item).to.have.attribute('data-custom', 'value');
     expect(received).to.include('className');
@@ -82,7 +90,15 @@ describe('<Menu2Item />', () => {
               dense
               className="external-item"
               render={<li className="custom-item" />}
-              sx={[false, (t) => ({ paddingLeft: t.spacing(3) })]}
+              sx={[false, (t) => ({ paddingLeft: t.spacing(3), paddingRight: t.spacing(2) })]}
+              style={{ marginLeft: 7, marginRight: 11 }}
+              slotProps={{
+                root: {
+                  className: 'slot-item',
+                  style: { marginRight: 13 },
+                  sx: { paddingLeft: '35px' },
+                },
+              }}
             >
               Item
             </Menu2Item>
@@ -98,12 +114,277 @@ describe('<Menu2Item />', () => {
     expect(item).to.have.class('MuiButtonBase-root');
     expect(item).to.have.class('custom-item');
     expect(item).to.have.class('external-item');
+    expect(item).to.have.class('slot-item');
     expect(item).not.to.have.attribute('sx');
     const styles = getComputedStyle(item);
     expect(styles.display).to.equal('flex');
     expect(styles.paddingTop).to.equal('21px');
     expect(styles.paddingBottom).to.equal('19px');
-    expect(styles.paddingLeft).to.equal('30px');
+    expect(styles.paddingLeft).to.equal('35px');
+    expect(styles.paddingRight).to.equal('20px');
+    expect(styles.marginLeft).to.equal('7px');
+    expect(styles.marginRight).to.equal('13px');
+  });
+
+  describe('root slot', () => {
+    it('replaces the styled root without Material styles or ripple', async () => {
+      const rootRef = React.createRef<HTMLElement>();
+      const slotRef = React.createRef<HTMLDivElement>();
+      const theme = createTheme({
+        components: {
+          MuiMenu2Item: { styleOverrides: { root: { paddingTop: '21px' } } },
+        },
+      });
+      const { user, unmount } = render(
+        <ThemeProvider theme={theme}>
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>
+              <Menu2Item
+                ref={rootRef}
+                dense
+                divider
+                closeOnClick={false}
+                className="external-item"
+                slots={{ root: 'div' }}
+                slotProps={{
+                  root: { ref: slotRef, className: 'slot-item', 'data-custom': 'value' },
+                }}
+                sx={{ paddingLeft: '31px' }}
+              >
+                Item
+              </Menu2Item>
+            </Menu2Popup>
+          </Menu2>
+        </ThemeProvider>,
+      );
+
+      const item = screen.getByRole('menuitem', { name: 'Item' });
+      expect(rootRef.current).to.equal(item);
+      expect(slotRef.current).to.equal(item);
+      expect(item).to.have.class(classes.root);
+      expect(item).to.have.class(classes.dense);
+      expect(item).to.have.class(classes.divider);
+      expect(item).to.have.class('external-item');
+      expect(item).to.have.class('slot-item');
+      expect(item).to.have.attribute('data-custom', 'value');
+      expect(item).not.to.have.class('MuiButtonBase-root');
+      expect(getComputedStyle(item).display).not.to.equal('flex');
+      expect(getComputedStyle(item).paddingTop).not.to.equal('21px');
+      expect(getComputedStyle(item).paddingLeft).not.to.equal('31px');
+      for (const attribute of ['sx', 'ownerstate', 'component', 'disableripple', 'nativebutton']) {
+        expect(item).not.to.have.attribute(attribute);
+      }
+
+      await user.pointer({ keys: '[MouseLeft>]', target: item });
+      expect(item.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
+      await user.pointer({ keys: '[/MouseLeft]', target: item });
+
+      unmount();
+      expect(rootRef.current).to.equal(null);
+      expect(slotRef.current).to.equal(null);
+    });
+
+    it('uses a custom root instead of render without forwarding default-root props', () => {
+      let received: string[] = [];
+      const renderItem = vi.fn(() => <div />);
+      const CustomRoot = React.forwardRef<
+        HTMLDivElement,
+        React.HTMLAttributes<HTMLDivElement> & { ownerState?: Menu2ItemOwnerState; sx?: unknown }
+      >(function CustomRoot({ ownerState, sx, ...props }, ref) {
+        received = Object.keys(props);
+        return <div {...props} ref={ref} data-custom-dense={String(ownerState?.dense)} />;
+      });
+      render(
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item dense disableRipple slots={{ root: CustomRoot }} render={renderItem}>
+              Item
+            </Menu2Item>
+          </Menu2Popup>
+        </Menu2>,
+      );
+
+      const item = screen.getByRole('menuitem', { name: 'Item' });
+      expect(item).to.have.attribute('data-custom-dense', 'true');
+      expect(item).to.have.class(classes.root);
+      expect(item).not.to.have.class('MuiButtonBase-root');
+      expect(renderItem).not.toHaveBeenCalled();
+      expect(received).to.include('className');
+      for (const prop of [
+        'internalRender',
+        'internalRenderState',
+        'component',
+        'disableRipple',
+        'nativeButton',
+      ]) {
+        expect(received).not.to.include(prop);
+      }
+    });
+
+    it.skipIf(isJsdom())('updates slot state without replacing the focused root', async () => {
+      const { user } = render(
+        <Menu2>
+          <Menu2Trigger render={<button type="button">Options</button>} />
+          <Menu2Popup transitionDuration={0} slotProps={{ list: { dense: true } }}>
+            <Menu2Item>Before</Menu2Item>
+            <Menu2Item
+              divider
+              disableGutters
+              slots={{ root: 'div' }}
+              slotProps={{
+                root: (state) => ({
+                  'data-slot-highlighted': String(state.highlighted),
+                  'data-slot-disabled': String(state.disabled),
+                  'data-slot-dense': String(state.dense),
+                  'data-slot-divider': String(state.divider),
+                  'data-slot-gutters': String(state.disableGutters),
+                }),
+              }}
+            >
+              Item
+            </Menu2Item>
+            <Menu2Item>After</Menu2Item>
+          </Menu2Popup>
+        </Menu2>,
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      const item = await screen.findByRole('menuitem', { name: 'Item' });
+      await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
+      expect(item).to.have.attribute('data-slot-highlighted', 'false');
+      expect(item).to.have.attribute('data-slot-disabled', 'false');
+      expect(item).to.have.attribute('data-slot-dense', 'true');
+      expect(item).to.have.attribute('data-slot-divider', 'true');
+      expect(item).to.have.attribute('data-slot-gutters', 'true');
+
+      await user.keyboard('{ArrowDown}{ArrowDown}');
+      await waitFor(() => expect(item).toHaveFocus());
+      expect(item).to.have.attribute('data-slot-highlighted', 'true');
+      expect(item).to.have.attribute('data-highlighted');
+      expect(item).to.have.class(classes.highlighted);
+      expect(screen.getByRole('menuitem', { name: 'Item' })).to.equal(item);
+
+      await user.keyboard('{ArrowDown}');
+      await waitFor(() => expect(item).to.have.attribute('data-slot-highlighted', 'false'));
+      expect(item).not.to.have.attribute('data-highlighted');
+      expect(screen.getByRole('menuitem', { name: 'Item' })).to.equal(item);
+    });
+
+    const CustomButton = React.forwardRef<
+      HTMLButtonElement,
+      React.ButtonHTMLAttributes<HTMLButtonElement> & { ownerState?: object; sx?: unknown }
+    >(function CustomButton({ ownerState, sx, ...props }, ref) {
+      return <button {...props} ref={ref} />;
+    });
+
+    (
+      [
+        { name: 'host div', root: 'div', nativeButton: undefined },
+        { name: 'host button', root: 'button', nativeButton: undefined },
+        { name: 'custom button', root: CustomButton, nativeButton: true },
+      ] as const
+    ).forEach(({ name, root, nativeButton }) => {
+      it(`merges handlers and activates once per key or click with a ${name}`, async () => {
+        const onClick = vi.fn();
+        const onSlotClick = vi.fn();
+        const { user } = render(
+          <Menu2 defaultOpen modal={false}>
+            <Menu2Popup anchor={document.body}>
+              <Menu2Item
+                nativeButton={nativeButton}
+                closeOnClick={false}
+                onClick={onClick}
+                render={root === 'div' ? <button /> : <div />}
+                slots={{ root }}
+                slotProps={{ root: { onClick: onSlotClick } }}
+              >
+                Item
+              </Menu2Item>
+            </Menu2Popup>
+          </Menu2>,
+        );
+
+        const item = screen.getByRole('menuitem', { name: 'Item' });
+        expect(item.tagName).to.equal(root === 'div' ? 'DIV' : 'BUTTON');
+        await act(async () => item.focus());
+        await user.keyboard('[Space][Enter]');
+        await user.click(item);
+        expect(onClick).toHaveBeenCalledTimes(3);
+        expect(onSlotClick).toHaveBeenCalledTimes(3);
+        expect(screen.getByRole('menu')).not.to.equal(null);
+      });
+    });
+
+    it('closes by default when a replacement root is activated', async () => {
+      const onOpenChange = vi.fn();
+      const { user } = render(
+        <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item slots={{ root: 'div' }}>Item</Menu2Item>
+          </Menu2Popup>
+        </Menu2>,
+      );
+
+      const item = screen.getByRole('menuitem', { name: 'Item' });
+      await act(async () => item.focus());
+      await user.keyboard('[Enter]');
+
+      await waitFor(() => expect(screen.queryByRole('menu')).to.equal(null));
+      expect(onOpenChange).toHaveBeenCalledTimes(1);
+      expect(onOpenChange.mock.calls[0][0]).to.equal(false);
+      expect(onOpenChange.mock.calls[0][1].reason).to.equal('item-press');
+    });
+
+    it('lets a root slot handler cancel Base UI activation', async () => {
+      const onClick = vi.fn();
+      const onOpenChange = vi.fn();
+      const onSlotClick = vi.fn((event: React.MouseEvent<HTMLDivElement>) => {
+        (event as BaseUIEvent<typeof event>).preventBaseUIHandler();
+      });
+      const { user } = render(
+        <Menu2 defaultOpen modal={false} onOpenChange={onOpenChange}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item
+              onClick={onClick}
+              slots={{ root: 'div' }}
+              slotProps={{ root: { onClick: onSlotClick } }}
+            >
+              Item
+            </Menu2Item>
+          </Menu2Popup>
+        </Menu2>,
+      );
+
+      await user.click(screen.getByRole('menuitem', { name: 'Item' }));
+      expect(onSlotClick).toHaveBeenCalledTimes(1);
+      expect(onClick).not.toHaveBeenCalled();
+      expect(onOpenChange).not.toHaveBeenCalled();
+      expect(screen.getByRole('menu')).not.to.equal(null);
+    });
+
+    it('keeps a disabled replacement focusable without activation', async () => {
+      const onClick = vi.fn();
+      const { user } = render(
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item disabled onClick={onClick} slots={{ root: 'div' }}>
+              Item
+            </Menu2Item>
+          </Menu2Popup>
+        </Menu2>,
+      );
+
+      const item = screen.getByRole('menuitem', { name: 'Item' });
+      expect(item).to.have.attribute('aria-disabled', 'true');
+      expect(item).to.have.attribute('data-disabled');
+      expect(item).to.have.class(classes.disabled);
+      await act(async () => item.focus());
+      expect(item).toHaveFocus();
+      await user.keyboard('[Space][Enter]');
+      await user.click(item);
+      expect(onClick).not.toHaveBeenCalled();
+      expect(screen.getByRole('menu')).not.to.equal(null);
+    });
   });
 
   it.skipIf(isJsdom())('updates render state without replacing the focused item', async () => {

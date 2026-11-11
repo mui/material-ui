@@ -13,6 +13,11 @@ import type { Menu2GroupOwnerState } from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import type { Menu2GroupLabelOwnerState } from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import type {
+  Menu2ItemOwnerState,
+  Menu2ItemSlotProps,
+  Menu2ItemSlots,
+} from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
@@ -336,12 +341,60 @@ const CustomButton = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
   Button item
 </Menu2Item>;
 <Menu2Item nativeButton render={(props) => <CustomButton {...props} />} />;
-// @ts-expect-error Use render to select the item root.
+
+const menuItemSlots = { root: 'li' } satisfies Menu2ItemSlots;
+const menuItemSlotProps: Menu2ItemSlotProps = {
+  root: (ownerState) => {
+    ownerState satisfies Menu2ItemOwnerState;
+    ownerState.highlighted satisfies boolean;
+    ownerState.disabled satisfies boolean;
+    ownerState.dense satisfies boolean;
+    ownerState.disableGutters satisfies boolean;
+    ownerState.divider satisfies boolean;
+    // @ts-expect-error Highlighted is a boolean.
+    ownerState.highlighted satisfies string;
+    // @ts-expect-error Item state does not include an open state.
+    ownerState.open satisfies boolean;
+    return {
+      ref: React.createRef<HTMLDivElement>(),
+      title: 'Item',
+      'data-highlighted': ownerState.highlighted,
+      sx: { px: ownerState.dense ? 1 : 2 },
+    };
+  },
+};
+<Menu2Item slots={menuItemSlots} slotProps={menuItemSlotProps} />;
+<Menu2Item
+  slotProps={{
+    root: {
+      id: 'custom-item',
+      title: 'Item',
+      tabIndex: -1,
+      'aria-label': 'Item',
+      'data-testid': 'item-root',
+      style: { color: 'red' },
+      sx: { py: 1 },
+      ref: (node) => {
+        node satisfies HTMLDivElement | null;
+        // @ts-expect-error The default root ref does not point to an SVG element.
+        node satisfies SVGElement | null;
+      },
+      onClick: (event) => {
+        event.currentTarget satisfies EventTarget & HTMLDivElement;
+      },
+    },
+  }}
+/>;
+<Menu2Item slots={{ root: 'li' }} render={<div />}>
+  Replacement root
+</Menu2Item>;
+
+// @ts-expect-error Use render or slots.root instead of component.
 <Menu2Item component="li" />;
-// @ts-expect-error Use render instead of the root slot.
-<Menu2Item slots={{ root: 'li' }} />;
-// @ts-expect-error Put root props on the item or its render element.
-<Menu2Item slotProps={{ root: { title: 'Item' } }} />;
+// @ts-expect-error Root slots require a component type, not an element.
+<Menu2Item slots={{ root: <div /> }} />;
+// @ts-expect-error The root slot does not expose a component prop.
+<Menu2Item slotProps={{ root: { component: 'li' } }} />;
 // @ts-expect-error Put element-specific attributes on the render element.
 <Menu2Item href="/profile" />;
 // @ts-expect-error The render prop requires an element or a callback.
@@ -438,6 +491,21 @@ const CustomIndicatorIcon = React.forwardRef<SVGSVGElement, CustomIndicatorIconP
 
 createTheme({
   components: {
+    MuiMenu2Item: {
+      defaultProps: {
+        slots: { root: 'div' },
+        slotProps: {
+          root: (ownerState) => {
+            ownerState.highlighted satisfies boolean;
+            ownerState.dense satisfies boolean;
+            return {
+              'data-highlighted': ownerState.highlighted,
+              sx: { px: ownerState.dense ? 1 : 2 },
+            };
+          },
+        },
+      },
+    },
     MuiMenu2GroupLabel: {
       defaultProps: {
         color: 'primary',

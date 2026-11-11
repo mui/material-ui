@@ -342,10 +342,17 @@ Put custom component props on the supplied element:
 +<MenuItem render={<li />}>File</MenuItem>
 ```
 
-These parts have no root slot API.
-Put root attributes on the item or its render element instead of `slotProps.root`.
+Put root attributes on the item or its render element.
 A render function also receives the typed item state.
 Forward its supplied props, ref, and children to the root element to preserve Material styles, indicators, and ripple.
+
+`MenuItem` also accepts `slotProps.root` for attributes, a ref, and `sx` on the default styled root.
+Its callback receives the live item state.
+Use `slots.root` to replace that root and its render adapter; it takes precedence over `render`.
+A replacement must forward behavior props, ref, and children.
+Utility classes remain, but default Material styles, theme style overrides, ripple, and `sx` processing are not added automatically.
+The other item parts do not have a root slot.
+
 Checkbox and radio items have separate `indicator` and `indicatorIcon` slots for the container and icon.
 `MenuSubmenuTrigger` keeps its `indicator` slot and accepts `slots={{ indicator: null }}` to omit it.
 See [Item customization](/material-ui/react-menu2/#item).
@@ -368,7 +375,7 @@ These item props work as before:
   See [Behavior changes](#behavior-changes).
   `MenuLinkItem` does not support this prop.
 - `disableRipple` is unchanged.
-  The item root is a `ButtonBase`, so items ripple as before.
+  The default item root is a `ButtonBase`, so items ripple as before.
 
 These `MenuList` props move or change:
 
@@ -425,7 +432,7 @@ Menu v2 has separate theme keys for behavior and presentation:
 - `MuiMenu2Popup` and `MuiMenu2SubmenuPopup` style the popups.
   `MuiMenu2Popup` styles also apply to the matching submenu popup slots.
 - Each item part has its own key, such as `MuiMenu2Item`.
-  `MuiMenu2Item` styles apply to all item roots.
+  `MuiMenu2Item` styles apply to the default styled item roots.
 - `MuiMenu2Trigger` supports `defaultProps` only, such as `openOnHover`.
   The trigger element keeps its own styles.
   Theme its component, or style the `.MuiMenu2Trigger-root` class.

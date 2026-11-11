@@ -2,6 +2,9 @@ import * as React from 'react';
 import clsx from 'clsx';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '../styles';
+import type { SlotComponentProps } from '../utils/types';
 
 // One log per component for each warning, so a bad trigger does not spam the
 // console on every render.
@@ -75,6 +78,24 @@ export function mergeStateClassName<State>(
 
 export type SlotProps<SlotPropsValue, OwnerState> =
   SlotPropsValue | ((ownerState: OwnerState) => SlotPropsValue) | undefined;
+
+export interface Menu2RootSlots {
+  root?: React.ElementType | undefined;
+}
+
+interface Menu2RootVisualProps {
+  sx?: SxProps<Theme> | undefined;
+}
+
+export interface Menu2RootSlotProps<OwnerState> {
+  root?:
+    | SlotComponentProps<
+        'div',
+        Menu2RootVisualProps | (Menu2RootVisualProps & { [attribute: `data-${string}`]: unknown }),
+        OwnerState
+      >
+    | undefined;
+}
 
 export function getMenu2RootRender<OwnerState>(
   RootSlot: React.ElementType,

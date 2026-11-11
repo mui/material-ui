@@ -84,7 +84,7 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 
 ### Rules for Base UI-backed components (Menu is the first)
 
-- **Customization:** use `render` for `Menu2Trigger`, groups, labels, separators, and all item roots, including `Menu2SubmenuTrigger`. Items keep Material styles, indicators, and ripple without a `component` prop or root slot API. Forward the supplied children to keep indicators and ripple. Use Material UI `slots`/`slotProps` for internal parts, such as popup layers and indicators.
+- **Customization:** use `render` for `Menu2Trigger`, groups, labels, separators, and all item roots, including `Menu2SubmenuTrigger`. Items keep Material styles, indicators, and ripple without a `component` prop. Forward the supplied children to keep indicators and ripple. `Menu2Item` also provides `slots.root` to replace its styled root. Use Material UI `slots`/`slotProps` for popup layers and indicators.
 - **Slot handling:** use `useSlot` for the popup list. At Base UI render boundaries, reuse `appendOwnerState`, `resolveComponentProps`, and Material UI's `mergeSlotProps`. Use Base UI's `mergeProps` for behavioral props and compose refs. Keep adapters local until another integration needs them. These adapters filter Material props from host elements, combine state-based classes, infer native buttons, and prevent duplicate keyboard activation.
 - **Style reuse:** share styled elements where practical; otherwise share style functions. Audit each consumer. Viewport-relative heights and item-adjacent divider rules do not transfer unchanged to Base UI's popup tree. New parts own their spacing; use `Menu2Separator` between items.
 - **Presentation:** retain `dense`, `disableGutters`, and `divider`. Omit the visual-only `selected` prop; checkbox and radio items express checked state. Base UI owns behavior; Material UI owns styles.
@@ -130,7 +130,9 @@ A registered trigger supplies these handlers and focuses the first enabled item 
 
 #### Customization targets
 
-`Menu2Item` renders a styled `div` by default. Its optional `render` prop accepts an element or a function with props and typed item state. Custom renderers must forward props, ref, and children to preserve the ripple. Root attributes belong on the item or the supplied element; element-specific props and refs belong on that element. The `MuiMenu2Item` theme key and utility classes stay unchanged.
+`Menu2Item` renders a styled `div` by default. Its optional `render` prop accepts an element or a function with props and typed item state. Custom renderers must forward props, ref, and children to preserve Material styles and ripple. Root attributes belong on the item, `slotProps.root`, or the supplied element; element-specific props and refs belong on that element. The `MuiMenu2Item` theme key and utility classes stay unchanged.
+
+Use `slotProps.root` for HTML attributes, a ref, and `sx` on the default styled root. Its callback receives live item state, including `highlighted`. To replace the styled root and its render adapter, use `slots.root`. This slot takes precedence over `render`. The replacement must forward behavior props, ref, and children. Utility classes and Base UI data attributes remain, but default Material styles, theme style overrides, ripple, and `sx` processing are not added automatically. This root-slot API applies only to `Menu2Item`; other item parts keep their current render contract.
 
 Checkbox and radio items use the same render contract, with `checked` in the render state. Forward the supplied children to keep both the indicator and ripple. The `indicator` slot remains available for separate customization.
 
@@ -146,7 +148,7 @@ Separator appearance uses `absolute`, `flexItem`, `textAlign`, and `variant`, wi
 
 `MuiMenu2` and `MuiMenu2Submenu` configure behavioral `defaultProps`. They have no DOM ref, `sx`, slots, style overrides, or theme variants. `MuiMenu2Trigger` also supports `defaultProps` only. The surface theme keys are `MuiMenu2Popup` and `MuiMenu2SubmenuPopup`, with their own exported class hooks.
 
-Submenu popups inherit `MuiMenu2Popup` styles for their matching slots. All item roots inherit `MuiMenu2Item` styles. Shared overrides and variants apply first, then the component-specific theme styles, with `sx` last. CSS specificity still applies. Callbacks use the rendered component's state. Utility classes remain component-specific, and `defaultProps` do not pass between theme keys.
+Submenu popups inherit `MuiMenu2Popup` styles for their matching slots. Default styled item roots inherit `MuiMenu2Item` styles. Shared overrides and variants apply first, then the component-specific theme styles, with `sx` last. CSS specificity still applies. Callbacks use the rendered component's state. Utility classes remain component-specific, and `defaultProps` do not pass between theme keys.
 
 Use class selectors in `styleOverrides.root` for the highlighted state. Items retain the `dense`, `divider`, and `gutters` override keys from the classic MenuItem. The utility classes stay available; the classic MenuItem theme API is unchanged.
 
@@ -246,7 +248,7 @@ These choices are proposed for maintainer review.
 | Topic              | Decision and limit                                                                                                                                                                                             |
 | :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Animation          | Grow by default. Base UI owns mounting and completion. Compatible transition components or CSS remain options. See the transition contract below.                                                              |
-| Ripple             | Keep ButtonBase as the item root, not a nested interactive child. Forward `disableRipple` only when supplied so theme defaults apply. Base UI owns Enter and Space activation.                                 |
+| Ripple             | Keep ButtonBase as the default item root, not a nested interactive child. Forward `disableRipple` only when supplied so theme defaults apply. Base UI owns Enter and Space activation.                         |
 | Elevation          | Keep the popup's `elevation` prop, default 8, with a root slot override.                                                                                                                                       |
 | Backdrop           | A modal root menu renders a transparent backdrop that blocks outside clicks. Slots and slot props customize it. `slots.backdrop: null` omits it. No submenu backdrop.                                          |
 | Imperative actions | Keep Base UI's `actionsRef`, which exposes `close()` and `unmount()`. There is no `action.updatePosition()` equivalent.                                                                                        |

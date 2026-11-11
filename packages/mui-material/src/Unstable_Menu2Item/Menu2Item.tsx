@@ -22,17 +22,31 @@ import {
 } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2ItemClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2ItemUtilityClass } from '../Unstable_Menu2/menu2Classes';
+import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 
 export interface Menu2ItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether Base UI currently highlights the item. */
   highlighted: boolean;
 }
 
+export interface Menu2ItemSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2ItemRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2ItemSlotProps {
+  root?: Menu2RootSlotProps<Menu2ItemOwnerState>['root'] | undefined;
+}
+
 export interface Menu2ItemProps
   extends
     Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
     Menu2ItemBaseProps,
-    Omit<Menu2ItemVisualProps<Menu2ItemClasses>, 'slots' | 'slotProps'> {
+    Menu2ItemVisualProps<Menu2ItemClasses, Menu2ItemSlots, Menu2ItemSlotProps> {
   /**
    * The content of the component.
    */
@@ -62,7 +76,7 @@ export interface Menu2ItemProps
   disableRipple?: boolean | undefined;
   /**
    * Whether the item renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
    * Set to `true` for a custom component or render function that returns a button.
    * @default false
    */
@@ -71,6 +85,7 @@ export interface Menu2ItemProps
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to the element to preserve Material styles and ripple.
    * Put content in the children prop of Menu2Item. Replacing the supplied children can remove the ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
     | React.ReactElement
@@ -114,6 +129,8 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     divider = false,
     nativeButton: nativeButtonProp,
     render: renderProp,
+    slots,
+    slotProps,
     sx,
     style,
     ...other
@@ -130,7 +147,10 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     getMenu2ItemUtilityClass,
   );
   const nativeButton =
-    nativeButtonProp ?? (React.isValidElement(renderProp) && renderProp.type === 'button');
+    nativeButtonProp ??
+    (slots?.root
+      ? slots.root === 'button'
+      : React.isValidElement(renderProp) && renderProp.type === 'button');
 
   return (
     <ListContext.Provider value={childContext}>
@@ -152,6 +172,8 @@ const Menu2Item = React.forwardRef(function Menu2Item(
               divider,
               highlighted: state.highlighted,
             }}
+            slots={slots}
+            slotProps={slotProps}
             sx={sx}
           />
         )}
@@ -218,7 +240,7 @@ Menu2Item.propTypes /* remove-proptypes */ = {
   label: PropTypes.string,
   /**
    * Whether the item renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
    * Set to `true` for a custom component or render function that returns a button.
    * @default false
    */
@@ -227,8 +249,21 @@ Menu2Item.propTypes /* remove-proptypes */ = {
    * The element to render, or a function that returns it.
    * Forward the props, ref, and children to the element to preserve Material styles and ripple.
    * Put content in the children prop of Menu2Item. Replacing the supplied children can remove the ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * Styles applied to the root element.
    */
