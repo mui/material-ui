@@ -140,7 +140,7 @@ describe('useRovingTabIndexRoot + useRovingTabIndexItem', () => {
     expect(screen.getByTestId('button-4')).to.have.attribute('tabindex', '0');
   });
 
-  test('moves to the previous focusable item when the requested last item is disabled', () => {
+  test('wraps to the first focusable item when the requested last item is disabled', () => {
     render(
       <TestComponent
         items={[{ id: 'button-1' }, { id: 'button-2' }, { id: 'button-3', disabled: true }]}
@@ -148,7 +148,8 @@ describe('useRovingTabIndexRoot + useRovingTabIndexItem', () => {
       />,
     );
 
-    expect(screen.getByTestId('button-2')).to.have.attribute('tabindex', '0');
+    expect(screen.getByTestId('button-1')).to.have.attribute('tabindex', '0');
+    expect(screen.getByTestId('button-2')).to.have.attribute('tabindex', '-1');
     expect(screen.getByTestId('button-3')).to.have.attribute('tabindex', '-1');
   });
 
