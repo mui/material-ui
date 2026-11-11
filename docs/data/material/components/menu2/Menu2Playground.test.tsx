@@ -399,7 +399,7 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
   ['plain div', 'full playground'].forEach((content) => {
     it(`records render-only frames for ${content}`, async () => {
       await traceFrames(`render-only ${content} before render`);
-      const { container } = render(
+      const { baseElement, container } = render(
         content === 'plain div' ? (
           <div>Frame delivery control</div>
         ) : (
@@ -409,6 +409,51 @@ describe.skipIf(isJsdom())('Menu2 playground backdrop settings', () => {
       await act(async () => {
         await traceFrames(`render-only ${content} after render`);
       });
+      if (content === 'full playground') {
+        // Read DOM only after the probe. Do not add layout reads or component imports.
+        function readElements(selector: string) {
+          const elements = Array.from(baseElement.querySelectorAll(selector));
+          return {
+            count: elements.length,
+            elements: elements.slice(0, 20).map((element) => ({
+              tag: element.tagName,
+              id: element.id,
+              className: element.getAttribute('class'),
+              hidden: element.hasAttribute('hidden'),
+              ariaHidden: element.getAttribute('aria-hidden'),
+              open: element.hasAttribute('data-open'),
+              closed: element.hasAttribute('data-closed'),
+              starting: element.hasAttribute('data-starting-style'),
+              ending: element.hasAttribute('data-ending-style'),
+            })),
+          };
+        }
+
+        const dom = {
+          basePortals: readElements('[data-base-ui-portal]'),
+          portals: readElements(
+            `.${menu2PopupClasses.portal}, .MuiMenu2SubmenuPopup-portal`,
+          ),
+          positioners: readElements(
+            `.${menu2PopupClasses.positioner}, .MuiMenu2SubmenuPopup-positioner`,
+          ),
+          popups: readElements(
+            `.${menu2PopupClasses.root}, .MuiMenu2SubmenuPopup-root`,
+          ),
+          backdrops: readElements(`.${menu2PopupClasses.backdrop}`),
+        };
+        const triggers = Array.from(
+          baseElement.querySelectorAll('.MuiMenu2Trigger-root'),
+          (trigger) => ({
+            name: trigger.textContent?.trim(),
+            expanded: trigger.getAttribute('aria-expanded'),
+            controls: trigger.getAttribute('aria-controls'),
+          }),
+        );
+        console.info(
+          `Menu2 unwrapped DOM after frame probe:\n${JSON.stringify({ dom, triggers })}`,
+        );
+      }
       // Record frame delivery without asserting a timing limit.
       expect(container.firstElementChild).not.to.equal(null);
     });
