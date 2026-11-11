@@ -1,7 +1,7 @@
 import InputAdornment from '../../InputAdornment';
 
 import { styled } from '../../zero-styled';
-import type { ControlsPosition, NumberFieldOwnerState } from '../NumberField.types';
+import type { NumberFieldOwnerState } from '../NumberField.types';
 import type { NumberFieldClasses } from '../numberFieldClasses';
 
 const Controls = styled(InputAdornment, {
@@ -24,7 +24,7 @@ const Controls = styled(InputAdornment, {
 });
 
 interface GetControlElementsOptions {
-  controlsPosition: ControlsPosition;
+  controlsPosition: NumberFieldOwnerState['controlsPosition'];
   IncrementButton: React.ReactNode;
   DecrementButton: React.ReactNode;
   classes: Pick<NumberFieldClasses, 'controls'>;
