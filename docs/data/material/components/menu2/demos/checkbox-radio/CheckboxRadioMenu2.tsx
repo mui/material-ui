@@ -16,7 +16,7 @@ export default function CheckboxRadioMenu2() {
   const [zoom, setZoom] = React.useState('fit');
 
   return (
-    <Stack direction="row" spacing={2} useFlexGap>
+    <Stack direction="row" spacing={2}>
       <Menu>
         <MenuTrigger render={<Button>View</Button>} />
         <MenuPopup>

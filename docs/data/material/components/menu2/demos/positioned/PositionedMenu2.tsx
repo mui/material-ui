@@ -20,8 +20,8 @@ export default function PositionedMenu2() {
   const [alignOffset, setAlignOffset] = React.useState(0);
 
   return (
-    <Stack spacing={3} useFlexGap sx={{ width: '100%', maxWidth: 600 }}>
-      <Stack direction="row" spacing={2} useFlexGap>
+    <Stack spacing={3} sx={{ width: '100%', maxWidth: 600 }}>
+      <Stack direction="row" spacing={2}>
         <TextField
           select
           fullWidth
@@ -53,7 +53,7 @@ export default function PositionedMenu2() {
           ))}
         </TextField>
       </Stack>
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} useFlexGap>
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
         <Box sx={{ flex: 1 }}>
           <Typography id={`${id}-side-offset`} variant="body2">
             sideOffset: {sideOffset} px

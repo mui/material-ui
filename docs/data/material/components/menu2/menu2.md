@@ -335,7 +335,7 @@ The arrow transition follows [the reduced-motion setting](/material-ui/customiza
 :::warning
 While a menu or submenu is open, Base UI renders hidden `span` elements next to its trigger for focus and accessibility.
 CSS sibling selectors (`+`, `~`, `:last-child`) can match these elements.
-Style each part directly instead, and set `useFlexGap` on a `Stack` that contains menu triggers to prevent layout shifts.
+Style each part directly instead.
 The focus guards have a `data-base-ui-focus-guard` attribute.
 :::
 

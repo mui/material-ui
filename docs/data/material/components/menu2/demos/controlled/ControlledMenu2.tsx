@@ -14,7 +14,7 @@ export default function ControlledMenu2() {
   const [reason, setReason] = React.useState<string | null>(null);
 
   return (
-    <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
+    <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Menu
         open={open}
         onOpenChange={(nextOpen, eventDetails) => {

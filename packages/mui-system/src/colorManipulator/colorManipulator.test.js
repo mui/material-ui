@@ -18,7 +18,7 @@ import {
 
 describe('utils/colorManipulator', () => {
   describe('recomposeColor', () => {
-    it('converts a decomposed rgb color object to a string`', () => {
+    it('converts a decomposed rgb color object to a string', () => {
       expect(
         recomposeColor({
           type: 'rgb',
@@ -27,7 +27,7 @@ describe('utils/colorManipulator', () => {
       ).to.equal('rgb(255, 255, 255)');
     });
 
-    it('converts a decomposed rgba color object to a string`', () => {
+    it('converts a decomposed rgba color object to a string', () => {
       expect(
         recomposeColor({
           type: 'rgba',
@@ -36,7 +36,7 @@ describe('utils/colorManipulator', () => {
       ).to.equal('rgba(255, 255, 255, 0.5)');
     });
 
-    it('converts a decomposed CSS4 color object to a string`', () => {
+    it('converts a decomposed CSS4 color object to a string', () => {
       expect(
         recomposeColor({
           type: 'color',
@@ -46,7 +46,17 @@ describe('utils/colorManipulator', () => {
       ).to.equal('color(display-p3 0.5 0.3 0.2)');
     });
 
-    it('converts a decomposed hsl color object to a string`', () => {
+    it('converts a decomposed alpha CSS4 color object to a string', () => {
+      expect(
+        recomposeColor({
+          type: 'color',
+          colorSpace: 'display-p3',
+          values: [0.5, 0.3, 0.2, 0.4],
+        }),
+      ).to.equal('color(display-p3 0.5 0.3 0.2 /0.4)');
+    });
+
+    it('converts a decomposed hsl color object to a string', () => {
       expect(
         recomposeColor({
           type: 'hsl',
@@ -55,7 +65,7 @@ describe('utils/colorManipulator', () => {
       ).to.equal('hsl(100, 50%, 25%)');
     });
 
-    it('converts a decomposed hsla color object to a string`', () => {
+    it('converts a decomposed hsla color object to a string', () => {
       expect(
         recomposeColor({
           type: 'hsla',
@@ -66,25 +76,25 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('hexToRgb', () => {
-    it('converts a short hex color to an rgb color`', () => {
+    it('converts a short hex color to an rgb color', () => {
       expect(hexToRgb('#9f3')).to.equal('rgb(153, 255, 51)');
     });
 
-    it('converts a long hex color to an rgb color`', () => {
+    it('converts a long hex color to an rgb color', () => {
       expect(hexToRgb('#a94fd3')).to.equal('rgb(169, 79, 211)');
     });
 
-    it('converts a long alpha hex color to an argb color`', () => {
+    it('converts a long alpha hex color to an argb color', () => {
       expect(hexToRgb('#111111f8')).to.equal('rgba(17, 17, 17, 0.973)');
     });
   });
 
   describe('rgbToHex', () => {
-    it('converts an rgb color to a hex color`', () => {
+    it('converts an rgb color to a hex color', () => {
       expect(rgbToHex('rgb(169, 79, 211)')).to.equal('#a94fd3');
     });
 
-    it('converts an rgba color to a hex color`', () => {
+    it('converts an rgba color to a hex color', () => {
       expect(rgbToHex('rgba(169, 79, 211, 1)')).to.equal('#a94fd3ff');
     });
 
@@ -94,11 +104,11 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('hslToRgb', () => {
-    it('converts an hsl color to an rgb color`', () => {
+    it('converts an hsl color to an rgb color', () => {
       expect(hslToRgb('hsl(281, 60%, 57%)')).to.equal('rgb(169, 80, 211)');
     });
 
-    it('converts an hsla color to an rgba color`', () => {
+    it('converts an hsla color to an rgba color', () => {
       expect(hslToRgb('hsla(281, 60%, 57%, 0.5)')).to.equal('rgba(169, 80, 211, 0.5)');
     });
 
@@ -141,6 +151,13 @@ describe('utils/colorManipulator', () => {
 
     it('converts an alpha CSS4 color with color space display-3', () => {
       const { type, values, colorSpace } = decomposeColor('color(display-p3 0 1 0 /0.4)');
+      expect(type).to.equal('color');
+      expect(colorSpace).to.equal('display-p3');
+      expect(values).to.deep.equal([0, 1, 0, 0.4]);
+    });
+
+    it('converts an alpha CSS4 color with spaces around the slash', () => {
+      const { type, values, colorSpace } = decomposeColor('color(display-p3 0 1 0 / 0.4)');
       expect(type).to.equal('color');
       expect(colorSpace).to.equal('display-p3');
       expect(values).to.deep.equal([0, 1, 0, 0.4]);
@@ -282,6 +299,10 @@ describe('utils/colorManipulator', () => {
       expect(alpha('color(display-p3 1 2 3)', 0.4)).to.equal('color(display-p3 1 2 3 /0.4)');
     });
 
+    it('replaces the alpha of a CSS4 color with spaces around the slash', () => {
+      expect(alpha('color(display-p3 1 2 3 / 0.2)', 0.4)).to.equal('color(display-p3 1 2 3 /0.4)');
+    });
+
     it('updates an rgba color with the alpha value provided', () => {
       expect(alpha('rgba(255, 0, 0, 0.2)', 0.5)).to.equal('rgba(255, 0, 0, 0.5)');
     });
@@ -371,6 +392,15 @@ describe('utils/colorManipulator', () => {
     it("doesn't modify CSS4 color when coefficient is 0", () => {
       expect(darken('color(display-p3 1 0 0)', 0)).to.equal('color(display-p3 1 0 0)');
     });
+
+    it('keeps the alpha of a CSS4 color', () => {
+      expect(darken('color(display-p3 1 0 0 /0.4)', 0.5)).to.equal(
+        'color(display-p3 0.5 0 0 /0.4)',
+      );
+      expect(darken('color(display-p3 1 0 0 / 0.4)', 0.5)).to.equal(
+        'color(display-p3 0.5 0 0 /0.4)',
+      );
+    });
   });
 
   describe('lighten', () => {
@@ -433,34 +463,40 @@ describe('utils/colorManipulator', () => {
     it("doesn't modify CSS4 color when coefficient is 0", () => {
       expect(lighten('color(display-p3 1 0 0)', 0)).to.equal('color(display-p3 1 0 0)');
     });
+
+    it('keeps the alpha of a CSS4 color', () => {
+      expect(lighten('color(display-p3 1 0 0 /0.4)', 0.5)).to.equal(
+        'color(display-p3 1 0.5 0.5 /0.4)',
+      );
+    });
   });
 
   describe('colorChannel', () => {
-    it('converts a short hex color to a color channel`', () => {
+    it('converts a short hex color to a color channel', () => {
       expect(colorChannel('#9f3')).to.equal('153 255 51');
     });
 
-    it('converts a long hex color to a colorChannel`', () => {
+    it('converts a long hex color to a colorChannel', () => {
       expect(colorChannel('#a94fd3')).to.equal('169 79 211');
     });
 
-    it('converts a long alpha hex color to a color channel`', () => {
+    it('converts a long alpha hex color to a color channel', () => {
       expect(colorChannel('#111111f8')).to.equal('17 17 17');
     });
 
-    it('converts rgb to a color channel`', () => {
+    it('converts rgb to a color channel', () => {
       expect(colorChannel('rgb(169, 79, 211)')).to.equal('169 79 211');
     });
 
-    it('converts rgba to a color channel`', () => {
+    it('converts rgba to a color channel', () => {
       expect(colorChannel('rgba(255, 11, 13, 0.5)')).to.equal('255 11 13');
     });
 
-    it('converts hsl to a color channel`', () => {
+    it('converts hsl to a color channel', () => {
       expect(colorChannel('hsl(170, 45%, 50%)')).to.equal('170 45% 50%');
     });
 
-    it('converts hsla to a color channel`', () => {
+    it('converts hsla to a color channel', () => {
       expect(colorChannel('hsla(235, 100%, 50%, .5)')).to.equal('235 100% 50%');
     });
   });

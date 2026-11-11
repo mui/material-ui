@@ -367,7 +367,7 @@ function MenuInDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
   );
 
   return (
-    <Stack spacing={2} useFlexGap sx={{ alignItems: 'flex-start', minWidth: 0 }}>
+    <Stack spacing={2} sx={{ alignItems: 'flex-start', minWidth: 0 }}>
       <Typography component="h3" variant="h6">
         {label}
       </Typography>
@@ -398,8 +398,8 @@ function MenuInDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
             Open Actions, then select an item, press Escape, or click outside the menu. Check the
             event details below. The other button counts clicks that reach the dialog.
           </DialogContentText>
-          <Stack spacing={2} useFlexGap sx={{ mt: 2 }}>
-            <Stack direction="row" spacing={2} useFlexGap sx={{ flexWrap: 'wrap' }}>
+          <Stack spacing={2} sx={{ mt: 2 }}>
+            <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
               {isClassic ? (
                 <React.Fragment>
                   <Button
@@ -525,7 +525,7 @@ function MenuOpensDialogRecipe({
   };
 
   return (
-    <Stack spacing={2} useFlexGap sx={{ alignItems: 'flex-start', minWidth: 0 }}>
+    <Stack spacing={2} sx={{ alignItems: 'flex-start', minWidth: 0 }}>
       <Typography component="h3" variant="h6">
         {label}
       </Typography>
@@ -597,7 +597,7 @@ function MenuDialogFocusRecipe() {
   const [restoreFocus, setRestoreFocus] = React.useState(true);
 
   return (
-    <Stack spacing={2} useFlexGap>
+    <Stack spacing={2}>
       <label>
         <input
           type="checkbox"
@@ -663,7 +663,7 @@ function MenuIconWidthExample({
   );
 
   return (
-    <Stack spacing={2} useFlexGap>
+    <Stack spacing={2}>
       <Typography component="h3" variant="h6">
         {label}
       </Typography>

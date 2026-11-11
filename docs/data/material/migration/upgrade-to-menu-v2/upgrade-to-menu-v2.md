@@ -619,9 +619,6 @@ Sibling selectors in CSS (`+`, `~`, `:last-child`) near a trigger can match thes
 Style each part directly instead.
 :::
 
-For menus directly inside a `Stack`, set `useFlexGap` to use CSS gap instead of sibling margins.
-This prevents the trigger from moving when a focus guard is inserted before it.
-
 ### Menu height
 
 The classic Menu limits its height to the viewport minus 96px.
