@@ -2,8 +2,6 @@ import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
-import { menu2SubmenuPopupClasses } from '@mui/material/Unstable_Menu2SubmenuPopup';
-import { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
 import MenuRfcExperiment from '../../../../pages/experiments/menu2-playground';
 import traceFrames from './traceFrames';
 
@@ -60,7 +58,7 @@ describe.skipIf(isJsdom())('Menu2 playground unmocked portal', () => {
     }
 
     const triggers = Array.from(
-      baseElement.querySelectorAll(`.${menu2TriggerClasses.root}`),
+      baseElement.querySelectorAll('.MuiMenu2Trigger-root'),
       (trigger) => ({
         name: trigger.textContent?.trim(),
         expanded: trigger.getAttribute('aria-expanded'),
@@ -70,14 +68,12 @@ describe.skipIf(isJsdom())('Menu2 playground unmocked portal', () => {
     const dom = {
       basePortals: readElements('[data-base-ui-portal]'),
       portals: readElements(
-        `.${menu2PopupClasses.portal}, .${menu2SubmenuPopupClasses.portal}`,
+        `.${menu2PopupClasses.portal}, .MuiMenu2SubmenuPopup-portal`,
       ),
       positioners: readElements(
-        `.${menu2PopupClasses.positioner}, .${menu2SubmenuPopupClasses.positioner}`,
+        `.${menu2PopupClasses.positioner}, .MuiMenu2SubmenuPopup-positioner`,
       ),
-      popups: readElements(
-        `.${menu2PopupClasses.root}, .${menu2SubmenuPopupClasses.root}`,
-      ),
+      popups: readElements(`.${menu2PopupClasses.root}, .MuiMenu2SubmenuPopup-root`),
       backdrops: readElements(`.${menu2PopupClasses.backdrop}`),
     };
     console.info(
