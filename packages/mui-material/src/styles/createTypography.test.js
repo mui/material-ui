@@ -81,6 +81,18 @@ describe('createTypography', () => {
     });
   });
 
+  it('should keep custom variant overrides isolated from other variants', () => {
+    const typography = createTypography(palette, {
+      allVariants: { '@media (min-width:600px)': { color: 'red' } },
+      poster: { '@media (min-width:600px)': { color: 'blue' } },
+      banner: { fontSize: '3rem' },
+    });
+
+    expect(typography.h1['@media (min-width:600px)']).to.deep.equal({ color: 'red' });
+    expect(typography.poster['@media (min-width:600px)']).to.deep.equal({ color: 'blue' });
+    expect(typography.banner['@media (min-width:600px)']).to.deep.equal({ color: 'red' });
+  });
+
   it('should not override the font family of a custom variant', () => {
     const typography = createTypography(palette, {
       fontFamily: 'Gotham',

@@ -85,7 +85,7 @@ export default function createTypography(palette, typography) {
   const customVariants = {};
   Object.keys(other).forEach((key) => {
     if (!(key in variants) && isPlainObject(other[key])) {
-      customVariants[key] = { fontFamily, ...allVariants };
+      customVariants[key] = deepmerge({ fontFamily }, allVariants);
     }
   });
 
