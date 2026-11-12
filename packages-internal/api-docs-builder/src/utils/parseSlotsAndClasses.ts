@@ -59,7 +59,7 @@ export default function parseSlotsAndClasses({
   slots: Slot[];
   classes: ComponentClassDefinition[];
   /**
-   * Slots and classes without a description.
+   * Slots and classes without a description, and slots with a missing or malformed `@default`.
    */
   errors: string[];
 } {
@@ -108,10 +108,26 @@ export default function parseSlotsAndClasses({
       ];
     });
 
+  const slotDefaultErrors = Object.values(slots).flatMap((slot) => {
+    const symbol = slotSymbols.get(slot.name);
+    if (
+      !symbol ||
+      !isComponentSlot(typescriptProject, symbol) ||
+      isSymbolDeclaredOnlyInDependencies(typescriptProject, symbol)
+    ) {
+      return [];
+    }
+    const location =
+      getDeclaringInterfaceLocation(symbol) ?? `the \`${slotsInterfaceName}\` interface`;
+    const error = getSlotDefaultError(slot.default, location);
+    return error ? [`[${componentName}] slot \`${slot.name}\` ${error}`] : [];
+  });
+
   return {
     slots: Object.values(slots),
     classes: nonSlotClassDefinitions,
     errors: [
+      ...slotDefaultErrors,
       ...getMissingDescriptionErrors(
         'slot',
         Object.values(slots).map((slot) => ({ key: slot.name, description: slot.description })),
@@ -126,6 +142,43 @@ export default function parseSlotsAndClasses({
       ),
     ],
   };
+}
+
+/**
+ * Returns `true` if the slot takes a component, like `React.ElementType`.
+ * Slots that hold the slots of a nested component are objects instead.
+ */
+function isComponentSlot(project: TypeScriptProject, symbol: ts.Symbol): boolean {
+  const type = project.checker.getNonNullableType(project.checker.getTypeOfSymbol(symbol));
+  const types = type.isUnion() ? type.types : [type];
+  return types.some(
+    (member) =>
+      member.isStringLiteral() ||
+      // eslint-disable-next-line no-bitwise
+      (member.flags & (ts.TypeFlags.String | ts.TypeFlags.Any | ts.TypeFlags.Unknown)) !== 0 ||
+      member.getCallSignatures().length > 0 ||
+      member.getConstructSignatures().length > 0,
+  );
+}
+
+/**
+ * Checks the `@default` of a component slot: HTML elements are quoted (`'div'`), components are not.
+ */
+export function getSlotDefaultError(
+  defaultValue: string | undefined,
+  location: string,
+): string | null {
+  const value = defaultValue?.trim();
+  if (!value) {
+    return `has no \`@default\`. Add one in ${location}, with the component it renders or the HTML tag in quotes, like \`@default 'div'\`.`;
+  }
+  if (/^"[^"]*"$/.test(value)) {
+    return `has \`@default ${value}\`. Write \`@default '${value.slice(1, -1)}'\` in ${location}, HTML tags use single quotes.`;
+  }
+  if (/^[a-z][a-z0-9-]*$/.test(value) && !['null', 'undefined'].includes(value)) {
+    return `has \`@default ${value}\`. Write \`@default '${value}'\` in ${location}, HTML tags are quoted.`;
+  }
+  return null;
 }
 
 /**

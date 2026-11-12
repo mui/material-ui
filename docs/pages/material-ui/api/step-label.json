@@ -36,13 +36,13 @@
     {
       "name": "root",
       "description": "The component that renders the root.",
-      "default": "span",
+      "default": "'span'",
       "class": "MuiStepLabel-root"
     },
     {
       "name": "label",
       "description": "The component that renders the label.",
-      "default": "span",
+      "default": "'span'",
       "class": "MuiStepLabel-label"
     },
     {

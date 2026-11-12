@@ -13,12 +13,12 @@ export interface StepLabelStepIconSlotPropsOverrides {}
 export interface StepLabelSlots {
   /**
    * The component that renders the root.
-   * @default span
+   * @default 'span'
    */
   root: React.ElementType;
   /**
    * The component that renders the label.
-   * @default span
+   * @default 'span'
    */
   label: React.ElementType;
   /**

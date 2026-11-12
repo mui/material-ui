@@ -23,17 +23,17 @@ export interface TabsEndScrollButtonIconSlotPropsOverrides {}
 export interface TabsSlots {
   /**
    * The component used for the popper.
-   * @default div
+   * @default 'div'
    */
   root: React.ElementType;
   /**
    * The component used for the scroller.
-   * @default div
+   * @default 'div'
    */
   scroller: React.ElementType;
   /**
    * The component used for the flex container.
-   * @default div
+   * @default 'div'
    */
   list: React.ElementType;
   /**
@@ -43,7 +43,7 @@ export interface TabsSlots {
   scrollbar: React.ElementType;
   /**
    * The component used for the tab indicator.
-   * @default span
+   * @default 'span'
    */
   indicator: React.ElementType;
   /**
