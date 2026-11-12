@@ -152,11 +152,28 @@ describe('<NumberField />', () => {
       });
 
       it('preserves Material error state when Base UI has no validation error', () => {
-        render(<NumberField label="Amount" error />);
+        render(
+          <BaseField.Root invalid={false}>
+            <NumberField label="Amount" error />
+          </BaseField.Root>,
+        );
         const input = screen.getByRole('textbox', { name: 'Amount' });
 
         expect(input).to.have.attribute('aria-invalid', 'true');
         expect(input.closest('.MuiInputBase-root')).to.have.class('Mui-error');
+      });
+
+      it('preserves Base UI validation errors when Material error is false', () => {
+        render(
+          <BaseField.Root invalid>
+            <NumberField label="Amount" error={false} />
+          </BaseField.Root>,
+        );
+
+        expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.attribute(
+          'aria-invalid',
+          'true',
+        );
       });
     });
 
@@ -1923,6 +1940,28 @@ describe('<NumberField />', () => {
     // Compose public, Material, and native callbacks in the expected order without
     // losing FormControl focus/filled state or Base UI editing and commit behavior.
     describe('focus, blur and change handlers', () => {
+      it('lets Material input focus and blur handlers override the public handlers', async () => {
+        const publicHandler = vi.fn();
+        const targets: HTMLElement[] = [];
+        const slotHandler = (event: React.FocusEvent<HTMLElement>) => {
+          targets.push(event.currentTarget);
+        };
+        const { user } = render(
+          <NumberField
+            onFocus={publicHandler}
+            onBlur={publicHandler}
+            slotProps={{ input: { onFocus: slotHandler, onBlur: slotHandler } }}
+          />,
+        );
+        const input = screen.getByRole('textbox');
+
+        await user.click(input);
+        await user.tab();
+
+        expect(targets).to.deep.equal([input, input]);
+        expect(publicHandler).toHaveBeenCalledTimes(0);
+      });
+
       it('composes deeper native callbacks while preserving Material callback order and state', async () => {
         const calls: string[] = [];
         const targets: HTMLElement[] = [];
@@ -2283,6 +2322,47 @@ describe('<NumberField />', () => {
     // Nondefault steps and limits must work through the native input and controls,
     // including the distinction between direct entry and step-based interactions.
     describe('steps and bounds', () => {
+      it('disables step validation with step="any" while retaining default and modifier steps', async () => {
+        const { user } = render(
+          <form aria-label="Number form">
+            <NumberField
+              label="Amount"
+              defaultValue={1.5}
+              min={0}
+              step="any"
+              smallStep={0.25}
+              largeStep={3}
+            />
+          </form>,
+        );
+        const input = screen.getByRole('textbox', { name: 'Amount' });
+        const form = screen.getByRole<HTMLFormElement>('form', { name: 'Number form' });
+        expect(form.checkValidity()).to.equal(true);
+
+        await user.click(input);
+        await user.keyboard('{ArrowUp}');
+        expect(input).to.have.value('2.5');
+        await user.keyboard('{Alt>}{ArrowUp}{/Alt}');
+        expect(input).to.have.value('2.75');
+        await user.keyboard('{Shift>}{ArrowUp}{/Shift}');
+        expect(input).to.have.value('5.75');
+        expect(form.checkValidity()).to.equal(true);
+      });
+
+      it('clamps keyboard steps at both bounds when out-of-range entry is allowed', async () => {
+        const { user } = render(
+          <NumberField label="Amount" defaultValue={8} min={2} max={8} allowOutOfRange />,
+        );
+        const input = screen.getByRole('textbox', { name: 'Amount' });
+
+        await user.click(input);
+        await user.keyboard('{ArrowUp}');
+        expect(input).to.have.value('8');
+        await user.clear(input);
+        await user.keyboard('2{ArrowDown}');
+        expect(input).to.have.value('2');
+      });
+
       it('uses a fractional step for keyboard and button interactions', async () => {
         const onValueChange = vi.fn();
         const { user } = render(
@@ -2605,6 +2685,36 @@ describe('<NumberField />', () => {
   // External forms own the visible input for validation and Enter submission, and
   // Base UI's submission input for contributing one raw numeric value.
   describe('form submission', () => {
+    it('restores the controlled value and form data from an onReset handler', async () => {
+      function Test() {
+        const [value, setValue] = React.useState<number | null>(1.5);
+        return (
+          <form aria-label="Number form" onReset={() => setValue(1.5)}>
+            <NumberField
+              label="Amount"
+              name="amount"
+              value={value}
+              onValueChange={setValue}
+              locale="en-US"
+              format={{ style: 'currency', currency: 'USD' }}
+            />
+            <button type="reset">Reset</button>
+          </form>
+        );
+      }
+
+      const { user } = render(<Test />);
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+      const form = screen.getByRole<HTMLFormElement>('form', { name: 'Number form' });
+
+      await user.clear(input);
+      await user.keyboard('7');
+      await user.click(screen.getByRole('button', { name: 'Reset' }));
+
+      expect(input).to.have.value('$1.50');
+      expect(new FormData(form).getAll('amount')).to.deep.equal(['1.5']);
+    });
+
     it('submits one raw numeric value to an external form from a formatted field', async () => {
       const submissions: FormData[] = [];
       const { user } = render(
@@ -2787,12 +2897,12 @@ describe('<NumberField />', () => {
     });
 
     (['stacked', 'end', 'split'] as const).forEach((controlsPosition) => {
-      (['start', 'end'] as const).forEach((scrubArea) => {
-        it(`places the ${scrubArea} scrub area with ${controlsPosition} controls and consumer adornments`, () => {
+      (['start', 'end'] as const).forEach((scrubAreaPosition) => {
+        it(`places the ${scrubAreaPosition} scrub area with ${controlsPosition} controls and consumer adornments`, () => {
           const { container } = render(
             <NumberField
               controlsPosition={controlsPosition}
-              scrubArea={scrubArea}
+              scrubAreaPosition={scrubAreaPosition}
               slotProps={{
                 input: {
                   startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -2820,11 +2930,11 @@ describe('<NumberField />', () => {
           }[controlsPosition];
           const expectedOrder = [
             ...startButtons,
-            ...(scrubArea === 'start' ? [scrub] : []),
+            ...(scrubAreaPosition === 'start' ? [scrub] : []),
             prefix,
             input,
             suffix,
-            ...(scrubArea === 'end' ? [scrub] : []),
+            ...(scrubAreaPosition === 'end' ? [scrub] : []),
             ...endButtons,
           ];
 
@@ -2834,7 +2944,7 @@ describe('<NumberField />', () => {
           );
           expect(elements).to.deep.equal(expectedOrder);
           expect(scrub.parentElement).to.have.class(
-            `MuiInputAdornment-position${scrubArea === 'start' ? 'Start' : 'End'}`,
+            `MuiInputAdornment-position${scrubAreaPosition === 'start' ? 'Start' : 'End'}`,
           );
           expect(scrub.closest(`.${classes.controls}`)).to.equal(null);
         });
@@ -2845,7 +2955,7 @@ describe('<NumberField />', () => {
       const scrubRef = React.createRef<HTMLSpanElement>();
       const { container } = render(
         <NumberField
-          scrubArea="start"
+          scrubAreaPosition="start"
           size="small"
           slotProps={{
             scrubArea: (ownerState) => ({
@@ -2904,7 +3014,7 @@ describe('<NumberField />', () => {
           const { container, user, unmount } = render(
             <NumberField
               label="Amount"
-              scrubArea="start"
+              scrubAreaPosition="start"
               slots={{ scrubAreaCursor: TestCursor }}
               slotProps={{
                 scrubAreaCursor: (ownerState) => ({
@@ -2942,7 +3052,7 @@ describe('<NumberField />', () => {
           const { container, user } = render(
             <ThemeProvider theme={theme}>
               <NumberField
-                scrubArea="start"
+                scrubAreaPosition="start"
                 slotProps={{
                   scrubAreaCursor: {
                     ref,
@@ -2993,6 +3103,30 @@ describe('<NumberField />', () => {
         });
       }
 
+      it('waits for the configured pixel sensitivity before changing the value', async () => {
+        const onValueChange = vi.fn();
+        const { container, user } = render(
+          <NumberField
+            label="Amount"
+            defaultValue={5}
+            scrubAreaPosition="start"
+            onValueChange={onValueChange}
+            slotProps={{ scrubArea: { pixelSensitivity: 8 } }}
+          />,
+        );
+        const input = screen.getByRole('textbox', { name: 'Amount' });
+        const scrub = container.querySelector(`.${classes.scrubArea}`)!;
+
+        await user.pointer({ keys: '[MouseLeft>]', target: scrub });
+        movePointer(4, 0);
+        expect(input).to.have.value('5');
+        expect(onValueChange).toHaveBeenCalledTimes(0);
+        movePointer(4, 0);
+        expect(input).to.have.value('9');
+        expect(onValueChange).toHaveBeenCalledTimes(1);
+        await user.pointer({ keys: '[/MouseLeft]', target: scrub });
+      });
+
       (['horizontal', 'vertical'] as const).forEach((direction) => {
         it(`changes the value in both ${direction} directions and commits on release`, async () => {
           const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
@@ -3001,7 +3135,7 @@ describe('<NumberField />', () => {
             <NumberField
               label="Amount"
               defaultValue={5}
-              scrubArea="start"
+              scrubAreaPosition="start"
               onValueChange={onValueChange}
               onValueCommitted={onValueCommitted}
               slotProps={direction === 'vertical' ? { scrubArea: { direction } } : undefined}
@@ -3042,7 +3176,7 @@ describe('<NumberField />', () => {
           const { container, user } = render(
             <NumberField
               defaultValue={5}
-              scrubArea="start"
+              scrubAreaPosition="start"
               disabled={state === 'disabled'}
               readOnly={state === 'readOnly'}
               onValueChange={onValueChange}
@@ -3139,11 +3273,16 @@ describe('<NumberField />', () => {
     // NumberField's composed start adornments must initialize label shrink on the
     // server, including adornments returned by consumer slot callbacks.
     describe('adornments', () => {
-      (['start', 'end'] as const).forEach((scrubArea) => {
-        it(`keeps an empty label stable through hydration with a ${scrubArea} scrub area`, () => {
-          const { hydrate } = renderToString(<NumberField label="Amount" scrubArea={scrubArea} />);
+      (['start', 'end'] as const).forEach((scrubAreaPosition) => {
+        it(`keeps an empty label stable through hydration with a ${scrubAreaPosition} scrub area`, () => {
+          const { hydrate } = renderToString(
+            <NumberField label="Amount" scrubAreaPosition={scrubAreaPosition} />,
+          );
 
-          expectStableHydration(hydrate, { displayValue: '', shrink: scrubArea === 'start' });
+          expectStableHydration(hydrate, {
+            displayValue: '',
+            shrink: scrubAreaPosition === 'start',
+          });
         });
       });
 
@@ -3187,12 +3326,15 @@ describe('<NumberField />', () => {
         expect(screen.getByText('$')).to.equal(adornmentNode);
       });
 
-      it('does not shrink an empty server-rendered label with an end adornment', () => {
+      it('does not shrink an empty server-rendered label with a falsy start and an end adornment', () => {
         const { hydrate } = renderToString(
           <NumberField
             label="Amount"
             slotProps={{
-              input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
+              input: {
+                startAdornment: false,
+                endAdornment: <InputAdornment position="end">kg</InputAdornment>,
+              },
             }}
           />,
         );

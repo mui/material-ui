@@ -87,7 +87,7 @@
     "required": {
       "description": "If <code>true</code>, a value is required for form submission and the label is marked as required."
     },
-    "scrubArea": {
+    "scrubAreaPosition": {
       "description": "The placement of the drag handle used to adjust the value. Use <code>&#39;start&#39;</code> or <code>&#39;end&#39;</code> to show the handle, or <code>false</code> to hide it. Its position is independent of <code>controlsPosition</code>."
     },
     "size": { "description": "The size of the component." },

@@ -10,11 +10,14 @@ declare module '@mui/material/NumberField' {
   interface NumberFieldPropsSizeOverrides {
     compact: true;
   }
-  interface NumberFieldRootSlotOverrides {
+  interface NumberFieldRootSlotPropsOverrides {
     customRootProp?: string;
   }
   interface NumberFieldInputSlotPropsOverrides {
     customInputProp?: string;
+  }
+  interface NumberFieldHtmlInputSlotPropsOverrides {
+    customNativeProp?: 'native';
   }
   interface NumberFieldInputLabelSlotPropsOverrides {
     customLabelProp?: string;
@@ -46,6 +49,7 @@ declare module '@mui/material/FormControl' {
   slotProps={{
     root: { customRootProp: 'root' },
     input: { customInputProp: 'input' },
+    htmlInput: { customNativeProp: 'native' },
     inputLabel: { customLabelProp: 'label', shrink: true },
     formHelperText: { customHelperProp: 'helper' },
     incrementButton: { stepLabel: 'increase' },
@@ -55,6 +59,8 @@ declare module '@mui/material/FormControl' {
 
 // @ts-expect-error Slot extensions retain their declared value types.
 <NumberField slotProps={{ input: { customInputProp: 1 } }} />;
+// @ts-expect-error Native slot extensions retain their declared value types.
+<NumberField slotProps={{ htmlInput: { customNativeProp: 'other' } }} />;
 // @ts-expect-error Increment and decrement extensions remain independent.
 <NumberField slotProps={{ incrementButton: { stepLabel: 'decrease' } }} />;
 
