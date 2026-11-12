@@ -156,7 +156,7 @@ function createBabelPlugin({
     // key is a reserved prop name in React
     // for example https://github.com/reactjs/rfcs/pull/107
     // no need to add a prop-type if we won't generate the docs for it.
-    if (data.prop.name === 'key' && data.prop.jsDoc === '@ignore') {
+    if (data.prop.name === 'key' && (!data.prop.jsDoc || data.prop.jsDoc === '@ignore')) {
       return false;
     }
 
