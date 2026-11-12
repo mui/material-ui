@@ -261,26 +261,24 @@ describe('InitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal(darkScheme);
   });
 
-  // Client renders must stay script-free (#48595). React <18 always emits the script by design.
-  it.skipIf(reactMajor < 18)('should not render the script on the client', () => {
+  // Client renders must stay script-free (#48595). React 17 has no `useSyncExternalStore`, so it
+  // always emits the script.
+  it('should not render the script on the client', () => {
     const { container } = render(<InitColorSchemeScript />);
-    expect(container.querySelector('script')).to.equal(null);
+    expect(container.querySelectorAll('script')).to.have.length(reactMajor >= 18 ? 0 : 1);
   });
 
   // Hydration path (the bug in #48595): the script is server-rendered, hydrated without a mismatch
   // warning (vitest-fail-on-console turns the warning into a failure), then dropped on the
-  // post-hydration commit when the client snapshot takes over.
-  it.skipIf(reactMajor < 18)(
-    'should emit the script on server render and drop it after hydration',
-    () => {
-      storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
-      storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
+  // post-hydration commit when the client snapshot takes over. React 17 keeps it.
+  it('should emit the script on server render and drop it after hydration', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
 
-      const view = renderToString(<InitColorSchemeScript />);
-      expect(view.container.querySelector('script')).not.to.equal(null);
+    const view = renderToString(<InitColorSchemeScript />);
+    expect(view.container.querySelector('script')).not.to.equal(null);
 
-      const { container } = view.hydrate();
-      expect(container.querySelector('script')).to.equal(null);
-    },
-  );
+    const { container } = view.hydrate();
+    expect(container.querySelectorAll('script')).to.have.length(reactMajor >= 18 ? 0 : 1);
+  });
 });

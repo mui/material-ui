@@ -196,7 +196,7 @@ App.propTypes = {
 
 const container = document.getElementById('react-root');
 const children = (
-  <Router useTransitions={React.startTransition !== undefined}>
+  <Router useTransitions={React.startTransition ? undefined : false}>
     <App fixtures={allFixtures} />
   </Router>
 );

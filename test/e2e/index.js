@@ -48,7 +48,7 @@ function App() {
   }
 
   return (
-    <Router useTransitions={React.startTransition !== undefined}>
+    <Router useTransitions={React.startTransition ? undefined : false}>
       <Routes>
         {fixtures.map((fixture) => {
           const path = computePath(fixture);
