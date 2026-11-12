@@ -14,8 +14,10 @@ export default function ControlledRadioButtonsGroup() {
   };
 
   return (
-    <FormControl>
-      <FormLabel id={`${id}-label`}>Gender</FormLabel>
+    <FormControl component="fieldset">
+      <FormLabel component="legend" id={`${id}-label`}>
+        Gender
+      </FormLabel>
       <RadioGroup
         aria-labelledby={`${id}-label`}
         name="controlled-radio-buttons-group"

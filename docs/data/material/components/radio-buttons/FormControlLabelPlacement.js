@@ -8,8 +8,10 @@ import FormLabel from '@mui/material/FormLabel';
 export default function FormControlLabelPlacement() {
   const id = React.useId();
   return (
-    <FormControl>
-      <FormLabel id={`${id}-label`}>Label placement</FormLabel>
+    <FormControl component="fieldset">
+      <FormLabel component="legend" id={`${id}-label`}>
+        Label placement
+      </FormLabel>
       <RadioGroup
         row
         aria-labelledby={`${id}-label`}

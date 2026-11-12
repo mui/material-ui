@@ -8,8 +8,10 @@ import FormLabel from '@mui/material/FormLabel';
 export default function RadioButtonsGroup() {
   const id = React.useId();
   return (
-    <FormControl>
-      <FormLabel id={`${id}-label`}>Gender</FormLabel>
+    <FormControl component="fieldset">
+      <FormLabel component="legend" id={`${id}-label`}>
+        Gender
+      </FormLabel>
       <RadioGroup
         aria-labelledby={`${id}-label`}
         defaultValue="female"
