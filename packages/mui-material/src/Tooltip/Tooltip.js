@@ -11,6 +11,7 @@ import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import createChainedFunction from '../utils/createChainedFunction';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import useEventCallback from '../utils/useEventCallback';
@@ -701,6 +702,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
             {...transitionSlotProps}
+            onEnter={createChainedFunction(
+              TransitionPropsInner?.onEnter,
+              transitionSlotProps.onEnter,
+            )}
+            onExited={createChainedFunction(
+              TransitionPropsInner?.onExited,
+              transitionSlotProps.onExited,
+            )}
           >
             <TooltipSlot {...tooltipSlotProps}>
               {title}
