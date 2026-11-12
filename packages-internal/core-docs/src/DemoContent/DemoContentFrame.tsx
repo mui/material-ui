@@ -11,7 +11,7 @@ import { useDemoLoading } from './useDemoLoading';
 
 type DemoFrameProps = ContentFrameProps<DemoOptions>;
 
-function FrameView({ loading }: { loading: DemoContainerProps }) {
+const FrameView = React.memo(function FrameView({ loading }: { loading: DemoContainerProps }) {
   const frame = React.useContext(DemoFrameContext)!;
   const snapshot = React.useSyncExternalStore(
     frame.subscribe,
@@ -25,7 +25,7 @@ function FrameView({ loading }: { loading: DemoContainerProps }) {
       previewEpoch={snapshot.epoch}
     />
   );
-}
+});
 
 export default function DemoContentFrame(props: DemoFrameProps) {
   const [frame] = React.useState(createFrameStore);

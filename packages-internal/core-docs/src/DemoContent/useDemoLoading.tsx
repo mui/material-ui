@@ -38,13 +38,19 @@ export function useDemoLoading(
   } = props;
   const t = useTranslate();
 
-  const previewStyle = maxWidth == null && height == null ? undefined : { maxWidth, height };
+  const previewStyle = React.useMemo(
+    () => (maxWidth == null && height == null ? undefined : { maxWidth, height }),
+    [maxWidth, height],
+  );
   const themeName = name ?? slug ?? 'demo';
   const resolvedBg = bg ?? (iframe ? true : undefined);
 
   const rootFileName = fileNames?.[0];
 
-  const sourceAnchorIds = rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined;
+  const sourceAnchorIds = React.useMemo(
+    () => (rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined),
+    [rootFileName],
+  );
 
   const [hash] = useUrlHashState();
   const expanded =
@@ -59,7 +65,58 @@ export function useDemoLoading(
   const anchorId = anchorIdOption === undefined ? demoAnchorId(rootFileName) : anchorIdOption;
   const demoSourceId = `demo-source-${anchorId ?? slug ?? name ?? 'demo'}`;
 
-  if (hideToolbar === true) {
+  const fileCount = fileNames?.length ?? 0;
+
+  return React.useMemo(() => {
+    if (hideToolbar === true) {
+      return {
+        anchorId,
+        preview: component,
+        isolated,
+        iframe,
+        name: themeName,
+        bg: resolvedBg,
+        hideToolbar: true,
+        previewStyle,
+      };
+    }
+
+    const showCodeLabel = hasSourceFocus
+      ? t(expanded ? 'hideFullSource' : 'showFullSource')
+      : t(expanded ? 'hideSource' : 'showSource');
+    const toolbar = (
+      <DemoToolbar
+        gaLabel={slug ?? name ?? ''}
+        demoSourceId={demoSourceId}
+        expanded={expanded}
+        onToggleExpand={noop}
+        toggleRef={null}
+        showCodeLabel={showCodeLabel}
+        hasJsTransform={false}
+        isJsSelected={false}
+        onLanguageClick={noop}
+        variants={[]}
+        selectedVariant=""
+        onSelectVariant={noop}
+        openMuiChat={noopAsync}
+        hideEditButton={hideEditButton}
+        onOpenStackBlitz={noop}
+        onOpenCodeSandbox={noop}
+        onCopySource={noopAsync}
+        onResetFocus={noop}
+        onReset={noop}
+        tsSourceAnchor={rootFileName}
+      />
+    );
+
+    const tabs = expanded && fileCount > 1 ? <DemoFileTabBarSkeleton aria-hidden /> : null;
+
+    const code = fallbackCode ? (
+      <CodeSource expanded={expanded}>
+        <pre>{fallbackCode}</pre>
+      </CodeSource>
+    ) : null;
+
     return {
       anchorId,
       preview: component,
@@ -67,65 +124,38 @@ export function useDemoLoading(
       iframe,
       name: themeName,
       bg: resolvedBg,
-      hideToolbar: true,
+      hideToolbar,
       previewStyle,
+      toolbar,
+      toolbarLabel: t('demoToolbarLabel'),
+      toolbarBusy: true,
+      expanded,
+      sourceVisible,
+      tabs,
+      code,
+      codeId: demoSourceId,
+      sourceAnchorIds,
     };
-  }
-
-  const showCodeLabel = hasSourceFocus
-    ? t(expanded ? 'hideFullSource' : 'showFullSource')
-    : t(expanded ? 'hideSource' : 'showSource');
-  const toolbar = (
-    <DemoToolbar
-      gaLabel={slug ?? name ?? ''}
-      demoSourceId={demoSourceId}
-      expanded={expanded}
-      onToggleExpand={noop}
-      toggleRef={null}
-      showCodeLabel={showCodeLabel}
-      hasJsTransform={false}
-      isJsSelected={false}
-      onLanguageClick={noop}
-      variants={[]}
-      selectedVariant=""
-      onSelectVariant={noop}
-      openMuiChat={noopAsync}
-      hideEditButton={hideEditButton}
-      onOpenStackBlitz={noop}
-      onOpenCodeSandbox={noop}
-      onCopySource={noopAsync}
-      onResetFocus={noop}
-      onReset={noop}
-      tsSourceAnchor={rootFileName}
-    />
-  );
-
-  const tabs =
-    expanded && fileNames && fileNames.length > 1 ? <DemoFileTabBarSkeleton aria-hidden /> : null;
-
-  const code = fallbackCode ? (
-    <CodeSource expanded={expanded}>
-      <pre>{fallbackCode}</pre>
-    </CodeSource>
-  ) : null;
-
-  return {
+  }, [
+    hideToolbar,
     anchorId,
-    preview: component,
+    component,
     isolated,
     iframe,
-    name: themeName,
-    bg: resolvedBg,
-    hideToolbar,
+    themeName,
+    resolvedBg,
     previewStyle,
-    toolbar,
-    toolbarLabel: t('demoToolbarLabel'),
-    toolbarBusy: true,
+    hasSourceFocus,
+    t,
     expanded,
+    slug,
+    name,
+    demoSourceId,
+    hideEditButton,
+    rootFileName,
+    fileCount,
+    fallbackCode,
     sourceVisible,
-    tabs,
-    code,
-    codeId: demoSourceId,
     sourceAnchorIds,
-  };
+  ]);
 }

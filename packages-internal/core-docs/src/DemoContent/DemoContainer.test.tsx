@@ -33,6 +33,32 @@ function StatefulDemo() {
 describe('DemoContainer', () => {
   const { render } = createRenderer();
 
+  it('does not rerender an isolated preview when its toolbar changes', () => {
+    let calls = 0;
+    function Demo() {
+      calls += 1;
+      return <span>Preview</span>;
+    }
+    const preview = <Demo />;
+
+    function view(label: string) {
+      return (
+        <UserLanguageProvider defaultUserLanguage="en">
+          <ThemeProvider theme={brandingLightTheme}>
+            <DemoContainer isolated preview={preview} toolbar={<span>{label}</span>} />
+          </ThemeProvider>
+        </UserLanguageProvider>
+      );
+    }
+
+    const { rerender } = render(view('First'));
+    const initialCalls = calls;
+    rerender(view('Second'));
+
+    expect(screen.getByText('Second')).not.to.equal(null);
+    expect(calls).to.equal(initialCalls);
+  });
+
   // Regression: the error boundary used to sit between `DemoComponentTheme` and
   // the demo, so the `cloneElement` that injects the isolation props targeted the
   // error boundary (which renders `children` verbatim) and the demo never saw
