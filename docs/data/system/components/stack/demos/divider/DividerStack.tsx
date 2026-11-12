@@ -22,6 +22,7 @@ export default function DividerStack() {
           <Box
             component="hr"
             sx={(theme) => ({
+              margin: 0,
               border: `1px solid ${'#fff'}`,
               ...theme.applyStyles('dark', {
                 border: `1px solid ${'#262B32'}`,
