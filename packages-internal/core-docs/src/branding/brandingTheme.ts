@@ -1069,7 +1069,8 @@ export function getThemedComponents(): ThemeOptions {
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },
-            '& svg:last-child': {
+            // Only the link's own trailing icon, not the icons of components nested in the link.
+            '& > svg:last-child': {
               marginLeft: 2,
             },
             '&:focus-visible': {
