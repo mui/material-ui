@@ -94,7 +94,7 @@
     "endScrollButtonIcon": "The component used for the end scroll button icon.",
     "indicator": "The component used for the tab indicator.",
     "list": "The component used for the flex container.",
-    "root": "The component used for the popper.",
+    "root": "The component that renders the root.",
     "scrollbar": "The component used for the scroller.",
     "scrollButtons": "The component used for the scroll button.",
     "scroller": "The component used for the scroller.",

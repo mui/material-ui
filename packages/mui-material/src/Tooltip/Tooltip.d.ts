@@ -29,10 +29,12 @@ export interface TooltipSlots {
   transition: React.ElementType;
   /**
    * The component used for the tooltip.
+   * @default 'div'
    */
   tooltip: React.ElementType;
   /**
    * The component used for the arrow.
+   * @default 'span'
    */
   arrow: React.ElementType;
 }

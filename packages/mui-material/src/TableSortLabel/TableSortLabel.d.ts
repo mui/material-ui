@@ -13,7 +13,7 @@ export interface TableSortLabelIconSlotPropsOverrides {}
 export interface TableSortLabelSlots {
   /**
    * The component that renders the root slot.
-   * @default span
+   * @default 'span'
    */
   root?: React.ElementType | undefined;
   /**
