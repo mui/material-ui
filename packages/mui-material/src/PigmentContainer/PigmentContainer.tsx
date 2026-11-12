@@ -13,6 +13,9 @@ import type { Theme } from '../styles';
 import type { ContainerClasses } from '../Container/containerClasses';
 
 export interface PigmentContainerOwnProps {
+  /**
+   * The content of the component.
+   */
   children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
@@ -112,16 +115,13 @@ PigmentContainer.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * @ignore
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * If `true`, the left and right padding is removed.

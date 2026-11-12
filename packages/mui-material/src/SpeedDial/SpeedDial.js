@@ -496,9 +496,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The direction the actions open relative to the floating action button.
@@ -521,8 +518,10 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
+  id: PropTypes.string,
   onBlur: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
@@ -531,21 +530,9 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseLeave: PropTypes.func,
   /**
    * Callback fired when the component requests to be open.
