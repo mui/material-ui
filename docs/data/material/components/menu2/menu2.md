@@ -35,15 +35,8 @@ Menu v2 is a set of components that compose into a menu:
 - **Submenu**, **Submenu Trigger**, and **Submenu Popup**: the same parts for a nested menu.
 - **Group**, **Group Label**, and **Separator**: the structure in a menu.
 
-```jsx
-import Menu from '@mui/material/Unstable_Menu2';
-import MenuTrigger from '@mui/material/Unstable_Menu2Trigger';
-import MenuPopup from '@mui/material/Unstable_Menu2Popup';
-import MenuItem from '@mui/material/Unstable_Menu2Item';
-```
-
-Each component is the default export of its own subpath.
-These examples use local names such as `Menu` and `MenuItem` for the components imported from `Unstable_Menu2` subpaths.
+Each component is the default export of its own `@mui/material/Unstable_Menu2*` subpath.
+The examples use local names such as `Menu` and `MenuItem`.
 The import paths, theme keys, and CSS classes keep their `Menu2` names.
 
 ## Why a new menu component
@@ -54,7 +47,7 @@ Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) to provide mo
 - **Nested menus** coordinate focus and keyboard navigation. Positioning follows the anchor and flips to avoid collisions.
 - **Checkbox and radio items**, labeled groups, and link items provide built-in roles and ARIA attributes.
 - **Disabled items stay focusable**, and content outside the menu remains available to screen readers.
-- **The trigger component** handles anchor state and ARIA attributes. Opening with a pointer highlights no item. Enter, Space, and ArrowDown highlight the first enabled item; ArrowUp highlights the last enabled item.
+- **The trigger component** handles the anchor, ARIA attributes, and keyboard opening.
 
 Material UI supplies the styles and theming.
 Base UI is included in `@mui/material`; no extra installation is needed, and apps that don't import Menu v2 don't bundle it.
@@ -64,7 +57,7 @@ See [Upgrade to Menu v2](/material-ui/migration/upgrade-to-menu-v2/) for the arc
 ## Basic menu
 
 Put `MenuTrigger` and `MenuPopup` inside `Menu`.
-Pass the trigger element to the required `render` prop of `MenuTrigger`, and put the items inside `MenuPopup`.
+Pass the trigger element to the required `render` prop, and put the items inside `MenuPopup`.
 
 {{"component": "file://./demos/basic/index.ts"}}
 
@@ -98,7 +91,7 @@ That item is then removed or hidden, so focus does not return to the trigger whe
 :::
 
 Keep a ref on the menu trigger and set `disableRestoreFocus` on Dialog.
-Focus the trigger from **Dialog's** `slotProps.transition.onExited` callback:
+Focus the trigger from `slotProps.transition.onExited` on Dialog:
 
 ```jsx
 <Dialog
@@ -116,7 +109,7 @@ Focus the trigger from **Dialog's** `slotProps.transition.onExited` callback:
 ```
 
 Keep the trigger mounted and enabled until the dialog closes.
-This changes Dialog's return target, not Menu v2's focus behavior.
+This changes the return target for Dialog, not the focus behavior of Menu v2.
 The [live recipe](/experiments/menu2-recipes/#menu2-open-dialog) includes a classic Menu comparison and a control to disable the workaround.
 
 ## Submenu
@@ -199,10 +192,8 @@ Use `render` for a router link that forwards props, ref, and children to an anch
 </MenuLinkItem>
 ```
 
-`MenuLinkItem` follows the same [render and root-slot contracts as MenuItem](#item).
-Its default root keeps Material styles and ripple.
-Its render function receives anchor props and the item state.
-A custom root must also forward props, ref, and children to an anchor.
+The render function receives anchor props and the item state.
+The [render and root-slot contracts](#render-and-root-slots) also apply; a custom root must forward props, ref, and children to an anchor.
 
 :::warning
 Unlike a classic `MenuItem` with `href`, `MenuLinkItem` does not support `disabled`.
@@ -279,20 +270,13 @@ To set a smaller limit with the `sx` prop on `MenuPopup`, use `min(320px, var(--
 
 ## Context menu
 
-The classic Menu has a [context menu](/material-ui/react-menu/#context-menu) demo, but Menu v2 doesn't support context menus.
+Menu v2 follows the [menu button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/) and doesn't support context menus.
+A context menu must handle right-click, the context menu key or Shift+F10, and touch long press.
+It needs pointer or keyboard-based positioning, an accessible name, and focus return without a trigger button.
+Building one with Menu v2 leaves these requirements to application code.
 
-A context menu has different interaction and accessibility requirements than a menu that opens from a button:
-
-- It opens from an area of the page: with a right-click, with the context menu key or Shift+F10, or with a long press on touch devices.
-- It opens at the pointer position, or near the focused element when it opens from the keyboard.
-- It has no trigger button to give it an accessible name or to receive focus when it closes.
-
-Menu v2 follows the [menu button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/).
-In this pattern, the trigger button opens the menu, anchors it, gives it an accessible name, and receives focus when the menu closes.
-A context menu built on Menu v2 must meet these requirements in application code.
-
-Material UI plans to add a separate context menu component that meets these requirements.
-Until it is available, keep using the [Menu](/material-ui/react-menu/#context-menu) for context menus.
+Material UI plans to add a separate context menu component.
+Until then, keep using the [classic Menu context menu example](/material-ui/react-menu/#context-menu).
 
 ## Customization
 
@@ -307,7 +291,7 @@ Use `slotProps.positioner` for the positioned element and `slotProps.portal` for
 Set positioning props such as `side` and `align` on the popup.
 
 The portal carries `theme.zIndex.modal` and keeps the menu and its modal interaction layer above other content, including Dialog.
-Submenus stay within the root menu's stacking context, so set `slotProps.portal.sx.zIndex` on `MenuPopup` to change the stacking level of the whole menu.
+Submenus stay within the root menu stacking context, so set `slotProps.portal.sx.zIndex` on `MenuPopup` to change the stacking level of the whole menu.
 
 :::warning
 A replacement `slots.portal` must provide its own stacking and closed-state styles.
@@ -339,15 +323,27 @@ Style each part directly instead.
 The focus guards have a `data-base-ui-focus-guard` attribute.
 :::
 
+### Render and root slots
+
+Items (including submenu triggers), groups, labels, and separators support two levels of replacement:
+
+- **`render`** changes the root element or composes another component while keeping Material styles, theme overrides, and `sx` processing. Items also keep their ripple.
+- **`slots.root`** replaces the entire styled root and takes precedence over `render`. It receives utility classes and Base UI behavior props, but no automatic Material styles, theme styles, ripple, or `sx` processing. Add these features in the replacement if needed.
+
+In both cases, forward the supplied props, ref, and children to the root element to preserve behavior and accessibility.
+Put item content in the item children.
+With `render`, forward `props.children` to keep the ripple and any indicator; children set on the render element can replace them.
+A root-slot replacement also receives the item content and indicator as children.
+
+Use `slotProps.root` for root attributes, a ref, and `sx`.
+Its callback receives the same public state as the render function.
+The sections below describe the state and visual options for each part.
+
 ### Item
 
 `MenuItem` renders a styled `<div>` by default.
-Use its optional `render` prop to change the root element or compose it with another component.
-Material styles, theme overrides, and ripple remain available.
-
 A render function receives props and the `highlighted`, `disabled`, `dense`, `disableGutters`, and `divider` states.
-Put item content in `MenuItem` children and forward the supplied props, ref, and `children` to the root element.
-Children set on the render element, or replacement of `props.children` in a render function, can remove the ripple.
+For example, wrap the root element in a Tooltip:
 
 ```jsx
 <MenuItem
@@ -361,11 +357,10 @@ Children set on the render element, or replacement of `props.children` in a rend
 </MenuItem>
 ```
 
-An element such as `render={<button />}` sets `nativeButton` automatically.
-For a custom component or render function that returns a native button, set `nativeButton` on `MenuItem`.
+An element such as `render={<button />}` or `slots={{ root: 'button' }}` sets `nativeButton` automatically.
+For a custom component or render function that returns a native button, set `nativeButton` explicitly.
 
-Use `slotProps.root` to pass HTML attributes, a ref, or `sx` to the default styled root.
-Its callback receives the same live item state as `render`:
+Use the root-slot callback to style an item by state:
 
 ```jsx
 <MenuItem
@@ -379,41 +374,21 @@ Its callback receives the same live item state as `render`:
 </MenuItem>
 ```
 
-Use `slots.root` to replace the styled root, including the adapter that handles `render`.
-If both props are set, `slots.root` takes precedence and `render` is not used.
-A custom root must forward the behavior props, ref, and children to its DOM element.
-Utility classes and Base UI data attributes remain available.
-The replacement does not get the default Material styles, theme style overrides, ripple, or `sx` processing automatically.
-Provide these features in the replacement if needed.
-
-`MenuLinkItem`, `MenuCheckboxItem`, `MenuRadioItem`, and `MenuSubmenuTrigger` use the same render and root-slot contracts.
-Checkbox and radio render functions and root-slot callbacks also receive `checked`; the submenu trigger receives `open`.
+Checkbox and radio items also expose `checked`; submenu triggers expose `open`.
 The `open` state becomes false when closing starts, even while the exit animation runs.
-Forward `props.children` to keep both the indicator and ripple.
 Use `slots.indicator` and `slotProps.indicator` to customize the indicator separately.
-The indicator remains a child of the replacement root when you use `slots.root`.
-For button-capable items, a `button` root slot sets `nativeButton` automatically.
-Set `nativeButton` for a custom root component that returns a native button.
 
 ### Groups
 
-`MenuGroup` and `MenuRadioGroup` render a `<div>` by default and accept an optional `render` prop.
-Forward props, ref, and children to preserve styles, labels, and group behavior.
-Use `slotProps.root` for root attributes, a ref, and `sx`.
-Use `slots.root` to replace the styled root; it takes precedence over `render`.
-The replacement keeps utility classes and Base UI behavior, but theme styles and `sx` processing are not added automatically.
-Forward behavior props, ref, and children to preserve the group label and items.
-
-The `MenuGroup` render state has no fields.
-The `MenuRadioGroup` render state contains only `disabled`, not the selected value.
-Root-slot callbacks expose the same public state fields.
-Use `value` and `onValueChange` to control that value.
+`MenuGroup` and `MenuRadioGroup` render a `<div>` by default.
+The `MenuGroup` state has no fields.
+The `MenuRadioGroup` state contains only `disabled`, not the selected value; use `value` and `onValueChange` to control that value.
 
 ### Labels and separators
 
 `MenuGroupLabel` uses a non-sticky `ListSubheader` rendered as a `<div>` by default.
 Set `color`, `disableGutters`, and `inset` on `MenuGroupLabel` to use the corresponding ListSubheader styles.
-Use `sx` on `MenuGroupLabel` for style overrides:
+Use `sx` for style overrides and `render` to change the element:
 
 ```jsx
 <MenuGroupLabel color="primary" inset sx={{ fontWeight: 700 }} render={<p />}>
@@ -421,32 +396,22 @@ Use `sx` on `MenuGroupLabel` for style overrides:
 </MenuGroupLabel>
 ```
 
-The optional `render` changes the root element or composes another component while keeping the default Material styles.
 The default label stays non-sticky; there is no `disableSticky` prop.
-The `MuiMenu2GroupLabel` theme overrides, utility classes, and `sx` also apply to the render element.
-Forward props, ref, and children to preserve the group label.
 
 `MenuSeparator` uses a `Divider` rendered as a `<div>`, with menu spacing.
 Set `absolute`, `flexItem`, `textAlign`, and `variant` on `MenuSeparator` to use the corresponding Divider styles.
-Use `sx` on `MenuSeparator` for custom spacing and other style overrides:
+Use `sx` for custom spacing:
 
 ```jsx
 <MenuSeparator variant="inset" sx={{ my: 1.5 }} />
 ```
 
-For a separator, `render` also keeps the default Material styles.
-Use it to change the root element or compose another component, not to replace these visual props.
-
-Both parts accept `slotProps.root` for root attributes, a ref, and `sx`.
-Use `slots.root` to replace the styled root; it takes precedence over `render`.
-The replacement keeps utility classes and Base UI props, but does not get default Material styles, theme styles, or `sx` processing automatically.
-The top-level visual props apply only to the default root; provide appearance in the replacement component.
+For both parts, the top-level visual props apply to the default styled root, including when you use `render`.
+With `slots.root`, provide appearance in the replacement component.
 The `orientation` prop still controls separator semantics.
-Forward props, ref, and children to preserve label associations and separator semantics.
 
-The label render state has no fields.
-The separator render state contains `orientation`, which is `"horizontal"` or `"vertical"`.
-Root-slot callbacks expose the same public state fields.
+The label state has no fields.
+The separator state contains `orientation`, which is `"horizontal"` or `"vertical"`.
 
 ### Shared theme styles
 
@@ -456,7 +421,7 @@ The `dense`, `divider`, and `gutters` overrides apply when the corresponding sta
 Theme variants are shared too; menu variants apply only to the `root` slot.
 
 Component-specific styles apply after shared styles, with `sx` last; CSS specificity still applies.
-Callbacks receive the rendered component's live state.
+Callbacks receive the live state of the rendered component.
 Utility classes remain component-specific, and **`defaultProps` are not shared** between theme keys.
 
 Use scoped state selectors such as `.MuiMenu2CheckboxItem-root.Mui-checked` inside a slot override, or a theme variant for states such as `highlighted`.
@@ -485,7 +450,7 @@ On the root trigger, `data-pressed` follows the open state.
 `data-disabled` is present when you set `disabled` on `Menu` or on `MenuTrigger`.
 `data-highlighted` follows pointer and keyboard navigation, including focus on disabled items; use `.Mui-focusVisible` for keyboard focus-visible styles.
 
-The popup's `portal` and `list` slots and the submenu arrow have no automatic state attributes.
+The `portal` and `list` slots and the submenu arrow have no automatic state attributes.
 Custom slots must forward the supplied props and ref.
 Internal `data-mui-*` markers are not part of this styling contract.
 
@@ -526,19 +491,19 @@ The icon uses `menu2CheckboxItemClasses.indicatorIcon` or `menu2RadioItemClasses
 
 `MenuPopup` uses the `Grow` transition, the same as the current Menu.
 With the default `transitionDuration="auto"`, the duration depends on the height of the menu.
-Pass a different transition component to the popup's `slots.transition`, and its props to `slotProps.transition`:
+Pass a different transition component to `slots.transition` on the popup, and its props to `slotProps.transition`:
 
 {{"component": "file://./demos/fade/index.ts"}}
 
 Grow, Fade, and Zoom work with Menu v2.
-A custom transition must forward its child's props and ref, animate that same popup element, and add no DOM wrapper.
+A custom transition must forward the props and ref of its child, animate that same popup element, and add no DOM wrapper.
 The animation must start in time for Base UI to detect it.
 Test other transitions before use.
 
 The adapter controls `in`, `appear`, `mountOnEnter`, and `unmountOnExit`.
 
 :::warning
-Use `onOpenChangeComplete(open)` on `Menu` for completion, not the transition's `onEntered` or `onExited`.
+Use `onOpenChangeComplete(open)` on `Menu` for completion, not `onEntered` or `onExited` on the transition.
 Base UI controls mounting and can unmount the transition before its completion timer fires.
 :::
 
@@ -596,6 +561,7 @@ Menu v2 follows the [WAI-ARIA menu button pattern](https://www.w3.org/WAI/ARIA/a
 It handles the trigger, the roles, the keyboard behavior, focus management, and dismissal:
 
 - The trigger gets `aria-haspopup`, `aria-expanded`, and `aria-controls`.
+- Opening with a pointer highlights no item. Enter, Space, and ArrowDown highlight the first enabled item; ArrowUp highlights the last enabled item.
 - Arrow keys move between items and respect right-to-left text. Home and End move to the first and the last item.
 - Typeahead matches items by their text content, or by the `label` prop when the content isn't plain text.
 - Disabled items stay focusable, and screen readers announce them as disabled.

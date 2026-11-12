@@ -8,12 +8,12 @@ Menu v2 is an unstable component in Material UI v9.
 Import it from the `Unstable_Menu2` subpaths.
 Its API can change in a minor release.
 
-The current Menu isn't deprecated and keeps working unchanged.
-You can adopt Menu v2 one menu at a time and use both components in the same app.
+The current Menu isn't deprecated or changed.
+You can adopt Menu v2 one menu at a time.
 
 ## Why you should upgrade
 
-Menu v2 provides the following improvements over Menu:
+Menu v2 adds:
 
 - **Submenus** at any nesting depth, with correct keyboard, hover, and ARIA behavior.
   This was [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), and the current Menu can't support it.
@@ -26,10 +26,10 @@ Menu v2 provides the following improvements over Menu:
 
 ### Why it's a new component
 
-Every open Menu is a full `Modal` (`Menu` → `Popover` → `Modal`), and nesting one modal inside another breaks in six places:
+Menu uses `Popover` and `Modal`, which cannot coordinate nested menus:
 
 1. **Backdrop.** Each menu renders a full-screen backdrop that captures clicks.
-   A submenu's backdrop covers its parent, so clicking the parent closes the child.
+   The submenu backdrop covers its parent, so clicking the parent closes the child.
 2. **`aria-hidden`.** `ModalManager` applies it to everything except the topmost modal, so an open submenu hides its parent from screen readers.
 3. **Keys.** ArrowRight and ArrowLeft do nothing in a vertical list, and there's no hook to open a submenu.
 4. **Focus.** Each modal has its own focus trap, and the traps don't coordinate when a submenu closes.
@@ -40,17 +40,16 @@ Fixing this in place means rewriting `Menu`, `MenuList`, `MenuItem`, `Popover`, 
 It also means replacing two models that `Dialog` and every `Popover` depend on: backdrop dismissal and per-modal focus traps.
 Three attempts along those lines were abandoned ([#14700](https://github.com/mui/material-ui/pull/14700), [#20591](https://github.com/mui/material-ui/pull/20591), [#37570](https://github.com/mui/material-ui/pull/37570)).
 
-Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) instead, which already solves the behavior.
-Base UI is a dependency of `@mui/material`, the same as `@popperjs/core`.
-You don't install or import it, and apps that don't import Menu v2 don't bundle it.
+Menu v2 uses [Base UI](https://base-ui.com/react/components/menu) for this behavior.
+It is included in `@mui/material`; no separate installation or import is needed.
+Apps that don't import Menu v2 don't bundle Base UI.
 
 ## How to upgrade
 
 ### Static menu lists
 
-For an always-visible `MenuList` inside `Paper`, keep `@mui/material/MenuList` and `@mui/material/MenuItem`.
+For always-visible lists, such as [Menu List composition](/material-ui/react-menu/#composition-with-menu-list), keep `@mui/material/MenuList` and `@mui/material/MenuItem`.
 Menu v2 has no standalone list component.
-This also applies to the static list in [Menu List composition](/material-ui/react-menu/#composition-with-menu-list).
 
 To change a static list into a popup, put `MenuTrigger` and `MenuPopup` inside `Menu`.
 `MenuPopup` replaces the `Paper` and `MenuList` wrapper.
@@ -59,8 +58,7 @@ Omitting `MenuTrigger` does not make Menu v2 a static list; `MenuPopup` still re
 
 ### Context menus
 
-Menu v2 doesn't support context menus.
-Keep using Menu for them, as in the [Context menu](/material-ui/react-menu/#context-menu) demo.
+Menu v2 doesn't support context menus; keep using the [classic Menu demo](/material-ui/react-menu/#context-menu).
 Material UI plans to add a separate context menu component.
 See [Context menu](/material-ui/react-menu2/#context-menu) for the reasons.
 
@@ -77,10 +75,8 @@ Each part is the default export of its own subpath:
 +import MenuItem from '@mui/material/Unstable_Menu2Item';
 ```
 
-Every other part follows the same `@mui/material/Unstable_Menu2<Part>` pattern.
-For example, import `MenuSeparator` from `@mui/material/Unstable_Menu2Separator`.
-
-The examples use `Menu`, `MenuItem`, and similar local names for the Menu v2 components imported from the `Unstable_Menu2` subpaths.
+Other parts follow the `@mui/material/Unstable_Menu2<Part>` pattern, such as `Unstable_Menu2Separator`.
+The examples omit `2` from local names, but not from import paths.
 
 ### 2. Replace the anchor state with a trigger
 
@@ -139,11 +135,8 @@ Pass your component to the required `render` prop of `MenuTrigger` to add the tr
 />
 ```
 
-There's no default trigger, so the element is always yours.
-Three things to watch:
-
 - Forward props and ref from a wrapper component to the element it renders, the same as with `Tooltip`.
-  Menu v2 merges the behavior through props, so a component that drops them doesn't open the menu.
+  Otherwise, the menu doesn't open.
 - Set `nativeButton={false}` on `MenuTrigger` when the element doesn't render a native `<button>`.
 - Use `MenuSubmenuTrigger` to open a submenu, not a button.
   See [Submenu](/material-ui/react-menu2/#submenu).
@@ -162,8 +155,7 @@ See [Without a trigger](/material-ui/react-menu2/#without-a-trigger).
 +<Menu open={open} onOpenChange={handleOpenChange}>
 ```
 
-- `open` is no longer required.
-  Use `defaultOpen` for an uncontrolled menu.
+- Use `defaultOpen` for an uncontrolled menu.
 - `onClose(event, reason)` becomes `onOpenChange(open, eventDetails)`.
   It fires for opening and closing.
   Call `eventDetails.cancel()` to prevent the change.
@@ -188,10 +180,8 @@ function handleOpenChange(open, eventDetails) {
 }
 ```
 
-Tab and Shift+Tab report `focus-out`.
-Other focus changes can report this reason too.
-After Tab, `eventDetails.event` is a native `FocusEvent`.
-After Shift+Tab, it is a native `KeyboardEvent`.
+Tab, Shift+Tab, and other focus changes can report `focus-out`.
+For Tab, `eventDetails.event` is a native `FocusEvent`; for Shift+Tab, it is a native `KeyboardEvent`.
 
 ### 4. Update the positioning props
 
@@ -334,7 +324,7 @@ Its target can be a descendant of the item.
 `MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default.
 Set `closeOnClick` on these items to close the menu after selection.
 
-On `MenuItem`, `MenuLinkItem`, `MenuCheckboxItem`, `MenuRadioItem`, and `MenuSubmenuTrigger`, replace `component` with `render`.
+All item parts, groups, labels, and separators use optional `render` instead of `component`.
 Put custom component props on the supplied element:
 
 ```diff
@@ -342,38 +332,30 @@ Put custom component props on the supplied element:
 +<MenuItem render={<li />}>File</MenuItem>
 ```
 
-Put root attributes on the item or its render element.
-A render function also receives the typed item state.
-Forward its supplied props, ref, and children to the root element to preserve Material styles, indicators, and ripple.
+These parts share three customization options:
 
-All item parts, including `MenuSubmenuTrigger`, also accept `slotProps.root` for attributes, a ref, and `sx` on the default styled root.
-Its callback receives the live item state.
-Use `slots.root` to replace that root and its render adapter; it takes precedence over `render`.
-A replacement must forward behavior props, ref, and children.
-Utility classes remain, but default Material styles, theme style overrides, ripple, and `sx` processing are not added automatically.
-The replacement still receives indicators as children where applicable.
+- `render` changes the element or composes another component while keeping Material styles, theme overrides, and item ripple.
+- `slotProps.root` supplies root attributes, a ref, and `sx`.
+  Its callback and the render function receive the same live component state.
+- `slots.root` replaces the styled root and takes precedence over `render`.
+  Utility classes and Base UI props remain, but Material styles, theme overrides, ripple, and `sx` processing are not added automatically.
+
+Forward props, ref, and children to preserve behavior, label associations, and any indicators or ripple.
+Root attributes can also go on the component or its render element.
+See [Item customization](/material-ui/react-menu2/#item) and [Group customization](/material-ui/react-menu2/#groups).
 
 Checkbox and radio items have separate `indicator` and `indicatorIcon` slots for the container and icon.
 `MenuSubmenuTrigger` keeps its `indicator` slot and accepts `slots={{ indicator: null }}` to omit it.
-See [Item customization](/material-ui/react-menu2/#item).
 
-`MenuGroup` and `MenuRadioGroup` also use optional `render` instead of `component`.
-Use `slotProps.root` for root attributes, a ref, and `sx`.
-Use `slots.root` to replace the styled root; it takes precedence over `render` and does not add theme styles or `sx` processing automatically.
-With either customization path, forward props, ref, and children to keep group labels and behavior.
-See [Group customization](/material-ui/react-menu2/#groups).
+Set label and separator visual props on the corresponding component, and use `sx` for other styles:
 
-`MenuGroupLabel` and `MenuSeparator` also use `render` in place of `component`.
-Both keep their default Material styles when you use `render`.
-Set `color`, `disableGutters`, and `inset` directly on `MenuGroupLabel`, and use `sx` for style overrides.
-Default labels stay non-sticky; there is no `disableSticky` prop.
-For a separator, the default Divider styles remain: put visual props directly on `MenuSeparator`, such as `variant="inset"`, and use `sx` for custom margins or other style overrides.
-Both parts accept `slotProps.root` for attributes, a ref, and `sx`.
-Use `slots.root` to replace the styled root; it takes precedence over `render`.
-The replacement keeps utility classes and Base UI props, but default Material styles, theme styles, and `sx` processing are not added automatically.
-Top-level visual props apply only to the default root; provide appearance in the replacement component.
-The `orientation` prop still controls separator semantics.
-Forward props, ref, and children to preserve label associations and separator semantics.
+- `MenuGroupLabel` accepts `color`, `disableGutters`, and `inset` from ListSubheader.
+  Default labels are non-sticky; there is no `disableSticky` prop.
+- `MenuSeparator` accepts Divider visual props, such as `variant="inset"`.
+
+These visual props apply only to the default root, including with `render`.
+Provide appearance in a replacement `slots.root` component.
+The separator `orientation` still controls semantics with either root.
 See [Label and separator customization](/material-ui/react-menu2/#labels-and-separators).
 
 These item props work as before:
@@ -382,8 +364,7 @@ These item props work as before:
 - `disabled` is unchanged on supported item parts, but disabled items now stay focusable.
   See [Behavior changes](#behavior-changes).
   `MenuLinkItem` does not support this prop.
-- `disableRipple` is unchanged.
-  The default item root is a `ButtonBase`, so items ripple as before.
+- `disableRipple` still controls ripple on the default `ButtonBase` root.
 
 These `MenuList` props move or change:
 
@@ -395,7 +376,7 @@ These `MenuList` props move or change:
 
 Removed item and `MenuList` props, such as `selected`, are listed in [Check the removed props](#9-check-the-removed-props).
 
-Composed list primitives still work inside items, so `ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged.
+`ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged.
 `ListItemText inset` still aligns with the icon column.
 
 ### 7. Update the theme keys
@@ -445,13 +426,13 @@ Menu v2 has separate theme keys for behavior and presentation:
   The trigger element keeps its own styles.
   Theme its component, or style the `.MuiMenu2Trigger-root` class.
 
-A part's own key applies after the shared key.
-For example, `MuiMenu2CheckboxItem` overrides apply after `MuiMenu2Item` overrides, and `MuiMenu2SubmenuPopup` overrides apply after `MuiMenu2Popup` overrides.
-This includes theme variants, but not `defaultProps`.
+Component-specific styles apply after shared styles, including theme variants.
+For example, `MuiMenu2CheckboxItem` overrides apply after `MuiMenu2Item` overrides.
+`defaultProps` are not shared.
 Utility classes remain specific to each part.
 
-Item `variants` move from `MuiMenuItem` to `MuiMenu2Item` the same way as `styleOverrides`.
-A variant that matches on `selected` no longer applies, because Menu v2 items don't have that prop.
+Move item `variants` from `MuiMenuItem` to `MuiMenu2Item` with the `styleOverrides`.
+Variants that match `selected` no longer apply, because Menu v2 items don't have that prop.
 Match on `checked` under `MuiMenu2CheckboxItem` or `MuiMenu2RadioItem` instead.
 
 `MuiMenu2Popup` variants style only the menu surface, which is the `root` slot.
@@ -590,8 +571,7 @@ const [container, setContainer] = React.useState(null);
 
 ### The initial highlight
 
-This is the change your users are most likely to notice.
-When they open a menu with a pointer, Menu v2 highlights nothing, so pressing Enter can't activate an item they didn't choose.
+When users open a menu with a pointer, Menu v2 highlights nothing, so pressing Enter can't activate an item they didn't choose.
 Native desktop menus behave this way.
 
 This is a deliberate deviation from the ARIA Authoring Practices Guide (APG), which says that focus moves to an item when the menu opens, with no exception for pointer opens.
@@ -600,7 +580,6 @@ See the [Base UI discussion on initial focus](https://github.com/mui/base-ui/is
 
 ### The selectedMenu variant is gone
 
-This is a lost feature rather than a changed one.
 `variant="selectedMenu"` selected which item took focus when the menu opened.
 `variant="menu"` focused the first item and, after a pointer open, hid its focus ring when another item was selected.
 The new foundation can't express either behavior.
@@ -610,8 +589,7 @@ They don't control the initial highlight: Enter, Space, and ArrowDown highlight 
 
 ### Styling around triggers
 
-While a menu or a submenu is open, Base UI renders hidden `span` elements next to its trigger.
-They keep the tab order and the accessibility tree correct.
+While a menu or submenu is open, Base UI renders hidden `span` elements next to its trigger to manage tab order and accessibility.
 The focus guards among them have a `data-base-ui-focus-guard` attribute.
 
 :::warning
@@ -621,5 +599,4 @@ Style each part directly instead.
 
 ### Menu height
 
-The classic Menu limits its height to the viewport minus 96px.
-Menu v2 keeps this limit, and also limits the height to the space available at the anchor, so the value reacts to collisions.
+Menu v2 keeps the classic height limit of the viewport minus 96px and also limits its height to the space available at the anchor.
