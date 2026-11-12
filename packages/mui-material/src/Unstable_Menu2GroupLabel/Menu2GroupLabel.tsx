@@ -191,6 +191,10 @@ Menu2GroupLabel.propTypes /* remove-proptypes */ = {
    */
   disableGutters: PropTypes.bool,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * If `true`, the List Subheader is indented.
    * @default false
    */
