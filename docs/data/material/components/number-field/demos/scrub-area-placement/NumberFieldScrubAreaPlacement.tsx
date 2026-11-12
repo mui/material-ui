@@ -3,7 +3,14 @@ import NumberField from '@mui/material/NumberField';
 
 export default function NumberFieldScrubAreaPlacement() {
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 3,
+        '& > .MuiNumberField-root': { width: '25ch' },
+      }}
+    >
       {/* @focus-start */}
       <NumberField label="Start handle" defaultValue={5} scrubAreaPosition="start" />
       <NumberField
