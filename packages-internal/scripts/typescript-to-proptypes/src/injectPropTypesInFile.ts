@@ -1,8 +1,9 @@
 import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
 import { randomUUID } from 'node:crypto';
-import { generatePropTypes, GeneratePropTypesOptions } from './generatePropTypes';
-import { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
+import type { GeneratePropTypesOptions } from './generatePropTypes';
+import { generatePropTypes } from './generatePropTypes';
+import type { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
 
 export interface InjectPropTypesInFileOptions extends Pick<
   GeneratePropTypesOptions,
@@ -155,7 +156,7 @@ function createBabelPlugin({
     // key is a reserved prop name in React
     // for example https://github.com/reactjs/rfcs/pull/107
     // no need to add a prop-type if we won't generate the docs for it.
-    if (data.prop.name === 'key' && data.prop.jsDoc === '@ignore') {
+    if (data.prop.name === 'key' && (!data.prop.jsDoc || data.prop.jsDoc === '@ignore')) {
       return false;
     }
 

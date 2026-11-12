@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { DistributiveOmit } from '@mui/types';
-import { StyledComponentProps } from '../styles';
+import type * as React from 'react';
+import type { DistributiveOmit } from '@mui/types';
+import type { StyledComponentProps } from '../styles';
 
 /**
  * A component whose root component can be controlled via a `component` prop.
@@ -58,6 +58,9 @@ export type BaseProps<TypeMap extends OverridableTypeMap> =
  */
 // each component declares it's classes in a separate interface for proper JSDoc.
 export interface CommonProps extends StyledComponentProps<never> {
+  /**
+   * A CSS class name applied to the root element.
+   */
   className?: string | undefined;
   style?: React.CSSProperties | undefined;
 }

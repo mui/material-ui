@@ -36,6 +36,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     width: '100%',
     minHeight: 48,
     padding: theme.spacing(0, 2),
+    font: 'inherit',
     ...getTransitionStyles(theme, ['min-height', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -207,7 +208,7 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -223,9 +224,6 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * The props used for each slot inside.

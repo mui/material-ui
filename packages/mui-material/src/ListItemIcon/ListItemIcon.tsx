@@ -77,6 +77,7 @@ const ListItemIconRoot = styled('div', {
  *
  * - [Lists](https://next.mui.com/material-ui/react-list/)
  * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
+ * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
@@ -120,9 +121,6 @@ ListItemIcon.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

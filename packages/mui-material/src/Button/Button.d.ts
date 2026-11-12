@@ -3,7 +3,7 @@ import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
@@ -124,10 +124,7 @@ export interface ExtendButtonTypeMap<TypeMap extends OverridableTypeMap> {
   defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<TypeMap>, 'a'>,
-) => React.JSX.Element) &
-  OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
+export type ExtendButton<TypeMap extends OverridableTypeMap> = ExtendButtonBase<TypeMap>;
 
 /**
  *
@@ -137,6 +134,7 @@ export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
  * - [Button](https://next.mui.com/material-ui/react-button/)
  * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
  * - [Number Field](https://next.mui.com/material-ui/react-number-field/)
+ * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *

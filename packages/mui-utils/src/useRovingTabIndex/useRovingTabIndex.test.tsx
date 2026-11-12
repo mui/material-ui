@@ -2,12 +2,8 @@ import { describe, test, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
-import {
-  type UseRovingTabIndexParams,
-  type UseRovingTabIndexReturnValue,
-  useRovingTabIndexRoot,
-  useRovingTabIndexItem,
-} from './useRovingTabIndex';
+import { useRovingTabIndexRoot, useRovingTabIndexItem } from './useRovingTabIndex';
+import type { UseRovingTabIndexParams, UseRovingTabIndexReturnValue } from './useRovingTabIndex';
 import { RovingTabIndexContext } from './RovingTabIndexContext';
 
 interface TestItem {
@@ -142,6 +138,19 @@ describe('useRovingTabIndexRoot + useRovingTabIndexItem', () => {
 
     expect(screen.getByTestId('button-3')).to.have.attribute('tabindex', '-1');
     expect(screen.getByTestId('button-4')).to.have.attribute('tabindex', '0');
+  });
+
+  test('wraps to the first focusable item when the requested last item is disabled', () => {
+    render(
+      <TestComponent
+        items={[{ id: 'button-1' }, { id: 'button-2' }, { id: 'button-3', disabled: true }]}
+        activeItemId="button-3"
+      />,
+    );
+
+    expect(screen.getByTestId('button-1')).to.have.attribute('tabindex', '0');
+    expect(screen.getByTestId('button-2')).to.have.attribute('tabindex', '-1');
+    expect(screen.getByTestId('button-3')).to.have.attribute('tabindex', '-1');
   });
 
   test('re-resolves when mounted item metadata changes', async () => {

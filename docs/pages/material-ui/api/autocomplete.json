@@ -116,8 +116,15 @@
     "onInputChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent, value: string, reason: string) => void",
+        "type": "function(event: React.SyntheticEvent | null, value: string, reason: string) => void",
         "describedArgs": ["event", "value", "reason"]
+      }
+    },
+    "onKeyDown": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.KeyboardEvent) => void",
+        "describedArgs": ["event"]
       }
     },
     "onOpen": {
@@ -172,7 +179,7 @@
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ clearIndicator?: elementType, listbox?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType, status?: elementType }"
+        "description": "{ chip?: elementType, clearIndicator?: elementType, listbox?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType, status?: elementType }"
       },
       "default": "{}"
     },
@@ -196,6 +203,12 @@
       "description": "The component that renders the root.",
       "default": "'div'",
       "class": "MuiAutocomplete-root"
+    },
+    {
+      "name": "chip",
+      "description": "The component used to render the selected values when `multiple` is `true`.",
+      "default": "Chip",
+      "class": null
     },
     {
       "name": "clearIndicator",

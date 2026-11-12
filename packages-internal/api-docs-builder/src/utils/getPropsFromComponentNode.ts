@@ -1,5 +1,6 @@
 import * as ts from '@typescript/typescript6';
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
+import { resolveExportSpecifier } from './resolveExportSpecifier';
 
 export interface ParsedProp {
   /**
@@ -353,4 +354,54 @@ export function getPropsFromComponentNode({
   }
 
   return parsedComponent;
+}
+
+export function getComponentDeclaration(
+  project: TypeScriptProject,
+  componentName: string,
+): ts.Node | null {
+  const unstableName = `Unstable_${componentName}`;
+  const componentSymbol = project.exports[componentName] ?? project.exports[unstableName];
+
+  if (!componentSymbol) {
+    return null;
+  }
+
+  const localeSymbol = resolveExportSpecifier(componentSymbol, project);
+  return localeSymbol.valueDeclaration ?? null;
+}
+
+/**
+ * Returns `true` if the symbol is only declared in dependencies, like React's DOM attributes.
+ * Packages resolved from `node_modules` are dependencies, even when linked from another folder.
+ */
+export function isSymbolDeclaredOnlyInDependencies(project: TypeScriptProject, symbol: ts.Symbol) {
+  const declarations = symbol.declarations ?? [];
+  return (
+    declarations.length > 0 &&
+    declarations.every((node) => {
+      const sourceFile = node.getSourceFile();
+      return (
+        project.program.isSourceFileFromExternalLibrary(sourceFile) ||
+        project.program.isSourceFileDefaultLibrary(sourceFile)
+      );
+    })
+  );
+}
+
+function isDeclaredOnlyInDependencies(project: TypeScriptProject, prop: ParsedProp) {
+  return prop.signatures.every(({ symbol }) => isSymbolDeclaredOnlyInDependencies(project, symbol));
+}
+
+/**
+ * Names of the component props only declared in dependencies, like React's DOM attributes.
+ */
+export function getExternalProps(project: TypeScriptProject, componentName: string): Set<string> {
+  const node = getComponentDeclaration(project, componentName);
+  const props = node ? getPropsFromComponentNode({ node, project, checkDeclarations: true }) : null;
+  return new Set(
+    Object.entries(props?.props ?? {})
+      .filter(([, prop]) => isDeclaredOnlyInDependencies(project, prop))
+      .map(([name]) => name),
+  );
 }

@@ -59,9 +59,7 @@ const CardActionsRoot = styled('div', {
     {
       props: { disableSpacing: false },
       style: {
-        '& > :not(style) ~ :not(style)': {
-          marginLeft: 8,
-        },
+        gap: 8,
       },
     },
   ],
@@ -115,9 +113,6 @@ CardActions.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * If `true`, the actions do not have additional margin.

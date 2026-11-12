@@ -60,9 +60,7 @@ const AccordionActionsRoot = styled('div', {
     {
       props: (props) => !props.disableSpacing,
       style: {
-        '& > :not(style) ~ :not(style)': {
-          marginLeft: 8,
-        },
+        gap: 8,
       },
     },
   ],
@@ -111,9 +109,6 @@ AccordionActions.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * If `true`, the actions do not have additional margin.

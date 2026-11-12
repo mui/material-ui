@@ -6,6 +6,8 @@ import Typography from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+export interface FormControlLabelTypographySlotPropsOverrides {}
+
 export interface FormControlLabelSlots {
   /**
    * The component that renders the label.
@@ -18,7 +20,11 @@ export interface FormControlLabelSlots {
 export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   FormControlLabelSlots,
   {
-    typography: SlotProps<typeof Typography, {}, FormControlLabelProps>;
+    typography: SlotProps<
+      typeof Typography,
+      FormControlLabelTypographySlotPropsOverrides,
+      FormControlLabelProps
+    >;
   }
 >;
 
@@ -47,10 +53,6 @@ export interface FormControlLabelProps
    */
   disableTypography?: boolean | undefined;
   /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef?: React.Ref<any> | undefined;
-  /**
    * A text or an element to be used in an enclosing label element.
    */
   label: React.ReactNode;
@@ -59,6 +61,9 @@ export interface FormControlLabelProps
    * @default 'end'
    */
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom' | undefined;
+  /**
+   * The `name` of the control, used when the control does not set its own.
+   */
   name?: string | undefined;
   /**
    * Callback fired when the state is changed.
