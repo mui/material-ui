@@ -916,9 +916,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The icon to display in place of the default clear icon.
@@ -1183,7 +1180,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onInputChange: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when a key is pressed.
+   * Set `event.defaultMuiPrevented` to `true` to skip the default keyboard handling of the component.
+   * @param {React.KeyboardEvent} event The event source of the callback.
    */
   onKeyDown: PropTypes.func,
   /**

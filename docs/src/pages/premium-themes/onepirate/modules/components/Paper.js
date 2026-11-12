@@ -54,6 +54,9 @@ Paper.propTypes = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * A CSS class name applied to the root element.
+   */
   className: PropTypes.string,
   padding: PropTypes.bool,
 };
