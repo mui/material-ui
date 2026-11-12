@@ -517,11 +517,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * provides a default Icon with animation.
    */
   icon: PropTypes.node,
-  /**
-   * This prop is used to help implement the accessibility logic.
-   * If you don't provide this prop. It falls back to a randomly generated id.
-   */
-  id: PropTypes.string,
   onBlur: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.

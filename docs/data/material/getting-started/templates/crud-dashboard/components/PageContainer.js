@@ -92,6 +92,9 @@ PageContainer.propTypes = {
       title: PropTypes.string.isRequired,
     }),
   ),
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   title: PropTypes.string,
 };
