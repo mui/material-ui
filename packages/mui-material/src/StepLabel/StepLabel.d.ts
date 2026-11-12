@@ -23,6 +23,7 @@ export interface StepLabelSlots {
   label: React.ElementType;
   /**
    * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
+   * @default StepIcon
    */
   stepIcon: React.ElementType;
 }
