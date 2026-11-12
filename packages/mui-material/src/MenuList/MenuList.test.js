@@ -278,6 +278,36 @@ describe('<MenuList />', () => {
   });
 
   describe('keyboard navigation', () => {
+    it('does not preserve autoFocus on a disabled item', () => {
+      render(
+        <MenuList autoFocusItem>
+          <MenuItem>enabled</MenuItem>
+          <MenuItem disabled autoFocus>
+            disabled
+          </MenuItem>
+        </MenuList>,
+      );
+
+      expect(screen.getByRole('menuitem', { name: 'enabled' })).toHaveFocus();
+    });
+
+    it('preserves autoFocus on a disabled item when disabledItemsFocusable is true', () => {
+      const handleBlur = spy();
+
+      render(
+        <MenuList autoFocusItem disabledItemsFocusable>
+          <MenuItem>enabled</MenuItem>
+          <MenuItem disabled autoFocus onBlur={handleBlur}>
+            disabled
+          </MenuItem>
+        </MenuList>,
+      );
+
+      expect(screen.getByRole('menuitem', { name: 'disabled' })).toHaveFocus();
+      // StrictMode focuses the item again, so also check that focus never moved away.
+      expect(handleBlur.callCount).to.equal(0);
+    });
+
     it('does not focus the list container when autoFocusItem is true', () => {
       const handleFocus = spy();
 

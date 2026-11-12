@@ -919,9 +919,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The icon to display in place of the default clear icon.
@@ -1166,7 +1163,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Use in controlled mode (see open).
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"blur"`.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"createOption"`, `"blur"`.
    */
   onClose: PropTypes.func,
   /**
@@ -1180,13 +1177,15 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the input value changes.
    *
-   * @param {React.SyntheticEvent} event The event source of the callback.
+   * @param {React.SyntheticEvent | null} event The event source of the callback, or `null` when the input value is reset programmatically.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`, `"createOption"`
    */
   onInputChange: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when a key is pressed.
+   * Set `event.defaultMuiPrevented` to `true` to skip the default keyboard handling of the component.
+   * @param {React.KeyboardEvent} event The event source of the callback.
    */
   onKeyDown: PropTypes.func,
   /**
