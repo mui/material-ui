@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import NumberField from '@mui/material/NumberField';
 import Stack from '@mui/material/Stack';
@@ -11,8 +10,9 @@ export default function NumberFieldForm() {
   const [submitted, setSubmitted] = React.useState<string | null>(null);
 
   return (
-    <Box
+    <Stack
       component="form"
+      spacing={2}
       onSubmit={(event) => {
         event.preventDefault();
         setSubmitted(String(new FormData(event.currentTarget).get('price')));
@@ -35,7 +35,7 @@ export default function NumberFieldForm() {
         format={{ style: 'currency', currency: 'USD' }}
         fullWidth
       />
-      <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+      <Stack direction="row" spacing={1}>
         <Button type="submit" variant="contained">
           Submit
         </Button>
@@ -43,10 +43,8 @@ export default function NumberFieldForm() {
           Reset
         </Button>
       </Stack>
-      {submitted !== null && (
-        <Typography sx={{ mt: 2 }}>Submitted price: {submitted}</Typography>
-      )}
-    </Box>
+      {submitted !== null && <Typography>Submitted price: {submitted}</Typography>}
+    </Stack>
   );
   // @focus-end
 }

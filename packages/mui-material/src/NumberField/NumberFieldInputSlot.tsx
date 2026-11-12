@@ -174,17 +174,12 @@ const NumberFieldInputSlot = React.forwardRef(
     const { baseProps, baseState, classes, materialProps, externalForwardedProps } = props;
     const { inputValue } = baseState;
     const { autoFocus, variant, label, id, fullWidth, inputRef, placeholder } = materialProps;
-    const ownerState = {
-      ...materialProps,
-      disabled: baseState.disabled,
-      required: baseState.required,
-      readOnly: baseState.readOnly,
-    };
+    const ownerState = materialProps;
 
     const hasHelperText = materialProps.helperText != null && materialProps.helperText !== '';
     const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
 
-    const InputComponent = variantComponent[materialProps.variant];
+    const InputComponent = variantComponent[variant];
     const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
     const inputAdditionalProps: Pick<OutlinedInputProps, 'label' | 'notched'> = {};
 
@@ -321,7 +316,7 @@ const NumberFieldInputSlot = React.forwardRef(
     const { disabled: incrementButtonDisabled, ...restIncrementButtonProps } =
       incrementButtonProps as IconButtonProps;
 
-    const scrubAreaElement = ownerState.scrubArea !== false && (
+    const scrubAreaElement = ownerState.scrubAreaPosition !== false && (
       <BaseNumberField.ScrubArea
         direction={direction}
         pixelSensitivity={pixelSensitivity}
@@ -380,10 +375,10 @@ const NumberFieldInputSlot = React.forwardRef(
       ownerState,
     });
 
-    const startScrubArea = ownerState.scrubArea === 'start' && (
+    const startScrubArea = ownerState.scrubAreaPosition === 'start' && (
       <InputAdornment position="start">{scrubAreaElement}</InputAdornment>
     );
-    const endScrubArea = ownerState.scrubArea === 'end' && (
+    const endScrubArea = ownerState.scrubAreaPosition === 'end' && (
       <InputAdornment position="end">{scrubAreaElement}</InputAdornment>
     );
 

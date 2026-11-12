@@ -16,7 +16,7 @@ import type { InputBaseProps } from '../InputBase';
 import type { OutlinedInputProps } from '../OutlinedInput';
 import type { SxProps } from '../styles';
 
-type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
+export type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
 
 type ControlsPosition = 'stacked' | 'end' | 'split' | false;
 
@@ -71,8 +71,9 @@ export interface NumberFieldSlots {
 export interface NumberFieldPropsSizeOverrides {}
 export interface NumberFieldPropsColorOverrides {}
 
-export interface NumberFieldRootSlotOverrides {}
+export interface NumberFieldRootSlotPropsOverrides {}
 export interface NumberFieldInputSlotPropsOverrides {}
+export interface NumberFieldHtmlInputSlotPropsOverrides {}
 export interface NumberFieldFormHelperTextSlotPropsOverrides {}
 export interface NumberFieldInputLabelSlotPropsOverrides {}
 export interface NumberFieldDecrementButtonSlotPropsOverrides {}
@@ -108,7 +109,7 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
      */
     htmlInput: SlotProps<
       React.ElementType<InputBaseProps['inputProps']>,
-      {},
+      NumberFieldHtmlInputSlotPropsOverrides,
       NumberFieldOwnerState
     >;
     /**
@@ -147,7 +148,7 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
      */
     root: SlotProps<
       React.ElementType<FormControlProps>,
-      NumberFieldRootSlotOverrides,
+      NumberFieldRootSlotPropsOverrides,
       NumberFieldOwnerState
     >;
     /**
@@ -347,7 +348,7 @@ export interface BaseNumberFieldProps extends StandardProps<
    * Its position is independent of `controlsPosition`.
    * @default false
    */
-  scrubArea?: 'start' | 'end' | false | undefined;
+  scrubAreaPosition?: 'start' | 'end' | false | undefined;
   /**
    * The size of the component.
    * @default 'medium'
@@ -432,7 +433,7 @@ export interface NumberFieldOwnerState
   fullWidth: boolean;
   readOnly: boolean;
   required: boolean;
-  scrubArea: NonNullable<NumberFieldProps['scrubArea']>;
+  scrubAreaPosition: NonNullable<NumberFieldProps['scrubAreaPosition']>;
   size: NonNullable<NumberFieldProps['size']>;
   variant: NumberFieldVariants;
 }

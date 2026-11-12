@@ -64,7 +64,7 @@
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "required": { "type": { "name": "bool" }, "default": "false" },
-    "scrubArea": {
+    "scrubAreaPosition": {
       "type": {
         "name": "enum",
         "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"

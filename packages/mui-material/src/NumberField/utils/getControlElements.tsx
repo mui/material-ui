@@ -3,6 +3,7 @@ import InputAdornment from '../../InputAdornment';
 import { styled } from '../../zero-styled';
 import type { NumberFieldOwnerState } from '../NumberField.types';
 import type { NumberFieldClasses } from '../numberFieldClasses';
+import getAdornedStart from './getAdornedStart';
 
 const Controls = styled(InputAdornment, {
   name: 'MuiNumberField',
@@ -25,8 +26,8 @@ const Controls = styled(InputAdornment, {
 
 interface GetControlElementsOptions {
   controlsPosition: NumberFieldOwnerState['controlsPosition'];
-  IncrementButton?: React.ReactNode;
-  DecrementButton?: React.ReactNode;
+  IncrementButton: React.ReactNode;
+  DecrementButton: React.ReactNode;
   startAdornment?: React.ReactNode;
   classes: Pick<NumberFieldClasses, 'controls'>;
   ownerState: NumberFieldOwnerState;
@@ -87,7 +88,11 @@ function getControlElements({
   return {
     startControls,
     endControls,
-    adornedStart: Boolean(startControls || ownerState.scrubArea === 'start' || startAdornment),
+    adornedStart: getAdornedStart({
+      controlsPosition,
+      scrubAreaPosition: ownerState.scrubAreaPosition,
+      startAdornment,
+    }),
   };
 }
 

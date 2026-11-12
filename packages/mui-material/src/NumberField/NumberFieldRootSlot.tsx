@@ -9,7 +9,7 @@ import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.type
 import type { NumberFieldClasses } from './numberFieldClasses';
 import FormControl from '../FormControl';
 import useSlot from '../utils/useSlot';
-import { getControlElements } from './utils';
+import getAdornedStart from './utils/getAdornedStart';
 import { styled } from '../zero-styled';
 import InputLabel from '../InputLabel';
 import type { InputLabelProps } from '../InputLabel';
@@ -42,12 +42,7 @@ const NumberFieldRootSlot = React.forwardRef(
   (props: NumberFieldRootProps, ref: React.Ref<HTMLDivElement>) => {
     const { baseProps, baseState, children, classes, materialProps, externalForwardedProps } =
       props;
-    const ownerState = {
-      ...materialProps,
-      disabled: baseState.disabled,
-      required: baseState.required,
-      readOnly: baseState.readOnly,
-    };
+    const ownerState = materialProps;
     const { id, label, helperText } = materialProps;
 
     const hasLabel = label != null && label !== '';
@@ -92,11 +87,10 @@ const NumberFieldRootSlot = React.forwardRef(
       resolvedInputSlotProps && 'startAdornment' in resolvedInputSlotProps
         ? resolvedInputSlotProps.startAdornment
         : undefined;
-    const { adornedStart } = getControlElements({
+    const adornedStart = getAdornedStart({
       controlsPosition: ownerState.controlsPosition,
+      scrubAreaPosition: ownerState.scrubAreaPosition,
       startAdornment,
-      classes,
-      ownerState,
     });
 
     return (

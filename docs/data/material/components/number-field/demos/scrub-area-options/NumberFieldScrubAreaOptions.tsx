@@ -8,14 +8,14 @@ export default function NumberFieldScrubAreaOptions() {
       <NumberField
         label="Horizontal dragging"
         defaultValue={5}
-        scrubArea="start"
+        scrubAreaPosition="start"
         helperText="Move at least 8 pixels to change the value."
         slotProps={{ scrubArea: { pixelSensitivity: 8 } }}
       />
       <NumberField
         label="Vertical dragging"
         defaultValue={5}
-        scrubArea="start"
+        scrubAreaPosition="start"
         helperText="Drag vertically to change the value."
         slotProps={{ scrubArea: { direction: 'vertical' } }}
       />
