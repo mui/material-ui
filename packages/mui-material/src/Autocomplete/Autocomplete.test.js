@@ -5958,7 +5958,7 @@ describe('<Autocomplete />', () => {
           disablePortal
           options={options}
           renderInput={(params) => <TextField {...params} />}
-          renderOption={(props, option) => (
+          renderOption={(props, option, { index }) => (
             <li
               {...props}
               key={option}
@@ -5967,7 +5967,7 @@ describe('<Autocomplete />', () => {
                 top: 0,
                 width: '100%',
                 height: 36,
-                transform: `translateY(${options.indexOf(option) * 36}px)`,
+                transform: `translateY(${index * 36}px)`,
               }}
             >
               {option}

@@ -483,7 +483,7 @@ function useAutocomplete(props) {
         const scale =
           Math.abs(listboxRect.height - listboxNode.offsetHeight) < 1
             ? 1
-            : listboxRect.height / listboxNode.offsetHeight || 1;
+            : listboxRect.height / listboxNode.offsetHeight;
         const elementHeight = option.offsetHeight;
         const elementTop =
           (option.getBoundingClientRect().top - listboxRect.top) / scale -
