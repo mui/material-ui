@@ -58,7 +58,7 @@ const NumberField = React.forwardRef(function NumberField(
     placeholder,
     readOnly = false,
     required = false,
-    scrubArea = false,
+    scrubAreaPosition = false,
     size = 'medium',
     slots = {},
     slotProps = {},
@@ -86,7 +86,7 @@ const NumberField = React.forwardRef(function NumberField(
     placeholder,
     readOnly,
     required,
-    scrubArea,
+    scrubAreaPosition,
     size,
     snapOnStep,
     variant,
@@ -401,7 +401,7 @@ NumberField.propTypes /* remove-proptypes */ = {
    * Its position is independent of `controlsPosition`.
    * @default false
    */
-  scrubArea: PropTypes.oneOf(['end', 'start', false]),
+  scrubAreaPosition: PropTypes.oneOf(['end', 'start', false]),
   /**
    * The size of the component.
    * @default 'medium'

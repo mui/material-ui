@@ -4,11 +4,24 @@ import type { NumberField as BaseNumberField } from '@base-ui/react/number-field
 import NumberField from '@mui/material/NumberField';
 import type {
   NumberFieldProps,
+  NumberFieldVariants,
   NumberFieldOwnerState,
   StandardNumberFieldProps,
   FilledNumberFieldProps,
   OutlinedNumberFieldProps,
 } from '@mui/material/NumberField';
+
+// Wrappers can name the constraint of the public variant generic.
+function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldProps<Variant>) {
+  return <NumberField {...props} />;
+}
+<VariantWrapper variant="filled" slotProps={{ input: { hiddenLabel: true } }} />;
+
+<NumberField scrubAreaPosition="start" />;
+<NumberField scrubAreaPosition="end" />;
+<NumberField scrubAreaPosition={false} />;
+// @ts-expect-error Placement is separate from the scrubArea slot.
+<NumberField scrubArea="start" />;
 
 // @ts-expect-error NumberField owns its content; use slot props to customize it.
 <NumberField>Unsupported content</NumberField>;

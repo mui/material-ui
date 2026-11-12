@@ -8,7 +8,7 @@ export default function CustomizedNumberFieldScrubArea() {
     <NumberField
       label="Quantity"
       defaultValue={5}
-      scrubArea="start"
+      scrubAreaPosition="start"
       slotProps={{
         scrubArea: {
           children: <DragIndicatorIcon fontSize="small" />,

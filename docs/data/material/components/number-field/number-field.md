@@ -105,7 +105,7 @@ Use `false` to render no buttons at all.
 
 ## Scrubbing
 
-Set `scrubArea` to `"start"` or `"end"` to add a handle that users can drag to adjust the value.
+Set `scrubAreaPosition` to `"start"` or `"end"` to add a handle that users can drag to adjust the value.
 The default is `false`, which hides the handle.
 Its position is independent of `controlsPosition`.
 
@@ -115,7 +115,8 @@ Its position is independent of `controlsPosition`.
 
 Dragging adjusts the value horizontally by default.
 Set `slotProps.scrubArea.direction` to `"vertical"` for up/down dragging.
-Increase `pixelSensitivity` to require more pointer movement before the value changes.
+Increase `slotProps.scrubArea.pixelSensitivity` to require more pointer movement before the value changes.
+Use `slotProps.scrubArea.teleportDistance` to set how far the cursor can move from the handle's center before wrapping back around.
 
 {{"component": "file://./demos/scrub-area-options/index.ts"}}
 
@@ -160,8 +161,8 @@ Set `name` to include the numeric value in form submission.
 The submitted value is the unformatted number, even when the input displays a currency or another format.
 Use `form` to associate a field with a form outside its DOM ancestry.
 
-For form reset support, control the value and restore it from the form's `onReset` handler, as shown below.
-Native form reset does not currently restore uncontrolled fields to their `defaultValue`.
+Uncontrolled fields do not yet support native form reset.
+The example below uses a controlled value and restores it in `onReset` so the Reset button returns the field to its initial value.
 
 {{"component": "file://./demos/form/index.ts"}}
 
