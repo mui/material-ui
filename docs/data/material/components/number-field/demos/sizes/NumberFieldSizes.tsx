@@ -8,7 +8,13 @@ export default function NumberFieldSizes() {
       {(['outlined', 'filled', 'standard'] as const).map((variant) => (
         <Box
           key={variant}
-          sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, alignItems: 'center' }}
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 3,
+            alignItems: 'center',
+            '& > .MuiNumberField-root': { width: '25ch' },
+          }}
         >
           <NumberField
             label="Small"
