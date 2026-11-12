@@ -302,7 +302,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -339,9 +339,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * @ignore
-   */
   role: PropTypes.string,
   /**
    * If `true`, the component is selected.
@@ -358,7 +355,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * @default 0
+   * The `tabIndex` of the root element.
+   * When not provided, it is managed by the parent menu's keyboard focus handling.
    */
   tabIndex: PropTypes.number,
 };
