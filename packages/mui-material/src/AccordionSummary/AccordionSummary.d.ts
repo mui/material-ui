@@ -14,12 +14,12 @@ export interface AccordionSummarySlots {
   root: React.ElementType;
   /**
    * The component that renders the content slot.
-   * @default div
+   * @default 'div'
    */
   content: React.ElementType;
   /**
    * The component that renders the expand icon wrapper slot.
-   * @default div
+   * @default 'div'
    */
   expandIconWrapper: React.ElementType;
 }
