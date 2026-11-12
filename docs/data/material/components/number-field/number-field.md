@@ -29,6 +29,20 @@ The `helperText` prop provides context about the expected input.
 
 {{"component": "file://./demos/form-props/index.ts"}}
 
+## Controlled and uncontrolled values
+
+Use `defaultValue` for an uncontrolled field, or `value` with `onValueChange` for a controlled field.
+Use `null` for a controlled empty field, or omit `defaultValue` to start an uncontrolled field empty.
+Zero is a numeric value.
+
+`onValueChange` receives the next number or `null`, followed by details about the interaction.
+Use `onValueCommitted` to respond when an edit is committed.
+Typing commits on blur, keyboard and wheel adjustments commit immediately, and pointer presses on the buttons and scrub area commit on release.
+Both callbacks include a `details.reason` identifying the interaction.
+Call `details.cancel()` in `onValueChange` to reject a proposed change.
+
+{{"component": "file://./demos/state/index.ts"}}
+
 ## Validation
 
 Use `error` to display an error state and `helperText` to explain how to correct the value.
@@ -40,7 +54,8 @@ The following example applies a custom validation rule to the controlled numeric
 
 Use `min` and `max` to limit the value.
 The increment and decrement buttons become disabled at their respective bounds.
-Values typed outside the range are clamped when the input loses focus.
+The displayed text is clamped when the input loses focus.
+Numeric values reported by `onValueChange` are clamped while editing.
 
 Set `allowOutOfRange` to keep typed values outside the range.
 Stepping with the buttons or keyboard still respects the bounds.
@@ -56,7 +71,7 @@ Their defaults are `0.1` and `10`.
 
 When bounds are set, <kbd>Home</kbd> moves to `min` and <kbd>End</kbd> moves to `max`.
 
-Set `snapOnStep` to move an off-step value to a step multiple when stepping.
+Set `snapOnStep` to snap to step intervals starting at `min`, or `0` if `min` is omitted.
 
 {{"component": "file://./demos/steps/index.ts"}}
 
@@ -75,7 +90,7 @@ Use `format` to display currencies, percentages, units, or a specific number of 
 It accepts the options supported by `Intl.NumberFormat`.
 Use `locale` to control formatting and parsing independently of the browser's locale.
 
-The value and value callbacks use numbers regardless of how the input is formatted.
+The value and value callbacks use unformatted numbers or `null`, regardless of the display format.
 For example, a value of `0.125` is displayed as `12.5%` with percent formatting.
 
 {{"component": "file://./demos/format/index.ts"}}
@@ -108,6 +123,8 @@ Increase `pixelSensitivity` to require more pointer movement before the value ch
 
 Use `slotProps.scrubArea` to customize the handle and `slotProps.scrubAreaCursor` to customize the cursor displayed during dragging.
 Both slots support custom content through `children` and styles through `sx`.
+The custom cursor appears during mouse dragging when pointer lock is available.
+It is not shown in Safari or during touch interactions.
 
 {{"component": "file://./demos/scrub-area-customization/index.ts"}}
 
@@ -136,18 +153,6 @@ The `color` prop changes the highlight color when the field is focused.
 Use `fullWidth` to fill the width of the field's container.
 
 {{"component": "file://./demos/full-width/index.ts"}}
-
-## Controlled and uncontrolled values
-
-Use `defaultValue` for an uncontrolled field, or `value` with `onValueChange` for a controlled field.
-An empty field has a value of `null`; zero is a numeric value.
-
-`onValueChange` receives the next number or `null`, followed by details about the interaction.
-Use `onValueCommitted` to respond when an edit is committed: typing commits on blur, keyboard steps commit immediately, and button steps commit on release.
-Both callbacks include a `details.reason` identifying the interaction.
-Call `details.cancel()` in `onValueChange` to reject a proposed change.
-
-{{"component": "file://./demos/state/index.ts"}}
 
 ## Form submission
 
