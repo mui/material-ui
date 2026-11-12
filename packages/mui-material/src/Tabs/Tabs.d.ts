@@ -22,7 +22,7 @@ export interface TabsEndScrollButtonIconSlotPropsOverrides {}
 
 export interface TabsSlots {
   /**
-   * The component used for the popper.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;

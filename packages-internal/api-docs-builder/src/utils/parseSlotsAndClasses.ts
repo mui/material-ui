@@ -162,7 +162,8 @@ function isComponentSlot(project: TypeScriptProject, symbol: ts.Symbol): boolean
 }
 
 /**
- * Checks the `@default` of a component slot: HTML elements are quoted (`'div'`), components are not.
+ * Checks the `@default` of a component slot: HTML elements are in single quotes (`'div'`),
+ * components are not, and a slot that renders nothing has `@default null`.
  */
 export function getSlotDefaultError(
   defaultValue: string | undefined,
@@ -172,13 +173,21 @@ export function getSlotDefaultError(
   if (!value) {
     return `has no \`@default\`. Add one in ${location}, with the component it renders or the HTML tag in quotes, like \`@default 'div'\`.`;
   }
-  if (/^"[^"]*"$/.test(value)) {
-    return `has \`@default ${value}\`. Write \`@default '${value.slice(1, -1)}'\` in ${location}, HTML tags use single quotes.`;
+  if (value === 'null') {
+    return null;
   }
-  if (/^[a-z][a-z0-9-]*$/.test(value) && !['null', 'undefined'].includes(value)) {
-    return `has \`@default ${value}\`. Write \`@default '${value}'\` in ${location}, HTML tags are quoted.`;
+  // A lone lowercase name, bare or wrapped in double quotes, backticks, or angle brackets.
+  const match = value.match(
+    /^(?:"([a-z][a-z0-9-]*)"|`([a-z][a-z0-9-]*)`|<([a-z][a-z0-9-]*)\s*\/?>|([a-z][a-z0-9-]*))$/,
+  );
+  if (!match) {
+    return null;
   }
-  return null;
+  const name = match.slice(1).find(Boolean)!;
+  if (name === 'null' || name === 'undefined') {
+    return `has \`@default ${value}\`. Write \`@default null\` in ${location} for a slot that renders nothing.`;
+  }
+  return `has \`@default ${value}\`. Write \`@default '${name}'\` in ${location}, HTML tags are in single quotes.`;
 }
 
 /**

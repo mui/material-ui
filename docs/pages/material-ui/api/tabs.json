@@ -74,7 +74,7 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used for the popper.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": "MuiTabs-root"
     },
