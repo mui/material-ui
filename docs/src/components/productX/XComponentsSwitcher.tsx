@@ -148,7 +148,7 @@ export default function XComponentsSwitcher(props: {
           ))}
         </SwipeableViews>
       </Box>
-      <Stack spacing={1} useFlexGap sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
+      <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {componentElement.map((element, index) => (
           <Highlighter
             key={index}
