@@ -340,6 +340,32 @@ describe('CSS layers: generated styles', () => {
     expect(shared.styles).to.equal(styles);
   });
 
+  it('declares the sub-layer order before the styles of a GlobalStyles without a ThemeProvider', () => {
+    const inserted: string[] = [];
+    render(
+      <React.Fragment>
+        <CaptureStyles inserted={inserted} />
+        <GlobalStyles styles={{ '.app': { color: 'blue' } }} />
+      </React.Fragment>,
+    );
+    expect(inserted).to.have.length(1);
+    expect(inserted[0]).to.match(
+      /^@layer mui\.global, mui\.components, mui\.theme, mui\.custom, mui\.sx;/,
+    );
+    expect(inserted[0]).to.include('@layer mui.components{.app{color:blue;}}');
+  });
+
+  it("declares only the app's layer order in a GlobalStyles without a ThemeProvider", () => {
+    const inserted: string[] = [];
+    render(
+      <React.Fragment>
+        <CaptureStyles inserted={inserted} />
+        <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
+      </React.Fragment>,
+    );
+    expect(inserted).to.deep.equal(['@layer theme, base, mui, components, utilities;']);
+  });
+
   it('declares the sub-layer order under a ThemeProvider with a single layer', () => {
     removeLayerOrders();
     render(
