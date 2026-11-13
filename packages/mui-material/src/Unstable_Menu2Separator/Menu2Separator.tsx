@@ -185,9 +185,6 @@ Menu2Separator.propTypes /* remove-proptypes */ = {
    * @default false
    */
   absolute: PropTypes.bool,
-  /**
-   * @ignore
-   */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.

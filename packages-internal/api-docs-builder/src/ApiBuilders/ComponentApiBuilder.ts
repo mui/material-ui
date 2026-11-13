@@ -826,10 +826,12 @@ export default async function generateComponentApi(
     }
   }
 
+  // Subpath-only components are missing from the root exports.
+  const componentProject = getComponentTypeScriptProject(project, filename, componentInfo.name);
   const slotsAndClassesErrors: string[] = [];
   if (!projectSettings.skipSlotsAndClasses) {
     const { slots, classes, errors } = parseSlotsAndClasses({
-      typescriptProject: getComponentTypeScriptProject(project, filename, componentInfo.name),
+      typescriptProject: componentProject,
       projectSettings,
       componentName: reactApi.name,
       muiName: reactApi.muiName,
@@ -858,7 +860,7 @@ export default async function generateComponentApi(
     project,
   );
 
-  const externalProps = getExternalProps(project, reactApi.name);
+  const externalProps = getExternalProps(componentProject, reactApi.name);
   const errors = [
     ...attachPropsTable(reactApi, projectSettings.propsSettings, externalProps),
     ...slotsAndClassesErrors,

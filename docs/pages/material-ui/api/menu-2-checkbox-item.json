@@ -3,7 +3,6 @@
     "checked": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "className": { "type": { "name": "string" } },
     "closeOnClick": { "type": { "name": "bool" }, "default": "false" },
     "defaultChecked": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
@@ -32,7 +31,6 @@
         "description": "{ indicator?: elementType, indicatorIcon?: elementType, root?: elementType }"
       }
     },
-    "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",

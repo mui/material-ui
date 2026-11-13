@@ -2,7 +2,6 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "className": { "type": { "name": "string" } },
     "closeDelay": { "type": { "name": "number" }, "default": "0" },
     "delay": { "type": { "name": "number" }, "default": "100" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
@@ -22,7 +21,6 @@
     "slots": {
       "type": { "name": "shape", "description": "{ indicator?: elementType, root?: elementType }" }
     },
-    "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",

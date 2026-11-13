@@ -2,7 +2,6 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "className": { "type": { "name": "string" } },
     "closeOnClick": { "type": { "name": "bool" }, "default": "true" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
@@ -15,7 +14,6 @@
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
     },
     "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
-    "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",

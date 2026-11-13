@@ -238,9 +238,6 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
-  /**
-   * @ignore
-   */
   baseProps: PropTypes.object.isRequired,
   /**
    * If `true`, the ripple effect is disabled.
@@ -254,9 +251,6 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    * @default false
    */
   nativeButton: PropTypes.bool,
-  /**
-   * @ignore
-   */
   ownerState: PropTypes.object.isRequired,
   /**
    * The element to render, or a function that returns it.

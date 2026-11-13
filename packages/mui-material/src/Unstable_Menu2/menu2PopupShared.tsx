@@ -116,6 +116,7 @@ export interface Menu2PopupSharedSlots {
    * A modal menu renders it to block outside clicks. Providing this slot or `slotProps.backdrop` also renders it.
    * Set to `null` to omit it. A modal menu then allows outside clicks and keeps the scroll lock.
    * The default backdrop is transparent.
+   * @default 'div'
    */
   backdrop?: React.ElementType | null | undefined;
   /**

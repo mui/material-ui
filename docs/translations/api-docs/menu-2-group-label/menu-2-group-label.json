@@ -3,7 +3,6 @@
   "propDescriptions": {
     "children": { "description": "The content of the label." },
     "classes": { "description": "Override or extend the styles applied to the component." },
-    "className": { "description": "CSS class applied to the element." },
     "color": {
       "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
@@ -16,7 +15,6 @@
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
-    "style": { "description": "Styles applied to the root element." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }

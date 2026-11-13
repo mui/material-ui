@@ -161,6 +161,7 @@ export interface Menu2PopupSlots {
    * The component used for the backdrop beneath the menu.
    * A modal menu renders it to block outside clicks. Providing this slot or `slotProps.backdrop` also renders it.
    * Set to `null` to omit it, including when configured in the theme. A modal menu then allows outside clicks and keeps the scroll lock.
+   * @default 'div'
    */
   backdrop?: React.ElementType | null | undefined;
   /**

@@ -2,7 +2,6 @@
   "props": {
     "absolute": { "type": { "name": "bool" }, "default": "false" },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "className": { "type": { "name": "string" } },
     "flexItem": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -13,7 +12,6 @@
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
     },
     "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
-    "style": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",

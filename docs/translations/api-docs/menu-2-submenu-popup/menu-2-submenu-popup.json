@@ -8,7 +8,6 @@
     },
     "children": { "description": "The submenu items." },
     "classes": { "description": "Override or extend the styles applied to the component." },
-    "className": { "description": "CSS class applied to the menu surface." },
     "collisionAvoidance": {
       "description": "Determines how to handle collisions when positioning the popup."
     },
@@ -37,7 +36,6 @@
     "sticky": {
       "description": "Whether to maintain the popup in the viewport after the anchor element was scrolled out of view."
     },
-    "style": { "description": "Inline styles applied to the menu surface." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles. Applied to the menu surface."
     },
