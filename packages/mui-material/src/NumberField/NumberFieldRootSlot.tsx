@@ -1,0 +1,115 @@
+import * as React from 'react';
+import clsx from 'clsx';
+
+import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
+import type { HTMLProps } from '@base-ui/react/types';
+import { mergeProps } from '@base-ui/react/merge-props';
+
+import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
+import type { NumberFieldClasses } from './numberFieldClasses';
+import FormControl from '../FormControl';
+import useSlot from '../utils/useSlot';
+import getAdornedStart from './utils/getAdornedStart';
+import { styled } from '../zero-styled';
+import InputLabel from '../InputLabel';
+import type { InputLabelProps } from '../InputLabel';
+import FormHelperText from '../FormHelperText';
+
+interface NumberFieldRootProps {
+  baseProps: HTMLProps;
+  baseState: BaseNumberField.Root.State;
+  children: React.ReactNode;
+  classes: NumberFieldClasses;
+  materialProps: NumberFieldOwnerState;
+  externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
+}
+
+const NumberFieldRoot = styled(FormControl, {
+  name: 'MuiNumberField',
+  slot: 'Root',
+})({});
+
+// This component is a placeholder for FormControl to correctly set the shrink label state on SSR.
+function SSRInitialFilled(_: { value: string; startAdornment?: React.ReactNode }) {
+  return null;
+}
+SSRInitialFilled.muiName = 'Input';
+
+/**
+ * @ignore - internal component.
+ */
+const NumberFieldRootSlot = React.forwardRef(
+  (props: NumberFieldRootProps, ref: React.Ref<HTMLDivElement>) => {
+    const { baseProps, baseState, children, classes, materialProps, externalForwardedProps } =
+      props;
+    const ownerState = materialProps;
+    const { id, label, helperText } = materialProps;
+
+    const hasLabel = label != null && label !== '';
+    const hasHelperText = helperText != null && helperText !== '';
+    const labelId = hasLabel && id ? `${id}-label` : undefined;
+    const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
+
+    const [RootSlot, rootProps] = useSlot('root', {
+      elementType: NumberFieldRoot,
+      externalForwardedProps,
+      shouldForwardComponentProp: true,
+      ownerState,
+      className: clsx(classes.root, materialProps.className),
+      ref,
+      getSlotProps: (externalHandlers) => mergeProps(baseProps, externalHandlers),
+      additionalProps: {
+        color: ownerState.color,
+        error: ownerState.error,
+        fullWidth: ownerState.fullWidth,
+        size: ownerState.size,
+        variant: ownerState.variant,
+      },
+    });
+
+    const [InputLabelSlot, inputLabelProps] = useSlot('inputLabel', {
+      elementType: InputLabel,
+      externalForwardedProps,
+      ownerState,
+      className: undefined,
+    });
+
+    const [FormHelperTextSlot, formHelperTextProps] = useSlot('formHelperText', {
+      elementType: FormHelperText,
+      externalForwardedProps,
+      ownerState,
+      className: undefined,
+    });
+
+    // FormControl needs the adornment before effects run to initialize label shrink.
+    const resolvedInputSlotProps = externalForwardedProps.slotProps?.input;
+    const startAdornment =
+      resolvedInputSlotProps && 'startAdornment' in resolvedInputSlotProps
+        ? resolvedInputSlotProps.startAdornment
+        : undefined;
+    const adornedStart = getAdornedStart({
+      controlsPosition: ownerState.controlsPosition,
+      scrubAreaPosition: ownerState.scrubAreaPosition,
+      startAdornment,
+    });
+
+    return (
+      <RootSlot {...rootProps} disabled={ownerState.disabled} required={ownerState.required}>
+        <SSRInitialFilled value={baseState.inputValue} startAdornment={adornedStart} />
+        {hasLabel && (
+          <InputLabelSlot htmlFor={id} id={labelId} {...(inputLabelProps as InputLabelProps)}>
+            {label}
+          </InputLabelSlot>
+        )}
+        {children}
+        {hasHelperText && (
+          <FormHelperTextSlot id={helperTextId} {...formHelperTextProps}>
+            {helperText}
+          </FormHelperTextSlot>
+        )}
+      </RootSlot>
+    );
+  },
+);
+
+export default NumberFieldRootSlot;

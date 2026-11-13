@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import hasNativeKeyboardActivation from '../utils/hasNativeKeyboardActivation';
 import useFocusableWhenDisabled from '../utils/useFocusableWhenDisabled';
 
 export interface UseButtonBaseParameters {
@@ -121,6 +122,7 @@ export default function useButtonBase(
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement | null>(null);
+  const spaceKeyDownPreventedRef = React.useRef(false);
   const focusableWhenDisabled = focusableWhenDisabledParam === true;
   const focusableWhenDisabledProps = useFocusableWhenDisabled({
     focusableWhenDisabled,
@@ -186,25 +188,10 @@ export default function useButtonBase(
     }, [allowInferredHostMismatch, internalNativeButton, nativeButtonProp]);
   }
 
-  // A helper for event handlers to determine whether to use browser-defined keyboard activation
-  // for native elements like <button> and <a href>, or synthesize Enter/Space clicks for non-native
-  // elements like `<div role="button">`.
-  // This is UNSAFE TO USE outside of event handers, e.g. in render.
-  const hasNativeKeyboardActivation = React.useCallback(() => {
+  // Check the mounted element during events; nativeButton is the fallback before mount.
+  const usesNativeKeyboardActivation = React.useCallback(() => {
     const root = rootRef.current;
-
-    if (root == null) {
-      return nativeButton;
-    }
-
-    if (root.tagName === 'BUTTON') {
-      return true;
-    }
-
-    // Although this hook is not intended for links, this check is for
-    // backward compatibility with `<ButtonBase href="#" />` since ButtonBase
-    // uses the returned event handlers.
-    return Boolean(root.tagName === 'A' && (root as HTMLAnchorElement).href);
+    return root == null ? nativeButton : hasNativeKeyboardActivation(root);
   }, [nativeButton]);
 
   const buttonProps = React.useMemo(() => {
@@ -278,22 +265,31 @@ export default function useButtonBase(
         onBeforeKeyDown?.(event);
         externalOnKeyDown?.(event);
 
-        if (event.target !== event.currentTarget || hasNativeKeyboardActivation()) {
+        if (event.target !== event.currentTarget || usesNativeKeyboardActivation()) {
           return;
         }
 
         if (event.key === ' ') {
+          // Remember consumer cancellation before preventing scrolling ourselves.
+          // Repeated keydowns must not undo cancellation of the same press.
+          spaceKeyDownPreventedRef.current =
+            event.defaultPrevented || (event.repeat && spaceKeyDownPreventedRef.current);
           event.preventDefault();
           return;
         }
 
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && !event.defaultPrevented) {
           event.preventDefault();
           event.currentTarget.click();
         }
       };
 
       const handleKeyUp: React.KeyboardEventHandler<HTMLElement> = (event) => {
+        const spaceKeyDownPrevented = spaceKeyDownPreventedRef.current;
+        if (event.key === ' ') {
+          spaceKeyDownPreventedRef.current = false;
+        }
+
         if (disabled) {
           return;
         }
@@ -303,8 +299,9 @@ export default function useButtonBase(
 
         if (
           event.target === event.currentTarget &&
-          !hasNativeKeyboardActivation() &&
+          !usesNativeKeyboardActivation() &&
           event.key === ' ' &&
+          !spaceKeyDownPrevented &&
           !event.defaultPrevented
         ) {
           event.currentTarget.click();
@@ -324,7 +321,7 @@ export default function useButtonBase(
       disabled,
       focusableWhenDisabled,
       focusableWhenDisabledProps,
-      hasNativeKeyboardActivation,
+      usesNativeKeyboardActivation,
       onBeforeKeyDown,
       onBeforeKeyUp,
       stopEventPropagation,

@@ -7,6 +7,16 @@
 Since v10 is a new major release, it contains some changes that affect the public API.
 The steps you need to take to migrate from Material UI v9 to v10 are described below.
 
+### ButtonBase
+
+#### Canceling keyboard activation
+
+When ButtonBase or a component built on it renders a non-native element such as a `<span>`, calling `event.preventDefault()` in `onKeyDown` for Enter or Space now prevents the synthesized click.
+Previously, Enter ignored this cancellation, and Space could only be canceled through `onKeyUp`.
+
+Remove the `preventDefault()` call for these keys if keyboard activation should continue.
+Space activation can also be canceled by calling `event.preventDefault()` in `onKeyUp`.
+
 ### Khmer locale renamed
 
 The Khmer locale is now exported as `kmKH` instead of `khKH`, to match the ISO 639-1 code for Khmer (`km`).
