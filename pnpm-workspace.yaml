@@ -41,7 +41,8 @@ catalogs:
     '@mui/internal-docs-infra': '0.13.1-canary.32'
 
 overrides:
-  '@mui/internal-docs-infra': '0.13.1-canary.32'
+  '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@2b64133d3a96724065e051a0c33c94b51d089d63'
+  '@mui/internal-docs-infra>@mui/internal-typescript-api-extractor': '0.1.1-canary.2'
   # Both were bundled twice in the docs build
   'docs>stylis': '4.2.0'
   'docs>react-is': '19.3.1'
