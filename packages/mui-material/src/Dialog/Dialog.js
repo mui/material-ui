@@ -342,7 +342,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
       appear: true,
       in: open,
       timeout: transitionDuration,
-      role: 'presentation',
+      role: 'none',
     },
   });
 

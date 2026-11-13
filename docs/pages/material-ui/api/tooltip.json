@@ -81,11 +81,13 @@
     {
       "name": "tooltip",
       "description": "The component used for the tooltip.",
+      "default": "'div'",
       "class": "MuiTooltip-tooltip"
     },
     {
       "name": "arrow",
       "description": "The component used for the arrow.",
+      "default": "'span'",
       "class": "MuiTooltip-arrow"
     }
   ],
