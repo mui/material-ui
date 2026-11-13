@@ -346,7 +346,7 @@ Trigger behavior belongs to the trigger component.
 | `disableAutoFocus`, `disableEnforceFocus` | No direct equivalent         | `modal` controls outside interaction, not each classic focus option independently.                                              |
 | `disableRestoreFocus`                     | `finalFocus={false}`         | A ref or function can instead set the return target.                                                                            |
 | `disableScrollLock`                       | No independent equivalent    | `modal={false}` also permits outside interaction. Hover-opened menus do not lock.                                               |
-| `hideBackdrop`                            | `slots={{ backdrop: null }}` | Omits the backdrop. Outside clicks reach the page, and the scroll lock stays.                                                   |
+| `hideBackdrop`                            | Cancel `outside-press` close | In `onOpenChange`, call `eventDetails.cancel()` for an outside press. `slots.backdrop: null` lets outside clicks through.       |
 | `disablePortal`                           | No equivalent                | The popup always uses a portal.                                                                                                 |
 | `keepMounted`, `container`                | Same props                   | Client-side portal controls; they do not render the popup on the server. `container` takes an element or a ref, not a function. |
 

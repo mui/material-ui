@@ -110,7 +110,6 @@ Focus the trigger from `slotProps.transition.onExited` on Dialog:
 
 Keep the trigger mounted and enabled until the dialog closes.
 This changes the return target for Dialog, not the focus behavior of Menu v2.
-The [live recipe](/experiments/menu2-recipes/#menu2-open-dialog) includes a classic Menu comparison and a control to disable the workaround.
 
 ## Submenu
 
@@ -348,7 +347,7 @@ For example, wrap the root element in a Tooltip:
 ```jsx
 <MenuItem
   render={(props) => (
-    <Tooltip title="Create a file">
+    <Tooltip title="Create a file" describeChild>
       <div {...props} />
     </Tooltip>
   )}
