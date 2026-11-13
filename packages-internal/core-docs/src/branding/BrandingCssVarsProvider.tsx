@@ -118,6 +118,13 @@ export function resetDocsSpacing() {
   }
 }
 
+/**
+ * The order of the docs' cascade layers: Tailwind CSS's `theme` and `utilities` layers (from
+ * `global.css`) and DocSearch's stylesheet around Material UI's `mui` layer.
+ * Material UI declares the order of its layers before its first style, so it goes through the theme.
+ */
+export const DOCS_CSS_LAYER_ORDER = '@layer theme, docsearch, mui, utilities;';
+
 const themeCache: Map<string, ReturnType<typeof createTheme>> = new Map();
 export function getTheme(direction: 'ltr' | 'rtl') {
   let cachedTheme = themeCache.get(direction);
@@ -128,6 +135,7 @@ export function getTheme(direction: 'ltr' | 'rtl') {
         colorSchemeSelector: 'data-mui-color-scheme',
       },
       direction,
+      modularCssLayers: DOCS_CSS_LAYER_ORDER,
       ...themeOptions,
     });
     themeCache.set(direction, cachedTheme);
@@ -172,19 +180,6 @@ export function BrandingCssVarsProvider(props: {
       setDocsColors(nextPaletteColors.primary, nextPaletteColors.secondary);
     }
   }, []);
-  useEnhancedEffect(() => {
-    // This is required to ensure that the layer order is declared first in the head
-    // because when the direction is RTL on the client, emotion reinserts the RTL styles back to the top of the insertion point.
-    if (direction === 'rtl') {
-      const head = document.querySelector('head');
-      if (head) {
-        const style = document.createElement('style');
-        style.textContent =
-          '@layer theme, docsearch, mui, mui.global, mui.default, mui.theme, mui.custom, mui.sx, utilities;';
-        head.prepend(style);
-      }
-    }
-  }, [direction]);
   return (
     <BrandingCssThemeProvider
       direction={direction}
