@@ -15,5 +15,6 @@ export {
   setDocsSpacing,
   resetDocsSpacing,
   getTheme,
+  DOCS_CSS_LAYER_ORDER,
 } from './BrandingCssVarsProvider';
 export { BrandingProvider } from './BrandingProvider';

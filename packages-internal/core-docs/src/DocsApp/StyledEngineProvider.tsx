@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-pagesRouter';
 import { prefixer } from 'stylis';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { ThemeOptionsContext } from '../ThemeContext';
 
 type EmotionCache = ReturnType<typeof createCache>;
@@ -37,10 +37,16 @@ export default function StyledEngineProvider(props: StyledEngineProviderProps) {
     }
   }, [rtl, cacheRtl]);
 
-  return (
-    <CacheProvider value={rtl && cacheRtl ? cacheRtl : cacheLtr}>
-      <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
-      {children}
-    </CacheProvider>
-  );
+  const cache = rtl && cacheRtl ? cacheRtl : cacheLtr;
+
+  // A cache inserts its first style at the top of <head>, above the layer order that Material UI
+  // declares there. Move the order back above the RTL cache's styles, or `mui` would come first.
+  useEnhancedEffect(() => {
+    const layerOrder = document.head.querySelector('style[data-mui-layer-order]');
+    if (layerOrder && document.head.firstChild !== layerOrder) {
+      document.head.prepend(layerOrder);
+    }
+  }, [cache]);
+
+  return <CacheProvider value={cache}>{children}</CacheProvider>;
 }
