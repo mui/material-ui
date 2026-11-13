@@ -88,6 +88,16 @@ This changes which styles win:
 
 - CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles whatever its specificity.
   Put resets in a layer that comes before `mui`, and declare the order with the `modularCssLayers` theme option, for example `modularCssLayers: '@layer reset, mui;'`.
+- Layers that your CSS or a `GlobalStyles` declares before `mui`, such as `theme` and `base` in Tailwind CSS v4's `@layer theme, base, mui, components, utilities;`, now come after it and override Material UI's styles.
+  Material UI declares the order of its sub-layers before its first style, and that places `mui` first.
+  Pass the same order to the `modularCssLayers` theme option, as the [Tailwind CSS v4 integration](/material-ui/integrations/tailwindcss/tailwindcss-v4/) shows:
+
+  ```diff
+   const theme = createTheme({
+  +  modularCssLayers: '@layer theme, base, mui, components, utilities;',
+   });
+  ```
+
 - Theme `styleOverrides` and `variants`, `styled()` and the `sx` prop now override the components' state styles, such as `:hover`, `.Mui-disabled` and `.Mui-selected`, even when they're less specific.
 
 These are the patterns that most often need a change:
@@ -158,5 +168,5 @@ const theme = createTheme({
 });
 ```
 
-This matches v9's `enableCssLayer`: `mui` goes where your CSS declares it, for example `@layer theme, base, mui, components, utilities;`.
+This matches v9's `enableCssLayer`: `mui` goes where your CSS or a `GlobalStyles` declares it, for example `@layer theme, base, mui, components, utilities;`.
 `modularCssLayers: true` can be removed, since sub-layers are the default, and a `modularCssLayers` string still sets where the sub-layers go among your layers.
