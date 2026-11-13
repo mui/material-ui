@@ -1,5 +1,14 @@
 import * as doctrine from 'doctrine';
 import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
+import { HIDDEN_JSDOC_TAGS, IGNORE_HINT } from '../buildApiUtils';
+
+/**
+ * Props shared by every component, never listed in the API docs when they have their usual type.
+ */
+const HIDDEN_PROPS: Record<string, string> = {
+  className: 'string',
+  style: 'object',
+};
 
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
@@ -20,12 +29,23 @@ export type CreateDescribeablePropSettings = {
  * Throws if it is invalid.
  * @param prop
  * @param propName
+ * @param isExternal If `true`, the prop is only declared in dependencies.
  */
 export default function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
   settings: CreateDescribeablePropSettings = {},
+  isExternal = false,
 ): DescribeablePropDescriptor | null {
+  // Props only found in the TypeScript types, without a PropTypes validator, are not listed.
+  if (!prop.type?.name) {
+    return null;
+  }
+
+  if (prop.type.name === HIDDEN_PROPS[propName]) {
+    return null;
+  }
+
   const { defaultValue, description, required, type } = prop;
   const jsdocDefaultValue = (prop as any).jsdocDefaultValue as { value: string } | undefined;
 
@@ -38,19 +58,22 @@ export default function createDescribeableProp(
     renderedDefaultValue.length <= 150,
   );
 
-  if (description === undefined) {
-    throw new Error(`The "${propName}" prop is missing a description.`);
-  }
-
-  const annotation = doctrine.parse(description, {
+  const annotation = doctrine.parse(description ?? '', {
     sloppy: true,
   });
 
-  if (
-    annotation.description.trim() === '' ||
-    annotation.tags.some((tag) => tag.title === 'ignore')
-  ) {
+  if (annotation.tags.some((tag) => HIDDEN_JSDOC_TAGS.includes(tag.title))) {
     return null;
+  }
+
+  if (annotation.description.trim() === '') {
+    // Undocumented props from dependencies are hidden instead of failing.
+    if (isExternal) {
+      return null;
+    }
+    throw new Error(
+      `The "${propName}" prop has no description. Add a JSDoc comment to \`${propName}\` in the component's TypeScript props, then run \`pnpm proptypes\`. ${IGNORE_HINT}`,
+    );
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {

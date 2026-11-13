@@ -73,19 +73,19 @@
     {
       "name": "icon",
       "description": "The component that renders the icon slot.",
-      "default": "div",
+      "default": "'div'",
       "class": "MuiAlert-icon"
     },
     {
       "name": "message",
       "description": "The component that renders the message slot.",
-      "default": "div",
+      "default": "'div'",
       "class": "MuiAlert-message"
     },
     {
       "name": "action",
       "description": "The component that renders the action slot.",
-      "default": "div",
+      "default": "'div'",
       "class": "MuiAlert-action"
     },
     {
@@ -97,7 +97,7 @@
     {
       "name": "closeIcon",
       "description": "The component that renders the close icon.",
-      "default": "svg",
+      "default": "'svg'",
       "class": null
     }
   ],

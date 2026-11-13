@@ -11,7 +11,6 @@
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
-    "disableInjectingGlobalStyles": { "type": { "name": "bool" }, "default": "false" },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
@@ -134,7 +133,7 @@
     {
       "key": "inputTypeSearch",
       "className": "MuiInputBase-inputTypeSearch",
-      "description": "",
+      "description": "Styles applied to the input element if `type=\"search\"`.",
       "isGlobal": false
     },
     {
