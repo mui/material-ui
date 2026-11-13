@@ -87,16 +87,19 @@
     {
       "name": "container",
       "description": "The component that renders the container.",
+      "default": "'div'",
       "class": "MuiDialog-container"
     },
     {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
+      "default": "Backdrop",
       "class": "MuiDialog-backdrop"
     },
     {
       "name": "root",
       "description": "The component that renders the root.",
+      "default": "Modal",
       "class": "MuiDialog-root"
     }
   ],

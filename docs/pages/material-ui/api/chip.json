@@ -58,13 +58,13 @@
     {
       "name": "root",
       "description": "The component that renders the root.",
-      "default": "div",
+      "default": "'div'",
       "class": "MuiChip-root"
     },
     {
       "name": "label",
       "description": "The component that renders the label.",
-      "default": "span",
+      "default": "'span'",
       "class": "MuiChip-label"
     }
   ],
