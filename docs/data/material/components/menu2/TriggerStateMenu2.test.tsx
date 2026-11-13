@@ -63,11 +63,14 @@ describe('Menu2 trigger state demo', () => {
     expectArrowRotation(arrow, false);
   });
 
+  // Focus moves wait for animation frames, which CI WebKit can stall.
+  // Menu2Keyboard.test.tsx covers focus; this test checks only the trigger state.
   it.each(['{Enter}', '{ArrowDown}'])(
-    'opens with %s and returns focus on Escape',
+    'updates the arrow state when %s opens the menu and Escape closes it',
     async (key) => {
-      const { user } = renderDemo();
+      const { user } = renderDemo('always');
       const trigger = screen.getByRole('button', { name: 'Actions' });
+      const arrow = screen.getByTestId('KeyboardArrowDownIcon');
 
       await act(async () => trigger.focus());
       await user.keyboard(key);
@@ -76,17 +79,13 @@ describe('Menu2 trigger state demo', () => {
         null,
       );
       expect(trigger).to.have.attribute('aria-expanded', 'true');
-      await waitFor(() =>
-        expect(document.activeElement).to.equal(
-          screen.getByRole('menuitem', { name: 'Edit' }),
-        ),
-      );
+      expectArrowRotation(arrow, true);
 
       await user.keyboard('{Escape}');
 
       await waitFor(() => expect(screen.queryByRole('menu')).to.equal(null));
-      await waitFor(() => expect(document.activeElement).to.equal(trigger));
       expect(trigger).to.have.attribute('aria-expanded', 'false');
+      expectArrowRotation(arrow, false);
     },
   );
 
