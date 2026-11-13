@@ -1,5 +1,5 @@
 import NumberField from '@mui/material/NumberField';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, useTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 
 // @focus-start
@@ -23,8 +23,9 @@ const customTheme = (outerTheme: Theme): Theme => ({
 // @focus-end
 
 export default function NumberFieldTheme() {
+  const outerTheme = useTheme();
   return (
-    <ThemeProvider theme={customTheme}>
+    <ThemeProvider theme={customTheme(outerTheme)}>
       <NumberField label="Quantity" defaultValue={5} min={0} max={10} />
     </ThemeProvider>
   );
