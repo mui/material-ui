@@ -27,7 +27,17 @@ export type { DemoDeploymentLinks } from './demoDeploymentLinks';
 // Toolbar control styling
 // ---------------------------------------------------------------------------
 
+const TEXT_BUTTON_HEIGHT = 26;
+const LANGUAGE_BUTTON_WIDTH = 38;
+const LANGUAGE_BUTTON_COUNT = 2;
+const LANGUAGE_BORDER_OVERLAP = 1;
+
 const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
+  {
+    width: LANGUAGE_BUTTON_WIDTH * LANGUAGE_BUTTON_COUNT - LANGUAGE_BORDER_OVERLAP,
+    height: TEXT_BUTTON_HEIGHT,
+    flexShrink: 0,
+  },
   theme.unstable_sx({
     [`& .${toggleButtonGroupClasses.grouped}`]: {
       '&:not(:first-of-type)': { pr: '2px' },
@@ -38,8 +48,8 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
-    height: 26,
-    width: 38,
+    height: TEXT_BUTTON_HEIGHT,
+    width: LANGUAGE_BUTTON_WIDTH,
     p: 0,
     fontSize: theme.typography.pxToRem(13),
     borderRadius: '999px',
@@ -51,7 +61,7 @@ const ToggleButton = styled(MDToggleButton)(({ theme }) => [
 ]);
 
 const ToolbarButton = styled(MDButton)(({ theme }) => ({
-  height: 26,
+  height: TEXT_BUTTON_HEIGHT,
   padding: '7px 8px 8px 8px',
   flexShrink: 0,
   borderRadius: 999,
@@ -373,6 +383,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
   );
 
   const hasNonSystemDemos = variants.length > 1;
+  const showLanguages = expanded && hasJsTransform;
 
   return (
     <React.Fragment>
@@ -390,36 +401,40 @@ export function DemoToolbar(props: DemoToolbarProps) {
           ref={languageToggleRef}
           sx={{
             margin: '8px 0',
-            opacity: expanded && hasJsTransform ? 1 : 0,
-            visibility: expanded && hasJsTransform ? 'visible' : 'hidden',
-            pointerEvents: expanded && hasJsTransform ? 'auto' : 'none',
+            opacity: showLanguages ? 1 : 0,
+            visibility: showLanguages ? 'visible' : 'hidden',
+            pointerEvents: showLanguages ? 'auto' : 'none',
           }}
           exclusive
-          aria-hidden={!expanded || !hasJsTransform}
+          aria-hidden={!showLanguages}
           value={isJsSelected ? 'js' : 'ts'}
           onChange={onLanguageClick}
           onKeyDown={suppressGroupRovingNav}
         >
-          <ToggleButton
-            value="js"
-            tabIndex={-1}
-            aria-label={t('showJSSource')}
-            data-ga-event-category="demo"
-            data-ga-event-label={gaLabel}
-            data-ga-event-action="source-js"
-          >
-            JS
-          </ToggleButton>
-          <ToggleButton
-            value="ts"
-            tabIndex={-1}
-            aria-label={t('showTSSource')}
-            data-ga-event-category="demo"
-            data-ga-event-label={gaLabel}
-            data-ga-event-action="source-ts"
-          >
-            TS
-          </ToggleButton>
+          {showLanguages ? (
+            <ToggleButton
+              value="js"
+              tabIndex={-1}
+              aria-label={t('showJSSource')}
+              data-ga-event-category="demo"
+              data-ga-event-label={gaLabel}
+              data-ga-event-action="source-js"
+            >
+              JS
+            </ToggleButton>
+          ) : null}
+          {showLanguages ? (
+            <ToggleButton
+              value="ts"
+              tabIndex={-1}
+              aria-label={t('showTSSource')}
+              data-ga-event-category="demo"
+              data-ga-event-label={gaLabel}
+              data-ga-event-action="source-ts"
+            >
+              TS
+            </ToggleButton>
+          ) : null}
         </ToggleButtonGroup>
       </Box>
 

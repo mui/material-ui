@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
 import { UserLanguageProvider } from '../i18n';
@@ -10,6 +10,7 @@ import type { DemoToolbarProps } from './DemoToolbar';
 
 const noop = () => {};
 const asyncNoop = async () => {};
+const LANGUAGE_SLOT_SIZE = { width: 75, height: 26 };
 
 function Toolbar(props: Partial<DemoToolbarProps>) {
   const keyboard = useToolbarKeyboard();
@@ -48,14 +49,18 @@ function Toolbar(props: Partial<DemoToolbarProps>) {
 describe('DemoToolbar', () => {
   const { render } = createRenderer();
 
-  function renderToolbar(props: Partial<DemoToolbarProps> = {}) {
-    return render(
+  function toolbarElement(props: Partial<DemoToolbarProps> = {}) {
+    return (
       <UserLanguageProvider defaultUserLanguage="en">
         <ThemeProvider theme={brandingLightTheme}>
           <Toolbar {...props} />
         </ThemeProvider>
-      </UserLanguageProvider>,
+      </UserLanguageProvider>
     );
+  }
+
+  function renderToolbar(props: Partial<DemoToolbarProps> = {}) {
+    return render(toolbarElement(props));
   }
 
   it('uses one roving tab stop across all toolbar controls', () => {
@@ -71,21 +76,51 @@ describe('DemoToolbar', () => {
     expect(expand.tabIndex).to.equal(0);
   });
 
-  it('marks a single tab stop in the server markup', () => {
+  it('marks one tab stop and omits collapsed language controls in server markup', () => {
     // Master baked `tabIndex` into the markup; querying visibility after mount
     // forces a style flush per button on every demo.
-    const buttons =
-      ReactDOMServer.renderToStaticMarkup(
-        <UserLanguageProvider defaultUserLanguage="en">
-          <ThemeProvider theme={brandingLightTheme}>
-            <Toolbar />
-          </ThemeProvider>
-        </UserLanguageProvider>,
-      ).match(/<button[^>]*>/g) ?? [];
+    const view = ReactDOMServer.renderToStaticMarkup(toolbarElement());
+    const buttons = view.match(/<button[^>]*>/g) ?? [];
     const tabStops = buttons.filter((button) => !button.includes('tabindex="-1"'));
 
     expect(buttons.length).to.be.greaterThan(2);
     expect(tabStops).to.have.length(1);
+    expect(view).not.to.contain('aria-label="Show JavaScript source"');
+    expect(view).not.to.contain('aria-label="Show TypeScript source"');
+  });
+
+  it('keeps expanded language controls selectable and keyboard reachable', async () => {
+    const selections: Array<string | null> = [];
+    const { user } = renderToolbar({
+      expanded: true,
+      onLanguageClick: (_event, value) => selections.push(value),
+    });
+    const javascript = screen.getByRole('button', { name: 'Show JavaScript source' });
+    const typescript = screen.getByRole('button', { name: 'Show TypeScript source' });
+    const chat = screen.getByRole('button', { name: 'Edit in Chat' });
+
+    expect(typescript).to.have.attribute('aria-pressed', 'true');
+    act(() => chat.focus());
+    fireEvent.keyDown(chat, { key: 'ArrowRight' });
+    expect(document.activeElement).to.equal(javascript);
+    await user.click(javascript);
+    expect(selections).to.deep.equal(['js']);
+
+    fireEvent.keyDown(javascript, { key: 'ArrowRight' });
+    expect(document.activeElement).to.equal(typescript);
+  });
+
+  it.skipIf(isJsdom())('preserves the language slot dimensions when expanding', () => {
+    const languageToggleRef = React.createRef<HTMLDivElement>();
+    const { rerender } = renderToolbar({ languageToggleRef });
+    const bounds = () => {
+      const { width, height } = languageToggleRef.current!.getBoundingClientRect();
+      return { width, height };
+    };
+
+    expect(bounds()).to.deep.equal(LANGUAGE_SLOT_SIZE);
+    rerender(toolbarElement({ languageToggleRef, expanded: true }));
+    expect(bounds()).to.deep.equal(LANGUAGE_SLOT_SIZE);
   });
 
   it('routes reset controls and preserves legacy analytics actions', async () => {
