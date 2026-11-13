@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
-import { ThemeProvider } from '@mui/material/styles';
+import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
 import { UserLanguageProvider } from '../i18n';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
@@ -11,6 +11,7 @@ import type { DemoToolbarProps } from './DemoToolbar';
 const noop = () => {};
 const asyncNoop = async () => {};
 const LANGUAGE_SLOT_SIZE = { width: 75, height: 26 };
+const SOURCE_LINK_HIDE_DELAY = 3000;
 
 function Toolbar(props: Partial<DemoToolbarProps>) {
   const keyboard = useToolbarKeyboard();
@@ -49,19 +50,132 @@ function Toolbar(props: Partial<DemoToolbarProps>) {
 describe('DemoToolbar', () => {
   const { render } = createRenderer();
 
-  function toolbarElement(props: Partial<DemoToolbarProps> = {}) {
+  function toolbarElement(props: Partial<DemoToolbarProps> = {}, theme = brandingLightTheme) {
     return (
       <UserLanguageProvider defaultUserLanguage="en">
-        <ThemeProvider theme={brandingLightTheme}>
+        <ThemeProvider theme={theme}>
           <Toolbar {...props} />
         </ThemeProvider>
       </UserLanguageProvider>
     );
   }
 
-  function renderToolbar(props: Partial<DemoToolbarProps> = {}) {
-    return render(toolbarElement(props));
+  function renderToolbar(props: Partial<DemoToolbarProps> = {}, theme = brandingLightTheme) {
+    return render(toolbarElement(props, theme));
   }
+
+  it('defers overlay initialization until first intent', () => {
+    let menuRenders = 0;
+    let snackbarRenders = 0;
+    const theme = createTheme(brandingLightTheme, {
+      components: {
+        MuiMenu: {
+          defaultProps: {
+            slotProps: {
+              root: () => {
+                menuRenders += 1;
+                return {};
+              },
+            },
+          },
+        },
+        MuiSnackbar: {
+          defaultProps: {
+            slotProps: {
+              root: () => {
+                snackbarRenders += 1;
+                return {};
+              },
+            },
+          },
+        },
+      },
+    });
+
+    renderToolbar({ openMuiChat: undefined }, theme);
+
+    expect(menuRenders).to.equal(0);
+    expect(snackbarRenders).to.equal(0);
+  });
+
+  it('opens the menu, completes its exit, restores focus and reopens', async () => {
+    let exits = 0;
+    const theme = createTheme(brandingLightTheme, {
+      components: {
+        MuiMenu: {
+          defaultProps: {
+            slotProps: {
+              transition: {
+                onExited: () => {
+                  exits += 1;
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+    const { user } = renderToolbar({ githubLocation: 'https://example.com/Example.tsx' }, theme);
+    const more = screen.getByRole('button', { name: 'See more' });
+
+    await user.click(more);
+    const source = screen.getByRole('menuitem', { name: 'View the source on GitHub' });
+    await waitFor(() => expect(document.activeElement).to.equal(source));
+    await user.keyboard('{Escape}');
+    await waitFor(() => expect(exits).to.be.greaterThan(0));
+    expect(screen.queryByRole('menu')).to.equal(null);
+    expect(document.activeElement).to.equal(more);
+
+    await user.click(more);
+    expect(screen.getByRole('menu')).not.to.equal(null);
+  });
+
+  describe('source link feedback', () => {
+    const { clock, render: renderTimed } = createRenderer({ clock: 'fake' });
+
+    it('copies links, completes snackbar auto-hide and shows feedback again', async () => {
+      let exits = 0;
+      const theme = createTheme(brandingLightTheme, {
+        components: {
+          MuiSnackbar: {
+            defaultProps: {
+              slotProps: {
+                transition: {
+                  onExited: () => {
+                    exits += 1;
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+      renderTimed(toolbarElement({ tsSourceAnchor: 'Example.tsx', openMuiChat: undefined }, theme));
+      const more = screen.getByRole('button', { name: 'See more' });
+      const copyLink = async () => {
+        fireEvent.click(more);
+        fireEvent.click(screen.getByRole('menuitem', { name: 'Copy link to TypeScript source' }));
+        let copied = '';
+        await act(async () => {
+          copied = await navigator.clipboard.readText();
+        });
+        return copied;
+      };
+
+      expect(await copyLink()).to.contain('#Example.tsx');
+      expect(screen.getByRole('alert')).to.have.text(
+        'Link to the source code has been copied to your clipboard.',
+      );
+      act(() => clock.tick(SOURCE_LINK_HIDE_DELAY));
+      expect(screen.getByRole('alert')).not.to.equal(null);
+      act(() => clock.tick(theme.transitions.duration.leavingScreen));
+      expect(exits).to.be.greaterThan(0);
+      expect(screen.queryByRole('alert')).to.equal(null);
+
+      await copyLink();
+      expect(screen.getByRole('alert')).not.to.equal(null);
+    });
+  });
 
   it('uses one roving tab stop across all toolbar controls', () => {
     renderToolbar();

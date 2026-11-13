@@ -311,15 +311,15 @@ export function DemoToolbar(props: DemoToolbarProps) {
   } = props;
   const t = useTranslate();
 
-  // "More" menu state.
-  const [moreAnchorEl, setMoreAnchorEl] = React.useState<HTMLElement | null>(null);
+  // Keep the menu mounted after first use for exit transitions and focus restoration.
+  const [moreMenu, setMoreMenu] = React.useState<{ anchorEl: HTMLElement | null } | null>(null);
   const handleMoreClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
-    setMoreAnchorEl(event.currentTarget);
+    setMoreMenu({ anchorEl: event.currentTarget });
   }, []);
   const handleMoreClose = React.useCallback(() => {
-    setMoreAnchorEl(null);
+    setMoreMenu({ anchorEl: null });
   }, []);
-  const moreMenuOpen = Boolean(moreAnchorEl);
+  const moreMenuOpen = Boolean(moreMenu?.anchorEl);
 
   // Snackbar shown after copying a source link to the clipboard.
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -556,108 +556,112 @@ export function DemoToolbar(props: DemoToolbarProps) {
         >
           <MoreVertIcon />
         </IconButton>
-        <Menu
-          id="demo-menu-more"
-          anchorEl={moreAnchorEl}
-          open={moreMenuOpen}
-          onClose={handleMoreClose}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-          <MenuItem
-            component="a"
-            href={githubLocation}
-            target="_blank"
-            rel="noopener nofollow"
-            onClick={handleMoreClose}
-            disabled={!githubLocation}
-            data-ga-event-category="demo"
-            data-ga-event-label={gaLabel}
-            data-ga-event-action="github"
+        {moreMenu ? (
+          <Menu
+            id="demo-menu-more"
+            anchorEl={moreMenu.anchorEl}
+            open={moreMenuOpen}
+            onClose={handleMoreClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-            {t('viewGitHub')}
-          </MenuItem>
-          {jsSourceAnchor ? (
-            <MenuItem
-              onClick={createHandleCodeSourceLink('js')}
-              data-ga-event-category="demo"
-              data-ga-event-label={gaLabel}
-              data-ga-event-action="copy-js-source-link"
-            >
-              {t('copySourceLinkJS')}
-            </MenuItem>
-          ) : null}
-          <MenuItem
-            onClick={createHandleCodeSourceLink('tsx')}
-            disabled={!tsSourceAnchor}
-            data-ga-event-category="demo"
-            data-ga-event-label={gaLabel}
-            data-ga-event-action="copy-ts-source-link"
-          >
-            {t('copySourceLinkTS')}
-          </MenuItem>
-          {deploymentLinks?.pullRequest ? (
             <MenuItem
               component="a"
-              href={deploymentLinks.pullRequest}
+              href={githubLocation}
               target="_blank"
               rel="noopener nofollow"
               onClick={handleMoreClose}
+              disabled={!githubLocation}
               data-ga-event-category="demo"
               data-ga-event-label={gaLabel}
-              data-ga-event-action="link-deploy-preview"
+              data-ga-event-action="github"
             >
-              demo on PR
+              {t('viewGitHub')}
             </MenuItem>
-          ) : null}
-          {deploymentLinks ? (
-            <React.Fragment>
+            {jsSourceAnchor ? (
+              <MenuItem
+                onClick={createHandleCodeSourceLink('js')}
+                data-ga-event-category="demo"
+                data-ga-event-label={gaLabel}
+                data-ga-event-action="copy-js-source-link"
+              >
+                {t('copySourceLinkJS')}
+              </MenuItem>
+            ) : null}
+            <MenuItem
+              onClick={createHandleCodeSourceLink('tsx')}
+              disabled={!tsSourceAnchor}
+              data-ga-event-category="demo"
+              data-ga-event-label={gaLabel}
+              data-ga-event-action="copy-ts-source-link"
+            >
+              {t('copySourceLinkTS')}
+            </MenuItem>
+            {deploymentLinks?.pullRequest ? (
               <MenuItem
                 component="a"
-                href={deploymentLinks.next}
+                href={deploymentLinks.pullRequest}
                 target="_blank"
                 rel="noopener nofollow"
                 onClick={handleMoreClose}
                 data-ga-event-category="demo"
                 data-ga-event-label={gaLabel}
-                data-ga-event-action="link-next"
+                data-ga-event-action="link-deploy-preview"
               >
-                demo on next
+                demo on PR
               </MenuItem>
-              <MenuItem
-                component="a"
-                href={deploymentLinks.permalink}
-                target="_blank"
-                rel="noopener nofollow"
-                onClick={handleMoreClose}
-                data-ga-event-category="demo"
-                data-ga-event-label={gaLabel}
-                data-ga-event-action="permalink"
-              >
-                demo permalink
-              </MenuItem>
-              <MenuItem
-                component="a"
-                href={deploymentLinks.master}
-                target="_blank"
-                rel="noopener nofollow"
-                onClick={handleMoreClose}
-                data-ga-event-category="demo"
-                data-ga-event-label={gaLabel}
-                data-ga-event-action="link-master"
-              >
-                demo on master
-              </MenuItem>
-            </React.Fragment>
-          ) : null}
-        </Menu>
+            ) : null}
+            {deploymentLinks ? (
+              <React.Fragment>
+                <MenuItem
+                  component="a"
+                  href={deploymentLinks.next}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  onClick={handleMoreClose}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={gaLabel}
+                  data-ga-event-action="link-next"
+                >
+                  demo on next
+                </MenuItem>
+                <MenuItem
+                  component="a"
+                  href={deploymentLinks.permalink}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  onClick={handleMoreClose}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={gaLabel}
+                  data-ga-event-action="permalink"
+                >
+                  demo permalink
+                </MenuItem>
+                <MenuItem
+                  component="a"
+                  href={deploymentLinks.master}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  onClick={handleMoreClose}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={gaLabel}
+                  data-ga-event-action="link-master"
+                >
+                  demo on master
+                </MenuItem>
+              </React.Fragment>
+            ) : null}
+          </Menu>
+        ) : null}
       </Box>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        message={snackbarMessage}
-      />
+      {snackbarMessage !== undefined ? (
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={3000}
+          onClose={handleSnackbarClose}
+          message={snackbarMessage}
+        />
+      ) : null}
     </React.Fragment>
   );
 }
