@@ -358,7 +358,7 @@ See [Label and separator customization](/material-ui/react-menu2/#labels-and-sep
 
 These item props work as before:
 
-- `dense`, `disableGutters`, and `divider` are unchanged.
+- `disableGutters` and `divider` are unchanged.
 - `disabled` is unchanged on supported item parts, but disabled items now stay focusable.
   See [Behavior changes](#behavior-changes).
   `MenuLinkItem` does not support this prop.
@@ -367,8 +367,8 @@ These item props work as before:
 These `MenuList` props move or change:
 
 - `MenuList.disableListWrap` becomes `loopFocus` on `Menu` (default `true`), with the value inverted.
-- `MenuList.dense` and `MenuList.disablePadding` move to `slotProps.list` on `MenuPopup`.
-  The `list` slot is a `List`, so the props are unchanged.
+- `MenuList.disablePadding` moves to `slotProps.list` on `MenuPopup`.
+  The `list` slot is a `List`, so the prop is unchanged.
 - Naming attributes on `slotProps.list` move to `MenuPopup`.
   See [Move popup props to MenuPopup](#8-move-popup-props-to-menupopup).
 

@@ -135,14 +135,6 @@ Compose the same list primitives that you use with the current Menu: `ListItemIc
 
 {{"component": "file://./demos/icon/index.ts"}}
 
-## Dense menu
-
-Set `slotProps.list.dense` on `MenuPopup` to make all the items compact.
-Submenus inherit the parent list density and cannot override it.
-An item can also set its own `dense` prop.
-
-{{"component": "file://./demos/dense/index.ts"}}
-
 ## Checkbox and radio items
 
 `MenuCheckboxItem` renders `role="menuitemcheckbox"` with its own indicator.
@@ -331,7 +323,7 @@ The sections below describe the state and visual options for each part.
 ### Item
 
 `MenuItem` renders a styled `<div>` by default.
-A render function receives props and the `highlighted`, `disabled`, `dense`, `disableGutters`, and `divider` states.
+A render function receives props and the `highlighted`, `disabled`, `disableGutters`, and `divider` states.
 For example, wrap the root element in a Tooltip:
 
 ```jsx
@@ -406,7 +398,7 @@ The separator state contains `orientation`, which is `"horizontal"` or `"vertica
 
 `MuiMenu2Popup.styleOverrides` also applies to matching submenu popup slots.
 `MuiMenu2Item.styleOverrides` applies to the default styled item roots, including link, checkbox, and radio items and submenu triggers.
-The `dense`, `divider`, and `gutters` overrides apply when the corresponding state matches.
+The `divider` and `gutters` overrides apply when the corresponding state matches.
 Theme variants are shared too; menu variants apply only to the `root` slot.
 
 Component-specific styles apply after shared styles, with `sx` last; CSS specificity still applies.

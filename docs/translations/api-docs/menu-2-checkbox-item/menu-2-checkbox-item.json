@@ -11,9 +11,6 @@
     "defaultChecked": {
       "description": "Whether the checkbox item is initially ticked.<br>To render a controlled checkbox item, use the <code>checked</code> prop instead."
     },
-    "dense": {
-      "description": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used."
-    },
     "disabled": { "description": "Whether the component should ignore user interaction." },
     "disableGutters": {
       "description": "If <code>true</code>, the left and right padding is removed."

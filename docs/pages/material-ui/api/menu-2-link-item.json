@@ -4,7 +4,6 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "className": { "type": { "name": "string" } },
     "closeOnClick": { "type": { "name": "bool" }, "default": "false" },
-    "dense": { "type": { "name": "bool" }, "default": "false" },
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "divider": { "type": { "name": "bool" }, "default": "false" },

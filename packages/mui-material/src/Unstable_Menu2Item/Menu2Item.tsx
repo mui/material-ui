@@ -210,6 +210,7 @@ Menu2Item.propTypes /* remove-proptypes */ = {
    */
   closeOnClick: PropTypes.bool,
   /**
+   * @ignore
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * @default false
    */

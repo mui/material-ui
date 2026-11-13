@@ -245,6 +245,7 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
    */
   delay: PropTypes.number,
   /**
+   * @ignore
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * @default false
    */

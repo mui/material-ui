@@ -47,7 +47,6 @@ export default function LongMenu2() {
       <MenuTrigger render={<Button>Country</Button>} />
       <MenuPopup
         sx={{ maxHeight: 'min(320px, var(--available-height))', width: 240 }}
-        slotProps={{ list: { dense: true } }}
       >
         {countries.map((country) => (
           <MenuItem key={country}>{country}</MenuItem>

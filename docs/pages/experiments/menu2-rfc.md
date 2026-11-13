@@ -86,8 +86,8 @@ The classic `Menu` keeps its API. Classic and successor items share `MenuItemBas
 - **Customization:** use `render` for the unstyled `Menu2Trigger`. On items, groups, labels, and separators, `render` keeps Material styles; `slots.root` replaces the styled root. Use `slots`/`slotProps` for popup layers and indicators. The customization targets below define the forwarding contract.
 - **Slot handling:** use `useSlot` for item, group, label, and separator roots and the popup list. At Base UI render boundaries, reuse `appendOwnerState`, `resolveComponentProps`, and Material UI's `mergeSlotProps`. Use Base UI's `mergeProps` for behavioral props and compose refs. Keep adapters local until another integration needs them. They filter Material props from host elements, combine state classes, infer native buttons, and prevent duplicate keyboard activation.
 - **Style reuse:** share styled elements where practical; otherwise share style functions. Audit each consumer. Viewport-relative heights and item-adjacent divider rules do not transfer unchanged to Base UI's popup tree. New parts own their spacing; use `Menu2Separator` between items.
-- **Presentation:** retain `dense`, `disableGutters`, and `divider`. Omit the visual-only `selected` prop; checkbox and radio items express checked state.
-- **Density:** set `slotProps.list.dense` on `Menu2Popup`. Submenus inherit this density and cannot override it. Item-level `dense` props remain available.
+- **Presentation:** retain `disableGutters` and `divider`. Omit the visual-only `selected` prop; checkbox and radio items express checked state.
+- **Density:** item `dense` and `slotProps.list.dense` on `Menu2Popup` still work, but the docs and API pages do not show them. A later sizing and spacing API can replace them.
 - **Dependency:** make `@base-ui/react` a direct dependency of `@mui/material`. Review version updates rather than auto-merge them. Test the upstream states used by the integration, including checked indicators, starting and ending transitions, and resolved placement.
 - **Theme state:** keep `Mui-*` classes and `ownerState` as the Material customization contract. Item render callbacks, slot callbacks, and theme variants receive the live highlighted state and, where applicable, the checked or open state. Exit-tint tracking stays internal. Popup slot callbacks receive resolved public props, not live uncontrolled open state. Internal animation and placement styles can use Base UI attributes.
 - **API boundary:** explicitly pick the forwarded root, trigger, and positioner props. Review new upstream props and changes to exposed types; this is not complete type isolation. Keep Base UI's callback names and signatures: `onOpenChange(open, eventDetails)`, `onCheckedChange(checked, eventDetails)`, and `onValueChange(value, eventDetails)`.
@@ -151,7 +151,7 @@ With `slots.root`, provide appearance in the replacement instead. The separator 
 
 Submenu popups inherit `MuiMenu2Popup` styles for their matching slots. Default styled item roots inherit `MuiMenu2Item` styles. Shared overrides and variants apply first, then the component-specific theme styles, with `sx` last. CSS specificity still applies. Callbacks use the rendered component's state. Utility classes remain component-specific, and `defaultProps` do not pass between theme keys.
 
-Use class selectors in `styleOverrides.root` for the highlighted state. Items retain the `dense`, `divider`, and `gutters` override keys from the classic MenuItem. The utility classes stay available; the classic MenuItem theme API is unchanged.
+Use class selectors in `styleOverrides.root` for the highlighted state. Items retain the `divider` and `gutters` override keys from the classic MenuItem. The `dense` key stays, but it is undocumented. The utility classes stay available; the classic MenuItem theme API is unchanged.
 
 The [documented state data attributes](/material-ui/react-menu2/#state-data-attributes) are also public styling hooks. Keep the Base UI names, including `data-popup-open` on triggers and `data-open` on popup surfaces. Undocumented attributes and internal `data-mui-*` markers are not part of this contract.
 
@@ -223,7 +223,7 @@ Other behavior and caveats:
 
 ### Compatibility
 
-Keep `dense`, `disableGutters`, `divider`, `keepMounted`, `container`, and Material's customization mechanisms. Theme keys change to `MuiMenu2*`; classic `MuiMenu` and `MuiMenuItem` overrides do not reach the successor.
+Keep `disableGutters`, `divider`, `keepMounted`, `container`, and Material's customization mechanisms. `dense` still works but is undocumented. Theme keys change to `MuiMenu2*`; classic `MuiMenu` and `MuiMenuItem` overrides do not reach the successor.
 
 Migration also changes open/close callbacks, positioning, initial focus, and transition completion. There is no direct equivalent for selected-item initial focus, independent scroll-lock control, or disabling the portal. The [prop map](#appendix-full-prop-mapping) records these limits. This is not a drop-in replacement.
 
@@ -415,7 +415,8 @@ This example follows the system preference. The playground also shows the theme 
 
 | Classic MenuItem / MenuList                                        | New equivalent                          | Notes                                                                                                                                             |
 | :----------------------------------------------------------------- | :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `dense`, `disableGutters`, `divider`                               | Same props                              | Presentation remains Material-owned.                                                                                                              |
+| `disableGutters`, `divider`                                        | Same props                              | Presentation remains Material-owned.                                                                                                              |
+| `dense`, `MenuList.dense`                                          | Undocumented                            | Still work. A later sizing and spacing API can replace them.                                                                                      |
 | `<Divider />`                                                      | `Menu2Separator`                        | Owns its margins, including beside submenu focus guards.                                                                                          |
 | `selected`                                                         | Removed                                 | Use dedicated checkbox and radio items for checked state.                                                                                         |
 | `disabled`                                                         | Same prop on supported item parts       | Disabled items remain focusable. `Menu2LinkItem` does not support `disabled`.                                                                     |

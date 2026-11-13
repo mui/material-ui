@@ -5,7 +5,6 @@
     "className": { "type": { "name": "string" } },
     "closeDelay": { "type": { "name": "number" }, "default": "0" },
     "delay": { "type": { "name": "number" }, "default": "100" },
-    "dense": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },

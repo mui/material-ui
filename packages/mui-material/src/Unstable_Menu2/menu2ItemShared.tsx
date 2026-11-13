@@ -40,6 +40,7 @@ export interface Menu2ItemVisualProps<Classes, Slots = never, SlotProps = never>
    */
   slotProps?: SlotProps | undefined;
   /**
+   * @ignore
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * @default false
    */

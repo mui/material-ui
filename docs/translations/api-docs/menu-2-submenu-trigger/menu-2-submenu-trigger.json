@@ -10,9 +10,6 @@
     "delay": {
       "description": "How long to wait before the submenu may be opened on hover, in milliseconds.<br>Requires the <code>openOnHover</code> prop."
     },
-    "dense": {
-      "description": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used."
-    },
     "disabled": { "description": "Whether the component should ignore user interaction." },
     "disableGutters": {
       "description": "If <code>true</code>, the left and right padding is removed."

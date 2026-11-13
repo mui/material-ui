@@ -416,6 +416,7 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    */
   defaultChecked: PropTypes.bool,
   /**
+   * @ignore
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * @default false
    */
