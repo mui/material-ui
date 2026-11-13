@@ -4,6 +4,7 @@ import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '../styles';
+import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
 import type { SlotComponentProps } from '../utils/types';
 
 // One log per component for each warning, so a bad trigger does not spam the
@@ -58,6 +59,27 @@ export function warnMenu2TriggerRef(trigger: unknown, componentName: string, pro
       'the element that it renders, the way Tooltip does. Without them the ' +
       'menu behavior does not reach the element.',
   );
+}
+
+// Base UI owns Enter and Space activation for non-native elements. A ButtonBase
+// element would emulate a second click, and `defaultMuiPrevented` turns that off.
+export function suppressButtonBaseKeyboardActivation(props?: {
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement> | undefined;
+  onKeyUp?: React.KeyboardEventHandler<HTMLElement> | undefined;
+}) {
+  const externalOnKeyDown = props?.onKeyDown;
+  const externalOnKeyUp = props?.onKeyUp;
+
+  return {
+    onKeyDown: (event: MuiKeyboardEvent) => {
+      externalOnKeyDown?.(event);
+      event.defaultMuiPrevented = true;
+    },
+    onKeyUp: (event: MuiKeyboardEvent) => {
+      externalOnKeyUp?.(event);
+      event.defaultMuiPrevented = true;
+    },
+  };
 }
 
 export type StateClassName<State> = string | ((state: State) => string | undefined) | undefined;

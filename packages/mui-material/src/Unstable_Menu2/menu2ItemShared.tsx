@@ -8,11 +8,14 @@ import { mergeProps } from '@base-ui/react/merge-props';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import type { Theme } from '../styles';
 import ListContext from '../List/ListContext';
-import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import useSlot from '../utils/useSlot';
 import type { Menu2RootSlotProps, Menu2RootSlots, StateClassName } from './menu2Utils';
-import { getMenu2RootRender, mergeStateClassName } from './menu2Utils';
+import {
+  getMenu2RootRender,
+  mergeStateClassName,
+  suppressButtonBaseKeyboardActivation,
+} from './menu2Utils';
 
 // The owner state from the props. Each part adds the live Base UI state.
 export interface Menu2ItemBaseOwnerState {
@@ -155,28 +158,6 @@ export function useMenu2ItemListContext(denseProp: boolean, disableGutters: bool
   const context = React.useContext(ListContext);
   const dense = denseProp || context.dense || false;
   return React.useMemo(() => ({ dense, disableGutters }), [dense, disableGutters]);
-}
-
-// Base UI owns the Enter and Space activation of a menu item. The item root is
-// a ButtonBase rendered as a div, so ButtonBase would emulate a second one.
-// `defaultMuiPrevented` is the MUI convention that turns that emulation off.
-function suppressButtonBaseKeyboardActivation(props?: {
-  onKeyDown?: React.KeyboardEventHandler<HTMLElement> | undefined;
-  onKeyUp?: React.KeyboardEventHandler<HTMLElement> | undefined;
-}) {
-  const externalOnKeyDown = props?.onKeyDown;
-  const externalOnKeyUp = props?.onKeyUp;
-
-  return {
-    onKeyDown: (event: MuiKeyboardEvent) => {
-      externalOnKeyDown?.(event);
-      event.defaultMuiPrevented = true;
-    },
-    onKeyUp: (event: MuiKeyboardEvent) => {
-      externalOnKeyUp?.(event);
-      event.defaultMuiPrevented = true;
-    },
-  };
 }
 
 export interface Menu2ItemRootSlotProps<OwnerState extends object> {

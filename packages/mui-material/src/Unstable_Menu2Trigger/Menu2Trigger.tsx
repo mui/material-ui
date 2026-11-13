@@ -7,7 +7,11 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
-import { warnMenu2FragmentTrigger, warnMenu2TriggerRef } from '../Unstable_Menu2/menu2Utils';
+import {
+  suppressButtonBaseKeyboardActivation,
+  warnMenu2FragmentTrigger,
+  warnMenu2TriggerRef,
+} from '../Unstable_Menu2/menu2Utils';
 
 export type { Menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
 
@@ -70,6 +74,7 @@ const Menu2Trigger = React.forwardRef(function Menu2Trigger(
   return (
     <BaseMenu.Trigger
       {...props}
+      {...suppressButtonBaseKeyboardActivation(props)}
       ref={handleRef}
       render={renderProp}
       className={(state) =>

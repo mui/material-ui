@@ -3,7 +3,10 @@ import * as React from 'react';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import ListItemButton from '@mui/material/ListItemButton';
 import Tooltip from '@mui/material/Tooltip';
+import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { resetMenu2WarningFlags } from '@mui/material/Unstable_Menu2/menu2Utils';
@@ -180,6 +183,44 @@ describe('<Menu2Trigger />', () => {
     await waitFor(() =>
       expect(document.activeElement).to.equal(screen.getByRole('menuitem', { name: 'Item' })),
     );
+  });
+
+  [
+    {
+      name: 'ListItemButton',
+      element: (onClick: () => void) => <ListItemButton onClick={onClick}>Actions</ListItemButton>,
+    },
+    {
+      name: 'clickable Chip',
+      element: (onClick: () => void) => <Chip label="Actions" clickable onClick={onClick} />,
+    },
+  ].forEach(({ name, element }) => {
+    (['pointer', 'Enter', 'Space'] as const).forEach((activation) => {
+      it(`opens once after ${activation} activation with a non-native ${name}`, async () => {
+        const onClick = vi.fn();
+        const onOpenChange = vi.fn();
+        const { user } = render(
+          <Menu2 onOpenChange={onOpenChange}>
+            <Menu2Trigger nativeButton={false} render={element(onClick)} />
+            <Menu2Popup transitionDuration={0}>
+              <Menu2Item>Item</Menu2Item>
+            </Menu2Popup>
+          </Menu2>,
+        );
+        const trigger = screen.getByRole('button', { name: 'Actions' });
+        if (activation === 'pointer') {
+          await user.click(trigger);
+        } else {
+          await act(async () => trigger.focus());
+          await user.keyboard(`[${activation}]`);
+        }
+
+        expect(await screen.findByRole('menu')).not.to.equal(null);
+        expect(onOpenChange).toHaveBeenCalledTimes(1);
+        expect(onOpenChange.mock.calls[0][0]).to.equal(true);
+        expect(onClick).toHaveBeenCalledTimes(1);
+      });
+    });
   });
 
   it('passes children as content to the render element', () => {
