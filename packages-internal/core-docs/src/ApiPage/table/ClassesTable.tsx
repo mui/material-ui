@@ -69,8 +69,16 @@ export default function ClassesTable(props: ClassesTableProps) {
         </thead>
         <tbody>
           {classes.map((params) => {
-            const { className, hash, key, description, isGlobal, isDeprecated, deprecationInfo } =
-              params;
+            const {
+              className,
+              hash,
+              key,
+              description,
+              isGlobal,
+              isStyleOverridesKey,
+              isDeprecated,
+              deprecationInfo,
+            } = params;
 
             return (
               <tr key={className} id={hash}>
@@ -78,7 +86,11 @@ export default function ClassesTable(props: ClassesTableProps) {
                   <span className="class-name">.{className}</span>
                 </td>
                 {displayClassKeys && (
-                  <td>{!isGlobal && <span className="class-key">{key}</span>}</td>
+                  <td>
+                    {!isGlobal && isStyleOverridesKey !== false && (
+                      <span className="class-key">{key}</span>
+                    )}
+                  </td>
                 )}
                 <td className="algolia-content">
                   <span
