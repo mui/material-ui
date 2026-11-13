@@ -99,7 +99,7 @@ function menu2ActiveOverrides(hcTokens: Required<HighContrastTokens>) {
 
 // Menu2 uses the same focus and hover cues as the classic items.
 function menu2ItemOverrides(
-  classes: { disabled: string; highlighted: string },
+  classes: { disabled?: string | undefined; highlighted: string },
   hcTokens: Required<HighContrastTokens>,
 ) {
   return {
@@ -113,21 +113,23 @@ function menu2ItemOverrides(
       },
     },
     // Base UI keeps disabled items focusable. Keep their disabled colors
-    // and use an outline to show keyboard focus.
-    [`&.${classes.disabled}`]: {
-      [HCM]: {
-        color: hcTokens.disabled,
-        opacity: 1,
+    // and use an outline to show keyboard focus. Link items have no disabled state.
+    ...(classes.disabled && {
+      [`&.${classes.disabled}`]: {
+        [HCM]: {
+          color: hcTokens.disabled,
+          opacity: 1,
+        },
       },
-    },
-    [`&.${classes.disabled}.${menuItemClasses.focusVisible}`]: {
-      [HCM]: {
-        forcedColorAdjust: 'none',
-        color: hcTokens.disabled,
-        backgroundColor: hcTokens.canvas,
-        outline: `1px solid ${hcTokens.buttonBorder}`,
+      [`&.${classes.disabled}.${menuItemClasses.focusVisible}`]: {
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: hcTokens.disabled,
+          backgroundColor: hcTokens.canvas,
+          outline: `1px solid ${hcTokens.buttonBorder}`,
+        },
       },
-    },
+    }),
   };
 }
 

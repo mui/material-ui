@@ -15,7 +15,6 @@ import type {
   Menu2ItemVisualProps,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
-  getMenu2ItemOwnerState,
   Menu2ItemRootSlot,
   mergeMenu2ItemClassName,
   useMenu2ItemListContext,
@@ -25,7 +24,7 @@ import type { Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2LinkItemUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 
-export interface Menu2LinkItemOwnerState extends Menu2ItemBaseOwnerState {
+export interface Menu2LinkItemOwnerState extends Omit<Menu2ItemBaseOwnerState, 'disabled'> {
   /** Whether Base UI currently highlights the item. */
   highlighted: boolean;
 }
@@ -131,14 +130,12 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
   } = props;
   const childContext = useMenu2ItemListContext(denseProp, disableGutters);
   const { dense } = childContext;
+  // Base UI link items have no disabled state.
   const ownerState = {
     ...props,
-    ...getMenu2ItemOwnerState({
-      dense,
-      disabled: false,
-      disableGutters,
-      divider,
-    }),
+    dense,
+    disableGutters,
+    divider,
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2LinkItemClasses>(
@@ -161,7 +158,6 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
             internalRender={renderProp}
             internalRenderState={{
               dense,
-              disabled: false,
               disableGutters,
               divider,
               highlighted: state.highlighted,

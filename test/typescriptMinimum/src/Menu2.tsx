@@ -461,10 +461,11 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
     props.href satisfies string | undefined;
     props.target satisfies React.HTMLAttributeAnchorTarget | undefined;
     state.highlighted satisfies boolean;
-    state.disabled satisfies boolean;
     state.dense satisfies boolean;
     state.disableGutters satisfies boolean;
     state.divider satisfies boolean;
+    // @ts-expect-error Link items have no disabled state.
+    state.disabled satisfies boolean;
     // @ts-expect-error Highlighted is a boolean.
     state.highlighted satisfies string;
     // @ts-expect-error Render props omit the legacy HTML color attribute.

@@ -35,11 +35,6 @@
       "nodeName": "the root element",
       "conditions": "<code>dense={true}</code>"
     },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
-    },
     "divider": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

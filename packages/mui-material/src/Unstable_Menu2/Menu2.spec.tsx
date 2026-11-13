@@ -275,10 +275,11 @@ function Menu2Composition() {
             href="/profile"
             render={(props, state) => {
               expectType<boolean, typeof state.highlighted>(state.highlighted);
-              expectType<boolean, typeof state.disabled>(state.disabled);
               expectType<boolean, typeof state.dense>(state.dense);
               expectType<boolean, typeof state.disableGutters>(state.disableGutters);
               expectType<boolean, typeof state.divider>(state.divider);
+              // @ts-expect-error Link items have no disabled state.
+              state.disabled;
               // @ts-expect-error Visual selection is not part of the link item state.
               state.selected;
               return <a {...props} data-active={state.highlighted} />;

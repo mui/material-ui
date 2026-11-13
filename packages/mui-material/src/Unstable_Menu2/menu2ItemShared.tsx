@@ -260,7 +260,8 @@ export function getMenu2ItemOwnerState(
 }
 
 export function useMenu2ItemUtilityClasses<Classes extends object>(
-  ownerState: Menu2ItemBaseOwnerState & {
+  ownerState: Omit<Menu2ItemBaseOwnerState, 'disabled'> & {
+    disabled?: boolean | undefined;
     classes?: Partial<Classes> | undefined;
     checked?: boolean | undefined;
     open?: boolean | undefined;
@@ -292,7 +293,7 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
 
 export function getMenu2ItemClassName<State extends Menu2BaseItemState>(
   classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
-  ownerState: Menu2ItemBaseOwnerState,
+  ownerState: Partial<Menu2ItemBaseOwnerState>,
   state: State,
 ) {
   return clsx(
@@ -305,7 +306,7 @@ export function getMenu2ItemClassName<State extends Menu2BaseItemState>(
 export function mergeMenu2ItemClassName<State extends Menu2BaseItemState>(
   className: StateClassName<State>,
   classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
-  ownerState: Menu2ItemBaseOwnerState,
+  ownerState: Partial<Menu2ItemBaseOwnerState>,
 ) {
   return mergeStateClassName(className, (state) =>
     getMenu2ItemClassName(classes, ownerState, state),

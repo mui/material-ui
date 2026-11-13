@@ -101,7 +101,7 @@ export const menu2ItemClasses: Menu2ItemClasses = generateUtilityClasses('MuiMen
   'gutters',
 ]);
 
-export interface Menu2LinkItemClasses extends Menu2ItemClasses {}
+export interface Menu2LinkItemClasses extends Omit<Menu2ItemClasses, 'disabled'> {}
 
 export type Menu2LinkItemClassKey = keyof Menu2LinkItemClasses;
 
@@ -111,7 +111,7 @@ export function getMenu2LinkItemUtilityClass(slot: string): string {
 
 export const menu2LinkItemClasses: Menu2LinkItemClasses = generateUtilityClasses(
   'MuiMenu2LinkItem',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters'],
+  ['root', 'highlighted', 'dense', 'divider', 'gutters'],
 );
 
 export interface Menu2CheckboxItemClasses extends Menu2ItemClasses {

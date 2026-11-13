@@ -122,7 +122,6 @@ describe('<Menu2LinkItem />', () => {
               root: (state) => ({
                 ref: slotRef,
                 'data-slot-dense': String(state.dense),
-                'data-slot-disabled': String(state.disabled),
                 onClick: (event) => event.preventDefault(),
               }),
             }}
@@ -139,7 +138,6 @@ describe('<Menu2LinkItem />', () => {
     expect(item).to.have.attribute('target', '_blank');
     expect(item).to.have.attribute('rel', 'noopener');
     expect(item).to.have.attribute('data-slot-dense', 'true');
-    expect(item).to.have.attribute('data-slot-disabled', 'false');
     expect(rootRef.current).to.equal(item);
     expect(slotRef.current).to.equal(item);
     expect(item).not.to.have.class('MuiButtonBase-root');
@@ -307,9 +305,7 @@ describe('<Menu2LinkItem />', () => {
             <Menu2LinkItem
               href="/profile"
               onClick={(event) => event.preventDefault()}
-              render={(props, state) => (
-                <RouterLink {...props} to="/profile" data-disabled={String(state.disabled)} />
-              )}
+              render={(props) => <RouterLink {...props} to="/profile" />}
             >
               Profile
             </Menu2LinkItem>
@@ -325,7 +321,6 @@ describe('<Menu2LinkItem />', () => {
         </Menu2>,
       );
       const item = screen.getByRole('menuitem', { name: 'Profile' });
-      expect(item).to.have.attribute('data-disabled', 'false');
       await user.pointer({ keys: '[MouseLeft>]', target: item });
       await waitFor(() =>
         expect(item.querySelector(`.${touchRippleClasses.rippleVisible}`)).not.to.equal(null),

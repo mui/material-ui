@@ -597,14 +597,18 @@ describe('enhanceHighContrast', () => {
   });
 
   describe('Menu2 item overrides', () => {
-    const itemCases: Array<
+    // Link items have no disabled state.
+    const disabledItemCases: Array<
       [component: string, classes: { disabled: string; highlighted: string }, slot: string]
     > = [
       ['MuiMenu2Item', menu2ItemClasses, 'root'],
-      ['MuiMenu2LinkItem', menu2LinkItemClasses, 'root'],
       ['MuiMenu2CheckboxItem', menu2CheckboxItemClasses, 'root'],
       ['MuiMenu2RadioItem', menu2RadioItemClasses, 'root'],
       ['MuiMenu2SubmenuTrigger', menu2SubmenuTriggerClasses, 'root'],
+    ];
+    const itemCases: Array<[component: string, classes: { highlighted: string }, slot: string]> = [
+      ...disabledItemCases,
+      ['MuiMenu2LinkItem', menu2LinkItemClasses, 'root'],
     ];
 
     test.each(itemCases)(
@@ -627,7 +631,7 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test.each(itemCases)(
+    test.each(disabledItemCases)(
       '%s covers disabled without selected styling',
       (component, classes, slot) => {
         const theme = enhanceHighContrast(createTheme());
@@ -645,7 +649,18 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test.each(itemCases)('%s uses custom tokens', (component, classes, slot) => {
+    test('MuiMenu2LinkItem has no disabled rules', () => {
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = (theme.components as any).MuiMenu2LinkItem.styleOverrides
+        .root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+      expect(
+        Object.keys(hcmOverride).some((selector) => selector.includes('Mui-disabled')),
+      ).to.equal(false);
+    });
+
+    test.each(disabledItemCases)('%s uses custom tokens', (component, classes, slot) => {
       const theme = enhanceHighContrast(createTheme(), {
         disabled: 'ButtonText',
         activeText: 'Canvas',
@@ -669,7 +684,7 @@ describe('enhanceHighContrast', () => {
       });
     });
 
-    test.each(itemCases)(
+    test.each(disabledItemCases)(
       '%s keeps the disabled cue during keyboard focus',
       (component, classes, slot) => {
         // Base UI keeps disabled items focusable, so this combination is
@@ -691,7 +706,7 @@ describe('enhanceHighContrast', () => {
       },
     );
 
-    test.each(itemCases)(
+    test.each(disabledItemCases)(
       '%s orders the disabled rules after the focus styles',
       (component, classes, slot) => {
         const theme = enhanceHighContrast(createTheme());
