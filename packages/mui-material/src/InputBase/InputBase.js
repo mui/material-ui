@@ -199,24 +199,19 @@ export const InputBaseInput = styled('input', {
         opacity: 1, // Reset iOS opacity
         WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
       },
+      // Keep keyframes non-empty for Emotion production builds. Animation properties are ignored
+      // inside keyframes, avoiding the visible display animation triggered by Chrome 117+.
+      [`@keyframes ${MUI_AUTO_FILL}`]: { from: { animationName: MUI_AUTO_FILL } },
+      [`@keyframes ${MUI_AUTO_FILL_CANCEL}`]: {
+        from: { animationName: MUI_AUTO_FILL_CANCEL },
+      },
+      animationName: MUI_AUTO_FILL_CANCEL,
+      animationDuration: '10ms',
+      '&:-webkit-autofill': {
+        animationDuration: '5000s',
+        animationName: MUI_AUTO_FILL,
+      },
       variants: [
-        {
-          props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
-          style: {
-            // Keep keyframes non-empty for Emotion production builds. Animation properties are ignored
-            // inside keyframes, avoiding the visible display animation triggered by Chrome 117+.
-            [`@keyframes ${MUI_AUTO_FILL}`]: { from: { animationName: MUI_AUTO_FILL } },
-            [`@keyframes ${MUI_AUTO_FILL_CANCEL}`]: {
-              from: { animationName: MUI_AUTO_FILL_CANCEL },
-            },
-            animationName: MUI_AUTO_FILL_CANCEL,
-            animationDuration: '10ms',
-            '&:-webkit-autofill': {
-              animationDuration: '5000s',
-              animationName: MUI_AUTO_FILL,
-            },
-          },
-        },
         {
           props: {
             size: 'small',
@@ -261,7 +256,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     color,
     defaultValue,
     disabled,
-    disableInjectingGlobalStyles,
     endAdornment,
     error,
     fullWidth = false,
@@ -661,12 +655,6 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, the auto-fill keyframes are not injected with the input styles. Make sure to inject them at the top of your application.
-   * @deprecated The keyframes are injected with the input styles, so there is no longer a style sheet per input to avoid. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default false
-   */
-  disableInjectingGlobalStyles: PropTypes.bool,
   /**
    * End `InputAdornment` for this component.
    */
