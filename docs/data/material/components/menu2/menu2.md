@@ -267,16 +267,6 @@ To set a smaller limit with the `sx` prop on `MenuPopup`, use `min(320px, var(--
 
 {{"component": "file://./demos/long/index.ts"}}
 
-## Context menu
-
-Menu v2 follows the [menu button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/) and doesn't support context menus.
-A context menu must handle right-click, the context menu key or Shift+F10, and touch long press.
-It needs pointer or keyboard-based positioning, an accessible name, and focus return without a trigger button.
-Building one with Menu v2 leaves these requirements to application code.
-
-Material UI plans to add a separate context menu component.
-Until then, keep using the [classic Menu context menu example](/material-ui/react-menu/#context-menu).
-
 ## Customization
 
 Style the popup and items with `sx`, slots, or the `MuiMenu2*` theme keys.
