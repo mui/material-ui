@@ -9,6 +9,8 @@ import { brandingLightTheme } from '../branding';
 import { UserLanguageProvider } from '../i18n';
 import DemoContent from './DemoContent';
 
+vi.hoisted(() => vi.resetModules());
+
 const mocks = vi.hoisted(() => ({
   activate: vi.fn(),
   preloadEditor: vi.fn(() => Promise.resolve()),
@@ -50,7 +52,10 @@ vi.mock('@mui/internal-docs-infra/useCode', async (importOriginal) => ({
   preloadCodeEditor: mocks.preloadEditor,
 }));
 
-afterAll(() => vi.unstubAllGlobals());
+afterAll(() => {
+  vi.unstubAllGlobals();
+  vi.resetModules();
+});
 afterEach(() => vi.clearAllMocks());
 
 describe.skipIf(!isJsdom())('DemoContent idle scheduling', () => {
@@ -81,6 +86,8 @@ describe.skipIf(!isJsdom())('DemoContent idle scheduling', () => {
       </UserLanguageProvider>,
     );
 
+    const showCode = await screen.findByRole('button', { name: 'Show code', hidden: true });
+
     act(() => {
       for (const callback of callbacks.values()) {
         callback({ didTimeout: false, timeRemaining: () => 10 });
@@ -89,7 +96,7 @@ describe.skipIf(!isJsdom())('DemoContent idle scheduling', () => {
     expect(mocks.activate).not.toHaveBeenCalled();
     expect(mocks.preloadEditor).not.toHaveBeenCalled();
 
-    await user.click(screen.getByRole('button', { name: 'Show code', hidden: true }));
+    await user.click(showCode);
 
     expect(mocks.activate).toHaveBeenCalledExactlyOnceWith({ js: true, css: false });
     expect(mocks.expand).toHaveBeenCalledOnce();
