@@ -114,11 +114,13 @@ This demo shows how to display multiple Snackbars without stacking them by using
 ### Stacked Snackbars
 
 Material Design recommends showing one Snackbar at a time, but stacking several of them vertically is still a common pattern.
-This demo uses the [Base UI Toast](https://base-ui.com/react/components/toast) component to manage the stack, the auto-hide timers, and keyboard interactions, and renders each toast with Material UI's `SnackbarContent`.
+This demo uses the [Base UI Toast](https://base-ui.com/react/components/toast) component to manage the stack, the auto-hide timers, and keyboard interactions, and renders each toast with Material UI's `SnackbarContent`.
 
 {{"component": "file://./demos/stacked/index.ts", "collapseToEmpty": true}}
 
-Hovering or focusing the stack pauses the timers, pressing <kbd class="key">Escape</kbd> closes the focused Snackbar, and <kbd class="key">F6</kbd> moves focus to the stack.
+Hovering or focusing the stack pauses the timers.
+<kbd class="key">F6</kbd> moves focus to the stack, and <kbd class="key">Escape</kbd> closes the Snackbar that has focus.
+Unlike the `Snackbar` component, <kbd class="key">Escape</kbd> doesn't close a toast while focus is elsewhere on the page.
 
 ## Accessibility
 

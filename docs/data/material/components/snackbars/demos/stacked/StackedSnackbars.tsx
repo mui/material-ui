@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import CloseIcon from '@mui/icons-material/Close';
 
+// Same offsets as a Snackbar with `anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}`.
 const Viewport = styled(Toast.Viewport)(({ theme }) => ({
   position: 'fixed',
   zIndex: theme.zIndex.snackbar,
@@ -13,8 +14,7 @@ const Viewport = styled(Toast.Viewport)(({ theme }) => ({
   right: 8,
   bottom: 8,
   display: 'flex',
-  // Base UI lists the newest toast first, so this puts it at the bottom.
-  flexDirection: 'column-reverse',
+  flexDirection: 'column',
   gap: theme.spacing(1),
   [theme.breakpoints.up('sm')]: {
     left: 24,
@@ -31,7 +31,14 @@ const StackedSnackbarContent = styled(SnackbarContent)(({ theme }) => ({
     opacity: 0,
     transform: 'translateY(16px)',
   },
-  // Toasts over the provider's `limit` stay mounted until older ones close.
+  // Keep a swiped Snackbar moving in the direction it was swiped.
+  '&[data-ending-style][data-swipe-direction="right"]': {
+    transform: 'translateX(calc(var(--toast-swipe-movement-x) + 100%))',
+  },
+  '&[data-ending-style][data-swipe-direction="down"]': {
+    transform: 'translateY(calc(var(--toast-swipe-movement-y) + 100%))',
+  },
+  // Over the provider's `limit`, the oldest toasts are hidden until a newer one closes.
   '&[data-limited]': {
     display: 'none',
   },
@@ -40,14 +47,16 @@ const StackedSnackbarContent = styled(SnackbarContent)(({ theme }) => ({
 function Snackbars() {
   const { toasts } = Toast.useToastManager();
 
-  return toasts.map((toast) => (
+  // Base UI lists the newest toast first. Render it last so it's at the bottom,
+  // and keyboard focus follows the same order as the stack.
+  return [...toasts].reverse().map((toast) => (
     <Toast.Root
       key={toast.id}
       toast={toast}
       render={(props) => (
         <StackedSnackbarContent
           {...props}
-          message={<Toast.Description />}
+          message={<Toast.Description render={<span />} />}
           action={
             <Toast.Close
               aria-label="Close"
