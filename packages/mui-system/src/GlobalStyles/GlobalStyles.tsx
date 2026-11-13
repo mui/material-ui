@@ -60,6 +60,23 @@ function wrapGlobalLayer(styles: any, layerName: string) {
   return styles;
 }
 
+// Whether `wrapGlobalLayer` put any of the styles in the layer. Styles that only declare the app's
+// layer order, such as `@layer theme, base, mui, utilities;`, stay at the top level.
+function hasLayerBlock(styles: any, layerName: string): boolean {
+  if (Array.isArray(styles)) {
+    return styles.some((style) => hasLayerBlock(style, layerName));
+  }
+  if (typeof styles === 'string') {
+    return styles.includes(`@layer ${layerName}{`);
+  }
+  if (isPlainObject(styles)) {
+    return typeof styles.styles === 'string'
+      ? styles.styles.includes(`@layer ${layerName}{`)
+      : `@layer ${layerName}` in styles;
+  }
+  return false;
+}
+
 function GlobalStyles<Theme = SystemTheme>({
   styles,
   themeId,
@@ -87,7 +104,12 @@ function GlobalStyles<Theme = SystemTheme>({
     }
     // Without a ThemeProvider, nothing declares the order of the sub-layers before these styles,
     // and a layer's place is set where it's first used. Declare it first, like the components do.
-    const layerOrder = upperTheme === defaultTheme ? getCssLayerOrderStatement(resolvedTheme) : '';
+    // Styles that only declare the app's layer order put nothing in a sub-layer, and declaring the
+    // default order before them would place `mui` ahead of the app's layers.
+    const layerOrder =
+      upperTheme === defaultTheme && hasLayerBlock(globalStyles, layerName)
+        ? getCssLayerOrderStatement(resolvedTheme)
+        : '';
     if (layerOrder) {
       globalStyles = [layerOrder, ...(Array.isArray(globalStyles) ? globalStyles : [globalStyles])];
     }
