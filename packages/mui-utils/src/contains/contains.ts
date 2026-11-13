@@ -26,7 +26,10 @@ export default function contains(
 
   // Then fall back to traversing out of shadow roots when needed.
   const rootNode = child.getRootNode?.();
-  if (rootNode && rootNode instanceof ShadowRoot) {
+  // Use the child's own window: a shadow root inside an iframe is not an instance of the
+  // parent window's `ShadowRoot`.
+  const ShadowRootConstructor = child.ownerDocument?.defaultView?.ShadowRoot ?? ShadowRoot;
+  if (rootNode && rootNode instanceof ShadowRootConstructor) {
     let next: Node | null = child;
     while (next) {
       if (parent === next) {
