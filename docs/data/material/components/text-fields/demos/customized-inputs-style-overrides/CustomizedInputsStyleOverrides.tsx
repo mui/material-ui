@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, useTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 
 const customTheme = (outerTheme: Theme): Theme => ({
@@ -74,12 +74,14 @@ const customTheme = (outerTheme: Theme): Theme => ({
 });
 
 export default function CustomizedInputsStyleOverrides() {
+  const outerTheme = useTheme();
+
   return (
     <Box
       sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr 1fr 1fr' }, gap: 2 }}
     >
       {/* @focus-start */}
-      <ThemeProvider theme={customTheme}>
+      <ThemeProvider theme={customTheme(outerTheme)}>
         <TextField label="Outlined" />
         <TextField label="Filled" variant="filled" />
         <TextField label="Standard" variant="standard" />
