@@ -6,5 +6,10 @@ export type * from './createTheme';
  */
 export { default as private_createBreakpoints } from '../createBreakpoints/createBreakpoints';
 
+/**
+ * @internal
+ */
+export { resolveModularCssLayers as private_resolveModularCssLayers } from '../cssLayers';
+
 export { default as unstable_applyStyles } from './applyStyles';
 export type * from './applyStyles';

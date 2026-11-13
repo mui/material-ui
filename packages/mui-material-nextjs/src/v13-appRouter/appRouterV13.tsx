@@ -55,8 +55,10 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     let inserted: { name: string; isGlobal: boolean }[] = [];
     // Override the insert method to support streaming SSR with flush().
     cache.insert = (...args) => {
-      if (options?.enableCssLayer && !args[1].styles.match(/^@layer\s[^{]*$/)) {
-        args[1].styles = `@layer mui {${args[1].styles}}`;
+      // Skip layer order statements and styles already in Material UI's layer or sub-layers.
+      if (options?.enableCssLayer && !args[1].styles.match(/^@layer\s[^{]*$|@layer mui[.{]/)) {
+        // The serialized styles can be shared, for example `css` results, so they're copied.
+        args[1] = { ...args[1], styles: `@layer mui {${args[1].styles}}` };
       }
       const [selector, serialized] = args;
       if (cache.inserted[serialized.name] === undefined) {

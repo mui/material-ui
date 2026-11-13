@@ -78,3 +78,85 @@ If you target these ids in CSS or tests, pass an explicit `id`:
 ```
 
 The ids are then `Actions-actions` for the actions container and `Actions-action-0`, `Actions-action-1`, and so on for each action.
+
+### CSS layers are always on
+
+Material UI puts its styles in the `mui` [cascade layer](/material-ui/customization/css-layers/), split into sub-layers: `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
+This can't be turned off.
+
+This changes which styles win:
+
+- CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles whatever its specificity.
+  Put resets in a layer that comes before `mui`, and declare the order with the `modularCssLayers` theme option, for example `modularCssLayers: '@layer reset, mui;'`.
+- Theme `styleOverrides` and `variants`, `styled()` and the `sx` prop now override the components' state styles, such as `:hover`, `.Mui-disabled` and `.Mui-selected`, even when they're less specific.
+
+These are the patterns that most often need a change:
+
+- **A style that should only apply in the default state.**
+  Exclude the states, or set their values too:
+
+  ```diff
+   <FormLabel
+     sx={{
+  -    color: 'text.primary',
+  +    '&:not(.Mui-focused, .Mui-error, .Mui-disabled)': {
+  +      color: 'text.primary',
+  +    },
+     }}
+   />
+  ```
+
+  ```diff
+   MuiIconButton: {
+     styleOverrides: {
+       root: ({ theme }) => ({
+         color: theme.palette.text.primary,
+  +      [`&.${iconButtonClasses.disabled}`]: {
+  +        color: theme.palette.action.disabled,
+  +      },
+       }),
+     },
+   },
+  ```
+
+- **An override that undoes a component's more specific rule.**
+  For example, an `input` override of `MuiOutlinedInput` with `padding: 0` now also removes the room that the Select leaves for its icon.
+  Set the value back for that case:
+
+  ```diff
+   MuiOutlinedInput: {
+     styleOverrides: {
+       input: {
+         padding: 0,
+  +      [`&.${selectClasses.select}`]: {
+  +        paddingRight: 32,
+  +      },
+       },
+     },
+   },
+  ```
+
+- **An `sx` value that the component sets for some breakpoints.**
+  The `sx` prop now wins at every breakpoint, so `<Grid size={{ md: 7 }} sx={{ width: '100%' }}>` is full width on large screens too.
+  Use the component's own prop instead: `<Grid size={{ xs: 12, md: 7 }}>`.
+
+- **A component's styles for its children.**
+  Rules such as the padding that an `Autocomplete` sets on its input, or the inner corners of a `ButtonGroup`, are in `mui.components`, so the children's own theme overrides, `styled()` and `sx` now win over them.
+  For example, a `MuiOutlinedInput` root override with `padding: '8px 12px'` now also replaces the room that the Autocomplete leaves for its buttons.
+  Drop the conflicting value from the child's styles, or set it back for that case.
+
+- **`GlobalStyles` that override a component's theme overrides, `styled()` or `sx`.**
+  `GlobalStyles` and `CssBaseline`, with its theme overrides, share `mui.components` with the components' base styles, so they still override those by specificity, as in v9.
+  Theme overrides, `styled()` and `sx` are in higher sub-layers, so a global rule no longer wins over them, however specific.
+  Move these rules to the theme's `styleOverrides`, to `sx` or `styled()`, or to a stylesheet outside the layers.
+
+To keep the v9 precedence between Material UI's own styles, put them all in the `mui` layer, without sub-layers:
+
+```js
+const theme = createTheme({
+  modularCssLayers: false,
+});
+```
+
+This matches v9's `enableCssLayer`: `mui` goes where your CSS declares it, for example `@layer theme, base, mui, components, utilities;`.
+`modularCssLayers: true` can be removed, since sub-layers are the default, and a `modularCssLayers` string still sets where the sub-layers go among your layers.

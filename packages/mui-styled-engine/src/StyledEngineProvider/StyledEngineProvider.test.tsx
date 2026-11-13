@@ -1,7 +1,7 @@
 import { describe, beforeAll, afterAll, beforeEach, it, expect } from 'vitest';
 import * as React from 'react';
 import { __unsafe_useEmotionCache } from '@emotion/react';
-import styled, { StyledEngineProvider, GlobalStyles } from '@mui/styled-engine';
+import styled, { StyledEngineProvider, GlobalStyles, css } from '@mui/styled-engine';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { TEST_INTERNALS_DO_NOT_USE } from './StyledEngineProvider';
 
@@ -53,6 +53,15 @@ describe('[Emotion] StyledEngineProvider', () => {
     expect(rule).to.equal('@layer mui{@layer components{html{color:red;}}}');
   });
 
+  it('does not wrap styles that are in the mui layer already', () => {
+    render(
+      <StyledEngineProvider enableCssLayer>
+        <GlobalStyles styles={{ '@layer mui': { html: { color: 'red' } } }} />
+      </StyledEngineProvider>,
+    );
+    expect(rule).to.equal('@layer mui{html{color:red;}}');
+  });
+
   it('able to config layer order through GlobalStyles', () => {
     render(
       <StyledEngineProvider enableCssLayer>
@@ -85,6 +94,22 @@ describe('[Emotion] StyledEngineProvider', () => {
       </StyledEngineProvider>,
     );
     expect(innerCache).to.equal(upperCache);
+  });
+
+  it('does not change styles that are serialized already', () => {
+    const shared = css`
+      html {
+        color: red;
+      }
+    `;
+    const styles = shared.styles;
+    render(
+      <StyledEngineProvider enableCssLayer>
+        <GlobalStyles styles={shared} />
+      </StyledEngineProvider>,
+    );
+    expect(rule).to.include('@layer mui');
+    expect(shared.styles).to.equal(styles);
   });
 });
 

@@ -28,7 +28,12 @@ const {
     };
 
     newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
-      return styleFunctionSx({ sx: props, theme: this });
+      return styleFunctionSx({
+        sx: props,
+        theme: this,
+        // The result goes into other styles, which already sit in a layer.
+        nested: true,
+      });
     };
 
     return newTheme;

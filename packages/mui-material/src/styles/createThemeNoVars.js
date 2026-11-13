@@ -2,7 +2,9 @@ import deepmerge from '@mui/utils/deepmerge';
 import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
-import systemCreateTheme from '@mui/system/createTheme';
+import systemCreateTheme, {
+  private_resolveModularCssLayers as resolveModularCssLayers,
+} from '@mui/system/createTheme';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
@@ -242,9 +244,12 @@ function createThemeNoVars(options = {}, ...args) {
     return styleFunctionSx({
       sx: props,
       theme: this,
+      // The result goes into other styles, which already sit in a layer.
+      nested: true,
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
+  muiTheme.modularCssLayers = resolveModularCssLayers(muiTheme.modularCssLayers);
 
   attachColorManipulators(muiTheme);
 

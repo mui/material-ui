@@ -15,39 +15,44 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = createTheme(
-    cssContainerQueries({
-      spacing: (val) => `${val * 10}px`,
-      breakpoints: createBreakpoints({ values: breakpointsValues }),
-      palette: {
-        primary: {
-          main: 'rgb(0, 0, 255)',
+  // The layered output is covered by the `@layer` tests below, so this theme has no layers,
+  // like a theme object made by hand.
+  const theme = {
+    ...createTheme(
+      cssContainerQueries({
+        spacing: (val) => `${val * 10}px`,
+        breakpoints: createBreakpoints({ values: breakpointsValues }),
+        palette: {
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          },
+          secondary: {
+            main: 'rgb(0, 255, 0)',
+          },
         },
-        secondary: {
-          main: 'rgb(0, 255, 0)',
-        },
-      },
-      typography: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontWeightLight: 300,
-        fontSize: 14,
-        body1: {
+        typography: {
           fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-          fontSize: '1rem',
-          letterSpacing: `${round(0.15 / 16)}em`,
-          fontWeight: 400,
-          lineHeight: 1.5,
+          fontWeightLight: 300,
+          fontSize: 14,
+          body1: {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: '1rem',
+            letterSpacing: `${round(0.15 / 16)}em`,
+            fontWeight: 400,
+            lineHeight: 1.5,
+          },
+          body2: {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: `${14 / 16}rem`,
+            letterSpacing: `${round(0.15 / 14)}em`,
+            fontWeight: 400,
+            lineHeight: 1.43,
+          },
         },
-        body2: {
-          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-          fontSize: `${14 / 16}rem`,
-          letterSpacing: `${round(0.15 / 14)}em`,
-          fontWeight: 400,
-          lineHeight: 1.43,
-        },
-      },
-    }),
-  );
+      }),
+    ),
+    modularCssLayers: undefined,
+  };
 
   describe('system', () => {
     it('resolves system', () => {
@@ -591,7 +596,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           backgroundColor: 'rgb(0, 255, 0)',
           outline: '1px solid',
@@ -624,12 +629,12 @@ describe('styleFunctionSx', () => {
 
       expect(result).to.deep.equal([
         {
-          '@layer sx': {
+          '@layer mui.sx': {
             backgroundColor: 'rgb(0, 255, 0)',
           },
         },
         {
-          '@layer sx': {
+          '@layer mui.sx': {
             color: 'rgb(0, 0, 255)',
           },
         },
@@ -649,7 +654,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           backgroundColor: 'rgb(0, 255, 0)',
         },
@@ -671,7 +676,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           '&:hover': {
             backgroundColor: 'rgb(0, 255, 0)',
@@ -695,7 +700,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           '&:hover': {
             backgroundColor: 'rgb(0, 255, 0)',

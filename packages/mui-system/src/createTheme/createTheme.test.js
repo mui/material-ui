@@ -207,4 +207,17 @@ describe('createTheme', () => {
 
     expect(() => render(<Test />)).not.to.throw();
   });
+
+  describe('modularCssLayers', () => {
+    it('uses sub-layers by default', () => {
+      expect(createTheme().modularCssLayers).to.equal(true);
+    });
+
+    it('keeps false, which puts the styles in a single layer, and strings', () => {
+      expect(createTheme({ modularCssLayers: false }).modularCssLayers).to.equal(false);
+      expect(createTheme({ modularCssLayers: '@layer base, mui;' }).modularCssLayers).to.equal(
+        '@layer base, mui;',
+      );
+    });
+  });
 });

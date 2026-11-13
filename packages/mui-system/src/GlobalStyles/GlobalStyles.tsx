@@ -5,8 +5,10 @@ import {
   GlobalStyles as MuiGlobalStyles,
   internal_serializeStyles as serializeStyles,
 } from '@mui/styled-engine';
+import { isPlainObject } from '@mui/utils/deepmerge';
 import useTheme from '../useTheme';
 import type { Theme as SystemTheme } from '../createTheme';
+import { getCssLayer, getCssLayerOrderStatement, wrapInCssLayer } from '../cssLayers';
 
 export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;
@@ -14,14 +16,46 @@ export interface GlobalStylesProps<Theme = SystemTheme> {
   themeId?: string | undefined;
 }
 
-function wrapGlobalLayer(styles: any) {
+// Keys of a style object that stay at the top level, see `wrapInCssLayer`.
+const TOP_LEVEL_KEY = /^@(layer|import|charset|namespace)\b/i;
+
+function wrapGlobalLayer(styles: any, layerName: string) {
   const serialized = serializeStyles(styles) as { styles?: string | undefined };
   if (styles !== serialized && serialized.styles) {
-    if (!serialized.styles.match(/^@layer\s[^{]*$/)) {
-      // If the styles are not already wrapped in a layer, wrap them in a global layer.
-      serialized.styles = `@layer global{${serialized.styles}}`;
-    }
+    // `serializeStyles` returned a new object, so it can be changed.
+    serialized.styles = wrapInCssLayer(serialized.styles, layerName);
     return serialized;
+  }
+  // styled-components doesn't serialize the styles, so wrap them as they are.
+  if (typeof styles === 'string') {
+    return wrapInCssLayer(styles, layerName);
+  }
+  if (isPlainObject(styles) && typeof styles.styles === 'string') {
+    // Emotion returns styles it already serialized, such as `css` results, as they are. They can
+    // be shared, so wrap a copy, with its own name and the keyframes it references (`next`).
+    return {
+      ...styles,
+      name: `${styles.name}-${layerName.replace('.', '-')}`,
+      styles: wrapInCssLayer(styles.styles, layerName),
+    };
+  }
+  if (isPlainObject(styles)) {
+    // Keep the app's own layers and the at-rules that can't be in a layer at the top level, in order.
+    const result: object[] = [];
+    let run: Record<string, any> | null = null;
+    Object.keys(styles).forEach((key) => {
+      if (TOP_LEVEL_KEY.test(key)) {
+        run = null;
+        result.push({ [key]: styles[key] });
+      } else {
+        if (!run) {
+          run = {};
+          result.push({ [`@layer ${layerName}`]: run });
+        }
+        run[key] = styles[key];
+      }
+    });
+    return result.length === 1 ? result[0] : result;
   }
   return styles;
 }
@@ -35,16 +69,27 @@ function GlobalStyles<Theme = SystemTheme>({
   const resolvedTheme = themeId ? (upperTheme as any)[themeId] || upperTheme : upperTheme;
 
   let globalStyles = typeof styles === 'function' ? styles(resolvedTheme) : styles;
-  if (resolvedTheme.modularCssLayers) {
+  // Global styles, the app's and `CssBaseline`'s, share `mui.components` with the components' own
+  // styles, so they all compete by specificity and order, as they did without layers: a reset like
+  // `button {…}` loses to a component's class, and a more specific rule like
+  // `.app .MuiButton-root {…}` wins.
+  const layerName = getCssLayer(resolvedTheme, 'components');
+  if (layerName) {
     if (Array.isArray(globalStyles)) {
       globalStyles = globalStyles.map((styleArg) => {
         if (typeof styleArg === 'function') {
-          return wrapGlobalLayer(styleArg(resolvedTheme));
+          return wrapGlobalLayer(styleArg(resolvedTheme), layerName);
         }
-        return wrapGlobalLayer(styleArg);
+        return wrapGlobalLayer(styleArg, layerName);
       });
     } else {
-      globalStyles = wrapGlobalLayer(globalStyles);
+      globalStyles = wrapGlobalLayer(globalStyles, layerName);
+    }
+    // Without a ThemeProvider, nothing declares the order of the sub-layers before these styles,
+    // and a layer's place is set where it's first used. Declare it first, like the components do.
+    const layerOrder = upperTheme === defaultTheme ? getCssLayerOrderStatement(resolvedTheme) : '';
+    if (layerOrder) {
+      globalStyles = [layerOrder, ...(Array.isArray(globalStyles) ? globalStyles : [globalStyles])];
     }
   }
 

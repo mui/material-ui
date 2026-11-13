@@ -5,8 +5,8 @@ import createCache from '@emotion/cache';
 import { createRenderer } from '@mui/internal-test-utils';
 import useLayerOrder from './useLayerOrder';
 
-function TestComponent({ theme }: { theme: any }) {
-  const LayerOrder = useLayerOrder(theme);
+function TestComponent({ theme, themeId }: { theme: any; themeId?: string }) {
+  const LayerOrder = useLayerOrder(theme, themeId);
   return LayerOrder;
 }
 
@@ -67,5 +67,68 @@ describe('useLayerOrder', () => {
       </ThemeContext.Provider>,
     );
     expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
+  });
+
+  it('does not declare the order again under an upper theme with layers', () => {
+    render(
+      <ThemeContext.Provider value={{ modularCssLayers: true }}>
+        <TestComponent theme={{ modularCssLayers: true }} />
+      </ThemeContext.Provider>,
+    );
+    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+  });
+
+  it('declares the order under an upper theme without layers', () => {
+    render(
+      <ThemeContext.Provider value={{ direction: 'ltr' }}>
+        <TestComponent theme={{ modularCssLayers: true }} />
+      </ThemeContext.Provider>,
+    );
+    expect(document.head.firstChild?.textContent).to.contain(
+      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
+    );
+  });
+
+  it('declares no order with a single layer', () => {
+    render(<TestComponent theme={{ modularCssLayers: false }} />);
+    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+  });
+
+  it('declares the sub-layers under an upper theme with a single layer', () => {
+    render(
+      <ThemeContext.Provider value={{ modularCssLayers: false }}>
+        <TestComponent theme={{ modularCssLayers: true }} />
+      </ThemeContext.Provider>,
+    );
+    expect(document.head.firstChild?.textContent).to.contain(
+      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
+    );
+  });
+
+  it('does not declare a single layer under an upper theme with sub-layers', () => {
+    render(
+      <ThemeContext.Provider value={{ modularCssLayers: true }}>
+        <TestComponent theme={{ modularCssLayers: false }} />
+      </ThemeContext.Provider>,
+    );
+    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+  });
+
+  it('reads the theme of the themeId', () => {
+    render(
+      <TestComponent theme={{ $$material: { modularCssLayers: true } }} themeId="$$material" />,
+    );
+    expect(document.head.firstChild?.textContent).to.contain(
+      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
+    );
+  });
+
+  it('reads the upper theme of the themeId', () => {
+    render(
+      <ThemeContext.Provider value={{ $$material: { modularCssLayers: true } }}>
+        <TestComponent theme={{ $$material: { modularCssLayers: true } }} themeId="$$material" />
+      </ThemeContext.Provider>,
+    );
+    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
   });
 });

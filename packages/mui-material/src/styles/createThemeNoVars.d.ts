@@ -63,7 +63,6 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   focusVisible?: boolean | FocusVisible | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
-  modularCssLayers?: boolean | string | undefined;
 }
 
 export interface BaseTheme extends SystemTheme {
