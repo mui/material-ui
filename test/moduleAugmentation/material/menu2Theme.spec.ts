@@ -239,7 +239,6 @@ createTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           ownerState.highlighted satisfies boolean;
-          ownerState.disabled satisfies boolean;
           return {};
         },
         dense: {},
