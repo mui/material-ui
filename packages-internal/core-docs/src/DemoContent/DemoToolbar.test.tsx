@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, onTestFinished, vi } from 'vitest';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { act, createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
@@ -150,19 +150,23 @@ describe('DemoToolbar', () => {
           },
         },
       });
-      renderTimed(toolbarElement({ tsSourceAnchor: 'Example.tsx', openMuiChat: undefined }, theme));
+      const sourceFile = 'Example.tsx';
+      renderTimed(toolbarElement({ tsSourceAnchor: sourceFile, openMuiChat: undefined }, theme));
+      const writeText = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue();
+      onTestFinished(() => writeText.mockRestore());
+      const sourceUrl = new URL(window.location.href);
+      sourceUrl.hash = sourceFile;
       const more = screen.getByRole('button', { name: 'See more' });
       const copyLink = async () => {
         fireEvent.click(more);
         fireEvent.click(screen.getByRole('menuitem', { name: 'Copy link to TypeScript source' }));
-        let copied = '';
         await act(async () => {
-          copied = await navigator.clipboard.readText();
+          await writeText.mock.results.at(-1)!.value;
         });
-        return copied;
       };
 
-      expect(await copyLink()).to.contain('#Example.tsx');
+      await copyLink();
+      expect(writeText).toHaveBeenCalledExactlyOnceWith(sourceUrl.href);
       expect(screen.getByRole('alert')).to.have.text(
         'Link to the source code has been copied to your clipboard.',
       );
@@ -173,6 +177,8 @@ describe('DemoToolbar', () => {
       expect(screen.queryByRole('alert')).to.equal(null);
 
       await copyLink();
+      expect(writeText).toHaveBeenCalledTimes(2);
+      expect(writeText).toHaveBeenNthCalledWith(2, sourceUrl.href);
       expect(screen.getByRole('alert')).not.to.equal(null);
     });
   });
