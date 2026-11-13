@@ -18,6 +18,17 @@ Benefits of using cascade layers include:
 This method creates a single layer, namely `@layer mui`, for all Material UI components and global styles.
 This is suitable for integrating with other styling solutions, such as Tailwind CSS v4, that use the `@layer` directive.
 
+Material UI splits its layer into [sub-layers](#implementing-multiple-cascade-layers) by default.
+To keep a single layer, set `modularCssLayers: false` in the theme:
+
+```js
+const theme = createTheme({
+  modularCssLayers: false,
+});
+```
+
+Then `mui` goes where your CSS declares it, as in the steps below.
+
 ### Next.js App Router
 
 Start by configuring Material UI with Next.js in the [App Router integration guide](/material-ui/integrations/nextjs/#app-router).

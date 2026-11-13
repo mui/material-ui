@@ -19,7 +19,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" className={roboto.className} suppressHydrationWarning>
       <body>
         <InitColorSchemeScript attribute="class" />
-        {/* enableCssLayer wraps Material UI styles in `@layer mui`, which globals.css orders. */}
+        {/* enableCssLayer wraps Material UI styles in `@layer mui`. The theme and globals.css order it. */}
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

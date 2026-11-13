@@ -7,7 +7,10 @@
 There are two steps to integrate Tailwind CSS v4 with Material UI:
 
 1. Configure the styles to generate with the `@layer` directive.
-2. Set up the layer order so that `mui` comes before the `utilities` layer, allowing Tailwind CSS classes to override Material UI styles.
+2. Set up the layer order so that `mui` comes after the `base` layer and before the `utilities` layer, allowing Tailwind CSS classes to override Material UI styles.
+
+Material UI declares the order of its layers before its first style, so pass the layer order to the `modularCssLayers` theme option.
+Declare the same order at the top of the Tailwind CSS file, so that it also applies to the styles that load before Material UI's.
 
 The instructions below detail how to achieve this using common React frameworks.
 
@@ -20,17 +23,32 @@ Use the [Material UI + Tailwind CSS agent skill](https://github.com/mui/materi
 To integrate Tailwind CSS v4 with Material UI in a Next.js App Router project, start by configuring Material UI with Next.js in the [App Router integration guide](/material-ui/integrations/nextjs/#app-router).
 Then follow these steps:
 
-1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#using-other-styling-solutions) in the root layout:
+1. Pass the layer order to the `modularCssLayers` theme option:
+
+```tsx title="src/theme.ts"
+'use client';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  modularCssLayers: '@layer theme, base, mui, components, utilities;',
+});
+
+export default theme;
+```
+
+2. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#using-other-styling-solutions) and provide the theme in the root layout:
 
 ```tsx title="src/app/layout.tsx"
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../theme';
 
 export default function RootLayout() {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          {/* Your app */}
+          <ThemeProvider theme={theme}>{/* Your app */}</ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
@@ -38,7 +56,7 @@ export default function RootLayout() {
 }
 ```
 
-2. Configure the layer order in the Tailwind CSS file:
+3. Declare the same layer order in the Tailwind CSS file:
 
 ```css title="src/app/global.css"
 @layer theme, base, mui, components, utilities;
@@ -84,26 +102,30 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 ```
 
-3. Configure the global Tailwind CSS file:
+3. Configure the global Tailwind CSS file, with the layer order at the top:
 
 ```css title="styles/global.css"
+@layer theme, base, mui, components, utilities;
 @import 'tailwindcss';
 ```
 
-4. Configure the layer order with the `GlobalStyles` component—it must be the first child of the `AppCacheProvider`:
+4. Pass the same layer order to the `modularCssLayers` theme option, and provide the theme in a custom `_app`:
 
 ```tsx title="pages/_app.tsx"
 import '../styles/global.css';
 import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { emotionCache } from '../src/createEmotionCache';
+
+const theme = createTheme({
+  modularCssLayers: '@layer theme, base, mui, components, utilities;',
+});
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider emotionCache={emotionCache}>
-      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-      {/* Your app */}
+      <ThemeProvider theme={theme}>{/* Your app */}</ThemeProvider>
     </AppCacheProvider>
   );
 }
@@ -114,20 +136,33 @@ export default function MyApp(props: AppProps) {
 To integrate Tailwind CSS v4 with Material UI in a Vite-based app, make the following changes in `src/main.tsx`:
 
 1. Pass the `enableCssLayer` prop to the `StyledEngineProvider` component.
-2. Configure the layer order with the `GlobalStyles` component.
+2. Pass the layer order to the `modularCssLayers` theme option.
 
 ```tsx title="main.tsx"
-import { StyledEngineProvider } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import {
+  StyledEngineProvider,
+  ThemeProvider,
+  createTheme,
+} from '@mui/material/styles';
+
+const theme = createTheme({
+  modularCssLayers: '@layer theme, base, mui, components, utilities;',
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-      {/* Your app */}
+      <ThemeProvider theme={theme}>{/* Your app */}</ThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>,
 );
+```
+
+Then declare the same layer order at the top of the Tailwind CSS file:
+
+```css title="src/index.css"
+@layer theme, base, mui, components, utilities;
+@import 'tailwindcss';
 ```
 
 ## Tailwind CSS IntelliSense for VS Code
@@ -494,4 +529,7 @@ Visit the [Tailwind CSS Playground](https://play.tailwindcss.com/mh7Ym0mGff) to
 If the Tailwind CSS classes are not overriding Material UI components, make sure that:
 
 - You are using Tailwind CSS >= v4.
-- You have configured the layer order correctly by checking the [DevTools styles tab](https://developer.chrome.com/docs/devtools/css/reference#cascade-layers). The `mui` layer should come before the `utilities` layer.
+- You have configured the layer order correctly by checking the [DevTools styles tab](https://developer.chrome.com/docs/devtools/css/reference#cascade-layers). The `mui` layer should come after the `base` layer and before the `utilities` layer.
+
+If Tailwind CSS's Preflight overrides Material UI styles, for example with transparent button backgrounds, make sure that the theme's `modularCssLayers` option has the same layer order as your CSS file.
+Without it, Material UI declares `mui` first, so the `base` layer comes after it.
