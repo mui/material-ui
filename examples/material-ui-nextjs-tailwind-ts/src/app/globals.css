@@ -1,4 +1,4 @@
-/* `mui` sits after Tailwind preflight (`base`) and before `utilities`. */
+/* `mui` sits after Tailwind preflight (`base`) and before `utilities`. The theme declares the same order. */
 @layer theme, base, mui, components, utilities;
 @import 'tailwindcss';
 
