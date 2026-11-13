@@ -1,13 +1,23 @@
 import * as React from 'react';
+import { SxProps } from '@mui/system';
 import { IconButtonProps } from '../IconButton/IconButton';
 import { SvgIconProps } from '../SvgIcon';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { Theme } from '../styles';
+import { TablePaginationActionsClasses } from './tablePaginationActionsClasses';
 
-export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TablePaginationActionsProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {} | undefined;
-  className?: string | undefined;
+  classes?: Partial<TablePaginationActionsClasses> | undefined;
+  /**
+   * The total number of rows.
+   *
+   * `-1` means the total is unknown (server-side pagination): the next-page button stays enabled and the last-page button is disabled.
+   */
   count: number;
   /**
    * If `true`, the component is disabled.
@@ -23,11 +33,35 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * @returns {string}
    */
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
+  /**
+   * Callback fired when the page is changed.
+   * @param {React.MouseEvent<HTMLButtonElement> | null} event The event source of the callback.
+   * @param {number} page The page selected.
+   */
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+  /**
+   * The zero-based index of the current page.
+   */
   page: number;
+  ref?: React.Ref<HTMLDivElement> | undefined;
+  /**
+   * The number of rows per page.
+   *
+   * `-1` means all the rows are shown on one page.
+   */
   rowsPerPage: number;
+  /**
+   * If `true`, show the first-page button.
+   */
   showFirstButton: boolean;
+  /**
+   * If `true`, show the last-page button.
+   */
   showLastButton: boolean;
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
   slotProps?:
     | {
         firstButton?: Partial<IconButtonProps> | undefined;
@@ -40,7 +74,15 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
         previousButtonIcon?: Partial<SvgIconProps> | undefined;
       }
     | undefined;
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
   slots?: TablePaginationActionsSlots | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface TablePaginationActionsSlots {
@@ -89,11 +131,11 @@ export interface TablePaginationActionsSlots {
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
  *
  * API:
  *
- * - [TablePaginationActions API](https://mui.com/material-ui/api/table-pagination-actions/)
+ * - [TablePaginationActions API](https://next.mui.com/material-ui/api/table-pagination-actions/)
  */
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
 

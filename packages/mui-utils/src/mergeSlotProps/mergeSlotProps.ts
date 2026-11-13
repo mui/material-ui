@@ -1,7 +1,8 @@
-import * as React from 'react';
-import clsx, { ClassValue } from 'clsx';
-import { Simplify } from '@mui/types';
-import { EventHandlers } from '../types';
+import type * as React from 'react';
+import type { ClassValue } from 'clsx';
+import clsx from 'clsx';
+import type { Simplify } from '@mui/types';
+import type { EventHandlers } from '../types';
 import extractEventHandlers from '../extractEventHandlers';
 import omitEventHandlers from '../omitEventHandlers';
 
@@ -96,12 +97,6 @@ function mergeSlotProps<
       externalSlotProps?.className,
     );
 
-    const mergedStyle = {
-      ...additionalProps?.style,
-      ...externalForwardedProps?.style,
-      ...externalSlotProps?.style,
-    };
-
     const props = {
       ...additionalProps,
       ...externalForwardedProps,
@@ -117,8 +112,15 @@ function mergeSlotProps<
       props.className = joinedClasses;
     }
 
-    if (Object.keys(mergedStyle).length > 0) {
-      props.style = mergedStyle;
+    if (additionalProps?.style || externalForwardedProps?.style || externalSlotProps?.style) {
+      const mergedStyle = {
+        ...additionalProps?.style,
+        ...externalForwardedProps?.style,
+        ...externalSlotProps?.style,
+      };
+      if (Object.keys(mergedStyle).length > 0) {
+        props.style = mergedStyle;
+      }
     }
 
     return {
@@ -148,13 +150,6 @@ function mergeSlotProps<
     externalSlotProps?.className,
   );
 
-  const mergedStyle = {
-    ...internalSlotProps?.style,
-    ...additionalProps?.style,
-    ...externalForwardedProps?.style,
-    ...externalSlotProps?.style,
-  };
-
   const props = {
     ...internalSlotProps,
     ...additionalProps,
@@ -171,8 +166,21 @@ function mergeSlotProps<
     props.className = joinedClasses;
   }
 
-  if (Object.keys(mergedStyle).length > 0) {
-    props.style = mergedStyle;
+  if (
+    internalSlotProps?.style ||
+    additionalProps?.style ||
+    externalForwardedProps?.style ||
+    externalSlotProps?.style
+  ) {
+    const mergedStyle = {
+      ...internalSlotProps?.style,
+      ...additionalProps?.style,
+      ...externalForwardedProps?.style,
+      ...externalSlotProps?.style,
+    };
+    if (Object.keys(mergedStyle).length > 0) {
+      props.style = mergedStyle;
+    }
   }
 
   return {

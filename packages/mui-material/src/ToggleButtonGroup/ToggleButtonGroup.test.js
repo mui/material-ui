@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
+import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
@@ -446,6 +447,107 @@ describe('<ToggleButtonGroup />', () => {
       expect(button).not.to.have.class(classes.firstButton);
       expect(button).not.to.have.class(classes.middleButton);
       expect(button).not.to.have.class(classes.lastButton);
+    });
+
+    it('should keep a button mounted when the button before it is removed', async () => {
+      function Toolbar({ showLeft }) {
+        return (
+          <ToggleButtonGroup>
+            {showLeft && <ToggleButton value="left">Left</ToggleButton>}
+            <ToggleButton value="center">Center</ToggleButton>
+            <ToggleButton value="right">Right</ToggleButton>
+          </ToggleButtonGroup>
+        );
+      }
+      const { setProps } = render(<Toolbar showLeft />);
+      const centerButton = screen.getByRole('button', { name: 'Center' });
+      await act(async () => {
+        centerButton.focus();
+      });
+
+      setProps({ showLeft: false });
+
+      expect(screen.getByRole('button', { name: 'Center' })).to.equal(centerButton);
+      expect(centerButton).toHaveFocus();
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    it('2.1.1 Keyboard: Space and Enter select the focused button', async () => {
+      // Arrow-key navigation is covered by the `keyboard navigation` block.
+      const handleChange = spy();
+      const { user } = render(
+        <ToggleButtonGroup value={null} exclusive onChange={handleChange}>
+          <ToggleButton value="bold">Bold</ToggleButton>
+          <ToggleButton value="italic">Italic</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      await user.tab();
+      await user.keyboard('[Space]');
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.firstCall.args[1]).to.equal('bold');
+
+      await user.keyboard('{ArrowRight}');
+      await user.keyboard('[Enter]');
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.secondCall.args[1]).to.equal('italic');
+    });
+
+    describe('1.3.1 Info and Relationships', () => {
+      it('exposes the group role on the root', () => {
+        render(
+          <ToggleButtonGroup value="left">
+            <ToggleButton value="left">Left</ToggleButton>
+            <ToggleButton value="right">Right</ToggleButton>
+          </ToggleButtonGroup>,
+        );
+
+        expect(screen.getByRole('group')).not.to.equal(null);
+      });
+    });
+
+    describe('4.1.2 Name, Role, Value', () => {
+      it('names the group from its aria-label', () => {
+        render(
+          <ToggleButtonGroup value="left" aria-label="text alignment">
+            <ToggleButton value="left">Left</ToggleButton>
+            <ToggleButton value="right">Right</ToggleButton>
+          </ToggleButtonGroup>,
+        );
+
+        expect(screen.getByRole('group', { name: 'text alignment' })).not.to.equal(null);
+      });
+
+      it('reflects the exclusive selection as aria-pressed on the children', async () => {
+        function ControlledGroup() {
+          const [alignment, setAlignment] = React.useState('left');
+          return (
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              onChange={(event, newAlignment) => setAlignment(newAlignment)}
+              aria-label="text alignment"
+            >
+              <ToggleButton value="left" disableRipple>
+                Left
+              </ToggleButton>
+              <ToggleButton value="right" disableRipple>
+                Right
+              </ToggleButton>
+            </ToggleButtonGroup>
+          );
+        }
+
+        const { user } = render(<ControlledGroup />);
+        const [left, right] = screen.getAllByRole('button');
+        expect(left).to.have.attribute('aria-pressed', 'true');
+        expect(right).to.have.attribute('aria-pressed', 'false');
+
+        await user.click(right);
+        expect(left).to.have.attribute('aria-pressed', 'false');
+        expect(right).to.have.attribute('aria-pressed', 'true');
+      });
     });
   });
 });

@@ -29,10 +29,12 @@ export interface TooltipSlots {
   transition: React.ElementType;
   /**
    * The component used for the tooltip.
+   * @default 'div'
    */
   tooltip: React.ElementType;
   /**
    * The component used for the arrow.
+   * @default 'span'
    */
   arrow: React.ElementType;
 }
@@ -187,10 +189,10 @@ export interface TooltipOwnerState extends TooltipProps {}
  *
  * Demos:
  *
- * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
+ * - [Tooltip](https://next.mui.com/material-ui/react-tooltip/)
  *
  * API:
  *
- * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
+ * - [Tooltip API](https://next.mui.com/material-ui/api/tooltip/)
  */
 export default function Tooltip(props: TooltipProps): React.JSX.Element;

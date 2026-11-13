@@ -10,6 +10,7 @@ import focusWithVisible from '../utils/focusWithVisible';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 import ownerWindow from '../utils/ownerWindow';
 import List from '../List';
@@ -75,7 +76,8 @@ function focusInitialItem(element, focusSource) {
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.
  */
-const MenuList = React.forwardRef(function MenuList(props, ref) {
+const MenuList = React.forwardRef(function MenuList(inProps, ref) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenuList' });
   const {
     // private
     // eslint-disable-next-line react/prop-types
@@ -139,6 +141,19 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
 
     if (autoFocusActiveItem) {
+      // A `MenuItem` with `autoFocus` focuses itself in its own effect, which runs before this one.
+      const currentFocus = getActiveElement(ownerDocument(listRef.current));
+      const focusedItem = currentFocus
+        ? Array.from(getItemMap().values()).find(
+            (item) => item.element === currentFocus && isItemFocusable(item),
+          )
+        : undefined;
+
+      if (focusedItem) {
+        hasFocusedInitialTargetRef.current = true;
+        return focusedItem.element;
+      }
+
       const activeItem = getActiveItem();
 
       if (activeItem?.element) {
@@ -334,7 +349,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -347,13 +362,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableListWrap: PropTypes.bool,
-  /**
-   * @ignore
-   */
   onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onKeyDown: PropTypes.func,
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus

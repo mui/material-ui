@@ -46,7 +46,7 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface SpeedDialProps
   extends
-    Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>, 'slots' | 'slotProps'>,
+    StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>,
     SpeedDialSlotsAndSlotProps {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
@@ -58,7 +58,6 @@ export interface SpeedDialProps
   classes?: Partial<SpeedDialClasses> | undefined;
   /**
    * The aria-label of the button element.
-   * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: string;
   /**
@@ -81,6 +80,11 @@ export interface SpeedDialProps
    * provides a default Icon with animation.
    */
   icon?: React.ReactNode;
+  /**
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
+   */
+  id?: string | undefined;
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -124,10 +128,10 @@ export interface SpeedDialOwnerState extends SpeedDialProps {}
  *
  * Demos:
  *
- * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://next.mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
+ * - [SpeedDial API](https://next.mui.com/material-ui/api/speed-dial/)
  */
 export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;

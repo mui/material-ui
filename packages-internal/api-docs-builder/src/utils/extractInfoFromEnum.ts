@@ -1,13 +1,13 @@
+import type { Symbol, Node } from '@typescript/typescript6';
+import { isPropertySignature, isEnumDeclaration, forEachChild } from '@typescript/typescript6';
+import type { TypeScriptProject } from './createTypeScriptProject';
+import type { ParsedProperty } from '../types/ApiBuilder.types';
 import {
-  Symbol,
-  isPropertySignature,
-  isEnumDeclaration,
-  forEachChild,
-  Node,
-} from '@typescript/typescript6';
-import { TypeScriptProject } from './createTypeScriptProject';
-import { ParsedProperty } from '../types/ApiBuilder.types';
-import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';
+  getSymbolDescription,
+  getSymbolJSDocTags,
+  isHiddenFromApiDocs,
+  stringifySymbol,
+} from '../buildApiUtils';
 
 const parseProperty = async (
   propertySymbol: Symbol,
@@ -48,14 +48,13 @@ const extractInfoFromEnum = async (
 
     const type = project.checker.getDeclaredTypeOfSymbol(enumSymbol!);
 
-    // @ts-ignore
+    // @ts-expect-error: Enum union members are exposed on UnionType, not the base Type interface.
     const typeDeclaration = type?.types ?? [type];
     if (!typeDeclaration) {
       return [];
     }
     const properties: Record<string, ParsedProperty> = {};
 
-    // @ts-ignore
     await Promise.all(
       typeDeclaration.map(async (t: any) => {
         const propertySymbol = t.symbol;
@@ -64,7 +63,7 @@ const extractInfoFromEnum = async (
     );
 
     result = Object.values(properties)
-      .filter((property) => !property.tags.ignore)
+      .filter((property) => !isHiddenFromApiDocs(property.tags))
       .sort((a, b) => a.name.localeCompare(b.name));
   } catch {
     console.error(`No declaration for ${typeName}`);

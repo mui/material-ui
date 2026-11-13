@@ -82,7 +82,6 @@ async function submitFeedback(
     currentLocationURL: window.location.href,
     commentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commentSectionTitle: commentedSection.text,
-    githubRepo: process.env.SOURCE_CODE_REPO,
     productId,
   };
   if (!comment || comment.length < 10) {
@@ -131,6 +130,10 @@ const EMPTY_SECTION = { hash: '', text: '' };
 const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 const iconColor = 'grey.500';
+
+// Keep feedback comments within the Slack message limit. The server enforces the real
+// bound; this is the browser-side hint so a long comment isn't silently truncated.
+const MAX_COMMENT_LENGTH = 1000;
 
 export interface AppLayoutDocsFooterProps {
   tableOfContents?: TocItem[];
@@ -278,7 +281,7 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
           sx={{ alignItems: 'center', justifyContent: 'space-between' }}
         >
           <EditPage sourceLocation={location} />
-          <Stack direction="row" spacing={0.5} useFlexGap sx={{ alignItems: 'center' }}>
+          <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
             <Typography id="feedback-message" variant="body2" sx={{ color: 'text.secondary' }}>
               {t('feedbackMessage')}
             </Typography>
@@ -354,11 +357,16 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
                   rows={2}
                   value={comment}
                   onChange={handleChangeTextfield}
+                  helperText={`${comment.length}/${MAX_COMMENT_LENGTH}`}
                   slotProps={{
                     htmlInput: {
                       'aria-label': t('feedbackCommentLabel'),
                       'aria-describedby': 'feedback-description',
+                      maxLength: MAX_COMMENT_LENGTH,
                       ref: inputRef,
+                    },
+                    formHelperText: {
+                      sx: { textAlign: 'right', mx: 0 },
                     },
                   }}
                 />
@@ -435,7 +443,7 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
           spacing={{ xs: 3, sm: 1 }}
           sx={{ alignItems: 'center' }}
         >
-          <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center', flexGrow: 1 }}>
+          <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexGrow: 1 }}>
             <Link href="https://mui.com/" aria-label="Go to the homepage">
               <MuiLogotypeIcon height={28} width={64} />
             </Link>
@@ -448,7 +456,7 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
               Store <ArrowOutwardRoundedIcon />
             </FooterLink>
           </Stack>
-          <Stack spacing={1} direction="row" useFlexGap>
+          <Stack spacing={1} direction="row">
             <IconButton
               target="_blank"
               href="https://x.com/MUI_hq"

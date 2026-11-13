@@ -5,12 +5,13 @@ import { spy } from 'sinon';
 import { createRenderer, fireEvent, isJsdom, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
-import Collapse from '@mui/material/Collapse';
+import Collapse, { collapseClasses } from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 import Slide from '@mui/material/Slide';
 import Grow from '@mui/material/Grow';
 import Zoom from '@mui/material/Zoom';
 import AccordionSummary, { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
@@ -450,5 +451,67 @@ describe('<Accordion />', () => {
     );
 
     expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    it('2.4.3 Focus Order: a collapsed panel is hidden, removing its content from the tab order', () => {
+      const { container } = render(
+        <Accordion>
+          <AccordionSummary>Summary</AccordionSummary>
+          Details
+        </Accordion>,
+      );
+
+      // Collapse applies its `hidden` class (visibility: hidden) when fully
+      // collapsed, so the panel and any focusable content it holds leave the
+      // tab order until the accordion is expanded.
+      expect(container.querySelector(`.${collapseClasses.hidden}`)).not.to.equal(null);
+    });
+
+    it('2.5.2 Pointer Cancellation: toggles on release, not on press', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <React.Fragment>
+          <Accordion onChange={handleChange}>
+            <AccordionSummary>Summary</AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
+          </Accordion>
+          <div data-testid="outside" />
+        </React.Fragment>,
+      );
+      const summary = screen.getByRole('button');
+
+      // Pressing and releasing away from the summary cancels the activation.
+      await user.pointer([
+        { keys: '[MouseLeft>]', target: summary },
+        { target: screen.getByTestId('outside') },
+        { keys: '[/MouseLeft]' },
+      ]);
+      expect(handleChange.callCount).to.equal(0);
+
+      await user.click(summary);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    describe('4.1.2 Name, Role, Value', () => {
+      it('exposes the open state on the summary and names the panel region', async () => {
+        const { user } = render(
+          <Accordion>
+            <AccordionSummary id="panel-header" aria-controls="panel-content">
+              Summary
+            </AccordionSummary>
+            <AccordionDetails>Details</AccordionDetails>
+          </Accordion>,
+        );
+        const summary = screen.getByRole('button');
+        expect(summary).to.have.attribute('aria-expanded', 'false');
+
+        await user.click(summary);
+
+        expect(summary).to.have.attribute('aria-expanded', 'true');
+        // The panel is a region named by the summary that controls it.
+        expect(screen.getByRole('region', { name: 'Summary' })).not.to.equal(null);
+      });
+    });
   });
 });

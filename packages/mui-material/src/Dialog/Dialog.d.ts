@@ -23,14 +23,17 @@ export interface DialogSlots {
   paper?: React.ElementType | undefined;
   /**
    * The component that renders the container.
+   * @default 'div'
    */
   container?: React.ElementType | undefined;
   /**
    * The component that renders the backdrop.
+   * @default Backdrop
    */
   backdrop?: React.ElementType | undefined;
   /**
    * The component that renders the root.
+   * @default Modal
    */
   root?: React.ElementType | undefined;
 }
@@ -85,9 +88,7 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface DialogProps
-  extends
-    Omit<StandardProps<ModalProps, 'children'>, 'slots' | 'slotProps'>,
-    DialogSlotsAndSlotProps {
+  extends StandardProps<ModalProps, 'children' | 'slots' | 'slotProps'>, DialogSlotsAndSlotProps {
   /**
    * The id(s) of the element(s) that describe the dialog.
    */
@@ -177,12 +178,12 @@ export interface DialogProps
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://next.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [Dialog API](https://mui.com/material-ui/api/dialog/)
- * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ * - [Dialog API](https://next.mui.com/material-ui/api/dialog/)
+ * - inherits [Modal API](https://next.mui.com/material-ui/api/modal/)
  */
 export default function Dialog(props: DialogProps): React.JSX.Element;
 

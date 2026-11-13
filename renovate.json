@@ -1,9 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>mui/mui-public//renovate/default"],
+  "extends": ["github>mui/mui-public//renovate/experimental"],
   "schedule": "* 0-4 * * 7",
   "lockFileMaintenance": {
-    "schedule": "* 0-4 1 * *"
+    "description": "Match the schedule above, so the lockfile refresh lands in the weekly npm non-major group PR.",
+    "schedule": "* 0-4 * * 7"
   },
   "customManagers": [
     {
@@ -31,37 +32,18 @@
   ],
   "packageRules": [
     {
-      "groupName": "Pigment CSS",
-      "matchPackageNames": ["@pigment-css/*"]
-    },
-    {
-      "groupName": "Emotion",
-      "description": "Keep stylis in sync with emotion to avoid duplicated stylis versions in the bundle.",
-      "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
-    },
-    {
       "groupName": "DocSearch",
       "description": "Keep the pinned @docsearch/css CDN link (AppSearch.tsx, tracked via customManagers) in lockstep with the @docsearch/react package.",
       "matchPackageNames": ["@docsearch/react", "@docsearch/css"]
-    },
-    {
-      "groupName": "Font awesome SVG icons",
-      "matchPackageNames": "@fortawesome/*"
     },
     {
       "groupName": "MUI X",
       "matchPackageNames": ["@mui/x-*"]
     },
     {
-      "groupName": "@types/node",
-      "matchPackageNames": ["@types/node"],
-      "allowedVersions": "< 21.0.0"
-    },
-    {
-      "groupName": "nx",
-      "description": "FIXME: Seems to cause never-ending windows builds in CI (e.g. https://github.com/mui/material-ui/actions/runs/16268045027/job/45928292854)",
-      "matchPackageNames": ["nx"],
-      "allowedVersions": "<= 20"
+      "groupName": "lerna",
+      "description": "Keep the root nx pin (needed by nx.json) on the version lerna depends on, so pnpm installs a single copy of nx.",
+      "matchPackageNames": ["lerna", "nx"]
     },
     {
       "groupName": "bundling fixtures",
@@ -107,6 +89,12 @@
       "matchPackageNames": ["mcr.microsoft.com/playwright"],
       "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false
+    },
+    {
+      "description": "Keep the consumer test on the latest stable release of TypeScript 5.",
+      "matchFileNames": ["test/typescriptMinimum/package.json"],
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": ">=5.0.0 <6.0.0"
     }
   ]
 }

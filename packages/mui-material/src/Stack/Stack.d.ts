@@ -24,16 +24,6 @@ export interface StackOwnProps {
    */
   divider?: React.ReactNode;
   /**
-   * If `true`, the CSS flexbox `gap` is used instead of applying `margin` to children.
-   *
-   * While CSS `gap` removes the known limitations,
-   * it is not fully supported in some browsers. We recommend checking https://caniuse.com/?search=flex%20gap before using this flag.
-   *
-   * To enable this flag globally, follow the [theme's default props](https://mui.com/material-ui/customization/theme-components/#default-props) configuration.
-   * @default false
-   */
-  useFlexGap?: boolean | undefined;
-  /**
    * The system prop, which allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
@@ -50,11 +40,11 @@ export interface StackTypeMap<
  *
  * Demos:
  *
- * - [Stack](https://mui.com/material-ui/react-stack/)
+ * - [Stack](https://next.mui.com/material-ui/react-stack/)
  *
  * API:
  *
- * - [Stack API](https://mui.com/material-ui/api/stack/)
+ * - [Stack API](https://next.mui.com/material-ui/api/stack/)
  */
 declare const Stack: OverridableComponent<StackTypeMap>;
 

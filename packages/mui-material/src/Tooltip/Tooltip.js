@@ -11,6 +11,7 @@ import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import createChainedFunction from '../utils/createChainedFunction';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import useEventCallback from '../utils/useEventCallback';
@@ -25,10 +26,15 @@ function round(value) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disableInteractive, arrow, touch, placement } = ownerState;
+  const { classes, disableInteractive, arrow, touch, placement, open } = ownerState;
 
   const slots = {
-    popper: ['popper', !disableInteractive && 'popperInteractive', arrow && 'popperArrow'],
+    popper: [
+      'popper',
+      !disableInteractive && 'popperInteractive',
+      arrow && 'popperArrow',
+      !open && 'popperClose',
+    ],
     tooltip: [
       'tooltip',
       arrow && 'tooltipArrow',
@@ -60,7 +66,7 @@ const TooltipPopper = styled(Popper, {
     pointerEvents: 'none',
     variants: [
       {
-        props: ({ ownerState, open }) => open && !ownerState.disableInteractive,
+        props: ({ ownerState }) => ownerState.open && !ownerState.disableInteractive,
         style: {
           pointerEvents: 'auto',
         },
@@ -595,6 +601,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ...props,
     arrow,
     disableInteractive,
+    open,
     placement,
     touch: ignoreNonTouchEvents.current,
   };
@@ -695,6 +702,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
             {...transitionSlotProps}
+            onEnter={createChainedFunction(
+              TransitionPropsInner?.onEnter,
+              transitionSlotProps.onEnter,
+            )}
+            onExited={createChainedFunction(
+              TransitionPropsInner?.onExited,
+              transitionSlotProps.onExited,
+            )}
           >
             <TooltipSlot {...tooltipSlotProps}>
               {title}
@@ -725,9 +740,6 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * Set to `true` if the `title` acts as an accessible description.

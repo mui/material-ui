@@ -3,8 +3,8 @@ import { fileURLToPath } from 'url';
 import { defineConfig, transformWithOxc } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-// eslint-disable-next-line import/no-relative-packages
 import { alias } from '../../vitest.shared.mts';
+import { INDEX_NAME } from './docsearchFixtureData';
 
 const stubsDir = resolve(fileURLToPath(new URL('.', import.meta.url)), 'stubs');
 
@@ -39,6 +39,9 @@ export default defineConfig({
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
+    // `AppSearch` reads it for the Algolia index name, which also keys the
+    // stored recent searches `index.test.js` seeds for the `AppSearch` fixtures.
+    'process.env.SEARCH_INDEX': JSON.stringify(INDEX_NAME),
     // Seed `@mui/x-data-grid-generator`'s Chance instances deterministically so
     // the Data Grid composites (XHero/XGridFullDemo/XDataGrid/XTheming via
     // `useDemoData`) render identical rows on every load. Without this the

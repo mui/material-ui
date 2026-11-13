@@ -22,18 +22,18 @@ export interface TabsEndScrollButtonIconSlotPropsOverrides {}
 
 export interface TabsSlots {
   /**
-   * The component used for the popper.
-   * @default div
+   * The component that renders the root.
+   * @default 'div'
    */
   root: React.ElementType;
   /**
    * The component used for the scroller.
-   * @default div
+   * @default 'div'
    */
   scroller: React.ElementType;
   /**
    * The component used for the flex container.
-   * @default div
+   * @default 'div'
    */
   list: React.ElementType;
   /**
@@ -43,7 +43,7 @@ export interface TabsSlots {
   scrollbar: React.ElementType;
   /**
    * The component used for the tab indicator.
-   * @default span
+   * @default 'span'
    */
   indicator: React.ElementType;
   /**
@@ -257,11 +257,11 @@ export interface TabsTypeMap<
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [Tabs API](https://mui.com/material-ui/api/tabs/)
+ * - [Tabs API](https://next.mui.com/material-ui/api/tabs/)
  */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
 

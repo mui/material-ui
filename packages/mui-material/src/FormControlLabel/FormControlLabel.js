@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useFormControlState } from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
@@ -116,7 +115,6 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     control,
     disabled: disabledProp,
     disableTypography,
-    inputRef,
     label: labelProp,
     labelPlacement = 'end',
     name,
@@ -141,7 +139,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     required,
   };
 
-  ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach((key) => {
+  ['checked', 'name', 'onChange', 'value'].forEach((key) => {
     if (typeof control.props[key] === 'undefined' && typeof props[key] !== 'undefined') {
       controlProps[key] = props[key];
     }
@@ -216,9 +214,6 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
@@ -233,10 +228,6 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    */
   disableTypography: PropTypes.bool,
   /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: refType,
-  /**
    * A text or an element to be used in an enclosing label element.
    */
   label: PropTypes.node,
@@ -246,7 +237,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    */
   labelPlacement: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
   /**
-   * @ignore
+   * The `name` of the control, used when the control does not set its own.
    */
   name: PropTypes.string,
   /**

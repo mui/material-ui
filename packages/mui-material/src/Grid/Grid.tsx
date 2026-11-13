@@ -1,14 +1,15 @@
 'use client';
 import PropTypes from 'prop-types';
 import { createGrid } from '@mui/system/Grid';
-import { SxProps } from '@mui/system';
-import { OverridableComponent, OverrideProps } from '@mui/types';
+import type { SxProps } from '@mui/system';
+import type { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
-import { Theme, styled, Breakpoint } from '../styles';
+import type { Theme, Breakpoint } from '../styles';
+import { styled } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 
-type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
+type ResponsiveStyleValue<T> = T | ReadonlyArray<T | null> | { [key in Breakpoint]?: T | null };
 
 export type GridDirection = 'row' | 'row-reverse';
 
@@ -108,7 +109,13 @@ export interface GridBaseProps {
 }
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<Theme> | undefined };
+  props: P &
+    GridBaseProps & {
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme> | undefined;
+    };
   defaultComponent: D;
 }
 
@@ -123,11 +130,11 @@ export type GridProps<
  *
  * Demos:
  *
- * - [Grid](https://mui.com/material-ui/react-grid/)
+ * - [Grid](https://next.mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [Grid API](https://mui.com/material-ui/api/grid/)
+ * - [Grid API](https://next.mui.com/material-ui/api/grid/)
  */
 const Grid = createGrid({
   createStyledComponent: styled('div', {
@@ -233,7 +240,7 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),

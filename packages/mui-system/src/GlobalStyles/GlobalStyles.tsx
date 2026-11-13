@@ -1,12 +1,12 @@
 'use client';
 import PropTypes from 'prop-types';
+import type { Interpolation } from '@mui/styled-engine';
 import {
   GlobalStyles as MuiGlobalStyles,
-  Interpolation,
   internal_serializeStyles as serializeStyles,
 } from '@mui/styled-engine';
 import useTheme from '../useTheme';
-import { Theme as SystemTheme } from '../createTheme';
+import type { Theme as SystemTheme } from '../createTheme';
 
 export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;
@@ -17,7 +17,7 @@ export interface GlobalStylesProps<Theme = SystemTheme> {
 function wrapGlobalLayer(styles: any) {
   const serialized = serializeStyles(styles) as { styles?: string | undefined };
   if (styles !== serialized && serialized.styles) {
-    if (!serialized.styles.match(/^@layer\s+[^{]*$/)) {
+    if (!serialized.styles.match(/^@layer\s[^{]*$/)) {
       // If the styles are not already wrapped in a layer, wrap them in a global layer.
       serialized.styles = `@layer global{${serialized.styles}}`;
     }
@@ -56,9 +56,6 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
-  /**
-   * @ignore
-   */
   defaultTheme: PropTypes.object,
   /**
    * @ignore
@@ -71,9 +68,6 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
     PropTypes.string,
     PropTypes.bool,
   ]),
-  /**
-   * @ignore
-   */
   themeId: PropTypes.string,
 } as any;
 

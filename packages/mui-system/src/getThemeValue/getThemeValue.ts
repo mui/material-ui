@@ -9,28 +9,17 @@ import sizing from '../sizing';
 import spacing from '../spacing';
 import typography from '../typography';
 
-const filterPropsMapping: Record<string, Iterable<string>> = {
-  borders: borders.filterProps,
-  display: display.filterProps,
-  flexbox: flexbox.filterProps,
-  grid: grid.filterProps,
-  positions: positions.filterProps,
-  palette: palette.filterProps,
-  shadows: (shadows as any).filterProps,
-  sizing: sizing.filterProps,
-  spacing: (spacing as any).filterProps,
-  typography: typography.filterProps,
-};
+type StyleFunctionWithFilterProps = ((props: any) => any) & { filterProps: Iterable<string> };
 
 /** @internal */
-export const styleFunctionMapping: Record<string, (props: any) => any> = {
+export const styleFunctionMapping: Record<string, StyleFunctionWithFilterProps> = {
   borders,
   display,
   flexbox,
   grid,
   positions,
   palette,
-  shadows: shadows as any,
+  shadows,
   sizing,
   spacing,
   typography,
@@ -38,10 +27,11 @@ export const styleFunctionMapping: Record<string, (props: any) => any> = {
 
 /** @internal */
 export const propToStyleFunction: Record<string, (props: any) => any> = Object.keys(
-  filterPropsMapping,
+  styleFunctionMapping,
 ).reduce<Record<string, (props: any) => any>>((acc, styleFnName) => {
-  for (const propName of filterPropsMapping[styleFnName]) {
-    acc[propName] = styleFunctionMapping[styleFnName];
+  const styleFunction = styleFunctionMapping[styleFnName];
+  for (const propName of styleFunction.filterProps) {
+    acc[propName] = styleFunction;
   }
 
   return acc;

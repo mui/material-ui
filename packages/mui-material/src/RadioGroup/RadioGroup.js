@@ -9,6 +9,7 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
 import useId from '../utils/useId';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (props) => {
   const { classes, row, error } = props;
@@ -20,7 +21,8 @@ const useUtilityClasses = (props) => {
   return composeClasses(slots, getRadioGroupUtilityClass, classes);
 };
 
-const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
+const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiRadioGroup' });
   const {
     // private
     // eslint-disable-next-line react/prop-types
@@ -103,9 +105,6 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The default value. Use when the component is not controlled.

@@ -1,6 +1,7 @@
 import path from 'path';
 import { LANGUAGES } from '@mui/internal-core-docs/constants';
-import { ProjectSettings, findApiPages } from '@mui/internal-api-docs-builder';
+import type { ProjectSettings } from '@mui/internal-api-docs-builder';
+import { findApiPages } from '@mui/internal-api-docs-builder';
 import generateUtilityClass, { isGlobalState } from '@mui/utils/generateUtilityClass';
 import { getSystemComponentInfo } from './getSystemComponentInfo';
 
@@ -12,7 +13,7 @@ export const projectSettings: ProjectSettings = {
     {
       name: 'system',
       rootPath: path.join(process.cwd(), 'packages/mui-system'),
-      entryPointPath: 'src/index.d.ts',
+      entryPointPath: 'src/index.ts',
     },
   ],
   getApiPages: () => findApiPages('docs/pages/system/api'),

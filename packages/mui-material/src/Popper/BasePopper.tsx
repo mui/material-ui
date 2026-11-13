@@ -6,16 +6,17 @@ import useForkRef from '@mui/utils/useForkRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import refType from '@mui/utils/refType';
-import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import type { Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import { createPopper } from '@popperjs/core';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
-import { WithOptionalOwnerState } from '../utils/types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import {
+import type { WithOptionalOwnerState } from '../utils/types';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type {
   PopperPlacementType,
   PopperTooltipProps,
   PopperTooltipTypeMap,
@@ -87,7 +88,6 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
     slotProps = {},
     slots = {},
     TransitionProps,
-    // @ts-ignore internal logic
     ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. Select.
     ...other
   } = props;
@@ -347,7 +347,7 @@ Popper.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * An HTML element, [virtualElement](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md),
    * or a function that returns either.
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
@@ -392,7 +392,7 @@ Popper.propTypes /* remove-proptypes */ = {
             [
               'MUI: The `anchorEl` prop provided to the component is invalid.',
               'It should be an HTML element instance or a virtualElement ',
-              '(https://popper.js.org/docs/v2/virtual-elements/).',
+              '(https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md).',
             ].join('\n'),
           );
         }
@@ -446,7 +446,7 @@ Popper.propTypes /* remove-proptypes */ = {
    * A modifier is a function that is called each time Popper.js needs to
    * compute the position of the popper.
    * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   * To learn how to create a modifier, [read the modifiers documentation](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/modifiers/index.md).
    */
   modifiers: PropTypes.arrayOf(
     PropTypes.shape({
@@ -497,7 +497,7 @@ Popper.propTypes /* remove-proptypes */ = {
     'top',
   ]),
   /**
-   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * Options provided to the [`Popper.js`](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/constructors.md#options) instance.
    * @default {}
    */
   popperOptions: PropTypes.shape({

@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Popper
 
 Some important features of the Popper component:
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/docs/v2/)) for perfect positioning.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
 - Its child element is a [Portal](/material-ui/react-portal/) on the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
@@ -26,7 +26,7 @@ Some important features of the Popper component:
 
 ## Basic Popper
 
-{{"demo": "SimplePopper.js"}}
+{{"component": "file://./demos/simple/index.ts"}}
 
 ## Transitions
 
@@ -40,28 +40,28 @@ This component should respect the following conditions:
 
 Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
-{{"demo": "TransitionsPopper.js"}}
+{{"component": "file://./demos/transitions/index.ts"}}
 
 Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
-{{"demo": "SpringPopper.js"}}
+{{"component": "file://./demos/spring/index.ts"}}
 
 ## Positioned popper
 
-{{"demo": "PositionedPopper.js"}}
+{{"component": "file://./demos/positioned/index.ts"}}
 
 ## Scroll playground
 
-{{"demo": "ScrollPlayground.js", "hideToolbar": true, "bg": true}}
+{{"component": "file://./demos/scroll-playground/index.ts", "hideToolbar": true, "bg": true}}
 
 ## Virtual element
 
 The value of the `anchorEl` prop can be a reference to a fake DOM element.
-You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+You need to create an object shaped like the [`VirtualElement`](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/virtual-elements.md).
 
 Highlight part of the text to see the popper:
 
-{{"demo": "VirtualElementPopper.js"}}
+{{"component": "file://./demos/virtual-element/index.ts"}}
 
 ## Supplementary projects
 
@@ -74,4 +74,4 @@ For more advanced use cases you might be able to take advantage of:
 
 The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 
-{{"demo": "PopperPopupState.js"}}
+{{"component": "file://./demos/popup-state/index.ts"}}

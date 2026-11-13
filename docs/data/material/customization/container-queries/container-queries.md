@@ -11,7 +11,7 @@ The value can be unitless (in which case it'll be rendered in pixels), a string,
 theme.containerQueries.up('sm'); // => '@container (min-width: 600px)'
 ```
 
-{{"demo": "BasicContainerQueries.js"}}
+{{"component": "file://./demos/basic/index.ts"}}
 
 :::info
 One of the ancestors must have the CSS container type specified.
@@ -32,11 +32,11 @@ When adding styles using the `sx` prop, use the `@<size>` or `@<size>/<name>` no
 - `<size>`: a width or a breakpoint key.
 - `<name>` (optional): a named containment context.
 
-{{"demo": "SxPropContainerQueries.js"}}
+{{"component": "file://./demos/sx-prop/index.ts"}}
 
 ### Caveats
 
-- The `@` prefix with a unitless value renders as `px`, so `@500` is equivalent to `500px`—but `@500px` is incorrect syntax and won't render correctly.
+- The `@` prefix with a unitless value renders as `px`, so `@500` is equivalent to `@500px`.
 - `@` with no number renders as `0px`.
 - Container queries must share the same units (the sizes can be defined in any order), as shown below:
 
