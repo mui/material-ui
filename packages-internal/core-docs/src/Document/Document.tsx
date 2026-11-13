@@ -3,7 +3,7 @@ import Script from 'next/script';
 import { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import { getMetaThemeColor } from '../branding';
+import { DOCS_CSS_LAYER_ORDER, getMetaThemeColor } from '../branding';
 import { fontClasses } from '../nextFonts';
 
 export type DocumentProps = {
@@ -48,6 +48,11 @@ export function Document({ canonicalAsServer, userLanguage, analytics, children 
           }${canonicalAsServer}`}
         />
         <link rel="alternate" href={`https://mui.com${canonicalAsServer}`} hrefLang="x-default" />
+        {/*
+          The docs' layer order, also declared by the docs theme. The styles below render outside
+          of it, so they would otherwise declare Material UI's default order first.
+        */}
+        <style>{DOCS_CSS_LAYER_ORDER}</style>
         <GlobalStyles
           styles={{
             // First SSR paint
