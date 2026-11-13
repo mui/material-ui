@@ -5965,7 +5965,6 @@ describe('<Autocomplete />', () => {
               style={{
                 position: 'absolute',
                 top: 0,
-                width: '100%',
                 height: 36,
                 transform: `translateY(${index * 36}px)`,
               }}
@@ -5973,7 +5972,7 @@ describe('<Autocomplete />', () => {
               {option}
             </li>
           )}
-          slotProps={{ listbox: { style: { position: 'relative', padding: 0, height: 108 } } }}
+          slotProps={{ listbox: { style: { padding: 0, height: 108 } } }}
         />
       );
     }
