@@ -111,21 +111,14 @@ This demo shows how to display multiple Snackbars without stacking them by using
 
 {{"component": "file://./demos/consecutive/index.ts"}}
 
-## Supplementary components
+### Stacked Snackbars
 
-### notistack
+Material Design recommends showing one Snackbar at a time, but stacking several of them vertically is still a common pattern.
+This demo uses the [Base UI Toast](https://base-ui.com/react/components/toast) component to manage the stack, the auto-hide timers, and keyboard interactions, and renders each toast with Material UI's `SnackbarContent`.
 
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)
-![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+{{"component": "file://./demos/stacked/index.ts", "collapseToEmpty": true}}
 
-With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) lets you vertically stack multiple Snackbars without having to handle their open and close states.
-Even though this is discouraged in the Material Design guidelines, it is still a common pattern.
-
-{{"component": "file://./demos/integration-notistack/index.ts", "collapseToEmpty": true}}
-
-:::warning
-Note that notistack prevents Snackbars from being [closed by pressing <kbd class="key">Escape</kbd>](#accessibility).
-:::
+Hovering or focusing the stack pauses the timers, pressing <kbd class="key">Escape</kbd> closes the focused Snackbar, and <kbd class="key">F6</kbd> moves focus to the stack.
 
 ## Accessibility
 
