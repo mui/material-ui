@@ -33,7 +33,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiListItemAvatar",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/ListItemAvatar/ListItemAvatar.js",
+  "filename": "/packages/mui-material/src/ListItemAvatar/ListItemAvatar.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>"
 }
