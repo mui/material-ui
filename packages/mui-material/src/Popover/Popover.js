@@ -264,7 +264,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         const diff = left - marginThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
-      } else if (right > widthThreshold) {
+      } else if (marginThreshold != null && right > widthThreshold) {
         const diff = right - widthThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
