@@ -393,6 +393,96 @@ describe('<Tooltip />', () => {
     expect(screen.queryByRole('tooltip')).to.equal(null);
   });
 
+  describe('hover enter delay', () => {
+    it('opens at the original deadline when moving between trigger descendants', () => {
+      render(
+        <Tooltip describeChild title="Hello World" enterDelay={300}>
+          <button type="button">
+            <span>First</span>
+            <span>Second</span>
+          </button>
+        </Tooltip>,
+      );
+      const button = screen.getByRole('button');
+      const first = screen.getByText('First');
+      const second = screen.getByText('Second');
+
+      expect(button).to.have.attribute('title', 'Hello World');
+      fireEvent.mouseOver(first);
+      expect(button).not.to.have.attribute('title');
+      clock.tick(150);
+      fireEvent.mouseOut(first, { relatedTarget: second });
+      fireEvent.mouseOver(second, { relatedTarget: first });
+      clock.tick(149);
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+      clock.tick(1);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+
+    it('starts a fresh delay after leaving and re-entering the trigger', () => {
+      render(
+        <Tooltip title="Hello World" enterDelay={300} leaveDelay={500}>
+          <button type="button">
+            <span>First</span>
+            <span>Second</span>
+          </button>
+        </Tooltip>,
+      );
+      const first = screen.getByText('First');
+      const second = screen.getByText('Second');
+
+      fireEvent.mouseOver(first);
+      clock.tick(150);
+      fireEvent.mouseOut(first, { relatedTarget: document.body });
+      clock.tick(100);
+      fireEvent.mouseOver(second, { relatedTarget: document.body });
+      clock.tick(299);
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+      clock.tick(1);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+      clock.tick(500);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+
+    it('preserves enterNextDelay when moving between trigger descendants', () => {
+      render(
+        <Tooltip
+          title="Hello World"
+          enterDelay={300}
+          enterNextDelay={100}
+          slotProps={{ transition: { timeout: 0 } }}
+        >
+          <button type="button">
+            <span>First</span>
+            <span>Second</span>
+          </button>
+        </Tooltip>,
+      );
+      const first = screen.getByText('First');
+      const second = screen.getByText('Second');
+
+      fireEvent.mouseOver(first);
+      clock.tick(300);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+      fireEvent.mouseOut(first, { relatedTarget: document.body });
+      clock.tick(0);
+      clock.tick(1);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+
+      fireEvent.mouseOver(first, { relatedTarget: document.body });
+      clock.tick(50);
+      fireEvent.mouseOut(first, { relatedTarget: second });
+      fireEvent.mouseOver(second, { relatedTarget: first });
+      clock.tick(49);
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+      clock.tick(1);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+  });
+
   it('opens when a disabled native button receives mouse events', async () => {
     clock.restore();
 
