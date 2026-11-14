@@ -9,8 +9,10 @@ export default function FormControlLabelPlacement() {
   // @focus-start @padding 1
   const id = React.useId();
   return (
-    <FormControl>
-      <FormLabel id={`${id}-label`}>Label placement</FormLabel>
+    <FormControl component="fieldset">
+      <FormLabel component="legend" id={`${id}-label`}>
+        Label placement
+      </FormLabel>
       <RadioGroup
         row
         aria-labelledby={`${id}-label`}

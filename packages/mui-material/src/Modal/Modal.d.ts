@@ -22,6 +22,7 @@ export interface ModalSlots {
   root?: React.ElementType | undefined;
   /**
    * The component that renders the backdrop.
+   * @default Backdrop
    */
   backdrop?: React.ElementType | undefined;
 }

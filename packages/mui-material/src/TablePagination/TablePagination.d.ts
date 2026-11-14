@@ -77,7 +77,8 @@ export interface TablePaginationSlots {
    */
   displayedRows: React.ElementType;
   /**
-   * The slots that passed to the actions slot.
+   * The slots passed to the actions component, set with `ActionsComponent`
+   * ([TablePaginationActions](https://mui.com/material-ui/api/table-pagination-actions/#slots) by default).
    */
   actions: TablePaginationActionsSlots;
 }

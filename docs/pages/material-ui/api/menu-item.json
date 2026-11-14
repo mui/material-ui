@@ -15,7 +15,8 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
       "additionalInfo": { "sx": true }
-    }
+    },
+    "tabIndex": { "type": { "name": "number" } }
   },
   "name": "MenuItem",
   "imports": [
@@ -72,5 +73,5 @@
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-material/src/MenuItem/MenuItem.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>"
 }

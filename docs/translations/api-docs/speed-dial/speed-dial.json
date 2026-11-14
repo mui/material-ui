@@ -1,9 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "ariaLabel": {
-      "description": "The aria-label of the button element. Also used to provide the <code>id</code> for the <code>SpeedDial</code> element and its children."
-    },
+    "ariaLabel": { "description": "The aria-label of the button element." },
     "children": {
       "description": "SpeedDialActions to display when the SpeedDial is <code>open</code>."
     },
@@ -17,6 +15,9 @@
     "hidden": { "description": "If <code>true</code>, the SpeedDial is hidden." },
     "icon": {
       "description": "The icon to display in the SpeedDial Fab. The <code>SpeedDialIcon</code> component provides a default Icon with animation."
+    },
+    "id": {
+      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id."
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
