@@ -1,0 +1,25 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "absolute": { "description": "Absolutely position the element." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "flexItem": {
+      "description": "If <code>true</code>, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of <code>0px</code> if it is the child of a flex container.)"
+    },
+    "orientation": { "description": "The orientation of the separator." },
+    "render": {
+      "description": "The element to render, or a function that returns it. Forward the props, ref, and children to preserve Material styles and separator semantics. Applies to the default root only. Use <code>slots.root</code> to replace the styled root."
+    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "textAlign": { "description": "The text alignment." },
+    "variant": { "description": "The variant to use." }
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "root": "The component that renders the root. Replaces the default styled root and takes precedence over <code>render</code>."
+  }
+}

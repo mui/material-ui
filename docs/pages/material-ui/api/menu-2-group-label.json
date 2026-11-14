@@ -1,0 +1,45 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'"
+      },
+      "default": "'default'"
+    },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Menu2GroupLabel",
+  "imports": ["import MenuGroupLabel from '@mui/material/Unstable_Menu2GroupLabel';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.\nReplaces the default styled root and takes precedence over `render`.",
+      "default": "Menu2GroupLabelRoot",
+      "class": "MuiMenu2GroupLabel-root"
+    }
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMenu2GroupLabel",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Unstable_Menu2GroupLabel/Menu2GroupLabel.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu2/\">Menu v2</a></li></ul>"
+}

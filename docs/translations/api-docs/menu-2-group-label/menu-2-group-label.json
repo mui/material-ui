@@ -1,0 +1,26 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": { "description": "The content of the label." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "color": {
+      "description": "The color of the component. It supports those theme colors that make sense for this component."
+    },
+    "disableGutters": {
+      "description": "If <code>true</code>, the List Subheader will not have gutters."
+    },
+    "inset": { "description": "If <code>true</code>, the List Subheader is indented." },
+    "render": {
+      "description": "The element to render, or a function that returns it. Forward the props, ref, and children to preserve Material styles and accessibility. Applies to the default root only. Use <code>slots.root</code> to replace the styled root."
+    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    }
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "root": "The component that renders the root. Replaces the default styled root and takes precedence over <code>render</code>."
+  }
+}
