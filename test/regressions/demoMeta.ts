@@ -112,9 +112,9 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'docs/data/material/components/snackbars/CustomizedSnackbars', enabled: false }, // Redundant
   { test: 'docs/data/material/components/snackbars/DirectionSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/FabIntegrationSnackbar', enabled: false }, // Needs interaction
-  { test: 'docs/data/material/components/snackbars/IntegrationNotistack', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/PositionedSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/SimpleSnackbar', enabled: false }, // Needs interaction
+  { test: 'docs/data/material/components/snackbars/StackedSnackbars', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/TransitionsSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/stack/InteractiveStack', enabled: false }, // Redundant
   { test: 'docs/data/material/components/steppers/HorizontalNonLinearStepper', enabled: false }, // Redundant
