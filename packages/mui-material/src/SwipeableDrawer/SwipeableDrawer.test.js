@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { afterEach, describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
 import {
@@ -922,6 +922,115 @@ describe('<SwipeableDrawer />', () => {
         touches: [new Touch({ identifier: 0, target: drawer, pageX: 0, clientY: 0 })],
       });
     });
+  });
+
+  describe('inside a shadow root', () => {
+    let host;
+
+    afterEach(() => {
+      host.remove();
+    });
+
+    function mountInShadowRoot(props, children = <div data-testid="content" />) {
+      host = document.createElement('div');
+      document.body.appendChild(host);
+      const shadowRoot = host.attachShadow({ mode: 'open' });
+      const container = document.createElement('div');
+      shadowRoot.appendChild(container);
+
+      render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          ModalProps={{ container }}
+          slotProps={{ paper: { component: FakePaper } }}
+          {...props}
+        >
+          {children}
+        </SwipeableDrawer>,
+        { container },
+      );
+
+      return shadowRoot;
+    }
+
+    function swipe(element, positions) {
+      const touches = positions.map(
+        (pageX) => new Touch({ identifier: 0, target: element, pageX, clientY: 0 }),
+      );
+
+      fireEvent.touchStart(element, { touches: [touches[0]] });
+      touches.slice(1).forEach((touch) => {
+        fireEvent.touchMove(element, { touches: [touch] });
+      });
+      fireEvent.touchEnd(element, { changedTouches: [touches[touches.length - 1]] });
+    }
+
+    it('should open when swiping on the swipe area', () => {
+      const handleOpen = spy();
+      const shadowRoot = mountInShadowRoot({ onOpen: handleOpen, open: false });
+
+      swipe(shadowRoot.querySelector('[class*=PrivateSwipeArea-root]'), [0, 20, 180]);
+
+      expect(handleOpen.callCount).to.equal(1);
+    });
+
+    it('should open when swiping on a child with allowSwipeInChildren', () => {
+      const handleOpen = spy();
+      const shadowRoot = mountInShadowRoot({
+        allowSwipeInChildren: true,
+        onOpen: handleOpen,
+        open: false,
+      });
+
+      swipe(shadowRoot.querySelector('[data-testid=content]'), [0, 20, 180]);
+
+      expect(handleOpen.callCount).to.equal(1);
+    });
+
+    it('should close when swiping on the paper', () => {
+      const handleClose = spy();
+      const shadowRoot = mountInShadowRoot({ onClose: handleClose, open: true });
+
+      swipe(shadowRoot.querySelector('[data-testid=content]'), [200, 180, 10]);
+
+      expect(handleClose.callCount).to.equal(1);
+    });
+
+    it('should close when swiping on the backdrop', () => {
+      const handleClose = spy();
+      const shadowRoot = mountInShadowRoot({ onClose: handleClose, open: true });
+
+      swipe(shadowRoot.querySelector(`.${backdropClasses.root}`), [200, 180, 10]);
+
+      expect(handleClose.callCount).to.equal(1);
+    });
+
+    // Need layout
+    it.skipIf(isJsdom())(
+      'should not close while a scrollable ancestor outside a nested shadow root can scroll',
+      () => {
+        const handleClose = spy();
+        const shadowRoot = mountInShadowRoot(
+          { onClose: handleClose, open: true },
+          <div data-testid="scroller" style={{ overflowX: 'auto', width: 100 }}>
+            <div data-testid="nested-host" style={{ width: 1000 }} />
+          </div>,
+        );
+        // Content inside a nested shadow root, like a web component
+        const nestedContent = document.createElement('div');
+        nestedContent.style.cssText = 'width: 1000px; height: 100px';
+        shadowRoot
+          .querySelector('[data-testid=nested-host]')
+          .attachShadow({ mode: 'open' })
+          .appendChild(nestedContent);
+        shadowRoot.querySelector('[data-testid=scroller]').scrollLeft = 10;
+
+        swipe(nestedContent, [200, 180, 10]);
+
+        expect(handleClose.callCount).to.equal(0);
+      },
+    );
   });
 
   describe('native scroll', () => {
