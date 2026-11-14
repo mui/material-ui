@@ -58,7 +58,8 @@ export function hexToRgb(color: string): string {
 }
 
 function intToHex(int: number) {
-  const hex = int.toString(16);
+  // Channels can be decimal or out of range, e.g. rgb(127.5, 0, 300)
+  const hex = clamp(Math.round(int), 0, 255).toString(16);
   return hex.length === 1 ? `0${hex}` : hex;
 }
 
