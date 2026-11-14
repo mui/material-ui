@@ -20,7 +20,7 @@ import createTransitions from './createTransitions';
 import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
-import { resolveFocusVisible } from './focusVisible';
+import { resolveFocusVisible, applyFocusVisible } from './focusVisible';
 
 function coefficientToPercentage(coefficient) {
   if (typeof coefficient === 'number') {
@@ -167,10 +167,19 @@ function createThemeNoVars(options = {}, ...args) {
   // this (default) scheme; `createTheme` attaches a per-scheme copy so dark mode stays reactive.
   // Read the palette off `muiTheme` — a merge argument may have recolored it after `palette` was built.
   if (muiTheme.focusVisible != null && muiTheme.focusVisible !== false) {
+    const { insetOverrides } = muiTheme.focusVisible === true ? {} : muiTheme.focusVisible;
     muiTheme.focusVisible = resolveFocusVisible(
       muiTheme.focusVisible,
       muiTheme.palette.primary.main,
     );
+    if (insetOverrides) {
+      muiTheme.unstable_focusVisibleInsetOverrides = deepmerge(
+        muiTheme.unstable_focusVisibleInsetOverrides ?? {},
+        insetOverrides,
+      );
+    }
+  } else {
+    delete muiTheme.unstable_focusVisibleInsetOverrides;
   }
 
   if (process.env.NODE_ENV !== 'production') {
@@ -245,6 +254,7 @@ function createThemeNoVars(options = {}, ...args) {
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
+  muiTheme.applyFocusVisible = applyFocusVisible;
 
   attachColorManipulators(muiTheme);
 

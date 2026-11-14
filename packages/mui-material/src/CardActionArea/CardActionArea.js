@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
@@ -38,14 +37,14 @@ const CardActionAreaRoot = styled(ButtonBase, {
         opacity: 0,
       },
     },
-    ...(theme.focusVisible
+    [`&.${cardActionAreaClasses.focusVisible}`]: theme.focusVisible
       ? // Inset the ring: Card sets overflow:hidden, which clips an outset ring.
-        applyInsetFocusVisible(1)
+        theme.applyFocusVisible('inside')
       : {
-          [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
+          [`& .${cardActionAreaClasses.focusHighlight}`]: {
             opacity: (theme.vars || theme).palette.action.focusOpacity,
           },
-        }),
+        },
   })),
 );
 

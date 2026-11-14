@@ -1005,7 +1005,14 @@ export default function createThemeWithVars(options = {}, ...args) {
   // per-scheme copy needed here, unlike the no-vars path in `createTheme`.
   const focusVisibleInput = mergeFocusVisibleInput(options.focusVisible, args);
   if (focusVisibleInput != null && focusVisibleInput !== false) {
+    const { insetOverrides } = focusVisibleInput === true ? {} : focusVisibleInput;
     theme.focusVisible = resolveFocusVisible(focusVisibleInput, getCssVar('palette-primary-main'));
+    if (insetOverrides) {
+      theme.unstable_focusVisibleInsetOverrides = deepmerge(
+        theme.unstable_focusVisibleInsetOverrides ?? {},
+        insetOverrides,
+      );
+    }
   }
 
   const parserConfig = {
