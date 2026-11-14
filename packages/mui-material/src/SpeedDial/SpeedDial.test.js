@@ -90,6 +90,60 @@ describe('<SpeedDial />', () => {
     expect(actionRef.current).to.equal(screen.getByRole('menuitem'));
   });
 
+  it('should apply function-form action fab slot props with the ownerState of the action', () => {
+    const actionRef = React.createRef();
+
+    render(
+      <SpeedDial {...defaultProps}>
+        <SpeedDialAction
+          icon={icon}
+          slotProps={{
+            fab: (ownerState) => ({
+              ref: actionRef,
+              'data-open': ownerState.open,
+              'data-tooltip-placement': ownerState.tooltipPlacement,
+            }),
+            tooltip: { title: 'Action' },
+          }}
+        />
+      </SpeedDial>,
+    );
+
+    const action = screen.getByRole('menuitem');
+    expect(action).to.have.attribute('data-open', 'true');
+    expect(action).to.have.attribute('data-tooltip-placement', 'left');
+    expect(actionRef.current).to.equal(action);
+  });
+
+  it('should navigate with arrow keys to actions with function-form fab slot props', async () => {
+    const actionRefs = [React.createRef(), React.createRef()];
+
+    render(
+      <SpeedDial {...defaultProps}>
+        {actionRefs.map((actionRef, index) => (
+          <SpeedDialAction
+            key={index}
+            icon={icon}
+            slotProps={{ fab: () => ({ ref: actionRef }), tooltip: { title: `action${index}` } }}
+          />
+        ))}
+      </SpeedDial>,
+    );
+
+    const fab = screen.getByRole('button');
+    await act(async () => {
+      fab.focus();
+    });
+
+    fireEvent.keyDown(fab, { key: 'ArrowUp' });
+    expect(actionRefs[0].current).toHaveFocus();
+
+    fireEvent.keyDown(actionRefs[0].current, { key: 'ArrowUp' });
+    expect(actionRefs[1].current).toHaveFocus();
+
+    await flushEffects();
+  });
+
   it('should pass the open prop to its children', () => {
     const actionClasses = { fabClosed: 'is-closed' };
 
