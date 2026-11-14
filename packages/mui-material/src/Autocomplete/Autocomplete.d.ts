@@ -198,7 +198,11 @@ export type AutocompleteSlotsAndSlotProps<
       >
     >;
     chip: SlotProps<
-      React.JSXElementConstructor<Partial<ChipProps<ChipComponent>>>,
+      React.JSXElementConstructor<
+        [React.ElementType] extends [ChipComponent]
+          ? Partial<ChipProps>
+          : Partial<ChipProps<ChipComponent>>
+      >,
       AutocompleteChipSlotPropsOverrides,
       AutocompleteOwnerState<
         Value,
@@ -225,7 +229,7 @@ export type AutocompleteSlotsAndSlotProps<
      * Props applied to the Listbox element.
      */
     listbox: SlotProps<
-      React.ElementType<
+      React.JSXElementConstructor<
         ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
           sx?: SxProps<Theme> | undefined;
           ref?: React.Ref<Element> | undefined;
