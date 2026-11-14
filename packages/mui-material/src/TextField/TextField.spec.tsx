@@ -1,8 +1,148 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import TextField from '@mui/material/TextField';
+import type { TextFieldProps } from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import type { FormHelperTextProps } from '@mui/material/FormHelperText';
+import type { SelectChangeEvent } from '@mui/material/Select';
+
+{
+  // https://github.com/mui/material-ui/issues/33742
+  const handleNativeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {};
+
+  <TextField select slotProps={{ select: { native: true } }} onChange={handleNativeChange} />;
+
+  <TextField
+    select
+    slotProps={{ select: { native: true } }}
+    onChange={(event) => {
+      expectType<React.ChangeEvent<HTMLSelectElement>, typeof event>(event);
+    }}
+  />;
+
+  <TextField
+    select
+    value="one"
+    onChange={(event, child) => {
+      expectType<SelectChangeEvent<string>, typeof event>(event);
+      expectType<React.ReactNode, typeof child>(child);
+    }}
+  />;
+
+  <TextField
+    select
+    onChange={(event) => {
+      expectType<SelectChangeEvent<string>, typeof event>(event);
+    }}
+  />;
+
+  <TextField
+    select
+    defaultValue={1}
+    slotProps={{ select: { native: false } }}
+    onChange={(event) => {
+      expectType<SelectChangeEvent<number>, typeof event>(event);
+    }}
+  />;
+
+  <TextField
+    select
+    value={['one']}
+    slotProps={{ select: { multiple: true } }}
+    onChange={(event) => {
+      expectType<SelectChangeEvent<string[]>, typeof event>(event);
+    }}
+  />;
+
+  <TextField
+    select
+    slotProps={{
+      select: (ownerState) => {
+        expectType<boolean | undefined, typeof ownerState.select>(ownerState.select);
+        return { native: true };
+      },
+    }}
+    onChange={(event) => {
+      expectType<React.ChangeEvent<HTMLSelectElement>, typeof event>(event);
+    }}
+  />;
+
+  <TextField
+    select
+    defaultValue="one"
+    slotProps={{ select: () => ({ native: false }) }}
+    onChange={(event) => {
+      expectType<SelectChangeEvent<string>, typeof event>(event);
+    }}
+  />;
+
+  (['standard', 'filled', 'outlined'] as const).forEach((variant) => {
+    <TextField
+      variant={variant}
+      select
+      slotProps={{ select: { native: true } }}
+      onChange={(event) => {
+        expectType<React.ChangeEvent<HTMLSelectElement>, typeof event>(event);
+      }}
+    />;
+
+    <TextField
+      variant={variant}
+      select
+      value="one"
+      onChange={(event, child) => {
+        expectType<SelectChangeEvent<string>, typeof event>(event);
+        expectType<React.ReactNode, typeof child>(child);
+      }}
+    />;
+  });
+
+  // @ts-expect-error A native select change handler requires a native select.
+  <TextField select onChange={handleNativeChange} />;
+
+  // @ts-expect-error A text input does not emit a native select change event.
+  <TextField onChange={handleNativeChange} />;
+
+  <TextField
+    select
+    slotProps={{ select: { native: true } }}
+    // @ts-expect-error A select change handler does not receive mouse events.
+    onChange={(event: React.MouseEvent<HTMLSelectElement>) => {}}
+  />;
+
+  <TextField
+    onChange={(event) => {
+      expectType<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, typeof event>(event);
+    }}
+  />;
+
+  <TextField
+    multiline
+    onChange={(event) => {
+      expectType<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, typeof event>(event);
+    }}
+  />;
+}
+
+function TextFieldWrapper(props: TextFieldProps) {
+  return <TextField {...props} />;
+}
+
+function TextFieldComponentPropsWrapper(props: React.ComponentProps<typeof TextField>) {
+  return <TextField {...props} />;
+}
+
+function DynamicSelectTextField({ select, native }: { select: boolean; native: boolean }) {
+  return (
+    <TextField
+      select={select}
+      slotProps={{ select: { native } }}
+      onChange={(event) => {
+        expectType<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, typeof event>(event);
+      }}
+    />
+  );
+}
 
 {
   // https://github.com/mui/material-ui/issues/12999
