@@ -16,7 +16,9 @@ import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import { listClasses } from '@mui/material/List';
 import { isJsdom } from '@mui/internal-test-utils/env';
@@ -2791,6 +2793,53 @@ describe('<Select />', () => {
         expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(iconStyle);
       },
     );
+
+    describe('`size` variants on the `icon` and `select` slots', () => {
+      const style = { zIndex: '77' };
+      const variants = [{ props: { size: 'small' }, style }];
+      const theme = createTheme({
+        components: {
+          MuiSelect: { styleOverrides: { icon: { variants }, select: { variants } } },
+        },
+      });
+
+      it.each([
+        ['the `size` prop', <Select size="small" value="" />],
+        [
+          'the `FormControl` size',
+          <FormControl size="small">
+            <Select value="" />
+          </FormControl>,
+        ],
+        [
+          'the `size` prop over the `FormControl` size',
+          <FormControl size="medium">
+            <Select size="small" value="" />
+          </FormControl>,
+        ],
+        [
+          'the custom `input` size over the `FormControl` size',
+          <FormControl size="medium">
+            <Select input={<OutlinedInput size="small" />} value="" />
+          </FormControl>,
+        ],
+        [
+          'the `size` prop over the custom `input` size',
+          <Select size="small" input={<OutlinedInput size="medium" />} value="" />,
+        ],
+        [
+          'the `TextField` size',
+          <TextField select size="small" value="">
+            <MenuItem value="" />
+          </TextField>,
+        ],
+      ])('should apply for %s', (_, element) => {
+        const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+
+        expect(container.querySelector(`.${classes.select}`)).toHaveComputedStyle(style);
+        expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(style);
+      });
+    });
   });
 
   ['standard', 'outlined', 'filled'].forEach((variant) => {

@@ -73,7 +73,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const [fcs] = useFormControlState({
     props,
-    states: ['variant', 'error'],
+    states: ['variant', 'error', 'size'],
   });
 
   const variant = fcs.variant || variantProp;
@@ -117,6 +117,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 onOpen,
                 open,
                 renderValue,
+                size: other.size ?? input?.props.size ?? fcs.size,
                 SelectDisplayProps: { id, ...SelectDisplayProps },
               }),
           ...inputProps,
@@ -262,6 +263,13 @@ Select.propTypes /* remove-proptypes */ = {
    * Props applied to the clickable div element.
    */
   SelectDisplayProps: PropTypes.object,
+  /**
+   * The size of the component.
+   */
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
