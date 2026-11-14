@@ -1,0 +1,51 @@
+{
+  "name": "material-ui",
+  "version": "0.1.1",
+  "description": "Material UI agent skills for styling, theming, Next.js, and Tailwind CSS integration.",
+  "author": {
+    "name": "MUI",
+    "url": "https://mui.com"
+  },
+  "homepage": "https://mui.com/material-ui/",
+  "repository": "https://github.com/mui/material-ui",
+  "license": "MIT",
+  "keywords": [
+    "material-ui",
+    "mui",
+    "react",
+    "material-design",
+    "design-system",
+    "styling",
+    "theming",
+    "nextjs",
+    "tailwind"
+  ],
+  "skills": [
+    "./material-ui-nextjs",
+    "./material-ui-styling",
+    "./material-ui-tailwind",
+    "./material-ui-theming"
+  ],
+  "interface": {
+    "displayName": "Material UI",
+    "shortDescription": "Build UI with Material UI styling, theming, Next.js, and Tailwind guidance",
+    "longDescription": "Material UI is a React component library that implements Material Design. This plugin packages the repository's agent skills so coding agents can follow official guidance when working with @mui/material.\n\nUse it when choosing among sx, styled(), theme overrides, and global CSS; building or extending themes with createTheme, colorSchemes, and CSS variables; wiring Material UI into Next.js App or Pages Router with @mui/material-nextjs; or combining Material UI with Tailwind CSS v4 layers (and v3 interoperability).\n\nThe skills point agents at the documented decision order and APIs — not at reading package source. Each skill's SKILL.md is the entry point; AGENTS.md is the full guide.",
+    "developerName": "MUI",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Styling guidance (sx, styled, theme overrides)",
+      "Theming and design tokens",
+      "Next.js integration",
+      "Tailwind CSS interoperability"
+    ],
+    "websiteURL": "https://mui.com/material-ui/",
+    "defaultPrompt": [
+      "Style a Material UI Card with the right sx vs styled approach",
+      "Add light and dark color schemes to my Material UI theme",
+      "Set up Material UI with Next.js App Router and Emotion cache"
+    ],
+    "brandColor": "#007FFF",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg"
+  }
+}
