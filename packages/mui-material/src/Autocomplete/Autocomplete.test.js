@@ -5165,6 +5165,64 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: readOnly', () => {
+    [
+      {
+        name: 'single value',
+        props: { defaultValue: 'one' },
+        inputValue: 'one',
+        tags: [],
+      },
+      {
+        name: 'multiple values',
+        props: { multiple: true, defaultValue: ['one', 'two'] },
+        inputValue: '',
+        tags: ['one', 'two'],
+      },
+      {
+        name: 'rendered single value',
+        props: {
+          defaultValue: 'one',
+          renderValue: (value, getItemProps) => <Chip label={value} {...getItemProps()} />,
+        },
+        inputValue: '',
+        tags: ['one'],
+      },
+    ].forEach(({ name, props, inputValue, tags }) => {
+      it(`does not clear the ${name} or consume Escape when clearOnEscape=true`, async () => {
+        const handleChange = spy();
+        const handleKeyDown = spy();
+        const { container, user } = render(
+          <div onKeyDown={handleKeyDown}>
+            <Autocomplete
+              readOnly
+              clearOnEscape
+              options={['one', 'two']}
+              onChange={handleChange}
+              renderInput={(params) => <TextField {...params} />}
+              {...props}
+            />
+          </div>,
+        );
+
+        const textbox = screen.getByRole('combobox');
+        const getTags = () =>
+          Array.from(container.querySelectorAll(`.${chipClasses.label}`), (tag) => tag.textContent);
+
+        expect(textbox).to.have.value(inputValue);
+        expect(getTags()).to.deep.equal(tags);
+
+        await user.click(textbox);
+        await user.keyboard('{Escape}');
+
+        expect(textbox).to.have.value(inputValue);
+        expect(getTags()).to.deep.equal(tags);
+        expect(handleChange.callCount).to.equal(0);
+        expect(handleKeyDown.callCount).to.equal(1);
+        expect(handleKeyDown.args[0][0].key).to.equal('Escape');
+        expect(handleKeyDown.args[0][0].defaultPrevented).to.equal(false);
+      });
+    });
+
     it('should make the input readonly', () => {
       render(
         <Autocomplete
