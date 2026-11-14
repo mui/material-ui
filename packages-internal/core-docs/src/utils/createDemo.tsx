@@ -12,6 +12,7 @@ import {
 // the content streams in.
 import DemoContentLazy from '../DemoContent/DemoContentLazy';
 import DemoContentLoading from '../DemoContent/DemoContentLoading';
+import DemoContentFrame from '../DemoContent/DemoContentFrame';
 // Already in this module's graph via `DemoContentLoading` → `DemoContainer` →
 // `DemoComponentTheme`, so importing the page theme provider adds no weight.
 import { DemoPageThemeProvider } from '../DemoThemeProviders';
@@ -74,23 +75,18 @@ function withNormalizedDemoOptions<T extends React.ComponentType<any>>(Demo: T):
 // main thread ~4s into every page load, engaged or not.
 const EDIT_ACTIVATION = 'interaction';
 
-const createDemoBase = createDemoFactory({
+const demoFactoryOptions = {
   DemoContent: DemoContentLazy,
   DemoContentLoading,
+  DemoContentFrame,
   controlled: true,
   projectDir,
   projectUrl,
   editActivation: EDIT_ACTIVATION,
-});
+} as const;
 
-const createDemoWithVariantsBase = createDemoWithVariantsFactory({
-  DemoContent: DemoContentLazy,
-  DemoContentLoading,
-  controlled: true,
-  projectDir,
-  projectUrl,
-  editActivation: EDIT_ACTIVATION,
-});
+const createDemoBase = createDemoFactory(demoFactoryOptions);
+const createDemoWithVariantsBase = createDemoWithVariantsFactory(demoFactoryOptions);
 
 /**
  * Creates a demo component for displaying code examples with syntax highlighting.

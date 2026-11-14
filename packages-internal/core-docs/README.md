@@ -23,4 +23,13 @@ npm install @mui/material@next
 
 ## Documentation
 
-We have no documentation for these components.
+### Next.js consumers
+
+Transpile core-docs for its Next.js module imports.
+DocSearch also needs transpilation for its CommonJS autocomplete dependency during SSR.
+
+```js
+export default {
+  transpilePackages: ['@mui/internal-core-docs', '@docsearch/react'],
+};
+```
