@@ -1014,7 +1014,7 @@ describe('<SwipeableDrawer />', () => {
         const shadowRoot = mountInShadowRoot(
           { onClose: handleClose, open: true },
           <div data-testid="scroller" style={{ overflowX: 'auto', width: 100 }}>
-            <div data-testid="nested-host" />
+            <div data-testid="nested-host" style={{ width: 1000 }} />
           </div>,
         );
         // Content inside a nested shadow root, like a web component
