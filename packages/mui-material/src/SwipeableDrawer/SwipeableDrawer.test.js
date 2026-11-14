@@ -65,7 +65,7 @@ const NullPaper = React.forwardRef(function NullPaper(props, ref) {
 });
 
 describe('<SwipeableDrawer />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     render,
@@ -519,6 +519,67 @@ describe('<SwipeableDrawer />', () => {
         changedTouches: [new Touch({ identifier: 0, target: drawer, pageX: 10, clientY: 0 })],
       });
       expect(handleClose.callCount).to.equal(0);
+    });
+
+    it('ignores touch end after the drawer closes and unmounts its paper during a swipe', () => {
+      const handleClose = spy();
+      const handleOpen = spy();
+      const { setProps } = render(
+        <SwipeableDrawer
+          anchor="bottom"
+          open
+          onOpen={handleOpen}
+          onClose={handleClose}
+          ModalProps={{ keepMounted: false }}
+          slotProps={{ paper: { component: FakePaper } }}
+        >
+          <div data-testid="drawer">SwipeableDrawer</div>
+        </SwipeableDrawer>,
+      );
+      clock.runToLast();
+
+      function startSwipe() {
+        const drawer = screen.getByTestId('drawer');
+        fireEvent.touchStart(drawer, {
+          touches: [
+            new Touch({ identifier: 0, target: drawer, pageX: 0, clientY: windowHeight - 200 }),
+          ],
+        });
+        fireEvent.touchMove(drawer, {
+          touches: [
+            new Touch({ identifier: 0, target: drawer, pageX: 0, clientY: windowHeight - 180 }),
+          ],
+        });
+        fireEvent.touchMove(drawer, {
+          touches: [
+            new Touch({ identifier: 0, target: drawer, pageX: 0, clientY: windowHeight - 10 }),
+          ],
+        });
+      }
+
+      function finishSwipe() {
+        fireEvent.touchEnd(document.body, {
+          changedTouches: [
+            new Touch({ identifier: 0, target: document.body, pageX: 0, clientY: windowHeight }),
+          ],
+        });
+      }
+
+      startSwipe();
+      setProps({ open: false });
+      clock.runToLast();
+      expect(screen.queryByTestId('drawer')).to.equal(null);
+
+      finishSwipe();
+      expect(handleOpen.callCount).to.equal(0);
+      expect(handleClose.callCount).to.equal(0);
+
+      setProps({ open: true });
+      clock.runToLast();
+      startSwipe();
+      finishSwipe();
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleOpen.callCount).to.equal(0);
     });
 
     it('removes event listeners on unmount', () => {
