@@ -14,12 +14,12 @@ export interface BadgeBadgeSlotPropsOverrides {}
 export interface BadgeSlots {
   /**
    * The component that renders the root.
-   * @default span
+   * @default 'span'
    */
   root: React.ElementType;
   /**
    * The component that renders the badge.
-   * @default span
+   * @default 'span'
    */
   badge: React.ElementType;
 }

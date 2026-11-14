@@ -22,7 +22,7 @@ export interface CardActionAreaSlots {
   root: React.ElementType;
   /**
    * The component that renders the focusHighlight.
-   * @default span
+   * @default 'span'
    */
   focusHighlight: React.ElementType;
 }

@@ -1081,6 +1081,77 @@ describe('<Tooltip />', () => {
     );
   });
 
+  describe('prop: slotProps.transition', () => {
+    it('should create the Popper instance when onEnter is provided', () => {
+      const handleEnter = spy();
+      const popperRef = React.createRef();
+
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          slotProps={{ popper: { popperRef }, transition: { onEnter: handleEnter } }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(handleEnter.callCount).to.equal(1);
+      expect(handleEnter.firstCall.args[0]).to.equal(
+        screen.getByRole('tooltip').querySelector(`.${classes.tooltip}`),
+      );
+      expect(popperRef.current).not.to.equal(null);
+    });
+
+    it('should unmount after closing when onExited is provided', () => {
+      const handleExited = spy();
+
+      const { setProps } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          slotProps={{ transition: { onExited: handleExited, timeout: 0 } }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      setProps({ open: false });
+      clock.tick(0);
+
+      expect(handleExited.callCount).to.equal(1);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should keep the Popper lifecycle with the callback form', () => {
+      const handleEnter = spy();
+      const handleExited = spy();
+      const popperRef = React.createRef();
+
+      const { setProps } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          slotProps={{
+            popper: { popperRef },
+            transition: () => ({ onEnter: handleEnter, onExited: handleExited, timeout: 0 }),
+          }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(handleEnter.callCount).to.equal(1);
+      expect(popperRef.current).not.to.equal(null);
+
+      setProps({ open: false });
+      clock.tick(0);
+
+      expect(handleExited.callCount).to.equal(1);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+  });
+
   describe('prop forwarding', () => {
     it('should forward props to the child element', () => {
       render(

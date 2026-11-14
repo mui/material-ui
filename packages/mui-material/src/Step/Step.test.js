@@ -80,7 +80,7 @@ describe('<Step />', () => {
       expect(stepButton).not.to.equal(null);
     });
 
-    it('should add the role presentation to the root node if the context is a tab list', () => {
+    it('should add the role none to the root node if the context is a tab list', () => {
       renderInContext(
         <Stepper activeStep={0}>
           <Step>
@@ -91,7 +91,7 @@ describe('<Step />', () => {
 
       const stepper = screen.getByRole('tablist');
 
-      expect(stepper.childNodes[0]).to.have.attribute('role', 'presentation');
+      expect(stepper.childNodes[0]).to.have.attribute('role', 'none');
     });
   });
 

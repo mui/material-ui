@@ -134,7 +134,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
         className={clsx(classes.root, className)}
         ref={ref}
         ownerState={ownerState}
-        role={isTabList ? 'presentation' : undefined}
+        role={isTabList ? 'none' : undefined}
         {...other}
       >
         {hasConnector ? connector : null}
@@ -162,7 +162,7 @@ Step.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
