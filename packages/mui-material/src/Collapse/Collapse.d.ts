@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TransitionProps, TransitionStatus } from '../transitions/types';
 import { CollapseClasses } from './collapseClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -39,8 +39,10 @@ export type CollapseSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface CollapseProps
-  extends StandardProps<TransitionProps, 'timeout'>, CollapseSlotsAndSlotProps {
+export interface CollapseOwnProps
+  extends
+    Omit<TransitionProps, 'timeout' | keyof React.HTMLAttributes<HTMLElement>>,
+    CollapseSlotsAndSlotProps {
   /**
    * Add a custom transition end trigger.
    * Use it when you need custom logic to decide when the transition has ended.
@@ -54,7 +56,6 @@ export interface CollapseProps
    * The content node to be collapsed.
    */
   children?: React.ReactNode;
-  className?: string | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -64,11 +65,6 @@ export interface CollapseProps
    * @default '0px'
    */
   collapsedSize?: string | number | undefined;
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component?: React.ElementType<TransitionProps> | undefined;
   /**
    * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
    * @default false
@@ -102,8 +98,12 @@ export interface CollapseProps
   sx?: SxProps<Theme> | undefined;
 }
 
-export interface CollapseOwnerState extends CollapseProps {
-  state: TransitionStatus;
+export interface CollapseTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & CollapseOwnProps;
+  defaultComponent: RootComponent;
 }
 
 /**
@@ -121,5 +121,17 @@ export interface CollapseOwnerState extends CollapseProps {
  * - [Collapse API](https://next.mui.com/material-ui/api/collapse/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
+declare const Collapse: OverridableComponent<CollapseTypeMap>;
 
-export default function Collapse(props: CollapseProps): React.JSX.Element;
+export type CollapseProps<
+  RootComponent extends React.ElementType = CollapseTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<CollapseTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType | undefined;
+};
+
+export interface CollapseOwnerState extends CollapseProps {
+  state: TransitionStatus;
+}
+
+export default Collapse;
