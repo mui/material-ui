@@ -55,11 +55,11 @@ When the component is set to listen for leading events, interactions with the sc
 By default, Click-Away Listener adds an `onClick` handler to its child.
 This can result in screen readers announcing that the child is clickable, even though this `onClick` handler has no effect on the child itself.
 
-To prevent this behavior, add `role="presentation"` to the child element:
+To prevent this behavior, add `role="none"` to the child element:
 
 ```tsx
 <ClickAwayListener>
-  <div role="presentation">
+  <div role="none">
     <h1>non-interactive heading</h1>
   </div>
 </ClickAwayListener>
