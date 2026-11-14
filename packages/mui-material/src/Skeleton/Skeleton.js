@@ -233,6 +233,12 @@ const SkeletonRoot = styled('span', {
   }),
 );
 
+/**
+ * ## ARIA
+ *
+ * If the skeleton is a placeholder for a particular region of a page, you should set the
+ * `aria-busy` attribute to `true` on that region until it has finished loading.
+ */
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSkeleton' });
   const {

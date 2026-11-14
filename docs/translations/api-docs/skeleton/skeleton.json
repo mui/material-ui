@@ -1,5 +1,5 @@
 {
-  "componentDescription": "",
+  "componentDescription": "## ARIA\n\nIf the skeleton is a placeholder for a particular region of a page, you should set the\n`aria-busy` attribute to `true` on that region until it has finished loading.",
   "propDescriptions": {
     "animation": {
       "description": "The animation. If <code>false</code> the animation effect is disabled."
