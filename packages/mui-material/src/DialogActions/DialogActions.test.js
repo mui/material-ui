@@ -14,7 +14,7 @@ describe('<DialogActions />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiDialogActions',
     testVariantProps: { disableSpacing: true },
-    skip: ['componentProp'],
+    testComponentPropWith: 'span',
   }));
 
   it.skipIf(isJsdom())('should space children with gap', function test() {
