@@ -509,7 +509,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   };
 
   React.useEffect(() => {
-    if (muiFormControl) {
+    // A new `startAdornment` element on each render re-runs this effect. Skip an unchanged value,
+    // so the FormControl does not get a no-op update on every render.
+    if (muiFormControl && muiFormControl.adornedStart !== Boolean(startAdornment)) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
     }
   }, [muiFormControl, startAdornment]);
