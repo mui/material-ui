@@ -42,9 +42,11 @@ export function getStyleValue(
   if (typeof themeMapping === 'function') {
     value = themeMapping(valueFinal);
   } else if (Array.isArray(themeMapping)) {
-    value = themeMapping[valueFinal as any] || userValue;
+    value = themeMapping[valueFinal as any];
+    value = value === 0 ? value : value || userValue;
   } else if (typeof valueFinal === 'string') {
-    value = getPath(themeMapping, valueFinal) || userValue;
+    value = getPath(themeMapping, valueFinal);
+    value = value === 0 ? value : value || userValue;
   } else {
     value = userValue;
   }
@@ -89,9 +91,11 @@ export function getStyleValue2(
   if (typeof themeMapping === 'function') {
     value = themeMapping(userValue);
   } else if (Array.isArray(themeMapping)) {
-    value = themeMapping[userValue as any] || userValue;
+    value = themeMapping[userValue as any];
+    value = value === 0 ? value : value || userValue;
   } else if (typeof userValue === 'string') {
-    value = getPath(themeMapping, userValue, true, alternateProp) || userValue;
+    value = getPath(themeMapping, userValue, true, alternateProp);
+    value = value === 0 ? value : value || userValue;
   } else {
     value = userValue;
   }
