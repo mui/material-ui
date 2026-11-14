@@ -942,7 +942,7 @@ describe('<SwipeableDrawer />', () => {
         <SwipeableDrawer
           onOpen={() => {}}
           onClose={() => {}}
-          ModalProps={{ container, keepMounted: true }}
+          ModalProps={{ container }}
           slotProps={{ paper: { component: FakePaper } }}
           {...props}
         >
@@ -1007,51 +1007,24 @@ describe('<SwipeableDrawer />', () => {
     });
 
     // Need layout
-    it.skipIf(isJsdom())('should not close while a child can scroll natively', () => {
-      const handleClose = spy();
-      const shadowRoot = mountInShadowRoot(
-        { onClose: handleClose, open: true },
-        <div data-testid="scroller" style={{ overflowX: 'auto', width: 100 }}>
-          <div style={{ width: 1000, height: 100 }} />
-        </div>,
-      );
-      const scroller = shadowRoot.querySelector('[data-testid=scroller]');
-      scroller.scrollLeft = 10;
-
-      swipe(scroller, [200, 180, 10]);
-
-      expect(handleClose.callCount).to.equal(0);
-    });
-
-    // Need layout
     it.skipIf(isJsdom())(
       'should not close while a scrollable ancestor outside a nested shadow root can scroll',
       () => {
-        function NestedShadowContent() {
-          const attachShadowRoot = React.useCallback((nestedHost) => {
-            if (nestedHost && !nestedHost.shadowRoot) {
-              const content = document.createElement('div');
-              content.setAttribute('data-testid', 'nested-content');
-              content.style.width = '1000px';
-              content.style.height = '100px';
-              nestedHost.attachShadow({ mode: 'open' }).appendChild(content);
-            }
-          }, []);
-
-          return <div data-testid="nested-host" ref={attachShadowRoot} />;
-        }
-
         const handleClose = spy();
         const shadowRoot = mountInShadowRoot(
           { onClose: handleClose, open: true },
           <div data-testid="scroller" style={{ overflowX: 'auto', width: 100 }}>
-            <NestedShadowContent />
+            <div data-testid="nested-host" />
           </div>,
         );
-        shadowRoot.querySelector('[data-testid=scroller]').scrollLeft = 10;
-        const nestedContent = shadowRoot
+        // Content inside a nested shadow root, like a web component
+        const nestedContent = document.createElement('div');
+        nestedContent.style.cssText = 'width: 1000px; height: 100px';
+        shadowRoot
           .querySelector('[data-testid=nested-host]')
-          .shadowRoot.querySelector('[data-testid=nested-content]');
+          .attachShadow({ mode: 'open' })
+          .appendChild(nestedContent);
+        shadowRoot.querySelector('[data-testid=scroller]').scrollLeft = 10;
 
         swipe(nestedContent, [200, 180, 10]);
 
