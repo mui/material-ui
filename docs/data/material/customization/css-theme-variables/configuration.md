@@ -277,6 +277,94 @@ In the example below, all the components inside the `div` will always be dark:
 
 </codeblock>
 
+## Nested and multiple theme providers
+
+A `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
+A nested or `scoped` provider sets them on its child element instead, so they only apply there.
+
+### Nested providers
+
+When a nested `ThemeProvider`'s variables differ from the outer theme, it adds a generated class to its child.
+The class only sets the variables that differ, and it follows the outer light or dark mode:
+
+```jsx
+<ThemeProvider theme={appTheme}>
+  <Button>Uses appTheme</Button>
+  <ThemeProvider theme={promoTheme}>
+    <section>
+      <Button>Uses promoTheme</Button>
+    </section>
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+```html
+<section class="mui-theme-1x2y3z">…</section>
+```
+
+```css
+:root {
+  --mui-palette-primary-main: #1976d2;
+}
+.mui-theme-1x2y3z {
+  --mui-palette-primary-main: #9c27b0;
+}
+```
+
+The provider doesn't render any element of its own, so the child has to be a single element that renders the `className` it receives.
+With several children, a Fragment, or text, the variables aren't applied and an error is logged in development: wrap the children in one element, for example a `div`.
+If the child is your own component, pass `className` on to its root element:
+
+```jsx
+function Section({ className, children }) {
+  return <section className={className}>{children}</section>;
+}
+```
+
+A nested provider whose theme has the same variables, for example one that only changes `components` defaults, accepts any children.
+
+Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
+For elements that other libraries portal, use the `useThemeScope()` hook to get the class:
+
+```jsx
+import { useThemeScope } from '@mui/material/styles';
+
+function Toast() {
+  const themeScope = useThemeScope();
+  return ReactDOM.createPortal(<div {...themeScope}>…</div>, document.body);
+}
+```
+
+### Sibling providers
+
+Two `ThemeProvider`s that aren't nested in each other both write to `:root` and overwrite each other, which logs a warning in development.
+Add the `scoped` prop to the one that should only apply to its child, like an embedded widget:
+
+```jsx
+<React.Fragment>
+  <ThemeProvider theme={appTheme}>
+    <App />
+  </ThemeProvider>
+  <ThemeProvider theme={widgetTheme} scoped>
+    <div>
+      <Widget />
+    </div>
+  </ThemeProvider>
+</React.Fragment>
+```
+
+A scoped provider sets all of its variables on its child element, and has its own light or dark mode.
+If the theme's `colorSchemeSelector` uses a data attribute, the child also needs to render the `data-*` props it receives.
+Its mode isn't stored, so it doesn't overwrite the mode of the page's provider.
+To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`.
+`InitColorSchemeScript` only applies to the page's provider, so with server-side rendering and `defaultMode="system"`, a scoped provider shows its default color scheme until the page hydrates.
+To avoid that, give it a fixed `defaultMode`, or render it on the client only.
+
+:::info
+A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.
+Override it on the child element instead, for example with its own class.
+:::
+
 ## Disabling CSS color scheme
 
 By default, `createTheme()` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme) based on the palette mode.
