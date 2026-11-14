@@ -193,11 +193,10 @@ When the browser autofills a field, it paints its own background color on the in
 The outlined and filled variants can cover it with an inset `box-shadow`, set for each color scheme by the `palette.Input.autofillWebkitBoxShadow` theme token.
 By default, it's `none` in the light color scheme (so the browser's color shows) and `0 0 0 100px #266798 inset` in the dark color scheme.
 
-The token is only applied when [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) are enabled:
+Override it per color scheme:
 
 ```js
 const theme = createTheme({
-  cssVariables: true,
   colorSchemes: {
     light: {
       palette: {

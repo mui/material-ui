@@ -565,7 +565,7 @@ describe('<Drawer />', () => {
   });
 
   describe('zIndex', () => {
-    it('should set correct zIndex on the root element', () => {
+    it.skipIf(isJsdom())('should set correct zIndex on the root element', () => {
       const theme = createTheme();
       render(
         <ThemeProvider theme={theme}>

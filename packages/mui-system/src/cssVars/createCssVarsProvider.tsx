@@ -69,7 +69,6 @@ export interface CreateCssVarsProviderResult<
           | Identify<
               Identifier,
               {
-                cssVariables?: false | undefined;
                 cssVarPrefix?: string | undefined;
                 colorSchemes: Partial<Record<ColorScheme, any>>;
                 colorSchemeSelector?: 'media' | 'class' | 'data' | string | undefined;
@@ -468,7 +467,6 @@ export default function createCssVarsProvider<
     let shouldGenerateStyleSheet = true;
     if (
       disableStyleSheetGeneration ||
-      restThemeProp.cssVariables === false ||
       (nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix)
     ) {
       shouldGenerateStyleSheet = false;

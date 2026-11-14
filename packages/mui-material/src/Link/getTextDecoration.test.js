@@ -2,9 +2,16 @@ import { describe, it, expect } from 'vitest';
 import { createTheme, extendTheme } from '../styles';
 import getTextDecoration from './getTextDecoration';
 
+// A theme that wasn't made with `createTheme()`, so it has no CSS theme variables.
+function createThemeWithoutVars(options) {
+  const theme = createTheme(options);
+  delete theme.vars;
+  return theme;
+}
+
 describe('getTextDecoration', () => {
   describe('without theme.vars', () => {
-    const theme = createTheme();
+    const theme = createThemeWithoutVars();
 
     it('system color', () => {
       expect(getTextDecoration({ theme, ownerState: { color: 'primary.main' } })).to.equal(
@@ -43,7 +50,7 @@ describe('getTextDecoration', () => {
     });
 
     it('work with a custom palette', () => {
-      const customTheme = createTheme({
+      const customTheme = createThemeWithoutVars({
         colorSchemes: {
           light: {
             palette: {

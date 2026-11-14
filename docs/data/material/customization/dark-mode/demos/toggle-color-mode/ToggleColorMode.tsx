@@ -46,6 +46,9 @@ function MyApp() {
 }
 
 const theme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: '.demo-toggle-color-mode-%s',
+  },
   colorSchemes: {
     dark: true,
   },

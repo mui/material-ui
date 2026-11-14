@@ -25,14 +25,8 @@ import {
 } from './createThemeFoundation';
 
 /**
- * To disable custom properties, use module augmentation
- *
- * @example
- * declare module '@mui/material/styles' {
- *   interface CssThemeVariables {
- *     enabled: true;
- *   }
- * }
+ * @deprecated The theme always has CSS theme variables, so this interface no longer changes the types.
+ * Remove its module augmentation.
  */
 export interface CssThemeVariables {}
 
@@ -43,13 +37,7 @@ export interface CssThemeVariables {}
  */
 export type FocusVisible = React.CSSProperties;
 
-type CssVarsOptions = CssThemeVariables extends {
-  enabled: true;
-}
-  ? ColorSystemOptions
-  : {};
-
-export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
+export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, ColorSystemOptions {
   mixins?: MixinsOptions | undefined;
   components?: Components<Omit<Theme, 'components'>> | undefined;
   motion?: MotionOptions | undefined;
@@ -69,7 +57,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
 export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   motion: Motion;
-  palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
+  palette: Palette & CssVarsPalette;
   shadows: Shadows;
   shape: Shape;
   transitions: Transitions;
@@ -83,29 +71,26 @@ export interface BaseTheme extends SystemTheme {
 // shut off automatic exporting for the `BaseTheme` above
 export {};
 
-type CssVarsProperties = CssThemeVariables extends { enabled: true }
-  ? Pick<
-      CssVarsTheme,
-      | 'colorSchemes'
-      | 'colorSchemeSelector'
-      | 'rootSelector'
-      | 'cssVarPrefix'
-      | 'defaultColorScheme'
-      | 'getCssVar'
-      | 'getColorSchemeSelector'
-      | 'generateThemeVars'
-      | 'generateStyleSheets'
-      | 'generateSpacing'
-      | 'shouldSkipGeneratingVar'
-      | 'vars'
-    >
-  : Partial<Pick<CssVarsTheme, 'vars'>>;
+type CssVarsProperties = Pick<
+  CssVarsTheme,
+  | 'colorSchemes'
+  | 'colorSchemeSelector'
+  | 'rootSelector'
+  | 'cssVarPrefix'
+  | 'defaultColorScheme'
+  | 'getCssVar'
+  | 'getColorSchemeSelector'
+  | 'generateThemeVars'
+  | 'generateStyleSheets'
+  | 'generateSpacing'
+  | 'shouldSkipGeneratingVar'
+  | 'vars'
+>;
 
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
-  cssVariables?: false | undefined;
   components?: Components<BaseTheme> | undefined;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;

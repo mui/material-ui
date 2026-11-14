@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import * as React from 'react';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import createTheme from './createTheme';
 import styled from './styled';
 import ThemeProvider from './ThemeProvider';
@@ -32,7 +32,7 @@ describe('styled', () => {
     });
   });
 
-  it('should use defaultTheme if no theme is provided', () => {
+  it.skipIf(isJsdom())('should use defaultTheme if no theme is provided', () => {
     const Div = styled('div')`
       width: ${(props) => props.theme.spacing(1)};
     `;
@@ -44,19 +44,22 @@ describe('styled', () => {
     });
   });
 
-  it('should use defaultTheme if no theme is provided when styles are object', () => {
-    const Div = styled('div')((props) => ({
-      width: props.theme.spacing(1),
-    }));
+  it.skipIf(isJsdom())(
+    'should use defaultTheme if no theme is provided when styles are object',
+    () => {
+      const Div = styled('div')((props) => ({
+        width: props.theme.spacing(1),
+      }));
 
-    const { container } = render(<Div>Test</Div>);
+      const { container } = render(<Div>Test</Div>);
 
-    expect(container.firstChild).toHaveComputedStyle({
-      width: '8px',
-    });
-  });
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '8px',
+      });
+    },
+  );
 
-  it('should use theme from context if available', () => {
+  it.skipIf(isJsdom())('should use theme from context if available', () => {
     const Div = styled('div')`
       width: ${(props) => props.theme.spacing(1)};
     `;
@@ -76,7 +79,7 @@ describe('styled', () => {
     });
   });
 
-  it('should use theme from context if available when styles are object', () => {
+  it.skipIf(isJsdom())('should use theme from context if available when styles are object', () => {
     const Div = styled('div')((props) => ({
       width: props.theme.spacing(1),
     }));
@@ -401,7 +404,7 @@ describe('styled', () => {
       });
     });
 
-    it('should resolve the sx prop', () => {
+    it.skipIf(isJsdom())('should resolve the sx prop', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Test sx={{ color: 'primary.main' }}>Test</Test>
@@ -413,7 +416,7 @@ describe('styled', () => {
       });
     });
 
-    it('should resolve the sx prop when styles are object', () => {
+    it.skipIf(isJsdom())('should resolve the sx prop when styles are object', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <TestObj sx={{ color: 'primary.main' }}>Test</TestObj>
@@ -425,7 +428,7 @@ describe('styled', () => {
       });
     });
 
-    it('should respect the skipSx option', () => {
+    it.skipIf(isJsdom())('should respect the skipSx option', () => {
       const testOverridesResolver = (props, styles) => [
         styles.root,
         props.variant && styles[props.variant],

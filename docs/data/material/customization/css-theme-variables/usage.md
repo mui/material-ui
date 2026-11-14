@@ -4,7 +4,7 @@
 
 ## Getting started
 
-To use CSS theme variables, create a theme with `cssVariables: true` and wrap your app with `ThemeProvider`.
+`createTheme()` always generates CSS theme variables. To use them, wrap your app with `ThemeProvider`.
 
 After rendering, you'll see CSS variables in the `:root` stylesheet of your HTML document.
 By default, these variables are flattened and prefixed with `--mui`:
@@ -14,7 +14,7 @@ By default, these variables are flattened and prefixed with `--mui`:
 ```jsx JSX
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const theme = createTheme({ cssVariables: true });
+const theme = createTheme();
 
 function App() {
   return <ThemeProvider theme={theme}>{/* ...your app */}</ThemeProvider>;
@@ -40,7 +40,7 @@ All features that were previously available to the `CssVarsProvider` are now ava
 
 ## Light and dark modes
 
-When the [built-in dark color scheme](/material-ui/customization/dark-mode/#built-in-support) and `cssVariables` are enabled, both light and dark CSS variables are generated with the default CSS media `prefers-color-scheme` method.
+When the [built-in dark color scheme](/material-ui/customization/dark-mode/#built-in-support) is enabled, both light and dark CSS variables are generated with the default CSS media `prefers-color-scheme` method.
 
 This method works with server-side rendering without extra configuration. However, users won't be able to toggle between modes because the styles are based on the browser media.
 
@@ -86,18 +86,6 @@ This `vars` object mirrors the structure of a serializable theme, with each valu
   }));
   ```
 
-  For **TypeScript**, the typings are not enabled by default.
-  Follow the [TypeScript setup](#typescript) to enable the typings.
-
-  :::success
-  If the components need to render outside of the `CssVarsProvider`, add fallback to the theme object.
-
-  ```js
-  backgroundColor: (theme.vars || theme).palette.primary.main;
-  ```
-
-  :::
-
 - **Native CSS**: if you can't access the theme object, for example in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/var) directly:
 
   ```css
@@ -109,13 +97,13 @@ This `vars` object mirrors the structure of a serializable theme, with each valu
 
 ## Color channel tokens
 
-Enabling `cssVariables` automatically generates channel tokens which are used to create translucent colors.
+CSS theme variables include channel tokens which are used to create translucent colors.
 These tokens consist of color space channels without the alpha component, separated by spaces.
 
 The colors are suffixed with `Channel`—for example:
 
 ```js
-const theme = createTheme({ cssVariables: true });
+const theme = createTheme();
 
 console.log(theme.palette.primary.mainChannel); // '25 118 210'
 // This token is generated from `theme.colorSchemes.light.palette.primary.main`.
@@ -125,7 +113,6 @@ You can use the channel tokens to create a translucent color like this:
 
 ```js
 const theme = createTheme({
-  cssVariables: true,
   components: {
     MuiChip: {
       styleOverrides: {
@@ -161,7 +148,6 @@ You can add other key-value pairs to the theme input which will be generated as 
 
 ```js
 const theme = createTheme({
-  cssVariables: true,
   colorSchemes: {
     light: {
       palette: {
@@ -218,16 +204,15 @@ For **TypeScript**, you need to augment the [palette interfaces](#palette-interf
 
 ## TypeScript
 
-The theme variables type is not enabled by default. You need to import the module augmentation to enable the typings:
+The theme is always typed with CSS theme variables, so `theme.vars` and the palette channel tokens are available without extra setup:
 
 ```ts
-// The import can be in any file that is included in your `tsconfig.json`
-import type {} from '@mui/material/themeCssVarsAugmentation';
 import { styled } from '@mui/material/styles';
 
 const StyledComponent = styled('button')(({ theme }) => ({
   // ✅ typed-safe
   color: theme.vars.palette.primary.main,
+  backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`,
 }));
 ```
 

@@ -127,12 +127,10 @@ You can extend the outer theme by providing a function:
 
 ## CSS theme variables
 
-To generate CSS variables from the theme, set `cssVariables` to `true` in the theme configuration and pass it to the `ThemeProvider`:
+`createTheme()` always generates CSS variables from the theme. Pass the theme to the `ThemeProvider`:
 
 ```jsx
-const theme = createTheme({
-  cssVariables: true,
-});
+const theme = createTheme();
 
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
