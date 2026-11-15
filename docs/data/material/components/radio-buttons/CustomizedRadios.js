@@ -85,8 +85,10 @@ function BpRadio(props) {
 export default function CustomizedRadios() {
   const id = React.useId();
   return (
-    <FormControl>
-      <FormLabel id={`${id}-label`}>Gender</FormLabel>
+    <FormControl component="fieldset">
+      <FormLabel component="legend" id={`${id}-label`}>
+        Gender
+      </FormLabel>
       <RadioGroup
         defaultValue="female"
         aria-labelledby={`${id}-label`}
