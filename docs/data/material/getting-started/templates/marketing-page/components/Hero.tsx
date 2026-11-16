@@ -61,7 +61,6 @@ export default function Hero() {
       >
         <Stack
           spacing={2}
-          useFlexGap
           sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
         >
           <Typography
@@ -102,7 +101,6 @@ export default function Hero() {
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={1}
-            useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
             <InputLabel htmlFor="email-hero" sx={visuallyHidden}>

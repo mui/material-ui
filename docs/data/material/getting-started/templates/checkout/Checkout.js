@@ -192,7 +192,7 @@ export default function Checkout(props) {
               ))}
             </Stepper>
             {activeStep === steps.length ? (
-              <Stack spacing={2} useFlexGap>
+              <Stack spacing={2}>
                 <Typography variant="h1">📦</Typography>
                 <Typography variant="h5">Thank you for your order!</Typography>
                 <Typography variant="body1" sx={{ color: 'text.secondary' }}>

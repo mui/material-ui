@@ -1,0 +1,23 @@
+name: Claude issue triage
+
+on:
+  issues:
+    types: [labeled]
+
+permissions: {}
+
+jobs:
+  triage:
+    if: >-
+      !github.event.issue.pull_request && github.event.label.name == 'ai: needs-triage'
+    # Maximum grant required by the reusable workflow; its model-running job uses read-only GitHub access.
+    # Automated fixes and their publisher are disabled in the pinned workflow.
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    uses: mui/mui-public/.github/workflows/claude-triage.yml@d273bbedf2bc589425d71701964d01a9d67c9460 # master
+    with:
+      issue-number: ${{ github.event.issue.number }}
+      mode: triage
