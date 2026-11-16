@@ -8,7 +8,7 @@ import type { TextFieldProps } from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import type { OutlinedInputProps } from '@mui/material/OutlinedInput';
 
-const CssTextField = styled(TextField)({
+const CssTextField = styled(TextField)(({ theme }) => ({
   '& label.Mui-focused': {
     color: '#A0AAB4',
   },
@@ -26,7 +26,20 @@ const CssTextField = styled(TextField)({
       borderColor: '#6F7E8C',
     },
   },
-});
+  ...theme.applyStyles('dark', {
+    '& label.Mui-focused': {
+      color: '#E0E3E7',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#6F7E8C',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#E0E3E7',
+      },
+    },
+  }),
+}));
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -104,20 +117,20 @@ const RedditTextField = styled((props: TextFieldProps) => (
   },
 }));
 
-const ValidationTextField = styled(TextField)({
+const ValidationTextField = styled(TextField)(({ theme }) => ({
   '& input:valid + fieldset': {
-    borderColor: '#E0E3E7',
+    borderColor: (theme.vars ?? theme).palette.divider,
     borderWidth: 1,
   },
   '& input:invalid + fieldset': {
-    borderColor: 'red',
+    borderColor: (theme.vars ?? theme).palette.error.main,
     borderWidth: 1,
   },
   '& input:valid:focus + fieldset': {
     borderLeftWidth: 4,
     padding: '4px !important', // override inline-style
   },
-});
+}));
 
 export default function CustomizedInputsStyled() {
   // @focus-start @padding 1
