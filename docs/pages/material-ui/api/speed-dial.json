@@ -13,6 +13,7 @@
     "FabProps": { "type": { "name": "object" }, "default": "{}" },
     "hidden": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
     "onClose": {
       "type": { "name": "func" },
       "signature": {

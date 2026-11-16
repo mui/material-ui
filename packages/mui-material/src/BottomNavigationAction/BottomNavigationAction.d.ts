@@ -22,7 +22,7 @@ export interface BottomNavigationActionSlots {
   root: React.ElementType;
   /**
    * The component that renders the label.
-   * @default span
+   * @default 'span'
    */
   label: React.ElementType;
 }
