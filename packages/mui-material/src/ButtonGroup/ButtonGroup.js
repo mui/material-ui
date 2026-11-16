@@ -337,7 +337,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
         {validChildren.map((child, index) => {
           return (
             <ButtonGroupButtonContext.Provider
-              key={index}
+              key={child.key}
               value={getButtonPositionClassName(index)}
             >
               {child}
@@ -363,7 +363,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**

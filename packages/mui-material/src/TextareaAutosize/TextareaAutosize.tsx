@@ -6,7 +6,7 @@ import useForkRef from '@mui/utils/useForkRef';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useEventCallback from '@mui/utils/useEventCallback';
 import ownerWindow from '@mui/utils/ownerWindow';
-import { TextareaAutosizeProps } from './TextareaAutosize.types';
+import type { TextareaAutosizeProps } from './TextareaAutosize.types';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
@@ -257,9 +257,6 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * Maximum number of rows to display.
@@ -270,21 +267,9 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
    * @default 1
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
   placeholder: PropTypes.string,
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
-  /**
-   * @ignore
-   */
   value: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.number,
