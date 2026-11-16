@@ -37,25 +37,25 @@ export default function BrandingThemeTest() {
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
         <Section>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mb: 4 }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content', mb: 4 }}>
             <Link href="/">Link with no role</Link>
             <Link href="/" role="menuitem">
               Link role menuitem
             </Link>
           </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content' }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content' }}>
             <Chip size="small" variant="outlined" color="primary" label="Hiring" />
             <Chip size="small" variant="outlined" color="info" label="Hiring" />
             <Chip size="small" variant="outlined" color="error" label="Hiring" />
             <Chip size="small" variant="outlined" color="warning" label="Hiring" />
             <Chip size="small" variant="outlined" color="success" label="Hiring" />
           </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content', mt: 8 }}>
             <Button variant="contained">This button</Button>
             <Button variant="outlined">This button</Button>
             <Button variant="text">This button</Button>
           </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content', mt: 8 }}>
             <Button variant="contained" size="small" color="primary">
               Contained primary
             </Button>
@@ -81,7 +81,7 @@ export default function BrandingThemeTest() {
               <GitHubIcon fontSize="small" />
             </IconButton>
           </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content', mt: 8 }}>
             <Button variant="contained" size="small" color="primary" disabled>
               Contained primary
             </Button>
@@ -107,7 +107,7 @@ export default function BrandingThemeTest() {
               <GitHubIcon fontSize="small" />
             </IconButton>
           </Stack>
-          <Stack direction="column" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+          <Stack direction="column" spacing={2} sx={{ width: 'fit-content', mt: 8 }}>
             <Button variant="contained" size="large" color="primary">
               Large
             </Button>
@@ -118,7 +118,7 @@ export default function BrandingThemeTest() {
               Small
             </Button>
           </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content', mt: 8 }}>
             <FormControl sx={{ width: 120 }}>
               <InputLabel id="demo-simple-select-label">Age</InputLabel>
               <Select
@@ -148,13 +148,13 @@ export default function BrandingThemeTest() {
               </Select>
             </FormControl>
           </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content', mt: 8 }}>
             <Checkbox {...label} defaultChecked />
             <Checkbox {...label} />
             <Checkbox {...label} disabled />
             <Checkbox {...label} disabled checked />
           </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ width: 'fit-content', mt: 8 }}>
+          <Stack direction="row" spacing={2} sx={{ width: 'fit-content', mt: 8 }}>
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
                 sx={{ height: 140 }}
