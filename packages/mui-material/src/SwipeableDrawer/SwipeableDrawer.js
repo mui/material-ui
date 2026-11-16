@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import contains from '../utils/contains';
+import getEventTarget from '../utils/getEventTarget';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
@@ -66,7 +67,7 @@ function getDomTreeShapes(element, rootNode) {
   // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
   const domTreeShapes = [];
 
-  while (element && element !== rootNode.parentElement) {
+  while (element) {
     const style = ownerWindow(rootNode).getComputedStyle(element);
 
     if (
@@ -85,7 +86,12 @@ function getDomTreeShapes(element, rootNode) {
       domTreeShapes.push(element);
     }
 
-    element = element.parentElement;
+    if (element === rootNode) {
+      break;
+    }
+
+    // Cross shadow root boundaries so scrollable ancestors outside a shadow root are found.
+    element = element.parentElement || element.getRootNode().host || null;
   }
 
   return domTreeShapes;
@@ -372,8 +378,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       ownerWindow(nativeEvent.currentTarget),
     );
 
-    if (open && contains(paperRef.current, nativeEvent.target) && claimedSwipeInstance === null) {
-      const domTreeShapes = getDomTreeShapes(nativeEvent.target, paperRef.current);
+    const target = getEventTarget(nativeEvent);
+
+    if (open && contains(paperRef.current, target) && claimedSwipeInstance === null) {
+      const domTreeShapes = getDomTreeShapes(target, paperRef.current);
       const hasNativeHandler = computeHasNativeHandler({
         domTreeShapes,
         start: horizontalSwipe ? swipeInstance.current.startX : swipeInstance.current.startY,
@@ -497,11 +505,13 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       return;
     }
 
+    const target = getEventTarget(nativeEvent);
+
     // At least one element clogs the drawer interaction zone.
     if (
       open &&
-      (hideBackdrop || !contains(backdropRef.current, nativeEvent.target)) &&
-      !contains(paperRef.current, nativeEvent.target)
+      (hideBackdrop || !contains(backdropRef.current, target)) &&
+      !contains(paperRef.current, target)
     ) {
       return;
     }
@@ -529,8 +539,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       if (
         disableSwipeToOpen ||
         !(
-          nativeEvent.target === swipeAreaRef.current ||
-          (contains(paperRef.current, nativeEvent.target) &&
+          target === swipeAreaRef.current ||
+          (contains(paperRef.current, target) &&
             (typeof allowSwipeInChildren === 'function'
               ? allowSwipeInChildren(nativeEvent, swipeAreaRef.current, paperRef.current)
               : allowSwipeInChildren))

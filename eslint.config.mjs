@@ -68,6 +68,7 @@ export default defineConfig(
     enableReactCompiler: ENABLE_REACT_COMPILER_PLUGIN,
     baseDirectory: dirname,
     materialUi: true,
+    consistentTypeImports: true,
   }),
   // eslint-plugin-mdx loads `.remarkrc.mjs` itself, but ESLint doesn't know
   // that file is a config dependency, so `--cache` doesn't invalidate when
@@ -115,6 +116,8 @@ export default defineConfig(
       'react-hooks/incompatible-library': 'off',
       'react-hooks/static-components': 'off',
       'react-hooks/purity': 'off',
+
+      'mui/no-presentation-role': 'error',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
