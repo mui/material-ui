@@ -125,8 +125,13 @@ Without `insetOverrides`, the inner focus indicator components use `outlineOffse
 They also draw the `boxShadow` inset.
 With a keyword `outlineWidth` (`thin`, `medium`, or `thick`), they use the negative `outlineOffset` instead.
 
+These components set the whole indicator in their own focus selector, so a `MuiButtonBase` style override does not change it.
+To change their indicator, use `insetOverrides` or the style overrides of each component.
+
 :::info
-`Tab` draws the indicator at least 6px inside its edge, so the indicator does not overlap the selected tab indicator.
+`Tab` draws the outline at least 6px inside its edge, so the indicator does not overlap the selected tab indicator.
+Only the outline moves: an inset `boxShadow` from `insetOverrides` stays at the edge, so on `Tab` it sits outside the outline.
+To draw a different indicator on `Tab`, use `theme.applyFocusVisible()` in a `MuiTab` style override, as described in [Choosing the indicator of a component](#choosing-the-indicator-of-a-component).
 :::
 
 ### Choosing the indicator of a component
