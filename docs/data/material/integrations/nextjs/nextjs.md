@@ -231,7 +231,6 @@ function OrdersToolbarFallback() {
     <Stack
       direction="row"
       spacing={2}
-      useFlexGap
       sx={{ flexWrap: 'wrap', alignItems: 'center', minHeight: 56 }}
     >
       <Skeleton

@@ -141,6 +141,19 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     }
 
     if (autoFocusActiveItem) {
+      // A `MenuItem` with `autoFocus` focuses itself in its own effect, which runs before this one.
+      const currentFocus = getActiveElement(ownerDocument(listRef.current));
+      const focusedItem = currentFocus
+        ? Array.from(getItemMap().values()).find(
+            (item) => item.element === currentFocus && isItemFocusable(item),
+          )
+        : undefined;
+
+      if (focusedItem) {
+        hasFocusedInitialTargetRef.current = true;
+        return focusedItem.element;
+      }
+
       const activeItem = getActiveItem();
 
       if (activeItem?.element) {
@@ -336,7 +349,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -349,13 +362,7 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableListWrap: PropTypes.bool,
-  /**
-   * @ignore
-   */
   onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onKeyDown: PropTypes.func,
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus

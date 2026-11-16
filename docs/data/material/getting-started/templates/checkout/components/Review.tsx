@@ -57,12 +57,7 @@ export default function Review() {
           <Grid container>
             {payments.map((payment) => (
               <React.Fragment key={payment.name}>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  useFlexGap
-                  sx={{ width: '100%', mb: 1 }}
-                >
+                <Stack direction="row" spacing={1} sx={{ width: '100%', mb: 1 }}>
                   <Typography variant="body1" sx={{ color: 'text.secondary' }}>
                     {payment.name}
                   </Typography>
