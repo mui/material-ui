@@ -508,11 +508,15 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     checkDirty(event.animationName === MUI_AUTO_FILL_CANCEL ? inputRef.current : { value: 'x' });
   };
 
+  // Depend on whether there is an adornment and on the stable state setter, not on the
+  // adornment element or the context object, which can both be new on every render.
+  const hasStartAdornment = Boolean(startAdornment);
+  const setFormControlAdornedStart = muiFormControl ? muiFormControl.setAdornedStart : undefined;
   React.useEffect(() => {
-    if (muiFormControl) {
-      muiFormControl.setAdornedStart(Boolean(startAdornment));
+    if (setFormControlAdornedStart) {
+      setFormControlAdornedStart(hasStartAdornment);
     }
-  }, [muiFormControl, startAdornment]);
+  }, [setFormControlAdornedStart, hasStartAdornment]);
 
   const ownerState = {
     ...props,

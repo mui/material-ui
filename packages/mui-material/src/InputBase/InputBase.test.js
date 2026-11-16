@@ -12,6 +12,7 @@ import {
 } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
+import FormControlContext from '@mui/material/FormControl/FormControlContext';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
@@ -327,6 +328,49 @@ describe('<InputBase />', () => {
       );
 
       expect(screen.getByTestId('root')).to.have.class(classes.formControl);
+    });
+
+    it('should only report the start adornment to FormControl when it appears or disappears', async () => {
+      const setAdornedStart = spy();
+      function SpyOnAdornedStart({ children }) {
+        const formControl = useFormControl();
+        const context = React.useMemo(() => ({ ...formControl, setAdornedStart }), [formControl]);
+        return (
+          <FormControlContext.Provider value={context}>{children}</FormControlContext.Provider>
+        );
+      }
+      function Form() {
+        const [value, setValue] = React.useState('');
+        const [adorned, setAdorned] = React.useState(true);
+        return (
+          <React.Fragment>
+            <FormControl>
+              <SpyOnAdornedStart>
+                <InputBase
+                  value={value}
+                  onChange={(event) => setValue(event.target.value)}
+                  // A new element on every render, like an inline adornment in an app
+                  startAdornment={
+                    adorned ? <InputAdornment position="start">$</InputAdornment> : null
+                  }
+                />
+              </SpyOnAdornedStart>
+            </FormControl>
+            <button type="button" onClick={() => setAdorned(false)}>
+              Remove adornment
+            </button>
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<Form />);
+      expect(setAdornedStart.lastCall.args).to.deep.equal([true]);
+      setAdornedStart.resetHistory();
+
+      await user.type(screen.getByRole('textbox'), 'abc');
+      expect(setAdornedStart.callCount).to.equal(0);
+
+      await user.click(screen.getByRole('button', { name: 'Remove adornment' }));
+      expect(setAdornedStart.args).to.deep.equal([[false]]);
     });
 
     describe('callbacks', () => {
