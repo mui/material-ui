@@ -95,6 +95,12 @@
       "matchFileNames": ["test/typescriptMinimum/package.json"],
       "matchPackageNames": ["typescript"],
       "allowedVersions": ">=5.0.0 <6.0.0"
+    },
+    {
+      "description": "Keep the docs stylis on the version that @emotion/cache pins. A newer stylis prefixer throws on the styles that Emotion's stylis parses.",
+      "matchFileNames": ["pnpm-workspace.yaml"],
+      "matchPackageNames": ["stylis"],
+      "enabled": false
     }
   ]
 }

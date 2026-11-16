@@ -192,7 +192,6 @@ catalogs:
 
 overrides:
   '@mui/internal-docs-infra': 0.13.1-canary.33
-  docs>stylis: 4.2.0
   docs>react-is: 19.3.1
   caniuse-lite: ^1.0.30001823
   '@types/node': 22.20.5
@@ -649,7 +648,7 @@ importers:
         specifier: ^6.6.0
         version: 6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       stylis:
-        specifier: 4.2.0
+        specifier: catalog:docs
         version: 4.2.0
       use-count-up:
         specifier: ^3.0.1
