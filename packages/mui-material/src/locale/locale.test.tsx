@@ -31,6 +31,63 @@ const localeEntries = Object.entries(locales).filter(
   (entry): entry is [string, Localization] => typeof entry[1] === 'object' && entry[0] !== 'enUS',
 );
 
+type LocalizedProps<Name extends LocalizedComponentName> = NonNullable<
+  NonNullable<Localization['components']>[Name]
+>['defaultProps'];
+
+/**
+ * How each localized prop shows up in the components rendered below, as text or as an accessible
+ * label. Typed so every prop in `Localization` needs an entry: adding one fails type checking until
+ * it's covered here.
+ */
+const localizedProps: {
+  [Name in LocalizedComponentName]-?: {
+    [Prop in keyof LocalizedProps<Name>]-?: (
+      value: NonNullable<LocalizedProps<Name>[Prop]>,
+    ) => Partial<LocalizedStrings>;
+  };
+} = {
+  MuiAlert: {
+    closeText: (value) => ({ labels: [value] }),
+  },
+  MuiAutocomplete: {
+    clearText: (value) => ({ labels: [value] }),
+    closeText: (value) => ({ labels: [value] }),
+    loadingText: (value) => ({ texts: [value] }),
+    noOptionsText: (value) => ({ texts: [value] }),
+    openText: (value) => ({ labels: [value] }),
+  },
+  MuiBreadcrumbs: {
+    expandText: (value) => ({ labels: [value] }),
+  },
+  MuiPagination: {
+    'aria-label': (value) => ({ labels: [value] }),
+    getItemAriaLabel: (getLabel) => ({
+      labels: [
+        getLabel('page', 1, false),
+        getLabel('page', 2, true),
+        getLabel('first', 1, false),
+        getLabel('previous', 1, false),
+        getLabel('next', 3, false),
+        getLabel('last', 3, false),
+      ],
+    }),
+  },
+  MuiRating: {
+    emptyLabelText: (value) => ({ labels: [value] }),
+    getLabelText: (getLabel) => ({ labels: [getLabel(1), getLabel(5)] }),
+  },
+  MuiTablePagination: {
+    getItemAriaLabel: (getLabel) => ({
+      labels: [getLabel('first'), getLabel('previous'), getLabel('next'), getLabel('last')],
+    }),
+    labelDisplayedRows: (getLabel) => ({
+      texts: [getLabel({ from: 11, to: 20, count: 100, page: 1 })],
+    }),
+    labelRowsPerPage: (value) => ({ texts: [value] }),
+  },
+};
+
 /**
  * Gets the strings a locale translates for each component, as they show up in the components
  * rendered below. A locale can leave a string out, in which case the component falls back to English.
@@ -38,70 +95,30 @@ const localeEntries = Object.entries(locales).filter(
 function getLocalizedStrings({
   components = {},
 }: Localization): Partial<Record<LocalizedComponentName, LocalizedStrings>> {
-  const {
-    MuiAlert,
-    MuiAutocomplete,
-    MuiBreadcrumbs,
-    MuiPagination,
-    MuiRating,
-    MuiTablePagination,
-  } = components;
   const strings: Partial<Record<LocalizedComponentName, LocalizedStrings>> = {};
 
-  if (MuiAlert) {
-    strings.MuiAlert = { texts: [], labels: [MuiAlert.defaultProps.closeText] };
-  }
-
-  if (MuiAutocomplete) {
-    const { clearText, closeText, loadingText, noOptionsText, openText } =
-      MuiAutocomplete.defaultProps;
-    strings.MuiAutocomplete = {
-      texts: [noOptionsText, loadingText],
-      labels: [clearText, closeText, openText],
-    };
-  }
-
-  if (MuiBreadcrumbs) {
-    strings.MuiBreadcrumbs = { texts: [], labels: [MuiBreadcrumbs.defaultProps.expandText] };
-  }
-
-  if (MuiPagination) {
-    const { 'aria-label': ariaLabel, getItemAriaLabel } = MuiPagination.defaultProps;
-    strings.MuiPagination = {
-      texts: [],
-      labels: [
-        ariaLabel,
-        getItemAriaLabel?.('page', 1, false),
-        getItemAriaLabel?.('page', 2, true),
-        getItemAriaLabel?.('first', 1, false),
-        getItemAriaLabel?.('previous', 1, false),
-        getItemAriaLabel?.('next', 3, false),
-        getItemAriaLabel?.('last', 3, false),
-      ],
-    };
-  }
-
-  if (MuiRating) {
-    const { emptyLabelText, getLabelText } = MuiRating.defaultProps;
-    strings.MuiRating = {
-      texts: [],
-      labels: [emptyLabelText, getLabelText?.(1), getLabelText?.(5)],
-    };
-  }
-
-  if (MuiTablePagination) {
-    const { getItemAriaLabel, labelDisplayedRows, labelRowsPerPage } =
-      MuiTablePagination.defaultProps;
-    strings.MuiTablePagination = {
-      texts: [labelRowsPerPage, labelDisplayedRows?.({ from: 11, to: 20, count: 100, page: 1 })],
-      labels: [
-        getItemAriaLabel?.('first'),
-        getItemAriaLabel?.('previous'),
-        getItemAriaLabel?.('next'),
-        getItemAriaLabel?.('last'),
-      ],
-    };
-  }
+  Object.entries(components).forEach(([name, component]) => {
+    if (!component) {
+      return;
+    }
+    const getters: Record<string, (value: any) => Partial<LocalizedStrings>> =
+      localizedProps[name as LocalizedComponentName];
+    if (!getters) {
+      throw new Error(`No test coverage for localized component ${name}`);
+    }
+    const componentStrings: LocalizedStrings = { texts: [], labels: [] };
+    Object.entries(component.defaultProps).forEach(([prop, value]) => {
+      if (!getters[prop]) {
+        throw new Error(`No test coverage for localized prop ${name}.${prop}`);
+      }
+      if (value !== undefined) {
+        const { texts = [], labels = [] } = getters[prop](value);
+        componentStrings.texts.push(...texts);
+        componentStrings.labels.push(...labels);
+      }
+    });
+    strings[name as LocalizedComponentName] = componentStrings;
+  });
 
   return strings;
 }
