@@ -187,6 +187,34 @@ Below is an example using the [`InputBase`](/material-ui/api/input-base/) compon
 
 {{"component": "file://./demos/customized-input-base/index.ts", "bg": true}}
 
+### Autofill styles
+
+When the browser autofills a field, it paints its own background color on the input.
+The outlined and filled variants can cover it with an inset `box-shadow`, set for each color scheme by the `palette.Input.autofillWebkitBoxShadow` theme token.
+By default, it's `none` in the light color scheme (so the browser's color shows) and `0 0 0 100px #266798 inset` in the dark color scheme.
+
+The token is only applied when [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) are enabled:
+
+```js
+const theme = createTheme({
+  cssVariables: true,
+  colorSchemes: {
+    light: {
+      palette: {
+        Input: { autofillWebkitBoxShadow: '0 0 0 100px #e8f0fe inset' },
+      },
+    },
+    dark: {
+      palette: {
+        Input: { autofillWebkitBoxShadow: '0 0 0 100px #1e3a5f inset' },
+      },
+    },
+  },
+});
+```
+
+The token doesn't affect the text color: the autofilled text and caret stay white in the dark color scheme.
+
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/text-field).
 
 ## `useFormControl`
@@ -224,42 +252,6 @@ import { useFormControl } from '@mui/material/FormControl';
 **Example**
 
 {{"component": "file://./demos/use-form-control/index.ts"}}
-
-## Performance
-
-Global styles for the auto-fill keyframes are injected and removed on each mount and unmount, respectively.
-If you are loading a large number of Text Field components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#input-base-prop-disableInjectingGlobalStyles) in `MuiInputBase`.
-Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
-
-```jsx
-import { GlobalStyles, createTheme, ThemeProvider } from '@mui/material';
-
-const theme = createTheme({
-  components: {
-    MuiInputBase: {
-      defaultProps: {
-        disableInjectingGlobalStyles: true,
-      },
-    },
-  },
-});
-
-export default function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles
-        styles={{
-          '@keyframes mui-auto-fill': { from: { animationName: 'mui-auto-fill' } },
-          '@keyframes mui-auto-fill-cancel': {
-            from: { animationName: 'mui-auto-fill-cancel' },
-          },
-        }}
-      />
-      ...
-    </ThemeProvider>
-  );
-}
-```
 
 ## Limitations
 

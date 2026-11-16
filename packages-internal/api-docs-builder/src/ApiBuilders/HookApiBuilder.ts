@@ -4,15 +4,16 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { kebabCase, upperFirst, escapeRegExp } from 'es-toolkit/string';
-import { parse as parseDoctrine, Annotation } from 'doctrine';
+import type { Annotation } from 'doctrine';
+import { parse as parseDoctrine } from 'doctrine';
 import { escapeEntities, renderMarkdown } from '../buildApi';
-import { ProjectSettings } from '../ProjectSettings';
+import type { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
-import { TypeScriptProject } from '../utils/createTypeScriptProject';
+import type { TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
-import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
-import { HookInfo } from '../types/utils.types';
+import type { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
+import type { HookInfo } from '../types/utils.types';
 import extractInfoFromType from '../utils/extractInfoFromType';
 
 /**
@@ -40,6 +41,8 @@ async function annotateHookDefinition(
     configFile: false,
     filename: typesFilename,
     presets: [require.resolve('@babel/preset-typescript')],
+    // The Babel 8 TypeScript preset does not enable JSX for `.tsx` files.
+    overrides: [{ test: /\.tsx$/, parserOpts: { plugins: ['jsx'] } }],
   });
   if (typesAST === null) {
     throw new Error('No AST returned from babel.');
@@ -52,7 +55,7 @@ async function annotateHookDefinition(
       /**
        * export default function Menu() {}
        */
-      let node: babel.Node = babelPath.node;
+      let node: babel.types.Node = babelPath.node;
       if (node.declaration.type === 'Identifier') {
         // declare const Menu: {};
         // export default Menu;
@@ -102,7 +105,7 @@ async function annotateHookDefinition(
     },
 
     ExportNamedDeclaration(babelPath) {
-      let node: babel.Node = babelPath.node;
+      let node: babel.types.Node = babelPath.node;
 
       if (babel.types.isTSDeclareFunction(node.declaration)) {
         // export function useHook() in .d.ts
@@ -113,7 +116,11 @@ async function annotateHookDefinition(
         // export { useHook };
 
         node.specifiers.forEach((specifier) => {
-          if (specifier.type === 'ExportSpecifier' && specifier.local.name === fileName) {
+          if (
+            specifier.type === 'ExportSpecifier' &&
+            specifier.local.type === 'Identifier' &&
+            specifier.local.name === fileName
+          ) {
             const binding = babelPath.scope.bindings[specifier.local.name];
 
             if (babel.types.isFunctionDeclaration(binding.path.node)) {

@@ -33,17 +33,17 @@ export interface AlertSlots {
   root: React.ElementType;
   /**
    * The component that renders the icon slot.
-   * @default div
+   * @default 'div'
    */
   icon: React.ElementType;
   /**
    * The component that renders the message slot.
-   * @default div
+   * @default 'div'
    */
   message: React.ElementType;
   /**
    * The component that renders the action slot.
-   * @default div
+   * @default 'div'
    */
   action: React.ElementType;
   /**
@@ -53,7 +53,7 @@ export interface AlertSlots {
   closeButton: React.ElementType;
   /**
    * The component that renders the close icon.
-   * @default svg
+   * @default 'svg'
    */
   closeIcon: React.ElementType;
 }
