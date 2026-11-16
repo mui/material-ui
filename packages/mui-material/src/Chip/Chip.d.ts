@@ -12,12 +12,12 @@ export interface ChipLabelSlotPropsOverrides {}
 export interface ChipSlots {
   /**
    * The component that renders the root.
-   * @default div
+   * @default 'div'
    */
   root: React.ElementType;
   /**
    * The component that renders the label.
-   * @default span
+   * @default 'span'
    */
   label: React.ElementType;
 }

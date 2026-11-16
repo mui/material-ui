@@ -19,12 +19,7 @@ export default function FlexboxGapStack() {
   return (
     <Box sx={{ width: 200 }}>
       {/* @focus-start */}
-      <Stack
-        spacing={{ xs: 1, sm: 2 }}
-        direction="row"
-        useFlexGap
-        sx={{ flexWrap: 'wrap' }}
-      >
+      <Stack spacing={{ xs: 1, sm: 2 }} direction="row" sx={{ flexWrap: 'wrap' }}>
         <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Long content</Item>
