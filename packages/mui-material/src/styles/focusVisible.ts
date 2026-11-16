@@ -37,11 +37,27 @@ export function mergeFocusVisibleInput(
 const resolvedRings = new WeakSet<object>();
 
 /**
- * Whether an input is this module's own output, which identifies a ring fed back in by
- * `createTheme(existingTheme, …)`.
+ * Whether the `outlineColor` that wins the merge comes from this module's own output, which
+ * identifies a ring fed back in by `createTheme(existingTheme, …)`.
  */
-export function isResolvedFocusVisible(input: FocusVisibleInput): boolean {
-  return input != null && typeof input === 'object' && resolvedRings.has(input);
+export function isOutlineColorFromResolvedRing(
+  optionsFocusVisible: FocusVisibleInput,
+  args: readonly any[],
+): boolean {
+  const inputs = [
+    optionsFocusVisible,
+    ...args.filter((arg) => arg && 'focusVisible' in arg).map((arg) => arg.focusVisible),
+  ];
+  for (let index = inputs.length - 1; index >= 0; index -= 1) {
+    const input = inputs[index];
+    if (input == null || typeof input !== 'object') {
+      return false;
+    }
+    if (input.outlineColor !== undefined) {
+      return resolvedRings.has(input);
+    }
+  }
+  return false;
 }
 
 /**

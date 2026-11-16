@@ -876,6 +876,19 @@ describe('createTheme', () => {
       );
     });
 
+    it('recomposing with a focusVisible merge argument keeps the ring scheme-reactive', () => {
+      const base = createTheme({
+        cssVariables: false,
+        colorSchemes: { light: true, dark: true },
+        focusVisible: true,
+      });
+      const recomposed = createTheme(base, { focusVisible: { outlineWidth: 3 } });
+      expect(recomposed.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+        base.colorSchemes.dark.palette.primary.main,
+      );
+      expect(recomposed.colorSchemes.dark.focusVisible.outlineWidth).to.equal(3);
+    });
+
     it('recomposing keeps an explicit custom outlineColor on every scheme', () => {
       const base = createTheme({
         cssVariables: false,
