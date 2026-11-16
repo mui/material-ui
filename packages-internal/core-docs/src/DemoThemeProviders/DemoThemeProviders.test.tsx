@@ -1,8 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  fireEvent,
+  flushMicrotasks,
+  isJsdom,
+  screen,
+  waitFor,
+} from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import type * as JsxRuntime from 'react/jsx-runtime';
 import DemoContext from '../DemoContext';
 import { DemoComponentTheme, DemoInstanceThemeProvider } from './DemoThemeProviders';
 
@@ -73,7 +81,7 @@ describe('docs demo theming', () => {
     };
     const runtimeWindow = window as typeof window & {
       React?: typeof React;
-      jsx?: typeof import('react/jsx-runtime');
+      jsx?: typeof JsxRuntime;
       getInjectTheme?: typeof getInjectTheme;
     };
     runtimeWindow.getInjectTheme = getInjectTheme;
@@ -91,7 +99,10 @@ describe('docs demo theming', () => {
       </ThemeProvider>,
     );
 
-    await waitFor(() => expect(screen.getByTestId('first')).to.have.text('injected'));
+    // Commit the bridge update inside `act()`. Outside it, the update waits for a
+    // scheduler task, and CI WebKit can delay that task past the `waitFor` timeout.
+    await flushMicrotasks();
+    expect(screen.getByTestId('first')).to.have.text('injected');
     expect(screen.getByTestId('second')).to.have.text('injected');
     expect(callCount).to.equal(1);
     expect(runtimeWindow.React?.createElement).to.equal(React.createElement);

@@ -553,7 +553,7 @@ describe('<Chip />', () => {
 
     describe('prop: onDelete', () => {
       ['Backspace', 'Delete'].forEach((key) => {
-        it(`should call onDelete '${key}' is released`, () => {
+        it(`should call onDelete when '${key}' is released`, () => {
           const handleDelete = spy();
           const handleKeyDown = spy();
 
@@ -575,6 +575,19 @@ describe('<Chip />', () => {
 
           expect(handleDelete.callCount).to.equal(1);
         });
+      });
+
+      it('should not call onDelete when disabled', () => {
+        const handleDelete = spy();
+        render(<Chip label="Chip" disabled onDelete={handleDelete} />);
+        const chip = screen.getByRole('button');
+        act(() => {
+          chip.focus();
+        });
+
+        fireEvent.keyUp(chip, { key: 'Backspace' });
+
+        expect(handleDelete.callCount).to.equal(0);
       });
 
       it('should not prevent default on input', () => {
