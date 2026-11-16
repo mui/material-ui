@@ -609,11 +609,13 @@ describe('createTheme', () => {
         ).to.deep.equal({ ...insetOverrides, outlineColor: 'red' });
       });
 
-      it('is dropped when focusVisible is off', () => {
-        const base = createTheme({ focusVisible: { insetOverrides } });
-        expect(
-          createTheme(base, { focusVisible: false }).unstable_focusVisibleInsetOverrides,
-        ).to.equal(undefined);
+      [false, true].forEach((cssVariables) => {
+        it(`is dropped when focusVisible is off (cssVariables: ${cssVariables})`, () => {
+          const base = createTheme({ cssVariables, focusVisible: { insetOverrides } });
+          expect(
+            createTheme(base, { focusVisible: false }).unstable_focusVisibleInsetOverrides,
+          ).to.equal(undefined);
+        });
       });
     });
 
@@ -642,6 +644,7 @@ describe('createTheme', () => {
         expect(insideOf({ outlineWidth: 2, outlineOffset: 6 }).outlineOffset).to.equal(-2);
         expect(insideOf({ outlineWidth: '0.25rem' }).outlineOffset).to.equal('calc(-1 * 0.25rem)');
         expect(insideOf({ outlineWidth: 'thick', outlineOffset: 1 }).outlineOffset).to.equal(-1);
+        expect(insideOf({ outlineWidth: 'THICK', outlineOffset: 1 }).outlineOffset).to.equal(-1);
       });
 
       it('draws the outer boxShadow inset, keeping inset shadows and keywords as they are', () => {

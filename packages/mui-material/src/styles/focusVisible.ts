@@ -82,6 +82,25 @@ export function resolveFocusVisible(
   return ring as React.CSSProperties;
 }
 
+export function attachFocusVisible(
+  theme: FocusVisibleTheme,
+  input: FocusVisibleInput,
+  outlineColor: string,
+) {
+  if (input == null || input === false) {
+    delete theme.unstable_focusVisibleInsetOverrides;
+    return;
+  }
+  const { insetOverrides } = input === true ? ({} as FocusVisibleOptions) : input;
+  theme.focusVisible = resolveFocusVisible(input, outlineColor);
+  if (insetOverrides) {
+    theme.unstable_focusVisibleInsetOverrides = deepmerge(
+      theme.unstable_focusVisibleInsetOverrides ?? {},
+      insetOverrides,
+    );
+  }
+}
+
 const outlineWidthKeywords = new Set([
   'thin',
   'medium',
@@ -115,7 +134,10 @@ function getInsetOutlineOffset(
   if (typeof outlineWidth === 'number') {
     return -outlineWidth;
   }
-  if (typeof outlineWidth === 'string' && !outlineWidthKeywords.has(outlineWidth.trim())) {
+  if (
+    typeof outlineWidth === 'string' &&
+    !outlineWidthKeywords.has(outlineWidth.trim().toLowerCase())
+  ) {
     return `calc(-1 * ${outlineWidth})`;
   }
   return typeof outlineOffset === 'number' ? -outlineOffset : `calc(-1 * ${outlineOffset})`;
