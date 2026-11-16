@@ -404,10 +404,8 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * Popper render function or node.
    */
-  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ]),
+  children: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.node, PropTypes.func]),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -418,10 +416,8 @@ Popper.propTypes /* remove-proptypes */ = {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.func]),
   /**
    * Direction of the text.
    * @default 'ltr'
