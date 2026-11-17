@@ -29,6 +29,14 @@ describe('cssContainerQueries', () => {
     expect(getContainerQuery(theme, '@')).to.equal('@container (min-width:0px)');
   });
 
+  it('should keep the unit of a size that has one', () => {
+    const theme = createTheme();
+
+    expect(getContainerQuery(theme, '@40rem/sidebar')).to.equal(
+      '@container sidebar (min-width:40rem)',
+    );
+  });
+
   it('should have `up`, `down`, `between`, `only`, and `not` functions', () => {
     const theme = createTheme();
 
