@@ -158,7 +158,7 @@ export interface PopoverProps
    */
   container?: ModalProps['container'] | undefined;
   /**
-   * The elevation of the popover.
+   * The elevation of the popover. Must be an integer.
    * @default 8
    */
   elevation?: number | undefined;

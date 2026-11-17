@@ -87,6 +87,7 @@ export interface InputBaseProps extends StandardProps<
    * The component used for the `input` element.
    * Either a string to use a HTML element or a component.
    * @default 'input'
+   * @requiresRef
    */
   inputComponent?: React.ElementType<InputBaseComponentProps> | undefined;
   /**

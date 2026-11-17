@@ -570,7 +570,7 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   disableScrollLock: PropTypes.bool,
   /**
-   * The elevation of the popover.
+   * The elevation of the popover. Must be an integer.
    * @default 8
    */
   elevation: integerPropType,

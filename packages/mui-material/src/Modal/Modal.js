@@ -211,6 +211,7 @@ Modal.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A single child content element.
+   * @requiresRef
    */
   children: elementAcceptingRef.isRequired,
   /**

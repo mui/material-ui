@@ -734,6 +734,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   arrow: PropTypes.bool,
   /**
    * Tooltip reference element.
+   * @requiresRef
    */
   children: elementAcceptingRef.isRequired,
   /**

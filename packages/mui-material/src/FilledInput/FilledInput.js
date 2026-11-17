@@ -364,6 +364,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * The component used for the `input` element.
    * Either a string to use a HTML element or a component.
    * @default 'input'
+   * @requiresRef
    */
   inputComponent: PropTypes.elementType,
   /**

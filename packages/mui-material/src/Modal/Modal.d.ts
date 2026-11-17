@@ -30,6 +30,7 @@ export interface ModalSlots {
 export interface ModalOwnProps {
   /**
    * A single child content element.
+   * @requiresRef
    */
   children: React.ReactElement<unknown>;
   /**

@@ -30,6 +30,7 @@ type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
 export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
+   * @requiresRef
    */
   children: React.ReactElement<any>;
   /**
@@ -211,6 +212,7 @@ ClickAwayListener.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The wrapped element.
+   * @requiresRef
    */
   children: elementAcceptingRef.isRequired,
   /**

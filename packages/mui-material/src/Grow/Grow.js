@@ -238,6 +238,7 @@ Grow.propTypes /* remove-proptypes */ = {
   appear: PropTypes.bool,
   /**
    * A single child content element.
+   * @requiresRef
    */
   children: elementAcceptingRef.isRequired,
   /**

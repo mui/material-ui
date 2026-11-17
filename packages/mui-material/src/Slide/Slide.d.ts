@@ -19,6 +19,7 @@ export interface SlideProps extends TransitionProps {
   appear?: boolean | undefined;
   /**
    * A single child content element.
+   * @requiresRef
    */
   children: React.ReactElement<unknown, any>;
   /**

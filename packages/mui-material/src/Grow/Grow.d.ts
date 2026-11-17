@@ -19,6 +19,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
   appear?: boolean | undefined;
   /**
    * A single child content element.
+   * @requiresRef
    */
   children: React.ReactElement<unknown, any>;
   /**

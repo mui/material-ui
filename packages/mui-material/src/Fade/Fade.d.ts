@@ -19,6 +19,7 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
   appear?: boolean | undefined;
   /**
    * A single child content element.
+   * @requiresRef
    */
   children: React.ReactElement<unknown, any>;
   /**

@@ -82,6 +82,7 @@ export interface TooltipProps
   arrow?: boolean | undefined;
   /**
    * Tooltip reference element.
+   * @requiresRef
    */
   children: React.ReactElement<unknown, any>;
   /**
