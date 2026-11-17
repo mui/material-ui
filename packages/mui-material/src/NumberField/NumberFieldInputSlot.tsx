@@ -33,6 +33,9 @@ import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 
 type NumberFieldSlotProps = NonNullable<NumberFieldProps['slotProps']>;
 
+type NumberFieldButtonSlotProps = IconButtonProps &
+  Pick<BaseNumberField.Decrement.Props | BaseNumberField.Increment.Props, 'render'>;
+
 interface NumberFieldInputProps {
   baseProps: React.ComponentPropsWithRef<'input'>;
   baseState: BaseNumberField.Input.State;
@@ -311,7 +314,6 @@ const NumberFieldInputSlot = React.forwardRef(
         size: ownerState.size,
         children: <DecrementIcon fontSize="inherit" />,
       },
-      shouldForwardComponentProp: true,
     });
     const [IncrementButtonSlot, incrementButtonProps] = useSlot('incrementButton', {
       elementType: NumberFieldIncrementButton,
@@ -322,7 +324,6 @@ const NumberFieldInputSlot = React.forwardRef(
         size: ownerState.size,
         children: <IncrementIcon fontSize="inherit" />,
       },
-      shouldForwardComponentProp: true,
     });
 
     const {
@@ -334,10 +335,16 @@ const NumberFieldInputSlot = React.forwardRef(
     } = scrubAreaSlotProps;
     const scrubAreaProps = omitNullishEventHandlers(restScrubAreaProps);
 
-    const { disabled: decrementButtonDisabled, ...restDecrementButtonProps } =
-      decrementButtonProps as IconButtonProps;
-    const { disabled: incrementButtonDisabled, ...restIncrementButtonProps } =
-      incrementButtonProps as IconButtonProps;
+    const {
+      disabled: decrementButtonDisabled,
+      render: decrementButtonRender,
+      ...restDecrementButtonProps
+    } = decrementButtonProps as NumberFieldButtonSlotProps;
+    const {
+      disabled: incrementButtonDisabled,
+      render: incrementButtonRender,
+      ...restIncrementButtonProps
+    } = incrementButtonProps as NumberFieldButtonSlotProps;
 
     const scrubAreaElement = ownerState.scrubAreaPosition !== false && (
       <BaseNumberField.ScrubArea
@@ -364,6 +371,9 @@ const NumberFieldInputSlot = React.forwardRef(
             baseProps={buttonBaseProps}
             baseState={buttonBaseState}
             materialProps={ownerState}
+            render={
+              externalForwardedProps.slots.incrementButton ? undefined : incrementButtonRender
+            }
           />
         )}
       />
@@ -379,6 +389,9 @@ const NumberFieldInputSlot = React.forwardRef(
             baseProps={buttonBaseProps}
             baseState={buttonBaseState}
             materialProps={ownerState}
+            render={
+              externalForwardedProps.slots.decrementButton ? undefined : decrementButtonRender
+            }
           />
         )}
       />

@@ -273,12 +273,38 @@ function ValueCallbacks(props: NumberFieldProps) {
       onClick: (event: React.MouseEvent<HTMLButtonElement>) => event.currentTarget.focus(),
     },
     decrementButton: {
-      component: 'button',
+      render: <button type="button" aria-label="Decrease" />,
       disableRipple: true,
       onPointerDown: (event: React.PointerEvent<HTMLButtonElement>) => event.currentTarget.focus(),
     },
   }}
 />;
+
+// Each render callback receives its Base UI button state.
+<NumberField
+  slotProps={{
+    incrementButton: {
+      render: (props, state) => {
+        expectType<BaseNumberField.Increment.State, typeof state>(state);
+        return <button {...props} type="button" />;
+      },
+    },
+    decrementButton: {
+      render: (props, state) => {
+        expectType<BaseNumberField.Decrement.State, typeof state>(state);
+        return <button {...props} type="button" />;
+      },
+    },
+  }}
+/>;
+// @ts-expect-error Use render to change the increment button element.
+<NumberField slotProps={{ incrementButton: { component: 'span' } }} />;
+// @ts-expect-error Use render to change the decrement button element.
+<NumberField slotProps={{ decrementButton: { component: 'span' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ incrementButton: { render: 'button' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ decrementButton: { render: 'button' } }} />;
 
 // @ts-expect-error InputLabel's shrink prop is boolean.
 <NumberField slotProps={{ inputLabel: { shrink: 'true' } }} />;

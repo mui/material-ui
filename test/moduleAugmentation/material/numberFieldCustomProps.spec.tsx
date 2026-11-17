@@ -52,8 +52,15 @@ declare module '@mui/material/FormControl' {
     htmlInput: { customNativeProp: 'native', render: <input /> },
     inputLabel: { customLabelProp: 'label', shrink: true },
     formHelperText: { customHelperProp: 'helper' },
-    incrementButton: { stepLabel: 'increase' },
-    decrementButton: (ownerState) => ({ stepLabel: 'decrease', disabled: ownerState.disabled }),
+    incrementButton: {
+      stepLabel: 'increase',
+      render: <button type="button" aria-label="Increase" />,
+    },
+    decrementButton: (ownerState) => ({
+      stepLabel: 'decrease',
+      disabled: ownerState.disabled,
+      render: <button type="button" aria-label="Decrease" />,
+    }),
   }}
 />;
 

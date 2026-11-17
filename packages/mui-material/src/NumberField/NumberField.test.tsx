@@ -2,6 +2,7 @@ import * as React from 'react';
 import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { Field as BaseField } from '@base-ui/react/field';
+import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import type { BaseUIEvent } from '@base-ui/react/types';
 import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
@@ -996,7 +997,7 @@ describe('<NumberField />', () => {
           defaultValue={5}
           onValueChange={onValueChange}
           onValueCommitted={onValueCommitted}
-          slotProps={{ incrementButton: { component: Link, nativeButton: false, tabIndex: 0 } }}
+          slotProps={{ incrementButton: { render: <Link />, nativeButton: false, tabIndex: 0 } }}
         />,
       );
       expect(screen.getByRole('button', { name: 'Increase' }).tagName).to.equal('A');
@@ -1030,7 +1031,7 @@ describe('<NumberField />', () => {
             onValueCommitted={onValueCommitted}
             slotProps={{
               incrementButton: {
-                component: 'span',
+                render: <span />,
                 nativeButton: false,
                 tabIndex: 0,
                 onKeyDown: cancelBase,
@@ -1066,8 +1067,10 @@ describe('<NumberField />', () => {
         describe('props and refs', () => {
           it('resolves callback props for a custom slot and preserves its ref and behavior', async () => {
             const ref = vi.fn();
+            const renderButton = vi.fn(() => <button />);
             const getSlotProps = (ownerState: NumberFieldOwnerState) => ({
               ref,
+              render: renderButton,
               'aria-label': `Step ${ownerState.label}`,
               className: 'custom-button',
               style: { userSelect: 'text' as const },
@@ -1090,6 +1093,7 @@ describe('<NumberField />', () => {
             expect(button).to.have.attribute('aria-controls', input.id);
             expect(button.style.userSelect).to.equal('text');
             expect(ref).toHaveBeenLastCalledWith(button);
+            expect(renderButton).toHaveBeenCalledTimes(0);
 
             await user.click(button);
 
@@ -1099,30 +1103,66 @@ describe('<NumberField />', () => {
             expect(ref).toHaveBeenLastCalledWith(null);
           });
 
-          it('forwards the component prop through the default Material button slot', async () => {
+          it('preserves Material styles, the ref and stepping with a render element', async () => {
+            const ref = React.createRef<HTMLButtonElement>();
             const { user } = render(
               <NumberField
                 label="Amount"
                 defaultValue={5}
-                slotProps={{ [slot]: { component: NativeButton } }}
+                slotProps={{
+                  [slot]: { render: <NativeButton />, ref, sx: { paddingTop: '7px' } },
+                }}
               />,
             );
             const button = screen.getByRole('button', { name });
 
             expect(button).to.equal(screen.getByTestId('button-component'));
             expect(button).to.have.class('MuiIconButton-root');
+            expect(getComputedStyle(button).paddingTop).to.equal('7px');
+            expect(ref.current).to.equal(button);
             await user.click(button);
             expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value(
               String(nextValue),
             );
           });
 
+          it('passes live button state to render, including availability at a value limit', async () => {
+            const renderButton: BaseNumberField.Increment.Props['render'] = (props, state) => (
+              <button
+                {...props}
+                data-render-value={state.value}
+                data-render-disabled={state.disabled}
+              />
+            );
+            const { user } = render(
+              <NumberField
+                label="Amount"
+                defaultValue={5}
+                min={4}
+                max={6}
+                slotProps={{
+                  [slot]: { render: renderButton },
+                }}
+              />,
+            );
+            const button = screen.getByRole('button', { name });
+
+            expect(button).to.have.attribute('data-render-value', '5');
+            expect(button).to.have.attribute('data-render-disabled', 'false');
+
+            await user.click(button);
+
+            expect(button).to.have.attribute('data-render-value', String(nextValue));
+            expect(button).to.have.attribute('data-render-disabled', 'true');
+            expect(button).to.have.class('Mui-disabled');
+          });
+
           // Host slots rely on Base UI for button semantics; Material replacements
           // add ButtonBase's own handlers, which must not duplicate activation.
           [
-            { configuration: 'host slot', component: undefined },
-            { configuration: 'Material component', component: 'span' as const },
-          ].forEach(({ configuration, component }) => {
+            { configuration: 'host slot', renderButton: undefined },
+            { configuration: 'Material render element', renderButton: <span /> },
+          ].forEach(({ configuration, renderButton }) => {
             it(`supports a non-native ${configuration} with one activation per gesture`, async () => {
               const onValueChange = vi.fn();
               const onValueCommitted = vi.fn();
@@ -1130,9 +1170,9 @@ describe('<NumberField />', () => {
                 <NumberField
                   label="Amount"
                   defaultValue={5}
-                  slots={component === undefined ? { [slot]: 'span' } : undefined}
+                  slots={renderButton ? undefined : { [slot]: 'span' }}
                   slotProps={{
-                    [slot]: { nativeButton: false, tabIndex: 0, component },
+                    [slot]: { nativeButton: false, tabIndex: 0, render: renderButton },
                   }}
                   onValueChange={onValueChange}
                   onValueCommitted={onValueCommitted}
@@ -1234,7 +1274,7 @@ describe('<NumberField />', () => {
                 defaultValue={5}
                 onValueChange={() => calls.push('change')}
                 onValueCommitted={() => calls.push('commit')}
-                slotProps={{ [slot]: { tabIndex: 0, onClick } }}
+                slotProps={{ [slot]: { render: <button />, tabIndex: 0, onClick } }}
               />,
             );
             const button = screen.getByRole('button', { name });
