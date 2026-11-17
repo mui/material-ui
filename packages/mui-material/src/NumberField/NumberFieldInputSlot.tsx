@@ -125,15 +125,15 @@ const buttonStyles = memoTheme(({ theme }) => ({
 }));
 const NumberFieldIncrementButton = styled(IconButton, {
   name: 'MuiNumberField',
-  slot: 'IncrementButton',
+  slot: 'incrementButton',
 })(buttonStyles);
 const NumberFieldDecrementButton = styled(IconButton, {
   name: 'MuiNumberField',
-  slot: 'DecrementButton',
+  slot: 'decrementButton',
 })(buttonStyles);
 const NumberFieldScrubArea = styled('span', {
   name: 'MuiNumberField',
-  slot: 'ScrubArea',
+  slot: 'scrubArea',
 })<{ ownerState: NumberFieldOwnerState }>(
   memoTheme(({ theme }) => ({
     display: 'inline-flex',
@@ -162,7 +162,7 @@ const NumberFieldScrubArea = styled('span', {
 );
 const NumberFieldScrubAreaCursor = styled('span', {
   name: 'MuiNumberField',
-  slot: 'ScrubAreaCursor',
+  slot: 'scrubAreaCursor',
 })(
   memoTheme(({ theme }) => ({
     display: 'inline-flex',
