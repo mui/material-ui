@@ -1,7 +1,12 @@
 {
   "props": {
     "open": { "type": { "name": "bool" }, "required": true },
-    "action": { "type": { "name": "custom", "description": "ref" } },
+    "action": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { updatePosition: func } }"
+      }
+    },
     "anchorEl": {
       "type": {
         "name": "union",

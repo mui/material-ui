@@ -255,6 +255,24 @@ const REACT_NODE_MEMBERS = new Set<DocsPropType['name']>([
 ]);
 
 /**
+ * Whether the type is a ref whose `current` value is an object of methods.
+ */
+function isMethodsRef(type: DocsPropType): boolean {
+  const members = type.name === 'union' ? type.value : [type];
+  return members.some((member) => {
+    if (member.name !== 'shape' || !member.value.current) {
+      return false;
+    }
+    const current = member.value.current;
+    return (
+      current.name === 'shape' &&
+      Object.values(current.value).length > 0 &&
+      Object.values(current.value).every((method) => method.name === 'func')
+    );
+  });
+}
+
+/**
  * Adjusts the converted type for type annotations the structural type can't express.
  */
 function applyTypeAnnotation(type: DocsPropType, typeText: string | undefined): DocsPropType {
@@ -274,8 +292,10 @@ function applyTypeAnnotation(type: DocsPropType, typeText: string | undefined): 
       : { name: 'node' };
   }
 
+  // Refs to DOM nodes or other opaque values are documented as `ref`,
+  // refs to an object of methods, like `action`, keep that object's shape.
   if (members.length === 1 && /^(React\.)?Ref<.*>$/s.test(members[0])) {
-    return { name: 'custom', description: 'ref' };
+    return isMethodsRef(type) ? type : { name: 'custom', description: 'ref' };
   }
 
   // The union can be extended through module augmentation.

@@ -138,9 +138,10 @@ export const propsSettings: NonNullable<ProjectSettings['propsSettings']> = {
     }
     return undefined;
   },
-  // Only document the shape of the prop itself, not of nested objects.
+  // Only document the shape of the prop itself, not of nested objects,
+  // except the value of a ref, e.g. the methods of an `action` ref.
   shouldResolveObject: ({ name, depth }) =>
-    depth > 1 || isUnresolvedObjectName(name) ? false : undefined,
+    (depth > 1 && name !== 'current') || isUnresolvedObjectName(name) ? false : undefined,
   getSortLiteralUnions: ({ propName }) =>
     propName === 'size' ? sortSizeByScaleAscending : undefined,
 };

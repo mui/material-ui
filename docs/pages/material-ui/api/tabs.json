@@ -1,6 +1,11 @@
 {
   "props": {
-    "action": { "type": { "name": "custom", "description": "ref" } },
+    "action": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { updateIndicator: func, updateScrollButtons: func } }"
+      }
+    },
     "allowScrollButtonsMobile": { "type": { "name": "bool" }, "default": "false" },
     "aria-label": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },

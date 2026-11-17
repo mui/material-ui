@@ -1,6 +1,11 @@
 {
   "props": {
-    "action": { "type": { "name": "custom", "description": "ref" } },
+    "action": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
+      }
+    },
     "centerRipple": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
@@ -23,7 +28,12 @@
     },
     "tabIndex": { "type": { "name": "number" }, "default": "0" },
     "TouchRippleProps": { "type": { "name": "object" } },
-    "touchRippleRef": { "type": { "name": "custom", "description": "ref" } },
+    "touchRippleRef": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
+      }
+    },
     "type": { "type": { "name": "string" }, "default": "'button'" }
   },
   "name": "ButtonBase",
