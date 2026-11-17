@@ -136,7 +136,8 @@ To draw a different indicator on `Tab`, use `theme.applyFocusVisible()` in a `Mu
 
 ### Choosing the indicator of a component
 
-Use `theme.applyFocusVisible('outset')` or `theme.applyFocusVisible('inset')` in a focus selector to choose which indicator a component draws.
+Each component already draws its indicator outside or inside its edge, based on where it usually sits.
+When a component sits somewhere else, use `theme.applyFocusVisible('outset')` or `theme.applyFocusVisible('inset')` in its focus selector to draw the other indicator.
 `'outset'` returns `theme.focusVisible`, and `'inset'` returns it with `insetOverrides` merged over it.
 Call it on the theme, as `theme.applyFocusVisible()`. A destructured method doesn't work.
 
