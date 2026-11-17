@@ -1,5 +1,5 @@
 {
-  "componentDescription": "",
+  "componentDescription": "Number fields let users enter, format, and adjust numeric values.",
   "propDescriptions": {
     "allowOutOfRange": {
       "description": "If <code>true</code>, values entered by typing or pasting are not clamped to <code>min</code> and <code>max</code>. Stepping with the buttons, keyboard, mouse wheel, or scrub area still respects the bounds."
