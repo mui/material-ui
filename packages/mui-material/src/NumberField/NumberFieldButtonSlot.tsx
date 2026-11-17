@@ -10,6 +10,7 @@ import type { NumberFieldOwnerState } from './NumberField.types';
 import type { IconButtonProps } from '../IconButton';
 import hasNativeKeyboardActivation from '../utils/hasNativeKeyboardActivation';
 import { omitNullishEventHandlers } from './utils';
+import RenderElement from './RenderElement';
 
 interface NumberFieldButtonProps {
   ButtonSlot: React.ElementType;
@@ -17,6 +18,7 @@ interface NumberFieldButtonProps {
   baseProps: React.ComponentPropsWithRef<'button'>;
   baseState: BaseNumberField.Decrement.State | BaseNumberField.Increment.State;
   materialProps: NumberFieldOwnerState;
+  render?: BaseNumberField.Increment.Props['render'] | undefined;
 }
 
 /**
@@ -25,7 +27,7 @@ interface NumberFieldButtonProps {
  * Renders an increment/decrement button slot for the NumberField component, merging Base and Material props.
  */
 function NumberFieldButtonSlot(props: NumberFieldButtonProps) {
-  const { ButtonSlot, baseProps, baseState, materialProps, buttonProps } = props;
+  const { ButtonSlot, baseProps, baseState, materialProps, buttonProps, render } = props;
 
   // mergeProps composes handlers, classes, and styles, but not refs.
   const ref = useForkRef(baseProps.ref, buttonProps.ref);
@@ -81,7 +83,21 @@ function NumberFieldButtonSlot(props: NumberFieldButtonProps) {
     }
   };
 
-  return <ButtonSlot {...mergedProps} onKeyDown={handleKeyDown} onKeyUp={handleKeyUp} />;
+  return (
+    <ButtonSlot
+      {...mergedProps}
+      {...(render && {
+        // Replace IconButton's underlying element while preserving its styles and handlers.
+        component: RenderElement,
+        render,
+        renderState: baseState,
+        // The bridge is a custom component, so ButtonBase cannot infer its native-button mode.
+        nativeButton: buttonProps.nativeButton ?? true,
+      })}
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
+    />
+  );
 }
 
 export default NumberFieldButtonSlot;

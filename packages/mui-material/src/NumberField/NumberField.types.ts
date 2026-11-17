@@ -87,12 +87,13 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     /**
      * Props forwarded to the decrement button slot.
      * By default, the available props are based on the [IconButton](https://mui.com/material-ui/api/icon-button/#props) component.
+     * Use `render` to change the element while preserving Material styling and Base UI behavior.
      * Set `nativeButton` to `false` when rendering an element other than a native `<button>`.
      */
-    decrementButton: SlotProps<
-      React.ElementType<IconButtonProps>,
+    decrementButton: SlotComponentProps<
+      React.ElementType<Omit<IconButtonProps, 'component'>>,
       NumberFieldDecrementButtonSlotPropsOverrides &
-        Pick<BaseNumberField.Decrement.Props, 'nativeButton'>,
+        Pick<BaseNumberField.Decrement.Props, 'nativeButton' | 'render'>,
       NumberFieldOwnerState
     >;
     /**
@@ -119,12 +120,13 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     /**
      * Props forwarded to the increment button slot.
      * By default, the available props are based on the [IconButton](https://mui.com/material-ui/api/icon-button/#props) component.
+     * Use `render` to change the element while preserving Material styling and Base UI behavior.
      * Set `nativeButton` to `false` when rendering an element other than a native `<button>`.
      */
-    incrementButton: SlotProps<
-      React.ElementType<IconButtonProps>,
+    incrementButton: SlotComponentProps<
+      React.ElementType<Omit<IconButtonProps, 'component'>>,
       NumberFieldIncrementButtonSlotPropsOverrides &
-        Pick<BaseNumberField.Increment.Props, 'nativeButton'>,
+        Pick<BaseNumberField.Increment.Props, 'nativeButton' | 'render'>,
       NumberFieldOwnerState
     >;
     /**
