@@ -235,92 +235,42 @@ Remove the top-level `palette` to keep the previous result, or move its values i
 
 ### CSS layers are always on
 
-Material UI puts its styles in the `mui` [cascade layer](/material-ui/customization/css-layers/), split into sub-layers: `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
+Material UI puts all of its styles in the `mui` [cascade layer](/material-ui/customization/css-layers/), as `enableCssLayer` did in v9.
 This can't be turned off.
+Inside the layer, Material UI's styles keep the v9 precedence.
 
-This changes which styles win:
+CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles whatever its specificity.
+To keep a reset below Material UI's styles, put it in a layer declared before `mui`:
 
-- CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles whatever its specificity.
-  Put resets in a layer that comes before `mui`, and declare the order with the `modularCssLayers` theme option, for example `modularCssLayers: '@layer reset, mui;'`.
-- Layers that your CSS or a `GlobalStyles` declares before `mui`, such as `theme` and `base` in Tailwind CSS v4's `@layer theme, base, mui, components, utilities;`, now come after it and override Material UI's styles.
-  Material UI declares the order of its sub-layers before its first style, and that places `mui` first.
-  Pass the same order to the `modularCssLayers` theme option, as the [Tailwind CSS v4 integration](/material-ui/integrations/tailwindcss/tailwindcss-v4/) shows:
+```css
+@layer reset, mui;
 
-  ```diff
-   const theme = createTheme({
-  +  modularCssLayers: '@layer theme, base, mui, components, utilities;',
-   });
-  ```
-
-- Theme `styleOverrides` and `variants`, `styled()` and the `sx` prop now override the components' state styles, such as `:hover`, `.Mui-disabled` and `.Mui-selected`, even when they're less specific.
-
-These are the patterns that most often need a change:
-
-- **A style that should only apply in the default state.**
-  Exclude the states, or set their values too:
-
-  ```diff
-   <FormLabel
-     sx={{
-  -    color: 'text.primary',
-  +    '&:not(.Mui-focused, .Mui-error, .Mui-disabled)': {
-  +      color: 'text.primary',
-  +    },
-     }}
-   />
-  ```
-
-  ```diff
-   MuiIconButton: {
-     styleOverrides: {
-       root: ({ theme }) => ({
-         color: theme.palette.text.primary,
-  +      [`&.${iconButtonClasses.disabled}`]: {
-  +        color: theme.palette.action.disabled,
-  +      },
-       }),
-     },
-   },
-  ```
-
-- **An override that undoes a component's more specific rule.**
-  For example, an `input` override of `MuiOutlinedInput` with `padding: 0` now also removes the room that the Select leaves for its icon.
-  Set the value back for that case:
-
-  ```diff
-   MuiOutlinedInput: {
-     styleOverrides: {
-       input: {
-         padding: 0,
-  +      [`&.${selectClasses.select}`]: {
-  +        paddingRight: 32,
-  +      },
-       },
-     },
-   },
-  ```
-
-- **An `sx` value that the component sets for some breakpoints.**
-  The `sx` prop now wins at every breakpoint, so `<Grid size={{ md: 7 }} sx={{ width: '100%' }}>` is full width on large screens too.
-  Use the component's own prop instead: `<Grid size={{ xs: 12, md: 7 }}>`.
-
-- **A component's styles for its children.**
-  Rules such as the padding that an `Autocomplete` sets on its input, or the inner corners of a `ButtonGroup`, are in `mui.components`, so the children's own theme overrides, `styled()` and `sx` now win over them.
-  For example, a `MuiOutlinedInput` root override with `padding: '8px 12px'` now also replaces the room that the Autocomplete leaves for its buttons.
-  Drop the conflicting value from the child's styles, or set it back for that case.
-
-- **`GlobalStyles` that override a component's theme overrides, `styled()` or `sx`.**
-  `GlobalStyles` and `CssBaseline`, with its theme overrides, share `mui.components` with the components' base styles, so they still override those by specificity, as in v9.
-  Theme overrides, `styled()` and `sx` are in higher sub-layers, so a global rule no longer wins over them, however specific.
-  Move these rules to the theme's `styleOverrides`, to `sx` or `styled()`, or to a stylesheet outside the layers.
-
-To keep the v9 precedence between Material UI's own styles, put them all in the `mui` layer, without sub-layers:
-
-```js
-const theme = createTheme({
-  modularCssLayers: false,
-});
+@layer reset {
+  button {
+    padding: 0;
+  }
+}
 ```
 
-This matches v9's `enableCssLayer`: `mui` goes where your CSS or a `GlobalStyles` declares it, for example `@layer theme, base, mui, components, utilities;`.
-`modularCssLayers: true` can be removed, since sub-layers are the default, and a `modularCssLayers` string still sets where the sub-layers go among your layers.
+jsdom and happy-dom ignore the rules inside `@layer` blocks, so in tests that run in them, Material UI's styles aren't layered.
+
+The `modularCssLayers` theme option works as in v9, without `enableCssLayer`.
+
+### enableCssLayer removed
+
+The `enableCssLayer` prop of `StyledEngineProvider`, and the `enableCssLayer` option of `AppRouterCacheProvider` and `createEmotionCache()` from `@mui/material-nextjs`, are removed.
+Remove them:
+
+```diff
+-<StyledEngineProvider enableCssLayer>
++<StyledEngineProvider>
+
+-<AppRouterCacheProvider options={{ enableCssLayer: true }}>
++<AppRouterCacheProvider>
+
+-createEmotionCache({ enableCssLayer: true });
++createEmotionCache();
+```
+
+Styles that you write with Emotion directly, such as with `@emotion/styled` or the `css` prop, are no longer in the `mui` layer, so they override Material UI's styles.
+The class names that `<StyledEngineProvider enableCssLayer>` generated started with `mui-`, and now start with `css-`.
