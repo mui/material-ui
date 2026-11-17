@@ -190,10 +190,8 @@ Paper.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'elevation'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['elevation', 'outlined']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['elevation', 'outlined']), PropTypes.string]),
 };
 
 export default Paper;

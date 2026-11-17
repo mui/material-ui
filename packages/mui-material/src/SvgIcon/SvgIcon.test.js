@@ -161,16 +161,14 @@ describe('<SvgIcon />', () => {
     },
   );
 
-  // `getComputedStyle()` resolves `currentColor`, so set an explicit color to tell
-  // an inherited `fill` apart from the `black` initial value of SVG `fill`.
   it.skipIf(!isJsdom())('should have `fill="currentColor"`', function test() {
     const { container } = render(
-      <SvgIcon sx={{ color: 'rgb(255, 0, 0)' }}>
+      <SvgIcon>
         <path />
       </SvgIcon>,
     );
 
-    expect(container.firstChild).toHaveComputedStyle({ fill: 'rgb(255, 0, 0)' });
+    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentcolor' });
   });
 
   it.skipIf(!isJsdom())('should not add `fill` if svg is a direct child', function test() {

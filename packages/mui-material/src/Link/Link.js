@@ -266,20 +266,21 @@ Link.propTypes /* remove-proptypes */ = {
    * The color of the link.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'primary',
-      'secondary',
-      'success',
-      'error',
-      'info',
-      'warning',
-      'textPrimary',
-      'textSecondary',
-      'textDisabled',
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'primary',
+        'secondary',
+        'success',
+        'error',
+        'info',
+        'warning',
+        'textPrimary',
+        'textSecondary',
+        'textDisabled',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -309,25 +310,26 @@ Link.propTypes /* remove-proptypes */ = {
    * Applies the theme typography styles.
    * @default 'inherit'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'body1',
-      'body2',
-      'button',
-      'caption',
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'inherit',
-      'overline',
-      'subtitle1',
-      'subtitle2',
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'body1',
+        'body2',
+        'button',
+        'caption',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'inherit',
+        'overline',
+        'subtitle1',
+        'subtitle2',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
 };
 
 export default Link;

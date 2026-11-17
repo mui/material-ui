@@ -654,7 +654,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         // rendered options would pass undefined to selectNewValue.
         pointerEvents: popupOpen ? undefined : 'none',
       },
-      role: 'presentation',
+      role: 'none',
       anchorEl,
       open: popupOpen,
     },
@@ -1282,24 +1282,23 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['small', 'medium']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({
+      chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
   /**
    * The components used for each slot inside.
    * @default {}

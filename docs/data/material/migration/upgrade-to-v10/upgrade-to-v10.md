@@ -7,6 +7,21 @@
 Since v10 is a new major release, it contains some changes that affect the public API.
 The steps you need to take to migrate from Material UI v9 to v10 are described below.
 
+### Presentational roles
+
+Autocomplete, Dialog, Modal, Snackbar, SpeedDial, and Step now use `role="none"` where they previously used `role="presentation"`.
+The two roles have the same accessibility semantics.
+
+Update tests and CSS selectors that match the previous role value:
+
+```diff
+-screen.getByRole('presentation');
++screen.getByRole('none');
+
+-[role="presentation"] {
++[role="none"] {
+```
+
 ### Khmer locale renamed
 
 The Khmer locale is now exported as `kmKH` instead of `khKH`, to match the ISO 639-1 code for Khmer (`km`).
@@ -78,3 +93,33 @@ If you target these ids in CSS or tests, pass an explicit `id`:
 ```
 
 The ids are then `Actions-actions` for the actions container and `Actions-action-0`, `Actions-action-1`, and so on for each action.
+
+### InputBase disableInjectingGlobalStyles removed
+
+The deprecated `disableInjectingGlobalStyles` prop of InputBase has been removed.
+The auto-fill keyframes are injected with the input styles, so there is no style sheet per input to avoid.
+Remove the prop, along with the `GlobalStyles` for the auto-fill keyframes it required:
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiInputBase: {
+-      defaultProps: {
+-        disableInjectingGlobalStyles: true,
+-      },
+     },
+   },
+ });
+
+ <ThemeProvider theme={theme}>
+-  <GlobalStyles
+-    styles={{
+-      '@keyframes mui-auto-fill': { from: { animationName: 'mui-auto-fill' } },
+-      '@keyframes mui-auto-fill-cancel': {
+-        from: { animationName: 'mui-auto-fill-cancel' },
+-      },
+-    }}
+-  />
+   ...
+ </ThemeProvider>
+```
