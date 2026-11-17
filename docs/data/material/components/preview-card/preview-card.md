@@ -101,6 +101,9 @@ Use the `render` prop on `PreviewCardPopup` to change the rendered element.
 The popup keeps its Material UI styles.
 A render function receives the props and the Base UI state, such as `state.open` and `state.side`.
 
+The `positioner` and `portal` slots take the same prop in `slotProps`, for example `slotProps={{ positioner: { render: <section /> } }}`, and keep their styles.
+To replace a slot's styles too, use `slots` instead.
+
 ### Slots
 
 Use `slots` and `slotProps` to replace or configure each element that `PreviewCardPopup` renders: `root`, `transition`, `positioner`, and `portal`.

@@ -1,13 +1,12 @@
 'use client';
 import * as React from 'react';
-import type { Meter as BaseMeter } from '@base-ui/react/meter';
 import { useRender } from '@base-ui/react/use-render';
 
-export type MeterRenderState = BaseMeter.Root.State & Record<string, unknown>;
+type RenderState = Record<string, unknown>;
 
 export interface RenderElementProps extends React.HTMLAttributes<HTMLElement> {
-  render: useRender.RenderProp<MeterRenderState>;
-  renderState: MeterRenderState;
+  render: useRender.RenderProp<RenderState>;
+  renderState: RenderState;
 }
 
 /**

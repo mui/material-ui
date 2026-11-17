@@ -227,6 +227,55 @@ describe('<Meter />', () => {
     });
   });
 
+  describe('slotProps render', () => {
+    it('replaces a slot element while keeping the slot styles', () => {
+      render(<Meter value={50} label="Battery" slotProps={{ label: { render: <strong /> } }} />);
+
+      const label = screen.getByText('Battery');
+      expect(label.tagName).to.equal('STRONG');
+      expect(label).to.have.class(classes.label);
+      expect(screen.getByRole('meter', { name: 'Battery' })).not.to.equal(null);
+    });
+
+    it('calls a slot render function with the props and the Base UI state', () => {
+      const renderIndicator = spy(
+        (props: React.HTMLAttributes<HTMLElement>, state: Record<string, unknown>) => (
+          <span {...props} data-testid="indicator" data-state-keys={Object.keys(state).length} />
+        ),
+      );
+      render(<Meter value={50} slotProps={{ indicator: { render: renderIndicator } }} />);
+
+      const indicator = screen.getByTestId('indicator');
+      expect(indicator.tagName).to.equal('SPAN');
+      expect(indicator).to.have.class(classes.indicator);
+      expect(renderIndicator.lastCall.args[1]).to.be.an('object');
+    });
+
+    it('passes no render wiring to a custom slot', () => {
+      const receivedProps: Record<string, unknown>[] = [];
+      const CustomTrack = React.forwardRef<HTMLDivElement, Record<string, unknown>>(
+        function CustomTrack(props, ref) {
+          receivedProps.push(props);
+          const { ownerState, ...other } = props;
+          return <div ref={ref} data-testid="custom-track" {...other} />;
+        },
+      );
+      render(
+        <Meter
+          value={50}
+          slots={{ track: CustomTrack }}
+          slotProps={{ track: { render: <section /> } }}
+        />,
+      );
+
+      expect(screen.getByTestId('custom-track').tagName).to.equal('DIV');
+      const lastProps = receivedProps[receivedProps.length - 1];
+      expect(lastProps).not.to.have.property('render');
+      expect(lastProps).not.to.have.property('renderState');
+      expect(lastProps).not.to.have.property('as');
+    });
+  });
+
   it('ignores a component prop passed without types', () => {
     // @ts-expect-error component is not a supported prop
     render(<Meter value={50} component="section" />);

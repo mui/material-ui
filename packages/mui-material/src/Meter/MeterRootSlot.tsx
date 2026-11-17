@@ -9,7 +9,7 @@ import { styled } from '../zero-styled';
 import useSlot from '../utils/useSlot';
 import RenderElement from './RenderElement';
 import { getMeterUtilityClass } from './meterClasses';
-import type { MeterOwnerState } from './Meter';
+import type { MeterOwnerState } from './Meter.types';
 
 const useUtilityClasses = (ownerState: MeterOwnerState) => {
   const { classes } = ownerState;

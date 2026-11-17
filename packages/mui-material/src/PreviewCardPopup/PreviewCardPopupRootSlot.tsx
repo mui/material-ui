@@ -12,8 +12,7 @@ import memoTheme from '../utils/memoTheme';
 import useSlot from '../utils/useSlot';
 import { getPreviewCardPopupUtilityClass } from './previewCardPopupClasses';
 import RenderElement from './RenderElement';
-import type { PopupRenderState } from './RenderElement';
-import type { PreviewCardPopupOwnerState } from './PreviewCardPopup';
+import type { PreviewCardPopupOwnerState } from './PreviewCardPopup.types';
 
 const useUtilityClasses = (ownerState: PreviewCardPopupOwnerState) => {
   const { classes, open } = ownerState;
@@ -70,7 +69,7 @@ const PreviewCardPopupRootSlot = React.forwardRef(function PreviewCardPopupRootS
       ? {
           component: RenderElement,
           render: ownerState.render,
-          renderState: baseState as PopupRenderState,
+          renderState: baseState,
         }
       : undefined,
   });

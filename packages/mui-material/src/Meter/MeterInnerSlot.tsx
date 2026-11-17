@@ -1,7 +1,9 @@
 'use client';
 import * as React from 'react';
+import type { Meter as BaseMeter } from '@base-ui/react/meter';
 import { mergeProps } from '@base-ui/react/merge-props';
 import type { HTMLProps } from '@base-ui/react/types';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
@@ -9,7 +11,8 @@ import memoTheme from '../utils/memoTheme';
 import useSlot from '../utils/useSlot';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { getMeterUtilityClass } from './meterClasses';
-import type { MeterOwnerState } from './Meter';
+import RenderElement from './RenderElement';
+import type { MeterOwnerState } from './Meter.types';
 
 const useUtilityClasses = (ownerState: MeterOwnerState) => {
   const { classes } = ownerState;
@@ -131,6 +134,7 @@ export type MeterInnerSlotName = keyof typeof elementTypes;
 export interface MeterInnerSlotProps {
   name: MeterInnerSlotName;
   baseProps: HTMLProps;
+  baseState: BaseMeter.Root.State;
   ownerState: MeterOwnerState;
 }
 
@@ -138,15 +142,23 @@ export interface MeterInnerSlotProps {
  * @ignore - internal component.
  */
 function MeterInnerSlot(props: MeterInnerSlotProps) {
-  const { name, baseProps, ownerState } = props;
+  const { name, baseProps, baseState, ownerState } = props;
   const classes = useUtilityClasses(ownerState);
+  const { render, ...slotPropsWithoutRender } =
+    resolveComponentProps(ownerState.slotProps?.[name], ownerState) ?? {};
 
   const [Slot, slotProps] = useSlot(name, {
     elementType: elementTypes[name],
-    externalForwardedProps: { slots: ownerState.slots, slotProps: ownerState.slotProps },
+    externalForwardedProps: {
+      slots: ownerState.slots,
+      slotProps: { [name]: slotPropsWithoutRender },
+    },
     ownerState,
     className: classes[name],
     getSlotProps: (externalHandlers) => mergeProps(baseProps, externalHandlers),
+    internalForwardedProps: render
+      ? { as: RenderElement, render, renderState: baseState }
+      : undefined,
   });
 
   return <Slot {...slotProps} />;

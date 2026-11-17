@@ -1,13 +1,12 @@
 'use client';
 import * as React from 'react';
-import type { PreviewCard as BasePreviewCard } from '@base-ui/react/preview-card';
 import { useRender } from '@base-ui/react/use-render';
 
-export type PopupRenderState = BasePreviewCard.Popup.State & Record<string, unknown>;
+type RenderState = Record<string, unknown>;
 
 export interface RenderElementProps extends React.HTMLAttributes<HTMLElement> {
-  render: useRender.RenderProp<PopupRenderState>;
-  renderState: PopupRenderState;
+  render: useRender.RenderProp<RenderState>;
+  renderState: RenderState;
 }
 
 /**

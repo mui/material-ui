@@ -62,3 +62,12 @@ createTheme({
     },
   },
 });
+
+<Meter
+  value={50}
+  label="Battery"
+  slotProps={{
+    label: { render: <strong /> },
+    indicator: { render: (props) => <span {...props} /> },
+  }}
+/>;

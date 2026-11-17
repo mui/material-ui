@@ -1,5 +1,5 @@
 export { default } from './PreviewCardPopup';
-export * from './PreviewCardPopup';
+export * from './PreviewCardPopup.types';
 export { default as previewCardPopupClasses } from './previewCardPopupClasses';
 export * from './previewCardPopupClasses';
 export {

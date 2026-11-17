@@ -75,6 +75,9 @@ Meter
 The `render` prop replaces the root element while keeping the meter styles and behavior.
 It accepts an element, or a function that receives the props and the Base UI state.
 
+Each inner slot takes the same prop in `slotProps`, for example `slotProps={{ label: { render: <strong /> } }}`, and keeps that slot's styles.
+To replace a slot's styles too, use `slots` instead.
+
 ### Slots
 
 Use `slots` to replace the `root`, `label`, `value`, `track`, and `indicator` elements, and `slotProps` to pass props to them.

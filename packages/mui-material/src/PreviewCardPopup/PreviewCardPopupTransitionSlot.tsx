@@ -5,7 +5,7 @@ import type { HTMLProps } from '@base-ui/react/types';
 import Grow from '../Grow';
 import useSlot from '../utils/useSlot';
 import PreviewCardPopupRootSlot from './PreviewCardPopupRootSlot';
-import type { PreviewCardPopupOwnerState, PreviewCardPopupProps } from './PreviewCardPopup';
+import type { PreviewCardPopupOwnerState, PreviewCardPopupProps } from './PreviewCardPopup.types';
 
 export interface PreviewCardPopupTransitionSlotProps {
   baseProps: HTMLProps;

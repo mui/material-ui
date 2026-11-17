@@ -210,6 +210,74 @@ describe('<PreviewCardPopup />', () => {
     expect(popup).not.to.have.attribute('renderstate');
   });
 
+  describe('slotProps render', () => {
+    it('replaces the positioner element while keeping its class and Base UI attributes', async () => {
+      await render(
+        renderOpen(
+          <PreviewCardPopup slotProps={{ positioner: { render: <section /> } }}>
+            Content
+          </PreviewCardPopup>,
+        ),
+      );
+      const positioner = document.querySelector(`.${previewCardPopupClasses.positioner}`)!;
+      expect(positioner.tagName).to.equal('SECTION');
+      expect(positioner).to.have.attribute(PreviewCardPositionerDataAttributes.open);
+    });
+
+    it('calls a positioner render function with the Base UI state', async () => {
+      const renderPositioner = spy(
+        (props: React.HTMLAttributes<HTMLElement>, _state: Record<string, unknown>) => (
+          <div {...props} />
+        ),
+      );
+      await render(
+        renderOpen(
+          <PreviewCardPopup slotProps={{ positioner: { render: renderPositioner } }}>
+            Content
+          </PreviewCardPopup>,
+        ),
+      );
+      expect(renderPositioner.lastCall.args[1].open).to.equal(true);
+    });
+
+    it('replaces the portal element while keeping its class', async () => {
+      await render(
+        renderOpen(
+          <PreviewCardPopup slotProps={{ portal: { render: <section /> } }}>
+            Content
+          </PreviewCardPopup>,
+        ),
+      );
+      const portal = document.querySelector(`.${previewCardPopupClasses.portal}`)!;
+      expect(portal.tagName).to.equal('SECTION');
+    });
+
+    it('passes no render wiring to a custom positioner', async () => {
+      const receivedProps: Record<string, unknown>[] = [];
+      const CustomPositioner = React.forwardRef<HTMLDivElement, Record<string, unknown>>(
+        function CustomPositioner(props, ref) {
+          receivedProps.push(props);
+          const { ownerState, ...other } = props;
+          return <div ref={ref} {...other} />;
+        },
+      );
+      await render(
+        renderOpen(
+          <PreviewCardPopup
+            slots={{ positioner: CustomPositioner }}
+            slotProps={{ positioner: { render: <section /> } }}
+          >
+            Content
+          </PreviewCardPopup>,
+        ),
+      );
+      const lastProps = receivedProps[receivedProps.length - 1];
+      expect(lastProps).not.to.have.property('render');
+      expect(lastProps).not.to.have.property('renderState');
+      expect(lastProps).not.to.have.property('as');
+    });
+  });
+
   describe('slots', () => {
     it('gives the portal slot no live state', async () => {
       const ownerStates: Array<Record<string, unknown>> = [];

@@ -120,3 +120,12 @@ createTheme({
     },
   },
 });
+
+<PreviewCardPopup
+  slotProps={{
+    positioner: { render: (props, state) => <div {...props} data-placed={state.side} /> },
+    portal: { render: <section /> },
+  }}
+>
+  Content
+</PreviewCardPopup>;
