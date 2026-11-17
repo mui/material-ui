@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { isJsdom } from '@mui/internal-test-utils';
 import styleFunctionSx from './styleFunctionSx';
 import cssContainerQueries from '../cssContainerQueries';
 import createBreakpoints from '../createBreakpoints/createBreakpoints';
@@ -15,44 +16,39 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  // The layered output is covered by the `@layer` tests below, so this theme has no layers,
-  // like a theme object made by hand.
-  const theme = {
-    ...createTheme(
-      cssContainerQueries({
-        spacing: (val) => `${val * 10}px`,
-        breakpoints: createBreakpoints({ values: breakpointsValues }),
-        palette: {
-          primary: {
-            main: 'rgb(0, 0, 255)',
-          },
-          secondary: {
-            main: 'rgb(0, 255, 0)',
-          },
+  const theme = createTheme(
+    cssContainerQueries({
+      spacing: (val) => `${val * 10}px`,
+      breakpoints: createBreakpoints({ values: breakpointsValues }),
+      palette: {
+        primary: {
+          main: 'rgb(0, 0, 255)',
         },
-        typography: {
+        secondary: {
+          main: 'rgb(0, 255, 0)',
+        },
+      },
+      typography: {
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontWeightLight: 300,
+        fontSize: 14,
+        body1: {
           fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-          fontWeightLight: 300,
-          fontSize: 14,
-          body1: {
-            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-            fontSize: '1rem',
-            letterSpacing: `${round(0.15 / 16)}em`,
-            fontWeight: 400,
-            lineHeight: 1.5,
-          },
-          body2: {
-            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-            fontSize: `${14 / 16}rem`,
-            letterSpacing: `${round(0.15 / 14)}em`,
-            fontWeight: 400,
-            lineHeight: 1.43,
-          },
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
         },
-      }),
-    ),
-    modularCssLayers: undefined,
-  };
+        body2: {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
+      },
+    }),
+  );
 
   describe('system', () => {
     it('resolves system', () => {
@@ -574,7 +570,8 @@ describe('styleFunctionSx', () => {
     });
   });
 
-  describe('Modular CSS layers', () => {
+  // jsdom ignores the rules inside `@layer` blocks, so the styles aren't layered there.
+  describe.skipIf(isJsdom())('Modular CSS layers', () => {
     it('should wrapped in @layer', () => {
       const result = styleFunctionSx({
         theme: {

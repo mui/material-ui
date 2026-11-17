@@ -1,12 +1,26 @@
 import { describe, it, expect } from 'vitest';
+import { isJsdom } from '@mui/internal-test-utils';
 import {
   getCssLayer,
   getCssLayerOrderStatement,
+  hasCssLayers,
   resolveModularCssLayers,
   wrapInCssLayer,
 } from './cssLayers';
 
-describe('getCssLayer', () => {
+describe('hasCssLayers', () => {
+  it.runIf(isJsdom())('skips the layers in jsdom, which ignores the rules inside them', () => {
+    expect(hasCssLayers({ modularCssLayers: false })).to.equal(false);
+    expect(hasCssLayers({ modularCssLayers: true })).to.equal(false);
+  });
+
+  it.skipIf(isJsdom())('is true for a theme with modularCssLayers', () => {
+    expect(hasCssLayers({ modularCssLayers: false })).to.equal(true);
+    expect(hasCssLayers({})).to.equal(false);
+  });
+});
+
+describe.skipIf(isJsdom())('getCssLayer', () => {
   it('returns the sub-layer', () => {
     expect(getCssLayer({ modularCssLayers: true }, 'sx')).to.equal('mui.sx');
     expect(getCssLayer({ modularCssLayers: '@layer base, mui;' }, 'sx')).to.equal('mui.sx');
@@ -23,7 +37,7 @@ describe('getCssLayer', () => {
   });
 });
 
-describe('getCssLayerOrderStatement', () => {
+describe.skipIf(isJsdom())('getCssLayerOrderStatement', () => {
   it('declares the sub-layers', () => {
     expect(getCssLayerOrderStatement({ modularCssLayers: true })).to.equal(
       '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
@@ -48,13 +62,13 @@ describe('getCssLayerOrderStatement', () => {
 });
 
 describe('resolveModularCssLayers', () => {
-  it('uses sub-layers by default', () => {
-    expect(resolveModularCssLayers(undefined)).to.equal(true);
-    expect(resolveModularCssLayers(true)).to.equal(true);
+  it('uses a single layer by default', () => {
+    expect(resolveModularCssLayers(undefined)).to.equal(false);
+    expect(resolveModularCssLayers(false)).to.equal(false);
   });
 
-  it('keeps false and strings', () => {
-    expect(resolveModularCssLayers(false)).to.equal(false);
+  it('keeps true and strings', () => {
+    expect(resolveModularCssLayers(true)).to.equal(true);
     expect(resolveModularCssLayers('@layer base, mui;')).to.equal('@layer base, mui;');
   });
 });

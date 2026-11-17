@@ -209,12 +209,12 @@ describe('createTheme', () => {
   });
 
   describe('modularCssLayers', () => {
-    it('uses sub-layers by default', () => {
-      expect(createTheme().modularCssLayers).to.equal(true);
+    it('uses a single layer by default', () => {
+      expect(createTheme().modularCssLayers).to.equal(false);
     });
 
-    it('keeps false, which puts the styles in a single layer, and strings', () => {
-      expect(createTheme({ modularCssLayers: false }).modularCssLayers).to.equal(false);
+    it('keeps true, which splits the layer into sub-layers, and strings', () => {
+      expect(createTheme({ modularCssLayers: true }).modularCssLayers).to.equal(true);
       expect(createTheme({ modularCssLayers: '@layer base, mui;' }).modularCssLayers).to.equal(
         '@layer base, mui;',
       );

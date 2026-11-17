@@ -43,13 +43,12 @@ export interface ThemeOptions {
   zIndex?: ZIndex | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   /**
-   * The generated styles always go in the `mui` CSS layer. By default, it's split into sub-layers:
-   * `mui.global`, `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
-   * Set it to `false` to put all the styles in `mui`, without sub-layers. Then they keep the v9
-   * precedence among themselves, and other layers and unlayered CSS still override them.
-   * A string sets where the sub-layers go among the app's layers, for example
-   * `'@layer theme, base, mui, components, utilities;'`.
-   * @default true
+   * The generated styles always go in the `mui` CSS layer, so other layers and unlayered CSS
+   * override them. Set it to `true` to split `mui` into sub-layers: `mui.global`,
+   * `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
+   * A string also turns on the sub-layers and sets where they go among the app's layers, for
+   * example `'@layer theme, base, mui, components, utilities;'`.
+   * @default false
    */
   modularCssLayers?: boolean | string | undefined;
 }

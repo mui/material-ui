@@ -2,7 +2,7 @@ import { describe, afterEach, it, expect } from 'vitest';
 import { ThemeContext } from '@mui/styled-engine';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import useLayerOrder from './useLayerOrder';
 
 function TestComponent({ theme, themeId }: { theme: any; themeId?: string }) {
@@ -10,7 +10,8 @@ function TestComponent({ theme, themeId }: { theme: any; themeId?: string }) {
   return LayerOrder;
 }
 
-describe('useLayerOrder', () => {
+// jsdom ignores the rules inside `@layer` blocks, so the styles aren't layered there.
+describe.skipIf(isJsdom())('useLayerOrder', () => {
   const { render } = createRenderer();
 
   afterEach(() => {

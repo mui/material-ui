@@ -38,23 +38,21 @@ describe.skipIf(isJsdom())('CSS layers', () => {
       components: { MuiAccordion: { styleOverrides: { root: { margin: 0 } } } },
     });
 
-  // Keep this test first: it needs a document where no layer order was declared yet.
-  it('keeps the sub-layer order without a ThemeProvider', () => {
-    // Inserted first, so without an order statement `mui.custom` would come before `mui.components`.
-    const Plain = styled('div')({ color: 'rgb(255, 0, 0)' });
-    const CustomButton = styled(Button)({ paddingTop: '3px' });
-    render(
-      <React.Fragment>
-        <Plain />
-        <CustomButton>Hello</CustomButton>
-      </React.Fragment>,
-    );
+  const subLayersTheme = createTheme({ modularCssLayers: true });
 
-    expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '3px' });
+  it('puts the styles in the mui layer by default', () => {
+    render(<Button sx={{ color: 'rgb(255, 0, 0)' }}>Hello</Button>);
+
+    expect(getLayerNames()).to.include('mui');
+    expect(getLayerNames()).not.to.include('mui.sx');
   });
 
-  it('puts the styles in the mui sub-layers by default', () => {
-    render(<Button sx={{ color: 'rgb(255, 0, 0)' }}>Hello</Button>);
+  it('puts the styles in the mui sub-layers with `modularCssLayers: true`', () => {
+    render(
+      <ThemeProvider theme={subLayersTheme}>
+        <Button sx={{ color: 'rgb(255, 0, 0)' }}>Hello</Button>
+      </ThemeProvider>,
+    );
 
     expect(getLayerNames()).to.include.members(['mui.components', 'mui.sx']);
   });
@@ -131,9 +129,9 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '3px' });
   });
 
-  it('applies theme overrides that are less specific than the base styles', () => {
+  it('applies theme overrides that are less specific than the base styles with sub-layers', () => {
     render(
-      <ThemeProvider theme={accordionTheme()}>
+      <ThemeProvider theme={accordionTheme(true)}>
         <Accordion defaultExpanded data-testid="accordion">
           <AccordionSummary>Summary</AccordionSummary>
         </Accordion>
@@ -146,11 +144,13 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     expect(screen.getByTestId('accordion')).toHaveComputedStyle({ marginBottom: '0px' });
   });
 
-  it('lets `sx` win over state styles', () => {
+  it('lets `sx` win over state styles with sub-layers', () => {
     render(
-      <ListItemButton selected sx={{ backgroundColor: 'rgb(255, 0, 0)' }}>
-        Item
-      </ListItemButton>,
+      <ThemeProvider theme={subLayersTheme}>
+        <ListItemButton selected sx={{ backgroundColor: 'rgb(255, 0, 0)' }}>
+          Item
+        </ListItemButton>
+      </ThemeProvider>,
     );
 
     expect(screen.getByRole('button')).toHaveComputedStyle({
@@ -158,29 +158,33 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     });
   });
 
-  it('lets `sx` win over the media queries of the component', () => {
-    render(<MediaDiv data-testid="sx" sx={{ width: 30 }} />);
+  it('lets `sx` win over the media queries of the component with sub-layers', () => {
+    render(
+      <ThemeProvider theme={subLayersTheme}>
+        <MediaDiv data-testid="sx" sx={{ width: 30 }} />
+      </ThemeProvider>,
+    );
 
     expect(screen.getByTestId('sx')).toHaveComputedStyle({ width: '30px' });
   });
 
-  it('keeps the declarations before the media queries with `modularCssLayers: false`', () => {
+  it('keeps the declarations before the media queries by default', () => {
     // As in v9, where Emotion puts the declarations of a component's styles first, `sx` included.
     const ComposedDiv = styled(MediaDiv)({ width: 30 });
     render(
-      <ThemeProvider theme={createTheme({ modularCssLayers: false })}>
+      <React.Fragment>
         <MediaDiv data-testid="sx" sx={{ width: 30 }} />
         <ComposedDiv data-testid="composed" />
-      </ThemeProvider>,
+      </React.Fragment>,
     );
 
     expect(screen.getByTestId('sx')).toHaveComputedStyle({ width: '20px' });
     expect(screen.getByTestId('composed')).toHaveComputedStyle({ width: '20px' });
   });
 
-  it('keeps the v9 precedence with `modularCssLayers: false`', () => {
+  it('keeps the v9 precedence by default', () => {
     render(
-      <ThemeProvider theme={accordionTheme(false)}>
+      <ThemeProvider theme={accordionTheme()}>
         <Accordion defaultExpanded data-testid="accordion">
           <AccordionSummary>Summary</AccordionSummary>
         </Accordion>
@@ -193,7 +197,7 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     expect(screen.getByTestId('accordion')).toHaveComputedStyle({ marginBottom: '16px' });
   });
 
-  it("keeps mui where the app's CSS declares it with `modularCssLayers: false`", () => {
+  it("keeps mui where the app's CSS declares it by default", () => {
     removeLayerOrders();
     // Tailwind CSS v4's setup: the layer order, then preflight in `base`, before Material UI.
     const appStyles = document.createElement('style');
@@ -202,7 +206,7 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     document.head.prepend(appStyles);
     try {
       render(
-        <ThemeProvider theme={createTheme({ modularCssLayers: false })}>
+        <ThemeProvider theme={createTheme()}>
           <Button>Hello</Button>
         </ThemeProvider>,
       );
@@ -213,9 +217,9 @@ describe.skipIf(isJsdom())('CSS layers', () => {
     }
   });
 
-  it('lets unlayered CSS override the component styles with `modularCssLayers: false`', () => {
+  it('lets unlayered CSS override the component styles with sub-layers', () => {
     render(
-      <ThemeProvider theme={createTheme({ modularCssLayers: false })}>
+      <ThemeProvider theme={subLayersTheme}>
         <style>{'.MuiButton-root { padding-top: 3px; }'}</style>
         <Button>Hello</Button>
       </ThemeProvider>,
@@ -225,7 +229,7 @@ describe.skipIf(isJsdom())('CSS layers', () => {
   });
 });
 
-// Records the styles that reach the Emotion cache, before jsdom drops the rules inside layers.
+// Records the styles that reach the Emotion cache.
 function CaptureStyles(props: { inserted: string[] }) {
   const { inserted } = props;
   const cache: any = __unsafe_useEmotionCache();
@@ -252,7 +256,7 @@ const VariantsDiv = styled('div')<{ tone?: string }>({
   variants: [{ props: { tone: 'blue' }, style: { color: 'rgb(0, 0, 255)' } }],
 });
 
-describe('CSS layers: generated styles', () => {
+describe.skipIf(isJsdom())('CSS layers: generated styles', () => {
   const { render } = createRenderer();
 
   function getClassName(container: HTMLElement) {
@@ -260,13 +264,15 @@ describe('CSS layers: generated styles', () => {
   }
 
   function renderWithSubLayersInBetween(element: React.ReactElement) {
-    const singleTheme = createTheme({ modularCssLayers: false });
+    const singleTheme = createTheme();
     const { container, unmount } = render(
       <ThemeProvider theme={singleTheme}>{element}</ThemeProvider>,
     );
     const className = getClassName(container);
     unmount();
-    render(<ThemeProvider theme={createTheme()}>{element}</ThemeProvider>).unmount();
+    render(
+      <ThemeProvider theme={createTheme({ modularCssLayers: true })}>{element}</ThemeProvider>,
+    ).unmount();
     const view = render(<ThemeProvider theme={singleTheme}>{element}</ThemeProvider>);
     return [className, getClassName(view.container)];
   }
@@ -285,7 +291,7 @@ describe('CSS layers: generated styles', () => {
     const inserted: string[] = [];
     const Div = styled('div')({ '@layer review': { color: 'red' }, paddingTop: 3 });
     render(
-      <ThemeProvider theme={createTheme()}>
+      <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
         <CaptureStyles inserted={inserted} />
         <Div />
       </ThemeProvider>,
@@ -304,22 +310,22 @@ describe('CSS layers: generated styles', () => {
       </ThemeProvider>,
     );
     expect(inserted.find((styles) => styles.includes('reset'))).to.equal(
-      '@import url("a.css"); @layer theme, base; @layer reset { .x { color: red; } }@layer mui.components{ html { color: blue; }}',
+      '@import url("a.css"); @layer theme, base; @layer reset { .x { color: red; } }@layer mui{ html { color: blue; }}',
     );
   });
 
-  it("puts the app's GlobalStyles and CssBaseline in mui.components", () => {
+  it("puts the app's GlobalStyles and CssBaseline in mui.global with sub-layers", () => {
     const inserted: string[] = [];
     render(
-      <ThemeProvider theme={createTheme()}>
+      <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
         <CaptureStyles inserted={inserted} />
         <CssBaseline />
         <GlobalStyles styles={{ '.app': { color: 'blue' } }} />
       </ThemeProvider>,
     );
-    expect(inserted).to.include('@layer mui.components{.app{color:blue;}}');
+    expect(inserted).to.include('@layer mui.global{.app{color:blue;}}');
     const baseline = inserted.find((styles) => styles.includes('box-sizing:inherit'));
-    expect(baseline).to.match(/^@layer mui\.components\{/);
+    expect(baseline).to.match(/^@layer mui\.global\{/);
   });
 
   it('layers styles that are serialized already, without changing them', () => {
@@ -336,23 +342,8 @@ describe('CSS layers: generated styles', () => {
         <GlobalStyles styles={shared} />
       </ThemeProvider>,
     );
-    expect(inserted).to.include(`@layer mui.components{${styles}}`);
+    expect(inserted).to.include(`@layer mui{${styles}}`);
     expect(shared.styles).to.equal(styles);
-  });
-
-  it('declares the sub-layer order before the styles of a GlobalStyles without a ThemeProvider', () => {
-    const inserted: string[] = [];
-    render(
-      <React.Fragment>
-        <CaptureStyles inserted={inserted} />
-        <GlobalStyles styles={{ '.app': { color: 'blue' } }} />
-      </React.Fragment>,
-    );
-    expect(inserted).to.have.length(1);
-    expect(inserted[0]).to.match(
-      /^@layer mui\.global, mui\.components, mui\.theme, mui\.custom, mui\.sx;/,
-    );
-    expect(inserted[0]).to.include('@layer mui.components{.app{color:blue;}}');
   });
 
   it("declares only the app's layer order in a GlobalStyles without a ThemeProvider", () => {
@@ -369,8 +360,8 @@ describe('CSS layers: generated styles', () => {
   it('declares the sub-layer order under a ThemeProvider with a single layer', () => {
     removeLayerOrders();
     render(
-      <ThemeProvider theme={createTheme({ modularCssLayers: false })}>
-        <ThemeProvider theme={createTheme()}>
+      <ThemeProvider theme={createTheme()}>
+        <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
           <Button>Hello</Button>
         </ThemeProvider>
       </ThemeProvider>,
@@ -384,18 +375,17 @@ describe('CSS layers: generated styles', () => {
   it('declares the layer order for a scoped theme', () => {
     removeLayerOrders();
     render(
-      <ThemeProvider theme={{ [THEME_ID]: createTheme() }}>
+      <ThemeProvider theme={{ [THEME_ID]: createTheme({ modularCssLayers: true }) }}>
         <Button>Hello</Button>
       </ThemeProvider>,
     );
     expect(document.head.querySelector('style[data-mui-layer-order]')).not.to.equal(null);
   });
 
-  it('puts every style in the mui layer with modularCssLayers: false', () => {
+  it('puts every style in the mui layer by default', () => {
     removeLayerOrders();
     const inserted: string[] = [];
     const theme = createTheme({
-      modularCssLayers: false,
       components: { MuiButton: { styleOverrides: { root: { paddingTop: 3 } } } },
     });
     const CustomButton = styled(Button)({ paddingBottom: 3 });
@@ -416,10 +406,9 @@ describe('CSS layers: generated styles', () => {
     expect(document.head.querySelector('style[data-mui-layer-order]')).to.equal(null);
   });
 
-  it('keeps the styles of a component in one block with modularCssLayers: false', () => {
+  it('keeps the styles of a component in one block by default', () => {
     const inserted: string[] = [];
     const theme = createTheme({
-      modularCssLayers: false,
       components: { MuiButton: { styleOverrides: { root: { paddingTop: 3 } } } },
     });
     const ComposedDiv = styled(VariantsDiv)({ paddingTop: 3 });
@@ -441,13 +430,33 @@ describe('CSS layers: generated styles', () => {
       /@layer mui\{color:rgb\(255, 0, 0\);+color:rgb\(0, 0, 255\);+padding-top:3px;+padding-bottom:3px;\}/,
     );
   });
+});
 
-  it('uses sub-layers by default, and a single layer with modularCssLayers: false', () => {
-    expect(createTheme().modularCssLayers).to.equal(true);
-    expect(createTheme({ cssVariables: true }).modularCssLayers).to.equal(true);
-    expect(createTheme({ modularCssLayers: false }).modularCssLayers).to.equal(false);
-    expect(createTheme({ cssVariables: true, modularCssLayers: false }).modularCssLayers).to.equal(
-      false,
+describe('CSS layers: theme and jsdom', () => {
+  const { render } = createRenderer();
+
+  it('uses a single layer by default, and sub-layers with modularCssLayers: true', () => {
+    expect(createTheme().modularCssLayers).to.equal(false);
+    expect(createTheme({ cssVariables: true }).modularCssLayers).to.equal(false);
+    expect(createTheme({ modularCssLayers: true }).modularCssLayers).to.equal(true);
+    expect(createTheme({ cssVariables: true, modularCssLayers: true }).modularCssLayers).to.equal(
+      true,
     );
+  });
+
+  // jsdom ignores the rules inside `@layer` blocks, so tests that check styles need them unlayered.
+  it.runIf(isJsdom())('leaves the styles unlayered in jsdom', () => {
+    const inserted: string[] = [];
+    render(
+      <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
+        <CaptureStyles inserted={inserted} />
+        <CssBaseline />
+        <Button sx={{ color: 'rgb(255, 0, 0)' }}>Hello</Button>
+      </ThemeProvider>,
+    );
+
+    expect(inserted.join('')).not.to.include('@layer');
+    expect(document.head.querySelector('style[data-mui-layer-order]')).to.equal(null);
+    expect(screen.getByRole('button')).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
   });
 });
