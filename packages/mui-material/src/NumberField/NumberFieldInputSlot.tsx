@@ -20,7 +20,7 @@ import type { OutlinedInputProps } from '../OutlinedInput';
 import FilledInput from '../FilledInput';
 import Input from '../Input';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
-import InputAdornment from '../InputAdornment';
+import NumberFieldAdornmentSlot from './NumberFieldAdornmentSlot';
 import { getControlElements, omitNullishEventHandlers, resolveInputProps } from './utils';
 import type { ResolvedInputSlotProps } from './utils/resolveInputProps';
 import IconButton from '../IconButton';
@@ -358,18 +358,27 @@ const NumberFieldInputSlot = React.forwardRef(
       ...restIncrementButtonProps
     } = incrementButtonProps as NumberFieldButtonSlotProps;
 
-    const scrubAreaElement = ownerState.scrubAreaPosition !== false && (
-      <BaseNumberField.ScrubArea
-        direction={direction}
-        pixelSensitivity={pixelSensitivity}
-        teleportDistance={teleportDistance}
-        render={<ScrubAreaSlot {...scrubAreaProps} />}
+    const scrubAreaAdornment = ownerState.scrubAreaPosition !== false && (
+      <NumberFieldAdornmentSlot
+        slotName="scrubAreaAdornment"
+        position={ownerState.scrubAreaPosition}
+        className={classes.scrubAreaAdornment}
+        baseState={baseState}
+        materialProps={ownerState}
+        externalForwardedProps={externalForwardedProps}
       >
-        {scrubAreaChildren}
-        <BaseNumberField.ScrubAreaCursor
-          render={<ScrubAreaCursorSlot {...scrubAreaCursorProps} />}
-        />
-      </BaseNumberField.ScrubArea>
+        <BaseNumberField.ScrubArea
+          direction={direction}
+          pixelSensitivity={pixelSensitivity}
+          teleportDistance={teleportDistance}
+          render={<ScrubAreaSlot {...scrubAreaProps} />}
+        >
+          {scrubAreaChildren}
+          <BaseNumberField.ScrubAreaCursor
+            render={<ScrubAreaCursorSlot {...scrubAreaCursorProps} />}
+          />
+        </BaseNumberField.ScrubArea>
+      </NumberFieldAdornmentSlot>
     );
 
     const incrementButton = (
@@ -425,12 +434,8 @@ const NumberFieldInputSlot = React.forwardRef(
       externalForwardedProps,
     });
 
-    const startScrubArea = ownerState.scrubAreaPosition === 'start' && (
-      <InputAdornment position="start">{scrubAreaElement}</InputAdornment>
-    );
-    const endScrubArea = ownerState.scrubAreaPosition === 'end' && (
-      <InputAdornment position="end">{scrubAreaElement}</InputAdornment>
-    );
+    const startScrubArea = ownerState.scrubAreaPosition === 'start' && scrubAreaAdornment;
+    const endScrubArea = ownerState.scrubAreaPosition === 'end' && scrubAreaAdornment;
 
     // An empty fragment would still mark the input as adorned and shrink its label.
     const startAdornment = adornedStart ? (

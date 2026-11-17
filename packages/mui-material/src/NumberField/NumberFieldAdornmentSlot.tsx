@@ -8,7 +8,8 @@ import useSlot from '../utils/useSlot';
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import RenderElement from './RenderElement';
 
-interface NumberFieldControlsProps {
+interface NumberFieldAdornmentProps {
+  slotName: 'controls' | 'scrubAreaAdornment';
   position: InputAdornmentProps['position'];
   children: React.ReactNode;
   className: string;
@@ -36,35 +37,51 @@ const NumberFieldControls = styled(InputAdornment, {
   ],
 });
 
+const NumberFieldScrubAreaAdornment = styled(InputAdornment, {
+  name: 'MuiNumberField',
+  slot: 'ScrubAreaAdornment',
+})({});
+
 /**
+ * Shared InputAdornment adapter for the controls and scrub area adornment slots.
+ * Both use the same prop, ref, position and render handling, with separate styled roots.
+ *
  * @ignore - internal component.
  */
-function NumberFieldControlsSlot(props: NumberFieldControlsProps) {
-  const { position, children, className, baseState, materialProps, externalForwardedProps } = props;
+function NumberFieldAdornmentSlot(props: NumberFieldAdornmentProps) {
+  const {
+    slotName,
+    position,
+    children,
+    className,
+    baseState,
+    materialProps,
+    externalForwardedProps,
+  } = props;
   const ownerState = { ...materialProps, position };
-  const [ControlsSlot, controlsSlotProps] = useSlot('controls', {
-    elementType: NumberFieldControls,
+  const [AdornmentSlot, adornmentSlotProps] = useSlot(slotName, {
+    elementType: slotName === 'controls' ? NumberFieldControls : NumberFieldScrubAreaAdornment,
     externalForwardedProps,
     ownerState,
     className,
     additionalProps: { position },
   });
-  const { render, ...controlsProps } = controlsSlotProps;
+  const { render, ...adornmentProps } = adornmentSlotProps;
 
   return (
-    <ControlsSlot
-      {...controlsProps}
+    <AdornmentSlot
+      {...adornmentProps}
       position={position}
       {...(render &&
-        !externalForwardedProps.slots?.controls && {
+        !externalForwardedProps.slots?.[slotName] && {
           component: RenderElement,
           render,
           renderState: baseState,
         })}
     >
       {children}
-    </ControlsSlot>
+    </AdornmentSlot>
   );
 }
 
-export default NumberFieldControlsSlot;
+export default NumberFieldAdornmentSlot;

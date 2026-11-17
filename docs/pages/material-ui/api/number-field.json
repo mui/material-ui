@@ -86,7 +86,7 @@
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaCursor?: elementType }"
+        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaAdornment?: elementType, scrubAreaCursor?: elementType }"
       },
       "default": "{}"
     },
@@ -171,6 +171,12 @@
       "description": "The component that renders the drag handle for adjusting the value.",
       "default": "'span'",
       "class": "MuiNumberField-scrubArea"
+    },
+    {
+      "name": "scrubAreaAdornment",
+      "description": "The component that wraps the scrub area in an input adornment.",
+      "default": "InputAdornment",
+      "class": "MuiNumberField-scrubAreaAdornment"
     },
     {
       "name": "scrubAreaCursor",

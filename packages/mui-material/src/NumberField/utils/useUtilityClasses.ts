@@ -9,6 +9,7 @@ const useUtilityClasses = (ownerState: NumberFieldProps) => {
     root: ['root'],
     controls: ['controls'],
     scrubArea: ['scrubArea'],
+    scrubAreaAdornment: ['scrubAreaAdornment'],
     scrubAreaCursor: ['scrubAreaCursor'],
     incrementButton: ['incrementButton'],
     decrementButton: ['decrementButton'],
