@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import type { IconButtonProps } from '@mui/material/IconButton';
 import type { FormControlProps } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
+import type { InputAdornmentProps } from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import type { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import NumberField, { numberFieldClasses as classes } from '@mui/material/NumberField';
@@ -57,8 +58,21 @@ describe('<NumberField />', () => {
     },
   );
 
-  // Controls is an internal adornment, so cover its theme overrides alongside the
-  // replaceable button slots without treating it as a public slot.
+  const TestControls = React.forwardRef<
+    HTMLDivElement,
+    Partial<InputAdornmentProps> & TestSlotProps
+  >(function TestControls(props, ref) {
+    const { ownerState, as, position = 'end', ...other } = props;
+    return (
+      <InputAdornment
+        {...other}
+        position={position}
+        ref={ref}
+        data-testid={props['data-testid'] ?? 'custom'}
+      />
+    );
+  });
+
   describeConformance(
     <NumberField variant="standard" label="Amount" helperText="Helper text" />,
     () => ({
@@ -70,11 +84,15 @@ describe('<NumberField />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { variant: 'outlined' },
       testDeepOverrides: [
-        { slotName: 'controls', slotClassName: classes.controls },
         { slotName: 'incrementButton', slotClassName: classes.incrementButton },
         { slotName: 'decrementButton', slotClassName: classes.decrementButton },
       ],
       slots: {
+        controls: {
+          expectedClassName: classes.controls,
+          testWithComponent: TestControls,
+          testWithElement: 'div',
+        },
         root: {
           expectedClassName: classes.root,
           testWithComponent: TestFormControl,
@@ -401,6 +419,7 @@ describe('<NumberField />', () => {
           vi.fn<(ownerState: NumberFieldOwnerState) => Record<string, never>>(() => ({}));
 
         return {
+          controls: createCallback(),
           root: createCallback(),
           input: createCallback(),
           htmlInput: createCallback(),
@@ -1704,6 +1723,69 @@ describe('<NumberField />', () => {
       await moveAndCheckControls('stacked');
       await moveAndCheckControls('split');
       await moveAndCheckControls('end');
+    });
+  });
+
+  // One slot serves both sides. Resolve its props per instance so split controls
+  // can use distinct refs/styles while retaining the owned buttons and field state.
+  describe('controls slot', () => {
+    it('resolves each position independently and preserves styles, refs and live render state', async () => {
+      const startRef = React.createRef<HTMLDivElement>();
+      const endRef = React.createRef<HTMLDivElement>();
+      const { user } = render(
+        <NumberField
+          label="Amount"
+          defaultValue={5}
+          controlsPosition="split"
+          slotProps={{
+            controls: ({ position }) => ({
+              title: `${position} controls`,
+              ref: position === 'start' ? startRef : endRef,
+              sx: { paddingTop: position === 'start' ? '3px' : '5px' },
+              render: (props, state) => <section {...props} data-render-value={state.value} />,
+            }),
+          }}
+        />,
+      );
+      const start = screen.getByTitle('start controls');
+      const end = screen.getByTitle('end controls');
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+
+      expect(startRef.current).to.equal(start);
+      expect(endRef.current).to.equal(end);
+      expect(start.tagName).to.equal('SECTION');
+      expect(end.tagName).to.equal('SECTION');
+      expect(start).to.have.class('MuiInputAdornment-positionStart');
+      expect(end).to.have.class('MuiInputAdornment-positionEnd');
+      expect(getComputedStyle(start).paddingTop).to.equal('3px');
+      expect(getComputedStyle(end).paddingTop).to.equal('5px');
+
+      await user.click(screen.getByRole('button', { name: 'Decrease' }));
+
+      expect(input).to.have.value('4');
+      expect(start).to.have.attribute('data-render-value', '4');
+      expect(end).to.have.attribute('data-render-value', '4');
+    });
+
+    it('lets a replacement slot bypass render while preserving the owned buttons', async () => {
+      const renderControls = vi.fn(() => <section />);
+      const { user } = render(
+        <NumberField
+          label="Amount"
+          defaultValue={5}
+          slots={{ controls: TestControls }}
+          slotProps={{ controls: { render: renderControls, children: 'Replacement content' } }}
+        />,
+      );
+      const controls = screen.getByTestId('custom');
+      const increment = screen.getByRole('button', { name: 'Increase' });
+
+      expect(controls).to.contain(increment);
+      expect(screen.queryByText('Replacement content')).to.equal(null);
+      expect(renderControls).toHaveBeenCalledTimes(0);
+
+      await user.click(increment);
+      expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('6');
     });
   });
 

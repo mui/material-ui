@@ -103,6 +103,9 @@ Use `false` to render no buttons at all.
 
 {{"component": "file://./demos/controls-position/index.ts"}}
 
+Use `slots.controls` or `slotProps.controls` to customize the button groups.
+With split controls, the same slot renders on both sides; use the callback's `ownerState.position` (`'start'` or `'end'`) to customize each side.
+
 ## Scrubbing
 
 Set `scrubAreaPosition` to `"start"` or `"end"` to add a handle that users can drag to adjust the value.

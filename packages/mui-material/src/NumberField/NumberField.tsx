@@ -434,6 +434,7 @@ NumberField.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    controls: PropTypes.elementType,
     decrementButton: PropTypes.elementType,
     formHelperText: PropTypes.elementType,
     htmlInput: PropTypes.elementType,

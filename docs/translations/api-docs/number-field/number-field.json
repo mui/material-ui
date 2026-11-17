@@ -113,13 +113,9 @@
     },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": {
-    "controls": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "each controls adornment"
-    }
-  },
+  "classDescriptions": {},
   "slotDescriptions": {
+    "controls": "The component that renders each group of stepper buttons.",
     "decrementButton": "The component that renders the decrement button.",
     "formHelperText": "The component that renders the helper text.",
     "htmlInput": "The component that renders the native input element.",

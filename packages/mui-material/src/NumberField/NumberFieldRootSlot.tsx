@@ -54,7 +54,6 @@ const NumberFieldRootSlot = React.forwardRef(
     const [RootSlot, rootProps] = useSlot('root', {
       elementType: NumberFieldRoot,
       externalForwardedProps,
-      shouldForwardComponentProp: true,
       ownerState,
       className: clsx(classes.root, materialProps.className),
       ref,

@@ -1,28 +1,8 @@
-import InputAdornment from '../../InputAdornment';
-
-import { styled } from '../../zero-styled';
-import type { NumberFieldOwnerState } from '../NumberField.types';
+import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
+import type { NumberFieldOwnerState, NumberFieldProps } from '../NumberField.types';
 import type { NumberFieldClasses } from '../numberFieldClasses';
+import Controls from '../NumberFieldControlsSlot';
 import getAdornedStart from './getAdornedStart';
-
-const Controls = styled(InputAdornment, {
-  name: 'MuiNumberField',
-  slot: 'Controls',
-})<{ ownerState: NumberFieldOwnerState }>({
-  variants: [
-    {
-      props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
-        ownerState.controlsPosition === 'stacked',
-      style: {
-        flexDirection: 'column',
-        alignItems: 'stretch',
-        alignSelf: 'stretch',
-        height: 'auto',
-        maxHeight: 'none',
-      },
-    },
-  ],
-});
 
 interface GetControlElementsOptions {
   controlsPosition: NumberFieldOwnerState['controlsPosition'];
@@ -31,6 +11,8 @@ interface GetControlElementsOptions {
   startAdornment?: React.ReactNode;
   classes: Pick<NumberFieldClasses, 'controls'>;
   ownerState: NumberFieldOwnerState;
+  baseState: BaseNumberField.Root.State;
+  externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
 
 /**
@@ -43,12 +25,19 @@ function getControlElements({
   startAdornment,
   classes,
   ownerState,
+  baseState,
+  externalForwardedProps,
 }: GetControlElementsOptions): {
   startControls: React.ReactNode | null;
   endControls: React.ReactNode | null;
   adornedStart: boolean;
 } {
-  const controlProps = { className: classes.controls, ownerState };
+  const controlProps = {
+    className: classes.controls,
+    materialProps: ownerState,
+    baseState,
+    externalForwardedProps,
+  };
   let startControls: React.ReactNode = null;
   let endControls: React.ReactNode = null;
 

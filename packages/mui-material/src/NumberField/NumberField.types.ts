@@ -14,6 +14,7 @@ import type { InputLabelProps } from '../InputLabel';
 import type { Theme } from '../styles/createTheme';
 import type { FilledInputProps } from '../FilledInput';
 import type { IconButtonProps } from '../IconButton';
+import type { InputAdornmentProps } from '../InputAdornment';
 import type { OutlinedInputProps } from '../OutlinedInput';
 import type { SxProps } from '../styles';
 
@@ -22,6 +23,11 @@ export type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
 type ControlsPosition = 'stacked' | 'end' | 'split' | false;
 
 export interface NumberFieldSlots {
+  /**
+   * The component that renders each group of stepper buttons.
+   * @default InputAdornment
+   */
+  controls: React.ElementType;
   /**
    * The component that renders the decrement button.
    * @default IconButton
@@ -73,6 +79,7 @@ export interface NumberFieldPropsSizeOverrides {}
 export interface NumberFieldPropsColorOverrides {}
 
 export interface NumberFieldRootSlotPropsOverrides {}
+export interface NumberFieldControlsSlotPropsOverrides {}
 export interface NumberFieldInputSlotPropsOverrides {}
 export interface NumberFieldHtmlInputSlotPropsOverrides {}
 export interface NumberFieldFormHelperTextSlotPropsOverrides {}
@@ -85,6 +92,19 @@ export interface NumberFieldScrubAreaCursorSlotPropsOverrides {}
 export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
   NumberFieldSlots,
   {
+    /**
+     * Props forwarded to each controls adornment.
+     * Based on the [InputAdornment](https://mui.com/material-ui/api/input-adornment/#props) component.
+     * NumberField supplies the position and button content.
+     * With split controls, the callback receives `ownerState.position` for each side.
+     * Use `render` to change the element while preserving Material styling.
+     */
+    controls: SlotComponentProps<
+      React.ElementType<Omit<InputAdornmentProps, 'component' | 'position'>>,
+      NumberFieldControlsSlotPropsOverrides &
+        Pick<useRender.ComponentProps<'div', BaseNumberField.Root.State>, 'render'>,
+      NumberFieldOwnerState & Pick<InputAdornmentProps, 'position'>
+    >;
     /**
      * Props forwarded to the decrement button slot.
      * By default, the available props are based on the [IconButton](https://mui.com/material-ui/api/icon-button/#props) component.
