@@ -508,13 +508,13 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     checkDirty(event.animationName === MUI_AUTO_FILL_CANCEL ? inputRef.current : { value: 'x' });
   };
 
+  const hasStartAdornment = Boolean(startAdornment);
+  const setAdornedStart = muiFormControl ? muiFormControl.setAdornedStart : undefined;
   React.useEffect(() => {
-    // A new `startAdornment` element on each render re-runs this effect. Skip an unchanged value,
-    // so the FormControl does not get a no-op update on every render.
-    if (muiFormControl && muiFormControl.adornedStart !== Boolean(startAdornment)) {
-      muiFormControl.setAdornedStart(Boolean(startAdornment));
+    if (setAdornedStart) {
+      setAdornedStart(hasStartAdornment);
     }
-  }, [muiFormControl, startAdornment]);
+  }, [setAdornedStart, hasStartAdornment]);
 
   const ownerState = {
     ...props,
