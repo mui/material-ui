@@ -2,7 +2,10 @@ import { describe, it, expect } from 'vitest';
 import type { ComponentPropDescriptor } from './getComponentProps';
 import createDescribeableProp from './createDescribeableProp';
 
-function createProp(description: string, type = 'bool'): ComponentPropDescriptor {
+function createProp(
+  description: string,
+  type: 'bool' | 'func' | 'string' = 'bool',
+): ComponentPropDescriptor {
   return { description, required: false, type: { name: type } };
 }
 
@@ -36,7 +39,7 @@ describe('createDescribeableProp', () => {
 
   it('describes a className with a component-specific type', () => {
     const prop = createDescribeableProp(
-      createProp('A function of the state that returns the class name.', 'union'),
+      createProp('A function of the state that returns the class name.', 'func'),
       'className',
     );
     expect(prop?.annotation.description).to.equal(

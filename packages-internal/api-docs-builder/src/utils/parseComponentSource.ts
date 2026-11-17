@@ -75,6 +75,16 @@ function isReactCall(path: NodePath, name: string): path is NodePath<t.CallExpre
   );
 }
 
+/**
+ * Returns the component passed to `React.forwardRef(…)` or `React.memo(…)`.
+ */
+function getWrappedComponent(path: NodePath): NodePath | null {
+  if (isReactCall(path, 'forwardRef') || isReactCall(path, 'memo')) {
+    return (path.get('arguments')[0] as NodePath | undefined) ?? null;
+  }
+  return null;
+}
+
 function resolveToValue(path: NodePath): NodePath {
   const unwrapped = unwrapExpression(path);
   if (unwrapped.isIdentifier()) {
@@ -160,10 +170,7 @@ function getComponentDocblock(definition: NodePath): string | null {
     }
   }
 
-  const wrapped =
-    isReactCall(definition, 'forwardRef') || isReactCall(definition, 'memo')
-      ? (definition.get('arguments')[0] as NodePath | undefined)
-      : undefined;
+  const wrapped = getWrappedComponent(definition);
   if (wrapped) {
     const inner = resolveToValue(wrapped);
     if (inner.node !== definition.node) {
@@ -177,19 +184,16 @@ type FunctionPath = NodePath<t.Function>;
 
 function getRenderFunction(definition: NodePath): FunctionPath | null {
   const value = resolveToValue(definition);
-  if (isReactCall(value, 'forwardRef') || isReactCall(value, 'memo')) {
-    const firstArgument = value.get('arguments')[0] as NodePath | undefined;
-    return firstArgument ? getRenderFunction(firstArgument) : null;
+  const wrapped = getWrappedComponent(value);
+  if (wrapped) {
+    return getRenderFunction(wrapped);
   }
-  if (value.isFunction()) {
-    return value;
-  }
-  return null;
+  return value.isFunction() ? value : null;
 }
 
-function getPropertyName(path: NodePath<t.ObjectProperty>): string | null {
-  const key = path.node.key;
-  if (t.isIdentifier(key) && !path.node.computed) {
+function getPropertyName(property: t.ObjectProperty): string | null {
+  const key = property.key;
+  if (t.isIdentifier(key) && !property.computed) {
     return key.name;
   }
   if (t.isStringLiteral(key)) {
@@ -298,7 +302,7 @@ function getDefaultValues(src: string, renderFunction: FunctionPath): Record<str
     if (!propertyPath.isObjectProperty()) {
       return;
     }
-    const propName = getPropertyName(propertyPath);
+    const propName = getPropertyName(propertyPath.node);
     const defaultValue = getDefaultValue(src, propertyPath.get('value') as NodePath);
     if (propName && defaultValue !== null) {
       defaultValues[propName] = defaultValue;
@@ -314,10 +318,9 @@ function getUsedProps(renderFunction: FunctionPath): string[] {
     if (t.isObjectPattern(node)) {
       node.properties.forEach((property) => {
         if (t.isObjectProperty(property)) {
-          if (t.isStringLiteral(property.key)) {
-            usedProps.push(property.key.value);
-          } else if (t.isIdentifier(property.key)) {
-            usedProps.push(property.key.name);
+          const propName = getPropertyName(property);
+          if (propName) {
+            usedProps.push(propName);
           }
         } else if (t.isIdentifier(property.argument)) {
           // Props accessed through the rest object, e.g. `other.foo`.

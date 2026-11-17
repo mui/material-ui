@@ -388,20 +388,3 @@ export function isSymbolDeclaredOnlyInDependencies(project: TypeScriptProject, s
     })
   );
 }
-
-function isDeclaredOnlyInDependencies(project: TypeScriptProject, prop: ParsedProp) {
-  return prop.signatures.every(({ symbol }) => isSymbolDeclaredOnlyInDependencies(project, symbol));
-}
-
-/**
- * Names of the component props only declared in dependencies, like React's DOM attributes.
- */
-export function getExternalProps(project: TypeScriptProject, componentName: string): Set<string> {
-  const node = getComponentDeclaration(project, componentName);
-  const props = node ? getPropsFromComponentNode({ node, project, checkDeclarations: true }) : null;
-  return new Set(
-    Object.entries(props?.props ?? {})
-      .filter(([, prop]) => isDeclaredOnlyInDependencies(project, prop))
-      .map(([name]) => name),
-  );
-}

@@ -1,11 +1,13 @@
-import * as doctrine from 'doctrine';
-import { getUnstyledFilename } from '@mui/internal-docs-utils';
-import { getPropTypesFromFile } from '@mui/internal-scripts/typescript-to-proptypes';
+import { getOwnPropsFilenames } from '@mui/internal-docs-utils';
+import {
+  defaultSortLiteralUnions,
+  getPropTypesFromFile,
+} from '@mui/internal-scripts/typescript-to-proptypes';
 import type {
-  PropType,
-  PropTypeDefinition,
-  PropTypesComponent,
+  GetPropTypesFromFileOptions,
   LiteralType,
+  PropType,
+  PropTypesComponent,
   UnionType,
 } from '@mui/internal-scripts/typescript-to-proptypes';
 import type { TypeScriptProject } from './createTypeScriptProject';
@@ -20,7 +22,19 @@ export type DocsPropType =
   | { name: 'arrayOf'; value: DocsPropType }
   | { name: 'instanceOf'; value: string }
   | { name: 'custom'; description: string }
-  | { name: string };
+  | {
+      name:
+        | 'any'
+        | 'array'
+        | 'bool'
+        | 'element'
+        | 'elementType'
+        | 'func'
+        | 'node'
+        | 'number'
+        | 'object'
+        | 'string';
+    };
 
 export interface ComponentPropDescriptor {
   /**
@@ -30,23 +44,21 @@ export interface ComponentPropDescriptor {
   required: boolean;
   type: DocsPropType;
   defaultValue?: { value: string };
-  jsdocDefaultValue?: { value: string };
+  /**
+   * If `true`, the prop is only declared in dependencies, like React's DOM attributes.
+   */
+  external?: boolean;
 }
 
 export interface ShouldIncludePropData {
   componentName: string;
-  prop: { name: string; filenames: Set<string>; jsDoc: string | undefined };
-  /**
-   * The file holding the component's type definitions.
-   */
-  typesFilename: string;
-  /**
-   * Props read by the component's implementation.
-   */
-  usedProps: readonly string[];
+  prop: { name: string; filenames: Set<string> };
 }
 
-export interface PropsParsingSettings {
+export interface PropsParsingSettings extends Pick<
+  GetPropTypesFromFileOptions,
+  'shouldResolveObject' | 'shouldUseObjectForDate'
+> {
   /**
    * Decides whether a prop is documented.
    * Return `undefined` to use the default behavior:
@@ -54,40 +66,12 @@ export interface PropsParsingSettings {
    */
   shouldIncludeProp?: (data: ShouldIncludePropData) => boolean | undefined;
   /**
-   * Decides whether the shape of an object type is documented.
-   * Return `undefined` to use the default behavior.
-   */
-  shouldResolveObject?: (data: {
-    name: string;
-    propertyCount: number;
-    depth: number;
-  }) => boolean | undefined;
-  /**
-   * Whether `Date` props are documented as `object` instead of `Date`.
-   */
-  shouldUseObjectForDate?: (data: { name: string }) => boolean;
-  /**
    * Custom order of the literals of a union.
    */
   getSortLiteralUnions?: (data: {
     componentName: string;
     propName: string;
   }) => ((a: LiteralType, b: LiteralType) => number) | undefined;
-}
-
-function defaultSortLiteralUnions(a: LiteralType, b: LiteralType) {
-  const { value: valueA } = a;
-  const { value: valueB } = b;
-  if (typeof valueA === 'number' && typeof valueB === 'number') {
-    return valueA - valueB;
-  }
-  if (typeof valueA === 'number') {
-    return 1;
-  }
-  if (typeof valueB === 'number') {
-    return -1;
-  }
-  return String(valueA).localeCompare(String(valueB));
 }
 
 function formatLiteral(value: unknown): string {
@@ -131,13 +115,7 @@ function isOptional(propType: PropType): boolean {
 }
 
 function isOptionalShapeField(name: string, propType: PropType): boolean {
-  if (propType.type === 'UnionNode') {
-    return isOptional(propType);
-  }
-  if (propType.type === 'DOMElementNode') {
-    return true;
-  }
-  return propType.type === 'ElementNode' && name !== 'children';
+  return isOptional(propType) || (propType.type === 'ElementNode' && name !== 'children');
 }
 
 function convertType(propType: PropType, context: ConvertContext): DocsPropType {
@@ -194,14 +172,14 @@ function convertType(propType: PropType, context: ConvertContext): DocsPropType 
 
 function convertUnion(propType: UnionType, context: ConvertContext): DocsPropType {
   const { types } = propType;
-  const optional = types.some(isNullish);
-  const nonNullish = optional ? types.filter((type) => !isNullish(type)) : types;
-
   if (types.length === 2 && types.some((type) => type.type === 'DOMElementNode')) {
     return { name: 'custom', description: 'HTML element' };
   }
 
-  let literals = nonNullish.filter((type): type is LiteralType => type.type === 'LiteralNode');
+  const nonNullish = types.filter((type) => !isNullish(type));
+  let literals = nonNullish
+    .filter((type): type is LiteralType => type.type === 'LiteralNode')
+    .sort(context.sortLiterals);
   const seen = new Set<string>();
   const rest: DocsPropType[] = nonNullish
     .filter((type) => type.type !== 'LiteralNode')
@@ -216,7 +194,6 @@ function convertUnion(propType: UnionType, context: ConvertContext): DocsPropTyp
       return true;
     });
 
-  literals = literals.slice().sort(context.sortLiterals);
   if (literals.some((x) => x.value === 'true') && literals.some((x) => x.value === 'false')) {
     rest.push({ name: 'bool' });
     literals = literals.filter((x) => x.value !== 'true' && x.value !== 'false');
@@ -234,31 +211,6 @@ function convertUnion(propType: UnionType, context: ConvertContext): DocsPropTyp
     return rest[0];
   }
   return { name: 'union', value: enumType ? [enumType, ...rest] : rest };
-}
-
-function getJsdocDefaultValue(jsDoc: string): { value: string } | undefined {
-  const annotation = doctrine.parse(jsDoc, { sloppy: true });
-  const defaultTag = annotation.tags.find((tag) => tag.title === 'default');
-  if (defaultTag === undefined) {
-    return undefined;
-  }
-  return { value: defaultTag.description || '' };
-}
-
-function isDeclaredNextToComponent(prop: PropTypeDefinition, typesFilename: string) {
-  const unstyledFile = getUnstyledFilename(typesFilename, true);
-  const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
-  const propsFile = typesFilename.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
-  const propsFileAlternative = typesFilename.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
-
-  return Array.from(prop.filenames).some(
-    (filename) =>
-      filename === typesFilename ||
-      filename === unstyledFile ||
-      filename === unstyledPropsFile ||
-      filename === propsFile ||
-      filename === propsFileAlternative,
-  );
 }
 
 function findComponent(components: PropTypesComponent[], componentName: string) {
@@ -289,7 +241,7 @@ function splitTopLevelUnion(typeText: string): string[] {
   return members.filter((member) => member !== '' && member !== 'undefined' && member !== 'null');
 }
 
-const REACT_NODE_MEMBERS = new Set([
+const REACT_NODE_MEMBERS = new Set<DocsPropType['name']>([
   'element',
   'number',
   'string',
@@ -315,9 +267,7 @@ function applyTypeAnnotation(type: DocsPropType, typeText: string | undefined): 
   if (members.some((member) => /^(NonNullable<)?(React\.)?ReactNode>?$/.test(member))) {
     const rest =
       type.name === 'union'
-        ? (type as Extract<DocsPropType, { name: 'union' }>).value.filter(
-            (member) => !REACT_NODE_MEMBERS.has(member.name),
-          )
+        ? type.value.filter((member) => !REACT_NODE_MEMBERS.has(member.name))
         : [];
     return rest.length > 0
       ? { name: 'union', value: [{ name: 'node' }, ...rest] }
@@ -333,15 +283,26 @@ function applyTypeAnnotation(type: DocsPropType, typeText: string | undefined): 
     if (type.name === 'enum') {
       return { name: 'union', value: [type, { name: 'string' }] };
     }
-    if (type.name === 'union') {
-      const unionValue = (type as Extract<DocsPropType, { name: 'union' }>).value;
-      if (!unionValue.some((member) => member.name === 'string')) {
-        return { name: 'union', value: [...unionValue, { name: 'string' }] };
-      }
+    if (type.name === 'union' && !type.value.some((member) => member.name === 'string')) {
+      return { name: 'union', value: [...type.value, { name: 'string' }] };
     }
   }
 
   return type;
+}
+
+function isDeclaredOnlyInDependencies(project: TypeScriptProject, filenames: Set<string>) {
+  return (
+    filenames.size > 0 &&
+    Array.from(filenames).every((filename) => {
+      const sourceFile = project.program.getSourceFile(filename);
+      return (
+        sourceFile !== undefined &&
+        (project.program.isSourceFileFromExternalLibrary(sourceFile) ||
+          project.program.isSourceFileDefaultLibrary(sourceFile))
+      );
+    })
+  );
 }
 
 /**
@@ -370,36 +331,34 @@ export function getComponentProps({
     return {};
   }
 
-  const components = getPropTypesFromFile({
-    filePath: typesFilename,
-    project,
-    checkDeclarations: true,
-    shouldResolveObject: settings.shouldResolveObject,
-    shouldUseObjectForDate: settings.shouldUseObjectForDate,
-  });
-
-  const component = findComponent(components, componentName);
+  const component = findComponent(
+    getPropTypesFromFile({
+      filePath: typesFilename,
+      project,
+      checkDeclarations: true,
+      shouldResolveObject: settings.shouldResolveObject,
+      shouldUseObjectForDate: settings.shouldUseObjectForDate,
+    }),
+    componentName,
+  );
   if (!component) {
     return {};
   }
 
+  const ownPropsFilenames = getOwnPropsFilenames(typesFilename);
   const props: Record<string, ComponentPropDescriptor> = {};
   component.types
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name))
     .forEach((prop) => {
-      let include = settings.shouldIncludeProp?.({
-        componentName: component.name,
-        prop: { name: prop.name, filenames: prop.filenames, jsDoc: prop.jsDoc },
-        typesFilename,
-        usedProps,
-      });
-      if (include === undefined) {
-        include =
-          prop.name === 'children' ||
-          isDeclaredNextToComponent(prop, typesFilename) ||
-          usedProps.includes(prop.name);
-      }
+      const include =
+        settings.shouldIncludeProp?.({
+          componentName: component.name,
+          prop: { name: prop.name, filenames: prop.filenames },
+        }) ??
+        (prop.name === 'children' ||
+          Array.from(prop.filenames).some((propFilename) => ownPropsFilenames.has(propFilename)) ||
+          usedProps.includes(prop.name));
       if (!include) {
         return;
       }
@@ -407,18 +366,17 @@ export function getComponentProps({
       const sortLiterals =
         settings.getSortLiteralUnions?.({ componentName: component.name, propName: prop.name }) ??
         defaultSortLiteralUnions;
-      const type = applyTypeAnnotation(
-        convertType(prop.propType, { propName: prop.name, sortLiterals }),
-        prop.typeText,
-      );
 
       props[prop.name] = {
         description: prop.jsDoc ?? '',
         required: !isOptional(prop.propType),
-        type,
+        type: applyTypeAnnotation(
+          convertType(prop.propType, { propName: prop.name, sortLiterals }),
+          prop.typeText,
+        ),
         defaultValue:
           defaultValues[prop.name] !== undefined ? { value: defaultValues[prop.name] } : undefined,
-        jsdocDefaultValue: getJsdocDefaultValue(prop.jsDoc ?? ''),
+        external: isDeclaredOnlyInDependencies(project, prop.filenames),
       };
     });
 

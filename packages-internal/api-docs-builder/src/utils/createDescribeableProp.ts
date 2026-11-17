@@ -13,6 +13,10 @@ const HIDDEN_PROPS: Record<string, string> = {
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
   defaultValue: string | null;
+  /**
+   * The value of the `@default` JSDoc tag.
+   */
+  jsdocDefaultValue: string | undefined;
   required: boolean;
   type: DocsPropType;
 }
@@ -35,13 +39,13 @@ export default function createDescribeableProp(
   prop: ComponentPropDescriptor,
   propName: string,
   settings: CreateDescribeablePropSettings = {},
-  isExternal = false,
+  isExternal = Boolean(prop.external),
 ): DescribeablePropDescriptor | null {
   if (prop.type.name === HIDDEN_PROPS[propName]) {
     return null;
   }
 
-  const { defaultValue, description, required, type, jsdocDefaultValue } = prop;
+  const { defaultValue, description, required, type } = prop;
 
   const { propsWithoutDefaultVerification = [] } = settings;
 
@@ -70,6 +74,9 @@ export default function createDescribeableProp(
     );
   }
 
+  const defaultTag = annotation.tags.find((tag) => tag.title === 'default');
+  const jsdocDefaultValue = defaultTag ? defaultTag.description || '' : undefined;
+
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
     // Assume that this prop:
     // 1. Is typed by another component
@@ -93,9 +100,9 @@ export default function createDescribeableProp(
     !propsWithoutDefaultVerification.includes(propName)
   ) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
-    if (jsdocDefaultValue.value !== defaultValue!.value) {
+    if (jsdocDefaultValue !== defaultValue!.value) {
       throw new Error(
-        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue}" to equal runtime default value of "${defaultValue?.value}"`,
       );
     }
   }
@@ -103,6 +110,7 @@ export default function createDescribeableProp(
   return {
     annotation,
     defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
+    jsdocDefaultValue,
     required: Boolean(required),
     type,
   };

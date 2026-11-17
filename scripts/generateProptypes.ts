@@ -10,7 +10,7 @@ import type { InjectPropTypesInFileOptions } from '@mui/internal-scripts/typescr
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
-  getUnstyledFilename,
+  getOwnPropsFilenames,
 } from '@mui/internal-docs-utils';
 import {
   getPropTypesFromFile,
@@ -20,24 +20,19 @@ import type { TypeScriptProject } from '@mui/internal-api-docs-builder';
 import { createTypeScriptProjectBuilder } from '@mui/internal-api-docs-builder';
 import {
   ignoreExternalDocumentation,
-  sortSizeByScaleAscending,
+  isUnresolvedObjectName,
+  propsSettings,
   useExternalDocumentation,
 } from '../packages-internal/api-docs-builder-core';
 
 // eslint-disable-next-line import/extensions -- explicit .mjs extension required for tsx to resolve the ESM module
 import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects.mjs';
 
-// Custom order of literal unions by component
 const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions'] = (
   component,
   propType,
-) => {
-  if (propType.name === 'size') {
-    return sortSizeByScaleAscending;
-  }
-
-  return undefined;
-};
+) =>
+  propsSettings.getSortLiteralUnions?.({ componentName: component.name, propName: propType.name });
 
 async function generateProptypes(
   project: TypeScriptProject,
@@ -47,17 +42,7 @@ async function generateProptypes(
   const components = getPropTypesFromFile({
     filePath: tsFile,
     project,
-    shouldResolveObject: ({ name }) => {
-      if (
-        name.toLowerCase().endsWith('classes') ||
-        name === 'theme' ||
-        name === 'ownerState' ||
-        (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
-      ) {
-        return false;
-      }
-      return undefined;
-    },
+    shouldResolveObject: ({ name }) => (isUnresolvedObjectName(name) ? false : undefined),
     checkDeclarations: true,
   });
 
@@ -92,14 +77,7 @@ async function generateProptypes(
 
   const sourceContent = await fs.readFile(sourceFile, 'utf8');
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
-  // If the component inherits the props from some unstyled components
-  // we don't want to add those propTypes again in the Material UI propTypes
-  const unstyledFile = getUnstyledFilename(tsFile, true);
-  const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
-
-  // TODO remove, should only have .types.ts
-  const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
-  const propsFileAlternative = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
+  const ownPropsFilenames = getOwnPropsFilenames(tsFile);
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = injectPropTypesInFile({
     components,
@@ -151,16 +129,9 @@ async function generateProptypes(
         let shouldDocument;
         const { name: componentName } = component;
 
-        prop.filenames.forEach((filename) => {
-          const isExternal = filename !== tsFile;
-          const implementedByUnstyledVariant =
-            filename === unstyledFile || filename === unstyledPropsFile;
-          const implementedBySelfPropsFile =
-            filename === propsFile || filename === propsFileAlternative;
-          if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
-            shouldDocument = true;
-          }
-        });
+        if (Array.from(prop.filenames).some((filename) => ownPropsFilenames.has(filename))) {
+          shouldDocument = true;
+        }
 
         if (
           useExternalDocumentation[componentName] &&

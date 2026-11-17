@@ -3,5 +3,6 @@ export { projectSettings as muiSystemProjectSettings } from './muiSystem/project
 export {
   useExternalDocumentation,
   ignoreExternalDocumentation,
-  sortSizeByScaleAscending,
+  isUnresolvedObjectName,
+  propsSettings,
 } from './propsSettings';

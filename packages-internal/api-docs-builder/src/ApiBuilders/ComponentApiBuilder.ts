@@ -23,7 +23,6 @@ import type { TypeScriptProject } from '../utils/createTypeScriptProject';
 import { getComponentProps } from '../utils/getComponentProps';
 import { parseComponentSource } from '../utils/parseComponentSource';
 import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
-import { getExternalProps } from '../utils/getPropsFromComponentNode';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
 import type {
@@ -404,7 +403,6 @@ const attachTranslations = (
   reactApi: ComponentReactApi,
   deprecationInfo: string | undefined,
   settings: CreateDescribeablePropSettings | undefined,
-  externalProps: ReadonlySet<string>,
 ) => {
   const translations: ComponentReactApi['translations'] = {
     componentDescription: reactApi.description,
@@ -415,12 +413,7 @@ const attachTranslations = (
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(
-        propDescriptor,
-        propName,
-        settings,
-        externalProps.has(propName),
-      );
+      prop = createDescribeableProp(propDescriptor, propName, settings);
     } catch (error) {
       // Reported by attachPropsTable.
       prop = null;
@@ -513,7 +506,6 @@ const attachTranslations = (
 const attachPropsTable = (
   reactApi: ComponentReactApi,
   settings: CreateDescribeablePropSettings | undefined,
-  externalProps: ReadonlySet<string>,
 ) => {
   const propErrors: string[] = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
@@ -521,12 +513,7 @@ const attachPropsTable = (
     Object.entries(reactApi.props!).flatMap(([propName, propDescriptor]): Pair[] => {
       let prop: DescribeablePropDescriptor | null;
       try {
-        prop = createDescribeableProp(
-          propDescriptor,
-          propName,
-          settings,
-          externalProps.has(propName),
-        );
+        prop = createDescribeableProp(propDescriptor, propName, settings);
       } catch (error) {
         propErrors.push(`[${reactApi.name}] \`${propName}\`: ${error}`);
         prop = null;
@@ -535,7 +522,7 @@ const attachPropsTable = (
         return [];
       }
 
-      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
+      const defaultValue = prop.jsdocDefaultValue;
 
       const {
         signature: signatureType,
@@ -826,9 +813,8 @@ export default async function generateComponentApi(
     project,
   );
 
-  const externalProps = getExternalProps(project, reactApi.name);
   const errors = [
-    ...attachPropsTable(reactApi, projectSettings.propsSettings, externalProps),
+    ...attachPropsTable(reactApi, projectSettings.propsSettings),
     ...slotsAndClassesErrors,
   ];
   if (errors.length > 0) {
@@ -839,7 +825,7 @@ export default async function generateComponentApi(
 
   attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
-  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings, externalProps);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

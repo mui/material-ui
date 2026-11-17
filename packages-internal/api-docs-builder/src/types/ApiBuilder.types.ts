@@ -75,7 +75,6 @@ export interface TypeDescriptions {
 interface PropDescription {
   description: string;
   requiresRef?: boolean;
-  deprecated?: string;
   typeDescriptions?: { [t: string]: TypeDescription };
   seeMoreText?: string;
 }

@@ -111,8 +111,20 @@ export const ignoreExternalDocumentation: Record<string, readonly string[]> = {
 
 const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
 
-export function sortSizeByScaleAscending(a: { value: unknown }, b: { value: unknown }) {
+function sortSizeByScaleAscending(a: { value: unknown }, b: { value: unknown }) {
   return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
+}
+
+/**
+ * Object types documented as `object` instead of their shape.
+ */
+export function isUnresolvedObjectName(name: string) {
+  return (
+    name.toLowerCase().endsWith('classes') ||
+    name === 'theme' ||
+    name === 'ownerState' ||
+    (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
+  );
 }
 
 export const propsSettings: NonNullable<ProjectSettings['propsSettings']> = {
@@ -126,19 +138,9 @@ export const propsSettings: NonNullable<ProjectSettings['propsSettings']> = {
     }
     return undefined;
   },
-  shouldResolveObject: ({ name, depth }) => {
-    if (
-      // Only document the shape of the prop itself, not of nested objects.
-      depth > 1 ||
-      name.toLowerCase().endsWith('classes') ||
-      name === 'theme' ||
-      name === 'ownerState' ||
-      (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
-    ) {
-      return false;
-    }
-    return undefined;
-  },
+  // Only document the shape of the prop itself, not of nested objects.
+  shouldResolveObject: ({ name, depth }) =>
+    depth > 1 || isUnresolvedObjectName(name) ? false : undefined,
   getSortLiteralUnions: ({ propName }) =>
     propName === 'size' ? sortSizeByScaleAscending : undefined,
 };
