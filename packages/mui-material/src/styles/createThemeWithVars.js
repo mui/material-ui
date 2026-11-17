@@ -1,7 +1,6 @@
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
-import { private_resolveModularCssLayers as resolveModularCssLayers } from '@mui/system/createTheme';
 import {
   prepareCssVars,
   prepareTypographyVars,
@@ -1040,7 +1039,6 @@ export default function createThemeWithVars(options = {}, ...args) {
   };
   theme.internal_cache = {};
   theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
-  theme.modularCssLayers = resolveModularCssLayers(theme.modularCssLayers);
 
   return theme;
 }

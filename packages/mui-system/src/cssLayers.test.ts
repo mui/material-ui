@@ -1,39 +1,22 @@
 import { describe, it, expect } from 'vitest';
 import { isJsdom } from '@mui/internal-test-utils';
-import {
-  getCssLayer,
-  getCssLayerOrderStatement,
-  hasCssLayers,
-  resolveModularCssLayers,
-  wrapInCssLayer,
-} from './cssLayers';
+import { getCssLayer, getCssLayerOrderStatement, wrapInCssLayer } from './cssLayers';
 
-describe('hasCssLayers', () => {
+describe('getCssLayer', () => {
   it.runIf(isJsdom())('skips the layers in jsdom, which ignores the rules inside them', () => {
-    expect(hasCssLayers({ modularCssLayers: false })).to.equal(false);
-    expect(hasCssLayers({ modularCssLayers: true })).to.equal(false);
+    expect(getCssLayer({}, 'sx')).to.equal(undefined);
+    expect(getCssLayer({ modularCssLayers: true }, 'sx')).to.equal(undefined);
   });
 
-  it.skipIf(isJsdom())('is true for a theme with modularCssLayers', () => {
-    expect(hasCssLayers({ modularCssLayers: false })).to.equal(true);
-    expect(hasCssLayers({})).to.equal(false);
-  });
-});
-
-describe.skipIf(isJsdom())('getCssLayer', () => {
-  it('returns the sub-layer', () => {
-    expect(getCssLayer({ modularCssLayers: true }, 'sx')).to.equal('mui.sx');
-    expect(getCssLayer({ modularCssLayers: '@layer base, mui;' }, 'sx')).to.equal('mui.sx');
-  });
-
-  it('returns the mui layer for every sub-layer with modularCssLayers: false', () => {
-    expect(getCssLayer({ modularCssLayers: false }, 'global')).to.equal('mui');
+  it.skipIf(isJsdom())('returns the mui layer by default', () => {
+    expect(getCssLayer({}, 'global')).to.equal('mui');
+    expect(getCssLayer(undefined, 'sx')).to.equal('mui');
     expect(getCssLayer({ modularCssLayers: false }, 'sx')).to.equal('mui');
   });
 
-  it('returns undefined for a theme without modularCssLayers', () => {
-    expect(getCssLayer({}, 'sx')).to.equal(undefined);
-    expect(getCssLayer(undefined, 'sx')).to.equal(undefined);
+  it.skipIf(isJsdom())('returns the sub-layer with modularCssLayers', () => {
+    expect(getCssLayer({ modularCssLayers: true }, 'sx')).to.equal('mui.sx');
+    expect(getCssLayer({ modularCssLayers: '@layer base, mui;' }, 'sx')).to.equal('mui.sx');
   });
 });
 
@@ -52,24 +35,9 @@ describe.skipIf(isJsdom())('getCssLayerOrderStatement', () => {
     );
   });
 
-  it('declares nothing with modularCssLayers: false', () => {
+  it('declares nothing without sub-layers', () => {
     expect(getCssLayerOrderStatement({ modularCssLayers: false })).to.equal('');
-  });
-
-  it('declares nothing for a theme without modularCssLayers', () => {
     expect(getCssLayerOrderStatement({})).to.equal('');
-  });
-});
-
-describe('resolveModularCssLayers', () => {
-  it('uses a single layer by default', () => {
-    expect(resolveModularCssLayers(undefined)).to.equal(false);
-    expect(resolveModularCssLayers(false)).to.equal(false);
-  });
-
-  it('keeps true and strings', () => {
-    expect(resolveModularCssLayers(true)).to.equal(true);
-    expect(resolveModularCssLayers('@layer base, mui;')).to.equal('@layer base, mui;');
   });
 });
 

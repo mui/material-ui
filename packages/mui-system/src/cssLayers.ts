@@ -11,32 +11,30 @@ const isCssLayerSupported =
   typeof navigator === 'undefined' || !/jsdom|HappyDOM/.test(navigator.userAgent);
 
 /**
- * Whether the theme puts Material UI's styles in CSS layers.
- * `createTheme()` always does: it sets `modularCssLayers` to `false`, `true` or a string.
- * A theme object made by hand, without `modularCssLayers`, has no layers, and neither has any theme
- * in jsdom or happy-dom.
+ * Whether the theme splits the `mui` layer into sub-layers, with `modularCssLayers: true` or a
+ * string.
  */
-export function hasCssLayers(theme: any): boolean {
-  return isCssLayerSupported && theme?.modularCssLayers != null;
+function hasCssSubLayers(theme: any): boolean {
+  const modularCssLayers = theme?.modularCssLayers;
+  return isCssLayerSupported && (modularCssLayers === true || typeof modularCssLayers === 'string');
 }
 
 /**
- * Whether the theme puts all of Material UI's styles in the `mui` layer, without sub-layers.
+ * Whether all of Material UI's styles go in the `mui` layer, without sub-layers. That's the default.
  */
 export function isSingleCssLayer(theme: any): boolean {
-  return hasCssLayers(theme) && theme.modularCssLayers === false;
+  return isCssLayerSupported && !hasCssSubLayers(theme);
 }
 
 /**
- * Returns the full name of the layer for a kind of styles, such as `mui.sx`, `mui` without
- * sub-layers, or `undefined` when the theme has no layers.
- * Full names work without an Emotion cache that wraps the styles in `@layer mui`.
+ * Returns the full name of the layer for a kind of styles: `mui`, or a sub-layer such as `mui.sx`.
+ * Returns `undefined` in jsdom and happy-dom, where the styles aren't layered.
  */
 export function getCssLayer(theme: any, layer: CssLayer): string | undefined {
-  if (!hasCssLayers(theme)) {
+  if (!isCssLayerSupported) {
     return undefined;
   }
-  return isSingleCssLayer(theme) ? 'mui' : `mui.${layer}`;
+  return hasCssSubLayers(theme) ? `mui.${layer}` : 'mui';
 }
 
 /**
@@ -46,7 +44,7 @@ export function getCssLayer(theme: any, layer: CssLayer): string | undefined {
  * declarations of every part come first, and the media queries after them.
  */
 export function getCssSubLayer(theme: any, layer: CssLayer): string | undefined {
-  return isSingleCssLayer(theme) ? undefined : getCssLayer(theme, layer);
+  return hasCssSubLayers(theme) ? `mui.${layer}` : undefined;
 }
 
 /**
@@ -73,7 +71,7 @@ export function styleCssLayerEnd(props: { theme?: any }) {
  * `<head>` would make it the lowest layer.
  */
 export function getCssLayerOrderStatement(theme: any): string {
-  if (!hasCssLayers(theme) || isSingleCssLayer(theme)) {
+  if (!hasCssSubLayers(theme)) {
     return '';
   }
   const { modularCssLayers } = theme;
@@ -89,17 +87,6 @@ export function getCssLayerOrderStatement(theme: any): string {
  */
 export function isInMuiCssLayer(css: string): boolean {
   return /^@layer mui[.{]/.test(css);
-}
-
-/**
- * Returns the `modularCssLayers` value of a theme created with `createTheme()`. CSS layers can't be
- * turned off, so it's `false` (a single `mui` layer, the default), `true` (sub-layers) or a string
- * (sub-layers in a custom order).
- */
-export function resolveModularCssLayers(modularCssLayers: unknown): boolean | string {
-  return modularCssLayers === true || typeof modularCssLayers === 'string'
-    ? modularCssLayers
-    : false;
 }
 
 interface TopLevelToken {
