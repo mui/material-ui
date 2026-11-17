@@ -632,6 +632,192 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('scroll', () => {
+    // Keep the trigger away from the viewport origin so the browser's real pointer
+    // cannot fire a genuine mouseover and overwrite the simulated cursor position.
+    const TRIGGER_RECT = { top: 100, left: 100, bottom: 120, right: 200 };
+    const TOOLTIP_RECT = { top: 130, left: 100, bottom: 160, right: 200 };
+    const SCROLLED_AWAY_RECT = { top: 20, left: 100, bottom: 40, right: 200 };
+    const CURSOR_ON_TRIGGER = { clientX: 150, clientY: 110 };
+    const CURSOR_ON_TOOLTIP = { clientX: 150, clientY: 140 };
+
+    function setRect(element, { top, left, bottom, right }) {
+      element.getBoundingClientRect = () => ({
+        top,
+        left,
+        bottom,
+        right,
+        x: left,
+        y: top,
+        width: right - left,
+        height: bottom - top,
+        toJSON() {},
+      });
+    }
+
+    function renderTooltip(props) {
+      const handleClose = spy();
+
+      render(
+        <div data-testid="scroller">
+          <Tooltip
+            title="Hello World"
+            enterDelay={100}
+            leaveDelay={111}
+            onClose={handleClose}
+            slotProps={{ transition: { timeout: 10 } }}
+            {...props}
+          >
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </div>,
+      );
+
+      const trigger = screen.getByRole('button');
+      setRect(trigger, TRIGGER_RECT);
+
+      return { handleClose, trigger };
+    }
+
+    async function scroll(element) {
+      fireEvent.scroll(element);
+      await act(async () => {
+        await Promise.resolve();
+      });
+      clock.tick(111);
+      clock.tick(10);
+    }
+
+    it('should close when a scroll moves the trigger away from the cursor', async () => {
+      const { handleClose, trigger } = renderTooltip();
+
+      fireEvent.mouseOver(trigger, CURSOR_ON_TRIGGER);
+      clock.tick(100);
+
+      const tooltip = screen.getByRole('tooltip');
+      expect(tooltip).toBeVisible();
+      setRect(tooltip, TOOLTIP_RECT);
+
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(screen.getByTestId('scroller'));
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should stay open when the cursor is still over the trigger after the scroll', async () => {
+      const { handleClose, trigger } = renderTooltip();
+
+      fireEvent.mouseOver(trigger, CURSOR_ON_TRIGGER);
+      clock.tick(100);
+      setRect(screen.getByRole('tooltip'), TOOLTIP_RECT);
+
+      setRect(trigger, { ...TRIGGER_RECT, top: 95, bottom: 115 });
+      await scroll(document);
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+    });
+
+    it('should stay open when the cursor is over an interactive tooltip', async () => {
+      const { handleClose, trigger } = renderTooltip();
+
+      fireEvent.mouseOver(trigger, CURSOR_ON_TRIGGER);
+      clock.tick(100);
+
+      const tooltip = screen.getByRole('tooltip');
+      setRect(tooltip, TOOLTIP_RECT);
+      fireEvent.mouseLeave(trigger);
+      fireEvent.mouseOver(tooltip, CURSOR_ON_TOOLTIP);
+
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(document);
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+    });
+
+    it('should not close a tooltip opened by focus', async () => {
+      const handleClose = spy();
+
+      render(
+        <div data-testid="scroller">
+          <Tooltip
+            title="Hello World"
+            enterDelay={100}
+            leaveDelay={111}
+            onClose={handleClose}
+            slotProps={{ transition: { timeout: 10 } }}
+          >
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </div>,
+      );
+
+      const trigger = screen.getByRole('button');
+      setRect(trigger, TRIGGER_RECT);
+
+      await focusVisible(trigger);
+      clock.tick(100);
+
+      const tooltip = screen.getByRole('tooltip');
+      expect(tooltip).toBeVisible();
+      setRect(tooltip, TOOLTIP_RECT);
+
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(screen.getByTestId('scroller'));
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+    });
+
+    it('should not close a controlled open tooltip', async () => {
+      const handleClose = spy();
+
+      render(
+        <div data-testid="scroller">
+          <Tooltip
+            open
+            title="Hello World"
+            leaveDelay={111}
+            onClose={handleClose}
+            slotProps={{ transition: { timeout: 10 } }}
+          >
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </div>,
+      );
+
+      const trigger = screen.getByRole('button');
+      setRect(trigger, TRIGGER_RECT);
+      setRect(screen.getByRole('tooltip'), TOOLTIP_RECT);
+
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(screen.getByTestId('scroller'));
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+    });
+
+    it('should not close a tooltip opened by touch', async () => {
+      const enterTouchDelay = 700;
+      const { handleClose, trigger } = renderTooltip({ enterTouchDelay });
+
+      fireEvent.touchStart(trigger);
+      clock.tick(enterTouchDelay + 100);
+
+      const tooltip = screen.getByRole('tooltip');
+      expect(tooltip).toBeVisible();
+      setRect(tooltip, TOOLTIP_RECT);
+
+      setRect(trigger, SCROLLED_AWAY_RECT);
+      await scroll(document);
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+    });
+  });
+
   describe('mount', () => {
     it('should mount without any issue', () => {
       render(
