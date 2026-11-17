@@ -121,8 +121,9 @@ function isOptionalShapeField(name: string, propType: PropType): boolean {
 function convertType(propType: PropType, context: ConvertContext): DocsPropType {
   switch (propType.type) {
     case 'InterfaceNode':
-      // Built-in types with symbol keys, e.g. iterables or `BigInt`.
-      if (propType.types.some(([name]) => name.startsWith('__@'))) {
+      // Built-in types with symbol keys, e.g. iterables or `BigInt`,
+      // and library types with internal keys, e.g. Emotion's `__emotion_styles`.
+      if (propType.types.some(([name]) => name.startsWith('__'))) {
         return { name: 'object' };
       }
       return {
@@ -205,7 +206,13 @@ function convertUnion(propType: UnionType, context: ConvertContext): DocsPropTyp
       : null;
 
   if (rest.length === 0) {
-    return enumType ?? { name: 'any' };
+    if (enumType) {
+      return enumType;
+    }
+    // Only `null` or `undefined`, e.g. an unsupported `children` prop.
+    return types.some((type) => type.type === 'LiteralNode' && type.value === 'null')
+      ? { name: 'custom', description: 'null' }
+      : { name: 'any' };
   }
   if (enumType === null && rest.length === 1) {
     return rest[0];

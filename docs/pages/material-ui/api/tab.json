@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "any" } },
+    "children": { "type": { "name": "custom", "description": "null" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },

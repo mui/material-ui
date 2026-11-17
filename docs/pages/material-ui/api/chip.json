@@ -1,7 +1,7 @@
 {
   "props": {
     "avatar": { "type": { "name": "element" } },
-    "children": { "type": { "name": "any" } },
+    "children": { "type": { "name": "custom", "description": "null" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "clickable": { "type": { "name": "bool" } },
     "color": {
