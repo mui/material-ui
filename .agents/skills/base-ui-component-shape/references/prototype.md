@@ -43,7 +43,7 @@ When the fork removes a part (no `MenubarLinkItem`, for example), the variant st
 Write the parts like this:
 
 - Each public part is a function component that renders a Base UI part with Material UI styles through Base UI `render`, as `docs/data/material/components/menubar/demos/Menubar.tsx` does.
-- A part that merges several Base UI parts renders them all and takes `slots` and `slotProps` for the inner ones.
+- A part that merges several Base UI parts renders them all and takes `slots` and `slotProps` for the inner ones. Each inner slot accepts `slotProps.<slot>.render` and keeps its styles, as the build skill does, so a merged choice is not shown with less than the real component offers.
 - Style each part with `styled(…, { name: 'Mui<Name><Part>', slot: 'root' })`, so `styleOverrides` in a theme reach it at runtime.
 - Read props through `useDefaultProps({ props, name: 'Mui<Name><Part>' })` from `@mui/material/DefaultPropsProvider`, so theme `defaultProps` work too.
 - A styled part that accepts a user's `render` keeps its styles on the user's element, the way the build skill does it: see "Public `render`" in `.agents/skills/base-ui-component-build/references/adapter.md`. A prototype that lets the user's element replace the styled one makes a choice look worse for a reason the real component would not have.

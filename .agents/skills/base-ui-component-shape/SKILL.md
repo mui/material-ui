@@ -60,7 +60,7 @@ When the kind is unclear, the trigger is a fork (step 4).
 
 Apply these rules in order:
 
-1. **Merge only parts without customization evidence.** A part joins a neighbor (as a slot or a prop) only when the step 1 searches found no issue where users customize it alone, meaning they move it, replace its element, or put their own content in it. A request for a value that a prop can carry (a positioner's `side` or `align`) does not count: the merged part takes that prop. Portal and Positioner usually qualify; a trigger usually does not.
+1. **Merge only parts without customization evidence.** A part joins a neighbor (as a slot or a prop) only when the step 1 searches found no issue where users customize it alone, meaning they move it or put their own content in it. A request to replace its element does not count: a merged part's slot takes `slotProps.<slot>.render`, which changes the element and keeps the styles. A request for a value that a prop can carry (a positioner's `side` or `align`) does not count: the merged part takes that prop. Portal and Positioner usually qualify; a trigger usually does not.
 2. **Nested structures repeat the top-level shape.** A submenu has the same parts as a menu (root, trigger, popup), so users learn one pattern.
 3. **Follow the closest Material UI component** where it already answers the question, so users meet patterns they know.
 4. **When the evidence is neutral, keep the part public.** The team's direction is toward more open components.

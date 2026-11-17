@@ -6,6 +6,7 @@ Every check below is a bug that a previous build of a Material UI component on B
 
 - [ ] **A styled part's `render` keeps its Material base.** With `render={<section />}`, the element is a `<section>` that still has its own root class, the classes of its Material base if it has one (`MuiPaper-root`, `MuiPaper-elevation8`), and no Material prop as a DOM attribute (`elevation`). Detect: the `render` test. [adapter.md, Public `render`]
 - [ ] **A render function receives the Base UI state.** A test reads a Base UI state field inside `render` (`state.open`, `state.side`), or, when the state is empty (Meter), asserts that it receives an object. [adapter.md, Public `render`]
+- [ ] **Inner slots take `render`.** Every inner slot that renders a styled element accepts `slotProps.<slot>.render` in its types, keeps its class with it, and a custom `slots.<slot>` receives no `render`, `renderState`, or `as`. Detect: the spec file and the slot `render` tests. [adapter.md, `render` on inner slots]
 - [ ] **A custom `slots.root` receives no render wiring.** No `render`, `renderState`, `component`, or `as` prop arrives. Detect: the `slots.root` test. [adapter.md, Public `render`]
 - [ ] **`component` does nothing.** The types reject it on the part and on `slotProps.<slot>`, and a `component` passed from JavaScript, at the top level or in `slotProps.root` with `render`, does not change the element or leak `render` onto it. Detect: the spec file and the runtime tests. [adapter.md, Public component]
 - [ ] **No internal prop reaches the DOM.** Inspect the rendered root in a test: no `render`, `classes`, `ownerState`, `elevation`, or unpicked Base UI prop. [adapter.md, Public component]
@@ -22,6 +23,7 @@ Every check below is a bug that a previous build of a Material UI component on B
 
 - [ ] **propTypes are generated, not written.** `pnpm proptypes` leaves no diff after your final commit.
 - [ ] **Public part files are visible to `docs:api`.** `grep -l "@ignore - internal component" <public part files>` prints nothing; the API builder skips any file containing that marker, silently. [adapter.md, Files]
+- [ ] **Types live in `<Name><Part>.types.ts`.** The part's `index.ts` exports `* from './<Name><Part>.types'`, and `pnpm docs:api` still lists every prop. [adapter.md, Files]
 - [ ] **Internal components live in their own files.** Slot adapters and `RenderElement` are in separate files marked `@ignore - internal component`, and `pnpm proptypes` added no `propTypes` to them. [adapter.md, Files]
 - [ ] **No giant propTypes from Base UI types.** Every prop in the ignore-marker table of `adapter.md` (a `handle` or other class instance, `Intl.LocalesArgument`, `children` that is a node or a function) has its value written with `/* @typescript-to-proptypes-ignore */`; `slots` does not. [adapter.md, Public component]
 - [ ] **The API JSON is complete.** For each part, `docs/pages/material-ui/api/<kebab-part>.json` has non-empty `props`, its classes under `classes` or under `slots`, both `@mui/material/<Name><Part>` and `@mui/material` imports, and a non-empty `componentDescription` in the matching translations file. [adapter.md, Public component]

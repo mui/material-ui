@@ -53,7 +53,7 @@ export { PreviewCardPopupDataAttributes } from '@base-ui/react/preview-card';
 
 ```ts
 export { default } from './PreviewCardPopup';
-export * from './PreviewCardPopup';
+export * from './PreviewCardPopup.types';
 export { default as previewCardPopupClasses } from './previewCardPopupClasses';
 export * from './previewCardPopupClasses';
 export {

@@ -10,18 +10,22 @@ Every public part follows one shape:
 
 One folder per public part, `packages/mui-material/src/<Name><Part>/` (the root part's folder is `<Name>/`):
 
-- `<Name><Part>.tsx`: the props types and the public component. `pnpm proptypes` and `pnpm docs:api` read both from this file.
+- `<Name><Part>.types.ts`: the props, slots, slot props, and owner state types. The team chose a types file so the component file stays readable next to its generated `propTypes`; keep the types in the component file only when the part and its types are both a few lines.
+- `<Name><Part>.tsx`: the public component, which imports its props type from the types file. `pnpm proptypes` and `pnpm docs:api` follow the import, as for `NoSsr.types.ts`.
 - `<Name><Part><Slot>Slot.tsx`: one file per slot adapter, holding its styled slot and the adapter (`PreviewCardPopupRootSlot.tsx`). Internal components live in their own files across the codebase (`ButtonBase/Ripple.js`, `Radio/RadioButtonIcon.js`), and the proptypes generator skips files whose name differs from the folder.
-- `RenderElement.tsx` for the part's `useRender` wrapper, when the part has a public `render` on a styled slot.
+- `RenderElement.tsx` for the `useRender` wrapper that the part's root and inner slots share when they take `render`.
 - `<name><Part>Classes.ts`, for parts with styles.
 - `index.ts`.
 - `<Name><Part>.test.tsx`, and `<Name><Part>.spec.tsx` for type tests.
 
 ## Types
 
+This block is `<Name><Part>.types.ts`. Each inner slot's props add `render`, typed with the Base UI state of the part behind the slot.
+
 ```ts
 import type * as React from 'react';
 import type { PreviewCard as BasePreviewCard } from '@base-ui/react/preview-card';
+import type { useRender } from '@base-ui/react/use-render';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '../styles';
 import type { SlotComponentProps } from '@mui/utils/types';
@@ -35,7 +39,22 @@ export interface PreviewCardPopupSlots {
   root?: React.ElementType | undefined;
 }
 
+type SlotRenderProps<State> = {
+  /**
+   * Replaces the rendered element while keeping the slot styles.
+   * Accepts an element or a function that receives the props and the Base UI state.
+   */
+  render?: useRender.RenderProp<State & Record<string, unknown>> | undefined;
+};
+
 export interface PreviewCardPopupSlotProps {
+  positioner?:
+    | SlotComponentProps<
+        'div',
+        { sx?: SxProps<Theme> | undefined } & SlotRenderProps<BasePreviewCard.Positioner.State>,
+        PreviewCardPopupOwnerState
+      >
+    | undefined;
   root?:
     | SlotComponentProps<'div', { sx?: SxProps<Theme> | undefined }, PreviewCardPopupOwnerState>
     | undefined;
@@ -287,11 +306,11 @@ To keep the styles, the root slot renders `RenderElement`, which calls Base UI `
 ```tsx
 import { useRender } from '@base-ui/react/use-render';
 
-type PopupRenderState = BasePreviewCard.Popup.State & Record<string, unknown>;
+type RenderState = Record<string, unknown>;
 
 interface RenderElementProps extends React.HTMLAttributes<HTMLElement> {
-  render: useRender.RenderProp<PopupRenderState>;
-  renderState: PopupRenderState;
+  render: useRender.RenderProp<RenderState>;
+  renderState: RenderState;
 }
 
 /**
@@ -306,7 +325,7 @@ const RenderElement = React.forwardRef(function RenderElement(
 });
 ```
 
-`useRender` requires a state type with an index signature, and Base UI state types are interfaces, hence the `& Record<string, unknown>`.
+`useRender` requires a state type with an index signature, and Base UI state types are interfaces, hence `Record<string, unknown>` here and `State & Record<string, unknown>` in the public slot types. One `RenderElement` serves the root and every inner slot, whatever their state.
 
 The slot adapter passes it through `internalForwardedProps` (see above), which `useSlot` spreads as plain props:
 
@@ -321,3 +340,31 @@ Which key carries `RenderElement` depends on the slot's base:
 | A plain styled element (`styled('div')`)        | `{ as: RenderElement, render, renderState }`        |
 
 Never pass `as` to a slot built on a Material component. `as` is handled by `styled()` and replaces the whole base: `Paper`'s styles disappear and `elevation` leaks to the DOM. This is also why such slots set `shouldForwardComponentProp: true`: any `component` that reaches `useSlot` from props is then forwarded as `component` instead of being converted to `as`.
+
+### `render` on inner slots
+
+Every inner slot that renders a styled element (a meter label, a popup positioner) takes `slotProps.<slot>.render` with the same meaning: it changes the element and keeps the slot styles, while `slots.<slot>` replaces them. The root slot keeps the part's top-level `render`; a transition slot takes a component, not an element, so it has no `render`.
+
+The adapter resolves the slot props, takes `render` out, and passes it the same way the root does:
+
+```tsx
+const { render, ...slotPropsWithoutRender } =
+  resolveComponentProps(externalForwardedProps.slotProps?.positioner, ownerState) ?? {};
+
+const [PositionerSlot, positionerProps] = useSlot('positioner', {
+  elementType: PreviewCardPopupPositioner,
+  externalForwardedProps: {
+    slots: externalForwardedProps.slots,
+    slotProps: { positioner: slotPropsWithoutRender },
+  },
+  ownerState,
+  className: classes.positioner,
+  getSlotProps: (externalHandlers) => mergeProps(baseProps, externalHandlers),
+  internalForwardedProps: render
+    ? { as: RenderElement, render, renderState: baseState }
+    : undefined,
+});
+```
+
+- Pass the Base UI part's state into the adapter (`render={(props, state) => <Adapter baseState={state} … />}`), so a render function receives it.
+- `useSlot` applies `internalForwardedProps` to an inner slot only when `slots.<slot>` is not set, so a custom slot never receives `render`, `renderState`, or `as`. Because `render` was taken out of the slot props, it does not reach the custom slot either.

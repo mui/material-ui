@@ -40,7 +40,7 @@ githubSource: packages/mui-material/src/PreviewCard
    ```
 
 5. **Customization**:
-   - `render`: a short paragraph that says the part keeps its styles and that a render function receives the Base UI state. Add a demo only for a real use case, such as rendering a router link; a demo that swaps in an arbitrary element (`<aside>`) teaches nothing the API page does not.
+   - `render`: a short paragraph that says the part keeps its styles, that a render function receives the Base UI state, and that each inner slot takes the same prop in `slotProps` while `slots` replaces the styles. Add a demo only for a real use case, such as rendering a router link; a demo that swaps in an arbitrary element (`<aside>`) teaches nothing the API page does not.
    - `slots` and `slotProps`.
    - Theme `styleOverrides` and `variants`, with a live-state rule that uses the classes and data attribute constants.
    - Utility classes.

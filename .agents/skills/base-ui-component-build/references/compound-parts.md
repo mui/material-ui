@@ -63,7 +63,7 @@ Base Popup      → slot `transition`  (Grow by default)
                     → slot `list`    (styled List), when the popup holds items
 ```
 
-- `slots` and `slotProps` reach every element in the chain.
+- `slots` and `slotProps` reach every element in the chain. The styled slots (portal, positioner) take `slotProps.<slot>.render`; the transition slot takes a component instead.
 - Expose a `backdrop` slot only for click-opened overlays, rendered only when the user provides it. A hover-opened overlay has none, as `Tooltip` has none.
 - A slot whose Base UI part has no state (the portal) gets the props-only `ownerState`, without live fields such as `open`.
 - Pick every behavior prop of the Base UI `Positioner` and pass it through, except a prop tied to a part that is not exposed (`arrowPadding` when there is no arrow). Material's `Popper` lets users configure all of its positioning through `popperOptions`, so leaving a prop out takes away an option users already have. Portal props (`container`, `keepMounted`) are picked from the Base UI `Portal`.

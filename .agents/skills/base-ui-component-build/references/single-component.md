@@ -2,7 +2,7 @@
 
 Use this shape when users render one element tree and configure it with props, like `TextField` or `LinearProgress` (number field, OTP field, meter, slider).
 One public component wraps every Base UI part. Each wrapped part is a slot of that component.
-The root takes the public `render` prop; inner parts are reached through `slots` and `slotProps`.
+The root takes the public `render` prop; inner parts are reached through `slots` and `slotProps`, and each inner slot takes `slotProps.<slot>.render` (see "`render` on inner slots" in [adapter.md](adapter.md)).
 
 ## Structure
 

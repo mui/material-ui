@@ -18,11 +18,11 @@ A Base UI successor to an existing component (Menu v2 replacing Menu) ships unde
 
 Apply every one of these rules. Each names where the team decided it: the [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549), a later decision in the same Slack thread, or [#49684](https://github.com/mui/material-ui/pull/49684), where the PR review confirms it.
 
-1. **`render`, not `component`.** Parts that change their rendered element take a public `render` prop. No part accepts `component`. On a styled part, `render` keeps the part's styles; `slots.root` replaces them (see [references/adapter.md](references/adapter.md#public-render)).
+1. **`render`, not `component`.** Every part that renders an element takes a public `render` prop, and every inner slot takes `slotProps.<slot>.render`. No part or slot accepts `component`. On a styled part or slot, `render` keeps the styles; `slots.<slot>` replaces them (see [references/adapter.md](references/adapter.md#public-render)).
    - A **standalone trigger**, which users place and style themselves, requires `render`, because users choose the element they want (`<PreviewCardTrigger render={<Button>Open</Button>} />`). It also passes `children` through to Base UI, which places them inside the `render` element; blocking them takes more code than it saves. Keep standalone trigger `children` out of the docs, demos, and API page.
    - A **styled trigger**, which the component lays out and styles (the triggers in a menubar row), is a styled part like any other: `render` is optional and its `children` are its documented content.
 
-   Sources: `render` and no `component`, [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549); `render` keeps styles and `slots.root` replaces them, [2026-11-09](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1794236587393649?thread_ts=1793793908.228549&cid=C061V6JNZ9Q); standalone trigger `children` and the two trigger kinds, [#49684](https://github.com/mui/material-ui/pull/49684).
+   Sources: `render` and no `component`, [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549); `render` keeps styles and `slots.root` replaces them, [2026-11-09](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1794236587393649?thread_ts=1793793908.228549&cid=C061V6JNZ9Q); `render` on every slot, [2026-11-17](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1794901050568599?thread_ts=1794900165.168129&cid=C061V6JNZ9Q); standalone trigger `children` and the two trigger kinds, [#49684](https://github.com/mui/material-ui/pull/49684).
 
 2. **Every styled part takes `slots` and `slotProps`**, including a part that renders a single element (`slots.root`), at least for v9. `render` does not replace them: it keeps the styles, while `slots.root` replaces the styled component. A part that renders no styled element (a root, a standalone trigger) has none. When a public part merges several Base UI parts, as a popup wraps Portal, Positioner, and Popup, `slots` and `slotProps` reach each merged part. Which parts are public is the approved shape's decision.
 
@@ -61,7 +61,7 @@ Done when a table that matches the approved part table, written into the PR desc
 
 ### 2. Write the types
 
-Follow [references/adapter.md](references/adapter.md#types).
+Write each part's types in `<Name><Part>.types.ts` ([2026-11-17](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1794900165168129)). Follow [references/adapter.md](references/adapter.md#types).
 
 Done when every public prop of every part is accounted for as one of: a picked Base UI prop, a Material UI presentation prop, a common prop (`render`, `slots`, `slotProps`, `classes`, `className`, `style`, `sx`), or an HTML attribute of the rendered element, and each declared prop has a JSDoc comment.
 

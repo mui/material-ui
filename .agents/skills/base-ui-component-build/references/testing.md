@@ -64,6 +64,7 @@ For each part with a public `render` prop:
 - A render function receives the Base UI state (`state.open`, `state.side`).
 - The user's `render` element's own children replace the part's children, as Base UI defines.
 - With `slots.root` set, the custom root receives no `render` or `component` prop.
+- For each inner slot that renders a styled element: `slotProps.<slot>.render={<section />}` renders a `<section>` with the slot's class and its Base UI attributes, a render function receives the Base UI state, and with `slots.<slot>` set, the custom slot receives no `render`, `renderState`, or `as`.
 - A `component` prop passed without types (`// @ts-expect-error`), at the top level or in `slotProps.root` together with `render`, does not change the element and puts no `render` or `renderstate` attribute on it.
 - For a part that declares `nativeButton`: rendered as a different tag with the matching `nativeButton` (`render={<div />}` with `nativeButton={false}` on a trigger, `render={<button />}` with `nativeButton` on an item), it still activates with Enter and Space.
 
