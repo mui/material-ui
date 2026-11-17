@@ -200,7 +200,10 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       // A Strict Mode remount gives focus back to the element that the cleanup moved it from.
       if (previousNode && contains(root, previousNode)) {
         previousNode.focus();
-      } else if (activated.current) {
+      }
+
+      // `focus()` does nothing if that element became disabled or hidden.
+      if (activated.current && !contains(root, getActiveElement(doc))) {
         focusTarget.focus();
       }
     }
