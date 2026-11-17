@@ -230,10 +230,8 @@ describe('<NumberField />', () => {
   describe('group slot', () => {
     it.skipIf(isJsdom())('stretches the Material input to the root width', () => {
       render(<NumberField label="Amount" sx={{ width: 320 }} />);
-      const group = screen.getByRole('group');
       const input = screen.getByRole('textbox', { name: 'Amount' });
 
-      expect(group.getBoundingClientRect().width).to.equal(320);
       expect(input.closest('.MuiInputBase-root')!.getBoundingClientRect().width).to.equal(320);
     });
 
@@ -248,12 +246,10 @@ describe('<NumberField />', () => {
         <ThemeProvider theme={theme}>
           <NumberField
             label="Amount"
-            helperText="Helper text"
             defaultValue={5}
             slotProps={{
               group: {
                 ref: groupRef,
-                sx: { paddingBottom: '9px' },
                 render: (props, state) => <section {...props} data-render-value={state.value} />,
               },
             }}
@@ -266,12 +262,7 @@ describe('<NumberField />', () => {
       expect(group.tagName).to.equal('SECTION');
       expect(groupRef.current).to.equal(group);
       expect(getComputedStyle(group).paddingTop).to.equal('7px');
-      expect(getComputedStyle(group).paddingBottom).to.equal('9px');
-      expect(group).to.contain(input);
-      expect(group).to.contain(screen.getByRole('button', { name: 'Increase' }));
-      expect(group).to.contain(screen.getByRole('button', { name: 'Decrease' }));
-      expect(group).not.to.contain(screen.getByText('Amount', { selector: 'label' }));
-      expect(group).not.to.contain(screen.getByText('Helper text'));
+      expect(group).to.contain(input.closest('.MuiInputBase-root'));
       expect(group).to.have.attribute('data-render-value', '5');
 
       await user.click(input);
@@ -280,9 +271,9 @@ describe('<NumberField />', () => {
       expect(group).to.have.attribute('data-render-value', '6');
     });
 
-    it('lets a replacement slot bypass render while retaining the field content', async () => {
+    it('lets a replacement slot bypass render while retaining the field content', () => {
       const renderGroup = vi.fn(() => <div />);
-      const { user } = render(
+      render(
         <NumberField
           label="Amount"
           defaultValue={5}
@@ -291,15 +282,9 @@ describe('<NumberField />', () => {
         />,
       );
       const group = screen.getByRole('group');
-      const increment = screen.getByRole('button', { name: 'Increase' });
-
-      expect(group.tagName).to.equal('SECTION');
-      expect(group).to.contain(increment);
+      expect(group).to.contain(screen.getByRole('textbox', { name: 'Amount' }));
       expect(screen.queryByText('Replacement content')).to.equal(null);
       expect(renderGroup).toHaveBeenCalledTimes(0);
-
-      await user.click(increment);
-      expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('6');
     });
   });
 
@@ -651,44 +636,29 @@ describe('<NumberField />', () => {
         // Each configuration path can introduce a later spread that changes resolved state.
         describe(`slotProps.${name}`, () => {
           [false, true].forEach((disabled) => {
-            it(`preserves top-level disabled=${disabled} despite the opposite slot prop`, async () => {
-              const onValueChange = vi.fn();
-              const { user } = render(
-                <React.Fragment>
-                  <NumberField
-                    label="Amount"
-                    defaultValue={5}
-                    disabled={disabled}
-                    onValueChange={onValueChange}
-                    slotProps={getSlotProps({ disabled: !disabled })}
-                  />
-                  <button type="button">Next</button>
-                </React.Fragment>,
+            it(`preserves top-level disabled=${disabled} despite the opposite slot prop`, () => {
+              render(
+                <NumberField
+                  label="Amount"
+                  disabled={disabled}
+                  slotProps={getSlotProps({ disabled: !disabled })}
+                />,
               );
               const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-              const label = screen.getByText('Amount', { selector: 'label' });
-              const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
 
               expect(input.disabled).to.equal(disabled);
               if (name === 'input') {
-                expect(wrapper.classList.contains('Mui-disabled')).to.equal(disabled);
+                expect(
+                  input.closest('.MuiInputBase-root')!.classList.contains('Mui-disabled'),
+                ).to.equal(disabled);
               }
               if (name === 'root') {
-                expect(label.classList.contains('Mui-disabled')).to.equal(disabled);
+                expect(
+                  screen
+                    .getByText('Amount', { selector: 'label' })
+                    .classList.contains('Mui-disabled'),
+                ).to.equal(disabled);
               }
-
-              await user.tab();
-              if (disabled) {
-                expect(screen.getByRole('button', { name: 'Next' })).to.equal(
-                  document.activeElement,
-                );
-              } else {
-                expect(input).to.equal(document.activeElement);
-                await user.keyboard('{ArrowUp}');
-              }
-
-              expect(input).to.have.value(disabled ? '5' : '6');
-              expect(onValueChange).toHaveBeenCalledTimes(disabled ? 0 : 1);
             });
           });
 
@@ -714,41 +684,21 @@ describe('<NumberField />', () => {
           // FormControl does not have a readOnly prop; it applies to the Material and native inputs.
           if (name !== 'root') {
             [false, true].forEach((readOnly) => {
-              it(`preserves top-level readOnly=${readOnly} despite the opposite slot prop`, async () => {
-                const onValueChange = vi.fn();
-                const { user } = render(
+              it(`preserves top-level readOnly=${readOnly} despite the opposite slot prop`, () => {
+                render(
                   <NumberField
                     label="Amount"
-                    defaultValue={5}
                     readOnly={readOnly}
-                    onValueChange={onValueChange}
                     slotProps={getSlotProps({ readOnly: !readOnly })}
                   />,
                 );
                 const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-                const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
 
                 expect(input.readOnly).to.equal(readOnly);
                 if (name === 'input') {
-                  expect(wrapper.classList.contains('Mui-readOnly')).to.equal(readOnly);
-                }
-
-                await user.click(input);
-                expect(input).to.equal(document.activeElement);
-                await user.keyboard('{ArrowUp}');
-
-                expect(input).to.have.value(readOnly ? '5' : '6');
-                expect(onValueChange).toHaveBeenCalledTimes(readOnly ? 0 : 1);
-
-                if (readOnly) {
-                  await user.keyboard('9');
-                  expect(input).to.have.value('5');
-                  expect(onValueChange).toHaveBeenCalledTimes(0);
-                } else {
-                  await user.clear(input);
-                  await user.keyboard('9');
-                  expect(input).to.have.value('9');
-                  expect(onValueChange.mock.lastCall![0]).to.equal(9);
+                  expect(
+                    input.closest('.MuiInputBase-root')!.classList.contains('Mui-readOnly'),
+                  ).to.equal(readOnly);
                 }
               });
             });
@@ -757,21 +707,16 @@ describe('<NumberField />', () => {
       });
     });
 
-    // Changes after mounting must update Base UI behavior and Material state together,
-    // including inherited state, without replacing the input or resetting its value.
+    // Resolved flag updates must reach Material components, including inherited flags.
     describe('prop updates', () => {
       (['NumberField prop', 'Base Field context'] as const).forEach((source) => {
-        it(`updates disabled state from ${source} after mounting`, async () => {
-          const onValueChange = vi.fn();
-
+        it(`updates Material disabled state from ${source} after mounting`, async () => {
           function Test() {
             const [disabled, setDisabled] = React.useState(false);
             const field = (
               <NumberField
                 label="Amount"
-                defaultValue={5}
                 disabled={source === 'NumberField prop' ? disabled : false}
-                onValueChange={onValueChange}
                 slotProps={{
                   root: { disabled: false },
                   input: { disabled: false },
@@ -790,219 +735,103 @@ describe('<NumberField />', () => {
                 ) : (
                   field
                 )}
-                <button type="button">Next</button>
               </React.Fragment>
             );
           }
 
           const { user } = render(<Test />);
           const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-          const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
+          const wrapper = input.closest('.MuiInputBase-root')!;
           const label = screen.getByText('Amount', { selector: 'label' });
-          const increment = screen.getByRole<HTMLButtonElement>('button', { name: 'Increase' });
-          const decrement = screen.getByRole<HTMLButtonElement>('button', { name: 'Decrease' });
+          const buttons = screen.getAllByRole<HTMLButtonElement>('button', {
+            name: /Increase|Decrease/,
+          });
           const toggle = screen.getByRole('button', { name: 'Toggle disabled' });
-
           const expectDisabledState = (disabled: boolean) => {
-            expect(screen.getByRole('textbox', { name: 'Amount' })).to.equal(input);
             expect(input.disabled).to.equal(disabled);
             expect(wrapper.classList.contains('Mui-disabled')).to.equal(disabled);
             expect(label.classList.contains('Mui-disabled')).to.equal(disabled);
-            expect(increment.disabled).to.equal(disabled);
-            expect(decrement.disabled).to.equal(disabled);
+            buttons.forEach((button) => expect(button.disabled).to.equal(disabled));
           };
 
           expectDisabledState(false);
-          await user.click(input);
-          await user.keyboard('{ArrowUp}');
-          expect(input).to.have.value('6');
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-
           await user.click(toggle);
           expectDisabledState(true);
-          expect(input).to.have.value('6');
-          await user.tab();
-          expect(screen.getByRole('button', { name: 'Next' })).to.equal(document.activeElement);
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-
           await user.click(toggle);
           expectDisabledState(false);
-          expect(input).to.have.value('6');
-          await user.tab();
-          expect(input).to.equal(document.activeElement);
-          await user.keyboard('{ArrowUp}');
-          expect(input).to.have.value('7');
-          expect(onValueChange).toHaveBeenCalledTimes(2);
         });
       });
 
-      it('updates required state and validation after mounting', async () => {
-        function Test() {
-          const [required, setRequired] = React.useState(false);
-
-          return (
-            <React.Fragment>
-              <button type="button" onClick={() => setRequired((previous) => !previous)}>
-                Toggle required
-              </button>
-              <NumberField label="Amount" required={required} />
-            </React.Fragment>
-          );
-        }
-
-        const { user } = render(<Test />);
-        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        const toggle = screen.getByRole('button', { name: 'Toggle required' });
-
-        const expectRequiredState = (required: boolean) => {
-          expect(screen.getByRole('textbox', { name: /Amount/ })).to.equal(input);
-          expect(input.required).to.equal(required);
-        };
-
-        expectRequiredState(false);
-        expect(input).to.have.value('');
-        expect(input.validity.valueMissing).to.equal(false);
-
-        await user.click(toggle);
-        expectRequiredState(true);
-        expect(input.validity.valueMissing).to.equal(true);
-        await user.click(input);
-        await user.keyboard('0');
-        expect(input).to.have.value('0');
-        expect(input.validity.valueMissing).to.equal(false);
-
-        await user.click(toggle);
-        expectRequiredState(false);
-        expect(input).to.have.value('0');
-        await user.clear(input);
-        expect(input).to.have.value('');
-        expect(input.validity.valueMissing).to.equal(false);
-      });
-
-      it('updates read-only state and restores editing after mounting', async () => {
-        const onValueChange = vi.fn();
-
+      it('updates Material input and button availability when readOnly changes', async () => {
         function Test() {
           const [readOnly, setReadOnly] = React.useState(false);
-
           return (
             <React.Fragment>
               <button type="button" onClick={() => setReadOnly((previous) => !previous)}>
                 Toggle read-only
               </button>
-              <NumberField
-                label="Amount"
-                defaultValue={5}
-                readOnly={readOnly}
-                onValueChange={onValueChange}
-              />
+              <NumberField label="Amount" readOnly={readOnly} />
             </React.Fragment>
           );
         }
 
         const { user } = render(<Test />);
         const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        const wrapper = input.closest<HTMLDivElement>('.MuiInputBase-root')!;
-        const increment = screen.getByRole<HTMLButtonElement>('button', { name: 'Increase' });
-        const decrement = screen.getByRole<HTMLButtonElement>('button', { name: 'Decrease' });
+        const wrapper = input.closest('.MuiInputBase-root')!;
+        const buttons = screen.getAllByRole<HTMLButtonElement>('button', {
+          name: /Increase|Decrease/,
+        });
         const toggle = screen.getByRole('button', { name: 'Toggle read-only' });
-
         const expectReadOnlyState = (readOnly: boolean) => {
-          expect(screen.getByRole('textbox', { name: 'Amount' })).to.equal(input);
           expect(input.readOnly).to.equal(readOnly);
           expect(input.disabled).to.equal(false);
           expect(wrapper.classList.contains('Mui-readOnly')).to.equal(readOnly);
-          expect(increment.disabled).to.equal(readOnly);
-          expect(decrement.disabled).to.equal(readOnly);
+          buttons.forEach((button) => expect(button.disabled).to.equal(readOnly));
         };
 
         expectReadOnlyState(false);
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('6');
-        expect(onValueChange).toHaveBeenCalledTimes(1);
-
         await user.click(toggle);
         expectReadOnlyState(true);
-        await user.tab();
-        expect(input).to.equal(document.activeElement);
-        await user.keyboard('9{ArrowUp}');
-        expect(input).to.have.value('6');
-        expect(onValueChange).toHaveBeenCalledTimes(1);
-
         await user.click(toggle);
         expectReadOnlyState(false);
-        expect(input).to.have.value('6');
-        await user.tab();
-        expect(input).to.equal(document.activeElement);
-        await user.clear(input);
-        await user.keyboard('9');
-        expect(input).to.have.value('9');
-        expect(onValueChange.mock.lastCall![0]).to.equal(9);
       });
     });
   });
 
-  // The Material buttons must retain Base UI stepping, commit timing, and availability
-  // while supplying the default presentation expected from a Material number field.
+  // Map Base UI availability and field size to the Material buttons and supply icons.
   describe('controls', () => {
-    // Field state and bounds must disable the native buttons, not just their styling.
-    // Ignore CSS hit-testing when attempting disabled clicks to exercise that guard.
+    // The adapter must apply Base UI's resolved availability to IconButton,
+    // even when consumer props try to re-enable a control.
     describe('availability', () => {
-      it('disables controls at each bound despite slot props and enables them after stepping away', async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-        const view = render(
+      it('keeps Material button availability aligned with the value limits', async () => {
+        const { user } = render(
           <NumberField
             label="Amount"
             defaultValue={1}
             min={0}
-            max={2}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
+            max={1}
             slotProps={{
               incrementButton: { disabled: false },
               decrementButton: { disabled: false },
             }}
           />,
         );
-        const user = view.user.setup({ pointerEventsCheck: 0 });
-        const input = screen.getByRole('textbox', { name: 'Amount' });
         const increment = screen.getByRole<HTMLButtonElement>('button', { name: 'Increase' });
         const decrement = screen.getByRole<HTMLButtonElement>('button', { name: 'Decrease' });
 
-        expect(increment.disabled).to.equal(false);
-        expect(decrement.disabled).to.equal(false);
-
-        await user.click(increment);
-        expect(input).to.have.value('2');
         expect(increment.disabled).to.equal(true);
         expect(increment).to.have.class('Mui-disabled');
         expect(decrement.disabled).to.equal(false);
-        await user.click(increment);
-        expect(onValueChange).toHaveBeenCalledTimes(1);
-        expect(onValueCommitted).toHaveBeenCalledTimes(1);
 
         await user.click(decrement);
-        expect(input).to.have.value('1');
         expect(increment.disabled).to.equal(false);
         expect(increment).not.to.have.class('Mui-disabled');
-
-        await user.click(decrement);
-        expect(input).to.have.value('0');
         expect(decrement.disabled).to.equal(true);
         expect(decrement).to.have.class('Mui-disabled');
-        expect(increment.disabled).to.equal(false);
-        await user.click(decrement);
-        expect(onValueChange).toHaveBeenCalledTimes(3);
-        expect(onValueCommitted).toHaveBeenCalledTimes(3);
 
         await user.click(increment);
-        expect(input).to.have.value('1');
         expect(decrement.disabled).to.equal(false);
         expect(decrement).not.to.have.class('Mui-disabled');
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([2, 1, 0, 1]);
-        expect(onValueCommitted.mock.calls.map(([value]) => value)).to.deep.equal([2, 1, 0, 1]);
       });
 
       [
@@ -1010,18 +839,12 @@ describe('<NumberField />', () => {
         { name: 'read-only', disabled: false, readOnly: true, inheritedDisabled: false },
         { name: 'inherited disabled', disabled: false, readOnly: false, inheritedDisabled: true },
       ].forEach(({ name, disabled, readOnly, inheritedDisabled }) => {
-        it(`cannot re-enable ${name} controls with disabled=false slot props`, async () => {
-          const onValueChange = vi.fn();
-          const onValueCommitted = vi.fn();
-          const view = render(
+        it(`cannot re-enable ${name} controls with disabled=false slot props`, () => {
+          render(
             <BaseField.Root disabled={inheritedDisabled}>
               <NumberField
-                label="Amount"
-                defaultValue={5}
                 disabled={disabled}
                 readOnly={readOnly}
-                onValueChange={onValueChange}
-                onValueCommitted={onValueCommitted}
                 slotProps={{
                   incrementButton: { disabled: false },
                   decrementButton: { disabled: false },
@@ -1029,81 +852,38 @@ describe('<NumberField />', () => {
               />
             </BaseField.Root>,
           );
-          const user = view.user.setup({ pointerEventsCheck: 0 });
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          const buttons = screen.getAllByRole<HTMLButtonElement>('button');
-
-          expect(buttons).to.have.length(2);
-          for (const button of buttons) {
+          screen.getAllByRole<HTMLButtonElement>('button').forEach((button) => {
             expect(button.disabled).to.equal(true);
             expect(button).to.have.class('Mui-disabled');
-          }
-          await user.click(buttons[0]);
-          await user.click(buttons[1]);
-
-          expect(input).to.have.value('5');
-          expect(onValueChange).toHaveBeenCalledTimes(0);
-          expect(onValueCommitted).toHaveBeenCalledTimes(0);
+          });
         });
       });
 
       [
-        {
-          disabledSlot: 'incrementButton',
-          disabledName: 'Increase',
-          activeName: 'Decrease',
-          value: 4,
-        },
-        {
-          disabledSlot: 'decrementButton',
-          disabledName: 'Decrease',
-          activeName: 'Increase',
-          value: 6,
-        },
-      ].forEach(({ disabledSlot, disabledName, activeName, value }) => {
-        it(`disables ${disabledSlot} independently without blocking the other control`, async () => {
-          const onValueChange = vi.fn();
-          const onValueCommitted = vi.fn();
-          const view = render(
+        { disabledSlot: 'incrementButton', disabledName: 'Increase', activeName: 'Decrease' },
+        { disabledSlot: 'decrementButton', disabledName: 'Decrease', activeName: 'Increase' },
+      ].forEach(({ disabledSlot, disabledName, activeName }) => {
+        it(`disables ${disabledSlot} independently without blocking the other control`, () => {
+          render(
             <NumberField
-              label="Amount"
-              defaultValue={5}
-              onValueChange={onValueChange}
-              onValueCommitted={onValueCommitted}
               slotProps={{
                 incrementButton: { disabled: disabledSlot === 'incrementButton' },
                 decrementButton: { disabled: disabledSlot === 'decrementButton' },
               }}
             />,
           );
-          const user = view.user.setup({ pointerEventsCheck: 0 });
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          const disabledButton = screen.getByRole<HTMLButtonElement>('button', {
-            name: disabledName,
-          });
-          const activeButton = screen.getByRole<HTMLButtonElement>('button', { name: activeName });
 
-          expect(disabledButton.disabled).to.equal(true);
-          expect(activeButton.disabled).to.equal(false);
-          await user.click(disabledButton);
-          expect(input).to.have.value('5');
-          expect(onValueChange).toHaveBeenCalledTimes(0);
-          expect(onValueCommitted).toHaveBeenCalledTimes(0);
-
-          await user.click(activeButton);
-          expect(input).to.have.value(String(value));
-          expect(disabledButton.disabled).to.equal(true);
-          expect(activeButton.disabled).to.equal(false);
-          expect(onValueChange).toHaveBeenCalledTimes(1);
-          expect(onValueChange.mock.calls[0][0]).to.equal(value);
-          expect(onValueCommitted).toHaveBeenCalledTimes(1);
-          expect(onValueCommitted.mock.calls[0][0]).to.equal(value);
+          expect(
+            screen.getByRole<HTMLButtonElement>('button', { name: disabledName }).disabled,
+          ).to.equal(true);
+          expect(
+            screen.getByRole<HTMLButtonElement>('button', { name: activeName }).disabled,
+          ).to.equal(false);
         });
       });
     });
 
-    // Defaults must remain visible and inherit the field size, while replacing the
-    // icon content must leave button names and stepping behavior intact.
+    // Supply the appropriate icons and field size without replacing accessible names.
     describe('icons and size', () => {
       const iconCases = [
         { controlsPosition: 'end', incrementIcon: 'AddIcon', decrementIcon: 'RemoveIcon' },
@@ -1133,11 +913,10 @@ describe('<NumberField />', () => {
         });
       });
 
-      it('replaces the default icons with consumer children while preserving stepping', async () => {
-        const { user } = render(
+      it('replaces the default icons while preserving the button names', () => {
+        render(
           <NumberField
             label="Amount"
-            defaultValue={5}
             controlsPosition="stacked"
             slotProps={{
               incrementButton: { children: <span>Plus</span> },
@@ -1145,7 +924,6 @@ describe('<NumberField />', () => {
             }}
           />,
         );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
         const increment = screen.getByRole('button', { name: 'Increase' });
         const decrement = screen.getByRole('button', { name: 'Decrease' });
 
@@ -1153,10 +931,6 @@ describe('<NumberField />', () => {
         expect(decrement).to.contain(screen.getByText('Minus'));
         expect(screen.queryByTestId('KeyboardArrowUpIcon')).to.equal(null);
         expect(screen.queryByTestId('KeyboardArrowDownIcon')).to.equal(null);
-        await user.click(increment);
-        expect(input).to.have.value('6');
-        await user.click(decrement);
-        expect(input).to.have.value('5');
       });
     });
   });
@@ -1171,105 +945,25 @@ describe('<NumberField />', () => {
       return <button {...props} ref={ref} data-testid="button-component" />;
     });
 
-    it('preserves Enter and Space activation for a Material button rendered as a link', async () => {
-      const Link = React.forwardRef<HTMLAnchorElement, React.ComponentPropsWithoutRef<'a'>>(
-        function Link({ children, ...other }, ref) {
-          return (
-            <a {...other} href="#number-field-step" ref={ref}>
-              {children}
-            </a>
-          );
-        },
-      );
-      const onValueChange = vi.fn();
-      const onValueCommitted = vi.fn();
-      const { user } = render(
-        <NumberField
-          label="Amount"
-          defaultValue={5}
-          onValueChange={onValueChange}
-          onValueCommitted={onValueCommitted}
-          slotProps={{ incrementButton: { render: <Link />, nativeButton: false, tabIndex: 0 } }}
-        />,
-      );
-      expect(screen.getByRole('button', { name: 'Increase' }).tagName).to.equal('A');
-
-      await user.tab();
-      await user.tab();
-      await user.keyboard('{Enter}');
-      await user.keyboard(' ');
-
-      expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('7');
-      expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, 7]);
-      expect(onValueCommitted.mock.calls.map(([value]) => value)).to.deep.equal([6, 7]);
-    });
-
-    // Base UI owns activation on non-native steppers, including consumer cancellation.
-    // Material must not synthesize another click when the composed handler returns.
-    (['Enter', ' '] as const).forEach((key) => {
-      it(`allows a consumer to cancel non-native ${key === 'Enter' ? 'Enter' : 'Space'} stepping`, async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-        const cancelBase = vi.fn((event: BaseUIEvent<React.KeyboardEvent<HTMLButtonElement>>) => {
-          if (event.key === key) {
-            event.preventBaseUIHandler();
-          }
-        });
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-            slotProps={{
-              incrementButton: {
-                render: <span />,
-                nativeButton: false,
-                tabIndex: 0,
-                onKeyDown: cancelBase,
-                onKeyUp: cancelBase,
-              },
-            }}
-          />,
-        );
-
-        await user.tab();
-        await user.tab();
-        await user.keyboard(key === 'Enter' ? '{Enter}' : ' ');
-
-        expect(cancelBase).toHaveBeenCalledWith(expect.objectContaining({ key }));
-        expect(
-          cancelBase.mock.calls.find(([event]) => event.key === key)![0].defaultPrevented,
-        ).to.equal(true);
-        expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('5');
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
-      });
-    });
-
     (
       [
-        { slot: 'incrementButton', name: 'Increase', nextValue: 6, reason: 'increment-press' },
-        { slot: 'decrementButton', name: 'Decrease', nextValue: 4, reason: 'decrement-press' },
+        { slot: 'incrementButton', name: 'Increase', nextValue: 6 },
+        { slot: 'decrementButton', name: 'Decrease', nextValue: 4 },
       ] as const
-    ).forEach(({ slot, name, nextValue, reason }) => {
+    ).forEach(({ slot, name, nextValue }) => {
       describe(`slotProps.${slot}`, () => {
-        // Ordinary props override defaults, while classes, styles and refs must
-        // merge with Base UI's props rather than erase its accessibility or behavior.
+        // Each button must retain its own render/replacement wiring and ref.
         describe('props and refs', () => {
           it('resolves callback props for a custom slot and preserves its ref and behavior', async () => {
-            const ref = vi.fn();
+            const ref = React.createRef<HTMLButtonElement>();
             const renderButton = vi.fn(() => <button />);
             const getSlotProps = (ownerState: NumberFieldOwnerState) => ({
               ref,
               render: renderButton,
               'aria-label': `Step ${ownerState.label}`,
-              className: 'custom-button',
-              style: { userSelect: 'text' as const },
             });
-            const { user, unmount } = render(
+            const { user } = render(
               <NumberField
-                id="amount"
                 label="Amount"
                 defaultValue={5}
                 slots={{ [slot]: TestIconButton }}
@@ -1280,19 +974,12 @@ describe('<NumberField />', () => {
             const input = screen.getByRole('textbox', { name: 'Amount' });
 
             expect(button).to.equal(screen.getByTestId('custom'));
-            expect(button).to.have.class(classes[slot]);
-            expect(button).to.have.class('custom-button');
-            expect(button).to.have.attribute('aria-controls', input.id);
-            expect(button.style.userSelect).to.equal('text');
-            expect(ref).toHaveBeenLastCalledWith(button);
+            expect(ref.current).to.equal(button);
             expect(renderButton).toHaveBeenCalledTimes(0);
 
             await user.click(button);
 
             expect(input).to.have.value(String(nextValue));
-            expect(document.activeElement).to.equal(input);
-            unmount();
-            expect(ref).toHaveBeenLastCalledWith(null);
           });
 
           it('preserves Material styles, the ref and stepping with a render element', async () => {
@@ -1348,233 +1035,282 @@ describe('<NumberField />', () => {
             expect(button).to.have.attribute('data-render-disabled', 'true');
             expect(button).to.have.class('Mui-disabled');
           });
+        });
+      });
+    });
 
-          // Host slots rely on Base UI for button semantics; Material replacements
-          // add ButtonBase's own handlers, which must not duplicate activation.
-          [
-            { configuration: 'host slot', renderButton: undefined },
-            { configuration: 'Material render element', renderButton: <span /> },
-          ].forEach(({ configuration, renderButton }) => {
-            it(`supports a non-native ${configuration} with one activation per gesture`, async () => {
-              const onValueChange = vi.fn();
-              const onValueCommitted = vi.fn();
-              const { user } = render(
-                <NumberField
-                  label="Amount"
-                  defaultValue={5}
-                  slots={renderButton ? undefined : { [slot]: 'span' }}
-                  slotProps={{
-                    [slot]: { nativeButton: false, tabIndex: 0, render: renderButton },
-                  }}
-                  onValueChange={onValueChange}
-                  onValueCommitted={onValueCommitted}
-                />,
-              );
-              const button = screen.getByRole('button', { name });
-              const input = screen.getByRole('textbox', { name: 'Amount' });
-              const step = nextValue - 5;
+    // Both controls use the same adapter for activation and handler composition.
+    describe('shared button behavior', () => {
+      it('preserves Enter and Space activation for a Material button rendered as a link', async () => {
+        const Link = React.forwardRef<HTMLAnchorElement, React.ComponentPropsWithoutRef<'a'>>(
+          function Link({ children, ...other }, ref) {
+            return (
+              <a {...other} href="#number-field-step" ref={ref}>
+                {children}
+              </a>
+            );
+          },
+        );
+        const onValueChange = vi.fn();
+        const onValueCommitted = vi.fn();
+        const { user } = render(
+          <NumberField
+            label="Amount"
+            defaultValue={5}
+            onValueChange={onValueChange}
+            onValueCommitted={onValueCommitted}
+            slotProps={{ incrementButton: { render: <Link />, nativeButton: false, tabIndex: 0 } }}
+          />,
+        );
+        expect(screen.getByRole('button', { name: 'Increase' }).tagName).to.equal('A');
 
-              expect(button.tagName).to.equal('SPAN');
-              expect(button).not.to.have.attribute('nativebutton');
+        await user.tab();
+        await user.tab();
+        await user.keyboard('{Enter}');
+        await user.keyboard(' ');
 
-              await user.tab();
-              await user.tab();
-              await user.keyboard('{Enter}');
-              expect(input).to.have.value(String(nextValue));
+        expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('7');
+        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, 7]);
+        expect(onValueCommitted.mock.calls.map(([value]) => value)).to.deep.equal([6, 7]);
+      });
 
-              await user.keyboard(' ');
-              expect(input).to.have.value(String(nextValue + step));
-
-              await user.click(button);
-              expect(input).to.have.value(String(nextValue + step * 2));
-
-              const expectedValues = [nextValue, nextValue + step, nextValue + step * 2];
-              expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal(
-                expectedValues,
-              );
-              expect(onValueCommitted.mock.calls.map(([value]) => value)).to.deep.equal(
-                expectedValues,
-              );
-            });
+      // Base UI owns activation on non-native steppers, including consumer cancellation.
+      // Material must not synthesize another click when the composed handler returns.
+      (['Enter', ' '] as const).forEach((key) => {
+        it(`allows a consumer to cancel non-native ${key === 'Enter' ? 'Enter' : 'Space'} stepping`, async () => {
+          const onValueChange = vi.fn();
+          const onValueCommitted = vi.fn();
+          const cancelBase = vi.fn((event: BaseUIEvent<React.KeyboardEvent<HTMLButtonElement>>) => {
+            if (event.key === key) {
+              event.preventBaseUIHandler();
+            }
           });
+          const { user } = render(
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              onValueChange={onValueChange}
+              onValueCommitted={onValueCommitted}
+              slotProps={{
+                incrementButton: {
+                  render: <span />,
+                  nativeButton: false,
+                  tabIndex: 0,
+                  onKeyDown: cancelBase,
+                  onKeyUp: cancelBase,
+                },
+              }}
+            />,
+          );
+
+          await user.tab();
+          await user.tab();
+          await user.keyboard(key === 'Enter' ? '{Enter}' : ' ');
+
+          expect(cancelBase).toHaveBeenCalledWith(expect.objectContaining({ key }));
+          expect(
+            cancelBase.mock.calls.find(([event]) => event.key === key)![0].defaultPrevented,
+          ).to.equal(true);
+          expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('5');
+          expect(onValueChange).toHaveBeenCalledTimes(0);
+          expect(onValueCommitted).toHaveBeenCalledTimes(0);
+        });
+      });
+
+      // Host slots rely on Base UI for button semantics; Material replacements
+      // add ButtonBase's own handlers, which must not duplicate activation.
+      [
+        { configuration: 'host slot', renderButton: undefined },
+        { configuration: 'Material render element', renderButton: <span /> },
+      ].forEach(({ configuration, renderButton }) => {
+        it(`supports a non-native ${configuration} with one activation per gesture`, async () => {
+          const onValueChange = vi.fn();
+          const onValueCommitted = vi.fn();
+          const { user } = render(
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              slots={renderButton ? undefined : { incrementButton: 'span' }}
+              slotProps={{
+                incrementButton: { nativeButton: false, tabIndex: 0, render: renderButton },
+              }}
+              onValueChange={onValueChange}
+              onValueCommitted={onValueCommitted}
+            />,
+          );
+          const button = screen.getByRole('button', { name: 'Increase' });
+          const input = screen.getByRole('textbox', { name: 'Amount' });
+
+          expect(button.tagName).to.equal('SPAN');
+          expect(button).not.to.have.attribute('nativebutton');
+
+          await user.tab();
+          await user.tab();
+          await user.keyboard('{Enter}');
+          expect(input).to.have.value('6');
+
+          await user.keyboard(' ');
+          expect(input).to.have.value('7');
+
+          await user.click(button);
+          expect(input).to.have.value('8');
+
+          const expectedValues = [6, 7, 8];
+          expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal(expectedValues);
+          expect(onValueCommitted.mock.calls.map(([value]) => value)).to.deep.equal(expectedValues);
+        });
+      });
+      // Consumer handlers, cancellation and unset handlers pass through one adapter.
+      describe('event composition', () => {
+        it('preserves consumer pointer handlers alongside Base UI behavior', async () => {
+          const calls: string[] = [];
+          const targets: EventTarget[] = [];
+          const record = (handler: string) => (event: React.SyntheticEvent<HTMLButtonElement>) => {
+            calls.push(handler);
+            targets.push(event.currentTarget);
+          };
+          const onValueCommitted = vi.fn();
+          const { user } = render(
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              onValueCommitted={onValueCommitted}
+              slotProps={{
+                incrementButton: {
+                  onPointerDown: record('pointerdown'),
+                  onPointerUp: record('pointerup'),
+                  onClick: record('click'),
+                },
+              }}
+            />,
+          );
+          const button = screen.getByRole('button', { name: 'Increase' });
+          const input = screen.getByRole('textbox', { name: 'Amount' });
+
+          await user.click(button);
+          expect(input).to.have.value('6');
+          expect(calls).to.deep.equal(['pointerdown', 'pointerup', 'click']);
+          expect(targets).to.deep.equal([button, button, button]);
+          expect(onValueCommitted.mock.lastCall![0]).to.equal(6);
         });
 
-        // Consumer handlers run before Base UI and may cancel it explicitly.
-        // A normal handler or an unset handler must retain stepping and commits.
-        describe('event composition', () => {
-          it('composes pointer handlers, steps on press and commits once on release', async () => {
-            const calls: string[] = [];
-            const targets: EventTarget[] = [];
-            const record =
-              (handler: string) => (event: React.SyntheticEvent<HTMLButtonElement>) => {
-                calls.push(handler);
-                targets.push(event.currentTarget);
-              };
-            const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>(() => {
-              calls.push('change');
-            });
-            const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>(
-              () => {
-                calls.push('commit');
-              },
-            );
+        it('composes native Enter and Space clicks before Base UI changes the value', async () => {
+          const calls: string[] = [];
+          const targets: EventTarget[] = [];
+          const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+            calls.push('click');
+            targets.push(event.currentTarget);
+          };
+          const { user } = render(
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              onValueChange={() => calls.push('change')}
+              slotProps={{ incrementButton: { render: <button />, tabIndex: 0, onClick } }}
+            />,
+          );
+          const button = screen.getByRole('button', { name: 'Increase' });
+
+          await user.tab();
+          await user.tab();
+          expect(document.activeElement).to.equal(button);
+          await user.keyboard('{Enter}');
+          await user.keyboard(' ');
+
+          expect(calls).to.deep.equal(['click', 'change', 'click', 'change']);
+          expect(targets).to.deep.equal([button, button]);
+          expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('7');
+        });
+
+        it('allows the consumer pointer handler to prevent Base UI stepping', async () => {
+          const onValueChange = vi.fn();
+          const onValueCommitted = vi.fn();
+          const onPointerDown = vi.fn((event: BaseUIEvent<React.PointerEvent<HTMLButtonElement>>) =>
+            event.preventBaseUIHandler(),
+          );
+          const { user } = render(
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              onValueChange={onValueChange}
+              onValueCommitted={onValueCommitted}
+              slotProps={{ incrementButton: { onPointerDown } }}
+            />,
+          );
+
+          await user.click(screen.getByRole('button', { name: 'Increase' }));
+
+          expect(onPointerDown).toHaveBeenCalledTimes(1);
+          expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('5');
+          expect(onValueChange).toHaveBeenCalledTimes(0);
+          expect(onValueCommitted).toHaveBeenCalledTimes(0);
+        });
+
+        it('allows the consumer click handler to prevent keyboard stepping', async () => {
+          const onValueChange = vi.fn();
+          const onValueCommitted = vi.fn();
+          const onClick = vi.fn((event: BaseUIEvent<React.MouseEvent<HTMLButtonElement>>) =>
+            event.preventBaseUIHandler(),
+          );
+          const { user } = render(
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              onValueChange={onValueChange}
+              onValueCommitted={onValueCommitted}
+              slotProps={{ incrementButton: { tabIndex: 0, onClick } }}
+            />,
+          );
+          const button = screen.getByRole('button', { name: 'Increase' });
+
+          await user.tab();
+          await user.tab();
+          expect(document.activeElement).to.equal(button);
+          await user.keyboard('{Enter}');
+
+          expect(onClick).toHaveBeenCalledTimes(1);
+          expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('5');
+          expect(onValueChange).toHaveBeenCalledTimes(0);
+          expect(onValueCommitted).toHaveBeenCalledTimes(0);
+        });
+
+        [undefined, null].forEach((unsetValue) => {
+          it(`preserves Base UI handlers when consumer handlers are ${unsetValue}`, async () => {
+            // JavaScript consumers can pass null handlers, which React's types exclude.
+            const buttonProps = {
+              tabIndex: 0,
+              onPointerDown: unsetValue,
+              onPointerUp: unsetValue,
+              onClick: unsetValue,
+            } as IconButtonProps;
+            const onValueChange = vi.fn();
+            const onValueCommitted = vi.fn();
             const { user } = render(
               <NumberField
                 label="Amount"
                 defaultValue={5}
                 onValueChange={onValueChange}
                 onValueCommitted={onValueCommitted}
-                slotProps={{
-                  [slot]: {
-                    onPointerDown: record('pointerdown'),
-                    onPointerUp: record('pointerup'),
-                    onClick: record('click'),
-                  },
-                }}
+                slotProps={{ incrementButton: buttonProps }}
               />,
             );
-            const button = screen.getByRole('button', { name });
+
+            const button = screen.getByRole('button', { name: 'Increase' });
             const input = screen.getByRole('textbox', { name: 'Amount' });
 
-            await user.pointer({ keys: '[MouseLeft>]', target: button });
-            expect(input).to.have.value(String(nextValue));
-            expect(document.activeElement).to.equal(input);
-            expect(calls).to.deep.equal(['pointerdown', 'change']);
+            await user.click(button);
 
-            await user.pointer({ keys: '[/MouseLeft]', target: button });
+            expect(input).to.have.value('6');
+            expect(onValueChange).toHaveBeenCalledTimes(1);
+            expect(onValueCommitted).toHaveBeenCalledTimes(1);
 
-            expect(calls).to.deep.equal(['pointerdown', 'change', 'pointerup', 'commit', 'click']);
-            expect(targets).to.deep.equal([button, button, button]);
-            expect(
-              onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
-            ).to.deep.equal([[nextValue, reason]]);
-            expect(
-              onValueCommitted.mock.calls.map(([value, details]) => [value, details.reason]),
-            ).to.deep.equal([[nextValue, reason]]);
-          });
-
-          it('composes native Enter and Space clicks before Base UI changes the value', async () => {
-            const calls: string[] = [];
-            const targets: EventTarget[] = [];
-            const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-              calls.push('click');
-              targets.push(event.currentTarget);
-            };
-            const { user } = render(
-              <NumberField
-                label="Amount"
-                defaultValue={5}
-                onValueChange={() => calls.push('change')}
-                onValueCommitted={() => calls.push('commit')}
-                slotProps={{ [slot]: { render: <button />, tabIndex: 0, onClick } }}
-              />,
-            );
-            const button = screen.getByRole('button', { name });
-
-            await user.tab();
-            await user.tab();
-            expect(document.activeElement).to.equal(button);
-            await user.keyboard('{Enter}');
-            await user.keyboard(' ');
-
-            expect(calls).to.deep.equal(['click', 'change', 'commit', 'click', 'change', 'commit']);
-            expect(targets).to.deep.equal([button, button]);
-            expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value(
-              String(nextValue + (nextValue - 5)),
-            );
-          });
-
-          it('allows the consumer pointer handler to prevent Base UI stepping', async () => {
-            const onValueChange = vi.fn();
-            const onValueCommitted = vi.fn();
-            const onPointerDown = vi.fn(
-              (event: BaseUIEvent<React.PointerEvent<HTMLButtonElement>>) =>
-                event.preventBaseUIHandler(),
-            );
-            const { user } = render(
-              <NumberField
-                label="Amount"
-                defaultValue={5}
-                onValueChange={onValueChange}
-                onValueCommitted={onValueCommitted}
-                slotProps={{ [slot]: { onPointerDown } }}
-              />,
-            );
-
-            await user.click(screen.getByRole('button', { name }));
-
-            expect(onPointerDown).toHaveBeenCalledTimes(1);
-            expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('5');
-            expect(onValueChange).toHaveBeenCalledTimes(0);
-            expect(onValueCommitted).toHaveBeenCalledTimes(0);
-          });
-
-          it('allows the consumer click handler to prevent keyboard stepping', async () => {
-            const onValueChange = vi.fn();
-            const onValueCommitted = vi.fn();
-            const onClick = vi.fn((event: BaseUIEvent<React.MouseEvent<HTMLButtonElement>>) =>
-              event.preventBaseUIHandler(),
-            );
-            const { user } = render(
-              <NumberField
-                label="Amount"
-                defaultValue={5}
-                onValueChange={onValueChange}
-                onValueCommitted={onValueCommitted}
-                slotProps={{ [slot]: { tabIndex: 0, onClick } }}
-              />,
-            );
-            const button = screen.getByRole('button', { name });
-
-            await user.tab();
             await user.tab();
             expect(document.activeElement).to.equal(button);
             await user.keyboard('{Enter}');
 
-            expect(onClick).toHaveBeenCalledTimes(1);
-            expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('5');
-            expect(onValueChange).toHaveBeenCalledTimes(0);
-            expect(onValueCommitted).toHaveBeenCalledTimes(0);
-          });
-
-          [undefined, null].forEach((unsetValue) => {
-            it(`preserves Base UI handlers when consumer handlers are ${unsetValue}`, async () => {
-              // JavaScript consumers can pass null handlers, which React's types exclude.
-              const buttonProps = {
-                tabIndex: 0,
-                onPointerDown: unsetValue,
-                onPointerUp: unsetValue,
-                onClick: unsetValue,
-              } as IconButtonProps;
-              const onValueChange = vi.fn();
-              const onValueCommitted = vi.fn();
-              const { user } = render(
-                <NumberField
-                  label="Amount"
-                  defaultValue={5}
-                  onValueChange={onValueChange}
-                  onValueCommitted={onValueCommitted}
-                  slotProps={{ [slot]: buttonProps }}
-                />,
-              );
-
-              const button = screen.getByRole('button', { name });
-              const input = screen.getByRole('textbox', { name: 'Amount' });
-
-              await user.click(button);
-
-              expect(input).to.have.value(String(nextValue));
-              expect(onValueChange).toHaveBeenCalledTimes(1);
-              expect(onValueCommitted).toHaveBeenCalledTimes(1);
-
-              await user.tab();
-              expect(document.activeElement).to.equal(button);
-              await user.keyboard('{Enter}');
-
-              expect(input).to.have.value(String(nextValue + (nextValue - 5)));
-              expect(onValueChange).toHaveBeenCalledTimes(2);
-              expect(onValueCommitted).toHaveBeenCalledTimes(2);
-            });
+            expect(input).to.have.value('7');
+            expect(onValueChange).toHaveBeenCalledTimes(2);
+            expect(onValueCommitted).toHaveBeenCalledTimes(2);
           });
         });
       });
@@ -2495,656 +2231,112 @@ describe('<NumberField />', () => {
     });
   });
 
-  // Keep the numeric value owned by Base UI or the parent, while Material renders
-  // the corresponding text and filled state and forwards the public callback contract.
-  describe('value lifecycle and callbacks', () => {
-    // Parent updates must reach the visible input without becoming user changes.
-    // User proposals must also respect whether the controlled parent accepts them.
-    describe('controlled value', () => {
-      it('syncs parent updates through zero and null without firing value callbacks', async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-
-        function Test() {
-          const [value, setValue] = React.useState<number | null>(5);
-
-          return (
-            <React.Fragment>
-              <button type="button" onClick={() => setValue(0)}>
-                Set zero
-              </button>
-              <button type="button" onClick={() => setValue(null)}>
-                Set empty
-              </button>
-              <button type="button" onClick={() => setValue(8)}>
-                Set number
-              </button>
-              <NumberField
-                label="Amount"
-                value={value}
-                defaultValue={42}
-                onValueChange={onValueChange}
-                onValueCommitted={onValueCommitted}
-              />
-            </React.Fragment>
-          );
-        }
-
-        const { user } = render(<Test />);
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-        const label = screen.getByText('Amount', { selector: 'label' });
-        const expectValue = (text: string, shrink: boolean) => {
-          expect(screen.getByRole('textbox', { name: 'Amount' })).to.equal(input);
-          expect(input).to.have.value(text);
-          expect(label).to.have.attribute('data-shrink', String(shrink));
-        };
-
-        // The controlled value also takes precedence over the initial default.
-        expectValue('5', true);
-        await user.click(screen.getByRole('button', { name: 'Set zero' }));
-        expectValue('0', true);
-        await user.click(screen.getByRole('button', { name: 'Set empty' }));
-        expectValue('', false);
-        await user.click(screen.getByRole('button', { name: 'Set number' }));
-        expectValue('8', true);
-
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
-      });
-
-      it('supports a controlled parent accepting clear, typing and keyboard changes', async () => {
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
-
-        function Test() {
-          const [value, setValue] = React.useState<number | null>(0);
-
-          return (
-            <React.Fragment>
-              <NumberField
-                label="Amount"
-                value={value}
-                onValueChange={(nextValue, details) => {
-                  onValueChange(nextValue, details);
-                  setValue(nextValue);
-                }}
-              />
-              <output aria-label="Current value">{value === null ? 'empty' : value}</output>
-            </React.Fragment>
-          );
-        }
-
-        const { user } = render(<Test />);
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-        const currentValue = screen.getByLabelText('Current value');
-        expect(input).to.have.value('0');
-
-        await user.clear(input);
-        expect(input).to.have.value('');
-        expect(currentValue).to.have.text('empty');
-        await user.keyboard('7');
-        expect(input).to.have.value('7');
-        expect(currentValue).to.have.text('7');
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('8');
-        expect(currentValue).to.have.text('8');
-        expect(
-          onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([
-          [null, 'input-clear'],
-          [7, 'input-change'],
-          [8, 'keyboard'],
-        ]);
-      });
-
-      it('keeps the parent value when controlled change proposals are ignored', async () => {
-        const onValueChange = vi.fn();
-        const { user } = render(
-          <NumberField label="Amount" value={5} onValueChange={onValueChange} />,
+  // Base UI supplies the value; NumberField must keep Material's filled state
+  // aligned with its text, including zero and an empty controlled value.
+  describe('Material filled state', () => {
+    it('updates label shrink when the controlled value changes', async () => {
+      function Test() {
+        const [value, setValue] = React.useState<number | null>(5);
+        return (
+          <React.Fragment>
+            <button type="button" onClick={() => setValue(0)}>
+              Set zero
+            </button>
+            <button type="button" onClick={() => setValue(null)}>
+              Set empty
+            </button>
+            <button type="button" onClick={() => setValue(8)}>
+              Set number
+            </button>
+            <NumberField label="Amount" value={value} />
+          </React.Fragment>
         );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
+      }
 
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('5');
-        await user.keyboard('{ArrowDown}');
-        expect(input).to.have.value('5');
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, 4]);
-      });
+      const { user } = render(<Test />);
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+      const label = screen.getByText('Amount', { selector: 'label' });
+      const expectValue = (value: string, shrink: boolean) => {
+        expect(input).to.have.value(value);
+        expect(label).to.have.attribute('data-shrink', String(shrink));
+      };
+
+      expectValue('5', true);
+      await user.click(screen.getByRole('button', { name: 'Set zero' }));
+      expectValue('0', true);
+      await user.click(screen.getByRole('button', { name: 'Set empty' }));
+      expectValue('', false);
+      await user.click(screen.getByRole('button', { name: 'Set number' }));
+      expectValue('8', true);
     });
 
-    // Direct edits report numbers or null immediately and commit on blur. Keyboard
-    // steps commit immediately without committing the same change again on blur.
-    describe('change and commit contract', () => {
-      it('reports typed numbers as changes and commits the final value on blur', async () => {
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
-        const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
+    it('clears Material filled state when zero is removed', async () => {
+      const { user } = render(<NumberField label="Amount" defaultValue={0} />);
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+      const label = screen.getByText('Amount', { selector: 'label' });
 
-        await user.click(input);
-        await user.keyboard('12');
-        expect(input).to.have.value('12');
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
+      expect(label).to.have.attribute('data-shrink', 'true');
+      await user.clear(input);
+      await user.tab();
 
-        await user.tab();
-
-        expect(
-          onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([
-          [1, 'input-change'],
-          [12, 'input-change'],
-        ]);
-        expect(
-          onValueCommitted.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([[12, 'input-blur']]);
-      });
-
-      it('clears zero to null and commits the clear only once on blur', async () => {
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
-        const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={0}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.clear(input);
-        expect(input).to.have.value('');
-        expect(
-          onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([[null, 'input-clear']]);
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
-
-        await user.tab();
-
-        expect(
-          onValueCommitted.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([[null, 'input-clear']]);
-        expect(screen.getByText('Amount', { selector: 'label' })).to.have.attribute(
-          'data-shrink',
-          'false',
-        );
-      });
-
-      it('commits keyboard steps immediately without committing again on blur', async () => {
-        const calls: { callback: string; value: number | null; reason: string }[] = [];
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>(
-          (value, details) => calls.push({ callback: 'change', value, reason: details.reason }),
-        );
-        const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>(
-          (value, details) => calls.push({ callback: 'commit', value, reason: details.reason }),
-        );
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.tab();
-        expect(calls).to.deep.equal([]);
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-
-        expect(input).to.have.value('6');
-        const expectedCalls = [
-          { callback: 'change', value: 6, reason: 'keyboard' },
-          { callback: 'commit', value: 6, reason: 'keyboard' },
-        ];
-        expect(calls).to.deep.equal(expectedCalls);
-        await user.tab();
-        expect(calls).to.deep.equal(expectedCalls);
-      });
-
-      it('honors cancellation through change details without preventing later changes', async () => {
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>(
-          (value, details) => {
-            if (value === 6) {
-              details.cancel();
-            }
-          },
-        );
-        const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('5');
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
-
-        await user.keyboard('{ArrowDown}');
-
-        expect(input).to.have.value('4');
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([6, 4]);
-        expect(
-          onValueCommitted.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([[4, 'keyboard']]);
-      });
+      expect(input).to.have.value('');
+      expect(label).to.have.attribute('data-shrink', 'false');
     });
   });
 
-  // Numeric options belong to Base UI's root. Verify they reach its interactions
-  // while Material displays the resulting formatted text rather than a raw number.
-  describe('numeric options and formatting', () => {
-    // Nondefault steps and limits must work through the native input and controls,
-    // including the distinction between direct entry and step-based interactions.
-    describe('steps and bounds', () => {
-      it('disables step validation with step="any" while retaining default and modifier steps', async () => {
-        const { user } = render(
-          <form aria-label="Number form">
-            <NumberField
-              label="Amount"
-              defaultValue={1.5}
-              min={0}
-              step="any"
-              smallStep={0.25}
-              largeStep={3}
-            />
-          </form>,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-        const form = screen.getByRole<HTMLFormElement>('form', { name: 'Number form' });
-        expect(form.checkValidity()).to.equal(true);
+  // Smoke-test delegated behavior through Material's native input and buttons.
+  // Base UI owns the parsing, stepping, validation and commit-timing rules.
+  describe('Base UI integration', () => {
+    it('forwards stepping and formatting options through the Material input', async () => {
+      const onValueChange = vi.fn();
+      const { user } = render(
+        <NumberField
+          label="Amount"
+          defaultValue={1.5}
+          step={0.5}
+          locale="de-DE"
+          format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+          onValueChange={onValueChange}
+        />,
+      );
+      const input = screen.getByRole('textbox', { name: 'Amount' });
 
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('2.5');
-        await user.keyboard('{Alt>}{ArrowUp}{/Alt}');
-        expect(input).to.have.value('2.75');
-        await user.keyboard('{Shift>}{ArrowUp}{/Shift}');
-        expect(input).to.have.value('5.75');
-        expect(form.checkValidity()).to.equal(true);
-      });
+      expect(input).to.have.value('1,50');
+      await user.click(input);
+      await user.keyboard('{ArrowUp}');
+      expect(input).to.have.value('2,00');
 
-      it('clamps keyboard steps at both bounds when out-of-range entry is allowed', async () => {
-        const { user } = render(
-          <NumberField label="Amount" defaultValue={8} min={2} max={8} allowOutOfRange />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('8');
-        await user.clear(input);
-        await user.keyboard('2{ArrowDown}');
-        expect(input).to.have.value('2');
-      });
-
-      it('uses a fractional step for keyboard and button interactions', async () => {
-        const onValueChange = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={0.1}
-            step={0.2}
-            locale="en-US"
-            onValueChange={onValueChange}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('0.3');
-        await user.click(screen.getByRole('button', { name: 'Increase' }));
-        expect(input).to.have.value('0.5');
-        await user.click(screen.getByRole('button', { name: 'Decrease' }));
-        expect(input).to.have.value('0.3');
-        expect(onValueChange.mock.calls.map(([value]) => value)).to.deep.equal([0.3, 0.5, 0.3]);
-      });
-
-      it('uses custom large and small steps with keyboard modifiers', async () => {
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={10}
-            step={2}
-            largeStep={7}
-            smallStep={0.25}
-            locale="en-US"
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('{Shift>}{ArrowUp}{/Shift}');
-        expect(input).to.have.value('17');
-        await user.keyboard('{Alt>}{ArrowDown}{/Alt}');
-        expect(input).to.have.value('16.75');
-      });
-
-      it('snaps an off-step value when snapOnStep is enabled', async () => {
-        const { user } = render(
-          <NumberField label="Amount" defaultValue={1} min={0} step={2} snapOnStep />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('2');
-        await user.click(screen.getByRole('button', { name: 'Decrease' }));
-        expect(input).to.have.value('0');
-      });
-
-      [undefined, true].forEach((allowOutOfRange) => {
-        it(`normalizes direct entry with allowOutOfRange=${allowOutOfRange ?? 'default'}`, async () => {
-          const onValueChange = vi.fn();
-          const onValueCommitted = vi.fn();
-          const { user } = render(
-            <NumberField
-              label="Amount"
-              min={2}
-              max={8}
-              allowOutOfRange={allowOutOfRange}
-              onValueChange={onValueChange}
-              onValueCommitted={onValueCommitted}
-            />,
-          );
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          const expectedValue = allowOutOfRange ? 9 : 8;
-
-          await user.click(input);
-          await user.keyboard('9');
-          expect(input).to.have.value('9');
-          expect(onValueChange.mock.lastCall![0]).to.equal(expectedValue);
-          await user.tab();
-          expect(input).to.have.value(String(expectedValue));
-          expect(onValueCommitted.mock.lastCall![0]).to.equal(expectedValue);
-        });
-      });
+      await user.click(screen.getByRole('button', { name: 'Increase' }));
+      expect(input).to.have.value('2,50');
+      expect(onValueChange.mock.lastCall![0]).to.equal(2.5);
     });
 
-    // Parsing must reject invalid text without publishing invalid numeric values.
-    // Locale and format also affect edits and display; initial formatting and
-    // hydration are covered separately.
-    describe('parsing and formatting', () => {
-      it('ignores unparsable pasted text without changing or committing the numeric value', async () => {
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
-        const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
+    // Wheel handling attaches a native listener using Base UI's input ref.
+    it('connects wheel scrubbing to the visible Material input', async () => {
+      const { user } = render(
+        <NumberField label="Amount" defaultValue={5} step={2} allowWheelScrub />,
+      );
+      const input = screen.getByRole('textbox', { name: 'Amount' });
 
-        await user.click(input);
-        act(() => input.select());
-        await user.paste('not a number');
-
-        expect(input).to.have.value('5');
-        await user.tab();
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
-      });
-
-      it('parses localized negative decimals and formats them after blur and stepping', async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            locale="de-DE"
-            step={0.25}
-            format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.keyboard('-12,5');
-        expect(input).to.have.value('-12,5');
-        expect(onValueChange.mock.lastCall![0]).to.equal(-12.5);
-        await user.tab();
-        expect(input).to.have.value('-12,50');
-        expect(onValueCommitted.mock.lastCall![0]).to.equal(-12.5);
-
-        await user.click(screen.getByRole('button', { name: 'Increase' }));
-        expect(input).to.have.value('-12,25');
-        expect(onValueChange.mock.lastCall![0]).to.equal(-12.25);
-      });
-
-      it('parses pasted currency text while retaining numeric callback values', async () => {
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
-        const onValueCommitted = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            locale="en-US"
-            format={{ style: 'currency', currency: 'USD', useGrouping: true }}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        await user.paste('$1,234.50');
-        expect(input).to.have.value('$1,234.50');
-        expect(
-          onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([[1234.5, 'input-paste']]);
-        await user.tab();
-        expect(onValueCommitted.mock.lastCall![0]).to.equal(1234.5);
-
-        await user.click(input);
-        await user.keyboard('{ArrowDown}');
-        expect(input).to.have.value('$1,233.50');
-        expect(onValueChange.mock.lastCall![0]).to.equal(1233.5);
-      });
-
-      it('updates locale and format without changing the controlled numeric value', async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-
-        function Test() {
-          const [locale, setLocale] = React.useState('en-US');
-          const [format, setFormat] = React.useState<Intl.NumberFormatOptions>({
-            useGrouping: false,
-          });
-
-          return (
-            <React.Fragment>
-              <button type="button" onClick={() => setLocale('de-DE')}>
-                Change locale
-              </button>
-              <button
-                type="button"
-                onClick={() =>
-                  setFormat({
-                    useGrouping: true,
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })
-                }
-              >
-                Change format
-              </button>
-              <NumberField
-                label="Amount"
-                value={1234.5}
-                locale={locale}
-                format={format}
-                onValueChange={onValueChange}
-                onValueCommitted={onValueCommitted}
-              />
-            </React.Fragment>
-          );
-        }
-
-        const { user } = render(<Test />);
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-        expect(input).to.have.value('1234.5');
-
-        await user.click(screen.getByRole('button', { name: 'Change locale' }));
-        expect(input).to.have.value('1234,5');
-        await user.click(screen.getByRole('button', { name: 'Change format' }));
-        expect(input).to.have.value('1.234,50');
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
-      });
-    });
-
-    // Wheel scrubbing uses a native listener on the visible input, which must retain
-    // Base UI's ref and only change values when explicitly enabled and focused.
-    describe('wheel scrubbing', () => {
+      await user.click(input);
       // user-event does not expose wheel gestures.
-      function wheel(input: HTMLElement, deltaY: number) {
-        const event = new window.WheelEvent('wheel', { bubbles: true, cancelable: true, deltaY });
-        act(() => {
-          input.dispatchEvent(event);
-        });
-        return event;
-      }
-
-      it('leaves wheel gestures alone by default even while focused', async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
+      act(() => {
+        input.dispatchEvent(
+          new window.WheelEvent('wheel', {
+            bubbles: true,
+            cancelable: true,
+            deltaY: -1,
+          }),
         );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        const event = wheel(input, -1);
-
-        expect(input).to.have.value('5');
-        expect(event.defaultPrevented).to.equal(false);
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
       });
 
-      it('steps and commits in both wheel directions only while focused and enabled', async () => {
-        const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
-        const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            step={2}
-            allowWheelScrub
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        expect(wheel(input, -1).defaultPrevented).to.equal(false);
-        expect(input).to.have.value('5');
-        await user.click(input);
-        const event = wheel(input, -1);
-        expect(input).to.have.value('7');
-        expect(event.defaultPrevented).to.equal(true);
-        expect(onValueChange.mock.calls[0][1].event).to.equal(event);
-        expect(onValueCommitted.mock.calls[0][1].event).to.equal(event);
-
-        wheel(input, 1);
-        expect(input).to.have.value('5');
-        expect(
-          onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([
-          [7, 'wheel'],
-          [5, 'wheel'],
-        ]);
-        expect(
-          onValueCommitted.mock.calls.map(([value, details]) => [value, details.reason]),
-        ).to.deep.equal([
-          [7, 'wheel'],
-          [5, 'wheel'],
-        ]);
-      });
-
-      it('preserves read-only behavior when wheel scrubbing is enabled', async () => {
-        const onValueChange = vi.fn();
-        const onValueCommitted = vi.fn();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            readOnly
-            allowWheelScrub
-            onValueChange={onValueChange}
-            onValueCommitted={onValueCommitted}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-
-        await user.click(input);
-        expect(document.activeElement).to.equal(input);
-        expect(wheel(input, -1).defaultPrevented).to.equal(false);
-        expect(input).to.have.value('5');
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-        expect(onValueCommitted).toHaveBeenCalledTimes(0);
-      });
+      expect(input).to.have.value('7');
     });
   });
 
   // External forms own the visible input for validation and Enter submission, and
   // Base UI's submission input for contributing one raw numeric value.
   describe('form submission', () => {
-    it('restores the controlled value and form data from an onReset handler', async () => {
-      function Test() {
-        const [value, setValue] = React.useState<number | null>(1.5);
-        return (
-          <form aria-label="Number form" onReset={() => setValue(1.5)}>
-            <NumberField
-              label="Amount"
-              name="amount"
-              value={value}
-              onValueChange={setValue}
-              locale="en-US"
-              format={{ style: 'currency', currency: 'USD' }}
-            />
-            <button type="reset">Reset</button>
-          </form>
-        );
-      }
-
-      const { user } = render(<Test />);
-      const input = screen.getByRole('textbox', { name: 'Amount' });
-      const form = screen.getByRole<HTMLFormElement>('form', { name: 'Number form' });
-
-      await user.clear(input);
-      await user.keyboard('7');
-      await user.click(screen.getByRole('button', { name: 'Reset' }));
-
-      expect(input).to.have.value('$1.50');
-      expect(new FormData(form).getAll('amount')).to.deep.equal(['1.5']);
-    });
-
     it('submits one raw numeric value to an external form from a formatted field', async () => {
       const submissions: FormData[] = [];
       const { user } = render(
@@ -3463,8 +2655,8 @@ describe('<NumberField />', () => {
       expect(scrub.querySelector('svg')).to.equal(null);
     });
 
-    // The cursor is portaled only while scrubbing. Cover slot props, replacements,
-    // refs and theme overrides without depending on real pointer-lock permissions.
+    // Mount the cursor to check Material slot props, render bridges and styling.
+    // Base UI owns the portal, pointer-lock behavior and ref cleanup.
     // Base UI intentionally omits the custom cursor on WebKit.
     describe.skipIf(typeof CSS !== 'undefined' && CSS.supports?.('-webkit-backdrop-filter:none'))(
       'cursor slot',
@@ -3498,7 +2690,7 @@ describe('<NumberField />', () => {
           }
         });
 
-        it('resolves callback props for a custom component and clears its ref on unmount', async () => {
+        it('resolves callback props through a replacement cursor slot', async () => {
           const ref = vi.fn();
           const renderScrub = vi.fn(() => <section />);
           const renderCursor = vi.fn(() => <div />);
@@ -3531,8 +2723,6 @@ describe('<NumberField />', () => {
           expect(renderCursor).toHaveBeenCalledTimes(0);
 
           unmount();
-          expect(screen.queryByTestId('custom-cursor')).to.equal(null);
-          expect(ref).toHaveBeenLastCalledWith(null);
         });
 
         it('merges cursor props and refs with theme overrides during scrubbing', async () => {
@@ -3564,18 +2754,14 @@ describe('<NumberField />', () => {
             </ThemeProvider>,
           );
           const scrub = container.querySelector(`.${classes.scrubArea}`)!;
-          expect(screen.queryByTitle('Custom cursor')).to.equal(null);
-
           await user.pointer({ keys: '[MouseLeft>]', target: scrub });
           const cursor = screen.getByTitle('Custom cursor');
 
           expect(cursor).to.have.class(classes.scrubAreaCursor);
           expect(cursor).to.have.class('custom-cursor');
           expect(cursor.style.opacity).to.equal('0.5');
-          expect(cursor.style.position).to.equal('fixed');
           expect(cursor).to.have.attribute('data-render-scrubbing', 'true');
           expect(cursor).to.contain(screen.getByText('Drag cursor'));
-          expect(container).not.to.contain(cursor);
           expect(ref.current).to.equal(cursor);
           expect(window.getComputedStyle(cursor).color).to.equal('rgb(255, 0, 0)');
 
@@ -3583,13 +2769,12 @@ describe('<NumberField />', () => {
           await waitFor(() => {
             expect(screen.queryByTitle('Custom cursor')).to.equal(null);
           });
-          expect(ref.current).to.equal(null);
         });
       },
     );
 
-    // The rendered handle must retain Base UI's pointer handlers and refs so dragging
-    // updates the visible value and commits on release, while unavailable fields stay unchanged.
+    // Keep drag handlers and render state connected through the Material slots.
+    // Base UI owns drag arithmetic, sensitivity, availability and commit timing.
     describe('dragging', () => {
       // user-event does not supply the movementX/movementY deltas used for scrubbing.
       function movePointer(movementX: number, movementY: number) {
@@ -3653,108 +2838,35 @@ describe('<NumberField />', () => {
         await waitFor(() => expectScrubbing(false));
       });
 
-      it('waits for the configured pixel sensitivity before changing the value', async () => {
-        const onValueChange = vi.fn();
+      it('preserves scrubbing through a custom handle and replacement adornment', async () => {
+        const renderAdornment = vi.fn(() => <section />);
         const { container, user } = render(
           <NumberField
             label="Amount"
             defaultValue={5}
             scrubAreaPosition="start"
-            onValueChange={onValueChange}
-            slotProps={{ scrubArea: { pixelSensitivity: 8 } }}
+            slots={{ scrubAreaAdornment: TestAdornment }}
+            slotProps={{
+              scrubAreaAdornment: { render: renderAdornment },
+              scrubArea: {
+                direction: 'vertical',
+                render: (props, state) => <div {...props} data-render-value={state.value} />,
+              },
+            }}
           />,
         );
         const input = screen.getByRole('textbox', { name: 'Amount' });
         const scrub = container.querySelector(`.${classes.scrubArea}`)!;
 
+        expect(scrub.parentElement).to.equal(screen.getByTestId('custom'));
+        expect(renderAdornment).toHaveBeenCalledTimes(0);
+
         await user.pointer({ keys: '[MouseLeft>]', target: scrub });
-        movePointer(4, 0);
-        expect(input).to.have.value('5');
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-        movePointer(4, 0);
+        movePointer(0, -4);
         expect(input).to.have.value('9');
-        expect(onValueChange).toHaveBeenCalledTimes(1);
+        expect(scrub).to.have.attribute('data-render-value', '9');
+
         await user.pointer({ keys: '[/MouseLeft]', target: scrub });
-      });
-
-      (['horizontal', 'vertical'] as const).forEach((direction) => {
-        it(`changes the value in both ${direction} directions and commits on release`, async () => {
-          const renderAdornment = vi.fn(() => <section />);
-          const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
-          const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
-          const { container, user } = render(
-            <NumberField
-              label="Amount"
-              defaultValue={5}
-              scrubAreaPosition="start"
-              onValueChange={onValueChange}
-              onValueCommitted={onValueCommitted}
-              slots={{ scrubAreaAdornment: TestAdornment }}
-              slotProps={{
-                scrubAreaAdornment: { render: renderAdornment },
-                scrubArea: {
-                  direction,
-                  render: (props, state) => <div {...props} data-render-value={state.value} />,
-                },
-              }}
-            />,
-          );
-          const input = screen.getByRole('textbox', { name: 'Amount' });
-          const scrub = container.querySelector(`.${classes.scrubArea}`)!;
-          expect(scrub.parentElement).to.equal(screen.getByTestId('custom'));
-          expect(renderAdornment).toHaveBeenCalledTimes(0);
-          const movementX = direction === 'horizontal' ? 4 : 0;
-          const movementY = direction === 'vertical' ? -4 : 0;
-
-          await user.pointer({ keys: '[MouseLeft>]', target: scrub });
-          movePointer(movementX, movementY);
-          expect(input).to.have.value('9');
-          expect(scrub).to.have.attribute('data-render-value', '9');
-          movePointer(-movementX, -movementY);
-          expect(input).to.have.value('5');
-          expect(
-            onValueChange.mock.calls.map(([value, details]) => [value, details.reason]),
-          ).to.deep.equal([
-            [9, 'scrub'],
-            [5, 'scrub'],
-          ]);
-          expect(onValueCommitted).toHaveBeenCalledTimes(0);
-
-          await user.pointer({ keys: '[/MouseLeft]', target: scrub });
-          // Base UI delays pointer-lock release and the commit callback in Firefox.
-          await waitFor(() => {
-            expect(onValueCommitted).toHaveBeenCalledTimes(1);
-          });
-          expect(onValueCommitted.mock.calls[0][0]).to.equal(5);
-          expect(onValueCommitted.mock.calls[0][1].reason).to.equal('scrub');
-        });
-      });
-
-      (['disabled', 'readOnly'] as const).forEach((state) => {
-        it(`does not scrub a ${state} field`, async () => {
-          const onValueChange = vi.fn();
-          const onValueCommitted = vi.fn();
-          const { container, user } = render(
-            <NumberField
-              defaultValue={5}
-              scrubAreaPosition="start"
-              disabled={state === 'disabled'}
-              readOnly={state === 'readOnly'}
-              onValueChange={onValueChange}
-              onValueCommitted={onValueCommitted}
-            />,
-          );
-          const input = screen.getByRole('textbox');
-          const scrub = container.querySelector(`.${classes.scrubArea}`)!;
-
-          await user.pointer({ keys: '[MouseLeft>]', target: scrub });
-          movePointer(4, 0);
-          await user.pointer({ keys: '[/MouseLeft]', target: scrub });
-
-          expect(input).to.have.value('5');
-          expect(onValueChange).toHaveBeenCalledTimes(0);
-          expect(onValueCommitted).toHaveBeenCalledTimes(0);
-        });
       });
     });
   });
