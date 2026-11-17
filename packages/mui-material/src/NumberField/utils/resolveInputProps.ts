@@ -4,7 +4,7 @@ import type { NumberFieldOwnerState, NumberFieldProps } from '../NumberField.typ
 import omitNullishEventHandlers from './omitNullishEventHandlers';
 
 type HtmlInputSlotProps = NonNullable<NumberFieldProps['slotProps']>['htmlInput'];
-type ResolvedInputSlotProps = Exclude<
+export type ResolvedInputSlotProps = Exclude<
   NonNullable<NumberFieldProps['slotProps']>['input'],
   ((ownerState: NumberFieldOwnerState) => unknown) | undefined
 >;

@@ -22,19 +22,29 @@ import Input from '../Input';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
 import InputAdornment from '../InputAdornment';
 import { getControlElements, omitNullishEventHandlers, resolveInputProps } from './utils';
+import type { ResolvedInputSlotProps } from './utils/resolveInputProps';
 import IconButton from '../IconButton';
 import type { IconButtonProps } from '../IconButton';
 import NumberFieldButtonSlot from './NumberFieldButtonSlot';
+import RenderElement from './RenderElement';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
+
+type NumberFieldSlotProps = NonNullable<NumberFieldProps['slotProps']>;
 
 interface NumberFieldInputProps {
   baseProps: React.ComponentPropsWithRef<'input'>;
   baseState: BaseNumberField.Input.State;
   classes: NumberFieldClasses;
   materialProps: NumberFieldOwnerState;
-  externalForwardedProps: Required<Pick<NumberFieldProps, 'slots' | 'slotProps'>>;
+  externalForwardedProps: {
+    slots: NonNullable<NumberFieldProps['slots']>;
+    slotProps: Omit<NumberFieldSlotProps, 'input'> & {
+      // NumberField resolves this shared callback before passing props to the adapters.
+      input?: ResolvedInputSlotProps | undefined;
+    };
+  };
 }
 
 // Control buttons provide their own spacing against the input's outer edges.
@@ -59,7 +69,7 @@ const inputStyles = {
 };
 
 const inputOptions = {
-  // Forward `as` so changing the input's root element preserves the Material input.
+  // InputBase forwards `as` to its styled root, preserving the Material input.
   shouldForwardProp: (prop: string) => prop === 'as' || slotShouldForwardProp(prop),
 };
 
@@ -194,13 +204,20 @@ const NumberFieldInputSlot = React.forwardRef(
       inputAdditionalProps.label = label;
     }
 
+    const { render: inputRender, ...inputSlotProps } = externalForwardedProps.slotProps.input ?? {};
     const [InputSlot, inputProps] = useSlot('input', {
       elementType: InputComponent,
-      externalForwardedProps,
+      externalForwardedProps: {
+        ...externalForwardedProps,
+        slotProps: { ...externalForwardedProps.slotProps, input: inputSlotProps },
+      },
       additionalProps: inputAdditionalProps,
       ownerState,
       className: undefined,
       ref,
+      internalForwardedProps: inputRender
+        ? { as: RenderElement, render: inputRender, renderState: baseState }
+        : undefined,
     });
 
     const { materialInputProps, nativeSlotProps } = resolveInputProps({
@@ -209,13 +226,19 @@ const NumberFieldInputSlot = React.forwardRef(
       ownerState,
     });
 
+    const { render: htmlInputRender, ...htmlInputSlotProps } = nativeSlotProps;
+    const useHtmlInputRender = Boolean(
+      htmlInputRender &&
+      !externalForwardedProps.slots.htmlInput &&
+      !materialInputProps.slots?.input,
+    );
     const [HtmlInputSlot, htmlInputProps] = useSlot('htmlInput', {
       elementType: 'input',
       externalForwardedProps: {
         ...externalForwardedProps,
         slotProps: {
           ...externalForwardedProps.slotProps,
-          htmlInput: nativeSlotProps,
+          htmlInput: htmlInputSlotProps,
         },
       },
       ownerState,
@@ -414,6 +437,7 @@ const NumberFieldInputSlot = React.forwardRef(
     const finalHtmlInputProps = {
       ...htmlInputProps,
       ...inputStateProps,
+      ...(useHtmlInputRender && { render: htmlInputRender, renderState: baseState }),
     };
 
     return (
@@ -431,6 +455,9 @@ const NumberFieldInputSlot = React.forwardRef(
           input: externalForwardedProps.slots.htmlInput ? HtmlInputSlot : undefined,
         }}
         {...materialInputProps}
+        // InputBase receives render/state through inputProps; its leaf override
+        // preserves the styled input layer for every variant.
+        {...(useHtmlInputRender && { inputComponent: RenderElement })}
         startAdornment={startAdornment}
         endAdornment={endAdornment}
         {...inputStateProps}

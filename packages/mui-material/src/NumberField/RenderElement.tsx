@@ -7,8 +7,8 @@ import { useRender } from '@base-ui/react/use-render';
 type NumberFieldRenderState = BaseNumberField.Root.State & Record<string, unknown>;
 
 interface RenderElementProps extends React.HTMLAttributes<HTMLElement> {
-  render: useRender.RenderProp<NumberFieldRenderState>;
-  renderState: NumberFieldRenderState;
+  render?: useRender.RenderProp<NumberFieldRenderState> | undefined;
+  renderState?: NumberFieldRenderState | undefined;
 }
 
 // Base UI already supplies the state attributes. Keep values available to the

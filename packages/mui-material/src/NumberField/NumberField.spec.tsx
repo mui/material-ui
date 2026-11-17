@@ -39,6 +39,32 @@ function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldP
 // @ts-expect-error Root slot props do not expose component.
 <NumberField slotProps={{ root: { component: 'section' } }} />;
 
+<NumberField slotProps={{ input: { render: <section /> }, htmlInput: { render: <input /> } }} />;
+<NumberField
+  slotProps={{
+    input: {
+      render: (props, state) => {
+        expectType<BaseNumberField.Group.State, typeof state>(state);
+        return <section {...props} />;
+      },
+    },
+    htmlInput: {
+      render: (props, state) => {
+        expectType<BaseNumberField.Input.State, typeof state>(state);
+        return <input {...props} />;
+      },
+    },
+  }}
+/>;
+// @ts-expect-error Use render to change the Material input root.
+<NumberField slotProps={{ input: { component: 'section' } }} />;
+// @ts-expect-error The native input slot does not expose component.
+<NumberField slotProps={{ htmlInput: { component: 'input' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ input: { render: 'section' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ htmlInput: { render: 'input' } }} />;
+
 // @ts-expect-error NumberField owns its content; use slot props to customize it.
 <NumberField>Unsupported content</NumberField>;
 
