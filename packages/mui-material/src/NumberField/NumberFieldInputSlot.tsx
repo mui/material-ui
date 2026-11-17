@@ -39,7 +39,7 @@ type NumberFieldButtonSlotProps = IconButtonProps &
 interface NumberFieldInputProps {
   baseProps: React.ComponentPropsWithRef<'input'>;
   baseState: BaseNumberField.Input.State;
-  classes: NumberFieldClasses;
+  classes: Omit<NumberFieldClasses, 'scrubbing'>;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: {
     slots: NonNullable<NumberFieldProps['slots']>;

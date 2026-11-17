@@ -113,7 +113,12 @@
     },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "scrubbing": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the root element while scrubbing"
+    }
+  },
   "slotDescriptions": {
     "controls": "The component that renders each group of stepper buttons.",
     "decrementButton": "The component that renders the decrement button.",

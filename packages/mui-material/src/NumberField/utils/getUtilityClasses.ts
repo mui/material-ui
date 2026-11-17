@@ -1,12 +1,12 @@
 import composeClasses from '@mui/utils/composeClasses';
-import type { NumberFieldProps } from '../NumberField.types';
+import type { NumberFieldOwnerState } from '../NumberField.types';
 import { getNumberFieldUtilityClass } from '../numberFieldClasses';
 
-const useUtilityClasses = (ownerState: NumberFieldProps) => {
-  const { classes } = ownerState;
+const getUtilityClasses = (ownerState: NumberFieldOwnerState) => {
+  const { classes, scrubbing } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root: ['root', scrubbing && 'scrubbing'],
     controls: ['controls'],
     scrubArea: ['scrubArea'],
     scrubAreaAdornment: ['scrubAreaAdornment'],
@@ -18,4 +18,4 @@ const useUtilityClasses = (ownerState: NumberFieldProps) => {
   return composeClasses(slots, getNumberFieldUtilityClass, classes);
 };
 
-export default useUtilityClasses;
+export default getUtilityClasses;

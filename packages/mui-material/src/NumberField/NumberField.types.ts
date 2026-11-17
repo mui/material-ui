@@ -494,6 +494,7 @@ export interface NumberFieldOwnerState
   readOnly: boolean;
   required: boolean;
   scrubAreaPosition: NonNullable<NumberFieldProps['scrubAreaPosition']>;
+  scrubbing: boolean;
   size: NonNullable<NumberFieldProps['size']>;
   variant: NumberFieldVariants;
 }

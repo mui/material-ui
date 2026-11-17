@@ -115,6 +115,7 @@ createTheme({
       },
       styleOverrides: {
         root: { minWidth: 120 },
+        scrubbing: { opacity: 0.8 },
         controls: { gap: 2 },
         scrubAreaAdornment: { gap: 2 },
         incrementButton: { padding: 1 },

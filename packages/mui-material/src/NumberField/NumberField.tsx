@@ -12,7 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import type { NumberFieldProps } from './NumberField.types';
 import RootSlot from './NumberFieldRootSlot';
 import InputSlot from './NumberFieldInputSlot';
-import { useUtilityClasses } from './utils';
+import { getUtilityClasses } from './utils';
 /**
  *
  * Demos:
@@ -94,8 +94,6 @@ const NumberField = React.forwardRef(function NumberField(
     variant,
   };
 
-  const classes = useUtilityClasses(ownerState);
-
   const externalForwardedProps = {
     slots,
     slotProps,
@@ -126,7 +124,9 @@ const NumberField = React.forwardRef(function NumberField(
           disabled: baseState.disabled,
           required: baseState.required,
           readOnly: baseState.readOnly,
+          scrubbing: baseState.scrubbing,
         };
+        const classes = getUtilityClasses(resolvedOwnerState);
 
         // Share these props between the root's label/adornment setup and the input's
         // rendering so each callback runs once with Base UI's resolved flags.

@@ -135,6 +135,7 @@ const invalidVariant: NumberFieldProps<'custom'> = {};
       expectType<boolean, typeof ownerState.error>(ownerState.error);
       expectType<boolean, typeof ownerState.fullWidth>(ownerState.fullWidth);
       expectType<boolean, typeof ownerState.required>(ownerState.required);
+      expectType<boolean, typeof ownerState.scrubbing>(ownerState.scrubbing);
       return { slotProps: { notchedOutline: { className: 'outline' } } };
     },
     inputLabel: (ownerState) => ({ shrink: ownerState.required }),
@@ -399,6 +400,10 @@ function ValueCallbacks(props: NumberFieldProps) {
 <NumberField slotProps={{ controls: { render: 'section' } }} />;
 // @ts-expect-error Input classes belong to slotProps.input.classes.
 <NumberField classes={{ input: 'input' }} />;
+
+<NumberField classes={{ scrubbing: 'active-scrub' }} />;
+// @ts-expect-error Scrubbing is derived owner state, not a public prop.
+<NumberField scrubbing />;
 
 <NumberField slots={{ scrubAreaAdornment: 'div' }} />;
 <NumberField slotProps={{ scrubAreaAdornment: { render: <section />, sx: { gap: 1 } } }} />;
