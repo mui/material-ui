@@ -8,8 +8,17 @@ const customTheme = (outerTheme: Theme): Theme => ({
   components: {
     ...outerTheme.components,
     MuiNumberField: {
-      defaultProps: { size: 'small', controlsPosition: 'stacked' },
+      defaultProps: {
+        size: 'small',
+        controlsPosition: 'stacked',
+        scrubAreaPosition: 'start',
+      },
       styleOverrides: {
+        scrubbing: {
+          outline: `2px solid ${(outerTheme.vars ?? outerTheme).palette.primary.main}`,
+          outlineOffset: 4,
+          borderRadius: (outerTheme.vars ?? outerTheme).shape.borderRadius,
+        },
         incrementButton: {
           color: (outerTheme.vars ?? outerTheme).palette.success.main,
         },
@@ -26,7 +35,13 @@ export default function NumberFieldTheme() {
   const outerTheme = useTheme();
   return (
     <ThemeProvider theme={customTheme(outerTheme)}>
-      <NumberField label="Quantity" defaultValue={5} min={0} max={10} />
+      <NumberField
+        label="Quantity"
+        defaultValue={5}
+        min={0}
+        max={10}
+        helperText="Drag the handle to see the active outline."
+      />
     </ThemeProvider>
   );
 }
