@@ -161,7 +161,15 @@ export function applyFocusVisible(
   if (position === 'outside') {
     return ring;
   }
-  return { ...ring, ...getDefaultInsetRing(ring), ...this.unstable_focusVisibleInsetOverrides };
+  const insetOverrides = this.unstable_focusVisibleInsetOverrides;
+  return {
+    ...ring,
+    ...getDefaultInsetRing({
+      ...ring,
+      outlineWidth: insetOverrides?.outlineWidth ?? ring.outlineWidth,
+    }),
+    ...insetOverrides,
+  };
 }
 
 export function insetFocusVisibleAtLeast(

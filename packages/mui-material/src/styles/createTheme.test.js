@@ -647,6 +647,12 @@ describe('createTheme', () => {
         expect(insideOf({ outlineWidth: 'THICK', outlineOffset: 1 }).outlineOffset).to.equal(-1);
       });
 
+      it('derives the inner outlineOffset from the insetOverrides outlineWidth', () => {
+        const inside = insideOf({ insetOverrides: { outlineWidth: 5 } });
+        expect(inside.outlineWidth).to.equal(5);
+        expect(inside.outlineOffset).to.equal(-5);
+      });
+
       it('draws the outer boxShadow inset, keeping inset shadows and keywords as they are', () => {
         expect(insideOf({ boxShadow: '0 0 0 1px #fff' }).boxShadow).to.equal(
           'inset 0 0 0 1px #fff',
