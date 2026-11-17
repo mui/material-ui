@@ -138,6 +138,8 @@ It is not shown in Safari or during touch interactions.
 
 {{"component": "file://./demos/scrub-area-customization/index.ts"}}
 
+The example also styles `scrubAreaAdornment`, the wrapper around the handle, using the live `ownerState.scrubbing` flag.
+
 ## Input adornments
 
 Use `slotProps.input` to add an [`InputAdornment`](/material-ui/api/input-adornment/) alongside the built-in controls.
@@ -203,14 +205,57 @@ The field's resolved `disabled`, `readOnly`, and `required` states take preceden
 The forwarded `ref` points to the root element.
 Use `inputRef` to access or focus the visible input.
 
-## Theme overrides
+## Customization
+
+### Rendering custom elements
+
+Use `render` to change the root element while preserving Material styling and field behavior.
+Other slots accept `render` through `slotProps`, such as `slotProps.htmlInput.render` or `slotProps.formHelperText.render`.
+
+The prop accepts a React element or a callback receiving the generated props and live Base UI state.
+Spread the generated props onto the rendered element to preserve its ref, event handlers, styles, and accessibility attributes.
+Custom components must forward the ref to their DOM element.
+
+The following example renders the root as a `<section>` and uses the helper text's render callback to show the current value:
+
+{{"component": "file://./demos/render/index.ts"}}
+
+For a button rendered as an element other than `<button>`, also set that slot's `nativeButton` prop to `false`.
+
+Use `slots` to replace a Material component and provide your own styling.
+A `slots` replacement takes precedence over `render` for the same slot.
+See the [API reference](/material-ui/api/number-field/#slots) for the available slots.
+
+### Theme overrides
 
 Use `MuiNumberField` in the theme to set default props or override the `root`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, `scrubAreaAdornment`, and `scrubAreaCursor` styles.
-The following example sets small, stacked controls as theme defaults and gives the buttons different colors through `styleOverrides`.
+The following example sets small, stacked controls and a scrub handle as theme defaults.
+It gives the buttons different colors and adds an outline while scrubbing through `styleOverrides.scrubbing`.
 
 {{"component": "file://./demos/theme/index.ts"}}
 
 See [themed components](/material-ui/customization/theme-components/) for more details.
+
+## Anatomy
+
+NumberField combines Material UI components with Base UI's numeric input behavior.
+The following shows its slots with a scrub handle at the start and controls at the end:
+
+```text
+root (FormControl)
+├── inputLabel (InputLabel, optional)
+├── input (OutlinedInput, FilledInput, or Input)
+│   ├── scrubAreaAdornment (InputAdornment, optional)
+│   │   └── scrubArea (span)
+│   ├── htmlInput (input)
+│   └── controls (InputAdornment, optional)
+│       ├── decrementButton (IconButton)
+│       └── incrementButton (IconButton)
+└── formHelperText (FormHelperText, optional)
+```
+
+With split controls, the `controls` slot renders once on each side of the input.
+The `scrubAreaCursor` slot renders in a portal while scrubbing.
 
 ## Accessibility
 
