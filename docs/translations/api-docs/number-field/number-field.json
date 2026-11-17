@@ -84,6 +84,9 @@
     "readOnly": {
       "description": "If <code>true</code>, the value cannot be changed through user interaction. The input can still receive focus."
     },
+    "render": {
+      "description": "Replaces the root element while preserving its styles and behavior. Accepts an element or a function that receives the root props and Base UI state."
+    },
     "required": {
       "description": "If <code>true</code>, a value is required for form submission and the label is marked as required."
     },

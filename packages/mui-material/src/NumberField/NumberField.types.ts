@@ -1,6 +1,7 @@
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 
 import type { OverridableStringUnion } from '@mui/types';
+import type { SlotComponentProps } from '@mui/utils/types';
 
 import type { InputProps as StandardInputProps } from '../Input';
 import type { InternalStandardProps as StandardProps } from '../internal';
@@ -146,9 +147,9 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
      * Props forwarded to the root slot.
      * By default, the available props are based on the [FormControl](https://mui.com/material-ui/api/form-control/#props) component.
      */
-    root: SlotProps<
-      React.ElementType<FormControlProps>,
-      NumberFieldRootSlotPropsOverrides,
+    root: SlotComponentProps<
+      'div',
+      Omit<FormControlProps, 'component'> & NumberFieldRootSlotPropsOverrides,
       NumberFieldOwnerState
     >;
     /**
@@ -178,7 +179,7 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
 
 export interface BaseNumberFieldProps extends StandardProps<
   FormControlProps,
-  'children' | 'defaultValue' | 'onChange' | 'onBlur' | 'onFocus'
+  'children' | 'component' | 'defaultValue' | 'onChange' | 'onBlur' | 'onFocus'
 > {
   /**
    * If `true`, values entered by typing or pasting are not clamped to `min` and `max`.
@@ -337,6 +338,11 @@ export interface BaseNumberFieldProps extends StandardProps<
    * @default false
    */
   readOnly?: boolean | undefined;
+  /**
+   * Replaces the root element while preserving its styles and behavior.
+   * Accepts an element or a function that receives the root props and Base UI state.
+   */
+  render?: BaseNumberField.Root.Props['render'] | undefined;
   /**
    * If `true`, a value is required for form submission and the label is marked as required.
    * @default false

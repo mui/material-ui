@@ -65,6 +65,7 @@ describe('<NumberField />', () => {
       inheritComponent: FormControl,
       render,
       muiName: 'MuiNumberField',
+      skip: ['componentProp'],
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { variant: 'outlined' },
       testDeepOverrides: [
@@ -76,7 +77,7 @@ describe('<NumberField />', () => {
         root: {
           expectedClassName: classes.root,
           testWithComponent: TestFormControl,
-          // Keep FormControl context; component conformance covers changing the root's HTML tag.
+          // Root render tests cover changing the HTML tag while keeping FormControl.
           testWithElement: null,
         },
         // @ts-expect-error Conformance requires a class name in its types even for slots without one.
@@ -106,6 +107,80 @@ describe('<NumberField />', () => {
       },
     }),
   );
+
+  // Test the Material adapter's styles/context, state wiring and precedence.
+  // Base UI owns render-element prop merging and ref lifecycle behavior.
+  describe('root render', () => {
+    it('preserves Material styles, FormControl context and the forwarded ref', () => {
+      const rootRef = React.createRef<HTMLDivElement>();
+      const theme = createTheme({
+        components: {
+          MuiNumberField: { styleOverrides: { root: { paddingTop: 7 } } },
+          MuiFormControl: { styleOverrides: { root: { paddingBottom: 9 } } },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <NumberField
+            label="Amount"
+            error
+            ref={rootRef}
+            data-testid="render-root"
+            render={<section />}
+          />
+        </ThemeProvider>,
+      );
+      const root = screen.getByTestId('render-root');
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+
+      expect(root.tagName).to.equal('SECTION');
+      expect(getComputedStyle(root).paddingTop).to.equal('7px');
+      expect(getComputedStyle(root).paddingBottom).to.equal('9px');
+      expect(input.closest('.MuiInputBase-root')).to.have.class('Mui-error');
+      expect(rootRef.current).to.equal(root);
+    });
+
+    it('passes live Base UI state without adding value attributes to the root', async () => {
+      const { user } = render(
+        <NumberField
+          label="Amount"
+          defaultValue={5}
+          render={(props, state) => (
+            <section {...props} data-testid="render-callback" data-current-value={state.value} />
+          )}
+        />,
+      );
+      const root = screen.getByTestId('render-callback');
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+
+      expect(root).to.have.attribute('data-current-value', '5');
+      ['data-value', 'data-inputvalue'].forEach((name) => {
+        expect(root).not.to.have.attribute(name);
+      });
+
+      await user.click(input);
+      await user.keyboard('{ArrowUp}');
+      expect(root).to.have.attribute('data-current-value', '6');
+    });
+
+    it('lets slots.root replace the render bridge', () => {
+      const renderRoot = vi.fn((props: React.HTMLAttributes<HTMLDivElement>) => (
+        <section {...props} />
+      ));
+      render(
+        <NumberField
+          label="Amount"
+          render={renderRoot}
+          data-testid="replacement-root"
+          slots={{ root: TestFormControl }}
+        />,
+      );
+      const root = screen.getByTestId('replacement-root');
+
+      expect(root.tagName).to.equal('DIV');
+      expect(renderRoot).toHaveBeenCalledTimes(0);
+    });
+  });
 
   // Material props must configure the input and surrounding form controls, while
   // slot callbacks retain the public props and Base UI's resolved behavioral flags.
@@ -3219,6 +3294,13 @@ describe('<NumberField />', () => {
       expect(input).to.have.value(displayValue);
       expect(label).to.have.attribute('data-shrink', String(shrink));
     }
+
+    it('preserves initial FormControl label state with render through hydration', () => {
+      const { hydrate } = renderToString(
+        <NumberField label="Amount" defaultValue={5} render={<section />} />,
+      );
+      expectStableHydration(hydrate, { displayValue: '5', shrink: true });
+    });
 
     // Initial values, including zero and empty values, must determine label shrink
     // before hydration, without relying on client-side FormControl updates.

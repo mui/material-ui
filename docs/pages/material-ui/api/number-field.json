@@ -63,6 +63,7 @@
     },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "scrubAreaPosition": {
       "type": {

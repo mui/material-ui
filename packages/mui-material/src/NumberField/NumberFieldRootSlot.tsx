@@ -14,6 +14,7 @@ import { styled } from '../zero-styled';
 import InputLabel from '../InputLabel';
 import type { InputLabelProps } from '../InputLabel';
 import FormHelperText from '../FormHelperText';
+import RenderElement from './RenderElement';
 
 interface NumberFieldRootProps {
   baseProps: HTMLProps;
@@ -65,6 +66,11 @@ const NumberFieldRootSlot = React.forwardRef(
         size: ownerState.size,
         variant: ownerState.variant,
       },
+      // FormControl's internal component prop preserves its styles and context.
+      // A replacement slots.root bypasses this render bridge.
+      internalForwardedProps: ownerState.render
+        ? { component: RenderElement, render: ownerState.render, renderState: baseState }
+        : undefined,
     });
 
     const [InputLabelSlot, inputLabelProps] = useSlot('inputLabel', {

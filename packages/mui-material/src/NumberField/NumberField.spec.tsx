@@ -23,6 +23,22 @@ function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldP
 // @ts-expect-error Placement is separate from the scrubArea slot.
 <NumberField scrubArea="start" />;
 
+<NumberField render={<section ref={React.createRef<HTMLElement>()} />} />;
+<NumberField
+  render={(props, state) => {
+    expectType<BaseNumberField.Root.State, typeof state>(state);
+    expectType<number | null, typeof state.value>(state.value);
+    expectType<boolean, typeof state.scrubbing>(state.scrubbing);
+    return <section {...props} />;
+  }}
+/>;
+// @ts-expect-error render takes an element or a callback, not a tag name.
+<NumberField render="section" />;
+// @ts-expect-error Use render to change the root element.
+<NumberField component="section" />;
+// @ts-expect-error Root slot props do not expose component.
+<NumberField slotProps={{ root: { component: 'section' } }} />;
+
 // @ts-expect-error NumberField owns its content; use slot props to customize it.
 <NumberField>Unsupported content</NumberField>;
 
@@ -206,9 +222,9 @@ function ValueCallbacks(props: NumberFieldProps) {
 // Slot props expose the corresponding Material component API. Root/button handlers
 // need explicit event annotations with the current Material SlotProps types.
 <NumberField
+  render={<section />}
   slotProps={{
     root: {
-      component: 'section',
       ref: React.createRef<HTMLDivElement>(),
       onClick: (event: React.MouseEvent<HTMLDivElement>) => event.currentTarget.focus(),
     },
