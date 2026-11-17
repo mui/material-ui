@@ -62,22 +62,26 @@ describe('<FocusTrap />', () => {
     expect(initialFocus).toHaveFocus();
   });
 
-  it('should focus the root if the autoFocus element becomes disabled during a Strict Mode remount', () => {
-    render(
-      <FocusTrap open>
-        <div tabIndex={-1} data-testid="root">
-          <input
-            autoFocus
-            onBlur={(event) => {
-              event.currentTarget.disabled = true;
-            }}
-          />
-        </div>
-      </FocusTrap>,
-    );
+  // React 17 Strict Mode does not run effects twice.
+  it.skipIf(reactMajor < 18)(
+    'should focus the root if the autoFocus element becomes disabled during a Strict Mode remount',
+    () => {
+      render(
+        <FocusTrap open>
+          <div tabIndex={-1} data-testid="root">
+            <input
+              autoFocus
+              onBlur={(event) => {
+                event.currentTarget.disabled = true;
+              }}
+            />
+          </div>
+        </FocusTrap>,
+      );
 
-    expect(screen.getByTestId('root')).toHaveFocus();
-  });
+      expect(screen.getByTestId('root')).toHaveFocus();
+    },
+  );
 
   it('should focus first focusable child in portal', async () => {
     render(
