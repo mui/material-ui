@@ -1,4 +1,4 @@
-import type { ThemeOptions, FocusVisible } from '@mui/material/styles';
+import type { ThemeOptions, FocusVisible, CssVarsTheme } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { buttonClasses } from '@mui/material/Button';
 
@@ -397,6 +397,14 @@ const theme = createTheme();
 
   // @ts-expect-error the position is `inside` or `outside`, not a number
   ringTheme.applyFocusVisible(-1);
+
+  const { applyFocusVisible } = ringTheme;
+  // @ts-expect-error a destructured call has no theme to read the ring from
+  applyFocusVisible('inside');
+
+  const cssVarsTheme = {} as CssVarsTheme;
+  cssVarsTheme.applyFocusVisible('inside');
+  createTheme({ focusVisible: cssVarsTheme.focusVisible });
 
   ringTheme.components = {
     MuiMenuItem: {

@@ -19,6 +19,7 @@ import {
   CssVarsTheme,
   CssVarsPalette,
   ColorSystemOptions,
+  FocusVisibleThemeMembers,
   Shape,
   ShapeOptions,
   SupportedColorScheme,
@@ -75,7 +76,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   modularCssLayers?: boolean | string | undefined;
 }
 
-export interface BaseTheme extends SystemTheme {
+export interface BaseTheme extends SystemTheme, FocusVisibleThemeMembers {
   mixins: Mixins;
   motion: Motion;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
@@ -84,23 +85,8 @@ export interface BaseTheme extends SystemTheme {
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
-  focusVisible?: FocusVisible | false | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
-  /**
-   * Returns the `theme.focusVisible` ring for a focus selector. `'outside'` is `theme.focusVisible`,
-   * and `'inside'` merges the inset ring over it. Returns `{}` when `theme.focusVisible` is off.
-   * Call it on the theme (`theme.applyFocusVisible(…)`), not destructured.
-   *
-   * @param position `'outside'` or `'inside'`.
-   * @example
-   * styleOverrides: {
-   *   root: ({ theme }) => ({ '&.Mui-focusVisible': theme.applyFocusVisible('outside') }),
-   * }
-   */
-  applyFocusVisible: (position: 'inside' | 'outside') => CSSObject;
-  /** The `focusVisible.insetOverrides` the theme was created with. */
-  unstable_focusVisibleInsetOverrides?: React.CSSProperties | undefined;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
