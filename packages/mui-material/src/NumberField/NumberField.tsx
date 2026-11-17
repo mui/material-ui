@@ -299,42 +299,9 @@ NumberField.propTypes /* remove-proptypes */ = {
    *
    * See [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat).
    */
-  locale: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.shape({
-          baseName: PropTypes.string.isRequired,
-          calendar: PropTypes.string,
-          caseFirst: PropTypes.oneOf(['false', 'lower', 'upper']),
-          collation: PropTypes.string,
-          hourCycle: PropTypes.oneOf(['h11', 'h12', 'h23', 'h24']),
-          language: PropTypes.string.isRequired,
-          maximize: PropTypes.func.isRequired,
-          minimize: PropTypes.func.isRequired,
-          numberingSystem: PropTypes.string,
-          numeric: PropTypes.bool,
-          region: PropTypes.string,
-          script: PropTypes.string,
-          toString: PropTypes.func.isRequired,
-        }),
-        PropTypes.string,
-      ]).isRequired,
-    ),
-    PropTypes.shape({
-      baseName: PropTypes.string.isRequired,
-      calendar: PropTypes.string,
-      caseFirst: PropTypes.oneOf(['false', 'lower', 'upper']),
-      collation: PropTypes.string,
-      hourCycle: PropTypes.oneOf(['h11', 'h12', 'h23', 'h24']),
-      language: PropTypes.string.isRequired,
-      maximize: PropTypes.func.isRequired,
-      minimize: PropTypes.func.isRequired,
-      numberingSystem: PropTypes.string,
-      numeric: PropTypes.bool,
-      region: PropTypes.string,
-      script: PropTypes.string,
-      toString: PropTypes.func.isRequired,
-    }),
+  locale: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.string])),
+    PropTypes.object,
     PropTypes.string,
   ]),
   /**
