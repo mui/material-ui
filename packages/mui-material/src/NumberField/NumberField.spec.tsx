@@ -373,10 +373,30 @@ function ValueCallbacks(props: NumberFieldProps) {
 // @ts-expect-error nativeButton must be boolean for the decrement slot too.
 <NumberField slotProps={{ decrementButton: { nativeButton: 'false' } }} />;
 
-// @ts-expect-error controls is an internal adornment, not a replaceable slot.
 <NumberField slots={{ controls: 'div' }} />;
-// @ts-expect-error Internal controls do not expose public slot props.
-<NumberField slotProps={{ controls: {} }} />;
+<NumberField slotProps={{ controls: { render: <section />, sx: { gap: 1 } } }} />;
+<NumberField
+  controlsPosition="split"
+  slotProps={{
+    controls: (ownerState) => {
+      expectType<'start' | 'end', typeof ownerState.position>(ownerState.position);
+      expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
+      return {
+        ref: React.createRef<HTMLDivElement>(),
+        render: (props, state) => {
+          expectType<BaseNumberField.Root.State, typeof state>(state);
+          return <section {...props} />;
+        },
+      };
+    },
+  }}
+/>;
+// @ts-expect-error Use render to change the controls element.
+<NumberField slotProps={{ controls: { component: 'section' } }} />;
+// @ts-expect-error The controls position is supplied by controlsPosition.
+<NumberField slotProps={{ controls: { position: 'start' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ controls: { render: 'section' } }} />;
 // @ts-expect-error Input classes belong to slotProps.input.classes.
 <NumberField classes={{ input: 'input' }} />;
 

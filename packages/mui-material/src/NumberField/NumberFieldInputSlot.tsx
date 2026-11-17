@@ -421,6 +421,8 @@ const NumberFieldInputSlot = React.forwardRef(
       startAdornment: consumerStartAdornment,
       classes,
       ownerState,
+      baseState,
+      externalForwardedProps,
     });
 
     const startScrubArea = ownerState.scrubAreaPosition === 'start' && (

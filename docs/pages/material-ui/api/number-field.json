@@ -86,7 +86,7 @@
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaCursor?: elementType }"
+        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaCursor?: elementType }"
       },
       "default": "{}"
     },
@@ -118,6 +118,12 @@
     "import { NumberField } from '@mui/material';"
   ],
   "slots": [
+    {
+      "name": "controls",
+      "description": "The component that renders each group of stepper buttons.",
+      "default": "InputAdornment",
+      "class": "MuiNumberField-controls"
+    },
     {
       "name": "decrementButton",
       "description": "The component that renders the decrement button.",
@@ -173,14 +179,7 @@
       "class": "MuiNumberField-scrubAreaCursor"
     }
   ],
-  "classes": [
-    {
-      "key": "controls",
-      "className": "MuiNumberField-controls",
-      "description": "Styles applied to each controls adornment.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiNumberField",
