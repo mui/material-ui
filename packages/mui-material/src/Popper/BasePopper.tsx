@@ -109,8 +109,6 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
-  // The last placement passed to `setPlacement`. Popper.js reports the placement after every
-  // `forceUpdate()`, so skipping an unchanged value avoids a no-op render on each parent render.
   const placementRef = React.useRef(rtlPlacement);
   const resolvedAnchorElement = React.useMemo<HTMLElement | VirtualElement | null | undefined>(
     () => resolveAnchorEl(anchorEl),
