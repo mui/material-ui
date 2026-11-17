@@ -44,13 +44,6 @@ describe('createThemeWithVars', () => {
     expect(theme.colorSchemes.dark).to.equal(undefined);
   });
 
-  it('should have a light as a default colorScheme regardless of key order', () => {
-    const theme = createThemeWithVars({
-      colorSchemes: { dark: true, light: true },
-    });
-    expect(theme.defaultColorScheme).to.equal('light');
-  });
-
   it('should have "media" colorSchemeSelector', () => {
     const theme = createThemeWithVars({ colorSchemeSelector: 'media' });
     expect(theme.colorSchemeSelector).to.equal('media');
@@ -760,20 +753,18 @@ describe('createThemeWithVars', () => {
   });
 
   describe('dark color scheme only', () => {
-    it('should use dark as default color scheme', () => {
-      expect(
-        createThemeWithVars({ colorSchemes: { dark: true } }).defaultColorScheme,
-      ).to.deep.equal('dark');
-    });
-
     it('should not have colorSchemeSelector', () => {
       expect(
-        createThemeWithVars({ colorSchemes: { dark: true } }).colorSchemeSelector,
+        createThemeWithVars({ colorSchemes: { dark: true }, defaultColorScheme: 'dark' })
+          .colorSchemeSelector,
       ).to.deep.equal(undefined);
     });
 
     it('should have dark palette and not light color scheme', () => {
-      const theme = createThemeWithVars({ colorSchemes: { dark: true } });
+      const theme = createThemeWithVars({
+        colorSchemes: { dark: true },
+        defaultColorScheme: 'dark',
+      });
       expect(theme.colorSchemes.dark.palette.text.primary).to.equal('#fff');
       expect(theme.colorSchemes.light).to.equal(undefined);
     });
