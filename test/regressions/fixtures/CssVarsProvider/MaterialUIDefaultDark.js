@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { ThemeProvider, extendTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 
-const theme = extendTheme({ colorSchemes: { dark: true }, colorSchemeSelector: '.mode-%s' });
+const theme = createTheme({
+  colorSchemes: { dark: true },
+  defaultColorScheme: 'dark',
+  cssVariables: { colorSchemeSelector: '.mode-%s' },
+});
 
 export default function MaterialUIDefaultDark() {
   const [, rerender] = React.useState(false);

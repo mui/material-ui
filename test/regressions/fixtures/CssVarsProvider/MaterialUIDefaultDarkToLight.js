@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, extendTheme, useColorScheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -13,7 +13,10 @@ function LightMode() {
   return null;
 }
 
-const theme = extendTheme({ defaultColorScheme: 'dark', colorSchemeSelector: '.mode-%s' });
+const theme = createTheme({
+  defaultColorScheme: 'dark',
+  cssVariables: { colorSchemeSelector: '.mode-%s' },
+});
 
 export default function MaterialUIDefaultDark() {
   return (

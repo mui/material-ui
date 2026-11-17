@@ -44,8 +44,6 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export { useColorScheme } from './ThemeProviderWithVars';
-export { default as extendTheme } from './createThemeWithVars';
-export { default as experimental_extendTheme } from './experimental_extendTheme'; // TODO: Remove in v7
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 

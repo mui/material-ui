@@ -157,3 +157,33 @@ Render the `InitColorSchemeScript` component instead, and pass the same options 
 -{getInitColorSchemeScript({ attribute: 'class' })}
 +<InitColorSchemeScript attribute="class" />
 ```
+
+### extendTheme removed
+
+The `extendTheme()` function and its deprecated `experimental_extendTheme` alias have been removed.
+Use `createTheme()` instead, and move the CSS variables options into `cssVariables`:
+
+```diff
+-import { extendTheme } from '@mui/material/styles';
++import { createTheme } from '@mui/material/styles';
+
+-const theme = extendTheme({
+-  colorSchemeSelector: 'class',
+-  colorSchemes: { light: true, dark: true },
+-});
++const theme = createTheme({
++  cssVariables: { colorSchemeSelector: 'class' },
++  colorSchemes: { light: true, dark: true },
++});
+```
+
+The options that go into `cssVariables` are `colorSchemeSelector`, `cssVarPrefix`, `disableCssColorScheme`, `nativeColor`, `rootSelector`, and `shouldSkipGeneratingVar`.
+If you didn't pass any of them, use `cssVariables: true`.
+
+If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
+`extendTheme()` used the first color scheme as the default, while `createTheme()` adds a `light` scheme and uses it:
+
+```diff
+-extendTheme({ colorSchemes: { dark: true } });
++createTheme({ cssVariables: true, colorSchemes: { dark: true }, defaultColorScheme: 'dark' });
+```

@@ -1,6 +1,6 @@
-import { extendTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
-const theme = extendTheme();
+const theme = createTheme({ cssVariables: true });
 
 theme.getCssVar('palette-primary-main');
 theme.getCssVar('palette-Alert-errorColor');
@@ -20,7 +20,7 @@ theme.getCssVar('custom-color');
 theme.getCssVar('palette-primary-main', '');
 
 // dark only application
-extendTheme({ colorSchemes: { dark: true } });
+createTheme({ cssVariables: true, colorSchemes: { dark: true }, defaultColorScheme: 'dark' });
 
 // built-in light and dark modes
-extendTheme({ colorSchemes: { light: true, dark: true } });
+createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } });

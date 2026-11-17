@@ -129,8 +129,6 @@ export { default as withTheme } from './withTheme';
 export { useColorScheme } from './ThemeProviderWithVars';
 export type { StorageManager } from '@mui/system/cssVars';
 
-export { default as extendTheme } from './createThemeWithVars';
-
 export type {
   ColorSchemeOverrides,
   SupportedColorScheme,

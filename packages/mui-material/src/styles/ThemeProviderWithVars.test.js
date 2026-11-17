@@ -2,13 +2,7 @@ import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
-import {
-  extendTheme,
-  useTheme,
-  ThemeProvider,
-  createTheme,
-  useColorScheme,
-} from '@mui/material/styles';
+import { useTheme, ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
 describe('[Material UI] ThemeProviderWithVars', () => {
   let originalMatchmedia;
@@ -68,7 +62,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       render(
-        <ThemeProvider theme={extendTheme({ colorSchemes: { light: true, dark: true } })}>
+        <ThemeProvider
+          theme={createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } })}
+        >
           <Vars />
         </ThemeProvider>,
       );

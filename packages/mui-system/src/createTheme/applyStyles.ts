@@ -49,7 +49,7 @@ export interface ApplyStyles<K extends string> {
  * @example
  * 3. theming a component:
  * ```jsx
- *   extendTheme({
+ *   createTheme({
  *     components: {
  *       MuiButton: {
  *         styleOverrides: {

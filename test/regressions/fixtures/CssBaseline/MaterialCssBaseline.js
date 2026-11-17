@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { ThemeProvider, extendTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
-const theme = extendTheme({
+const theme = createTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: '[data-mui-color-scheme="%s"]',
-  disableCssColorScheme: true,
+  cssVariables: {
+    colorSchemeSelector: '[data-mui-color-scheme="%s"]',
+    disableCssColorScheme: true,
+  },
 });
 
 export default function MaterialCssBaseline() {
