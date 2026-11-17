@@ -371,7 +371,7 @@ const AutocompleteListbox = styled('ul', {
       [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
         ? // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
           // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
-          theme.applyFocusVisible('inside')
+          theme.applyFocusVisible('inset')
         : {
             backgroundColor: (theme.vars || theme).palette.action.focus,
           },

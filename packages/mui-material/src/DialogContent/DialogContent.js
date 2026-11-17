@@ -35,7 +35,7 @@ const DialogContentRoot = styled('div', {
     overflowY: 'auto',
     padding: '20px 24px',
     ...(theme.focusVisible && {
-      '&:focus-visible': theme.applyFocusVisible('inside'),
+      '&:focus-visible': theme.applyFocusVisible('inset'),
     }),
     variants: [
       {

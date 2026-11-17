@@ -136,8 +136,8 @@ To draw a different indicator on `Tab`, use `theme.applyFocusVisible()` in a `Mu
 
 ### Choosing the indicator of a component
 
-Use `theme.applyFocusVisible('outside')` or `theme.applyFocusVisible('inside')` in a focus selector to choose which indicator a component draws.
-`'outside'` returns `theme.focusVisible`, and `'inside'` returns it with `insetOverrides` merged over it.
+Use `theme.applyFocusVisible('outset')` or `theme.applyFocusVisible('inset')` in a focus selector to choose which indicator a component draws.
+`'outset'` returns `theme.focusVisible`, and `'inset'` returns it with `insetOverrides` merged over it.
 Call it on the theme, as `theme.applyFocusVisible()`. A destructured method doesn't work.
 
 For example, a menu with padding leaves room to draw the indicator of `MenuItem` outside:
@@ -148,11 +148,11 @@ The same method draws the inner indicator on a custom component inside a clippin
 
 ```js
 const Item = styled('div')(({ theme }) => ({
-  '&:focus-visible': theme.applyFocusVisible('inside'),
+  '&:focus-visible': theme.applyFocusVisible('inset'),
 }));
 ```
 
-`'outside'` only replaces the properties that `theme.focusVisible` sets.
+`'outset'` only replaces the properties that `theme.focusVisible` sets.
 If `insetOverrides` sets another property, such as `borderRadius`, set its outside value in the same override.
 
 :::warning

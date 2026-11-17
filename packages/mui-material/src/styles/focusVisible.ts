@@ -143,13 +143,13 @@ function getDefaultInsetRing({ outlineOffset, outlineWidth, boxShadow }: React.C
 
 export function applyFocusVisible(
   this: FocusVisibleTheme,
-  position: 'inside' | 'outside',
+  position: 'inset' | 'outset',
 ): React.CSSProperties {
   const ring = this.focusVisible;
   if (!ring) {
     return {};
   }
-  if (position === 'outside') {
+  if (position === 'outset') {
     return ring;
   }
   const insetOverrides = this.unstable_focusVisibleInsetOverrides;

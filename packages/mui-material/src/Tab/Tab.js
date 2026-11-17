@@ -65,7 +65,7 @@ const TabRoot = styled(ButtonBase, {
     // Inset the ring: the Tabs scroller clips an outset ring.
     ...(theme.focusVisible && {
       [`&.${buttonBaseClasses.focusVisible}`]: insetFocusVisibleAtLeast(
-        theme.applyFocusVisible('inside'),
+        theme.applyFocusVisible('inset'),
         6,
       ),
     }),

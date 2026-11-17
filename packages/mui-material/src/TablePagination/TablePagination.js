@@ -60,7 +60,7 @@ const TablePaginationToolbar = styled(Toolbar, {
       marginLeft: 20,
       ...(theme.focusVisible && {
         [`& .${buttonBaseClasses.root}.${buttonBaseClasses.focusVisible}`]:
-          theme.applyFocusVisible('inside'),
+          theme.applyFocusVisible('inset'),
       }),
     },
   })),

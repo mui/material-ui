@@ -381,35 +381,35 @@ const theme = createTheme();
   const ringTheme = createTheme({ focusVisible: true });
   // @ts-expect-error the position is required
   ringTheme.applyFocusVisible();
-  ringTheme.applyFocusVisible('inside');
-  ringTheme.applyFocusVisible('outside');
-  createTheme({ cssVariables: true }).applyFocusVisible('inside');
+  ringTheme.applyFocusVisible('inset');
+  ringTheme.applyFocusVisible('outset');
+  createTheme({ cssVariables: true }).applyFocusVisible('inset');
 
   createTheme({
     components: {
       MuiMenuItem: {
         styleOverrides: {
-          root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outside') }),
+          root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outset') }),
         },
       },
     },
   });
 
-  // @ts-expect-error the position is `inside` or `outside`, not a number
+  // @ts-expect-error the position is `inset` or `outset`, not a number
   ringTheme.applyFocusVisible(-1);
 
   const { applyFocusVisible } = ringTheme;
   // @ts-expect-error a destructured call has no theme to read the ring from
-  applyFocusVisible('inside');
+  applyFocusVisible('inset');
 
   const cssVarsTheme = {} as CssVarsTheme;
-  cssVarsTheme.applyFocusVisible('inside');
+  cssVarsTheme.applyFocusVisible('inset');
   createTheme({ focusVisible: cssVarsTheme.focusVisible });
 
   ringTheme.components = {
     MuiMenuItem: {
       styleOverrides: {
-        root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outside') }),
+        root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outset') }),
       },
     },
   };

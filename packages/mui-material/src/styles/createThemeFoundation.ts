@@ -413,17 +413,17 @@ export interface FocusVisibleThemeMembers {
   /** The `focusVisible.insetOverrides` the theme was created with. */
   unstable_focusVisibleInsetOverrides?: React.CSSProperties | undefined;
   /**
-   * Returns the `theme.focusVisible` ring for a focus selector. `'outside'` is `theme.focusVisible`,
-   * and `'inside'` merges the inset ring over it. Returns `{}` when `theme.focusVisible` is off.
+   * Returns the `theme.focusVisible` ring for a focus selector. `'outset'` is `theme.focusVisible`,
+   * and `'inset'` merges the inset ring over it. Returns `{}` when `theme.focusVisible` is off.
    * Call it on the theme (`theme.applyFocusVisible(…)`), not destructured.
    *
-   * @param position `'outside'` or `'inside'`.
+   * @param position `'outset'` or `'inset'`.
    * @example
    * styleOverrides: {
-   *   root: ({ theme }) => ({ '&.Mui-focusVisible': theme.applyFocusVisible('outside') }),
+   *   root: ({ theme }) => ({ '&.Mui-focusVisible': theme.applyFocusVisible('outset') }),
    * }
    */
-  applyFocusVisible: (this: FocusVisibleThemeMembers, position: 'inside' | 'outside') => CSSObject;
+  applyFocusVisible: (this: FocusVisibleThemeMembers, position: 'inset' | 'outset') => CSSObject;
 }
 
 /**

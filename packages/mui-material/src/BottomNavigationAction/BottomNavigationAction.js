@@ -48,7 +48,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
       color: (theme.vars || theme).palette.primary.main,
     },
     ...(theme.focusVisible && {
-      [`&.${buttonBaseClasses.focusVisible}`]: theme.applyFocusVisible('inside'),
+      [`&.${buttonBaseClasses.focusVisible}`]: theme.applyFocusVisible('inset'),
     }),
     variants: [
       {
