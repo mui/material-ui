@@ -14,6 +14,7 @@ import RootSlot from './NumberFieldRootSlot';
 import InputSlot from './NumberFieldInputSlot';
 import { getUtilityClasses } from './utils';
 /**
+ * Number fields let users enter, format, and adjust numeric values.
  *
  * Demos:
  *
