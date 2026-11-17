@@ -419,8 +419,10 @@ const attachTranslations = (
       prop = null;
     }
     if (prop) {
-      const { seeMore, jsDocText, signatureArgs, signatureReturn, requiresRef } =
-        generatePropDescription(prop, propName);
+      const { seeMore, jsDocText, signatureArgs, signatureReturn } = generatePropDescription(
+        prop,
+        propName,
+      );
       // description = renderMarkdownInline(`${description}`);
 
       const typeDescriptions: TypeDescriptions = {};
@@ -437,7 +439,6 @@ const attachTranslations = (
 
       translations.propDescriptions[propName] = {
         description: renderMarkdown(jsDocText),
-        requiresRef,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
         seeMoreText: seeMore?.description,
       };

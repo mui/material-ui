@@ -30,7 +30,7 @@ type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
 export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
-   * @requiresRef
+   * It needs to be able to hold a ref, see [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs).
    */
   children: React.ReactElement<any>;
   /**
@@ -212,7 +212,7 @@ ClickAwayListener.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The wrapped element.
-   * @requiresRef
+   * It needs to be able to hold a ref, see [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs).
    */
   children: elementAcceptingRef.isRequired,
   /**

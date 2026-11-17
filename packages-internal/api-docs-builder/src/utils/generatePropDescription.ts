@@ -70,7 +70,6 @@ export default function generatePropDescription(
     argTypeDescription?: string;
   }[];
   signatureReturn?: { name: string; description: string };
-  requiresRef?: boolean;
 } {
   const { annotation } = prop;
   const type = prop.type;
@@ -165,14 +164,11 @@ export default function generatePropDescription(
     }
   }
 
-  const requiresRef = annotation.tags.some((tag) => tag.title === 'requiresRef') || undefined;
-
   return {
     seeMore,
     jsDocText,
     signature,
     signatureArgs,
     signatureReturn,
-    requiresRef,
   };
 }
