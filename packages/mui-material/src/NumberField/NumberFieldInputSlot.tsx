@@ -256,11 +256,9 @@ const NumberFieldInputSlot = React.forwardRef(
     });
 
     // Build direction-aware defaults without evaluating the consumer's slot callback twice.
-    const resolvedScrubAreaSlotProps = resolveComponentProps(
-      externalForwardedProps.slotProps.scrubArea,
-      ownerState,
-    );
-    const scrubDirection = resolvedScrubAreaSlotProps?.direction ?? 'horizontal';
+    const { render: scrubAreaRender, ...resolvedScrubAreaSlotProps } =
+      resolveComponentProps(externalForwardedProps.slotProps.scrubArea, ownerState) ?? {};
+    const scrubDirection = resolvedScrubAreaSlotProps.direction ?? 'horizontal';
     const [ScrubAreaSlot, scrubAreaSlotProps] = useSlot('scrubArea', {
       elementType: NumberFieldScrubArea,
       externalForwardedProps: {
@@ -272,6 +270,9 @@ const NumberFieldInputSlot = React.forwardRef(
       },
       ownerState,
       className: classes.scrubArea,
+      internalForwardedProps: scrubAreaRender
+        ? { as: RenderElement, render: scrubAreaRender, renderState: baseState }
+        : undefined,
       additionalProps: {
         'data-direction': scrubDirection,
         children: (
@@ -282,11 +283,22 @@ const NumberFieldInputSlot = React.forwardRef(
         ),
       },
     });
+    const { render: scrubAreaCursorRender, ...resolvedScrubAreaCursorSlotProps } =
+      resolveComponentProps(externalForwardedProps.slotProps.scrubAreaCursor, ownerState) ?? {};
     const [ScrubAreaCursorSlot, scrubAreaCursorProps] = useSlot('scrubAreaCursor', {
       elementType: NumberFieldScrubAreaCursor,
-      externalForwardedProps,
+      externalForwardedProps: {
+        ...externalForwardedProps,
+        slotProps: {
+          ...externalForwardedProps.slotProps,
+          scrubAreaCursor: resolvedScrubAreaCursorSlotProps,
+        },
+      },
       ownerState,
       className: classes.scrubAreaCursor,
+      internalForwardedProps: scrubAreaCursorRender
+        ? { as: RenderElement, render: scrubAreaCursorRender, renderState: baseState }
+        : undefined,
       additionalProps: {
         // Rotate the SVG, since Base UI updates the cursor container's transform as it moves.
         // Inline transforms also preserve the drag axis when RTL styles are flipped.

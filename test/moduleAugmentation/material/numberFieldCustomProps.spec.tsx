@@ -31,6 +31,12 @@ declare module '@mui/material/NumberField' {
   interface NumberFieldDecrementButtonSlotPropsOverrides {
     stepLabel?: 'decrease';
   }
+  interface NumberFieldScrubAreaSlotPropsOverrides {
+    customScrubProp?: 'area';
+  }
+  interface NumberFieldScrubAreaCursorSlotPropsOverrides {
+    customCursorProp?: 'cursor';
+  }
 }
 
 // NumberField inherits FormControl props, so their size/color extensions must agree.
@@ -50,8 +56,12 @@ declare module '@mui/material/FormControl' {
     root: { customRootProp: 'root' },
     input: { customInputProp: 'input', render: <section /> },
     htmlInput: { customNativeProp: 'native', render: <input /> },
-    inputLabel: { customLabelProp: 'label', shrink: true },
-    formHelperText: { customHelperProp: 'helper' },
+    inputLabel: {
+      customLabelProp: 'label',
+      shrink: true,
+      render: <label htmlFor="amount">Amount</label>,
+    },
+    formHelperText: { customHelperProp: 'helper', render: <div /> },
     incrementButton: {
       stepLabel: 'increase',
       render: <button type="button" aria-label="Increase" />,
@@ -61,6 +71,8 @@ declare module '@mui/material/FormControl' {
       disabled: ownerState.disabled,
       render: <button type="button" aria-label="Decrease" />,
     }),
+    scrubArea: { customScrubProp: 'area', render: <div />, sx: { padding: 1 } },
+    scrubAreaCursor: { customCursorProp: 'cursor', render: <div />, sx: { color: 'red' } },
   }}
 />;
 

@@ -73,19 +73,22 @@ const NumberFieldRootSlot = React.forwardRef(
         : undefined,
     });
 
-    const [InputLabelSlot, inputLabelProps] = useSlot('inputLabel', {
+    const [InputLabelSlot, inputLabelSlotProps] = useSlot('inputLabel', {
       elementType: InputLabel,
       externalForwardedProps,
       ownerState,
       className: undefined,
     });
 
-    const [FormHelperTextSlot, formHelperTextProps] = useSlot('formHelperText', {
+    const [FormHelperTextSlot, formHelperTextSlotProps] = useSlot('formHelperText', {
       elementType: FormHelperText,
       externalForwardedProps,
       ownerState,
       className: undefined,
     });
+
+    const { render: inputLabelRender, ...inputLabelProps } = inputLabelSlotProps;
+    const { render: formHelperTextRender, ...formHelperTextProps } = formHelperTextSlotProps;
 
     // FormControl needs the adornment before effects run to initialize label shrink.
     const resolvedInputSlotProps = externalForwardedProps.slotProps?.input;
@@ -103,13 +106,32 @@ const NumberFieldRootSlot = React.forwardRef(
       <RootSlot {...rootProps} disabled={ownerState.disabled} required={ownerState.required}>
         <SSRInitialFilled value={baseState.inputValue} startAdornment={adornedStart} />
         {hasLabel && (
-          <InputLabelSlot htmlFor={id} id={labelId} {...(inputLabelProps as InputLabelProps)}>
+          <InputLabelSlot
+            htmlFor={id}
+            id={labelId}
+            {...(inputLabelProps as InputLabelProps)}
+            {...(!externalForwardedProps.slots?.inputLabel &&
+              inputLabelRender && {
+                component: RenderElement,
+                render: inputLabelRender,
+                renderState: baseState,
+              })}
+          >
             {label}
           </InputLabelSlot>
         )}
         {children}
         {hasHelperText && (
-          <FormHelperTextSlot id={helperTextId} {...formHelperTextProps}>
+          <FormHelperTextSlot
+            id={helperTextId}
+            {...formHelperTextProps}
+            {...(!externalForwardedProps.slots?.formHelperText &&
+              formHelperTextRender && {
+                component: RenderElement,
+                render: formHelperTextRender,
+                renderState: baseState,
+              })}
+          >
             {helperText}
           </FormHelperTextSlot>
         )}
