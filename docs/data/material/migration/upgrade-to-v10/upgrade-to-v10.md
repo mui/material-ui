@@ -154,7 +154,9 @@ Add the [module augmentation](/material-ui/customization/css-theme-variables/usa
 import type {} from '@mui/material/themeCssVarsAugmentation';
 ```
 
-The deprecated `getInitColorSchemeScript()` function has been removed too.
+### getInitColorSchemeScript removed
+
+The deprecated `getInitColorSchemeScript()` function has been removed.
 Render the `InitColorSchemeScript` component instead, and pass the same options as props:
 
 ```diff
