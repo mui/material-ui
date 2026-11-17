@@ -27,7 +27,7 @@ interface NumberFieldRootProps {
 
 const NumberFieldRoot = styled(FormControl, {
   name: 'MuiNumberField',
-  slot: 'Root',
+  slot: 'root',
   overridesResolver: ({ ownerState }, styles) => [
     styles.root,
     ownerState.scrubbing && styles.scrubbing,

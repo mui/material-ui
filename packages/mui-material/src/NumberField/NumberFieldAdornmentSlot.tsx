@@ -20,7 +20,7 @@ interface NumberFieldAdornmentProps {
 
 const NumberFieldControls = styled(InputAdornment, {
   name: 'MuiNumberField',
-  slot: 'Controls',
+  slot: 'controls',
 })<{ ownerState: NumberFieldOwnerState }>({
   variants: [
     {
@@ -39,7 +39,7 @@ const NumberFieldControls = styled(InputAdornment, {
 
 const NumberFieldScrubAreaAdornment = styled(InputAdornment, {
   name: 'MuiNumberField',
-  slot: 'ScrubAreaAdornment',
+  slot: 'scrubAreaAdornment',
 })({});
 
 /**
