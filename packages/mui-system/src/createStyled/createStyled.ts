@@ -1,6 +1,6 @@
 import type * as React from 'react';
-import {
-  internal_createStyled as createStyledResolver,
+import styledEngineStyled, {
+  internal_mutateStyles as mutateStyles,
   internal_serializeStyles as serializeStyles,
 } from '@mui/styled-engine';
 import type {
@@ -153,6 +153,9 @@ function processStyleVariants(
   return results;
 }
 
+// The sx style functions added by styled(), so a wrapper can drop them from its copied styles.
+const sxStyleFunctions = new WeakSet<Function>();
+
 export default function createStyled<Theme extends object = DefaultTheme>(
   input: {
     themeId?: string | undefined;
@@ -174,6 +177,9 @@ export default function createStyled<Theme extends object = DefaultTheme>(
   }
 
   const styled = (tag: any, inputOptions: any = {}) => {
+    // Emotion copies a wrapped component's styles; remove its sx interpolation from that copy.
+    mutateStyles(tag, (styles: any) => styles.filter((style: any) => !sxStyleFunctions.has(style)));
+
     const {
       name: componentName,
       slot: componentSlot,
@@ -214,15 +220,17 @@ export default function createStyled<Theme extends object = DefaultTheme>(
       shouldForwardPropOption = undefined;
     }
 
-    const [defaultStyledResolver, resolvedStyleFunctionSx] = createStyledResolver(
-      tag,
-      {
-        shouldForwardProp: shouldForwardPropOption,
-        label: generateStyledLabel(componentName, componentSlot),
-        ...options,
-      },
-      styleFunctionSx,
-    );
+    // styled-components shares a wrapped component's styles instead of copying them.
+    // Its engine sets sxOwner with attrs, where the outermost value wins, so only the
+    // outermost sx runs. Emotion ignores this option.
+    const sxOwner = {};
+    const engineOptions = {
+      shouldForwardProp: shouldForwardPropOption,
+      label: generateStyledLabel(componentName, componentSlot),
+      ...options,
+      sxOwner,
+    };
+    const defaultStyledResolver = styledEngineStyled(tag, engineOptions);
 
     const transformStyle = (style: any) => {
       // - On the server Emotion doesn't use React.forwardRef for creating components, so the created
@@ -306,7 +314,10 @@ export default function createStyled<Theme extends object = DefaultTheme>(
       }
 
       if (!skipSx) {
-        expressionsTail.push(resolvedStyleFunctionSx);
+        const styleSx = (props: any) =>
+          props.$muiSxOwner && props.$muiSxOwner !== sxOwner ? null : styleFunctionSx(props);
+        sxStyleFunctions.add(styleSx);
+        expressionsTail.push(styleSx);
       }
 
       // This function can be called as a tagged template, so the first argument would contain

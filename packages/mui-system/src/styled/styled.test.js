@@ -1,4 +1,5 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, vi } from 'vitest';
+import * as ReactDOMServer from 'react-dom/server';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { styled, ThemeProvider } from '@mui/system';
 
@@ -6,6 +7,16 @@ import createTheme from '@mui/system/createTheme';
 
 describe('styled', () => {
   const { render } = createRenderer();
+
+  it('evaluates sx once when wrapping a styled component', () => {
+    const Inner = styled('div')({ color: 'red' });
+    const Outer = styled(Inner)({ color: 'blue' });
+    const sx = vi.fn(() => ({ margin: '4px' }));
+
+    ReactDOMServer.renderToString(<Outer sx={sx} />);
+
+    expect(sx).toHaveBeenCalledTimes(1);
+  });
 
   it('should work', () => {
     const Div = styled('div')`

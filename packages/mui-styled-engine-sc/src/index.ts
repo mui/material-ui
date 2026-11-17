@@ -73,7 +73,7 @@ export interface Keyframes {
   getName(): string;
 }
 
-function styled(tag: any, options?: any, sxOwner?: object): any {
+function styled(tag: any, options?: any): any {
   let stylesFactory: any;
 
   if (options) {
@@ -81,12 +81,12 @@ function styled(tag: any, options?: any, sxOwner?: object): any {
       displayName: options.label,
       shouldForwardProp: options.shouldForwardProp,
     });
+    if (options.sxOwner) {
+      // In a composed chain, the outermost attrs value wins, so only the outermost sx runs.
+      stylesFactory = stylesFactory.attrs({ $muiSxOwner: options.sxOwner });
+    }
   } else {
     stylesFactory = scStyled(tag);
-  }
-
-  if (sxOwner) {
-    stylesFactory = stylesFactory.attrs({ $muiSxOwner: sxOwner });
   }
 
   if (process.env.NODE_ENV !== 'production') {
@@ -116,37 +116,15 @@ function styled(tag: any, options?: any, sxOwner?: object): any {
 export default styled as unknown as typeof scStyled;
 
 /**
- * For internal usage in `@mui/system` package.
- */
-export function internal_createStyled(
-  tag: React.ElementType,
-  options: any,
-  styleFunctionSx: (props: any) => any,
-) {
-  const sxOwner = {};
-  // The outermost attrs value wins in a composed styled-components chain.
-  // Keep each layer's sx function intact so it still works independently.
-  return [
-    styled(tag, options, sxOwner),
-    (props: any) => (props.$muiSxOwner === sxOwner ? styleFunctionSx(props) : null),
-  ] as const;
-}
-
-/**
  * For internal usage in `@mui/system` package
  */
 export function internal_mutateStyles(
-  tag: React.ElementType,
-  processor: (styles: any) => any,
+  _tag: React.ElementType,
+  _processor: (styles: any) => any,
 ): void {
-  // Styled-components attaches an instance to `componentStyle`.
-  // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/StyledComponent.ts#L257
-  //
-  // The instance contains `rules` (the styles)
-  // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/ComponentStyle.ts#L23
-  if ((tag as any).componentStyle) {
-    (tag as any).componentStyle.rules = processor((tag as any).componentStyle.rules);
-  }
+  // No-op: styled-components shares componentStyle between a component and its wrappers,
+  // so changing it would also remove sx from tag itself.
+  // @mui/system passes sxOwner to styled() instead.
 }
 
 // Not needed anymore, but fixes https://github.com/mui/material-ui/issues/44112

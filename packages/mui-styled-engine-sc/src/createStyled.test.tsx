@@ -19,11 +19,12 @@ describe('createStyled with styled-components', () => {
   const styled = createStyled();
 
   it('keeps sx on an independent component after creating a wrapper', () => {
+    // slot keeps sx and theme off the DOM through styled()'s shouldForwardProp.
     const Inner = styled('div', { slot: 'root' })({ color: 'red' });
     expect(renderCss(<Inner sx={{ margin: '4px' }} />)).to.contain('margin:4px;');
 
     const Outer = styled(Inner)({ color: 'blue' });
-    expect(renderCss(<Outer sx={{ margin: '4px' }} />)).to.contain('margin:4px;');
+    expect(renderCss(<Outer sx={{ margin: '4px' }} />).match(/margin:4px;/g)).to.have.length(1);
     expect(renderCss(<Inner sx={{ margin: '8px' }} />)).to.contain('margin:8px;');
   });
 
