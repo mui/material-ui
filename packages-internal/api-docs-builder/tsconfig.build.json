@@ -15,6 +15,9 @@
   "references": [
     {
       "path": "../docs-utils/tsconfig.build.json"
+    },
+    {
+      "path": "../scripts/typescript-to-proptypes/tsconfig.json"
     }
   ]
 }
