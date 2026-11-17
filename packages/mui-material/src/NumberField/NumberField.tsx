@@ -387,14 +387,17 @@ NumberField.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    controls: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     decrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    group: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     htmlInput: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     incrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     scrubArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    scrubAreaAdornment: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     scrubAreaCursor: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -405,6 +408,7 @@ NumberField.propTypes /* remove-proptypes */ = {
     controls: PropTypes.elementType,
     decrementButton: PropTypes.elementType,
     formHelperText: PropTypes.elementType,
+    group: PropTypes.elementType,
     htmlInput: PropTypes.elementType,
     incrementButton: PropTypes.elementType,
     input: PropTypes.elementType,

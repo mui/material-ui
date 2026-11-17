@@ -123,6 +123,7 @@
     "controls": "The component that renders each group of stepper buttons.",
     "decrementButton": "The component that renders the decrement button.",
     "formHelperText": "The component that renders the helper text.",
+    "group": "The component that groups the input, stepper buttons, and scrub area.",
     "htmlInput": "The component that renders the native input element.",
     "incrementButton": "The component that renders the increment button.",
     "input": "The component that renders the Material input wrapper.",

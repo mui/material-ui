@@ -226,9 +226,12 @@ Use `slots` to replace a Material component and provide your own styling.
 A `slots` replacement takes precedence over `render` for the same slot.
 See the [API reference](/material-ui/api/number-field/#slots) for the available slots.
 
+Use `slotProps.group` to customize the container around the Material input and its controls.
+It renders Base UI's NumberField Group with `role="group"` and supports `render` and `sx`.
+
 ### Theme overrides
 
-Use `MuiNumberField` in the theme to set default props or override the `root`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, `scrubAreaAdornment`, and `scrubAreaCursor` styles.
+Use `MuiNumberField` in the theme to set default props or override the `root`, `group`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, `scrubAreaAdornment`, and `scrubAreaCursor` styles.
 The following example sets small, stacked controls and a scrub handle as theme defaults.
 It gives the buttons different colors and adds an outline while scrubbing through `styleOverrides.scrubbing`.
 
@@ -244,13 +247,14 @@ The following shows its slots with a scrub handle at the start and controls at t
 ```text
 root (FormControl)
 ├── inputLabel (InputLabel, optional)
-├── input (OutlinedInput, FilledInput, or Input)
-│   ├── scrubAreaAdornment (InputAdornment, optional)
-│   │   └── scrubArea (span)
-│   ├── htmlInput (input)
-│   └── controls (InputAdornment, optional)
-│       ├── decrementButton (IconButton)
-│       └── incrementButton (IconButton)
+├── group (div)
+│   └── input (OutlinedInput, FilledInput, or Input)
+│       ├── scrubAreaAdornment (InputAdornment, optional)
+│       │   └── scrubArea (span)
+│       ├── htmlInput (input)
+│       └── controls (InputAdornment, optional)
+│           ├── decrementButton (IconButton)
+│           └── incrementButton (IconButton)
 └── formHelperText (FormHelperText, optional)
 ```
 

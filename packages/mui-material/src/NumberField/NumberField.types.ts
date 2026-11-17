@@ -39,6 +39,11 @@ export interface NumberFieldSlots {
    */
   formHelperText: React.ElementType;
   /**
+   * The component that groups the input, stepper buttons, and scrub area.
+   * @default 'div'
+   */
+  group: React.ElementType;
+  /**
    * The component that renders the native input element.
    * @default 'input'
    */
@@ -88,6 +93,7 @@ export interface NumberFieldControlsSlotPropsOverrides {}
 export interface NumberFieldInputSlotPropsOverrides {}
 export interface NumberFieldHtmlInputSlotPropsOverrides {}
 export interface NumberFieldFormHelperTextSlotPropsOverrides {}
+export interface NumberFieldGroupSlotPropsOverrides {}
 export interface NumberFieldInputLabelSlotPropsOverrides {}
 export interface NumberFieldDecrementButtonSlotPropsOverrides {}
 export interface NumberFieldIncrementButtonSlotPropsOverrides {}
@@ -134,6 +140,17 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
       React.ElementType<Omit<FormHelperTextProps, 'component'>>,
       NumberFieldFormHelperTextSlotPropsOverrides &
         Pick<useRender.ComponentProps<'p', BaseNumberField.Root.State>, 'render'>,
+      NumberFieldOwnerState
+    >;
+    /**
+     * Props forwarded to the group containing the Material input, stepper buttons, and scrub area.
+     * Supports native `<div>` props and `render` from Base UI's NumberField Group.
+     * NumberField supplies the input and controls as children.
+     */
+    group: SlotComponentProps<
+      'div',
+      NumberFieldGroupSlotPropsOverrides &
+        Pick<BaseNumberField.Group.Props, 'render'> & { sx?: SxProps<Theme> | undefined },
       NumberFieldOwnerState
     >;
     /**
