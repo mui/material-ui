@@ -117,6 +117,9 @@ Its position is independent of `controlsPosition`.
 Use `slots.scrubAreaAdornment` or `slotProps.scrubAreaAdornment` to customize the InputAdornment around the handle.
 Slot-prop callbacks receive `ownerState.position` (`'start'` or `'end'`).
 
+Material slot-prop callbacks also receive the live boolean `ownerState.scrubbing`.
+Style the active state with `MuiNumberField.styleOverrides.scrubbing` or the root's `MuiNumberField-scrubbing` class.
+
 ### Direction and sensitivity
 
 Dragging adjusts the value horizontally by default.

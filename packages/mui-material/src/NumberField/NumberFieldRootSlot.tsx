@@ -20,7 +20,7 @@ interface NumberFieldRootProps {
   baseProps: HTMLProps;
   baseState: BaseNumberField.Root.State;
   children: React.ReactNode;
-  classes: NumberFieldClasses;
+  classes: Pick<NumberFieldClasses, 'root'>;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
@@ -28,6 +28,10 @@ interface NumberFieldRootProps {
 const NumberFieldRoot = styled(FormControl, {
   name: 'MuiNumberField',
   slot: 'Root',
+  overridesResolver: ({ ownerState }, styles) => [
+    styles.root,
+    ownerState.scrubbing && styles.scrubbing,
+  ],
 })({});
 
 // This component is a placeholder for FormControl to correctly set the shrink label state on SSR.

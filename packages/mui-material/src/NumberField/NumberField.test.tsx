@@ -73,6 +73,25 @@ describe('<NumberField />', () => {
     );
   });
 
+  const createSlotCallbacks = () => {
+    const createCallback = () =>
+      vi.fn<(ownerState: NumberFieldOwnerState) => Record<string, never>>(() => ({}));
+
+    return {
+      controls: createCallback(),
+      root: createCallback(),
+      input: createCallback(),
+      htmlInput: createCallback(),
+      inputLabel: createCallback(),
+      formHelperText: createCallback(),
+      incrementButton: createCallback(),
+      decrementButton: createCallback(),
+      scrubArea: createCallback(),
+      scrubAreaAdornment: createCallback(),
+      scrubAreaCursor: createCallback(),
+    };
+  };
+
   describeConformance(
     <NumberField variant="standard" label="Amount" helperText="Helper text" />,
     () => ({
@@ -414,25 +433,6 @@ describe('<NumberField />', () => {
     // Every slot callback should see normalized field props and resolved flags,
     // while formatted input text must not replace public numeric value props.
     describe('slot callback owner state', () => {
-      const createSlotCallbacks = () => {
-        const createCallback = () =>
-          vi.fn<(ownerState: NumberFieldOwnerState) => Record<string, never>>(() => ({}));
-
-        return {
-          controls: createCallback(),
-          root: createCallback(),
-          input: createCallback(),
-          htmlInput: createCallback(),
-          inputLabel: createCallback(),
-          formHelperText: createCallback(),
-          incrementButton: createCallback(),
-          decrementButton: createCallback(),
-          scrubArea: createCallback(),
-          scrubAreaAdornment: createCallback(),
-          scrubAreaCursor: createCallback(),
-        };
-      };
-
       it('exposes normalized defaults and the generated input ID to every slot callback', () => {
         const callbacks = createSlotCallbacks();
         render(
@@ -461,6 +461,7 @@ describe('<NumberField />', () => {
             allowOutOfRange: false,
             allowWheelScrub: false,
             snapOnStep: false,
+            scrubbing: false,
             id: input.id,
           });
         });
@@ -3518,6 +3519,56 @@ describe('<NumberField />', () => {
           window.dispatchEvent(event);
         });
       }
+
+      // Check Material customization against the same drag lifecycle as Base UI,
+      // without repeating its value-calculation behavior here.
+      it('exposes live scrubbing state to every slot, root classes and theme overrides', async () => {
+        const callbacks = createSlotCallbacks();
+        const theme = createTheme({
+          components: {
+            MuiNumberField: {
+              styleOverrides: {
+                root: ({ ownerState }) => ({
+                  paddingTop: ownerState.scrubbing ? '7px' : '0px',
+                }),
+                scrubbing: { paddingBottom: 9 },
+              },
+            },
+          },
+        });
+        const { container, user } = render(
+          <ThemeProvider theme={theme}>
+            <NumberField
+              label="Amount"
+              helperText="Helper text"
+              defaultValue={5}
+              scrubAreaPosition="start"
+              classes={{ scrubbing: 'custom-scrubbing' }}
+              slotProps={callbacks}
+            />
+          </ThemeProvider>,
+        );
+        const root = container.querySelector(`.${classes.root}`)!;
+        const scrub = container.querySelector(`.${classes.scrubArea}`)!;
+        const expectScrubbing = (scrubbing: boolean) => {
+          Object.entries(callbacks).forEach(([slot, callback]) => {
+            expect(callback.mock.lastCall![0].scrubbing, `slotProps.${slot}`).to.equal(scrubbing);
+          });
+          expect(root.classList.contains(classes.scrubbing)).to.equal(scrubbing);
+          expect(root.classList.contains('custom-scrubbing')).to.equal(scrubbing);
+          expect(getComputedStyle(root).paddingTop).to.equal(scrubbing ? '7px' : '0px');
+          expect(getComputedStyle(root).paddingBottom).to.equal(scrubbing ? '9px' : '0px');
+        };
+
+        expectScrubbing(false);
+
+        await user.pointer({ keys: '[MouseLeft>]', target: scrub });
+        expectScrubbing(true);
+        movePointer(4, 0);
+
+        await user.pointer({ keys: '[/MouseLeft]', target: scrub });
+        await waitFor(() => expectScrubbing(false));
+      });
 
       it('waits for the configured pixel sensitivity before changing the value', async () => {
         const onValueChange = vi.fn();
