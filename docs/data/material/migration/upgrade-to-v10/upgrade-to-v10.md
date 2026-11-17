@@ -144,7 +144,9 @@ Use `ThemeProvider` instead. It accepts the same props:
 If you rendered `CssVarsProvider` without one, pass a theme with CSS variables:
 
 ```jsx
-<ThemeProvider theme={createTheme({ cssVariables: true })}>
+const theme = createTheme({ cssVariables: true });
+
+<ThemeProvider theme={theme}>...</ThemeProvider>;
 ```
 
 With TypeScript, `ThemeProvider` types the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, and `forceThemeRerender` props only when the CSS theme variables types are enabled.
