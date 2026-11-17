@@ -141,12 +141,19 @@ Use `ThemeProvider` instead. It accepts the same props:
 ```
 
 `ThemeProvider` requires a `theme` prop.
-If you rendered `CssVarsProvider` without one, pass the default theme:
+If you rendered `CssVarsProvider` without one, pass a theme with CSS variables:
 
 ```jsx
-const theme = createTheme();
+const theme = createTheme({ cssVariables: true });
 
 <ThemeProvider theme={theme}>...</ThemeProvider>;
+```
+
+With TypeScript, `ThemeProvider` types the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, and `forceThemeRerender` props only when the CSS theme variables types are enabled.
+If you pass them, add the [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript) in any file included in your `tsconfig.json`:
+
+```ts
+import type {} from '@mui/material/themeCssVarsAugmentation';
 ```
 
 ### getInitColorSchemeScript removed
@@ -168,7 +175,8 @@ If your `colorSchemeSelector` relies on `data-color-scheme`, pass `attribute="da
 ### extendTheme removed
 
 The `extendTheme()` function and its deprecated `experimental_extendTheme` alias have been removed.
-Use `createTheme()` instead, and move the CSS variables options into `cssVariables`:
+Use `createTheme()` with the `cssVariables` option instead.
+Always pass it: without it, `createTheme()` doesn't generate CSS variables.
 
 ```diff
 -import { extendTheme } from '@mui/material/styles';
@@ -185,14 +193,23 @@ Use `createTheme()` instead, and move the CSS variables options into `cssVariabl
 ```
 
 The options that go into `cssVariables` are `colorSchemeSelector`, `cssVarPrefix`, `disableCssColorScheme`, `nativeColor`, `rootSelector`, and `shouldSkipGeneratingVar`.
+If you didn't pass any of them, use `cssVariables: true`.
+
+With TypeScript, `extendTheme()` returned a theme with the CSS variables types, but `createTheme()` returns `Theme`.
+To keep `theme.vars` and `theme.getCssVar()` typed, add the [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript) in any file included in your `tsconfig.json`:
+
+```ts
+import type {} from '@mui/material/themeCssVarsAugmentation';
+```
 
 If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` used the first color scheme as the default, while `createTheme()` adds a `light` scheme and uses it:
 
 ```diff
 -extendTheme({ colorSchemes: { dark: true } });
-+createTheme({ colorSchemes: { dark: true }, defaultColorScheme: 'dark' });
++createTheme({ cssVariables: true, colorSchemes: { dark: true }, defaultColorScheme: 'dark' });
 ```
 
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
+Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove it to keep the previous result, or move its values into `colorSchemes`.
