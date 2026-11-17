@@ -39,7 +39,7 @@
     "locale": {
       "type": {
         "name": "union",
-        "description": "Array&lt;{ baseName: string, calendar?: string, caseFirst?: 'false'<br>&#124;&nbsp;'lower'<br>&#124;&nbsp;'upper', collation?: string, hourCycle?: 'h11'<br>&#124;&nbsp;'h12'<br>&#124;&nbsp;'h23'<br>&#124;&nbsp;'h24', language: string, maximize: func, minimize: func, numberingSystem?: string, numeric?: bool, region?: string, script?: string, toString: func }<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;{ baseName: string, calendar?: string, caseFirst?: 'false'<br>&#124;&nbsp;'lower'<br>&#124;&nbsp;'upper', collation?: string, hourCycle?: 'h11'<br>&#124;&nbsp;'h12'<br>&#124;&nbsp;'h23'<br>&#124;&nbsp;'h24', language: string, maximize: func, minimize: func, numberingSystem?: string, numeric?: bool, region?: string, script?: string, toString: func }<br>&#124;&nbsp;string"
+        "description": "Array&lt;object<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
       }
     },
     "max": { "type": { "name": "number" } },
