@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/fda813edaddc7d6d15c5d45a23b0ea47ba245b1e/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/d5537e6cc865fa597be8478ef137ae7c8116e9df/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -35,7 +35,7 @@ default-job: &default-job
   working_directory: /tmp/material-ui
   executor:
     name: code-infra/mui-node
-    node-version: '22.23.4'
+    node-version: '22.23.5'
   resource_class: medium.gen2
 
 default-context: &default-context
@@ -164,7 +164,7 @@ jobs:
       - run:
           name: Upgrade Node.js to match engines.node
           command: |
-            curl -fsSL https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            curl -fsSL https://nodejs.org/dist/v22.23.5/node-v22.23.5-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
