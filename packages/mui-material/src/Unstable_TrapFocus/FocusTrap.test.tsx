@@ -34,8 +34,6 @@ describe('<FocusTrap />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </FocusTrap>,
-      // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-      { strictEffects: false },
     );
 
     expect(screen.getByTestId('auto-focus')).toHaveFocus();
@@ -53,8 +51,6 @@ describe('<FocusTrap />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </FocusTrap>,
-      // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076s
-      { strictEffects: false },
     );
 
     expect(screen.getByTestId('auto-focus')).toHaveFocus();
