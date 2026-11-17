@@ -374,24 +374,7 @@ export function getComponentProps({
     filePath: typesFilename,
     project,
     checkDeclarations: true,
-    shouldResolveObject: (data) => {
-      const result = settings.shouldResolveObject?.(data);
-      if (result !== undefined) {
-        return result;
-      }
-      const { name, depth } = data;
-      if (
-        // Only document the shape of the prop itself, not of nested objects.
-        depth > 1 ||
-        name.toLowerCase().endsWith('classes') ||
-        name === 'theme' ||
-        name === 'ownerState' ||
-        (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
-      ) {
-        return false;
-      }
-      return undefined;
-    },
+    shouldResolveObject: settings.shouldResolveObject,
     shouldUseObjectForDate: settings.shouldUseObjectForDate,
   });
 

@@ -126,6 +126,19 @@ export const propsSettings: NonNullable<ProjectSettings['propsSettings']> = {
     }
     return undefined;
   },
+  shouldResolveObject: ({ name, depth }) => {
+    if (
+      // Only document the shape of the prop itself, not of nested objects.
+      depth > 1 ||
+      name.toLowerCase().endsWith('classes') ||
+      name === 'theme' ||
+      name === 'ownerState' ||
+      (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
+    ) {
+      return false;
+    }
+    return undefined;
+  },
   getSortLiteralUnions: ({ propName }) =>
     propName === 'size' ? sortSizeByScaleAscending : undefined,
 };
