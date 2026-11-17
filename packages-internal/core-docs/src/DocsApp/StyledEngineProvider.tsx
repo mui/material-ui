@@ -7,6 +7,12 @@ import { ThemeOptionsContext } from '../ThemeContext';
 
 type EmotionCache = ReturnType<typeof createCache>;
 
+/**
+ * The order of the docs' cascade layers: Tailwind CSS's `theme` and `utilities` layers and
+ * DocSearch's stylesheet around Material UI's `mui` layer.
+ */
+export const DOCS_CSS_LAYER_ORDER = '@layer theme, docsearch, mui, utilities;';
+
 type StyledEngineProviderProps = {
   cacheLtr: EmotionCache;
   children: React.ReactNode;
@@ -18,7 +24,6 @@ function loadRtlCache() {
     createCache({
       key: 'rtl',
       prepend: true,
-      enableCssLayer: true,
       stylisPlugins: [prefixer, rtlPlugin],
     }),
   );
@@ -39,7 +44,7 @@ export default function StyledEngineProvider(props: StyledEngineProviderProps) {
 
   return (
     <CacheProvider value={rtl && cacheRtl ? cacheRtl : cacheLtr}>
-      <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
+      <GlobalStyles styles={DOCS_CSS_LAYER_ORDER} />
       {children}
     </CacheProvider>
   );

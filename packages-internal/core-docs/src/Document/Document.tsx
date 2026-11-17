@@ -4,6 +4,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { getMetaThemeColor } from '../branding';
+import { DOCS_CSS_LAYER_ORDER } from '../DocsApp/StyledEngineProvider';
 import { fontClasses } from '../nextFonts';
 
 export type DocumentProps = {
@@ -48,6 +49,8 @@ export function Document({ canonicalAsServer, userLanguage, analytics, children 
           }${canonicalAsServer}`}
         />
         <link rel="alternate" href={`https://mui.com${canonicalAsServer}`} hrefLang="x-default" />
+        {/* The styles below are in the `mui` layer, so the order of the layers comes first. */}
+        <style>{DOCS_CSS_LAYER_ORDER}</style>
         <GlobalStyles
           styles={{
             // First SSR paint
