@@ -508,11 +508,13 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     checkDirty(event.animationName === MUI_AUTO_FILL_CANCEL ? inputRef.current : { value: 'x' });
   };
 
+  const hasStartAdornment = Boolean(startAdornment);
+  const setAdornedStart = muiFormControl ? muiFormControl.setAdornedStart : undefined;
   React.useEffect(() => {
-    if (muiFormControl) {
-      muiFormControl.setAdornedStart(Boolean(startAdornment));
+    if (setAdornedStart) {
+      setAdornedStart(hasStartAdornment);
     }
-  }, [muiFormControl, startAdornment]);
+  }, [setAdornedStart, hasStartAdornment]);
 
   const ownerState = {
     ...props,
