@@ -443,6 +443,7 @@ NumberField.propTypes /* remove-proptypes */ = {
     inputLabel: PropTypes.elementType,
     root: PropTypes.elementType,
     scrubArea: PropTypes.elementType,
+    scrubAreaAdornment: PropTypes.elementType,
     scrubAreaCursor: PropTypes.elementType,
   }),
   /**

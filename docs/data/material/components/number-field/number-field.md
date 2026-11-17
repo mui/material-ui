@@ -114,6 +114,9 @@ Its position is independent of `controlsPosition`.
 
 {{"component": "file://./demos/scrub-area-placement/index.ts"}}
 
+Use `slots.scrubAreaAdornment` or `slotProps.scrubAreaAdornment` to customize the InputAdornment around the handle.
+Slot-prop callbacks receive `ownerState.position` (`'start'` or `'end'`).
+
 ### Direction and sensitivity
 
 Dragging adjusts the value horizontally by default.
@@ -199,7 +202,7 @@ Use `inputRef` to access or focus the visible input.
 
 ## Theme overrides
 
-Use `MuiNumberField` in the theme to set default props or override the `root`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, and `scrubAreaCursor` styles.
+Use `MuiNumberField` in the theme to set default props or override the `root`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, `scrubAreaAdornment`, and `scrubAreaCursor` styles.
 The following example sets small, stacked controls as theme defaults and gives the buttons different colors through `styleOverrides`.
 
 {{"component": "file://./demos/theme/index.ts"}}

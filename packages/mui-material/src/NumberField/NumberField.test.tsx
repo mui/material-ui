@@ -58,10 +58,10 @@ describe('<NumberField />', () => {
     },
   );
 
-  const TestControls = React.forwardRef<
+  const TestAdornment = React.forwardRef<
     HTMLDivElement,
     Partial<InputAdornmentProps> & TestSlotProps
-  >(function TestControls(props, ref) {
+  >(function TestAdornment(props, ref) {
     const { ownerState, as, position = 'end', ...other } = props;
     return (
       <InputAdornment
@@ -90,7 +90,7 @@ describe('<NumberField />', () => {
       slots: {
         controls: {
           expectedClassName: classes.controls,
-          testWithComponent: TestControls,
+          testWithComponent: TestAdornment,
           testWithElement: 'div',
         },
         root: {
@@ -428,13 +428,21 @@ describe('<NumberField />', () => {
           incrementButton: createCallback(),
           decrementButton: createCallback(),
           scrubArea: createCallback(),
+          scrubAreaAdornment: createCallback(),
           scrubAreaCursor: createCallback(),
         };
       };
 
       it('exposes normalized defaults and the generated input ID to every slot callback', () => {
         const callbacks = createSlotCallbacks();
-        render(<NumberField label="Amount" helperText="Helper text" slotProps={callbacks} />);
+        render(
+          <NumberField
+            label="Amount"
+            helperText="Helper text"
+            scrubAreaPosition="start"
+            slotProps={callbacks}
+          />,
+        );
         const input = screen.getByRole('textbox', { name: 'Amount' });
 
         Object.entries(callbacks).forEach(([slot, callback]) => {
@@ -472,6 +480,7 @@ describe('<NumberField />', () => {
                 disabled={false}
                 required={required}
                 readOnly={readOnly}
+                scrubAreaPosition="start"
                 slotProps={callbacks}
               />
             </BaseField.Root>,
@@ -517,6 +526,7 @@ describe('<NumberField />', () => {
               helperText="Helper text"
               locale="en-US"
               format={{ style: 'currency', currency: 'USD', useGrouping: true }}
+              scrubAreaPosition="start"
               {...props}
               slotProps={callbacks}
             />,
@@ -1773,7 +1783,7 @@ describe('<NumberField />', () => {
         <NumberField
           label="Amount"
           defaultValue={5}
-          slots={{ controls: TestControls }}
+          slots={{ controls: TestAdornment }}
           slotProps={{ controls: { render: renderControls, children: 'Replacement content' } }}
         />,
       );
@@ -3226,10 +3236,67 @@ describe('<NumberField />', () => {
   // Scrubbing is optional and shares the input adornments with controls and consumer
   // content. Cover composition, slot plumbing, and drag interactions through the Material wrapper.
   describe('scrub area', () => {
+    // Enable the optional adornment for the standard slot API checks.
+    describeConformance(<NumberField scrubAreaPosition="start" />, () => ({
+      classes,
+      inheritComponent: FormControl,
+      render,
+      muiName: 'MuiNumberField',
+      refInstanceof: window.HTMLDivElement,
+      only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
+      slots: {
+        scrubAreaAdornment: {
+          expectedClassName: classes.scrubAreaAdornment,
+          testWithComponent: TestAdornment,
+          testWithElement: 'div',
+        },
+      },
+    }));
+
     it('omits the scrub area by default', () => {
       const { container } = render(<NumberField />);
 
       expect(container.querySelector(`.${classes.scrubArea}`)).to.equal(null);
+      expect(container.querySelector(`.${classes.scrubAreaAdornment}`)).to.equal(null);
+    });
+
+    it('customizes the adornment with styles, a ref and live root state', async () => {
+      const ref = React.createRef<HTMLDivElement>();
+      const theme = createTheme({
+        components: {
+          MuiNumberField: {
+            styleOverrides: { scrubAreaAdornment: { paddingBottom: 9 } },
+          },
+        },
+      });
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <NumberField
+            label="Amount"
+            defaultValue={5}
+            scrubAreaPosition="end"
+            slotProps={{
+              scrubAreaAdornment: ({ position }) => ({
+                ref,
+                title: `${position} scrub adornment`,
+                sx: { paddingTop: '7px' },
+                render: (props, state) => <section {...props} data-render-value={state.value} />,
+              }),
+            }}
+          />
+        </ThemeProvider>,
+      );
+      const adornment = screen.getByTitle('end scrub adornment');
+
+      expect(adornment.tagName).to.equal('SECTION');
+      expect(adornment).to.have.class('MuiInputAdornment-positionEnd');
+      expect(ref.current).to.equal(adornment);
+      expect(getComputedStyle(adornment).paddingTop).to.equal('7px');
+      expect(getComputedStyle(adornment).paddingBottom).to.equal('9px');
+
+      await user.click(screen.getByRole('button', { name: 'Increase' }));
+
+      expect(adornment).to.have.attribute('data-render-value', '6');
     });
 
     (['stacked', 'end', 'split'] as const).forEach((controlsPosition) => {
@@ -3478,6 +3545,7 @@ describe('<NumberField />', () => {
 
       (['horizontal', 'vertical'] as const).forEach((direction) => {
         it(`changes the value in both ${direction} directions and commits on release`, async () => {
+          const renderAdornment = vi.fn(() => <section />);
           const onValueChange = vi.fn<NonNullable<NumberFieldProps['onValueChange']>>();
           const onValueCommitted = vi.fn<NonNullable<NumberFieldProps['onValueCommitted']>>();
           const { container, user } = render(
@@ -3487,7 +3555,9 @@ describe('<NumberField />', () => {
               scrubAreaPosition="start"
               onValueChange={onValueChange}
               onValueCommitted={onValueCommitted}
+              slots={{ scrubAreaAdornment: TestAdornment }}
               slotProps={{
+                scrubAreaAdornment: { render: renderAdornment },
                 scrubArea: {
                   direction,
                   render: (props, state) => <div {...props} data-render-value={state.value} />,
@@ -3497,6 +3567,8 @@ describe('<NumberField />', () => {
           );
           const input = screen.getByRole('textbox', { name: 'Amount' });
           const scrub = container.querySelector(`.${classes.scrubArea}`)!;
+          expect(scrub.parentElement).to.equal(screen.getByTestId('custom'));
+          expect(renderAdornment).toHaveBeenCalledTimes(0);
           const movementX = direction === 'horizontal' ? 4 : 0;
           const movementY = direction === 'vertical' ? -4 : 0;
 

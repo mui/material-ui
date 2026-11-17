@@ -124,6 +124,7 @@
     "inputLabel": "The component that renders the input&#39;s label.",
     "root": "The component that renders the root.",
     "scrubArea": "The component that renders the drag handle for adjusting the value.",
+    "scrubAreaAdornment": "The component that wraps the scrub area in an input adornment.",
     "scrubAreaCursor": "The component that renders the custom cursor while dragging the scrub area."
   }
 }

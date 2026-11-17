@@ -69,6 +69,11 @@ export interface NumberFieldSlots {
    */
   scrubArea: React.ElementType;
   /**
+   * The component that wraps the scrub area in an input adornment.
+   * @default InputAdornment
+   */
+  scrubAreaAdornment: React.ElementType;
+  /**
    * The component that renders the custom cursor while dragging the scrub area.
    * @default 'span'
    */
@@ -87,7 +92,14 @@ export interface NumberFieldInputLabelSlotPropsOverrides {}
 export interface NumberFieldDecrementButtonSlotPropsOverrides {}
 export interface NumberFieldIncrementButtonSlotPropsOverrides {}
 export interface NumberFieldScrubAreaSlotPropsOverrides {}
+export interface NumberFieldScrubAreaAdornmentSlotPropsOverrides {}
 export interface NumberFieldScrubAreaCursorSlotPropsOverrides {}
+
+type NumberFieldAdornmentSlotProps<Overrides> = SlotComponentProps<
+  React.ElementType<Omit<InputAdornmentProps, 'component' | 'position'>>,
+  Overrides & Pick<useRender.ComponentProps<'div', BaseNumberField.Root.State>, 'render'>,
+  NumberFieldOwnerState & Pick<InputAdornmentProps, 'position'>
+>;
 
 export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
   NumberFieldSlots,
@@ -99,12 +111,7 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
      * With split controls, the callback receives `ownerState.position` for each side.
      * Use `render` to change the element while preserving Material styling.
      */
-    controls: SlotComponentProps<
-      React.ElementType<Omit<InputAdornmentProps, 'component' | 'position'>>,
-      NumberFieldControlsSlotPropsOverrides &
-        Pick<useRender.ComponentProps<'div', BaseNumberField.Root.State>, 'render'>,
-      NumberFieldOwnerState & Pick<InputAdornmentProps, 'position'>
-    >;
+    controls: NumberFieldAdornmentSlotProps<NumberFieldControlsSlotPropsOverrides>;
     /**
      * Props forwarded to the decrement button slot.
      * By default, the available props are based on the [IconButton](https://mui.com/material-ui/api/icon-button/#props) component.
@@ -201,6 +208,13 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
         > & { sx?: SxProps<Theme> | undefined },
       NumberFieldOwnerState
     >;
+    /**
+     * Props forwarded to the scrub area's InputAdornment wrapper.
+     * NumberField supplies its position and scrub area content.
+     * Slot-prop callbacks receive `ownerState.position` (`'start'` or `'end'`).
+     * Use `render` to change the element while preserving Material styling.
+     */
+    scrubAreaAdornment: NumberFieldAdornmentSlotProps<NumberFieldScrubAreaAdornmentSlotPropsOverrides>;
     /**
      * Props forwarded to the custom cursor displayed while scrubbing.
      * By default, the available props are based on the native `<span>` element.
