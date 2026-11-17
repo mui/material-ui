@@ -7,34 +7,11 @@ import { StyleSheet } from '@emotion/sheet';
 
 export interface StyledEngineProviderProps {
   children?: React.ReactNode;
-  enableCssLayer?: boolean | undefined;
   injectFirst?: boolean | undefined;
 }
 
 // To fix [Jest performance](https://github.com/mui/material-ui/issues/45638).
 const cacheMap = new Map();
-
-// Need to add a private variable to test the generated CSS from Emotion, this is the simplest way to do it.
-// We can't test the CSS from `style` tag easily because the `speedy: true` (produce empty text content) is enabled by Emotion.
-// Even if we disable it, JSDOM needs extra configuration to be able to parse `@layer` CSS.
-/**
- * @internal
- */
-export const TEST_INTERNALS_DO_NOT_USE: {
-  insert?: ((rule: string, options?: unknown) => unknown) | undefined;
-} = {
-  /**
-   * to intercept the generated CSS before inserting to the style tag, so that we can check the generated CSS.
-   *
-   * let rule;
-   * TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
-   *    rule = args[0];
-   * };
-   *
-   * expect(rule).to.equal(...);
-   */
-  insert: undefined,
-};
 
 // We might be able to remove this when this issue is fixed:
 // https://github.com/emotion-js/emotion/issues/2790
@@ -70,8 +47,8 @@ if (typeof document === 'object') {
   }
 }
 
-function getCache(injectFirst?: boolean, enableCssLayer?: boolean) {
-  if (injectFirst || enableCssLayer) {
+function getCache(injectFirst?: boolean) {
+  if (injectFirst) {
     /**
      * This is for client-side apps only.
      * A custom sheet is required to make the GlobalStyles API injected above the insertion point.
@@ -79,54 +56,28 @@ function getCache(injectFirst?: boolean, enableCssLayer?: boolean) {
      */
     class MyStyleSheet extends StyleSheet {
       insert(rule: string, options?: unknown): unknown {
-        if (TEST_INTERNALS_DO_NOT_USE.insert) {
-          return TEST_INTERNALS_DO_NOT_USE.insert(rule, options);
-        }
         if (this.key && this.key.endsWith('global')) {
           this.before = insertionPoint;
         }
         return (super.insert as (rule: string, options?: unknown) => unknown)(rule, options);
       }
     }
-    const emotionCache = createEmotionCache(
-      {
-        // Use a dedicated key for the cascade-layer cache so its generated class
-        // names (e.g. `mui-fyswvn`) can never collide with identically-hashed
-        // UNLAYERED classes from the default/`injectFirst` cache (key `css`).
-        // A collision lets an unlayered `.css-xxx` rule beat the layered one,
-        // defeating MUI's own styles.
-        key: enableCssLayer ? 'mui' : 'css',
-        insertionPoint: injectFirst ? insertionPoint : undefined,
-      },
-      MyStyleSheet,
-    );
-    if (enableCssLayer) {
-      const prevInsert = emotionCache.insert;
-      (emotionCache as any).insert = (...args: any[]) => {
-        // Skip layer order statements and styles already in Material UI's layer or sub-layers.
-        if (!args[1].styles.match(/^@layer\s[^{]*$|@layer mui[.{]/)) {
-          // The serialized styles can be shared, for example `css` results, so they're copied.
-          args[1] = { ...args[1], styles: `@layer mui {${args[1].styles}}` };
-        }
-        return (prevInsert as (...insertArgs: any[]) => unknown)(...args);
-      };
-    }
-    return emotionCache;
+    return createEmotionCache({ key: 'css', insertionPoint }, MyStyleSheet);
   }
   return undefined;
 }
 
 export default function StyledEngineProvider(props: StyledEngineProviderProps): React.JSX.Element {
-  const { injectFirst, enableCssLayer, children } = props;
+  const { injectFirst, children } = props;
   const cache = React.useMemo(() => {
-    const cacheKey = `${injectFirst}-${enableCssLayer}`;
+    const cacheKey = `${injectFirst}`;
     if (typeof document === 'object' && cacheMap.has(cacheKey)) {
       return cacheMap.get(cacheKey);
     }
-    const fresh = getCache(injectFirst, enableCssLayer);
+    const fresh = getCache(injectFirst);
     cacheMap.set(cacheKey, fresh);
     return fresh;
-  }, [injectFirst, enableCssLayer]);
+  }, [injectFirst]);
   return (
     cache ? <CacheProvider value={cache}>{children}</CacheProvider> : children
   ) as React.JSX.Element;
@@ -137,11 +88,6 @@ export default function StyledEngineProvider(props: StyledEngineProviderProps): 
    * Your component tree.
    */
   children: PropTypes.node,
-  /**
-   * If `true`, the styles are wrapped in `@layer mui`.
-   * Learn more about [Cascade layers](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Cascade_layers).
-   */
-  enableCssLayer: PropTypes.bool,
   /**
    * By default, the styles are injected last in the <head> element of the page.
    * As a result, they gain more specificity than any other style sheet.

@@ -11,15 +11,7 @@ export type AppRouterCacheProviderProps = {
   /**
    * These are the options passed to createCache() from 'import createCache from "@emotion/cache"'.
    */
-  options?:
-    | (Partial<OptionsOfCreateCache> & {
-        /**
-         * If `true`, the generated styles are wrapped within `@layer mui`.
-         * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind CSS, plain CSS etc.
-         */
-        enableCssLayer?: boolean | undefined;
-      })
-    | undefined;
+  options?: Partial<OptionsOfCreateCache> | undefined;
   /**
    * By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"'.
    */
@@ -55,11 +47,6 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     let inserted: { name: string; isGlobal: boolean }[] = [];
     // Override the insert method to support streaming SSR with flush().
     cache.insert = (...args) => {
-      // Skip layer order statements and styles already in Material UI's layer or sub-layers.
-      if (options?.enableCssLayer && !args[1].styles.match(/^@layer\s[^{]*$|@layer mui[.{]/)) {
-        // The serialized styles can be shared, for example `css` results, so they're copied.
-        args[1] = { ...args[1], styles: `@layer mui {${args[1].styles}}` };
-      }
       const [selector, serialized] = args;
       if (cache.inserted[serialized.name] === undefined) {
         inserted.push({
