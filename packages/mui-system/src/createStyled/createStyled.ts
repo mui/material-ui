@@ -17,7 +17,6 @@ import styleFunctionSx from '../styleFunctionSx';
 import type { SxProps } from '../styleFunctionSx';
 import preprocessStyles from '../preprocessStyles';
 import {
-  createStyleCssLayerOrder,
   getCssSubLayer,
   isInMuiCssLayer,
   styleCssLayerEnd,
@@ -212,8 +211,6 @@ export default function createStyled<Theme extends object = DefaultTheme>(
     attachTheme(props, themeId, defaultTheme);
   }
 
-  const styleCssLayerOrder = createStyleCssLayerOrder(defaultTheme);
-
   const styled = (tag: any, inputOptions: any = {}) => {
     // Emotion copies a wrapped component's styles; remove its sx interpolation from that copy.
     mutateStyles(tag, (styles: any) => styles.filter((style: any) => !sxStyleFunctions.has(style)));
@@ -314,7 +311,6 @@ export default function createStyled<Theme extends object = DefaultTheme>(
       // Preprocess `props` to set the scoped theme value.
       // This must run before any other expression.
       expressionsHead.push(styleAttachTheme);
-      expressionsHead.push(styleCssLayerOrder);
       expressionsHead.push(styleCssLayerStart);
 
       if (isTaggedTemplate) {
@@ -404,9 +400,9 @@ export default function createStyled<Theme extends object = DefaultTheme>(
 
       const Component: any = defaultStyledResolver(...expressions);
       // When `tag` is a styled component, Emotion puts its styles ahead of these ones, with their own
-      // `modularCssLayers: false` block. Keep one block around all of them, so that the declarations of
-      // both come before the media queries, as in v9. The array is the one Emotion renders with, so
-      // it's changed in place.
+      // `@layer mui` block when there are no sub-layers. Keep one block around all of them, so that
+      // the declarations of both come before the media queries, as in v9. The array is the one
+      // Emotion renders with, so it's changed in place.
       mutateStyles(Component, (styles: any[]) => {
         const start = styles.indexOf(styleCssLayerStart);
         const end = styles.lastIndexOf(styleCssLayerEnd);
