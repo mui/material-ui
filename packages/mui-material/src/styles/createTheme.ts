@@ -1,6 +1,10 @@
 import createPalette from './createPalette';
 import type { PaletteOptions } from './createPalette';
-import { resolveFocusVisible, mergeFocusVisibleInput, isSchemeOutlineColor } from './focusVisible';
+import {
+  resolveFocusVisible,
+  mergeFocusVisibleInput,
+  isOutlineColorFromResolvedRing,
+} from './focusVisible';
 import type { ColorSystemOptions } from './createThemeFoundation';
 import type { CssVarsThemeOptions, ColorSystem, DefaultColorScheme } from './createThemeWithVars';
 import createThemeWithVars from './createThemeWithVars';
@@ -142,7 +146,7 @@ export default function createTheme(
       // equality — the one case where a pinned `primary.main` is indistinguishable and gets reset.
       if (
         !authoredColor ||
-        (isSchemeOutlineColor(initialColorSchemes, args) &&
+        (isOutlineColorFromResolvedRing(options.focusVisible, args) &&
           authoredColor === theme.palette.primary.main)
       ) {
         const { outlineColor, ...rest } = focusVisibleInput;

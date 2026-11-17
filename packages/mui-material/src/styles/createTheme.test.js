@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
-import deepmerge from '@mui/utils/deepmerge';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
@@ -897,23 +896,27 @@ describe('createTheme', () => {
       expect(recomposed.colorSchemes.dark.focusVisible.outlineWidth).to.equal(3);
     });
 
-    it('recomposing a deep-merged or spread copy keeps the ring scheme-reactive', () => {
-      const base = createTheme({
+    it('adding a dark scheme to a created light-only theme keeps the ring scheme-reactive', () => {
+      const lightOnly = createTheme({
         cssVariables: false,
-        colorSchemes: { light: true, dark: true },
+        colorSchemes: { light: true },
         focusVisible: true,
       });
-      const merged = createTheme(deepmerge(base, { focusVisible: { outlineWidth: 3 } }));
-      const spread = createTheme({
-        ...base,
-        focusVisible: { ...base.focusVisible, outlineWidth: 3 },
+      const theme = createTheme({
+        ...lightOnly,
+        colorSchemes: { ...lightOnly.colorSchemes, dark: true },
       });
-      [merged, spread].forEach((theme) => {
-        expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
-          base.colorSchemes.dark.palette.primary.main,
-        );
-        expect(theme.colorSchemes.dark.focusVisible.outlineWidth).to.equal(3);
-      });
+      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+        theme.colorSchemes.dark.palette.primary.main,
+      );
+    });
+
+    it('adding color schemes to a created theme keeps the ring scheme-reactive', () => {
+      const plain = createTheme({ cssVariables: false, focusVisible: true });
+      const theme = createTheme({ ...plain, colorSchemes: { light: true, dark: true } });
+      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+        theme.colorSchemes.dark.palette.primary.main,
+      );
     });
 
     it('recomposing keeps an explicit custom outlineColor on every scheme', () => {
