@@ -40,7 +40,7 @@ The comparison described in the table above may not be applicable to large and c
 ## Usage
 
 The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utilities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts.
-If you're using [Material UI](/material-ui/customization/css-theme-variables/overview/), it exposes its own `CssVarsProvider` component that you can use directly without configuring your theme.
+If you're using [Material UI](/material-ui/customization/css-theme-variables/overview/), its `ThemeProvider` supports CSS theme variables, so you can use it directly without configuring your theme.
 
 We'll first define a minimal theme palette for light and dark modes.
 

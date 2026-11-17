@@ -2,7 +2,7 @@ import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
-import { CssVarsProvider, extendTheme } from '@mui/material/styles';
+import { ThemeProvider, extendTheme } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
 describe('extendTheme', () => {
@@ -642,9 +642,9 @@ describe('extendTheme', () => {
     });
 
     const { container } = render(
-      <CssVarsProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <Button />
-      </CssVarsProvider>,
+      </ThemeProvider>,
     );
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });

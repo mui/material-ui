@@ -34,8 +34,8 @@ function App() {
 </codeblock>
 
 :::info
-If you're using the experimental `CssVarsProvider` API, replace it with `ThemeProvider`.
-All features that were previously available to the `CssVarsProvider` are now available with the `ThemeProvider`.
+`CssVarsProvider` was removed in v10. Use `ThemeProvider` instead: it supports all the features that were previously available to `CssVarsProvider`.
+See the [upgrade guide](/material-ui/migration/upgrade-to-v10/#cssvarsprovider-removed) for details.
 :::
 
 ## Light and dark modes
@@ -90,7 +90,7 @@ This `vars` object mirrors the structure of a serializable theme, with each valu
   Follow the [TypeScript setup](#typescript) to enable the typings.
 
   :::success
-  If the components need to render outside of the `CssVarsProvider`, add fallback to the theme object.
+  If the components need to render outside of a `ThemeProvider` with CSS variables, add fallback to the theme object.
 
   ```js
   backgroundColor: (theme.vars || theme).palette.primary.main;

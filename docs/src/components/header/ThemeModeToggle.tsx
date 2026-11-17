@@ -45,7 +45,7 @@ export default function ThemeModeToggle() {
     return <IconButton color="primary" size="small" disableTouchRipple />;
   }
 
-  // TODO remove this code branch, all pages should be migrated to use CssVarsProvider
+  // TODO remove this code branch, all pages should be migrated to use CSS theme variables
   if (!theme.vars) {
     return (
       <Tooltip title={calculatedMode === 'dark' ? 'Turn on the light' : 'Turn off the light'}>

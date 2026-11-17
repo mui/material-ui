@@ -123,3 +123,37 @@ Remove the prop, along with the `GlobalStyles` for the auto-fill keyframes it re
    ...
  </ThemeProvider>
 ```
+
+### CssVarsProvider removed
+
+The deprecated `CssVarsProvider` and `Experimental_CssVarsProvider` components have been removed.
+Use `ThemeProvider` instead. It accepts the same props:
+
+```diff
+-import { CssVarsProvider } from '@mui/material/styles';
++import { ThemeProvider } from '@mui/material/styles';
+
+-<CssVarsProvider theme={theme}>
++<ThemeProvider theme={theme}>
+   ...
+-</CssVarsProvider>
++</ThemeProvider>
+```
+
+`ThemeProvider` requires a `theme` prop.
+If you rendered `CssVarsProvider` without one, pass a theme with CSS variables:
+
+```jsx
+<ThemeProvider theme={createTheme({ cssVariables: true })}>
+```
+
+The deprecated `getInitColorSchemeScript()` function has been removed too.
+Render the `InitColorSchemeScript` component instead, and pass the same options as props:
+
+```diff
+-import { getInitColorSchemeScript } from '@mui/material/styles';
++import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+
+-{getInitColorSchemeScript({ attribute: 'class' })}
++<InitColorSchemeScript attribute="class" />
+```
