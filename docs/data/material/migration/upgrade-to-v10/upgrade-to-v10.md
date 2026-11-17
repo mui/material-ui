@@ -127,7 +127,7 @@ Remove the prop, along with the `GlobalStyles` for the auto-fill keyframes it re
 ### CssVarsProvider removed
 
 The deprecated `CssVarsProvider` and `Experimental_CssVarsProvider` components have been removed.
-Use `ThemeProvider` instead. It accepts the same props:
+Use `ThemeProvider` instead, which accepts the same props:
 
 ```diff
 -import { CssVarsProvider } from '@mui/material/styles';
@@ -140,17 +140,26 @@ Use `ThemeProvider` instead. It accepts the same props:
 +</ThemeProvider>
 ```
 
+If you created the theme with `extendTheme()`, see [extendTheme removed](#extendtheme-removed).
+
 `ThemeProvider` requires a `theme` prop.
 If you rendered `CssVarsProvider` without one, pass a theme with CSS variables:
 
-```jsx
-const theme = createTheme({ cssVariables: true });
+```diff
+-import { CssVarsProvider } from '@mui/material/styles';
++import { ThemeProvider, createTheme } from '@mui/material/styles';
++
++const theme = createTheme({ cssVariables: true });
 
-<ThemeProvider theme={theme}>...</ThemeProvider>;
+-<CssVarsProvider>
++<ThemeProvider theme={theme}>
+   ...
+-</CssVarsProvider>
++</ThemeProvider>
 ```
 
-With TypeScript, `ThemeProvider` types the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, and `forceThemeRerender` props only when the CSS theme variables types are enabled.
-If you pass them, add the [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript) in any file included in your `tsconfig.json`:
+With TypeScript, the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, and `forceThemeRerender` props of `ThemeProvider` are only typed with the CSS theme variables [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript).
+If you pass any of them, import it in a file included in your `tsconfig.json`:
 
 ```ts
 import type {} from '@mui/material/themeCssVarsAugmentation';
@@ -175,8 +184,7 @@ If your `colorSchemeSelector` relies on `data-color-scheme`, pass `attribute="da
 ### extendTheme removed
 
 The `extendTheme()` function and its deprecated `experimental_extendTheme` alias have been removed.
-Use `createTheme()` with the `cssVariables` option instead.
-Always pass it: without it, `createTheme()` doesn't generate CSS variables.
+Use `createTheme()` instead, and always pass the `cssVariables` option: without it, `createTheme()` doesn't generate CSS variables.
 
 ```diff
 -import { extendTheme } from '@mui/material/styles';
@@ -212,4 +220,4 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
-Remove it to keep the previous result, or move its values into `colorSchemes`.
+Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
