@@ -12,7 +12,6 @@ import styleFunctionSx from '../styleFunctionSx/styleFunctionSx';
 import defaultSxConfig from '../styleFunctionSx/defaultSxConfig';
 import applyStyles from './applyStyles';
 import type { ApplyStyles } from './applyStyles';
-import { resolveModularCssLayers } from '../cssLayers';
 import type { SxConfig, SxProps } from '../styleFunctionSx';
 
 export type {
@@ -118,8 +117,6 @@ function createTheme(options: ThemeOptions = {}, ...args: object[]): Theme {
       nested: true,
     });
   };
-
-  muiTheme.modularCssLayers = resolveModularCssLayers(muiTheme.modularCssLayers);
 
   muiTheme.internal_cache = {};
 

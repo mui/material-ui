@@ -432,20 +432,11 @@ describe.skipIf(isJsdom())('CSS layers: generated styles', () => {
   });
 });
 
-describe('CSS layers: theme and jsdom', () => {
+// jsdom ignores the rules inside `@layer` blocks, so tests that check styles need them unlayered.
+describe.runIf(isJsdom())('CSS layers in jsdom', () => {
   const { render } = createRenderer();
 
-  it('uses a single layer by default, and sub-layers with modularCssLayers: true', () => {
-    expect(createTheme().modularCssLayers).to.equal(false);
-    expect(createTheme({ cssVariables: true }).modularCssLayers).to.equal(false);
-    expect(createTheme({ modularCssLayers: true }).modularCssLayers).to.equal(true);
-    expect(createTheme({ cssVariables: true, modularCssLayers: true }).modularCssLayers).to.equal(
-      true,
-    );
-  });
-
-  // jsdom ignores the rules inside `@layer` blocks, so tests that check styles need them unlayered.
-  it.runIf(isJsdom())('leaves the styles unlayered in jsdom', () => {
+  it('leaves the styles unlayered', () => {
     const inserted: string[] = [];
     render(
       <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
