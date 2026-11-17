@@ -183,6 +183,85 @@ describe('<NumberField />', () => {
     });
   });
 
+  // These Material-only slots share the field's root state. Rendering another
+  // element must retain their FormControl context and accessible input links.
+  describe('label and helper text render', () => {
+    it('preserves Material styles, refs and accessible links with render elements', () => {
+      const labelRef = React.createRef<HTMLLabelElement>();
+      const helperRef = React.createRef<HTMLParagraphElement>();
+      render(
+        <NumberField
+          label="Amount"
+          helperText="Enter an amount"
+          error
+          slotProps={{
+            inputLabel: { render: <label data-testid="render-label" />, ref: labelRef },
+            formHelperText: { render: <p data-testid="render-helper" />, ref: helperRef },
+          }}
+        />,
+      );
+      const label = screen.getByTestId('render-label');
+      const helper = screen.getByTestId('render-helper');
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+
+      expect(label).to.have.class('MuiInputLabel-root');
+      expect(label).to.have.class('Mui-error');
+      expect(helper).to.have.class('MuiFormHelperText-root');
+      expect(helper).to.have.class('Mui-error');
+      expect(labelRef.current).to.equal(label);
+      expect(helperRef.current).to.equal(helper);
+      expect(input).to.have.attribute('aria-describedby', helper.id);
+    });
+
+    it('passes live root state to both render callbacks', async () => {
+      const { user } = render(
+        <NumberField
+          label="Amount"
+          helperText="Enter an amount"
+          defaultValue={5}
+          slotProps={{
+            inputLabel: {
+              render: (props, state) => <label {...props} data-render-value={state.value} />,
+            },
+            formHelperText: {
+              render: (props, state) => <p {...props} data-render-value={state.value} />,
+            },
+          }}
+        />,
+      );
+      const label = screen.getByText('Amount', { selector: 'label' });
+      const helper = screen.getByText('Enter an amount');
+
+      expect(label).to.have.attribute('data-render-value', '5');
+      expect(helper).to.have.attribute('data-render-value', '5');
+
+      await user.click(screen.getByRole('textbox', { name: 'Amount' }));
+      await user.keyboard('{ArrowUp}');
+
+      expect(label).to.have.attribute('data-render-value', '6');
+      expect(helper).to.have.attribute('data-render-value', '6');
+    });
+
+    it('lets replacement slots bypass their render adapters', () => {
+      const renderLabel = vi.fn(() => <label />);
+      const renderHelper = vi.fn(() => <p />);
+      render(
+        <NumberField
+          label="Amount"
+          helperText="Enter an amount"
+          slots={{ inputLabel: 'label', formHelperText: 'p' }}
+          slotProps={{
+            inputLabel: { render: renderLabel },
+            formHelperText: { render: renderHelper },
+          }}
+        />,
+      );
+
+      expect(renderLabel).toHaveBeenCalledTimes(0);
+      expect(renderHelper).toHaveBeenCalledTimes(0);
+    });
+  });
+
   // Material props must configure the input and surrounding form controls, while
   // slot callbacks retain the public props and Base UI's resolved behavioral flags.
   describe('Material props and owner state', () => {
@@ -3135,6 +3214,7 @@ describe('<NumberField />', () => {
           slotProps={{
             scrubArea: (ownerState) => ({
               ref: scrubRef,
+              render: <div data-testid="render-scrub" />,
               direction: ownerState.size === 'small' ? 'vertical' : 'horizontal',
               children: <span>Drag</span>,
             }),
@@ -3144,6 +3224,7 @@ describe('<NumberField />', () => {
       const scrub = container.querySelector(`.${classes.scrubArea}`)!;
 
       expect(scrubRef.current).to.equal(scrub);
+      expect(scrub).to.equal(screen.getByTestId('render-scrub'));
       expect(scrub).to.have.attribute('data-direction', 'vertical');
       expect(scrub).to.contain(screen.getByText('Drag'));
       expect(scrub.querySelector('svg')).to.equal(null);
@@ -3186,14 +3267,18 @@ describe('<NumberField />', () => {
 
         it('resolves callback props for a custom component and clears its ref on unmount', async () => {
           const ref = vi.fn();
+          const renderScrub = vi.fn(() => <section />);
+          const renderCursor = vi.fn(() => <div />);
           const { container, user, unmount } = render(
             <NumberField
               label="Amount"
               scrubAreaPosition="start"
-              slots={{ scrubAreaCursor: TestCursor }}
+              slots={{ scrubArea: 'div', scrubAreaCursor: TestCursor }}
               slotProps={{
+                scrubArea: { render: renderScrub },
                 scrubAreaCursor: (ownerState) => ({
                   ref,
+                  render: renderCursor,
                   title: `Cursor ${ownerState.label}`,
                   className: 'custom-cursor',
                 }),
@@ -3209,6 +3294,8 @@ describe('<NumberField />', () => {
           expect(cursor).to.have.class(classes.scrubAreaCursor);
           expect(cursor).to.have.class('custom-cursor');
           expect(ref).toHaveBeenLastCalledWith(cursor);
+          expect(renderScrub).toHaveBeenCalledTimes(0);
+          expect(renderCursor).toHaveBeenCalledTimes(0);
 
           unmount();
           expect(screen.queryByTestId('custom-cursor')).to.equal(null);
@@ -3231,6 +3318,9 @@ describe('<NumberField />', () => {
                 slotProps={{
                   scrubAreaCursor: {
                     ref,
+                    render: (props, state) => (
+                      <div {...props} data-render-scrubbing={state.scrubbing} />
+                    ),
                     title: 'Custom cursor',
                     className: 'custom-cursor',
                     style: { opacity: 0.5 },
@@ -3249,6 +3339,8 @@ describe('<NumberField />', () => {
           expect(cursor).to.have.class(classes.scrubAreaCursor);
           expect(cursor).to.have.class('custom-cursor');
           expect(cursor.style.opacity).to.equal('0.5');
+          expect(cursor.style.position).to.equal('fixed');
+          expect(cursor).to.have.attribute('data-render-scrubbing', 'true');
           expect(cursor).to.contain(screen.getByText('Drag cursor'));
           expect(container).not.to.contain(cursor);
           expect(ref.current).to.equal(cursor);
@@ -3313,7 +3405,12 @@ describe('<NumberField />', () => {
               scrubAreaPosition="start"
               onValueChange={onValueChange}
               onValueCommitted={onValueCommitted}
-              slotProps={direction === 'vertical' ? { scrubArea: { direction } } : undefined}
+              slotProps={{
+                scrubArea: {
+                  direction,
+                  render: (props, state) => <div {...props} data-render-value={state.value} />,
+                },
+              }}
             />,
           );
           const input = screen.getByRole('textbox', { name: 'Amount' });
@@ -3324,6 +3421,7 @@ describe('<NumberField />', () => {
           await user.pointer({ keys: '[MouseLeft>]', target: scrub });
           movePointer(movementX, movementY);
           expect(input).to.have.value('9');
+          expect(scrub).to.have.attribute('data-render-value', '9');
           movePointer(-movementX, -movementY);
           expect(input).to.have.value('5');
           expect(

@@ -1,4 +1,5 @@
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
+import type { useRender } from '@base-ui/react/use-render';
 
 import type { OverridableStringUnion } from '@mui/types';
 import type { SlotComponentProps } from '@mui/utils/types';
@@ -6,7 +7,7 @@ import type { SlotComponentProps } from '@mui/utils/types';
 import type { InputProps as StandardInputProps } from '../Input';
 import type { InternalStandardProps as StandardProps } from '../internal';
 import type { FormControlProps } from '../FormControl';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type { CreateSlotsAndSlotProps } from '../utils/types';
 import type { NumberFieldClasses } from './numberFieldClasses';
 import type { FormHelperTextProps } from '../FormHelperText';
 import type { InputLabelProps } from '../InputLabel';
@@ -99,10 +100,13 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     /**
      * Props forwarded to the form helper text slot.
      * By default, the available props are based on the [FormHelperText](https://mui.com/material-ui/api/form-helper-text/#props) component.
+     * Use `render` to change the element while preserving Material styling.
+     * The render callback receives the NumberField root state.
      */
-    formHelperText: SlotProps<
-      React.ElementType<FormHelperTextProps>,
-      NumberFieldFormHelperTextSlotPropsOverrides,
+    formHelperText: SlotComponentProps<
+      React.ElementType<Omit<FormHelperTextProps, 'component'>>,
+      NumberFieldFormHelperTextSlotPropsOverrides &
+        Pick<useRender.ComponentProps<'p', BaseNumberField.Root.State>, 'render'>,
       NumberFieldOwnerState
     >;
     /**
@@ -145,10 +149,13 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     /**
      * Props forwarded to the input label slot.
      * By default, the available props are based on the [InputLabel](https://mui.com/material-ui/api/input-label/#props) component.
+     * Use `render` to change the element while preserving Material styling.
+     * The render callback receives the NumberField root state.
      */
-    inputLabel: SlotProps<
-      React.ElementType<InputLabelProps>,
-      NumberFieldInputLabelSlotPropsOverrides,
+    inputLabel: SlotComponentProps<
+      React.ElementType<Omit<InputLabelProps, 'component'>>,
+      NumberFieldInputLabelSlotPropsOverrides &
+        Pick<useRender.ComponentProps<'label', BaseNumberField.Root.State>, 'render'>,
       NumberFieldOwnerState
     >;
     /**
@@ -163,23 +170,28 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     /**
      * Props forwarded to the scrub area slot.
      * Supports native `<span>` props and the `direction`, `pixelSensitivity`, and `teleportDistance` options from Base UI.
+     * Use `render` to change the element while preserving styling and scrubbing behavior.
      */
-    scrubArea: SlotProps<
+    scrubArea: SlotComponentProps<
       'span',
       NumberFieldScrubAreaSlotPropsOverrides &
         Pick<
           BaseNumberField.ScrubArea.Props,
-          'direction' | 'pixelSensitivity' | 'teleportDistance'
-        >,
+          'direction' | 'pixelSensitivity' | 'teleportDistance' | 'render'
+        > & { sx?: SxProps<Theme> | undefined },
       NumberFieldOwnerState
     >;
     /**
      * Props forwarded to the custom cursor displayed while scrubbing.
      * By default, the available props are based on the native `<span>` element.
+     * Use `render` to change the element while preserving cursor styling and positioning.
      */
-    scrubAreaCursor: SlotProps<
+    scrubAreaCursor: SlotComponentProps<
       'span',
-      NumberFieldScrubAreaCursorSlotPropsOverrides,
+      NumberFieldScrubAreaCursorSlotPropsOverrides &
+        Pick<BaseNumberField.ScrubAreaCursor.Props, 'render'> & {
+          sx?: SxProps<Theme> | undefined;
+        },
       NumberFieldOwnerState
     >;
   }

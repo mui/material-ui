@@ -265,7 +265,7 @@ function ValueCallbacks(props: NumberFieldProps) {
     },
     htmlInput: { ref: React.createRef<HTMLInputElement>(), inputMode: 'decimal' },
     inputLabel: { shrink: true, htmlFor: 'amount', ref: React.createRef<HTMLLabelElement>() },
-    formHelperText: { component: 'div' },
+    formHelperText: { render: <div /> },
     incrementButton: {
       ref: React.createRef<HTMLButtonElement>(),
       children: '+',
@@ -308,6 +308,57 @@ function ValueCallbacks(props: NumberFieldProps) {
 
 // @ts-expect-error InputLabel's shrink prop is boolean.
 <NumberField slotProps={{ inputLabel: { shrink: 'true' } }} />;
+
+<NumberField
+  scrubAreaPosition="start"
+  slotProps={{
+    inputLabel: {
+      render: (props, state) => {
+        expectType<BaseNumberField.Root.State, typeof state>(state);
+        return (
+          <label {...props} htmlFor="amount">
+            Amount
+          </label>
+        );
+      },
+    },
+    formHelperText: {
+      render: (props, state) => {
+        expectType<BaseNumberField.Root.State, typeof state>(state);
+        return <p {...props} />;
+      },
+    },
+    scrubArea: {
+      direction: 'vertical',
+      render: (props, state) => {
+        expectType<BaseNumberField.ScrubArea.State, typeof state>(state);
+        return <div {...props} />;
+      },
+    },
+    scrubAreaCursor: {
+      render: (props, state) => {
+        expectType<BaseNumberField.ScrubAreaCursor.State, typeof state>(state);
+        return <div {...props} />;
+      },
+    },
+  }}
+/>;
+// @ts-expect-error Use render to change the input label element.
+<NumberField slotProps={{ inputLabel: { component: 'span' } }} />;
+// @ts-expect-error Use render to change the helper text element.
+<NumberField slotProps={{ formHelperText: { component: 'div' } }} />;
+// @ts-expect-error Use render to change the scrub area element.
+<NumberField slotProps={{ scrubArea: { component: 'div' } }} />;
+// @ts-expect-error Use render to change the scrub cursor element.
+<NumberField slotProps={{ scrubAreaCursor: { component: 'div' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ inputLabel: { render: 'label' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ formHelperText: { render: 'p' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ scrubArea: { render: 'span' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ scrubAreaCursor: { render: 'span' } }} />;
 
 // Both stepper slots expose Base UI's native-button mode, including callback props.
 <NumberField
