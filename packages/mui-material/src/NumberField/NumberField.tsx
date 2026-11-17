@@ -57,6 +57,7 @@ const NumberField = React.forwardRef(function NumberField(
     onValueCommitted,
     placeholder,
     readOnly = false,
+    render,
     required = false,
     scrubAreaPosition = false,
     size = 'medium',
@@ -85,6 +86,7 @@ const NumberField = React.forwardRef(function NumberField(
     id,
     placeholder,
     readOnly,
+    render,
     required,
     scrubAreaPosition,
     size,
@@ -390,6 +392,11 @@ NumberField.propTypes /* remove-proptypes */ = {
    * @default false
    */
   readOnly: PropTypes.bool,
+  /**
+   * Replaces the root element while preserving its styles and behavior.
+   * Accepts an element or a function that receives the root props and Base UI state.
+   */
+  render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * If `true`, a value is required for form submission and the label is marked as required.
    * @default false
