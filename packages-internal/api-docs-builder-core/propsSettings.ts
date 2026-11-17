@@ -100,12 +100,12 @@ export const ignoreExternalDocumentation: Record<string, readonly string[]> = {
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,
   ListItem: ['focusVisibleClassName'],
-  InputBase: ['aria-describedby'],
+  InputBase: ['aria-describedby', 'aria-label', 'onFocus', 'onKeyDown', 'onKeyUp', 'renderSuffix'],
   Menu: ['PaperProps'],
   MenuItem: ['disabled'],
   Slide: transitionCallbacks,
   SwipeableDrawer: ['anchor', 'hideBackdrop', 'ModalProps', 'PaperProps', 'variant'],
-  TextField: ['hiddenLabel'],
+  TextField: ['hiddenLabel', 'onBlur', 'onFocus'],
   Zoom: transitionCallbacks,
 };
 

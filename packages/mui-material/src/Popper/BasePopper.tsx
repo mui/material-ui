@@ -6,16 +6,17 @@ import useForkRef from '@mui/utils/useForkRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import refType from '@mui/utils/refType';
-import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import type { Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import { createPopper } from '@popperjs/core';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
-import { WithOptionalOwnerState } from '../utils/types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import {
+import type { WithOptionalOwnerState } from '../utils/types';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type {
   PopperPlacementType,
   PopperTooltipProps,
   PopperTooltipTypeMap,
@@ -87,7 +88,6 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
     slotProps = {},
     slots = {},
     TransitionProps,
-    // @ts-ignore internal logic
     ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. Select.
     ...other
   } = props;
@@ -109,6 +109,7 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
+  const placementRef = React.useRef(rtlPlacement);
   const resolvedAnchorElement = React.useMemo<HTMLElement | VirtualElement | null | undefined>(
     () => resolveAnchorEl(anchorEl),
     [anchorEl],
@@ -126,7 +127,10 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
     }
 
     const handlePopperUpdate = (data: State) => {
-      setPlacement(data.placement);
+      if (data.placement !== placementRef.current) {
+        placementRef.current = data.placement;
+        setPlacement(data.placement);
+      }
     };
 
     if (process.env.NODE_ENV !== 'production') {
@@ -404,10 +408,8 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * Popper render function or node.
    */
-  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ]),
+  children: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.node, PropTypes.func]),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -418,10 +420,8 @@ Popper.propTypes /* remove-proptypes */ = {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.func]),
   /**
    * Direction of the text.
    * @default 'ltr'

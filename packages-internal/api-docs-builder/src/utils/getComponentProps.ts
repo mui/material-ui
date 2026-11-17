@@ -8,7 +8,7 @@ import type {
   LiteralType,
   UnionType,
 } from '@mui/internal-scripts/typescript-to-proptypes';
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
 
 /**
  * The type of a prop, using the vocabulary of the API docs (`bool`, `func`, `union`, …).
@@ -388,10 +388,6 @@ export function getComponentProps({
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name))
     .forEach((prop) => {
-      if (!prop.jsDoc) {
-        return;
-      }
-
       let include = settings.shouldIncludeProp?.({
         componentName: component.name,
         prop: { name: prop.name, filenames: prop.filenames, jsDoc: prop.jsDoc },
@@ -417,12 +413,12 @@ export function getComponentProps({
       );
 
       props[prop.name] = {
-        description: prop.jsDoc,
+        description: prop.jsDoc ?? '',
         required: !isOptional(prop.propType),
         type,
         defaultValue:
           defaultValues[prop.name] !== undefined ? { value: defaultValues[prop.name] } : undefined,
-        jsdocDefaultValue: getJsdocDefaultValue(prop.jsDoc),
+        jsdocDefaultValue: getJsdocDefaultValue(prop.jsDoc ?? ''),
       };
     });
 

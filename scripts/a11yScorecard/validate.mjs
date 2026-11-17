@@ -1,4 +1,5 @@
 import path from 'path';
+import { unmatchedAxeDemos } from './axe.mjs';
 import { componentsDirectory, exists } from './files.mjs';
 import { normalizeAffected, renderDefaultReasons, renderReport } from './render.mjs';
 import { RATING_KEYS } from './rollup.mjs';
@@ -96,6 +97,7 @@ export function validateDefaults(defaults, check) {
 const COMPONENT_KEYS = {
   title: (value) => typeof value === 'string',
   axe: (value) => typeof value === 'string',
+  axeDemos: isStrings,
   tests: isStrings,
   inherits: (value) => typeof value === 'string',
   criteria: isObject,
@@ -108,6 +110,7 @@ const COMPONENT_KEYS = {
  *
  * - `title` (optional): the display name, when it differs from the folder name.
  * - `axe` (optional): the committed `*.a11y.json` for the component's demos.
+ * - `axeDemos` (optional): demo names or `*` globs in that file that count for this component.
  * - `tests` (optional): other components whose test files also test this one.
  * - `inherits` (optional): the component whose ratings this one inherits.
  * - `criteria`: `{ <number>: { conformance?, responsibility?, group?, flagged? } }`.
@@ -132,6 +135,18 @@ export async function validateSource(source, defaults) {
 
   if (data.axe !== undefined && !source.axe) {
     violations.push(`axe: "${data.axe}" does not exist`);
+  }
+  if (data.axeDemos !== undefined && data.axe === undefined) {
+    violations.push('axeDemos: set without "axe"');
+  }
+  if (Array.isArray(data.axeDemos) && data.axeDemos.length === 0) {
+    violations.push('axeDemos: must list at least one demo');
+  }
+  if (source.axe && Array.isArray(data.axeDemos)) {
+    const unmatched = await unmatchedAxeDemos(data.axe, data.axeDemos);
+    unmatched.forEach((pattern) => {
+      violations.push(`axeDemos: "${pattern}" matches no demo in ${data.axe}`);
+    });
   }
   (data.tests ?? []).forEach((name, index) => {
     if (!source.extraTests[index]) {

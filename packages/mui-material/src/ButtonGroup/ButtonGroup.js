@@ -337,7 +337,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
         {validChildren.map((child, index) => {
           return (
             <ButtonGroupButtonContext.Provider
-              key={index}
+              key={child.key}
               value={getButtonPositionClassName(index)}
             >
               {child}
@@ -363,7 +363,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -372,10 +372,11 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -416,10 +417,8 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium', 'large']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['small', 'medium', 'large']), PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -432,10 +431,8 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'outlined'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'outlined', 'text']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['contained', 'outlined', 'text']), PropTypes.string]),
 };
 
 export default ButtonGroup;

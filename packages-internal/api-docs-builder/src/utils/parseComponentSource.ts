@@ -1,5 +1,7 @@
-import { parse, type ParserPlugin } from '@babel/parser';
-import traverse, { type NodePath } from '@babel/traverse';
+import { parse } from '@babel/parser';
+import type { ParserPlugin } from '@babel/parser';
+import traverse from '@babel/traverse';
+import type { NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
 
 export interface ComponentSourceInfo {

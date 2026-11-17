@@ -77,7 +77,7 @@
     {
       "name": "docked",
       "description": "The component used for the root element when the variant is `permanent` or `persistent`.",
-      "default": "div",
+      "default": "'div'",
       "class": "MuiDrawer-docked"
     },
     {

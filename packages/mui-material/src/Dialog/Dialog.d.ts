@@ -23,14 +23,17 @@ export interface DialogSlots {
   paper?: React.ElementType | undefined;
   /**
    * The component that renders the container.
+   * @default 'div'
    */
   container?: React.ElementType | undefined;
   /**
    * The component that renders the backdrop.
+   * @default Backdrop
    */
   backdrop?: React.ElementType | undefined;
   /**
    * The component that renders the root.
+   * @default Modal
    */
   root?: React.ElementType | undefined;
 }

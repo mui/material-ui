@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
@@ -11,6 +11,8 @@ import { Item, Group, Highlighter, Frame } from '@mui/internal-core-docs/AppLayo
 import { SvgMaterialDesignIcon } from '@mui/internal-core-docs/svgIcons';
 
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
+
+const defaultTheme = createTheme({ cssVariables: true });
 
 const code = `
 <Card
@@ -32,7 +34,7 @@ const code = `
     sx={{    width: { xs: '100%', sm: 100 },
     }}
   />
-  <Stack direction="column" sx={{ alignItems: 'center' }} spacing={1} useFlexGap>
+  <Stack direction="column" sx={{ alignItems: 'center' }} spacing={1}>
     <div>
       <Typography sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
         Contemplative Reptile
@@ -44,7 +46,7 @@ const code = `
         Sounds of Nature
       </Typography>
     </div>
-    <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1} useFlexGap>
+    <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
       <IconButton aria-label="Shuffle" disabled size="small">
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>
@@ -115,9 +117,9 @@ export default function MaterialTheming() {
               {customized ? (
                 <PlayerCard />
               ) : (
-                <CssVarsProvider>
+                <ThemeProvider theme={defaultTheme}>
                   <PlayerCard disableTheming />
-                </CssVarsProvider>
+                </ThemeProvider>
               )}
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>

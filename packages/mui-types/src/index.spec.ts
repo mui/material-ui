@@ -1,9 +1,10 @@
-import { expectType, type OverridableStringUnion } from '.';
+import { expectType } from '.';
+import type { OverridableStringUnion } from '.';
 
 function expectTypeTypes() {
   // it rejects assignability to `any`
   function onClick(event: any) {
-    // @ts-expect-error
+    // @ts-expect-error: expectType rejects any when an exact MouseEvent type is required.
     expectType<MouseEvent, typeof event>(event);
   }
 }

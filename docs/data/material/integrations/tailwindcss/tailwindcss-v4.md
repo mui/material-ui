@@ -45,6 +45,10 @@ export default function RootLayout() {
 @import 'tailwindcss';
 ```
 
+<!-- #target-branch-reference -->
+
+The [`material-ui-nextjs-tailwind-ts` example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-tailwind-ts) is a complete Next.js App Router project with this setup.
+
 ### Next.js Pages Router
 
 To integrate Tailwind CSS v4 with Material UI in a Next.js Pages Router project, start by configuring Material UI with Next.js in the [Pages Router integration guide](/material-ui/integrations/nextjs/#pages-router).
@@ -147,7 +151,7 @@ Now you should see the autocomplete and syntax highlighting features when using 
 - Use the `className` prop to apply Tailwind CSS classes to the root element of the component.
 - Use `slotProps.{slotName}.className` to apply Tailwind CSS classes to a component's [interior slots](/material-ui/customization/overriding-component-structure/#interior-slots).
 
-{{"demo": "TextFieldTailwind.js"}}
+{{"component": "file://./demos/text-field-tailwind/index.ts"}}
 
 ## Extend Material UI classes
 

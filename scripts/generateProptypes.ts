@@ -6,6 +6,7 @@ import glob from 'fast-glob';
 import { flatten } from 'es-toolkit/array';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import type { InjectPropTypesInFileOptions } from '@mui/internal-scripts/typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
@@ -14,14 +15,14 @@ import {
 import {
   getPropTypesFromFile,
   injectPropTypesInFile,
-  InjectPropTypesInFileOptions,
 } from '@mui/internal-scripts/typescript-to-proptypes';
-import { createTypeScriptProjectBuilder, TypeScriptProject } from '@mui/internal-api-docs-builder';
+import type { TypeScriptProject } from '@mui/internal-api-docs-builder';
+import { createTypeScriptProjectBuilder } from '@mui/internal-api-docs-builder';
 import {
   ignoreExternalDocumentation,
   sortSizeByScaleAscending,
   useExternalDocumentation,
-} from '@mui-internal/api-docs-builder-core';
+} from '../packages-internal/api-docs-builder-core';
 
 // eslint-disable-next-line import/extensions -- explicit .mjs extension required for tsx to resolve the ESM module
 import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects.mjs';
@@ -78,12 +79,12 @@ async function generateProptypes(
 
   cleanComponents.forEach((component) => {
     component.types.forEach((prop) => {
-      if (
-        !prop.jsDoc ||
-        (project.name !== 'base' &&
-          ignoreExternalDocumentation[component.name] &&
-          ignoreExternalDocumentation[component.name].includes(prop.name))
-      ) {
+      if (ignoreExternalDocumentation[component.name]?.includes(prop.name)) {
+        if (!prop.jsDoc) {
+          console.warn(
+            `[${component.name}] \`${prop.name}\` is hidden from the API docs and has no JSDoc, so it has no description in IntelliSense.`,
+          );
+        }
         prop.jsDoc = '@ignore';
       }
     });

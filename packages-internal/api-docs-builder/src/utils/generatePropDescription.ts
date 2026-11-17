@@ -1,7 +1,7 @@
-import * as doctrine from 'doctrine';
+import type * as doctrine from 'doctrine';
 import { escapeCell, removeNewLines } from '../buildApi';
-import { DescribeablePropDescriptor } from './createDescribeableProp';
-import { SeeMore } from '../types/utils.types';
+import type { DescribeablePropDescriptor } from './createDescribeableProp';
+import type { SeeMore } from '../types/utils.types';
 
 function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   if (type.type === 'AllLiteral') {

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
+import type { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -107,15 +108,13 @@ export default function Hero() {
           },
         },
         '&& *': {
-          fontFamily: ['"IBM Plex Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: (theme) => theme.typography.fontFamily,
         },
       }}
       right={
         <React.Fragment>
           {isMdUp && (
-            <Stack spacing={3} useFlexGap sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+            <Stack spacing={3} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <TaskCard />
               <ThemeChip />
               <ThemeDatePicker />
@@ -124,11 +123,7 @@ export default function Hero() {
             </Stack>
           )}
           {isMdUp && (
-            <Stack
-              spacing={3}
-              useFlexGap
-              sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}
-            >
+            <Stack spacing={3} sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <ThemeTimeline />
               <ThemeToggleButton />
               <ThemeSlider />

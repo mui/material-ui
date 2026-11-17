@@ -578,7 +578,7 @@ function resolveActiveItemId<Key>(
  * @param isFocusable A predicate that decides whether an item may receive roving focus.
  * @returns The same id when it still points to a focusable item. If that id no longer exists,
  *   returns the first focusable item. If the id still exists but the item is not focusable,
- *   returns the next focusable item after it without wrapping.
+ *   returns the next focusable item after it, wrapping to the start when none follows.
  */
 function resolveRequestedItemId<Key>(
   requestedItemId: Key,
@@ -595,7 +595,7 @@ function resolveRequestedItemId<Key>(
     return items[requestedItemIndex].id;
   }
 
-  return getNextActiveItem(items, requestedItemIndex, 'next', false, isFocusable)?.id ?? null;
+  return getNextActiveItem(items, requestedItemIndex, 'next', true, isFocusable)?.id ?? null;
 }
 
 /**
@@ -774,7 +774,7 @@ function getNextIndex(
     return currentIndex + 1;
   }
 
-  if (currentIndex === 0) {
+  if (currentIndex <= 0) {
     return wrap ? lastIndex : -1;
   }
 

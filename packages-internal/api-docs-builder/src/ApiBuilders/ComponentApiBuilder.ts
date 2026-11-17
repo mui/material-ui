@@ -6,31 +6,34 @@ import { kebabCase, escapeRegExp } from 'es-toolkit/string';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
-import { parse as parseDoctrine, Annotation } from 'doctrine';
+import type { Annotation } from 'doctrine';
+import { parse as parseDoctrine } from 'doctrine';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
-import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
+import type { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription from '../utils/generatePropTypeDescription';
-import createDescribeableProp, {
+import type {
   CreateDescribeablePropSettings,
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
+import createDescribeableProp from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import { TypeScriptProject } from '../utils/createTypeScriptProject';
+import type { TypeScriptProject } from '../utils/createTypeScriptProject';
 import { getComponentProps } from '../utils/getComponentProps';
 import { parseComponentSource } from '../utils/parseComponentSource';
 import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
+import { getExternalProps } from '../utils/getPropsFromComponentNode';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
-import {
+import type {
   AdditionalPropsInfo,
   ComponentApiContent,
   ComponentReactApi,
   ParsedProperty,
   TypeDescriptions,
 } from '../types/ApiBuilder.types';
-import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
+import type { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
 /**
@@ -87,6 +90,8 @@ async function annotateComponentDefinition(
     configFile: false,
     filename: typesFilename,
     presets: [require.resolve('@babel/preset-typescript')],
+    // The Babel 8 TypeScript preset does not enable JSX for `.tsx` files.
+    overrides: [{ test: /\.tsx$/, parserOpts: { plugins: ['jsx'] } }],
   });
   if (typesAST === null) {
     throw new Error('No AST returned from babel.');
@@ -99,7 +104,7 @@ async function annotateComponentDefinition(
       /**
        * export default function Menu() {}
        */
-      let node: babel.Node = babelPath.node;
+      let node: babel.types.Node = babelPath.node;
       if (node.declaration.type === 'Identifier') {
         // declare const Menu: {};
         // export default Menu;
@@ -149,12 +154,16 @@ async function annotateComponentDefinition(
     },
 
     ExportNamedDeclaration(babelPath) {
-      let node: babel.Node = babelPath.node;
+      let node: babel.types.Node = babelPath.node;
 
       if (node.declaration == null) {
         // export { Menu };
         node.specifiers.forEach((specifier) => {
-          if (specifier.type === 'ExportSpecifier' && specifier.local.name === fileName) {
+          if (
+            specifier.type === 'ExportSpecifier' &&
+            specifier.local.type === 'Identifier' &&
+            specifier.local.name === fileName
+          ) {
             const binding = babelPath.scope.bindings[specifier.local.name];
 
             if (babel.types.isFunctionDeclaration(binding.path.node)) {
@@ -394,7 +403,8 @@ export default function Page() {
 const attachTranslations = (
   reactApi: ComponentReactApi,
   deprecationInfo: string | undefined,
-  settings?: CreateDescribeablePropSettings,
+  settings: CreateDescribeablePropSettings | undefined,
+  externalProps: ReadonlySet<string>,
 ) => {
   const translations: ComponentReactApi['translations'] = {
     componentDescription: reactApi.description,
@@ -405,8 +415,14 @@ const attachTranslations = (
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(propDescriptor, propName, settings);
+      prop = createDescribeableProp(
+        propDescriptor,
+        propName,
+        settings,
+        externalProps.has(propName),
+      );
     } catch (error) {
+      // Reported by attachPropsTable.
       prop = null;
     }
     if (prop) {
@@ -497,17 +513,23 @@ const attachTranslations = (
 
 const attachPropsTable = (
   reactApi: ComponentReactApi,
-  settings?: CreateDescribeablePropSettings,
+  settings: CreateDescribeablePropSettings | undefined,
+  externalProps: ReadonlySet<string>,
 ) => {
-  const propErrors: Array<[propName: string, error: Error]> = [];
+  const propErrors: string[] = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
   const componentProps: ComponentReactApi['propsTable'] = Object.fromEntries(
     Object.entries(reactApi.props!).flatMap(([propName, propDescriptor]): Pair[] => {
       let prop: DescribeablePropDescriptor | null;
       try {
-        prop = createDescribeableProp(propDescriptor, propName, settings);
+        prop = createDescribeableProp(
+          propDescriptor,
+          propName,
+          settings,
+          externalProps.has(propName),
+        );
       } catch (error) {
-        propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
+        propErrors.push(`[${reactApi.name}] \`${propName}\`: ${error}`);
         prop = null;
       }
       if (prop === null) {
@@ -522,8 +544,8 @@ const attachPropsTable = (
         signatureReturn,
         seeMore,
       } = generatePropDescription(prop, propName);
-      const propType = propDescriptor.type;
-      const propTypeDescription = propType ? generatePropTypeDescription(propType) : undefined;
+      const propType = prop.type;
+      const propTypeDescription = generatePropTypeDescription(propType);
       const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
@@ -561,10 +583,6 @@ const attachPropsTable = (
           returned: signatureReturn?.name,
         };
       }
-      // Skip props with unknown/undefined types
-      if (!propType?.name) {
-        return [];
-      }
 
       return [
         [
@@ -588,17 +606,9 @@ const attachPropsTable = (
       ];
     }),
   );
-  if (propErrors.length > 0) {
-    throw new Error(
-      `There were errors creating prop descriptions:\n${propErrors
-        .map(([propName, error]) => {
-          return `  - ${propName}: ${error}`;
-        })
-        .join('\n')}`,
-    );
-  }
-
   reactApi.propsTable = componentProps;
+
+  return propErrors;
 };
 
 /**
@@ -785,8 +795,9 @@ export default async function generateComponentApi(
     }
   }
 
+  const slotsAndClassesErrors: string[] = [];
   if (!projectSettings.skipSlotsAndClasses) {
-    const { slots, classes } = parseSlotsAndClasses({
+    const { slots, classes, errors } = parseSlotsAndClasses({
       typescriptProject: project,
       projectSettings,
       componentName: reactApi.name,
@@ -796,6 +807,7 @@ export default async function generateComponentApi(
 
     reactApi.slots = slots;
     reactApi.classes = classes;
+    slotsAndClassesErrors.push(...errors);
   }
 
   const deprecation = componentJsdoc.tags.find((tag) => tag.title === 'deprecated');
@@ -815,10 +827,20 @@ export default async function generateComponentApi(
     project,
   );
 
-  attachPropsTable(reactApi, projectSettings.propsSettings);
+  const externalProps = getExternalProps(project, reactApi.name);
+  const errors = [
+    ...attachPropsTable(reactApi, projectSettings.propsSettings, externalProps),
+    ...slotsAndClassesErrors,
+  ];
+  if (errors.length > 0) {
+    throw new Error(
+      `There were errors creating the API docs:\n${errors.map((error) => `  - ${error}`).join('\n')}`,
+    );
+  }
+
   attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
-  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings, externalProps);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

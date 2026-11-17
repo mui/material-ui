@@ -2,9 +2,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { OverridableComponent, OverrideProps } from '@mui/types';
-import { SxProps } from '@mui/system';
-// @ts-ignore
+import type { OverridableComponent, OverrideProps } from '@mui/types';
+import type { SxProps } from '@mui/system';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- The peer is resolvable only after its build.
+// @ts-ignore: material-pigment-css links to its build directory, which is absent in a fresh checkout.
 import Grid from '@mui/material-pigment-css/Grid';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
@@ -13,7 +14,7 @@ import {
   unstable_generateSizeClassNames as generateSizeClassNames,
   unstable_generateSpacingClassNames as generateSpacingClassNames,
 } from '@mui/system/Grid';
-import { Breakpoint, Theme } from '../styles';
+import type { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -83,7 +84,13 @@ export interface GridTypeMap<
   AdditionalProps = {},
   DefaultComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> | undefined };
+  props: AdditionalProps &
+    GridBaseProps & {
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme> | undefined;
+    };
   defaultComponent: DefaultComponent;
 }
 
@@ -146,29 +153,24 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The number of columns.
    * @default 12
    */
-  columns: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]),
+  columns: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number, PropTypes.object]),
   /**
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  columnSpacing: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
@@ -180,50 +182,47 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['row', 'row-reverse']),
-    PropTypes.arrayOf(PropTypes.oneOf(['row', 'row-reverse'])),
-    PropTypes.object,
-  ]),
+  direction: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['row', 'row-reverse']),
+      PropTypes.arrayOf(PropTypes.oneOf(['row', 'row-reverse'])),
+      PropTypes.object,
+    ]),
   /**
    * Defines the offset of the grid.
    */
-  offset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]),
+  offset: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number, PropTypes.object]),
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  rowSpacing: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   /**
    * Defines the column size of the grid.
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number, PropTypes.object]),
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  spacing: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   /**
-   * @ignore
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
@@ -238,7 +237,7 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 } as any;
 
-// @ts-ignore internal logic for nested grid
+// @ts-expect-error: The overridable component type does not declare the internal muiName marker.
 PigmentGrid.muiName = 'Grid';
 
 export default PigmentGrid;

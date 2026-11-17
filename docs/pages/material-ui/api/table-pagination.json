@@ -113,7 +113,7 @@
     },
     {
       "name": "actions",
-      "description": "The slots that passed to the actions slot.",
+      "description": "The slots passed to the actions component, set with `ActionsComponent`\n([TablePaginationActions](https://mui.com/material-ui/api/table-pagination-actions/#slots) by default).",
       "class": "MuiTablePagination-actions"
     }
   ],

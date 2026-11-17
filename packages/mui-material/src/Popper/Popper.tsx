@@ -1,13 +1,13 @@
 'use client';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 import { useRtl } from '@mui/system/RtlProvider';
 import refType from '@mui/utils/refType';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import BasePopper from './BasePopper';
-import { PopperProps as BasePopperProps } from './BasePopper.types';
-import { Theme } from '../styles';
+import type { PopperProps as BasePopperProps } from './BasePopper.types';
+import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
@@ -103,18 +103,13 @@ Popper.propTypes /* remove-proptypes */ = {
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
    */
-  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.object,
-    PropTypes.func,
-  ]),
+  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.object, PropTypes.func]),
   /**
    * Popper render function or node.
    */
-  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ]),
+  children: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.node, PropTypes.func]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -130,10 +125,8 @@ Popper.propTypes /* remove-proptypes */ = {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.func]),
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false

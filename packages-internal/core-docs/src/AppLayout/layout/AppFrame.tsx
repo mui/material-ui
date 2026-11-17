@@ -17,7 +17,7 @@ import { AppFrameBanner } from '../components/AppFrameBanner';
 import { SearchButton } from '../components/SearchButton';
 import PageContext from '../../PageContext';
 import { useTranslate } from '../../i18n';
-import { DemoPageThemeProvider } from '../../Demo/DemoThemeProviders';
+import { DemoPageThemeProvider } from '../../DemoThemeProviders';
 
 const sx = { minWidth: { sm: 160 } };
 
@@ -169,7 +169,7 @@ export function AppFrame(props: AppFrameProps) {
                 marginLeft
               />
             </Box>
-            <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
+            <Stack direction="row" spacing={1} sx={{ ml: 'auto' }}>
               {BannerComponent ? <BannerComponent /> : null}
               <DeferredAppSearch />
               <Tooltip title={t('appFrame.github')} enterDelay={300}>

@@ -5,9 +5,9 @@ import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import createChainedFunction from '@mui/utils/createChainedFunction';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
-import { EventHandlers } from '../utils/types';
+import type { EventHandlers } from '../utils/types';
 import { ModalManager, ariaHidden } from './ModalManager';
-import {
+import type {
   UseModalParameters,
   UseModalReturnValue,
   UseModalRootSlotProps,
@@ -41,7 +41,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     rootRef,
   } = parameters;
 
-  // @ts-ignore internal logic
+  // @ts-expect-error: The modal refs are assigned after render; the initial ref object is empty.
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
   const mountNodeRef = React.useRef<HTMLElement>(null);
   const lastMountNodeRef = React.useRef<HTMLElement>(null);
@@ -171,12 +171,12 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
     return {
       /*
-       * Marking an element with the role presentation indicates to assistive technology
+       * Marking an element with the role none indicates to assistive technology
        * that this element should be ignored; it exists to support the web application and
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */
-      role: 'presentation',
+      role: 'none',
       ...externalEventHandlers,
       onKeyDown: createHandleKeyDown(externalEventHandlers),
       ref: handleRef,
