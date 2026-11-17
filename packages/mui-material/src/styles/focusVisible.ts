@@ -34,30 +34,22 @@ export function mergeFocusVisibleInput(
   ).focusVisible;
 }
 
-const resolvedRings = new WeakSet<object>();
-
 /**
- * Whether the `outlineColor` that wins the merge comes from this module's own output, which
- * identifies a ring fed back in by `createTheme(existingTheme, …)`.
+ * Whether the `outlineColor` comes from a created theme whose color schemes each resolved their
+ * own ring color, which identifies a ring fed back in by `createTheme(existingTheme, …)`.
  */
-export function isOutlineColorFromResolvedRing(
-  optionsFocusVisible: FocusVisibleInput,
+export function isSchemeOutlineColor(
+  colorSchemes: Record<string, unknown> | undefined,
   args: readonly any[],
 ): boolean {
-  const inputs = [
-    optionsFocusVisible,
-    ...args.filter((arg) => arg && 'focusVisible' in arg).map((arg) => arg.focusVisible),
-  ];
-  for (let index = inputs.length - 1; index >= 0; index -= 1) {
-    const input = inputs[index];
-    if (input == null || typeof input !== 'object') {
-      return false;
-    }
-    if (input.outlineColor !== undefined) {
-      return resolvedRings.has(input);
-    }
+  const lastFocusVisibleArg = args.filter((arg) => arg && 'focusVisible' in arg).pop();
+  if (lastFocusVisibleArg?.focusVisible?.outlineColor !== undefined) {
+    return false;
   }
-  return false;
+  const schemeColors = Object.values(colorSchemes ?? {}).map(
+    (scheme: any) => scheme?.focusVisible?.outlineColor,
+  );
+  return new Set(schemeColors.filter(Boolean)).size > 1;
 }
 
 /**
@@ -78,7 +70,6 @@ export function resolveFocusVisible(
     ...(input === true ? null : input),
   };
   delete ring.insetOverrides;
-  resolvedRings.add(ring);
   return ring as React.CSSProperties;
 }
 

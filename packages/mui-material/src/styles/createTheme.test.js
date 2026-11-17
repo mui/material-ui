@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import deepmerge from '@mui/utils/deepmerge';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
@@ -896,6 +897,25 @@ describe('createTheme', () => {
         base.colorSchemes.dark.palette.primary.main,
       );
       expect(recomposed.colorSchemes.dark.focusVisible.outlineWidth).to.equal(3);
+    });
+
+    it('recomposing a deep-merged or spread copy keeps the ring scheme-reactive', () => {
+      const base = createTheme({
+        cssVariables: false,
+        colorSchemes: { light: true, dark: true },
+        focusVisible: true,
+      });
+      const merged = createTheme(deepmerge(base, { focusVisible: { outlineWidth: 3 } }));
+      const spread = createTheme({
+        ...base,
+        focusVisible: { ...base.focusVisible, outlineWidth: 3 },
+      });
+      [merged, spread].forEach((theme) => {
+        expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+          base.colorSchemes.dark.palette.primary.main,
+        );
+        expect(theme.colorSchemes.dark.focusVisible.outlineWidth).to.equal(3);
+      });
     });
 
     it('recomposing keeps an explicit custom outlineColor on every scheme', () => {
