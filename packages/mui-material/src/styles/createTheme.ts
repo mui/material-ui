@@ -1,10 +1,6 @@
 import createPalette from './createPalette';
 import type { PaletteOptions } from './createPalette';
-import {
-  resolveFocusVisible,
-  mergeFocusVisibleInput,
-  isSchemeOutlineColor,
-} from './focusVisible';
+import { resolveFocusVisible, mergeFocusVisibleInput, isSchemeOutlineColor } from './focusVisible';
 import type { ColorSystemOptions } from './createThemeFoundation';
 import type { CssVarsThemeOptions, ColorSystem, DefaultColorScheme } from './createThemeWithVars';
 import createThemeWithVars from './createThemeWithVars';

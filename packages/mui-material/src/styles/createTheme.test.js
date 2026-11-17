@@ -655,9 +655,7 @@ describe('createTheme', () => {
       });
 
       it('draws the outer boxShadow inset, keeping inset shadows and keywords as they are', () => {
-        expect(insetOf({ boxShadow: '0 0 0 1px #fff' }).boxShadow).to.equal(
-          'inset 0 0 0 1px #fff',
-        );
+        expect(insetOf({ boxShadow: '0 0 0 1px #fff' }).boxShadow).to.equal('inset 0 0 0 1px #fff');
         expect(insetOf({ boxShadow: 'inset 0 0 0 1px #fff' }).boxShadow).to.equal(
           'inset 0 0 0 1px #fff',
         );
