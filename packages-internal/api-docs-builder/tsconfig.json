@@ -13,7 +13,10 @@
     "moduleResolution": "bundler",
     "strict": true,
     "paths": {
-      "@mui/internal-docs-utils": ["../docs-utils/src/index.ts"]
+      "@mui/internal-docs-utils": ["../docs-utils/src/index.ts"],
+      "@mui/internal-scripts/typescript-to-proptypes": [
+        "../scripts/typescript-to-proptypes/src/index.ts"
+      ]
     }
   },
   "include": ["./**/*.ts", "./**/*.js"],

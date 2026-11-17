@@ -6,20 +6,20 @@ import { kebabCase, escapeRegExp } from 'es-toolkit/string';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
-import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
-import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
+import generatePropTypeDescription from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
   CreateDescribeablePropSettings,
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
+import { getComponentProps } from '../utils/getComponentProps';
+import { parseComponentSource } from '../utils/parseComponentSource';
 import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
@@ -410,8 +410,10 @@ const attachTranslations = (
       prop = null;
     }
     if (prop) {
-      const { deprecated, seeMore, jsDocText, signatureArgs, signatureReturn, requiresRef } =
-        generatePropDescription(prop, propName);
+      const { seeMore, jsDocText, signatureArgs, signatureReturn } = generatePropDescription(
+        prop,
+        propName,
+      );
       // description = renderMarkdownInline(`${description}`);
 
       const typeDescriptions: TypeDescriptions = {};
@@ -428,8 +430,6 @@ const attachTranslations = (
 
       translations.propDescriptions[propName] = {
         description: renderMarkdown(jsDocText),
-        requiresRef: requiresRef || undefined,
-        deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
         seeMoreText: seeMore?.description,
       };
@@ -514,7 +514,7 @@ const attachPropsTable = (
         return [];
       }
 
-      const defaultValue = (propDescriptor as any).jsdocDefaultValue?.value;
+      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
       const {
         signature: signatureType,
@@ -524,12 +524,7 @@ const attachPropsTable = (
       } = generatePropDescription(prop, propName);
       const propType = propDescriptor.type;
       const propTypeDescription = propType ? generatePropTypeDescription(propType) : undefined;
-      const chainedPropType = getChained(prop.type);
-
-      const requiredProp =
-        prop.required ||
-        prop.type?.raw?.includes('.isRequired') ||
-        (chainedPropType !== false && chainedPropType.required);
+      const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
 
@@ -723,78 +718,19 @@ export default async function generateComponentApi(
   }
 
   const filename = componentInfo.filename;
-  let reactApi: ComponentReactApi;
 
-  const handlers = [...defaultHandlers, muiDefaultPropsHandler];
-  try {
-    const results = docgenParse(src, {
-      handlers,
+  const sourceInfo = parseComponentSource(src, filename, componentInfo.name);
+  const reactApi = {
+    description: sourceInfo.description,
+    props: getComponentProps({
+      project,
+      componentName: componentInfo.name,
       filename,
-    });
-    reactApi = results[0] as ComponentReactApi;
-  } catch (error) {
-    // fallback to default logic if there is no `create*` definition.
-    if ((error as Error).message === 'No suitable component definition found.') {
-      const results = docgenParse(src, {
-        resolver: {
-          resolve(file) {
-            const foundPaths: any[] = [];
-            file.traverse({
-              FunctionDeclaration(funcPath) {
-                const params = funcPath.node.params;
-                if (
-                  params.length > 0 &&
-                  params[0].type === 'Identifier' &&
-                  params[0].name === 'props'
-                ) {
-                  foundPaths.push(funcPath);
-                }
-              },
-              VariableDeclaration(varPath) {
-                for (const declarator of varPath.node.declarations) {
-                  if (declarator.init) {
-                    let initNode = declarator.init;
-                    // Handle TSAsExpression wrapper
-                    if (initNode.type === 'TSAsExpression') {
-                      initNode = initNode.expression;
-                    }
-                    if (
-                      initNode.type === 'CallExpression' &&
-                      initNode.callee.type === 'Identifier' &&
-                      initNode.callee.name === `create${componentInfo.name}`
-                    ) {
-                      // Get the path to the init (call expression)
-                      const declarators = varPath.get('declarations');
-                      if (Array.isArray(declarators) && declarators.length > 0) {
-                        let initPath = declarators[0].get('init');
-                        if (!Array.isArray(initPath)) {
-                          // Unwrap TSAsExpression if present
-                          if (initPath.isTSAsExpression()) {
-                            initPath = initPath.get('expression') as typeof initPath;
-                          }
-                          foundPaths.push(initPath);
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-            });
-            return foundPaths;
-          },
-        },
-        handlers,
-        filename,
-      });
-      reactApi = results[0] as ComponentReactApi;
-    } else {
-      throw error;
-    }
-  }
-
-  if (!reactApi.props) {
-    reactApi.props = {};
-  }
+      usedProps: sourceInfo.usedProps,
+      defaultValues: sourceInfo.defaultValues,
+      settings: projectSettings.propsSettings,
+    }),
+  } as ComponentReactApi;
 
   const { getComponentImports = defaultGetComponentImports } = projectSettings;
   const componentJsdoc = parseDoctrine(reactApi.description);

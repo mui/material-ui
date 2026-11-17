@@ -2,7 +2,6 @@ import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { kebabCase, upperFirst, escapeRegExp } from 'es-toolkit/string';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { escapeEntities, renderMarkdown } from '../buildApi';
@@ -10,6 +9,7 @@ import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
+import { getFunctionDescription } from '../utils/parseComponentSource';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
 import { HookInfo } from '../types/utils.types';
@@ -254,7 +254,7 @@ const attachTable = (
         {
           [propName]: {
             type: {
-              // The docgen generates this structure for the components. For consistency in the structure
+              // Components use this structure. For consistency in the structure
               // we are adding the same value in both the name and the description
               name: typeDescription,
               description: typeDescription,
@@ -425,24 +425,9 @@ export async function generateHookApi(
     return null;
   }
 
-  const results = docgenParse(src, {
-    resolver: {
-      resolve(file) {
-        const foundPaths: any[] = [];
-        file.traverse({
-          FunctionDeclaration(funcPath) {
-            if (funcPath.node.id?.name === name) {
-              foundPaths.push(funcPath);
-            }
-          },
-        });
-        return foundPaths;
-      },
-    },
-    handlers: defaultHandlers,
-    filename,
-  });
-  const reactApi: HookReactApi = results[0] as HookReactApi;
+  const reactApi = {
+    description: getFunctionDescription(src, filename, name),
+  } as HookReactApi;
 
   const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
   const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);

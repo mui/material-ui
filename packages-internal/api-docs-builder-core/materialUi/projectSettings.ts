@@ -3,6 +3,7 @@ import { LANGUAGES } from '@mui/internal-core-docs/constants';
 import { ProjectSettings, findApiPages } from '@mui/internal-api-docs-builder';
 import generateUtilityClass, { isGlobalState } from '@mui/utils/generateUtilityClass';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
+import { propsSettings } from '../propsSettings';
 
 const generateClassName = (componentName: string, slot: string, globalStatePrefix = 'Mui') => {
   if (componentName === 'MuiSwipeableDrawer') {
@@ -44,6 +45,7 @@ export const projectSettings: ProjectSettings = {
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
+  propsSettings,
   generateClassName,
   isGlobalClassName: isGlobalState,
   // #host-reference

@@ -3,6 +3,7 @@ import { LANGUAGES } from '@mui/internal-core-docs/constants';
 import { ProjectSettings, findApiPages } from '@mui/internal-api-docs-builder';
 import generateUtilityClass, { isGlobalState } from '@mui/utils/generateUtilityClass';
 import { getSystemComponentInfo } from './getSystemComponentInfo';
+import { propsSettings } from '../propsSettings';
 
 export const projectSettings: ProjectSettings = {
   output: {
@@ -26,6 +27,7 @@ export const projectSettings: ProjectSettings = {
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
+  propsSettings,
   generateClassName: generateUtilityClass,
   isGlobalClassName: isGlobalState,
 };
