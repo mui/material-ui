@@ -4,7 +4,7 @@
     "centerRipple": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "component": { "type": { "name": "custom", "description": "element type" } },
+    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "disableTouchRipple": { "type": { "name": "bool" }, "default": "false" },
@@ -21,12 +21,7 @@
       "additionalInfo": { "sx": true }
     },
     "TouchRippleProps": { "type": { "name": "object" } },
-    "touchRippleRef": {
-      "type": {
-        "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
-      }
-    },
+    "touchRippleRef": { "type": { "name": "custom", "description": "ref" } },
     "type": { "type": { "name": "string" }, "default": "'button'" }
   },
   "name": "ButtonBase",

@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "children": { "type": { "name": "element" }, "required": true },
     "addEndListener": {
       "type": { "name": "func" },
       "signature": {

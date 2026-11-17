@@ -2,7 +2,12 @@
   "props": {
     "open": { "type": { "name": "bool" }, "required": true },
     "action": { "type": { "name": "custom", "description": "ref" } },
-    "anchorEl": { "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "anchorEl": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;func<br>&#124;&nbsp;{ getBoundingClientRect: func, nodeType: 1 }"
+      }
+    },
     "anchorOrigin": {
       "type": {
         "name": "shape",
@@ -25,7 +30,7 @@
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
-    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
+    "elevation": { "type": { "name": "number" }, "default": "8" },
     "marginThreshold": { "type": { "name": "number" }, "default": "16" },
     "onClose": { "type": { "name": "func" } },
     "slotProps": {

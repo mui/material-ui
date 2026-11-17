@@ -27,7 +27,7 @@
       "default": "'horizontal'"
     },
     "scrollButtons": {
-      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
       "default": "'auto'"
     },
     "selectionFollowsFocus": { "type": { "name": "bool" } },
@@ -62,8 +62,8 @@
     "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'"
+        "name": "union",
+        "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "default": "'standard'"
     },

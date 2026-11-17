@@ -29,7 +29,7 @@
         "describedArgs": ["event", "value"]
       }
     },
-    "precision": { "type": { "name": "custom", "description": "number" }, "default": "1" },
+    "precision": { "type": { "name": "number" }, "default": "1" },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {

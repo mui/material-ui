@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "icon": { "type": { "name": "node" } },
     "label": { "type": { "name": "node" } },

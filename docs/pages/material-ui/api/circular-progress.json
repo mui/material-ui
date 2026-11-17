@@ -4,11 +4,11 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
-    "disableShrink": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
+    "disableShrink": { "type": { "name": "bool" }, "default": "false" },
     "enableTrackSlot": { "type": { "name": "bool" }, "default": "false" },
     "max": { "type": { "name": "number" }, "default": "100" },
     "min": { "type": { "name": "number" }, "default": "0" },
@@ -26,7 +26,10 @@
     "thickness": { "type": { "name": "number" }, "default": "3.6" },
     "value": { "type": { "name": "number" }, "default": "props.min ?? 0" },
     "variant": {
-      "type": { "name": "enum", "description": "'determinate'<br>&#124;&nbsp;'indeterminate'" },
+      "type": {
+        "name": "union",
+        "description": "'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;string"
+      },
       "default": "'indeterminate'"
     }
   },

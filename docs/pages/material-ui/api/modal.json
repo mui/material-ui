@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "children": { "type": { "name": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },

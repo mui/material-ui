@@ -3,7 +3,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
-    "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "max": { "type": { "name": "number" }, "default": "5" },
     "renderSurplus": {
       "type": { "name": "func" },
       "signature": {

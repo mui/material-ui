@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "children": { "type": { "name": "element" }, "required": true },
     "addEndListener": {
       "type": { "name": "func" },
       "signature": {
@@ -9,9 +9,7 @@
       }
     },
     "appear": { "type": { "name": "bool" }, "default": "true" },
-    "container": {
-      "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" }
-    },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "direction": {
       "type": {
         "name": "enum",

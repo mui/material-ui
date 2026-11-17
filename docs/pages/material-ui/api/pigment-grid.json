@@ -4,46 +4,46 @@
     "columns": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number, md?: number, sm?: number, xl?: number, xs?: number }"
       },
       "default": "12"
     },
     "columnSpacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       }
     },
     "container": { "type": { "name": "bool" }, "default": "false" },
     "direction": {
       "type": {
         "name": "union",
-        "description": "'row'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;Array&lt;'row'<br>&#124;&nbsp;'row-reverse'&gt;<br>&#124;&nbsp;object"
+        "description": "'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;{ lg?: 'row-reverse'<br>&#124;&nbsp;'row', md?: 'row-reverse'<br>&#124;&nbsp;'row', sm?: 'row-reverse'<br>&#124;&nbsp;'row', xl?: 'row-reverse'<br>&#124;&nbsp;'row', xs?: 'row-reverse'<br>&#124;&nbsp;'row' }"
       },
       "default": "'row'"
     },
     "offset": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number, md?: number, sm?: number, xl?: number, xs?: number }"
       }
     },
     "rowSpacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       }
     },
     "size": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+        "description": "'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;Array&lt;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: 'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, md?: 'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, sm?: 'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, xl?: 'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, xs?: 'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number }"
       }
     },
     "spacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       },
       "default": "0"
     },

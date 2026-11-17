@@ -9,12 +9,7 @@
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "color": {
-      "type": {
-        "name": "union",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'<br>&#124;&nbsp;'textDisabled'<br>&#124;&nbsp;string"
-      }
-    },
+    "color": { "type": { "name": "string" } },
     "component": { "type": { "name": "elementType" } },
     "gutterBottom": { "type": { "name": "bool" }, "default": "false" },
     "noWrap": { "type": { "name": "bool" }, "default": "false" },
@@ -33,7 +28,10 @@
       "default": "'body1'"
     },
     "variantMapping": {
-      "type": { "name": "object" },
+      "type": {
+        "name": "shape",
+        "description": "{ body1?: string, body2?: string, button?: string, caption?: string, h1?: string, h2?: string, h3?: string, h4?: string, h5?: string, h6?: string, inherit?: string, overline?: string, subtitle1?: string, subtitle2?: string }"
+      },
       "default": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n  inherit: 'p',\n}"
     }
   },

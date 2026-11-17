@@ -1,6 +1,6 @@
 {
   "props": {
-    "boundaryCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "boundaryCount": { "type": { "name": "number" }, "default": "1" },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
@@ -9,8 +9,8 @@
       },
       "default": "'standard'"
     },
-    "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
-    "defaultPage": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "count": { "type": { "name": "number" }, "default": "1" },
+    "defaultPage": { "type": { "name": "number" }, "default": "1" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "getItemAriaLabel": {
       "type": { "name": "func" },
@@ -28,7 +28,7 @@
         "describedArgs": ["event", "page"]
       }
     },
-    "page": { "type": { "name": "custom", "description": "integer" } },
+    "page": { "type": { "name": "number" } },
     "renderItem": {
       "type": { "name": "func" },
       "default": "(item) => <PaginationItem {...item} />",
@@ -43,7 +43,7 @@
     },
     "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
     "showLastButton": { "type": { "name": "bool" }, "default": "false" },
-    "siblingCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "siblingCount": { "type": { "name": "number" }, "default": "1" },
     "size": {
       "type": {
         "name": "union",

@@ -4,46 +4,46 @@
     "columns": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number, md?: number, sm?: number, xl?: number, xs?: number }"
       },
       "default": "12"
     },
     "columnSpacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       }
     },
     "container": { "type": { "name": "bool" }, "default": "false" },
     "direction": {
       "type": {
         "name": "union",
-        "description": "'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
+        "description": "'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;{ lg?: 'row-reverse'<br>&#124;&nbsp;'row', md?: 'row-reverse'<br>&#124;&nbsp;'row', sm?: 'row-reverse'<br>&#124;&nbsp;'row', xl?: 'row-reverse'<br>&#124;&nbsp;'row', xs?: 'row-reverse'<br>&#124;&nbsp;'row' }"
       },
       "default": "'row'"
     },
     "offset": {
       "type": {
         "name": "union",
-        "description": "string<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
+        "description": "'auto'<br>&#124;&nbsp;Array&lt;'auto'<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: 'auto'<br>&#124;&nbsp;number, md?: 'auto'<br>&#124;&nbsp;number, sm?: 'auto'<br>&#124;&nbsp;number, xl?: 'auto'<br>&#124;&nbsp;number, xs?: 'auto'<br>&#124;&nbsp;number }"
       }
     },
     "rowSpacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       }
     },
     "size": {
       "type": {
         "name": "union",
-        "description": "string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number<br>&#124;&nbsp;Array&lt;string<br>&#124;&nbsp;bool<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;object"
+        "description": "false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;Array&lt;false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, md?: false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, sm?: false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, xl?: false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number, xs?: false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'grow'<br>&#124;&nbsp;number }"
       }
     },
     "spacing": {
       "type": {
         "name": "union",
-        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;{ lg?: number<br>&#124;&nbsp;string, md?: number<br>&#124;&nbsp;string, sm?: number<br>&#124;&nbsp;string, xl?: number<br>&#124;&nbsp;string, xs?: number<br>&#124;&nbsp;string }<br>&#124;&nbsp;string"
       },
       "default": "0"
     },
