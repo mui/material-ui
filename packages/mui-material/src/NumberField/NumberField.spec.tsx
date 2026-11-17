@@ -39,6 +39,28 @@ function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldP
 // @ts-expect-error Root slot props do not expose component.
 <NumberField slotProps={{ root: { component: 'section' } }} />;
 
+<NumberField slots={{ group: 'section' }} />;
+<NumberField slotProps={{ group: { render: <section /> } }} classes={{ group: 'field-group' }} />;
+<NumberField
+  slotProps={{
+    group: (ownerState) => {
+      expectType<NumberFieldOwnerState, typeof ownerState>(ownerState);
+      return {
+        ref: React.createRef<HTMLDivElement>(),
+        sx: { gap: 1 },
+        render: (props, state) => {
+          expectType<BaseNumberField.Group.State, typeof state>(state);
+          return <section {...props} />;
+        },
+      };
+    },
+  }}
+/>;
+// @ts-expect-error Use render to change the group element.
+<NumberField slotProps={{ group: { component: 'section' } }} />;
+// @ts-expect-error render takes an element or callback, not a tag name.
+<NumberField slotProps={{ group: { render: 'section' } }} />;
+
 <NumberField slotProps={{ input: { render: <section /> }, htmlInput: { render: <input /> } }} />;
 <NumberField
   slotProps={{

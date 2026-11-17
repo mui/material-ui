@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
+import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import type { HTMLProps } from '@base-ui/react/types';
 import { mergeProps } from '@base-ui/react/merge-props';
 
@@ -12,6 +12,7 @@ import useSlot from '../utils/useSlot';
 import getAdornedStart from './utils/getAdornedStart';
 import { styled } from '../zero-styled';
 import InputLabel from '../InputLabel';
+import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import type { InputLabelProps } from '../InputLabel';
 import FormHelperText from '../FormHelperText';
 import RenderElement from './RenderElement';
@@ -20,7 +21,7 @@ interface NumberFieldRootProps {
   baseProps: HTMLProps;
   baseState: BaseNumberField.Root.State;
   children: React.ReactNode;
-  classes: Pick<NumberFieldClasses, 'root'>;
+  classes: Pick<NumberFieldClasses, 'root' | 'group'>;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
@@ -33,6 +34,24 @@ const NumberFieldRoot = styled(FormControl, {
     ownerState.scrubbing && styles.scrubbing,
   ],
 })({});
+
+const NumberFieldGroup = styled('div', {
+  name: 'MuiNumberField',
+  slot: 'group',
+})<{ ownerState: NumberFieldOwnerState }>({
+  // Stretch the Material input to the field's width.
+  display: 'grid',
+  minWidth: 0,
+  variants: [
+    {
+      props: { variant: 'standard' },
+      style: {
+        // Keep Input's label spacing on the group that follows the label.
+        [`label + &, .${inputLabelClasses.root} + &`]: { marginTop: 16 },
+      },
+    },
+  ],
+});
 
 // This component is a placeholder for FormControl to correctly set the shrink label state on SSR.
 function SSRInitialFilled(_: { value: string; startAdornment?: React.ReactNode }) {
@@ -76,6 +95,13 @@ const NumberFieldRootSlot = React.forwardRef(
         : undefined,
     });
 
+    const [GroupSlot, groupSlotProps] = useSlot('group', {
+      elementType: NumberFieldGroup,
+      externalForwardedProps,
+      ownerState,
+      className: classes.group,
+    });
+
     const [InputLabelSlot, inputLabelSlotProps] = useSlot('inputLabel', {
       elementType: InputLabel,
       externalForwardedProps,
@@ -92,6 +118,7 @@ const NumberFieldRootSlot = React.forwardRef(
 
     const { render: inputLabelRender, ...inputLabelProps } = inputLabelSlotProps;
     const { render: formHelperTextRender, ...formHelperTextProps } = formHelperTextSlotProps;
+    const { render: groupRender, ...groupProps } = groupSlotProps;
 
     // FormControl needs the adornment before effects run to initialize label shrink.
     const resolvedInputSlotProps = externalForwardedProps.slotProps?.input;
@@ -123,7 +150,21 @@ const NumberFieldRootSlot = React.forwardRef(
             {label}
           </InputLabelSlot>
         )}
-        {children}
+        <BaseNumberField.Group
+          render={
+            <GroupSlot
+              {...groupProps}
+              {...(!externalForwardedProps.slots?.group &&
+                groupRender && {
+                  as: RenderElement,
+                  render: groupRender,
+                  renderState: baseState,
+                })}
+            >
+              {children}
+            </GroupSlot>
+          }
+        />
         {hasHelperText && (
           <FormHelperTextSlot
             id={helperTextId}

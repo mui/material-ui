@@ -84,6 +84,7 @@ describe('<NumberField />', () => {
       htmlInput: createCallback(),
       inputLabel: createCallback(),
       formHelperText: createCallback(),
+      group: createCallback(),
       incrementButton: createCallback(),
       decrementButton: createCallback(),
       scrubArea: createCallback(),
@@ -127,6 +128,10 @@ describe('<NumberField />', () => {
         htmlInput: {
           testWithComponent: TestHtmlInput,
           testWithElement: 'input',
+        },
+        group: {
+          expectedClassName: classes.group,
+          testWithElement: 'div',
         },
         // @ts-expect-error Conformance requires a class name in its types even for slots without one.
         inputLabel: {},
@@ -217,6 +222,84 @@ describe('<NumberField />', () => {
 
       expect(root.tagName).to.equal('DIV');
       expect(renderRoot).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  // The Base UI group must contain the Material input and its controls, retain
+  // Material customization, and expose live state through its render bridge.
+  describe('group slot', () => {
+    it.skipIf(isJsdom())('stretches the Material input to the root width', () => {
+      render(<NumberField label="Amount" sx={{ width: 320 }} />);
+      const group = screen.getByRole('group');
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+
+      expect(group.getBoundingClientRect().width).to.equal(320);
+      expect(input.closest('.MuiInputBase-root')!.getBoundingClientRect().width).to.equal(320);
+    });
+
+    it('preserves grouping, refs, styles and live render state', async () => {
+      const groupRef = React.createRef<HTMLDivElement>();
+      const theme = createTheme({
+        components: {
+          MuiNumberField: { styleOverrides: { group: { paddingTop: 7 } } },
+        },
+      });
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <NumberField
+            label="Amount"
+            helperText="Helper text"
+            defaultValue={5}
+            slotProps={{
+              group: {
+                ref: groupRef,
+                sx: { paddingBottom: '9px' },
+                render: (props, state) => <section {...props} data-render-value={state.value} />,
+              },
+            }}
+          />
+        </ThemeProvider>,
+      );
+      const group = screen.getByRole('group');
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+
+      expect(group.tagName).to.equal('SECTION');
+      expect(groupRef.current).to.equal(group);
+      expect(getComputedStyle(group).paddingTop).to.equal('7px');
+      expect(getComputedStyle(group).paddingBottom).to.equal('9px');
+      expect(group).to.contain(input);
+      expect(group).to.contain(screen.getByRole('button', { name: 'Increase' }));
+      expect(group).to.contain(screen.getByRole('button', { name: 'Decrease' }));
+      expect(group).not.to.contain(screen.getByText('Amount', { selector: 'label' }));
+      expect(group).not.to.contain(screen.getByText('Helper text'));
+      expect(group).to.have.attribute('data-render-value', '5');
+
+      await user.click(input);
+      await user.keyboard('{ArrowUp}');
+
+      expect(group).to.have.attribute('data-render-value', '6');
+    });
+
+    it('lets a replacement slot bypass render while retaining the field content', async () => {
+      const renderGroup = vi.fn(() => <div />);
+      const { user } = render(
+        <NumberField
+          label="Amount"
+          defaultValue={5}
+          slots={{ group: 'section' }}
+          slotProps={{ group: { render: renderGroup, children: 'Replacement content' } }}
+        />,
+      );
+      const group = screen.getByRole('group');
+      const increment = screen.getByRole('button', { name: 'Increase' });
+
+      expect(group.tagName).to.equal('SECTION');
+      expect(group).to.contain(increment);
+      expect(screen.queryByText('Replacement content')).to.equal(null);
+      expect(renderGroup).toHaveBeenCalledTimes(0);
+
+      await user.click(increment);
+      expect(screen.getByRole('textbox', { name: 'Amount' })).to.have.value('6');
     });
   });
 
