@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import { useTheme, ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
 describe('[Material UI] ThemeProviderWithVars', () => {
+  const cssVarsTheme = createTheme({ cssVariables: true });
+
   let originalMatchmedia;
   const { render } = createRenderer();
   let storage = {};
@@ -203,7 +205,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Vars />
         </ThemeProvider>,
       );
@@ -229,7 +231,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Vars />
         </ThemeProvider>,
       );
@@ -250,7 +252,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Text />
         </ThemeProvider>,
       );
@@ -269,7 +271,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Text />
         </ThemeProvider>,
       );
@@ -286,7 +288,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Text />
         </ThemeProvider>,
       );
@@ -303,7 +305,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Consumer />
         </ThemeProvider>,
       );
@@ -318,7 +320,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Consumer />
         </ThemeProvider>,
       );
@@ -331,7 +333,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     "should use numeric values in system's spacing",
     function test() {
       render(
-        <ThemeProvider theme={createTheme({ cssVariables: true })}>
+        <ThemeProvider theme={cssVarsTheme}>
           <Box
             data-testid="box-1"
             sx={{
@@ -404,8 +406,6 @@ describe('[Material UI] ThemeProviderWithVars', () => {
   });
 
   it('theme should remain the same when ThemeProvider rerenders', () => {
-    const theme = createTheme({ cssVariables: true });
-
     function Inner() {
       const upperTheme = useTheme();
       const themeRef = React.useRef(upperTheme);
@@ -421,7 +421,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       const [, setState] = React.useState({});
       const rerender = () => setState({});
       return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={cssVarsTheme}>
           <button onClick={() => rerender()}>rerender</button>
           <Inner />
         </ThemeProvider>
