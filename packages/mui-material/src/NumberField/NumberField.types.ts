@@ -13,7 +13,6 @@ import type { InputLabelProps } from '../InputLabel';
 import type { Theme } from '../styles/createTheme';
 import type { FilledInputProps } from '../FilledInput';
 import type { IconButtonProps } from '../IconButton';
-import type { InputBaseProps } from '../InputBase';
 import type { OutlinedInputProps } from '../OutlinedInput';
 import type { SxProps } from '../styles';
 
@@ -107,10 +106,14 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     >;
     /**
      * Props forwarded to the native `<input>` element.
+     * Use `render` to customize the input while preserving Material styling and Base UI behavior.
      */
-    htmlInput: SlotProps<
-      React.ElementType<InputBaseProps['inputProps']>,
-      NumberFieldHtmlInputSlotPropsOverrides,
+    htmlInput: SlotComponentProps<
+      'input',
+      NumberFieldHtmlInputSlotPropsOverrides & {
+        render?: BaseNumberField.Input.Props['render'] | undefined;
+        sx?: SxProps<Theme> | undefined;
+      },
       NumberFieldOwnerState
     >;
     /**
@@ -128,10 +131,13 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
      * Props forwarded to the Material input wrapper.
      * Depending on `variant`, the available props are based on [OutlinedInput](https://mui.com/material-ui/api/outlined-input/#props),
      * [FilledInput](https://mui.com/material-ui/api/filled-input/#props), or [Input](https://mui.com/material-ui/api/input/#props).
+     * Use `render` to change the wrapper element while preserving the Material input.
      */
-    input: SlotProps<
+    input: SlotComponentProps<
       React.ElementType<InputPropsType>,
-      NumberFieldInputSlotPropsOverrides,
+      NumberFieldInputSlotPropsOverrides & {
+        render?: BaseNumberField.Group.Props['render'] | undefined;
+      },
       NumberFieldOwnerState
     >;
     /**

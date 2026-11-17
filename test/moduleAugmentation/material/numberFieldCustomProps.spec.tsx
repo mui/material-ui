@@ -48,8 +48,8 @@ declare module '@mui/material/FormControl' {
   size="compact"
   slotProps={{
     root: { customRootProp: 'root' },
-    input: { customInputProp: 'input' },
-    htmlInput: { customNativeProp: 'native' },
+    input: { customInputProp: 'input', render: <section /> },
+    htmlInput: { customNativeProp: 'native', render: <input /> },
     inputLabel: { customLabelProp: 'label', shrink: true },
     formHelperText: { customHelperProp: 'helper' },
     incrementButton: { stepLabel: 'increase' },

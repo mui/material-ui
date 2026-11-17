@@ -1621,22 +1621,81 @@ describe('<NumberField />', () => {
     // Replacing the Material wrapper or native input must retain the refs and event
     // wiring that connect Base UI editing with Material focus and styling.
     describe('input customization', () => {
-      it('preserves Material input behavior with a custom root element', async () => {
+      // Each variant supplies a different styled native input. Rendering another
+      // element must keep that layer rather than replace it with an unstyled input.
+      (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
+        it(`preserves ${variant} input styles through both render adapters`, () => {
+          render(
+            <React.Fragment>
+              <NumberField label="Reference" variant={variant} />
+              <NumberField
+                label="Amount"
+                variant={variant}
+                slotProps={{
+                  input: { render: <section /> },
+                  htmlInput: { render: <input /> },
+                }}
+              />
+            </React.Fragment>,
+          );
+          const reference = screen.getByRole('textbox', { name: 'Reference' });
+          const input = screen.getByRole('textbox', { name: 'Amount' });
+
+          expect(input.closest('.MuiInputBase-root')!.tagName).to.equal('SECTION');
+          expect(getComputedStyle(input).padding).to.equal(getComputedStyle(reference).padding);
+        });
+      });
+
+      it('connects render callbacks to live state and the wrapper and native refs', async () => {
+        const wrapperRef = React.createRef<HTMLDivElement>();
+        const inputRef = React.createRef<HTMLInputElement>();
         const { user } = render(
           <NumberField
             label="Amount"
             defaultValue={5}
-            slotProps={{ input: { component: 'section' } }}
+            inputRef={inputRef}
+            slotProps={{
+              input: {
+                ref: wrapperRef,
+                render: (props, state) => <section {...props} data-render-value={state.value} />,
+              },
+              htmlInput: {
+                render: (props, state) => <input {...props} data-render-value={state.value} />,
+              },
+            }}
           />,
         );
-        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        const wrapper = input.closest<HTMLElement>('.MuiInputBase-root')!;
+        const input = screen.getByRole('textbox', { name: 'Amount' });
+        const wrapper = input.closest('section')!;
 
-        expect(wrapper.tagName).to.equal('SECTION');
+        expect(wrapperRef.current).to.equal(wrapper);
+        expect(inputRef.current).to.equal(input);
 
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-        expect(input).to.have.value('6');
+        await user.clear(input);
+        await user.keyboard('7');
+        await user.click(screen.getByRole('button', { name: 'Increase' }));
+
+        expect(input).to.have.value('8');
+        expect(document.activeElement).to.equal(input);
+        expect(wrapper).to.have.attribute('data-render-value', '8');
+        expect(input).to.have.attribute('data-render-value', '8');
+      });
+
+      it('lets replacement input slots bypass their render adapters', () => {
+        const renderInput = vi.fn(() => <section />);
+        const renderHtmlInput = vi.fn(() => <input />);
+        render(
+          <NumberField
+            slots={{ input: TestInput, htmlInput: TestHtmlInput }}
+            slotProps={{
+              input: { render: renderInput },
+              htmlInput: { render: renderHtmlInput },
+            }}
+          />,
+        );
+
+        expect(renderInput).toHaveBeenCalledTimes(0);
+        expect(renderHtmlInput).toHaveBeenCalledTimes(0);
       });
 
       it('preserves editing, handlers and refs with custom Material and native inputs', async () => {
@@ -1650,6 +1709,7 @@ describe('<NumberField />', () => {
           keyDownTargets.push(event.currentTarget);
         };
         const wrapperProps = { ref: wrapperRef, 'data-testid': 'material-input' };
+        const nativeProps = { ref: nativeRef, onKeyDown, onChange, 'data-testid': 'native-input' };
         const { user } = render(
           <React.Fragment>
             <NumberField
@@ -1660,7 +1720,7 @@ describe('<NumberField />', () => {
               slots={{ input: TestInput, htmlInput: TestHtmlInput }}
               slotProps={{
                 input: wrapperProps,
-                htmlInput: { ref: nativeRef, onKeyDown, onChange, 'data-testid': 'native-input' },
+                htmlInput: nativeProps,
               }}
             />
             <button type="button">Outside</button>
