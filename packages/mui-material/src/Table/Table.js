@@ -124,10 +124,8 @@ Table.propTypes /* remove-proptypes */ = {
    * Allows TableCells to inherit size of the Table.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   /**
    * Set the header sticky.
    * @default false
