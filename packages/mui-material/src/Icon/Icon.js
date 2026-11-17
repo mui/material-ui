@@ -185,20 +185,21 @@ Icon.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'inherit'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'inherit',
-      'action',
-      'disabled',
-      'primary',
-      'secondary',
-      'error',
-      'info',
-      'success',
-      'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'inherit',
+        'action',
+        'disabled',
+        'primary',
+        'secondary',
+        'error',
+        'info',
+        'success',
+        'warning',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -208,10 +209,8 @@ Icon.propTypes /* remove-proptypes */ = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
-    PropTypes.string,
-  ]),
+  fontSize: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

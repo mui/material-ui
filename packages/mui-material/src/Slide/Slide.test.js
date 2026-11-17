@@ -143,12 +143,12 @@ describe('<Slide />', () => {
     });
 
     it.skipIf(!isJsdom())('should render the default theme values by default', function test() {
-      const theme = createTheme();
       const handleEntering = spy();
       render(<Slide {...defaultProps} onEntering={handleEntering} />);
 
+      // The default `easeOut` is `cubic-bezier(0.0, 0, 0.2, 1)`, which the CSSOM normalizes.
       expect(handleEntering.args[0][0].style.transition).to.equal(
-        `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
+        'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
       );
     });
 

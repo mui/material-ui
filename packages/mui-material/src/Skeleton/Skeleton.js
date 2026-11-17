@@ -318,10 +318,8 @@ Skeleton.propTypes /* remove-proptypes */ = {
    * The type of content that will be rendered.
    * @default 'text'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']), PropTypes.string]),
   /**
    * Width of the skeleton.
    * Useful when the skeleton is inside an inline element with no width of its own.
