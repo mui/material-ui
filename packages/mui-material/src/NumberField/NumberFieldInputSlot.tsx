@@ -285,7 +285,8 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       ...externalForwardedProps,
       slotProps: {
         ...externalForwardedProps.slotProps,
-        htmlInput: htmlInputSlotProps,
+        // Clear component after native-prop precedence, including nested input props.
+        htmlInput: { ...htmlInputSlotProps, component: undefined },
       },
     },
     ownerState,

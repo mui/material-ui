@@ -149,6 +149,27 @@ describe('<NumberField />', () => {
   // Test the Material adapter's styles/context, state wiring and precedence.
   // Base UI owns render-element prop merging and ref lifecycle behavior.
   describe('root render', () => {
+    // Spreads exercise JavaScript props that the public TypeScript API rejects.
+    const unsupportedComponentProps = { component: 'section', className: 'custom-root' };
+    [
+      { name: 'top-level props', props: unsupportedComponentProps },
+      { name: 'root slot props', props: { slotProps: { root: unsupportedComponentProps } } },
+      {
+        name: 'root slot callback props',
+        props: { slotProps: { root: () => unsupportedComponentProps } },
+      },
+    ].forEach(({ name, props }) => {
+      it(`ignores component from ${name} and preserves FormControl rendering`, () => {
+        render(
+          <NumberField {...props} label="Amount" data-testid="render-root" render={<fieldset />} />,
+        );
+        const root = screen.getByTestId('render-root');
+
+        expect(root.tagName).to.equal('FIELDSET');
+        expect(root).to.have.class('MuiFormControl-root');
+      });
+    });
+
     it('preserves Material styles, FormControl context and the forwarded ref', () => {
       const rootRef = React.createRef<HTMLDivElement>();
       const theme = createTheme({
@@ -1651,6 +1672,28 @@ describe('<NumberField />', () => {
     // Replacing the Material wrapper or native input must retain the refs and event
     // wiring that connect Base UI editing with Material focus and styling.
     describe('input customization', () => {
+      it('ignores component in input slot props and preserves Material rendering', () => {
+        const unsupportedComponentProps = { component: 'article' };
+        render(
+          <NumberField
+            label="Amount"
+            slotProps={{
+              input: {
+                ...unsupportedComponentProps,
+                render: <section data-testid="material-input" />,
+              },
+              htmlInput: {
+                ...unsupportedComponentProps,
+                render: <input />,
+              },
+            }}
+          />,
+        );
+
+        expect(screen.getByTestId('material-input')).to.have.class('MuiInputBase-root');
+        expect(screen.getByRole('textbox', { name: 'Amount' }).tagName).to.equal('INPUT');
+      });
+
       // Each variant supplies a different styled native input. Rendering another
       // element must keep that layer rather than replace it with an unstyled input.
       (['outlined', 'filled', 'standard'] as const).forEach((variant) => {
