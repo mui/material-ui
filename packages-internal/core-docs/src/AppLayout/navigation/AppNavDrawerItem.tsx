@@ -156,7 +156,7 @@ const Item = styled(ItemBase, {
         {
           props: ({ hasIcon }) => !!hasIcon,
           style: {
-            paddingLeft: 0,
+            paddingLeft: 2,
           },
         },
       ],
