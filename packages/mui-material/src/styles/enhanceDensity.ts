@@ -423,7 +423,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   // Fixed arrow size due to fixed spacing between tooltip and target
-  addStyleOverride(enhanced.components, 'MuiTooltip', 'arrow', { '--_arrowSize': '10px' });
+  addStyleOverride(enhanced.components, 'MuiTooltip', 'arrow', { fontSize: '10px' });
   addStyleOverride(enhanced.components, 'MuiInputBase', 'root', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
     // The medium gap sits on the root: outside a FormControl the ownerState

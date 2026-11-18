@@ -75,32 +75,32 @@ const TooltipPopper = styled(Popper, {
         style: {
           [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
             top: 0,
-            marginTop: 'calc(-0.71 * var(--_arrowSize, 1em))',
+            marginTop: '-0.71em',
             '&::before': {
               transformOrigin: '0 100%',
             },
           },
           [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
             bottom: 0,
-            marginBottom: 'calc(-0.71 * var(--_arrowSize, 1em))',
+            marginBottom: '-0.71em',
             '&::before': {
               transformOrigin: '100% 0',
             },
           },
           [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--_arrowSize, 1em)',
-            width: 'calc(0.71 * var(--_arrowSize, 1em))',
+            height: '1em',
+            width: '0.71em',
             insetInlineStart: 0,
-            marginInlineStart: 'calc(-0.71 * var(--_arrowSize, 1em))',
+            marginInlineStart: '-0.71em',
             '&::before': {
               transformOrigin: '100% 100%',
             },
           },
           [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--_arrowSize, 1em)',
-            width: 'calc(0.71 * var(--_arrowSize, 1em))',
+            height: '1em',
+            width: '0.71em',
             insetInlineEnd: 0,
-            marginInlineEnd: 'calc(-0.71 * var(--_arrowSize, 1em))',
+            marginInlineEnd: '-0.71em',
             '&::before': {
               transformOrigin: '0 0',
             },
@@ -184,9 +184,8 @@ const TooltipArrow = styled('span', {
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
     position: 'absolute',
-    '--_arrowSize': '1em',
-    width: 'var(--_arrowSize)',
-    height: 'calc(0.71 * var(--_arrowSize))' /* = width / sqrt(2) = (length of the hypotenuse) */,
+    width: '1em',
+    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
     color: theme.vars ? theme.vars.palette.Tooltip.bg : theme.alpha(theme.palette.grey[700], 0.9),
     '&::before': {
