@@ -183,7 +183,7 @@ These types are opt-in so that projects without the enhancer keep their own `The
 
 ## All components
 
-`enhanceDensity` applies to every component listed in the demo below, and also to ButtonGroup, ListSubheader, ListItemAvatar, ListItemSecondaryAction, and TablePagination. Other components are left untouched. Select a component to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
+Select a component to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
 
 {{"demo": "AllComponentsDemo.js"}}
 

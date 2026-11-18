@@ -34,7 +34,7 @@ const tokens = {
   // Only the box and its padding step up with the size prop.
   bySize: {
     small: {
-      height: 'touchTarget - xSmall',
+      height: 'touchTarget - xxSmall',
       padding: 'small',
     },
     medium: { height: 'touchTarget', padding: 'medium' },
