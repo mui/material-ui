@@ -300,11 +300,12 @@ NumberField.propTypes /* remove-proptypes */ = {
    *
    * See [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat).
    */
-  locale: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.string])),
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  locale: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.string])),
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   /**
    * The upper bound for the numeric value.
    * The increment button is disabled at or above this value.
@@ -386,19 +387,20 @@ NumberField.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    controls: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    decrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    htmlInput: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    incrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    scrubArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    scrubAreaAdornment: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    scrubAreaCursor: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({
+      controls: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      decrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      htmlInput: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      incrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      scrubArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      scrubAreaAdornment: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      scrubAreaCursor: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
   /**
    * The components used for each slot inside.
    * @default {}

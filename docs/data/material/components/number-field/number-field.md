@@ -212,7 +212,7 @@ Use `inputRef` to access or focus the visible input.
 Use `render` to change the root element while preserving Material styling and field behavior.
 Other slots accept `render` through `slotProps`, such as `slotProps.htmlInput.render` or `slotProps.formHelperText.render`.
 
-The prop accepts a React element or a callback receiving the generated props and live Base UI state.
+The prop accepts a React element or a callback receiving the generated props and live Base UI state.
 Spread the generated props onto the rendered element to preserve its ref, event handlers, styles, and accessibility attributes.
 Custom components must forward the ref to their DOM element.
 
@@ -227,7 +227,7 @@ A `slots` replacement takes precedence over `render` for the same slot.
 See the [API reference](/material-ui/api/number-field/#slots) for the available slots.
 
 Use `slotProps.input.render` to change the Material input's root element.
-That element also provides Base UI's NumberField Group semantics with `role="group"`.
+That element also provides Base UI's NumberField Group semantics with `role="group"`.
 
 ### Theme overrides
 
@@ -241,7 +241,7 @@ See [themed components](/material-ui/customization/theme-components/) for more d
 
 ## Anatomy
 
-NumberField combines Material UI components with Base UI's numeric input behavior.
+NumberField combines Material UI components with Base UI's numeric input behavior.
 The following shows its slots with a scrub handle at the start and controls at the end:
 
 ```text
@@ -257,7 +257,7 @@ root (FormControl)
 └── formHelperText (FormHelperText, optional)
 ```
 
-The Material input root also serves as Base UI's Group, without an extra wrapper.
+The Material input root also serves as Base UI's Group, without an extra wrapper.
 With split controls, the `controls` slot renders once on each side of the input.
 The `scrubAreaCursor` slot renders in a portal while scrubbing.
 
