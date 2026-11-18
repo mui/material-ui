@@ -116,6 +116,9 @@ createTheme({
       styleOverrides: {
         root: { minWidth: 120 },
         input: { gap: 2 },
+        htmlInput: { paddingTop: 3 },
+        inputLabel: { paddingTop: 7 },
+        formHelperText: { marginLeft: 9 },
         scrubbing: { opacity: 0.8 },
         controls: { gap: 2 },
         scrubAreaAdornment: { gap: 2 },

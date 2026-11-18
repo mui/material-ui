@@ -123,15 +123,13 @@ describe('<NumberField />', () => {
           testWithComponent: TestInput,
           testWithElement: null,
         },
-        // @ts-expect-error Conformance requires a class name in its types even for slots without one.
         htmlInput: {
+          expectedClassName: classes.htmlInput,
           testWithComponent: TestHtmlInput,
           testWithElement: 'input',
         },
-        // @ts-expect-error Conformance requires a class name in its types even for slots without one.
-        inputLabel: {},
-        // @ts-expect-error Conformance requires a class name in its types even for slots without one.
-        formHelperText: {},
+        inputLabel: { expectedClassName: classes.inputLabel },
+        formHelperText: { expectedClassName: classes.formHelperText },
         incrementButton: {
           expectedClassName: classes.incrementButton,
           testWithComponent: TestIconButton,
@@ -323,6 +321,31 @@ describe('<NumberField />', () => {
   // Material props must configure the input and surrounding form controls, while
   // slot callbacks retain the public props and Base UI's resolved behavioral flags.
   describe('Material props and owner state', () => {
+    it('applies NumberField theme overrides to the label, helper text and native input', () => {
+      const theme = createTheme({
+        components: {
+          MuiNumberField: {
+            styleOverrides: {
+              inputLabel: { paddingTop: 7 },
+              formHelperText: { marginLeft: 9 },
+              htmlInput: { paddingTop: 3 },
+            },
+          },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <NumberField label="Amount" helperText="Helper text" />
+        </ThemeProvider>,
+      );
+
+      expect(
+        getComputedStyle(screen.getByText('Amount', { selector: 'label' })).paddingTop,
+      ).to.equal('7px');
+      expect(getComputedStyle(screen.getByText('Helper text')).marginLeft).to.equal('9px');
+      expect(getComputedStyle(screen.getByRole('textbox')).paddingTop).to.equal('3px');
+    });
+
     // Check the rendered Material components and their context-derived classes so
     // forwarding a prop only to the outer FormControl cannot satisfy the tests.
     describe('Material input and form props', () => {

@@ -290,7 +290,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       },
     },
     ownerState,
-    className: undefined,
+    className: classes.htmlInput,
     getSlotProps: (externalHandlers) => {
       // An unspecified Base UI validation state must not clear Material's aria-invalid.
       const { 'aria-invalid': ariaInvalid, ...restBaseProps } = baseProps;

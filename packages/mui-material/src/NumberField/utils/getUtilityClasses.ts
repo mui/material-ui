@@ -8,6 +8,9 @@ const getUtilityClasses = (ownerState: NumberFieldOwnerState) => {
   const slots = {
     root: ['root', scrubbing && 'scrubbing'],
     input: ['input'],
+    htmlInput: ['htmlInput'],
+    inputLabel: ['inputLabel'],
+    formHelperText: ['formHelperText'],
     controls: ['controls'],
     scrubArea: ['scrubArea'],
     scrubAreaAdornment: ['scrubAreaAdornment'],
