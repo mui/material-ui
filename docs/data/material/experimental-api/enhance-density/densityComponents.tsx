@@ -106,6 +106,48 @@ export interface ComponentSpec {
   render: (values: Record<string, ControlValue>) => React.ReactNode;
 }
 
+function DialogPreview({ dividers }: { dividers: boolean }) {
+  const stageRef = React.useRef<HTMLDivElement>(null);
+  return (
+    <Box ref={stageRef} sx={{ position: 'relative', width: 420, height: 208 }}>
+      <Dialog
+        open
+        fullWidth
+        hideBackdrop
+        disablePortal
+        disableEnforceFocus
+        disableAutoFocus
+        disableScrollLock
+        container={() => stageRef.current}
+        sx={{ position: 'absolute', zIndex: 1 }}
+      >
+        <DialogTitle
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          Use location service?
+          <IconButton aria-label="close">
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers={dividers}>
+          <Typography variant="body2">
+            Let apps use your location to find nearby places. You can turn this off
+            anytime.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button>Disagree</Button>
+          <Button variant="contained">Agree</Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+}
+
 export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
   Accordion: {
     render: () => (
@@ -314,41 +356,7 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
       },
     ],
     render: (values) => (
-      <Box sx={{ position: 'relative', width: 420, height: 208 }}>
-        <Dialog
-          open
-          fullWidth
-          hideBackdrop
-          disablePortal
-          disableEnforceFocus
-          disableAutoFocus
-          disableScrollLock
-          sx={{ position: 'absolute', zIndex: 1 }}
-        >
-          <DialogTitle
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            Use location service?
-            <IconButton aria-label="close">
-              <CloseIcon />
-            </IconButton>
-          </DialogTitle>
-          <DialogContent dividers={values['DialogContent dividers'] === 'true'}>
-            <Typography variant="body2">
-              Let apps use your location to find nearby places. You can turn this off
-              anytime.
-            </Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button>Disagree</Button>
-            <Button variant="contained">Agree</Button>
-          </DialogActions>
-        </Dialog>
-      </Box>
+      <DialogPreview dividers={values['DialogContent dividers'] === 'true'} />
     ),
   },
   Fab: {

@@ -187,6 +187,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   };
   addStyleOverride(enhanced.components, 'MuiChip', 'deleteIcon', {
+    position: 'relative',
     margin: 0,
     width: 'var(--_childSize)',
     height: 'var(--_childSize)',

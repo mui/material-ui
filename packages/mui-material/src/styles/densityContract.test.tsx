@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { describe, test, expect, vi } from 'vitest';
-import { createRenderer, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
@@ -692,6 +692,20 @@ describe.skipIf(isJsdom())('density contract', () => {
           });
           expect(round2(rect('.MuiButton-root', inCase('vertical')).height)).to.equal(tap);
         });
+      });
+
+      test('a small clickable Chip deletes from its delete icon', () => {
+        const onClick = vi.fn();
+        const onDelete = vi.fn();
+        renderIn(MEDIUM, <Chip size="small" label="Chip" onClick={onClick} onDelete={onDelete} />);
+        const icon = rect('.MuiChip-deleteIcon');
+        fireEvent.click(
+          document.elementFromPoint(icon.left + icon.width / 2, icon.top + icon.height / 2)!,
+        );
+        expect({
+          clicks: onClick.mock.calls.length,
+          deletes: onDelete.mock.calls.length,
+        }).to.deep.equal({ clicks: 0, deletes: 1 });
       });
 
       test('leaves non-clickable Chips and medium sizes alone', () => {
