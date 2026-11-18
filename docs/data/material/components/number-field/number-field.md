@@ -231,7 +231,7 @@ That element also provides Base UI's NumberField Group semantics with `role="gr
 
 ### Theme overrides
 
-Use `MuiNumberField` in the theme to set default props or override the `root`, `input`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, `scrubAreaAdornment`, and `scrubAreaCursor` styles.
+Use `MuiNumberField` in the theme to set default props or override the `root`, `input`, `htmlInput`, `inputLabel`, `formHelperText`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, `scrubAreaAdornment`, and `scrubAreaCursor` styles.
 The following example sets small, stacked controls and a scrub handle as theme defaults.
 It gives the buttons different colors and adds an outline while scrubbing through `styleOverrides.scrubbing`.
 

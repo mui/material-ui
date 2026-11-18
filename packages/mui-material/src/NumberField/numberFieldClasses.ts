@@ -6,6 +6,12 @@ export interface NumberFieldClasses {
   root: string;
   /** Styles applied to the Material input root. */
   input: string;
+  /** Styles applied to the native input element. */
+  htmlInput: string;
+  /** Styles applied to the input label. */
+  inputLabel: string;
+  /** Styles applied to the helper text. */
+  formHelperText: string;
   /** State class applied to the root element while scrubbing. */
   scrubbing: string;
   /** Styles applied to each controls adornment. */
@@ -31,6 +37,9 @@ export function getNumberFieldUtilityClass(slot: string): string {
 const numberFieldClasses: NumberFieldClasses = generateUtilityClasses('MuiNumberField', [
   'root',
   'input',
+  'htmlInput',
+  'inputLabel',
+  'formHelperText',
   'scrubbing',
   'controls',
   'incrementButton',

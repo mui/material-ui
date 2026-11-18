@@ -7,6 +7,7 @@ import { mergeProps } from '@base-ui/react/merge-props';
 
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import type { NumberFieldClasses } from './numberFieldClasses';
+import numberFieldClasses from './numberFieldClasses';
 import FormControl from '../FormControl';
 import useSlot from '../utils/useSlot';
 import getAdornedStart from './utils/getAdornedStart';
@@ -20,7 +21,7 @@ interface NumberFieldRootProps {
   baseProps: HTMLProps;
   baseState: BaseNumberField.Root.State;
   children: React.ReactNode;
-  classes: Pick<NumberFieldClasses, 'root'>;
+  classes: Pick<NumberFieldClasses, 'root' | 'inputLabel' | 'formHelperText'>;
   helperTextId: string | undefined;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
@@ -31,8 +32,20 @@ const NumberFieldRoot = styled(FormControl, {
   slot: 'root',
   overridesResolver: ({ ownerState }, styles) => [
     styles.root,
+    // Keep the Material variant's native input styles and apply overrides through its class.
+    { [`& .${numberFieldClasses.htmlInput}`]: styles.htmlInput },
     ownerState.scrubbing && styles.scrubbing,
   ],
+})({});
+
+const NumberFieldInputLabel = styled(InputLabel, {
+  name: 'MuiNumberField',
+  slot: 'inputLabel',
+})({});
+
+const NumberFieldFormHelperText = styled(FormHelperText, {
+  name: 'MuiNumberField',
+  slot: 'formHelperText',
 })({});
 
 // This component is a placeholder for FormControl to correctly set the shrink label state on SSR.
@@ -84,17 +97,17 @@ const NumberFieldRootSlot = React.forwardRef(
     });
 
     const [InputLabelSlot, inputLabelSlotProps] = useSlot('inputLabel', {
-      elementType: InputLabel,
+      elementType: NumberFieldInputLabel,
       externalForwardedProps,
       ownerState,
-      className: undefined,
+      className: classes.inputLabel,
     });
 
     const [FormHelperTextSlot, formHelperTextSlotProps] = useSlot('formHelperText', {
-      elementType: FormHelperText,
+      elementType: NumberFieldFormHelperText,
       externalForwardedProps,
       ownerState,
-      className: undefined,
+      className: classes.formHelperText,
     });
 
     const { render: inputLabelRender, ...inputLabelProps } = inputLabelSlotProps;

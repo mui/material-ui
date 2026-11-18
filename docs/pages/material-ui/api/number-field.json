@@ -134,13 +134,13 @@
       "name": "formHelperText",
       "description": "The component that renders the helper text.",
       "default": "FormHelperText",
-      "class": null
+      "class": "MuiNumberField-formHelperText"
     },
     {
       "name": "htmlInput",
       "description": "The component that renders the native input element.",
       "default": "'input'",
-      "class": null
+      "class": "MuiNumberField-htmlInput"
     },
     {
       "name": "incrementButton",
@@ -158,7 +158,7 @@
       "name": "inputLabel",
       "description": "The component that renders the input's label.",
       "default": "InputLabel",
-      "class": null
+      "class": "MuiNumberField-inputLabel"
     },
     {
       "name": "root",
