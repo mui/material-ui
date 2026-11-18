@@ -3,63 +3,43 @@
     "rules": {
       "aria-allowed-attr": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "aria-conditional-attr": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "aria-hidden-focus": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "aria-prohibited-attr": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "aria-valid-attr": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "aria-valid-attr-value": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "button-name": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "color-contrast": {
         "status": "pass",
-        "tags": [
-          "wcag2aa"
-        ]
+        "tags": ["wcag2aa"]
       },
       "nested-interactive": {
         "status": "pass",
-        "tags": [
-          "wcag2a"
-        ]
+        "tags": ["wcag2a"]
       },
       "target-size": {
         "status": "pass",
-        "tags": [
-          "wcag22aa"
-        ]
+        "tags": ["wcag22aa"]
       }
     }
   }
