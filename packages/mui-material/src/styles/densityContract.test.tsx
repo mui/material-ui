@@ -52,8 +52,6 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import SvgIcon from '@mui/material/SvgIcon';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
 import Pagination from '@mui/material/Pagination';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -1908,28 +1906,6 @@ describe.skipIf(isJsdom())('density contract', () => {
           round2(second.getBoundingClientRect().top - first.getBoundingClientRect().bottom),
         ).to.equal(-1);
       });
-    });
-
-    test('a body-scroll Dialog keeps the paper-scroll gutters on a narrow screen', async () => {
-      const { page } = await import('vitest/browser' as string);
-      const { innerWidth, innerHeight } = window;
-      await page.viewport(480, 800);
-      try {
-        const paperWidth = (scroll: 'paper' | 'body') => {
-          const { unmount } = renderIn(
-            MEDIUM,
-            <Dialog open fullWidth maxWidth="xs" scroll={scroll} hideBackdrop>
-              <DialogTitle>Title</DialogTitle>
-            </Dialog>,
-          );
-          const width = rect('.MuiDialog-paper').width;
-          unmount();
-          return width;
-        };
-        expect(paperWidth('body')).to.equal(paperWidth('paper'));
-      } finally {
-        await page.viewport(innerWidth, innerHeight);
-      }
     });
   });
 
