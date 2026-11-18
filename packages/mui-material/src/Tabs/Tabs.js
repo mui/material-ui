@@ -971,7 +971,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -983,10 +983,8 @@ Tabs.propTypes /* remove-proptypes */ = {
    * Determines the color of the indicator.
    * @default 'primary'
    */
-  indicatorColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
-    PropTypes.string,
-  ]),
+  indicatorColor: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
   /**
    * Callback fired when the value changes.
    *
@@ -1010,7 +1008,8 @@ Tabs.propTypes /* remove-proptypes */ = {
    * This behavior can be disabled with `allowScrollButtonsMobile`.
    * @default 'auto'
    */
-  scrollButtons: PropTypes /* @typescript-to-proptypes-ignore */.oneOf(['auto', false, true]),
+  scrollButtons: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOf(['auto', false, true]),
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.

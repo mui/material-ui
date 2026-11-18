@@ -92,7 +92,6 @@ export default function Highlights() {
                 direction="column"
                 component={Card}
                 spacing={1}
-                useFlexGap
                 sx={{
                   color: 'inherit',
                   p: 3,

@@ -8,7 +8,7 @@ import setRef from '@mui/utils/setRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import exactProp from '@mui/utils/exactProp';
 import HTMLElementType from '@mui/utils/HTMLElementType';
-import { PortalProps } from './Portal.types';
+import type { PortalProps } from './Portal.types';
 
 function getContainer(container: PortalProps['container']) {
   return typeof container === 'function' ? container() : container;
@@ -87,10 +87,8 @@ Portal.propTypes /* remove-proptypes */ = {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.func]),
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false

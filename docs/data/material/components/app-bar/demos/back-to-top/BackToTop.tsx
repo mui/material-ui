@@ -46,7 +46,7 @@ function ScrollTop(props: Props) {
     <Fade in={trigger}>
       <Box
         onClick={handleClick}
-        role="presentation"
+        role="none"
         sx={{ position: 'fixed', bottom: 16, right: 16 }}
       >
         {children}

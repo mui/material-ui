@@ -102,18 +102,6 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             },
           },
         },
-        {
-          props: ({ ownerState }) => ownerState.multiline,
-          style: {
-            padding: '16.5px 14px',
-          },
-        },
-        {
-          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
-          style: {
-            padding: '8.5px 14px',
-          },
-        },
       ],
     };
   }),
@@ -163,12 +151,6 @@ const OutlinedInputInput = styled(InputBaseInput, {
         },
         style: {
           padding: '8.5px 14px',
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          padding: 0,
         },
       },
       {
@@ -301,10 +283,8 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
   /**
    * The default value. Use when the component is not controlled.
    */

@@ -116,7 +116,7 @@ export default function PaymentForm() {
   };
 
   return (
-    <Stack spacing={{ xs: 3, sm: 6 }} useFlexGap>
+    <Stack spacing={{ xs: 3, sm: 6 }}>
       <FormControl component="fieldset" fullWidth>
         <RadioGroup
           aria-label="Payment options"

@@ -480,8 +480,6 @@ describe('<Modal />', () => {
             <input data-testid="auto-focus" type="text" autoFocus />
           </div>
         </Modal>,
-        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-        { strictEffects: false },
       );
 
       expect(screen.getByTestId('auto-focus')).toHaveFocus();

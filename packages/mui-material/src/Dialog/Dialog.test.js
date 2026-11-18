@@ -8,8 +8,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import describeConformance from '../../test/describeConformance';
 
-const isFirefox = /firefox/i.test(navigator.userAgent);
-
 /**
  * more comprehensive simulation of a user click (mousedown + click)
  * @param {HTMLElement} element
@@ -200,6 +198,32 @@ describe('<Dialog />', () => {
     expect(dialog).to.have.attribute('tabindex', '0');
   });
 
+  // https://github.com/mui/material-ui/issues/33004
+  it('should keep focus on an autoFocus input when the focus trap effect re-runs', () => {
+    function Test() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setOpen(true)}>
+            Open
+          </button>
+          <Dialog open={open}>
+            <input autoFocus data-testid="auto-focus" />
+          </Dialog>
+        </React.Fragment>
+      );
+    }
+    render(<Test />);
+
+    const opener = screen.getByRole('button', { name: 'Open' });
+    act(() => {
+      opener.focus();
+    });
+    fireEvent.click(opener);
+
+    expect(screen.getByTestId('auto-focus')).toHaveFocus();
+  });
+
   it('should not close until the IME is cancelled', () => {
     const onClose = spy();
 
@@ -254,10 +278,10 @@ describe('<Dialog />', () => {
   });
 
   describe('backdrop', () => {
-    it('does have `role` `presentation`', () => {
+    it('does have `role` `none`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop()).to.have.attribute('role', 'presentation');
+      expect(findBackdrop()).to.have.attribute('role', 'none');
     });
 
     it('calls onClose when clicked', () => {
@@ -377,9 +401,7 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
 
-    // Firefox reports a fractional `scrollTop` in Vitest browser mode, failing the exact
-    // assertion below. See https://github.com/vitest-dev/vitest/issues/9223
-    it.skipIf(isJsdom() || isFirefox)('scrolls if overflown on the Y axis', function test() {
+    it.skipIf(isJsdom())('scrolls if overflown on the Y axis', function test() {
       const ITEM_HEIGHT = 100;
       const ITEM_COUNT = 10;
 
