@@ -199,10 +199,17 @@ function createBaseUnit<Spacing>(
   return (() => undefined) as any;
 }
 
-const keyedTransformers = new WeakMap<
+const transformersByTheme = new WeakMap<
   object,
   { scale: SpacingTransformer; byProp: Record<string, SpacingTransformer> }
 >();
+
+function isSeparateKeyedScale(
+  scale: SpacingTransformer | undefined,
+  base: unknown,
+): scale is SpacingTransformer & { keys: ReadonlySet<string> } {
+  return typeof scale === 'function' && !!scale.keys && base !== scale;
+}
 
 export function createUnaryUnit<Spacing>(
   theme: { spacing: Spacing },
@@ -219,15 +226,15 @@ export function createUnaryUnit<Spacing>(
   const base = createBaseUnit(theme, themeKey, defaultValue, propName);
   const scale = (theme as any)?.[themeKey] as SpacingTransformer | undefined;
 
-  if (typeof scale === 'function' && scale.keys && (base as unknown) !== scale) {
-    let cache = keyedTransformers.get(theme);
+  if (isSeparateKeyedScale(scale, base)) {
+    let cache = transformersByTheme.get(theme);
     if (!cache || cache.scale !== scale) {
       cache = { scale, byProp: {} };
-      keyedTransformers.set(theme, cache);
+      transformersByTheme.set(theme, cache);
     }
     if (!cache.byProp[propName]) {
       const keyed = ((value: SpacingValueType) =>
-        typeof value === 'string' && scale.keys!.has(value)
+        typeof value === 'string' && scale.keys.has(value)
           ? scale(value)
           : (base as SpacingTransformer)(value)) as SpacingTransformer;
       keyed.keys = scale.keys;

@@ -86,7 +86,7 @@ export function applyDensity<T extends EnhanceableTheme>(
 
   const stepVarName = (key: DensityKey) => cssVarName(themeInput, `spacing-${key}`);
 
-  const stepValue = (px: number) => `${px}px`;
+  const toAbsolutePx = (px: number) => `${px}px`;
 
   const overrides = scaleOverrides ?? {};
 
@@ -94,7 +94,7 @@ export function applyDensity<T extends EnhanceableTheme>(
   const resolved: Record<string, string> = Object.create(null);
   DENSITY_KEYS.forEach((key) => {
     const px = overrides.spacing?.[key] ?? DEFAULT_STEP_PX[key];
-    stepValues[key] = stepValue(px);
+    stepValues[key] = toAbsolutePx(px);
 
     if (themeInput.vars) {
       const ref = `var(${stepVarName(key)}, ${stepValues[key]})`;
@@ -103,7 +103,7 @@ export function applyDensity<T extends EnhanceableTheme>(
       return;
     }
     resolved[key] = stepValues[key];
-    resolved[`-${key}`] = stepValue(-px);
+    resolved[`-${key}`] = toAbsolutePx(-px);
   });
 
   const stepKeys = new Set(Object.keys(resolved));
