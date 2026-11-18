@@ -304,12 +304,13 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    clickAwayListener: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({
+      clickAwayListener: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
   /**
    * The components used for each slot inside.
    * @default {}

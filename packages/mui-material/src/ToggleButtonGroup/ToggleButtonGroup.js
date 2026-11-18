@@ -295,10 +295,11 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
   /**
    * If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
    * @default false
@@ -334,10 +335,8 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium', 'large']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['small', 'medium', 'large']), PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
