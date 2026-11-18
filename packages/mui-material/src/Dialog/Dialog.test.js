@@ -199,7 +199,7 @@ describe('<Dialog />', () => {
   });
 
   // https://github.com/mui/material-ui/issues/33004
-  it('should keep focus on an autoFocus input when opened under Strict Mode', () => {
+  it('should keep focus on an autoFocus input when the focus trap effect re-runs', () => {
     function Test() {
       const [open, setOpen] = React.useState(false);
       return (

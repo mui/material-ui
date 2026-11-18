@@ -197,7 +197,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         focusTarget.setAttribute('tabIndex', '-1');
       }
 
-      // A Strict Mode remount gives focus back to the element that the cleanup moved it from.
+      // When the effect re-runs (Strict Mode, `<Activity>`), give focus back to the
+      // element that the cleanup moved it from.
       if (previousNode && contains(root, previousNode)) {
         previousNode.focus();
       }
@@ -211,7 +212,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     return () => {
       // restoreLastFocus()
       if (!disableRestoreFocus && nodeToRestore.current) {
-        // Use `root` from the closure: Strict Mode detaches refs before this cleanup.
+        // Use `root` from the closure: React can detach refs before this cleanup.
         const focusedNode = getActiveElement(doc);
         if (contains(root, focusedNode)) {
           nodeBeforeRestore.current = focusedNode as HTMLElement;

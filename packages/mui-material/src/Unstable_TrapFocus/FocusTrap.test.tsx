@@ -64,7 +64,7 @@ describe('<FocusTrap />', () => {
 
   // React 17 Strict Mode does not run effects twice.
   it.skipIf(reactMajor < 18)(
-    'should focus the root if the autoFocus element becomes disabled during a Strict Mode remount',
+    'should focus the root if the autoFocus element becomes disabled before the effect re-runs',
     () => {
       render(
         <FocusTrap open>
@@ -80,6 +80,35 @@ describe('<FocusTrap />', () => {
       );
 
       expect(screen.getByTestId('root')).toHaveFocus();
+    },
+  );
+
+  it.skipIf(!('Activity' in React))(
+    'should return focus to the last focused element when <Activity> re-runs the effect',
+    () => {
+      function ActivityHarness(props: { mode: 'hidden' | 'visible' }) {
+        return (
+          <React.Activity mode={props.mode}>
+            <FocusTrap open>
+              <div tabIndex={-1}>
+                <button type="button">Inside</button>
+              </div>
+            </FocusTrap>
+          </React.Activity>
+        );
+      }
+
+      const { setProps } = render(<ActivityHarness mode="visible" />);
+      const button = screen.getByRole('button', { name: 'Inside' });
+      act(() => {
+        button.focus();
+      });
+
+      setProps({ mode: 'hidden' });
+      expect(initialFocus).toHaveFocus();
+
+      setProps({ mode: 'visible' });
+      expect(button).toHaveFocus();
     },
   );
 
