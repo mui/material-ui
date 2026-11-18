@@ -84,7 +84,6 @@ describe('<NumberField />', () => {
       htmlInput: createCallback(),
       inputLabel: createCallback(),
       formHelperText: createCallback(),
-      group: createCallback(),
       incrementButton: createCallback(),
       decrementButton: createCallback(),
       scrubArea: createCallback(),
@@ -119,8 +118,8 @@ describe('<NumberField />', () => {
           // Root render tests cover changing the HTML tag while keeping FormControl.
           testWithElement: null,
         },
-        // @ts-expect-error Conformance requires a class name in its types even for slots without one.
         input: {
+          expectedClassName: classes.input,
           testWithComponent: TestInput,
           testWithElement: null,
         },
@@ -128,10 +127,6 @@ describe('<NumberField />', () => {
         htmlInput: {
           testWithComponent: TestHtmlInput,
           testWithElement: 'input',
-        },
-        group: {
-          expectedClassName: classes.group,
-          testWithElement: 'div',
         },
         // @ts-expect-error Conformance requires a class name in its types even for slots without one.
         inputLabel: {},
@@ -222,69 +217,6 @@ describe('<NumberField />', () => {
 
       expect(root.tagName).to.equal('DIV');
       expect(renderRoot).toHaveBeenCalledTimes(0);
-    });
-  });
-
-  // The Base UI group must contain the Material input and its controls, retain
-  // Material customization, and expose live state through its render bridge.
-  describe('group slot', () => {
-    it.skipIf(isJsdom())('stretches the Material input to the root width', () => {
-      render(<NumberField label="Amount" sx={{ width: 320 }} />);
-      const input = screen.getByRole('textbox', { name: 'Amount' });
-
-      expect(input.closest('.MuiInputBase-root')!.getBoundingClientRect().width).to.equal(320);
-    });
-
-    it('preserves grouping, refs, styles and live render state', async () => {
-      const groupRef = React.createRef<HTMLDivElement>();
-      const theme = createTheme({
-        components: {
-          MuiNumberField: { styleOverrides: { group: { paddingTop: 7 } } },
-        },
-      });
-      const { user } = render(
-        <ThemeProvider theme={theme}>
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            slotProps={{
-              group: {
-                ref: groupRef,
-                render: (props, state) => <section {...props} data-render-value={state.value} />,
-              },
-            }}
-          />
-        </ThemeProvider>,
-      );
-      const group = screen.getByRole('group');
-      const input = screen.getByRole('textbox', { name: 'Amount' });
-
-      expect(group.tagName).to.equal('SECTION');
-      expect(groupRef.current).to.equal(group);
-      expect(getComputedStyle(group).paddingTop).to.equal('7px');
-      expect(group).to.contain(input.closest('.MuiInputBase-root'));
-      expect(group).to.have.attribute('data-render-value', '5');
-
-      await user.click(input);
-      await user.keyboard('{ArrowUp}');
-
-      expect(group).to.have.attribute('data-render-value', '6');
-    });
-
-    it('lets a replacement slot bypass render while retaining the field content', () => {
-      const renderGroup = vi.fn(() => <div />);
-      render(
-        <NumberField
-          label="Amount"
-          defaultValue={5}
-          slots={{ group: 'section' }}
-          slotProps={{ group: { render: renderGroup, children: 'Replacement content' } }}
-        />,
-      );
-      const group = screen.getByRole('group');
-      expect(group).to.contain(screen.getByRole('textbox', { name: 'Amount' }));
-      expect(screen.queryByText('Replacement content')).to.equal(null);
-      expect(renderGroup).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -1348,7 +1280,6 @@ describe('<NumberField />', () => {
           const decrement = group
             .querySelector(`.${classes.decrementButton}`)!
             .getBoundingClientRect();
-          const groupRect = group.getBoundingClientRect();
           const wrapperRect = wrapper.getBoundingClientRect();
           const endButtonRect = endInput
             .closest('.MuiInputBase-root')!
@@ -1358,16 +1289,14 @@ describe('<NumberField />', () => {
           expect(wrapperRect.height).to.equal(
             endInput.closest('.MuiInputBase-root')!.getBoundingClientRect().height,
           );
-          expect(window.getComputedStyle(wrapper).paddingRight).to.equal('0px');
           expect(increment.left).to.equal(decrement.left);
           expect(increment.bottom).to.be.closeTo(decrement.top, 0.01);
           expect(increment.top).to.be.closeTo(wrapperRect.top, 0.01);
           expect(decrement.bottom).to.be.closeTo(wrapperRect.bottom, 0.01);
           expect(increment.height).to.be.closeTo(wrapperRect.height / 2, 0.1);
           expect(decrement.height).to.be.closeTo(wrapperRect.height / 2, 0.1);
-          expect(increment.width).to.equal(groupRect.width);
-          expect(decrement.width).to.equal(groupRect.width);
-          expect(groupRect.width).to.be.at.least(endButtonRect.width);
+          expect(increment.width).to.equal(decrement.width);
+          expect(increment.width).to.be.at.least(endButtonRect.width);
         });
       });
     });
@@ -1556,6 +1485,76 @@ describe('<NumberField />', () => {
     });
   });
 
+  // Compare icon edges with an unadorned input's text inset. The cases cover each
+  // variant/size and outer controls, scrub-only sides, and controls sharing a side.
+  describe.skipIf(isJsdom())('side padding', () => {
+    const cases = [
+      {
+        variant: 'outlined',
+        size: 'medium',
+        controlsPosition: 'split',
+        scrubAreaPosition: 'start',
+      },
+      { variant: 'outlined', size: 'small', controlsPosition: 'end', scrubAreaPosition: 'start' },
+      {
+        variant: 'filled',
+        size: 'medium',
+        controlsPosition: 'stacked',
+        scrubAreaPosition: 'start',
+      },
+      { variant: 'filled', size: 'small', controlsPosition: false, scrubAreaPosition: 'end' },
+      { variant: 'standard', size: 'medium', controlsPosition: 'split', scrubAreaPosition: 'end' },
+      { variant: 'standard', size: 'small', controlsPosition: false, scrubAreaPosition: 'start' },
+    ] satisfies Pick<
+      NumberFieldProps,
+      'variant' | 'size' | 'controlsPosition' | 'scrubAreaPosition'
+    >[];
+
+    cases.forEach(({ variant, size, controlsPosition, scrubAreaPosition }) => {
+      it(`aligns ${size} ${variant}, controls=${controlsPosition}, scrub=${scrubAreaPosition}`, () => {
+        render(
+          <React.Fragment>
+            <NumberField label="Plain" variant={variant} size={size} controlsPosition={false} />
+            <NumberField
+              label="Adorned"
+              variant={variant}
+              size={size}
+              controlsPosition={controlsPosition}
+              scrubAreaPosition={scrubAreaPosition}
+            />
+          </React.Fragment>,
+        );
+        const plainInput = screen.getByRole('textbox', { name: 'Plain' });
+        const plainRoot = plainInput.closest('.MuiInputBase-root')!.getBoundingClientRect();
+        const plainRect = plainInput.getBoundingClientRect();
+        const plainStyle = getComputedStyle(plainInput);
+        const startInset = plainRect.left - plainRoot.left + parseFloat(plainStyle.paddingLeft);
+        const endInset = plainRoot.right - plainRect.right + parseFloat(plainStyle.paddingRight);
+        const adornedRoot = screen
+          .getByRole('textbox', { name: 'Adorned' })
+          .closest('.MuiInputBase-root')!;
+        const adornedRect = adornedRoot.getBoundingClientRect();
+        let startSlot = scrubAreaPosition === 'start' ? classes.scrubArea : null;
+        let endSlot = scrubAreaPosition === 'end' ? classes.scrubArea : null;
+        if (controlsPosition === 'split') {
+          startSlot = classes.decrementButton;
+        }
+        if (controlsPosition !== false) {
+          endSlot = classes.incrementButton;
+        }
+
+        if (startSlot) {
+          const icon = adornedRoot.querySelector(`.${startSlot} svg`)!.getBoundingClientRect();
+          expect(icon.left - adornedRect.left).to.be.closeTo(startInset, 0.5);
+        }
+        if (endSlot) {
+          const icon = adornedRoot.querySelector(`.${endSlot} svg`)!.getBoundingClientRect();
+          expect(adornedRect.right - icon.right).to.be.closeTo(endInset, 0.5);
+        }
+      });
+    });
+  });
+
   // One slot serves both sides. Resolve its props per instance so split controls
   // can use distinct refs/styles while retaining the owned buttons and field state.
   describe('controls slot', () => {
@@ -1680,27 +1679,36 @@ describe('<NumberField />', () => {
       it('connects render callbacks to live state and the wrapper and native refs', async () => {
         const wrapperRef = React.createRef<HTMLDivElement>();
         const inputRef = React.createRef<HTMLInputElement>();
+        const theme = createTheme({
+          components: {
+            MuiNumberField: { styleOverrides: { input: { paddingRight: 9 } } },
+          },
+        });
         const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            inputRef={inputRef}
-            slotProps={{
-              input: {
-                ref: wrapperRef,
-                render: (props, state) => <section {...props} data-render-value={state.value} />,
-              },
-              htmlInput: {
-                render: (props, state) => <input {...props} data-render-value={state.value} />,
-              },
-            }}
-          />,
+          <ThemeProvider theme={theme}>
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              inputRef={inputRef}
+              slotProps={{
+                input: {
+                  ref: wrapperRef,
+                  render: (props, state) => <section {...props} data-render-value={state.value} />,
+                },
+                htmlInput: {
+                  render: (props, state) => <input {...props} data-render-value={state.value} />,
+                },
+              }}
+            />
+          </ThemeProvider>,
         );
         const input = screen.getByRole('textbox', { name: 'Amount' });
         const wrapper = input.closest('section')!;
 
         expect(wrapperRef.current).to.equal(wrapper);
         expect(inputRef.current).to.equal(input);
+        expect(wrapper).to.equal(screen.getByRole('group'));
+        expect(getComputedStyle(wrapper).paddingRight).to.equal('9px');
 
         await user.clear(input);
         await user.keyboard('7');
@@ -1710,6 +1718,67 @@ describe('<NumberField />', () => {
         expect(document.activeElement).to.equal(input);
         expect(wrapper).to.have.attribute('data-render-value', '8');
         expect(input).to.have.attribute('data-render-value', '8');
+      });
+
+      it('preserves click-to-focus and handlers on the shared input root', async () => {
+        const onClick = vi.fn();
+        const onKeyDown = vi.fn((event: React.KeyboardEvent<HTMLDivElement>) => {
+          expect(event.currentTarget).to.equal(screen.getByRole('group'));
+        });
+        const { user } = render(
+          <NumberField
+            label="Amount"
+            slotProps={{ input: { onClick, slotProps: { root: { onKeyDown } } } }}
+          />,
+        );
+
+        await user.click(screen.getByRole('group'));
+
+        expect(screen.getByRole('textbox', { name: 'Amount' })).toHaveFocus();
+        expect(onClick).toHaveBeenCalledTimes(1);
+        await user.keyboard('{F2}');
+        expect(onKeyDown).toHaveBeenCalledTimes(1);
+      });
+
+      const MaterialInputRoot = React.forwardRef<
+        HTMLElement,
+        React.ComponentPropsWithoutRef<'section'> & {
+          ownerState?: { endAdornment?: React.ReactNode };
+        }
+      >(function MaterialInputRoot({ ownerState, ...other }, ref) {
+        return (
+          <section {...other} ref={ref} data-adorned-end={Boolean(ownerState?.endAdornment)} />
+        );
+      });
+
+      (['slotProps', 'theme'] as const).forEach((source) => {
+        it(`preserves a custom Material input root configured through ${source}`, () => {
+          const theme = createTheme({
+            components:
+              source === 'theme'
+                ? { MuiOutlinedInput: { defaultProps: { slots: { root: MaterialInputRoot } } } }
+                : {},
+          });
+          render(
+            <ThemeProvider theme={theme}>
+              <NumberField
+                label="Amount"
+                slotProps={{
+                  input: {
+                    ...(source === 'slotProps' && { slots: { root: MaterialInputRoot } }),
+                    slotProps: { root: { id: 'amount-root' } },
+                  },
+                }}
+              />
+            </ThemeProvider>,
+          );
+          const group = screen.getByRole('group');
+
+          expect(group.tagName).to.equal('SECTION');
+          expect(group).to.have.attribute('id', 'amount-root');
+          expect(group).to.have.attribute('data-adorned-end', 'true');
+          expect(group).to.equal(screen.getByRole('textbox').closest('.MuiInputBase-root'));
+        });
       });
 
       it('lets replacement input slots bypass their render adapters', () => {

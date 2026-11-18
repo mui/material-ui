@@ -79,14 +79,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ controls?: func<br>&#124;&nbsp;object, decrementButton?: func<br>&#124;&nbsp;object, formHelperText?: func<br>&#124;&nbsp;object, group?: func<br>&#124;&nbsp;object, htmlInput?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, inputLabel?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrubArea?: func<br>&#124;&nbsp;object, scrubAreaAdornment?: func<br>&#124;&nbsp;object, scrubAreaCursor?: func<br>&#124;&nbsp;object }"
+        "description": "{ controls?: func<br>&#124;&nbsp;object, decrementButton?: func<br>&#124;&nbsp;object, formHelperText?: func<br>&#124;&nbsp;object, htmlInput?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, inputLabel?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrubArea?: func<br>&#124;&nbsp;object, scrubAreaAdornment?: func<br>&#124;&nbsp;object, scrubAreaCursor?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, group?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaAdornment?: elementType, scrubAreaCursor?: elementType }"
+        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaAdornment?: elementType, scrubAreaCursor?: elementType }"
       },
       "default": "{}"
     },
@@ -137,12 +137,6 @@
       "class": null
     },
     {
-      "name": "group",
-      "description": "The component that groups the input, stepper buttons, and scrub area.",
-      "default": "'div'",
-      "class": "MuiNumberField-group"
-    },
-    {
       "name": "htmlInput",
       "description": "The component that renders the native input element.",
       "default": "'input'",
@@ -158,7 +152,7 @@
       "name": "input",
       "description": "The component that renders the Material input wrapper.",
       "default": "OutlinedInput",
-      "class": null
+      "class": "MuiNumberField-input"
     },
     {
       "name": "inputLabel",
