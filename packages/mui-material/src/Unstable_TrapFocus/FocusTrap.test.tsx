@@ -34,8 +34,6 @@ describe('<FocusTrap />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </FocusTrap>,
-      // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-      { strictEffects: false },
     );
 
     expect(screen.getByTestId('auto-focus')).toHaveFocus();
@@ -53,8 +51,6 @@ describe('<FocusTrap />', () => {
           <input autoFocus data-testid="auto-focus" />
         </div>
       </FocusTrap>,
-      // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076s
-      { strictEffects: false },
     );
 
     expect(screen.getByTestId('auto-focus')).toHaveFocus();
@@ -65,6 +61,56 @@ describe('<FocusTrap />', () => {
 
     expect(initialFocus).toHaveFocus();
   });
+
+  // React 17 Strict Mode does not run effects twice.
+  it.skipIf(reactMajor < 18)(
+    'should focus the root if the autoFocus element becomes disabled before the effect re-runs',
+    () => {
+      render(
+        <FocusTrap open>
+          <div tabIndex={-1} data-testid="root">
+            <input
+              autoFocus
+              onBlur={(event) => {
+                event.currentTarget.disabled = true;
+              }}
+            />
+          </div>
+        </FocusTrap>,
+      );
+
+      expect(screen.getByTestId('root')).toHaveFocus();
+    },
+  );
+
+  it.skipIf(!('Activity' in React))(
+    'should return focus to the last focused element when <Activity> re-runs the effect',
+    () => {
+      function ActivityHarness(props: { mode: 'hidden' | 'visible' }) {
+        return (
+          <React.Activity mode={props.mode}>
+            <FocusTrap open>
+              <div tabIndex={-1}>
+                <button type="button">Inside</button>
+              </div>
+            </FocusTrap>
+          </React.Activity>
+        );
+      }
+
+      const { setProps } = render(<ActivityHarness mode="visible" />);
+      const button = screen.getByRole('button', { name: 'Inside' });
+      act(() => {
+        button.focus();
+      });
+
+      setProps({ mode: 'hidden' });
+      expect(initialFocus).toHaveFocus();
+
+      setProps({ mode: 'visible' });
+      expect(button).toHaveFocus();
+    },
+  );
 
   it('should focus first focusable child in portal', async () => {
     render(
