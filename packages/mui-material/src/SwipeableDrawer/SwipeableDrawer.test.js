@@ -1148,6 +1148,90 @@ describe('<SwipeableDrawer />', () => {
     },
   );
 
+  // Need layouting
+  it.skipIf(isJsdom())(
+    'should not ignore vertical scroll container with overflow-x hidden when anchor="bottom"',
+    function test() {
+      const handleTouchMove = spy();
+
+      function Test() {
+        React.useEffect(() => {
+          document.addEventListener('touchmove', handleTouchMove);
+          return () => {
+            document.removeEventListener('touchmove', handleTouchMove);
+          };
+        }, []);
+
+        return (
+          <SwipeableDrawer anchor="bottom" open onOpen={() => {}} onClose={() => {}}>
+            <div style={{ overflowX: 'hidden', overflowY: 'auto', height: 100 }}>
+              <div style={{ height: 1000, width: 100 }} data-testid="target" />
+            </div>
+          </SwipeableDrawer>
+        );
+      }
+
+      render(<Test />);
+      const target = screen.getByTestId('target');
+      // Perform a vertical swipe up to scroll down inside the container
+      fireEvent.touchStart(target, {
+        touches: [new Touch({ identifier: 0, target, pageX: 0, clientY: 100 })],
+      });
+      fireEvent.touchMove(target, {
+        touches: [new Touch({ identifier: 0, target, pageX: 0, clientY: 50 })],
+      });
+
+      expect(handleTouchMove.callCount).to.equal(1);
+      expect(handleTouchMove.firstCall.args[0]).to.have.property('defaultPrevented', false);
+    },
+  );
+
+  it('should adjust bottom and maxHeight of paper when visualViewport shrinks for anchor="bottom"', () => {
+    const listeners = {};
+    const originalDescriptor = Object.getOwnPropertyDescriptor(window, 'visualViewport');
+    const currentInnerHeight = window.innerHeight;
+    const shrunkHeight = Math.max(300, currentInnerHeight - 340);
+    const expectedBottom = currentInnerHeight - shrunkHeight;
+    const expectedMaxHeight = Math.max(240, Math.floor(shrunkHeight * 0.92));
+
+    const mockVisualViewport = {
+      height: currentInnerHeight,
+      offsetTop: 0,
+      addEventListener: (event, cb) => {
+        listeners[event] = listeners[event] || [];
+        listeners[event].push(cb);
+      },
+      removeEventListener: spy(),
+    };
+
+    Object.defineProperty(window, 'visualViewport', {
+      configurable: true,
+      writable: true,
+      value: mockVisualViewport,
+    });
+
+    try {
+      render(
+        <SwipeableDrawer anchor="bottom" open onOpen={() => {}} onClose={() => {}}>
+          <div>Drawer Content</div>
+        </SwipeableDrawer>,
+      );
+
+      mockVisualViewport.height = shrunkHeight;
+      listeners.resize.forEach((cb) => cb());
+
+      const paper = document.querySelector('.MuiDrawer-paper');
+      expect(paper.style.bottom).to.equal(`${expectedBottom}px`);
+      expect(paper.style.maxHeight).to.equal(`${expectedMaxHeight}px`);
+    } finally {
+      if (originalDescriptor) {
+        Object.defineProperty(window, 'visualViewport', originalDescriptor);
+      } else {
+        delete window.visualViewport;
+      }
+    }
+  });
+
   describe('prop: transitionDuration', () => {
     it.skipIf(isJsdom())('should render the default theme values by default', function test() {
       const theme = createTheme();
