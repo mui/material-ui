@@ -19,6 +19,8 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
 import inputClasses from '../Input/inputClasses';
+import selectClasses from '../Select/selectClasses';
+import nativeSelectClasses from '../NativeSelect/nativeSelectClasses';
 import formControlClasses from '../FormControl/formControlClasses';
 import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
@@ -138,6 +140,11 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
   const filledInputMediumPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`;
   const filledInputSmallPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4)`;
+  // With modularCssLayers, the theme layer beats Select's own resets in the
+  // components layer whatever their specificity, so these rules skip Select.
+  // :where() keeps the specificity unchanged when layers are off.
+  const notSelectInput = `&:where(:not(.${selectClasses.select}, .${nativeSelectClasses.select}))`;
+  const notSelectRoot = `&:where(:not(.${selectClasses.root}))`;
   // The rtl stylis plugin only mirrors numeric translate() literals, so the
   // var-based inline offsets carry their own sign.
   const dirSign = enhanced.direction === 'rtl' ? -1 : 1;
@@ -439,7 +446,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiInputBase', 'input', {
     paddingBlock: inputMediumPadBlock,
     variants: [
-      { props: { multiline: false }, style: { height: '1lh' } },
+      { props: { multiline: false }, style: { [notSelectInput]: { height: '1lh' } } },
       { props: { size: 'small' }, style: { paddingBlock: inputSmallPadBlock } },
       {
         props: { multiline: true },
@@ -485,13 +492,14 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: ({ ownerState }) => !!ownerState.endAdornment,
-        style: { '--_trailingPad': spacing('small') },
+        style: { [notSelectRoot]: { '--_trailingPad': spacing('small') } },
       },
     ],
   });
   addStyleOverride(enhanced.components, 'MuiOutlinedInput', 'input', {
     paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
-    paddingInline: spacing('small'),
+    paddingLeft: spacing('small'),
+    [notSelectInput]: { paddingRight: spacing('small') },
     variants: [
       {
         props: { size: 'small' },
@@ -514,7 +522,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiFilledInput', 'input', {
     paddingTop: `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
     paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
-    paddingInline: spacing('small'),
+    paddingLeft: spacing('small'),
+    [notSelectInput]: { paddingRight: spacing('small') },
     variants: [
       {
         props: { size: 'small' },
@@ -598,7 +607,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: ({ ownerState }) => !!ownerState.endAdornment,
-        style: { '--_trailingPad': spacing('small') },
+        style: { [notSelectRoot]: { '--_trailingPad': spacing('small') } },
       },
     ],
   });

@@ -3,7 +3,9 @@ import { describe, test, expect } from 'vitest';
 import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import MenuItem from '@mui/material/MenuItem';
 import Pagination from '@mui/material/Pagination';
+import Select from '@mui/material/Select';
 import { createTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
@@ -25,12 +27,75 @@ import {
 
 type Read = { node: React.ReactNode; selector: string; properties: string[] };
 
+const OPTIONS = ['Apple', 'Banana', 'Cherry', 'Durian', 'Elderberry'];
+
 const READS: Record<string, Read> = {
   'Select caret': {
     node: selectField(undefined, 'plain', 'A long selected option', { sx: { width: 160 } }),
     selector: '.MuiSelect-select',
     properties: ['padding-right'],
   },
+  'Select multiple with wrapping chips': {
+    node: (
+      <Select
+        multiple
+        value={OPTIONS}
+        sx={{ width: 160 }}
+        renderValue={(selected) => (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+            {selected.map((value) => (
+              <Chip key={value} label={value} size="small" />
+            ))}
+          </div>
+        )}
+      >
+        {OPTIONS.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    ),
+    selector: '.MuiSelect-select',
+    properties: ['height'],
+  },
+  'native Select multiple': {
+    node: (
+      <Select native multiple value={OPTIONS} onChange={() => {}}>
+        {OPTIONS.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </Select>
+    ),
+    selector: 'select',
+    properties: ['height'],
+  },
+  ...Object.fromEntries(
+    (['outlined', 'filled'] as const).flatMap((variant) => [
+      [
+        `native ${variant} Select caret`,
+        {
+          node: (
+            <Select native variant={variant} value="a" onChange={() => {}} sx={{ width: 160 }}>
+              <option value="a">A long selected option</option>
+            </Select>
+          ),
+          selector: 'select',
+          properties: ['padding-right'],
+        },
+      ],
+      [
+        `${variant} Select with an end adornment`,
+        {
+          node: selectField(variant, 'adornment'),
+          selector: '.MuiInputBase-root',
+          properties: ['padding-right'],
+        },
+      ],
+    ]),
+  ),
   'DialogContent under a DialogTitle': {
     node: TITLED_DIALOG_CONTENT,
     selector: '.MuiDialogContent-root',
