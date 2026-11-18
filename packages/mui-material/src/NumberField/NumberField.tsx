@@ -9,7 +9,7 @@ import useId from '@mui/utils/useId';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
-import type { NumberFieldProps } from './NumberField.types';
+import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import RootSlot from './NumberFieldRootSlot';
 import InputSlot from './NumberFieldInputSlot';
 import { getUtilityClasses } from './utils';
@@ -63,7 +63,7 @@ const NumberField = React.forwardRef(function NumberField(
     scrubAreaPosition = false,
     size = 'medium',
     slots = {},
-    slotProps = {},
+    slotProps: slotPropsProp = {},
     smallStep,
     step,
     snapOnStep = false,
@@ -75,6 +75,18 @@ const NumberField = React.forwardRef(function NumberField(
   const id = useId(idProp);
   const hasHelperText = helperText != null && helperText !== '';
   const defaultHelperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
+
+  // Resolve at each slot so callbacks retain that slot's owner state, including
+  // position for adornments. useSlot consumes the cleared component prop.
+  const slotProps: NonNullable<NumberFieldProps['slotProps']> = Object.fromEntries(
+    Object.entries(slotPropsProp).map(([slotName, slotProp]) => [
+      slotName,
+      (slotOwnerState: NumberFieldOwnerState) => ({
+        ...resolveComponentProps(slotProp, slotOwnerState),
+        component: undefined,
+      }),
+    ]),
+  );
 
   const ownerState = {
     ...props,
@@ -101,6 +113,7 @@ const NumberField = React.forwardRef(function NumberField(
     slots,
     slotProps,
     ...other,
+    component: undefined,
   };
 
   return (
