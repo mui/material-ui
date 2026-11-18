@@ -257,8 +257,8 @@ Possible values for `version`:
 
 There are two workflows that can be triggered for any given PR manually in the CircleCI web interface:
 
-- `react-next`
-- `react-17`
+- `nightly`: runs the tests against React 17, React 18, and `react@next`, and the type tests against `typescript@next` and the minimum supported TypeScript version. The `nightly-cron` workflow runs the same jobs every night.
+- `react-17`: runs only the tests against React 17
 
 Follow these steps:
 
