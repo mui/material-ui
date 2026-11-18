@@ -43,6 +43,7 @@ const RUNG = 24;
 
 const REACH = 10;
 
+const ANNOTATION_Z_INDEX = 1200;
 const BEAM_GAP = 10;
 
 const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
@@ -760,7 +761,7 @@ function Annotate({ items, bounds }) {
         height: '100%',
         overflow: 'visible',
         pointerEvents: 'none',
-        zIndex: 1200,
+        zIndex: ANNOTATION_Z_INDEX,
         color: 'text.secondary',
         fontSize: 13,
         '& text': {

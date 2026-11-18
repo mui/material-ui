@@ -98,10 +98,16 @@ export interface ComponentSpec {
   render: (values: Record<string, ControlValue>) => React.ReactNode;
 }
 
+const DIALOG_STAGE_HEIGHT = 208;
+const AUTOCOMPLETE_STAGE_HEIGHT = 148;
+
 function DialogPreview({ dividers }: { dividers: boolean }) {
   const stageRef = React.useRef<HTMLDivElement>(null);
   return (
-    <Box ref={stageRef} sx={{ position: 'relative', width: 420, height: 208 }}>
+    <Box
+      ref={stageRef}
+      sx={{ position: 'relative', width: 420, height: DIALOG_STAGE_HEIGHT }}
+    >
       <Dialog
         open
         fullWidth
@@ -166,7 +172,7 @@ export const DENSITY_COMPONENTS: Record<string, ComponentSpec> = {
     render: (values) => {
       const multiple = values.multiple === true;
       return (
-        <Box sx={{ width: 300, height: 148 }}>
+        <Box sx={{ width: 300, height: AUTOCOMPLETE_STAGE_HEIGHT }}>
           <Autocomplete
             key={String(multiple)}
             open

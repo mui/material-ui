@@ -84,10 +84,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import RestoreIcon from '@mui/icons-material/Restore';
 import SearchIcon from '@mui/icons-material/Search';
 
+const DIALOG_STAGE_HEIGHT = 208;
+const AUTOCOMPLETE_STAGE_HEIGHT = 148;
+
 function DialogPreview({ dividers }) {
   const stageRef = React.useRef(null);
   return (
-    <Box ref={stageRef} sx={{ position: 'relative', width: 420, height: 208 }}>
+    <Box
+      ref={stageRef}
+      sx={{ position: 'relative', width: 420, height: DIALOG_STAGE_HEIGHT }}
+    >
       <Dialog
         open
         fullWidth
@@ -152,7 +158,7 @@ export const DENSITY_COMPONENTS = {
     render: (values) => {
       const multiple = values.multiple === true;
       return (
-        <Box sx={{ width: 300, height: 148 }}>
+        <Box sx={{ width: 300, height: AUTOCOMPLETE_STAGE_HEIGHT }}>
           <Autocomplete
             key={String(multiple)}
             open
