@@ -891,7 +891,11 @@ describe.skipIf(isJsdom())('density contract', () => {
           );
           return (
             <FormControl size={size} variant={variant}>
-              {kind === 'wrapped' ? <div>{children}</div> : children}
+              {kind === 'wrapped' ? (
+                <div style={{ display: 'contents' }}>{children}</div>
+              ) : (
+                children
+              )}
             </FormControl>
           );
         };
