@@ -109,6 +109,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
   const wcagTargetSize = '24px';
   const indicatorBox = `max(${wcagTargetSize}, ${smallBox})`;
+  const buttonSpinnerSize = 16;
+  const tooltipArrowSize = 10;
+  const borderWidth = '1px';
+  const shrinkLiftClearingChips = '-0.475lh';
+  const shrinkLiftCentered = '-0.375lh';
+  const shrinkLiftThreshold = '32.5px';
+  const collapsedBreadcrumbButton = `& li:not(.${breadcrumbsClasses.li})>.${buttonBaseClasses.root}`;
   const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
   const filledInputMediumPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`;
   const filledInputSmallPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4)`;
@@ -232,7 +239,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     variants: [
       {
         props: { loading: true, loadingPosition: 'start', fullWidth: true },
-        style: { marginRight: `calc(-16px - ${spacing('xSmall')})` },
+        style: { marginRight: `calc(-${buttonSpinnerSize}px - ${spacing('xSmall')})` },
       },
     ],
   });
@@ -242,7 +249,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     variants: [
       {
         props: { loading: true, loadingPosition: 'end', fullWidth: true },
-        style: { marginLeft: `calc(-16px - ${spacing('xSmall')})` },
+        style: { marginLeft: `calc(-${buttonSpinnerSize}px - ${spacing('xSmall')})` },
       },
     ],
   });
@@ -250,19 +257,19 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     variants: [
       {
         props: { loadingPosition: 'start' },
-        style: { left: 'calc(var(--_padInline) + 0.4lh - 8px)' },
+        style: { left: `calc(var(--_padInline) + 0.4lh - ${buttonSpinnerSize / 2}px)` },
       },
       {
         props: { loadingPosition: 'end' },
-        style: { right: 'calc(var(--_padInline) + 0.4lh - 8px)' },
+        style: { right: `calc(var(--_padInline) + 0.4lh - ${buttonSpinnerSize / 2}px)` },
       },
       {
         props: { loadingPosition: 'start', fullWidth: true },
-        style: { left: 'calc(8px - 0.4lh)' },
+        style: { left: `calc(${buttonSpinnerSize / 2}px - 0.4lh)` },
       },
       {
         props: { loadingPosition: 'end', fullWidth: true },
-        style: { right: 'calc(8px - 0.4lh)' },
+        style: { right: `calc(${buttonSpinnerSize / 2}px - 0.4lh)` },
       },
     ],
   });
@@ -384,11 +391,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: ({ ownerState }) => !!ownerState.arrow && !ownerState.touch,
-        style: { '--_spacing': 'calc(4px + 10px / 2)' },
+        style: { '--_spacing': `calc(4px + ${tooltipArrowSize}px / 2)` },
       },
     ],
   });
-  addStyleOverride(enhanced.components, 'MuiTooltip', 'arrow', { fontSize: '10px' });
+  addStyleOverride(enhanced.components, 'MuiTooltip', 'arrow', {
+    fontSize: `${tooltipArrowSize}px`,
+  });
   addStyleOverride(enhanced.components, 'MuiInputBase', 'root', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
     gap: spacing('xSmall'),
@@ -619,7 +628,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: {
           // The x offset needs dirSign: the rtl stylis plugin (cssjanus) cannot
           // mirror a translate() that contains clamp(), so it leaves 14px as is.
-          transform: `translate(${dirSign * 14}px, clamp(-0.475lh, (${touchTarget} - 32.5px) * 999, -0.375lh)) scale(0.75)`,
+          transform: `translate(${dirSign * 14}px, clamp(${shrinkLiftClearingChips}, (${touchTarget} - ${shrinkLiftThreshold}) * 999, ${shrinkLiftCentered})) scale(0.75)`,
         },
       },
     ],
@@ -675,7 +684,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       display: 'inline-flex',
       paddingInline: spacing('xSmall'),
     },
-    [`& li:not(.${breadcrumbsClasses.li})>.${buttonBaseClasses.root}`]: {
+    [collapsedBreadcrumbButton]: {
       paddingInline: spacing('xSmall'),
       height: touchTarget,
       margin: 0,
@@ -695,7 +704,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     paddingBlock: 0,
     minHeight: 'var(--_size)',
     minWidth: 'var(--_size)',
-    paddingInline: `calc((var(--_size) - ${iconSize} - 2px) / 2)`,
+    paddingInline: `calc((var(--_size) - ${iconSize} - 2 * ${borderWidth}) / 2)`,
     variants: [
       {
         props: { size: 'small' },
@@ -948,14 +957,14 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { alternativeLabel: false },
         style: {
           marginLeft: `calc(${touchTarget} / 2)`,
-          paddingLeft: `calc(${touchTarget} / 2 - 1px)`,
+          paddingLeft: `calc(${touchTarget} / 2 - ${borderWidth})`,
         },
       },
       {
         props: { alternativeLabel: true },
         style: {
           marginRight: `calc(${touchTarget} / 2)`,
-          paddingRight: `calc(${touchTarget} / 2 - 1px)`,
+          paddingRight: `calc(${touchTarget} / 2 - ${borderWidth})`,
         },
       },
     ],
