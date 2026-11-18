@@ -7,6 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import Switch from '@mui/material/Switch';
+import Input from '@mui/material/Input';
 import ToggleButton from '@mui/material/ToggleButton';
 import Chip from '@mui/material/Chip';
 import Fab from '@mui/material/Fab';
@@ -1329,6 +1330,17 @@ describe.skipIf(isJsdom())('density contract', () => {
   });
 
   describe('form labels', () => {
+    test('a standalone Input after a label gets no top margin', () => {
+      renderIn(
+        MEDIUM,
+        <div>
+          <label htmlFor="standalone">Name</label>
+          <Input id="standalone" />
+        </div>,
+      );
+      expect(css('.MuiInputBase-root').marginTop).to.equal('0px');
+    });
+
     DENSITIES.forEach((density) => {
       test(`${density.id}: a Checkbox label pulls the glyph onto the container edge`, () => {
         renderIn(

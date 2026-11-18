@@ -620,10 +620,15 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': `calc(var(--_inputMarginTop, ${spacing('small')}) + var(--_inputPadBlock, ${inputMediumPadBlock}))`,
     },
-    [`label + &, .${inputLabelClasses.root} + &`]: {
-      marginTop: `var(--_inputMarginTop, ${spacing('small')})`,
-    },
     variants: [
+      {
+        props: ({ ownerState }) => !!ownerState.formControl,
+        style: {
+          [`label + &, .${inputLabelClasses.root} + &`]: {
+            marginTop: `var(--_inputMarginTop, ${spacing('small')})`,
+          },
+        },
+      },
       {
         props: { size: 'small' },
         style: {
@@ -797,8 +802,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { size: 'small' },
         style: {
           '--_size': smallBox,
+          '--_touchMargin': `max(0px, (${wcagTargetSize} - ${smallBox}) / 2)`,
+          margin: 'var(--_touchMargin)',
           [`&:not(.${toggleButtonGroupClasses.grouped})`]: {
-            margin: `max(0px, (${wcagTargetSize} - ${smallBox}) / 2)`,
             '&::before': {
               content: '""',
               position: 'absolute',
@@ -811,6 +817,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           },
           [`&.${toggleButtonGroupClasses.grouped}`]: {
             '--_size': `max(${wcagTargetSize}, ${smallBox})`,
+            '--_touchMargin': '0px',
           },
         },
       },
@@ -883,10 +890,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}, & .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
       { paddingLeft: '4px' },
     [`& .${autocompleteClasses.inputRoot} .${autocompleteClasses.input}.${inputBaseClasses.input}`]:
-      {
-        paddingBlock: 0,
-        height: 'var(--_tagHeight)',
-      },
+      { paddingBlock: 0 },
     [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
       { paddingBlock: 0 },
     [`&.${autocompleteClasses.hasPopupIcon} .${autocompleteClasses.inputRoot}, &.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
@@ -955,6 +959,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         paddingBottom: rowPad('var(--_fieldPadBottom)'),
       },
     }),
+  });
+  addStyleOverride(enhanced.components, 'MuiAutocomplete', 'input', {
+    height: 'var(--_tagHeight)',
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'clearIndicator', {
     minWidth: smallBox,

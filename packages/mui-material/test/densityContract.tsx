@@ -25,6 +25,7 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
+import ToggleButton from '@mui/material/ToggleButton';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -221,8 +222,12 @@ export const USER_COMPONENTS = {
   MuiFormControlLabel: { styleOverrides: { root: { marginLeft: 4 } } },
   MuiSelect: { styleOverrides: { select: { '&&': { paddingRight: 80 } } } },
   MuiAutocomplete: {
-    styleOverrides: { inputRoot: { gap: 10, paddingLeft: 20, paddingTop: 21, paddingBottom: 22 } },
+    styleOverrides: {
+      inputRoot: { gap: 10, paddingLeft: 20, paddingTop: 21, paddingBottom: 22 },
+      input: { height: 40 },
+    },
   },
+  MuiToggleButton: { styleOverrides: { root: { margin: 8 } } },
   MuiLink: { styleOverrides: { root: { paddingInline: 3 } } },
 };
 
@@ -300,10 +305,19 @@ export const OVERRIDE_CHECKS: Record<string, OverrideCheck> = {
           paddingLeft: ['.MuiAutocomplete-inputRoot', 'padding-left', '20px'],
           paddingTop: ['.MuiAutocomplete-inputRoot', 'padding-top', '21px'],
           paddingBottom: ['.MuiAutocomplete-inputRoot', 'padding-bottom', '22px'],
+          inputHeight: ['.MuiAutocomplete-input', 'height', '40px'],
         },
       },
     ]),
   ),
+  'ToggleButton small': {
+    node: (
+      <ToggleButton size="small" value="a">
+        A
+      </ToggleButton>
+    ),
+    reads: { root: ['.MuiToggleButton-root', 'margin-top', '8px'] },
+  },
   'Breadcrumbs link': {
     node: (
       <React.Fragment>
