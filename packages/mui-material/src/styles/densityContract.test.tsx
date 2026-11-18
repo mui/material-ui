@@ -866,6 +866,32 @@ describe.skipIf(isJsdom())('density contract', () => {
         );
       });
 
+      test(`${density.id}: a native select has the TextField box`, () => {
+        renderIn(
+          THEMES[density.id],
+          cases(
+            grid([FIELDS, ['native', 'textfield']], (name, kind) =>
+              kind === 'native' ? (
+                <TextField
+                  {...fieldProps(name)}
+                  select
+                  defaultValue="a"
+                  slotProps={{ select: { native: true } }}
+                >
+                  <option value="a">Option</option>
+                </TextField>
+              ) : (
+                <TextField {...fieldProps(name)} defaultValue="Option" />
+              ),
+            ),
+          ),
+        );
+        const height = (name: string) => rect('.MuiInputBase-root', inCase(name)).height;
+        expectNoDrift(
+          byName(FIELDS, (name) => drift(height(`${name} native`) - height(`${name} textfield`))),
+        );
+      });
+
       test(`${density.id}: Autocomplete has the TextField box`, () => {
         renderIn(
           THEMES[density.id],

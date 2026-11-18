@@ -123,6 +123,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   // components layer whatever their specificity, so these rules skip Select.
   // :where() keeps the specificity unchanged when layers are off.
   const notSelectInput = `&:where(:not(.${selectClasses.select}, .${nativeSelectClasses.select}))`;
+  const notAutoHeightInput = `&:where(:not(.${selectClasses.select}, .${nativeSelectClasses.multiple}))`;
   const notSelectRoot = `&:where(:not(.${selectClasses.root}))`;
   // The rtl stylis plugin only mirrors numeric translate() literals, so the
   // var-based inline offsets carry their own sign.
@@ -415,7 +416,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiInputBase', 'input', {
     paddingBlock: inputMediumPadBlock,
     variants: [
-      { props: { multiline: false }, style: { [notSelectInput]: { height: '1lh' } } },
+      { props: { multiline: false }, style: { [notAutoHeightInput]: { height: '1lh' } } },
       { props: { size: 'small' }, style: { paddingBlock: inputSmallPadBlock } },
       {
         props: { multiline: true },
