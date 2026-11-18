@@ -301,6 +301,11 @@ const TEXTFIELD_A11Y_DEMOS = [
  */
 export const A11Y_RULES: A11yRule[] = [
   {
+    test: 'test/regressions/a11y/fixtures/skeleton/SkeletonA11yLoading',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
     test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars}',
     enabled: true,
   },
