@@ -160,27 +160,25 @@ TimelineDot.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The dot can have a different colors.
    * @default 'grey'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'error',
-      'grey',
-      'info',
-      'inherit',
-      'primary',
-      'secondary',
-      'success',
-      'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'error',
+        'grey',
+        'info',
+        'inherit',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -193,10 +191,8 @@ TimelineDot.propTypes /* remove-proptypes */ = {
    * The dot can appear filled or outlined.
    * @default 'filled'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['filled', 'outlined']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['filled', 'outlined']), PropTypes.string]),
 } as any;
 
 export default TimelineDot;

@@ -103,6 +103,26 @@ describe('contains', () => {
     document.body.removeChild(parent);
   });
 
+  it('should return true when child is inside a shadow root in an iframe', () => {
+    const iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+    const iframeDocument = iframe.contentDocument!;
+
+    const parent = iframeDocument.createElement('div');
+    const host = iframeDocument.createElement('div');
+    parent.appendChild(host);
+    iframeDocument.body.appendChild(parent);
+
+    const shadowRoot = host.attachShadow({ mode: 'open' });
+    const child = iframeDocument.createElement('button');
+    shadowRoot.appendChild(child);
+
+    // The shadow root belongs to the iframe's window, not the parent window
+    expect(contains(parent, child)).to.equal(true);
+
+    document.body.removeChild(iframe);
+  });
+
   it('should return true when parent and child are the same element', () => {
     const element = document.createElement('div');
     expect(contains(element, element)).to.equal(true);

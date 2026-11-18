@@ -204,7 +204,10 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     [context.dense, dense, disableGutters],
   );
   const menuListContext = useMenuListContext();
-  const rovingItemId = useId();
+  const generatedId = useId();
+  // On React 17, `useId()` is `undefined` on the first render, but the item must register with
+  // the roving tab index in the first commit. The key is internal and never rendered.
+  const [rovingItemId] = React.useState(() => generatedId ?? Symbol('MenuItem'));
   // Escape hatch via ButtonBase for when an anchored <Menu> is opened with a pointer
   // interaction on a trigger, the item should receive DOM focus but without focus visible
   // styling. Current API does not allow a reliable `openInteractionType` for anchored menus.
@@ -213,7 +216,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
-    if (shouldAutoFocusOnMount) {
+    if (shouldAutoFocusOnMount && (!props.disabled || itemsFocusableWhenDisabled)) {
       if (menuItemRef.current) {
         focusWithVisible(menuItemRef.current, focusSource);
       } else if (process.env.NODE_ENV !== 'production') {
@@ -299,7 +302,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -336,9 +339,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * @ignore
-   */
   role: PropTypes.string,
   /**
    * If `true`, the component is selected.
@@ -355,7 +355,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * @default 0
+   * The `tabIndex` of the root element.
+   * When not provided, it is managed by the parent menu's keyboard focus handling.
    */
   tabIndex: PropTypes.number,
 };

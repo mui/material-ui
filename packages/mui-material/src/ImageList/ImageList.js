@@ -106,7 +106,7 @@ ImageList.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -129,9 +129,6 @@ ImageList.propTypes /* remove-proptypes */ = {
    * @default 'auto'
    */
   rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -145,10 +142,8 @@ ImageList.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'standard'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']), PropTypes.string]),
 };
 
 export default ImageList;

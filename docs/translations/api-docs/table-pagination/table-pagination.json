@@ -70,7 +70,7 @@
     }
   },
   "slotDescriptions": {
-    "actions": "The slots that passed to the actions slot.",
+    "actions": "The slots passed to the actions component, set with <code>ActionsComponent</code> (<a href=\"https://mui.com/material-ui/api/table-pagination-actions/#slots\">TablePaginationActions</a> by default).",
     "displayedRows": "The tag that renders the displayedRows slot.",
     "menuItem": "The component that renders the select slot. <a href=\"https://mui.com/material-ui/api/menu-item/#props\">Follow this guide</a> to learn more about the requirements for this component.",
     "root": "The component that renders the root slot. <a href=\"https://mui.com/material-ui/api/table-cell/#props\">Follow this guide</a> to learn more about the requirements for this component.",
