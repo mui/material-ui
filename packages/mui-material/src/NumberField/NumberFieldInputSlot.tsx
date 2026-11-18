@@ -28,7 +28,7 @@ import IconButton from '../IconButton';
 import type { IconButtonProps } from '../IconButton';
 import NumberFieldButtonSlot from './NumberFieldButtonSlot';
 import RenderElement from './RenderElement';
-import NumberFieldInputRoot from './NumberFieldInputRoot';
+import NumberFieldInputRootSlot from './NumberFieldInputRootSlot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 
@@ -41,6 +41,7 @@ interface NumberFieldInputProps {
   baseProps: React.ComponentPropsWithRef<'input'>;
   baseState: BaseNumberField.Input.State;
   classes: Omit<NumberFieldClasses, 'scrubbing'>;
+  helperTextId: string | undefined;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: {
     slots: NonNullable<NumberFieldProps['slots']>;
@@ -213,13 +214,11 @@ const NumberFieldScrubAreaCursor = styled('span', {
  * @ignore - internal component.
  */
 function NumberFieldInputSlot(props: NumberFieldInputProps) {
-  const { baseProps, baseState, classes, materialProps, externalForwardedProps } = props;
+  const { baseProps, baseState, classes, helperTextId, materialProps, externalForwardedProps } =
+    props;
   const { inputValue } = baseState;
   const { autoFocus, variant, label, id, fullWidth, inputRef, placeholder } = materialProps;
   const ownerState = materialProps;
-
-  const hasHelperText = materialProps.helperText != null && materialProps.helperText !== '';
-  const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
 
   const InputComponent = variantComponent[variant];
   const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
@@ -267,7 +266,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     ...materialInputProps.slotProps,
     root: {
       ...materialInputProps.slotProps?.root,
-      ...(!materialRootComponent && { as: NumberFieldInputRoot }),
+      ...(!materialRootComponent && { as: NumberFieldInputRootSlot }),
       numberFieldInputRoot: {
         render: externalForwardedProps.slots.input ? undefined : inputRender,
         renderState: baseState,
@@ -525,7 +524,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       slots={{
         input: externalForwardedProps.slots.htmlInput ? HtmlInputSlot : undefined,
         ...materialInputProps.slots,
-        ...(materialRootComponent && { root: NumberFieldInputRoot }),
+        ...(materialRootComponent && { root: NumberFieldInputRootSlot }),
       }}
       slotProps={materialSlotProps}
       // InputBase receives render/state through inputProps; its leaf override

@@ -73,6 +73,8 @@ const NumberField = React.forwardRef(function NumberField(
   } = props;
 
   const id = useId(idProp);
+  const hasHelperText = helperText != null && helperText !== '';
+  const defaultHelperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
 
   const ownerState = {
     ...props,
@@ -129,14 +131,24 @@ const NumberField = React.forwardRef(function NumberField(
         };
         const classes = getUtilityClasses(resolvedOwnerState);
 
-        // Share these props between the root's label/adornment setup and the input's
-        // rendering so each callback runs once with Base UI's resolved flags.
+        const resolvedHelperTextProps = resolveComponentProps(
+          slotProps.formHelperText,
+          resolvedOwnerState,
+        );
+        // Share the final ID so a custom helper ID preserves the input's description.
+        const helperTextId = hasHelperText
+          ? (resolvedHelperTextProps?.id ?? defaultHelperTextId)
+          : undefined;
+
+        // Share slot props used by multiple parts so each callback runs once
+        // with Base UI's resolved flags.
         const resolvedExternalForwardedProps = {
           ...externalForwardedProps,
           slotProps: {
             ...slotProps,
             input: resolveComponentProps(slotProps.input, resolvedOwnerState),
             inputLabel: resolveComponentProps(slotProps.inputLabel, resolvedOwnerState),
+            formHelperText: resolvedHelperTextProps,
           },
         };
 
@@ -145,6 +157,7 @@ const NumberField = React.forwardRef(function NumberField(
             baseProps={baseProps}
             baseState={baseState}
             classes={classes}
+            helperTextId={helperTextId}
             materialProps={resolvedOwnerState}
             ref={ref}
             externalForwardedProps={resolvedExternalForwardedProps}
@@ -156,6 +169,7 @@ const NumberField = React.forwardRef(function NumberField(
                   baseProps={inputBaseProps}
                   baseState={inputBaseState}
                   classes={classes}
+                  helperTextId={helperTextId}
                   materialProps={resolvedOwnerState}
                   externalForwardedProps={resolvedExternalForwardedProps}
                 />

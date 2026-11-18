@@ -21,6 +21,7 @@ interface NumberFieldRootProps {
   baseState: BaseNumberField.Root.State;
   children: React.ReactNode;
   classes: Pick<NumberFieldClasses, 'root'>;
+  helperTextId: string | undefined;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
@@ -45,15 +46,21 @@ SSRInitialFilled.muiName = 'Input';
  */
 const NumberFieldRootSlot = React.forwardRef(
   (props: NumberFieldRootProps, ref: React.Ref<HTMLDivElement>) => {
-    const { baseProps, baseState, children, classes, materialProps, externalForwardedProps } =
-      props;
+    const {
+      baseProps,
+      baseState,
+      children,
+      classes,
+      helperTextId,
+      materialProps,
+      externalForwardedProps,
+    } = props;
     const ownerState = materialProps;
     const { id, label, helperText } = materialProps;
 
     const hasLabel = label != null && label !== '';
     const hasHelperText = helperText != null && helperText !== '';
     const labelId = hasLabel && id ? `${id}-label` : undefined;
-    const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
 
     const [RootSlot, rootProps] = useSlot('root', {
       elementType: NumberFieldRoot,
@@ -126,8 +133,8 @@ const NumberFieldRootSlot = React.forwardRef(
         {children}
         {hasHelperText && (
           <FormHelperTextSlot
-            id={helperTextId}
             {...formHelperTextProps}
+            id={helperTextId}
             {...(!externalForwardedProps.slots?.formHelperText &&
               formHelperTextRender && {
                 component: RenderElement,
