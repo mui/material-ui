@@ -736,7 +736,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     '--_thumbHeight': spacing('medium'),
     '--_trackWidth': 'calc(var(--_thumbHeight) * 1.7)',
     '--_trackHeight': 'calc(var(--_thumbHeight) * 0.7)',
-    '--_offset': 'calc((max(var(--_thumbHeight), var(--_trackHeight)) - var(--_touchSize)) / 2)',
+    '--_edgePull': 'calc((max(var(--_thumbHeight), var(--_trackHeight)) - var(--_touchSize)) / 2)',
+    '--_defaultPull': switchPullIn,
     width: 'calc(var(--_trackWidth) + var(--_touchSize) - var(--_trackHeight))',
     height: 'var(--_touchSize)',
     padding: 'calc((var(--_touchSize) - var(--_trackHeight)) / 2)',
@@ -749,10 +750,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     marginLeft: 'var(--_switchMarginLeft, 0px)',
     marginRight: 'var(--_switchMarginRight, 0px)',
     [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
-      '--_switchMarginLeft': `calc(var(--_offset) - ${switchPullIn})`,
+      '--_switchMarginLeft': 'calc(var(--_edgePull) - var(--_defaultPull))',
     },
     [`.${formControlLabelClasses.labelPlacementStart} &`]: {
-      '--_switchMarginRight': `calc(var(--_offset) - ${switchPullIn})`,
+      '--_switchMarginRight': 'calc(var(--_edgePull) - var(--_defaultPull))',
     },
     variants: [
       {
@@ -761,17 +762,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           '--_touchSize': `max(${wcagTargetSize}, ${smallBox})`,
           '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
           '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
+          '--_defaultPull': switchSmallPullIn,
           [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
             '--_labelMarginLeft': switchSmallPullIn,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
             '--_labelMarginRight': switchSmallPullIn,
-          },
-          [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
-            '--_switchMarginLeft': `calc(var(--_offset) - ${switchSmallPullIn})`,
-          },
-          [`.${formControlLabelClasses.labelPlacementStart} &`]: {
-            '--_switchMarginRight': `calc(var(--_offset) - ${switchSmallPullIn})`,
           },
           [`& .${switchClasses.thumb}`]: {
             width: 'var(--_thumbWidth)',
@@ -783,8 +779,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           },
         },
       },
-      { props: { edge: 'start' }, style: { marginLeft: 'var(--_offset)' } },
-      { props: { edge: 'end' }, style: { marginRight: 'var(--_offset)' } },
+      { props: { edge: 'start' }, style: { marginLeft: 'var(--_edgePull)' } },
+      { props: { edge: 'end' }, style: { marginRight: 'var(--_edgePull)' } },
     ],
   });
   addStyleOverride(enhanced.components, 'MuiSwitch', 'switchBase', {
