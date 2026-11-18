@@ -8,7 +8,6 @@ import toggleButtonGroupClasses from '../ToggleButtonGroup/toggleButtonGroupClas
 import paginationItemClasses from '../PaginationItem/paginationItemClasses';
 import breadcrumbsClasses from '../Breadcrumbs/breadcrumbsClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
-import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
@@ -206,7 +205,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: {
           minHeight: smallBox,
           '--_padInline': spacing('small'),
-          marginBlock: `max(0px, (${wcagTargetSize} - ${smallBox}) / 2)`,
+          '--_touchMargin': `max(0px, (${wcagTargetSize} - ${smallBox}) / 2)`,
+          marginBlock: 'var(--_touchMargin)',
           '&::before': {
             content: '""',
             position: 'absolute',
@@ -311,22 +311,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiButtonGroup', 'grouped', {
     minWidth: touchTarget,
+    '--_touchMargin': '0px',
     variants: [
-      { props: { size: 'small', orientation: 'horizontal' }, style: { marginBlock: 0 } },
-      {
-        props: ({ ownerState }) =>
-          ownerState.size === 'small' &&
-          ownerState.orientation === 'vertical' &&
-          ownerState.variant !== 'outlined',
-        style: { marginBlock: 0 },
-      },
-      {
-        props: { size: 'small', orientation: 'vertical', variant: 'outlined' },
-        style: {
-          marginBottom: 0,
-          [`&.${buttonGroupClasses.firstButton}`]: { marginTop: 0 },
-        },
-      },
       {
         props: { size: 'small', orientation: 'vertical' },
         style: {
