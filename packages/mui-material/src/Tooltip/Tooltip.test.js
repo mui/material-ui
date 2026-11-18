@@ -89,8 +89,7 @@ function expectRtlRightPlacementStyles() {
 
   expect(popper).to.have.attribute('data-popper-placement', 'right');
   expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
-  expect(hasInjectedStyle('margin-inline-start: var(--_spacing)')).to.equal(true);
-  expect(hasInjectedStyle('--_spacing: 14px')).to.equal(true);
+  expect(getComputedStyle(tooltip).marginInlineStart).to.equal('14px');
   expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
   expectArrowOnInlineEnd(tooltip, arrow);
 }
@@ -619,7 +618,7 @@ describe('<Tooltip />', () => {
       const theme = enhanceDensity(createTheme());
       render(
         <ThemeProvider theme={theme}>
-          <Tooltip enterTouchDelay={700} enterDelay={100} title="Hello World">
+          <Tooltip enterTouchDelay={700} enterDelay={100} placement="bottom" title="Hello World">
             <button type="submit">Hello World</button>
           </Tooltip>
         </ThemeProvider>,
@@ -627,9 +626,11 @@ describe('<Tooltip />', () => {
       fireEvent.touchStart(screen.getByRole('button'));
       clock.tick(700 + 100);
 
-      const tooltip = screen.getByRole('tooltip').querySelector(`.${classes.tooltip}`);
+      const popper = screen.getByRole('tooltip');
+      const tooltip = popper.querySelector(`.${classes.tooltip}`);
       expect(tooltip).to.have.class(classes.touch);
-      expect(getComputedStyle(tooltip).getPropertyValue('--_spacing').trim()).to.equal('24px');
+      expect(popper).to.have.attribute('data-popper-placement', 'bottom');
+      expect(getComputedStyle(tooltip).marginTop).to.equal('24px');
     });
 
     it('should not respond to quick events', () => {
