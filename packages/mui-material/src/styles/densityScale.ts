@@ -128,13 +128,6 @@ export function applyDensity<T extends EnhanceableTheme>(
       if (!keyed) {
         return String(base(...args));
       }
-      if (process.env.NODE_ENV !== 'production') {
-        if (!(args.length <= 4)) {
-          console.error(
-            `MUI: Too many arguments provided, expected between 0 and 4, got ${args.length}`,
-          );
-        }
-      }
       let out = '';
       for (let i = 0; i < args.length; i += 1) {
         const arg = args[i];

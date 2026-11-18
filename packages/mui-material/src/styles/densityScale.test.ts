@@ -49,14 +49,6 @@ describe('densityScale', () => {
       });
     });
 
-    test('warns about too many arguments when one of them is a step', () => {
-      const theme = applyDensity(createTheme());
-
-      expect(() => (theme.spacing as any)('small', 1, 2, 3, 4)).toErrorDev(
-        'MUI: Too many arguments provided, expected between 0 and 4, got 5',
-      );
-    });
-
     test('the sizing constants land on the theme as px lengths', () => {
       const theme = applyDensity(createTheme());
 
