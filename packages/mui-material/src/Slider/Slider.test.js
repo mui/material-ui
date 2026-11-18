@@ -1222,6 +1222,29 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
           });
 
           describe('when `step` is `null` and values are restricted by `marks`', () => {
+            it.each([
+              ['Home', 60, 20],
+              ['End', 40, 80],
+            ])('key: %s selects its boundary mark', async (key, defaultValue, expectedValue) => {
+              const { user } = render(
+                <ThemeProvider theme={createTheme({ direction })}>
+                  <Slider
+                    orientation={orientation}
+                    min={10}
+                    max={90}
+                    step={null}
+                    marks={[{ value: 20 }, { value: 40 }, { value: 60 }, { value: 80 }]}
+                    defaultValue={defaultValue}
+                  />
+                </ThemeProvider>,
+              );
+
+              const slider = screen.getByRole('slider');
+              await user.tab();
+              await user.keyboard(`{${key}}`);
+              expect(slider).to.have.attribute('aria-valuenow', String(expectedValue));
+            });
+
             decrementKeys.forEach((key) => {
               it(`key: ${key} decrements the value`, () => {
                 render(
