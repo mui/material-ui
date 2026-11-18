@@ -52,18 +52,20 @@ describe('<Masonry />', () => {
 
       const containerMargin = `-${(defaultThemeSpacing * spacing) / 2}px`;
       const childMargin = `${(defaultThemeSpacing * spacing) / 2}px`;
-      expect(screen.getByTestId('container')).toHaveComputedStyle({
+      const container = screen.getByTestId('container');
+      expect(container).toHaveComputedStyle({
         width: `${width}px`,
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'wrap',
-        alignContent: 'flex-start',
         boxSizing: 'border-box',
         marginTop: containerMargin,
         marginRight: containerMargin,
         marginBottom: containerMargin,
         marginLeft: containerMargin,
       });
+      // Newer Chromium returns `flow-start`, the alias of `flex-start`.
+      expect(getComputedStyle(container).alignContent).to.be.oneOf(['flex-start', 'flow-start']);
       expect(screen.getByTestId('child')).toHaveComputedStyle({
         boxSizing: 'border-box',
         marginTop: childMargin,
