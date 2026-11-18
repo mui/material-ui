@@ -20,6 +20,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
 import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -851,6 +852,89 @@ describe.skipIf(isJsdom())('density contract', () => {
             drift(height(`${name} autocomplete`) - height(`${name} textfield`)),
           ),
         );
+      });
+
+      test(`${density.id}: Checkbox and Radio keep an explicitly sized custom icon`, () => {
+        const icons = {
+          icon: <SearchIcon sx={{ fontSize: 40 }} />,
+          checkedIcon: <SearchIcon sx={{ fontSize: 40 }} />,
+        };
+        renderIn(
+          THEMES[density.id],
+          cases({ checkbox: <Checkbox {...icons} />, radio: <Radio {...icons} /> }),
+        );
+        expect({
+          checkbox: rect('svg', inCase('checkbox')).width,
+          radio: rect('svg', inCase('radio')).width,
+        }).to.deep.equal({ checkbox: 40, radio: 40 });
+      });
+
+      test(`${density.id}: fields keep their box when the input is not a direct FormControl child`, () => {
+        const field = (
+          size: (typeof SIZES)[number],
+          variant: 'outlined' | 'filled',
+          kind: string,
+        ) => {
+          const input =
+            variant === 'outlined' ? (
+              <OutlinedInput size={size} label="Label" defaultValue="Ada" />
+            ) : (
+              <FilledInput size={size} defaultValue="Ada" />
+            );
+          const children = (
+            <React.Fragment>
+              <InputLabel>Label</InputLabel>
+              {input}
+            </React.Fragment>
+          );
+          return (
+            <FormControl size={size} variant={variant}>
+              {kind === 'wrapped' ? <div>{children}</div> : children}
+            </FormControl>
+          );
+        };
+        renderIn(
+          THEMES[density.id],
+          cases({
+            ...grid([SIZES, ['outlined', 'filled'], ['direct', 'wrapped']], field),
+            ...grid([SIZES, ['bare', 'textfield']], (size, kind) =>
+              kind === 'textfield' ? (
+                autocompleteField(`outlined ${size}`, { defaultValue: 'One' })
+              ) : (
+                <Autocomplete
+                  size={size === 'small' ? 'small' : undefined}
+                  options={['One', 'Two']}
+                  defaultValue="One"
+                  renderInput={(params) => (
+                    <OutlinedInput
+                      {...params.slotProps.input}
+                      size={size}
+                      inputProps={params.slotProps.htmlInput}
+                    />
+                  )}
+                />
+              ),
+            ),
+          }),
+        );
+        const labelOffset = (name: string) =>
+          rect('.MuiInputLabel-root', inCase(name)).top -
+          rect('.MuiInputBase-root', inCase(name)).top;
+        const height = (name: string) => rect('.MuiInputBase-root', inCase(name)).height;
+        expectNoDrift({
+          ...Object.fromEntries(
+            Object.keys(grid([SIZES, ['outlined', 'filled']], () => null)).flatMap((name) => [
+              [
+                `${name} label`,
+                drift(labelOffset(`${name} wrapped`) - labelOffset(`${name} direct`)),
+              ],
+              [`${name} box`, drift(height(`${name} wrapped`) - height(`${name} direct`))],
+            ]),
+          ),
+          ...byName([...SIZES], (size) =>
+            drift(height(`${size} bare`) - height(`${size} textfield`)),
+          ),
+        });
       });
 
       test(`${density.id}: a floating label without a notch starts where the value starts`, () => {

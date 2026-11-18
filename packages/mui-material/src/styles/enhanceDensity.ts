@@ -153,7 +153,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     padding: 0,
     width: touchTarget,
     height: touchTarget,
-    '& svg': { fontSize: iconSize },
     // Pull-in follows the label placement — the control sits at the row's
     // start for `end`, at its end for `start`; top/bottom center it, so no
     // pull applies there. Written as a variable the label root reads, so the
@@ -170,7 +169,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: {
           width: `max(${wcagTargetSize}, ${smallBox})`,
           height: `max(${wcagTargetSize}, ${smallBox})`,
-          '& svg': { fontSize: iconSmall },
           [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
             '--_labelMarginLeft': `calc((max(${wcagTargetSize}, ${smallBox}) - ${iconSmall}) / -2)`,
           },
@@ -461,7 +459,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       '--_outlinedInputPadBlock': inputMediumPadBlock,
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': 'var(--_outlinedInputPadBlock)',
+      '--_restY': `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
       '--_inlinePad': dirSign === 1 ? spacing('small') : `calc(-1 * ${spacing('small')})`,
     },
     variants: [
@@ -470,6 +468,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: {
           [`.${formControlClasses.root}:has(> &)`]: {
             '--_outlinedInputPadBlock': inputSmallPadBlock,
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            '--_restY': `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
           },
         },
       },
@@ -560,7 +561,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       '--_filledInputPadBottom': inputMediumPadBlock,
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+      '--_restY': `calc((var(--_filledInputPadTop, ${filledInputMediumPadTop}) + var(--_filledInputPadBottom, ${inputMediumPadBlock})) / 2)`,
       '--_shrinkY': '6px',
       '--_inlinePad': dirSign === 1 ? spacing('small') : `calc(-1 * ${spacing('small')})`,
     },
@@ -573,7 +574,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
             '--_filledInputPadBottom': inputSmallPadBlock,
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_restY': `calc((var(--_filledInputPadTop, ${filledInputSmallPadTop}) + var(--_filledInputPadBottom, ${inputSmallPadBlock})) / 2)`,
             '--_shrinkY': '4px',
           },
         },
@@ -903,13 +904,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     paddingBottom: rowPad('var(--_fieldPadBottom)'),
     paddingLeft: 'var(--_fieldPadLeft)',
     [`&:where(.${outlinedInputClasses.root})`]: {
-      '--_fieldPadTop': 'var(--_outlinedInputPadBlock)',
-      '--_fieldPadBottom': 'var(--_outlinedInputPadBlock)',
+      '--_fieldPadTop': `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+      '--_fieldPadBottom': `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
       '--_fieldPadLeft': `calc(${spacing('small')} - 4px)`,
     },
     [`&${filledLabelled}`]: {
-      '--_fieldPadTop': 'var(--_filledInputPadTop)',
-      '--_fieldPadBottom': 'var(--_filledInputPadBottom)',
+      '--_fieldPadTop': `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
+      '--_fieldPadBottom': `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
     },
     [`&:where(.${filledInputClasses.root})`]: {
       '--_fieldPadLeft': `calc(${spacing('small')} - 4px)`,
@@ -919,8 +920,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       '--_fieldPadBottom': inputMediumPadBlock,
     },
     [`&:where(.${inputClasses.root})`]: {
-      '--_fieldPadTop': 'var(--_inputPadBlock)',
-      '--_fieldPadBottom': 'var(--_inputPadBlock)',
+      '--_fieldPadTop': `var(--_inputPadBlock, ${inputMediumPadBlock})`,
+      '--_fieldPadBottom': `var(--_inputPadBlock, ${inputMediumPadBlock})`,
       '--_fieldPadLeft': '0px',
     },
     [`&.${inputBaseClasses.sizeSmall}`]: {
@@ -929,14 +930,24 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         '--_fieldPadTop': inputSmallPadBlock,
         '--_fieldPadBottom': inputSmallPadBlock,
       },
-      ...(!enhanced.modularCssLayers && {
-        [`&:where(.${outlinedInputClasses.root})`]: {
+      [`&:where(.${outlinedInputClasses.root})`]: {
+        '--_fieldPadTop': `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
+        '--_fieldPadBottom': `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
+        ...(!enhanced.modularCssLayers && {
           paddingTop: rowPad('var(--_fieldPadTop)'),
           paddingBottom: rowPad('var(--_fieldPadBottom)'),
           paddingLeft: 'var(--_fieldPadLeft)',
-        },
-        [`&${filledLabelled}`]: { paddingBottom: rowPad('var(--_fieldPadBottom)') },
-      }),
+        }),
+      },
+      [`&${filledLabelled}`]: {
+        '--_fieldPadTop': `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
+        '--_fieldPadBottom': `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
+        ...(!enhanced.modularCssLayers && { paddingBottom: rowPad('var(--_fieldPadBottom)') }),
+      },
+      [`&:where(.${inputClasses.root})`]: {
+        '--_fieldPadTop': `var(--_inputPadBlock, ${inputSmallPadBlock})`,
+        '--_fieldPadBottom': `var(--_inputPadBlock, ${inputSmallPadBlock})`,
+      },
     },
     ...(!enhanced.modularCssLayers && {
       [`&.${inputBaseClasses.hiddenLabel}:where(.${filledInputClasses.root})`]: {
