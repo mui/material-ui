@@ -9,6 +9,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { __unsafe_useEmotionCache } from '@emotion/react';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { THEME_ID, ThemeProvider, createTheme, css, styled } from '@mui/material/styles';
+import {
+  GlobalStyles as SystemGlobalStyles,
+  ThemeProvider as SystemThemeProvider,
+  styled as systemStyled,
+} from '@mui/system';
 
 function getLayerNames() {
   const names = new Set<string>();
@@ -404,6 +409,23 @@ describe.skipIf(isJsdom())('CSS layers: generated styles', () => {
     expect(styles).to.match(/@layer mui\{padding-bottom:3px;+color:rgb\(255, 0, 0\);\}/);
     // As with v9's `enableCssLayer`, `mui` takes its place among the app's layers.
     expect(document.head.querySelector('style[data-mui-layer-order]')).to.equal(null);
+  });
+
+  it('puts the styles in the mui layer with a theme object made without createTheme()', () => {
+    const inserted: string[] = [];
+    const ThemedDiv = systemStyled('div')<{ theme?: any }>(({ theme }) => ({
+      color: theme.textColor,
+    }));
+    render(
+      <SystemThemeProvider theme={{ textColor: 'rgb(255, 0, 0)' }}>
+        <CaptureStyles inserted={inserted} />
+        <SystemGlobalStyles styles={{ html: { color: 'blue' } }} />
+        <ThemedDiv />
+      </SystemThemeProvider>,
+    );
+
+    expect(inserted).to.include('@layer mui{html{color:blue;}}');
+    expect(inserted.join('')).to.match(/@layer mui\{color:rgb\(255, 0, 0\);+\}/);
   });
 
   it('keeps the styles of a component in one block by default', () => {
