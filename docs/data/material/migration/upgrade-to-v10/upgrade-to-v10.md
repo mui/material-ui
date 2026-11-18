@@ -239,7 +239,7 @@ Material UI puts all of its styles in the `mui` [cascade layer](/material-ui/cu
 This can't be turned off.
 Inside the layer, Material UI's styles keep the v9 precedence.
 
-CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles whatever its specificity.
+CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles, whatever its specificity.
 To keep a reset below Material UI's styles, put it in a layer declared before `mui`:
 
 ```css
@@ -254,7 +254,7 @@ To keep a reset below Material UI's styles, put it in a layer declared before `
 
 jsdom and happy-dom ignore the rules inside `@layer` blocks, so in tests that run in them, Material UI's styles aren't layered.
 
-The `modularCssLayers` theme option works as in v9, without `enableCssLayer`.
+The `modularCssLayers` theme option works as in v9: set it to `true` or to a layer order string to split `mui` into [sub-layers](/material-ui/customization/css-layers/#sub-layers).
 
 ### enableCssLayer removed
 

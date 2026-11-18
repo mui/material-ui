@@ -70,7 +70,7 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
     expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
   });
 
-  it('does not declare the order again under an upper theme with layers', () => {
+  it('does not declare the order again under an upper theme with sub-layers', () => {
     render(
       <ThemeContext.Provider value={{ modularCssLayers: true }}>
         <TestComponent theme={{ modularCssLayers: true }} />
@@ -79,7 +79,7 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
     expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
   });
 
-  it('declares the order under an upper theme without layers', () => {
+  it('declares the order under an upper theme without modularCssLayers', () => {
     render(
       <ThemeContext.Provider value={{ direction: 'ltr' }}>
         <TestComponent theme={{ modularCssLayers: true }} />
@@ -106,7 +106,7 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
     );
   });
 
-  it('does not declare a single layer under an upper theme with sub-layers', () => {
+  it('declares no order with a single layer under an upper theme with sub-layers', () => {
     render(
       <ThemeContext.Provider value={{ modularCssLayers: true }}>
         <TestComponent theme={{ modularCssLayers: false }} />

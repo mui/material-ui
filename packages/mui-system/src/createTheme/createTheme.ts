@@ -42,8 +42,8 @@ export interface ThemeOptions {
   zIndex?: ZIndex | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   /**
-   * The generated styles always go in the `mui` CSS layer, so other layers and unlayered CSS
-   * override them. Set it to `true` to split `mui` into sub-layers: `mui.global`,
+   * The generated styles always go in the `mui` CSS layer, so unlayered CSS and the layers declared
+   * after `mui` override them. Set it to `true` to split `mui` into sub-layers: `mui.global`,
    * `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
    * A string also turns on the sub-layers and sets where they go among the app's layers, for
    * example `'@layer theme, base, mui, components, utilities;'`.
