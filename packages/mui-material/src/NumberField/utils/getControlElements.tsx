@@ -5,7 +5,6 @@ import Adornment from '../NumberFieldAdornmentSlot';
 import getAdornedStart from './getAdornedStart';
 
 interface GetControlElementsOptions {
-  controlsPosition: NumberFieldOwnerState['controlsPosition'];
   IncrementButton: React.ReactNode;
   DecrementButton: React.ReactNode;
   startAdornment?: React.ReactNode;
@@ -19,7 +18,6 @@ interface GetControlElementsOptions {
  * Resolves control placement and whether the input has a start adornment.
  */
 function getControlElements({
-  controlsPosition,
   IncrementButton,
   DecrementButton,
   startAdornment,
@@ -32,6 +30,7 @@ function getControlElements({
   endControls: React.ReactNode | null;
   adornedStart: boolean;
 } {
+  const { controlsPosition } = ownerState;
   const controlProps = {
     className: classes.controls,
     materialProps: ownerState,

@@ -212,343 +212,331 @@ const NumberFieldScrubAreaCursor = styled('span', {
 /**
  * @ignore - internal component.
  */
-const NumberFieldInputSlot = React.forwardRef(
-  (props: NumberFieldInputProps, ref: React.Ref<HTMLDivElement>) => {
-    const { baseProps, baseState, classes, materialProps, externalForwardedProps } = props;
-    const { inputValue } = baseState;
-    const { autoFocus, variant, label, id, fullWidth, inputRef, placeholder } = materialProps;
-    const ownerState = materialProps;
+function NumberFieldInputSlot(props: NumberFieldInputProps) {
+  const { baseProps, baseState, classes, materialProps, externalForwardedProps } = props;
+  const { inputValue } = baseState;
+  const { autoFocus, variant, label, id, fullWidth, inputRef, placeholder } = materialProps;
+  const ownerState = materialProps;
 
-    const hasHelperText = materialProps.helperText != null && materialProps.helperText !== '';
-    const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
+  const hasHelperText = materialProps.helperText != null && materialProps.helperText !== '';
+  const helperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
 
-    const InputComponent = variantComponent[variant];
-    const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
-    const inputAdditionalProps: Pick<OutlinedInputProps, 'label' | 'notched'> = {};
+  const InputComponent = variantComponent[variant];
+  const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
+  const inputAdditionalProps: Pick<OutlinedInputProps, 'label' | 'notched'> = {};
 
-    if (variant === 'outlined') {
-      if (
-        inputLabelSlotProps &&
-        'shrink' in inputLabelSlotProps &&
-        typeof inputLabelSlotProps.shrink !== 'undefined'
-      ) {
-        inputAdditionalProps.notched = inputLabelSlotProps.shrink;
-      }
-      inputAdditionalProps.label = label;
+  if (variant === 'outlined') {
+    if (
+      inputLabelSlotProps &&
+      'shrink' in inputLabelSlotProps &&
+      typeof inputLabelSlotProps.shrink !== 'undefined'
+    ) {
+      inputAdditionalProps.notched = inputLabelSlotProps.shrink;
     }
+    inputAdditionalProps.label = label;
+  }
 
-    const { render: inputRender, ...inputSlotProps } = externalForwardedProps.slotProps.input ?? {};
-    const [InputSlot, inputProps] = useSlot('input', {
-      elementType: InputComponent,
-      externalForwardedProps: {
-        ...externalForwardedProps,
-        slotProps: { ...externalForwardedProps.slotProps, input: inputSlotProps },
-      },
-      additionalProps: inputAdditionalProps,
-      ownerState,
-      className: classes.input,
-      ref,
-    });
+  const { render: inputRender, ...inputSlotProps } = externalForwardedProps.slotProps.input ?? {};
+  const [InputSlot, inputProps] = useSlot('input', {
+    elementType: InputComponent,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      slotProps: { ...externalForwardedProps.slotProps, input: inputSlotProps },
+    },
+    additionalProps: inputAdditionalProps,
+    ownerState,
+    className: classes.input,
+  });
 
-    const { materialInputProps, nativeSlotProps } = resolveInputProps({
-      inputProps,
-      htmlInputSlotProps: externalForwardedProps.slotProps.htmlInput,
-      ownerState,
-    });
+  const { materialInputProps, nativeSlotProps } = resolveInputProps({
+    inputProps,
+    htmlInputSlotProps: externalForwardedProps.slotProps.htmlInput,
+    ownerState,
+  });
 
-    // Find a custom Material root from slotProps.input.slots.root or the selected
-    // input's theme defaults so Group can share its element without replacing it.
-    const { slots: materialSlots } = useDefaultProps({
-      props: { slots: materialInputProps.slots },
-      // Read defaults for the selected Material input, rather than NumberField.
-      // eslint-disable-next-line mui/material-ui-name-matches-component-name
-      name: variantName[variant],
-    });
-    const materialRootComponent = materialSlots?.root;
-    const materialSlotProps = {
-      ...materialInputProps.slotProps,
-      root: {
-        ...materialInputProps.slotProps?.root,
-        ...(!materialRootComponent && { as: NumberFieldInputRoot }),
-        numberFieldInputRoot: {
-          render: externalForwardedProps.slots.input ? undefined : inputRender,
-          renderState: baseState,
-          rootComponent: materialRootComponent,
-        },
+  // Find a custom Material root from slotProps.input.slots.root or the selected
+  // input's theme defaults so Group can share its element without replacing it.
+  const { slots: materialSlots } = useDefaultProps({
+    props: { slots: materialInputProps.slots },
+    // Read defaults for the selected Material input, rather than NumberField.
+    // eslint-disable-next-line mui/material-ui-name-matches-component-name
+    name: variantName[variant],
+  });
+  const materialRootComponent = materialSlots?.root;
+  const materialSlotProps = {
+    ...materialInputProps.slotProps,
+    root: {
+      ...materialInputProps.slotProps?.root,
+      ...(!materialRootComponent && { as: NumberFieldInputRoot }),
+      numberFieldInputRoot: {
+        render: externalForwardedProps.slots.input ? undefined : inputRender,
+        renderState: baseState,
+        rootComponent: materialRootComponent,
       },
-    };
+    },
+  };
 
-    const { render: htmlInputRender, ...htmlInputSlotProps } = nativeSlotProps;
-    const useHtmlInputRender = Boolean(
-      htmlInputRender &&
-      !externalForwardedProps.slots.htmlInput &&
-      !materialInputProps.slots?.input,
-    );
-    const [HtmlInputSlot, htmlInputProps] = useSlot('htmlInput', {
-      elementType: 'input',
-      externalForwardedProps: {
-        ...externalForwardedProps,
-        slotProps: {
-          ...externalForwardedProps.slotProps,
-          htmlInput: htmlInputSlotProps,
-        },
+  const { render: htmlInputRender, ...htmlInputSlotProps } = nativeSlotProps;
+  const useHtmlInputRender = Boolean(
+    htmlInputRender && !externalForwardedProps.slots.htmlInput && !materialInputProps.slots?.input,
+  );
+  const [HtmlInputSlot, htmlInputProps] = useSlot('htmlInput', {
+    elementType: 'input',
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      slotProps: {
+        ...externalForwardedProps.slotProps,
+        htmlInput: htmlInputSlotProps,
       },
-      ownerState,
-      className: undefined,
-      getSlotProps: (externalHandlers) => {
-        // An unspecified Base UI validation state must not clear Material's aria-invalid.
-        const { 'aria-invalid': ariaInvalid, ...restBaseProps } = baseProps;
+    },
+    ownerState,
+    className: undefined,
+    getSlotProps: (externalHandlers) => {
+      // An unspecified Base UI validation state must not clear Material's aria-invalid.
+      const { 'aria-invalid': ariaInvalid, ...restBaseProps } = baseProps;
 
-        // Compose the selected consumer handlers with Base UI; useSlot merges their refs.
-        return mergeProps(ariaInvalid === undefined ? restBaseProps : baseProps, externalHandlers);
-      },
-    });
+      // Compose the selected consumer handlers with Base UI; useSlot merges their refs.
+      return mergeProps(ariaInvalid === undefined ? restBaseProps : baseProps, externalHandlers);
+    },
+  });
 
-    // Build direction-aware defaults without evaluating the consumer's slot callback twice.
-    const { render: scrubAreaRender, ...resolvedScrubAreaSlotProps } =
-      resolveComponentProps(externalForwardedProps.slotProps.scrubArea, ownerState) ?? {};
-    const scrubDirection = resolvedScrubAreaSlotProps.direction ?? 'horizontal';
-    const [ScrubAreaSlot, scrubAreaSlotProps] = useSlot('scrubArea', {
-      elementType: NumberFieldScrubArea,
-      externalForwardedProps: {
-        ...externalForwardedProps,
-        slotProps: {
-          ...externalForwardedProps.slotProps,
-          scrubArea: resolvedScrubAreaSlotProps,
-        },
+  // Build direction-aware defaults without evaluating the consumer's slot callback twice.
+  const { render: scrubAreaRender, ...resolvedScrubAreaSlotProps } =
+    resolveComponentProps(externalForwardedProps.slotProps.scrubArea, ownerState) ?? {};
+  const scrubDirection = resolvedScrubAreaSlotProps.direction ?? 'horizontal';
+  const [ScrubAreaSlot, scrubAreaSlotProps] = useSlot('scrubArea', {
+    elementType: NumberFieldScrubArea,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      slotProps: {
+        ...externalForwardedProps.slotProps,
+        scrubArea: resolvedScrubAreaSlotProps,
       },
-      ownerState,
-      className: classes.scrubArea,
-      internalForwardedProps: scrubAreaRender
-        ? { as: RenderElement, render: scrubAreaRender, renderState: baseState }
-        : undefined,
-      additionalProps: {
-        'data-direction': scrubDirection,
-        children: (
-          <ImportExportIcon
-            fontSize="inherit"
-            style={{ transform: scrubDirection === 'horizontal' ? 'rotate(90deg)' : undefined }}
-          />
-        ),
-      },
-    });
-    const { render: scrubAreaCursorRender, ...resolvedScrubAreaCursorSlotProps } =
-      resolveComponentProps(externalForwardedProps.slotProps.scrubAreaCursor, ownerState) ?? {};
-    const [ScrubAreaCursorSlot, scrubAreaCursorProps] = useSlot('scrubAreaCursor', {
-      elementType: NumberFieldScrubAreaCursor,
-      externalForwardedProps: {
-        ...externalForwardedProps,
-        slotProps: {
-          ...externalForwardedProps.slotProps,
-          scrubAreaCursor: resolvedScrubAreaCursorSlotProps,
-        },
-      },
-      ownerState,
-      className: classes.scrubAreaCursor,
-      internalForwardedProps: scrubAreaCursorRender
-        ? { as: RenderElement, render: scrubAreaCursorRender, renderState: baseState }
-        : undefined,
-      additionalProps: {
-        // Rotate the SVG, since Base UI updates the cursor container's transform as it moves.
-        // Inline transforms also preserve the drag axis when RTL styles are flipped.
-        children: (
-          <OpenInFullIcon
-            fontSize="inherit"
-            style={{
-              transform: scrubDirection === 'horizontal' ? 'rotate(45deg)' : 'rotate(-45deg)',
-            }}
-          />
-        ),
-      },
-    });
+    },
+    ownerState,
+    className: classes.scrubArea,
+    internalForwardedProps: scrubAreaRender
+      ? { as: RenderElement, render: scrubAreaRender, renderState: baseState }
+      : undefined,
+    additionalProps: {
+      'data-direction': scrubDirection,
+      children: (
+        <ImportExportIcon
+          fontSize="inherit"
+          style={{ transform: scrubDirection === 'horizontal' ? 'rotate(90deg)' : undefined }}
+        />
+      ),
+    },
+  });
+  const [ScrubAreaCursorSlot, scrubAreaCursorSlotProps] = useSlot('scrubAreaCursor', {
+    elementType: NumberFieldScrubAreaCursor,
+    externalForwardedProps,
+    ownerState,
+    className: classes.scrubAreaCursor,
+    additionalProps: {
+      // Rotate the SVG, since Base UI updates the cursor container's transform as it moves.
+      // Inline transforms also preserve the drag axis when RTL styles are flipped.
+      children: (
+        <OpenInFullIcon
+          fontSize="inherit"
+          style={{
+            transform: scrubDirection === 'horizontal' ? 'rotate(45deg)' : 'rotate(-45deg)',
+          }}
+        />
+      ),
+    },
+  });
+  const { render: scrubAreaCursorRender, ...scrubAreaCursorProps } = scrubAreaCursorSlotProps;
 
-    const [DecrementIcon, IncrementIcon] =
-      ownerState.controlsPosition === 'stacked'
-        ? [KeyboardArrowDownIcon, KeyboardArrowUpIcon]
-        : [RemoveIcon, AddIcon];
-    const [DecrementButtonSlot, decrementButtonProps] = useSlot('decrementButton', {
-      elementType: NumberFieldDecrementButton,
-      externalForwardedProps,
-      ownerState,
-      className: classes.decrementButton,
-      additionalProps: {
-        size: ownerState.size,
-        children: <DecrementIcon fontSize="inherit" />,
-      },
-    });
-    const [IncrementButtonSlot, incrementButtonProps] = useSlot('incrementButton', {
-      elementType: NumberFieldIncrementButton,
-      externalForwardedProps,
-      ownerState,
-      className: classes.incrementButton,
-      additionalProps: {
-        size: ownerState.size,
-        children: <IncrementIcon fontSize="inherit" />,
-      },
-    });
+  const [DecrementIcon, IncrementIcon] =
+    ownerState.controlsPosition === 'stacked'
+      ? [KeyboardArrowDownIcon, KeyboardArrowUpIcon]
+      : [RemoveIcon, AddIcon];
+  const [DecrementButtonSlot, decrementButtonProps] = useSlot('decrementButton', {
+    elementType: NumberFieldDecrementButton,
+    externalForwardedProps,
+    ownerState,
+    className: classes.decrementButton,
+    additionalProps: {
+      size: ownerState.size,
+      children: <DecrementIcon fontSize="inherit" />,
+    },
+  });
+  const [IncrementButtonSlot, incrementButtonProps] = useSlot('incrementButton', {
+    elementType: NumberFieldIncrementButton,
+    externalForwardedProps,
+    ownerState,
+    className: classes.incrementButton,
+    additionalProps: {
+      size: ownerState.size,
+      children: <IncrementIcon fontSize="inherit" />,
+    },
+  });
 
-    const {
-      direction,
-      pixelSensitivity,
-      teleportDistance,
-      children: scrubAreaChildren,
-      ...restScrubAreaProps
-    } = scrubAreaSlotProps;
-    const scrubAreaProps = omitNullishEventHandlers(restScrubAreaProps);
+  const {
+    direction,
+    pixelSensitivity,
+    teleportDistance,
+    children: scrubAreaChildren,
+    ...restScrubAreaProps
+  } = scrubAreaSlotProps;
+  const scrubAreaProps = omitNullishEventHandlers(restScrubAreaProps);
 
-    const {
-      disabled: decrementButtonDisabled,
-      render: decrementButtonRender,
-      ...restDecrementButtonProps
-    } = decrementButtonProps as NumberFieldButtonSlotProps;
-    const {
-      disabled: incrementButtonDisabled,
-      render: incrementButtonRender,
-      ...restIncrementButtonProps
-    } = incrementButtonProps as NumberFieldButtonSlotProps;
+  const {
+    disabled: decrementButtonDisabled,
+    render: decrementButtonRender,
+    ...restDecrementButtonProps
+  } = decrementButtonProps as NumberFieldButtonSlotProps;
+  const {
+    disabled: incrementButtonDisabled,
+    render: incrementButtonRender,
+    ...restIncrementButtonProps
+  } = incrementButtonProps as NumberFieldButtonSlotProps;
 
-    const scrubAreaAdornment = ownerState.scrubAreaPosition !== false && (
-      <NumberFieldAdornmentSlot
-        slotName="scrubAreaAdornment"
-        position={ownerState.scrubAreaPosition}
-        className={classes.scrubAreaAdornment}
-        baseState={baseState}
-        materialProps={ownerState}
-        externalForwardedProps={externalForwardedProps}
+  const scrubAreaAdornment = ownerState.scrubAreaPosition !== false && (
+    <NumberFieldAdornmentSlot
+      slotName="scrubAreaAdornment"
+      position={ownerState.scrubAreaPosition}
+      className={classes.scrubAreaAdornment}
+      baseState={baseState}
+      materialProps={ownerState}
+      externalForwardedProps={externalForwardedProps}
+    >
+      <BaseNumberField.ScrubArea
+        direction={direction}
+        pixelSensitivity={pixelSensitivity}
+        teleportDistance={teleportDistance}
+        render={<ScrubAreaSlot {...scrubAreaProps} />}
       >
-        <BaseNumberField.ScrubArea
-          direction={direction}
-          pixelSensitivity={pixelSensitivity}
-          teleportDistance={teleportDistance}
-          render={<ScrubAreaSlot {...scrubAreaProps} />}
-        >
-          {scrubAreaChildren}
-          <BaseNumberField.ScrubAreaCursor
-            render={<ScrubAreaCursorSlot {...scrubAreaCursorProps} />}
-          />
-        </BaseNumberField.ScrubArea>
-      </NumberFieldAdornmentSlot>
-    );
+        {scrubAreaChildren}
+        <BaseNumberField.ScrubAreaCursor
+          render={
+            <ScrubAreaCursorSlot
+              {...scrubAreaCursorProps}
+              {...(!externalForwardedProps.slots.scrubAreaCursor &&
+                scrubAreaCursorRender && {
+                  as: RenderElement,
+                  render: scrubAreaCursorRender,
+                  renderState: baseState,
+                })}
+            />
+          }
+        />
+      </BaseNumberField.ScrubArea>
+    </NumberFieldAdornmentSlot>
+  );
 
-    const incrementButton = (
-      <BaseNumberField.Increment
-        disabled={incrementButtonDisabled}
-        nativeButton={restIncrementButtonProps.nativeButton}
-        render={(buttonBaseProps, buttonBaseState) => (
-          <NumberFieldButtonSlot
-            ButtonSlot={IncrementButtonSlot}
-            buttonProps={restIncrementButtonProps}
-            baseProps={buttonBaseProps}
-            baseState={buttonBaseState}
-            materialProps={ownerState}
-            render={
-              externalForwardedProps.slots.incrementButton ? undefined : incrementButtonRender
-            }
-          />
-        )}
-      />
-    );
-    const decrementButton = (
-      <BaseNumberField.Decrement
-        disabled={decrementButtonDisabled}
-        nativeButton={restDecrementButtonProps.nativeButton}
-        render={(buttonBaseProps, buttonBaseState) => (
-          <NumberFieldButtonSlot
-            ButtonSlot={DecrementButtonSlot}
-            buttonProps={restDecrementButtonProps}
-            baseProps={buttonBaseProps}
-            baseState={buttonBaseState}
-            materialProps={ownerState}
-            render={
-              externalForwardedProps.slots.decrementButton ? undefined : decrementButtonRender
-            }
-          />
-        )}
-      />
-    );
+  const incrementButton = (
+    <BaseNumberField.Increment
+      disabled={incrementButtonDisabled}
+      nativeButton={restIncrementButtonProps.nativeButton}
+      render={(buttonBaseProps, buttonBaseState) => (
+        <NumberFieldButtonSlot
+          ButtonSlot={IncrementButtonSlot}
+          buttonProps={restIncrementButtonProps}
+          baseProps={buttonBaseProps}
+          baseState={buttonBaseState}
+          materialProps={ownerState}
+          render={externalForwardedProps.slots.incrementButton ? undefined : incrementButtonRender}
+        />
+      )}
+    />
+  );
+  const decrementButton = (
+    <BaseNumberField.Decrement
+      disabled={decrementButtonDisabled}
+      nativeButton={restDecrementButtonProps.nativeButton}
+      render={(buttonBaseProps, buttonBaseState) => (
+        <NumberFieldButtonSlot
+          ButtonSlot={DecrementButtonSlot}
+          buttonProps={restDecrementButtonProps}
+          baseProps={buttonBaseProps}
+          baseState={buttonBaseState}
+          materialProps={ownerState}
+          render={externalForwardedProps.slots.decrementButton ? undefined : decrementButtonRender}
+        />
+      )}
+    />
+  );
 
-    const consumerStartAdornment =
-      'startAdornment' in materialInputProps ? materialInputProps.startAdornment : undefined;
-    const consumerEndAdornment =
-      'endAdornment' in materialInputProps ? materialInputProps.endAdornment : undefined;
+  const consumerStartAdornment = materialInputProps.startAdornment;
+  const consumerEndAdornment = materialInputProps.endAdornment;
 
-    const { startControls, endControls, adornedStart } = getControlElements({
-      controlsPosition: ownerState.controlsPosition,
-      IncrementButton: incrementButton,
-      DecrementButton: decrementButton,
-      startAdornment: consumerStartAdornment,
-      classes,
-      ownerState,
-      baseState,
-      externalForwardedProps,
-    });
+  const { startControls, endControls, adornedStart } = getControlElements({
+    IncrementButton: incrementButton,
+    DecrementButton: decrementButton,
+    startAdornment: consumerStartAdornment,
+    classes,
+    ownerState,
+    baseState,
+    externalForwardedProps,
+  });
 
-    const startScrubArea = ownerState.scrubAreaPosition === 'start' && scrubAreaAdornment;
-    const endScrubArea = ownerState.scrubAreaPosition === 'end' && scrubAreaAdornment;
+  const startScrubArea = ownerState.scrubAreaPosition === 'start' && scrubAreaAdornment;
+  const endScrubArea = ownerState.scrubAreaPosition === 'end' && scrubAreaAdornment;
 
-    // An empty fragment would still mark the input as adorned and shrink its label.
-    const startAdornment = adornedStart ? (
+  // An empty fragment would still mark the input as adorned and shrink its label.
+  const startAdornment = adornedStart ? (
+    <React.Fragment>
+      {startControls}
+      {startScrubArea}
+      {consumerStartAdornment}
+    </React.Fragment>
+  ) : (
+    consumerStartAdornment
+  );
+  const endAdornment =
+    endControls || endScrubArea ? (
       <React.Fragment>
-        {startControls}
-        {startScrubArea}
-        {consumerStartAdornment}
+        {consumerEndAdornment}
+        {endScrubArea}
+        {endControls}
       </React.Fragment>
     ) : (
-      consumerStartAdornment
+      consumerEndAdornment
     );
-    const endAdornment =
-      endControls || endScrubArea ? (
-        <React.Fragment>
-          {consumerEndAdornment}
-          {endScrubArea}
-          {endControls}
-        </React.Fragment>
-      ) : (
-        consumerEndAdornment
-      );
 
-    // Keep Material styling and native behavior aligned with Base UI's resolved state.
-    const inputStateProps = {
-      disabled: ownerState.disabled,
-      required: ownerState.required,
-      readOnly: ownerState.readOnly,
-    };
+  // Keep Material styling and native behavior aligned with Base UI's resolved state.
+  const inputStateProps = {
+    disabled: ownerState.disabled,
+    required: ownerState.required,
+    readOnly: ownerState.readOnly,
+  };
 
-    // Apply behavioral flags after native consumer props, preserving merged handlers and refs.
-    const finalHtmlInputProps = {
-      ...htmlInputProps,
-      ...inputStateProps,
-      ...(useHtmlInputRender && { render: htmlInputRender, renderState: baseState }),
-    };
+  // Apply behavioral flags after native consumer props, preserving merged handlers and refs.
+  const finalHtmlInputProps = {
+    ...htmlInputProps,
+    ...inputStateProps,
+    ...(useHtmlInputRender && { render: htmlInputRender, renderState: baseState }),
+  };
 
-    return (
-      <InputSlot
-        aria-describedby={helperTextId}
-        autoFocus={autoFocus}
-        fullWidth={fullWidth}
-        value={inputValue}
-        id={id}
-        inputRef={inputRef}
-        onBlur={materialProps.onBlur}
-        onFocus={materialProps.onFocus}
-        placeholder={placeholder}
-        {...materialInputProps}
-        slots={{
-          input: externalForwardedProps.slots.htmlInput ? HtmlInputSlot : undefined,
-          ...materialInputProps.slots,
-          ...(materialRootComponent && { root: NumberFieldInputRoot }),
-        }}
-        slotProps={materialSlotProps}
-        // InputBase receives render/state through inputProps; its leaf override
-        // preserves the styled input layer for every variant.
-        {...(useHtmlInputRender && { inputComponent: RenderElement })}
-        startAdornment={startAdornment}
-        endAdornment={endAdornment}
-        {...inputStateProps}
-        inputProps={finalHtmlInputProps}
-      />
-    );
-  },
-);
+  return (
+    <InputSlot
+      aria-describedby={helperTextId}
+      autoFocus={autoFocus}
+      fullWidth={fullWidth}
+      value={inputValue}
+      id={id}
+      inputRef={inputRef}
+      onBlur={materialProps.onBlur}
+      onFocus={materialProps.onFocus}
+      placeholder={placeholder}
+      {...materialInputProps}
+      slots={{
+        input: externalForwardedProps.slots.htmlInput ? HtmlInputSlot : undefined,
+        ...materialInputProps.slots,
+        ...(materialRootComponent && { root: NumberFieldInputRoot }),
+      }}
+      slotProps={materialSlotProps}
+      // InputBase receives render/state through inputProps; its leaf override
+      // preserves the styled input layer for every variant.
+      {...(useHtmlInputRender && { inputComponent: RenderElement })}
+      startAdornment={startAdornment}
+      endAdornment={endAdornment}
+      {...inputStateProps}
+      inputProps={finalHtmlInputProps}
+    />
+  );
+}
 
 export default NumberFieldInputSlot;
