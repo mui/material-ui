@@ -5,9 +5,6 @@ import {
 } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-// The default scale `enhanceDensity` ships, split into steps and sizing
-// targets. A measured number is matched back against it so a caption can name
-// the step that produced it.
 const {
   touchTarget: defaultTouchTarget,
   iconSize: defaultIconTarget,
@@ -25,8 +22,6 @@ export const DENSITY_TARGETS = {
   iconSize: defaultIconTarget,
 };
 
-// Wide enough that the captions in the side gutters have room before the canvas
-// starts scrolling.
 export const DENSITY_STAGE_SX = {
   position: 'relative',
   minWidth: 620,
@@ -37,34 +32,23 @@ export const DENSITY_STAGE_SX = {
   placeItems: 'center',
 } as const;
 
-// The colors browser devtools use when it highlights a box.
 const PADDING_COLOR = '#c3e5a5';
 const PADDING_EDGE = '#7ba85a';
 const MARGIN_COLOR = '#f8cb9c';
 const MARGIN_EDGE = '#d99a5b';
 const GAP_COLOR = '#9b6cd9';
 
-// One rung = one caption line plus breathing room. Every ladder steps by it,
-// so `offset` means the same distance wherever it is used.
 const RUNG = 24;
 
-// How far a connector reaches past its rail before the caption starts. Shared
-// by every shape, so a comb and a spine on one rail end level with each other.
 const REACH = 10;
 
-// How far an `offset: 0` dimension bar sits clear of the edge it measures. Each
-// further step moves it out by one RUNG, which is what `offset` means on a
-// touch-target: distance from the element, not which caption line to sit on.
 const BEAM_GAP = 10;
 
-// Connector + caption inks, one per aspect. Darker than the fills so text holds
-// up on white, lifted in dark mode where the fills would be far too dim.
 const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
 const INK_DARK = { padding: '#a9d18a', margin: '#f0b47a', gap: '#c9adf0' };
 
 export type Side = 'top' | 'bottom' | 'left' | 'right';
 
-/** The slot a reader toggles: every annotation on it goes together. */
 export const slotLabel = (annotation: { on: string; label?: string }) =>
   annotation.label ??
   annotation.on
@@ -102,12 +86,6 @@ const outset = (rect: Rect, edges: Edges): Rect => ({
   height: rect.height + Math.abs(edges.top) + Math.abs(edges.bottom),
 });
 
-/**
- * A collapsed `Collapse` keeps its children mounted under `visibility: hidden`,
- * which leaves their rect and computed padding intact — so a size test would
- * still measure them. Ask the browser instead, and walk the ancestors where
- * `checkVisibility` isn't available.
- */
 function isVisible(node: Element) {
   const check = (
     node as Element & { checkVisibility?: (options: object) => boolean }
@@ -126,14 +104,17 @@ function isVisible(node: Element) {
   return true;
 }
 
-/** Re-run `read` whenever the stage could have moved: a resize, a late webfont,
- * or a popper that mounts a frame after the demo does. */
 function useStageEffect(
   stageRef: React.RefObject<HTMLElement | null>,
   selectors: string[],
   read: (stage: HTMLElement) => void,
-  deps: React.DependencyList,
+  key: string,
 ) {
+  const latestRead = React.useRef(read);
+  React.useEffect(() => {
+    latestRead.current = read;
+  });
+  const selectorList = selectors.join(',');
   React.useEffect(() => {
     const stage = stageRef.current;
     if (!stage) {
@@ -142,17 +123,15 @@ function useStageEffect(
     let frame = 0;
     const schedule = () => {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => read(stage));
+      frame = requestAnimationFrame(() => latestRead.current(stage));
     };
     const resize = new ResizeObserver(schedule);
-    // Only the measured elements: observing every descendant made each ripple
-    // span re-observe the whole subtree.
     const observeAll = () => {
       resize.disconnect();
       resize.observe(stage);
-      selectors.forEach((selector) => {
-        stage.querySelectorAll(selector).forEach((node) => resize.observe(node));
-      });
+      if (selectorList) {
+        stage.querySelectorAll(selectorList).forEach((node) => resize.observe(node));
+      }
     };
     let cancelled = false;
     observeAll();
@@ -162,9 +141,6 @@ function useStageEffect(
         schedule();
       }
     });
-    // Attribute records cover state changes (`Mui-expanded`, a Collapse's
-    // inline height) that never resize a measured element; only child-list
-    // records can bring new elements that need observing.
     const mutation = new MutationObserver((records) => {
       const relevant = records.filter(
         (record) => !(record.target as Element).closest?.('.MuiTouchRipple-root'),
@@ -189,35 +165,19 @@ function useStageEffect(
       resize.disconnect();
       mutation.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, [stageRef, selectorList, key]);
 }
-
-// ---------------------------------------------------------------------------
-// The annotation lib. A claim (`on` + aspect + token) resolves to items; the
-// draw layer takes plain geometry plus an authored route and knows nothing
-// about MUI. No item's position depends on another's — adjusting one route
-// moves exactly one label, so hand-tuning converges.
-// ---------------------------------------------------------------------------
 
 export type Gutter = Side;
 
-/** Where a label goes. Every field is absolute. */
 export interface Route {
-  /** which margin strip around the demo the label lives in. */
   gutter: Gutter;
-  /** 0-1 along the band edge facing the gutter: where the line attaches. */
   at?: number;
-  /** rungs (label lines) out from the gutter's first line. */
   out?: number;
-  /** px along the gutter: slides the label; the line follows. */
   shift?: number;
-  /** ladder (axis-aligned, default) or diagonal — the opt-in for a crowded
-   * side, where straight segments fan instead of stacking. */
   line?: 'diagonal' | 'ladder';
 }
 
-/** The claim an item was drawn for, and the value it measured. */
 export interface AnnotateSource {
   claim: Claim;
   value: number;
@@ -227,32 +187,21 @@ export interface AnnotateSource {
 
 export type AnnotateItem =
   | {
-      /** a strip of space: padding, margin, gap. Shown by filling it. */
       kind: 'band';
       bands: Rect[];
-      /** paint this ring (outer minus inner, evenodd) instead of the band
-       * rects — the full-perimeter highlight behind an `axis: 'all'` claim. */
       ring?: { outer: Rect; inner: Rect };
-      /** which axis the strip measures: 'x' = its width is the value. */
       measures: 'x' | 'y';
       tone: 'padding' | 'margin' | 'gap';
-      /** the `(px)` part of a side-gutter label renders on its own line. */
       wrap?: boolean;
       label: string;
       route: Route;
       source: AnnotateSource;
     }
   | {
-      /** an extent of a box: touch-target, icon. Shown by bracketing its ends. */
       kind: 'bound';
       box: Rect;
-      /** dashed box + pointer (a slot inside the component) instead of a beam
-       * (the component's own overall size). */
       outline?: boolean;
-      /** beam + the dashed target box drawn inset inside the element, so bands
-       * touching its edges stay clear. */
       outlined?: boolean;
-      /** the `(px)` part of the label renders on its own line. */
       wrap?: boolean;
       measures: 'x' | 'y';
       label: string;
@@ -260,8 +209,6 @@ export type AnnotateItem =
       source: AnnotateSource;
     };
 
-// The gutter's first label line, off the demo bounds. `out` steps outward from
-// it by RUNG. REACH doubles as the fixed lead-in between a line and its label.
 const EDGE = 22;
 
 const away = (g: Gutter) => (g === 'top' || g === 'left' ? -1 : 1);
@@ -281,7 +228,6 @@ function railOf(bounds: Rect, g: Gutter, out: number) {
   return bounds.x + bounds.width + d;
 }
 
-/** Just the text, at its gutter address. */
 function LabelText({
   gutter,
   rail,
@@ -331,8 +277,6 @@ function LabelText({
   );
 }
 
-/** One straight segment from each attach point to the label. Ends where the
- * ladder's lead-in ends, so both styles stick to the text the same way. */
 function DiagonalLeader({
   gutter,
   rail,
@@ -375,8 +319,6 @@ function DiagonalLeader({
   );
 }
 
-/** The ending every ladder shares: an optional run along the gutter when
- * `shift` moved the label, the fixed lead-in, then the text. */
 function LadderEnding({
   gutter,
   rail,
@@ -390,8 +332,6 @@ function LadderEnding({
   rail: number;
   natural: number;
   shift?: number;
-  /** the stretch of rail a crossbar already draws — the run never repaints it,
-   * or the doubled dashes read as a solid streak. */
   covered?: [number, number];
   label: string;
   wrap?: boolean;
@@ -464,15 +404,10 @@ function BandView({
   const { bands, measures, route, label, tone, wrap } = item;
   const g = route.gutter;
   const rail = railOf(bounds, g, route.out ?? 0);
-  // A stem leaves a band along the strip's own run, so it can only reach the
-  // gutter pair perpendicular to the measured axis. Anywhere else the ladder
-  // crosses the strip instead — a spine, ticked where it meets each band.
   const naturalPair: Gutter[] =
     measures === 'x' ? ['top', 'bottom'] : ['left', 'right'];
   const comb = naturalPair.includes(g);
   const diagonal = (route.line ?? 'ladder') === 'diagonal';
-  // `at` (0-1, default centre) picks the point along the band edge facing the
-  // gutter where the line attaches.
   const t = route.at ?? 0.5;
   const facing = (b: Rect) => {
     if (g === 'top') {
@@ -521,8 +456,6 @@ function BandView({
   );
 
   if (diagonal) {
-    // Exit from the band edge facing the gutter — the exact point a ladder
-    // stem leaves from. Only the line's angle differs between styles.
     const attach = bands.map(facing);
     const spans = attach.map((point) => (sideways(g) ? point.y : point.x));
     const natural = (Math.min(...spans) + Math.max(...spans)) / 2;
@@ -607,7 +540,6 @@ function BandView({
     );
   }
 
-  // Spine: one line crossing the strip(s), a tick where it meets each.
   const lo = Math.min(...bands.map((b) => (measures === 'x' ? b.y : b.x)));
   const hi = Math.max(
     ...bands.map((b) => (measures === 'x' ? b.y + b.height : b.x + b.width)),
@@ -667,14 +599,10 @@ function BoundView({
   bounds: Rect;
 }) {
   const { box, measures, route, label, outline, outlined, wrap } = item;
-  // Split before the trailing `(px)`; the tail keeps its leading space so the
-  // node's textContent still reads exactly like the one-line caption.
   const breakAt = wrap ? label.lastIndexOf(' (') : -1;
   const g = route.gutter;
   const a = away(g);
   const vertical = measures === 'y';
-  // Inside the element's own edge, so a band fill touching that edge is not
-  // painted over by the frame's stroke.
   const frame = (
     <rect
       className="slot-outline"
@@ -686,8 +614,6 @@ function BoundView({
   );
 
   if (outline) {
-    // Pointer: the dashed box already brackets the extent; the line just
-    // points at it from the gutter, leaving the edge midpoint facing it.
     const rail = railOf(bounds, g, route.out ?? 0);
     const cx = box.x + box.width / 2;
     const cy = box.y + box.height / 2;
@@ -728,10 +654,6 @@ function BoundView({
     );
   }
 
-  // Beam: a bar spanning the box, serifs at both ends. A bound whose edge IS
-  // the demo's edge (a root, at out 0) hugs it with nothing to bridge; a
-  // nested or moved-out bar stands off in the gutter, with dashed extension
-  // lines tying it back to the edges it measures.
   const lo = vertical ? box.y : box.x;
   const hi = vertical ? box.y + box.height : box.x + box.width;
   const mid = (lo + hi) / 2;
@@ -860,23 +782,16 @@ export function Annotate({
         height: '100%',
         overflow: 'visible',
         pointerEvents: 'none',
-        // Over demo content (an AppBar sits at 1100) but under the toolbar's
-        // own menus (1300) — annotations must not bleed over an open Select.
-        // The Tooltip demo lowers its inline popper below this.
         zIndex: 1200,
         color: 'text.secondary',
         fontSize: 13,
         '& text': {
           fill: 'currentColor',
-          // the badge: a halo of the page background, so a line passing behind
-          // a label never strikes through its text
           stroke: (theme.vars || theme).palette.background.paper,
           strokeWidth: 4,
           strokeLinejoin: 'round',
           paintOrder: 'stroke',
         },
-        // labels always paint in front: a lines pass with text hidden, then a
-        // labels pass with everything else hidden
         '& .pass-lines text': { display: 'none' },
         '& .pass-labels line, & .pass-labels rect, & .pass-labels path': {
           display: 'none',
@@ -933,82 +848,41 @@ export function Annotate({
   );
 }
 
-/** Common to every claim: what to find, how to caption it, where to put it. */
 interface ClaimBase {
-  /** selector, resolved inside the demo. Every match is annotated. */
   on: string;
-  /** the expression the theme authored; omitted -> plain px caption. */
   token?: string;
-  /** printed instead of the token — to name the measured thing when the
-   * expression is private or the component identity matters more. The token,
-   * when also given, still drives the value gate's check. */
   text?: string;
-  /** shown in the slot toggle list; derived from the selector when absent. */
   label?: string;
-  /** authored position; anything omitted falls back to nearest-side defaults. */
   route?: Partial<Route>;
 }
 
-/**
- * A claim: what is measured and what the theme authored for it. The aspect
- * picks the branch, and each branch carries only the knobs that branch reads —
- * `resolveClaims` ignores anything else, so a union beats optional fields.
- */
 export type Claim =
   | (ClaimBase & {
-      /** a strip of space around the element, shown by filling it. */
       aspect: 'padding' | 'margin';
-      /** 'all' paints the full ring (every live band) with ONE label, led by a
-       * single line from the band facing the route's gutter. */
       axis?: 'inline' | 'block' | 'all';
-      /** render the caption's `(px)` part on its own line — for long
-       * expressions whose one-line label would reach past the demo frame. */
       wrap?: boolean;
-      /** one band only. The way to name a pair whose values differ: the presets
-       * author each side's expression separately (details: `xxSmall` top,
-       * `small` bottom), so each side gets its own claim carrying its own
-       * token. */
       side?: Side;
     })
   | (ClaimBase & {
-      /** the space between two children, shown by filling it. */
       aspect: 'gap';
-      /** which child boundary the band follows (0 = after the first child). A
-       * row with separators has several gaps; this picks one. */
       after?: number;
     })
   | (ClaimBase & {
-      /** the glyph's own box, framed with a pointer line to its label. */
       aspect: 'icon';
     })
   | (ClaimBase & {
-      /** the element's own box, bracketed end to end by a beam. */
       aspect: 'touch-target';
-      /** which dimension the beam reads; the route's gutter decides when
-       * omitted — a side reads height, top/bottom reads width. */
       axis?: 'inline' | 'block';
-      /** also draw the dashed target box, inset inside the element — makes the
-       * interactive area visible, not just its length. */
       outlined?: boolean;
-      /** draw as a frame + pointer line (the icon device) instead of a beam —
-       * for a small box whose area matters more than a bracketed length. */
       pointer?: boolean;
-      /** render the caption's `(px)` part on its own line — for long
-       * expressions whose one-line label would reach too far into the demo. */
       wrap?: boolean;
     });
 
 function labelFor(value: number, token?: string) {
   const measured = round(value);
-  // A raw-px token already states the measurement — `6px (6px)` says it twice.
-  // A token that differs (`iconSize - 2px`) still earns the resolved value.
   return token && token !== measured ? `${token} (${measured})` : measured;
 }
 
-/**
- * Turn claims into draw items by measuring the DOM. Pure per claim: no item's
- * geometry depends on another claim's.
- */
 export function resolveClaims(
   stage: HTMLElement,
   demo: HTMLElement,
@@ -1021,8 +895,6 @@ export function resolveClaims(
     width: r.width,
     height: r.height,
   });
-  // A `display: contents` demo wrapper has no box of its own — bounds are the
-  // union of what actually painted.
   const painted = [demo, ...Array.from(demo.children)]
     .map((node) => node.getBoundingClientRect())
     .filter((b) => b.width > 0 && b.height > 0);
@@ -1039,9 +911,6 @@ export function resolveClaims(
       : rel(demo.getBoundingClientRect());
   const items: AnnotateItem[] = [];
 
-  // nearest-side defaults: a pure function of the feature's own position. A
-  // feature spanning the whole demo (a collapsed or single-row state) is a
-  // tie — broken toward top/left so a component's states don't flip labels.
   const nearestOf = (box: Rect, pair: [Gutter, Gutter]): Gutter => {
     if (pair[0] === 'top') {
       return box.y + box.height / 2 <= bounds.y + bounds.height / 2 + 1
@@ -1133,8 +1002,6 @@ export function resolveClaims(
             tone: isPad ? 'padding' : 'margin',
             wrap: claim.wrap,
             measures: lead === 'left' || lead === 'right' ? 'x' : 'y',
-            // one label for the whole ring — only honest when every live band
-            // agrees on the value
             label: labelFor(
               edges[lead],
               values.size === 1 ? (claim.text ?? claim.token) : undefined,
@@ -1152,8 +1019,6 @@ export function resolveClaims(
         if (live.length === 0) {
           return;
         }
-        // Equal bands share one item (and may carry the token); unequal bands
-        // split, and both drop it — one name cannot cover two values.
         const byValue = new Map<number, (keyof Edges)[]>();
         live.forEach((side) => {
           const key = Math.round(Math.abs(edges[side]) * 10) / 10;
@@ -1162,8 +1027,6 @@ export function resolveClaims(
         const gutterPair: [Gutter, Gutter] =
           axis === 'inline' ? ['top', 'bottom'] : ['left', 'right'];
         byValue.forEach((group) => {
-          // grouped by magnitude, captioned with the signed value — a pulled-
-          // back action margin prints -8px, matching its -xSmall token
           const signed = edges[group[0]];
           items.push({
             source: { claim, value: signed, lineHeight, fontSize },
@@ -1185,9 +1048,6 @@ export function resolveClaims(
       if (claim.aspect === 'gap') {
         const column = num(styles.columnGap);
         const row = num(styles.rowGap);
-        // The band starts where the child before the boundary ends — only that
-        // child must be an element (a Button label is a bare text node).
-        // `after` picks which boundary when there are several.
         const boundary = claim.after ?? 0;
         const first = element.children[boundary]?.getBoundingClientRect();
         const second = element.children[boundary + 1]?.getBoundingClientRect();
@@ -1199,8 +1059,6 @@ export function resolveClaims(
           : row > 0.5 && column <= 0.5;
         let size = stacked ? row : column;
         if (size <= 0.5 && second) {
-          // No flex gap declared — the space is margin-made. The distance
-          // between the children is still the story the annotation tells.
           const spacing = stacked
             ? second.top - first.bottom
             : second.left - first.right;
@@ -1261,9 +1119,6 @@ export function resolveClaims(
         return;
       }
 
-      // The element's own box, bracketed by a beam. The gutter decides the
-      // dimension — a side reads height, top/bottom reads width — unless
-      // `axis` names it (a pointer's label can sit anywhere).
       const route = routed(claim.route, nearestOf(box, ['left', 'right']));
       const measuresWidth = claim.axis
         ? claim.axis === 'inline'
@@ -1293,22 +1148,15 @@ export function resolveClaims(
   return { items, bounds };
 }
 
-/** Resolve claims against the live DOM, re-measuring whenever the stage could
- * have moved — a resize, a late webfont, a popper mounting a frame later. */
 export function useClaims(
   stageRef: React.RefObject<HTMLElement | null>,
   demoRef: React.RefObject<HTMLElement | null>,
   claims: Claim[],
-  deps: React.DependencyList,
 ) {
   const [state, setState] = React.useState<{
     items: AnnotateItem[];
     bounds: Rect;
   } | null>(null);
-  // Compared by value, not identity: the measurement re-runs on every observer
-  // tick, and handing back a fresh object would re-render the demo. A
-  // re-rendered TextareaAutosize re-writes its own height, which trips the
-  // ResizeObserver that started the tick — a multiline demo never settles.
   const measured = React.useRef<string | null>(null);
   useStageEffect(
     stageRef,
@@ -1328,7 +1176,7 @@ export function useClaims(
       measured.current = key;
       setState(next);
     },
-    deps,
+    JSON.stringify(claims),
   );
   return state;
 }

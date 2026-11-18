@@ -36,7 +36,6 @@ const densityRecipes = [
   {
     id: 'medium',
     label: 'Medium',
-    // the shipped defaults, read from the enhancer rather than restated
     scale: { spacing: defaultSteps, touchTarget, iconSize },
   },
   {

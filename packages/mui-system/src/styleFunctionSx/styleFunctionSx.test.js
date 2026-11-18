@@ -6,9 +6,6 @@ import createTheme from '../createTheme';
 
 describe('styleFunctionSx', () => {
   it('keeps a spacing function that registers names through createTheme, and sx resolves them', () => {
-    // The contract an enhancer relies on from @mui/system: `mui: true` makes
-    // `createSpacing` pass the function through, `keys` tells `getValue` which
-    // strings to resolve. Everything else about names is covered by spacing.test.js.
     const scaled = { small: '12px', '-small': '-12px' };
     const spacing = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
     spacing.mui = true;

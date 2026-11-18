@@ -21,8 +21,6 @@ import StarIcon from '@mui/icons-material/Star';
 import type { Claim } from './densityAnnotations';
 import { Annotate, useClaims } from './densityAnnotations';
 
-// A row of body text floors at 32px (a 24px line plus its padding), so the
-// steps below that would leave the list where it is.
 const TOUCH_STEPS = [32, 36, 40, 44];
 const ICON_STEPS = [12, 14, 16, 20, 24];
 
@@ -33,9 +31,6 @@ const ITEMS = [
   { label: 'Settings', icon: <SettingsIcon /> },
 ];
 
-// Both selectors match every row, and that is the point: the row beams tile
-// into a ruler on the right — the rows really are `touchTarget` tall — and
-// each icon carries its own frame on the left.
 const CLAIMS: Claim[] = [
   {
     on: '.MuiListItemButton-root',
@@ -81,7 +76,6 @@ function Knob({
   );
 }
 
-// A slider drag revisits the same few marks; build each theme once.
 const themes = new Map<string, ReturnType<typeof enhanceDensity>>();
 function themeFor(touchTarget: number, iconSize: number) {
   const key = `${touchTarget}:${iconSize}`;
@@ -104,7 +98,7 @@ export default function TouchTargetDemo() {
   const [iconSize, setIconTarget] = React.useState(16);
   const stageRef = React.useRef<HTMLDivElement>(null);
   const demoRef = React.useRef<HTMLDivElement>(null);
-  const state = useClaims(stageRef, demoRef, CLAIMS, [touchTarget, iconSize]);
+  const state = useClaims(stageRef, demoRef, CLAIMS);
 
   const theme = React.useMemo(
     () => themeFor(touchTarget, iconSize),

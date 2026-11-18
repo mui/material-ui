@@ -199,8 +199,6 @@ function createBaseUnit<Spacing>(
   return (() => undefined) as any;
 }
 
-// Keyed on the theme, not the scale: a scale function can be shared by two
-// themes whose `vars.spacing` differ, and the closure below captures `base`.
 const keyedTransformers = new WeakMap<
   object,
   { scale: SpacingTransformer; byProp: Record<string, SpacingTransformer> }
@@ -221,11 +219,7 @@ export function createUnaryUnit<Spacing>(
   const base = createBaseUnit(theme, themeKey, defaultValue, propName);
   const scale = (theme as any)?.[themeKey] as SpacingTransformer | undefined;
 
-  // On a CSS variables theme `getPath` resolves `theme.vars.spacing` — a string,
-  // which cannot resolve names. Keep that transformer for every numeric value and
-  // route only registered names back through the scale-aware function.
   if (typeof scale === 'function' && scale.keys && (base as unknown) !== scale) {
-    // Built once per theme: this runs for every spacing prop of every render.
     let cache = keyedTransformers.get(theme);
     if (!cache || cache.scale !== scale) {
       cache = { scale, byProp: {} };
@@ -274,8 +268,6 @@ export function getValue(
     return propValue;
   }
   if (typeof propValue === 'string') {
-    // Raw CSS values (`auto`, `2rem`, `50%`) must reach the stylesheet
-    // untouched — only registered scale names go through the transformer.
     return transformer.keys?.has(propValue) ? transformer(propValue) : propValue;
   }
   return transformer(propValue);

@@ -84,13 +84,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import RestoreIcon from '@mui/icons-material/Restore';
 import SearchIcon from '@mui/icons-material/Search';
 
-/**
- * Pure rendering: what each family looks like, and the props its toolbar exposes.
- * Nothing here knows that the result is measured — selectors, aspects and tokens
- * all live in `densityAnnotationSpecs`, so an annotation change never touches a
- * component.
- */
-
 function DialogPreview({ dividers }) {
   const stageRef = React.useRef(null);
   return (
@@ -156,14 +149,6 @@ export const DENSITY_COMPONENTS = {
   },
   Autocomplete: {
     controls: [{ prop: 'multiple', type: 'switch', initial: false }],
-    // The listbox is absolutely positioned, so the wrapper is what reserves the
-    // room the stage measures its bounds from — without it every option caption
-    // lands on top of the list. 148 is the list's own bottom (144) plus a hair:
-    // any taller and the bottom gutter opens a gap of dead space under the
-    // popup, since the rails hang off these bounds. `multiple` keeps its tag
-    // inside the same input height, so one number covers both states.
-    // `open disablePortal` keeps the popper inside the demo, where the
-    // selectors can reach it.
     render: (values) => {
       const multiple = values.multiple === true;
       return (
@@ -212,8 +197,6 @@ export const DENSITY_COMPONENTS = {
     ),
   },
   Breadcrumbs: {
-    // Three crumbs, so the list has separators between real children and the
-    // gap band has somewhere to land.
     render: () => (
       <Breadcrumbs>
         <Link underline="hover" color="inherit" href="/">
@@ -235,7 +218,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // The IconButton rides the same size prop: same box story, icon-only.
     render: (values) => (
       <Stack direction="row" spacing={3} sx={{ alignItems: 'center' }}>
         <Button variant="outlined" size={values.size} startIcon={<AddIcon />}>
@@ -305,8 +287,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // Avatar and delete icon together: they are what gives the root three
-    // children, so its gap exists, and what the negative child offsets pull on.
     render: (values) => (
       <Chip
         size={values.size}
@@ -317,11 +297,6 @@ export const DENSITY_COMPONENTS = {
     ),
   },
   Dialog: {
-    // `disablePortal` keeps the paper inside the demo subtree, and the absolute
-    // positioning inside a relative box keeps the modal off the rest of the page.
-    // 208 = the paper's 160 plus its own 24px margin either side. The modal
-    // centres the paper, so any surplus here becomes dead space inside the
-    // measured bounds and pushes the gutters off the card entirely.
     controls: [
       {
         prop: 'DialogContent dividers',
@@ -343,8 +318,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // Circular only: the extended variant stays frozen at master, so it would
-    // blank the one row this family has.
     render: (values) => (
       <Fab color="primary" size={values.size} aria-label="add">
         <AddIcon />
@@ -353,9 +326,6 @@ export const DENSITY_COMPONENTS = {
   },
   List: {
     controls: [{ prop: 'dense', type: 'switch', initial: false }],
-    // `ListItemIcon` + `ListItemText` give the row two element children, which
-    // is what the gap band sits between — a bare string label is a text node.
-    // `disablePadding` on the item hands the whole box to the button.
     render: (values) => (
       <List dense={values.dense === true} sx={{ width: 180 }}>
         <ListItem disablePadding>
@@ -390,11 +360,6 @@ export const DENSITY_COMPONENTS = {
       { prop: 'dense', type: 'switch', initial: false },
       { prop: 'inset', type: 'switch', initial: true },
     ],
-    // A rendered `MenuList` rather than an open `Menu`: no portal to measure
-    // through, and the items get the same `ListContext` the popup would give
-    // them. `ListItemText` — not a bare string — so the gap has a child to
-    // start from. With `inset`, the text-only rows and the divider line up
-    // with the text of the icon rows.
     render: (values) => {
       const inset = values.inset === true;
       return (
@@ -434,15 +399,9 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // `count={5}` keeps every page rendered: no ellipsis, whose item drops to
-    // `height: auto` and would break the row of equal boxes.
     render: (values) => <Pagination count={5} size={values.size} />,
   },
   Progress: {
-    // Both components together: the bar's thickness and the spinner's diameter
-    // come off the same scale. `determinate` on both, so nothing animates under
-    // the stage's ResizeObserver — and no explicit `size`, or the spinner's
-    // `defaultProps` emission would be overridden.
     render: () => (
       <Stack direction="row" spacing={4} sx={{ alignItems: 'center' }}>
         <Box sx={{ width: 200 }}>
@@ -477,11 +436,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // All three variants at once, like the TextField demo. `standard` is the
-    // only shape where the Select family's own rows are the computed value —
-    // outlined/filled let their input roots win the block padding, so the
-    // space claims read off the standard variant. The adornment is what gives
-    // the root a second in-flow child, so its gap exists at all.
     render: (values) => {
       const size = values.size;
       const adornment = (
@@ -533,18 +487,11 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // The root stays 32px while the thumb shrinks — the hit area is the point.
-    // `defaultValue={40}` keeps the thumb off centre so its caption and the
-    // root's land in opposite gutters.
     render: (values) => (
       <Slider size={values.size} defaultValue={40} sx={{ width: 260 }} />
     ),
   },
   SnackbarContent: {
-    // `action` is load-bearing twice: it gives the root a second child, so the
-    // gap exists at all, and it is the element the negative margin points at.
-    // `fit-content` removes the slack that `marginLeft: auto` would otherwise
-    // put between the message and the action.
     render: () => (
       <SnackbarContent
         sx={{ width: 'fit-content' }}
@@ -566,11 +513,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'horizontal',
       },
     ],
-    // The connector and the content only align off the icon box when the
-    // stepper is vertical, and `StepContent` warns if mounted horizontally —
-    // so the orientation is the control, and the content is conditional.
-    // `activeStep={0}` keeps the first content expanded, which is the one
-    // measured.
     render: (values) => {
       const vertical = values.orientation === 'vertical';
       return (
@@ -613,8 +555,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // `defaultChecked` is what separates the two rings: unchecked, the switch
-    // base sits flush with the root's left edge and they read as one box.
     render: (values) => (
       <FormControlLabel
         control={<Switch defaultChecked size={values.size} />}
@@ -631,8 +571,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // The checkbox tracks the table's size on purpose: a 32px box in a 28px
-    // dense row would push the row past the height the cell emits.
     render: (values) => {
       const size = values.size;
       return (
@@ -671,8 +609,6 @@ export const DENSITY_COMPONENTS = {
   },
   Tabs: {
     controls: [{ prop: 'icon', type: 'switch', initial: false }],
-    // The label is wrapped on purpose: `Tab` renders it straight into its own
-    // flex box, and a bare string is a text node the gap band cannot start from.
     render: (values) => (
       <Tabs value={0} variant="scrollable" scrollButtons sx={{ maxWidth: 360 }}>
         {[
@@ -706,9 +642,6 @@ export const DENSITY_COMPONENTS = {
       },
       { prop: 'multiline', type: 'switch', initial: false },
     ],
-    // All four inputs at once: they are tuned to land on the same box, which is
-    // invisible one variant at a time. The adornment is what gives the input
-    // root a second child, so its gap exists at all.
     render: (values) => {
       const size = values.size;
       const multiline = values.multiline === true;
@@ -764,9 +697,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'medium',
       },
     ],
-    // Icon-only on purpose: with no label the box collapses onto
-    // `padding + icon + border`, so the square the preset claims and the padding
-    // that produces it are the same picture.
     render: (values) => (
       <ToggleButtonGroup value="left" exclusive size={values.size}>
         <ToggleButton value="left">
@@ -780,8 +710,6 @@ export const DENSITY_COMPONENTS = {
   },
   Toolbar: {
     controls: [{ prop: 'dense', type: 'switch', initial: false }],
-    // No `edge="start"` on the icon button: that emits a negative margin, which
-    // would pull it into the gutter the padding ring is about.
     render: (values) => (
       <AppBar position="static" sx={{ width: 260 }}>
         <Toolbar variant={values.dense === true ? 'dense' : 'regular'}>
@@ -797,9 +725,6 @@ export const DENSITY_COMPONENTS = {
     ),
   },
   Tooltip: {
-    // `placement`, not `arrow`: density's fixed 10px arrow reads as a height only
-    // at the side placements — at top and bottom the arrow still rides the
-    // bubble's own 1em — and only a height can be drawn.
     controls: [
       {
         prop: 'placement',
@@ -808,9 +733,6 @@ export const DENSITY_COMPONENTS = {
         initial: 'bottom',
       },
     ],
-    // `open` + `disablePortal` put the bubble inside the demo; the padding
-    // reserves only the room the bubble is positioned into — reserving the
-    // other sides would hang the gutters off dead space.
     render: (values) => (
       <Box
         sx={

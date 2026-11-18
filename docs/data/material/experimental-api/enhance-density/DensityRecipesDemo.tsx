@@ -19,14 +19,8 @@ import { Annotate, useClaims } from './densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 
-// The chrome runs on the shipped scale, so the controls driving the canvas are
-// themselves an example of what the canvas is demonstrating.
 const chromeTheme = enhanceDensity(createTheme({ colorSchemes }));
 
-// The recipe UIs are compositions, not preset emissions, so no annotation
-// claims a token — every caption is the measured height. `data-measure` on an
-// element sends its beam left; the plain attribute reads right (the default
-// side), which is what keeps a row and the control inside it apart.
 const CLAIMS: Claim[] = [
   {
     on: '[data-measure]:not([data-measure="left"])',
@@ -46,18 +40,11 @@ export default function DensityRecipesDemo() {
   const [uiIndex, setUiIndex] = React.useState(0);
   const stageRef = React.useRef<HTMLDivElement>(null);
   const demoRef = React.useRef<HTMLDivElement>(null);
-  // No claims while the toggle is off — the observers have nothing to measure.
-  const state = useClaims(stageRef, demoRef, measured ? CLAIMS : [], [
-    recipeId,
-    uiIndex,
-    measured,
-  ]);
+  const state = useClaims(stageRef, demoRef, measured ? CLAIMS : []);
 
   const recipe =
     densityRecipes.find((item) => item.id === recipeId) ?? densityRecipes[1];
 
-  // Only the scale changes between recipes — everything else is the default
-  // theme.
   const theme = React.useMemo(
     () =>
       enhanceDensity(
@@ -127,9 +114,6 @@ export default function DensityRecipesDemo() {
         <Box
           ref={stageRef}
           sx={{
-            // The horizontal padding is the annotation gutter: beams and their
-            // captions land in it. It is always reserved, so toggling the
-            // measurement cannot reflow the UI it is measuring.
             position: 'relative',
             py: 4,
             px: 9,

@@ -198,7 +198,6 @@ describe('grid generator', () => {
     });
 
     it('resolves a registered spacing key like sx/Stack do', () => {
-      // an enhanced theme advertises its scale names on `spacing.keys`
       const keyedSpacing = (value) => (value === 'small' ? '12px' : spacing(value));
       keyedSpacing.keys = new Set(['small']);
 

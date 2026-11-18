@@ -35,7 +35,6 @@ import listItemTextClasses from '../ListItemText/listItemTextClasses';
 
 type ThemeComponents = NonNullable<Theme['components']>;
 
-/** A component the theme knows how to style, e.g. `'MuiButton'`. */
 type ThemeComponentName = Exclude<keyof ThemeComponents, 'mergeClassNameAndStyle'>;
 
 type StyleOverridesOf<Name extends ThemeComponentName> =
@@ -43,20 +42,11 @@ type StyleOverridesOf<Name extends ThemeComponentName> =
     ? NonNullable<Overrides>
     : never;
 
-/** The slots (class keys) a component's `styleOverrides` accepts. */
 type ThemeComponentSlot<Name extends ThemeComponentName> = Extract<
   keyof StyleOverridesOf<Name>,
   string
 >;
 
-/**
- * Attach a `styleOverrides` object to a component slot as the first layer,
- * with any override the incoming theme already had as the last (winning) one:
- * enhancement provides defaults, it does not beat explicit customization.
- * Call it once per slot — a second call would wrap the first, putting the
- * user's layer between the two emissions. **Mutates `components` in place** —
- * pass a `components` object the caller owns.
- */
 function addStyleOverride<Name extends ThemeComponentName, Slot extends ThemeComponentSlot<Name>>(
   components: ThemeComponents,
   name: Name,
@@ -79,11 +69,6 @@ type DefaultPropsOf<Name extends ThemeComponentName> =
     ? NonNullable<Props>
     : never;
 
-/**
- * Attach theme `defaultProps`, the consuming theme's own defaults winning — for
- * values CSS cannot reach (those that feed component JS). **Mutates
- * `components` in place** — same contract as `addStyleOverride`.
- */
 function addDefaultProps<Name extends ThemeComponentName>(
   components: ThemeComponents,
   name: Name,
@@ -110,30 +95,17 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   return enhanced;
 }
 
-/**
- * Every block is a component token -> density-step assignment. Density
- * variation comes purely from the resolved scale values (`applyDensity`),
- * never from remapping.
- */
 function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhancedTheme<T>): void {
-  // Sizing constants on the same terms as the steps: the var ref on a vars
-  // theme, the literal px otherwise. Neither is a spacing key.
   const touchTarget = enhanced.vars?.touchTarget ?? enhanced.touchTarget;
   const iconSize = enhanced.vars?.iconSize ?? enhanced.iconSize;
-  // Keyed spacing: a scale key resolves to its step (var ref under cssVariables,
-  // raw px otherwise); numbers stay plain spacing units.
   const { spacing } = enhanced;
-  // Sized components step off the interactive box rather than the ladder, so a
-  // `touchTarget` override carries all three sizes instead of only the middle
-  // one. Both land on today's px at the default 32.
-  const tableRowHeight = `calc(${touchTarget} + 2*${spacing('xxSmall')})`; // 40px
-  const tableRowHeightDense = `calc(${touchTarget} + ${spacing('xxSmall')})`; // 36px
-  const tinyBox = `calc(${touchTarget} - ${spacing('small')})`; // 20px
-  const miniBox = `calc(${touchTarget} - ${spacing('xSmall')})`; // 24px
-  const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`; // 28px
-  const largeBox = `calc(${touchTarget} + ${spacing('small')})`; // 44px
-  const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`; // 48px
-  // Icons ride the glyph constant the same way boxes ride the interactive one.
+  const tableRowHeight = `calc(${touchTarget} + 2*${spacing('xxSmall')})`;
+  const tableRowHeightDense = `calc(${touchTarget} + ${spacing('xxSmall')})`;
+  const tinyBox = `calc(${touchTarget} - ${spacing('small')})`;
+  const miniBox = `calc(${touchTarget} - ${spacing('xSmall')})`;
+  const smallBox = `calc(${touchTarget} - ${spacing('xxSmall')})`;
+  const largeBox = `calc(${touchTarget} + ${spacing('small')})`;
+  const hugeBox = `calc(${touchTarget} + ${spacing('medium')})`;
   const iconSmall = `calc(${iconSize} - ${spacing('xxSmall')})`;
   const iconLarge = `calc(${iconSize} + 8px)`;
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
@@ -155,10 +127,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     padding: 0,
     width: touchTarget,
     height: touchTarget,
-    // Pull-in follows the label placement — the control sits at the row's
-    // start for `end`, at its end for `start`; top/bottom center it, so no
-    // pull applies there. Written as a variable the label root reads, so the
-    // :has() specificity never competes with a user's margin on the label.
     [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
       '--_labelMarginLeft': `calc((${touchTarget} - ${iconSize}) / -2)`,
     },
@@ -206,7 +174,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     variants: [
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
-        // scoped to expanded: wins master's 64px literal on specificity
         style: {
           [`&.${accordionSummaryClasses.expanded}`]: { minHeight: touchTarget },
         },
@@ -260,8 +227,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // In fullWidth the spinner stays in the flow, so the icon gives back the
-  // spinner (fixed at 16px by Button) plus one gap.
   addStyleOverride(enhanced.components, 'MuiButton', 'startIcon', {
     margin: 0,
     '& > *:nth-of-type(1)': { fontSize: '0.8lh' },
@@ -282,8 +247,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // The icon is 0.8lh wide, so its center is 0.4lh from its edge. Button fixes
-  // its spinner at 16px, so the spinner's center is 8px from its own edge.
   addStyleOverride(enhanced.components, 'MuiButton', 'loadingIndicator', {
     variants: [
       {
@@ -381,8 +344,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { fontSize: 'large' }, style: { fontSize: iconLarge } },
     ],
   });
-  // Mirrors MenuItem's own sm-up reset, which hardcodes the same key. Cast so
-  // the file still compiles against an augmented BreakpointOverrides.
   const smUp = enhanced.breakpoints.up('sm' as Breakpoint);
   const menuItemHeight = `max(28px, ${touchTarget})`;
   addStyleOverride(enhanced.components, 'MuiMenuItem', 'root', {
@@ -426,8 +387,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
 
   addStyleOverride(enhanced.components, 'MuiTooltip', 'tooltip', {
-    // Touch keeps its own type, padding and 24px clearance; an unconditional
-    // value would land after the component's touch variant and override it.
     variants: [
       {
         props: ({ ownerState }) => !ownerState.touch,
@@ -444,13 +403,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // Fixed arrow size due to fixed spacing between tooltip and target
   addStyleOverride(enhanced.components, 'MuiTooltip', 'arrow', { fontSize: '10px' });
   addStyleOverride(enhanced.components, 'MuiInputBase', 'root', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
-    // The medium gap sits on the root: outside a FormControl the ownerState
-    // has no `size`, so a `size: 'medium'` variant never matches and a
-    // standalone input's adornment would touch the text.
     gap: spacing('xSmall'),
     variants: [
       { props: { size: 'small' }, style: { gap: spacing('xxSmall') } },
@@ -474,8 +429,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // --_outlinedInputPadBlock broadcasts to the FormControl via :has(); the
-  // label consumes it as --_restY. Re-assert chain mirrors master.
   addStyleOverride(enhanced.components, 'MuiOutlinedInput', 'root', {
     [`.${formControlClasses.root}:has(> &)`]: {
       '--_outlinedInputPadBlock': inputMediumPadBlock,
@@ -691,8 +644,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // Each shrink state must re-assert or the rest rules here, landing after
-  // master's shrink, would leak the rest transform.
   addStyleOverride(enhanced.components, 'MuiInputLabel', 'root', {
     variants: [
       { props: { variant: 'standard' }, style: { '--_restY': '20px' } },
@@ -736,8 +687,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { variant: 'outlined', shrink: true },
         style: {
-          // 0.475 = sweet spot to make label align nicely without overlapping the chips in Autocomplete
-          // 0.375 = 50% * 0.75 scale factor
           // The x offset needs dirSign: the rtl stylis plugin (cssjanus) cannot
           // mirror a translate() that contains clamp(), so it leaves 14px as is.
           transform: `translate(${dirSign * 14}px, clamp(-0.475lh, (${touchTarget} - 32.5px) * 999, -0.375lh)) scale(0.75)`,
@@ -790,7 +739,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiCheckbox', 'root', sharedCheckboxRadio);
   addStyleOverride(enhanced.components, 'MuiRadio', 'root', sharedCheckboxRadio);
-  // The floor sits on the `ol` (the centering flex row), not the nav root.
   addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'ol', {
     gap: spacing('xSmall'),
     '*:where(&) :where(a)': {
@@ -798,7 +746,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       paddingInline: spacing('xSmall'),
     },
     [`& li:not(.${breadcrumbsClasses.li})>.${buttonBaseClasses.root}`]: {
-      // BreadcrumbCollapsed
       paddingInline: spacing('xSmall'),
       height: touchTarget,
       margin: 0,
@@ -811,14 +758,14 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       paddingInline: spacing('xSmall'),
     },
   });
-  addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'separator', { marginInline: 0 }); // use gap on `ol` instead
+  addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'separator', { marginInline: 0 });
   addStyleOverride(enhanced.components, 'MuiToggleButton', 'root', {
     ...enhanced.typography?.button,
     '--_size': touchTarget,
     paddingBlock: 0,
     minHeight: 'var(--_size)',
     minWidth: 'var(--_size)',
-    paddingInline: `calc((var(--_size) - ${iconSize} - 2px) / 2)`, // 2px is the border
+    paddingInline: `calc((var(--_size) - ${iconSize} - 2px) / 2)`,
     variants: [
       {
         props: { size: 'small' },
@@ -859,13 +806,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     '--_thumbHeight': spacing('medium'),
     '--_trackWidth': 'calc(var(--_thumbHeight) * 1.7)',
     '--_trackHeight': 'calc(var(--_thumbHeight) * 0.7)',
-    // this variable is not meant to be overridden directly
     '--_offset': 'calc((max(var(--_thumbHeight), var(--_trackHeight)) - var(--_touchSize)) / 2)',
     width: 'calc(var(--_trackWidth) + var(--_touchSize) - var(--_trackHeight))',
     height: 'var(--_touchSize)',
     padding: 'calc((var(--_touchSize) - var(--_trackHeight)) / 2)',
-    // The label carries the default pull-in, so a margin on the label cancels
-    // it as on master. The Switch adds only what custom track sizes change.
     [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
       '--_labelMarginLeft': switchPullIn,
     },
@@ -899,8 +843,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           [`.${formControlLabelClasses.labelPlacementStart} &`]: {
             '--_switchMarginRight': `calc(var(--_offset) - ${switchSmallPullIn})`,
           },
-          // Master's small rules sit nested under the root variant at higher
-          // specificity — re-assert the derivations there or they lose for small.
           [`& .${switchClasses.thumb}`]: {
             width: 'var(--_thumbWidth)',
             height: 'var(--_thumbHeight)',
@@ -1014,7 +956,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     minHeight: indicatorBox,
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'listbox', {
-    // The option list renders in a Popper — emit on the listbox slot.
     '--_subheaderInline': spacing('xSmall'),
     [`& .${autocompleteClasses.option}`]: {
       minHeight: touchTarget,
@@ -1032,7 +973,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       '--_height': tinyBox,
     },
   });
-  // hasConnector:false = the first step; end nodes sit flush with the edge.
   addStyleOverride(enhanced.components, 'MuiStep', 'root', {
     variants: [
       {
@@ -1048,9 +988,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiStepLabel', 'root', {
     variants: [{ props: { orientation: 'vertical' }, style: { paddingBlock: '0px' } }],
   });
-  // Master sets the alternativeLabel gap at 2-class specificity — the nested
-  // selector must be re-emitted to win. Horizontal-only: master already zeroes
-  // vertical, an unscoped emission would stomp that reset.
   addStyleOverride(enhanced.components, 'MuiStepLabel', 'label', {
     variants: [
       {
@@ -1059,7 +996,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // Icon→label spacing falls out of centering the circle in the touch box.
   addStyleOverride(enhanced.components, 'MuiStepLabel', 'iconContainer', {
     padding: '0px',
     justifyContent: 'center',
@@ -1067,13 +1003,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     minHeight: touchTarget,
     alignItems: 'center',
   });
-  // Circle must land on MuiStepIcon root: an SvgIcon sizes off its OWN
-  // fontSize (w/h = 1em) — a parent iconContainer fontSize can't reach it.
   addStyleOverride(enhanced.components, 'MuiStepIcon', 'root', {
     fontSize: `calc(${touchTarget} - ${spacing('small')} + 2px)`,
   });
   addStyleOverride(enhanced.components, 'MuiStepIcon', 'text', { fontSize: 14 });
-  // Vertical-alt keeps master's marginLeft:auto — only marginRight moves.
   addStyleOverride(enhanced.components, 'MuiStepConnector', 'root', {
     variants: [
       {
@@ -1093,22 +1026,20 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiStepConnector', 'line', {
     variants: [{ props: { orientation: 'vertical' }, style: { minHeight: spacing('medium') } }],
   });
-  // margin = half box lands the border on the icon center; margin + padding
-  // = the full box aligns content text with the label.
   addStyleOverride(enhanced.components, 'MuiStepContent', 'root', {
     variants: [
       {
         props: { alternativeLabel: false },
         style: {
           marginLeft: `calc(${touchTarget} / 2)`,
-          paddingLeft: `calc(${touchTarget} / 2 - 1px)`, // 1px account for the border
+          paddingLeft: `calc(${touchTarget} / 2 - 1px)`,
         },
       },
       {
         props: { alternativeLabel: true },
         style: {
           marginRight: `calc(${touchTarget} / 2)`,
-          paddingRight: `calc(${touchTarget} / 2 - 1px)`, // 1px account for the border
+          paddingRight: `calc(${touchTarget} / 2 - 1px)`,
         },
       },
     ],
@@ -1132,7 +1063,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     paddingInlineStart: spacing('medium'),
     paddingInlineEnd: spacing('small'),
   });
-  // Two variants = one knob per dividers state (true overrides master's 16 24).
   addStyleOverride(enhanced.components, 'MuiDialogContent', 'root', {
     variants: [
       {
@@ -1160,7 +1090,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiList', 'root', {
     '&:where([role="menu"], [role="listbox"])': { '--_subheaderInline': spacing('xSmall') },
     variants: [
-      // A subheader keeps master's `paddingTop: 0` — density only pads below.
       {
         props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.subheader,
         style: { paddingBlock: 8 },
@@ -1181,7 +1110,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiListSubheader', 'inset', {
     paddingLeft: `calc(${spacing('small')} + ${iconSize} + ${spacing('xSmall')})`,
   });
-  // No sm-up re-assert: ListItemButton has no master minHeight media reset.
   addStyleOverride(enhanced.components, 'MuiListItemButton', 'root', {
     gap: spacing('xSmall'),
     paddingBlock: spacing('xxSmall'),
@@ -1228,7 +1156,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // disablePadding:false scoping keeps rows owned by a ListItemButton unpadded.
   addStyleOverride(enhanced.components, 'MuiListItem', 'root', {
     gap: spacing('xSmall'),
     variants: [
@@ -1261,7 +1188,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiListItemSecondaryAction', 'root', {
-    // Gutters only — master zeroes `right` under `disableGutters`.
     variants: [{ props: { disableGutters: false }, style: { right: spacing('small') } }],
   });
   addStyleOverride(enhanced.components, 'MuiCardContent', 'root', {
@@ -1271,7 +1197,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiCardActions', 'root', {
     padding: spacing('medium'),
     paddingTop: `var(--_padTop, ${spacing('medium')})`,
-    [`.${cardContentClasses.root} + &`]: { '--_padTop': 0 }, // use private variable so `sx` overrides still work
+    [`.${cardContentClasses.root} + &`]: { '--_padTop': 0 },
     variants: [
       {
         props: { disableSpacing: false },
@@ -1290,7 +1216,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiSelect', 'select', {
     minHeight: 'auto',
-    // master writes per-variant --_caret/--_endAdornment on these same :has hooks
     [`.${inputBaseClasses.root}:has(> &)`]: {
       '--_caret': `calc(${iconSize} + ${spacing('small')})`,
     },
@@ -1347,8 +1272,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { orientation: 'vertical' }, style: { height: touchTarget } },
     ],
   });
-  // AvatarGroup overlap is untouchable: an inline --AvatarGroup-spacing style
-  // from the spacing prop (px numbers only) outranks any styleOverride.
   addStyleOverride(enhanced.components, 'MuiAvatar', 'root', {
     '--_size': touchTarget,
     width: 'var(--_size)',
@@ -1357,13 +1280,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiLinearProgress', 'root', { height: 4 });
   addDefaultProps(enhanced.components, 'MuiCircularProgress', { size: touchTarget });
-  // Root box = the touch target. Master sizes rail/track via height:inherit
-  // off the root, so their thickness is re-emitted explicitly from
-  // --_trackSize. markLabel offsets stay master.
   addStyleOverride(enhanced.components, 'MuiSlider', 'root', {
     padding: 0,
-    // Master pads the root to 44px under a coarse pointer; the box already is
-    // the touch target, and the media block would otherwise land after this.
     '@media (pointer: coarse)': { padding: 0 },
     '--_trackSize': `calc(${spacing('small')} / 4)`,
     variants: [
@@ -1376,8 +1294,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     padding: `${spacing('xxSmall')} ${spacing('xSmall')}`,
   });
   addStyleOverride(enhanced.components, 'MuiSlider', 'markLabel', {
-    // Vertical labels position off an inline `bottom`, so they take `left`;
-    // an unconditional `top` would over-constrain them.
     variants: [
       {
         props: { orientation: 'horizontal' },
@@ -1411,7 +1327,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
 
   addStyleOverride(enhanced.components, 'MuiTableCell', 'root', {
     boxSizing: 'border-box',
-    paddingBlock: spacing('xxSmall'), // smallest gutter for multiple lines of content
+    paddingBlock: spacing('xxSmall'),
     variants: [
       {
         props: { size: 'medium' },
@@ -1445,7 +1361,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiTableSortLabel', 'icon', {
-    // One marginInline leaf: the arrow flips sides in right-aligned columns.
     fontSize: `calc(${iconSize} + 2px)`,
     marginInline: spacing('xxSmall'),
   });
@@ -1487,7 +1402,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { props: { variant: 'regular' }, style: toolbarRegular },
     ],
   });
-  // Circular-scoped: the extended variant stays frozen at master.
   addStyleOverride(enhanced.components, 'MuiFab', 'root', {
     minHeight: 0,
     variants: [
@@ -1527,7 +1441,6 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     paddingBlock: 0,
     paddingInline: spacing('xxSmall'),
     variants: [
-      // Circular only — an unconditional radius would override `shape="rounded"`.
       { props: { shape: 'circular' }, style: { borderRadius: touchTarget } },
       {
         props: { size: 'small' },
@@ -1582,7 +1495,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { variant: 'standard' },
         style: {
           height: 'auto',
-          lineHeight: 4 / 3, // text block 16px
+          lineHeight: 4 / 3,
           minWidth: `calc(1lh + 2*${spacing('xxSmall')})`,
           paddingBlock: spacing('xxSmall'),
           paddingInline: spacing('xSmall'),
@@ -1597,14 +1510,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  // Child-margin clears sit at slot level: slot rules render after master's
-  // size re-asserts and win by order at equal specificity.
   addStyleOverride(enhanced.components, 'MuiChip', 'root', {
     '--_childSize': `calc(var(--_height) - ${spacing('xSmall')})`,
     '--_offset': `calc(var(--_height)/2 - var(--_childSize)/2 - var(--_paddingInline))`,
-    height: 'var(--_height)', // use private variable to be controlled by Autocomplete
+    height: 'var(--_height)',
     paddingInline: 'var(--_paddingInline)',
-    borderRadius: 'var(--_height)', // pill shape
+    borderRadius: 'var(--_height)',
     ...enhanced.typography?.body1,
     '--_height': touchTarget,
     '--_paddingInline': spacing('small'),

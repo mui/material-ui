@@ -26,11 +26,8 @@ import {
 import { annotationsFor } from './densityAnnotationSpecs';
 import { COMPONENT_NAMES, DENSITY_COMPONENTS } from './densityComponents';
 
-// Stable identity, so a family without controls doesn't re-run the memos.
 const NO_CONTROLS = [];
 
-// Two groups, not one list: the steps space a box, the targets size it, and the
-// override object splits them the same way.
 const SCALE_GROUPS = [
   Object.entries(DENSITY_SCALE),
   Object.entries(DENSITY_TARGETS),
@@ -67,7 +64,6 @@ function ScaleLegend() {
             }}
           >
             {SCALE_GROUPS.map((rows, group) => (
-              // One grid across both groups, so the value column stays aligned.
               <React.Fragment key={rows[0][0]}>
                 {group > 0 && <Divider sx={{ gridColumn: '1 / -1', my: 0.5 }} />}
                 {rows.map(([step, value]) => (
@@ -92,9 +88,7 @@ function ScaleLegend() {
 
 export default function AllComponentsDemo() {
   const [component, setComponent] = React.useState(COMPONENT_NAMES[0]);
-  // One set of values per component, so switching away and back keeps the choice.
   const [byComponent, setByComponent] = React.useState({});
-  // Annotations the reader has switched off, per family.
   const [hidden, setHidden] = React.useState({});
   const stageRef = React.useRef(null);
   const demoRef = React.useRef(null);
@@ -115,7 +109,6 @@ export default function AllComponentsDemo() {
   );
   const off = hidden[component];
   const allShown = !off || off.length === 0;
-  // One checkbox per slot — every annotation on it hides together.
   const slots = React.useMemo(
     () => [...new Set(annotations.map(slotLabel))],
     [annotations],
@@ -124,7 +117,7 @@ export default function AllComponentsDemo() {
     () => annotations.filter((item) => !off?.includes(slotLabel(item))),
     [annotations, off],
   );
-  const resolved = useClaims(stageRef, demoRef, shown, [component, values, shown]);
+  const resolved = useClaims(stageRef, demoRef, shown);
 
   const toggle = (slot) =>
     setHidden((previous) => {

@@ -3,8 +3,6 @@ import grid from './cssGrid';
 
 describe('grid', () => {
   describe('named scale values', () => {
-    // Same contract as the padding/margin props: a spacing function may advertise
-    // named values through `keys`; every other string stays raw CSS.
     const scaled = { small: '12px', xLarge: '32px' };
     const keyedSpacing = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
     keyedSpacing.keys = new Set(Object.keys(scaled));

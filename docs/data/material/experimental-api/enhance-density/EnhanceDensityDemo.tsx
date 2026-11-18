@@ -21,17 +21,12 @@ const colorSchemes = { light: true, dark: true };
 const defaultTheme = createTheme({ colorSchemes });
 const densityTheme = enhanceDensity(createTheme({ colorSchemes }));
 
-// Below this the canvas scrolls. Kept under the card's inner width so the
-// stage never overflows it — that would shift the button off centre.
 const STAGE_WIDTH = 520;
 const STAGE_HEIGHT = 240;
 
-// With the enhancer on, every dimension is a value you can name; with it off
-// they are the component's own built-in numbers.
 const tokens = {
   gap: 'xSmall',
   icon: '0.8lh',
-  // Only the box and its padding step up with the size prop.
   bySize: {
     small: {
       height: 'touchTarget - xxSmall',
@@ -49,8 +44,6 @@ type Size = keyof typeof tokens.bySize;
 
 const SIZES = Object.keys(tokens.bySize) as Size[];
 
-/** A token is only claimed when the enhancer authored it — without it the
- * captions print the measured px, and the height is not a claim at all. */
 function claimsFor(enhanced: boolean, size: Size): Claim[] {
   const named = (token: string) => (enhanced ? token : undefined);
   const claims: Claim[] = [
@@ -90,10 +83,7 @@ export default function EnhanceDensityDemo() {
   const [size, setSize] = React.useState<Size>('medium');
   const stageRef = React.useRef<HTMLDivElement>(null);
   const demoRef = React.useRef<HTMLDivElement>(null);
-  const state = useClaims(stageRef, demoRef, claimsFor(enhanced, size), [
-    enhanced,
-    size,
-  ]);
+  const state = useClaims(stageRef, demoRef, claimsFor(enhanced, size));
 
   return (
     <Paper variant="outlined" sx={{ width: '100%' }}>
@@ -119,7 +109,6 @@ export default function EnhanceDensityDemo() {
             >
               <Box ref={demoRef} sx={{ display: 'contents' }}>
                 <Button variant="outlined" size={size} startIcon={<AddIcon />}>
-                  {/* an element child, so the gap band has an edge to end at */}
                   <span>Button</span>
                 </Button>
               </Box>

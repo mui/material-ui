@@ -151,8 +151,6 @@ const READS: Record<string, Read> = {
   ),
 };
 
-// A layered render wraps the shared component styles in @layer for the rest of
-// the file, so this check lives alone and reads the unlayered theme first.
 describe.skipIf(isJsdom())('density contract parity with modularCssLayers', () => {
   const { render } = createRenderer();
 

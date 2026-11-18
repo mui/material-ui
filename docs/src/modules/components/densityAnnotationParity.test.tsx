@@ -25,7 +25,6 @@ type State = Record<string, ControlValue>;
 const SCALE: Record<string, number> = { ...DENSITY_SCALE, ...DENSITY_TARGETS };
 const TOLERANCE = 0.15;
 
-/** Evaluates `+ - * × /`, parentheses, `min()`/`max()`, px numbers, `<n>lh`, `<n>em` and scale names. */
 function evaluateToken(
   token: string,
   { lineHeight, fontSize }: Pick<AnnotateSource, 'lineHeight' | 'fontSize'>,
@@ -117,7 +116,6 @@ function toolbarStates(family: string): State[] {
   );
 }
 
-/** Resolves once every claim drew and the values held for two frames. */
 async function settledItems(claims: Claim[]): Promise<AnnotateItem[]> {
   await document.fonts.ready;
   const stage = document.querySelector('[data-stage]') as HTMLElement;

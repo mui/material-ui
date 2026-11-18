@@ -3,10 +3,6 @@ import spacing, { margin, padding } from './spacing';
 
 describe('system spacing', () => {
   describe('named scale values', () => {
-    // Stands in for a userland spacing function — what an enhancer such as
-    // `enhanceDensity` installs on the theme. It advertises its named values
-    // through `keys`, the contract these props read; everything it does not
-    // name must stay raw CSS.
     const createScaleSpacing = () => {
       const scaled = { small: '12px', '-small': '-12px', xLarge: '32px' };
       const fn = (...args) => args.map((arg) => scaled[arg] ?? `${arg * 8}px`).join(' ');
@@ -31,7 +27,6 @@ describe('system spacing', () => {
 
       expect(spacing({ theme, m: 'auto' })).to.deep.equal({ margin: 'auto' });
       expect(spacing({ theme, p: '2rem' })).to.deep.equal({ padding: '2rem' });
-      // a typo must not silently resolve to something else
       expect(spacing({ theme, p: 'smal' })).to.deep.equal({ padding: 'smal' });
       expect(spacing({ theme, p: 2 })).to.deep.equal({ padding: '16px' });
     });
@@ -44,8 +39,6 @@ describe('system spacing', () => {
     });
 
     it('resolves names through theme.vars, where the transformer is a string', () => {
-      // `getPath` prefers `theme.vars.spacing`, which cannot resolve names — the
-      // scale-aware function has to win for names while numbers keep the var form.
       const theme = { vars: { spacing: 'var(--mui-spacing, 8px)' }, spacing: keyedSpacing };
 
       expect(spacing({ theme, p: 'small' })).to.deep.equal({ padding: '12px' });
