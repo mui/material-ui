@@ -520,6 +520,28 @@ describe('<TablePagination />', () => {
   });
 
   describe('slotProps: select', () => {
+    it.each(['object', 'callback'])('keeps select classes with %s slot props', (slotPropType) => {
+      const selectProps = { classes: { icon: 'custom-icon' } };
+
+      const { container } = render(
+        <TablePagination
+          component="div"
+          count={100}
+          page={0}
+          onPageChange={noop}
+          rowsPerPage={10}
+          slotProps={{ select: slotPropType === 'callback' ? () => selectProps : selectProps }}
+        />,
+      );
+
+      const combobox = screen.getByRole('combobox');
+      const icon = container.querySelector('.custom-icon');
+
+      expect(combobox).to.have.class(classes.select);
+      expect(combobox.parentElement).to.have.class(classes.input);
+      expect(icon).to.have.class(classes.selectIcon);
+    });
+
     it('does allow manual label ids', () => {
       render(
         <table>

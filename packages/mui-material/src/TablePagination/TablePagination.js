@@ -255,7 +255,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     },
   });
 
-  const [SelectSlot, selectSlotProps] = useSlot('select', {
+  const [SelectSlot, { classes: selectClasses, ...selectSlotProps }] = useSlot('select', {
     className: classes.select,
     elementType: TablePaginationSelect,
     externalForwardedProps,
@@ -296,12 +296,12 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
             labelId={labelId}
             {...selectProps}
             classes={{
-              ...selectProps.classes,
+              ...selectClasses,
               // TODO v5 remove `classes.input`
-              root: clsx(classes.input, classes.selectRoot, (selectProps.classes || {}).root),
-              select: clsx(classes.select, (selectProps.classes || {}).select),
+              root: clsx(classes.input, classes.selectRoot, selectClasses?.root),
+              select: clsx(classes.select, selectClasses?.select),
               // TODO v5 remove `selectIcon`
-              icon: clsx(classes.selectIcon, (selectProps.classes || {}).icon),
+              icon: clsx(classes.selectIcon, selectClasses?.icon),
             }}
             disabled={disabled}
             {...selectSlotProps}
