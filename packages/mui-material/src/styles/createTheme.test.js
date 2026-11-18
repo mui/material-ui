@@ -441,6 +441,32 @@ describe('createTheme', () => {
         expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
       });
 
+      it('should generate the tokens of a color changed in a color scheme in a second call again', () => {
+        const options = {
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        };
+        const argument = { colorSchemes: { dark: { palette: { primary: { main: '#ff0000' } } } } };
+
+        [createTheme(createTheme(options), argument), createTheme(options, argument)].forEach(
+          (theme) => {
+            const expected = createTheme({
+              ...options,
+              colorSchemes: {
+                light: true,
+                dark: { palette: { primary: getColor(theme.colorSchemes.dark.palette.primary) } },
+              },
+            });
+
+            expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('255 0 0');
+            expect(theme.colorSchemes.dark.palette.LinearProgress.primaryBg).to.equal(
+              expected.colorSchemes.dark.palette.LinearProgress.primaryBg,
+            );
+            expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+          },
+        );
+      });
+
       it('should give the same theme when it is passed back unchanged', () => {
         [
           [{ cssVariables: true }],

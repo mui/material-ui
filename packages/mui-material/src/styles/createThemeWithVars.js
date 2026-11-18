@@ -231,14 +231,11 @@ export default function createThemeWithVars(options = {}, ...args) {
   }
 
   // A `palette` passed as an extra argument, for example `createTheme(theme, { palette: { salmon } })`,
-  // goes to the default color scheme, like the `palette` option of `createTheme()`.
-  // It's merged before the color schemes are processed so that its colors get CSS variables.
-  const otherArgs = args.map((argument) => {
-    if (!argument?.palette) {
-      return argument;
-    }
-    const { palette, ...other } = argument;
-    const schemePalette = deepmerge(colorSchemes[defaultColorScheme].palette, palette);
+  // goes to the default color scheme, like the `palette` option of `createTheme()`,
+  // and the `palette` of a color scheme goes to that color scheme.
+  // They're merged before the color schemes are processed so that their colors get CSS variables.
+  const mergeSchemePalette = (scheme, palette) => {
+    const schemePalette = deepmerge(colorSchemes[scheme].palette, palette);
     // The options can be a previous theme, whose palette has the channels of the colors replaced here.
     removeReplacedChannels(schemePalette, palette);
     Object.keys(palette).forEach((color) => {
@@ -246,7 +243,27 @@ export default function createThemeWithVars(options = {}, ...args) {
         removeReplacedChannels(schemePalette[color], palette[color]);
       }
     });
-    colorSchemes[defaultColorScheme].palette = schemePalette;
+    colorSchemes[scheme].palette = schemePalette;
+  };
+  const otherArgs = args.map((argument) => {
+    if (!argument?.palette && !argument?.colorSchemes) {
+      return argument;
+    }
+    const { palette, colorSchemes: argumentColorSchemes, ...other } = argument;
+    if (palette) {
+      mergeSchemePalette(defaultColorScheme, palette);
+    }
+    if (argumentColorSchemes) {
+      other.colorSchemes = { ...argumentColorSchemes };
+      Object.keys(argumentColorSchemes).forEach((scheme) => {
+        const argumentScheme = argumentColorSchemes[scheme];
+        if (argumentScheme?.palette && colorSchemes[scheme]) {
+          const { palette: schemePalette, ...schemeOther } = argumentScheme;
+          mergeSchemePalette(scheme, schemePalette);
+          other.colorSchemes[scheme] = schemeOther;
+        }
+      });
+    }
     return other;
   });
 
