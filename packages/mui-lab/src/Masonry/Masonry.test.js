@@ -30,8 +30,7 @@ describe('<Masonry />', () => {
     }),
   );
 
-  const theme = createTheme({ spacing: 8, cssVariables: false });
-  const cssVarsTheme = createTheme({ spacing: 8, cssVariables: true });
+  const theme = createTheme({ spacing: 8 });
   // The render tests use the default theme, whose spacing is 8px.
   const defaultThemeSpacing = 8;
   const maxColumnHeight = 100;
@@ -290,7 +289,7 @@ describe('<Masonry />', () => {
     it('should use the spacing CSS variable with CSS theme variables', () => {
       const defaultColumns = 4;
       const defaultSpacing = 2;
-      const spacing = cssVarsTheme.spacing(defaultSpacing);
+      const spacing = theme.spacing(defaultSpacing);
       const styles = getStyle({
         ownerState: {
           defaultColumns,
@@ -298,7 +297,7 @@ describe('<Masonry />', () => {
           defaultHeight: 700,
           isSSR: true,
         },
-        theme: cssVarsTheme,
+        theme,
       });
 
       expect(spacing).to.include('var(--mui-spacing');
@@ -418,7 +417,7 @@ describe('<Masonry />', () => {
 
     it('should support zero spacing with CSS theme variables', () => {
       const ownerState = { columns: 4, spacing: 0, maxColumnHeight };
-      const styles = getStyle({ ownerState, theme: cssVarsTheme });
+      const styles = getStyle({ ownerState, theme });
 
       expect(styles.margin).to.equal('calc(0px - (0px / 2))');
       expect(styles['& > *'].margin).to.equal('calc(0px / 2)');
@@ -429,15 +428,15 @@ describe('<Masonry />', () => {
     it('should support responsive zero and unit-string spacing with CSS theme variables', () => {
       const styles = getStyle({
         ownerState: { columns: 4, spacing: { xs: 0, md: '16px' }, maxColumnHeight },
-        theme: cssVarsTheme,
+        theme,
       });
 
-      expect(
-        styles[`@media (min-width:${cssVarsTheme.breakpoints.values.xs}px)`]['& > *'].width,
-      ).to.equal('calc(25.00% - 0px)');
-      expect(
-        styles[`@media (min-width:${cssVarsTheme.breakpoints.values.md}px)`]['& > *'].width,
-      ).to.equal('calc(25.00% - 16px)');
+      expect(styles[`@media (min-width:${theme.breakpoints.values.xs}px)`]['& > *'].width).to.equal(
+        'calc(25.00% - 0px)',
+      );
+      expect(styles[`@media (min-width:${theme.breakpoints.values.md}px)`]['& > *'].width).to.equal(
+        'calc(25.00% - 16px)',
+      );
     });
   });
 

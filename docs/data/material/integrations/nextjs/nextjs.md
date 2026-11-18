@@ -161,14 +161,7 @@ To learn more about theming, check out the [theming guide](/material-ui/customiz
 
 ### CSS theme variables
 
-To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
-
-```diff title="src/theme.ts"
- 'use client';
- const theme = createTheme({
-+  cssVariables: true,
- });
-```
+`createTheme()` generates [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) by default.
 
 Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages) and how to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).
 
@@ -553,13 +546,6 @@ To learn more about theming, check out the [Theming guide](/material-ui/customiz
 
 ### CSS theme variables
 
-To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
-
-```diff title="src/theme.ts"
- 'use client';
- const theme = createTheme({
-+  cssVariables: true,
- });
-```
+`createTheme()` generates [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) by default.
 
 Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages) and how to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).
