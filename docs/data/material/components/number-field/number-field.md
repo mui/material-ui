@@ -239,6 +239,25 @@ It gives the buttons different colors and adds an outline while scrubbing throug
 
 See [themed components](/material-ui/customization/theme-components/) for more details.
 
+### Data attributes
+
+NumberField exposes Base UI's state attributes on the following slots.
+Import the corresponding constants from `@mui/material/NumberField` to use them in selectors or tests.
+
+| Slot              | Export                                     |
+| :---------------- | :----------------------------------------- |
+| `root`            | `NumberFieldRootDataAttributes`            |
+| `input`           | `NumberFieldGroupDataAttributes`           |
+| `htmlInput`       | `NumberFieldInputDataAttributes`           |
+| `incrementButton` | `NumberFieldIncrementDataAttributes`       |
+| `decrementButton` | `NumberFieldDecrementDataAttributes`       |
+| `scrubArea`       | `NumberFieldScrubAreaDataAttributes`       |
+| `scrubAreaCursor` | `NumberFieldScrubAreaCursorDataAttributes` |
+
+Each namespace includes `data-scrubbing`, `data-disabled`, `data-readonly`, and `data-required`.
+When wrapped in Base UI's `Field.Root`, the slots can also expose `data-valid`, `data-invalid`, `data-touched`, `data-dirty`, `data-filled`, and `data-focused`.
+For example, `NumberFieldRootDataAttributes.scrubbing` is the attribute name `data-scrubbing`, which is present while the user drags the scrub handle.
+
 ## Anatomy
 
 NumberField combines Material UI components with Base UI's numeric input behavior.

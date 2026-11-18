@@ -12,7 +12,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import type { InputAdornmentProps } from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import type { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import NumberField, { numberFieldClasses as classes } from '@mui/material/NumberField';
+import NumberField, {
+  numberFieldClasses as classes,
+  NumberFieldRootDataAttributes,
+} from '@mui/material/NumberField';
 import type { NumberFieldOwnerState, NumberFieldProps } from '@mui/material/NumberField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -2954,7 +2957,7 @@ describe('<NumberField />', () => {
 
       // Check Material customization against the same drag lifecycle as Base UI,
       // without repeating its value-calculation behavior here.
-      it('exposes live scrubbing state to every slot, root classes and theme overrides', async () => {
+      it('exposes live scrubbing state to slots, root attributes, classes and theme overrides', async () => {
         const callbacks = createSlotCallbacks();
         const theme = createTheme({
           components: {
@@ -2986,6 +2989,7 @@ describe('<NumberField />', () => {
           Object.entries(callbacks).forEach(([slot, callback]) => {
             expect(callback.mock.lastCall![0].scrubbing, `slotProps.${slot}`).to.equal(scrubbing);
           });
+          expect(root.hasAttribute(NumberFieldRootDataAttributes.scrubbing)).to.equal(scrubbing);
           expect(root.classList.contains(classes.scrubbing)).to.equal(scrubbing);
           expect(root.classList.contains('custom-scrubbing')).to.equal(scrubbing);
           expect(getComputedStyle(root).paddingTop).to.equal(scrubbing ? '7px' : '0px');
