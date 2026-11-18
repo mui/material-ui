@@ -281,7 +281,7 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
           sx={{ alignItems: 'center', justifyContent: 'space-between' }}
         >
           <EditPage sourceLocation={location} />
-          <Stack direction="row" spacing={0.5} useFlexGap sx={{ alignItems: 'center' }}>
+          <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
             <Typography id="feedback-message" variant="body2" sx={{ color: 'text.secondary' }}>
               {t('feedbackMessage')}
             </Typography>
@@ -443,7 +443,7 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
           spacing={{ xs: 3, sm: 1 }}
           sx={{ alignItems: 'center' }}
         >
-          <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center', flexGrow: 1 }}>
+          <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexGrow: 1 }}>
             <Link href="https://mui.com/" aria-label="Go to the homepage">
               <MuiLogotypeIcon height={28} width={64} />
             </Link>
@@ -456,7 +456,7 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
               Store <ArrowOutwardRoundedIcon />
             </FooterLink>
           </Stack>
-          <Stack spacing={1} direction="row" useFlexGap>
+          <Stack spacing={1} direction="row">
             <IconButton
               target="_blank"
               href="https://x.com/MUI_hq"

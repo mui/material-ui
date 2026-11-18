@@ -23,6 +23,11 @@ describe('@mui/codemod', () => {
           expected: '/test-cases/package.expected.js',
           options: { packageName: '@org/ui/material' },
         },
+        {
+          actual: '/test-cases/spread.actual.js',
+          expected: '/test-cases/spread.expected.js',
+          options: { packageName: '@org/ui/material' },
+        },
       ],
     });
   });

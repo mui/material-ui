@@ -2,17 +2,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, useThemeProps, type Theme } from '@mui/material/styles';
+import { styled, useThemeProps } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import composeClasses from '@mui/utils/composeClasses';
 import type { OverridableStringUnion } from '@mui/types';
 import type { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import type { SxProps } from '@mui/system';
-import {
-  getTimelineDotUtilityClass,
-  type TimelineDotClasses,
-  type TimelineDotClassKey,
-} from './timelineDotClasses';
+import { getTimelineDotUtilityClass } from './timelineDotClasses';
+import type { TimelineDotClasses, TimelineDotClassKey } from './timelineDotClasses';
 
 export interface TimelineDotPropsVariantOverrides {}
 
@@ -162,27 +160,25 @@ TimelineDot.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The dot can have a different colors.
    * @default 'grey'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'error',
-      'grey',
-      'info',
-      'inherit',
-      'primary',
-      'secondary',
-      'success',
-      'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'error',
+        'grey',
+        'info',
+        'inherit',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -195,10 +191,8 @@ TimelineDot.propTypes /* remove-proptypes */ = {
    * The dot can appear filled or outlined.
    * @default 'filled'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['filled', 'outlined']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['filled', 'outlined']), PropTypes.string]),
 } as any;
 
 export default TimelineDot;

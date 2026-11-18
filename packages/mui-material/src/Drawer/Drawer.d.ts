@@ -32,7 +32,7 @@ export interface DrawerSlots {
   backdrop: React.ElementType;
   /**
    * The component used for the root element when the variant is `permanent` or `persistent`.
-   * @default div
+   * @default 'div'
    */
   docked: React.ElementType;
   /**

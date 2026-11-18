@@ -10,7 +10,7 @@ import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';
 import { getFocusTarget } from '../utils/focusable';
-import { FocusTrapProps } from './FocusTrap.types';
+import type { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [
@@ -140,6 +140,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const sentinelStart = React.useRef<HTMLDivElement>(null);
   const sentinelEnd = React.useRef<HTMLDivElement>(null);
   const nodeToRestore = React.useRef<EventTarget>(null);
+  // The element inside the trap that had focus when the cleanup restored focus.
+  const nodeBeforeRestore = React.useRef<HTMLElement>(null);
   const reactFocusEventTarget = React.useRef<EventTarget>(null);
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
@@ -155,27 +157,33 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       return;
     }
 
-    activated.current = !disableAutoFocus;
+    // A child (e.g. MenuList) may have already moved focus inside.
+    activated.current =
+      !disableAutoFocus ||
+      contains(rootRef.current, getActiveElement(ownerDocument(rootRef.current)));
   }, [disableAutoFocus, open]);
 
   React.useEffect(() => {
     // Reset on every mount — React 18 Strict Mode double-mounts leave this
     // stuck at `true` after the cleanup of the previous mount set it.
     ignoreNextEnforceFocus.current = false;
+    const previousNode = nodeBeforeRestore.current;
+    nodeBeforeRestore.current = null;
 
     // We might render an empty child.
     if (!open || !rootRef.current) {
       return;
     }
 
-    const doc = ownerDocument(rootRef.current);
+    const root = rootRef.current;
+    const doc = ownerDocument(root);
     const activeElement = getActiveElement(doc);
 
     // Prefer the explicitly marked focusable element. Fall back to the root
     // element for generic FocusTrap usage.
-    const focusTarget = getFocusTarget(rootRef.current) ?? rootRef.current;
+    const focusTarget = getFocusTarget(root) ?? root;
 
-    if (!contains(rootRef.current, activeElement)) {
+    if (!contains(root, activeElement)) {
       if (!focusTarget.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
@@ -189,7 +197,14 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         focusTarget.setAttribute('tabIndex', '-1');
       }
 
-      if (activated.current) {
+      // When the effect re-runs (Strict Mode, `<Activity>`), give focus back to the
+      // element that the cleanup moved it from.
+      if (previousNode && contains(root, previousNode)) {
+        previousNode.focus();
+      }
+
+      // `focus()` does nothing if that element became disabled or hidden.
+      if (activated.current && !contains(root, getActiveElement(doc))) {
         focusTarget.focus();
       }
     }
@@ -197,6 +212,11 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     return () => {
       // restoreLastFocus()
       if (!disableRestoreFocus && nodeToRestore.current) {
+        // Use `root` from the closure: React can detach refs before this cleanup.
+        const focusedNode = getActiveElement(doc);
+        if (contains(root, focusedNode)) {
+          nodeBeforeRestore.current = focusedNode as HTMLElement;
+        }
         ignoreNextEnforceFocus.current = true;
         (nodeToRestore.current as HTMLElement).focus();
         nodeToRestore.current = null;

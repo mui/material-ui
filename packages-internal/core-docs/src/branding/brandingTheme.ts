@@ -1,7 +1,8 @@
 import type { CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
-import { createTheme, type ThemeOptions, type Theme, alpha } from '@mui/material/styles';
+import { createTheme, alpha } from '@mui/material/styles';
+import type { ThemeOptions, Theme } from '@mui/material/styles';
 
 interface ApplyDarkStyles {
   (scheme: CSSObject): CSSObject;
@@ -1068,7 +1069,8 @@ export function getThemedComponents(): ThemeOptions {
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },
-            '& svg:last-child': {
+            // Only the link's own trailing icon, not the icons of components nested in the link.
+            '& > svg:last-child': {
               marginLeft: 2,
             },
             '&:focus-visible': {

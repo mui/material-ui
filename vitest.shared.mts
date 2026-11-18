@@ -2,11 +2,13 @@ import 'dotenv/config';
 import { configDefaults, defineProject } from 'vitest/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
+import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
-import { Plugin, transformWithOxc } from 'vite';
+import type { Plugin } from 'vite';
+import { transformWithOxc } from 'vite';
 import { playwright } from '@vitest/browser-playwright';
-import { BrowserInstanceOption } from 'vitest/node';
+import type { BrowserInstanceOption } from 'vitest/node';
 
 function forceJsxForJsFiles(): Plugin {
   return {
@@ -47,8 +49,15 @@ function getVitestEnvironment(fileName: string): 'browser' | 'node' {
 }
 
 const MONOREPO_ROOT = path.resolve(import.meta.dirname, '.');
+export const REACT_MAJOR = Number(
+  createRequire(import.meta.url)('react/package.json').version.split('.')[0],
+);
 
 export const alias = {
+  // React 17 has no `react-dom/client`.
+  ...(REACT_MAJOR < 18
+    ? { 'react-dom/client': path.resolve(MONOREPO_ROOT, './test/reactDomClient17.js') }
+    : {}),
   '@mui/internal-api-docs-builder': path.resolve(
     MONOREPO_ROOT,
     './packages-internal/api-docs-builder/src',

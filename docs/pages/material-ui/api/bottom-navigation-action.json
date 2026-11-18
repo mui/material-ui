@@ -41,7 +41,7 @@
     {
       "name": "label",
       "description": "The component that renders the label.",
-      "default": "span",
+      "default": "'span'",
       "class": "MuiBottomNavigationAction-label"
     }
   ],
