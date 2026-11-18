@@ -158,7 +158,7 @@ export default function PerksBenefits() {
           size={{ xs: 12, md: 6 }}
         >
           <RemoteAwardCard />
-          <Stack spacing={2} useFlexGap>
+          <Stack spacing={2}>
             {companyInfo.map(({ title, description, routeUrl }) => (
               <Paper
                 key={title}

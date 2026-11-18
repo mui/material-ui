@@ -21,7 +21,7 @@ Container.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * @ignore
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -52,10 +52,8 @@ Container.propTypes /* remove-proptypes */ = {
    * Set to `false` to disable `maxWidth`.
    * @default 'lg'
    */
-  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
-    PropTypes.string,
-  ]),
+  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]), PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

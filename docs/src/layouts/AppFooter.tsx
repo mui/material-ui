@@ -174,7 +174,7 @@ export default function AppFooter(props: AppFooterProps) {
         <Typography variant="caption" sx={{ color: 'text.tertiary', fontWeight: 400 }}>
           Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
         </Typography>
-        <Stack spacing={1} direction="row" useFlexGap sx={{ flexWrap: 'wrap' }}>
+        <Stack spacing={1} direction="row" sx={{ flexWrap: 'wrap' }}>
           <IconButton
             target="_blank"
             href="https://github.com/mui"

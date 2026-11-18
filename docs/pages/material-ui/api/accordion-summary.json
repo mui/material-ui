@@ -41,13 +41,13 @@
     {
       "name": "content",
       "description": "The component that renders the content slot.",
-      "default": "div",
+      "default": "'div'",
       "class": "MuiAccordionSummary-content"
     },
     {
       "name": "expandIconWrapper",
       "description": "The component that renders the expand icon wrapper slot.",
-      "default": "div",
+      "default": "'div'",
       "class": "MuiAccordionSummary-expandIconWrapper"
     }
   ],

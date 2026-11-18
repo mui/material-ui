@@ -66,6 +66,8 @@ const ChipRoot = styled('div', {
   memoTheme(({ theme }) => {
     const textColor =
       theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
+    const avatarColor =
+      theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white;
     return {
       maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,
@@ -98,7 +100,7 @@ const ChipRoot = styled('div', {
         marginRight: -6,
         width: 24,
         height: 24,
-        color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
+        color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : avatarColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
@@ -573,7 +575,7 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -591,10 +593,11 @@ Chip.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'default'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -624,31 +627,20 @@ Chip.propTypes /* remove-proptypes */ = {
    * when it resolves to a non-button host.
    */
   nativeButton: PropTypes.bool,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * Callback fired when the delete icon is clicked.
    * If set, the delete icon will be shown.
    */
   onDelete: PropTypes.func,
-  /**
-   * @ignore
-   */
   onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
   onKeyUp: PropTypes.func,
   /**
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   /**
    * If `true`, allows the disabled chip to escape focus.
    * If `false`, allows the disabled chip to receive focus.
@@ -687,10 +679,8 @@ Chip.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'filled'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['filled', 'outlined']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['filled', 'outlined']), PropTypes.string]),
 };
 
 export default Chip;

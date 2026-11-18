@@ -56,24 +56,19 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
-  /**
-   * @ignore
-   */
   defaultTheme: PropTypes.object,
   /**
    * @ignore
    */
-  styles: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.array,
-    PropTypes.func,
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.bool,
-  ]),
-  /**
-   * @ignore
-   */
+  styles: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.array,
+      PropTypes.func,
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
   themeId: PropTypes.string,
 } as any;
 
