@@ -21,7 +21,6 @@ import filledInputClasses from '../FilledInput/filledInputClasses';
 import inputClasses from '../Input/inputClasses';
 import selectClasses from '../Select/selectClasses';
 import nativeSelectClasses from '../NativeSelect/nativeSelectClasses';
-import formControlClasses from '../FormControl/formControlClasses';
 import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import listItemIconClasses from '../ListItemIcon/listItemIconClasses';
@@ -416,36 +415,24 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiOutlinedInput', 'root', {
-    [`.${formControlClasses.root}:has(> &)`]: {
-      '--_outlinedInputPadBlock': inputMediumPadBlock,
-    },
+    '--_outlinedInputPadBlock': inputMediumPadBlock,
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+      '--_restY': inputMediumPadBlock,
       '--_inlinePad': dirSign === 1 ? spacing('small') : `calc(-1 * ${spacing('small')})`,
     },
     variants: [
       {
         props: { size: 'small' },
         style: {
-          [`.${formControlClasses.root}:has(> &)`]: {
-            '--_outlinedInputPadBlock': inputSmallPadBlock,
-          },
-          [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
-          },
+          '--_outlinedInputPadBlock': inputSmallPadBlock,
+          [`.${inputLabelClasses.root}:has(~ &)`]: { '--_restY': inputSmallPadBlock },
         },
       },
       {
         props: { multiline: true },
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+          paddingBlock: 'var(--_outlinedInputPadBlock)',
           paddingInline: spacing('small'),
-        },
-      },
-      {
-        props: { multiline: true, size: 'small' },
-        style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
         },
       },
       {
@@ -459,14 +446,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiOutlinedInput', 'input', {
-    paddingBlock: `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+    paddingBlock: 'var(--_outlinedInputPadBlock)',
     paddingLeft: spacing('small'),
     [notSelectInput]: { paddingRight: spacing('small') },
     variants: [
-      {
-        props: { size: 'small' },
-        style: { paddingBlock: `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})` },
-      },
       {
         props: { multiline: true },
         style: { paddingBlock: 0, paddingInline: 0 },
@@ -482,18 +465,11 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiFilledInput', 'input', {
-    paddingTop: `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
-    paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
+    paddingTop: 'var(--_filledInputPadTop)',
+    paddingBottom: 'var(--_filledInputPadBottom)',
     paddingLeft: spacing('small'),
     [notSelectInput]: { paddingRight: spacing('small') },
     variants: [
-      {
-        props: { size: 'small' },
-        style: {
-          paddingTop: `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
-        },
-      },
       {
         props: { hiddenLabel: true },
         style: { paddingBlock: inputMediumPadBlock },
@@ -517,12 +493,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiFilledInput', 'root', {
-    [`.${formControlClasses.root}:has(> &)`]: {
-      '--_filledInputPadTop': filledInputMediumPadTop,
-      '--_filledInputPadBottom': inputMediumPadBlock,
-    },
+    '--_filledInputPadTop': filledInputMediumPadTop,
+    '--_filledInputPadBottom': inputMediumPadBlock,
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc((var(--_filledInputPadTop, ${filledInputMediumPadTop}) + var(--_filledInputPadBottom, ${inputMediumPadBlock})) / 2)`,
+      '--_restY': `calc((${filledInputMediumPadTop} + ${inputMediumPadBlock}) / 2)`,
       '--_shrinkY': '6px',
       '--_inlinePad': dirSign === 1 ? spacing('small') : `calc(-1 * ${spacing('small')})`,
     },
@@ -530,12 +504,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { size: 'small' },
         style: {
-          [`.${formControlClasses.root}:has(> &)`]: {
-            '--_filledInputPadTop': filledInputSmallPadTop,
-            '--_filledInputPadBottom': inputSmallPadBlock,
-          },
+          '--_filledInputPadTop': filledInputSmallPadTop,
+          '--_filledInputPadBottom': inputSmallPadBlock,
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc((var(--_filledInputPadTop, ${filledInputSmallPadTop}) + var(--_filledInputPadBottom, ${inputSmallPadBlock})) / 2)`,
+            '--_restY': `calc((${filledInputSmallPadTop} + ${inputSmallPadBlock}) / 2)`,
             '--_shrinkY': '4px',
           },
         },
@@ -543,16 +515,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { multiline: true },
         style: {
-          paddingTop: `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
+          paddingTop: 'var(--_filledInputPadTop)',
+          paddingBottom: 'var(--_filledInputPadBottom)',
           paddingInline: spacing('small'),
-        },
-      },
-      {
-        props: { multiline: true, size: 'small' },
-        style: {
-          paddingTop: `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
         },
       },
       {
@@ -574,56 +539,35 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   addStyleOverride(enhanced.components, 'MuiInput', 'root', {
-    [`.${formControlClasses.root}:has(> &)`]: {
-      '--_inputPadBlock': inputMediumPadBlock,
-      '--_inputMarginTop': spacing('small'),
-    },
+    '--_inputPadBlock': inputMediumPadBlock,
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc(var(--_inputMarginTop, ${spacing('small')}) + var(--_inputPadBlock, ${inputMediumPadBlock}))`,
+      '--_restY': `calc(${spacing('small')} + ${inputMediumPadBlock})`,
     },
     variants: [
       {
         props: ({ ownerState }) => !!ownerState.formControl,
         style: {
-          [`label + &, .${inputLabelClasses.root} + &`]: {
-            marginTop: `var(--_inputMarginTop, ${spacing('small')})`,
-          },
+          [`label + &, .${inputLabelClasses.root} + &`]: { marginTop: spacing('small') },
         },
       },
       {
         props: { size: 'small' },
         style: {
-          [`.${formControlClasses.root}:has(> &)`]: {
-            '--_inputPadBlock': inputSmallPadBlock,
-          },
+          '--_inputPadBlock': inputSmallPadBlock,
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc(var(--_inputMarginTop, ${spacing('small')}) + var(--_inputPadBlock, ${inputSmallPadBlock}))`,
+            '--_restY': `calc(${spacing('small')} + ${inputSmallPadBlock})`,
           },
         },
       },
       {
         props: { multiline: true },
-        style: {
-          paddingBlock: `var(--_inputPadBlock, ${inputMediumPadBlock})`,
-        },
-      },
-      {
-        props: { multiline: true, size: 'small' },
-        style: {
-          paddingBlock: `var(--_inputPadBlock, ${inputSmallPadBlock})`,
-        },
+        style: { paddingBlock: 'var(--_inputPadBlock)' },
       },
     ],
   });
   addStyleOverride(enhanced.components, 'MuiInput', 'input', {
-    paddingBlock: `var(--_inputPadBlock, ${inputMediumPadBlock})`,
+    paddingBlock: 'var(--_inputPadBlock)',
     variants: [
-      {
-        props: { size: 'small' },
-        style: {
-          paddingBlock: `var(--_inputPadBlock, ${inputSmallPadBlock})`,
-        },
-      },
       {
         props: { multiline: true },
         style: { paddingBlock: 0 },
@@ -878,13 +822,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     paddingBottom: rowPad('var(--_fieldPadBottom)'),
     paddingLeft: 'var(--_fieldPadLeft)',
     [`&:where(.${outlinedInputClasses.root})`]: {
-      '--_fieldPadTop': `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
-      '--_fieldPadBottom': `var(--_outlinedInputPadBlock, ${inputMediumPadBlock})`,
+      '--_fieldPadTop': 'var(--_outlinedInputPadBlock)',
+      '--_fieldPadBottom': 'var(--_outlinedInputPadBlock)',
       '--_fieldPadLeft': `calc(${spacing('small')} - 4px)`,
     },
     [`&${filledLabelled}`]: {
-      '--_fieldPadTop': `var(--_filledInputPadTop, ${filledInputMediumPadTop})`,
-      '--_fieldPadBottom': `var(--_filledInputPadBottom, ${inputMediumPadBlock})`,
+      '--_fieldPadTop': 'var(--_filledInputPadTop)',
+      '--_fieldPadBottom': 'var(--_filledInputPadBottom)',
     },
     [`&:where(.${filledInputClasses.root})`]: {
       '--_fieldPadLeft': `calc(${spacing('small')} - 4px)`,
@@ -894,8 +838,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       '--_fieldPadBottom': inputMediumPadBlock,
     },
     [`&:where(.${inputClasses.root})`]: {
-      '--_fieldPadTop': `var(--_inputPadBlock, ${inputMediumPadBlock})`,
-      '--_fieldPadBottom': `var(--_inputPadBlock, ${inputMediumPadBlock})`,
+      '--_fieldPadTop': 'var(--_inputPadBlock)',
+      '--_fieldPadBottom': 'var(--_inputPadBlock)',
       '--_fieldPadLeft': '0px',
     },
     [`&.${inputBaseClasses.sizeSmall}`]: {
@@ -904,24 +848,14 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         '--_fieldPadTop': inputSmallPadBlock,
         '--_fieldPadBottom': inputSmallPadBlock,
       },
-      [`&:where(.${outlinedInputClasses.root})`]: {
-        '--_fieldPadTop': `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
-        '--_fieldPadBottom': `var(--_outlinedInputPadBlock, ${inputSmallPadBlock})`,
-        ...(!enhanced.modularCssLayers && {
+      ...(!enhanced.modularCssLayers && {
+        [`&:where(.${outlinedInputClasses.root})`]: {
           paddingTop: rowPad('var(--_fieldPadTop)'),
           paddingBottom: rowPad('var(--_fieldPadBottom)'),
           paddingLeft: 'var(--_fieldPadLeft)',
-        }),
-      },
-      [`&${filledLabelled}`]: {
-        '--_fieldPadTop': `var(--_filledInputPadTop, ${filledInputSmallPadTop})`,
-        '--_fieldPadBottom': `var(--_filledInputPadBottom, ${inputSmallPadBlock})`,
-        ...(!enhanced.modularCssLayers && { paddingBottom: rowPad('var(--_fieldPadBottom)') }),
-      },
-      [`&:where(.${inputClasses.root})`]: {
-        '--_fieldPadTop': `var(--_inputPadBlock, ${inputSmallPadBlock})`,
-        '--_fieldPadBottom': `var(--_inputPadBlock, ${inputSmallPadBlock})`,
-      },
+        },
+        [`&${filledLabelled}`]: { paddingBottom: rowPad('var(--_fieldPadBottom)') },
+      }),
     },
     ...(!enhanced.modularCssLayers && {
       [`&.${inputBaseClasses.hiddenLabel}:where(.${filledInputClasses.root})`]: {
