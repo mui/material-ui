@@ -3,7 +3,7 @@ import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 
 import RenderElement from './RenderElement';
 
-interface NumberFieldInputRootProps extends React.HTMLAttributes<HTMLDivElement> {
+interface NumberFieldInputRootSlotProps extends React.HTMLAttributes<HTMLDivElement> {
   ownerState?: Record<string, unknown> | undefined;
   numberFieldInputRoot: {
     render?: BaseNumberField.Group.Props['render'] | undefined;
@@ -16,8 +16,8 @@ interface NumberFieldInputRootProps extends React.HTMLAttributes<HTMLDivElement>
  * Applies Base UI's Group semantics to the Material input root without another wrapper.
  * @ignore - internal component.
  */
-const NumberFieldInputRoot = React.forwardRef(function NumberFieldInputRoot(
-  props: NumberFieldInputRootProps,
+const NumberFieldInputRootSlot = React.forwardRef(function NumberFieldInputRootSlot(
+  props: NumberFieldInputRootSlotProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const { numberFieldInputRoot, ownerState, ...other } = props;
@@ -38,4 +38,4 @@ const NumberFieldInputRoot = React.forwardRef(function NumberFieldInputRoot(
   );
 });
 
-export default NumberFieldInputRoot;
+export default NumberFieldInputRootSlot;

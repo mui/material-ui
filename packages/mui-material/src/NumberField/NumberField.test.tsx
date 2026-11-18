@@ -2484,7 +2484,13 @@ describe('<NumberField />', () => {
   describe('labels, helper text and focus', () => {
     it('links an explicit input ID to its label and accessible description', async () => {
       const { user } = render(
-        <NumberField id="amount" label="Amount" helperText="Enter the quantity" defaultValue={5} />,
+        <NumberField
+          id="amount"
+          label="Amount"
+          helperText="Enter the quantity"
+          defaultValue={5}
+          slotProps={{ formHelperText: { id: undefined } }}
+        />,
       );
       const input = screen.getByRole('textbox', { name: 'Amount' });
       const label = screen.getByText('Amount', { selector: 'label' });
@@ -2493,6 +2499,29 @@ describe('<NumberField />', () => {
       expect(input).toHaveAccessibleDescription('Enter the quantity');
       await user.click(label);
       expect(document.activeElement).to.equal(input);
+    });
+
+    (['object', 'callback'] as const).forEach((configuration) => {
+      it(`links the input to a custom helper text ID from ${configuration} slot props`, () => {
+        render(
+          <NumberField
+            id="qty"
+            label="Quantity"
+            helperText="Maximum 10"
+            slotProps={{
+              formHelperText:
+                configuration === 'callback'
+                  ? (ownerState) => ({ id: `${ownerState.id}-help` })
+                  : { id: 'qty-help' },
+            }}
+          />,
+        );
+
+        expect(screen.getByText('Maximum 10')).to.have.attribute('id', 'qty-help');
+        expect(screen.getByRole('textbox', { name: 'Quantity' })).toHaveAccessibleDescription(
+          'Maximum 10',
+        );
+      });
     });
 
     it('renders zero as label and helper content', () => {
@@ -3048,7 +3077,7 @@ describe('<NumberField />', () => {
         });
       });
 
-      it('resolves shared slot callbacks once for server-rendered adornments', () => {
+      it('resolves shared slot callbacks once for server-rendered adornments and helper text', () => {
         const adornment = <InputAdornment position="start">$</InputAdornment>;
         const getInputProps = vi.fn((ownerState: NumberFieldOwnerState) => ({
           startAdornment: ownerState.disabled ? adornment : undefined,
@@ -3056,20 +3085,28 @@ describe('<NumberField />', () => {
         const getInputLabelProps = vi.fn((ownerState: NumberFieldOwnerState) => ({
           className: ownerState.disabled ? 'disabled-label' : undefined,
         }));
+        const getHelperTextProps = vi.fn(() => ({ id: 'amount-help' }));
         const { hydrate } = renderToString(
           <NumberField
             label="Amount"
+            helperText="Enter the quantity"
             disabled
-            slotProps={{ input: getInputProps, inputLabel: getInputLabelProps }}
+            slotProps={{
+              input: getInputProps,
+              inputLabel: getInputLabelProps,
+              formHelperText: getHelperTextProps,
+            }}
           />,
         );
         // Assert server evaluation counts before hydration can trigger additional renders.
         expect(getInputProps).toHaveBeenCalledTimes(1);
         expect(getInputLabelProps).toHaveBeenCalledTimes(1);
+        expect(getHelperTextProps).toHaveBeenCalledTimes(1);
         const adornmentNode = screen.getByText('$');
         const input = screen.getByRole('textbox', { name: 'Amount' });
         expect(input.closest('.MuiInputBase-root')).to.contain(adornmentNode);
         expect(screen.getByText('Amount', { selector: 'label' })).to.have.class('disabled-label');
+        expect(input).toHaveAccessibleDescription('Enter the quantity');
 
         expectStableHydration(hydrate, { displayValue: '', shrink: true });
         expect(screen.getByText('$')).to.equal(adornmentNode);
