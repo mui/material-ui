@@ -461,7 +461,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     variants: [
       {
         props: { multiline: true },
-        style: { paddingBlock: 0, paddingInline: 0 },
+        style: { paddingBlock: 0, paddingLeft: 0, [notSelectInput]: { paddingRight: 0 } },
       },
       {
         props: ({ ownerState }) => !!ownerState.startAdornment,
@@ -469,7 +469,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: ({ ownerState }) => !!ownerState.endAdornment,
-        style: { paddingRight: 0 },
+        style: { [notSelectInput]: { paddingRight: 0 } },
       },
     ],
   });
@@ -489,7 +489,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: { multiline: true },
-        style: { paddingBlock: 0, paddingInline: 0 },
+        style: { paddingBlock: 0, paddingLeft: 0, [notSelectInput]: { paddingRight: 0 } },
       },
       {
         props: ({ ownerState }) => !!ownerState.startAdornment,
@@ -497,7 +497,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: ({ ownerState }) => !!ownerState.endAdornment,
-        style: { paddingRight: 0 },
+        style: { [notSelectInput]: { paddingRight: 0 } },
       },
     ],
   });

@@ -19,6 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import ListItemButton from '@mui/material/ListItemButton';
 import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import InputBase from '@mui/material/InputBase';
 import FilledInput from '@mui/material/FilledInput';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -832,6 +833,36 @@ describe.skipIf(isJsdom())('density contract', () => {
               ],
             ]),
           ),
+        );
+      });
+
+      test(`${density.id}: an input leaves its right padding to the end adornment and to multiline`, () => {
+        const kinds = ['plain', 'adornment', 'multiline'] as const;
+        renderIn(
+          THEMES[density.id],
+          cases(
+            grid([['outlined', 'filled'], kinds], (variant, kind) => (
+              <TextField
+                variant={variant}
+                defaultValue="Ada"
+                multiline={kind === 'multiline'}
+                slotProps={{
+                  input: {
+                    endAdornment:
+                      kind === 'adornment' ? (
+                        <InputAdornment position="end">kg</InputAdornment>
+                      ) : undefined,
+                  },
+                }}
+              />
+            )),
+          ),
+        );
+        const names = Object.keys(grid([['outlined', 'filled'], kinds], () => null));
+        expect(
+          byName(names, (name) => css('.MuiInputBase-input', inCase(name)).paddingRight),
+        ).to.deep.equal(
+          byName(names, (name) => (name.endsWith('plain') ? `${density.step.small}px` : '0px')),
         );
       });
 
