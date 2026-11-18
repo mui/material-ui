@@ -14,7 +14,8 @@ const leaves = (node: unknown, path = '', out: Record<string, string> = {}) => {
 const isSignFlip = (ltr: string, rtl: string) =>
   rtl === `-${ltr}` ||
   rtl === `calc(-1 * ${ltr})` ||
-  (ltr.includes('calc(1 * ') && rtl === ltr.replace('calc(1 * ', 'calc(-1 * '));
+  (ltr.includes('calc(1 * ') && rtl === ltr.replace('calc(1 * ', 'calc(-1 * ')) ||
+  (ltr.startsWith('translate(') && rtl === ltr.replace('translate(', 'translate(-'));
 
 describe('enhanceDensity', () => {
   test('accepts a theme without a body2 variant', () => {

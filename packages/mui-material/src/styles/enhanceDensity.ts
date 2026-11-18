@@ -701,7 +701,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: {
           // 0.475 = sweet spot to make label align nicely without overlapping the chips in Autocomplete
           // 0.375 = 50% * 0.75 scale factor
-          transform: `translate(14px, clamp(-0.475lh, (${touchTarget} - 32.5px) * 999, -0.375lh)) scale(0.75)`,
+          // The x offset needs dirSign: the rtl stylis plugin (cssjanus) cannot
+          // mirror a translate() that contains clamp(), so it leaves 14px as is.
+          transform: `translate(${dirSign * 14}px, clamp(-0.475lh, (${touchTarget} - 32.5px) * 999, -0.375lh)) scale(0.75)`,
         },
       },
     ],
@@ -1054,7 +1056,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     marginRight: spacing('-xSmall'),
   });
   addStyleOverride(enhanced.components, 'MuiDialogTitle', 'root', {
-    padding: `${spacing('small')} ${spacing('small')} ${spacing('small')} ${spacing('medium')}`,
+    // Logical properties instead of a 4-value `padding`: the rtl stylis plugin
+    // (cssjanus) cannot swap 4-value shorthands that contain var(), which every
+    // value does on a CSS variables theme.
+    paddingBlock: spacing('small'),
+    paddingInlineStart: spacing('medium'),
+    paddingInlineEnd: spacing('small'),
   });
   // Two variants = one knob per dividers state (true overrides master's 16 24).
   addStyleOverride(enhanced.components, 'MuiDialogContent', 'root', {
