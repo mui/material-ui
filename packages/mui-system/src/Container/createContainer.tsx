@@ -2,15 +2,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
-import { OverridableComponent } from '@mui/types';
+import type { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
+import type { OverridableComponent } from '@mui/types';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '@mui/utils/capitalize';
-import { ContainerProps, ContainerTypeMap } from './ContainerProps';
+import type { ContainerProps, ContainerTypeMap } from './ContainerProps';
 import useThemePropsSystem from '../useThemeProps';
 import systemStyled from '../styled';
-import createTheme, { Theme as DefaultTheme, Breakpoint } from '../createTheme';
+import type { Theme as DefaultTheme, Breakpoint } from '../createTheme';
+import createTheme from '../createTheme';
 
 interface StyleFnProps<Theme> extends ContainerProps {
   theme: Theme;
@@ -164,10 +165,8 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
     component: PropTypes.elementType,
     disableGutters: PropTypes.bool,
     fixed: PropTypes.bool,
-    maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-      PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
-      PropTypes.string,
-    ]),
+    maxWidth: PropTypes /* @typescript-to-proptypes-ignore */
+      .oneOfType([PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]), PropTypes.string]),
     sx: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
       PropTypes.func,

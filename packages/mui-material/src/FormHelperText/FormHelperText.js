@@ -151,7 +151,7 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -195,10 +195,8 @@ FormHelperText.propTypes /* remove-proptypes */ = {
   /**
    * The variant to use.
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['filled', 'outlined', 'standard']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['filled', 'outlined', 'standard']), PropTypes.string]),
 };
 
 export default FormHelperText;

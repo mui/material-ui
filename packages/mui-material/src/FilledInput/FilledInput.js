@@ -172,34 +172,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
             },
           },
         },
-        {
-          props: ({ ownerState }) => ownerState.multiline,
-          style: {
-            padding: '25px 12px 8px',
-          },
-        },
-        {
-          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
-          style: {
-            paddingTop: 21,
-            paddingBottom: 4,
-          },
-        },
-        {
-          props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
-          style: {
-            paddingTop: 16,
-            paddingBottom: 17,
-          },
-        },
-        {
-          props: ({ ownerState }) =>
-            ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
-          style: {
-            paddingTop: 8,
-            paddingBottom: 9,
-          },
-        },
       ],
     };
   }),
@@ -265,15 +237,6 @@ const FilledInputInput = styled(InputBaseInput, {
         style: {
           paddingTop: 8,
           paddingBottom: 9,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
         },
       },
     ],
@@ -356,10 +319,8 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
   /**
    * The default value. Use when the component is not controlled.
    */

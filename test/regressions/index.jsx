@@ -10,7 +10,14 @@ import './syncDataGridGenerator';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+} from 'react-router';
 import { Globals } from '@react-spring/web';
 import loadFonts from '@mui/internal-test-utils/loadFonts';
 // Static font files, installed from npm instead of loaded from Google Fonts. Google
@@ -57,7 +64,7 @@ window.muiFixture = {
       { family: 'Font Awesome 5 Free', weight: 900 },
     ],
   }),
-  // Read by `index.test.js` to evaluate `ScreenshotRule.minReactMajor`. Taken
+  // Read by `index.test.js` to evaluate `REACT_FLOOR_RULES`. Taken
   // from the bundle rather than the test process's own `react` so the two can
   // never disagree about which React the demos actually render with.
   reactVersion: React.version,
@@ -69,7 +76,8 @@ function FixtureRenderer({ component: FixtureComponent, path }) {
     const testRoot = document.createElement('div');
     viewerRoot.appendChild(testRoot);
     const reactRoot = ReactDOMClient.createRoot(testRoot);
-    React.startTransition(() => {
+    // React 17 has no `startTransition`.
+    (React.startTransition ?? ((callback) => callback()))(() => {
       reactRoot.render(
         <TestViewer path={path} FixtureComponent={FixtureComponent}>
           <FixtureComponent />
@@ -94,18 +102,6 @@ FixtureRenderer.propTypes = {
   path: PropTypes.string.isRequired,
 };
 
-function useHash() {
-  const subscribe = React.useCallback((callback) => {
-    window.addEventListener('hashchange', callback);
-    return () => {
-      window.removeEventListener('hashchange', callback);
-    };
-  }, []);
-  const getSnapshot = React.useCallback(() => window.location.hash, []);
-  const getServerSnapshot = React.useCallback(() => '', []);
-  return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-}
-
 function computeIsDev(hash) {
   if (hash === '#dev') {
     return true;
@@ -119,7 +115,7 @@ function computeIsDev(hash) {
 function App(props) {
   const { fixtures } = props;
 
-  const hash = useHash();
+  const { hash } = useLocation();
   const isDev = computeIsDev(hash);
 
   function computePath(fixture) {
@@ -200,7 +196,7 @@ App.propTypes = {
 
 const container = document.getElementById('react-root');
 const children = (
-  <Router>
+  <Router useTransitions={React.startTransition ? undefined : false}>
     <App fixtures={allFixtures} />
   </Router>
 );

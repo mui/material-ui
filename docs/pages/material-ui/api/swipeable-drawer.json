@@ -62,7 +62,7 @@
     {
       "name": "swipeArea",
       "description": "The component used for the swipeArea slot.",
-      "default": "div",
+      "default": "'div'",
       "class": null
     }
   ],
