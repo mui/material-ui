@@ -123,3 +123,14 @@ Remove the prop, along with the `GlobalStyles` for the auto-fill keyframes it re
    ...
  </ThemeProvider>
 ```
+
+### BottomNavigationAction children type
+
+The `children` prop of BottomNavigationAction is now typed as `null | undefined`, the same as Tab and Chip.
+It was typed as `React.ReactNode`, but the component never rendered it and warned when it was passed.
+Remove `children` and use the `label` and `icon` props instead, or the `component` prop if you need a different structure:
+
+```diff
+-<BottomNavigationAction value="recents">Recents</BottomNavigationAction>
++<BottomNavigationAction value="recents" label="Recents" />
+```
