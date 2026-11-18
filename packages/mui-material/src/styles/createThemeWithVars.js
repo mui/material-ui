@@ -1,4 +1,4 @@
-import deepmerge from '@mui/utils/deepmerge';
+import deepmerge, { isPlainObject } from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
 import {
@@ -26,6 +26,7 @@ import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
 import { resolveFocusVisible, mergeFocusVisibleInput } from './focusVisible';
+import { themeBuildKey, getShape, getAddedValues, removeUnchanged } from './themeComposition';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -136,20 +137,52 @@ function attachColorScheme(colorSpace, colorSchemes, scheme, restTheme, colorSch
  * 2. provide `colorSchemes.dark` will set `colorSchemeSelector: 'media'` by default.
  */
 export default function createThemeWithVars(options = {}, ...args) {
+  // Set when `options` is a theme created by this function, or a copy of one.
+  const build = options[themeBuildKey];
   const {
-    colorSchemes: colorSchemesInput = { light: true },
+    colorSchemes: colorSchemesOption = { light: true },
     defaultColorScheme = 'light',
-    disableCssColorScheme = false,
+    disableCssColorScheme = build?.disableCssColorScheme ?? false,
     cssVarPrefix = 'mui',
-    nativeColor = false,
+    nativeColor = build?.nativeColor ?? false,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
-    colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
+    colorSchemeSelector: selector = colorSchemesOption.light && colorSchemesOption.dark
       ? 'media'
       : undefined,
     rootSelector = ':root',
     ...input
   } = options;
+
+  // The palettes of a theme passed as options generate the values this function added to them again
+  // (channels, component tokens, …), unless they were changed.
+  const colorSchemesInput = {};
+  Object.keys(colorSchemesOption).forEach((key) => {
+    const scheme = colorSchemesOption[key];
+    const added = isPlainObject(scheme) ? scheme.palette?.[themeBuildKey] : undefined;
+    colorSchemesInput[key] = added
+      ? { ...scheme, palette: removeUnchanged(scheme.palette, added) }
+      : scheme;
+  });
+  if (build) {
+    if (input.spacing === build.spacing) {
+      input.spacing = build.spacingInput;
+    }
+    if (input.font) {
+      input.font = removeUnchanged(input.font, build.font);
+    }
+  }
   const getCssVar = createGetCssVar(cssVarPrefix);
+
+  // A theme passed as options has the values of its default color scheme (`palette`, `opacity`, …)
+  // at the top level too. They come from the color scheme, so the copies are dropped.
+  const defaultSchemeOption = colorSchemesOption[defaultColorScheme];
+  if (isPlainObject(defaultSchemeOption)) {
+    Object.keys(defaultSchemeOption).forEach((key) => {
+      if (input[key] === defaultSchemeOption[key]) {
+        delete input[key];
+      }
+    });
+  }
   const {
     [defaultColorScheme]: defaultSchemeInput,
     light: builtInLight,
@@ -225,12 +258,16 @@ export default function createThemeWithVars(options = {}, ...args) {
     rootSelector,
     getCssVar,
     colorSchemes,
-    font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
+    // Completed with the typography variables once the arguments are merged.
+    font: muiTheme.font,
     spacing: getSpacingVal(input.spacing),
   };
 
+  // The values added to each palette below, to generate them again for a theme passed back as options.
+  const addedPaletteValues = {};
   Object.keys(theme.colorSchemes).forEach((key) => {
     const palette = theme.colorSchemes[key].palette;
+    const paletteShape = getShape(palette);
 
     const setCssVarColor = (cssVar) => {
       const tokens = cssVar.split('-');
@@ -992,9 +1029,14 @@ export default function createThemeWithVars(options = {}, ...args) {
         }
       }
     });
+
+    addedPaletteValues[key] = getAddedValues(palette, paletteShape);
   });
 
   theme = otherArgs.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  const typographyVars = prepareTypographyVars(theme.typography);
+  theme.font = { ...typographyVars, ...theme.font };
 
   // Default color is the palette var, not a hex: `focusVisible` is spread inline (skipped from var
   // generation, see `shouldSkipGeneratingVar`), so the var adapts per scheme at the CSS level — no
@@ -1036,6 +1078,18 @@ export default function createThemeWithVars(options = {}, ...args) {
   };
   theme.internal_cache = {};
   theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
+
+  // For a theme passed back as options, see the start of this function.
+  theme[themeBuildKey] = {
+    nativeColor,
+    disableCssColorScheme,
+    font: typographyVars,
+    spacing: theme.spacing,
+    spacingInput: input.spacing,
+  };
+  Object.keys(addedPaletteValues).forEach((key) => {
+    theme.colorSchemes[key].palette[themeBuildKey] = addedPaletteValues[key];
+  });
 
   return theme;
 }
