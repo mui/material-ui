@@ -33,3 +33,8 @@ jobs:
       dry-run: ${{ inputs.dry-run || false }}
       model: ${{ inputs.model }} # blank falls through to mui-public's central default
       debug: true # always surface the agent's full output in the run log
+      circleci-token-environment: flake-fix # master-gated environment holding CIRCLECI_TOKEN
+    secrets:
+      # The caller must pass the secret across the boundary. It resolves to the environment's
+      # CIRCLECI_TOKEN because the fetch job declares that environment.
+      circleci-token: ${{ secrets.CIRCLECI_TOKEN }}
