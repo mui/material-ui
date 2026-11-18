@@ -1330,6 +1330,25 @@ describe.skipIf(isJsdom())('density contract', () => {
   });
 
   describe('form labels', () => {
+    test('a FormControlLabel margin moves a Switch the way it moves a Checkbox', () => {
+      renderIn(
+        MEDIUM,
+        <div data-testid="container" style={{ display: 'grid', justifyItems: 'start' }}>
+          <FormControlLabel sx={{ ml: 0 }} control={<Switch />} label="a" />
+          <FormControlLabel sx={{ ml: 0 }} control={<Switch size="small" />} label="b" />
+          <FormControlLabel sx={{ ml: 0 }} control={<Checkbox />} label="c" />
+        </div>,
+      );
+      const edge = rect('[data-testid="container"]').left;
+      const offset = (selector: string, index = 0) =>
+        document.querySelectorAll(selector)[index].getBoundingClientRect().left - edge;
+      expect({
+        switch: offset('.MuiSwitch-root'),
+        smallSwitch: offset('.MuiSwitch-root', 1),
+        checkbox: offset('.MuiCheckbox-root'),
+      }).to.deep.equal({ switch: 0, smallSwitch: 0, checkbox: 0 });
+    });
+
     test('a standalone Input after a label gets no top margin', () => {
       renderIn(
         MEDIUM,
@@ -1397,7 +1416,7 @@ describe.skipIf(isJsdom())('density contract', () => {
         </React.Fragment>,
       );
       expect(css('[data-testid="label"]').marginLeft).to.equal('0px');
-      expect(parseFloat(css('[data-testid="plain"] .MuiSwitch-root').marginLeft)).to.be.lessThan(0);
+      expect(parseFloat(css('[data-testid="plain"]').marginLeft)).to.be.lessThan(0);
       expect(css('[data-testid="with-sx"] .MuiSwitch-root').marginLeft).to.equal('0px');
     });
   });

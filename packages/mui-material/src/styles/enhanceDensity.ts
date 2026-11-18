@@ -827,6 +827,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
+  const switchPullIn = `calc((${spacing('medium')} - ${touchTarget}) / 2)`;
+  const switchSmallPullIn = `calc((${spacing('medium')} - 4px - max(${wcagTargetSize}, ${smallBox})) / 2)`;
   const switchThumbPadding = 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)';
   const switchCheckedTransform = `translateX(calc(${dirSign} * (var(--_trackWidth) - var(--_trackHeight) - (var(--_thumbWidth) - var(--_thumbHeight)))))`;
   addStyleOverride(enhanced.components, 'MuiSwitch', 'root', {
@@ -840,15 +842,21 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     width: 'calc(var(--_trackWidth) + var(--_touchSize) - var(--_trackHeight))',
     height: 'var(--_touchSize)',
     padding: 'calc((var(--_touchSize) - var(--_trackHeight)) / 2)',
-    // The label pull-in is written as a variable and read here, so the
-    // descendant rule never competes with a user margin on the Switch.
+    // The label carries the default pull-in, so a margin on the label cancels
+    // it as on master. The Switch adds only what custom track sizes change.
+    [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
+      '--_labelMarginLeft': switchPullIn,
+    },
+    [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
+      '--_labelMarginRight': switchPullIn,
+    },
     marginLeft: 'var(--_switchMarginLeft, 0px)',
     marginRight: 'var(--_switchMarginRight, 0px)',
     [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
-      '--_switchMarginLeft': 'var(--_offset)',
+      '--_switchMarginLeft': `calc(var(--_offset) - ${switchPullIn})`,
     },
     [`.${formControlLabelClasses.labelPlacementStart} &`]: {
-      '--_switchMarginRight': 'var(--_offset)',
+      '--_switchMarginRight': `calc(var(--_offset) - ${switchPullIn})`,
     },
     variants: [
       {
@@ -857,6 +865,18 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           '--_touchSize': `max(${wcagTargetSize}, ${smallBox})`,
           '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
           '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
+            '--_labelMarginLeft': switchSmallPullIn,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
+            '--_labelMarginRight': switchSmallPullIn,
+          },
+          [`.${formControlLabelClasses.labelPlacementEnd} &`]: {
+            '--_switchMarginLeft': `calc(var(--_offset) - ${switchSmallPullIn})`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart} &`]: {
+            '--_switchMarginRight': `calc(var(--_offset) - ${switchSmallPullIn})`,
+          },
           // Master's small rules sit nested under the root variant at higher
           // specificity — re-assert the derivations there or they lose for small.
           [`& .${switchClasses.thumb}`]: {
