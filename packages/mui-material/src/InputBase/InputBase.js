@@ -276,6 +276,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     onChange,
     onClick,
     onFocus,
+    onInvalid,
     onKeyDown,
     onKeyUp,
     placeholder,
@@ -540,6 +541,16 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const rootProps = slotProps.root || {};
 
   const Input = slots.input || InputBaseInput;
+  const inputOnInvalid = inputProps.onInvalid;
+  const handleInvalid =
+    onInvalid && inputOnInvalid
+      ? (event) => {
+          inputOnInvalid(event);
+          if (!event.isPropagationStopped()) {
+            onInvalid(event);
+          }
+        }
+      : (onInvalid ?? inputOnInvalid);
 
   return (
     <Root
@@ -599,6 +610,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}
+            onInvalid={handleInvalid}
           />
         </InputBaseSizeContext.Provider>
       </FormControlContext.Provider>
