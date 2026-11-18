@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { configDefaults, defineProject } from 'vitest/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
+import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import type { Plugin } from 'vite';
@@ -48,8 +49,15 @@ function getVitestEnvironment(fileName: string): 'browser' | 'node' {
 }
 
 const MONOREPO_ROOT = path.resolve(import.meta.dirname, '.');
+export const REACT_MAJOR = Number(
+  createRequire(import.meta.url)('react/package.json').version.split('.')[0],
+);
 
 export const alias = {
+  // React 17 has no `react-dom/client`.
+  ...(REACT_MAJOR < 18
+    ? { 'react-dom/client': path.resolve(MONOREPO_ROOT, './test/reactDomClient17.js') }
+    : {}),
   '@mui/internal-api-docs-builder': path.resolve(
     MONOREPO_ROOT,
     './packages-internal/api-docs-builder/src',
