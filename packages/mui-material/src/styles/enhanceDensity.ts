@@ -8,6 +8,7 @@ import toggleButtonGroupClasses from '../ToggleButtonGroup/toggleButtonGroupClas
 import paginationItemClasses from '../PaginationItem/paginationItemClasses';
 import breadcrumbsClasses from '../Breadcrumbs/breadcrumbsClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import tabClasses from '../Tab/tabClasses';
 import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
@@ -137,6 +138,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   const iconLarge = `calc(${iconSize} + 8px)`;
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
   const wcagTargetSize = '24px';
+  const indicatorBox = `max(${wcagTargetSize}, ${smallBox})`;
   const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
   const filledInputMediumPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`;
   const filledInputSmallPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 4)`;
@@ -309,6 +311,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { size: 'small' },
         style: {
+          fontSize: iconSmall,
           minWidth: smallBox,
           minHeight: smallBox,
           margin: `max(0px, (${wcagTargetSize} - ${smallBox}) / 2)`,
@@ -329,7 +332,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
       {
         props: { size: 'large' },
-        style: { minWidth: largeBox, minHeight: largeBox },
+        style: { fontSize: iconLarge, minWidth: largeBox, minHeight: largeBox },
       },
       { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
@@ -346,7 +349,21 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   addStyleOverride(enhanced.components, 'MuiButtonGroup', 'grouped', {
     minWidth: touchTarget,
     variants: [
-      { props: { size: 'small' }, style: { marginBlock: 0 } },
+      { props: { size: 'small', orientation: 'horizontal' }, style: { marginBlock: 0 } },
+      {
+        props: ({ ownerState }) =>
+          ownerState.size === 'small' &&
+          ownerState.orientation === 'vertical' &&
+          ownerState.variant !== 'outlined',
+        style: { marginBlock: 0 },
+      },
+      {
+        props: { size: 'small', orientation: 'vertical', variant: 'outlined' },
+        style: {
+          marginBottom: 0,
+          [`&.${buttonGroupClasses.firstButton}`]: { marginTop: 0 },
+        },
+      },
       {
         props: { size: 'small', orientation: 'vertical' },
         style: {
@@ -409,13 +426,18 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
 
   addStyleOverride(enhanced.components, 'MuiTooltip', 'tooltip', {
-    ...enhanced.typography?.caption,
-    lineHeight: 16 / 12,
-    padding: `${spacing('xSmall')} ${spacing('small')}`,
-    // Touch keeps its own 24px clearance; an unconditional value would land
-    // after the component's touch variant and override it.
+    // Touch keeps its own type, padding and 24px clearance; an unconditional
+    // value would land after the component's touch variant and override it.
     variants: [
-      { props: ({ ownerState }) => !ownerState.touch, style: { '--_spacing': '4px' } },
+      {
+        props: ({ ownerState }) => !ownerState.touch,
+        style: {
+          ...enhanced.typography?.caption,
+          lineHeight: 16 / 12,
+          padding: `${spacing('xSmall')} ${spacing('small')}`,
+          '--_spacing': '4px',
+        },
+      },
       {
         props: ({ ownerState }) => !!ownerState.arrow && !ownerState.touch,
         style: { '--_spacing': 'calc(4px + 10px / 2)' },
@@ -914,9 +936,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
       { paddingBlock: 0 },
     [`&.${autocompleteClasses.hasPopupIcon} .${autocompleteClasses.inputRoot}, &.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
-      { paddingRight: `calc(${smallBox} + 2px + var(--_endOffset, 0px))` },
+      { paddingRight: `calc(${indicatorBox} + 2px + var(--_endOffset, 0px))` },
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
-      { paddingRight: `calc(2 * ${smallBox} + var(--_endOffset, 0px))` },
+      { paddingRight: `calc(2 * ${indicatorBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
   });
   const rowPad = (pad: string) => `calc(${pad} + (1lh - var(--_tagHeight)) / 2)`;
@@ -984,12 +1006,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     height: 'var(--_tagHeight)',
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'clearIndicator', {
-    minWidth: smallBox,
-    minHeight: smallBox,
+    minWidth: indicatorBox,
+    minHeight: indicatorBox,
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'popupIndicator', {
-    minWidth: smallBox,
-    minHeight: smallBox,
+    minWidth: indicatorBox,
+    minHeight: indicatorBox,
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'listbox', {
     // The option list renders in a Popper — emit on the listbox slot.
@@ -1502,10 +1524,11 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   });
   addStyleOverride(enhanced.components, 'MuiPaginationItem', 'root', {
     margin: 0,
-    padding: 0,
+    paddingBlock: 0,
+    paddingInline: spacing('xxSmall'),
     variants: [
-      // Circular only — an unconditional 50% would override `shape="rounded"`.
-      { props: { shape: 'circular' }, style: { borderRadius: '50%' } },
+      // Circular only — an unconditional radius would override `shape="rounded"`.
+      { props: { shape: 'circular' }, style: { borderRadius: touchTarget } },
       {
         props: { size: 'small' },
         style: {

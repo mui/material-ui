@@ -52,6 +52,9 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import SvgIcon from '@mui/material/SvgIcon';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import Pagination from '@mui/material/Pagination';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
@@ -1839,6 +1842,94 @@ describe.skipIf(isJsdom())('density contract', () => {
           await page.viewport(innerWidth, innerHeight);
         }
       });
+    });
+  });
+
+  describe('details', () => {
+    DENSITIES.forEach((density) => {
+      const iconSmall = density.iconSize - density.step.xxSmall;
+
+      test(`${density.id}: a multi-digit PaginationItem is a padded pill`, () => {
+        renderIn(THEMES[density.id], <Pagination count={12345} page={12340} color="primary" />);
+        const item = query('.MuiPaginationItem-root.Mui-selected');
+        const style = getComputedStyle(item);
+        const { width, height } = item.getBoundingClientRect();
+        expect({
+          padding: style.paddingLeft,
+          wide: width > height,
+          pill:
+            !style.borderTopLeftRadius.endsWith('%') &&
+            parseFloat(style.borderTopLeftRadius) >= height / 2,
+        }).to.deep.equal({ padding: `${density.step.xxSmall}px`, wide: true, pill: true });
+      });
+
+      test(`${density.id}: an inherit-sized icon follows the IconButton size`, () => {
+        renderIn(
+          THEMES[density.id],
+          cases(
+            byName([...SIZES, 'large'], (size) => (
+              <IconButton size={size as 'small' | 'medium' | 'large'}>
+                <AddIcon fontSize="inherit" />
+              </IconButton>
+            )),
+          ),
+        );
+        expect(
+          byName([...SIZES, 'large'], (size) => round2(rect('svg', inCase(size)).width)),
+        ).to.deep.equal({
+          small: iconSmall,
+          medium: density.iconSize,
+          large: density.iconSize + 8,
+        });
+      });
+
+      test(`${density.id}: Autocomplete indicators reach 24px`, () => {
+        renderIn(THEMES[density.id], autocompleteField('outlined medium'));
+        const size = (selector: string) => {
+          const { width, height } = rect(selector);
+          return Math.min(width, height) >= 24;
+        };
+        expect({
+          clear: size('.MuiAutocomplete-clearIndicator'),
+          popup: size('.MuiAutocomplete-popupIndicator'),
+        }).to.deep.equal({ clear: true, popup: true });
+      });
+
+      test(`${density.id}: a small vertical outlined ButtonGroup overlaps its borders`, () => {
+        renderIn(
+          THEMES[density.id],
+          <ButtonGroup orientation="vertical" variant="outlined" size="small">
+            <Button>One</Button>
+            <Button>Two</Button>
+          </ButtonGroup>,
+        );
+        const [first, second] = Array.from(document.querySelectorAll('.MuiButtonGroup-grouped'));
+        expect(
+          round2(second.getBoundingClientRect().top - first.getBoundingClientRect().bottom),
+        ).to.equal(-1);
+      });
+    });
+
+    test('a body-scroll Dialog keeps the paper-scroll gutters on a narrow screen', async () => {
+      const { page } = await import('vitest/browser' as string);
+      const { innerWidth, innerHeight } = window;
+      await page.viewport(480, 800);
+      try {
+        const paperWidth = (scroll: 'paper' | 'body') => {
+          const { unmount } = renderIn(
+            MEDIUM,
+            <Dialog open fullWidth maxWidth="xs" scroll={scroll} hideBackdrop>
+              <DialogTitle>Title</DialogTitle>
+            </Dialog>,
+          );
+          const width = rect('.MuiDialog-paper').width;
+          unmount();
+          return width;
+        };
+        expect(paperWidth('body')).to.equal(paperWidth('paper'));
+      } finally {
+        await page.viewport(innerWidth, innerHeight);
+      }
     });
   });
 

@@ -631,6 +631,8 @@ describe('<Tooltip />', () => {
       expect(tooltip).to.have.class(classes.touch);
       expect(popper).to.have.attribute('data-popper-placement', 'bottom');
       expect(getComputedStyle(tooltip).marginTop).to.equal('24px');
+      expect(getComputedStyle(tooltip).fontSize).to.equal('14px');
+      expect(getComputedStyle(tooltip).padding).to.equal('8px 16px');
     });
 
     it('should not respond to quick events', () => {
