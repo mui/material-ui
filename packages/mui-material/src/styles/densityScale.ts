@@ -85,6 +85,7 @@ export type EnhanceableTheme = Theme &
 export type DensityEnhancedTheme<T extends EnhanceableTheme> = T & {
   components: NonNullable<EnhanceableTheme['components']>;
   vars?: Partial<Record<DensitySizingKey, string>> | undefined;
+  unstable_densityScale: ResolvedDensityScale;
 } & Record<DensitySizingKey, string>;
 
 /**
@@ -96,10 +97,8 @@ export function applyDensity<T extends EnhanceableTheme>(
   /** Per-value replacement in px. Numbers keep every step resolvable in JS too
    * (MUI X derives virtualized heights off the same ladder). */
   scaleOverrides?: DensityScaleOverrides,
-) {
-  const theme = { ...themeInput } as DensityEnhancedTheme<T> & {
-    unstable_densityScale: ResolvedDensityScale;
-  };
+): DensityEnhancedTheme<T> {
+  const theme = { ...themeInput } as DensityEnhancedTheme<T>;
   theme.components = { ...themeInput.components };
 
   // The Spacing interface is overloaded (0-4 fixed args) — widen to the rest
@@ -166,6 +165,13 @@ export function applyDensity<T extends EnhanceableTheme>(
       }
       if (!keyed) {
         return String(base(...args));
+      }
+      if (process.env.NODE_ENV !== 'production') {
+        if (!(args.length <= 4)) {
+          console.error(
+            `MUI: Too many arguments provided, expected between 0 and 4, got ${args.length}`,
+          );
+        }
       }
       let out = '';
       for (let i = 0; i < args.length; i += 1) {

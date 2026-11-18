@@ -33,6 +33,10 @@ describe('enhanceDensity', () => {
       title: 'user',
     });
     expect(closeButton({ closeButton: { size: 'small' } })).to.deep.equal({ size: 'small' });
+    expect(closeButton({ closeButton: () => ({ title: 'user' }) })({})).to.deep.equal({
+      size: 'medium',
+      title: 'user',
+    });
   });
 
   test('the toolbar mixin matches the regular Toolbar height', () => {

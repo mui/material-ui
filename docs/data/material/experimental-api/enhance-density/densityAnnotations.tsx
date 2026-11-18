@@ -62,10 +62,6 @@ const BEAM_GAP = 10;
 const INK = { padding: '#4f7a35', margin: '#a8641c', gap: '#6c3fb0' };
 const INK_DARK = { padding: '#a9d18a', margin: '#f0b47a', gap: '#c9adf0' };
 
-/** The measurement kinds a claim can ask for. Derived so the vocabulary and
- * the fields each kind accepts stay one declaration. */
-export type Aspect = Claim['aspect'];
-
 export type Side = 'top' | 'bottom' | 'left' | 'right';
 
 /** The slot a reader toggles: every annotation on it goes together. */

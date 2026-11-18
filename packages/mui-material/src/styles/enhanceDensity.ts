@@ -1,4 +1,4 @@
-import deepmerge from '@mui/utils/deepmerge';
+import resolveProps from '@mui/utils/resolveProps';
 import type { Breakpoint } from '@mui/system';
 import type { Theme } from './createTheme';
 import type { DensityEnhancedTheme, DensityScaleOverrides, EnhanceableTheme } from './densityScale';
@@ -87,11 +87,9 @@ function addDefaultProps<Name extends ThemeComponentName>(
   defaults: DefaultPropsOf<Name>,
 ): void {
   const component = components[name] as Record<string, any> | undefined;
-  // Same merge as `createTheme` itself, so a user `slotProps.<slot>` keeps the
-  // density keys it does not name instead of replacing the slot wholesale.
   (components as Record<string, any>)[name] = {
     ...component,
-    defaultProps: deepmerge(defaults, component?.defaultProps ?? {}),
+    defaultProps: resolveProps(defaults as Record<string, any>, component?.defaultProps ?? {}),
   };
 }
 
@@ -103,7 +101,7 @@ function addDefaultProps<Name extends ThemeComponentName>(
 export default function enhanceDensity<T extends EnhanceableTheme>(
   theme: T,
   scale?: DensityScaleOverrides,
-) {
+): DensityEnhancedTheme<T> {
   const enhanced = applyDensity(theme, scale);
   emitComponentDensity(enhanced);
   return enhanced;

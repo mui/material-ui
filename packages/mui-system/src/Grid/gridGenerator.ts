@@ -102,6 +102,13 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   return styles;
 };
 
+const resolveSpacing = (theme: Props['theme'], value: number | string) => {
+  if (theme.spacing) {
+    return getValue(theme.spacing as any, value);
+  }
+  return typeof value === 'string' ? value : undefined;
+};
+
 export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
     return {};
@@ -111,7 +118,7 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     theme.breakpoints,
     ownerState.rowSpacing,
     (appendStyle, value) => {
-      const spacing = theme.spacing ? getValue(theme.spacing as any, value) : value;
+      const spacing = resolveSpacing(theme, value);
       appendStyle(styles, {
         [getSelfSpacingVar('row')]: spacing,
         '> *': {
@@ -132,7 +139,7 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     theme.breakpoints,
     ownerState.columnSpacing,
     (appendStyle, value) => {
-      const spacing = theme.spacing ? getValue(theme.spacing as any, value) : value;
+      const spacing = resolveSpacing(theme, value);
       appendStyle(styles, {
         [getSelfSpacingVar('column')]: spacing,
         '> *': {

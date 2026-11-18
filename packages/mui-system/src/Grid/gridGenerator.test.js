@@ -215,6 +215,20 @@ describe('grid generator', () => {
       });
     });
 
+    it('leaves numbers unresolved when the theme has no spacing function', () => {
+      expect(
+        generateGridRowSpacingStyles({
+          theme: { breakpoints },
+          ownerState: { container: true, rowSpacing: 2 },
+        }),
+      ).to.deep.equal({
+        '--Grid-rowSpacing': undefined,
+        '> *': {
+          '--Grid-parent-rowSpacing': undefined,
+        },
+      });
+    });
+
     it('supports responsive', () => {
       expect(
         generateGridRowSpacingStyles({
