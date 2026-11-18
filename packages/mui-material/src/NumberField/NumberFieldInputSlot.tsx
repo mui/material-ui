@@ -19,6 +19,7 @@ import OutlinedInput from '../OutlinedInput';
 import type { OutlinedInputProps } from '../OutlinedInput';
 import FilledInput from '../FilledInput';
 import Input from '../Input';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
 import NumberFieldAdornmentSlot from './NumberFieldAdornmentSlot';
 import { getControlElements, omitNullishEventHandlers, resolveInputProps } from './utils';
@@ -27,9 +28,9 @@ import IconButton from '../IconButton';
 import type { IconButtonProps } from '../IconButton';
 import NumberFieldButtonSlot from './NumberFieldButtonSlot';
 import RenderElement from './RenderElement';
+import NumberFieldInputRoot from './NumberFieldInputRoot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 
 type NumberFieldSlotProps = NonNullable<NumberFieldProps['slotProps']>;
 
@@ -50,53 +51,58 @@ interface NumberFieldInputProps {
   };
 }
 
-// Control buttons provide their own spacing against the input's outer edges.
 const inputStyles = {
   variants: [
     {
       props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
-        ownerState.controlsPosition !== false,
-      style: {
-        paddingRight: 0,
-      },
-    },
-    {
-      props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
         ownerState.controlsPosition === 'split',
       style: {
-        paddingLeft: 0,
         [`& > .${inputBaseClasses.input}`]: { textAlign: 'center' },
       },
     },
   ],
 };
 
-const inputOptions = {
-  // InputBase forwards `as` to its styled root, preserving the Material input.
-  shouldForwardProp: (prop: string) => prop === 'as' || slotShouldForwardProp(prop),
+const variantComponent = {
+  standard: styled(Input, { name: 'MuiNumberField', slot: 'input' })(inputStyles),
+  filled: styled(FilledInput, { name: 'MuiNumberField', slot: 'input' })(inputStyles),
+  outlined: styled(OutlinedInput, { name: 'MuiNumberField', slot: 'input' })(inputStyles),
 };
 
-const variantComponent = {
-  standard: styled(Input, inputOptions)(inputStyles),
-  filled: styled(FilledInput, inputOptions)(inputStyles),
-  outlined: styled(OutlinedInput, inputOptions)(inputStyles),
+const variantName = {
+  standard: 'MuiInput',
+  filled: 'MuiFilledInput',
+  outlined: 'MuiOutlinedInput',
 };
 
 const buttonStyles = memoTheme(({ theme }) => ({
+  '--NumberField-buttonPadding': '8px',
+  paddingInline: 'var(--NumberField-buttonPadding)',
   borderRadius: (theme.vars || theme).shape.borderRadius,
   variants: [
+    { props: { size: 'small' }, style: { '--NumberField-buttonPadding': '5px' } },
+    { props: { size: 'large' }, style: { '--NumberField-buttonPadding': '12px' } },
     {
       props: ({ size }: Pick<IconButtonProps, 'size'>) => size === 'medium',
-      style: { padding: 6, fontSize: theme.typography.pxToRem(20) },
+      style: {
+        '--NumberField-buttonPadding': '6px',
+        padding: 'var(--NumberField-buttonPadding)',
+        fontSize: theme.typography.pxToRem(20),
+      },
     },
     {
       props: { variant: 'standard' },
       // The standard input has no vertical padding to accommodate taller controls.
-      style: { padding: 4 },
+      style: { '--NumberField-buttonPadding': '4px', padding: 'var(--NumberField-buttonPadding)' },
     },
     {
       props: { controlsPosition: 'stacked' },
-      style: { flex: '1 1 0', padding: '0 4px', fontSize: theme.typography.pxToRem(28) },
+      style: {
+        '--NumberField-buttonPadding': '4px',
+        flex: '1 1 0',
+        padding: '0 var(--NumberField-buttonPadding)',
+        fontSize: theme.typography.pxToRem(28),
+      },
     },
     {
       props: ({
@@ -109,7 +115,7 @@ const buttonStyles = memoTheme(({ theme }) => ({
     {
       props: { controlsPosition: 'stacked', variant: 'standard' },
       // Fit both chevrons within the standard input's existing height.
-      style: { padding: '0 6px', fontSize: theme.typography.pxToRem(16) },
+      style: { '--NumberField-buttonPadding': '6px', fontSize: theme.typography.pxToRem(16) },
     },
     {
       props: ({
@@ -126,11 +132,25 @@ const buttonStyles = memoTheme(({ theme }) => ({
 const NumberFieldIncrementButton = styled(IconButton, {
   name: 'MuiNumberField',
   slot: 'incrementButton',
-})(buttonStyles);
+})(buttonStyles, {
+  // Keep the icon aligned with the plain input's text inset, without double padding.
+  marginInlineEnd: 'calc(-1 * var(--NumberField-buttonPadding))',
+});
 const NumberFieldDecrementButton = styled(IconButton, {
   name: 'MuiNumberField',
   slot: 'decrementButton',
-})(buttonStyles);
+})(buttonStyles, {
+  variants: [
+    {
+      props: { controlsPosition: 'split' },
+      style: { marginInlineStart: 'calc(-1 * var(--NumberField-buttonPadding))' },
+    },
+    {
+      props: { controlsPosition: 'stacked' },
+      style: { marginInlineEnd: 'calc(-1 * var(--NumberField-buttonPadding))' },
+    },
+  ],
+});
 const NumberFieldScrubArea = styled('span', {
   name: 'MuiNumberField',
   slot: 'scrubArea',
@@ -140,13 +160,23 @@ const NumberFieldScrubArea = styled('span', {
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    padding: 4,
+    '--NumberField-scrubAreaPadding': '4px',
+    padding: 'var(--NumberField-scrubAreaPadding)',
     borderRadius: (theme.vars || theme).shape.borderRadius,
     fontSize: theme.typography.pxToRem(24),
     lineHeight: 0,
     color: (theme.vars || theme).palette.action.active,
     cursor: 'ew-resize',
     variants: [
+      {
+        props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
+          ownerState.scrubAreaPosition === 'start' && ownerState.controlsPosition !== 'split',
+        style: { marginInlineStart: 'calc(-1 * var(--NumberField-scrubAreaPadding))' },
+      },
+      {
+        props: { scrubAreaPosition: 'end', controlsPosition: false },
+        style: { marginInlineEnd: 'calc(-1 * var(--NumberField-scrubAreaPadding))' },
+      },
       { props: { 'data-direction': 'vertical' }, style: { cursor: 'ns-resize' } },
       { props: { size: 'small' }, style: { fontSize: theme.typography.pxToRem(18) } },
       {
@@ -216,11 +246,8 @@ const NumberFieldInputSlot = React.forwardRef(
       },
       additionalProps: inputAdditionalProps,
       ownerState,
-      className: undefined,
+      className: classes.input,
       ref,
-      internalForwardedProps: inputRender
-        ? { as: RenderElement, render: inputRender, renderState: baseState }
-        : undefined,
     });
 
     const { materialInputProps, nativeSlotProps } = resolveInputProps({
@@ -228,6 +255,28 @@ const NumberFieldInputSlot = React.forwardRef(
       htmlInputSlotProps: externalForwardedProps.slotProps.htmlInput,
       ownerState,
     });
+
+    // Find a custom Material root from slotProps.input.slots.root or the selected
+    // input's theme defaults so Group can share its element without replacing it.
+    const { slots: materialSlots } = useDefaultProps({
+      props: { slots: materialInputProps.slots },
+      // Read defaults for the selected Material input, rather than NumberField.
+      // eslint-disable-next-line mui/material-ui-name-matches-component-name
+      name: variantName[variant],
+    });
+    const materialRootComponent = materialSlots?.root;
+    const materialSlotProps = {
+      ...materialInputProps.slotProps,
+      root: {
+        ...materialInputProps.slotProps?.root,
+        ...(!materialRootComponent && { as: NumberFieldInputRoot }),
+        numberFieldInputRoot: {
+          render: externalForwardedProps.slots.input ? undefined : inputRender,
+          renderState: baseState,
+          rootComponent: materialRootComponent,
+        },
+      },
+    };
 
     const { render: htmlInputRender, ...htmlInputSlotProps } = nativeSlotProps;
     const useHtmlInputRender = Boolean(
@@ -483,10 +532,13 @@ const NumberFieldInputSlot = React.forwardRef(
         onBlur={materialProps.onBlur}
         onFocus={materialProps.onFocus}
         placeholder={placeholder}
+        {...materialInputProps}
         slots={{
           input: externalForwardedProps.slots.htmlInput ? HtmlInputSlot : undefined,
+          ...materialInputProps.slots,
+          ...(materialRootComponent && { root: NumberFieldInputRoot }),
         }}
-        {...materialInputProps}
+        slotProps={materialSlotProps}
         // InputBase receives render/state through inputProps; its leaf override
         // preserves the styled input layer for every variant.
         {...(useHtmlInputRender && { inputComponent: RenderElement })}

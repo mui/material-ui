@@ -13,9 +13,6 @@ declare module '@mui/material/NumberField' {
   interface NumberFieldRootSlotPropsOverrides {
     customRootProp?: string;
   }
-  interface NumberFieldGroupSlotPropsOverrides {
-    customGroupProp?: 'group';
-  }
   interface NumberFieldControlsSlotPropsOverrides {
     customControlsProp?: 'controls';
   }
@@ -68,7 +65,6 @@ declare module '@mui/material/FormControl' {
       render: <section />,
     }),
     root: { customRootProp: 'root' },
-    group: { customGroupProp: 'group', render: <section /> },
     input: { customInputProp: 'input', render: <section /> },
     htmlInput: { customNativeProp: 'native', render: <input /> },
     inputLabel: {
@@ -100,8 +96,6 @@ declare module '@mui/material/FormControl' {
 <NumberField slotProps={{ input: { customInputProp: 1 } }} />;
 // @ts-expect-error Controls slot extensions retain their declared value types.
 <NumberField slotProps={{ controls: { customControlsProp: 'other' } }} />;
-// @ts-expect-error Group slot extensions retain their declared value types.
-<NumberField slotProps={{ group: { customGroupProp: 'other' } }} />;
 // @ts-expect-error Adornment slot extensions retain their declared value types.
 <NumberField slotProps={{ scrubAreaAdornment: { customAdornmentProp: 'other' } }} />;
 // @ts-expect-error Native slot extensions retain their declared value types.
@@ -121,7 +115,7 @@ createTheme({
       },
       styleOverrides: {
         root: { minWidth: 120 },
-        group: { gap: 2 },
+        input: { gap: 2 },
         scrubbing: { opacity: 0.8 },
         controls: { gap: 2 },
         scrubAreaAdornment: { gap: 2 },

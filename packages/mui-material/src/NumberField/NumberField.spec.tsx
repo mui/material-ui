@@ -39,29 +39,15 @@ function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldP
 // @ts-expect-error Root slot props do not expose component.
 <NumberField slotProps={{ root: { component: 'section' } }} />;
 
+// @ts-expect-error Base UI's Group shares the input root and has no public slot.
 <NumberField slots={{ group: 'section' }} />;
-<NumberField slotProps={{ group: { render: <section /> } }} classes={{ group: 'field-group' }} />;
-<NumberField
-  slotProps={{
-    group: (ownerState) => {
-      expectType<NumberFieldOwnerState, typeof ownerState>(ownerState);
-      return {
-        ref: React.createRef<HTMLDivElement>(),
-        sx: { gap: 1 },
-        render: (props, state) => {
-          expectType<BaseNumberField.Group.State, typeof state>(state);
-          return <section {...props} />;
-        },
-      };
-    },
-  }}
-/>;
-// @ts-expect-error Use render to change the group element.
-<NumberField slotProps={{ group: { component: 'section' } }} />;
-// @ts-expect-error render takes an element or callback, not a tag name.
-<NumberField slotProps={{ group: { render: 'section' } }} />;
+// @ts-expect-error Customize the Material input through slotProps.input.
+<NumberField slotProps={{ group: { render: <section /> } }} />;
 
-<NumberField slotProps={{ input: { render: <section /> }, htmlInput: { render: <input /> } }} />;
+<NumberField
+  classes={{ input: 'field-input' }}
+  slotProps={{ input: { render: <section /> }, htmlInput: { render: <input /> } }}
+/>;
 <NumberField
   slotProps={{
     input: {
@@ -420,8 +406,8 @@ function ValueCallbacks(props: NumberFieldProps) {
 <NumberField slotProps={{ controls: { position: 'start' } }} />;
 // @ts-expect-error render takes an element or callback, not a tag name.
 <NumberField slotProps={{ controls: { render: 'section' } }} />;
-// @ts-expect-error Input classes belong to slotProps.input.classes.
-<NumberField classes={{ input: 'input' }} />;
+// @ts-expect-error Base UI's Group uses the input class instead of a separate group class.
+<NumberField classes={{ group: 'group' }} />;
 
 <NumberField classes={{ scrubbing: 'active-scrub' }} />;
 // @ts-expect-error Scrubbing is derived owner state, not a public prop.
