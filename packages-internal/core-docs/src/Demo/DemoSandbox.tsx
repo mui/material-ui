@@ -209,7 +209,7 @@ function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }: Isola
     colorSchemeNode: window ? window().document.documentElement : colorSchemeNode,
     colorSchemeSelector: 'class',
     documentNode: window ? window().document : undefined,
-    disableNestedContext: true,
+    isolated: true,
     storageManager: null,
   } as Partial<unknown> & React.Attributes);
 }
