@@ -312,11 +312,8 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
    *
    * By default, the popup is positioned against the submenu trigger.
    */
-  anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.object,
-    PropTypes.func,
-  ]),
+  anchor: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.object, PropTypes.func]),
   /**
    * The submenu items.
    */
@@ -348,17 +345,18 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
    * An element or a rectangle that delimits the area that the popup is confined to.
    * @default 'clipping-ancestors'
    */
-  collisionBoundary: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['clipping-ancestors']),
-    HTMLElementType,
-    PropTypes.arrayOf(HTMLElementType),
-    PropTypes.shape({
-      height: PropTypes.number.isRequired,
-      width: PropTypes.number.isRequired,
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
-    }),
-  ]),
+  collisionBoundary: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['clipping-ancestors']),
+      HTMLElementType,
+      PropTypes.arrayOf(HTMLElementType),
+      PropTypes.shape({
+        height: PropTypes.number.isRequired,
+        width: PropTypes.number.isRequired,
+        x: PropTypes.number.isRequired,
+        y: PropTypes.number.isRequired,
+      }),
+    ]),
   /**
    * Additional space to maintain from the edge of the collision boundary.
    * @default 5
@@ -375,10 +373,8 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
   /**
    * The container element to portal the popup into.
    */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.object,
-  ]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.object]),
   /**
    * Whether to disable the popup from tracking layout shifts of its positioning anchor.
    * @default false
@@ -393,11 +389,8 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
    * Determines the element to focus when the menu is closed.
    * A ref or function target gets focus only when focus is on the page body or in the menu tree.
    */
-  finalFocus: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: HTMLElementType }),
-    PropTypes.bool,
-  ]),
+  finalFocus: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.func, PropTypes.shape({ current: HTMLElementType }), PropTypes.bool]),
   /**
    * Whether to keep the portal mounted in the DOM while the popup is hidden.
    * @default false
