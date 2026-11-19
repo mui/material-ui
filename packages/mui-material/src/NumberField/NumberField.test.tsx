@@ -379,6 +379,20 @@ describe('<NumberField />', () => {
         });
       });
 
+      it.each([
+        { label: undefined, hiddenLabel: undefined, expected: true },
+        { label: false, hiddenLabel: undefined, expected: true },
+        { label: 'Amount', hiddenLabel: undefined, expected: false },
+        { label: undefined, hiddenLabel: false, expected: false },
+      ])(
+        'uses the filled hidden-label layout=$expected for label=$label and hiddenLabel=$hiddenLabel',
+        ({ label, hiddenLabel, expected }) => {
+          render(<NumberField variant="filled" label={label} hiddenLabel={hiddenLabel} />);
+          const input = screen.getByRole('textbox');
+          expect(input.closest('.MuiInputBase-hiddenLabel') !== null).to.equal(expected);
+        },
+      );
+
       it('forwards nondefault size, color and fullWidth to Material components', () => {
         render(<NumberField label="Amount" size="small" color="secondary" fullWidth />);
         const input = screen.getByRole('textbox', { name: 'Amount' });
