@@ -1934,113 +1934,97 @@ describe('<NumberField />', () => {
       });
     });
 
-    // Compose keyboard handlers and selected refs on the native input so slot
-    // customization preserves stepping and access to the visible input.
-    describe('keyboard handlers and refs', () => {
-      it('composes Material keyboard handlers with Base UI', async () => {
-        const targets: HTMLElement[] = [];
-        const onKeyDown = vi.fn((event: React.KeyboardEvent<HTMLElement>) => {
-          targets.push(event.currentTarget);
-        });
-        const onKeyUp = vi.fn((event: React.KeyboardEvent<HTMLElement>) => {
-          targets.push(event.currentTarget);
-        });
-        const { user } = render(
-          <NumberField defaultValue={5} slotProps={{ input: { onKeyDown, onKeyUp } }} />,
+    describe('native prop precedence', () => {
+      type KeyboardHandlers = Pick<React.HTMLAttributes<HTMLElement>, 'onKeyDown' | 'onKeyUp'>;
+
+      const keyboardSources = [
+        { path: 'input', slotProps: (selected) => ({ input: selected }) },
+        {
+          path: 'htmlInput',
+          slotProps: (selected, earlier) => ({ input: earlier, htmlInput: selected }),
+        },
+        {
+          path: 'input.inputProps',
+          slotProps: (selected, earlier) => ({
+            input: { ...earlier, inputProps: selected },
+            htmlInput: earlier,
+          }),
+        },
+        {
+          path: 'input.slotProps.input',
+          slotProps: (selected, earlier) => ({
+            input: { ...earlier, inputProps: earlier, slotProps: { input: selected } },
+            htmlInput: earlier,
+          }),
+        },
+      ] satisfies {
+        path: string;
+        slotProps: (
+          selected: KeyboardHandlers,
+          earlier: KeyboardHandlers,
+        ) => NumberFieldProps['slotProps'];
+      }[];
+
+      describe.each(keyboardSources)('keyboard handlers at slotProps.$path', ({ slotProps }) => {
+        it.each(['provided', 'explicitly undefined'] as const)(
+          'preserves stepping when the handlers are %s',
+          async (mode) => {
+            const calls: [string, HTMLElement][] = [];
+            const record = (name: string) => (event: React.KeyboardEvent<HTMLElement>) => {
+              calls.push([name, event.currentTarget]);
+            };
+            const selected =
+              mode === 'provided'
+                ? { onKeyDown: record('down'), onKeyUp: record('up') }
+                : { onKeyDown: undefined, onKeyUp: undefined };
+            const earlier = { onKeyDown: record('overridden'), onKeyUp: record('overridden') };
+            const { user } = render(
+              <NumberField defaultValue={5} slotProps={slotProps(selected, earlier)} />,
+            );
+            const input = screen.getByRole('textbox');
+
+            await user.type(input, '{ArrowUp}');
+
+            expect(input).to.have.value('6');
+            expect(calls).to.deep.equal(
+              mode === 'provided'
+                ? [
+                    ['down', input],
+                    ['up', input],
+                  ]
+                : [],
+            );
+          },
         );
-        const input = screen.getByRole<HTMLInputElement>('textbox');
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-
-        expect(input).to.have.value('6');
-        expect(onKeyDown).toHaveBeenCalledTimes(1);
-        expect(onKeyUp).toHaveBeenCalledTimes(1);
-        expect(targets).to.deep.equal([input, input]);
       });
 
-      it('composes deeper native overrides with Base UI', async () => {
-        const earlierHandler = vi.fn();
-        const targets: HTMLElement[] = [];
-        const onKeyDown = vi.fn((event: React.KeyboardEvent<HTMLElement>) => {
-          targets.push(event.currentTarget);
-        });
-        const onKeyUp = vi.fn((event: React.KeyboardEvent<HTMLElement>) => {
-          targets.push(event.currentTarget);
-        });
+      it('forwards the deepest native ref alongside inputRef and preserves Material root props', () => {
         const inputRef = React.createRef<HTMLInputElement>();
         const nativeRef = React.createRef<HTMLInputElement>();
         const earlierRef = React.createRef<HTMLInputElement>();
-        const { user } = render(
+        render(
           <NumberField
-            defaultValue={5}
             inputRef={inputRef}
             slotProps={{
-              htmlInput: { onKeyDown: earlierHandler, onKeyUp: earlierHandler, ref: earlierRef },
+              htmlInput: { ref: earlierRef },
               input: {
-                onKeyDown: earlierHandler,
-                onKeyUp: earlierHandler,
-                inputProps: {
-                  onKeyDown: earlierHandler,
-                  onKeyUp: earlierHandler,
-                  ref: earlierRef,
-                },
+                inputProps: { ref: earlierRef },
                 slotProps: {
                   root: { title: 'Material input' },
-                  input: {
-                    onKeyDown,
-                    onKeyUp,
-                    ref: nativeRef,
-                  } as React.ComponentPropsWithRef<'input'>,
+                  input: { ref: nativeRef } as React.ComponentPropsWithRef<'input'>,
                 },
               },
             }}
           />,
         );
-        const input = screen.getByRole<HTMLInputElement>('textbox');
+        const input = screen.getByRole('textbox');
+
         expect(inputRef.current).to.equal(input);
         expect(nativeRef.current).to.equal(input);
         expect(earlierRef.current).to.equal(null);
         expect(screen.getByTitle('Material input')).to.contain(input);
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-
-        expect(input).to.have.value('6');
-        expect(onKeyDown).toHaveBeenCalledTimes(1);
-        expect(onKeyUp).toHaveBeenCalledTimes(1);
-        expect(targets).to.deep.equal([input, input]);
-        expect(earlierHandler).toHaveBeenCalledTimes(0);
       });
 
-      it('allows unset native handlers to clear consumer handlers while preserving Base UI', async () => {
-        const earlierHandler = vi.fn();
-        const { user } = render(
-          <NumberField
-            defaultValue={5}
-            slotProps={{
-              htmlInput: { onKeyDown: earlierHandler, onKeyUp: earlierHandler },
-              input: {
-                onKeyDown: earlierHandler,
-                onKeyUp: earlierHandler,
-                slotProps: { input: { onKeyDown: undefined, onKeyUp: undefined } },
-              },
-            }}
-          />,
-        );
-        const input = screen.getByRole<HTMLInputElement>('textbox');
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-
-        expect(input).to.have.value('6');
-        expect(earlierHandler).toHaveBeenCalledTimes(0);
-      });
-    });
-
-    // Preserve precedence between Material handlers, htmlInput, nested inputProps,
-    // and the deeper native slot while keeping Base UI's handlers cancellable.
-    describe('native prop precedence', () => {
       [undefined, 'Public placeholder'].forEach((placeholder) => {
         it(`uses the Material input placeholder when the public placeholder is ${placeholder === undefined ? 'absent' : 'set'}`, () => {
           render(
@@ -2054,68 +2038,6 @@ describe('<NumberField />', () => {
             'placeholder',
             'Material placeholder',
           );
-        });
-      });
-
-      ['htmlInput', 'inputProps'].forEach((source) => {
-        it(`lets ${source} keyboard handlers override Material handlers`, async () => {
-          const materialHandler = vi.fn();
-          const targets: HTMLElement[] = [];
-          const onKeyDown = vi.fn((event: React.KeyboardEvent<HTMLElement>) => {
-            targets.push(event.currentTarget);
-          });
-          const onKeyUp = vi.fn((event: React.KeyboardEvent<HTMLElement>) => {
-            targets.push(event.currentTarget);
-          });
-          const nativeProps = { onKeyDown, onKeyUp };
-          const { user } = render(
-            <NumberField
-              defaultValue={5}
-              slotProps={{
-                htmlInput: source === 'htmlInput' ? nativeProps : undefined,
-                input: {
-                  onKeyDown: materialHandler,
-                  onKeyUp: materialHandler,
-                  ...(source === 'inputProps' && { inputProps: nativeProps }),
-                },
-              }}
-            />,
-          );
-          const input = screen.getByRole<HTMLInputElement>('textbox');
-
-          await user.click(input);
-          await user.keyboard('{ArrowUp}');
-
-          expect(input).to.have.value('6');
-          expect(onKeyDown).toHaveBeenCalledTimes(1);
-          expect(onKeyUp).toHaveBeenCalledTimes(1);
-          expect(targets).to.deep.equal([input, input]);
-          expect(materialHandler).toHaveBeenCalledTimes(0);
-        });
-
-        it(`preserves Base UI when ${source} leaves keyboard handlers unset`, async () => {
-          const materialHandler = vi.fn();
-          const nativeProps = { onKeyDown: undefined, onKeyUp: undefined };
-          const { user } = render(
-            <NumberField
-              defaultValue={5}
-              slotProps={{
-                htmlInput: source === 'htmlInput' ? nativeProps : undefined,
-                input: {
-                  onKeyDown: materialHandler,
-                  onKeyUp: materialHandler,
-                  ...(source === 'inputProps' && { inputProps: nativeProps }),
-                },
-              }}
-            />,
-          );
-          const input = screen.getByRole<HTMLInputElement>('textbox');
-
-          await user.click(input);
-          await user.keyboard('{ArrowUp}');
-
-          expect(input).to.have.value('6');
-          expect(materialHandler).toHaveBeenCalledTimes(0);
         });
       });
 
