@@ -168,7 +168,6 @@ const OTPField = React.forwardRef(function OTPField(
             className={clsx(classes.root, className)}
             disabled={ownerState.disabled}
             error={ownerState.error}
-            focused={state.focused}
             required={ownerState.required}
             size={ownerState.size}
           >

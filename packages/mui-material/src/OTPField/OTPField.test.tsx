@@ -101,22 +101,6 @@ describe('<OTPField />', () => {
   });
 
   describe('form control state', () => {
-    it('reflects OTP group focus on the Material label', async () => {
-      const { user } = render(
-        <React.Fragment>
-          <OTPField label="Verification code" defaultValue="12" />
-          <button type="button">Next</button>
-        </React.Fragment>,
-      );
-
-      const label = screen.getByText('Verification code');
-      await user.click(screen.getByRole('textbox', { name: 'Character 2 of 6' }));
-      expect(label).to.have.class(formLabelClasses.focused);
-
-      await user.click(screen.getByRole('button', { name: 'Next' }));
-      expect(label).not.to.have.class(formLabelClasses.focused);
-    });
-
     it('reflects inherited disabled state and the OTP required flag on the Material label', () => {
       render(
         <Field.Root disabled>
@@ -149,7 +133,18 @@ describe('<OTPField />', () => {
     });
   });
 
-  describe.skipIf(isJsdom())('layout', () => {
+  describe.skipIf(isJsdom())('styling', () => {
+    it('outlines the focused character input and keeps the label neutral', async () => {
+      const { user } = render(<OTPField label="Verification code" defaultValue="12" length={2} />);
+
+      const input = screen.getByRole('textbox', { name: 'Character 2 of 2' });
+      await user.click(input);
+
+      expect(input).toHaveFocus();
+      expect(input).toHaveComputedStyle({ outlineStyle: 'solid' });
+      expect(screen.getByText('Verification code')).not.to.have.class(formLabelClasses.focused);
+    });
+
     it('lays out the character inputs in a row between the label and helper text', () => {
       render(<OTPField label="PIN" helperText="Four digits" length={4} />);
 
