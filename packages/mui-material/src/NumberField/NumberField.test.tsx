@@ -2547,6 +2547,24 @@ describe('<NumberField />', () => {
       expect(screen.getByRole('textbox', { name: '0' })).toHaveAccessibleDescription('0');
     });
 
+    it.each(['', null, undefined, false])(
+      'omits the helper text and its input association for helperText=%j',
+      (helperText) => {
+        const { container } = render(
+          <NumberField
+            label="Amount"
+            helperText={helperText}
+            slotProps={{ formHelperText: { id: 'help' } }}
+          />,
+        );
+
+        expect(container.querySelector(`.${classes.formHelperText}`)).to.equal(null);
+        expect(screen.getByRole('textbox', { name: 'Amount' })).not.to.have.attribute(
+          'aria-describedby',
+        );
+      },
+    );
+
     it('adds and removes label and helper content without leaving dangling associations', async () => {
       function Test() {
         const [showContent, setShowContent] = React.useState(false);

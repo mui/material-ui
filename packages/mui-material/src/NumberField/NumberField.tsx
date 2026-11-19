@@ -73,7 +73,7 @@ const NumberField = React.forwardRef(function NumberField(
   } = props;
 
   const id = useId(idProp);
-  const hasHelperText = helperText != null && helperText !== '';
+  const hasHelperText = helperText != null && helperText !== '' && helperText !== false;
   const defaultHelperTextId = hasHelperText && id ? `${id}-helper-text` : undefined;
 
   // Resolve at each slot so callbacks retain that slot's owner state, including
@@ -180,6 +180,7 @@ const NumberField = React.forwardRef(function NumberField(
             baseProps={baseProps}
             baseState={baseState}
             classes={classes}
+            hasHelperText={hasHelperText}
             helperTextId={helperTextId}
             materialProps={resolvedOwnerState}
             ref={ref}

@@ -21,6 +21,7 @@ interface NumberFieldRootProps {
   baseState: BaseNumberField.Root.State;
   children: React.ReactNode;
   classes: Pick<NumberFieldClasses, 'root' | 'inputLabel' | 'formHelperText'>;
+  hasHelperText: boolean;
   helperTextId: string | undefined;
   materialProps: NumberFieldOwnerState;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
@@ -63,6 +64,7 @@ const NumberFieldRootSlot = React.forwardRef(
       baseState,
       children,
       classes,
+      hasHelperText,
       helperTextId,
       materialProps,
       externalForwardedProps,
@@ -71,7 +73,6 @@ const NumberFieldRootSlot = React.forwardRef(
     const { id, label, helperText } = materialProps;
 
     const hasLabel = label != null && label !== '';
-    const hasHelperText = helperText != null && helperText !== '';
     const labelId = hasLabel && id ? `${id}-label` : undefined;
 
     const [RootSlot, rootProps] = useSlot('root', {
