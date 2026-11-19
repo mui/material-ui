@@ -30,7 +30,7 @@ The demo below demonstrates the effect of `enhanceDensity` on a Button between s
 
 With the enhancer, the Button's CSS implementation switches from raw pixel values to the new spacing scale and the `touchTarget` size.
 
-{{"demo": "EnhanceDensityDemo.js"}}
+{{"component": "file://./demos/enhance-density/index.ts"}}
 
 The enhancer also modernizes components like Button that use the margin-based spacing between children to use the `gap` property instead. This makes the component more resilient and easier to customize.
 
@@ -58,7 +58,7 @@ const theme = enhanceDensity(createTheme(), {
 });
 ```
 
-{{"demo": "TouchTargetDemo.js"}}
+{{"component": "file://./demos/touch-target/index.ts"}}
 
 :::info
 Interactive components with a single size, or with `size="medium"`, take up at least `touchTarget`.
@@ -185,7 +185,7 @@ These types are opt-in so that projects without the enhancer keep their own `The
 
 Select a component to see how its dimensions map to the spacing scale: the padding ring, the gap between children, and the height the control settles at, each measured off the rendered element and named back to the step that produced it.
 
-{{"demo": "AllComponentsDemo.js"}}
+{{"component": "file://./demos/all-components/index.ts"}}
 
 ## Customizing the scale
 
@@ -235,4 +235,4 @@ This recipe demonstrates a design system that needs multiple densities to suppor
 
 Use the density select at the top to see the differences between each density. To see the actual values of each density, click the "Show code" and find the `./densityRecipes.ts` file.
 
-{{"demo": "DensityRecipesDemo.js"}}
+{{"component": "file://./demos/density-recipes/index.ts"}}

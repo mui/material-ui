@@ -18,8 +18,8 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 import InboxIcon from '@mui/icons-material/Inbox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import StarIcon from '@mui/icons-material/Star';
-import type { Claim } from './densityAnnotations';
-import { Annotate, useClaims } from './densityAnnotations';
+import type { Claim } from '../../densityAnnotations';
+import { Annotate, useClaims } from '../../densityAnnotations';
 
 const TOUCH_STEPS = [32, 36, 40, 44];
 const ICON_STEPS = [12, 14, 16, 20, 24];
@@ -94,6 +94,7 @@ function themeFor(touchTarget: number, iconSize: number) {
 }
 
 export default function TouchTargetDemo() {
+  // @focus-start @padding 1
   const [touchTarget, setTouchTarget] = React.useState(32);
   const [iconSize, setIconTarget] = React.useState(16);
   const stageRef = React.useRef<HTMLDivElement>(null);
@@ -153,4 +154,5 @@ export default function TouchTargetDemo() {
       </Box>
     </Paper>
   );
+  // @focus-end
 }

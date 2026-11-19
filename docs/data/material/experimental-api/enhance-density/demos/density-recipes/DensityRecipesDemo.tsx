@@ -12,15 +12,16 @@ import Switch from '@mui/material/Switch';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
-import densityRecipes from './densityRecipes';
-import recipeUis from './recipeUis';
-import { Annotate, useClaims } from './densityAnnotations';
+import densityRecipes from '../../densityRecipes';
+import recipeUis from '../../recipeUis';
+import type { Claim } from '../../densityAnnotations';
+import { Annotate, useClaims } from '../../densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 
 const chromeTheme = enhanceDensity(createTheme({ colorSchemes }));
 
-const CLAIMS = [
+const CLAIMS: Claim[] = [
   {
     on: '[data-measure]:not([data-measure="left"])',
     aspect: 'touch-target',
@@ -34,11 +35,12 @@ const CLAIMS = [
 ];
 
 export default function DensityRecipesDemo() {
+  // @focus-start @padding 1
   const [recipeId, setRecipeId] = React.useState('medium');
   const [measured, setMeasured] = React.useState(false);
   const [uiIndex, setUiIndex] = React.useState(0);
-  const stageRef = React.useRef(null);
-  const demoRef = React.useRef(null);
+  const stageRef = React.useRef<HTMLDivElement>(null);
+  const demoRef = React.useRef<HTMLDivElement>(null);
   const state = useClaims(stageRef, demoRef, measured ? CLAIMS : []);
 
   const recipe =
@@ -131,4 +133,5 @@ export default function DensityRecipesDemo() {
       </Box>
     </Box>
   );
+  // @focus-end
 }

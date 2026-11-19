@@ -13,8 +13,8 @@ import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
-import type { Claim } from './densityAnnotations';
-import { Annotate, useClaims } from './densityAnnotations';
+import type { Claim } from '../../densityAnnotations';
+import { Annotate, useClaims } from '../../densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 
@@ -79,6 +79,7 @@ function claimsFor(enhanced: boolean, size: Size): Claim[] {
 }
 
 export default function EnhanceDensityDemo() {
+  // @focus-start @padding 1
   const [enhanced, setEnhanced] = React.useState(true);
   const [size, setSize] = React.useState<Size>('medium');
   const stageRef = React.useRef<HTMLDivElement>(null);
@@ -155,4 +156,5 @@ export default function EnhanceDensityDemo() {
       </Box>
     </Paper>
   );
+  // @focus-end
 }

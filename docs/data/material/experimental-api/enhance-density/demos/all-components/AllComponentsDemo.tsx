@@ -22,10 +22,10 @@ import {
   DENSITY_TARGETS,
   DENSITY_THEME,
   useClaims,
-} from './densityAnnotations';
-import { annotationsFor } from './densityAnnotationSpecs';
-import type { Control, ControlValue } from './densityComponents';
-import { COMPONENT_NAMES, DENSITY_COMPONENTS } from './densityComponents';
+} from '../../densityAnnotations';
+import { annotationsFor } from '../../densityAnnotationSpecs';
+import type { Control, ControlValue } from '../../densityComponents';
+import { COMPONENT_NAMES, DENSITY_COMPONENTS } from '../../densityComponents';
 
 const NO_CONTROLS: Control[] = [];
 
@@ -88,6 +88,7 @@ function ScaleLegend() {
 }
 
 export default function AllComponentsDemo() {
+  // @focus-start @padding 1
   const [component, setComponent] = React.useState(COMPONENT_NAMES[0]);
   const [byComponent, setByComponent] = React.useState<
     Record<string, Record<string, ControlValue>>
@@ -270,4 +271,5 @@ export default function AllComponentsDemo() {
       </Box>
     </Paper>
   );
+  // @focus-end
 }
