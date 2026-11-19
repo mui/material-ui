@@ -263,7 +263,6 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       ...(!materialRootComponent && { as: NumberFieldInputRootSlot }),
       numberFieldInputRoot: {
         render: externalForwardedProps.slots.input ? undefined : inputRender,
-        renderState: baseState,
         rootComponent: materialRootComponent,
       },
     },
