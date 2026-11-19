@@ -20,6 +20,7 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider as MaterialThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { ThemeProvider as SystemThemeProvider, styled as systemStyled } from '@mui/system';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 
 // The CSS variables props (`colorSchemeNode`, `storageManager`, …) are only typed with the CSS variables augmentation.
 const ThemeProvider = MaterialThemeProvider as React.ComponentType<any>;
@@ -241,8 +242,35 @@ const LAYER_ORDER_STATEMENT = /^@layer\s[^{]*$/;
 
 // `speedy` is what Emotion uses in production: rules go in with `insertRule`, so the style tags
 // have no text. Setting it here makes the dev server behave like the deploy preview.
-function createFrameCache(doc: Document, unlayered: boolean) {
+function createFrameCache(doc: Document, unlayered: boolean, globalStylesFirst: boolean) {
   const cache = createCache({ key: createFrameKey(), container: doc.head, speedy: true });
+  if (globalStylesFirst) {
+    // What v9's `StyledEngineProvider` did with `enableCssLayer`: the `GlobalStyles` sheets go
+    // before an insertion point at the start of `<head>`, so before the app's CSS, in the order
+    // they're rendered. `GlobalStyles` creates its sheets with the cache's sheet class.
+    const insertionPoint = doc.createElement('meta');
+    insertionPoint.setAttribute('name', 'emotion-insertion-point');
+    insertionPoint.setAttribute('content', '');
+    doc.head.prepend(insertionPoint);
+    const Sheet = cache.sheet.constructor as new (options: {
+      key: string;
+      container: Node;
+      speedy?: boolean;
+    }) => EmotionCache['sheet'];
+    class GlobalStylesFirstSheet extends Sheet {
+      insert(rule: string) {
+        if (this.key.endsWith('global')) {
+          this.before = insertionPoint;
+        }
+        super.insert(rule);
+      }
+    }
+    cache.sheet = new GlobalStylesFirstSheet({
+      key: cache.key,
+      container: doc.head,
+      speedy: true,
+    });
+  }
   const { insert } = cache;
   cache.insert = (selector, serialized, sheet, shouldCache) => {
     // On the client, `useLayerOrder` prepends the sub-layer order to the `<head>` of the top-level
@@ -276,11 +304,20 @@ function Frame(props: {
   css?: string;
   // Takes Material UI's styles out of `@layer mui`, as in v9.
   unlayered?: boolean;
+  // Inserts `GlobalStyles` at the start of `<head>`, as v9's `enableCssLayer` did.
+  globalStylesFirst?: boolean;
   // Whether this frame shows the v9 behavior that the other frames compare to.
   baseline?: boolean;
   children: React.ReactNode;
 }) {
-  const { title, css, unlayered = false, baseline = false, children } = props;
+  const {
+    title,
+    css,
+    unlayered = false,
+    globalStylesFirst = false,
+    baseline = false,
+    children,
+  } = props;
   const ref = React.useRef<HTMLIFrameElement>(null);
   const rootRef = React.useRef<ReactDOMClient.Root | null>(null);
   const cacheRef = React.useRef<EmotionCache | null>(null);
@@ -299,7 +336,7 @@ function Frame(props: {
         style.textContent = css;
         frameDoc.head.appendChild(style);
       }
-      cacheRef.current = createFrameCache(frameDoc, unlayered);
+      cacheRef.current = createFrameCache(frameDoc, unlayered, globalStylesFirst);
       const container = frameDoc.body.appendChild(frameDoc.createElement('div'));
       rootRef.current = ReactDOMClient.createRoot(container, {
         identifierPrefix: cacheRef.current.key,
@@ -326,7 +363,7 @@ function Frame(props: {
       // Unmounting synchronously during a parent render isn't allowed.
       setTimeout(() => root?.unmount());
     };
-  }, [css, unlayered]);
+  }, [css, unlayered, globalStylesFirst]);
 
   React.useEffect(() => {
     if (context && rootRef.current && cacheRef.current) {
@@ -523,7 +560,6 @@ function OverridesDemo(props: { layers: LayersMode }) {
   return (
     <ThemeProvider theme={overridesThemes[layers]}>
       <Stack spacing={1} sx={{ alignItems: 'flex-start' }}>
-        <Button variant="contained">Hover me</Button>
         <Button variant="contained" disabled ref={disabledRef}>
           Disabled
         </Button>
@@ -645,15 +681,17 @@ function CssVarsDemo(props: { layers: LayersMode }) {
 }
 
 const EmotionButton = emotionStyled(Button)({ backgroundColor: GREEN });
+const MaterialStyledButton = styled(Button)({ backgroundColor: GREEN });
 
-function EmotionDemo(props: { layers: LayersMode }) {
-  const { layers } = props;
+function EmotionDemo(props: { layers: LayersMode; materialStyled?: boolean }) {
+  const { layers, materialStyled = false } = props;
   const ref = React.useRef<HTMLButtonElement>(null);
+  const GreenButton = materialStyled ? MaterialStyledButton : EmotionButton;
   return (
     <ThemeProvider theme={themes[layers]}>
-      <EmotionButton variant="contained" disabled ref={ref}>
+      <GreenButton variant="contained" disabled ref={ref}>
         Disabled
-      </EmotionButton>
+      </GreenButton>
       <Computed target={ref} property="backgroundColor" v9="rgba(0, 0, 0, 0.12)" />
     </ThemeProvider>
   );
@@ -717,7 +755,7 @@ function CssBlock(props: { children: string }) {
 
 export default function CssLayers() {
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head title="CSS layers playground" description="Temporary playground for CSS layers." />
       <Box sx={{ p: { xs: 2, sm: 4 }, maxWidth: 1200, mx: 'auto' }}>
         <Typography variant="h4" component="h1" gutterBottom>
@@ -753,8 +791,7 @@ export default function CssLayers() {
               <code>MuiAccordion</code> <code>root</code> to <code>margin: 0</code>, and the
               selected list item has a green <code>sx</code> background. With sub-layers,{' '}
               <code>mui.theme</code> and <code>mui.sx</code> beat the components&apos; state styles
-              in <code>mui.components</code>, whatever their specificity. Hover the first button to
-              compare.
+              in <code>mui.components</code>, whatever their specificity.
             </React.Fragment>
           }
           verdicts={
@@ -763,9 +800,9 @@ export default function CssLayers() {
                 Specificity works as in v9.
               </ForApps>
               <ForApps verdict="breaking" who="Sub-layers">
-                A <code>root</code> override also applies when hovered or disabled, so the disabled
-                Button looks enabled. <code>sx</code> beating <code>.Mui-selected</code> is what
-                many people expect, but existing apps still change.
+                A <code>root</code> override also applies in states, so the disabled Button looks
+                enabled. <code>sx</code> beating <code>.Mui-selected</code> is what many people
+                expect, but existing apps still change.
               </ForApps>
             </React.Fragment>
           }
@@ -884,19 +921,27 @@ export default function CssLayers() {
                 it.
               </ForApps>
               <ForApps verdict="breaking" who="Sub-layers">
-                As in case 3, <code>mui</code> is the lowest layer wherever the app declares the
-                order. Passing the order as the <code>modularCssLayers</code> string keeps it.
+                As in case 3, <code>mui</code> is the lowest layer and preflight wipes the Button.
+                Passing the order as the <code>modularCssLayers</code> string keeps it.
               </ForApps>
             </React.Fragment>
           }
         >
-          <Frame title="v9: GlobalStyles first in <head>" css={TAILWIND_CSS} baseline>
+          <Frame
+            title="v9: GlobalStyles first in <head>"
+            css={TAILWIND_OUTPUT}
+            globalStylesFirst
+            baseline
+          >
             <TailwindDemo theme={defaultTheme} orderInGlobalStyles />
           </Frame>
-          <Frame title="GlobalStyles after Tailwind CSS" css={TAILWIND_OUTPUT}>
+          <Frame title="Single layer: GlobalStyles after Tailwind CSS" css={TAILWIND_OUTPUT}>
             <TailwindDemo theme={defaultTheme} orderInGlobalStyles />
           </Frame>
-          <Frame title="Order at the top of the CSS file" css={TAILWIND_CSS}>
+          <Frame title="Sub-layers: GlobalStyles after Tailwind CSS" css={TAILWIND_OUTPUT}>
+            <TailwindDemo theme={subLayersTheme} orderInGlobalStyles />
+          </Frame>
+          <Frame title="Single layer: order at the top of the CSS file" css={TAILWIND_CSS}>
             <TailwindDemo theme={defaultTheme} />
           </Frame>
         </Scenario>
@@ -941,15 +986,23 @@ export default function CssLayers() {
               given a green background. Emotion&apos;s own styles aren&apos;t in a layer, so they
               beat Material UI&apos;s styles, as plain CSS does. In v9, they competed by
               specificity, also with <code>enableCssLayer</code>, which put them in the{' '}
-              <code>mui</code> layer.
+              <code>mui</code> layer. The last two frames use <code>styled()</code> from{' '}
+              <code>@mui/material/styles</code> instead.
             </React.Fragment>
           }
           verdicts={
-            <ForApps verdict="breaking" who="Both">
-              The override also applies in states, so the disabled Button stays green. Using{' '}
-              <code>styled()</code> from <code>@mui/material/styles</code> keeps the styles in the{' '}
-              <code>mui</code> layer, with v9&apos;s precedence.
-            </ForApps>
+            <React.Fragment>
+              <ForApps verdict="breaking" who="Single layer">
+                The override also applies in states, so the disabled Button stays green.{' '}
+                <code>styled()</code> from <code>@mui/material/styles</code> puts the styles in the{' '}
+                <code>mui</code> layer, with v9&apos;s precedence.
+              </ForApps>
+              <ForApps verdict="breaking" who="Sub-layers">
+                The same, and <code>styled()</code> from <code>@mui/material/styles</code>{' '}
+                doesn&apos;t help: it puts the styles in <code>mui.custom</code>, which beats the
+                state styles in <code>mui.components</code>, as theme overrides do in case 1.
+              </ForApps>
+            </React.Fragment>
           }
         >
           {SETUPS.map((setup) => (
@@ -962,6 +1015,12 @@ export default function CssLayers() {
               <EmotionDemo layers={setup.layers} />
             </Frame>
           ))}
+          <Frame title="Single layer: styled() from @mui/material/styles">
+            <EmotionDemo layers="single" materialStyled />
+          </Frame>
+          <Frame title="Sub-layers: styled() from @mui/material/styles">
+            <EmotionDemo layers="sub" materialStyled />
+          </Frame>
         </Scenario>
 
         <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
@@ -1016,6 +1075,6 @@ export default function CssLayers() {
           </Frame>
         </Scenario>
       </Box>
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }
