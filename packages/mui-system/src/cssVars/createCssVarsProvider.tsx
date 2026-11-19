@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { GlobalStyles, internal_useNonce as useNonce } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import type InitColorSchemeScript from '../InitColorSchemeScript';
 import ThemeProvider from '../ThemeProvider';
 import {
@@ -16,8 +17,10 @@ import useCurrentColorScheme from './useCurrentColorScheme';
 import type { Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 import ThemeScopeContext from './ThemeScopeContext';
-import { applyScopeToChild, createScopedStyleSheets, getColorSchemeProps } from './scopeCssVars';
+import { createScopedStyleSheets, getColorSchemeProps } from './scopeCssVars';
 import type { CssVarsByColorScheme } from './scopeCssVars';
+import useRenderElement from './useRenderElement';
+import type { ThemeProviderRender } from './useRenderElement';
 
 export interface ColorSchemeContextValue<
   SupportedColorScheme extends string,
@@ -118,10 +121,17 @@ export interface CreateCssVarsProviderResult<
          */
         disableStyleSheetGeneration?: boolean | undefined;
         /**
-         * If `true`, the CSS theme variables are set on its child element instead of `:root`,
+         * The element that wraps the children. A nested provider sets its CSS theme variables on it.
+         * Nested providers render a `div` with `display: contents` by default, and the top-level provider renders no element.
+         *
+         * Pass an element, e.g. `<tbody />`, to render it with the provider's props merged in,
+         * or a function that receives the props to spread on the element and the state.
+         */
+        render?: ThemeProviderRender | undefined;
+        /**
+         * If `true`, the CSS theme variables are set on its element instead of `:root`,
          * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
          * like an embedded widget. Nested providers are scoped automatically when their variables differ.
-         * Either way, the provider needs a single child element that renders the `className` it receives.
          * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
          * @default false
          */
@@ -273,6 +283,7 @@ export default function createCssVarsProvider<
     const {
       children,
       theme: themeProp,
+      render,
       scoped = false,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
@@ -288,6 +299,7 @@ export default function createCssVarsProvider<
       noSsr,
     } = props;
     const hasMounted = React.useRef(false);
+    const elementRef = React.useRef<Element>(null);
     const nonce = useNonce();
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
@@ -643,37 +655,43 @@ export default function createCssVarsProvider<
       }, [shouldGenerateStyleSheet, nested, memoTheme, cssVarPrefix]);
     }
 
-    // The scope class goes on the single child, so the provider never renders an element of its own.
-    // When the child is itself a ThemeProvider, it receives the outer scope and passes it on to its own child.
-    const scopedChildren = applyScopeToChild(
+    // Nested and scoped providers always render an element, so the tree doesn't change when their variables start
+    // or stop differing. The top-level provider writes to `:root`, so it only renders the `render` element.
+    const rendersElement = nested || isScopedRoot || render !== undefined;
+    const rendersDefaultElement = rendersElement && render === undefined;
+    const defaultClassName = generateUtilityClass('MuiThemeProvider', 'root');
+    const elementProps: Record<string, any> = {
+      ...(scopeClassName ? colorSchemeAttributes : undefined),
+      className:
+        clsx(
+          rendersDefaultElement && defaultClassName,
+          scopeClassName,
+          scopeClassName && colorSchemeClassName,
+        ) || undefined,
       children,
-      props,
-      scopeClassName
-        ? {
-            className: clsx(scopeClassName, colorSchemeClassName),
-            attributes: colorSchemeAttributes,
-          }
-        : undefined,
-    );
+    };
+    const providerElement = useRenderElement(render, elementProps, elementRef, {
+      mode,
+      colorScheme,
+    });
+    const content = rendersElement ? providerElement : children;
 
     if (process.env.NODE_ENV !== 'production') {
-      const needsChildScope = !!(scopeClassName || props.className);
-      const hasChildren = children != null && typeof children !== 'boolean';
-      const canCloneChild = React.isValidElement(children) && children.type !== React.Fragment;
+      const needsElement = !!scopeClassName && render !== undefined;
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const warnedChildren = React.useRef(false);
+      const warnedElement = React.useRef(false);
       // eslint-disable-next-line react-hooks/rules-of-hooks
       React.useEffect(() => {
-        if (needsChildScope && hasChildren && !canCloneChild && !warnedChildren.current) {
-          warnedChildren.current = true;
+        if (needsElement && !elementRef.current && !warnedElement.current) {
+          warnedElement.current = true;
           console.error(
             [
-              "MUI: The CSS theme variables of this ThemeProvider can't be applied because its children aren't a single element.",
-              'Wrap its children in one element, for example a `div`, so it can set them on it.',
+              "MUI: The CSS theme variables of this ThemeProvider can't be applied because the element of its `render` prop didn't receive its props.",
+              'Spread the props that the `render` function receives on the element it returns, including the `ref`.',
             ].join('\n'),
           );
         }
-      }, [needsChildScope, hasChildren, canCloneChild]);
+      });
     }
 
     // The tree is the same whether the theme needs a scope or not, so switching themes keeps the children's state.
@@ -681,11 +699,14 @@ export default function createCssVarsProvider<
       <React.Fragment>
         <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
           <ThemeScopeContext.Provider value={scopeProps ?? (nested ? upperScope : undefined)}>
-            {scopedChildren}
+            {content}
           </ThemeScopeContext.Provider>
         </ThemeProvider>
         {shouldGenerateStyleSheet && (
           <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
+        )}
+        {rendersDefaultElement && (
+          <GlobalStyles styles={{ [`.${defaultClassName}`]: { display: 'contents' } }} />
         )}
         {scope && <GlobalStyles styles={scope.styles} />}
       </React.Fragment>
@@ -750,7 +771,11 @@ export default function createCssVarsProvider<
      */
     noSsr: PropTypes.bool,
     /**
-     * If `true`, the CSS theme variables are set on its child element instead of `:root`.
+     * The element that wraps the children.
+     */
+    render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+    /**
+     * If `true`, the CSS theme variables are set on its element instead of `:root`.
      */
     scoped: PropTypes.bool,
     /**

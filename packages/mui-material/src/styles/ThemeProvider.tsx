@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import type { DefaultTheme } from '@mui/system';
-import type { StorageManager } from '@mui/system/cssVars';
-import { unstable_applyScopeToChild as applyScopeToChild } from '@mui/system/cssVars';
+import type { StorageManager, ThemeProviderRender } from '@mui/system/cssVars';
+import { unstable_useRenderElement as useRenderElement } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import type { CssThemeVariables } from './createThemeNoVars';
-import { CssVarsProvider } from './ThemeProviderWithVars';
+import { CssVarsProvider, useColorScheme } from './ThemeProviderWithVars';
 import type { CssVarsTheme } from './createThemeWithVars';
 import THEME_ID from './identifier';
 
@@ -34,10 +34,9 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        */
       forceThemeRerender?: boolean | undefined;
       /**
-       * If `true`, the CSS theme variables are set on its child element instead of `:root`,
+       * If `true`, the CSS theme variables are set on its element instead of `:root`,
        * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
        * like an embedded widget. Nested providers are scoped automatically when their variables differ.
-       * Either way, the provider needs a single child element that renders the `className` it receives.
        * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
        * @default false
        */
@@ -48,6 +47,14 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
 export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderCssVariablesProps {
   children?: React.ReactNode;
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme);
+  /**
+   * The element that wraps the children. A nested provider sets its CSS theme variables on it.
+   * Nested providers render a `div` with `display: contents` by default, and the top-level provider renders no element.
+   *
+   * Pass an element, e.g. `<tbody />`, to render it with the provider's props merged in,
+   * or a function that receives the props to spread on the element and the state.
+   */
+  render?: ThemeProviderRender | undefined;
   /**
    * The document used to perform `disableTransitionOnChange` feature
    * @default document
@@ -92,6 +99,15 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
   disableTransitionOnChange?: boolean | undefined;
 }
 
+/**
+ * The `render` element of a provider whose theme has no CSS theme variables, so it has nothing to scope.
+ */
+function Element(props: { render: ThemeProviderRender; children?: React.ReactNode }) {
+  const { render, children } = props;
+  const { mode, colorScheme } = useColorScheme();
+  return useRenderElement(render, { children }, undefined, { mode, colorScheme });
+}
+
 export default function ThemeProvider<Theme = DefaultTheme>({
   theme,
   ...props
@@ -113,19 +129,10 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   }, [theme]);
 
   if (noVarsTheme) {
-    // It doesn't scope its own theme, but passes on the scope that an outer provider gave it to its child.
-    // The system ThemeProvider only accepts its own props, so the forwarded ones don't reach it.
-    const { className, ...noVarsProps } = props as typeof props & {
-      className?: string | undefined;
-    };
-    Object.keys(noVarsProps).forEach((key) => {
-      if (key.startsWith('data-')) {
-        delete (noVarsProps as Record<string, unknown>)[key];
-      }
-    });
+    const { render, children, ...noVarsProps } = props;
     return (
       <ThemeProviderNoVars theme={noVarsTheme} {...noVarsProps}>
-        {applyScopeToChild(props.children, props)}
+        {render === undefined ? children : <Element render={render}>{children}</Element>}
       </ThemeProviderNoVars>
     );
   }

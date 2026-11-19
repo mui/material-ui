@@ -13,4 +13,9 @@ export { createGetColorSchemeSelector } from './getColorSchemeSelector';
 export type { StorageManager } from './localStorageManager';
 export { useThemeScope } from './ThemeScopeContext';
 export type { ThemeScopeProps } from './ThemeScopeContext';
-export { applyScopeToChild as unstable_applyScopeToChild } from './scopeCssVars';
+export { default as unstable_useRenderElement } from './useRenderElement';
+export type {
+  ThemeProviderRender,
+  ThemeProviderRenderProps,
+  ThemeProviderState,
+} from './useRenderElement';
