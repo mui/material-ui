@@ -115,6 +115,7 @@ export interface Menu2SubmenuPopupProps extends Omit<
   keepMounted?: Menu2PopupPublicProps['keepMounted'] | undefined;
   /**
    * Determines the element to focus when the menu is closed.
+   * A ref or function target gets focus only when focus is on the page body or in the menu tree.
    */
   finalFocus?: Menu2PopupPublicProps['finalFocus'] | undefined;
   /**
@@ -390,6 +391,7 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
   elevation: PropTypes.number,
   /**
    * Determines the element to focus when the menu is closed.
+   * A ref or function target gets focus only when focus is on the page body or in the menu tree.
    */
   finalFocus: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,

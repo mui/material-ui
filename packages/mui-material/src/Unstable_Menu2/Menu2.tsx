@@ -3,11 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import exactProp from '@mui/utils/exactProp';
 import useEventCallback from '@mui/utils/useEventCallback';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { useRtl } from '@mui/system/RtlProvider';
 import { DirectionProvider } from '@base-ui/react/direction-provider';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import getActiveElement from '../utils/getActiveElement';
 import Menu2ModalContext from './Menu2ModalContext';
+import Menu2FinalFocusContext from './Menu2FinalFocusContext';
 
 /**
  * Controls a menu without rendering an element.
@@ -31,7 +34,7 @@ export interface Menu2Props extends Pick<
   children?: React.ReactNode;
   /**
    * Determines if the menu enters a modal state when open.
-   * - `true`: the page scroll is locked, and the popup backdrop blocks pointer interactions outside the menu.
+   * - `true`: the page scroll is locked, and an internal popup layer blocks pointer interactions outside the menu.
    * - `false`: user interaction with the rest of the document is allowed.
    *
    * Nested menus ignore this prop, and menus opened by hover are never modal.
@@ -81,11 +84,34 @@ function Menu2(inProps: Menu2Props) {
   // Like Base UI, use the reason of the last change that is not canceled.
   // A menu opened by hover is not modal.
   const [hoverOpen, setHoverOpen] = React.useState(false);
+  const customFinalFocusRef = React.useRef(false);
+  const openRef = React.useRef(open);
+  useEnhancedEffect(() => {
+    openRef.current = open;
+  });
   const handleOpenChange = useEventCallback<NonNullable<Menu2Props['onOpenChange']>>(
     (nextOpen, eventDetails) => {
       onOpenChange?.(nextOpen, eventDetails);
-      if (!eventDetails.isCanceled) {
-        setHoverOpen(eventDetails.reason === 'trigger-hover');
+      if (eventDetails.isCanceled) {
+        return;
+      }
+      setHoverOpen(eventDetails.reason === 'trigger-hover');
+      const trigger = eventDetails.trigger as HTMLElement | undefined;
+      if (
+        !nextOpen &&
+        eventDetails.reason === 'item-press' &&
+        !customFinalFocusRef.current &&
+        trigger?.isConnected
+      ) {
+        // Like classic Menu, focus the trigger before a Dialog that the item opens saves its return target.
+        const previous = getActiveElement(trigger.ownerDocument) as HTMLElement | null;
+        trigger.focus({ preventScroll: true });
+        // A controlled menu can ignore the close. Then focus goes back into the menu.
+        queueMicrotask(() => {
+          if (openRef.current && getActiveElement(trigger.ownerDocument) === trigger) {
+            previous?.focus({ preventScroll: true });
+          }
+        });
       }
     },
   );
@@ -99,15 +125,17 @@ function Menu2(inProps: Menu2Props) {
         highlightItemOnHover={highlightItemOnHover}
         loopFocus={loopFocus}
         // Material UI owns the modal state. ModalManager locks the scroll and
-        // the popup backdrop blocks outside clicks.
+        // an internal popup layer blocks outside clicks.
         modal={false}
         onOpenChange={handleOpenChange}
         onOpenChangeComplete={onOpenChangeComplete}
         open={open}
       >
-        <Menu2ModalContext.Provider value={modal && !hoverOpen}>
-          {children}
-        </Menu2ModalContext.Provider>
+        <Menu2FinalFocusContext.Provider value={customFinalFocusRef}>
+          <Menu2ModalContext.Provider value={modal && !hoverOpen}>
+            {children}
+          </Menu2ModalContext.Provider>
+        </Menu2FinalFocusContext.Provider>
       </BaseMenu.Root>
     </DirectionProvider>
   );
@@ -161,7 +189,7 @@ Menu2.propTypes /* remove-proptypes */ = {
   loopFocus: PropTypes.bool,
   /**
    * Determines if the menu enters a modal state when open.
-   * - `true`: the page scroll is locked, and the popup backdrop blocks pointer interactions outside the menu.
+   * - `true`: the page scroll is locked, and an internal popup layer blocks pointer interactions outside the menu.
    * - `false`: user interaction with the rest of the document is allowed.
    *
    * Nested menus ignore this prop, and menus opened by hover are never modal.

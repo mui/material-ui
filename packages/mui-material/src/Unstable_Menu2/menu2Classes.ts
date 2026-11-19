@@ -29,7 +29,7 @@ export interface Menu2PopupClasses {
   portal: string;
   /** Styles applied to the element that positions the menu surface. */
   positioner: string;
-  /** Styles applied to the backdrop element. */
+  /** Styles applied to the visual backdrop element. */
   backdrop: string;
   /** Styles applied to the Material List element. */
   list: string;

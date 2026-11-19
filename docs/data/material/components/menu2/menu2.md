@@ -84,14 +84,18 @@ Tooltip uses its own `id` prop for the tooltip, not the button.
 
 Keep the Dialog outside the menu so that it stays mounted when the menu closes.
 Open it from the item's `onClick` handler.
+When an item press closes the menu, focus moves to the trigger before the Dialog opens.
+When the Dialog closes, it returns focus to the trigger.
 
-:::warning
-Dialog can save a menu item as its return target before the menu closes.
-That item is then removed or hidden, so focus does not return to the trigger when Dialog closes.
-:::
+In these cases, Dialog saves the menu item as its return target:
 
-Keep a ref on the menu trigger and set `disableRestoreFocus` on Dialog.
-Focus the trigger from `slotProps.transition.onExited` on Dialog:
+- An item with `closeOnClick={false}` opens the Dialog.
+- The menu has no `MenuTrigger`.
+- `MenuPopup` sets `finalFocus` to `false`, a ref, or a function.
+
+If the menu removes or hides the item before the Dialog closes, focus moves to the page body.
+To prevent this, set `disableRestoreFocus` on Dialog.
+Then focus the trigger or the anchor element from `slotProps.transition.onExited` on Dialog:
 
 ```jsx
 <Dialog
@@ -107,9 +111,6 @@ Focus the trigger from `slotProps.transition.onExited` on Dialog:
   {/* Dialog content */}
 </Dialog>
 ```
-
-Keep the trigger mounted and enabled until the dialog closes.
-This changes the return target for Dialog, not the focus behavior of Menu v2.
 
 ## Submenu
 
@@ -245,7 +246,7 @@ The menu can't connect to that element, so you do the wiring:
 
 - Add `aria-haspopup="menu"`, `aria-expanded`, and `aria-controls` to the element. Set the matching `id` on `MenuPopup`.
 - Give `MenuPopup` an accessible name with `aria-label` or `aria-labelledby`.
-- Pass `finalFocus` to `MenuPopup` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element.
+- Pass `finalFocus` to `MenuPopup` to return focus to the element when the menu closes. Otherwise, focus can move to an unrelated element. `finalFocus` does not move focus from an element outside the menu, for example from a field in a Dialog that an item opens.
 
 This wiring does not provide the keyboard behavior of `MenuTrigger`.
 If the external button only uses `onClick` to open the menu, Enter focuses the menu container, not the first item.
@@ -518,12 +519,14 @@ Without it, they unmount.
 
 ### Backdrop
 
-A modal menu renders a transparent backdrop inside the portal, behind the menu.
-The backdrop blocks clicks outside the menu, so the first outside click only closes the menu.
-It is absent when a menu opens on hover or has `modal={false}`.
+A modal menu renders a transparent internal layer inside the portal, behind the menu.
+This layer blocks clicks outside the menu, so the first outside click only closes the menu.
+It has no slot, class, or theme key.
+It is absent when a menu opens on hover or has `modal={false}`, so outside clicks reach the page.
 
-Set `slots.backdrop` or `slotProps.backdrop` on `MenuPopup` to customize it.
-For a non-modal menu, these props render the backdrop, and it does not capture pointer events.
+The `backdrop` slot on `MenuPopup` is an optional visual layer below the internal layer.
+It renders only when you set `slots.backdrop` or `slotProps.backdrop`, on the component or in the theme `defaultProps`.
+By default, it is transparent and lets clicks through, also in a non-modal menu.
 To dim the page:
 
 ```jsx
@@ -532,8 +535,8 @@ To dim the page:
 </MenuPopup>
 ```
 
-Set `slots={{ backdrop: null }}` to omit the backdrop, including when the theme supplies backdrop slot props.
-Outside clicks then reach the page and close the menu, and the page scroll stays locked.
+Set `slots={{ backdrop: null }}` to remove the visual backdrop, including when the theme configures it.
+This removes only the visual layer: a modal menu still blocks outside clicks and locks the page scroll.
 Submenus have no backdrop slot.
 
 ## Accessibility

@@ -471,7 +471,7 @@ The initial focus props, such as `autoFocus`, have none because Menu v2 sets the
 | `disableEnforceFocus`  | Delete it.                                                                                                                                                                                                |
 | `disableRestoreFocus`  | Use `finalFocus={false}` on `MenuPopup`.                                                                                                                                                                  |
 | `disableScrollLock`    | Use `modal={false}` on `Menu`. It also keeps the rest of the document interactive.                                                                                                                        |
-| `disablePortal`        | Delete it. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target. See [Portal containers](#portal-containers).                                                   |
+| `disablePortal`        | Delete it. Menu v2 always renders in a portal. Use `container` on `MenuPopup` to choose the portal target. In a Dialog, also set `positionMethod="fixed"`. See [Portal containers](#portal-containers).   |
 | `hideBackdrop`         | Delete it. The Menu backdrop is invisible, so this prop only stopped outside clicks from closing the menu. To keep that behavior, see [Keep the menu open](/material-ui/react-menu2/#keep-the-menu-open). |
 | `action`               | Delete it. The position updates automatically. See [Update the positioning props](#4-update-the-positioning-props).                                                                                       |
 | `PopoverClasses`       | Delete it. Menu v2 doesn't use `Popover`.                                                                                                                                                                 |
@@ -509,7 +509,8 @@ These changes are intentional and mostly bring the menu in line with the [WAI-AR
 - **Sibling content:** Menu hides it from screen readers with `aria-hidden`.
   Menu v2 keeps it in the accessibility tree.
 - **Backdrop:** Menu renders one by default.
-  Menu v2 renders one for modal menus.
+  Menu v2 renders a visual backdrop only when you configure it.
+  A modal menu blocks outside clicks with an internal layer.
   See [Backdrop](#backdrop).
 - **Tab while open:** Menu closes, and focus returns to the trigger.
   Menu v2 closes, and focus moves to the next element.
@@ -526,9 +527,12 @@ See [Submenu](/material-ui/react-menu2/#submenu).
 
 ### Backdrop
 
-A modal menu renders a transparent backdrop that blocks outside clicks.
+A modal menu renders a transparent internal layer that blocks outside clicks.
 It is absent when the menu opens on hover or has `modal={false}`.
-Set `slots.backdrop` or `slotProps.backdrop` on `MenuPopup` to customize it, or `slots={{ backdrop: null }}` to omit it.
+The `backdrop` slot on `MenuPopup` is a visual layer only, and it lets clicks through.
+Set `slots.backdrop` or `slotProps.backdrop` to render it, for example to dim the page.
+`slots={{ backdrop: null }}` removes only the visual layer.
+To let outside clicks reach the page, set `modal={false}`.
 
 ### Scroll locking
 
@@ -543,6 +547,10 @@ The visible menu can then be hidden from assistive technology.
 :::warning
 Leave `keepMounted` disabled on `MenuPopup` inside a kept-mounted Dialog.
 :::
+
+To keep `keepMounted`, pass a `container` inside the Dialog.
+Then set `positionMethod="fixed"` on `MenuPopup` and on each `MenuSubmenuPopup`.
+See [Portal containers](#portal-containers).
 
 ### Portal containers
 
@@ -565,6 +573,23 @@ const [container, setContainer] = React.useState(null);
     </MenuPopup>
   </Menu>
 </div>;
+```
+
+A `container` inside a positioned element that clips its overflow, such as the Dialog paper, also clips the menu.
+The menu then shrinks to the space that is left in that element.
+Submenus render in the same container, so they clip too.
+Set `positionMethod="fixed"` on `MenuPopup` and on each `MenuSubmenuPopup` to let the menus extend past that element:
+
+```jsx
+<MenuPopup container={container} positionMethod="fixed">
+  <MenuItem>Profile</MenuItem>
+  <MenuSubmenu>
+    <MenuSubmenuTrigger>More</MenuSubmenuTrigger>
+    <MenuSubmenuPopup positionMethod="fixed">
+      <MenuItem>Settings</MenuItem>
+    </MenuSubmenuPopup>
+  </MenuSubmenu>
+</MenuPopup>
 ```
 
 ### The initial highlight

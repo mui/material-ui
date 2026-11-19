@@ -473,13 +473,7 @@ function MenuInDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
   );
 }
 
-function MenuOpensDialogRecipe({
-  menuType,
-  restoreFocus,
-}: {
-  menuType: 'classic' | 'menu2';
-  restoreFocus: boolean;
-}) {
+function MenuOpensDialogRecipe({ menuType }: { menuType: 'classic' | 'menu2' }) {
   const titleId = React.useId();
   const triggerId = `${titleId}-trigger`;
   const menuId = `${titleId}-menu`;
@@ -490,7 +484,6 @@ function MenuOpensDialogRecipe({
   const [focusResult, setFocusResult] = React.useState('not checked');
   const isClassic = menuType === 'classic';
   const label = isClassic ? 'Classic Menu' : 'Menu2';
-  const useExplicitReturnTarget = !isClassic && restoreFocus;
 
   React.useEffect(() => {
     return () => {
@@ -507,10 +500,6 @@ function MenuOpensDialogRecipe({
   };
 
   const handleDialogExited = () => {
-    if (useExplicitReturnTarget) {
-      triggerRef.current?.focus({ preventScroll: true });
-    }
-
     // Read after Dialog unmounts. This frame only reports focus; it does not move it.
     focusCheckFrame.current = requestAnimationFrame(() => {
       const activeElement = document.activeElement;
@@ -574,7 +563,6 @@ function MenuOpensDialogRecipe({
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
         aria-labelledby={titleId}
-        disableRestoreFocus={useExplicitReturnTarget}
         slotProps={{ transition: { onExited: handleDialogExited } }}
       >
         <DialogTitle id={titleId}>{label}: Edit settings</DialogTitle>
@@ -589,33 +577,6 @@ function MenuOpensDialogRecipe({
           </Button>
         </DialogActions>
       </Dialog>
-    </Stack>
-  );
-}
-
-function MenuDialogFocusRecipe() {
-  const [restoreFocus, setRestoreFocus] = React.useState(true);
-
-  return (
-    <Stack spacing={2}>
-      <label>
-        <input
-          type="checkbox"
-          checked={restoreFocus}
-          onChange={(event) => setRestoreFocus(event.target.checked)}
-        />{' '}
-        Set the Dialog return target for Menu2
-      </label>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
-          gap: 3,
-        }}
-      >
-        <MenuOpensDialogRecipe menuType="classic" restoreFocus={false} />
-        <MenuOpensDialogRecipe menuType="menu2" restoreFocus={restoreFocus} />
-      </Box>
     </Stack>
   );
 }
@@ -921,29 +882,25 @@ export default function Menu2Experiment() {
               close the dialog. The focus result should read <code>menu trigger</code>.
             </p>
             <p>
-              Known limitation: Menu2 uses Base UI to manage focus. Base UI checks whether to return
-              focus after the menu finishes closing. By default, it does not return focus if focus
-              is already in Dialog. Dialog can therefore save a menu item as its return target. That
-              item is then removed or hidden.
+              Both menus move focus to the trigger when an item press starts to close the menu. The
+              Dialog opens after that, so it saves the menu trigger as its return target. Neither
+              example sets a return target on Dialog. The <code>onExited</code> callback on Dialog
+              only reports the result.
             </p>
             <p>
-              Classic Menu restores focus when it starts closing. In this example, that lets Dialog
-              save the menu trigger as its return target. The <code>finalFocus</code> prop on
-              Menu2Popup changes the return target, not when focus returns.
+              The controls at the top of this page do not change this comparison, except for the
+              focus ring setting.
             </p>
-            <p>
-              The Menu2 example sets a return target on Dialog. It uses{' '}
-              <code>disableRestoreFocus</code> and focuses the menu trigger from the{' '}
-              <code>slotProps.transition.onExited</code> callback on Dialog. Keep the trigger
-              mounted and enabled until the dialog closes.
-            </p>
-            <p>
-              Clear the checkbox to test Menu2 without this workaround. Dialog then tries to return
-              focus to the closed menu item, and focus moves to the page body. Classic Menu does not
-              use the workaround here; its callback only reports the result. The controls at the top
-              of this page do not change this comparison, except for the focus ring setting.
-            </p>
-            <MenuDialogFocusRecipe />
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
+                gap: 3,
+              }}
+            >
+              <MenuOpensDialogRecipe menuType="classic" />
+              <MenuOpensDialogRecipe menuType="menu2" />
+            </Box>
           </section>
           <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
         </Stack>

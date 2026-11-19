@@ -22,7 +22,9 @@
       "description": "Whether to disable the popup from tracking layout shifts of its positioning anchor."
     },
     "elevation": { "description": "The elevation of the menu surface." },
-    "finalFocus": { "description": "Determines the element to focus when the menu is closed." },
+    "finalFocus": {
+      "description": "Determines the element to focus when the menu is closed. A ref or function target gets focus only when focus is on the page body or in the menu tree."
+    },
     "keepMounted": {
       "description": "Whether to keep the portal mounted in the DOM while the popup is hidden."
     },

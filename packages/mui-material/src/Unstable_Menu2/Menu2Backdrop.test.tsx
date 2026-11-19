@@ -18,17 +18,19 @@ const CustomBackdrop = React.forwardRef<
 describe('Menu2 backdrop opt-in', () => {
   const { render } = createRenderer();
 
-  it('does not render a visual backdrop without slot configuration', () => {
-    const { baseElement } = render(
-      <Menu2 defaultOpen modal={false}>
-        <Menu2Popup anchor={document.body}>
-          <Menu2Item>Profile</Menu2Item>
-        </Menu2Popup>
-      </Menu2>,
-    );
+  [false, true].forEach((modal) => {
+    it(`does not render a visual backdrop without slot configuration when modal is ${modal}`, () => {
+      const { baseElement } = render(
+        <Menu2 defaultOpen modal={modal}>
+          <Menu2Popup anchor={document.body}>
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
+        </Menu2>,
+      );
 
-    expect(screen.getByRole('menu')).not.to.equal(null);
-    expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+      expect(screen.getByRole('menu')).not.to.equal(null);
+      expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null);
+    });
   });
 
   it('does not resolve backdrop slot props when the slot is null', () => {

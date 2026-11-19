@@ -22,7 +22,9 @@
       "description": "Whether to disable the popup from tracking layout shifts of its positioning anchor."
     },
     "elevation": { "description": "The elevation of the menu surface." },
-    "finalFocus": { "description": "Determines the element to focus when the menu is closed." },
+    "finalFocus": {
+      "description": "Determines the element to focus when the menu is closed. A ref or function target gets focus only when focus is on the page body or in the menu tree."
+    },
     "keepMounted": {
       "description": "Whether to keep the portal mounted in the DOM while the popup is hidden."
     },
@@ -45,7 +47,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "backdrop": "The component used for the backdrop beneath the menu. A modal menu renders it to block outside clicks. Providing this slot or <code>slotProps.backdrop</code> also renders it. Set to <code>null</code> to omit it, including when configured in the theme. A modal menu then allows outside clicks and keeps the scroll lock.",
+    "backdrop": "The component used for the visual backdrop beneath the menu. It renders only when you set this slot or <code>slotProps.backdrop</code>. By default, it is transparent and lets clicks through. Set to <code>null</code> to remove it, including when the theme sets it. This removes only the visual layer: a modal menu still blocks outside clicks.",
     "list": "The component used for the presentational list wrapper.",
     "portal": "The component used for the portal element, which contains the menu and its backdrops.",
     "positioner": "The component used to position the menu surface.",

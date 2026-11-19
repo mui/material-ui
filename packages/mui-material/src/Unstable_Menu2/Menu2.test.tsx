@@ -942,7 +942,7 @@ describe('<Menu2 />', () => {
     expect(window.getComputedStyle(popup).transitionProperty).to.equal('none');
   });
 
-  it('renders a transparent backdrop that blocks outside clicks', async () => {
+  it('renders a transparent visual backdrop that lets clicks through', async () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
@@ -956,10 +956,10 @@ describe('<Menu2 />', () => {
 
     const backdrop = await screen.findByTestId('backdrop');
     expect(backdrop).to.have.class(menu2PopupClasses.backdrop);
-    // The layer is transparent. A modal menu uses it to block outside clicks.
+    // A modal menu blocks outside clicks with a separate internal layer.
     const { backgroundColor, pointerEvents } = window.getComputedStyle(backdrop);
     expect(backgroundColor).to.equal('rgba(0, 0, 0, 0)');
-    expect(pointerEvents).to.equal('auto');
+    expect(pointerEvents).to.equal('none');
   });
 
   it('supports dimming through the backdrop slot', async () => {
@@ -982,7 +982,7 @@ describe('<Menu2 />', () => {
     expect(window.getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
   });
 
-  it.skipIf(isJsdom())('puts the backdrop above an element at the app bar level', async () => {
+  it.skipIf(isJsdom())('puts the click blocker above an element at the app bar level', async () => {
     const { user } = render(
       <React.Fragment>
         <div
@@ -997,11 +997,9 @@ describe('<Menu2 />', () => {
           }}
         />
         <div style={{ paddingTop: 96 }}>
-          <Menu2 modal={false}>
+          <Menu2>
             <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-            <Menu2Popup
-              slotProps={{ backdrop: { 'data-testid': 'backdrop', sx: { pointerEvents: 'auto' } } }}
-            >
+            <Menu2Popup>
               <Menu2Item>Profile</Menu2Item>
             </Menu2Popup>
           </Menu2>
@@ -1013,8 +1011,12 @@ describe('<Menu2 />', () => {
     await screen.findByRole('menu');
 
     // The classic backdrop sits in the Modal root, so it covers an AppBar.
-    expect(document.elementFromPoint(10, 10)).to.equal(screen.getByTestId('backdrop'));
-    // The menu stays above its own backdrop.
+    // The blocker has no class or slot, so find it by hit testing.
+    const blocker = document.elementFromPoint(10, 10)!;
+    expect(blocker).not.to.equal(screen.getByTestId('bar'));
+    expect(blocker).to.have.attribute('data-base-ui-inert', '');
+    expect(blocker.parentElement).to.have.class(menu2PopupClasses.portal);
+    // The menu stays above the blocker.
     const item = screen.getByRole('menuitem', { name: 'Profile' }).getBoundingClientRect();
     expect(
       screen
@@ -1785,6 +1787,10 @@ describe('<Menu2 />', () => {
       const area = screen.getByTestId('context-area');
       fireEvent.contextMenu(area, { clientX: 100, clientY: 100 });
       await screen.findByRole('menuitem', { name: 'Copy' });
+      // finalFocus does not take focus that is still outside the menu at close.
+      await waitFor(() => {
+        expect(screen.getByRole('menu').contains(document.activeElement)).to.equal(true);
+      });
 
       await user.keyboard('{Escape}');
 

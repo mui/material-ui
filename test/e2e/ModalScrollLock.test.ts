@@ -48,7 +48,7 @@ describe('Modal native scroll lock', () => {
       const box = (await page.getByRole('button', { name, exact: true }).boundingBox())!;
       return [box.x + box.width / 2, box.y + box.height / 2] as const;
     };
-    // Real mouse input. The open menu's backdrop covers the trigger and the page.
+    // Real mouse input. The open menu's click blocker covers the trigger and the page.
     const trigger = await center('Open menu');
     const outside = await center('Open dialog');
 

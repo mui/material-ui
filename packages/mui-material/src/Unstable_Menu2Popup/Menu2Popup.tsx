@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import type { SxProps } from '@mui/system';
 import { styled } from '../zero-styled';
 import type { Theme } from '../styles';
@@ -14,6 +15,7 @@ import type {
 } from '../Unstable_Menu2/menu2PopupShared';
 import { Menu2PopupBase } from '../Unstable_Menu2/menu2PopupShared';
 import Menu2ModalContext from '../Unstable_Menu2/Menu2ModalContext';
+import Menu2FinalFocusContext from '../Unstable_Menu2/Menu2FinalFocusContext';
 import {
   Menu2ListBase,
   Menu2PortalBase,
@@ -111,6 +113,7 @@ export interface Menu2PopupProps extends Omit<
   keepMounted?: Menu2PopupPublicProps['keepMounted'] | undefined;
   /**
    * Determines the element to focus when the menu is closed.
+   * A ref or function target gets focus only when focus is on the page body or in the menu tree.
    */
   finalFocus?: Menu2PopupPublicProps['finalFocus'] | undefined;
   /**
@@ -158,9 +161,9 @@ export interface Menu2PopupSlots {
    */
   positioner?: React.ElementType | undefined;
   /**
-   * The component used for the backdrop beneath the menu.
-   * A modal menu renders it to block outside clicks. Providing this slot or `slotProps.backdrop` also renders it.
-   * Set to `null` to omit it, including when configured in the theme. A modal menu then allows outside clicks and keeps the scroll lock.
+   * The component used for the visual backdrop beneath the menu.
+   * It renders only when you set this slot or `slotProps.backdrop`. By default, it is transparent and lets clicks through.
+   * Set to `null` to remove it, including when the theme sets it. This removes only the visual layer: a modal menu still blocks outside clicks.
    * @default 'div'
    */
   backdrop?: React.ElementType | null | undefined;
@@ -217,7 +220,7 @@ const Menu2PopupBackdrop = styled('div', {
   inset: 0,
   // The portal controls page stacking. The positioner sits above this layer.
   zIndex: 0,
-  // Transparent and click-through. A modal menu makes it block clicks while open.
+  // Transparent and click-through. A modal menu blocks clicks with a separate internal layer.
   backgroundColor: 'transparent',
   pointerEvents: 'none',
   WebkitTapHighlightColor: 'transparent',
@@ -244,6 +247,15 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
   const props = useDefaultProps({ props: inProps, name: 'MuiMenu2Popup' });
   const { children, ...other } = props;
   const modal = React.useContext(Menu2ModalContext);
+  const customFinalFocusRef = React.useContext(Menu2FinalFocusContext);
+  // A custom `finalFocus` stops the root from focusing the trigger on an item press.
+  // `true` keeps the default target.
+  const customFinalFocus = props.finalFocus !== undefined && props.finalFocus !== true;
+  useEnhancedEffect(() => {
+    if (customFinalFocusRef) {
+      customFinalFocusRef.current = customFinalFocus;
+    }
+  }, [customFinalFocusRef, customFinalFocus]);
 
   const ownerState: Menu2PopupOwnerState = {
     side: 'bottom',
@@ -375,6 +387,7 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
   elevation: PropTypes.number,
   /**
    * Determines the element to focus when the menu is closed.
+   * A ref or function target gets focus only when focus is on the page body or in the menu tree.
    */
   finalFocus: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,

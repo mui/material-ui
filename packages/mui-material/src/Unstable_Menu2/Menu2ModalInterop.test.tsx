@@ -7,6 +7,7 @@ import * as React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import Dialog from '../Dialog';
+import type { Theme } from '../styles';
 import { createTheme, ThemeProvider } from '../styles';
 import Menu2Item from '../Unstable_Menu2Item';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
@@ -22,12 +23,14 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
     triggerProps,
     onAction,
     onDialogClose,
+    onOpenChangeComplete,
   }: {
     modal?: boolean;
     menuProps?: Partial<Menu2PopupProps>;
     triggerProps?: Pick<Menu2TriggerProps, 'openOnHover' | 'delay'>;
     onAction: () => void;
     onDialogClose: () => void;
+    onOpenChangeComplete?: (open: boolean) => void;
   }) {
     const [open, setOpen] = React.useState(true);
 
@@ -41,7 +44,7 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
         }}
       >
         <div style={{ display: 'flex', gap: 32, padding: 24 }}>
-          <Menu2 modal={modal}>
+          <Menu2 modal={modal} onOpenChangeComplete={onOpenChangeComplete}>
             <Menu2Trigger {...triggerProps} render={<button type="button">Options</button>} />
             <Menu2Popup {...menuProps}>
               {menuProps?.children ?? <Menu2Item>Profile</Menu2Item>}
@@ -170,7 +173,7 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
     expect(onDialogClose).not.toHaveBeenCalled();
   });
 
-  it('closes on a second trigger click through the modal backdrop', async () => {
+  it('closes on a second trigger click through the modal click blocker', async () => {
     const onDialogClose = vi.fn();
     const { user } = render(<TestDialog onAction={vi.fn()} onDialogClose={onDialogClose} />);
     const trigger = screen.getByRole('button', { name: 'Options' });
@@ -215,6 +218,128 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
     await waitFor(() => expect(menu.isConnected).to.equal(false));
     expect(onSelect).toHaveBeenCalledTimes(1);
     expect(onDialogClose).not.toHaveBeenCalled();
+  });
+
+  // Focus on the body during the exit lets the Dialog FocusTrap take it before the menu returns it.
+  [
+    { name: 'Grow', menuProps: undefined },
+    {
+      name: 'a CSS transition',
+      menuProps: {
+        slots: { transition: null },
+        slotProps: {
+          root: {
+            sx: {
+              transition: 'opacity 300ms linear',
+              '&[data-starting-style], &[data-ending-style]': { opacity: 0 },
+            },
+          },
+        },
+      },
+    },
+  ].forEach(({ name, menuProps }: { name: string; menuProps?: Partial<Menu2PopupProps> }) => {
+    it(`returns focus to the trigger after an outside click with ${name}`, async () => {
+      const onDialogClose = vi.fn();
+      const completed = vi.fn();
+      const { user } = render(
+        <TestDialog
+          menuProps={menuProps}
+          onAction={vi.fn()}
+          onDialogClose={onDialogClose}
+          onOpenChangeComplete={completed}
+        />,
+      );
+      const trigger = screen.getByRole('button', { name: 'Options' });
+
+      await user.click(trigger);
+      const menu = await screen.findByRole('menu');
+      // A close during the enter transition can skip the exit.
+      await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
+      expect(menu).toHaveFocus();
+
+      await user.click(getClickTarget({ x: 10, y: 10 }));
+      await waitFor(() => expect(menu.isConnected).to.equal(false), { timeout: 3000 });
+      await waitFor(() => expect(trigger).toHaveFocus());
+      expect(onDialogClose).not.toHaveBeenCalled();
+    });
+  });
+
+  [
+    { name: 'a held outside press', keys: ['[MouseLeft>]', '[/MouseLeft]'] },
+    { name: 'an outside right click', keys: ['[MouseRight>]', '[/MouseRight]'] },
+    { name: 'an outside touch', keys: ['[TouchA>]', '[/TouchA]'] },
+  ].forEach(({ name, keys: [press, release] }) => {
+    it(`returns focus to the trigger after ${name}`, async () => {
+      const completed = vi.fn();
+      const { user } = render(
+        <TestDialog onAction={vi.fn()} onDialogClose={vi.fn()} onOpenChangeComplete={completed} />,
+      );
+      const trigger = screen.getByRole('button', { name: 'Options' });
+
+      await user.click(trigger);
+      const menu = await screen.findByRole('menu');
+      await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
+      expect(menu).toHaveFocus();
+
+      const point = { x: 10, y: 10 };
+      await user.pointer({ keys: press, target: getClickTarget(point) });
+      // Hold the press longer than one 50 ms FocusTrap poll.
+      await act(async () => {
+        await new Promise((resolve) => {
+          setTimeout(resolve, 100);
+        });
+      });
+      // The closed menu's blocker lets the release through.
+      await user.pointer({ keys: release, target: getClickTarget(point) });
+      await waitFor(() => expect(menu.isConnected).to.equal(false), { timeout: 3000 });
+      await waitFor(() => expect(trigger).toHaveFocus());
+    });
+  });
+
+  [false, true].forEach((nested) => {
+    it(`does not activate ${nested ? 'a submenu item' : 'an item'} on Enter after an outside click`, async () => {
+      const onSelect = vi.fn();
+      const completed = vi.fn();
+      const { user } = render(
+        <TestDialog
+          onAction={vi.fn()}
+          onDialogClose={vi.fn()}
+          onOpenChangeComplete={completed}
+          menuProps={{
+            // A long exit, so the Enter press lands before the unmount.
+            transitionDuration: { enter: 0, exit: 1000 },
+            children: nested ? (
+              <Menu2Submenu>
+                <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item onClick={onSelect}>Export</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2Submenu>
+            ) : (
+              <Menu2Item onClick={onSelect}>Profile</Menu2Item>
+            ),
+          }}
+        />,
+      );
+      const trigger = screen.getByRole('button', { name: 'Options' });
+      await act(async () => trigger.focus());
+      await user.keyboard('{Enter}');
+      const menu = await screen.findByRole('menu');
+      if (nested) {
+        await waitFor(() => expect(screen.getByRole('menuitem', { name: 'More' })).toHaveFocus());
+        await user.keyboard('{ArrowRight}');
+      }
+      const item = await screen.findByRole('menuitem', { name: nested ? 'Export' : 'Profile' });
+      await waitFor(() => expect(item).toHaveFocus());
+      await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
+
+      await user.click(getClickTarget({ x: 10, y: 10 }));
+      expect(menu.isConnected).to.equal(true);
+      await user.keyboard('{Enter}');
+      await waitFor(() => expect(screen.queryByRole('menu')).to.equal(null), { timeout: 3000 });
+      expect(onSelect).not.toHaveBeenCalled();
+      await waitFor(() => expect(trigger).toHaveFocus());
+    });
   });
 });
 
@@ -382,21 +507,21 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
 
   function TestMenu({
     modal,
-    nullBackdrop = false,
     openOnHover = false,
     onOutside = () => {},
     onOpenChange,
     onOpenChangeComplete,
     popupSlots,
+    popupProps,
     children,
   }: {
     modal?: boolean;
-    nullBackdrop?: boolean;
     openOnHover?: boolean;
     onOutside?: () => void;
-    onOpenChange?: (open: boolean, details: { reason: string }) => void;
+    onOpenChange?: (open: boolean, details: { reason: string; cancel: () => void }) => void;
     onOpenChangeComplete?: (open: boolean) => void;
     popupSlots?: Menu2PopupProps['slots'];
+    popupProps?: Partial<Menu2PopupProps>;
     children?: React.ReactNode;
   }) {
     return (
@@ -413,7 +538,7 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
             delay={0}
             render={<button type="button">Options</button>}
           />
-          <Menu2Popup slots={nullBackdrop ? { backdrop: null } : popupSlots}>
+          <Menu2Popup slots={popupSlots} {...popupProps}>
             {children ?? <Menu2Item>Profile</Menu2Item>}
           </Menu2Popup>
         </Menu2>
@@ -434,7 +559,15 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
     return document.elementFromPoint(x, y) as HTMLElement;
   }
 
-  const getBackdrops = () => document.querySelectorAll(`.${menu2PopupClasses.backdrop}`);
+  // The modal click blocker has no class or slot, so find it by hit testing.
+  function getBlocker(element: Element) {
+    const target = getClickTarget(element);
+    return target !== element &&
+      target.hasAttribute('data-base-ui-inert') &&
+      target.parentElement!.classList.contains(menu2PopupClasses.portal)
+      ? target
+      : null;
+  }
 
   [
     { name: 'the default transition', popupSlots: undefined },
@@ -458,17 +591,16 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
       const menu = await screen.findByRole('menu');
       expect(trigger).to.have.attribute('aria-expanded', 'true');
       expect(document.body.style.overflow).to.equal('hidden');
-      const blocker = getClickTarget(outside);
-      expect(blocker).to.have.class(menu2PopupClasses.backdrop);
-      expect(blocker).to.have.attribute('data-base-ui-inert', '');
+      const blocker = getBlocker(outside);
+      expect(blocker).not.to.equal(null);
 
-      await user.click(blocker);
+      await user.click(blocker!);
       await waitFor(() => {
         expect(menu.isConnected).to.equal(false);
-        expect(blocker.isConnected).to.equal(false);
+        expect(blocker!.isConnected).to.equal(false);
         expect(onOpenChangeComplete).toHaveBeenCalledWith(false);
       });
-      expect(getBackdrops()).to.have.length(0);
+      expect(getClickTarget(outside)).to.equal(outside);
       expect(trigger).to.have.attribute('aria-expanded', 'false');
       expect(onOutside).not.toHaveBeenCalled();
       expect(document.body.style.overflow).to.equal(initialOverflow);
@@ -487,7 +619,6 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
     const menu = await screen.findByRole('menu');
     expect(document.body.style.overflow).to.equal(initialOverflow);
-    expect(getBackdrops().length).to.equal(0);
     expect(getClickTarget(outside)).to.equal(outside);
 
     await user.click(outside);
@@ -512,17 +643,48 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
     ]);
   });
 
+  it('keeps focus on the item when an outside press close is canceled', async () => {
+    const { user } = render(
+      <TestMenu
+        onOpenChange={(open, details) => {
+          if (details.reason === 'outside-press') {
+            details.cancel();
+          }
+        }}
+      >
+        <Menu2Item>One</Menu2Item>
+        <Menu2Item>Two</Menu2Item>
+        <Menu2Item>Three</Menu2Item>
+      </TestMenu>,
+    );
+    const outside = screen.getByRole('button', { name: 'Outside' });
+
+    await act(async () => screen.getByRole('button', { name: 'Options' }).focus());
+    await user.keyboard('{Enter}');
+    await waitFor(() => expect(screen.getByRole('menuitem', { name: 'One' })).toHaveFocus());
+    await user.keyboard('{ArrowDown}');
+    const two = screen.getByRole('menuitem', { name: 'Two' });
+    expect(two).toHaveFocus();
+
+    await user.click(getBlocker(outside)!);
+    expect(screen.getByRole('menu')).not.to.have.attribute('data-closed');
+    expect(two).toHaveFocus();
+    await user.keyboard('{ArrowDown}');
+    expect(screen.getByRole('menuitem', { name: 'Three' })).toHaveFocus();
+  });
+
   it('does not lock the page or block outside clicks when opened on hover', async () => {
     const initialOverflow = document.body.style.overflow;
     const { user } = render(<TestMenu openOnHover />);
 
     await user.hover(screen.getByRole('button', { name: 'Options' }));
-    await screen.findByRole('menu');
+    const menu = await screen.findByRole('menu');
     expect(document.body.style.overflow).to.equal(initialOverflow);
-    expect(getBackdrops().length).to.equal(0);
+    // Hover safe areas block body hit testing, so check the portal content instead.
+    expect(menu.parentElement!.previousElementSibling).to.equal(null);
   });
 
-  it('keeps one lock and one backdrop for nested menus', async () => {
+  it('keeps one lock and one click blocker for nested menus', async () => {
     const initialOverflow = document.body.style.overflow;
     const { user } = render(
       <TestMenu>
@@ -535,12 +697,16 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
       </TestMenu>,
     );
 
+    const outside = screen.getByRole('button', { name: 'Outside' });
     await user.click(screen.getByRole('button', { name: 'Options' }));
     await screen.findByRole('menu');
+    const blocker = getBlocker(outside);
+    expect(blocker).not.to.equal(null);
     await user.click(screen.getByRole('menuitem', { name: 'More' }));
     const submenuItem = await screen.findByRole('menuitem', { name: 'Export' });
     expect(screen.getAllByRole('menu')).to.have.length(2);
-    expect(getBackdrops().length).to.equal(1);
+    // The submenu adds no layer above the root blocker.
+    expect(getClickTarget(outside)).to.equal(blocker);
     expect(document.body.style.overflow).to.equal('hidden');
 
     await user.keyboard('{Escape}');
@@ -553,22 +719,64 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
     expect(document.body.style.overflow).to.equal(initialOverflow);
   });
 
-  it('keeps the scroll lock and allows outside clicks with a null backdrop slot', async () => {
-    const initialOverflow = document.body.style.overflow;
-    const onOutside = vi.fn();
-    const { user } = render(<TestMenu nullBackdrop onOutside={onOutside} />);
-    const outside = screen.getByRole('button', { name: 'Outside' });
+  const PropsDroppingBackdrop = React.forwardRef<HTMLDivElement>(
+    function PropsDroppingBackdrop(props, ref) {
+      return <div ref={ref} />;
+    },
+  );
 
-    await user.click(screen.getByRole('button', { name: 'Options' }));
-    const menu = await screen.findByRole('menu');
-    expect(document.body.style.overflow).to.equal('hidden');
-    expect(getBackdrops().length).to.equal(0);
-    expect(getClickTarget(outside)).to.equal(outside);
+  // The backdrop slot is visual only. No configuration of it removes the click blocker.
+  const backdropConfigurations: Array<{
+    name: string;
+    theme?: Theme;
+    popupProps?: Partial<Menu2PopupProps>;
+  }> = [
+    { name: 'a null backdrop slot', popupProps: { slots: { backdrop: null } } },
+    {
+      name: 'a null backdrop slot in the theme',
+      theme: createTheme({
+        components: { MuiMenu2Popup: { defaultProps: { slots: { backdrop: null } } } },
+      }),
+    },
+    {
+      name: 'a click-through backdrop style',
+      popupProps: { slotProps: { backdrop: { style: { pointerEvents: 'none' } } } },
+    },
+    {
+      name: 'a hidden backdrop in the theme',
+      theme: createTheme({
+        components: { MuiMenu2Popup: { styleOverrides: { backdrop: { display: 'none' } } } },
+      }),
+      popupProps: { slotProps: { backdrop: {} } },
+    },
+    {
+      name: 'a custom backdrop that drops its props',
+      popupProps: { slots: { backdrop: PropsDroppingBackdrop } },
+    },
+  ];
 
-    await user.click(outside);
-    await waitFor(() => expect(menu.isConnected).to.equal(false));
-    expect(onOutside).toHaveBeenCalledTimes(1);
-    expect(document.body.style.overflow).to.equal(initialOverflow);
+  backdropConfigurations.forEach(({ name, theme = createTheme(), popupProps }) => {
+    it(`keeps the scroll lock and blocks the first outside click with ${name}`, async () => {
+      const initialOverflow = document.body.style.overflow;
+      const onOutside = vi.fn();
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <TestMenu onOutside={onOutside} popupProps={popupProps} />
+        </ThemeProvider>,
+      );
+      const outside = screen.getByRole('button', { name: 'Outside' });
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      const menu = await screen.findByRole('menu');
+      expect(document.body.style.overflow).to.equal('hidden');
+      const blocker = getBlocker(outside);
+      expect(blocker).not.to.equal(null);
+
+      await user.click(blocker!);
+      await waitFor(() => expect(menu.isConnected).to.equal(false));
+      expect(onOutside).not.toHaveBeenCalled();
+      expect(document.body.style.overflow).to.equal(initialOverflow);
+    });
   });
 
   it('locks the page when opened by touch', async () => {
