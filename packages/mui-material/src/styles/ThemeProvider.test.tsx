@@ -434,6 +434,53 @@ describe('ThemeProvider', () => {
         );
       });
 
+      it('gives portaled elements one class with the variables of the closest theme', () => {
+        const greenTheme = createTheme({
+          cssVariables: true,
+          palette: { primary: { main: '#00ff00' } },
+        });
+        render(
+          <ThemeProvider theme={blueTheme}>
+            <ThemeProvider theme={redTheme}>
+              <ThemeProvider theme={greenTheme}>
+                <Popper open anchorEl={document.body} data-testid="popper">
+                  popper
+                </Popper>
+              </ThemeProvider>
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        const popper = screen.getByTestId('popper');
+        const scopeClasses = Array.from(popper.classList).filter((name) =>
+          name.startsWith('mui-theme-'),
+        );
+        expect(scopeClasses.length).to.equal(1);
+        if (!isJsdom()) {
+          expect(getVar(popper, '--mui-palette-primary-main')).to.equal('#00ff00');
+        }
+      });
+
+      it.skipIf(isJsdom())('gives portaled elements the variables of a chain', () => {
+        const greenSecondaryTheme = createTheme({
+          cssVariables: true,
+          palette: { primary: { main: '#ff0000' }, secondary: { main: '#00ff00' } },
+        });
+        render(
+          <ThemeProvider theme={blueTheme}>
+            <ThemeProvider theme={redTheme}>
+              <ThemeProvider theme={greenSecondaryTheme}>
+                <Dialog open>
+                  <div data-testid="dialog-content" />
+                </Dialog>
+              </ThemeProvider>
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        const content = screen.getByTestId('dialog-content');
+        expect(getVar(content, '--mui-palette-primary-main')).to.equal('#ff0000');
+        expect(getVar(content, '--mui-palette-secondary-main')).to.equal('#00ff00');
+      });
+
       it.skipIf(isJsdom())('follows the outer color scheme', () => {
         const outer = createTheme({
           cssVariables: { colorSchemeSelector: 'class' },
@@ -780,6 +827,40 @@ describe('ThemeProvider', () => {
         );
         expect(readKeys.length).to.be.greaterThan(0);
         expect(readKeys.every((key) => key.startsWith('widget-'))).to.equal(true);
+      });
+
+      it.skipIf(isJsdom())('applies its theme and mode to portaled elements', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        const inner = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: {
+            light: { palette: { primary: { main: '#ff0000' } } },
+            dark: { palette: { primary: { main: '#00ff00' } } },
+          },
+        });
+        render(
+          <ThemeProvider theme={theme} defaultMode="light" storageManager={null}>
+            <ThemeProvider theme={theme} isolated defaultMode="dark">
+              <Dialog open>
+                <div data-testid="section-dialog" />
+              </Dialog>
+              <ThemeProvider theme={inner}>
+                <Dialog open>
+                  <div data-testid="nested-dialog" />
+                </Dialog>
+              </ThemeProvider>
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        expect(
+          getVar(screen.getByTestId('section-dialog'), '--mui-palette-background-default'),
+        ).to.equal('#121212');
+        expect(getVar(screen.getByTestId('nested-dialog'), '--mui-palette-primary-main')).to.equal(
+          '#00ff00',
+        );
       });
 
       it('has its own mode when it is nested', () => {

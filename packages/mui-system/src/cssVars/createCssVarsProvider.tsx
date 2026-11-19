@@ -260,6 +260,12 @@ export default function createCssVarsProvider<
     colorSchemeRule: string | undefined;
     // How many isolated providers it's nested in, the fallback for its id on React 17.
     depth: number;
+    isolated: boolean;
+    // The variables that portaled elements get from `:root`: the top-level theme's, none for an isolated provider.
+    generateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined;
+    // The marker that portaled elements need to follow an isolated provider's color scheme.
+    markerProps: Record<string, string> | undefined;
+    prefix: string | undefined;
   }
   const OwnerContext = React.createContext<Owner | undefined>(undefined);
 
@@ -709,19 +715,75 @@ export default function createCssVarsProvider<
       }
       return result;
     }, [isolated, followsMedia, isolatedId, colorScheme]);
+    // Portaled elements aren't under the provider's element, so they get one class with the variables that the
+    // closest theme changes compared to the ones they get from `:root`: the top-level theme's, or none under an
+    // isolated provider. One class, instead of one per provider, so the closest theme always wins.
+    const sharesOwnerPrefix = !!owner && owner.prefix === cssVarPrefix;
+    const portalScope = React.useMemo(() => {
+      if (!nested || !canGenerateStyleSheet || !generateCssVarsByColorScheme || !sharesOwnerPrefix) {
+        return scope;
+      }
+      if (owner!.isolated) {
+        return getIsolatedStyleSheets(
+          generateCssVarsByColorScheme,
+          cssVarPrefix,
+          defaultLightColorScheme,
+          defaultDarkColorScheme,
+        );
+      }
+      return getScopedStyleSheets(
+        generateCssVarsByColorScheme,
+        owner!.generateCssVarsByColorScheme || noCssVars,
+        colorSchemeRule,
+        cssVarPrefix,
+      );
+    }, [
+      nested,
+      canGenerateStyleSheet,
+      generateCssVarsByColorScheme,
+      sharesOwnerPrefix,
+      owner,
+      scope,
+      cssVarPrefix,
+      defaultLightColorScheme,
+      defaultDarkColorScheme,
+      colorSchemeRule,
+    ]);
+    const portalClassName = portalScope?.className;
     const scopeProps = React.useMemo(() => {
       if (isolated) {
         return { ...markerProps, className: scopeClassName };
       }
-      if (nested && scopeClassName) {
-        // Portaled elements aren't under the outer scopes' elements either, so they get them too.
-        return { ...upperScope, className: clsx(upperScope?.className, scopeClassName) };
+      if (!nested) {
+        return undefined;
       }
-      return nested ? upperScope : undefined;
-    }, [isolated, nested, markerProps, scopeClassName, upperScope]);
+      if (sharesOwnerPrefix) {
+        return { ...owner!.markerProps, className: portalClassName };
+      }
+      // A theme with another prefix doesn't share any variable with the outer ones, so its class goes with theirs.
+      return scopeClassName
+        ? { ...upperScope, className: clsx(upperScope?.className, scopeClassName) }
+        : upperScope;
+    }, [
+      isolated,
+      nested,
+      sharesOwnerPrefix,
+      owner,
+      markerProps,
+      scopeClassName,
+      portalClassName,
+      upperScope,
+    ]);
     const ownerValue = React.useMemo(
-      () => ({ colorSchemeRule, depth: isolated ? (owner?.depth ?? 0) + 1 : 0 }),
-      [colorSchemeRule, isolated, owner],
+      () => ({
+        colorSchemeRule,
+        depth: isolated ? (owner?.depth ?? 0) + 1 : 0,
+        isolated,
+        generateCssVarsByColorScheme: isolated ? undefined : generateCssVarsByColorScheme,
+        markerProps,
+        prefix: cssVarPrefix,
+      }),
+      [colorSchemeRule, isolated, owner, generateCssVarsByColorScheme, markerProps, cssVarPrefix],
     );
 
     let shouldGenerateStyleSheet = true;
@@ -830,6 +892,9 @@ export default function createCssVarsProvider<
           <GlobalStyles styles={{ [`.${defaultClassName}`]: { display: 'contents' } }} />
         )}
         {scope && <GlobalStyles styles={scope.styles} />}
+        {portalScope && portalClassName !== scopeClassName && (
+          <GlobalStyles styles={portalScope.styles} />
+        )}
       </React.Fragment>
     );
 
