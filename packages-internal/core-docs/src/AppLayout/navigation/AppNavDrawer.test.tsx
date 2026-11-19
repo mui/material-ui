@@ -151,7 +151,7 @@ describe.skipIf(!isJsdom())('AppNavDrawer scroll restoration', () => {
 
     expect(layoutReads.mock.calls[0][0]).toBeGreaterThan(0);
 
-    const link = screen.getByRole('link', { name: 'Example' });
+    const link = screen.getByRole('link', { name: 'Example', hidden: true });
     const scroller = link.closest('ul')!.parentElement!.parentElement!;
     scroller.scrollTop = SAVED_SCROLL_TOP;
     unmount();
@@ -160,8 +160,8 @@ describe.skipIf(!isJsdom())('AppNavDrawer scroll restoration', () => {
 
     render(drawer());
 
-    const restored = screen.getByRole('link', { name: 'Example' }).closest('ul')!.parentElement!
-      .parentElement!;
+    const restored = screen.getByRole('link', { name: 'Example', hidden: true }).closest('ul')!
+      .parentElement!.parentElement!;
     expect(restored.scrollTop).toBe(SAVED_SCROLL_TOP);
     expect(measure).toHaveBeenCalled();
     expect(scroll).toHaveBeenCalled();
