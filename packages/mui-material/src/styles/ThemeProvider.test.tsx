@@ -13,7 +13,7 @@ import Dialog from '@mui/material/Dialog';
 import Popper from '@mui/material/Popper';
 
 describe('ThemeProvider', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
   let originalMatchmedia: typeof window.matchMedia;
   let storage: Record<string, string> = {};
 
@@ -504,7 +504,7 @@ describe('ThemeProvider', () => {
         expect(getComputedStyle(screen.getByTestId('widget')).colorScheme).to.equal('dark');
       });
 
-      it('adds the color scheme attribute to its element', () => {
+      it('marks its element with its own id and color scheme', () => {
         const theme = createTheme({
           cssVariables: { colorSchemeSelector: 'data' },
           colorSchemes: { light: true, dark: true },
@@ -514,8 +514,207 @@ describe('ThemeProvider', () => {
             <div data-testid="widget" />
           </ThemeProvider>,
         );
-        expect(screen.getByTestId('widget').parentElement).to.have.attribute('data-dark', '');
+        const element = screen.getByTestId('widget').parentElement!;
+        expect(element).to.have.attribute('data-mui-isolated');
+        expect(element).to.have.attribute('data-mui-scheme', 'dark');
+        expect(element).not.to.have.attribute('data-dark');
         expect(document.documentElement).not.to.have.attribute('data-dark');
+      });
+
+      it('renders its marker on the server when the mode is not stored', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        const { container } = renderToString(
+          <ThemeProvider theme={theme} isolated defaultMode="dark">
+            <div data-testid="widget" />
+          </ThemeProvider>,
+        );
+        const element = container.querySelector('[data-testid="widget"]')!.parentElement!;
+        expect(element).to.have.attribute('data-mui-scheme', 'dark');
+        expect(container.querySelector('script')).to.equal(null);
+      });
+
+      it('follows the media query in system mode without a stored mode', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        let selector = '';
+        function Selector() {
+          selector = useTheme().getColorSchemeSelector('dark');
+          return null;
+        }
+        render(
+          <ThemeProvider theme={theme} isolated>
+            <Selector />
+          </ThemeProvider>,
+        );
+        expect(selector).to.equal('@media (prefers-color-scheme: dark)');
+        expect(document.querySelector('[data-mui-isolated]')).to.equal(null);
+      });
+
+      it('gives its nested providers a color scheme selector on its marker', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        const selectors: string[] = [];
+        function Selector() {
+          selectors.push(useTheme().getColorSchemeSelector('dark'));
+          return null;
+        }
+        render(
+          <ThemeProvider theme={theme} isolated defaultMode="light">
+            <Selector />
+            <ThemeProvider theme={redTheme}>
+              <Selector />
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        const id = document.querySelector('[data-mui-isolated]')!.getAttribute('data-mui-isolated');
+        const marker = `[data-mui-isolated="${id}"][data-mui-scheme="dark"]`;
+        expect(selectors[0]).to.equal(`&:where(${marker}, ${marker} *)`);
+        expect(selectors[1]).to.equal(selectors[0]);
+      });
+
+      it('renders a script that sets the stored mode before hydration', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        const element = (
+          <ThemeProvider
+            theme={theme}
+            isolated
+            defaultMode="light"
+            modeStorageKey="widget-mode"
+            colorSchemeStorageKey="widget-color-scheme"
+          >
+            <div data-testid="widget" />
+          </ThemeProvider>
+        );
+        const storage: Record<string, string> = { 'widget-mode': 'dark' };
+        const localStorage = {
+          getItem: (key: string) => storage[key] ?? null,
+          setItem: (key: string, value: string) => {
+            storage[key] = value;
+          },
+        };
+        const { container, hydrate } = renderToString(element);
+        const widget = container.querySelector('[data-testid="widget"]')!.parentElement!;
+        const script = widget.querySelector('script')!;
+        expect(widget).not.to.have.attribute('data-mui-scheme');
+        // Runs the script with the element as `document.currentScript`, as the browser does while it parses the page.
+        // eslint-disable-next-line no-new-func
+        new Function('document', 'localStorage', script.textContent!)(
+          { currentScript: script },
+          localStorage,
+        );
+        expect(widget).to.have.attribute('data-mui-scheme', 'dark');
+        const original = Object.getOwnPropertyDescriptor(window, 'localStorage');
+        Object.defineProperty(window, 'localStorage', { value: localStorage, configurable: true });
+        try {
+          hydrate();
+        } finally {
+          if (original) {
+            Object.defineProperty(window, 'localStorage', original);
+          }
+        }
+        expect(widget).to.have.attribute('data-mui-scheme', 'dark');
+      });
+
+      it.skipIf(isJsdom())('keeps the color scheme of the page out of its nested providers', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        const inner = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: {
+            light: { palette: { primary: { main: '#ff0000' } } },
+            dark: { palette: { primary: { main: '#00ff00' } } },
+          },
+        });
+        render(
+          <ThemeProvider theme={theme} defaultMode="dark" storageManager={null}>
+            <ThemeProvider theme={theme} isolated defaultMode="light">
+              <ThemeProvider theme={inner}>
+                <div data-testid="inner" />
+              </ThemeProvider>
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        expect(document.documentElement.classList.contains('dark')).to.equal(true);
+        expect(getVar(screen.getByTestId('inner'), '--mui-palette-primary-main')).to.equal(
+          '#ff0000',
+        );
+      });
+
+      it.skipIf(isJsdom())('keeps the dark styles of the page out of a light section', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: ({ theme: buttonTheme }) =>
+                  buttonTheme.applyStyles('dark', { outlineColor: 'rgb(0, 255, 0)' }),
+              },
+            },
+          },
+        });
+        render(
+          <ThemeProvider theme={theme} defaultMode="dark" storageManager={null}>
+            <Button data-testid="page">Page</Button>
+            <ThemeProvider theme={theme} isolated defaultMode="light">
+              <Button data-testid="section">Section</Button>
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        expect(getComputedStyle(screen.getByTestId('page')).outlineColor).to.equal(
+          'rgb(0, 255, 0)',
+        );
+        expect(getComputedStyle(screen.getByTestId('section')).outlineColor).not.to.equal(
+          'rgb(0, 255, 0)',
+        );
+      });
+
+      it.skipIf(isJsdom())('has its own mode under the media selector', () => {
+        const theme = createTheme({
+          colorSchemes: { light: true, dark: true },
+          cssVariables: true,
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: ({ theme: buttonTheme }) =>
+                  buttonTheme.applyStyles('dark', { outlineColor: 'rgb(0, 255, 0)' }),
+              },
+            },
+          },
+        });
+        expect(theme.colorSchemeSelector).to.equal('media');
+        function Toggle() {
+          const { setMode } = useColorScheme();
+          return (
+            <button type="button" data-testid="toggle" onClick={() => setMode('light')}>
+              light
+            </button>
+          );
+        }
+        render(
+          <ThemeProvider theme={theme} isolated defaultMode="dark">
+            <Button data-testid="section">Section</Button>
+            <Toggle />
+          </ThemeProvider>,
+        );
+        const section = screen.getByTestId('section');
+        expect(getVar(section, '--mui-palette-background-default')).to.equal('#121212');
+        expect(getComputedStyle(section).outlineColor).to.equal('rgb(0, 255, 0)');
+        fireEvent.click(screen.getByTestId('toggle'));
+        expect(getVar(section, '--mui-palette-background-default')).to.equal('#fff');
+        expect(getComputedStyle(section).outlineColor).not.to.equal('rgb(0, 255, 0)');
       });
 
       it('only uses the storage for an isolated provider with storage keys', () => {
@@ -612,7 +811,10 @@ describe('ThemeProvider', () => {
             </ThemeProvider>,
           ),
         ).toWarnDev('MUI: The `disableNestedContext` prop is deprecated. Use `isolated` instead.');
-        expect(screen.getByTestId('section').parentElement).to.have.attribute('data-dark', '');
+        expect(screen.getByTestId('section').parentElement).to.have.attribute(
+          'data-mui-scheme',
+          'dark',
+        );
         expect(document.documentElement).not.to.have.attribute('data-dark');
       });
 
