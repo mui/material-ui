@@ -28,8 +28,13 @@ jobs:
       contents: write # push the fix branch (publish job)
       pull-requests: write # open the draft PR (publish job)
       issues: write # tracking issue report (publish job)
-    uses: mui/mui-public/.github/workflows/claude-flake-fix.yml@403aa0af96509c1caa250d62814d30a1dc32839c # master
+    uses: mui/mui-public/.github/workflows/claude-flake-fix-workflow.yml@45a1c506a5ffb59e938aea61647ccb4a8dc4f362 # master
     with:
       dry-run: ${{ inputs.dry-run || false }}
       model: ${{ inputs.model }} # blank falls through to mui-public's central default
       debug: true # always surface the agent's full output in the run log
+      circleci-token-environment: flake-fix # master-gated environment holding CIRCLECI_TOKEN
+    secrets:
+      # The caller must pass the secret across the boundary. It resolves to the environment's
+      # CIRCLECI_TOKEN because the fetch job declares that environment.
+      circleci-token: ${{ secrets.CIRCLECI_TOKEN }}
