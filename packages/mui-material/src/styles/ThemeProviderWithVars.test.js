@@ -1,6 +1,6 @@
 import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
-import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, isJsdom, reactMajor } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import { useTheme, ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
@@ -9,6 +9,8 @@ describe('[Material UI] ThemeProviderWithVars', () => {
 
   let originalMatchmedia;
   const { render } = createRenderer();
+  // StrictMode runs mount effects twice on React 18+ only.
+  const mountEffectRuns = reactMajor >= 18 ? 2 : 1;
   let storage = {};
 
   beforeEach(() => {
@@ -462,11 +464,11 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const view = render(<App />);
 
-    expect(view.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`${mountEffectRuns} light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(view.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`${mountEffectRuns} light`);
   });
 
   it('palette mode should change if not using CSS variables', () => {
@@ -497,12 +499,14 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const view = render(<App />);
 
-    expect(view.container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
+    expect(view.container).to.have.text(
+      `${mountEffectRuns} light ${createTheme().palette.primary.main}`,
+    );
 
     fireEvent.click(screen.getByRole('button'));
 
     expect(view.container).to.have.text(
-      `3 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
+      `${mountEffectRuns + 1} dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
     );
   });
 
@@ -534,10 +538,10 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const view = render(<App />);
 
-    expect(view.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`${mountEffectRuns} light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(view.container).to.have.text(`3 dark`);
+    expect(view.container).to.have.text(`${mountEffectRuns + 1} dark`);
   });
 });
