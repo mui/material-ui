@@ -240,10 +240,12 @@ This can't be turned off.
 Inside the layer, Material UI's styles keep the v9 precedence.
 
 CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles, whatever its specificity.
-To keep a reset below Material UI's styles, put it in a layer declared before `mui`:
+To keep a reset below Material UI's styles, put it in a layer declared before `mui`, and import the CSS that you can't edit into that layer:
 
 ```css
 @layer reset, mui;
+
+@import url('normalize.css') layer(reset);
 
 @layer reset {
   button {
