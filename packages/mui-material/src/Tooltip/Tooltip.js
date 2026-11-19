@@ -302,6 +302,58 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
+  // React derives `onMouseLeave` from `mouseout` events. When the element under the pointer is
+  // removed from the DOM (e.g. an icon inside the trigger swapped on hover or open), browsers
+  // don't dispatch `mouseout` for it, so React never fires `onMouseLeave` on the trigger and the
+  // tooltip would stay open. While the pointer is over the trigger or the interactive popper, we
+  // listen to `mouseover` on the document: one that wasn't handled by the trigger or the popper
+  // means the pointer is somewhere else. https://github.com/mui/material-ui/issues/47073
+  const hoverTrackingRef = React.useRef(null);
+
+  const handleDocumentMouseOver = useEventCallback((nativeEvent) => {
+    if (nativeEvent === hoverTrackingRef.current?.lastEvent) {
+      return;
+    }
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    handleMouseLeave(nativeEvent);
+  });
+
+  const stopHoverTracking = useEventCallback(() => {
+    const tracking = hoverTrackingRef.current;
+    if (tracking) {
+      tracking.doc.removeEventListener('mouseover', handleDocumentMouseOver);
+      hoverTrackingRef.current = null;
+    }
+  });
+
+  const startHoverTracking = (event) => {
+    const nativeEvent = event.nativeEvent ?? event;
+    if (hoverTrackingRef.current) {
+      hoverTrackingRef.current.lastEvent = nativeEvent;
+      return;
+    }
+    const doc = event.currentTarget?.ownerDocument ?? document;
+    doc.addEventListener('mouseover', handleDocumentMouseOver);
+    hoverTrackingRef.current = { doc, lastEvent: nativeEvent };
+  };
+
+  // Tracking starts on the first hover, before the tooltip is open, so that a pending open can
+  // be cancelled too. Once the tooltip is closed (by any route) or unmounted, stop listening.
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+    return stopHoverTracking;
+  }, [open, stopHoverTracking]);
+
+  React.useEffect(() => {
+    if (disableHoverListener) {
+      stopHoverTracking();
+    }
+  }, [disableHoverListener, stopHoverTracking]);
+
+  React.useEffect(() => stopHoverTracking, [stopHoverTracking]);
+
   const handleOpen = (event) => {
     hystersisTimer.clear();
     hystersisOpen = true;
@@ -340,6 +392,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleMouseOver = (event) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
+    }
+
+    if (event.type === 'mouseover') {
+      startHoverTracking(event);
     }
 
     // Remove the title ahead of time.
@@ -386,6 +442,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleMouseLeave = (event) => {
+    stopHoverTracking();
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
       handleClose(event);

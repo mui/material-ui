@@ -15,6 +15,7 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
@@ -849,6 +850,383 @@ describe('<Tooltip />', () => {
       fireEvent.mouseOver(screen.getByRole('tooltip'));
 
       expect(handleMouseOver.callCount).to.equal(0);
+    });
+  });
+
+  // https://github.com/mui/material-ui/issues/47073
+  // When the element under the pointer is removed (e.g. an icon swapped on hover or open),
+  // browsers don't dispatch `mouseout` for it, so React never fires `onMouseLeave`.
+  // These tests dispatch the event sequences recorded with real pointer input:
+  // Chromium sends `mouseover` on the new target with the trigger as `relatedTarget`,
+  // WebKit sends it with the removed node as `relatedTarget`.
+  describe('hovered trigger content is replaced', () => {
+    function FilledIcon() {
+      return <svg data-testid="filled-icon" />;
+    }
+    function OutlinedIcon() {
+      return <svg data-testid="outlined-icon" />;
+    }
+
+    function HoverSwapTrigger(props) {
+      const [hovered, setHovered] = React.useState(false);
+      return (
+        <React.Fragment>
+          <Tooltip title="Hello World" slotProps={{ transition: { timeout: 0 } }} {...props}>
+            <IconButton onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+              {hovered ? <FilledIcon /> : <OutlinedIcon />}
+            </IconButton>
+          </Tooltip>
+          <div data-testid="outside" />
+        </React.Fragment>
+      );
+    }
+
+    it('closes when the pointer leaves without a mouseout (Chromium)', () => {
+      render(<HoverSwapTrigger enterDelay={100} />);
+      const button = screen.getByRole('button');
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      // The hovered icon was replaced and is no longer in the document.
+      expect(screen.queryByTestId('outlined-icon')).to.equal(null);
+
+      fireEvent.mouseOver(screen.getByTestId('outside'), { relatedTarget: button });
+      clock.tick(100);
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('closes when the pointer leaves without a mouseout (WebKit)', () => {
+      render(<HoverSwapTrigger enterDelay={100} />);
+      const outlinedIcon = screen.getByTestId('outlined-icon');
+
+      fireEvent.mouseOver(outlinedIcon);
+      expect(outlinedIcon.isConnected).to.equal(false);
+
+      fireEvent.mouseOver(screen.getByTestId('outside'), { relatedTarget: outlinedIcon });
+      clock.tick(100);
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('calls onClose for a controlled tooltip whose icon depends on `open`', () => {
+      const handleClose = spy();
+
+      function ControlledSwap() {
+        const [open, setOpen] = React.useState(false);
+        return (
+          <React.Fragment>
+            <Tooltip
+              title="Hello World"
+              enterDelay={0}
+              open={open}
+              onOpen={() => setOpen(true)}
+              onClose={() => {
+                handleClose();
+                setOpen(false);
+              }}
+              slotProps={{ transition: { timeout: 0 } }}
+            >
+              <IconButton>{open ? <FilledIcon /> : <OutlinedIcon />}</IconButton>
+            </Tooltip>
+            <div data-testid="outside" />
+          </React.Fragment>
+        );
+      }
+
+      render(<ControlledSwap />);
+      const button = screen.getByRole('button');
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      expect(screen.getByRole('tooltip')).toBeVisible();
+      expect(screen.queryByTestId('outlined-icon')).to.equal(null);
+
+      fireEvent.mouseOver(screen.getByTestId('outside'), { relatedTarget: button });
+      clock.tick(0); // leaveDelay
+      clock.tick(0); // exit transition
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('stays open while the pointer moves within the trigger and onto the interactive popper', () => {
+      render(<HoverSwapTrigger enterDelay={0} />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      fireEvent.mouseOver(screen.getByTestId('filled-icon'));
+      fireEvent.mouseOver(screen.getByRole('button'));
+      clock.tick(0);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseOver(screen.getByRole('tooltip'));
+      clock.tick(0);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+
+    it('does not close a focus-opened tooltip on unrelated mouseover', async () => {
+      render(<HoverSwapTrigger enterDelay={0} />);
+
+      await focusVisible(screen.getByRole('button'));
+      clock.tick(0);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseOver(screen.getByTestId('outside'));
+      clock.tick(0);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+
+    function expectClosed() {
+      const tooltip = screen.queryByRole('tooltip');
+      if (tooltip) {
+        expect(tooltip).not.toBeVisible();
+      }
+    }
+
+    it('closes an uncontrolled tooltip that opened after the icon swap and calls onClose once', () => {
+      const handleOpen = spy();
+      const handleClose = spy();
+      render(<HoverSwapTrigger enterDelay={0} onOpen={handleOpen} onClose={handleClose} />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      expect(screen.getByRole('tooltip')).toBeVisible();
+      expect(handleOpen.callCount).to.equal(1);
+
+      fireEvent.mouseOver(screen.getByTestId('outside'), {
+        relatedTarget: screen.getByRole('button'),
+      });
+      clock.tick(10);
+
+      expectClosed();
+      expect(handleClose.callCount).to.equal(1);
+    });
+
+    it('respects leaveDelay when closing', () => {
+      render(<HoverSwapTrigger enterDelay={0} leaveDelay={200} />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      fireEvent.mouseOver(screen.getByTestId('outside'));
+      clock.tick(199);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      clock.tick(1 + 10);
+      expectClosed();
+    });
+
+    it('does not open when the pointer leaves before enterDelay elapsed', () => {
+      const handleOpen = spy();
+      render(<HoverSwapTrigger enterDelay={100} onOpen={handleOpen} />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      clock.tick(50);
+      fireEvent.mouseOver(screen.getByTestId('outside'));
+      clock.tick(500);
+
+      expect(handleOpen.callCount).to.equal(0);
+      expectClosed();
+    });
+
+    it('closes a non-interactive tooltip (disableInteractive)', () => {
+      render(<HoverSwapTrigger enterDelay={0} disableInteractive />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseOver(screen.getByTestId('outside'));
+      clock.tick(10);
+      expectClosed();
+    });
+
+    it('closes after the pointer moved from the interactive popper to elsewhere', () => {
+      render(<HoverSwapTrigger enterDelay={0} />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      fireEvent.mouseOver(screen.getByRole('tooltip'));
+      clock.tick(10);
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseOver(screen.getByTestId('outside'));
+      clock.tick(10);
+      expectClosed();
+    });
+
+    it('only closes the tooltip whose trigger was hovered', () => {
+      render(
+        <React.Fragment>
+          <Tooltip title="First" enterDelay={0} slotProps={{ transition: { timeout: 0 } }}>
+            <button data-testid="first">first</button>
+          </Tooltip>
+          <Tooltip title="Second" enterDelay={0} slotProps={{ transition: { timeout: 0 } }}>
+            <button data-testid="second">second</button>
+          </Tooltip>
+        </React.Fragment>,
+      );
+
+      fireEvent.mouseOver(screen.getByTestId('first'));
+      expect(screen.getByRole('tooltip').textContent).to.equal('First');
+
+      // Moves directly to the second trigger without a mouseout on the first.
+      fireEvent.mouseOver(screen.getByTestId('second'));
+      clock.tick(10);
+
+      expect(screen.getByText('First')).not.toBeVisible();
+      expect(screen.getByText('Second')).toBeVisible();
+    });
+
+    it('passes the native mouseover event to onClose', () => {
+      const handleClose = spy();
+      render(<HoverSwapTrigger enterDelay={0} onClose={handleClose} />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      fireEvent.mouseOver(screen.getByTestId('outside'));
+      clock.tick(10);
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.firstCall.args[0].type).to.equal('mouseover');
+    });
+
+    it('keeps tracking the pointer when a touch happens while hovered', () => {
+      render(<HoverSwapTrigger enterDelay={0} />);
+
+      fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+      fireEvent.touchStart(screen.getByRole('button'));
+      fireEvent.mouseOver(screen.getByTestId('outside'));
+      clock.tick(1500);
+
+      expectClosed();
+    });
+
+    it('does not close when a trigger that became disabled receives a mouseover', () => {
+      const { setProps } = render(
+        <Tooltip title="Hello World" enterDelay={0} slotProps={{ transition: { timeout: 0 } }}>
+          <button>trigger</button>
+        </Tooltip>,
+      );
+
+      fireEvent.mouseOver(screen.getByRole('button'));
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      setProps({ children: <button disabled>trigger</button> });
+      fireEvent.mouseOver(screen.getByRole('button'));
+      clock.tick(10);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+
+    describe('document listener cleanup', () => {
+      let addSpy;
+      let removeSpy;
+
+      beforeEach(() => {
+        addSpy = spy(document, 'addEventListener');
+        removeSpy = spy(document, 'removeEventListener');
+      });
+
+      afterEach(() => {
+        addSpy.restore();
+        removeSpy.restore();
+      });
+
+      function countMouseOver(s) {
+        return s.getCalls().filter((call) => call.args[0] === 'mouseover').length;
+      }
+
+      function expectBalanced() {
+        expect(countMouseOver(addSpy)).to.be.greaterThan(0);
+        expect(countMouseOver(removeSpy)).to.equal(countMouseOver(addSpy));
+      }
+
+      it('adds a single listener across repeated hovers', () => {
+        render(<HoverSwapTrigger enterDelay={0} />);
+
+        fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+        fireEvent.mouseOver(screen.getByRole('button'));
+        fireEvent.mouseOver(screen.getByRole('tooltip'));
+
+        expect(countMouseOver(addSpy)).to.equal(1);
+      });
+
+      it('removes it on mouse leave', () => {
+        render(<HoverSwapTrigger enterDelay={0} />);
+
+        fireEvent.mouseOver(screen.getByRole('button'));
+        fireEvent.mouseLeave(screen.getByRole('button'));
+        clock.tick(0);
+
+        expectBalanced();
+      });
+
+      it('removes it when the lost-mouseout fallback closes the tooltip', () => {
+        render(<HoverSwapTrigger enterDelay={0} />);
+
+        fireEvent.mouseOver(screen.getByTestId('outlined-icon'));
+        fireEvent.mouseOver(screen.getByTestId('outside'));
+        clock.tick(0);
+
+        expectBalanced();
+      });
+
+      it('removes it when the tooltip is closed with Escape', () => {
+        render(<HoverSwapTrigger enterDelay={0} />);
+
+        fireEvent.mouseOver(screen.getByRole('button'));
+        expect(screen.getByRole('tooltip')).toBeVisible();
+        fireEvent.keyDown(document.body, { key: 'Escape' });
+        clock.tick(0);
+
+        expectBalanced();
+      });
+
+      it('removes it when unmounted while hovered', () => {
+        const { unmount } = render(<HoverSwapTrigger enterDelay={0} />);
+
+        fireEvent.mouseOver(screen.getByRole('button'));
+        unmount();
+
+        expectBalanced();
+      });
+
+      it('removes it when unmounted while the open is still pending', () => {
+        const { unmount } = render(<HoverSwapTrigger enterDelay={100} />);
+
+        fireEvent.mouseOver(screen.getByRole('button'));
+        unmount();
+
+        expectBalanced();
+      });
+
+      it('removes it when a controlled parent closes the tooltip', () => {
+        const { setProps } = render(
+          <Tooltip title="Hello World" open enterDelay={0}>
+            <button>trigger</button>
+          </Tooltip>,
+        );
+
+        fireEvent.mouseOver(screen.getByRole('button'));
+        setProps({ open: false });
+
+        expectBalanced();
+      });
+
+      it('removes it when disableHoverListener is enabled while hovered', () => {
+        const { setProps } = render(
+          <Tooltip title="Hello World" enterDelay={100}>
+            <button>trigger</button>
+          </Tooltip>,
+        );
+
+        fireEvent.mouseOver(screen.getByRole('button'));
+        setProps({ disableHoverListener: true });
+
+        expectBalanced();
+      });
+
+      it('does not add a listener for focus-opened or touch-opened tooltips', async () => {
+        render(<HoverSwapTrigger enterDelay={0} />);
+
+        await focusVisible(screen.getByRole('button'));
+        fireEvent.touchStart(screen.getByRole('button'));
+
+        expect(countMouseOver(addSpy)).to.equal(0);
+      });
     });
   });
 
