@@ -9,9 +9,6 @@ packages:
 engineStrict: true
 updateNotifier: false
 autoDedupe: true
-# Peer suffixes list only name@version, so a peer's own peers (e.g. the optional yaml of vite)
-# do not split one package into several lockfile entries.
-dedupePeers: true
 blockExoticSubdeps: true
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
@@ -49,7 +46,7 @@ overrides:
   # Bundled twice in the docs build
   'docs>react-is': '19.3.1'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
-  caniuse-lite: '^1.0.30001823'
+  caniuse-lite: '^1.0.30001826'
   '@types/node': '22.20.5'
   cross-fetch: '^4.1.0'
   '@pigment-css/react': '0.0.31'
