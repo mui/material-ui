@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 
-import InputAdornment from '../InputAdornment';
+import InputAdornment, { inputAdornmentClasses } from '../InputAdornment';
 import type { InputAdornmentProps } from '../InputAdornment';
 import { styled } from '../zero-styled';
 import useSlot from '../utils/useSlot';
@@ -23,6 +23,15 @@ const NumberFieldControls = styled(InputAdornment, {
   slot: 'controls',
 })<{ ownerState: NumberFieldOwnerState }>({
   variants: [
+    {
+      props: { controlsPosition: 'split', position: 'end' },
+      style: {
+        // Match the filled start adornment's offset to align both controls with the value.
+        [`&:where(.${inputAdornmentClasses.filled}:not(.${inputAdornmentClasses.hiddenLabel}))`]: {
+          marginTop: 16,
+        },
+      },
+    },
     {
       props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
         ownerState.controlsPosition === 'stacked',
