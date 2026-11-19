@@ -82,6 +82,7 @@ export interface TooltipProps
   arrow?: boolean | undefined;
   /**
    * Tooltip reference element.
+   * It needs to be able to hold a ref, see [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs).
    */
   children: React.ReactElement<unknown, any>;
   /**

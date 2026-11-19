@@ -1,7 +1,12 @@
 {
   "props": {
     "open": { "type": { "name": "bool" }, "required": true },
-    "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "anchorEl": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;func<br>&#124;&nbsp;{ getBoundingClientRect: func, nodeType: 1 }"
+      }
+    },
     "autoFocus": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },

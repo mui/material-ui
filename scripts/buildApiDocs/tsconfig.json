@@ -19,7 +19,10 @@
       "@mui/types": ["../../packages/mui-types"],
       "@mui/utils": ["../../packages/mui-utils/src"],
       "@mui/utils/*": ["../../packages/mui-utils/src/*"],
-      "@mui/internal-api-docs-builder": ["../../packages-internal/api-docs-builder/src/index.ts"]
+      "@mui/internal-api-docs-builder": ["../../packages-internal/api-docs-builder/src/index.ts"],
+      "@mui/internal-scripts/typescript-to-proptypes": [
+        "../../packages-internal/scripts/typescript-to-proptypes/src/index.ts"
+      ]
     }
   },
   "include": ["./**/*.ts", "./**/*.mts"]

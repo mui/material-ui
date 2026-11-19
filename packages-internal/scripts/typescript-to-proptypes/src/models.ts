@@ -11,6 +11,10 @@ export interface PropTypeDefinition {
   propType: PropType;
   filenames: Set<string>;
   /**
+   * The source text of the type annotation of the prop, if declared with one.
+   */
+  typeText?: string;
+  /**
    * @internal
    */
   $$id: number;

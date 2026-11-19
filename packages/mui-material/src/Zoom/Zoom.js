@@ -186,6 +186,7 @@ Zoom.propTypes /* remove-proptypes */ = {
   appear: PropTypes.bool,
   /**
    * A single child content element.
+   * It needs to be able to hold a ref, see [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs).
    */
   children: elementAcceptingRef.isRequired,
   /**

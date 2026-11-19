@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "node" }, "required": true },
+    "children": { "type": { "name": "node" }, "required": true },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "defaultExpanded": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },

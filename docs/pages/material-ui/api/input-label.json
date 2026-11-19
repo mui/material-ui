@@ -4,8 +4,8 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
-        "name": "union",
-        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       }
     },
     "disableAnimation": { "type": { "name": "bool" }, "default": "false" },
@@ -18,7 +18,7 @@
     "size": {
       "type": {
         "name": "union",
-        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },

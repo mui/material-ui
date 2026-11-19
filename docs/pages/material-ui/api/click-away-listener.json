@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "children": { "type": { "name": "element" }, "required": true },
     "onClickAway": { "type": { "name": "func" }, "required": true },
     "disableReactTree": { "type": { "name": "bool" }, "default": "false" },
     "mouseEvent": {

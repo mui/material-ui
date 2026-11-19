@@ -19,12 +19,20 @@ export interface ParsedComponent {
 }
 
 function isTypeJSXElementLike(type: ts.Type, project: TypeScriptProject): boolean {
+  if (project.checker.isArrayType(type)) {
+    const elementType = project.checker.getTypeArguments(type as ts.TypeReference)[0];
+    return elementType !== undefined && isTypeJSXElementLike(elementType, project);
+  }
+
   const symbol = type.symbol ?? type.aliasSymbol;
   if (symbol) {
     const name = project.checker.getFullyQualifiedName(symbol);
     return (
       // Some types are resolved to paths like: "/Users/.../node_modules/@types/react/jsx-runtime".JSX.Element
-      name.endsWith('.JSX.Element') || name.endsWith('.ReactElement') || name.endsWith('.ReactNode')
+      name.endsWith('.JSX.Element') ||
+      name.endsWith('.ReactElement') ||
+      name.endsWith('.ReactNode') ||
+      name.endsWith('.ReactPortal')
     );
   }
 

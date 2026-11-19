@@ -346,7 +346,7 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The elevation of the drawer.
+   * The elevation of the drawer. Must be an integer.
    * @default 16
    */
   elevation: integerPropType,

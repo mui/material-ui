@@ -1,6 +1,6 @@
-import type { Documentation } from 'react-docgen';
 import type { JSDocTagInfo } from '@typescript/typescript6';
 import type { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
+import type { ComponentPropDescriptor } from '../utils/getComponentProps';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -14,7 +14,7 @@ export type AdditionalPropsInfo = {
 /**
  * Common interface for both Component and Hook API builders.
  */
-interface CommonReactApi extends Documentation {
+interface CommonReactApi {
   demos: ReturnType<HookInfo['getDemos']>;
   EOL: string;
   filename: string;
@@ -74,8 +74,6 @@ export interface TypeDescriptions {
 
 interface PropDescription {
   description: string;
-  requiresRef?: boolean;
-  deprecated?: string;
   typeDescriptions?: { [t: string]: TypeDescription };
   seeMoreText?: string;
 }
@@ -107,6 +105,7 @@ export interface ComponentReactApi extends CommonReactApi {
   slots: Slot[];
   cssVariables: { [key: string]: ApiItemDescription };
   dataAttributes: { [key: string]: ApiItemDescription };
+  props: { [name: string]: ComponentPropDescriptor };
   propsTable: { [key: string]: PropsTableItem };
   translations: PropsTranslations;
 }

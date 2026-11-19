@@ -6,15 +6,13 @@ import { kebabCase, escapeRegExp } from 'es-toolkit/string';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import type { Annotation } from 'doctrine';
 import { parse as parseDoctrine } from 'doctrine';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import type { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
-import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
-import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
+import generatePropTypeDescription from '../utils/generatePropTypeDescription';
 import type {
   CreateDescribeablePropSettings,
   DescribeablePropDescriptor,
@@ -22,8 +20,9 @@ import type {
 import createDescribeableProp from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import type { TypeScriptProject } from '../utils/createTypeScriptProject';
+import { getComponentProps } from '../utils/getComponentProps';
+import { parseComponentSource } from '../utils/parseComponentSource';
 import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
-import { getExternalProps } from '../utils/getPropsFromComponentNode';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
 import type {
@@ -404,7 +403,6 @@ const attachTranslations = (
   reactApi: ComponentReactApi,
   deprecationInfo: string | undefined,
   settings: CreateDescribeablePropSettings | undefined,
-  externalProps: ReadonlySet<string>,
 ) => {
   const translations: ComponentReactApi['translations'] = {
     componentDescription: reactApi.description,
@@ -415,19 +413,16 @@ const attachTranslations = (
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(
-        propDescriptor,
-        propName,
-        settings,
-        externalProps.has(propName),
-      );
+      prop = createDescribeableProp(propDescriptor, propName, settings);
     } catch (error) {
       // Reported by attachPropsTable.
       prop = null;
     }
     if (prop) {
-      const { deprecated, seeMore, jsDocText, signatureArgs, signatureReturn, requiresRef } =
-        generatePropDescription(prop, propName);
+      const { seeMore, jsDocText, signatureArgs, signatureReturn } = generatePropDescription(
+        prop,
+        propName,
+      );
       // description = renderMarkdownInline(`${description}`);
 
       const typeDescriptions: TypeDescriptions = {};
@@ -444,8 +439,6 @@ const attachTranslations = (
 
       translations.propDescriptions[propName] = {
         description: renderMarkdown(jsDocText),
-        requiresRef: requiresRef || undefined,
-        deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
         seeMoreText: seeMore?.description,
       };
@@ -514,7 +507,6 @@ const attachTranslations = (
 const attachPropsTable = (
   reactApi: ComponentReactApi,
   settings: CreateDescribeablePropSettings | undefined,
-  externalProps: ReadonlySet<string>,
 ) => {
   const propErrors: string[] = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
@@ -522,12 +514,7 @@ const attachPropsTable = (
     Object.entries(reactApi.props!).flatMap(([propName, propDescriptor]): Pair[] => {
       let prop: DescribeablePropDescriptor | null;
       try {
-        prop = createDescribeableProp(
-          propDescriptor,
-          propName,
-          settings,
-          externalProps.has(propName),
-        );
+        prop = createDescribeableProp(propDescriptor, propName, settings);
       } catch (error) {
         propErrors.push(`[${reactApi.name}] \`${propName}\`: ${error}`);
         prop = null;
@@ -536,7 +523,7 @@ const attachPropsTable = (
         return [];
       }
 
-      const defaultValue = (propDescriptor as any).jsdocDefaultValue?.value;
+      const defaultValue = prop.jsdocDefaultValue;
 
       const {
         signature: signatureType,
@@ -546,12 +533,7 @@ const attachPropsTable = (
       } = generatePropDescription(prop, propName);
       const propType = prop.type;
       const propTypeDescription = generatePropTypeDescription(propType);
-      const chainedPropType = getChained(prop.type);
-
-      const requiredProp =
-        prop.required ||
-        prop.type?.raw?.includes('.isRequired') ||
-        (chainedPropType !== false && chainedPropType.required);
+      const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
 
@@ -733,78 +715,19 @@ export default async function generateComponentApi(
   }
 
   const filename = componentInfo.filename;
-  let reactApi: ComponentReactApi;
 
-  const handlers = [...defaultHandlers, muiDefaultPropsHandler];
-  try {
-    const results = docgenParse(src, {
-      handlers,
+  const sourceInfo = parseComponentSource(src, filename, componentInfo.name);
+  const reactApi = {
+    description: sourceInfo.description,
+    props: getComponentProps({
+      project,
+      componentName: componentInfo.name,
       filename,
-    });
-    reactApi = results[0] as ComponentReactApi;
-  } catch (error) {
-    // fallback to default logic if there is no `create*` definition.
-    if ((error as Error).message === 'No suitable component definition found.') {
-      const results = docgenParse(src, {
-        resolver: {
-          resolve(file) {
-            const foundPaths: any[] = [];
-            file.traverse({
-              FunctionDeclaration(funcPath) {
-                const params = funcPath.node.params;
-                if (
-                  params.length > 0 &&
-                  params[0].type === 'Identifier' &&
-                  params[0].name === 'props'
-                ) {
-                  foundPaths.push(funcPath);
-                }
-              },
-              VariableDeclaration(varPath) {
-                for (const declarator of varPath.node.declarations) {
-                  if (declarator.init) {
-                    let initNode = declarator.init;
-                    // Handle TSAsExpression wrapper
-                    if (initNode.type === 'TSAsExpression') {
-                      initNode = initNode.expression;
-                    }
-                    if (
-                      initNode.type === 'CallExpression' &&
-                      initNode.callee.type === 'Identifier' &&
-                      initNode.callee.name === `create${componentInfo.name}`
-                    ) {
-                      // Get the path to the init (call expression)
-                      const declarators = varPath.get('declarations');
-                      if (Array.isArray(declarators) && declarators.length > 0) {
-                        let initPath = declarators[0].get('init');
-                        if (!Array.isArray(initPath)) {
-                          // Unwrap TSAsExpression if present
-                          if (initPath.isTSAsExpression()) {
-                            initPath = initPath.get('expression') as typeof initPath;
-                          }
-                          foundPaths.push(initPath);
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-            });
-            return foundPaths;
-          },
-        },
-        handlers,
-        filename,
-      });
-      reactApi = results[0] as ComponentReactApi;
-    } else {
-      throw error;
-    }
-  }
-
-  if (!reactApi.props) {
-    reactApi.props = {};
-  }
+      usedProps: sourceInfo.usedProps,
+      defaultValues: sourceInfo.defaultValues,
+      settings: projectSettings.propsSettings,
+    }),
+  } as ComponentReactApi;
 
   const { getComponentImports = defaultGetComponentImports } = projectSettings;
   const componentJsdoc = parseDoctrine(reactApi.description);
@@ -891,9 +814,8 @@ export default async function generateComponentApi(
     project,
   );
 
-  const externalProps = getExternalProps(project, reactApi.name);
   const errors = [
-    ...attachPropsTable(reactApi, projectSettings.propsSettings, externalProps),
+    ...attachPropsTable(reactApi, projectSettings.propsSettings),
     ...slotsAndClassesErrors,
   ];
   if (errors.length > 0) {
@@ -904,7 +826,7 @@ export default async function generateComponentApi(
 
   attachTable(reactApi, cssVars, 'cssVariables', 'string');
   attachTable(reactApi, dataAttributes, 'dataAttributes');
-  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings, externalProps);
+  attachTranslations(reactApi, deprecationInfo, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

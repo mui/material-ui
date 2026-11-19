@@ -1,6 +1,6 @@
 {
   "props": {
-    "count": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "count": { "type": { "name": "number" }, "required": true },
     "onPageChange": {
       "type": { "name": "func" },
       "required": true,
@@ -9,8 +9,8 @@
         "describedArgs": ["event", "page"]
       }
     },
-    "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
-    "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "page": { "type": { "name": "number" }, "required": true },
+    "rowsPerPage": { "type": { "name": "number" }, "required": true },
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
@@ -44,14 +44,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { firstButton?: object, firstButtonIcon?: object, lastButton?: object, lastButtonIcon?: object, nextButton?: object, nextButtonIcon?: object, previousButton?: object, previousButtonIcon?: object }, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
+        "description": "{ actions?: object, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { firstButton?: elementType, firstButtonIcon?: elementType, lastButton?: elementType, lastButtonIcon?: elementType, nextButton?: elementType, nextButtonIcon?: elementType, previousButton?: elementType, previousButtonIcon?: elementType }, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
+        "description": "{ actions?: object, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
       },
       "default": "{}"
     },

@@ -556,6 +556,16 @@ function checkSymbol({
   const declaration = declarations && declarations[0];
   const symbolFilenames = getSymbolFileNames(symbol);
   const jsDoc = getSymbolDocumentation({ symbol, project, parentType });
+  // Prefer the declaration from the project over the ones from dependencies, e.g. DOM attributes.
+  const typedDeclarations = (declarations ?? []).filter(
+    (candidate): candidate is ts.PropertySignature & { type: ts.TypeNode } =>
+      ts.isPropertySignature(candidate) && candidate.type !== undefined,
+  );
+  const typeText = (
+    typedDeclarations.find(
+      (candidate) => !candidate.getSourceFile().fileName.includes('node_modules'),
+    ) ?? typedDeclarations[0]
+  )?.type.getText();
 
   // TypeChecker keeps the name for
   // { a: React.ElementType, b: React.ReactElement | boolean }
@@ -622,6 +632,7 @@ function checkSymbol({
         name: symbol.getName(),
         jsDoc,
         filenames: symbolFilenames,
+        typeText,
         propType: declaration.questionToken
           ? createUnionType({
               jsDoc: elementNode.jsDoc,
@@ -667,6 +678,7 @@ function checkSymbol({
     jsDoc,
     propType: parsedType,
     filenames: symbolFilenames,
+    typeText,
   };
 }
 
@@ -713,6 +725,7 @@ function squashPropTypeDefinitions({
       types,
     }),
     filenames: new Set(definitions.flatMap((definition) => Array.from(definition.filenames))),
+    typeText: lastDefinition.typeText,
     $$id: lastDefinition.$$id,
   };
 }

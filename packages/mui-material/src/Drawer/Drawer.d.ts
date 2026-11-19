@@ -109,7 +109,7 @@ export interface DrawerProps
    */
   classes?: Partial<DrawerClasses> | undefined;
   /**
-   * The elevation of the drawer.
+   * The elevation of the drawer. Must be an integer.
    * @default 16
    */
   elevation?: number | undefined;

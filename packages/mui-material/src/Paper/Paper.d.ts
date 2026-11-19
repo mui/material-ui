@@ -18,7 +18,7 @@ export interface PaperOwnProps {
   classes?: Partial<PaperClasses> | undefined;
   /**
    * Shadow depth, corresponds to `dp` in the spec.
-   * It accepts values between 0 and 24 inclusive.
+   * It accepts integer values between 0 and 24 inclusive.
    * @default 1
    */
   elevation?: number | undefined;

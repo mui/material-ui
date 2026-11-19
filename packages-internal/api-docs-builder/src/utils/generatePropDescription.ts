@@ -1,11 +1,5 @@
 import type * as doctrine from 'doctrine';
-import * as recast from 'recast';
-import type { PropTypeDescriptor } from 'react-docgen';
 import { escapeCell, removeNewLines } from '../buildApi';
-import {
-  isElementTypeAcceptingRefProp,
-  isElementAcceptingRefProp,
-} from './generatePropTypeDescription';
 import type { DescribeablePropDescriptor } from './createDescribeableProp';
 import type { SeeMore } from '../types/utils.types';
 
@@ -56,25 +50,6 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   throw new TypeError(`resolveType for '${type.type}' not implemented`);
 }
 
-function getDeprecatedInfo(type: PropTypeDescriptor) {
-  if (!type.raw) {
-    return false;
-  }
-  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
-  const match = type.raw.match(marker);
-  const startIndex = type.raw.search(marker);
-  if (match) {
-    const offset = match[0].length;
-
-    return {
-      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
-      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
-    };
-  }
-
-  return false;
-}
-
 interface PropTemplateDescriptor {
   key: string;
   description: string;
@@ -84,7 +59,6 @@ export default function generatePropDescription(
   prop: DescribeablePropDescriptor,
   propName: string,
 ): {
-  deprecated: string;
   seeMore?: SeeMore;
   jsDocText: string;
   signature?: string;
@@ -96,18 +70,9 @@ export default function generatePropDescription(
     argTypeDescription?: string;
   }[];
   signatureReturn?: { name: string; description: string };
-  requiresRef?: boolean;
 } {
   const { annotation } = prop;
   const type = prop.type;
-  let deprecated = '';
-
-  if (type?.name === 'custom') {
-    const deprecatedInfo = getDeprecatedInfo(type);
-    if (deprecatedInfo) {
-      deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
-    }
-  }
 
   const seeTag = annotation.tags.find((tag) => tag.title === 'see');
   let seeMore;
@@ -199,16 +164,11 @@ export default function generatePropDescription(
     }
   }
 
-  const requiresRef =
-    isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type) || undefined;
-
   return {
-    deprecated,
     seeMore,
     jsDocText,
     signature,
     signatureArgs,
     signatureReturn,
-    requiresRef,
   };
 }

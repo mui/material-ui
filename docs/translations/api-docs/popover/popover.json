@@ -25,7 +25,7 @@
       "description": "If <code>true</code>, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the <code>disableAutoFocus</code> prop.<br>Generally this should never be set to <code>true</code> as it makes the modal less accessible to assistive technologies, like screen readers."
     },
     "disableScrollLock": { "description": "Disable the scroll lock behavior." },
-    "elevation": { "description": "The elevation of the popover." },
+    "elevation": { "description": "The elevation of the popover. Must be an integer." },
     "marginThreshold": {
       "description": "Specifies how close to the edge of the window the popover can appear. If null, the popover will not be constrained by the window."
     },

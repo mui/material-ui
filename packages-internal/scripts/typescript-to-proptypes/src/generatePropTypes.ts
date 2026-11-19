@@ -78,7 +78,7 @@ export interface GeneratePropTypesOptions {
   sortLiteralUnions?: (a: LiteralType, b: LiteralType) => number;
 }
 
-function defaultSortLiteralUnions(a: LiteralType, b: LiteralType) {
+export function defaultSortLiteralUnions(a: LiteralType, b: LiteralType) {
   const { value: valueA } = a;
   const { value: valueB } = b;
   // numbers ascending

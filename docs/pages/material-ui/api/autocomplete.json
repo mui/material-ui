@@ -22,10 +22,7 @@
     "clearOnEscape": { "type": { "name": "bool" }, "default": "false" },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
-    "defaultValue": {
-      "type": { "name": "custom", "description": "any" },
-      "default": "props.multiple ? [] : null"
-    },
+    "defaultValue": { "type": { "name": "any" }, "default": "props.multiple ? [] : null" },
     "disableClearable": { "type": { "name": "bool" }, "default": "false" },
     "disableCloseOnSelect": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
@@ -87,7 +84,7 @@
         "describedArgs": ["option", "value"]
       }
     },
-    "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
+    "limitTags": { "type": { "name": "number" }, "default": "-1" },
     "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingText": { "type": { "name": "node" }, "default": "'Loading…'" },
     "multiple": { "type": { "name": "bool" }, "default": "false" },
@@ -172,7 +169,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, status?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, status?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
@@ -190,7 +187,7 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "value": { "type": { "name": "custom", "description": "any" } }
+    "value": { "type": { "name": "any" } }
   },
   "name": "Autocomplete",
   "imports": [

@@ -53,3 +53,19 @@ export function getUnstyledFilename(filename: string, definitionFile: boolean = 
 
   return definitionFile ? `${unstyledFile}.d.ts` : `${unstyledFile}.js`;
 }
+
+/**
+ * Files whose props are documented as the component's own props: its type definitions,
+ * the ones of its unstyled variant, and its props files.
+ * @param typesFilename - the file with the type definitions of the component
+ */
+export function getOwnPropsFilenames(typesFilename: string): Set<string> {
+  const unstyledFile = getUnstyledFilename(typesFilename, true);
+  return new Set([
+    typesFilename,
+    unstyledFile,
+    unstyledFile.replace('.d.ts', '.types.ts'),
+    typesFilename.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts'),
+    typesFilename.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts'),
+  ]);
+}

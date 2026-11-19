@@ -734,6 +734,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   arrow: PropTypes.bool,
   /**
    * Tooltip reference element.
+   * It needs to be able to hold a ref, see [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs).
    */
   children: elementAcceptingRef.isRequired,
   /**

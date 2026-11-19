@@ -13,7 +13,7 @@
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "'0px'"
     },
-    "component": { "type": { "name": "custom", "description": "element type" } },
+    "component": { "type": { "name": "elementType" } },
     "disablePrefersReducedMotion": { "type": { "name": "bool" }, "default": "false" },
     "easing": {
       "type": {

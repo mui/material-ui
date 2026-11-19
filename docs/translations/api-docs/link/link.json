@@ -5,8 +5,7 @@
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": { "description": "The color of the link." },
     "component": {
-      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
-      "requiresRef": true
+      "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."

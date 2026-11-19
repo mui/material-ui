@@ -1,5 +1,6 @@
 import type { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
 import type { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
+import type { PropsParsingSettings } from './utils/getComponentProps';
 import type {
   ComponentClassDefinition,
   ComponentReactApi,
@@ -94,7 +95,7 @@ export interface ProjectSettings {
   /**
    * Settings to configure props definition tests.
    */
-  propsSettings?: CreateDescribeablePropSettings;
+  propsSettings?: CreateDescribeablePropSettings & PropsParsingSettings;
   /**
    * If `true`, the script does not generate JS page file.
    * Once we have the API tabs in all projects, we can make this `true` by default.

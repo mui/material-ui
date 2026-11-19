@@ -1,9 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import type { PropDescriptor } from 'react-docgen';
+import type { ComponentPropDescriptor } from './getComponentProps';
 import createDescribeableProp from './createDescribeableProp';
 
-function createProp(description: string, type = 'bool'): PropDescriptor {
-  return { description, required: false, type: { name: type } as PropDescriptor['type'] };
+function createProp(
+  description: string,
+  type: 'bool' | 'func' | 'string' = 'bool',
+): ComponentPropDescriptor {
+  return { description, required: false, type: { name: type } };
 }
 
 describe('createDescribeableProp', () => {
@@ -36,17 +39,12 @@ describe('createDescribeableProp', () => {
 
   it('describes a className with a component-specific type', () => {
     const prop = createDescribeableProp(
-      createProp('A function of the state that returns the class name.', 'union'),
+      createProp('A function of the state that returns the class name.', 'func'),
       'className',
     );
     expect(prop?.annotation.description).to.equal(
       'A function of the state that returns the class name.',
     );
-  });
-
-  it('ignores a prop without a PropTypes validator', () => {
-    const prop: PropDescriptor = { description: '', required: false };
-    expect(createDescribeableProp(prop, 'style')).to.equal(null);
   });
 
   it('ignores an undocumented prop declared in a dependency', () => {

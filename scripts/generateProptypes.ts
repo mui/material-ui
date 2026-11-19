@@ -6,14 +6,11 @@ import glob from 'fast-glob';
 import { flatten } from 'es-toolkit/array';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import type {
-  LiteralType,
-  InjectPropTypesInFileOptions,
-} from '@mui/internal-scripts/typescript-to-proptypes';
+import type { InjectPropTypesInFileOptions } from '@mui/internal-scripts/typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
-  getUnstyledFilename,
+  getOwnPropsFilenames,
 } from '@mui/internal-docs-utils';
 import {
   getPropTypesFromFile,
@@ -21,134 +18,21 @@ import {
 } from '@mui/internal-scripts/typescript-to-proptypes';
 import type { TypeScriptProject } from '@mui/internal-api-docs-builder';
 import { createTypeScriptProjectBuilder } from '@mui/internal-api-docs-builder';
+import {
+  ignoreExternalDocumentation,
+  isUnresolvedObjectName,
+  propsSettings,
+  useExternalDocumentation,
+} from '../packages-internal/api-docs-builder-core';
 
 // eslint-disable-next-line import/extensions -- explicit .mjs extension required for tsx to resolve the ESM module
 import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects.mjs';
 
-const useExternalPropsFromInputBase = [
-  'autoComplete',
-  'autoFocus',
-  'color',
-  'defaultValue',
-  'disabled',
-  'endAdornment',
-  'error',
-  'id',
-  'inputProps',
-  'inputRef',
-  'margin',
-  'maxRows',
-  'minRows',
-  'name',
-  'onChange',
-  'placeholder',
-  'readOnly',
-  'required',
-  'rows',
-  'startAdornment',
-  'value',
-];
-
-/**
- * A map of components and their props that should be documented
- * but are not used directly in their implementation.
- *
- * TODO: In the future we want to remove them from the API docs in favor
- * of dynamically loading them. At that point this list should be removed.
- * TODO: typecheck values
- */
-const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
-  Button: ['disableRipple'],
-  Box: ['component', 'sx'],
-  // `classes` is always external since it is applied from a HOC
-  // In DialogContentText we pass it through
-  // Therefore it's considered "unused" in the actual component but we still want to document it.
-  DialogContentText: ['classes'],
-  FilledInput: useExternalPropsFromInputBase,
-  IconButton: ['disableRipple'],
-  Input: useExternalPropsFromInputBase,
-  MenuItem: ['dense'],
-  OutlinedInput: useExternalPropsFromInputBase,
-  Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
-  Checkbox: ['defaultChecked'],
-  Container: ['component'],
-  Stack: ['component'],
-  Switch: [
-    'checked',
-    'defaultChecked',
-    'disabled',
-    'disableRipple',
-    'edge',
-    'id',
-    'inputProps',
-    'inputRef',
-    'onChange',
-    'required',
-    'value',
-  ],
-  SwipeableDrawer: [
-    'anchor',
-    'hideBackdrop',
-    'ModalProps',
-    'PaperProps',
-    'transitionDuration',
-    'variant',
-  ],
-  Tab: ['disableRipple'],
-  TextField: ['margin'],
-  ToggleButton: ['disableRipple'],
-};
-const transitionCallbacks = [
-  'onEnter',
-  'onEntered',
-  'onEntering',
-  'onExit',
-  'onExiting',
-  'onExited',
-];
-/**
- * These are components that use props implemented by external components.
- * Those props have their own JSDoc which we don't want to emit in our docs
- * but do want them to have JSDoc in IntelliSense
- * TODO: In the future we want to ignore external docs on the initial load anyway
- * since they will be fetched dynamically.
- */
-const ignoreExternalDocumentation: Record<string, readonly string[]> = {
-  Button: ['focusVisibleClassName', 'type'],
-  Collapse: transitionCallbacks,
-  CardActionArea: ['focusVisibleClassName'],
-  AccordionSummary: ['onFocusVisible'],
-  Dialog: ['BackdropProps'],
-  Drawer: ['BackdropProps'],
-  Fab: ['focusVisibleClassName'],
-  Fade: transitionCallbacks,
-  Grow: transitionCallbacks,
-  ListItem: ['focusVisibleClassName'],
-  InputBase: ['aria-describedby', 'aria-label', 'onFocus', 'onKeyDown', 'onKeyUp', 'renderSuffix'],
-  Menu: ['PaperProps'],
-  MenuItem: ['disabled'],
-  Slide: transitionCallbacks,
-  SwipeableDrawer: ['anchor', 'hideBackdrop', 'ModalProps', 'PaperProps', 'variant'],
-  TextField: ['hiddenLabel', 'onBlur', 'onFocus'],
-  Zoom: transitionCallbacks,
-};
-
-function sortSizeByScaleAscending(a: LiteralType, b: LiteralType) {
-  const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
-  return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
-}
-
-// Custom order of literal unions by component
 const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions'] = (
   component,
   propType,
-) => {
-  if (propType.name === 'size') {
-    return sortSizeByScaleAscending;
-  }
-
-  return undefined;
-};
+) =>
+  propsSettings.getSortLiteralUnions?.({ componentName: component.name, propName: propType.name });
 
 async function generateProptypes(
   project: TypeScriptProject,
@@ -158,17 +42,7 @@ async function generateProptypes(
   const components = getPropTypesFromFile({
     filePath: tsFile,
     project,
-    shouldResolveObject: ({ name }) => {
-      if (
-        name.toLowerCase().endsWith('classes') ||
-        name === 'theme' ||
-        name === 'ownerState' ||
-        (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
-      ) {
-        return false;
-      }
-      return undefined;
-    },
+    shouldResolveObject: ({ name }) => (isUnresolvedObjectName(name) ? false : undefined),
     checkDeclarations: true,
   });
 
@@ -203,14 +77,7 @@ async function generateProptypes(
 
   const sourceContent = await fs.readFile(sourceFile, 'utf8');
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
-  // If the component inherits the props from some unstyled components
-  // we don't want to add those propTypes again in the Material UI propTypes
-  const unstyledFile = getUnstyledFilename(tsFile, true);
-  const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
-
-  // TODO remove, should only have .types.ts
-  const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
-  const propsFileAlternative = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, '.types.ts');
+  const ownPropsFilenames = getOwnPropsFilenames(tsFile);
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = injectPropTypesInFile({
     components,
@@ -262,16 +129,9 @@ async function generateProptypes(
         let shouldDocument;
         const { name: componentName } = component;
 
-        prop.filenames.forEach((filename) => {
-          const isExternal = filename !== tsFile;
-          const implementedByUnstyledVariant =
-            filename === unstyledFile || filename === unstyledPropsFile;
-          const implementedBySelfPropsFile =
-            filename === propsFile || filename === propsFileAlternative;
-          if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
-            shouldDocument = true;
-          }
-        });
+        if (Array.from(prop.filenames).some((filename) => ownPropsFilenames.has(filename))) {
+          shouldDocument = true;
+        }
 
         if (
           useExternalDocumentation[componentName] &&

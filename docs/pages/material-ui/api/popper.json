@@ -4,7 +4,7 @@
     "anchorEl": {
       "type": {
         "name": "union",
-        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+        "description": "HTML element<br>&#124;&nbsp;func<br>&#124;&nbsp;{ contextElement?: HTML element, getBoundingClientRect: func }"
       }
     },
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },

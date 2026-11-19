@@ -1,5 +1,5 @@
 import * as doctrine from 'doctrine';
-import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
+import type { ComponentPropDescriptor, DocsPropType } from './getComponentProps';
 import { HIDDEN_JSDOC_TAGS, IGNORE_HINT } from '../buildApiUtils';
 
 /**
@@ -13,8 +13,12 @@ const HIDDEN_PROPS: Record<string, string> = {
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
   defaultValue: string | null;
+  /**
+   * The value of the `@default` JSDoc tag.
+   */
+  jsdocDefaultValue: string | undefined;
   required: boolean;
-  type: PropTypeDescriptor;
+  type: DocsPropType;
 }
 
 export type CreateDescribeablePropSettings = {
@@ -32,26 +36,20 @@ export type CreateDescribeablePropSettings = {
  * @param isExternal If `true`, the prop is only declared in dependencies.
  */
 export default function createDescribeableProp(
-  prop: PropDescriptor,
+  prop: ComponentPropDescriptor,
   propName: string,
   settings: CreateDescribeablePropSettings = {},
-  isExternal = false,
+  isExternal = Boolean(prop.external),
 ): DescribeablePropDescriptor | null {
-  // Props only found in the TypeScript types, without a PropTypes validator, are not listed.
-  if (!prop.type?.name) {
-    return null;
-  }
-
   if (prop.type.name === HIDDEN_PROPS[propName]) {
     return null;
   }
 
   const { defaultValue, description, required, type } = prop;
-  const jsdocDefaultValue = (prop as any).jsdocDefaultValue as { value: string } | undefined;
 
   const { propsWithoutDefaultVerification = [] } = settings;
 
-  const renderedDefaultValue = (defaultValue?.value as string | undefined)?.replace(/\r?\n/g, '');
+  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
     renderedDefaultValue &&
     // Ignore "large" default values that would break the table layout.
@@ -76,6 +74,9 @@ export default function createDescribeableProp(
     );
   }
 
+  const defaultTag = annotation.tags.find((tag) => tag.title === 'default');
+  const jsdocDefaultValue = defaultTag ? defaultTag.description || '' : undefined;
+
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
     // Assume that this prop:
     // 1. Is typed by another component
@@ -99,9 +100,9 @@ export default function createDescribeableProp(
     !propsWithoutDefaultVerification.includes(propName)
   ) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
-    if (jsdocDefaultValue.value !== defaultValue!.value) {
+    if (jsdocDefaultValue !== defaultValue!.value) {
       throw new Error(
-        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue}" to equal runtime default value of "${defaultValue?.value}"`,
       );
     }
   }
@@ -109,7 +110,8 @@ export default function createDescribeableProp(
   return {
     annotation,
     defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
+    jsdocDefaultValue,
     required: Boolean(required),
-    type: type!,
+    type,
   };
 }
