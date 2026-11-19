@@ -5,12 +5,14 @@ import * as ReactDOMClient from 'react-dom/client';
 import createCache from '@emotion/cache';
 import type { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
+import emotionStyled from '@emotion/styled';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
@@ -437,6 +439,16 @@ const SUMMARY: Array<{ id: string; label: React.ReactNode; single: Verdict; sub:
   },
   { id: 'tailwind', label: 'Tailwind CSS v4 setup from our docs', single: 'same', sub: 'breaking' },
   {
+    id: 'tailwind-global-styles',
+    label: (
+      <React.Fragment>
+        Tailwind CSS v4 with the order in <code>GlobalStyles</code> (v9&apos;s Vite setup)
+      </React.Fragment>
+    ),
+    single: 'breaking',
+    sub: 'breaking',
+  },
+  {
     id: 'css-vars',
     label: (
       <React.Fragment>
@@ -445,6 +457,16 @@ const SUMMARY: Array<{ id: string; label: React.ReactNode; single: Verdict; sub:
     ),
     single: 'intended',
     sub: 'intended',
+  },
+  {
+    id: 'emotion',
+    label: (
+      <React.Fragment>
+        Styles written with Emotion directly (<code>@emotion/styled</code>, <code>css</code>)
+      </React.Fragment>
+    ),
+    single: 'breaking',
+    sub: 'breaking',
   },
 ];
 
@@ -557,23 +579,32 @@ function GlobalCssDemo(props: { layers: LayersMode }) {
   );
 }
 
-const TAILWIND_CSS = [
-  TAILWIND_ORDER,
+// What `@import 'tailwindcss'` brings: Tailwind CSS's own layer order, preflight in `base` and the
+// utility classes in `utilities`.
+const TAILWIND_OUTPUT = [
+  '@layer theme, base, components, utilities;',
   '/* Preflight */',
   '@layer base {',
   '  button { padding: 0; border-radius: 0; color: inherit; background-color: transparent; }',
   '}',
+  '@layer utilities {',
+  '  .pt-px { padding-top: 1px; }',
+  '}',
 ].join('\n');
+// The setup from the Tailwind CSS v4 guide: the layer order at the top of the CSS file.
+const TAILWIND_CSS = [TAILWIND_ORDER, TAILWIND_OUTPUT].join('\n');
 
-function TailwindDemo(props: { theme: object }) {
-  const { theme } = props;
+function TailwindDemo(props: { theme: object; orderInGlobalStyles?: boolean }) {
+  const { theme, orderInGlobalStyles = false } = props;
   const ref = React.useRef<HTMLButtonElement>(null);
   return (
     <ThemeProvider theme={theme}>
-      <Button variant="contained" ref={ref}>
+      {orderInGlobalStyles ? <GlobalStyles styles={TAILWIND_ORDER} /> : null}
+      <Button variant="contained" className="pt-px" ref={ref}>
         Contained
       </Button>
       <Computed target={ref} property="backgroundColor" v9={PRIMARY} />
+      <Computed target={ref} property="paddingTop" v9="1px" />
       <LayerNames target={ref} />
     </ThemeProvider>
   );
@@ -609,6 +640,21 @@ function CssVarsDemo(props: { layers: LayersMode }) {
         Dark scheme
       </Button>
       <Computed target={ref} property="backgroundColor" v9="rgb(144, 202, 249)" />
+    </ThemeProvider>
+  );
+}
+
+const EmotionButton = emotionStyled(Button)({ backgroundColor: GREEN });
+
+function EmotionDemo(props: { layers: LayersMode }) {
+  const { layers } = props;
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return (
+    <ThemeProvider theme={themes[layers]}>
+      <EmotionButton variant="contained" disabled ref={ref}>
+        Disabled
+      </EmotionButton>
+      <Computed target={ref} property="backgroundColor" v9="rgba(0, 0, 0, 0.12)" />
     </ThemeProvider>
   );
 }
@@ -690,6 +736,11 @@ export default function CssLayers() {
           which gives the CSS that v9 generated. With sub-layers, <code>useLayerOrder</code> writes
           the layer order to the top-level document, so each frame copies it to the start of its own{' '}
           <code>&lt;head&gt;</code>, as on a page.
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 3, maxWidth: 800, color: 'text.secondary' }}>
+          The verdicts compare to v9 without layers. Apps that already used{' '}
+          <code>enableCssLayer</code> in v9 get the single layer they had, and apps that used{' '}
+          <code>modularCssLayers: true</code> get the same sub-layers.
         </Typography>
         <Summary />
 
@@ -776,11 +827,12 @@ export default function CssLayers() {
           title="3. Tailwind CSS v4 setup from our docs"
           description={
             <React.Fragment>
-              Every frame has the setup from the Tailwind CSS v4 guide: the layer order in the
-              app&apos;s CSS, before Tailwind&apos;s preflight reset in <code>base</code>. The
-              Button should keep its background. In v9, <code>enableCssLayer</code> put the styles
-              in the same single <code>mui</code> layer, so the first frame is also v9&apos;s
-              output.
+              Every frame has the setup from the Tailwind CSS v4 guide: the layer order at the top
+              of the app&apos;s CSS, before Tailwind CSS&apos;s own order, its preflight reset in{' '}
+              <code>base</code> and its utility classes. The Button should keep its background, and
+              the <code>pt-px</code> utility class should override its padding. In v9,{' '}
+              <code>enableCssLayer</code> put the styles in the same single <code>mui</code> layer,
+              so the first frame is also v9&apos;s output.
               <CssBlock>{TAILWIND_CSS}</CssBlock>
             </React.Fragment>
           }
@@ -811,8 +863,47 @@ export default function CssLayers() {
         </Scenario>
 
         <Scenario
+          id="tailwind-global-styles"
+          title="4. Tailwind CSS v4 with the order in GlobalStyles (v9's Vite setup)"
+          description={
+            <React.Fragment>
+              v9&apos;s guide declared the layer order with <code>GlobalStyles</code> inside{' '}
+              <code>&lt;StyledEngineProvider enableCssLayer&gt;</code>, which inserted it at the top
+              of <code>&lt;head&gt;</code>. Without <code>enableCssLayer</code>,{' '}
+              <code>GlobalStyles</code> comes after Tailwind CSS&apos;s own order, which has already
+              named its layers, so <code>mui</code> goes after <code>utilities</code>. The
+              app&apos;s CSS is what <code>@import &apos;tailwindcss&apos;</code> brings:
+              <CssBlock>{TAILWIND_OUTPUT}</CssBlock>
+            </React.Fragment>
+          }
+          verdicts={
+            <React.Fragment>
+              <ForApps verdict="breaking" who="Single layer">
+                Material UI beats the utility classes, so <code>pt-px</code> no longer applies.
+                Declaring the order at the top of the CSS file, as the upgrade guide shows, restores
+                it.
+              </ForApps>
+              <ForApps verdict="breaking" who="Sub-layers">
+                As in case 3, <code>mui</code> is the lowest layer wherever the app declares the
+                order. Passing the order as the <code>modularCssLayers</code> string keeps it.
+              </ForApps>
+            </React.Fragment>
+          }
+        >
+          <Frame title="v9: GlobalStyles first in <head>" css={TAILWIND_CSS} baseline>
+            <TailwindDemo theme={defaultTheme} orderInGlobalStyles />
+          </Frame>
+          <Frame title="GlobalStyles after Tailwind CSS" css={TAILWIND_OUTPUT}>
+            <TailwindDemo theme={defaultTheme} orderInGlobalStyles />
+          </Frame>
+          <Frame title="Order at the top of the CSS file" css={TAILWIND_CSS}>
+            <TailwindDemo theme={defaultTheme} />
+          </Frame>
+        </Scenario>
+
+        <Scenario
           id="css-vars"
-          title="4. CSS theme variables set in plain CSS"
+          title="5. CSS theme variables set in plain CSS"
           description={
             <React.Fragment>
               The app&apos;s CSS comes before Material UI&apos;s styles, and the frames use the dark
@@ -841,13 +932,45 @@ export default function CssLayers() {
           ))}
         </Scenario>
 
+        <Scenario
+          id="emotion"
+          title="6. Styles written with Emotion directly"
+          description={
+            <React.Fragment>
+              The Button is wrapped with <code>styled()</code> from <code>@emotion/styled</code> and
+              given a green background. Emotion&apos;s own styles aren&apos;t in a layer, so they
+              beat Material UI&apos;s styles, as plain CSS does. In v9, they competed by
+              specificity, also with <code>enableCssLayer</code>, which put them in the{' '}
+              <code>mui</code> layer.
+            </React.Fragment>
+          }
+          verdicts={
+            <ForApps verdict="breaking" who="Both">
+              The override also applies in states, so the disabled Button stays green. Using{' '}
+              <code>styled()</code> from <code>@mui/material/styles</code> keeps the styles in the{' '}
+              <code>mui</code> layer, with v9&apos;s precedence.
+            </ForApps>
+          }
+        >
+          {SETUPS.map((setup) => (
+            <Frame
+              key={setup.title}
+              title={setup.title}
+              unlayered={setup.layers === 'none'}
+              baseline={setup.baseline}
+            >
+              <EmotionDemo layers={setup.layers} />
+            </Frame>
+          ))}
+        </Scenario>
+
         <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
           Implementation checks
         </Typography>
 
         <Scenario
           id="wrapped-styled"
-          title="5. styled() around a styled component"
+          title="7. styled() around a styled component"
           description={
             <React.Fragment>
               Emotion puts the wrapped component&apos;s styles first, in the same class. In v9, the
@@ -874,7 +997,7 @@ export default function CssLayers() {
 
         <Scenario
           id="no-create-theme"
-          title="6. Without createTheme()"
+          title="8. Without createTheme()"
           description={
             <React.Fragment>
               Components without a <code>ThemeProvider</code> get the default theme, and a theme
