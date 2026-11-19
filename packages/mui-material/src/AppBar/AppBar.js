@@ -232,20 +232,21 @@ AppBar.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'default',
-      'inherit',
-      'primary',
-      'secondary',
-      'transparent',
-      'error',
-      'info',
-      'success',
-      'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'default',
+        'inherit',
+        'primary',
+        'secondary',
+        'transparent',
+        'error',
+        'info',
+        'success',
+        'warning',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It accepts values between 0 and 24 inclusive.

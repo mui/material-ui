@@ -13,16 +13,16 @@ function isSerializable(val: any) {
 }
 
 /**
- * `baseTheme` usually comes from `createTheme()` or `extendTheme()`.
+ * `baseTheme` usually comes from `createTheme()`.
  *
  * This function is intended to be used with zero-runtime CSS-in-JS like Pigment CSS
  * For example, in a Next.js project:
  *
  * ```js
  * // next.config.js
- * const { extendTheme } = require('@mui/material/styles');
+ * const { createTheme } = require('@mui/material/styles');
  *
- * const theme = extendTheme();
+ * const theme = createTheme({ cssVariables: true });
  * // `.toRuntimeSource` is Pigment CSS specific to create a theme that is available at runtime.
  * theme.toRuntimeSource = stringifyTheme;
  *
