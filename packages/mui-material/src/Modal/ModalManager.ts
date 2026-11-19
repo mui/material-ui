@@ -1,6 +1,7 @@
 import ownerWindow from '@mui/utils/ownerWindow';
 import ownerDocument from '@mui/utils/ownerDocument';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
+import { getSnackbars, subscribeToSnackbars } from '../utils/snackbarRegistry';
 
 export interface ManagedModalProps {
   disableScrollLock?: boolean | undefined;
@@ -73,12 +74,12 @@ function getKeepChain(node: Element, container: Element): Set<Element> {
 // modal's own ancestors stay readable while their other children get hidden.
 function collectHiddenTargets(
   parent: Element,
-  keep: Element,
+  keep: Set<Element>,
   keepChain: Set<Element>,
   out: Set<Element>,
 ): void {
   [].forEach.call(parent.children, (element: Element) => {
-    if (element === keep || isAriaHiddenForbiddenOnElement(element)) {
+    if (keep.has(element) || isAriaHiddenForbiddenOnElement(element)) {
       return;
     }
 
@@ -93,17 +94,24 @@ function collectHiddenTargets(
 
 /**
  * Hides every element of the container from assistive technology except the
- * topmost modal and the ancestors it sits inside, and unhides what no longer
+ * topmost modal, its ancestors, and Snackbars portaled into the container, and unhides what no longer
  * needs hiding. Elements that were already `aria-hidden` before the manager
  * touched them are left untouched.
  */
 function syncAriaHidden(containerInfo: Container): void {
   const { container, modals } = containerInfo;
   const top = modals[modals.length - 1];
-  const keep = top.modalRef;
+  const keep = new Set([top.modalRef]);
+  const keepChain = getKeepChain(top.modalRef, container);
+
+  getSnackbars().forEach((snackbar) => {
+    if (snackbar.parentElement === container) {
+      keep.add(snackbar);
+    }
+  });
 
   const next = new Set<Element>();
-  collectHiddenTargets(container, keep, getKeepChain(keep, container), next);
+  collectHiddenTargets(container, keep, keepChain, next);
 
   next.forEach((element) => {
     if (!containerInfo.hiddenSet.has(element) && element.getAttribute('aria-hidden') === 'true') {
@@ -119,8 +127,8 @@ function syncAriaHidden(containerInfo: Container): void {
   });
   next.forEach((element) => ariaHidden(element, true));
 
-  if (keep) {
-    ariaHidden(keep, false);
+  if (top.modalRef) {
+    ariaHidden(top.modalRef, false);
   }
 
   containerInfo.hiddenSet = next;
@@ -238,6 +246,8 @@ export class ModalManager {
 
   private modals: Modal[] = [];
 
+  private unsubscribeFromSnackbars: (() => void) | null = null;
+
   add(modal: Modal, container: HTMLElement): number {
     let modalIndex = this.modals.indexOf(modal);
     if (modalIndex !== -1) {
@@ -246,6 +256,12 @@ export class ModalManager {
 
     modalIndex = this.modals.length;
     this.modals.push(modal);
+
+    if (this.modals.length === 1) {
+      this.unsubscribeFromSnackbars = subscribeToSnackbars(() => {
+        this.containers.forEach(syncAriaHidden);
+      });
+    }
 
     // If the modal we are adding is already in the DOM.
     if (modal.modalRef) {
@@ -317,10 +333,24 @@ export class ModalManager {
       }
     }
 
+    if (this.modals.length === 0) {
+      this.unsubscribeFromSnackbars?.();
+      this.unsubscribeFromSnackbars = null;
+    }
+
     return modalIndex;
   }
 
   isTopModal(modal: Modal): boolean {
     return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
+  }
+
+  getTopModal(document: Document): Modal | undefined {
+    for (let index = this.modals.length - 1; index >= 0; index -= 1) {
+      if (this.modals[index].modalRef?.ownerDocument === document) {
+        return this.modals[index];
+      }
+    }
+    return undefined;
   }
 }

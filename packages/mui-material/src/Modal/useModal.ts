@@ -4,9 +4,13 @@ import ownerDocument from '@mui/utils/ownerDocument';
 import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import createChainedFunction from '@mui/utils/createChainedFunction';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import type { EventHandlers } from '../utils/types';
 import { ModalManager, ariaHidden } from './ModalManager';
+import { getFocusTarget } from '../utils/focusable';
+import { getSnackbars, setSnackbarModal, subscribeToSnackbars } from '../utils/snackbarRegistry';
+import { SNACKBAR_CONTAINER_ATTRIBUTE } from '../utils/SnackbarContainer';
 import type {
   UseModalParameters,
   UseModalReturnValue,
@@ -28,6 +32,26 @@ const noop = () => {};
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const manager = new ModalManager();
 
+function updateSnackbarModal(document: Document) {
+  const modal = manager.getTopModal(document);
+  const surface = getFocusTarget(modal?.modalRef as HTMLElement | undefined);
+  const dialogSelector = '[role="dialog"], [role="alertdialog"]';
+  if (
+    !surface?.isConnected ||
+    !surface.matches(dialogSelector) ||
+    surface.getAttribute('aria-modal') !== 'true' ||
+    surface.closest('[aria-hidden="true"], [inert]')
+  ) {
+    setSnackbarModal(document, null);
+    return;
+  }
+
+  const container = Array.from(
+    surface.querySelectorAll<HTMLElement>(`[${SNACKBAR_CONTAINER_ATTRIBUTE}]`),
+  ).find((element) => element.closest(dialogSelector) === surface);
+  setSnackbarModal(document, container ?? null);
+}
+
 function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
@@ -48,7 +72,21 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
+  const [hasPortaledSnackbar, setHasPortaledSnackbar] = React.useState(false);
   const hasTransition = getHasTransition(children);
+
+  const updateHasPortaledSnackbar = React.useCallback(() => {
+    const doc = ownerDocument(modalRef.current ?? mountNodeRef.current);
+    setHasPortaledSnackbar(
+      Array.from(getSnackbars()).some((element) => element.ownerDocument === doc),
+    );
+  }, []);
+
+  useEnhancedEffect(() => {
+    const unsubscribe = subscribeToSnackbars(updateHasPortaledSnackbar);
+    updateHasPortaledSnackbar();
+    return unsubscribe;
+  }, [updateHasPortaledSnackbar]);
 
   let ariaHiddenProp = true;
   if (parameters['aria-hidden'] === 'false' || parameters['aria-hidden'] === false) {
@@ -64,6 +102,8 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   const handleMounted = () => {
     manager.mount(getModal(), { disableScrollLock });
+    updateHasPortaledSnackbar();
+    updateSnackbarModal(getDoc());
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     if (modalRef.current) {
@@ -79,6 +119,8 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     // The element was already mounted.
     if (modalRef.current) {
       handleMounted();
+    } else {
+      updateSnackbarModal(getDoc());
     }
   });
 
@@ -101,8 +143,19 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   });
 
   const handleClose = React.useCallback(() => {
+    const document = ownerDocument(
+      modalRef.current ?? mountNodeRef.current ?? lastMountNodeRef.current,
+    );
     manager.remove(getModal(), ariaHiddenProp);
+    updateSnackbarModal(document);
   }, [ariaHiddenProp]);
+
+  useEnhancedEffect(() => {
+    if (modalRef.current) {
+      getModal();
+      updateSnackbarModal(ownerDocument(modalRef.current));
+    }
+  });
 
   React.useEffect(() => {
     return () => {
@@ -238,6 +291,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     isTopModal,
     exited,
     hasTransition,
+    hasPortaledSnackbar,
   };
 }
 

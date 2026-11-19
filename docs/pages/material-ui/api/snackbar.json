@@ -11,6 +11,8 @@
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
     "children": { "type": { "name": "element" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disablePortal": { "type": { "name": "bool" }, "default": "true" },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "key": { "type": { "name": "custom", "description": "any" } },
     "message": { "type": { "name": "node" } },

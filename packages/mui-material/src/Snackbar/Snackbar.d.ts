@@ -4,6 +4,7 @@ import ClickAwayListener from '../ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { SnackbarContentProps } from '../SnackbarContent';
+import { PortalProps } from '../Portal';
 import { TransitionProps } from '../transitions/types';
 import { SnackbarClasses } from './snackbarClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
@@ -112,6 +113,18 @@ export interface SnackbarProps
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<SnackbarClasses> | undefined;
+  /**
+   * An HTML element or function that returns one. When `disablePortal` is `false`, the portal children are appended to it.
+   * The callback runs in a React layout effect, so it can return an element from a ref.
+   * By default, enabled portals render inside the active modal dialog, or in `document.body` when no dialog is active.
+   */
+  container?: PortalProps['container'] | undefined;
+  /**
+   * If `true`, the snackbar stays in its parent's DOM hierarchy.
+   * Set to `false` to render in a portal. Without a `container`, the portal follows the active modal dialog.
+   * @default true
+   */
+  disablePortal?: boolean | undefined;
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
