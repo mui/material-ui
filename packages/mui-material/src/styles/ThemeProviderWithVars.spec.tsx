@@ -1,8 +1,9 @@
 import type { Overlays, StorageManager } from '@mui/material/styles';
-import { extendTheme, ThemeProvider, styled, useTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider, styled, useTheme } from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
-const customTheme = extendTheme({
+const customTheme = createTheme({
+  cssVariables: true,
   colorSchemes: {
     light: {
       opacity: {

@@ -9,6 +9,9 @@ packages:
 engineStrict: true
 updateNotifier: false
 autoDedupe: true
+# Peer suffixes list only name@version, so a peer's own peers (e.g. the optional yaml of vite)
+# do not split one package into several lockfile entries.
+dedupePeers: true
 blockExoticSubdeps: true
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
@@ -31,6 +34,7 @@ trustPolicyIgnoreAfter: 525600
 
 catalogs:
   docs:
+    # Match @emotion/cache: a newer stylis prefixer throws on its styles. Renovate skips this entry.
     stylis: '4.2.0'
     '@base-ui/react': '^1.9.0'
     '@docsearch/react': '^5.2.0'
@@ -42,8 +46,7 @@ catalogs:
 
 overrides:
   '@mui/internal-docs-infra': '0.13.1-canary.33'
-  # Both were bundled twice in the docs build
-  'docs>stylis': '4.2.0'
+  # Bundled twice in the docs build
   'docs>react-is': '19.3.1'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
   caniuse-lite: '^1.0.30001823'

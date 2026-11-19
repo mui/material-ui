@@ -184,10 +184,14 @@ function PersistScroll(props: PersistScrollProps) {
   const rootRef = React.useRef<HTMLDivElement>(null);
 
   useEnhancedEffect(() => {
+    if (!enabled) {
+      return undefined;
+    }
+
     const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
     const activeDrawerLink = scrollContainer?.querySelector('.app-drawer-active');
 
-    if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
+    if (!scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
       return undefined;
     }
 
@@ -369,7 +373,9 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const desktop = useMediaQuery((theme) => theme.breakpoints.up('lg'), { noSsr: true });
   const swipeableDrawer = disablePermanent || mobile;
+  const scrollEnabled = swipeableDrawer ? mobileOpen : desktop;
 
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
@@ -474,14 +480,23 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
               scrollbarWidth: 'thin',
             }}
           >
-            <PersistScroll slot="side" enabled>
+            <PersistScroll slot="side" enabled={scrollEnabled}>
               {navItems}
             </PersistScroll>
           </Box>
         </Box>
       </React.Fragment>
     );
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
+  }, [
+    onClose,
+    pages,
+    activePageParents,
+    t,
+    productIdentifier,
+    anchorEl,
+    swipeableDrawer,
+    scrollEnabled,
+  ]);
 
   // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
   if (process.env.NEXT_RUNTIME) {
