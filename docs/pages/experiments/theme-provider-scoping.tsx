@@ -72,6 +72,14 @@ function createLinkTheme(main: string) {
 }
 const blueLinkTheme = createLinkTheme('#1976d2');
 const redLinkTheme = createLinkTheme('#d32f2f');
+// A page theme with another prefix, like the docs' own theme around the Material UI demos.
+const docsTheme = createTheme({
+  cssVariables: { cssVarPrefix: 'docs', colorSchemeSelector: 'class' },
+  colorSchemes: {
+    light: { palette: { primary: { main: '#00796b' } } },
+    dark: { palette: { primary: { main: '#4db6ac' } } },
+  },
+});
 
 // ---------------------------------------------------------------------------
 // Each scenario renders in its own iframe, with its own React root, because the top-level provider writes to `:root`.
@@ -288,23 +296,9 @@ interface Scenario {
 
 const scenarios: Scenario[] = [
   {
-    title: '1. Single top-level provider',
-    description: 'Baseline: variables on :root, and no element of its own.',
-    code: `<ThemeProvider theme={appTheme}>
-  <Button />
-</ThemeProvider>`,
-    render: () => (
-      <Root theme={appTheme}>
-        <div data-inspect="child">
-          <Swatch label="root" />
-        </div>
-      </Root>
-    ),
-  },
-  {
-    title: '2. Two top-level providers',
+    title: '1. Two top-level providers',
     description:
-      'Both write to :root, and the last one wins for both. Logs a warning in development that points to `isolated`.',
+      'A top-level provider writes to :root and renders no element. Two of them overwrite each other, and the last one wins for both. Logs a warning in development that points to `isolated`.',
     code: `<ThemeProvider theme={appTheme}><Button /></ThemeProvider>
 <ThemeProvider theme={widgetTheme}><Button /></ThemeProvider>`,
     render: () => (
@@ -323,7 +317,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '3. Top-level provider + isolated siblings',
+    title: '2. Top-level provider + isolated siblings',
     description:
       'An isolated provider sets all its variables on its element and has its own mode, in its own marker, whatever the selector of its theme.',
     code: `<ThemeProvider theme={appTheme}><App /></ThemeProvider>
@@ -357,7 +351,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '4. Nested, different variables',
+    title: '3. Nested, different variables',
     description:
       'The provider renders a div with display: contents, whose class only sets the variables that differ. It follows the outer mode.',
     code: `<ThemeProvider theme={appTheme}>
@@ -380,13 +374,13 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '5. Nested, any children (bug 3)',
+    title: '4. Nested, any children (bug 3)',
     description:
-      'Several children, a Fragment, text, an array, and a component that drops the className it would have received all get the theme.',
-    code: `<ThemeProvider theme={promoTheme}><Button /><Button /></ThemeProvider>
-<ThemeProvider theme={promoTheme}><>…</></ThemeProvider>
-<ThemeProvider theme={promoTheme}>text</ThemeProvider>
-<ThemeProvider theme={promoTheme}>{[<Button key="a" />]}</ThemeProvider>
+      'The theme is on the element of the provider, so several children and a component that drops the className it would have received all get it.',
+    code: `<ThemeProvider theme={promoTheme}>
+  <Button />
+  <Button />
+</ThemeProvider>
 <ThemeProvider theme={promoTheme}>
   <DropsClassName><Button /></DropsClassName>
 </ThemeProvider>`,
@@ -396,15 +390,8 @@ const scenarios: Scenario[] = [
           <ThemeProvider theme={promoTheme}>
             <Swatch label="several 1" />
             <Swatch label="several 2" />
+            <span data-inspect="several children" />
           </ThemeProvider>
-          <ThemeProvider theme={promoTheme}>
-            <React.Fragment>
-              <Swatch label="fragment 1" />
-              <Swatch label="fragment 2" />
-            </React.Fragment>
-          </ThemeProvider>
-          <ThemeProvider theme={promoTheme}>text</ThemeProvider>
-          <ThemeProvider theme={promoTheme}>{[<Swatch key="a" label="array" />]}</ThemeProvider>
           <ThemeProvider theme={promoTheme}>
             <DropsClassName>
               <Swatch label="drops" />
@@ -415,9 +402,9 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '6. A chain of providers (bug 1)',
+    title: '5. A chain of providers (bug 1)',
     description:
-      'Each level sets its own variables on its own element, so the closest one wins: the inner appTheme is blue again, and promo → accent applies both.',
+      'Each level sets its own variables on its own element, so the closest one wins: the inner appTheme is blue again, and promo → accent applies both. The portals of promo → accent get one class with both changes, since they are outside both elements.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={promoTheme}>
     <ThemeProvider theme={appTheme}>
@@ -427,6 +414,7 @@ const scenarios: Scenario[] = [
   <ThemeProvider theme={promoTheme}>
     <ThemeProvider theme={accentTheme}>
       <Button /><Button color="secondary" />
+      <Dialog /><Menu />
     </ThemeProvider>
   </ThemeProvider>
 </ThemeProvider>`,
@@ -448,6 +436,7 @@ const scenarios: Scenario[] = [
                 <Button variant="contained" color="secondary" size="small" sx={{ m: 0.5 }}>
                   secondary
                 </Button>
+                <Portals label="promo → accent" />
               </div>
             </ThemeProvider>
           </ThemeProvider>
@@ -456,9 +445,9 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '7. Function themes',
+    title: '6. Function themes',
     description:
-      'A function theme applies like the object theme it returns: a copy of the outer theme with changes, or createTheme(outer, …), is scoped too.',
+      'A function theme applies like the object theme it returns: a copy of the outer theme with changes, or createTheme(outer, …), is scoped too. As in createTheme(), `palette` is the default (light) color scheme, so in dark mode both keep the outer dark primary unless they change colorSchemes.dark. createTheme(outer, …) also keeps the outer primary light and dark shades, since it merges { main } into the outer primary color.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={(outer) => ({ ...outer, palette: { ...outer.palette, primary: { main: '#2e7d32' } } })}>
     <Button />
@@ -470,6 +459,7 @@ const scenarios: Scenario[] = [
     render: () => (
       <Root theme={appTheme}>
         <div>
+          <ModeToggle label="outer mode" />
           <ThemeProvider
             theme={(outer: any) => ({
               ...outer,
@@ -494,7 +484,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '8. The render prop',
+    title: '7. The render prop',
     description:
       'Pick the element where a div is not valid, or pass a function that receives the props and the state.',
     code: `<ul>
@@ -541,7 +531,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '9. Portals',
+    title: '8. Portals',
     description:
       'Dialog, Menu and Tooltip get one scope class on their own root, in a nested provider and in an isolated one. useThemeScope() does it for other portals.',
     code: `<ThemeProvider theme={appTheme}>
@@ -571,7 +561,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '10. Isolated section with its own mode (bug 2 and the leaks)',
+    title: '9. Isolated section with its own mode (bug 2 and the leaks)',
     description:
       'A light section in a dark page: the page class on <html> stays the page mode, and neither the page dark variables nor its applyStyles("dark") styles reach the section.',
     code: `<ThemeProvider theme={appTheme} defaultMode="dark">
@@ -603,7 +593,69 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '11. Variables that reference a changed one (bug 4)',
+    title: '10. Nested in an isolated provider',
+    description:
+      'A nested provider follows the closest isolated provider, not the page. Toggle both modes: the nested section only changes with the isolated one.',
+    code: `<ThemeProvider theme={appTheme}>
+  <ThemeProvider theme={widgetTheme} isolated defaultMode="dark">
+    <ThemeProvider theme={promoTheme}>
+      <Button />
+    </ThemeProvider>
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={appTheme}>
+        <div data-inspect="page child">
+          <ModeToggle label="page mode" />
+          <ThemeProvider theme={widgetTheme} isolated defaultMode="dark">
+            <Box data-inspect="isolated child" sx={{ p: 1, bgcolor: 'background.default' }}>
+              <ModeToggle label="isolated mode" />
+              <ThemeProvider theme={promoTheme}>
+                <div data-inspect="nested in isolated">
+                  <Swatch label="nested" />
+                </div>
+              </ThemeProvider>
+            </Box>
+          </ThemeProvider>
+        </div>
+      </Root>
+    ),
+  },
+  {
+    title: '11. Isolated in isolated',
+    description:
+      'Each isolated provider has its own marker, so a nested provider follows the closest one: the light inner section ignores the dark outer one around it.',
+    code: `<ThemeProvider theme={widgetTheme} isolated defaultMode="dark">
+  <ThemeProvider theme={accentTheme} isolated defaultMode="light">
+    <ThemeProvider theme={promoTheme}>
+      <Button color="secondary" />
+    </ThemeProvider>
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={appTheme}>
+        <ThemeProvider theme={widgetTheme} isolated defaultMode="dark">
+          <Box data-inspect="outer isolated" sx={{ p: 1, bgcolor: 'background.default' }}>
+            <ModeToggle label="outer isolated mode" />
+            <ThemeProvider theme={accentTheme} isolated defaultMode="light">
+              <Box data-inspect="inner isolated" sx={{ p: 1, bgcolor: 'background.default' }}>
+                <ModeToggle label="inner isolated mode" />
+                <ThemeProvider theme={promoTheme}>
+                  <div data-inspect="nested in inner">
+                    <Button variant="contained" color="secondary" size="small" sx={{ m: 0.5 }}>
+                      secondary
+                    </Button>
+                  </div>
+                </ThemeProvider>
+              </Box>
+            </ThemeProvider>
+          </Box>
+        </ThemeProvider>
+      </Root>
+    ),
+  },
+  {
+    title: '12. Variables that reference a changed one (bug 4)',
     description:
       'text.link is var(--mui-palette-primary-main). The nested provider declares it again, so the inner link follows the inner primary color.',
     code: `<ThemeProvider theme={blueLinkTheme}>
@@ -624,7 +676,30 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '12. Forced single-scheme nested section',
+    title: '13. Nested theme with another prefix',
+    description:
+      'Like the Material UI demos inside the docs theme: the nested theme shares no variable with the outer one, so its element gets all of them. It follows the outer mode, and its portals get its class along with the outer scope.',
+    code: `<ThemeProvider theme={docsTheme /* cssVarPrefix: 'docs' */}>
+  <ThemeProvider theme={promoTheme /* cssVarPrefix: 'mui' */}>
+    <Button /><Dialog /><Menu />
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={docsTheme}>
+        <div data-inspect="page (docs prefix)">
+          <ModeToggle label="page mode" />
+          <ThemeProvider theme={promoTheme}>
+            <div data-inspect="nested (mui prefix)">
+              <Swatch label="nested" />
+              <Portals label="other prefix" />
+            </div>
+          </ThemeProvider>
+        </div>
+      </Root>
+    ),
+  },
+  {
+    title: '14. Forced single-scheme nested section',
     description: 'A nested theme with only a dark scheme stays dark whatever the outer mode is.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={forcedDarkTheme}>
@@ -645,7 +720,7 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '13. Nested, same variables, then different ones',
+    title: '15. Nested, same variables, then different ones',
     description:
       'With sameVarsTheme (only component defaults change), the div has no scope class. Click the counter, then switch to promoTheme: the div gets the class and the count stays, so nothing remounts.',
     code: `<ThemeProvider theme={appTheme}>
@@ -665,7 +740,7 @@ const scenarios: Scenario[] = [
 // Inspector: reads what ended up in the iframe.
 
 const interestingDeclaration =
-  /color-scheme|--mui-palette-(primary-main|secondary-main|text-link):/;
+  /color-scheme|--(mui|docs)-palette-(primary-main|secondary-main|text-link):/;
 
 function describeRule(cssText: string) {
   const [selector, body = ''] = cssText.split('{');
@@ -690,7 +765,8 @@ function inspect(doc: Document) {
     const style = view.getComputedStyle(element);
     const read = (name: string) => style.getPropertyValue(name).trim() || '—';
     const link = read('--mui-palette-text-link');
-    return `primary ${read('--mui-palette-primary-main')}, secondary ${read('--mui-palette-secondary-main')}, ${link === '—' ? '' : `link color ${style.color}, `}color-scheme ${style.colorScheme}`;
+    const docsPrimary = read('--docs-palette-primary-main');
+    return `primary ${read('--mui-palette-primary-main')}, secondary ${read('--mui-palette-secondary-main')}, ${docsPrimary === '—' ? '' : `docs primary ${docsPrimary}, `}${link === '—' ? '' : `link color ${style.color}, `}color-scheme ${style.colorScheme}`;
   };
   const scope = (element: Element) => {
     const classes = Array.from(element.classList)
@@ -733,7 +809,9 @@ function inspect(doc: Document) {
     ...elements,
     '',
     applied.length ? `Scoped rules:\n${applied.join('\n')}` : 'No scoped rules applied',
-    unused ? `\n${unused} rule(s) generated, but no element has the class` : '',
+    unused
+      ? `\n${unused} rule(s) for portals: the portals of a provider nested in another nested or isolated one get one class with every variable they would miss outside its element, used once a dialog, menu or tooltip opens`
+      : '',
   ].join('\n');
 }
 
