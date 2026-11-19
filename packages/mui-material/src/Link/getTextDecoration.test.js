@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createTheme, extendTheme } from '../styles';
+import { createTheme } from '../styles';
 import getTextDecoration from './getTextDecoration';
 
 describe('getTextDecoration', () => {
@@ -64,7 +64,7 @@ describe('getTextDecoration', () => {
   });
 
   describe('CSS variables', () => {
-    const theme = extendTheme();
+    const theme = createTheme({ cssVariables: true });
     theme.palette = theme.colorSchemes.light.palette;
     theme.vars = {
       palette: {
