@@ -179,27 +179,22 @@ The example below uses a controlled value and restores it in `onReset` so the Re
 
 ## Controlling the input
 
-Use `slotProps.htmlInput` to pass attributes to the native input element.
-Use `slotProps.input` to configure the Material UI `Input`, `FilledInput`, or `OutlinedInput` component selected by `variant`.
+Use `slotProps.htmlInput` for native input attributes, event handlers, and refs.
+Use `slotProps.input` for Material input customization, such as adornments, wrapper styles, or the outlined variant's `notchedOutline` slot.
+NumberField displays its formatted value in a single-line text input.
+Set `value` or `defaultValue` on NumberField itself.
 
 ```jsx
 <NumberField
   label="Quantity"
   slotProps={{
     input: { sx: { borderRadius: 2 } },
-    htmlInput: { 'data-testid': 'quantity' },
+    htmlInput: { enterKeyHint: 'done' },
   }}
 />
 ```
 
-Native input props are resolved from lowest to highest precedence:
-
-1. `onKeyDown` and `onKeyUp` from `slotProps.input`.
-2. `slotProps.htmlInput`, replaced entirely by `slotProps.input.inputProps` when provided, even if `inputProps` is explicitly `undefined`.
-3. `slotProps.input.slotProps.input`.
-
-Later values override earlier ones, including consumer event handlers.
-NumberField composes the selected handlers with Base UI's internal handlers.
+To handle an arrow key yourself, call `event.preventBaseUIHandler()` in `slotProps.htmlInput.onKeyDown` to skip NumberField's default step for that key.
 The field's resolved `disabled`, `readOnly`, and `required` states take precedence over conflicting slot props.
 
 The forwarded `ref` points to the root element.

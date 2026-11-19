@@ -1,7 +1,7 @@
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import type { useRender } from '@base-ui/react/use-render';
 
-import type { OverridableStringUnion } from '@mui/types';
+import type { OverridableStringUnion, Overwrite } from '@mui/types';
 import type { SlotComponentProps } from '@mui/utils/types';
 
 import type { InputProps as StandardInputProps } from '../Input';
@@ -21,6 +21,12 @@ import type { SxProps } from '../styles';
 export type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
 
 type ControlsPosition = 'stacked' | 'end' | 'split' | false;
+
+type OwnedInputProps = Partial<Record<'defaultValue' | 'type' | 'value', undefined>>;
+
+type NativeInputProps = React.ComponentPropsWithRef<'input'>;
+type MaterialInputEvents = Pick<NativeInputProps, 'onBlur' | 'onChange' | 'onFocus'>;
+type NativeKeyboardEvents = Pick<BaseNumberField.Input.Props, 'onKeyDown' | 'onKeyUp'>;
 
 export interface NumberFieldSlots {
   /**
@@ -95,6 +101,13 @@ export interface NumberFieldScrubAreaSlotPropsOverrides {}
 export interface NumberFieldScrubAreaAdornmentSlotPropsOverrides {}
 export interface NumberFieldScrubAreaCursorSlotPropsOverrides {}
 
+type NumberFieldInputSlotProps<Props, Overrides> = SlotComponentProps<
+  React.FunctionComponent<Props>,
+  // A function's `name` also matches input props. Require functions to match the callback signature.
+  Overrides & OwnedInputProps & { apply?: undefined },
+  NumberFieldOwnerState
+>;
+
 type NumberFieldAdornmentSlotProps<Overrides> = SlotComponentProps<
   React.ElementType<Omit<InputAdornmentProps, 'component' | 'position'>>,
   Overrides & Pick<useRender.ComponentProps<'div', BaseNumberField.Root.State>, 'render'>,
@@ -138,15 +151,15 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     >;
     /**
      * Props forwarded to the native `<input>` element.
+     * Set the numeric `value` or `defaultValue` on NumberField.
      * Use `render` to customize the input while preserving Material styling and Base UI behavior.
      */
-    htmlInput: SlotComponentProps<
-      'input',
+    htmlInput: NumberFieldInputSlotProps<
+      Overwrite<NativeInputProps, NativeKeyboardEvents>,
       NumberFieldHtmlInputSlotPropsOverrides & {
         render?: BaseNumberField.Input.Props['render'] | undefined;
         sx?: SxProps<Theme> | undefined;
-      },
-      NumberFieldOwnerState
+      }
     >;
     /**
      * Props forwarded to the increment button slot.
@@ -164,15 +177,23 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
      * Props forwarded to the Material input wrapper.
      * Depending on `variant`, the available props are based on [OutlinedInput](https://mui.com/material-ui/api/outlined-input/#props),
      * [FilledInput](https://mui.com/material-ui/api/filled-input/#props), or [Input](https://mui.com/material-ui/api/input/#props).
+     * Pass native input attributes and event handlers to `slotProps.htmlInput`.
      * Use `render` to change the wrapper element while preserving the Material input.
      * Its root element groups the native input and controls with `role="group"`.
      */
-    input: SlotComponentProps<
-      React.ElementType<InputPropsType>,
+    input: NumberFieldInputSlotProps<
+      Overwrite<InputPropsType, MaterialInputEvents>,
       NumberFieldInputSlotPropsOverrides & {
+        multiline?: undefined;
+        rows?: undefined;
+        minRows?: undefined;
+        maxRows?: undefined;
+        onKeyDown?: undefined;
+        onKeyUp?: undefined;
+        inputProps?: undefined;
+        slotProps?: { input?: undefined } | undefined;
         render?: BaseNumberField.Group.Props['render'] | undefined;
-      },
-      NumberFieldOwnerState
+      }
     >;
     /**
      * Props forwarded to the input label slot.
