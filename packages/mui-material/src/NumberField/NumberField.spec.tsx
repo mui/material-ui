@@ -173,9 +173,6 @@ function ValueCallbacks(props: NumberFieldProps) {
 }
 
 <ValueCallbacks />;
-<ValueCallbacks variant="standard" />;
-<ValueCallbacks variant="filled" />;
-<ValueCallbacks variant="outlined" />;
 
 <NumberField value={null} defaultValue={0} />;
 // @ts-expect-error Numeric values cannot be strings.
