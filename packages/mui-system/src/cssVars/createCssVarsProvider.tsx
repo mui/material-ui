@@ -518,6 +518,11 @@ export default function createCssVarsProvider<
         if (scheme && typeof scheme === 'object') {
           // 4.1 Merge the selected color scheme to the theme
           Object.keys(scheme).forEach((schemeKey) => {
+            if (theme[schemeKey] === scheme[schemeKey]) {
+              // The theme already holds the color scheme's value, e.g. the default color scheme of a theme
+              // with CSS theme variables. Keeping it lets `createTheme()` tell it from a value set on the theme.
+              return;
+            }
             if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
               // shallow merge the 1st level structure of the theme.
               theme[schemeKey] = {
@@ -726,7 +731,12 @@ export default function createCssVarsProvider<
     // isolated provider. One class, instead of one per provider, so the closest theme always wins.
     const sharesOwnerPrefix = !!owner && owner.prefix === cssVarPrefix;
     const portalScope = React.useMemo(() => {
-      if (!nested || !canGenerateStyleSheet || !generateCssVarsByColorScheme || !sharesOwnerPrefix) {
+      if (
+        !nested ||
+        !canGenerateStyleSheet ||
+        !generateCssVarsByColorScheme ||
+        !sharesOwnerPrefix
+      ) {
         return scope;
       }
       if (owner!.isolated) {
@@ -848,7 +858,10 @@ export default function createCssVarsProvider<
     // Only an isolated provider with a stored mode needs a script, since the server doesn't know the mode.
     // It sets the marker before the first paint, like `InitColorSchemeScript` does for the page.
     const rendersScript =
-      isolated && isolatedStorage && props.storageManager === undefined && allColorSchemes.length > 1;
+      isolated &&
+      isolatedStorage &&
+      props.storageManager === undefined &&
+      allColorSchemes.length > 1;
     const elementProps: Record<string, any> = {
       ...markerProps,
       className: clsx(rendersDefaultElement && defaultClassName, scopeClassName) || undefined,
@@ -900,9 +913,7 @@ export default function createCssVarsProvider<
     const element = (
       <React.Fragment>
         <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
-          <ThemeScopeContext.Provider value={scopeProps}>
-            {content}
-          </ThemeScopeContext.Provider>
+          <ThemeScopeContext.Provider value={scopeProps}>{content}</ThemeScopeContext.Provider>
         </ThemeProvider>
         {shouldGenerateStyleSheet && (
           <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
@@ -915,7 +926,11 @@ export default function createCssVarsProvider<
           />
         )}
         {scope && (
-          <ScopeStyleSheet registry={styleSheets} className={scope.className} styles={scope.styles} />
+          <ScopeStyleSheet
+            registry={styleSheets}
+            className={scope.className}
+            styles={scope.styles}
+          />
         )}
         {portalScope && portalScope.className !== scopeClassName && (
           <ScopeStyleSheet

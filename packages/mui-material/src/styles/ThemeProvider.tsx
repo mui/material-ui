@@ -1,12 +1,14 @@
 'use client';
 import * as React from 'react';
 import type { DefaultTheme } from '@mui/system';
+import { useThemeWithoutDefault } from '@mui/system';
 import type { StorageManager, ThemeProviderRender } from '@mui/system/cssVars';
 import { unstable_useRenderElement as useRenderElement } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import type { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider, useColorScheme } from './ThemeProviderWithVars';
 import type { CssVarsTheme } from './createThemeWithVars';
+import createTheme from './createTheme';
 import THEME_ID from './identifier';
 
 type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true }
@@ -111,15 +113,56 @@ function Element(props: { render: ThemeProviderRender; children?: React.ReactNod
   return useRenderElement(render, { children }, undefined, { mode, colorScheme });
 }
 
+function getMuiTheme(theme: any) {
+  return THEME_ID in theme ? theme[THEME_ID] : theme;
+}
+
+/**
+ * A copy of the outer theme with changes, e.g. `{ ...outer, palette }`, still has the outer CSS theme variables,
+ * so it's created again from its values. Only `components` doesn't change any variable.
+ */
+function isOutdatedCopy(theme: any, outerTheme: any) {
+  return (
+    theme !== outerTheme &&
+    theme.vars === outerTheme.vars &&
+    Object.keys(theme).some((key) => key !== 'components' && theme[key] !== outerTheme[key])
+  );
+}
+
+/**
+ * Calls a function theme with the outer theme. When it returns a theme with CSS theme variables,
+ * the result is applied like an object theme, so that its variables are scoped like any nested theme.
+ * Returns `undefined` for the other function themes, which the provider without CSS theme variables calls.
+ */
+function useFunctionThemeWithVars(theme: ThemeProviderProps<any>['theme']) {
+  const outerTheme = useThemeWithoutDefault<any>(null);
+  return React.useMemo(() => {
+    if (typeof theme !== 'function' || !outerTheme) {
+      return undefined;
+    }
+    const result = theme(outerTheme);
+    const muiTheme = result && typeof result === 'object' ? getMuiTheme(result) : undefined;
+    if (!muiTheme?.vars || !('colorSchemes' in muiTheme)) {
+      return undefined;
+    }
+    if (!isOutdatedCopy(muiTheme, getMuiTheme(outerTheme))) {
+      return result;
+    }
+    const recreated = createTheme(muiTheme);
+    return THEME_ID in result ? { ...result, [THEME_ID]: recreated } : recreated;
+  }, [theme, outerTheme]);
+}
+
 export default function ThemeProvider<Theme = DefaultTheme>({
-  theme,
+  theme: themeProp,
   ...props
 }: ThemeProviderProps<Theme>) {
+  const theme = useFunctionThemeWithVars(themeProp) ?? themeProp;
   const noVarsTheme = React.useMemo(() => {
     if (typeof theme === 'function') {
       return theme;
     }
-    const muiTheme = (THEME_ID in theme ? theme[THEME_ID] : theme) as ThemeProviderProps['theme'];
+    const muiTheme = getMuiTheme(theme) as ThemeProviderProps['theme'];
     if (!('colorSchemes' in muiTheme)) {
       if (!('vars' in muiTheme)) {
         // For non-CSS variables themes, set `vars` to null to prevent theme inheritance from the upper theme.

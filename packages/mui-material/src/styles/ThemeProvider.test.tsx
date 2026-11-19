@@ -355,16 +355,169 @@ describe('ThemeProvider', () => {
         const scopeRule = css.slice(css.indexOf(`${scope}{`));
         expect(scopeRule).to.include('--mui-palette-text-link:var(--mui-palette-primary-main)');
         if (!isJsdom()) {
-          expect(getVar(screen.getByTestId('inner'), '--mui-palette-text-link')).to.equal('#ff0000');
+          expect(getVar(screen.getByTestId('inner'), '--mui-palette-text-link')).to.equal(
+            '#ff0000',
+          );
         }
+      });
+
+      describe('function theme', () => {
+        // The rules of the scope class of a provider's element.
+        function getScopeCss(element: Element) {
+          const scope = `.${element.classList[1]}`;
+          return Array.from(document.querySelectorAll('style'))
+            .map((style) => style.textContent)
+            .join('')
+            .split('}')
+            .filter((rule) => rule.includes(scope))
+            .join('}');
+        }
+
+        function Inner() {
+          const theme = useTheme();
+          return <div data-testid="inner" data-primary={theme.palette.primary.main} />;
+        }
+
+        it('scopes the variables of a copy of the outer theme with changes', () => {
+          render(
+            <ThemeProvider theme={blueTheme}>
+              <ThemeProvider
+                theme={(outer: any) => ({
+                  ...outer,
+                  palette: { ...outer.palette, primary: { main: '#ff0000' } },
+                })}
+              >
+                <Inner />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          const inner = screen.getByTestId('inner');
+          expect(inner.dataset.primary).to.equal('#ff0000');
+          expect(inner.parentElement!.className).to.match(
+            /^MuiThemeProvider-root mui-theme-[a-z0-9]+$/,
+          );
+          const css = getScopeCss(inner.parentElement!);
+          expect(css).to.include('--mui-palette-primary-main:#ff0000');
+          // The tokens derived from the primary color follow it.
+          expect(css).to.include('--mui-palette-primary-mainChannel:255 0 0');
+          if (!isJsdom()) {
+            expect(getVar(inner, '--mui-palette-primary-main')).to.equal('#ff0000');
+          }
+        });
+
+        it('scopes the variables of a theme created from the outer theme', () => {
+          render(
+            <ThemeProvider theme={blueTheme}>
+              <ThemeProvider
+                theme={(outer: any) =>
+                  createTheme(outer, { palette: { primary: { main: '#ff0000' } } })
+                }
+              >
+                <Inner />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          const inner = screen.getByTestId('inner');
+          expect(inner.dataset.primary).to.equal('#ff0000');
+          expect(getScopeCss(inner.parentElement!)).to.include(
+            '--mui-palette-primary-main:#ff0000',
+          );
+          if (!isJsdom()) {
+            expect(getVar(inner, '--mui-palette-primary-main')).to.equal('#ff0000');
+          }
+        });
+
+        it('only writes the variables that a copy of the outer theme changes', () => {
+          const outerTheme = createTheme({
+            cssVariables: { colorSchemeSelector: 'class' },
+            colorSchemes: { light: true, dark: true },
+            defaultColorScheme: 'dark',
+          });
+          render(
+            <ThemeProvider theme={outerTheme}>
+              <ThemeProvider
+                theme={(outer: any) => ({
+                  ...outer,
+                  palette: { ...outer.palette, primary: { main: '#ff0000' } },
+                })}
+              >
+                <Inner />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          const css = getScopeCss(screen.getByTestId('inner').parentElement!);
+          expect(css).to.include('--mui-palette-primary-main:#ff0000');
+          // The values of the default color scheme that the copy keeps aren't written again.
+          expect(css).not.to.include('--mui-opacity-');
+          expect(css).not.to.include('--mui-overlays-');
+          expect(css).not.to.include('--mui-palette-background-');
+        });
+
+        it('renders a div without a scope class when it returns the outer theme', () => {
+          render(
+            <ThemeProvider theme={blueTheme}>
+              <ThemeProvider theme={(outer: any) => outer}>
+                <Inner />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          const inner = screen.getByTestId('inner');
+          expect(inner.dataset.primary).to.equal('#0000ff');
+          expect(inner.parentElement!.className).to.equal('MuiThemeProvider-root');
+        });
+
+        it('keeps the outer variables when only the components change', () => {
+          let theme: any;
+          function Component() {
+            theme = useTheme();
+            return <div data-testid="inner" />;
+          }
+          const components = { MuiButton: { defaultProps: { disableRipple: true } } };
+          render(
+            <ThemeProvider theme={blueTheme}>
+              <ThemeProvider theme={(outer: any) => ({ ...outer, components })}>
+                <Component />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          expect(screen.getByTestId('inner').parentElement!.className).to.equal(
+            'MuiThemeProvider-root',
+          );
+          expect(theme.components).to.equal(components);
+          expect(theme.palette.primary.main).to.equal('#0000ff');
+        });
+
+        it('replaces an outer theme without CSS theme variables', () => {
+          const outerTheme = createTheme({ palette: { primary: { main: '#0000ff' } } });
+          render(
+            <ThemeProvider theme={outerTheme}>
+              <ThemeProvider
+                theme={(outer: any) => ({
+                  ...outer,
+                  palette: {
+                    ...outer.palette,
+                    primary: { ...outer.palette.primary, main: '#ff0000' },
+                  },
+                })}
+              >
+                <Inner />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          const inner = screen.getByTestId('inner');
+          expect(inner.dataset.primary).to.equal('#ff0000');
+          expect(document.querySelector('.MuiThemeProvider-root')).to.equal(null);
+        });
       });
 
       it('inserts the stylesheet of a scope once for many providers with the same theme', () => {
         function countRules(className: string) {
-          return Array.from(document.querySelectorAll('style'))
-            .map((style) => style.textContent ?? '')
-            .join('')
-            .split(`.${className}{`).length - 1;
+          return (
+            Array.from(document.querySelectorAll('style'))
+              .map((style) => style.textContent ?? '')
+              .join('')
+              .split(`.${className}{`).length - 1
+          );
         }
         const { setProps } = render(
           <ThemeProvider theme={blueTheme}>
@@ -401,8 +554,8 @@ describe('ThemeProvider', () => {
             ))}
           </ThemeProvider>,
         );
-        const className = container.querySelector('[data-testid="card-0"]')!.parentElement!
-          .classList[1];
+        const className =
+          container.querySelector('[data-testid="card-0"]')!.parentElement!.classList[1];
         hydrate();
         const css = Array.from(document.querySelectorAll('style'))
           .map((style) => style.textContent ?? '')
@@ -1042,7 +1195,10 @@ describe('ThemeProvider', () => {
         render(
           <ThemeProvider theme={blueTheme}>
             <table>
-              <ThemeProvider theme={redTheme} render={<tbody className="body" data-testid="body" />}>
+              <ThemeProvider
+                theme={redTheme}
+                render={<tbody className="body" data-testid="body" />}
+              >
                 <tr>
                   <td data-testid="cell" />
                 </tr>
@@ -1137,9 +1293,7 @@ describe('ThemeProvider', () => {
             <div data-testid="inner" />
           </ThemeProvider>,
         );
-        expect(screen.getByTestId('inner').parentElement).to.equal(
-          screen.getByTestId('section'),
-        );
+        expect(screen.getByTestId('inner').parentElement).to.equal(screen.getByTestId('section'));
       });
     });
   });

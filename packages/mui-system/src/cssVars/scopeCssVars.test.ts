@@ -255,9 +255,7 @@ describe('getColorSchemeRule', () => {
   it('turns the color scheme selector into a rule', () => {
     expect(getColorSchemeRule('class')).to.equal('.%s &');
     expect(getColorSchemeRule('data')).to.equal('[data-%s] &');
-    expect(getColorSchemeRule('data-mui-color-scheme')).to.equal(
-      '[data-mui-color-scheme="%s"] &',
-    );
+    expect(getColorSchemeRule('data-mui-color-scheme')).to.equal('[data-mui-color-scheme="%s"] &');
     expect(getColorSchemeRule('.mode-%s')).to.equal('.mode-%s &');
     expect(getColorSchemeRule('media')).to.equal('media');
     expect(getColorSchemeRule(undefined)).to.equal(undefined);
