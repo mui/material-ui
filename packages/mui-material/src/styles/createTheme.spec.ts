@@ -1,6 +1,7 @@
 import type { ThemeOptions, FocusVisible } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { buttonClasses } from '@mui/material/Button';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const theme = createTheme();
 
@@ -363,4 +364,32 @@ const theme = createTheme();
   const hoverOpacityVar: string = varsTheme.vars.palette.action.hoverOpacity;
   // Non-opacity action colors are unchanged
   const activeColor: string = varsTheme.vars.palette.action.active;
+}
+
+// CSS theme variables
+{
+  const cssVarsTheme = createTheme({ cssVariables: true });
+
+  cssVarsTheme.getCssVar('palette-primary-main');
+  cssVarsTheme.getCssVar('palette-Alert-errorColor');
+  cssVarsTheme.getCssVar('opacity-inputPlaceholder');
+  cssVarsTheme.getCssVar('zIndex-appBar');
+  cssVarsTheme.getCssVar('shape-borderRadius');
+  cssVarsTheme.getCssVar('shadows-0');
+  cssVarsTheme.getCssVar('overlays-0');
+
+  // @ts-expect-error: getCssVar requires a CSS variable name.
+  cssVarsTheme.getCssVar();
+  // @ts-expect-error: An empty string is not a theme CSS variable name.
+  cssVarsTheme.getCssVar('');
+  // @ts-expect-error: custom-color is not a declared theme CSS variable.
+  cssVarsTheme.getCssVar('custom-color');
+  // @ts-expect-error: An empty string is not a valid fallback CSS variable name.
+  cssVarsTheme.getCssVar('palette-primary-main', '');
+
+  // dark only application
+  createTheme({ cssVariables: true, colorSchemes: { dark: true }, defaultColorScheme: 'dark' });
+
+  // built-in light and dark modes
+  createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } });
 }
