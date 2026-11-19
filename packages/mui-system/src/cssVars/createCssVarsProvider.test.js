@@ -915,7 +915,7 @@ describe('createCssVarsProvider', () => {
       render(
         <CssVarsProvider>
           <Toggle data-testid="outer" />
-          <CssVarsProvider disableNestedContext>
+          <CssVarsProvider isolated>
             <Toggle data-testid="inner" />
           </CssVarsProvider>
         </CssVarsProvider>,
@@ -924,7 +924,7 @@ describe('createCssVarsProvider', () => {
       fireEvent.click(screen.getByTestId('inner'));
 
       // state changes in nested provider should not affect the upper context
-      // if `disableNestedContext` is true.
+      // if `isolated` is true.
       expect(screen.getByTestId('outer')).to.have.text('system');
 
       expect(screen.getByTestId('inner')).to.have.text('dark');

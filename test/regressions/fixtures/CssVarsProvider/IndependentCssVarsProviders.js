@@ -61,8 +61,8 @@ export default function IndependentCssVarsProviders() {
         }}
       >
         Background should be red.
-        {/* If `disableNestedContext` is true, the upper CssVarsProvider should be independent */}
-        <CssVarsProvider theme={nestedTheme} disableNestedContext>
+        {/* If `isolated` is true, the upper CssVarsProvider should be independent */}
+        <CssVarsProvider theme={nestedTheme} isolated>
           <DarkMode />
           <div
             style={{

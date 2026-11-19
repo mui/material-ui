@@ -13,11 +13,13 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
   ? {
       /**
        * The node for attaching the `theme.colorSchemeSelector`.
+       * Only the top-level provider uses it by default; an `isolated` provider uses it when it's given.
        * @default document
        */
       colorSchemeNode?: Element | null | undefined;
       /**
        * If `true`, the provider creates its own context and generate stylesheet as if it is a root `ThemeProvider`.
+       * @deprecated Use the `isolated` prop instead.
        */
       disableNestedContext?: boolean | undefined;
       /**
@@ -34,13 +36,13 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        */
       forceThemeRerender?: boolean | undefined;
       /**
-       * If `true`, the CSS theme variables are set on its element instead of `:root`,
-       * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
-       * like an embedded widget. Nested providers are scoped automatically when their variables differ.
+       * If `true`, the provider doesn't follow an outer provider: it sets all its CSS theme variables
+       * on its element instead of `:root`, and has its own mode, set with `defaultMode` and `useColorScheme()`.
+       * Use it for an embedded widget, a sibling of the top-level provider, or a section with its own mode.
        * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
        * @default false
        */
-      scoped?: boolean | undefined;
+      isolated?: boolean | undefined;
     }
   : {};
 
@@ -63,6 +65,7 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
   /**
    * The default mode when the local storage has no mode yet,
    * requires the theme to have `colorSchemes` with light and dark.
+   * It only applies to a top-level or `isolated` provider, since a nested provider follows the outer mode.
    * @default 'system'
    */
   defaultMode?: 'light' | 'dark' | 'system' | undefined;
@@ -129,7 +132,9 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   }, [theme]);
 
   if (noVarsTheme) {
-    const { render, children, ...noVarsProps } = props;
+    const { render, children, isolated, ...noVarsProps } = props as typeof props & {
+      isolated?: boolean | undefined;
+    };
     return (
       <ThemeProviderNoVars theme={noVarsTheme} {...noVarsProps}>
         {render === undefined ? children : <Element render={render}>{children}</Element>}

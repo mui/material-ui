@@ -479,7 +479,7 @@ describe('ThemeProvider', () => {
       });
     });
 
-    describe('scoped prop', () => {
+    describe('isolated prop', () => {
       it.skipIf(isJsdom())('keeps a sibling provider off :root', () => {
         const darkTheme = createTheme({
           cssVariables: true,
@@ -490,7 +490,7 @@ describe('ThemeProvider', () => {
             <ThemeProvider theme={blueTheme}>
               <div data-testid="app" />
             </ThemeProvider>
-            <ThemeProvider theme={darkTheme} scoped>
+            <ThemeProvider theme={darkTheme} isolated>
               <div data-testid="widget" />
             </ThemeProvider>
           </React.Fragment>,
@@ -510,7 +510,7 @@ describe('ThemeProvider', () => {
           colorSchemes: { light: true, dark: true },
         });
         render(
-          <ThemeProvider theme={theme} scoped defaultMode="dark">
+          <ThemeProvider theme={theme} isolated defaultMode="dark">
             <div data-testid="widget" />
           </ThemeProvider>,
         );
@@ -518,7 +518,7 @@ describe('ThemeProvider', () => {
         expect(document.documentElement).not.to.have.attribute('data-dark');
       });
 
-      it('only uses the storage for a scoped provider with storage keys', () => {
+      it('only uses the storage for an isolated provider with storage keys', () => {
         const theme = createTheme({
           cssVariables: { colorSchemeSelector: 'class' },
           colorSchemes: { light: true, dark: true },
@@ -537,12 +537,12 @@ describe('ThemeProvider', () => {
         } as unknown as Window;
         render(
           <React.Fragment>
-            <ThemeProvider theme={theme} scoped storageWindow={storageWindow}>
+            <ThemeProvider theme={theme} isolated storageWindow={storageWindow}>
               <div />
             </ThemeProvider>
             <ThemeProvider
               theme={theme}
-              scoped
+              isolated
               modeStorageKey="widget-mode"
               colorSchemeStorageKey="widget-color-scheme"
               storageWindow={storageWindow}
@@ -553,6 +553,83 @@ describe('ThemeProvider', () => {
         );
         expect(readKeys.length).to.be.greaterThan(0);
         expect(readKeys.every((key) => key.startsWith('widget-'))).to.equal(true);
+      });
+
+      it('has its own mode when it is nested', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        function Mode(props: { 'data-testid': string }) {
+          const { mode, setMode } = useColorScheme();
+          return (
+            <button type="button" onClick={() => setMode('light')} {...props}>
+              {mode}
+            </button>
+          );
+        }
+        render(
+          <ThemeProvider theme={theme} defaultMode="dark" storageManager={null}>
+            <Mode data-testid="page" />
+            <ThemeProvider theme={theme} isolated defaultMode="dark">
+              <Mode data-testid="section" />
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        fireEvent.click(screen.getByTestId('section'));
+        expect(screen.getByTestId('section')).to.have.text('light');
+        expect(screen.getByTestId('page')).to.have.text('dark');
+        expect(document.documentElement.classList.contains('dark')).to.equal(true);
+        expect(document.documentElement.classList.contains('light')).to.equal(false);
+      });
+
+      it('keeps the mode of its nested providers off <html>', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'data' },
+          colorSchemes: { light: true, dark: true },
+        });
+        render(
+          <ThemeProvider theme={theme} isolated defaultMode="dark">
+            <ThemeProvider theme={redTheme}>
+              <div />
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        expect(document.documentElement).not.to.have.attribute('data-dark');
+      });
+
+      it('replaces the deprecated disableNestedContext prop', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'data' },
+          colorSchemes: { light: true, dark: true },
+        });
+        expect(() =>
+          render(
+            <ThemeProvider theme={blueTheme}>
+              <ThemeProvider theme={theme} disableNestedContext defaultMode="dark">
+                <div data-testid="section" />
+              </ThemeProvider>
+            </ThemeProvider>,
+          ),
+        ).toWarnDev('MUI: The `disableNestedContext` prop is deprecated. Use `isolated` instead.');
+        expect(screen.getByTestId('section').parentElement).to.have.attribute('data-dark', '');
+        expect(document.documentElement).not.to.have.attribute('data-dark');
+      });
+
+      it('warns when a nested provider gets defaultMode without isolated', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        expect(() =>
+          render(
+            <ThemeProvider theme={theme} storageManager={null}>
+              <ThemeProvider theme={theme} defaultMode="dark">
+                <div />
+              </ThemeProvider>
+            </ThemeProvider>,
+          ),
+        ).toWarnDev('MUI: The `defaultMode` prop of a nested ThemeProvider has no effect');
       });
 
       it('warns when two providers with different themes write to :root', () => {

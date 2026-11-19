@@ -86,6 +86,7 @@ export interface CreateCssVarsProviderResult<
         /**
          * The default mode when the storage is empty,
          * require the theme to have `colorSchemes` with light and dark.
+         * It only applies to a top-level or `isolated` provider, since a nested provider follows the outer mode.
          * @default 'system'
          */
         defaultMode?: 'light' | 'dark' | 'system' | undefined;
@@ -95,7 +96,8 @@ export interface CreateCssVarsProviderResult<
          */
         documentNode?: Document | null | undefined;
         /**
-         * The node used to attach the color-scheme attribute
+         * The node used to attach the color-scheme attribute.
+         * Only the top-level provider uses it by default; an `isolated` provider uses it when it's given.
          * @default document
          */
         colorSchemeNode?: Element | null | undefined;
@@ -111,6 +113,7 @@ export interface CreateCssVarsProviderResult<
         storageWindow?: Window | null | undefined;
         /**
          * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
+         * @deprecated Use the `isolated` prop instead.
          */
         disableNestedContext?: boolean | undefined;
         /**
@@ -129,13 +132,13 @@ export interface CreateCssVarsProviderResult<
          */
         render?: ThemeProviderRender | undefined;
         /**
-         * If `true`, the CSS theme variables are set on its element instead of `:root`,
-         * so they don't affect the rest of the page. Use it for a provider that isn't nested in another one,
-         * like an embedded widget. Nested providers are scoped automatically when their variables differ.
+         * If `true`, the provider doesn't follow an outer provider: it sets all its CSS theme variables
+         * on its element instead of `:root`, and has its own mode, set with `defaultMode` and `useColorScheme()`.
+         * Use it for an embedded widget, a sibling of the top-level provider, or a section with its own mode.
          * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
          * @default false
          */
-        scoped?: boolean | undefined;
+        isolated?: boolean | undefined;
       }
     >,
   ) => React.JSX.Element;
@@ -278,13 +281,15 @@ export default function createCssVarsProvider<
   // Stylesheets of the mounted providers that write to `:root`, to warn when they overwrite each other.
   const rootStyleSheets: Map<string, string[]> = new Map();
   let warnedMultipleRoots = false;
+  let warnedDisableNestedContext = false;
+  let warnedNestedDefaultMode = false;
 
   function CssVarsProvider(props: any) {
     const {
       children,
       theme: themeProp,
       render,
-      scoped = false,
+      isolated: isolatedProp = false,
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
       disableTransitionOnChange = designSystemTransitionOnChange,
@@ -304,9 +309,28 @@ export default function createCssVarsProvider<
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
     const upperScope = React.useContext(ThemeScopeContext);
-    const nested = !!ctx && !disableNestedContext;
-    // A scoped provider that isn't nested manages its own color scheme on its element.
-    const isScopedRoot = !nested && scoped;
+    // `disableNestedContext` is the former name of `isolated`.
+    const isolated = isolatedProp || disableNestedContext;
+    // A nested provider follows the outer provider. The top-level provider writes to `:root` and owns the page's mode,
+    // and an isolated provider owns a mode of its own on its element.
+    const nested = !!ctx && !isolated;
+    const isRoot = !ctx && !isolated;
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (disableNestedContext && !warnedDisableNestedContext) {
+        warnedDisableNestedContext = true;
+        console.warn('MUI: The `disableNestedContext` prop is deprecated. Use `isolated` instead.');
+      }
+      if (nested && props.defaultMode !== undefined && !warnedNestedDefaultMode) {
+        warnedNestedDefaultMode = true;
+        console.warn(
+          [
+            'MUI: The `defaultMode` prop of a nested ThemeProvider has no effect, since it follows the mode of the outer provider.',
+            'Add the `isolated` prop to give it a mode of its own.',
+          ].join('\n'),
+        );
+      }
+    }
 
     const initialTheme = React.useMemo(() => {
       if (themeProp) {
@@ -354,9 +378,9 @@ export default function createCssVarsProvider<
       modeStorageKey,
       colorSchemeStorageKey,
       defaultMode,
-      // With the default storage keys, a scoped provider would overwrite the mode of the page's provider.
+      // With the default storage keys, an isolated provider would overwrite the mode of the page's provider.
       storageManager:
-        isScopedRoot &&
+        isolated &&
         props.storageManager === undefined &&
         props.modeStorageKey === undefined &&
         props.colorSchemeStorageKey === undefined
@@ -431,9 +455,10 @@ export default function createCssVarsProvider<
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
-    // A scoped root sets it on its child instead.
+    // Only the top-level provider owns the page's node. An isolated provider sets it on its element instead,
+    // unless it's given a node, and a nested provider follows the outer provider, which sets it.
     const colorSchemeSelector = restThemeProp.colorSchemeSelector;
-    const ownsColorSchemeNode = !isScopedRoot || props.colorSchemeNode !== undefined;
+    const ownsColorSchemeNode = isRoot || (isolated && props.colorSchemeNode !== undefined);
     useEnhancedEffect(() => {
       if (
         ownsColorSchemeNode &&
@@ -574,7 +599,7 @@ export default function createCssVarsProvider<
           cssVarPrefix,
         );
       }
-      if (scoped) {
+      if (isolated) {
         return getScopedStyleSheets(
           generateCssVarsByColorScheme,
           undefined,
@@ -591,16 +616,16 @@ export default function createCssVarsProvider<
       colorSchemeSelector,
       cssVarPrefix,
       nested,
-      scoped,
+      isolated,
     ]);
 
     const scopeClassName = scope?.className;
     const colorSchemeProps = React.useMemo(
       () =>
-        isScopedRoot
+        isolated
           ? getColorSchemeProps(colorSchemeSelector, colorScheme)
           : ({} as Record<string, string>),
-      [isScopedRoot, colorSchemeSelector, colorScheme],
+      [isolated, colorSchemeSelector, colorScheme],
     );
     const { className: colorSchemeClassName, ...colorSchemeAttributes } = colorSchemeProps;
     const scopeProps = React.useMemo(() => {
@@ -620,7 +645,7 @@ export default function createCssVarsProvider<
       disableStyleSheetGeneration ||
       restThemeProp.cssVariables === false ||
       (nested && (upperTheme as any)?.cssVarPrefix === cssVarPrefix) ||
-      isScopedRoot
+      isolated
     ) {
       shouldGenerateStyleSheet = false;
     }
@@ -640,7 +665,7 @@ export default function createCssVarsProvider<
           console.warn(
             [
               'MUI: Several ThemeProviders with different themes write their CSS theme variables to `:root`, so they overwrite each other.',
-              'Add the `scoped` prop to the ThemeProviders that should only apply to their children, like an embedded widget.',
+              'Add the `isolated` prop to the ThemeProviders that should only apply to their children, like an embedded widget.',
             ].join('\n'),
           );
         }
@@ -655,9 +680,9 @@ export default function createCssVarsProvider<
       }, [shouldGenerateStyleSheet, nested, memoTheme, cssVarPrefix]);
     }
 
-    // Nested and scoped providers always render an element, so the tree doesn't change when their variables start
+    // Nested and isolated providers always render an element, so the tree doesn't change when their variables start
     // or stop differing. The top-level provider writes to `:root`, so it only renders the `render` element.
-    const rendersElement = nested || isScopedRoot || render !== undefined;
+    const rendersElement = !isRoot || render !== undefined;
     const rendersDefaultElement = rendersElement && render === undefined;
     const defaultClassName = generateUtilityClass('MuiThemeProvider', 'root');
     const elementProps: Record<string, any> = {
@@ -741,6 +766,7 @@ export default function createCssVarsProvider<
     defaultMode: PropTypes.string,
     /**
      * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
+     * @deprecated Use the `isolated` prop instead.
      */
     disableNestedContext: PropTypes.bool,
     /**
@@ -762,6 +788,11 @@ export default function createCssVarsProvider<
      */
     forceThemeRerender: PropTypes.bool,
     /**
+     * If `true`, the provider doesn't follow an outer provider: it sets all its CSS theme variables
+     * on its element and has its own mode.
+     */
+    isolated: PropTypes.bool,
+    /**
      * The key in the local storage used to store current color scheme.
      */
     modeStorageKey: PropTypes.string,
@@ -774,10 +805,6 @@ export default function createCssVarsProvider<
      * The element that wraps the children.
      */
     render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-    /**
-     * If `true`, the CSS theme variables are set on its element instead of `:root`.
-     */
-    scoped: PropTypes.bool,
     /**
      * The storage manager to be used for storing the mode and color scheme
      * @default using `window.localStorage`
