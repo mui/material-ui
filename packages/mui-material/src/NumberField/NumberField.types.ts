@@ -298,10 +298,8 @@ export interface BaseNumberFieldProps extends StandardProps<
    */
   form?: BaseNumberField.Root.Props['form'] | undefined;
   /**
-   * Options passed to `Intl.NumberFormat` to format the displayed value.
+   * The [`Intl.NumberFormat` options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options) used to format the displayed value.
    * The `value` prop and value callbacks use numbers or `null`, regardless of the display format.
-   *
-   * See [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat).
    */
   format?: BaseNumberField.Root.Props['format'] | undefined;
   /**

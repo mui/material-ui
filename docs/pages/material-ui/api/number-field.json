@@ -6,8 +6,8 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -22,12 +22,7 @@
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "form": { "type": { "name": "string" } },
-    "format": {
-      "type": {
-        "name": "shape",
-        "description": "{ compactDisplay?: 'long'<br>&#124;&nbsp;'short', currency?: string, currencyDisplay?: 'code'<br>&#124;&nbsp;'name'<br>&#124;&nbsp;'narrowSymbol'<br>&#124;&nbsp;'symbol', currencySign?: 'accounting'<br>&#124;&nbsp;'standard', localeMatcher?: 'best fit'<br>&#124;&nbsp;'lookup', maximumFractionDigits?: number, maximumSignificantDigits?: number, minimumFractionDigits?: number, minimumIntegerDigits?: number, minimumSignificantDigits?: number, notation?: 'compact'<br>&#124;&nbsp;'engineering'<br>&#124;&nbsp;'scientific'<br>&#124;&nbsp;'standard', numberingSystem?: string, signDisplay?: 'always'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'exceptZero'<br>&#124;&nbsp;'never', style?: 'currency'<br>&#124;&nbsp;'decimal'<br>&#124;&nbsp;'percent'<br>&#124;&nbsp;'unit', unit?: string, unitDisplay?: 'long'<br>&#124;&nbsp;'narrow'<br>&#124;&nbsp;'short', useGrouping?: bool }"
-      }
-    },
+    "format": { "type": { "name": "object" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "helperText": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
@@ -73,7 +68,10 @@
       "default": "false"
     },
     "size": {
-      "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "slotProps": {

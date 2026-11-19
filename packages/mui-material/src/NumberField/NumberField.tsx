@@ -246,7 +246,11 @@ NumberField.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
   /**
    * The arrangement of the control buttons.
    * Use `'end'` for horizontal minus/plus buttons at the end, `'split'` for a minus button
@@ -277,30 +281,10 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   form: PropTypes.string,
   /**
-   * Options passed to `Intl.NumberFormat` to format the displayed value.
+   * The [`Intl.NumberFormat` options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options) used to format the displayed value.
    * The `value` prop and value callbacks use numbers or `null`, regardless of the display format.
-   *
-   * See [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat).
    */
-  format: PropTypes.shape({
-    compactDisplay: PropTypes.oneOf(['long', 'short']),
-    currency: PropTypes.string,
-    currencyDisplay: PropTypes.oneOf(['code', 'name', 'narrowSymbol', 'symbol']),
-    currencySign: PropTypes.oneOf(['accounting', 'standard']),
-    localeMatcher: PropTypes.oneOf(['best fit', 'lookup']),
-    maximumFractionDigits: PropTypes.number,
-    maximumSignificantDigits: PropTypes.number,
-    minimumFractionDigits: PropTypes.number,
-    minimumIntegerDigits: PropTypes.number,
-    minimumSignificantDigits: PropTypes.number,
-    notation: PropTypes.oneOf(['compact', 'engineering', 'scientific', 'standard']),
-    numberingSystem: PropTypes.string,
-    signDisplay: PropTypes.oneOf(['always', 'auto', 'exceptZero', 'never']),
-    style: PropTypes.oneOf(['currency', 'decimal', 'percent', 'unit']),
-    unit: PropTypes.string,
-    unitDisplay: PropTypes.oneOf(['long', 'narrow', 'short']),
-    useGrouping: PropTypes.bool,
-  }),
+  format: PropTypes /* @typescript-to-proptypes-ignore */.object,
   /**
    * If `true`, the input will take up the full width of its container.
    * @default false
@@ -421,7 +405,8 @@ NumberField.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}

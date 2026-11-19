@@ -26,7 +26,7 @@
       "description": "The <code>id</code> of the form that owns the field. Use this prop when the field is rendered outside the form."
     },
     "format": {
-      "description": "Options passed to <code>Intl.NumberFormat</code> to format the displayed value. The <code>value</code> prop and value callbacks use numbers or <code>null</code>, regardless of the display format.<br>See <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat\">Intl.NumberFormat</a>."
+      "description": "The <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options\"><code>Intl.NumberFormat</code> options</a> used to format the displayed value. The <code>value</code> prop and value callbacks use numbers or <code>null</code>, regardless of the display format."
     },
     "fullWidth": {
       "description": "If <code>true</code>, the input will take up the full width of its container."
