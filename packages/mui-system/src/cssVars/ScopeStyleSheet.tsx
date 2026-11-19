@@ -8,20 +8,32 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
  * so one stylesheet serves every provider that uses it.
  */
 export interface ScopeStyleSheetRegistry {
-  // The mounted providers that use each class, the first one inserts its stylesheet.
+  // The provider that inserts the stylesheet of each class.
+  owners: Map<string, object>;
+  // The mounted providers that use each class.
   users: Map<string, object[]>;
-  // Re-renders a provider when it becomes the first one.
+  // Re-renders a provider when it starts or stops inserting the stylesheet.
   listeners: Map<object, () => void>;
 }
 
 export function createScopeStyleSheetRegistry(): ScopeStyleSheetRegistry {
-  return { users: new Map(), listeners: new Map() };
+  return { owners: new Map(), users: new Map(), listeners: new Map() };
 }
+
+// React 17 has no `useInsertionEffect`; spread into a plain object so reading the missing property returns `undefined`
+// instead of throwing under strict ESM. See #41190 (comment).
+const safeReact = { ...React };
+// Insertion effects run before the layout effects of the whole commit, so these see every provider it mounts.
+// With React 17, a provider can take over the stylesheet from an ancestor that mounts in the same commit,
+// which then gives it up: the stylesheet is still inserted once.
+const useInsertionEffect: typeof React.useLayoutEffect =
+  safeReact.useInsertionEffect ?? useEnhancedEffect;
 
 /**
  * Inserts the stylesheet of a class once for all the providers of a tree that use it, instead of once per provider,
  * since a theme used by many components, like a themed card in a list, renders many providers.
- * Until it's mounted, on the server and during hydration, each provider inserts it.
+ * The first provider that renders claims it, so the others render nothing, on the server too.
+ * When it doesn't mount, for example because it suspended, or when it unmounts, another provider takes over.
  */
 export default function ScopeStyleSheet(props: {
   registry: ScopeStyleSheetRegistry;
@@ -35,33 +47,54 @@ export default function ScopeStyleSheet(props: {
   }
   const [, forceUpdate] = React.useReducer((count: number) => count + 1, 0);
 
-  useEnhancedEffect(() => {
+  if (!registry.owners.has(className)) {
+    registry.owners.set(className, token.current);
+  }
+  const insertsStyles = registry.owners.get(className) === token.current;
+
+  useInsertionEffect(() => {
     const user = token.current!;
     const users = registry.users.get(className) ?? [];
     users.push(user);
     registry.users.set(className, users);
-    registry.listeners.set(user, forceUpdate);
-    if (users[0] !== user) {
-      // Another provider already inserts the stylesheet.
-      forceUpdate();
-    }
     return () => {
       const current = registry.users.get(className)!;
-      const index = current.indexOf(user);
-      current.splice(index, 1);
-      registry.listeners.delete(user);
+      current.splice(current.indexOf(user), 1);
       if (current.length === 0) {
         registry.users.delete(className);
-      } else if (index === 0) {
-        // The next provider inserts it now.
-        registry.listeners.get(current[0])?.();
       }
     };
   }, [registry, className]);
 
-  const users = registry.users.get(className);
-  if (users && users.length > 0 && users[0] !== token.current) {
-    return null;
-  }
-  return <GlobalStyles styles={styles} />;
+  useEnhancedEffect(() => {
+    const user = token.current!;
+    registry.listeners.set(user, forceUpdate);
+    return () => {
+      registry.listeners.delete(user);
+      if (registry.owners.get(className) === user) {
+        // The next provider inserts the stylesheet now.
+        const next = registry.users.get(className)?.find((other) => other !== user);
+        if (next) {
+          registry.owners.set(className, next);
+          registry.listeners.get(next)?.();
+        } else {
+          registry.owners.delete(className);
+        }
+      }
+    };
+  }, [registry, className]);
+
+  useEnhancedEffect(() => {
+    const user = token.current!;
+    const owner = registry.owners.get(className);
+    if (owner === undefined || !registry.users.get(className)?.includes(owner)) {
+      // The provider that claimed the stylesheet didn't mount.
+      registry.owners.set(className, user);
+    }
+    if ((registry.owners.get(className) === user) !== insertsStyles) {
+      forceUpdate();
+    }
+  });
+
+  return insertsStyles ? <GlobalStyles styles={styles} /> : null;
 }

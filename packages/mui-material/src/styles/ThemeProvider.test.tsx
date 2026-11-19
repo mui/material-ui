@@ -566,6 +566,56 @@ describe('ThemeProvider', () => {
         expect(countRules(className)).to.equal(0);
       });
 
+      it('renders many providers with the same theme once', () => {
+        let commits = 0;
+        render(
+          <React.Profiler
+            id="providers"
+            onRender={() => {
+              commits += 1;
+            }}
+          >
+            <ThemeProvider theme={blueTheme}>
+              {[0, 1, 2].map((index) => (
+                <ThemeProvider key={index} theme={redTheme}>
+                  <div />
+                </ThemeProvider>
+              ))}
+            </ThemeProvider>
+          </React.Profiler>,
+          { strict: false },
+        );
+        expect(commits).to.equal(1);
+      });
+
+      it('inserts the stylesheet of a scope when the provider that rendered it first suspends', () => {
+        function Suspends(): React.ReactNode {
+          throw new Promise(() => {});
+        }
+        render(
+          <ThemeProvider theme={blueTheme}>
+            <React.Suspense fallback={null}>
+              <ThemeProvider theme={redTheme}>
+                <div />
+              </ThemeProvider>
+              <Suspends />
+            </React.Suspense>
+            <ThemeProvider theme={redTheme}>
+              <div data-testid="inner" />
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        const inner = screen.getByTestId('inner');
+        const className = inner.parentElement!.classList[1];
+        const css = Array.from(document.querySelectorAll('style'))
+          .map((style) => style.textContent ?? '')
+          .join('');
+        expect(css.split(`.${className}{`).length - 1).to.equal(1);
+        if (!isJsdom()) {
+          expect(getVar(inner, '--mui-palette-primary-main')).to.equal('#ff0000');
+        }
+      });
+
       it('inserts the stylesheet of a scope once after hydration', () => {
         const { container, hydrate } = renderToString(
           <ThemeProvider theme={blueTheme}>
