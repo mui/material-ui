@@ -58,18 +58,18 @@ export default function MyApp(props: AppProps) {
 
 ### Vite.js or any other SPA
 
-To integrate Tailwind CSS v4 with Material UI in a Vite-based app, configure the layer order with the `GlobalStyles` component in `src/main.tsx`:
+To integrate Tailwind CSS v4 with Material UI in a Vite-based app, configure the layer order at the top of the Tailwind CSS file:
 
-```tsx title="main.tsx"
-import GlobalStyles from '@mui/material/GlobalStyles';
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-    {/* Your app */}
-  </React.StrictMode>,
-);
+```css title="src/index.css"
+@layer theme, base, mui, components, utilities;
+@import 'tailwindcss';
 ```
+
+Import the file in `src/main.tsx`, so that it loads before Material UI inserts its styles.
+
+<!-- #target-branch-reference -->
+
+The [`material-ui-vite-tailwind-ts` example](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts) is a complete Vite project with this setup.
 
 ## Tailwind CSS IntelliSense for VS Code
 

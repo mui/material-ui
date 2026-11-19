@@ -272,5 +272,22 @@ Remove them:
 +createEmotionCache();
 ```
 
+If you declared the layer order with `GlobalStyles` inside `<StyledEngineProvider enableCssLayer>`, move it to the top of your global CSS file.
+The provider put `GlobalStyles` at the top of the `<head>`.
+Without it, `GlobalStyles` comes after the CSS files that load first, such as Tailwind CSS's, so their layer order wins:
+
+```diff title="src/index.css"
++@layer theme, base, mui, components, utilities;
+ @import 'tailwindcss';
+```
+
+```diff title="src/main.tsx"
+-<StyledEngineProvider enableCssLayer>
+-  <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
+-  <App />
+-</StyledEngineProvider>
++<App />
+```
+
 Styles that you write with Emotion directly, such as with `@emotion/styled` or the `css` prop, are no longer in the `mui` layer, so they override Material UI's styles.
 The class names that `<StyledEngineProvider enableCssLayer>` generated started with `mui-`, and now start with `css-`.
