@@ -125,7 +125,8 @@ Without `insetOverrides`, the inner focus indicator components use `outlineOffse
 They also draw the `boxShadow` inset.
 With a keyword `outlineWidth` (`thin`, `medium`, or `thick`), they use the negative `outlineOffset` instead.
 
-These components set the whole indicator in their own focus selector, so a `MuiButtonBase` style override does not change it.
+These components set the whole indicator in their own focus selector, so a style override of another component does not change it.
+For example, a `MuiButtonBase` override does not reach `MenuItem`, and a `MuiIconButton` override does not reach the `TablePagination` action buttons.
 To change their indicator, use `insetOverrides` or the style overrides of each component.
 
 :::info
