@@ -606,7 +606,7 @@ describe('styleFunctionSx', () => {
     });
   });
 
-  // jsdom ignores the rules inside `@layer` blocks, so the styles aren't layered there.
+  // The styles aren't layered in jsdom.
   describe.skipIf(isJsdom())('Modular CSS layers', () => {
     it('should wrapped in @layer', () => {
       const result = styleFunctionSx({

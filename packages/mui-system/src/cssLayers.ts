@@ -5,8 +5,10 @@ export type CssLayer = 'global' | 'components' | 'theme' | 'custom' | 'sx';
  */
 export const CSS_LAYER_ORDER = 'mui.global, mui.components, mui.theme, mui.custom, mui.sx';
 
-// jsdom and happy-dom don't implement cascade layers: they ignore the rules inside `@layer` blocks.
-// The styles stay unlayered there, so that the style assertions of apps' tests keep working.
+// The styles stay unlayered in jsdom and happy-dom, so that the style assertions of apps' tests
+// keep working: jsdom before version 31 and happy-dom ignore the rules inside `@layer` blocks, and
+// matchers that read the styles' text, such as `@emotion/jest`'s `toHaveStyleRule`, don't look
+// inside them.
 const isCssLayerSupported =
   typeof navigator === 'undefined' || !/jsdom|HappyDOM/.test(navigator.userAgent);
 

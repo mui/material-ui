@@ -33,7 +33,7 @@ function getLayerNames() {
 
 const MediaDiv = styled('div')({ width: 10, '@media (min-width: 0px)': { width: 20 } });
 
-// jsdom doesn't implement cascade layers, so these only run in browsers.
+// The styles aren't layered in jsdom, so these only run in browsers.
 describe.skipIf(isJsdom())('CSS layers', () => {
   const { render } = createRenderer();
 
@@ -454,7 +454,8 @@ describe.skipIf(isJsdom())('CSS layers: generated styles', () => {
   });
 });
 
-// jsdom ignores the rules inside `@layer` blocks, so tests that check styles need them unlayered.
+// Matchers that read the styles' text don't look inside `@layer` blocks, so the styles stay
+// unlayered in jsdom.
 describe.runIf(isJsdom())('CSS layers in jsdom', () => {
   const { render } = createRenderer();
 

@@ -252,7 +252,8 @@ To keep a reset below Material UI's styles, put it in a layer declared before `
 }
 ```
 
-jsdom and happy-dom ignore the rules inside `@layer` blocks, so in tests that run in them, Material UI's styles aren't layered.
+In tests that run in jsdom or happy-dom, Material UI's styles aren't layered, so that style assertions keep working.
+jsdom before version 31 and happy-dom ignore the rules inside `@layer` blocks, and matchers such as `@emotion/jest`'s `toHaveStyleRule` don't look inside them.
 
 The `modularCssLayers` theme option works as in v9: set it to `true` or to a layer order string to split `mui` into [sub-layers](/material-ui/customization/css-layers/#sub-layers).
 
