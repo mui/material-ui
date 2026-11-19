@@ -22,7 +22,7 @@ import Input from '../Input';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
 import NumberFieldAdornmentSlot from './NumberFieldAdornmentSlot';
-import { getControlElements, omitNullishEventHandlers, resolveInputProps } from './utils';
+import { getControlElements, omitNullishEventHandlers } from './utils';
 import type { ResolvedInputSlotProps } from './utils/resolveInputProps';
 import IconButton from '../IconButton';
 import type { IconButtonProps } from '../IconButton';
@@ -236,7 +236,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
   }
 
   const { render: inputRender, ...inputSlotProps } = externalForwardedProps.slotProps.input ?? {};
-  const [InputSlot, inputProps] = useSlot('input', {
+  const [InputSlot, materialInputProps] = useSlot('input', {
     elementType: InputComponent,
     externalForwardedProps: {
       ...externalForwardedProps,
@@ -245,12 +245,6 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     additionalProps: inputAdditionalProps,
     ownerState,
     className: classes.input,
-  });
-
-  const { materialInputProps, nativeSlotProps } = resolveInputProps({
-    inputProps,
-    htmlInputSlotProps: externalForwardedProps.slotProps.htmlInput,
-    ownerState,
   });
 
   // Find a custom Material root from slotProps.input.slots.root or the selected
@@ -275,20 +269,9 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     },
   };
 
-  const { render: htmlInputRender, ...htmlInputSlotProps } = nativeSlotProps;
-  const useHtmlInputRender = Boolean(
-    htmlInputRender && !externalForwardedProps.slots.htmlInput && !materialInputProps.slots?.input,
-  );
-  const [HtmlInputSlot, htmlInputProps] = useSlot('htmlInput', {
+  const [HtmlInputSlot, { render: htmlInputRender, ...htmlInputProps }] = useSlot('htmlInput', {
     elementType: 'input',
-    externalForwardedProps: {
-      ...externalForwardedProps,
-      slotProps: {
-        ...externalForwardedProps.slotProps,
-        // Clear component after native-prop precedence, including nested input props.
-        htmlInput: { ...htmlInputSlotProps, component: undefined },
-      },
-    },
+    externalForwardedProps,
     ownerState,
     className: classes.htmlInput,
     getSlotProps: (externalHandlers) => {
@@ -299,6 +282,9 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       return mergeProps(ariaInvalid === undefined ? restBaseProps : baseProps, externalHandlers);
     },
   });
+  const useHtmlInputRender = Boolean(
+    htmlInputRender && !externalForwardedProps.slots.htmlInput && !materialInputProps.slots?.input,
+  );
 
   // Build direction-aware defaults without evaluating the consumer's slot callback twice.
   const { render: scrubAreaRender, ...resolvedScrubAreaSlotProps } =
@@ -428,6 +414,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
 
   const incrementButton = (
     <BaseNumberField.Increment
+      aria-controls={baseProps.id}
       disabled={incrementButtonDisabled}
       nativeButton={restIncrementButtonProps.nativeButton}
       render={(buttonBaseProps, buttonBaseState) => (
@@ -444,6 +431,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
   );
   const decrementButton = (
     <BaseNumberField.Decrement
+      aria-controls={baseProps.id}
       disabled={decrementButtonDisabled}
       nativeButton={restDecrementButtonProps.nativeButton}
       render={(buttonBaseProps, buttonBaseState) => (

@@ -130,7 +130,6 @@ const NumberFieldRootSlot = React.forwardRef(
         <SSRInitialFilled value={baseState.inputValue} startAdornment={adornedStart} />
         {hasLabel && (
           <InputLabelSlot
-            htmlFor={id}
             id={labelId}
             {...(inputLabelProps as InputLabelProps)}
             {...(!externalForwardedProps.slots?.inputLabel &&

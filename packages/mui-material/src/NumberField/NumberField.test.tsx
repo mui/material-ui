@@ -2570,6 +2570,24 @@ describe('<NumberField />', () => {
       expect(document.activeElement).to.equal(input);
     });
 
+    it('uses the native input slot ID for the input, label, and steppers when both IDs are set', async () => {
+      const { user } = render(
+        <NumberField
+          id="amount"
+          label="Amount"
+          defaultValue={5}
+          slotProps={{ htmlInput: { id: 'slot-id' } }}
+        />,
+      );
+      const input = screen.getByRole('textbox', { name: 'Amount' });
+      expect(input).to.have.attribute('id', 'slot-id');
+      for (const button of screen.getAllByRole('button')) {
+        expect(button).to.have.attribute('aria-controls', 'slot-id');
+      }
+      await user.click(screen.getByText('Amount', { selector: 'label' }));
+      expect(document.activeElement).to.equal(input);
+    });
+
     (['object', 'callback'] as const).forEach((configuration) => {
       it(`links the input to a custom helper text ID from ${configuration} slot props`, () => {
         render(
