@@ -81,4 +81,15 @@ describe('applyStyles', () => {
     const styles = { background: '#e5e5e5' };
     expect(applyStyles.call(theme, 'light', styles)).to.deep.equal(styles);
   });
+
+  it('should use a selector that starts with & as it is', () => {
+    const selector = '&:where([data-mui-scheme="light"], [data-mui-scheme="light"] *)';
+    const theme = {
+      vars: {},
+      colorSchemes: { light: true },
+      getColorSchemeSelector: () => selector,
+    };
+    const styles = { background: '#e5e5e5' };
+    expect(applyStyles.call(theme, 'light', styles)).to.deep.equal({ [selector]: styles });
+  });
 });

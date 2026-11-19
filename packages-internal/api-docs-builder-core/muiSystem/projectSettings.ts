@@ -22,7 +22,7 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename) {
     return (
       filename.match(
-        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|GlobalStyles|InitColorSchemeScript)/,
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|GlobalStyles|InitColorSchemeScript|ScopeStyleSheet)/,
       ) !== null
     );
   },

@@ -127,7 +127,13 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export { useColorScheme } from './ThemeProviderWithVars';
-export type { StorageManager } from '@mui/system/cssVars';
+export type {
+  StorageManager,
+  ThemeScopeProps,
+  ThemeProviderRenderProps,
+  ThemeProviderState,
+} from '@mui/system/cssVars';
+export { useThemeScope } from '@mui/system/cssVars';
 
 export type {
   ColorSchemeOverrides,

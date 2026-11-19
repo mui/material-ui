@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
-import { ThemeProvider, createTheme, useTheme, enhanceHighContrast } from '@mui/material/styles';
+import { createTheme, useTheme, enhanceHighContrast } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import * as jsxRuntime from 'react/jsx-runtime';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
@@ -133,9 +134,10 @@ export function DemoPageThemeProvider({ children }: React.PropsWithChildren<{}>)
   const themeOptions = React.useContext(ThemeOptionsContext);
   return (
     <BrandingCssVarsProvider {...themeOptions}>
-      {/* The ThemeProvider below generate default Material UI CSS variables and attach to html for all the demo on the page */}
-      {/* This is more performant than generating variables in each demo. */}
-      <ThemeProvider theme={defaultTheme} />
+      {/* The default Material UI CSS variables, on html for all the demos of the page, */}
+      {/* which is more performant than generating them in each demo. */}
+      {/* A nested ThemeProvider would set them on its own element instead of html. */}
+      <GlobalStyles styles={defaultTheme.generateStyleSheets?.() || []} />
       {/* Build the base demo theme once for the whole page; every */}
       {/* `DemoInstanceThemeProvider` below reuses it instead of recomputing. */}
       <DemoBaseThemeProvider>{children}</DemoBaseThemeProvider>
@@ -169,8 +171,9 @@ export function DemoInstanceThemeProvider({
 
   return (
     /* - use a function to ensure that the upper theme (branding theme) is not spread to the demo theme */
-    /* - a function will skip the CSS vars generation logic */
-    <ThemeProvider theme={() => theme}>{children}</ThemeProvider>
+    /* - the system ThemeProvider skips the CSS variables logic: the variables come from the page, */
+    /*   see `DemoPageThemeProvider`, and the theme already follows the upper mode */
+    <SystemThemeProvider theme={() => theme}>{children}</SystemThemeProvider>
   );
 }
 

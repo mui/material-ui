@@ -83,7 +83,9 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
     if (selector === '&') {
       return styles;
     }
-    if (selector.includes('data-') || selector.includes('.')) {
+    // A selector that starts with the element itself, e.g. the `&:where(…)` of an isolated `ThemeProvider`,
+    // is used as it is.
+    if (!selector.startsWith('&') && (selector.includes('data-') || selector.includes('.'))) {
       // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
       selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
     }

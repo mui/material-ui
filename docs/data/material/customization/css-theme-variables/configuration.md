@@ -277,6 +277,120 @@ In the example below, all the components inside the `div` will always be dark:
 
 </codeblock>
 
+## Nested and multiple theme providers
+
+The top-level `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
+Every other provider renders an element and sets them on it, so they only apply to its children.
+
+### Nested providers
+
+A nested `ThemeProvider` renders a `div` with `display: contents`, so it doesn't change the layout.
+When its variables differ from the outer theme, the `div` gets a generated class that sets only the variables that differ, and the ones that reference them through `var()`.
+It follows the outer light or dark mode:
+
+```jsx
+<ThemeProvider theme={appTheme}>
+  <Button>Uses appTheme</Button>
+  <ThemeProvider theme={promoTheme}>
+    <Button>Uses promoTheme</Button>
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+```html
+<div class="MuiThemeProvider-root mui-theme-1x2y3z">…</div>
+```
+
+```css
+:root {
+  --mui-palette-primary-main: #1976d2;
+}
+.mui-theme-1x2y3z {
+  --mui-palette-primary-main: #9c27b0;
+}
+```
+
+A theme passed as a function, like `theme={(outer) => createTheme(outer, { palette })}`, is applied the same way.
+Providers with the same theme, like the ones of a themed card in a list, share one class and one stylesheet.
+
+Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
+For elements that other libraries portal, use the `useThemeScope()` hook to get the class:
+
+```jsx
+import { useThemeScope } from '@mui/material/styles';
+
+function Toast() {
+  const themeScope = useThemeScope();
+  return ReactDOM.createPortal(<div {...themeScope}>…</div>, document.body);
+}
+```
+
+### Choosing the element
+
+Use the `render` prop where a `div` isn't valid, like in a list or a table, or where CSS selectors like `>` and `:nth-child()` depend on the DOM structure:
+
+```jsx
+<ul>
+  <ThemeProvider theme={promoTheme} render={<li />}>
+    <Button>Uses promoTheme</Button>
+  </ThemeProvider>
+</ul>
+```
+
+The element gets the provider's props, like its class, merged with its own, and doesn't get `display: contents`.
+To read the props or the mode, pass a function that receives them:
+
+```jsx
+<ThemeProvider
+  theme={promoTheme}
+  render={(props, state) => <section {...props} data-mode={state.mode} />}
+>
+```
+
+A component that you render has to pass `className` and `ref` on to its DOM element.
+In development, an error is logged when the provider has variables to set and the `ref` isn't attached.
+
+The top-level provider only renders an element when it's given `render`.
+
+### Isolated providers
+
+A provider with the `isolated` prop doesn't follow an outer provider.
+It sets all of its variables on its element instead of `:root`, and has its own light or dark mode, set with `defaultMode` and `useColorScheme()`.
+Use it for a sibling of the top-level provider, like an embedded widget, or for a section with its own mode:
+
+```jsx
+<React.Fragment>
+  <ThemeProvider theme={appTheme}>
+    <App />
+  </ThemeProvider>
+  <ThemeProvider theme={widgetTheme} isolated>
+    <Widget />
+  </ThemeProvider>
+</React.Fragment>
+```
+
+```jsx
+<ThemeProvider theme={appTheme}>
+  <ThemeProvider theme={appTheme} isolated defaultMode="dark">
+    <Preview />
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+Two providers that aren't nested in each other and aren't isolated both write to `:root` and overwrite each other, which logs a warning in development.
+A nested provider without `isolated` follows the outer mode, so `defaultMode` doesn't apply to it and logs a warning in development.
+
+The element of an isolated provider holds its mode in its own `data-mui-scheme` attribute, whatever the theme's `colorSchemeSelector` is.
+The page's mode doesn't apply inside it, including the styles of `theme.applyStyles()`, and its mode doesn't change the page.
+Its mode isn't stored, so it doesn't overwrite the page's mode.
+To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`, or a `storageManager`.
+With the storage keys, the provider also renders a small script that applies the stored mode before the page hydrates, for server-side rendering.
+
+:::info
+A CSS variable that you override on `:root` doesn't reach the elements under a provider that sets it, because the closest declaration wins.
+Override it on an element inside the provider instead.
+:::
+
 ## Disabling CSS color scheme
 
 By default, `createTheme()` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme) based on the palette mode.

@@ -537,7 +537,7 @@ export default function BasicButtons() {
     test('mode toggle demos should work', async ({ page }) => {
       await page.goto(DEMOS_PATH);
 
-      await expect(page.locator('div:has(> [data-element="demo-mode-toggle-paper"])')).toHaveClass(
+      await expect(page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])')).toHaveClass(
         /light/,
       );
       await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
@@ -550,7 +550,7 @@ export default function BasicButtons() {
         .locator('label:nth-child(3)')
         .click();
 
-      await expect(page.locator('div:has(> [data-element="demo-mode-toggle-paper"])')).toHaveClass(
+      await expect(page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])')).toHaveClass(
         /dark/,
       );
       await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
@@ -566,7 +566,7 @@ export default function BasicButtons() {
         page.getByRole('radiogroup', { name: /^demo-mode-toggle-custom-theme$/ }),
       ).toBeVisible();
       await expect(
-        page.locator('div:has(> [data-element="demo-mode-toggle-custom-theme-paper"])'),
+        page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])'),
       ).toHaveClass(/light/);
       await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
         'background-color',
@@ -579,7 +579,7 @@ export default function BasicButtons() {
         .click();
 
       await expect(
-        page.locator('div:has(> [data-element="demo-mode-toggle-custom-theme-paper"])'),
+        page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])'),
       ).toHaveClass(/dark/);
       await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
         'background-color',
