@@ -1211,6 +1211,58 @@ describe.skipIf(isJsdom())('density contract', () => {
         'region 24': -0.475,
       });
     });
+
+    test('the outlined label lifts off Autocomplete chips at any touchTarget', () => {
+      render(
+        cases(
+          byName(['32', '44'], (touchTarget) => (
+            <ThemeProvider
+              theme={enhanceDensity(createTheme(), { touchTarget: Number(touchTarget) })}
+            >
+              {autocompleteField('outlined medium', { multiple: true })}
+              {autocompleteField('outlined small', { multiple: true })}
+            </ThemeProvider>
+          )),
+        ),
+      );
+      const liftsInLines = (name: string) =>
+        Array.from(inCase(name).querySelectorAll('.MuiInputLabel-root')).map((label) => {
+          const style = getComputedStyle(label);
+          return (
+            Math.round((new DOMMatrix(style.transform).f / parseFloat(style.lineHeight)) * 1000) /
+            1000
+          );
+        });
+      expect(byName(['32', '44'], liftsInLines)).to.deep.equal({
+        32: [-0.475, -0.475],
+        44: [-0.475, -0.475],
+      });
+    });
+
+    test('a label sx transform wins inside an Autocomplete with chips', () => {
+      renderIn(
+        MEDIUM,
+        <Autocomplete
+          multiple
+          options={['One', 'Two']}
+          defaultValue={['One']}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Label"
+              slotProps={{
+                ...params.slotProps,
+                inputLabel: {
+                  ...params.slotProps.inputLabel,
+                  sx: { transform: 'translate(14px, -20px) scale(0.75)' },
+                },
+              }}
+            />
+          )}
+        />,
+      );
+      expect(new DOMMatrix(css('.MuiInputLabel-root').transform).f).to.equal(-20);
+    });
   });
 
   describe('content', () => {

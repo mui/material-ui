@@ -112,9 +112,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   const buttonSpinnerSize = 16;
   const tooltipArrowSize = 10;
   const borderWidth = '1px';
-  const shrinkLiftClearingChips = '-0.475lh';
-  const shrinkLiftCentered = '-0.375lh';
-  const shrinkLiftThreshold = '32.5px';
+  const shrinkLabelOverhang = '0.28lh';
+  const shrinkLabelY = (contentTop: string) =>
+    `clamp(-0.475lh, (${contentTop} - ${shrinkLabelOverhang}) * 999, -0.375lh)`;
   const collapsedBreadcrumbButton = `& li:not(.${breadcrumbsClasses.li})>.${buttonBaseClasses.root}`;
   const inputSmallPadBlock = `calc((${touchTarget} - ${spacing('xxSmall')} - 1lh) / 2)`;
   const filledInputMediumPadTop = `calc(${spacing('medium')} + (${touchTarget} - 1lh) / 2)`;
@@ -629,7 +629,13 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         style: {
           // The x offset needs dirSign: the rtl stylis plugin (cssjanus) cannot
           // mirror a translate() that contains clamp(), so it leaves 14px as is.
-          transform: `translate(${dirSign * 14}px, clamp(${shrinkLiftClearingChips}, (${touchTarget} - ${shrinkLiftThreshold}) * 999, ${shrinkLiftCentered})) scale(0.75)`,
+          transform: `translate(${dirSign * 14}px, ${shrinkLabelY(`var(--_labelContentTop, ${inputMediumPadBlock})`)}) scale(0.75)`,
+        },
+      },
+      {
+        props: { variant: 'outlined', shrink: true, size: 'small' },
+        style: {
+          transform: `translate(${dirSign * 14}px, ${shrinkLabelY(`var(--_labelContentTop, ${inputSmallPadBlock})`)}) scale(0.75)`,
         },
       },
     ],
@@ -818,6 +824,19 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
       { paddingRight: `calc(2 * ${indicatorBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
+    [`&:has(.${autocompleteClasses.tag})`]: {
+      '--_labelContentTop': `min(${inputMediumPadBlock}, ${spacing('xSmall')} / 2)`,
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`&:has(.${autocompleteClasses.tag})`]: {
+            '--_labelContentTop': `min(${inputSmallPadBlock}, (${spacing('small')} - ${spacing('xxSmall')}) / 2)`,
+          },
+        },
+      },
+    ],
   });
   const rowPad = (pad: string) => `calc(${pad} + (1lh - var(--_tagHeight)) / 2)`;
   const filledLabelled = `:where(.${filledInputClasses.root}:not(.${inputBaseClasses.hiddenLabel}))`;
