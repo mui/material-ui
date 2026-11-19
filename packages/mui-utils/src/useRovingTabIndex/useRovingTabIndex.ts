@@ -1,7 +1,5 @@
 'use client';
 import * as React from 'react';
-// React 17 has no `useSyncExternalStore`. On React 18 and later the shim is React's own.
-import { useSyncExternalStore } from 'use-sync-external-store/shim';
 import fastObjectShallowCompare from '../fastObjectShallowCompare';
 import getActiveElement from '../getActiveElement';
 import ownerDocument from '../ownerDocument';
@@ -12,27 +10,28 @@ import useForkRef from '../useForkRef';
 import useLazyRef from '../useLazyRef';
 import { useRovingTabIndexContext } from './RovingTabIndexContext';
 
-/**
- * The tab stop as of the last commit, which items render from. A render that doesn't commit
- * can't reach it.
- */
-interface TabStopStore<Key> {
-  activeItemId: Key | null;
+interface RootStore {
   /**
-   * Whether any item had registered. Until one has, selected items are the tab stops, so that the
-   * server markup and the first client render are keyboard-accessible.
+   * Whether the item registry was non-empty in the root's latest render.
    */
   hasItems: boolean;
   /**
-   * Called on every change. Each item compares its own tab stop, so only the items whose tab stop
-   * changed re-render.
+   * Called after a commit in which the active item or `hasItems` changed. Each item re-renders
+   * only when its own state differs from what it last rendered.
    */
   listeners: Set<() => void>;
 }
 
-function createTabStopStore<Key>(): TabStopStore<Key> {
-  return { activeItemId: null, hasItems: false, listeners: new Set() };
+function createRootStore(): RootStore {
+  return { hasItems: false, listeners: new Set() };
 }
+
+/**
+ * Root values are stable, so items subscribe here instead of re-rendering through context.
+ * A context value that a root didn't create has no entry, and its items read `activeItemId` on
+ * every render instead.
+ */
+const rootStores = new WeakMap<UseRovingTabIndexReturnValue<any>, RootStore>();
 
 export interface Item<Key = unknown> {
   /**
@@ -111,8 +110,8 @@ export interface UseRovingTabIndexParams<Key = unknown> {
 export interface UseRovingTabIndexReturnValue<Key = unknown> {
   /**
    * The item id that owns `tabIndex=0` as of the root's latest render.
-   * This object doesn't change with it, so a component reading it during render only sees a new
-   * value when it re-renders for another reason, as the component calling the root hook does.
+   * The returned object keeps its identity when this changes, so context consumers other than
+   * the root's own component don't re-render with it.
    */
   activeItemId: Key | null;
   /**
@@ -158,11 +157,6 @@ export interface UseRovingTabIndexReturnValue<Key = unknown> {
    */
   isItemActive: (itemId: Key) => boolean;
   /**
-   * Reports whether an item owned `tabIndex=0` as of the last commit: the active item once items
-   * have registered, and the selected items before.
-   */
-  isItemTabStop: (itemId: Key, selected: boolean) => boolean;
-  /**
    * Registers or updates an item in the roving registry.
    */
   registerItem: (item: Item<Key>) => void;
@@ -170,12 +164,6 @@ export interface UseRovingTabIndexReturnValue<Key = unknown> {
    * Updates the current active item id.
    */
   setActiveItemId: (itemId: Key | null) => void;
-  /**
-   * Calls `listener` after a commit in which `isItemTabStop` may have changed for any item.
-   * Items use it to re-render on their own, since this object doesn't change with the active item.
-   * Returns the unsubscribe function.
-   */
-  subscribeToTabStop: (listener: () => void) => () => void;
   /**
    * Removes an item from the roving registry.
    */
@@ -283,32 +271,14 @@ export function useRovingTabIndexRoot<Key = unknown>(
   const activeItemIdRef = React.useRef<Key | null>(resolvedActiveItemId);
   activeItemIdRef.current = resolvedActiveItemId;
 
-  const tabStopStore = useLazyRef(createTabStopStore<Key>).current;
+  const store = useLazyRef(createRootStore).current;
   const hasItems = orderedItems.length > 0;
+  store.hasItems = hasItems;
 
+  // Items that rendered with this root are already up to date and ignore the notification.
   useEnhancedEffect(() => {
-    if (tabStopStore.activeItemId !== resolvedActiveItemId || tabStopStore.hasItems !== hasItems) {
-      tabStopStore.activeItemId = resolvedActiveItemId;
-      tabStopStore.hasItems = hasItems;
-      tabStopStore.listeners.forEach((listener) => listener());
-    }
-  }, [hasItems, resolvedActiveItemId, tabStopStore]);
-
-  const isItemTabStop = React.useCallback(
-    (itemId: Key, selected: boolean) =>
-      tabStopStore.hasItems ? tabStopStore.activeItemId === itemId : selected,
-    [tabStopStore],
-  );
-
-  const subscribeToTabStop = React.useCallback(
-    (listener: () => void) => {
-      tabStopStore.listeners.add(listener);
-      return () => {
-        tabStopStore.listeners.delete(listener);
-      };
-    },
-    [tabStopStore],
-  );
+    store.listeners.forEach((listener) => listener());
+  }, [hasItems, resolvedActiveItemId, store]);
 
   const getActiveItem = React.useCallback(() => {
     const snapshot = getOrderedItems(itemMapRef.current);
@@ -492,49 +462,70 @@ export function useRovingTabIndexRoot<Key = unknown>(
   );
 
   // The identity doesn't change with the active item, so a new active item doesn't re-render every
-  // item through context. Items subscribe to their own active state instead.
-  return React.useMemo(
-    () => ({
-      get activeItemId() {
-        return activeItemIdRef.current;
-      },
+  // item through context. Items subscribe through `rootStores` instead.
+  const rootValue = React.useMemo<UseRovingTabIndexReturnValue<Key>>(() => {
+    const value = {
+      activeItemId: activeItemIdRef.current,
       focusNext,
       getActiveItem,
       getContainerProps,
       getItemMap,
       isItemActive,
-      isItemTabStop,
       registerItem,
       setActiveItemId,
-      subscribeToTabStop,
       unregisterItem,
-    }),
-    [
-      focusNext,
-      getActiveItem,
-      getContainerProps,
-      getItemMap,
-      isItemActive,
-      isItemTabStop,
-      registerItem,
-      setActiveItemId,
-      subscribeToTabStop,
-      unregisterItem,
-    ],
-  );
+    };
+    rootStores.set(value, store);
+    return value;
+  }, [
+    focusNext,
+    getActiveItem,
+    getContainerProps,
+    getItemMap,
+    isItemActive,
+    registerItem,
+    setActiveItemId,
+    store,
+    unregisterItem,
+  ]);
+  rootValue.activeItemId = resolvedActiveItemId;
+
+  return rootValue;
 }
 
 export function useRovingTabIndexItem<Key = unknown>(
   params: UseRovingTabIndexItemParams<Key>,
 ): UseRovingTabIndexItemReturnValue {
-  const { isItemTabStop, registerItem, subscribeToTabStop, unregisterItem } =
-    useRovingTabIndexContext();
+  const rootContext = useRovingTabIndexContext();
+  const { registerItem, unregisterItem } = rootContext;
+  const store = rootStores.get(rootContext);
   const selected = params.selected ?? false;
-  const getIsTabStop = React.useCallback(
-    () => isItemTabStop(params.id, selected),
-    [isItemTabStop, params.id, selected],
-  );
-  const isTabStop = useSyncExternalStore(subscribeToTabStop, getIsTabStop, getIsTabStop);
+  const isActive = rootContext.activeItemId === params.id;
+  // Selected items also track `hasItems`, so that components which make a selected item the tab
+  // stop until items register re-render once registration starts.
+  const renderedState = getItemRenderState(isActive, selected, store);
+  const renderedStateRef = React.useRef(renderedState);
+  renderedStateRef.current = renderedState;
+  const [, forceRender] = React.useReducer((count: number) => count + 1, 0);
+
+  useEnhancedEffect(() => {
+    if (!store) {
+      return undefined;
+    }
+
+    const update = () => {
+      const state = getItemRenderState(rootContext.activeItemId === params.id, selected, store);
+      if (state !== renderedStateRef.current) {
+        forceRender();
+      }
+    };
+    // The root may have changed between this item's render and its subscription.
+    update();
+    store.listeners.add(update);
+    return () => {
+      store.listeners.delete(update);
+    };
+  }, [params.id, rootContext, selected, store]);
   const elementRef = React.useRef<HTMLElement | null>(null);
   const item = React.useMemo(
     () => ({
@@ -607,8 +598,16 @@ export function useRovingTabIndexItem<Key = unknown>(
 
   return {
     ref: mergedRef,
-    tabIndex: isTabStop ? 0 : -1,
+    tabIndex: isActive ? 0 : -1,
   };
+}
+
+function getItemRenderState(isActive: boolean, selected: boolean, store: RootStore | undefined) {
+  if (isActive) {
+    return 'active';
+  }
+
+  return selected && store && !store.hasItems ? 'selectedBeforeItems' : 'inactive';
 }
 
 /**

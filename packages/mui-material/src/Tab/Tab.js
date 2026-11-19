@@ -10,7 +10,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
-import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
+import { useRovingTabIndexContext, useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -219,13 +219,19 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     wrapped = false,
     ...other
   } = props;
+  const rovingContext = useRovingTabIndexContext();
   const rovingItemProps = useRovingTabIndexItem({
     id: value,
     ref,
     disabled,
     selected,
   });
-  const { tabIndex } = rovingItemProps;
+  // On the server, and on the first client render before registration effects run,
+  // the roving item map is still empty. In that window, fall back to `tabIndex={0}`
+  // for the selected tab so the rendered markup is immediately keyboard-accessible
+  // and hydration stays consistent until item registration takes over.
+  const shouldUseSelectedTabStopFallback = rovingContext.getItemMap().size === 0 && selected;
+  const tabIndex = shouldUseSelectedTabStopFallback ? 0 : rovingItemProps.tabIndex;
 
   const ownerState = {
     ...props,

@@ -19,7 +19,7 @@ function setStyleWidthForJsdomOrBrowser(style, width) {
 }
 
 describe('<MenuList />', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
     render,
@@ -274,6 +274,24 @@ describe('<MenuList />', () => {
       expect(list.style).to.have.property('paddingRight', '');
       expect(list.style).to.have.property('paddingLeft', '');
       expect(list.style).to.have.property('width', '10px');
+    });
+  });
+
+  describe('server-side render', () => {
+    it('does not make selected items tab stops before they register', () => {
+      const { container } = renderToString(
+        <MenuList variant="selectedMenu">
+          <MenuItem>a</MenuItem>
+          <MenuItem selected>b</MenuItem>
+          <MenuItem selected>c</MenuItem>
+        </MenuList>,
+      );
+
+      expect(
+        Array.from(container.querySelectorAll('[role="menuitem"]')).map((item) =>
+          item.getAttribute('tabindex'),
+        ),
+      ).to.deep.equal(['-1', '-1', '-1']);
     });
   });
 
