@@ -2,12 +2,10 @@ import type { NumberField as BaseNumberField } from '@base-ui/react/number-field
 import type { NumberFieldOwnerState, NumberFieldProps } from '../NumberField.types';
 import type { NumberFieldClasses } from '../numberFieldClasses';
 import Adornment from '../NumberFieldAdornmentSlot';
-import getAdornedStart from './getAdornedStart';
 
 interface GetControlElementsOptions {
   IncrementButton: React.ReactNode;
   DecrementButton: React.ReactNode;
-  startAdornment?: React.ReactNode;
   classes: Pick<NumberFieldClasses, 'controls'>;
   ownerState: NumberFieldOwnerState;
   baseState: BaseNumberField.Root.State;
@@ -15,12 +13,11 @@ interface GetControlElementsOptions {
 }
 
 /**
- * Resolves control placement and whether the input has a start adornment.
+ * Places the stepper buttons in the start and end adornments.
  */
 function getControlElements({
   IncrementButton,
   DecrementButton,
-  startAdornment,
   classes,
   ownerState,
   baseState,
@@ -28,7 +25,6 @@ function getControlElements({
 }: GetControlElementsOptions): {
   startControls: React.ReactNode | null;
   endControls: React.ReactNode | null;
-  adornedStart: boolean;
 } {
   const { controlsPosition } = ownerState;
   const controlProps = {
@@ -73,15 +69,7 @@ function getControlElements({
       );
   }
 
-  return {
-    startControls,
-    endControls,
-    adornedStart: getAdornedStart({
-      controlsPosition,
-      scrubAreaPosition: ownerState.scrubAreaPosition,
-      startAdornment,
-    }),
-  };
+  return { startControls, endControls };
 }
 
 export default getControlElements;

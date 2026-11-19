@@ -1464,7 +1464,7 @@ describe('<NumberField />', () => {
       });
     });
 
-    it('moves controls after mounting without replacing the input or resetting its edited value', async () => {
+    it('moves controls after mounting while preserving the input and its start adornment', async () => {
       function Test() {
         const [controlsPosition, setControlsPosition] =
           React.useState<NonNullable<NumberFieldProps['controlsPosition']>>('end');
@@ -1484,7 +1484,12 @@ describe('<NumberField />', () => {
             >
               Move controls
             </button>
-            <NumberField label="Amount" defaultValue={5} controlsPosition={controlsPosition} />
+            <NumberField
+              label="Amount"
+              defaultValue={5}
+              controlsPosition={controlsPosition}
+              slotProps={{ input: { startAdornment: <input aria-label="Unit" /> } }}
+            />
           </React.Fragment>
         );
       }
@@ -1495,6 +1500,8 @@ describe('<NumberField />', () => {
       await user.clear(input);
       await user.keyboard('8');
 
+      await user.type(screen.getByRole('textbox', { name: 'Unit' }), 'kg');
+
       const moveAndCheckControls = async (
         position: NonNullable<NumberFieldProps['controlsPosition']>,
       ) => {
@@ -1502,6 +1509,7 @@ describe('<NumberField />', () => {
 
         expect(screen.getByRole('textbox', { name: 'Amount' })).to.equal(input);
         expect(input).to.have.value('8');
+        expect(screen.getByRole('textbox', { name: 'Unit' })).to.have.value('kg');
         const increment = screen.getByRole('button', { name: 'Increase' });
         const decrement = screen.getByRole('button', { name: 'Decrease' });
 

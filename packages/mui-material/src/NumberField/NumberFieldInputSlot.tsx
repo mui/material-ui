@@ -445,10 +445,9 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
   const consumerStartAdornment = materialInputProps.startAdornment;
   const consumerEndAdornment = materialInputProps.endAdornment;
 
-  const { startControls, endControls, adornedStart } = getControlElements({
+  const { startControls, endControls } = getControlElements({
     IncrementButton: incrementButton,
     DecrementButton: decrementButton,
-    startAdornment: consumerStartAdornment,
     classes,
     ownerState,
     baseState,
@@ -458,16 +457,17 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
   const startScrubArea = ownerState.scrubAreaPosition === 'start' && scrubAreaAdornment;
   const endScrubArea = ownerState.scrubAreaPosition === 'end' && scrubAreaAdornment;
 
-  // An empty fragment would still mark the input as adorned and shrink its label.
-  const startAdornment = adornedStart ? (
-    <React.Fragment>
-      {startControls}
-      {startScrubArea}
-      {consumerStartAdornment}
-    </React.Fragment>
-  ) : (
-    consumerStartAdornment
-  );
+  // Keep the consumer adornment mounted when controls move. An empty fragment would shrink the label.
+  const startAdornment =
+    startControls || startScrubArea || consumerStartAdornment ? (
+      <React.Fragment>
+        {startControls}
+        {startScrubArea}
+        {consumerStartAdornment}
+      </React.Fragment>
+    ) : (
+      consumerStartAdornment
+    );
   const endAdornment =
     endControls || endScrubArea ? (
       <React.Fragment>
