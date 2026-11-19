@@ -54,7 +54,9 @@ if (typeof globalThis.navigator !== 'undefined' && !navigator.userAgent.includes
     beforeAll(() => {
       Object.defineProperty(HTMLElement.prototype, 'focus', {
         configurable: true,
-        value: function focusWithoutArguments() {
+        value: function focusWithoutArguments(options?: FocusOptions) {
+          // Read the options as the native method does. Base UI checks `preventScroll` support this way.
+          Object.values(options ?? {});
           originalFocus.call(this); // always call without arguments
         },
       });
