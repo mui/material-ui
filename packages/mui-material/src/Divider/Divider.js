@@ -277,7 +277,7 @@ Divider.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -296,9 +296,6 @@ Divider.propTypes /* remove-proptypes */ = {
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
-   * @ignore
-   */
   role: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -317,10 +314,8 @@ Divider.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'fullWidth'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['fullWidth', 'inset', 'middle']), PropTypes.string]),
 };
 
 export default Divider;

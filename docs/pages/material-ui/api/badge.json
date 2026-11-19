@@ -57,13 +57,13 @@
     {
       "name": "root",
       "description": "The component that renders the root.",
-      "default": "span",
+      "default": "'span'",
       "class": "MuiBadge-root"
     },
     {
       "name": "badge",
       "description": "The component that renders the badge.",
-      "default": "span",
+      "default": "'span'",
       "class": "MuiBadge-badge"
     }
   ],

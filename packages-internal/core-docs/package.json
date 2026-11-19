@@ -51,7 +51,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "next": "16.4.3",
+    "next": "16.4.5",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "peerDependencies": {
@@ -80,10 +80,12 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=22.23.4"
+    "node": ">=22.23.5"
   },
   "exports": {
     "./*": "./src/*/index.ts",
-    "./ApiPage/private": "./src/ApiPage/private.ts"
+    "./ApiPage/private": "./src/ApiPage/private.ts",
+    "./utils/createDemo": "./src/utils/createDemo.tsx",
+    "./utils/createDemoClient": "./src/utils/createDemoClient.ts"
   }
 }

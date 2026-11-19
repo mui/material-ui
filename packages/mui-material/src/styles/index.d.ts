@@ -126,11 +126,9 @@ export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
-export * from './ThemeProviderWithVars';
+export { useColorScheme } from './ThemeProviderWithVars';
 export type { StorageManager, ThemeScopeProps } from '@mui/system/cssVars';
 export { useThemeScope } from '@mui/system/cssVars';
-
-export { default as extendTheme } from './createThemeWithVars';
 
 export type {
   ColorSchemeOverrides,

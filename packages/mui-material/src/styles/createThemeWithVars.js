@@ -138,7 +138,7 @@ function attachColorScheme(colorSpace, colorSchemes, scheme, restTheme, colorSch
 export default function createThemeWithVars(options = {}, ...args) {
   const {
     colorSchemes: colorSchemesInput = { light: true },
-    defaultColorScheme: defaultColorSchemeInput,
+    defaultColorScheme = 'light',
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
     nativeColor = false,
@@ -149,10 +149,6 @@ export default function createThemeWithVars(options = {}, ...args) {
     rootSelector = ':root',
     ...input
   } = options;
-  const firstColorScheme = Object.keys(colorSchemesInput)[0];
-  const defaultColorScheme =
-    defaultColorSchemeInput ||
-    (colorSchemesInput.light && firstColorScheme !== 'light' ? 'light' : firstColorScheme);
   const getCssVar = createGetCssVar(cssVarPrefix);
   const {
     [defaultColorScheme]: defaultSchemeInput,

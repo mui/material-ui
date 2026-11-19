@@ -8,6 +8,7 @@ import {
   screen,
   flushEffects,
   isJsdom,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
@@ -184,7 +185,7 @@ describe('<SpeedDial />', () => {
           </SpeedDial>,
         );
 
-        expect(screen.getByRole('presentation')).to.have.class(classes[className]);
+        expect(screen.getByRole('none')).to.have.class(classes[className]);
       });
     });
 
@@ -847,18 +848,22 @@ describe('<SpeedDial />', () => {
       expect(screen.getByRole('menu').id).not.to.contain('derivedFromLabel');
     });
 
-    it('generates the same ids after server-side rendering and hydration', () => {
-      function App() {
-        return <TwoSpeedDials />;
-      }
+    // React 17 has no `React.useId`, so the server cannot render the client ids.
+    it.skipIf(reactMajor < 18)(
+      'generates the same ids after server-side rendering and hydration',
+      () => {
+        function App() {
+          return <TwoSpeedDials />;
+        }
 
-      const { container, hydrate } = renderToString(<App />);
-      const serverIds = getIds(container);
-      expect(serverIds.length).to.be.greaterThan(0);
+        const { container, hydrate } = renderToString(<App />);
+        const serverIds = getIds(container);
+        expect(serverIds.length).to.be.greaterThan(0);
 
-      hydrate();
+        hydrate();
 
-      expect(getIds(container)).to.deep.equal(serverIds);
-    });
+        expect(getIds(container)).to.deep.equal(serverIds);
+      },
+    );
   });
 });

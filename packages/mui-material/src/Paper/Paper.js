@@ -149,7 +149,7 @@ Paper.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -177,9 +177,6 @@ Paper.propTypes /* remove-proptypes */ = {
    * @default false
    */
   square: PropTypes.bool,
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -193,10 +190,8 @@ Paper.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'elevation'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['elevation', 'outlined']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['elevation', 'outlined']), PropTypes.string]),
 };
 
 export default Paper;

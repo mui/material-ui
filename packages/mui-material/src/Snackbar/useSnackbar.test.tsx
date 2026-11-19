@@ -29,7 +29,7 @@ describe('useSnackbar', () => {
 
       const rootProps = getRootProps();
 
-      expect(rootProps.role).to.equal('presentation');
+      expect(rootProps.role).to.equal('none');
     });
 
     it('forwards external props including event handlers', () => {
@@ -42,7 +42,7 @@ describe('useSnackbar', () => {
       }
       render(<Snackbar />);
 
-      const snackbar = screen.getByRole('presentation');
+      const snackbar = screen.getByRole('none');
 
       expect(snackbar).to.have.attribute('random', 'arbitraryValue');
 

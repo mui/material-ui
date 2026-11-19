@@ -171,9 +171,6 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The component used for the root node.
@@ -221,9 +218,6 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -242,10 +236,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'circular'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circular', 'rounded', 'square']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['circular', 'rounded', 'square']), PropTypes.string]),
 };
 
 export default AvatarGroup;
