@@ -9,9 +9,6 @@ packages:
 engineStrict: true
 updateNotifier: false
 autoDedupe: true
-# Peer suffixes list only name@version, so a peer's own peers (e.g. the optional yaml of vite)
-# do not split one package into several lockfile entries.
-dedupePeers: true
 blockExoticSubdeps: true
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
