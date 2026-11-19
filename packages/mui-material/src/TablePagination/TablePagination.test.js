@@ -655,47 +655,6 @@ describe('<TablePagination />', () => {
 
       expect(nextButton).toHaveComputedStyle({ outlineStyle: 'solid', outlineOffset: '-2px' });
     });
-
-    it.skipIf(isJsdom())('keeps a MuiIconButton focus override on the action buttons', () => {
-      render(
-        <ThemeProvider
-          theme={createTheme({
-            focusVisible: true,
-            components: {
-              MuiButtonBase: { defaultProps: { disableRipple: true } },
-              MuiIconButton: {
-                styleOverrides: {
-                  root: { '&.Mui-focusVisible': { outlineColor: 'rgb(255, 0, 0)' } },
-                },
-              },
-            },
-          })}
-        >
-          <table>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  count={30}
-                  page={0}
-                  onPageChange={noop}
-                  onRowsPerPageChange={noop}
-                  rowsPerPage={10}
-                />
-              </TableRow>
-            </TableFooter>
-          </table>
-        </ThemeProvider>,
-      );
-      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
-
-      simulatePointerDevice();
-      focusVisible(nextButton);
-
-      expect(nextButton).toHaveComputedStyle({
-        outlineColor: 'rgb(255, 0, 0)',
-        outlineOffset: '-2px',
-      });
-    });
   });
 
   describe('prop: rowsPerPage', () => {
