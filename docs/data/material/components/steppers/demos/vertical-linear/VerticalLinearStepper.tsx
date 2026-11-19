@@ -55,7 +55,7 @@ export default function VerticalLinearStepper() {
     const previousActiveStep = previousActiveStepRef.current;
     previousActiveStepRef.current = activeStep;
 
-    // Leave focus alone on mount.
+    // Only move focus in response to user navigation, not on the initial render.
     if (previousActiveStep === activeStep) {
       return;
     }
