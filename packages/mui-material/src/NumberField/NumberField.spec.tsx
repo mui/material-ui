@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
+import type { BaseUIEvent } from '@base-ui/react/types';
 import NumberField from '@mui/material/NumberField';
 import type {
   NumberFieldProps,
@@ -72,6 +73,30 @@ function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldP
 <NumberField slotProps={{ input: { render: 'section' } }} />;
 // @ts-expect-error render takes an element or callback, not a tag name.
 <NumberField slotProps={{ htmlInput: { render: 'input' } }} />;
+
+// @ts-expect-error Set the numeric value on NumberField.
+<NumberField slotProps={{ input: { value: 1 } }} />;
+// @ts-expect-error Set the initial value on NumberField.
+<NumberField slotProps={{ htmlInput: () => ({ defaultValue: '1', inputMode: 'decimal' }) }} />;
+// @ts-expect-error NumberField formats numbers in a text input.
+<NumberField slotProps={{ htmlInput: { type: 'number' } }} />;
+<NumberField
+  variant="filled"
+  // @ts-expect-error NumberField is single-line across all variants.
+  slotProps={{ input: () => ({ multiline: true, disableUnderline: true }) }}
+/>;
+// @ts-expect-error The standard input also disallows textarea sizing.
+<NumberField variant="standard" slotProps={{ input: { rows: 2 } }} />;
+// @ts-expect-error Pass native input props through slotProps.htmlInput.
+<NumberField slotProps={{ input: { inputProps: { placeholder: 'Quantity' } } }} />;
+// @ts-expect-error Put input keydown handlers on slotProps.htmlInput.
+<NumberField slotProps={{ input: { onKeyDown: () => {} } }} />;
+// @ts-expect-error The same applies to keyup handlers returned by a slot callback.
+<NumberField slotProps={{ input: () => ({ onKeyUp: () => {} }) }} />;
+<NumberField
+  // @ts-expect-error Pass native input props through slotProps.htmlInput, including in callbacks.
+  slotProps={{ input: () => ({ slotProps: { input: { placeholder: 'Quantity' } } }) }}
+/>;
 
 // @ts-expect-error NumberField owns its content; use slot props to customize it.
 <NumberField>Unsupported content</NumberField>;
@@ -186,13 +211,18 @@ function ValueCallbacks(props: NumberFieldProps) {
 // @ts-expect-error onValueCommitted receives a number or null, not a DOM event.
 <NumberField onValueCommitted={(event: React.ChangeEvent<HTMLInputElement>) => {}} />;
 
-// DOM change events remain available on the Material input slot.
+// The Material input forwards these callbacks to the single-line input.
 <NumberField
   slotProps={{
     input: {
+      onBlur: (event) => {
+        expectType<React.FocusEvent<HTMLInputElement>, typeof event>(event);
+      },
       onChange: (event) => {
-        expectType<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, typeof event>(event);
-        expectType<string, typeof event.target.value>(event.target.value);
+        expectType<React.ChangeEvent<HTMLInputElement>, typeof event>(event);
+      },
+      onFocus: (event) => {
+        expectType<React.FocusEvent<HTMLInputElement>, typeof event>(event);
       },
     },
   }}
@@ -263,13 +293,19 @@ function ValueCallbacks(props: NumberFieldProps) {
     input: {
       ref: React.createRef<HTMLDivElement>(),
       startAdornment: <span>$</span>,
+    },
+    htmlInput: {
+      ref: (input) => {
+        expectType<HTMLInputElement | null, typeof input>(input);
+      },
+      inputMode: 'decimal',
       onKeyDown: (event) => {
-        expectType<React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>, typeof event>(
-          event,
-        );
+        expectType<BaseUIEvent<React.KeyboardEvent<HTMLInputElement>>, typeof event>(event);
+      },
+      onKeyUp: (event) => {
+        expectType<BaseUIEvent<React.KeyboardEvent<HTMLInputElement>>, typeof event>(event);
       },
     },
-    htmlInput: { ref: React.createRef<HTMLInputElement>(), inputMode: 'decimal' },
     inputLabel: { shrink: true, htmlFor: 'amount', ref: React.createRef<HTMLLabelElement>() },
     formHelperText: { render: <div /> },
     incrementButton: {

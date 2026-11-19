@@ -155,11 +155,10 @@ const NumberField = React.forwardRef(function NumberField(
 
         // Share slot props used by multiple parts so each callback runs once
         // with Base UI's resolved flags.
-        const { materialInputProps, nativeSlotProps } = resolveInputProps({
-          inputProps: resolveComponentProps(slotProps.input, resolvedOwnerState) ?? {},
-          htmlInputSlotProps: slotProps.htmlInput,
-          ownerState: resolvedOwnerState,
-        });
+        const { materialInputProps, nativeSlotProps } = resolveInputProps(
+          slotProps,
+          resolvedOwnerState,
+        );
         const { id: nativeInputId, ...htmlInputProps } = nativeSlotProps;
         const resolvedExternalForwardedProps = {
           ...externalForwardedProps,

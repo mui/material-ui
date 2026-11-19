@@ -1717,6 +1717,31 @@ describe('<NumberField />', () => {
   // Resolve Material and native consumer configurations before composing Base UI
   // behavior, so later InputBase spreads preserve the chosen handlers and refs.
   describe('input slot props', () => {
+    it('preserves the formatted single-line input with conflicting slot props', async () => {
+      const conflictingProps = { value: '99', defaultValue: '42', type: 'number' };
+      const slotProps = {
+        input: { ...conflictingProps, multiline: true, rows: 3, minRows: 2, maxRows: 4 },
+        htmlInput: () => conflictingProps,
+      };
+      const { user } = render(
+        <NumberField
+          defaultValue={1000}
+          locale="en-US"
+          format={{ useGrouping: true }}
+          // @ts-expect-error Exercise unsupported props passed from JavaScript.
+          slotProps={slotProps}
+        />,
+      );
+      const input = screen.getByRole<HTMLInputElement>('textbox');
+      expect(input.tagName).to.equal('INPUT');
+      expect(input.type).to.equal('text');
+      expect(input).not.to.have.attribute('rows');
+      expect(input).to.have.value('1,000');
+
+      await user.type(input, '{ArrowUp}');
+      expect(input).to.have.value('1,001');
+    });
+
     // Replacing the Material wrapper or native input must retain the refs and event
     // wiring that connect Base UI editing with Material focus and styling.
     describe('input customization', () => {
@@ -1895,12 +1920,18 @@ describe('<NumberField />', () => {
         const nativeRef = React.createRef<HTMLInputElement>();
         const onValueChange = vi.fn();
         const onChange = vi.fn();
-        const keyDownTargets: HTMLElement[] = [];
-        const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-          keyDownTargets.push(event.currentTarget);
+        const keyEvents: [string, HTMLInputElement][] = [];
+        const recordKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
+          keyEvents.push([event.type, event.currentTarget]);
         };
         const wrapperProps = { ref: wrapperRef, 'data-testid': 'material-input' };
-        const nativeProps = { ref: nativeRef, onKeyDown, onChange, 'data-testid': 'native-input' };
+        const nativeProps = {
+          ref: nativeRef,
+          onKeyDown: recordKey,
+          onKeyUp: recordKey,
+          onChange,
+          'data-testid': 'native-input',
+        };
         const { user } = render(
           <React.Fragment>
             <NumberField
@@ -1929,7 +1960,10 @@ describe('<NumberField />', () => {
         await user.click(input);
         await user.keyboard('{ArrowUp}');
         expect(input).to.have.value('6');
-        expect(keyDownTargets).to.deep.equal([input]);
+        expect(keyEvents).to.deep.equal([
+          ['keydown', input],
+          ['keyup', input],
+        ]);
         await user.clear(input);
         await user.keyboard('8');
         expect(input).to.have.value('8');
@@ -1948,198 +1982,95 @@ describe('<NumberField />', () => {
       });
     });
 
-    describe('native prop precedence', () => {
-      type KeyboardHandlers = Pick<React.HTMLAttributes<HTMLElement>, 'onKeyDown' | 'onKeyUp'>;
-
-      const keyboardSources = [
-        { path: 'input', slotProps: (selected) => ({ input: selected }) },
-        {
-          path: 'htmlInput',
-          slotProps: (selected, earlier) => ({ input: earlier, htmlInput: selected }),
-        },
-        {
-          path: 'input.inputProps',
-          slotProps: (selected, earlier) => ({
-            input: { ...earlier, inputProps: selected },
-            htmlInput: earlier,
-          }),
-        },
-        {
-          path: 'input.slotProps.input',
-          slotProps: (selected, earlier) => ({
-            input: { ...earlier, inputProps: earlier, slotProps: { input: selected } },
-            htmlInput: earlier,
-          }),
-        },
-      ] satisfies {
-        path: string;
-        slotProps: (
-          selected: KeyboardHandlers,
-          earlier: KeyboardHandlers,
-        ) => NumberFieldProps['slotProps'];
-      }[];
-
-      describe.each(keyboardSources)('keyboard handlers at slotProps.$path', ({ slotProps }) => {
-        it.each(['provided', 'explicitly undefined'] as const)(
-          'preserves stepping when the handlers are %s',
-          async (mode) => {
-            const calls: [string, HTMLElement][] = [];
-            const record = (name: string) => (event: React.KeyboardEvent<HTMLElement>) => {
-              calls.push([name, event.currentTarget]);
-            };
-            const selected =
-              mode === 'provided'
-                ? { onKeyDown: record('down'), onKeyUp: record('up') }
-                : { onKeyDown: undefined, onKeyUp: undefined };
-            const earlier = { onKeyDown: record('overridden'), onKeyUp: record('overridden') };
-            const { user } = render(
-              <NumberField defaultValue={5} slotProps={slotProps(selected, earlier)} />,
-            );
-            const input = screen.getByRole('textbox');
-
-            await user.type(input, '{ArrowUp}');
-
-            expect(input).to.have.value('6');
-            expect(calls).to.deep.equal(
-              mode === 'provided'
-                ? [
-                    ['down', input],
-                    ['up', input],
-                  ]
-                : [],
-            );
-          },
-        );
-      });
-
-      it('forwards the deepest native ref alongside inputRef and preserves Material root props', () => {
-        const inputRef = React.createRef<HTMLInputElement>();
+    describe('native input props', () => {
+      it('ignores native props and keyboard handlers on the Material wrapper and preserves its root props', async () => {
+        const ignoredRef = React.createRef<HTMLInputElement>();
         const nativeRef = React.createRef<HTMLInputElement>();
-        const earlierRef = React.createRef<HTMLInputElement>();
-        render(
+        const ignoredKeyHandler = vi.fn();
+        const wrapperProps = {
+          onKeyDown: ignoredKeyHandler,
+          onKeyUp: ignoredKeyHandler,
+          inputProps: { placeholder: 'Ignored placeholder', ref: ignoredRef },
+          slotProps: {
+            input: { title: 'Ignored title', ref: ignoredRef },
+            root: { title: 'Material input' },
+          },
+        };
+        const { user } = render(
           <NumberField
-            inputRef={inputRef}
+            defaultValue={5}
             slotProps={{
-              htmlInput: { ref: earlierRef },
-              input: {
-                inputProps: { ref: earlierRef },
-                slotProps: {
-                  root: { title: 'Material input' },
-                  input: { ref: nativeRef } as React.ComponentPropsWithRef<'input'>,
-                },
-              },
+              // @ts-expect-error Exercise unsupported props passed from JavaScript.
+              input: () => wrapperProps,
+              htmlInput: { ref: nativeRef, 'aria-label': 'Amount' },
             }}
           />,
         );
-        const input = screen.getByRole('textbox');
+        const input = screen.getByRole('textbox', { name: 'Amount' });
 
-        expect(inputRef.current).to.equal(input);
+        expect(input).not.to.have.attribute('placeholder');
+        expect(input).not.to.have.attribute('title');
         expect(nativeRef.current).to.equal(input);
-        expect(earlierRef.current).to.equal(null);
+        expect(ignoredRef.current).to.equal(null);
         expect(screen.getByTitle('Material input')).to.contain(input);
+
+        await user.type(input, '{ArrowUp}');
+        expect(input).to.have.value('6');
+        expect(ignoredKeyHandler).toHaveBeenCalledTimes(0);
       });
 
-      [undefined, 'Public placeholder'].forEach((placeholder) => {
-        it(`uses the Material input placeholder when the public placeholder is ${placeholder === undefined ? 'absent' : 'set'}`, () => {
-          render(
-            <NumberField
-              placeholder={placeholder}
-              slotProps={{ input: { placeholder: 'Material placeholder' } }}
-            />,
-          );
-
-          expect(screen.getByRole('textbox')).to.have.attribute(
-            'placeholder',
-            'Material placeholder',
-          );
-        });
-      });
-
-      it('allows the selected consumer handler to prevent Base UI handling', async () => {
-        const onValueChange = vi.fn();
-        const onKeyDown = vi.fn((event: BaseUIEvent<React.KeyboardEvent<HTMLInputElement>>) =>
-          event.preventBaseUIHandler(),
+      it('lets the Material input override the public placeholder', () => {
+        render(
+          <NumberField
+            placeholder="Public placeholder"
+            slotProps={{ input: { placeholder: 'Material placeholder' } }}
+          />,
         );
+
+        expect(screen.getByRole('textbox')).to.have.attribute(
+          'placeholder',
+          'Material placeholder',
+        );
+      });
+
+      it('keeps stepping when native keyboard handlers are explicitly undefined', async () => {
+        const { user } = render(
+          <NumberField
+            defaultValue={5}
+            slotProps={{ htmlInput: { onKeyDown: undefined, onKeyUp: undefined } }}
+          />,
+        );
+        const input = screen.getByRole('textbox');
+        await user.type(input, '{ArrowUp}');
+        expect(input).to.have.value('6');
+      });
+
+      it('lets the native keydown handler cancel stepping', async () => {
+        const onValueChange = vi.fn();
         const { user } = render(
           <NumberField
             defaultValue={5}
             onValueChange={onValueChange}
-            slotProps={{ input: { slotProps: { input: { onKeyDown } } } }}
-          />,
-        );
-
-        await user.click(screen.getByRole<HTMLInputElement>('textbox'));
-        await user.keyboard('{ArrowUp}');
-
-        expect(screen.getByRole<HTMLInputElement>('textbox')).to.have.value('5');
-        expect(onKeyDown).toHaveBeenCalledTimes(1);
-        expect(onValueChange).toHaveBeenCalledTimes(0);
-      });
-
-      it('lets callback inputProps replace htmlInput props and preserves behavior and refs', async () => {
-        const htmlInputKeyDown = vi.fn();
-        const targets: HTMLElement[] = [];
-        const nestedKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-          targets.push(event.currentTarget);
-        };
-        const inputRef = React.createRef<HTMLInputElement>();
-        const htmlInputRef = React.createRef<HTMLInputElement>();
-        const nestedRef = React.createRef<HTMLInputElement>();
-        const { user } = render(
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            inputRef={inputRef}
             slotProps={{
               htmlInput: {
-                placeholder: 'Earlier placeholder',
-                onKeyDown: htmlInputKeyDown,
-                ref: htmlInputRef,
-              },
-              input: (ownerState) => ({
-                inputProps: {
-                  'aria-label': ownerState.label,
-                  onKeyDown: nestedKeyDown,
-                  ref: nestedRef,
+                onKeyDown: (event) => {
+                  if (event.key === 'ArrowUp') {
+                    event.preventBaseUIHandler();
+                  }
                 },
-              }),
+              },
             }}
           />,
         );
-        const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-        expect(input).to.have.attribute('aria-label', 'Amount');
-        expect(input).not.to.have.attribute('placeholder');
-        expect(htmlInputRef.current).to.equal(null);
-        expect(nestedRef.current).to.equal(input);
-        expect(inputRef.current).to.equal(input);
 
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
+        const input = screen.getByRole('textbox');
+        await user.type(input, '{ArrowUp}');
 
-        expect(input).to.have.value('6');
-        expect(htmlInputKeyDown).toHaveBeenCalledTimes(0);
-        expect(targets).to.deep.equal([input]);
-      });
+        expect(input).to.have.value('5');
+        expect(onValueChange).toHaveBeenCalledTimes(0);
 
-      it('preserves Base UI behavior when nested inputProps are explicitly undefined', async () => {
-        const onKeyDown = vi.fn();
-        const { user } = render(
-          <NumberField
-            defaultValue={5}
-            slotProps={{
-              htmlInput: { placeholder: 'Earlier placeholder', onKeyDown },
-              input: { inputProps: undefined },
-            }}
-          />,
-        );
-        const input = screen.getByRole<HTMLInputElement>('textbox');
-        expect(input).not.to.have.attribute('placeholder');
-
-        await user.click(input);
-        await user.keyboard('{ArrowUp}');
-
-        expect(input).to.have.value('6');
-        expect(onKeyDown).toHaveBeenCalledTimes(0);
+        await user.keyboard('{ArrowDown}');
+        expect(input).to.have.value('4');
       });
     });
   });
@@ -2210,14 +2141,13 @@ describe('<NumberField />', () => {
         expect(publicHandler).toHaveBeenCalledTimes(0);
       });
 
-      it('composes deeper native callbacks while preserving Material callback order and state', async () => {
+      it('composes native callbacks while preserving Material callback order and state', async () => {
         const calls: string[] = [];
         const targets: HTMLElement[] = [];
         const record = (name: string) => (event: React.SyntheticEvent<HTMLElement>) => {
           calls.push(name);
           targets.push(event.currentTarget);
         };
-        const replacedHandler = vi.fn();
         const onValueCommitted = vi.fn();
         const { user } = render(
           <NumberField
@@ -2227,20 +2157,11 @@ describe('<NumberField />', () => {
             onValueCommitted={onValueCommitted}
             slotProps={{
               htmlInput: {
-                onFocus: replacedHandler,
-                onBlur: replacedHandler,
-                onChange: replacedHandler,
+                onFocus: record('native focus'),
+                onBlur: record('native blur'),
+                onChange: record('native change'),
               },
-              input: {
-                onChange: record('Material change'),
-                slotProps: {
-                  input: {
-                    onFocus: record('native focus'),
-                    onBlur: record('native blur'),
-                    onChange: record('native change'),
-                  },
-                },
-              },
+              input: { onChange: record('Material change') },
             }}
           />,
         );
@@ -2264,35 +2185,21 @@ describe('<NumberField />', () => {
           'native blur',
         ]);
         expect(targets).to.deep.equal(Array(6).fill(input));
-        expect(replacedHandler).toHaveBeenCalledTimes(0);
         expect(onValueCommitted).toHaveBeenCalledTimes(1);
         expect(onValueCommitted.mock.calls[0][0]).to.equal(4);
       });
 
-      it('preserves editing and commits when deeper native callbacks are unset', async () => {
-        const replacedHandler = vi.fn();
+      it('preserves editing and commits when native callbacks are explicitly undefined', async () => {
         const materialChange = vi.fn();
         const onValueChange = vi.fn();
         const onValueCommitted = vi.fn();
-        const nativeCallbacks = {
-          onFocus: undefined,
-          onBlur: undefined,
-          onChange: undefined,
-        };
         const { user } = render(
           <NumberField
             onValueChange={onValueChange}
             onValueCommitted={onValueCommitted}
             slotProps={{
-              htmlInput: {
-                onFocus: replacedHandler,
-                onBlur: replacedHandler,
-                onChange: replacedHandler,
-              },
-              input: {
-                onChange: materialChange,
-                slotProps: { input: nativeCallbacks },
-              },
+              htmlInput: { onFocus: undefined, onBlur: undefined, onChange: undefined },
+              input: { onChange: materialChange },
             }}
           />,
         );
@@ -2306,7 +2213,6 @@ describe('<NumberField />', () => {
         expect(onValueChange).toHaveBeenCalledTimes(1);
         expect(onValueChange.mock.calls[0][0]).to.equal(4);
         expect(materialChange).toHaveBeenCalledTimes(1);
-        expect(replacedHandler).toHaveBeenCalledTimes(0);
         expect(onValueCommitted).toHaveBeenCalledTimes(1);
         expect(onValueCommitted.mock.calls[0][0]).to.equal(4);
       });
