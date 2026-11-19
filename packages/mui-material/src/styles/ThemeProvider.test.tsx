@@ -331,6 +331,34 @@ describe('ThemeProvider', () => {
         expect(screen.getByTestId('inner').parentElement!.className).to.match(/ mui-theme-/);
       });
 
+      it('writes the variables that reference a changed one', () => {
+        const linkTheme = (main: string) =>
+          createTheme({
+            cssVariables: true,
+            palette: {
+              primary: { main },
+              text: { link: 'var(--mui-palette-primary-main)' } as any,
+            },
+          });
+        render(
+          <ThemeProvider theme={linkTheme('#0000ff')}>
+            <ThemeProvider theme={linkTheme('#ff0000')}>
+              <div data-testid="inner" />
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        const element = screen.getByTestId('inner').parentElement!;
+        const scope = `.${element.classList[1]}`;
+        const css = Array.from(document.querySelectorAll('style'))
+          .map((style) => style.textContent)
+          .join('');
+        const scopeRule = css.slice(css.indexOf(`${scope}{`));
+        expect(scopeRule).to.include('--mui-palette-text-link:var(--mui-palette-primary-main)');
+        if (!isJsdom()) {
+          expect(getVar(screen.getByTestId('inner'), '--mui-palette-text-link')).to.equal('#ff0000');
+        }
+      });
+
       it.skipIf(isJsdom())('gives each level of a chain its own variables', () => {
         render(
           <ThemeProvider theme={blueTheme}>

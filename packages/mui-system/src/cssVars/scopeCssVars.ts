@@ -89,6 +89,44 @@ function pickChanged(css: CssDeclarations, upperCss: CssDeclarations | undefined
   return result;
 }
 
+const VAR_REFERENCE = /var\(\s*(--[^\s,)]+)/g;
+
+/**
+ * A variable that references another one through `var()` is computed where it's declared,
+ * so when the other one changes on the scope, it has to be declared again there.
+ * Adds the declarations that reference the changed ones in `root` and `scheme`, transitively,
+ * to `root` or `scheme`, depending on where they're declared.
+ */
+function addDependents(
+  root: CssDeclarations,
+  scheme: CssDeclarations,
+  allRoot: CssDeclarations,
+  allScheme: CssDeclarations,
+) {
+  const all = { ...allRoot, ...allScheme };
+  const dependents: Record<string, string[]> = {};
+  Object.keys(all).forEach((key) => {
+    const value = all[key];
+    if (typeof value === 'string' && value.includes('var(')) {
+      value.replace(VAR_REFERENCE, (match, name: string) => {
+        (dependents[name] ??= []).push(key);
+        return match;
+      });
+    }
+  });
+  const queue = [...Object.keys(root), ...Object.keys(scheme)];
+  while (queue.length > 0) {
+    const name = queue.pop()!;
+    dependents[name]?.forEach((key) => {
+      const target = key in allScheme ? scheme : root;
+      if (!(key in target)) {
+        target[key] = all[key];
+        queue.push(key);
+      }
+    });
+  }
+}
+
 function isEmpty(root: CssDeclarations, schemes: Array<[string, CssDeclarations]>) {
   return (
     Object.keys(root).length === 0 &&
@@ -108,7 +146,8 @@ function getMode(css: CssVarsByColorScheme, colorScheme: string) {
 /**
  * Builds the stylesheets that set the CSS theme variables of a nested theme on a class,
  * so that only the elements under that class use them. Only the declarations that differ from `upper`
- * are written, and the color schemes follow the outer provider through `colorSchemeRule`:
+ * are written, with the ones that reference them through `var()`,
+ * and the color schemes follow the outer provider through `colorSchemeRule`:
  * `.dark .scope` under the top-level provider, the marker of the closest isolated provider under one.
  *
  * Returns `null` when there's nothing to write.
@@ -128,9 +167,12 @@ export function createScopedStyleSheets(options: {
 
   const root = pickChanged(css.root, upper.root);
   const schemes: Array<[string, CssDeclarations]> = [];
-  if (defaultScheme) {
+  if (!defaultScheme) {
+    addDependents(root, {}, css.root, {});
+  } else {
     const [key, declarations] = defaultScheme;
     const changed = pickChanged(declarations, isForcedScheme ? undefined : upperSchemes[key]);
+    addDependents(root, changed, css.root, declarations);
     schemes.push([key, changed]);
     // Without a color scheme rule, nothing selects the other color schemes,
     // and writing them on the scope would override the default one.
@@ -143,6 +185,7 @@ export function createScopedStyleSheets(options: {
           otherChanged[declaration] = otherDeclarations[declaration];
         }
       });
+      addDependents(root, otherChanged, css.root, otherDeclarations);
       schemes.push([otherKey, otherChanged]);
     });
   }

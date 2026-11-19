@@ -141,6 +141,62 @@ describe('createScopedStyleSheets', () => {
     });
   });
 
+  it('writes the declarations that reference a changed one, transitively', () => {
+    const outer = {
+      root: { '--mui-shadow': '0 0 4px var(--mui-primary)', '--mui-radius': '4px' },
+      colorSchemes: [
+        [
+          'light',
+          {
+            '--mui-primary': 'blue',
+            '--mui-button': 'var(--mui-primary)',
+            '--mui-link': 'var( --mui-button, red)',
+            '--mui-text': 'black',
+          },
+        ],
+        [
+          'dark',
+          {
+            '--mui-primary': 'lightblue',
+            '--mui-button': 'var(--mui-primary)',
+            '--mui-link': 'var(--mui-text)',
+            '--mui-text': 'white',
+          },
+        ],
+      ] as Array<[string, Record<string, string>]>,
+    };
+    const result = createScopedStyleSheets({
+      css: {
+        root: outer.root,
+        colorSchemes: [
+          ['light', { ...outer.colorSchemes[0][1], '--mui-primary': 'red' }],
+          outer.colorSchemes[1],
+        ],
+      },
+      upper: outer,
+      colorSchemeRule: '.%s &',
+      prefix: 'mui',
+    })!;
+    const scope = `.${result.className}`;
+    expect(result.styles).to.deep.equal([
+      { [scope]: { '--mui-shadow': '0 0 4px var(--mui-primary)' } },
+      {
+        [scope]: {
+          '--mui-primary': 'red',
+          '--mui-button': 'var(--mui-primary)',
+          '--mui-link': 'var( --mui-button, red)',
+        },
+      },
+      {
+        [`.dark ${scope}`]: {
+          '--mui-primary': 'lightblue',
+          '--mui-button': 'var(--mui-primary)',
+          '--mui-link': 'var(--mui-text)',
+        },
+      },
+    ]);
+  });
+
   it('gives the same class name to the same declarations and rule', () => {
     const css = {
       root: upper.root,
