@@ -28,6 +28,8 @@ import {
 } from './scopeCssVars';
 import type { CssVarsByColorScheme } from './scopeCssVars';
 import useRenderElement from './useRenderElement';
+import ScopeStyleSheet, { createScopeStyleSheetRegistry } from './ScopeStyleSheet';
+import type { ScopeStyleSheetRegistry } from './ScopeStyleSheet';
 import type { ThemeProviderRender } from './useRenderElement';
 
 export interface ColorSchemeContextValue<
@@ -266,6 +268,8 @@ export default function createCssVarsProvider<
     // The marker that portaled elements need to follow an isolated provider's color scheme.
     markerProps: Record<string, string> | undefined;
     prefix: string | undefined;
+    // The scope stylesheets of the whole tree, so each one is inserted once.
+    styleSheets: ScopeStyleSheetRegistry;
   }
   const OwnerContext = React.createContext<Owner | undefined>(undefined);
 
@@ -357,6 +361,8 @@ export default function createCssVarsProvider<
     const upperScope = React.useContext(ThemeScopeContext);
     // `React.useId` is invariant at runtime, so it's called on every render or never.
     const reactId = maybeReactUseId?.();
+    const [ownStyleSheets] = React.useState(createScopeStyleSheetRegistry);
+    const styleSheets = owner?.styleSheets ?? ownStyleSheets;
     // `disableNestedContext` is the former name of `isolated`.
     const isolated = isolatedProp || disableNestedContext;
     // A nested provider follows the outer provider. The top-level provider writes to `:root` and owns the page's mode,
@@ -782,8 +788,17 @@ export default function createCssVarsProvider<
         generateCssVarsByColorScheme: isolated ? undefined : generateCssVarsByColorScheme,
         markerProps,
         prefix: cssVarPrefix,
+        styleSheets,
       }),
-      [colorSchemeRule, isolated, owner, generateCssVarsByColorScheme, markerProps, cssVarPrefix],
+      [
+        colorSchemeRule,
+        isolated,
+        owner,
+        generateCssVarsByColorScheme,
+        markerProps,
+        cssVarPrefix,
+        styleSheets,
+      ],
     );
 
     let shouldGenerateStyleSheet = true;
@@ -826,6 +841,10 @@ export default function createCssVarsProvider<
     const rendersElement = !isRoot || render !== undefined;
     const rendersDefaultElement = rendersElement && render === undefined;
     const defaultClassName = generateUtilityClass('MuiThemeProvider', 'root');
+    const defaultElementStyles = React.useMemo(
+      () => ({ [`.${defaultClassName}`]: { display: 'contents' } }),
+      [defaultClassName],
+    );
     // Only an isolated provider with a stored mode needs a script, since the server doesn't know the mode.
     // It sets the marker before the first paint, like `InitColorSchemeScript` does for the page.
     const rendersScript =
@@ -889,11 +908,21 @@ export default function createCssVarsProvider<
           <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
         )}
         {rendersDefaultElement && (
-          <GlobalStyles styles={{ [`.${defaultClassName}`]: { display: 'contents' } }} />
+          <ScopeStyleSheet
+            registry={styleSheets}
+            className={defaultClassName}
+            styles={defaultElementStyles}
+          />
         )}
-        {scope && <GlobalStyles styles={scope.styles} />}
-        {portalScope && portalClassName !== scopeClassName && (
-          <GlobalStyles styles={portalScope.styles} />
+        {scope && (
+          <ScopeStyleSheet registry={styleSheets} className={scope.className} styles={scope.styles} />
+        )}
+        {portalScope && portalScope.className !== scopeClassName && (
+          <ScopeStyleSheet
+            registry={styleSheets}
+            className={portalScope.className}
+            styles={portalScope.styles}
+          />
         )}
       </React.Fragment>
     );

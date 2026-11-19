@@ -359,6 +359,57 @@ describe('ThemeProvider', () => {
         }
       });
 
+      it('inserts the stylesheet of a scope once for many providers with the same theme', () => {
+        function countRules(className: string) {
+          return Array.from(document.querySelectorAll('style'))
+            .map((style) => style.textContent ?? '')
+            .join('')
+            .split(`.${className}{`).length - 1;
+        }
+        const { setProps } = render(
+          <ThemeProvider theme={blueTheme}>
+            {[0, 1, 2].map((index) => (
+              <ThemeProvider key={index} theme={redTheme}>
+                <div data-testid={`card-${index}`} />
+              </ThemeProvider>
+            ))}
+          </ThemeProvider>,
+        );
+        const className = screen.getByTestId('card-0').parentElement!.classList[1];
+        expect(countRules(className)).to.equal(1);
+        expect(countRules('MuiThemeProvider-root')).to.equal(1);
+        // The stylesheet stays when the provider that inserted it unmounts.
+        setProps({
+          children: [1, 2].map((index) => (
+            <ThemeProvider key={index} theme={redTheme}>
+              <div data-testid={`card-${index}`} />
+            </ThemeProvider>
+          )),
+        });
+        expect(countRules(className)).to.equal(1);
+        setProps({ children: null });
+        expect(countRules(className)).to.equal(0);
+      });
+
+      it('inserts the stylesheet of a scope once after hydration', () => {
+        const { container, hydrate } = renderToString(
+          <ThemeProvider theme={blueTheme}>
+            {[0, 1, 2].map((index) => (
+              <ThemeProvider key={index} theme={redTheme}>
+                <div data-testid={`card-${index}`} />
+              </ThemeProvider>
+            ))}
+          </ThemeProvider>,
+        );
+        const className = container.querySelector('[data-testid="card-0"]')!.parentElement!
+          .classList[1];
+        hydrate();
+        const css = Array.from(document.querySelectorAll('style'))
+          .map((style) => style.textContent ?? '')
+          .join('');
+        expect(css.split(`.${className}{`).length - 1).to.equal(1);
+      });
+
       it.skipIf(isJsdom())('gives each level of a chain its own variables', () => {
         render(
           <ThemeProvider theme={blueTheme}>
