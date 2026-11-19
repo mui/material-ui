@@ -93,8 +93,7 @@ describe.skipIf(isJsdom())('Menu2 opening a Material Dialog', () => {
           expect(dialog.contains(document.activeElement)).to.equal(true);
           expect(dialogExited).not.toHaveBeenCalled();
 
-          // The StrictMode effect replay of FocusTrap can move focus from the autoFocus child.
-          if (document.activeElement !== closeButton) {
+          if (!autoFocus) {
             await user.tab();
           }
           expect(closeButton).toHaveFocus();
@@ -366,9 +365,7 @@ describe.skipIf(isJsdom())('Menu2 opening a Material Dialog', () => {
           );
         }
 
-        // The StrictMode effect replay of FocusTrap moves focus from the autoFocus field.
-        // https://github.com/mui/material-ui/issues/33004
-        const { user } = render(<Demo />, { strictEffects: false });
+        const { user } = render(<Demo />);
         if (input === 'keyboard') {
           await user.tab();
           await user.keyboard('{Enter}');
