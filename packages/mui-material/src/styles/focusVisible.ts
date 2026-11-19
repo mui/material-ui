@@ -150,6 +150,21 @@ function getDefaultInsetRing({ outlineOffset, outlineWidth, boxShadow }: React.C
   };
 }
 
+export function getInsetFocusVisibleChanges(theme: FocusVisibleTheme): React.CSSProperties {
+  const ring = theme.focusVisible;
+  if (!ring) {
+    return {};
+  }
+  const insetOverrides = theme.unstable_focusVisibleInsetOverrides;
+  return {
+    ...getDefaultInsetRing({
+      ...ring,
+      outlineWidth: insetOverrides?.outlineWidth ?? ring.outlineWidth,
+    }),
+    ...insetOverrides,
+  };
+}
+
 export function applyFocusVisible(
   this: FocusVisibleTheme,
   position: 'inset' | 'outset',
@@ -161,15 +176,7 @@ export function applyFocusVisible(
   if (position === 'outset') {
     return ring;
   }
-  const insetOverrides = this.unstable_focusVisibleInsetOverrides;
-  return {
-    ...ring,
-    ...getDefaultInsetRing({
-      ...ring,
-      outlineWidth: insetOverrides?.outlineWidth ?? ring.outlineWidth,
-    }),
-    ...insetOverrides,
-  };
+  return { ...ring, ...getInsetFocusVisibleChanges(this) };
 }
 
 export function insetFocusVisibleAtLeast(

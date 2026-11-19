@@ -7,6 +7,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import { getInsetFocusVisibleChanges } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { buttonBaseClasses } from '../ButtonBase';
 import InputBase from '../InputBase';
@@ -60,7 +61,7 @@ const TablePaginationToolbar = styled(Toolbar, {
       marginLeft: 20,
       ...(theme.focusVisible && {
         [`& .${buttonBaseClasses.root}.${buttonBaseClasses.focusVisible}`]:
-          theme.applyFocusVisible('inset'),
+          getInsetFocusVisibleChanges(theme),
       }),
     },
   })),
