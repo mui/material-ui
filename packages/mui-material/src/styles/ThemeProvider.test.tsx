@@ -487,6 +487,28 @@ describe('ThemeProvider', () => {
           expect(theme.palette.primary.main).to.equal('#0000ff');
         });
 
+        it('calls the function once for many providers with the same outer theme', () => {
+          let calls = 0;
+          const theme = (outer: any) => {
+            calls += 1;
+            return { ...outer, palette: { ...outer.palette, primary: { main: '#ff0000' } } };
+          };
+          render(
+            <ThemeProvider theme={blueTheme}>
+              {[0, 1, 2].map((index) => (
+                <ThemeProvider key={index} theme={theme}>
+                  <Inner />
+                </ThemeProvider>
+              ))}
+            </ThemeProvider>,
+          );
+          expect(calls).to.equal(1);
+          const classNames = screen
+            .getAllByTestId('inner')
+            .map((inner) => inner.parentElement!.className);
+          expect(new Set(classNames).size).to.equal(1);
+        });
+
         it('replaces an outer theme without CSS theme variables', () => {
           const outerTheme = createTheme({ palette: { primary: { main: '#0000ff' } } });
           render(

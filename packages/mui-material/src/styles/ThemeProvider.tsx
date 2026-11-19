@@ -134,22 +134,39 @@ function isOutdatedCopy(theme: any, outerTheme: any) {
  * the result is applied like an object theme, so that its variables are scoped like any nested theme.
  * Returns `undefined` for the other function themes, which the provider without CSS theme variables calls.
  */
+function resolveFunctionTheme(theme: (outerTheme: any) => any, outerTheme: any) {
+  const result = theme(outerTheme);
+  const muiTheme = result && typeof result === 'object' ? getMuiTheme(result) : undefined;
+  if (!muiTheme?.vars || !('colorSchemes' in muiTheme)) {
+    return undefined;
+  }
+  if (!isOutdatedCopy(muiTheme, getMuiTheme(outerTheme))) {
+    return result;
+  }
+  const recreated = createTheme(muiTheme);
+  return THEME_ID in result ? { ...result, [THEME_ID]: recreated } : recreated;
+}
+
+// A function theme is often used by many providers, like the ones of the items of a list,
+// so the theme it gives for an outer theme is resolved once, and the providers share its stylesheet.
+const functionThemes = new WeakMap<object, WeakMap<(outerTheme: any) => any, any>>();
+
 function useFunctionThemeWithVars(theme: ThemeProviderProps<any>['theme']) {
   const outerTheme = useThemeWithoutDefault<any>(null);
   return React.useMemo(() => {
     if (typeof theme !== 'function' || !outerTheme) {
       return undefined;
     }
-    const result = theme(outerTheme);
-    const muiTheme = result && typeof result === 'object' ? getMuiTheme(result) : undefined;
-    if (!muiTheme?.vars || !('colorSchemes' in muiTheme)) {
-      return undefined;
+    const getTheme = theme as (outerTheme: any) => any;
+    let results = functionThemes.get(outerTheme);
+    if (!results) {
+      results = new WeakMap();
+      functionThemes.set(outerTheme, results);
     }
-    if (!isOutdatedCopy(muiTheme, getMuiTheme(outerTheme))) {
-      return result;
+    if (!results.has(getTheme)) {
+      results.set(getTheme, resolveFunctionTheme(getTheme, outerTheme));
     }
-    const recreated = createTheme(muiTheme);
-    return THEME_ID in result ? { ...result, [THEME_ID]: recreated } : recreated;
+    return results.get(getTheme);
   }, [theme, outerTheme]);
 }
 
