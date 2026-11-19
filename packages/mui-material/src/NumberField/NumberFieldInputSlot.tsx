@@ -235,13 +235,9 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     inputAdditionalProps.label = label;
   }
 
-  const { render: inputRender, ...inputSlotProps } = externalForwardedProps.slotProps.input ?? {};
-  const [InputSlot, materialInputProps] = useSlot('input', {
+  const [InputSlot, { render: inputRender, ...materialInputProps }] = useSlot('input', {
     elementType: InputComponent,
-    externalForwardedProps: {
-      ...externalForwardedProps,
-      slotProps: { ...externalForwardedProps.slotProps, input: inputSlotProps },
-    },
+    externalForwardedProps,
     additionalProps: inputAdditionalProps,
     ownerState,
     className: classes.input,
