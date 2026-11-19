@@ -776,9 +776,11 @@ export default function CssLayers() {
           <code>&lt;head&gt;</code>, as on a page.
         </Typography>
         <Typography variant="body2" sx={{ mb: 3, maxWidth: 800, color: 'text.secondary' }}>
-          The verdicts compare to v9 without layers. Apps that already used{' '}
-          <code>enableCssLayer</code> in v9 get the single layer they had, and apps that used{' '}
-          <code>modularCssLayers: true</code> get the same sub-layers.
+          The verdicts compare to v9 without layers. The Tailwind CSS cases compare to the setup
+          from v9&apos;s docs, which used <code>enableCssLayer</code>, so their v9 frames keep the{' '}
+          <code>mui</code> layer. Apps that already used <code>enableCssLayer</code> in v9 get the
+          single layer they had, and apps that used <code>modularCssLayers: true</code> get the same
+          sub-layers.
         </Typography>
         <Summary />
 
