@@ -21,7 +21,8 @@ Inside the layer, these styles keep their usual precedence.
 Unlayered CSS and layers declared after `mui` override Material UI's styles, whatever their specificity.
 
 :::info
-jsdom and happy-dom ignore the rules inside `@layer` blocks, so in tests that run in them, Material UI's styles aren't layered.
+In tests that run in jsdom or happy-dom, Material UI's styles aren't layered, so that style assertions keep working.
+jsdom before version 31 and happy-dom ignore the rules inside `@layer` blocks, and matchers such as `@emotion/jest`'s `toHaveStyleRule` don't look inside them.
 :::
 
 ## Setting the layer order

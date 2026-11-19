@@ -3,7 +3,7 @@ import { isJsdom } from '@mui/internal-test-utils';
 import { getCssLayer, getCssLayerOrderStatement, wrapInCssLayer } from './cssLayers';
 
 describe('getCssLayer', () => {
-  it.runIf(isJsdom())('skips the layers in jsdom, which ignores the rules inside them', () => {
+  it.runIf(isJsdom())('skips the layers in jsdom', () => {
     expect(getCssLayer({}, 'sx')).to.equal(undefined);
     expect(getCssLayer({ modularCssLayers: true }, 'sx')).to.equal(undefined);
   });
