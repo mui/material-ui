@@ -279,27 +279,26 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Nested and multiple theme providers
 
-A `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
-A nested or `scoped` provider sets them on its child element instead, so they only apply there.
+The top-level `ThemeProvider` writes the CSS theme variables to `:root`, so they apply to the whole page.
+Every other provider renders an element and sets them on it, so they only apply to its children.
 
 ### Nested providers
 
-When a nested `ThemeProvider`'s variables differ from the outer theme, it adds a generated class to its child.
-The class only sets the variables that differ, and it follows the outer light or dark mode:
+A nested `ThemeProvider` renders a `div` with `display: contents`, so it doesn't change the layout.
+When its variables differ from the outer theme, the `div` gets a generated class that sets only the variables that differ, and the ones that reference them through `var()`.
+It follows the outer light or dark mode:
 
 ```jsx
 <ThemeProvider theme={appTheme}>
   <Button>Uses appTheme</Button>
   <ThemeProvider theme={promoTheme}>
-    <section>
-      <Button>Uses promoTheme</Button>
-    </section>
+    <Button>Uses promoTheme</Button>
   </ThemeProvider>
 </ThemeProvider>
 ```
 
 ```html
-<section class="mui-theme-1x2y3z">…</section>
+<div class="MuiThemeProvider-root mui-theme-1x2y3z">…</div>
 ```
 
 ```css
@@ -311,17 +310,8 @@ The class only sets the variables that differ, and it follows the outer light or
 }
 ```
 
-The provider doesn't render any element of its own, so the child has to be a single element that renders the `className` it receives.
-With several children, a Fragment, or text, the variables aren't applied and an error is logged in development: wrap the children in one element, for example a `div`.
-If the child is your own component, pass `className` on to its root element:
-
-```jsx
-function Section({ className, children }) {
-  return <section className={className}>{children}</section>;
-}
-```
-
-A nested provider whose theme has the same variables, for example one that only changes `components` defaults, accepts any children.
+A theme passed as a function, like `theme={(outer) => createTheme(outer, { palette })}`, is applied the same way.
+Providers with the same theme, like the ones of a themed card in a list, share one class and one stylesheet.
 
 Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
 For elements that other libraries portal, use the `useThemeScope()` hook to get the class:
@@ -335,34 +325,70 @@ function Toast() {
 }
 ```
 
-### Sibling providers
+### Choosing the element
 
-Two `ThemeProvider`s that aren't nested in each other both write to `:root` and overwrite each other, which logs a warning in development.
-Add the `scoped` prop to the one that should only apply to its child, like an embedded widget:
+Use the `render` prop where a `div` isn't valid, like in a list or a table, or where CSS selectors like `>` and `:nth-child()` depend on the DOM structure:
+
+```jsx
+<ul>
+  <ThemeProvider theme={promoTheme} render={<li />}>
+    <Button>Uses promoTheme</Button>
+  </ThemeProvider>
+</ul>
+```
+
+The element gets the provider's props, like its class, merged with its own, and doesn't get `display: contents`.
+To read the props or the mode, pass a function that receives them:
+
+```jsx
+<ThemeProvider
+  theme={promoTheme}
+  render={(props, state) => <section {...props} data-mode={state.mode} />}
+>
+```
+
+A component that you render has to pass `className` and `ref` on to its DOM element.
+In development, an error is logged when the provider has variables to set and the `ref` isn't attached.
+
+The top-level provider only renders an element when it's given `render`.
+
+### Isolated providers
+
+A provider with the `isolated` prop doesn't follow an outer provider.
+It sets all of its variables on its element instead of `:root`, and has its own light or dark mode, set with `defaultMode` and `useColorScheme()`.
+Use it for a sibling of the top-level provider, like an embedded widget, or for a section with its own mode:
 
 ```jsx
 <React.Fragment>
   <ThemeProvider theme={appTheme}>
     <App />
   </ThemeProvider>
-  <ThemeProvider theme={widgetTheme} scoped>
-    <div>
-      <Widget />
-    </div>
+  <ThemeProvider theme={widgetTheme} isolated>
+    <Widget />
   </ThemeProvider>
 </React.Fragment>
 ```
 
-A scoped provider sets all of its variables on its child element, and has its own light or dark mode.
-If the theme's `colorSchemeSelector` uses a data attribute, the child also needs to render the `data-*` props it receives.
-Its mode isn't stored, so it doesn't overwrite the mode of the page's provider.
-To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`.
-`InitColorSchemeScript` only applies to the page's provider, so with server-side rendering and `defaultMode="system"`, a scoped provider shows its default color scheme until the page hydrates.
-To avoid that, give it a fixed `defaultMode`, or render it on the client only.
+```jsx
+<ThemeProvider theme={appTheme}>
+  <ThemeProvider theme={appTheme} isolated defaultMode="dark">
+    <Preview />
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+Two providers that aren't nested in each other and aren't isolated both write to `:root` and overwrite each other, which logs a warning in development.
+A nested provider without `isolated` follows the outer mode, so `defaultMode` doesn't apply to it and logs a warning in development.
+
+The element of an isolated provider holds its mode in its own `data-mui-scheme` attribute, whatever the theme's `colorSchemeSelector` is.
+The page's mode doesn't apply inside it, including the styles of `theme.applyStyles()`, and its mode doesn't change the page.
+Its mode isn't stored, so it doesn't overwrite the page's mode.
+To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`, or a `storageManager`.
+With the storage keys, the provider also renders a small script that applies the stored mode before the page hydrates, for server-side rendering.
 
 :::info
-A CSS variable that you override on `:root` doesn't reach the elements under a scoped provider that sets it, because the closest declaration wins.
-Override it on the child element instead, for example with its own class.
+A CSS variable that you override on `:root` doesn't reach the elements under a provider that sets it, because the closest declaration wins.
+Override it on an element inside the provider instead.
 :::
 
 ## Disabling CSS color scheme

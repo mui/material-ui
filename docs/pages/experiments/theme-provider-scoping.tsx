@@ -2,6 +2,7 @@
 // Temporary playground for https://github.com/mui/material-ui/pull/49581. Remove before merging.
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import type { EmotionCache } from '@emotion/cache';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
@@ -17,12 +18,13 @@ import Typography from '@mui/material/Typography';
 import {
   ThemeProvider as MaterialThemeProvider,
   createTheme,
+  styled,
   useColorScheme,
   useThemeScope,
 } from '@mui/material/styles';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
-// The CSS variables props (`scoped`, `colorSchemeNode`, …) are only typed with the CSS variables augmentation.
+// The CSS variables props (`isolated`, `colorSchemeNode`, …) are only typed with the CSS variables augmentation.
 const ThemeProvider = MaterialThemeProvider as React.ComponentType<any>;
 
 function createColorTheme(light: object, dark: object) {
@@ -61,9 +63,18 @@ const forcedDarkTheme = createTheme({
   cssVariables: { colorSchemeSelector: 'class' },
   palette: { mode: 'dark', primary: { main: '#f48fb1' } },
 });
+// `text.link` references the primary color, so it has to be declared again where the primary color changes.
+function createLinkTheme(main: string) {
+  return createTheme({
+    cssVariables: { colorSchemeSelector: 'class' },
+    palette: { primary: { main }, text: { link: 'var(--mui-palette-primary-main)' } as any },
+  });
+}
+const blueLinkTheme = createLinkTheme('#1976d2');
+const redLinkTheme = createLinkTheme('#d32f2f');
 
 // ---------------------------------------------------------------------------
-// Each scenario renders in its own iframe, because root providers write to `:root`.
+// Each scenario renders in its own iframe, with its own React root, because the top-level provider writes to `:root`.
 
 interface FrameValue {
   document: Document;
@@ -79,7 +90,11 @@ function useFrame() {
 function Frame(props: { children: React.ReactNode; onReady: (frame: FrameValue) => void }) {
   const { children, onReady } = props;
   const ref = React.useRef<HTMLIFrameElement>(null);
-  const [frame, setFrame] = React.useState<(FrameValue & { cache: EmotionCache }) | null>(null);
+  const [frame, setFrame] = React.useState<{
+    value: FrameValue;
+    cache: EmotionCache;
+    root: ReactDOMClient.Root;
+  } | null>(null);
   const [height, setHeight] = React.useState(80);
   // Emotion keys only allow lowercase letters and hyphens, so the id's other characters become letters.
   const id = React.useId();
@@ -88,20 +103,17 @@ function Frame(props: { children: React.ReactNode; onReady: (frame: FrameValue) 
   React.useEffect(() => {
     const iframe = ref.current!;
     let observer: ResizeObserver | undefined;
+    let root: ReactDOMClient.Root | undefined;
     const init = () => {
       const doc = iframe.contentDocument!;
-      const value = {
-        document: doc,
-        window: iframe.contentWindow!,
-        cache: createCache({
-          key: cacheKey,
-          container: doc.head,
-        }),
-      };
+      const container = doc.createElement('div');
+      doc.body.appendChild(container);
+      root = ReactDOMClient.createRoot(container);
+      const value = { document: doc, window: iframe.contentWindow! };
       // The iframe grows with its content, plus some room for menus and tooltips.
       observer = new ResizeObserver(() => setHeight(doc.body.scrollHeight + 24));
       observer.observe(doc.body);
-      setFrame(value);
+      setFrame({ value, cache: createCache({ key: cacheKey, container: doc.head }), root });
       onReady(value);
     };
     if (iframe.contentDocument?.readyState === 'complete' && iframe.contentDocument.body) {
@@ -112,29 +124,30 @@ function Frame(props: { children: React.ReactNode; onReady: (frame: FrameValue) 
     return () => {
       iframe.removeEventListener('load', init);
       observer?.disconnect();
+      // A root can't be unmounted while React renders.
+      setTimeout(() => root?.unmount());
     };
   }, [onReady, cacheKey]);
 
+  React.useEffect(() => {
+    frame?.root.render(
+      <CacheProvider value={frame.cache}>
+        <FrameContext.Provider value={frame.value}>{children}</FrameContext.Provider>
+      </CacheProvider>,
+    );
+  }, [frame, children]);
+
   return (
-    <React.Fragment>
-      <iframe
-        ref={ref}
-        title="scenario"
-        srcDoc="<!DOCTYPE html><html><head></head><body style='margin:12px;font-family:Roboto,Helvetica,Arial,sans-serif'></body></html>"
-        style={{ width: '100%', height, border: '1px solid #ccc', borderRadius: 4 }}
-      />
-      {frame &&
-        ReactDOM.createPortal(
-          <CacheProvider value={frame.cache}>
-            <FrameContext.Provider value={frame}>{children}</FrameContext.Provider>
-          </CacheProvider>,
-          frame.document.body,
-        )}
-    </React.Fragment>
+    <iframe
+      ref={ref}
+      title="scenario"
+      srcDoc="<!DOCTYPE html><html><head></head><body style='margin:12px;font-family:Roboto,Helvetica,Arial,sans-serif'></body></html>"
+      style={{ width: '100%', height, border: '1px solid #ccc', borderRadius: 4 }}
+    />
   );
 }
 
-// A root provider of the scenario: it writes to the iframe's `:root`, isolated from the docs' own provider.
+// The top-level provider of the scenario: it writes to the iframe's `:root`.
 function Root(props: Record<string, any>) {
   const { document, window } = useFrame();
   return (
@@ -143,16 +156,9 @@ function Root(props: Record<string, any>) {
       documentNode={document}
       storageWindow={window}
       storageManager={null}
-      disableNestedContext
       {...props}
     />
   );
-}
-
-// A scoped sibling: isolated from the docs' provider too, it manages its own mode on its child.
-function ScopedRoot(props: Record<string, any>) {
-  const { document } = useFrame();
-  return <ThemeProvider documentNode={document} disableNestedContext scoped {...props} />;
 }
 
 function Swatch({ label }: { label: string }) {
@@ -247,17 +253,27 @@ function ThemeSwitcher() {
   );
 }
 
-function Forwards({ className, children }: { className?: string; children: React.ReactNode }) {
-  return (
-    <section className={className} data-inspect="forwards className">
-      {children}
-    </section>
-  );
-}
-
-// It receives `className` from the provider but doesn't render it.
+// It receives `className` from nowhere and renders none: the provider's own element carries the theme.
 function DropsClassName({ children }: { children: React.ReactNode }) {
   return <section data-inspect="drops className">{children}</section>;
+}
+
+// Light and dark styles keyed on the color scheme selector, through `theme.applyStyles()`.
+const SchemeLabel = styled('span')(({ theme }) => [
+  { padding: 4, border: '2px solid #1976d2' },
+  theme.applyStyles('dark', { border: '2px solid #ffb74d' }),
+]);
+
+function Link({ label }: { label: string }) {
+  return (
+    <Box
+      component="span"
+      data-inspect={label}
+      sx={{ m: 0.5, color: 'var(--mui-palette-text-link)' }}
+    >
+      {label}
+    </Box>
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -272,8 +288,8 @@ interface Scenario {
 
 const scenarios: Scenario[] = [
   {
-    title: '1. Single root provider',
-    description: 'Baseline: variables on :root, nothing added to the children.',
+    title: '1. Single top-level provider',
+    description: 'Baseline: variables on :root, and no element of its own.',
     code: `<ThemeProvider theme={appTheme}>
   <Button />
 </ThemeProvider>`,
@@ -286,9 +302,9 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '2. Two root providers',
+    title: '2. Two top-level providers',
     description:
-      'Both write to :root, and the last one wins for both. Logs a warning in development.',
+      'Both write to :root, and the last one wins for both. Logs a warning in development that points to `isolated`.',
     code: `<ThemeProvider theme={appTheme}><Button /></ThemeProvider>
 <ThemeProvider theme={widgetTheme}><Button /></ThemeProvider>`,
     render: () => (
@@ -307,15 +323,15 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '3. Root + scoped siblings',
+    title: '3. Top-level provider + isolated siblings',
     description:
-      'A scoped provider sets all its variables on its child, and has its own mode. With a data attribute selector, the color scheme attribute goes on the child too.',
+      'An isolated provider sets all its variables on its element and has its own mode, in its own marker, whatever the selector of its theme.',
     code: `<ThemeProvider theme={appTheme}><App /></ThemeProvider>
-<ThemeProvider theme={widgetTheme} scoped>
-  <div><Widget /></div>
+<ThemeProvider theme={widgetTheme} isolated>
+  <Widget />
 </ThemeProvider>
-<ThemeProvider theme={widgetDataTheme} scoped defaultMode="dark">
-  <div><Widget /></div>
+<ThemeProvider theme={widgetDataTheme} isolated defaultMode="dark">
+  <Widget />
 </ThemeProvider>`,
     render: () => (
       <React.Fragment>
@@ -325,29 +341,29 @@ const scenarios: Scenario[] = [
             <Swatch label="app" />
           </div>
         </Root>
-        <ScopedRoot theme={widgetTheme}>
+        <ThemeProvider theme={widgetTheme} isolated>
           <div data-inspect="widget child">
             <ModeToggle label="widget mode" />
             <Swatch label="widget" />
           </div>
-        </ScopedRoot>
-        <ScopedRoot theme={widgetDataTheme} defaultMode="dark">
+        </ThemeProvider>
+        <ThemeProvider theme={widgetDataTheme} isolated defaultMode="dark">
           <div data-inspect="data selector widget child">
             <ModeToggle label="widget mode" />
             <Swatch label="widget" />
           </div>
-        </ScopedRoot>
+        </ThemeProvider>
       </React.Fragment>
     ),
   },
   {
     title: '4. Nested, different variables',
     description:
-      'The child gets a class that only sets the variables that differ. It follows the outer mode.',
+      'The provider renders a div with display: contents, whose class only sets the variables that differ. It follows the outer mode.',
     code: `<ThemeProvider theme={appTheme}>
   <Button />
   <ThemeProvider theme={promoTheme}>
-    <div><Button /></div>
+    <Button />
   </ThemeProvider>
 </ThemeProvider>`,
     render: () => (
@@ -356,22 +372,24 @@ const scenarios: Scenario[] = [
           <ModeToggle label="outer mode" />
           <Swatch label="outer" />
           <ThemeProvider theme={promoTheme}>
-            <div data-inspect="nested child">
-              <Swatch label="nested" />
-            </div>
+            <Swatch label="nested" />
+            <span data-inspect="nested child" />
           </ThemeProvider>
         </div>
       </Root>
     ),
   },
   {
-    title: '5. Nested, children that are not a single element',
+    title: '5. Nested, any children (bug 3)',
     description:
-      'Several children, a Fragment, text and an array: the rule is generated, but no element gets the class, and an error is logged in development.',
+      'Several children, a Fragment, text, an array, and a component that drops the className it would have received all get the theme.',
     code: `<ThemeProvider theme={promoTheme}><Button /><Button /></ThemeProvider>
 <ThemeProvider theme={promoTheme}><>…</></ThemeProvider>
 <ThemeProvider theme={promoTheme}>text</ThemeProvider>
-<ThemeProvider theme={promoTheme}>{[<Button key="a" />]}</ThemeProvider>`,
+<ThemeProvider theme={promoTheme}>{[<Button key="a" />]}</ThemeProvider>
+<ThemeProvider theme={promoTheme}>
+  <DropsClassName><Button /></DropsClassName>
+</ThemeProvider>`,
     render: () => (
       <Root theme={appTheme}>
         <div>
@@ -387,28 +405,6 @@ const scenarios: Scenario[] = [
           </ThemeProvider>
           <ThemeProvider theme={promoTheme}>text</ThemeProvider>
           <ThemeProvider theme={promoTheme}>{[<Swatch key="a" label="array" />]}</ThemeProvider>
-        </div>
-      </Root>
-    ),
-  },
-  {
-    title: '6. Nested, custom component child',
-    description:
-      'A component that renders the className it receives gets the theme. One that drops it silently keeps the outer theme.',
-    code: `<ThemeProvider theme={promoTheme}>
-  <Forwards><Button /></Forwards>
-</ThemeProvider>
-<ThemeProvider theme={promoTheme}>
-  <DropsClassName><Button /></DropsClassName>
-</ThemeProvider>`,
-    render: () => (
-      <Root theme={appTheme}>
-        <div>
-          <ThemeProvider theme={promoTheme}>
-            <Forwards>
-              <Swatch label="forwards" />
-            </Forwards>
-          </ThemeProvider>
           <ThemeProvider theme={promoTheme}>
             <DropsClassName>
               <Swatch label="drops" />
@@ -419,36 +415,39 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '7. Directly nested providers and a function theme',
+    title: '6. A chain of providers (bug 1)',
     description:
-      'A provider whose child is another provider passes its class on: the middle theme (primary) and the inner one (secondary) both apply.',
-    code: `<ThemeProvider theme={promoTheme}>
-  <ThemeProvider theme={accentTheme}>
-    <div><Button /></div>
+      'Each level sets its own variables on its own element, so the closest one wins: the inner appTheme is blue again, and promo → accent applies both.',
+    code: `<ThemeProvider theme={appTheme}>
+  <ThemeProvider theme={promoTheme}>
+    <ThemeProvider theme={appTheme}>
+      <Button />
+    </ThemeProvider>
   </ThemeProvider>
-</ThemeProvider>
-<ThemeProvider theme={promoTheme}>
-  <ThemeProvider theme={(outer) => ({ ...outer })}>
-    <div><Button /></div>
+  <ThemeProvider theme={promoTheme}>
+    <ThemeProvider theme={accentTheme}>
+      <Button /><Button color="secondary" />
+    </ThemeProvider>
   </ThemeProvider>
 </ThemeProvider>`,
     render: () => (
       <Root theme={appTheme}>
         <div>
           <ThemeProvider theme={promoTheme}>
-            <ThemeProvider theme={accentTheme}>
-              <div data-inspect="promo → accent child">
-                <Swatch label="direct nesting" />
-                <Button variant="contained" color="secondary" size="small" sx={{ m: 0.5 }}>
-                  secondary
-                </Button>
+            <span data-inspect="app → promo" />
+            <ThemeProvider theme={appTheme}>
+              <div data-inspect="app → promo → app">
+                <Swatch label="back to app" />
               </div>
             </ThemeProvider>
           </ThemeProvider>
           <ThemeProvider theme={promoTheme}>
-            <ThemeProvider theme={(outer: object) => ({ ...outer })}>
-              <div data-inspect="promo → function theme child">
-                <Swatch label="function theme" />
+            <ThemeProvider theme={accentTheme}>
+              <div data-inspect="promo → accent">
+                <Swatch label="direct nesting" />
+                <Button variant="contained" color="secondary" size="small" sx={{ m: 0.5 }}>
+                  secondary
+                </Button>
               </div>
             </ThemeProvider>
           </ThemeProvider>
@@ -457,16 +456,101 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '8. Portals',
+    title: '7. Function themes',
     description:
-      'Dialog, Menu and Tooltip apply the scope to their own root, in a nested provider and in a scoped sibling. useThemeScope() does it for other portals.',
+      'A function theme applies like the object theme it returns: a copy of the outer theme with changes, or createTheme(outer, …), is scoped too.',
+    code: `<ThemeProvider theme={appTheme}>
+  <ThemeProvider theme={(outer) => ({ ...outer, palette: { ...outer.palette, primary: { main: '#2e7d32' } } })}>
+    <Button />
+  </ThemeProvider>
+  <ThemeProvider theme={(outer) => createTheme(outer, { palette: { primary: { main: '#9c27b0' } } })}>
+    <Button />
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={appTheme}>
+        <div>
+          <ThemeProvider
+            theme={(outer: any) => ({
+              ...outer,
+              palette: { ...outer.palette, primary: { main: '#2e7d32' } },
+            })}
+          >
+            <div data-inspect="spread copy">
+              <Swatch label="spread copy" />
+            </div>
+          </ThemeProvider>
+          <ThemeProvider
+            theme={(outer: any) =>
+              createTheme(outer, { palette: { primary: { main: '#9c27b0' } } })
+            }
+          >
+            <div data-inspect="createTheme(outer, …)">
+              <Swatch label="createTheme(outer)" />
+            </div>
+          </ThemeProvider>
+        </div>
+      </Root>
+    ),
+  },
+  {
+    title: '8. The render prop',
+    description:
+      'Pick the element where a div is not valid, or pass a function that receives the props and the state.',
+    code: `<ul>
+  <ThemeProvider theme={promoTheme} render={<li />}>…</ThemeProvider>
+</ul>
+<table>
+  <ThemeProvider theme={promoTheme} render={<tbody />}><tr>…</tr></ThemeProvider>
+</table>
+<ThemeProvider
+  theme={promoTheme}
+  render={(props, state) => <section {...props} data-mode={state.mode} />}
+>…</ThemeProvider>`,
+    render: () => (
+      <Root theme={appTheme}>
+        <div>
+          <ul>
+            <ThemeProvider theme={promoTheme} render={<li />}>
+              <Swatch label="in li" />
+              <span data-inspect="li" />
+            </ThemeProvider>
+          </ul>
+          <table>
+            <ThemeProvider theme={promoTheme} render={<tbody />}>
+              <tr>
+                <td data-inspect="tbody">
+                  <Swatch label="in tbody" />
+                </td>
+              </tr>
+            </ThemeProvider>
+          </table>
+          <ModeToggle label="outer mode" />
+          <ThemeProvider
+            theme={promoTheme}
+            render={(props: object, state: { mode: string }) => (
+              <section {...props} data-mode={state.mode} />
+            )}
+          >
+            <div data-inspect="section with data-mode">
+              <Swatch label="in section" />
+            </div>
+          </ThemeProvider>
+        </div>
+      </Root>
+    ),
+  },
+  {
+    title: '9. Portals',
+    description:
+      'Dialog, Menu and Tooltip get one scope class on their own root, in a nested provider and in an isolated one. useThemeScope() does it for other portals.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={promoTheme}>
-    <div><Dialog /><Menu /><Tooltip /><Toast /></div>
+    <Dialog /><Menu /><Tooltip /><Toast />
   </ThemeProvider>
 </ThemeProvider>
-<ThemeProvider theme={widgetTheme} scoped>
-  <div><Dialog /><Menu /><Tooltip /><Toast /></div>
+<ThemeProvider theme={widgetTheme} isolated defaultMode="dark">
+  <Dialog /><Menu /><Tooltip /><Toast />
 </ThemeProvider>`,
     render: () => (
       <React.Fragment>
@@ -477,21 +561,74 @@ const scenarios: Scenario[] = [
             </div>
           </ThemeProvider>
         </Root>
-        <ScopedRoot theme={widgetTheme} defaultMode="dark">
-          <div data-inspect="scoped child">
-            <ModeToggle label="scoped mode" />
-            <Portals label="scoped" />
+        <ThemeProvider theme={widgetTheme} isolated defaultMode="dark">
+          <div data-inspect="isolated child">
+            <ModeToggle label="isolated mode" />
+            <Portals label="isolated" />
           </div>
-        </ScopedRoot>
+        </ThemeProvider>
       </React.Fragment>
     ),
   },
   {
-    title: '9. Forced single-scheme nested section',
+    title: '10. Isolated section with its own mode (bug 2 and the leaks)',
+    description:
+      'A light section in a dark page: the page class on <html> stays the page mode, and neither the page dark variables nor its applyStyles("dark") styles reach the section.',
+    code: `<ThemeProvider theme={appTheme} defaultMode="dark">
+  <SchemeLabel />
+  <ThemeProvider theme={widgetTheme} isolated defaultMode="light">
+    <SchemeLabel />
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={appTheme} defaultMode="dark">
+        <Box
+          data-inspect="dark page"
+          sx={{ p: 1, bgcolor: 'background.default', color: 'text.primary' }}
+        >
+          <ModeToggle label="page mode" />
+          <SchemeLabel>page</SchemeLabel>
+          <ThemeProvider theme={widgetTheme} isolated defaultMode="light">
+            <Box
+              data-inspect="light section"
+              sx={{ p: 1, bgcolor: 'background.default', color: 'text.primary' }}
+            >
+              <ModeToggle label="section mode" />
+              <SchemeLabel>section</SchemeLabel>
+              <Swatch label="section" />
+            </Box>
+          </ThemeProvider>
+        </Box>
+      </Root>
+    ),
+  },
+  {
+    title: '11. Variables that reference a changed one (bug 4)',
+    description:
+      'text.link is var(--mui-palette-primary-main). The nested provider declares it again, so the inner link follows the inner primary color.',
+    code: `<ThemeProvider theme={blueLinkTheme}>
+  <Link />
+  <ThemeProvider theme={redLinkTheme}>
+    <Link />
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={blueLinkTheme}>
+        <div>
+          <Link label="outer link" />
+          <ThemeProvider theme={redLinkTheme}>
+            <Link label="inner link" />
+          </ThemeProvider>
+        </div>
+      </Root>
+    ),
+  },
+  {
+    title: '12. Forced single-scheme nested section',
     description: 'A nested theme with only a dark scheme stays dark whatever the outer mode is.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={forcedDarkTheme}>
-    <div><Button /></div>
+    <Button />
   </ThemeProvider>
 </ThemeProvider>`,
     render: () => (
@@ -508,12 +645,12 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '10. Nested, same variables, then different ones',
+    title: '13. Nested, same variables, then different ones',
     description:
-      'With sameVarsTheme (only component defaults change), the child is left untouched. Click the counter, then switch to promoTheme: the child gets the class and keeps its count, so nothing remounts.',
+      'With sameVarsTheme (only component defaults change), the div has no scope class. Click the counter, then switch to promoTheme: the div gets the class and the count stays, so nothing remounts.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={different ? promoTheme : sameVarsTheme}>
-    <div><Counter /></div>
+    <Counter />
   </ThemeProvider>
 </ThemeProvider>`,
     render: () => (
@@ -527,7 +664,8 @@ const scenarios: Scenario[] = [
 // ---------------------------------------------------------------------------
 // Inspector: reads what ended up in the iframe.
 
-const interestingDeclaration = /color-scheme|--mui-palette-(primary|secondary)-main:/;
+const interestingDeclaration =
+  /color-scheme|--mui-palette-(primary-main|secondary-main|text-link):/;
 
 function describeRule(cssText: string) {
   const [selector, body = ''] = cssText.split('{');
@@ -551,7 +689,8 @@ function inspect(doc: Document) {
   const values = (element: Element) => {
     const style = view.getComputedStyle(element);
     const read = (name: string) => style.getPropertyValue(name).trim() || '—';
-    return `primary ${read('--mui-palette-primary-main')}, secondary ${read('--mui-palette-secondary-main')}, color-scheme ${style.colorScheme}`;
+    const link = read('--mui-palette-text-link');
+    return `primary ${read('--mui-palette-primary-main')}, secondary ${read('--mui-palette-secondary-main')}, ${link === '—' ? '' : `link color ${style.color}, `}color-scheme ${style.colorScheme}`;
   };
   const scope = (element: Element) => {
     const classes = Array.from(element.classList)
@@ -681,9 +820,10 @@ export default function ThemeProviderScoping() {
         </Typography>
         <Typography variant="body2" sx={{ mb: 2 }}>
           Temporary page for #49581. Each scenario renders in its own iframe. The right column shows
-          what ended up there: the scope classes and attributes, the computed primary and secondary
+          what ended up there: the scope classes and markers, the computed primary and secondary
           colors and color scheme, and the scoped CSS rules (palette and color scheme declarations
-          only). Open the browser console for the development warnings and errors.
+          only). Bugs 1 to 4 are the ones from the review. Open the browser console for the
+          development warnings.
         </Typography>
         <Stack spacing={3} sx={{ mt: 2 }}>
           {scenarios.map((scenario) => (

@@ -39,26 +39,39 @@ Previously, `Intl.NumberFormat` didn't recognize `kh-KH` and fell back to the ru
 
 ### Nested ThemeProviders with CSS theme variables
 
-A nested `ThemeProvider` whose theme uses CSS theme variables now applies its theme.
+A nested `ThemeProvider` whose theme uses CSS theme variables now applies its theme, including when the theme is a function.
 Previously, its variables were ignored when it had the same `cssVarPrefix` as the outer theme, so its subtree kept the outer theme's colors.
 
-When its variables differ from the outer theme, it sets them with a class on its child, so give it a single child element:
+It renders a `div` with `display: contents` and sets the variables that differ from the outer theme on it.
+The `div` doesn't change the layout, but it's in the DOM.
+Where a `div` isn't valid, or where CSS selectors like `>` and `:nth-child()` depend on the DOM structure, use the `render` prop to choose the element:
 
 ```diff
- <ThemeProvider theme={promoTheme}>
--  <Header />
--  <Section />
-+  <div>
-+    <Header />
-+    <Section />
-+  </div>
- </ThemeProvider>
+ <ul>
+-  <ThemeProvider theme={itemTheme}>
+-    <li>…</li>
+-  </ThemeProvider>
++  <ThemeProvider theme={itemTheme} render={<li />}>
++    …
++  </ThemeProvider>
+ </ul>
 ```
 
-With several children, a Fragment, or a child that doesn't render its `className`, the variables aren't applied, and the first two log an error in development.
+The `disableNestedContext` prop is deprecated in favor of `isolated`:
+
+```diff
+-<ThemeProvider theme={widgetTheme} disableNestedContext>
++<ThemeProvider theme={widgetTheme} isolated>
+```
+
+An isolated provider sets its variables on its element instead of `:root`, so it no longer overwrites the page's variables.
+Its mode is only stored when you pass a `modeStorageKey`, `colorSchemeStorageKey`, or `storageManager`, so it no longer overwrites the page's stored mode.
 
 Two `ThemeProvider`s that aren't nested in each other still overwrite each other's variables on `:root`, and now log a warning in development.
-Add the `scoped` prop to the one that should only apply to its child, like an embedded widget.
+Add the `isolated` prop to the one that shouldn't apply to the whole page, like an embedded widget.
+
+A nested `ThemeProvider` follows the outer mode, so its `defaultMode` doesn't apply, and now logs a warning in development.
+Add the `isolated` prop to give a section its own mode.
 
 See [Nested and multiple theme providers](/material-ui/customization/css-theme-variables/configuration/#nested-and-multiple-theme-providers) for details.
 
@@ -194,7 +207,7 @@ If you rendered `CssVarsProvider` without one, pass a theme with CSS variables:
 +</ThemeProvider>
 ```
 
-With TypeScript, the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, and `forceThemeRerender` props of `ThemeProvider` are only typed with the CSS theme variables [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript).
+With TypeScript, the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, `forceThemeRerender`, and `isolated` props of `ThemeProvider` are only typed with the CSS theme variables [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript).
 If you pass any of them, import it in a file included in your `tsconfig.json`:
 
 ```ts

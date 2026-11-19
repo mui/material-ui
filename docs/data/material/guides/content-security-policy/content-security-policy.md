@@ -37,7 +37,7 @@ With a server, you can generate a unique nonce per request for tighter security.
 
 - **`style-src-elem 'nonce-<base64>'`** — Material UI uses [Emotion](https://emotion.sh/) to inject `<style>` tags. Each tag needs a matching nonce.
 - **`style-src-attr 'unsafe-inline'`** — Some components apply inline `style` attributes for dynamic values (CSS custom properties, dimensions, positioning).
-- **`script-src 'nonce-<base64>'`** — Only needed if you use `InitColorSchemeScript`, which renders an inline `<script>`.
+- **`script-src 'nonce-<base64>'`** — Only needed if you use `InitColorSchemeScript`, or an `isolated` `ThemeProvider` with a `modeStorageKey` or `colorSchemeStorageKey`, which render an inline `<script>`. The provider's script uses the nonce of the Emotion cache.
 
 A complete CSP header might look like this:
 
