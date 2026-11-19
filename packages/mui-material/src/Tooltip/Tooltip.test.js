@@ -91,7 +91,7 @@ function expectRtlRightPlacementStyles() {
 }
 
 describe('<Tooltip />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { clock, render, renderToString } = createRenderer({ clock: 'fake' });
 
   beforeEach(() => {
     testReset();
@@ -1581,6 +1581,109 @@ describe('<Tooltip />', () => {
       });
 
       expect(popperRef.current.state.elements.reference).to.equal(screen.getByRole('link'));
+    });
+
+    it('does not render the popper before the tooltip first opens', () => {
+      const onRender = spy();
+      render(
+        <React.Profiler id="tooltip" onRender={onRender}>
+          <Tooltip title="Hello World">
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </React.Profiler>,
+      );
+
+      expect(onRender.callCount).to.equal(1);
+    });
+
+    it('renders the popper while closed with keepMounted from the theme', () => {
+      const theme = createTheme({
+        components: { MuiPopper: { defaultProps: { keepMounted: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tooltip title="Hello World">
+            <button type="submit">Hello World</button>
+          </Tooltip>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('tooltip', { hidden: true })).not.toBeVisible();
+    });
+
+    it('renders a custom popper component while closed', () => {
+      function CustomPopper() {
+        return <div data-testid="custom-popper" />;
+      }
+      render(
+        <Tooltip title="Hello World" slotProps={{ popper: { component: CustomPopper } }}>
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(screen.getByTestId('custom-popper')).not.to.equal(null);
+    });
+
+    it('server renders the popper with keepMounted', () => {
+      const { container } = renderToString(
+        <Tooltip
+          title="Hello World"
+          slotProps={{ popper: { keepMounted: true, disablePortal: true } }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(container.querySelector('[role="tooltip"]')).not.to.equal(null);
+    });
+
+    it('runs the exit transition when the trigger is removed while open', () => {
+      let hideTrigger;
+      const Trigger = React.forwardRef(function Trigger(props, ref) {
+        const [hidden, setHidden] = React.useState(false);
+        hideTrigger = () => setHidden(true);
+        return hidden ? null : (
+          <button type="button" ref={ref} {...props}>
+            Hello World
+          </button>
+        );
+      });
+      const onExited = spy();
+      render(
+        <Tooltip title="Hello World" open slotProps={{ transition: { onExited } }}>
+          <Trigger />
+        </Tooltip>,
+      );
+
+      act(() => {
+        hideTrigger();
+      });
+      expect(screen.getByRole('tooltip')).not.to.equal(null);
+
+      clock.runAll();
+      expect(onExited.callCount).to.equal(1);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('anchors to a trigger that does not forward its ref once it is focused', async () => {
+      const Trigger = React.forwardRef(function Trigger(props, _ref) {
+        return (
+          <button type="button" {...props}>
+            Hello World
+          </button>
+        );
+      });
+      render(
+        <Tooltip title="Hello World" enterDelay={111} slotProps={{ popper: { keepMounted: true } }}>
+          <Trigger />
+        </Tooltip>,
+      );
+      simulatePointerDevice();
+
+      await focusVisible(screen.getByRole('button'));
+      clock.tick(111);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
     });
   });
 

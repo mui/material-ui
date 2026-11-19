@@ -444,7 +444,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
     if (!childNodeRef.current) {
-      childNodeRef.current = event.currentTarget;
+      handleChildNode(event.currentTarget);
     }
 
     openedByDisabledTriggerRef.current = false;
@@ -682,22 +682,30 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ref: setArrowRef,
   });
 
-  // A closed Popper renders nothing, so the default popper is only rendered once it has an anchor:
-  // from the first time the tooltip opens, or right away when it stays mounted. A custom popper
-  // slot is always rendered.
-  const isDefaultPopper = PopperSlot === TooltipPopper;
-  const needsAnchor = open || popperSlotProps.keepMounted || !isDefaultPopper;
+  // A closed Popper renders nothing, so the default popper is only rendered from the first time
+  // the tooltip opens, or right away when it stays mounted. A custom popper is always rendered.
+  const isDefaultPopper = PopperSlot === TooltipPopper && !popperSlotProps.as;
+  const { keepMounted } = useDefaultProps({
+    props: { keepMounted: popperSlotProps.keepMounted },
+    // eslint-disable-next-line mui/material-ui-name-matches-component-name -- the keepMounted that Popper resolves
+    name: 'MuiPopper',
+  });
+  const [popperNeeded, setPopperNeeded] = React.useState(false);
+  const renderPopper = popperNeeded || open || keepMounted || !isDefaultPopper;
+  if (renderPopper && !popperNeeded) {
+    setPopperNeeded(true);
+  }
   useEnhancedEffect(() => {
-    if (needsAnchor && !anchorNeededRef.current) {
+    if (renderPopper && !anchorNeededRef.current) {
       anchorNeededRef.current = true;
       setAnchorNode(childNodeRef.current);
     }
-  }, [needsAnchor]);
+  }, [renderPopper]);
 
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      {anchorNode || !isDefaultPopper ? (
+      {renderPopper ? (
         <PopperSlot
           as={Popper}
           placement={placement}
