@@ -10,7 +10,6 @@ import type { NumberFieldClasses } from './numberFieldClasses';
 import numberFieldClasses from './numberFieldClasses';
 import FormControl from '../FormControl';
 import useSlot from '../utils/useSlot';
-import getAdornedStart from './utils/getAdornedStart';
 import { styled } from '../zero-styled';
 import InputLabel from '../InputLabel';
 import type { InputLabelProps } from '../InputLabel';
@@ -119,11 +118,10 @@ const NumberFieldRootSlot = React.forwardRef(
       resolvedInputSlotProps && 'startAdornment' in resolvedInputSlotProps
         ? resolvedInputSlotProps.startAdornment
         : undefined;
-    const adornedStart = getAdornedStart({
-      controlsPosition: ownerState.controlsPosition,
-      scrubAreaPosition: ownerState.scrubAreaPosition,
-      startAdornment,
-    });
+    const adornedStart =
+      ownerState.controlsPosition === 'split' ||
+      ownerState.scrubAreaPosition === 'start' ||
+      Boolean(startAdornment);
 
     return (
       <RootSlot {...rootProps} disabled={ownerState.disabled} required={ownerState.required}>
