@@ -2006,6 +2006,23 @@ describe.skipIf(isJsdom())('density contract', () => {
         }).to.deep.equal({ clear: true, popup: true });
       });
 
+      test(`${density.id}: Autocomplete indicators sit xSmall / 2 from the field edge`, () => {
+        const names = ['outlined medium', 'outlined small', 'filled medium', 'filled small'];
+        renderIn(THEMES[density.id], cases(byName(names, (name) => autocompleteField(name))));
+        const placement = (name: string) => {
+          const field = rect('.MuiInputBase-root', inCase(name));
+          const indicators = rect('.MuiAutocomplete-endAdornment', inCase(name));
+          const input = rect('.MuiAutocomplete-input', inCase(name));
+          return {
+            offset: round2(field.right - indicators.right),
+            clear: input.right <= indicators.left,
+          };
+        };
+        expect(byName(names, placement)).to.deep.equal(
+          byName(names, () => ({ offset: density.step.xSmall / 2, clear: true })),
+        );
+      });
+
       test(`${density.id}: a small vertical outlined ButtonGroup overlaps its borders`, () => {
         renderIn(
           THEMES[density.id],

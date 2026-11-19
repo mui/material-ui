@@ -823,7 +823,10 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       { paddingRight: `calc(${indicatorBox} + 2px + var(--_endOffset, 0px))` },
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
       { paddingRight: `calc(2 * ${indicatorBox} + var(--_endOffset, 0px))` },
-    [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: { '--_endOffset': '9px' },
+    [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: {
+      '--_endOffset': `calc(${spacing('xSmall')} / 2)`,
+      [`& .${autocompleteClasses.endAdornment}`]: { right: 'var(--_endOffset)' },
+    },
     [`&:has(.${autocompleteClasses.tag})`]: {
       '--_labelContentTop': `min(${inputMediumPadBlock}, ${spacing('xSmall')} / 2)`,
     },
