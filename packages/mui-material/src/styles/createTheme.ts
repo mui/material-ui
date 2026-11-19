@@ -14,6 +14,7 @@ import type {
   ThemeOptions as ThemeNoVarsOptions,
 } from './createThemeNoVars';
 import createThemeNoVars from './createThemeNoVars';
+import { themeBuildKey } from './themeComposition';
 
 export type { Theme, CssThemeVariables, FocusVisible } from './createThemeNoVars';
 
@@ -68,7 +69,8 @@ export default function createTheme(
 ): Theme {
   const {
     palette,
-    cssVariables = false,
+    // A theme created with CSS variables keeps them when it's passed back, for example in `createTheme(theme, { palette })`.
+    cssVariables = themeBuildKey in options,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
     ...other
