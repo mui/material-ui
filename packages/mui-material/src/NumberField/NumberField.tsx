@@ -12,7 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import RootSlot from './NumberFieldRootSlot';
 import InputSlot from './NumberFieldInputSlot';
-import { getUtilityClasses } from './utils';
+import { getUtilityClasses, resolveInputProps } from './utils';
 /**
  * Number fields let users enter, format, and adjust numeric values.
  *
@@ -155,12 +155,22 @@ const NumberField = React.forwardRef(function NumberField(
 
         // Share slot props used by multiple parts so each callback runs once
         // with Base UI's resolved flags.
+        const { materialInputProps, nativeSlotProps } = resolveInputProps({
+          inputProps: resolveComponentProps(slotProps.input, resolvedOwnerState) ?? {},
+          htmlInputSlotProps: slotProps.htmlInput,
+          ownerState: resolvedOwnerState,
+        });
+        const { id: nativeInputId, ...htmlInputProps } = nativeSlotProps;
         const resolvedExternalForwardedProps = {
           ...externalForwardedProps,
           slotProps: {
             ...slotProps,
-            input: resolveComponentProps(slotProps.input, resolvedOwnerState),
-            inputLabel: resolveComponentProps(slotProps.inputLabel, resolvedOwnerState),
+            input: materialInputProps,
+            htmlInput: { ...htmlInputProps, component: undefined },
+            inputLabel: {
+              htmlFor: nativeInputId ?? id,
+              ...resolveComponentProps(slotProps.inputLabel, resolvedOwnerState),
+            },
             formHelperText: resolvedHelperTextProps,
           },
         };
@@ -177,6 +187,7 @@ const NumberField = React.forwardRef(function NumberField(
           >
             <BaseNumberField.Input
               form={form}
+              {...(nativeInputId != null && { id: nativeInputId })}
               render={(inputBaseProps, inputBaseState) => (
                 <InputSlot
                   baseProps={inputBaseProps}
