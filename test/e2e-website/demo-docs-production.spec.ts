@@ -590,9 +590,9 @@ export default function BasicButtons() {
       await page.goto(DEMOS_PATH);
       await reveal(page.locator('[data-element="demo-mode-toggle-paper"]'));
 
-      await expect(page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])')).toHaveClass(
-        /light/,
-      );
+      await expect(
+        page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])'),
+      ).toHaveClass(/light/);
       await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
         'background-color',
         'rgb(255, 255, 255)',
@@ -602,7 +602,9 @@ export default function BasicButtons() {
         page.getByRole('radiogroup', { name: /^demo-mode-toggle$/ }).locator('label:nth-child(3)'),
         async () => {
           await expect(
-            page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])'),
+            page.locator(
+              'div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])',
+            ),
           ).toHaveClass(/dark/, { timeout: 2000 });
           await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
             'background-color',
@@ -621,7 +623,9 @@ export default function BasicButtons() {
         page.getByRole('radiogroup', { name: /^demo-mode-toggle-custom-theme$/ }),
       ).toBeVisible();
       await expect(
-        page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])'),
+        page.locator(
+          'div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])',
+        ),
       ).toHaveClass(/light/);
       await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
         'background-color',
@@ -634,7 +638,9 @@ export default function BasicButtons() {
           .locator('label:nth-child(3)'),
         async () => {
           await expect(
-            page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])'),
+            page.locator(
+              'div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])',
+            ),
           ).toHaveClass(/dark/, { timeout: 2000 });
           await expect(
             page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]'),

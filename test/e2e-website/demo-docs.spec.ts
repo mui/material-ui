@@ -37,9 +37,9 @@ test.describe('Demo docs', () => {
   test('mode toggle demos should work', async ({ page }) => {
     await page.goto('/experiments/docs/demos/');
 
-    await expect(page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])')).toHaveClass(
-      /light/,
-    );
+    await expect(
+      page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])'),
+    ).toHaveClass(/light/);
     await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
       'background-color',
       'rgb(255, 255, 255)',
@@ -50,7 +50,9 @@ test.describe('Demo docs', () => {
       page.getByRole('radiogroup', { name: /^demo-mode-toggle$/ }).locator('label:nth-child(3)'),
       async () => {
         await expect(
-          page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])'),
+          page.locator(
+            'div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-paper"])',
+          ),
         ).toHaveClass(/dark/, { timeout: 2000 });
         await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
           'background-color',
@@ -65,7 +67,9 @@ test.describe('Demo docs', () => {
     await page.goto('/experiments/docs/demos/');
 
     await expect(
-      page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])'),
+      page.locator(
+        'div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])',
+      ),
     ).toHaveClass(/light/);
     await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
       'background-color',
@@ -79,7 +83,9 @@ test.describe('Demo docs', () => {
         .locator('label:nth-child(3)'),
       async () => {
         await expect(
-          page.locator('div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])'),
+          page.locator(
+            'div:has(> .MuiThemeProvider-root > [data-element="demo-mode-toggle-custom-theme-paper"])',
+          ),
         ).toHaveClass(/dark/, { timeout: 2000 });
         await expect(
           page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]'),
