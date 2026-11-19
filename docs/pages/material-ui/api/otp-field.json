@@ -1,0 +1,122 @@
+{
+  "props": {
+    "aria-describedby": { "type": { "name": "string" } },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "autoComplete": { "type": { "name": "string" }, "default": "'one-time-code'" },
+    "autoFocus": { "type": { "name": "bool" } },
+    "autoSubmit": { "type": { "name": "bool" }, "default": "false" },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "defaultValue": { "type": { "name": "string" }, "default": "''" },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "form": { "type": { "name": "string" } },
+    "getInputAriaLabel": {
+      "type": { "name": "func" },
+      "default": "function defaultGetInputAriaLabel(position: number, length: number) {\n  return `Character ${position} of ${length}`;\n}"
+    },
+    "helperText": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "inputMode": {
+      "type": {
+        "name": "enum",
+        "description": "'decimal'<br>&#124;&nbsp;'email'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'numeric'<br>&#124;&nbsp;'search'<br>&#124;&nbsp;'tel'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;'url'"
+      }
+    },
+    "inputRef": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
+    },
+    "label": { "type": { "name": "node" } },
+    "length": { "type": { "name": "number" }, "default": "6" },
+    "mask": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
+    "normalizeValue": { "type": { "name": "func" } },
+    "onValueChange": { "type": { "name": "func" } },
+    "onValueComplete": { "type": { "name": "func" } },
+    "onValueInvalid": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "renderSeparator": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
+    "size": {
+      "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
+      "default": "'medium'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ group?: func<br>&#124;&nbsp;object, helperText?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, separator?: func<br>&#124;&nbsp;object }"
+      }
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ group?: elementType, helperText?: elementType, input?: elementType, label?: elementType, root?: elementType, separator?: elementType }"
+      }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "validationType": {
+      "type": {
+        "name": "enum",
+        "description": "'alpha'<br>&#124;&nbsp;'alphanumeric'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'numeric'"
+      },
+      "default": "'numeric'"
+    },
+    "value": { "type": { "name": "string" } }
+  },
+  "name": "OTPField",
+  "imports": [
+    "import OTPField from '@mui/material/OTPField';",
+    "import { OTPField } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The outer field container.",
+      "default": "FormControl",
+      "class": "MuiOTPField-root"
+    },
+    {
+      "name": "label",
+      "description": "The visible field label.",
+      "default": "FormLabel",
+      "class": "MuiOTPField-label"
+    },
+    {
+      "name": "group",
+      "description": "The host for Base UI OTPField.Root.",
+      "default": "'div'",
+      "class": "MuiOTPField-group"
+    },
+    {
+      "name": "input",
+      "description": "The host for Base UI OTPField.Input. Replacements must forward props and ref to an input.",
+      "default": "'input'",
+      "class": "MuiOTPField-input"
+    },
+    {
+      "name": "separator",
+      "description": "The host for Base UI OTPField.Separator.",
+      "default": "'div'",
+      "class": "MuiOTPField-separator"
+    },
+    {
+      "name": "helperText",
+      "description": "The supporting or error text.",
+      "default": "FormHelperText",
+      "class": "MuiOTPField-helperText"
+    }
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiOTPField",
+  "filename": "/packages/mui-material/src/OTPField/OTPField.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-otp-field/\">OTP Field</a></li></ul>"
+}

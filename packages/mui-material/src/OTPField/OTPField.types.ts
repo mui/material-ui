@@ -161,9 +161,17 @@ export interface OTPFieldProps
   classes?: Partial<OTPFieldClasses> | undefined;
   /** A CSS class name applied to the outer root element. */
   className?: string | undefined;
-  /** Display the field in an error state. */
+  /**
+   * Display the field in an error state.
+   * @default false
+   */
   error?: boolean | undefined;
-  /** Accessible name for a character after the first. Positions start at one. */
+  /**
+   * Accessible name for a character after the first. Positions start at one.
+   * @default function defaultGetInputAriaLabel(position: number, length: number) {
+   *   return `Character ${position} of ${length}`;
+   * }
+   */
   getInputAriaLabel?: ((position: number, length: number) => string) | undefined;
   /** The supporting or error text displayed below the inputs. */
   helperText?: React.ReactNode;

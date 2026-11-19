@@ -1,0 +1,183 @@
+import * as React from 'react';
+import { describe, expect, it } from 'vitest';
+import { Field } from '@base-ui/react/field';
+import { createRenderer, isJsdom, screen, within } from '@mui/internal-test-utils';
+import { formLabelClasses } from '@mui/material/FormLabel';
+import OTPField, { otpFieldClasses as classes } from '@mui/material/OTPField';
+
+describe('<OTPField />', () => {
+  const { render } = createRenderer();
+
+  describe('structure', () => {
+    it.each([
+      [6, undefined],
+      [4, 4],
+    ])('renders %i character inputs when length is %s', (count, length) => {
+      render(<OTPField label="Verification code" length={length} />);
+
+      const group = screen.getByRole('group', { name: 'Verification code' });
+      expect(within(group).getAllByRole('textbox')).to.have.lengthOf(count);
+    });
+
+    it('applies the OTPField group and input classes to the Base UI render elements', () => {
+      render(
+        <OTPField
+          label="Verification code"
+          classes={{ group: 'custom-group', input: 'custom-input' }}
+        />,
+      );
+
+      const group = screen.getByRole('group', { name: 'Verification code' });
+      expect(group).to.have.class(classes.group).and.have.class('custom-group');
+      within(group)
+        .getAllByRole('textbox')
+        .forEach((input) => {
+          expect(input).to.have.class(classes.input).and.have.class('custom-input');
+        });
+    });
+  });
+
+  describe('accessibility', () => {
+    it('associates the Material label with the first input and exposes that input through inputRef', async () => {
+      const inputRef = React.createRef<HTMLInputElement>();
+      const { user } = render(
+        <OTPField id="verification" inputRef={inputRef} label="Verification code" />,
+      );
+
+      const first = screen.getByRole('textbox', { name: 'Verification code' });
+      expect(first).to.equal(inputRef.current);
+      expect(first).to.have.attribute('id', 'verification');
+      await user.click(screen.getByText('Verification code'));
+      expect(first).toHaveFocus();
+      expect(screen.getByRole('textbox', { name: 'Character 6 of 6' })).toBeVisible();
+    });
+
+    it('uses getInputAriaLabel for subsequent inputs with one-based positions and the field length', () => {
+      render(
+        <OTPField
+          aria-label="Verification code"
+          length={3}
+          getInputAriaLabel={(position, length) => `Digit ${position} out of ${length}`}
+        />,
+      );
+
+      const group = screen.getByRole('group', { name: 'Verification code' });
+      expect(within(group).getByRole('textbox', { name: 'Verification code' })).toBeVisible();
+      expect(within(group).getByRole('textbox', { name: 'Digit 2 out of 3' })).toBeVisible();
+      expect(within(group).getByRole('textbox', { name: 'Digit 3 out of 3' })).toBeVisible();
+    });
+
+    it('uses the external aria-labelledby on the first input in place of the Material label', () => {
+      render(
+        <React.Fragment>
+          <h2 id="code-label">Recovery code</h2>
+          <OTPField label="Code" aria-labelledby="code-label" />
+        </React.Fragment>,
+      );
+
+      const [first] = screen.getAllByRole('textbox');
+      expect(first).toHaveAccessibleName('Recovery code');
+    });
+
+    it('combines helper text and an external description on the group and character inputs', () => {
+      render(
+        <React.Fragment>
+          <p id="code-hint">Use the most recent code.</p>
+          <OTPField
+            label="Verification code"
+            helperText="Check your messages."
+            aria-describedby="code-hint"
+          />
+        </React.Fragment>,
+      );
+
+      const group = screen.getByRole('group', { name: 'Verification code' });
+      const description = 'Use the most recent code. Check your messages.';
+      expect(group).toHaveAccessibleDescription(description);
+      within(group)
+        .getAllByRole('textbox')
+        .forEach((input) => expect(input).toHaveAccessibleDescription(description));
+    });
+  });
+
+  describe('form control state', () => {
+    it('reflects OTP group focus on the Material label', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <OTPField label="Verification code" defaultValue="12" />
+          <button type="button">Next</button>
+        </React.Fragment>,
+      );
+
+      const label = screen.getByText('Verification code');
+      await user.click(screen.getByRole('textbox', { name: 'Character 2 of 6' }));
+      expect(label).to.have.class(formLabelClasses.focused);
+
+      await user.click(screen.getByRole('button', { name: 'Next' }));
+      expect(label).not.to.have.class(formLabelClasses.focused);
+    });
+
+    it('reflects inherited disabled state and the OTP required flag on the Material label', () => {
+      render(
+        <Field.Root disabled>
+          <OTPField label="Verification code" required />
+        </Field.Root>,
+      );
+
+      const label = screen.getByText('Verification code');
+      expect(label)
+        .to.have.class(formLabelClasses.disabled)
+        .and.have.class(formLabelClasses.required);
+    });
+
+    it('reflects inherited invalid state on the Material label', () => {
+      render(
+        <Field.Root invalid>
+          <OTPField label="Verification code" />
+        </Field.Root>,
+      );
+
+      expect(screen.getByText('Verification code')).to.have.class(formLabelClasses.error);
+    });
+
+    it('marks each character input invalid when the Material error prop is set', () => {
+      render(<OTPField label="Verification code" error />);
+
+      screen.getAllByRole('textbox').forEach((input) => {
+        expect(input).to.have.attribute('aria-invalid', 'true');
+      });
+    });
+  });
+
+  describe.skipIf(isJsdom())('layout', () => {
+    it('lays out the character inputs in a row between the label and helper text', () => {
+      render(<OTPField label="PIN" helperText="Four digits" length={4} />);
+
+      const [first, second] = screen.getAllByRole('textbox');
+      const firstBounds = first.getBoundingClientRect();
+      const secondBounds = second.getBoundingClientRect();
+      expect(firstBounds.top).to.be.at.least(
+        screen.getByText('PIN').getBoundingClientRect().bottom,
+      );
+      expect(secondBounds.top).to.equal(firstBounds.top);
+      expect(secondBounds.left).to.be.greaterThan(firstBounds.right);
+      expect(screen.getByText('Four digits').getBoundingClientRect().top).to.be.at.least(
+        firstBounds.bottom,
+      );
+    });
+
+    it('renders smaller character inputs when size is small', () => {
+      render(
+        <React.Fragment>
+          <OTPField label="Medium code" />
+          <OTPField label="Small code" size="small" />
+        </React.Fragment>,
+      );
+
+      const medium = screen.getByRole('textbox', { name: 'Medium code' }).getBoundingClientRect();
+      const small = screen.getByRole('textbox', { name: 'Small code' }).getBoundingClientRect();
+      expect(small.width).to.be.lessThan(medium.width);
+      expect(small.height).to.be.lessThan(medium.height);
+    });
+  });
+});

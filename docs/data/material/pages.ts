@@ -42,6 +42,7 @@ const pages: MuiPage[] = [
             title: 'Floating Action Button',
           },
           { pathname: '/material-ui/react-number-field', title: 'Number Field', newFeature: true },
+          { pathname: '/material-ui/react-otp-field', title: 'OTP Field', newFeature: true },
           { pathname: '/material-ui/react-radio-button', title: 'Radio Group' },
           { pathname: '/material-ui/react-rating' },
           { pathname: '/material-ui/react-select' },

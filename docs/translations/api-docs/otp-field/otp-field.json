@@ -1,0 +1,77 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "aria-describedby": {
+      "description": "Identifies the element (or elements) that describes the object."
+    },
+    "aria-label": { "description": "Defines a string value that labels the current element." },
+    "aria-labelledby": {
+      "description": "Identifies the element (or elements) that labels the current element."
+    },
+    "autoComplete": {
+      "description": "The autocomplete hint for the first character input and the form input."
+    },
+    "autoFocus": { "description": "Focus the first character input on mount." },
+    "autoSubmit": { "description": "Submit the associated form when the code becomes complete." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "defaultValue": { "description": "The initial code for an uncontrolled field." },
+    "disabled": {
+      "description": "Disable all the character inputs and omit the code from form submission."
+    },
+    "error": { "description": "Display the field in an error state." },
+    "form": { "description": "The ID of the form that owns the field." },
+    "getInputAriaLabel": {
+      "description": "Accessible name for a character after the first. Positions start at one."
+    },
+    "helperText": { "description": "The supporting or error text displayed below the inputs." },
+    "id": {
+      "description": "The ID of the first character input. Subsequent input IDs are derived from it."
+    },
+    "inputMode": {
+      "description": "The virtual keyboard hint. Defaults to the keyboard for the validation type."
+    },
+    "inputRef": { "description": "A ref to the first visible character input." },
+    "label": { "description": "The label associated with the first character input." },
+    "length": {
+      "description": "The number of characters in the code. Must be a positive integer."
+    },
+    "mask": { "description": "Mask the characters as they are entered." },
+    "name": { "description": "The name used to submit the field value as one string." },
+    "normalizeValue": {
+      "description": "Normalize the filtered code before it is stored. The function should be idempotent."
+    },
+    "onValueChange": {
+      "description": "Called with the new code and the change details. The change can be canceled."
+    },
+    "onValueComplete": {
+      "description": "Called when the code becomes complete or a complete code is pasted, before optional form submission."
+    },
+    "onValueInvalid": {
+      "description": "Called with the attempted input when filtering or normalization rejects characters."
+    },
+    "readOnly": { "description": "Keep the field focusable while preventing edits." },
+    "renderSeparator": {
+      "description": "Return decorative content between adjacent character inputs, or null to leave the gap empty. Positions range from 1 to <code>length - 1</code>."
+    },
+    "required": { "description": "Require a complete code before form submission." },
+    "size": { "description": "The size of the field." },
+    "slotProps": {
+      "description": "Props for the Material slots and their corresponding Base UI parts."
+    },
+    "slots": { "description": "Components used to render the field&#39;s slots." },
+    "sx": { "description": "System styles for the outer root element." },
+    "validationType": { "description": "The set of characters accepted in the code." },
+    "value": {
+      "description": "The code when controlling the field. Use an empty string for an empty field."
+    }
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "group": "The host for Base UI OTPField.Root.",
+    "helperText": "The supporting or error text.",
+    "input": "The host for Base UI OTPField.Input. Replacements must forward props and ref to an input.",
+    "label": "The visible field label.",
+    "root": "The outer field container.",
+    "separator": "The host for Base UI OTPField.Separator."
+  }
+}
