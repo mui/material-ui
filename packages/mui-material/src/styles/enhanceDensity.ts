@@ -693,7 +693,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     },
   });
   addStyleOverride(enhanced.components, 'MuiBreadcrumbs', 'li', {
-    '&:has(a)': { lineHeight: touchTarget },
+    [`&:has(a:not(.${buttonBaseClasses.root}))`]: { lineHeight: touchTarget },
     '&:not(:has(a))': {
       paddingInline: spacing('xSmall'),
     },

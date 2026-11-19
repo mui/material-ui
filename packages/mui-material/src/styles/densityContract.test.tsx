@@ -1984,6 +1984,35 @@ describe.skipIf(isJsdom())('density contract', () => {
       expect(rect('[data-testid="link"]').height).to.equal(DEFAULT_SIZING_PX.touchTarget);
     });
 
+    DENSITIES.forEach((density) => {
+      test(`${density.id}: a Button crumb sets the row height`, () => {
+        renderIn(
+          THEMES[density.id],
+          cases(
+            byName(SIZES, (size) => (
+              <Breadcrumbs>
+                <Button color="inherit" size={size as 'small' | 'medium'} href="#">
+                  Projects
+                </Button>
+                <Typography>Current</Typography>
+              </Breadcrumbs>
+            )),
+          ),
+        );
+        const marginBox = (scope: ParentNode) => {
+          const style = css('.MuiButton-root', scope);
+          return round2(
+            rect('.MuiButton-root', scope).height +
+              parseFloat(style.marginTop) +
+              parseFloat(style.marginBottom),
+          );
+        };
+        expect(byName(SIZES, (size) => round2(rect('ol', inCase(size)).height))).to.deep.equal(
+          byName(SIZES, (size) => marginBox(inCase(size))),
+        );
+      });
+    });
+
     test('a Chip crumb keeps its own size', () => {
       renderIn(
         MEDIUM,
