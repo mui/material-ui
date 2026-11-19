@@ -14,7 +14,7 @@ import type {
   ThemeOptions as ThemeNoVarsOptions,
 } from './createThemeNoVars';
 import createThemeNoVars from './createThemeNoVars';
-import { themeBuildKey } from './themeComposition';
+import { themeBuildKey, isColorSchemeCopy } from './themeComposition';
 
 export type {
   Theme,
@@ -40,6 +40,43 @@ type CssVarsConfigList =
 export interface ThemeOptions extends CssVarsOptions, Omit<CssVarsThemeOptions, CssVarsConfigList> {
   cssVariables?: boolean | Pick<CssVarsThemeOptions, CssVarsConfigList> | undefined;
   palette?: PaletteOptions | undefined;
+}
+
+/**
+ * A theme passed back has, at the top level, a copy of the palette of one of its color schemes,
+ * see `isColorSchemeCopy()`. The copy isn't needed, and a changed one goes to that color scheme.
+ */
+function getPaletteColorScheme(
+  palette: Record<keyof any, any> | undefined,
+  colorSchemes: Partial<Record<string, any>> | undefined,
+  defaultColorScheme: DefaultColorScheme,
+) {
+  const record = palette?.[themeBuildKey];
+  const scheme =
+    record && colorSchemes
+      ? (Object.keys(colorSchemes).find(
+          (key) => colorSchemes[key]?.palette?.[themeBuildKey] === record,
+        ) as DefaultColorScheme | undefined)
+      : undefined;
+  if (!scheme) {
+    return { scheme: defaultColorScheme, palette };
+  }
+  const schemePalette = colorSchemes![scheme].palette;
+  const defaultPalette = colorSchemes![defaultColorScheme]?.palette;
+  if (isColorSchemeCopy(palette, schemePalette, defaultPalette)) {
+    return { scheme, palette: undefined };
+  }
+  if (scheme === defaultColorScheme) {
+    return { scheme, palette };
+  }
+  // Without the values that the copy took from the default palette.
+  const output = { ...palette };
+  Object.keys(output).forEach((key) => {
+    if (!(key in schemePalette) && output[key] === defaultPalette?.[key]) {
+      delete output[key];
+    }
+  });
+  return { scheme, palette: output };
 }
 
 // eslint-disable-next-line consistent-return
@@ -81,14 +118,20 @@ export default function createTheme(
     ...other
   } = options;
   const defaultColorSchemeInput = (initialDefaultColorScheme as DefaultColorScheme) || 'light';
-  const defaultScheme = initialColorSchemes?.[defaultColorSchemeInput];
+  // The `palette` goes to the default color scheme, unless it comes from a theme passed back.
+  const paletteScheme = getPaletteColorScheme(
+    palette,
+    initialColorSchemes,
+    defaultColorSchemeInput,
+  );
+  const schemeInput = initialColorSchemes?.[paletteScheme.scheme];
   const colorSchemesInput = {
     ...initialColorSchemes,
-    ...(palette
+    ...(paletteScheme.palette
       ? {
-          [defaultColorSchemeInput]: {
-            ...(typeof defaultScheme !== 'boolean' && defaultScheme),
-            palette,
+          [paletteScheme.scheme]: {
+            ...(typeof schemeInput !== 'boolean' && schemeInput),
+            palette: paletteScheme.palette,
           },
         }
       : undefined),

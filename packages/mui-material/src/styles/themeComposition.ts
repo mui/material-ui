@@ -64,3 +64,24 @@ export function removeUnchanged<T>(value: T, generated: Record<string, any> | un
   });
   return output as T;
 }
+
+/**
+ * Whether `value`, at the top level of a theme, is a copy of `schemeValue`, the value of one of its
+ * color schemes. A `ThemeProvider` with `forceThemeRerender` spreads the values of the color scheme
+ * in use over the ones of the default color scheme, `defaultValue`.
+ */
+export function isColorSchemeCopy(value: unknown, schemeValue: unknown, defaultValue?: unknown) {
+  if (value === schemeValue) {
+    return true;
+  }
+  if (!value || typeof value !== 'object' || !schemeValue || typeof schemeValue !== 'object') {
+    return false;
+  }
+  const copy = value as Record<string, unknown>;
+  const scheme = schemeValue as Record<string, unknown>;
+  const fallback = defaultValue as Record<string, unknown> | undefined;
+  return (
+    Object.keys(scheme).every((key) => copy[key] === scheme[key]) &&
+    Object.keys(copy).every((key) => key in scheme || copy[key] === fallback?.[key])
+  );
+}
