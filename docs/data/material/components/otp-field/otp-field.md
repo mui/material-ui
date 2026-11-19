@@ -29,6 +29,7 @@ This example accepts letters and digits with `validationType="alphanumeric"` and
 ## Form submission
 
 Set `name` to include the code in the form data and `required` to require a complete code.
+If the field is outside the form, pass the form's `id` to the `form` prop.
 This example uses `length={4}` for a four-digit PIN.
 Try submitting `0012` to see how the string value preserves its leading zeroes.
 
@@ -39,4 +40,5 @@ Try submitting `0012` to see how the string value preserves its leading zeroes.
 Each character input has an accessible name.
 The first input uses the field label, and subsequent inputs announce their position, such as "Character 2 of 6."
 Use `getInputAriaLabel` to translate the position labels.
+The `ref` prop points to the outer field container. Use `inputRef` to focus the first character input programmatically.
 Users can tab into the field, move between characters with the arrow keys, and tab out to the next control.

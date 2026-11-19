@@ -38,13 +38,17 @@ describe('<OTPField />', () => {
   });
 
   describe('accessibility', () => {
-    it('associates the Material label with the first input and exposes that input through inputRef', async () => {
+    it('forwards ref to the field root and inputRef to the input targeted by the label', async () => {
+      const rootRef = React.createRef<HTMLDivElement>();
       const inputRef = React.createRef<HTMLInputElement>();
       const { user } = render(
-        <OTPField id="verification" inputRef={inputRef} label="Verification code" />,
+        <OTPField id="verification" ref={rootRef} inputRef={inputRef} label="Verification code" />,
       );
 
-      const first = screen.getByRole('textbox', { name: 'Verification code' });
+      const group = screen.getByRole('group', { name: 'Verification code' });
+      expect(rootRef.current).to.have.class(classes.root);
+      expect(rootRef.current).to.contain(group);
+      const first = within(group).getByRole('textbox', { name: 'Verification code' });
       expect(first).to.equal(inputRef.current);
       expect(first).to.have.attribute('id', 'verification');
       await user.click(screen.getByText('Verification code'));
