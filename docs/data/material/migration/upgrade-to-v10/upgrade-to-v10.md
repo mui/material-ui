@@ -254,6 +254,9 @@ To keep a reset below Material UI's styles, put it in a layer declared before `
 }
 ```
 
+Styles that you write with Emotion directly, such as with `@emotion/styled` or the `css` prop, aren't in a layer either, so they also override Material UI's styles, even in states such as disabled.
+To keep them in the `mui` layer, write them with `styled()` from `@mui/material/styles`.
+
 In tests that run in jsdom or happy-dom, Material UI's styles aren't layered, so that style assertions keep working.
 jsdom before version 31 and happy-dom ignore the rules inside `@layer` blocks, and matchers such as `@emotion/jest`'s `toHaveStyleRule` don't look inside them.
 To check styles in tests, prefer computed-style assertions, such as `toHaveStyle` from `@testing-library/jest-dom`.
@@ -294,5 +297,4 @@ Without it, `GlobalStyles` comes after the CSS files that load first, such as Ta
 +<App />
 ```
 
-Styles that you write with Emotion directly, such as with `@emotion/styled` or the `css` prop, are no longer in the `mui` layer, so they override Material UI's styles.
 The class names that `<StyledEngineProvider enableCssLayer>` generated started with `mui-`, and now start with `css-`.
