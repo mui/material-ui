@@ -225,6 +225,18 @@ export function testReset() {
   hystersisTimer.clear();
 }
 
+function isPointWithinElement(element, point) {
+  if (!element) {
+    return false;
+  }
+
+  const rect = element.getBoundingClientRect();
+
+  return (
+    point.x >= rect.left && point.x <= rect.right && point.y >= rect.top && point.y <= rect.bottom
+  );
+}
+
 function composeEventHandler(handler, eventHandler) {
   return (event, ...params) => {
     if (eventHandler) {
@@ -271,8 +283,17 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
   const openedByDisabledTriggerRef = React.useRef(false);
+  // Last pointer position while the tooltip is hover-opened.
+  // `null` when opened by focus, touch, or a controlled `open` without hover.
+  const hoverPointerRef = React.useRef(null);
 
   const disableInteractive = disableInteractiveProp || followCursor;
+
+  const recordHoverPointer = (event) => {
+    if (hoverPointerRef.current) {
+      hoverPointerRef.current = { x: event.clientX, y: event.clientY };
+    }
+  };
 
   const closeTimer = useTimeout();
   const enterTimer = useTimeout();
@@ -341,6 +362,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
+
+    // Only mouseover opens are tied to a cursor position. Focus and touch leave this null
+    // so a later scroll does not close them.
+    hoverPointerRef.current =
+      event.type === 'mouseover' ? { x: event.clientX, y: event.clientY } : null;
 
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
@@ -496,6 +522,44 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
+  // Scrolling can move the trigger out from under a still cursor without firing pointer
+  // events, so hover-opened tooltips would otherwise stay visible.
+  // https://github.com/mui/material-ui/issues/44548
+  const handleScroll = useEventCallback((nativeEvent) => {
+    const pointer = hoverPointerRef.current;
+
+    // Focus, touch, and controlled `open` without a hover leave this null.
+    if (!pointer) {
+      return;
+    }
+
+    if (isPointWithinElement(childNode, pointer)) {
+      return;
+    }
+
+    if (!disableInteractive) {
+      const tooltipNode = id ? document.getElementById(id) : null;
+      if (isPointWithinElement(tooltipNode, pointer)) {
+        return;
+      }
+    }
+
+    handleMouseLeave(nativeEvent);
+  });
+
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    // `scroll` does not bubble; capture so nested scroll containers are covered.
+    document.addEventListener('scroll', handleScroll, { capture: true, passive: true });
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll, { capture: true });
+    };
+  }, [handleScroll, open]);
+
   const handleRef = useForkRef(getReactElementRef(children), setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
@@ -510,6 +574,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     const childrenProps = children.props;
     if (childrenProps.onMouseMove) {
       childrenProps.onMouseMove(event);
+    }
+
+    recordHoverPointer(event);
+
+    if (!followCursor) {
+      return;
     }
 
     cursorPosition = { x: event.clientX, y: event.clientY };
@@ -536,7 +606,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     className: clsx(other.className, children.props.className),
     onTouchStart: detectTouchStart,
     ref: handleRef,
-    ...(followCursor ? { onMouseMove: handleMouseMove } : {}),
+    // Always track the last pointer while hover-opened so scroll can compare against it.
+    // followCursor also needs these moves to reposition the tooltip.
+    ...(!disableHoverListener || followCursor ? { onMouseMove: handleMouseMove } : {}),
   };
 
   if (process.env.NODE_ENV !== 'production') {
@@ -573,6 +645,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     if (!disableInteractive) {
       interactiveWrapperListeners.onMouseOver = handleInteractiveWrapperMouseOver;
       interactiveWrapperListeners.onMouseLeave = handleMouseLeave;
+      interactiveWrapperListeners.onMouseMove = recordHoverPointer;
     }
   }
 
