@@ -906,6 +906,16 @@ describe('<NumberField />', () => {
         });
       });
 
+      it.skipIf(isJsdom())('applies a size override only to the specified button', () => {
+        render(<NumberField label="Amount" slotProps={{ incrementButton: { size: 'large' } }} />);
+
+        const increment = screen.getByRole('button', { name: 'Increase' });
+        const decrement = screen.getByRole('button', { name: 'Decrease' });
+
+        expect(getComputedStyle(increment).paddingInlineStart).to.equal('12px');
+        expect(getComputedStyle(decrement).paddingInlineStart).to.equal('6px');
+      });
+
       it('replaces the default icons while preserving the button names', () => {
         render(
           <NumberField

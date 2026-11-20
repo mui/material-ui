@@ -84,7 +84,7 @@ const buttonStyles = memoTheme(({ theme }) => ({
     { props: { size: 'small' }, style: { '--NumberField-buttonPadding': '5px' } },
     { props: { size: 'large' }, style: { '--NumberField-buttonPadding': '12px' } },
     {
-      props: ({ size }: Pick<IconButtonProps, 'size'>) => size === 'medium',
+      props: { size: 'medium' },
       style: {
         '--NumberField-buttonPadding': '6px',
         padding: 'var(--NumberField-buttonPadding)',
@@ -106,11 +106,7 @@ const buttonStyles = memoTheme(({ theme }) => ({
       },
     },
     {
-      props: ({
-        ownerState,
-        size,
-      }: { ownerState: NumberFieldOwnerState } & Pick<IconButtonProps, 'size'>) =>
-        ownerState.controlsPosition === 'stacked' && size === 'small',
+      props: { controlsPosition: 'stacked', size: 'small' },
       style: { fontSize: theme.typography.pxToRem(20) },
     },
     {
@@ -119,13 +115,7 @@ const buttonStyles = memoTheme(({ theme }) => ({
       style: { '--NumberField-buttonPadding': '6px', fontSize: theme.typography.pxToRem(16) },
     },
     {
-      props: ({
-        ownerState,
-        size,
-      }: { ownerState: NumberFieldOwnerState } & Pick<IconButtonProps, 'size'>) =>
-        ownerState.controlsPosition === 'stacked' &&
-        ownerState.variant === 'standard' &&
-        size === 'small',
+      props: { controlsPosition: 'stacked', variant: 'standard', size: 'small' },
       style: { fontSize: theme.typography.pxToRem(14) },
     },
   ],
@@ -339,7 +329,6 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     ownerState,
     className: classes.decrementButton,
     additionalProps: {
-      size: ownerState.size,
       children: <DecrementIcon fontSize="inherit" />,
     },
   });
@@ -349,7 +338,6 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     ownerState,
     className: classes.incrementButton,
     additionalProps: {
-      size: ownerState.size,
       children: <IncrementIcon fontSize="inherit" />,
     },
   });

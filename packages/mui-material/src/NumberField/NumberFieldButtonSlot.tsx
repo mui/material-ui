@@ -34,6 +34,7 @@ function NumberFieldButtonSlot(props: NumberFieldButtonProps) {
 
   // Material should also display read-only controls as unavailable.
   const disabled = baseState.disabled || baseState.readOnly;
+  const size = buttonProps.size ?? materialProps.size;
 
   // Keep nativeButton off the DOM when the slot is a host element.
   const consumerButtonProps = omitNullishEventHandlers(
@@ -54,11 +55,13 @@ function NumberFieldButtonSlot(props: NumberFieldButtonProps) {
       // Preserve Base's resolved availability after consumer props.
       disabled,
       ref,
+      size,
     },
     {
       ...materialProps,
       disabled,
       readOnly: baseState.readOnly,
+      size,
     },
   );
 
