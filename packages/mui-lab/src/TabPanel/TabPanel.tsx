@@ -73,12 +73,6 @@ const TabPanel = React.forwardRef(function TabPanel(
 
   const { children, className, value, keepMounted = false, ...other } = props;
 
-  const ownerState = {
-    ...props,
-  };
-
-  const classes = useUtilityClasses(ownerState);
-
   const context = useTabContext();
   if (context === null) {
     throw /* minify-error */ new TypeError(
@@ -88,6 +82,14 @@ const TabPanel = React.forwardRef(function TabPanel(
         'See https://mui.com/material-ui/react-tabs/#experimental-api for more info.',
     );
   }
+
+  const ownerState = {
+    hidden: value !== context.value,
+    ...props,
+  };
+
+  const classes = useUtilityClasses(ownerState);
+
   const id = getPanelId(context, value as string);
   const tabId = getTabId(context, value as string);
 
@@ -95,7 +97,7 @@ const TabPanel = React.forwardRef(function TabPanel(
     <TabPanelRoot
       aria-labelledby={tabId}
       className={clsx(classes.root, className)}
-      hidden={value !== context.value}
+      hidden={ownerState.hidden}
       id={id}
       ref={ref}
       role="tabpanel"
