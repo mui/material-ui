@@ -363,10 +363,28 @@ export function private_safeEmphasize(
 }
 
 /**
+ * Returns the red, green and blue channels of a color in the range 0 - 255.
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @returns {number[]} The [r, g, b] channels
+ */
+function getRgbChannels(color: string): number[] {
+  const decomposedColor = decomposeColor(color);
+
+  if (decomposedColor.type.includes('hsl')) {
+    return decomposeColor(hslToRgb(color)).values;
+  }
+  if (decomposedColor.type === 'color') {
+    // color() channels are in the range 0 - 1
+    return decomposedColor.values.slice(0, 3).map((value) => value * 255);
+  }
+  return decomposedColor.values;
+}
+
+/**
  * Blend a transparent overlay color with a background color, resulting in a single
  * RGB color.
- * @param {string} background - CSS color
- * @param {string} overlay - CSS color
+ * @param {string} background - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @param {string} overlay - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @param {number} opacity - Opacity multiplier in the range 0 - 1
  * @param {number} [gamma=1.0] - Gamma correction factor. For gamma-correct blending, 2.2 is usual.
  */
@@ -374,13 +392,13 @@ export function blend(background: string, overlay: string, opacity: number, gamm
   const blendChannel = (b: number, o: number) =>
     Math.round((b ** (1 / gamma) * (1 - opacity) + o ** (1 / gamma) * opacity) ** gamma);
 
-  const backgroundColor = decomposeColor(background);
-  const overlayColor = decomposeColor(overlay);
+  const backgroundChannels = getRgbChannels(background);
+  const overlayChannels = getRgbChannels(overlay);
 
   const rgb: [number, number, number] = [
-    blendChannel(backgroundColor.values[0], overlayColor.values[0]),
-    blendChannel(backgroundColor.values[1], overlayColor.values[1]),
-    blendChannel(backgroundColor.values[2], overlayColor.values[2]),
+    blendChannel(backgroundChannels[0], overlayChannels[0]),
+    blendChannel(backgroundChannels[1], overlayChannels[1]),
+    blendChannel(backgroundChannels[2], overlayChannels[2]),
   ];
 
   return recomposeColor({

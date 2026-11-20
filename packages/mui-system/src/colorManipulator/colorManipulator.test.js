@@ -517,5 +517,16 @@ describe('utils/colorManipulator', () => {
     it('selects only the overlay color with an opacity of 1.0', () => {
       expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 1.0)).to.equal('rgb(10, 100, 255)');
     });
+
+    it('converts hsl colors to rgb before blending', () => {
+      expect(blend('#fff', 'hsl(0, 100%, 50%)', 0.5)).to.equal('rgb(255, 128, 128)');
+      expect(blend('hsl(0, 0%, 100%)', 'rgb(255, 0, 0)', 0.5)).to.equal('rgb(255, 128, 128)');
+      expect(blend('#fff', 'hsla(0, 100%, 50%, 0.4)', 0.5)).to.equal('rgb(255, 128, 128)');
+    });
+
+    it('converts color() colors to rgb before blending', () => {
+      expect(blend('#fff', 'color(srgb 1 0 0)', 0.5)).to.equal('rgb(255, 128, 128)');
+      expect(blend('color(srgb 1 1 1)', 'rgb(255, 0, 0)', 0.5)).to.equal('rgb(255, 128, 128)');
+    });
   });
 });
