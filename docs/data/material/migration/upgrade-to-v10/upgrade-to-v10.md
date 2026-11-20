@@ -22,6 +22,16 @@ Update tests and CSS selectors that match the previous role value:
 +[role="none"] {
 ```
 
+### ButtonBase
+
+#### Canceling keyboard activation
+
+When ButtonBase or a component built on it renders a non-native element such as a `<span>`, calling `event.preventDefault()` in `onKeyDown` for Enter or Space now prevents the synthesized click.
+Previously, Enter ignored this cancellation, and Space could only be canceled through `onKeyUp`.
+
+Remove the `preventDefault()` call for these keys if keyboard activation should continue.
+Space activation can also be canceled by calling `event.preventDefault()` in `onKeyUp`.
+
 ### Khmer locale renamed
 
 The Khmer locale is now exported as `kmKH` instead of `khKH`, to match the ISO 639-1 code for Khmer (`km`).
