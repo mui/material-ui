@@ -1,0 +1,27 @@
+name: Dependabot fix
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  fix:
+    # Maximum grant required by the reusable workflow; its agent job only gets read access.
+    permissions:
+      actions: read
+      checks: read
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+      security-events: read
+      vulnerability-alerts: read
+    uses: mui/mui-public/.github/workflows/dependabot-fix-workflow.lock.yml@e412696f98ea2e095560a187f1535279851b65df # code-infra/gh-aw-dependabot-fix
+    # Reusable workflows only get secrets the caller passes. These resolve to the code-infra-auditor
+    # environment's secrets, because the jobs that use them run in that environment.
+    secrets:
+      CODE_INFRA_AUDITOR_CLIENT_ID: ${{ secrets.CODE_INFRA_AUDITOR_CLIENT_ID }}
+      CODE_INFRA_AUDITOR_PRIVATE_KEY: ${{ secrets.CODE_INFRA_AUDITOR_PRIVATE_KEY }}
