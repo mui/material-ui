@@ -20,6 +20,8 @@ const workspaceRoot = path.join(currentDirectory, '../');
 
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
+const isProduction = process.env.NODE_ENV === 'production';
+const tsconfigPath = isProduction ? './tsconfig.build.json' : './tsconfig.json';
 
 // Shared alias list, paths relative to the workspace root. For turbopack, prefixed
 // with `../` (relative to `docs/`), and for webpack, resolved absolute.
@@ -36,10 +38,10 @@ const aliasEntries: ReadonlyArray<readonly [string, string]> = [
 ];
 
 const turbopackResolveAlias: Record<string, string> = {
-  ...Object.fromEntries(aliasEntries.map(([name, rel]) => [name, `../${rel}`])),
+  ...(!isProduction && Object.fromEntries(aliasEntries.map(([name, rel]) => [name, `../${rel}`]))),
   // Bare `@mui/icons-material` → ESM index for namespace interop; deep imports
   // (`@mui/icons-material/Add`) fall through to the installed package.
-  '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs',
+  ...(!isProduction && { '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs' }),
   // Mirrors the `docs` alias from babel.config.mjs / babel-plugin-module-resolver.
   docs: '.',
 };
@@ -63,6 +65,7 @@ const markdownLoaderBase = {
 };
 
 export default withDeploymentConfig({
+  typescript: { tsconfigPath },
   experimental: {
     // The TS7 side-by-side alias (@typescript/typescript6) ships no `tsc` bin,
     // which the Next.js >= 16.3 setup check requires even with
@@ -131,6 +134,11 @@ export default withDeploymentConfig({
     config: Parameters<NonNullable<NextConfig['webpack']>>[0],
     options: Parameters<NonNullable<NextConfig['webpack']>>[1],
   ) => {
+    // The previous production cache can retain modules resolved through source aliases.
+    if (isProduction && config.cache?.type === 'filesystem') {
+      config.cache.version = `${config.cache.version}|${tsconfigPath}`;
+    }
+
     // If a module is an webpack "external" the webpack aliases configured are not used.
     // Next.js includes node_modules in webpack externals, some of those have dependencies
     // on the aliases we defined above.
@@ -192,7 +200,7 @@ export default withDeploymentConfig({
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          ...webpackAliases,
+          ...(!isProduction && webpackAliases),
         },
         extensions: [
           '.mjs',
@@ -312,9 +320,7 @@ export default withDeploymentConfig({
   // Ensure CSS from the Data Grid packages is included in the build:
   // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
   // `@mui/x-*` entries: keep their `@mui/material/*` subpath imports
-  // inside the bundler so the source aliases above win; otherwise resolution
-  // falls back to the pnpm symlink (→ `packages/mui-material/build/`), which
-  // is empty unless the package has been built.
+  // inside the bundler so the development source aliases also apply to those imports.
   transpilePackages: [
     // ESM-only, and its CJS `@algolia/autocomplete-core` dependency breaks
     // named-export interop when Next externalizes it for SSR.

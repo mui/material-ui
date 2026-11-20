@@ -76,6 +76,7 @@
     ".": "./src/index.js",
     "./*": "./src/*.js",
     "./index*": null,
+    "./utils/createSvgIcon": "./src/utils/createSvgIcon.js",
     "./utils/*": null
   }
 }

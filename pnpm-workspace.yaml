@@ -42,10 +42,6 @@ catalogs:
     '@mui/internal-docs-infra': '0.13.1-canary.33'
 
 overrides:
-  # pkg.pr.new code-infra pins these to pkg.pr.new URLs, which blockExoticSubdeps rejects.
-  '@mui/internal-babel-plugin-display-name': '2.0.1-canary.3'
-  '@mui/internal-babel-plugin-minify-errors': '3.0.1-canary.3'
-  '@mui/internal-babel-plugin-resolve-imports': '3.0.1-canary.4'
   '@mui/internal-docs-infra': '0.13.1-canary.33'
   # Bundled twice in the docs build
   'docs>react-is': '19.3.1'
