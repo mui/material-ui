@@ -204,7 +204,7 @@ Use `inputRef` to access or focus the visible input.
 
 ### Rendering custom elements
 
-Use `render` to change the root element while preserving Material styling and field behavior.
+Use `render` to change the root element while preserving Material styling and the default `FormControl` context.
 Other slots accept `render` through `slotProps`, such as `slotProps.htmlInput.render` or `slotProps.formHelperText.render`.
 
 The prop accepts a React element or a callback receiving the generated props and live Base UI state.
@@ -219,6 +219,7 @@ For a button rendered as an element other than `<button>`, also set that slot's 
 
 Use `slots` to replace a Material component and provide your own styling.
 A `slots` replacement takes precedence over `render` for the same slot.
+If you replace `slots.root`, forward its props and ref to a `FormControl` so the label shrinks on focus and both the label and helper text reflect the field's error state.
 See the [API reference](/material-ui/api/number-field/#slots) for the available slots.
 
 Use `slotProps.input.render` to change the Material input's root element.
