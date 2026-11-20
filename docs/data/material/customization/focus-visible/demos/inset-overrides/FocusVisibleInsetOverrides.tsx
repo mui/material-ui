@@ -23,7 +23,7 @@ const theme = createTheme({
     outlineOffset: 1,
     boxShadow: '0 0 0 1px var(--mui-palette-background-paper)',
     insetOverrides: {
-      boxShadow: 'inset 0 0 0 3px #fff',
+      boxShadow: 'inset 0 0 0 3px var(--mui-palette-background-paper)',
     },
   },
   colorSchemes: { light: true, dark: true },
