@@ -63,6 +63,45 @@ describe('<InputBase />', () => {
     expect(input).toHaveAccessibleDescription('Helper text');
   });
 
+  it.each([false, true])(
+    'validates the native input after its slot handler with multiline=%s',
+    (multiline) => {
+      const { setProps } = render(
+        <InputBase
+          multiline={multiline}
+          required
+          onInvalid={(event) => {
+            const input = event.currentTarget;
+            input.setCustomValidity?.(`${input.validationMessage} Enter a name.`);
+          }}
+          slotProps={{
+            input: {
+              onInvalid: (event) => event.currentTarget.setCustomValidity('Name is required.'),
+            },
+          }}
+        />,
+      );
+
+      const input = screen.getByRole('textbox');
+      expect(input.checkValidity()).to.equal(false);
+      expect(input.validationMessage).to.equal('Name is required. Enter a name.');
+
+      setProps({
+        slotProps: {
+          input: {
+            onInvalid: (event) => {
+              event.currentTarget.setCustomValidity('Use this message.');
+              event.stopPropagation();
+            },
+          },
+        },
+      });
+
+      expect(input.checkValidity()).to.equal(false);
+      expect(input.validationMessage).to.equal('Use this message.');
+    },
+  );
+
   it('should add the right class when size is small', () => {
     const { container } = render(<InputBase size="small" />);
     expect(container.firstChild).to.have.class(classes.sizeSmall);
