@@ -54,6 +54,11 @@ export default function VerticalLinearStepper() {
     const previousActiveStep = previousActiveStepRef.current;
     previousActiveStepRef.current = activeStep;
 
+    // The step didn't change, for example on mount. Leave the focus where it is.
+    if (previousActiveStep === activeStep) {
+      return;
+    }
+
     // If the user is going forward.
     if (previousActiveStep < activeStep) {
       if (activeStep === steps.length) {
