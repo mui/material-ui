@@ -1046,8 +1046,7 @@ describe('<NumberField />', () => {
       // Material must not synthesize another click when the composed handler returns.
       (['Enter', ' '] as const).forEach((key) => {
         const keyName = key === 'Enter' ? 'Enter' : 'Space';
-        // TODO: Re-enable once ButtonBase honors defaultMuiPrevented in https://github.com/mui/material-ui/pull/49850.
-        it.todo(`allows a consumer to cancel non-native ${keyName} stepping`, async () => {
+        it(`allows a consumer to cancel non-native ${keyName} stepping`, async () => {
           const onValueChange = vi.fn();
           const onValueCommitted = vi.fn();
           const cancelBase = vi.fn((event: BaseUIEvent<React.KeyboardEvent<HTMLButtonElement>>) => {
@@ -1090,9 +1089,7 @@ describe('<NumberField />', () => {
         { configuration: 'host slot', renderButton: undefined },
         { configuration: 'Material render element', renderButton: <span /> },
       ].forEach(({ configuration, renderButton }) => {
-        // TODO: Re-enable the Material render case once https://github.com/mui/material-ui/pull/49850 lands.
-        const test = it.skipIf(configuration === 'Material render element');
-        test(`supports a non-native ${configuration} with one activation per gesture`, async () => {
+        it(`supports a non-native ${configuration} with one activation per gesture`, async () => {
           const onValueChange = vi.fn();
           const onValueCommitted = vi.fn();
           const { user } = render(
