@@ -737,20 +737,19 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
 }
 
 /**
- * Makes the next Tab move focus to the first tab stop in `testcase`.
+ * Makes the next Tab move focus to the first tab stop in `elm`.
  *
  * Tab moves from the sequential focus navigation starting point, and pooled
  * pages keep it between tests along with the rest of the document. An earlier
  * test can leave it after the fixtures: the devtools test clicks "Hide
  * devtools", which is then removed, and the next Tab moves focus out of the
- * page. Focusing an element moves the starting point to it, so focus the
- * testcase and blur it again. This also blurs whatever an earlier test left
- * focused.
+ * page. Focusing an element moves the starting point to it, so focus `elm`
+ * and blur it again. This also blurs whatever an earlier test left focused.
  *
- * @param {import('@playwright/test').ElementHandle} testcase
+ * @param {import('@playwright/test').ElementHandle} elm
  */
-async function startTabNavigationAt(testcase) {
-  await testcase.evaluate((element) => {
+async function startTabNavigationAt(elm) {
+  await elm.evaluate((element) => {
     element.setAttribute('tabindex', '-1');
     element.focus({ preventScroll: true });
     element.blur();
