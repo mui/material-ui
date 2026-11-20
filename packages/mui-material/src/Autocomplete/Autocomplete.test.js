@@ -5152,6 +5152,31 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: readOnly', () => {
+    it('should not clear the value on Escape when clearOnEscape=true', async () => {
+      const handleChange = spy();
+      const handleKeyDown = spy();
+      const { user } = render(
+        <div onKeyDown={handleKeyDown}>
+          <Autocomplete
+            readOnly
+            clearOnEscape
+            defaultValue="one"
+            options={['one', 'two']}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </div>,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.click(textbox);
+      await user.keyboard('{Escape}');
+
+      expect(textbox).to.have.value('one');
+      expect(handleChange.callCount).to.equal(0);
+      expect(handleKeyDown.callCount).to.equal(1);
+    });
+
     it('should make the input readonly', () => {
       render(
         <Autocomplete
