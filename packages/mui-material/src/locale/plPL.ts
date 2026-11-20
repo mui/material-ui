@@ -56,6 +56,12 @@ export const plPL: Localization = {
         openText: 'Otwórz',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Znak ${formatNumber(position)} z ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zamknij',

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('az-AZ');
 
 export const azAZ: Localization = {
   components: {
@@ -49,6 +52,12 @@ export const azAZ: Localization = {
         loadingText: 'Yüklənir…',
         noOptionsText: 'Seçimlər mövcud deyil',
         openText: 'Открыть',
+      },
+    },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Simvol ${formatNumber(position)} (cəmi ${formatNumber(length)})`,
       },
     },
     MuiAlert: {

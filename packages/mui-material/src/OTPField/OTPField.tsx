@@ -200,6 +200,7 @@ OTPField.propTypes /* remove-proptypes */ = {
   form: PropTypes.string,
   /**
    * Accessible name for a character after the first. Positions start at one.
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default function defaultGetInputAriaLabel(position: number, length: number) {
    *   return `Character ${position} of ${length}`;
    * }

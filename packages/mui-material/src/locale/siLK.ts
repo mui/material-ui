@@ -45,6 +45,12 @@ export const siLK: Localization = {
         openText: 'විවෘත කරන්න',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `අක්ෂර ${formatNumber(length)}කින් ${formatNumber(position)} වන අක්ෂරය`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'වසන්න',

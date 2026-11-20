@@ -56,6 +56,12 @@ export const beBY: Localization = {
         openText: 'Адкрыць',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Сімвал ${formatNumber(position)} з ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Закрыць',

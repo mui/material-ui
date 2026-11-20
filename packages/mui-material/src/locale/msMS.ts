@@ -49,6 +49,12 @@ export const msMS: Localization = {
         openText: 'Buka',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Aksara ${formatNumber(position)} daripada ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'tutup',

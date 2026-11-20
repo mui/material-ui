@@ -45,6 +45,12 @@ export const bnBD: Localization = {
         openText: 'ওপেন করুন',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `${formatNumber(length)}টির মধ্যে ${formatNumber(position)} নম্বর অক্ষর`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'বন্ধ করুন',

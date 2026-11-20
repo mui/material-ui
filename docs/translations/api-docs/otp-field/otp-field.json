@@ -24,7 +24,7 @@
     "error": { "description": "Display the field in an error state." },
     "form": { "description": "The ID of the form that owns the field." },
     "getInputAriaLabel": {
-      "description": "Accessible name for a character after the first. Positions start at one."
+      "description": "Accessible name for a character after the first. Positions start at one. For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "helperText": { "description": "The supporting or error text displayed below the inputs." },
     "id": {

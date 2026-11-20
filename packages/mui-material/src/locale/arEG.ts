@@ -45,6 +45,12 @@ export const arEG: Localization = {
         openText: 'فتح',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `الحرف ${formatNumber(position)} من ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'إغلاق',

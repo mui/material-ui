@@ -45,6 +45,12 @@ export const esES: Localization = {
         openText: 'Abierto',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Carácter ${formatNumber(position)} de ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Cerrar',

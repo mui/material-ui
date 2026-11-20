@@ -45,6 +45,12 @@ export const amET: Localization = {
         openText: 'ክፈት',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `ከ${formatNumber(length)} ቁምፊዎች ውስጥ ${formatNumber(position)}ኛው ቁምፊ`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'ዝጋ',

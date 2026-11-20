@@ -45,6 +45,12 @@ export const jaJP: Localization = {
         openText: '開く',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `全${formatNumber(length)}文字中${formatNumber(position)}文字目`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: '閉じる',

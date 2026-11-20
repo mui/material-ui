@@ -45,6 +45,12 @@ export const caES: Localization = {
         openText: 'Obert',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Caràcter ${formatNumber(position)} de ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Tancat',

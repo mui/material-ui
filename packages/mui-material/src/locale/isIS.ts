@@ -45,6 +45,12 @@ export const isIS: Localization = {
         openText: 'Opna',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Stafur ${formatNumber(position)} af ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Loka',

@@ -45,6 +45,12 @@ export const daDK: Localization = {
         openText: 'Åben',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Tegn ${formatNumber(position)} af ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Luk',

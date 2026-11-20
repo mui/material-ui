@@ -53,6 +53,12 @@ export const srRS: Localization = {
         openText: 'Otvori',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Znak ${formatNumber(position)} od ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zatvori',

@@ -45,6 +45,12 @@ export const koKR: Localization = {
         openText: '열기',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `전체 ${formatNumber(length)}자 중 ${formatNumber(position)}번째 문자`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: '닫기',

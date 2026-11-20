@@ -45,6 +45,12 @@ export const hiIN: Localization = {
         openText: 'खोलें',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `वर्ण ${formatNumber(position)}, कुल ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'बंद करें',

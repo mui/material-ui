@@ -45,6 +45,12 @@ export const psAF: Localization = {
         openText: 'خلاصول',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `توری ${formatNumber(position)} له ${formatNumber(length)} څخه`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'تړل',
