@@ -233,7 +233,8 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     className: classes.input,
   });
 
-  const groupRender = externalForwardedProps.slots.input ? undefined : inputRender;
+  const customInput = externalForwardedProps.slots.input;
+  const groupRender = customInput ? undefined : inputRender;
   // A local render clears the variant's themed root. An explicit root slot still wins.
   const inputSlots = groupRender
     ? { root: undefined, ...materialInputProps.slots }
@@ -244,18 +245,20 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     // eslint-disable-next-line mui/material-ui-name-matches-component-name
     name: variantName[variant],
   });
-  const materialRootComponent = materialSlots?.root;
-  const materialSlotProps = {
-    ...materialInputProps.slotProps,
-    root: {
-      ...materialInputProps.slotProps?.root,
-      ...(!materialRootComponent && { as: NumberFieldInputRootSlot }),
-      numberFieldInputRoot: {
-        render: groupRender,
-        rootComponent: materialRootComponent,
-      },
-    },
-  };
+  const materialRootComponent = customInput ? undefined : materialSlots?.root;
+  const materialSlotProps = customInput
+    ? materialInputProps.slotProps
+    : {
+        ...materialInputProps.slotProps,
+        root: {
+          ...materialInputProps.slotProps?.root,
+          ...(!materialRootComponent && { as: NumberFieldInputRootSlot }),
+          numberFieldInputRoot: {
+            render: groupRender,
+            rootComponent: materialRootComponent,
+          },
+        },
+      };
 
   const [HtmlInputSlot, { render: htmlInputRender, ...htmlInputProps }] = useSlot('htmlInput', {
     elementType: 'input',
@@ -484,7 +487,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     ...(useHtmlInputRender && { render: htmlInputRender, renderState: baseState }),
   };
 
-  return (
+  const input = (
     <InputSlot
       aria-describedby={helperTextId}
       autoFocus={autoFocus}
@@ -511,6 +514,9 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       inputProps={finalHtmlInputProps}
     />
   );
+
+  // Let a replacement input choose its own root and pass Group props through to it.
+  return customInput ? <BaseNumberField.Group render={input} /> : input;
 }
 
 export default NumberFieldInputSlot;
