@@ -10,7 +10,7 @@ import useTimeout from '@mui/utils/useTimeout';
 import ownerDocument from '../utils/ownerDocument';
 import Menu from '../Menu/Menu';
 import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
-import InputBaseSizeContext from '../InputBase/InputBaseSizeContext';
+import InputBaseSizeContext from '../InputBase/inputBaseSizeContext';
 import { isFilled } from '../InputBase/utils';
 import { styled } from '../zero-styled';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';

@@ -8,7 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import isHostComponent from '@mui/utils/isHostComponent';
 import TextareaAutosize from '../TextareaAutosize';
 import FormControlContext from '../FormControl/FormControlContext';
-import InputBaseSizeContext from './InputBaseSizeContext';
+import InputBaseSizeContext from './inputBaseSizeContext';
 import { useFormControlState } from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
