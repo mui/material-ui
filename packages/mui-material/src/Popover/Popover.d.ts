@@ -93,7 +93,7 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
-interface PopoverVirtualElement {
+export interface PopoverVirtualElement {
   getBoundingClientRect: () => DOMRect;
   nodeType: Node['ELEMENT_NODE'];
 }
@@ -210,8 +210,9 @@ export function getOffsetLeft(
   horizontal: number | 'center' | 'right' | 'left',
 ): number;
 
-type PopoverRootProps = NonNullable<PopoverProps['slotProps']>['root'];
-type PopoverPaperProps = NonNullable<PopoverProps['slotProps']>['paper'];
+export type PopoverRootProps = NonNullable<PopoverProps['slotProps']>['root'];
+
+export type PopoverPaperProps = NonNullable<PopoverProps['slotProps']>['paper'];
 
 export declare const PopoverRoot: React.FC<PopoverRootProps>;
 export declare const PopoverPaper: React.FC<PopoverPaperProps>;

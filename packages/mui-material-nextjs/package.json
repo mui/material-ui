@@ -23,7 +23,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --tsgo --flat",
+    "build": "code-infra build-new --cjsCopy",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-nextjs\"",
     "typescript": "tsc -p tsconfig.json",
