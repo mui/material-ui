@@ -305,6 +305,52 @@ export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants
 
 export type TextFieldOwnerState = BaseTextFieldProps;
 
+type TextFieldSelectSlotProps<Native extends boolean> = SlotProps<
+  React.ElementType<SelectProps>,
+  TextFieldSelectSlotPropsOverrides &
+    (Native extends true ? { native: true } : { native?: false | undefined }),
+  TextFieldOwnerState
+>;
+
+interface TextFieldSelectProps<Variant extends TextFieldVariants, Value> extends Omit<
+  TextFieldProps,
+  'variant' | 'select' | 'value' | 'defaultValue' | 'onChange' | 'slotProps'
+> {
+  variant?: Variant | undefined;
+  select: true;
+  /**
+   * The value of the `input` element, required for a controlled component.
+   */
+  value?: Value | undefined;
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue?: Value | undefined;
+  onChange?: SelectProps<Value>['onChange'] | undefined;
+  slotProps?:
+    | (Omit<NonNullable<TextFieldProps['slotProps']>, 'select'> & {
+        select?: TextFieldSelectSlotProps<false> | undefined;
+      })
+    | undefined;
+}
+
+interface TextFieldNativeSelectProps<Variant extends TextFieldVariants> extends Omit<
+  TextFieldSelectProps<Variant, unknown>,
+  'onChange' | 'slotProps'
+> {
+  onChange?: React.ChangeEventHandler<HTMLSelectElement> | undefined;
+  slotProps: Omit<NonNullable<TextFieldProps['slotProps']>, 'select'> & {
+    select: TextFieldSelectSlotProps<true>;
+  };
+}
+
+export default function TextField<Variant extends TextFieldVariants>(
+  props: TextFieldNativeSelectProps<Variant>,
+): React.JSX.Element;
+export default function TextField<Variant extends TextFieldVariants, Value = string>(
+  props: TextFieldSelectProps<Variant, Value>,
+): React.JSX.Element;
+
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
  * It cannot be all things to all people, otherwise the API would grow out of control.
