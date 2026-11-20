@@ -238,6 +238,7 @@ Remove the top-level `palette` to keep the previous result, or move its values i
 Material UI puts all of its styles in the `mui` [cascade layer](/material-ui/customization/css-layers/), as `enableCssLayer` did in v9.
 This can't be turned off.
 Inside the layer, Material UI's styles keep the v9 precedence.
+Apps that use styled-components as the style engine, with `@mui/styled-engine-sc`, get the `mui` layer too, although `enableCssLayer` only worked with Emotion in v9.
 
 CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles, whatever its specificity.
 To keep a reset below Material UI's styles, put it in a layer declared before `mui`, and import the CSS that you can't edit into that layer:
@@ -254,15 +255,21 @@ To keep a reset below Material UI's styles, put it in a layer declared before `
 }
 ```
 
-Styles that you write with Emotion directly, such as with `@emotion/styled` or the `css` prop, aren't in a layer either, so they also override Material UI's styles, even in states such as disabled.
-To keep them in the `mui` layer, write them with `styled()` from `@mui/material/styles`.
+The styles that you write with Material UI, such as with `sx`, `styled()`, `GlobalStyles` or theme style overrides, are in the `mui` layer too.
+They no longer override CSS that isn't in a layer, such as a third-party library's stylesheet, so import that CSS into a layer declared before `mui` as well.
+
+Declarations with `!important` rank layers in reverse: an `!important` declaration in the `mui` layer, from Material UI or from your `sx`, now beats an `!important` declaration in CSS that isn't in a layer.
+
+Styles that you write with Emotion or styled-components directly aren't in a layer either, so they also override Material UI's styles, even in states such as disabled.
+This includes `@emotion/styled`, the `css` prop, the `Global` component from `@emotion/react` and `styled` from `styled-components`.
+To keep them in the `mui` layer, write them with `styled()` from `@mui/material/styles` and `GlobalStyles` from `@mui/material` instead.
 
 In tests that run in jsdom or happy-dom, Material UI's styles aren't layered, so that style assertions keep working.
 jsdom before version 31 and happy-dom ignore the rules inside `@layer` blocks, and matchers such as `@emotion/jest`'s `toHaveStyleRule` don't look inside them.
 To check styles in tests, prefer computed-style assertions, such as `toHaveStyle` from `@testing-library/jest-dom`.
 They work whether the styles are layered or not.
 
-The `modularCssLayers` theme option works as in v9: set it to `true` or to a layer order string to split `mui` into [sub-layers](/material-ui/customization/css-layers/#sub-layers).
+The `modularCssLayers` theme option works as in v9, without `enableCssLayer`: set it to `true` or to a layer order string to split `mui` into [sub-layers](/material-ui/customization/css-layers/#sub-layers).
 
 ### StyledEngineProvider removed
 
