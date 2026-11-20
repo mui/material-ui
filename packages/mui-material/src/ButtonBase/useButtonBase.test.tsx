@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
-import type { UseButtonBaseParameters } from './useButtonBase';
+import type { MuiKeyboardEvent, UseButtonBaseParameters } from './useButtonBase';
 import useButtonBase from './useButtonBase';
 
 interface ButtonProps extends Omit<UseButtonBaseParameters, 'nativeButton' | 'disabled'> {
@@ -156,36 +156,36 @@ describe('useButtonBase', () => {
         expect(handleClick).toHaveBeenCalledTimes(1);
       });
 
-      [
-        { key: 'Enter', sequence: '{Enter}' },
-        { key: 'Space', sequence: ' ' },
-      ].forEach(({ key, sequence }) => {
-        it(`does not activate when onKeyDown prevents ${key}`, async () => {
-          const onClick = vi.fn();
-          const { user } = render(
-            <NonNativeButton onClick={onClick} onKeyDown={(event) => event.preventDefault()} />,
-          );
-
-          await user.tab();
-          await user.keyboard(sequence);
-
-          expect(onClick).toHaveBeenCalledTimes(0);
-        });
-      });
-
-      it('keeps Space cancellation through repeated keydowns and clears it after release', async () => {
+      it('skips Enter and Space emulation when the handlers set defaultMuiPrevented', async () => {
         const onClick = vi.fn();
-        const onKeyDown = vi.fn().mockImplementationOnce((event: React.KeyboardEvent) => {
-          event.preventDefault();
-        });
-        const { user } = render(<NonNativeButton onClick={onClick} onKeyDown={onKeyDown} />);
+        const preventMuiDefault = (event: MuiKeyboardEvent) => {
+          event.defaultMuiPrevented = true;
+        };
+        const onKeyDown = vi.fn(preventMuiDefault);
+        const { user } = render(
+          <NonNativeButton onClick={onClick} onKeyDown={onKeyDown} onKeyUp={preventMuiDefault} />,
+        );
 
         await user.tab();
-        await user.keyboard('[Space>2/]');
-        expect(onClick).toHaveBeenCalledTimes(0);
+        await user.keyboard('{Enter}');
+        expect(onClick).not.toHaveBeenCalled();
 
         await user.keyboard(' ');
+        expect(onKeyDown.mock.lastCall![0].defaultPrevented).toBe(false);
+        expect(onClick).not.toHaveBeenCalled();
+      });
+
+      it('still activates Enter and Space when onKeyDown calls preventDefault', async () => {
+        const onClick = vi.fn();
+        const { user } = render(
+          <NonNativeButton onClick={onClick} onKeyDown={(event) => event.preventDefault()} />,
+        );
+
+        await user.tab();
+        await user.keyboard('{Enter}');
         expect(onClick).toHaveBeenCalledTimes(1);
+        await user.keyboard(' ');
+        expect(onClick).toHaveBeenCalledTimes(2);
       });
 
       it('Space on keyDown prevents default and keyUp activates click', () => {
