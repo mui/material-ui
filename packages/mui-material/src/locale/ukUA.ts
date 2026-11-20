@@ -56,6 +56,15 @@ export const ukUA: Localization = {
         openText: 'Розгорнути',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Збільшити' },
+          decrementButton: { 'aria-label': 'Зменшити' },
+          htmlInput: { 'aria-roledescription': 'Числове поле' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Згорнути',

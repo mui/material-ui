@@ -45,6 +45,15 @@ export const kuCKB: Localization = {
         openText: 'کردنەوە',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'زیاد بکە' },
+          decrementButton: { 'aria-label': 'کەم بکەوە' },
+          htmlInput: { 'aria-roledescription': 'خانەی ژمارە' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'داخستن',

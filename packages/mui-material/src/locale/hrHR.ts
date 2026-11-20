@@ -53,6 +53,15 @@ export const hrHR: Localization = {
         openText: 'Otvori',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Povećaj' },
+          decrementButton: { 'aria-label': 'Smanji' },
+          htmlInput: { 'aria-roledescription': 'Brojčano polje' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zatvori',

@@ -177,9 +177,10 @@ describe('useButtonBase', () => {
 
       it('still activates Enter and Space when onKeyDown calls preventDefault', async () => {
         const onClick = vi.fn();
-        const { user } = render(
-          <NonNativeButton onClick={onClick} onKeyDown={(event) => event.preventDefault()} />,
-        );
+        const onKeyDown = vi.fn().mockImplementationOnce((event: React.KeyboardEvent) => {
+          event.preventDefault();
+        });
+        const { user } = render(<NonNativeButton onClick={onClick} onKeyDown={onKeyDown} />);
 
         await user.tab();
         await user.keyboard('{Enter}');

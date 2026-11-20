@@ -45,6 +45,15 @@ export const nnNO: Localization = {
         openText: 'Opna',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Auk' },
+          decrementButton: { 'aria-label': 'Reduser' },
+          htmlInput: { 'aria-roledescription': 'Talfelt' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Lukk',

@@ -45,6 +45,15 @@ export const psAF: Localization = {
         openText: 'خلاصول',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'زیات کړئ' },
+          decrementButton: { 'aria-label': 'کم کړئ' },
+          htmlInput: { 'aria-roledescription': 'د شمېرې ډګر' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'تړل',

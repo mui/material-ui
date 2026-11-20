@@ -45,6 +45,15 @@ export const svSE: Localization = {
         openText: 'Öppna',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Öka' },
+          decrementButton: { 'aria-label': 'Minska' },
+          htmlInput: { 'aria-roledescription': 'Talfält' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Stäng',

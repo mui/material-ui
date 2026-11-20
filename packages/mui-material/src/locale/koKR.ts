@@ -45,6 +45,15 @@ export const koKR: Localization = {
         openText: '열기',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': '늘리기' },
+          decrementButton: { 'aria-label': '줄이기' },
+          htmlInput: { 'aria-roledescription': '숫자 입력란' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: '닫기',

@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
+import NumberField from '@mui/material/NumberField';
 import TablePagination from '@mui/material/TablePagination';
 import * as locales from '@mui/material/locale';
 
@@ -14,6 +15,7 @@ describe('locale', () => {
       render(
         <ThemeProvider theme={createTheme({ cssVariables }, locales.deDE)}>
           <Alert onClose={() => {}}>message</Alert>
+          <NumberField label="Anzahl" />
           <TablePagination
             component="div"
             count={100}
@@ -25,6 +27,12 @@ describe('locale', () => {
       );
 
       expect(screen.getByRole('button', { name: 'Schließen' })).not.to.equal(null);
+      expect(screen.getByRole('button', { name: 'Erhöhen' })).not.to.equal(null);
+      expect(screen.getByRole('button', { name: 'Verringern' })).not.to.equal(null);
+      expect(screen.getByRole('textbox', { name: 'Anzahl' })).to.have.attribute(
+        'aria-roledescription',
+        'Zahlenfeld',
+      );
       expect(screen.getByText('Zeilen pro Seite:')).not.to.equal(null);
       expect(screen.getByRole('button', { name: 'Zur nächsten Seite' })).not.to.equal(null);
     });

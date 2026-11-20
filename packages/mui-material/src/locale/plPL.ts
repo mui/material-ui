@@ -56,6 +56,15 @@ export const plPL: Localization = {
         openText: 'Otwórz',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Zwiększ' },
+          decrementButton: { 'aria-label': 'Zmniejsz' },
+          htmlInput: { 'aria-roledescription': 'Pole liczbowe' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zamknij',

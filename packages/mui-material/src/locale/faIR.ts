@@ -50,6 +50,15 @@ export const faIR: Localization = {
         openText: 'بازکردن',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'افزایش' },
+          decrementButton: { 'aria-label': 'کاهش' },
+          htmlInput: { 'aria-roledescription': 'فیلد عددی' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'بستن',

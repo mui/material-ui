@@ -45,6 +45,15 @@ export const itIT: Localization = {
         openText: 'Apri',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Aumenta' },
+          decrementButton: { 'aria-label': 'Diminuisci' },
+          htmlInput: { 'aria-roledescription': 'Campo numerico' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Chiudi',

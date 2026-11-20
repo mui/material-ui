@@ -1,0 +1,194 @@
+{
+  "props": {
+    "allowOutOfRange": { "type": { "name": "bool" }, "default": "false" },
+    "allowWheelScrub": { "type": { "name": "bool" }, "default": "false" },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "controlsPosition": {
+      "type": {
+        "name": "enum",
+        "description": "'end'<br>&#124;&nbsp;'split'<br>&#124;&nbsp;'stacked'<br>&#124;&nbsp;false"
+      },
+      "default": "'end'"
+    },
+    "defaultValue": { "type": { "name": "number" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "form": { "type": { "name": "string" } },
+    "format": { "type": { "name": "object" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "helperText": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "inputRef": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
+    },
+    "label": { "type": { "name": "node" } },
+    "largeStep": { "type": { "name": "number" }, "default": "10" },
+    "locale": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;object<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
+    "max": { "type": { "name": "number" } },
+    "min": { "type": { "name": "number" } },
+    "name": { "type": { "name": "string" } },
+    "onBlur": { "type": { "name": "func" } },
+    "onFocus": { "type": { "name": "func" } },
+    "onValueChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number | null, eventDetails: object) => void",
+        "describedArgs": ["value", "eventDetails"]
+      }
+    },
+    "onValueCommitted": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number | null, eventDetails: object) => void",
+        "describedArgs": ["value", "eventDetails"]
+      }
+    },
+    "placeholder": { "type": { "name": "string" } },
+    "readOnly": { "type": { "name": "bool" }, "default": "false" },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
+    "scrubAreaPosition": {
+      "type": {
+        "name": "enum",
+        "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
+      },
+      "default": "false"
+    },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ controls?: func<br>&#124;&nbsp;object, decrementButton?: func<br>&#124;&nbsp;object, formHelperText?: func<br>&#124;&nbsp;object, htmlInput?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, inputLabel?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrubArea?: func<br>&#124;&nbsp;object, scrubAreaAdornment?: func<br>&#124;&nbsp;object, scrubAreaCursor?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaAdornment?: elementType, scrubAreaCursor?: elementType }"
+      },
+      "default": "{}"
+    },
+    "smallStep": { "type": { "name": "number" }, "default": "0.1" },
+    "snapOnStep": { "type": { "name": "bool" }, "default": "false" },
+    "step": {
+      "type": { "name": "union", "description": "'any'<br>&#124;&nbsp;number" },
+      "default": "1"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "number" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "NumberField",
+  "imports": [
+    "import NumberField from '@mui/material/NumberField';",
+    "import { NumberField } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "controls",
+      "description": "The component that renders each group of stepper buttons.",
+      "default": "InputAdornment",
+      "class": "MuiNumberField-controls"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "IconButton",
+      "class": "MuiNumberField-decrementButton"
+    },
+    {
+      "name": "formHelperText",
+      "description": "The component that renders the helper text.",
+      "default": "FormHelperText",
+      "class": "MuiNumberField-formHelperText"
+    },
+    {
+      "name": "htmlInput",
+      "description": "The component that renders the native input element.\nUse `& .MuiNumberField-htmlInput` in `styleOverrides.root` to style it.",
+      "default": "'input'",
+      "class": "MuiNumberField-htmlInput"
+    },
+    {
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "IconButton",
+      "class": "MuiNumberField-incrementButton"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the Material input wrapper.",
+      "default": "OutlinedInput",
+      "class": "MuiNumberField-input"
+    },
+    {
+      "name": "inputLabel",
+      "description": "The component that renders the input's label.",
+      "default": "InputLabel",
+      "class": "MuiNumberField-inputLabel"
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.\nWhile scrubbing, the root has the `MuiNumberField-scrubbing` class.\nUse `&.MuiNumberField-scrubbing` in `styleOverrides.root` to style that state.",
+      "default": "FormControl",
+      "class": "MuiNumberField-root"
+    },
+    {
+      "name": "scrubArea",
+      "description": "The component that renders the drag handle for adjusting the value.",
+      "default": "'span'",
+      "class": "MuiNumberField-scrubArea"
+    },
+    {
+      "name": "scrubAreaAdornment",
+      "description": "The component that wraps the scrub area in an input adornment.",
+      "default": "InputAdornment",
+      "class": "MuiNumberField-scrubAreaAdornment"
+    },
+    {
+      "name": "scrubAreaCursor",
+      "description": "The component that renders the custom cursor while dragging the scrub area.",
+      "default": "'span'",
+      "class": "MuiNumberField-scrubAreaCursor"
+    }
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiNumberField",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/NumberField/NumberField.tsx",
+  "inheritance": { "component": "FormControl", "pathname": "/material-ui/api/form-control/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-number-field/\">Number Field</a></li></ul>"
+}

@@ -45,6 +45,15 @@ export const kuLatn: Localization = {
         openText: 'Veke',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Zêde bike' },
+          decrementButton: { 'aria-label': 'Kêm bike' },
+          htmlInput: { 'aria-roledescription': 'Qada hejmarê' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Bigre',

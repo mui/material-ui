@@ -45,6 +45,15 @@ export const daDK: Localization = {
         openText: 'Åben',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Forøg' },
+          decrementButton: { 'aria-label': 'Formindsk' },
+          htmlInput: { 'aria-roledescription': 'Talfelt' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Luk',
