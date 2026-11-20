@@ -1,5 +1,6 @@
 'use client';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
@@ -52,12 +53,12 @@ const RadioButtonIconDot = styled(RadioButtonCheckedIcon, {
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { checked = false, classes = {}, fontSize } = props;
+  const { checked = false, classes = {}, className, fontSize } = props;
 
   const ownerState = { ...props, checked };
 
   return (
-    <RadioButtonIconRoot className={classes.root} ownerState={ownerState}>
+    <RadioButtonIconRoot className={clsx(classes.root, className)} ownerState={ownerState}>
       <RadioButtonIconBackground
         fontSize={fontSize}
         className={classes.background}
@@ -77,6 +78,10 @@ RadioButtonIcon.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * CSS class applied to the root element.
+   */
+  className: PropTypes.string,
   /**
    * The size of the component.
    * `small` is equivalent to the dense radio styling.
