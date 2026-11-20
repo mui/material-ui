@@ -22,6 +22,9 @@ export default function Tags() {
     top100Films[12].title,
     top100Films[13].title,
   ]);
+  const [noClearCloseValue, setNoClearCloseValue] = React.useState([
+    top100Films[13],
+  ]);
 
   return (
     <Stack spacing={3} sx={{ width: 500 }}>
@@ -141,6 +144,38 @@ export default function Tags() {
               htmlInput: {
                 ...params.slotProps.htmlInput,
                 'aria-description': getInputDescription(readOnlyValue.length),
+              },
+            }}
+          />
+        )}
+      />
+      <Autocomplete
+        multiple
+        disableClearOnSelect
+        disableCloseOnSelect
+        id="tags-disableClearOnSelect+disableCloseOnSelect"
+        options={top100Films}
+        getOptionLabel={(option) => option.title}
+        value={noClearCloseValue}
+        onChange={(event, newValue) => {
+          setNoClearCloseValue(newValue);
+        }}
+        slotProps={{
+          chip: {
+            'aria-description': removeDescription,
+          },
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="standard"
+            label="disableClearOnSelect && disableCloseOnSelect"
+            placeholder="Favorites"
+            slotProps={{
+              ...params.slotProps,
+              htmlInput: {
+                ...params.slotProps.htmlInput,
+                'aria-description': getInputDescription(standardValue.length),
               },
             }}
           />
