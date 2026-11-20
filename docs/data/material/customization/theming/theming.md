@@ -211,6 +211,7 @@ When the value for a theme option is dependent on another theme option, you shou
 import { createTheme } from '@mui/material/styles';
 
 let theme = createTheme({
+  cssVariables: true,
   palette: {
     primary: {
       main: '#0052cc',
@@ -232,12 +233,11 @@ theme = createTheme(theme, {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
-When `theme` is created with `cssVariables`, `createTheme(theme, …)` creates it again from its options and the new ones.
-In this example, `info.light`, `info.dark`, and `info.contrastText` are then generated from the new `main` color, like in a single call.
-Otherwise, the new options are deep merged into `theme` as they are, so these values stay the ones of the default `info` color.
+Since `theme` is created with `cssVariables`, `createTheme(theme, …)` creates it again from its options and the new ones, so `info.light`, `info.dark`, and `info.contrastText` are generated from the new `main` color, like in a single call.
+Without `cssVariables`, the new options are deep merged into `theme` as they are, so these values stay the ones of the default `info` color.
 
 A copy of such a theme with changed values is created again the same way, like `createTheme({ ...theme, palette: { ...theme.palette, info } })`.
-Changes made to `theme` itself, like `theme.palette.info.main = '#edf2ff'`, are ignored.
+Changes made to such a theme itself, like `theme.palette.info.main = '#edf2ff'`, are ignored.
 
 **WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
