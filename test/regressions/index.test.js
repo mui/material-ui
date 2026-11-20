@@ -124,13 +124,8 @@ async function main() {
         pool.release(page);
       }
     },
-    // A page that no other test has used, for tests that press Tab to move
-    // focus into the fixture. Pooled pages render every route in the same
-    // document, so they keep the sequential focus navigation starting point
-    // that Tab moves from, and the reset above can't restore it. For example,
-    // the devtools test clicks "Hide devtools", which is then removed: on that
-    // page, the next Tab moves focus out of the page instead of into the
-    // fixture.
+    // A page that no other test uses, closed afterwards, for tests that leave
+    // state behind that the reset above can't undo.
     // eslint-disable-next-line no-empty-pattern
     fresh: async ({}, use) => {
       const page = await newTestPage(browser);
@@ -221,8 +216,13 @@ async function main() {
       await browser.close();
     });
 
-    test('updates devtools visibility after router and hash navigation', async ({ pooled }) => {
-      const { page } = pooled;
+    // Runs on its own page. Clicking "Hide devtools" moves the sequential focus
+    // navigation starting point (where Tab moves from) to the link, after the
+    // fixtures, and the link is then removed. Pooled pages keep the document
+    // between tests, so the next test to press Tab on a pooled page would move
+    // focus out of the page instead of into its fixture.
+    test('updates devtools visibility after router and hash navigation', async ({ fresh }) => {
+      const { page } = fresh;
       await page.evaluate(() => {
         window.location.hash = '#dev';
       });
@@ -333,8 +333,8 @@ async function main() {
     });
 
     describe('Rating', () => {
-      test('should handle focus-visible correctly', async ({ fresh }) => {
-        const { page } = fresh;
+      test('should handle focus-visible correctly', async ({ pooled }) => {
+        const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/FocusVisibleRating');
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
@@ -348,8 +348,8 @@ async function main() {
         });
       });
 
-      test('should handle focus-visible with precise ratings correctly', async ({ fresh }) => {
-        const { page } = fresh;
+      test('should handle focus-visible with precise ratings correctly', async ({ pooled }) => {
+        const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/PreciseFocusVisibleRating');
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
