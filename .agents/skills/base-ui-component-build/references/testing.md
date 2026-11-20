@@ -49,6 +49,10 @@ Test through the Material UI parts, not the Base UI ones:
 - Theme `defaultProps`, `styleOverrides`, and `variants` reaching each part, and a `styleOverrides` rule that targets a live-state class.
 - Timing props (`delay`, `closeDelay`) with a fake clock (`clock.withFakeTimers()` in a `describe`): nothing happens 1ms before the delay, and the change happens at the delay. Do not test them only with `delay={0}`.
 - Every default that differs from Base UI, measured in Chromium (`it.skipIf(isJsdom())`): the 8px gap between the trigger and the popup, and the gap with an explicit `sideOffset`.
+- A slot prop that shares its name with an `ownerState` key (a control's `size` in a field with its own `size`): set the slot's value differently from the component's and check the computed style in Chromium (see [styling.md](styling.md)).
+- For a component composed from Material inputs, the layout of every variant and adornment position in Chromium (see [styling.md](styling.md#composing-material-inputs)).
+- A test that checks a replacement slot skips `render` also asserts that the replacement element rendered; asserting only that `render` was not called passes when nothing renders.
+- Write a matrix (slot prop precedence, one case per variant) as one table test per path that asserts every case, not one test per combination.
 - Server rendering with `createRenderer().renderToString` for parts whose first render depends on state (form fields, formatted values).
 
 After a close, wait until the popup is removed (`await waitFor(() => expect(screen.queryByText(…)).to.equal(null))`), then assert that `onOpenChangeComplete` was called once, with `false`; reset its spy after the first render, because a `defaultOpen` popup calls it with `true` on mount. This passes in jsdom, which removes the popup at once, and in Chromium, where the exit transition runs first. Never guard the assertion with `if (popup)`, which passes without checking anything.

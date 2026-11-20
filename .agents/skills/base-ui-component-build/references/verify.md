@@ -19,6 +19,13 @@ Every check below is a bug that a previous build of a Material UI component on B
 - [ ] **Changed defaults are redeclared.** Every prop whose Material default differs from Base UI's is outside `Pick`, with its own `@default`. Detect: `pnpm docs:api` passes. [adapter.md, Types]
 - [ ] **Optional props are typed `| undefined`.** Detect: eslint `mui/add-undef-to-optional`.
 
+## Styling
+
+- [ ] **No custom `overridesResolver`.** `grep -rn overridesResolver packages/mui-material/src/<Name>*` prints nothing. [styling.md, Theme overrides]
+- [ ] **`styleOverrides` keys are slots.** No key exists for a state or for an element without its own styled slot; the docs show nested `root` selectors for those. [styling.md, Theme overrides]
+- [ ] **Variants need no casts.** No `variants` callback annotates or casts its parameter, equality checks are object rules, and a style with a callback or a hand-written object rule has an `Interpolation<…>` return annotation. Detect: read the `variants` arrays, then `pnpm typescript`. [styling.md, Typing variants]
+- [ ] **A slot's own value wins over the component's.** For a slot prop that shares its name with an `ownerState` key, the Chromium test with different values passes. [styling.md, A slot prop with the same name as an `ownerState` key]
+
 ## Generated files
 
 - [ ] **propTypes are generated, not written.** `pnpm proptypes` leaves no diff after your final commit.

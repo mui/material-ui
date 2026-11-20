@@ -38,6 +38,8 @@ Apply every one of these rules. Each names where the team decided it: the [2026-
 
 5. **Styling hooks.** Utility classes and `ownerState` carry live Base UI state. The Base UI data attributes are re-exported from Base UI and documented. Users style live state with these classes and data attribute constants in `styleOverrides`; `variants` match props only.
 
+   Open point: Menu v2 ([#48823](https://github.com/mui/material-ui/pull/48823)) documents the attributes as strings and exports no constants. Follow whichever form the team settles on there; until then, re-export the constants.
+
    Sources: exposing the data attributes, [2026-11-04 meeting](https://mui-org.slack.com/archives/C061V6JNZ9Q/p1793793908228549); re-exporting them and `variants` matching props only, [#49684](https://github.com/mui/material-ui/pull/49684).
 
 6. **Stable exports.** Each public part is a `@mui/material/<Name><Part>` subpath and a root `@mui/material` export, with a `Mui<Name><Part>` theme key. The `Unstable_` prefix is only for a Base UI successor to an existing component.
@@ -67,7 +69,7 @@ Done when every public prop of every part is accounted for as one of: a picked B
 
 ### 3. Implement each part
 
-Read [references/verify.md](references/verify.md) once, then follow [references/adapter.md](references/adapter.md).
+Read [references/verify.md](references/verify.md) once, then follow [references/adapter.md](references/adapter.md), and [references/styling.md](references/styling.md) for the styles.
 Every Base UI part renders through its `render` callback into a Material styled slot, and every slot goes through `useSlot`.
 
 Done when each row of the step 1 table has its part or slot implemented, and no Base UI prop reaches the DOM unless it was picked.
