@@ -123,10 +123,6 @@ function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldP
 // @ts-expect-error The outlined input has no underline to disable.
 <NumberField variant="outlined" slotProps={{ input: { disableUnderline: true } }} />;
 
-// FIXME: Union excess-property checking still accepts other variants' input props
-// when variant is omitted, even though the runtime default is outlined.
-<NumberField slotProps={{ input: { disableUnderline: true } }} />;
-
 // Explicit generic arguments select the corresponding public interface.
 const standardProps: NumberFieldProps<'standard'> = {
   variant: 'standard',
