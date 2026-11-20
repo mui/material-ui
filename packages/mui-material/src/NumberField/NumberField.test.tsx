@@ -302,14 +302,21 @@ describe('<NumberField />', () => {
       expect(helper).to.have.attribute('data-render-value', '6');
     });
 
-    it('lets replacement slots bypass their render adapters', () => {
+    it('uses the replacement label and helper text for the accessible name and description', () => {
+      function CustomLabel({ children, htmlFor }: React.ComponentProps<'label'>) {
+        return (
+          <label htmlFor={htmlFor} data-testid="replacement-label">
+            {children}
+          </label>
+        );
+      }
       const renderLabel = vi.fn(() => <label />);
       const renderHelper = vi.fn(() => <p />);
       render(
         <NumberField
           label="Amount"
           helperText="Enter an amount"
-          slots={{ inputLabel: 'label', formHelperText: 'p' }}
+          slots={{ inputLabel: CustomLabel, formHelperText: 'aside' }}
           slotProps={{
             inputLabel: { render: renderLabel },
             formHelperText: { render: renderHelper },
@@ -317,8 +324,12 @@ describe('<NumberField />', () => {
         />,
       );
 
-      expect(renderLabel).toHaveBeenCalledTimes(0);
-      expect(renderHelper).toHaveBeenCalledTimes(0);
+      const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
+      expect(input.labels?.[0]).to.equal(screen.getByTestId('replacement-label'));
+      expect(screen.getByRole('complementary')).to.have.text('Enter an amount');
+      expect(input).toHaveAccessibleDescription('Enter an amount');
+      expect(renderLabel).not.toHaveBeenCalled();
+      expect(renderHelper).not.toHaveBeenCalled();
     });
   });
 
@@ -612,92 +623,45 @@ describe('<NumberField />', () => {
   // Keep Base UI's resolved interaction flags aligned with Material's visual state.
   // Slot customization must preserve editing restrictions and native validation.
   describe('behavioral state', () => {
-    const slotPropPaths = [
-      { name: 'root', getSlotProps: (props) => ({ root: props }) },
-      { name: 'input', getSlotProps: (props) => ({ input: () => props }) },
-      { name: 'htmlInput', getSlotProps: (props) => ({ htmlInput: () => props }) },
-    ] satisfies {
-      name: string;
-      getSlotProps: (
-        props: Partial<Pick<NumberFieldOwnerState, 'disabled' | 'required' | 'readOnly'>>,
-      ) => NumberFieldProps['slotProps'];
-    }[];
-
-    // Exercise conflicting flags at each prop path to catch late spreads that
-    // override the field's disabled, required, or read-only behavior.
     describe('slot prop precedence', () => {
-      slotPropPaths.forEach(({ name, getSlotProps }) => {
-        // Each configuration path can introduce a later spread that changes resolved state.
-        describe(`slotProps.${name}`, () => {
-          [false, true].forEach((disabled) => {
-            it(`preserves top-level disabled=${disabled} despite the opposite slot prop`, () => {
-              render(
-                <NumberField
-                  label="Amount"
-                  disabled={disabled}
-                  slotProps={getSlotProps({ disabled: !disabled })}
-                />,
-              );
-              const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
+      (['root', 'input', 'htmlInput'] as const).forEach((slot) => {
+        it.each([
+          { disabled: true, required: false, readOnly: false },
+          { disabled: false, required: true, readOnly: false },
+          { disabled: false, required: false, readOnly: true },
+        ])(
+          `preserves disabled=$disabled, required=$required, readOnly=$readOnly despite conflicting slotProps.${slot}`,
+          ({ disabled, required, readOnly }) => {
+            const conflictingProps = { disabled: !disabled, required: !required };
+            const slotProps =
+              slot === 'root'
+                ? { root: conflictingProps }
+                : { [slot]: () => ({ ...conflictingProps, readOnly: !readOnly }) };
+            render(
+              <NumberField
+                label="Amount"
+                disabled={disabled}
+                required={required}
+                readOnly={readOnly}
+                slotProps={slotProps}
+              />,
+            );
 
-              expect(input.disabled).to.equal(disabled);
-              if (name === 'input') {
-                expect(
-                  input.closest('.MuiInputBase-root')!.classList.contains('Mui-disabled'),
-                ).to.equal(disabled);
-              }
-              if (name === 'root') {
-                expect(
-                  screen
-                    .getByText('Amount', { selector: 'label' })
-                    .classList.contains('Mui-disabled'),
-                ).to.equal(disabled);
-              }
-            });
-          });
-
-          [false, true].forEach((required) => {
-            it(`preserves top-level required=${required} despite the opposite slot prop`, () => {
-              render(
-                <NumberField
-                  label="Amount"
-                  required={required}
-                  slotProps={getSlotProps({ required: !required })}
-                />,
-              );
-              const input = screen.getByRole<HTMLInputElement>('textbox', { name: /Amount/ });
-              const label = screen.getByText('Amount', { selector: 'label' });
-
-              expect(input.required).to.equal(required);
-              if (name === 'root') {
-                expect(label.classList.contains('Mui-required')).to.equal(required);
-              }
-            });
-          });
-
-          // FormControl does not have a readOnly prop; it applies to the Material and native inputs.
-          if (name !== 'root') {
-            [false, true].forEach((readOnly) => {
-              it(`preserves top-level readOnly=${readOnly} despite the opposite slot prop`, () => {
-                render(
-                  <NumberField
-                    label="Amount"
-                    readOnly={readOnly}
-                    slotProps={getSlotProps({ readOnly: !readOnly })}
-                  />,
-                );
-                const input = screen.getByRole<HTMLInputElement>('textbox', { name: 'Amount' });
-
-                expect(input.readOnly).to.equal(readOnly);
-                if (name === 'input') {
-                  expect(
-                    input.closest('.MuiInputBase-root')!.classList.contains('Mui-readOnly'),
-                  ).to.equal(readOnly);
-                }
-              });
-            });
-          }
-        });
+            const input = screen.getByRole<HTMLInputElement>('textbox', { name: /Amount/ });
+            const wrapper = screen.getByRole('group');
+            const label = screen.getByText('Amount', { selector: 'label' });
+            expect(input.disabled).to.equal(disabled);
+            expect(input.required).to.equal(required);
+            expect(input.readOnly).to.equal(readOnly);
+            expect(wrapper.classList.contains('Mui-disabled')).to.equal(disabled);
+            expect(wrapper.classList.contains('Mui-readOnly')).to.equal(readOnly);
+            expect(label.classList.contains('Mui-disabled')).to.equal(disabled);
+            expect(label.classList.contains('Mui-required')).to.equal(required);
+            for (const button of screen.getAllByRole<HTMLButtonElement>('button')) {
+              expect(button.disabled).to.equal(disabled || readOnly);
+            }
+          },
+        );
       });
     });
 
@@ -1377,13 +1341,6 @@ describe('<NumberField />', () => {
       });
     });
 
-    it('renders no buttons when controlsPosition is false', () => {
-      render(<NumberField label="Amount" controlsPosition={false} />);
-
-      expect(screen.queryByRole('button', { name: 'Increase' })).to.equal(null);
-      expect(screen.queryByRole('button', { name: 'Decrease' })).to.equal(null);
-    });
-
     it('falls back to end placement for invalid controlsPosition in theme defaults', () => {
       const theme = createTheme({
         components: {
@@ -1413,84 +1370,78 @@ describe('<NumberField />', () => {
     });
 
     const placements = [
-      {
-        controlsPosition: undefined,
-        startButtons: [],
-        endButtons: ['Decrease', 'Increase'],
-      },
-      {
-        controlsPosition: 'stacked',
-        startButtons: [],
-        endButtons: ['Increase', 'Decrease'],
-      },
-      {
-        controlsPosition: 'split',
-        startButtons: ['Decrease'],
-        endButtons: ['Increase'],
-      },
+      { controlsPosition: undefined, startButtons: [], endButtons: ['Decrease', 'Increase'] },
+      { controlsPosition: 'stacked', startButtons: [], endButtons: ['Increase', 'Decrease'] },
+      { controlsPosition: 'split', startButtons: ['Decrease'], endButtons: ['Increase'] },
+      { controlsPosition: false, startButtons: [], endButtons: [] },
     ] as const;
 
     placements.forEach(({ controlsPosition, startButtons, endButtons }) => {
-      it(`composes consumer adornments with controlsPosition=${controlsPosition ?? 'default'}`, () => {
-        render(
-          <NumberField
-            label="Amount"
-            controlsPosition={controlsPosition}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <button type="button">Start action</button>
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <button type="button">End action</button>
-                  </InputAdornment>
-                ),
-              },
-            }}
-          />,
-        );
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-        const wrapper = input.closest('.MuiInputBase-root')!;
-        const buttons = {
-          Increase: screen.getByRole('button', { name: 'Increase' }),
-          Decrease: screen.getByRole('button', { name: 'Decrease' }),
-        };
-        const startAction = screen.getByRole('button', { name: 'Start action' });
-        const endAction = screen.getByRole('button', { name: 'End action' });
-        const expectedStartButtons = startButtons.map((name) => buttons[name]);
-        const expectedEndButtons = endButtons.map((name) => buttons[name]);
+      it.each([false, 'start', 'end'] as const)(
+        `orders consumer adornments with controlsPosition=${controlsPosition ?? 'default'} and scrubAreaPosition=%s`,
+        (scrubAreaPosition) => {
+          render(
+            <NumberField
+              label="Amount"
+              controlsPosition={controlsPosition}
+              scrubAreaPosition={scrubAreaPosition}
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <button type="button">Start action</button>
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <button type="button">End action</button>
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />,
+          );
 
-        expect(
-          Array.from(wrapper.querySelectorAll('button, input:not([type="hidden"])')),
-        ).to.deep.equal([
-          ...expectedStartButtons,
-          startAction,
-          input,
-          endAction,
-          ...expectedEndButtons,
-        ]);
+          const wrapper = screen.getByRole('group');
+          const input = screen.getByRole('textbox', { name: 'Amount' });
+          const scrub = wrapper.querySelector(`.${classes.scrubArea}`);
+          const getButton = (name: string) => screen.getByRole('button', { name });
+          const start = startButtons.map(getButton);
+          const end = endButtons.map(getButton);
 
-        // The built-in groups must contain only their own buttons, leaving consumer
-        // adornments outside those groups even when they share the same input side.
-        const groups = Array.from(wrapper.querySelectorAll(`.${classes.controls}`));
-        const expectedGroups = [
-          ...(startButtons.length
-            ? [{ positionClass: 'MuiInputAdornment-positionStart', buttons: expectedStartButtons }]
-            : []),
-          ...(endButtons.length
-            ? [{ positionClass: 'MuiInputAdornment-positionEnd', buttons: expectedEndButtons }]
-            : []),
-        ];
+          expect(
+            Array.from(wrapper.querySelectorAll(`button, input, .${classes.scrubArea}`)),
+          ).to.deep.equal([
+            ...start,
+            ...(scrubAreaPosition === 'start' ? [scrub] : []),
+            getButton('Start action'),
+            input,
+            getButton('End action'),
+            ...(scrubAreaPosition === 'end' ? [scrub] : []),
+            ...end,
+          ]);
 
-        expect(groups).to.have.length(expectedGroups.length);
-        expectedGroups.forEach(({ positionClass, buttons: groupButtons }, index) => {
-          expect(groups[index]).to.have.class(positionClass);
-          expect(Array.from(groups[index].querySelectorAll('button'))).to.deep.equal(groupButtons);
-        });
-      });
+          const groups = wrapper.querySelectorAll(`.${classes.controls}`);
+          const expectedGroups = [
+            { positionClass: 'MuiInputAdornment-positionStart', buttons: start },
+            { positionClass: 'MuiInputAdornment-positionEnd', buttons: end },
+          ].filter(({ buttons }) => buttons.length > 0);
+          expect(groups).to.have.length(expectedGroups.length);
+          expectedGroups.forEach(({ positionClass, buttons }, index) => {
+            expect(groups[index]).to.have.class(positionClass);
+            expect(Array.from(groups[index].querySelectorAll('button'))).to.deep.equal(buttons);
+          });
+
+          if (scrubAreaPosition) {
+            expect(scrub!.parentElement).to.have.class(
+              scrubAreaPosition === 'start'
+                ? 'MuiInputAdornment-positionStart'
+                : 'MuiInputAdornment-positionEnd',
+            );
+            expect(scrub!.closest(`.${classes.controls}`)).to.equal(null);
+          }
+        },
+      );
     });
 
     it('preserves the input and its adornments when controls move or are removed', async () => {
@@ -1634,46 +1585,63 @@ describe('<NumberField />', () => {
     });
   });
 
-  // One slot serves both sides. Resolve its props per instance so split controls
-  // can use distinct refs/styles while retaining the owned buttons and field state.
-  describe('controls slot', () => {
-    it('resolves each position independently and preserves styles, refs and live render state', async () => {
-      const startRef = React.createRef<HTMLDivElement>();
-      const endRef = React.createRef<HTMLDivElement>();
-      const { user } = render(
+  describe('adornment slots', () => {
+    it('resolves refs independently for split controls', () => {
+      const refs = {
+        start: React.createRef<HTMLDivElement>(),
+        end: React.createRef<HTMLDivElement>(),
+      };
+      render(
         <NumberField
-          label="Amount"
-          defaultValue={5}
           controlsPosition="split"
-          slotProps={{
-            controls: ({ position }) => ({
-              title: `${position} controls`,
-              ref: position === 'start' ? startRef : endRef,
-              sx: { paddingTop: position === 'start' ? '3px' : '5px' },
-              render: (props, state) => <section {...props} data-render-value={state.value} />,
-            }),
-          }}
+          slotProps={{ controls: ({ position }) => ({ ref: refs[position] }) }}
         />,
       );
-      const start = screen.getByTitle('start controls');
-      const end = screen.getByTitle('end controls');
-      const input = screen.getByRole('textbox', { name: 'Amount' });
 
-      expect(startRef.current).to.equal(start);
-      expect(endRef.current).to.equal(end);
-      expect(start.tagName).to.equal('SECTION');
-      expect(end.tagName).to.equal('SECTION');
-      expect(start).to.have.class('MuiInputAdornment-positionStart');
-      expect(end).to.have.class('MuiInputAdornment-positionEnd');
-      expect(getComputedStyle(start).paddingTop).to.equal('3px');
-      expect(getComputedStyle(end).paddingTop).to.equal('5px');
-
-      await user.click(screen.getByRole('button', { name: 'Decrease' }));
-
-      expect(input).to.have.value('4');
-      expect(start).to.have.attribute('data-render-value', '4');
-      expect(end).to.have.attribute('data-render-value', '4');
+      expect(refs.start.current).not.to.equal(refs.end.current);
+      expect(refs.start.current).to.contain(screen.getByRole('button', { name: 'Decrease' }));
+      expect(refs.end.current).to.contain(screen.getByRole('button', { name: 'Increase' }));
     });
+
+    it.each(['controls', 'scrubAreaAdornment'] as const)(
+      'preserves styles, ref and live render state for slotProps.%s',
+      async (slot) => {
+        const ref = React.createRef<HTMLDivElement>();
+        const renderAdornment: BaseNumberField.Group.Props['render'] = (props, state) => (
+          <section {...props} data-render-value={state.value} />
+        );
+        const theme = createTheme({
+          components: { MuiNumberField: { styleOverrides: { [slot]: { paddingBottom: 9 } } } },
+        });
+        const { user } = render(
+          <ThemeProvider theme={theme}>
+            <NumberField
+              defaultValue={5}
+              scrubAreaPosition="end"
+              slotProps={{
+                [slot]: ({ position }: Pick<InputAdornmentProps, 'position'>) => ({
+                  title: `${position} adornment`,
+                  ref,
+                  sx: { paddingTop: '7px' },
+                  render: renderAdornment,
+                }),
+              }}
+            />
+          </ThemeProvider>,
+        );
+        const adornment = screen.getByTitle('end adornment');
+
+        expect(adornment.tagName).to.equal('SECTION');
+        expect(adornment).to.have.class(classes[slot]);
+        expect(adornment).to.have.class('MuiInputAdornment-positionEnd');
+        expect(ref.current).to.equal(adornment);
+        expect(getComputedStyle(adornment).paddingTop).to.equal('7px');
+        expect(getComputedStyle(adornment).paddingBottom).to.equal('9px');
+
+        await user.click(screen.getByRole('button', { name: 'Increase' }));
+        expect(adornment).to.have.attribute('data-render-value', '6');
+      },
+    );
 
     it('lets a replacement slot bypass render while preserving the owned buttons', async () => {
       const renderControls = vi.fn(() => <section />);
@@ -1934,8 +1902,11 @@ describe('<NumberField />', () => {
         );
 
         const group = screen.getByRole('group');
+        const input = screen.getByRole('textbox');
         expect(group.tagName).to.equal('SECTION');
         expect(group).to.have.attribute('data-adorned-end', 'true');
+        expect(input).to.equal(screen.getByTestId('custom'));
+        expect(group).to.contain(input);
         expect(renderInput).toHaveBeenCalledTimes(0);
         expect(renderHtmlInput).toHaveBeenCalledTimes(0);
       });
@@ -2626,100 +2597,6 @@ describe('<NumberField />', () => {
       expect(slotProps.scrubAreaCursor).toHaveBeenCalled();
     });
 
-    it('customizes the adornment with styles, a ref and live root state', async () => {
-      const ref = React.createRef<HTMLDivElement>();
-      const theme = createTheme({
-        components: {
-          MuiNumberField: {
-            styleOverrides: { scrubAreaAdornment: { paddingBottom: 9 } },
-          },
-        },
-      });
-      const { user } = render(
-        <ThemeProvider theme={theme}>
-          <NumberField
-            label="Amount"
-            defaultValue={5}
-            scrubAreaPosition="end"
-            slotProps={{
-              scrubAreaAdornment: ({ position }) => ({
-                ref,
-                title: `${position} scrub adornment`,
-                sx: { paddingTop: '7px' },
-                render: (props, state) => <section {...props} data-render-value={state.value} />,
-              }),
-            }}
-          />
-        </ThemeProvider>,
-      );
-      const adornment = screen.getByTitle('end scrub adornment');
-
-      expect(adornment.tagName).to.equal('SECTION');
-      expect(adornment).to.have.class('MuiInputAdornment-positionEnd');
-      expect(ref.current).to.equal(adornment);
-      expect(getComputedStyle(adornment).paddingTop).to.equal('7px');
-      expect(getComputedStyle(adornment).paddingBottom).to.equal('9px');
-
-      await user.click(screen.getByRole('button', { name: 'Increase' }));
-
-      expect(adornment).to.have.attribute('data-render-value', '6');
-    });
-
-    (['stacked', 'end', 'split'] as const).forEach((controlsPosition) => {
-      (['start', 'end'] as const).forEach((scrubAreaPosition) => {
-        it(`places the ${scrubAreaPosition} scrub area with ${controlsPosition} controls and consumer adornments`, () => {
-          const { container } = render(
-            <NumberField
-              controlsPosition={controlsPosition}
-              scrubAreaPosition={scrubAreaPosition}
-              slotProps={{
-                input: {
-                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                  endAdornment: <InputAdornment position="end">kg</InputAdornment>,
-                },
-              }}
-            />,
-          );
-          const input = screen.getByRole('textbox');
-          const increase = screen.getByRole('button', { name: 'Increase' });
-          const decrease = screen.getByRole('button', { name: 'Decrease' });
-          const scrub = container.querySelector(`.${classes.scrubArea}`)!;
-          const prefix = screen.getByText('$');
-          const suffix = screen.getByText('kg');
-          const wrapper = input.closest('.MuiInputBase-root')!;
-          const startButtons = {
-            stacked: [],
-            end: [],
-            split: [decrease],
-          }[controlsPosition];
-          const endButtons = {
-            stacked: [increase, decrease],
-            end: [decrease, increase],
-            split: [increase],
-          }[controlsPosition];
-          const expectedOrder = [
-            ...startButtons,
-            ...(scrubAreaPosition === 'start' ? [scrub] : []),
-            prefix,
-            input,
-            suffix,
-            ...(scrubAreaPosition === 'end' ? [scrub] : []),
-            ...endButtons,
-          ];
-
-          // Compare element order even though the adornments add their own wrappers.
-          const elements = Array.from(wrapper.querySelectorAll('*')).filter((element) =>
-            expectedOrder.includes(element),
-          );
-          expect(elements).to.deep.equal(expectedOrder);
-          expect(scrub.parentElement).to.have.class(
-            `MuiInputAdornment-position${scrubAreaPosition === 'start' ? 'Start' : 'End'}`,
-          );
-          expect(scrub.closest(`.${classes.controls}`)).to.equal(null);
-        });
-      });
-    });
-
     it('resolves scrub slot callbacks and preserves custom children and refs', () => {
       const scrubRef = React.createRef<HTMLSpanElement>();
       const { container } = render(
@@ -3044,31 +2921,18 @@ describe('<NumberField />', () => {
     // NumberField's composed start adornments must initialize label shrink on the
     // server, including adornments returned by consumer slot callbacks.
     describe('adornments', () => {
-      (['start', 'end'] as const).forEach((scrubAreaPosition) => {
-        it(`keeps an empty label stable through hydration with a ${scrubAreaPosition} scrub area`, () => {
-          const { hydrate } = renderToString(
-            <NumberField label="Amount" scrubAreaPosition={scrubAreaPosition} />,
-          );
-
-          expectStableHydration(hydrate, {
-            displayValue: '',
-            shrink: scrubAreaPosition === 'start',
-          });
-        });
-      });
-
-      (['stacked', 'split'] as const).forEach((controlsPosition) => {
-        it(`preserves an empty label through hydration with ${controlsPosition} controls`, () => {
-          const { hydrate } = renderToString(
-            <NumberField label="Amount" controlsPosition={controlsPosition} />,
-          );
-
-          expectStableHydration(hydrate, {
-            displayValue: '',
-            shrink: controlsPosition === 'split',
-          });
-        });
-      });
+      it.each([
+        { props: { scrubAreaPosition: 'start' }, shrink: true },
+        { props: { scrubAreaPosition: 'end' }, shrink: false },
+        { props: { controlsPosition: 'split' }, shrink: true },
+        { props: { controlsPosition: 'stacked' }, shrink: false },
+      ] as const)(
+        'preserves label shrink=$shrink through hydration with $props',
+        ({ props, shrink }) => {
+          const { hydrate } = renderToString(<NumberField label="Amount" {...props} />);
+          expectStableHydration(hydrate, { displayValue: '', shrink });
+        },
+      );
 
       it('resolves shared slot callbacks once for server-rendered adornments and helper text', () => {
         const adornment = <InputAdornment position="start">$</InputAdornment>;
