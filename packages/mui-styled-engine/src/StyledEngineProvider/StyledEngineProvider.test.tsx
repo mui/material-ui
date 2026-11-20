@@ -24,4 +24,18 @@ describe('[Emotion] StyledEngineProvider', () => {
     render(<Outer />);
     expect(innerCache).to.equal(outerCache);
   });
+
+  it('warns when the removed enableCssLayer prop is passed', () => {
+    const props = { enableCssLayer: true } as {};
+    expect(() => {
+      render(<StyledEngineProvider {...props} />);
+    }).toErrorDev('MUI: The `enableCssLayer` prop of `StyledEngineProvider` was removed in v10.');
+  });
+
+  it('warns when the removed injectFirst prop is passed', () => {
+    const props = { injectFirst: true } as {};
+    expect(() => {
+      render(<StyledEngineProvider {...props} />);
+    }).toErrorDev('MUI: The `injectFirst` prop of `StyledEngineProvider` was removed in v10.');
+  });
 });
