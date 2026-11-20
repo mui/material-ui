@@ -2840,6 +2840,25 @@ describe('<Select />', () => {
         expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(style);
       });
 
+      it.each(['MuiOutlinedInput', 'MuiInputBase'])(
+        'uses the resolved input size when %s defaults override FormControl',
+        (component) => {
+          const themeWithInputDefault = createTheme(theme, {
+            components: { [component]: { defaultProps: { size: 'medium' } } },
+          });
+          const { container } = render(
+            <ThemeProvider theme={themeWithInputDefault}>
+              <FormControl size="small">
+                <Select value="" />
+              </FormControl>
+            </ThemeProvider>,
+          );
+
+          expect(container.querySelector(`.${classes.select}`)).not.toHaveComputedStyle(style);
+          expect(container.querySelector(`.${classes.icon}`)).not.toHaveComputedStyle(style);
+        },
+      );
+
       it('should not apply when an explicit undefined `size` replaces the custom `input` size', () => {
         const { container } = render(
           <ThemeProvider theme={theme}>

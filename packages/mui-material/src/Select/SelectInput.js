@@ -10,6 +10,7 @@ import useTimeout from '@mui/utils/useTimeout';
 import ownerDocument from '../utils/ownerDocument';
 import Menu from '../Menu/Menu';
 import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
+import InputBaseSizeContext from '../InputBase/InputBaseSizeContext';
 import { isFilled } from '../InputBase/utils';
 import { styled } from '../zero-styled';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
@@ -819,8 +820,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
 
+  const inputBaseSize = React.useContext(InputBaseSizeContext);
   const ownerState = {
     ...props,
+    size: inputBaseSize ?? size,
     variant,
     value,
     open,
