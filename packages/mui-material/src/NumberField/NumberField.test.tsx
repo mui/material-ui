@@ -2608,11 +2608,22 @@ describe('<NumberField />', () => {
       },
     }));
 
-    it('omits the scrub area by default', () => {
-      const { container } = render(<NumberField />);
+    it('resolves scrub slot props only when a scrub area is enabled', () => {
+      const slotProps = {
+        scrubArea: vi.fn(() => ({})),
+        scrubAreaCursor: vi.fn(() => ({})),
+      };
+      const { container, rerender } = render(<NumberField slotProps={slotProps} />);
 
       expect(container.querySelector(`.${classes.scrubArea}`)).to.equal(null);
       expect(container.querySelector(`.${classes.scrubAreaAdornment}`)).to.equal(null);
+      expect(slotProps.scrubArea).not.toHaveBeenCalled();
+      expect(slotProps.scrubAreaCursor).not.toHaveBeenCalled();
+
+      rerender(<NumberField scrubAreaPosition="start" slotProps={slotProps} />);
+
+      expect(slotProps.scrubArea).toHaveBeenCalled();
+      expect(slotProps.scrubAreaCursor).toHaveBeenCalled();
     });
 
     it('customizes the adornment with styles, a ref and live root state', async () => {
