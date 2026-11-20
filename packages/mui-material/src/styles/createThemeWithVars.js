@@ -1,4 +1,4 @@
-import deepmerge from '@mui/utils/deepmerge';
+import deepmerge, { isPlainObject } from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
 import {
@@ -59,16 +59,6 @@ function setColorChannel(obj, key) {
         `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.`,
     );
   }
-}
-
-// Removes the channel tokens of the colors that `input` replaces, unless `input` provides them,
-// so that they're generated again for the new colors.
-function removeReplacedChannels(obj, input) {
-  Object.keys(input).forEach((key) => {
-    if (!(`${key}Channel` in input)) {
-      delete obj[`${key}Channel`];
-    }
-  });
 }
 
 function getSpacingVal(spacingInput) {
@@ -189,6 +179,19 @@ export default function createThemeWithVars(options = {}, ...args) {
     defaultColorScheme,
   );
 
+  // The values of the default color scheme given at the top level, like `opacity`, go to that
+  // color scheme, like the `palette` option. Otherwise, the color scheme's values replace them.
+  const defaultSchemeValues = colorSchemes[defaultColorScheme];
+  Object.keys(defaultSchemeValues).forEach((key) => {
+    if (key !== 'palette' && key in input) {
+      defaultSchemeValues[key] =
+        isPlainObject(defaultSchemeValues[key]) && isPlainObject(input[key])
+          ? deepmerge(defaultSchemeValues[key], input[key])
+          : input[key];
+      delete muiTheme[key];
+    }
+  });
+
   if (builtInLight && !colorSchemes.light) {
     attachColorScheme(colorSpace, colorSchemes, builtInLight, undefined, 'light');
   }
@@ -197,26 +200,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     attachColorScheme(colorSpace, colorSchemes, builtInDark, undefined, 'dark');
   }
 
-  // A `palette` passed as an extra argument, for example `createTheme(theme, { palette: { salmon } })`,
-  // goes to the default color scheme, like the `palette` option of `createTheme()`.
-  // It's merged before the color schemes are processed so that its colors get CSS variables.
-  const otherArgs = args.map((argument) => {
-    if (!argument?.palette) {
-      return argument;
-    }
-    const { palette, ...other } = argument;
-    const schemePalette = deepmerge(colorSchemes[defaultColorScheme].palette, palette);
-    // The options can be a previous theme, whose palette has the channels of the colors replaced here.
-    removeReplacedChannels(schemePalette, palette);
-    Object.keys(palette).forEach((color) => {
-      if (palette[color] && typeof palette[color] === 'object') {
-        removeReplacedChannels(schemePalette[color], palette[color]);
-      }
-    });
-    colorSchemes[defaultColorScheme].palette = schemePalette;
-    return other;
-  });
-
+  const { allVariants, ...typographyVariants } = muiTheme.typography;
   let theme = {
     defaultColorScheme,
     ...muiTheme,
@@ -225,7 +209,8 @@ export default function createThemeWithVars(options = {}, ...args) {
     rootSelector,
     getCssVar,
     colorSchemes,
-    font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
+    // `allVariants` is applied to every variant by `createTypography()`, but isn't a variant itself.
+    font: { ...prepareTypographyVars(typographyVariants), ...muiTheme.font },
     spacing: getSpacingVal(input.spacing),
   };
 
@@ -994,7 +979,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     });
   });
 
-  theme = otherArgs.reduce((acc, argument) => deepmerge(acc, argument), theme);
+  theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
   // Default color is the palette var, not a hex: `focusVisible` is spread inline (skipped from var
   // generation, see `shouldSkipGeneratingVar`), so the var adapts per scheme at the CSS level — no
