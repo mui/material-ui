@@ -1,6 +1,7 @@
 import * as React from 'react';
-import NumberField from '@mui/material/NumberField';
+import NumberField, { numberFieldClasses } from '@mui/material/NumberField';
 import { createTheme } from '@mui/material/styles';
+import type { ComponentsOverrides } from '@mui/material/styles';
 
 // Keep extensions isolated from the ordinary specs so invalid-prop checks stay strict.
 declare module '@mui/material/NumberField' {
@@ -114,12 +115,14 @@ createTheme({
         slotProps: { incrementButton: { stepLabel: 'increase' } },
       },
       styleOverrides: {
-        root: { minWidth: 120 },
+        root: {
+          minWidth: 120,
+          [`& .${numberFieldClasses.htmlInput}`]: { paddingTop: 3 },
+          [`&.${numberFieldClasses.scrubbing}`]: { opacity: 0.8 },
+        },
         input: { gap: 2 },
-        htmlInput: { paddingTop: 3 },
         inputLabel: { paddingTop: 7 },
         formHelperText: { marginLeft: 9 },
-        scrubbing: { opacity: 0.8 },
         controls: { gap: 2 },
         scrubAreaAdornment: { gap: 2 },
         incrementButton: { padding: 1 },
@@ -129,3 +132,9 @@ createTheme({
     },
   },
 });
+
+const numberFieldOverrides: NonNullable<ComponentsOverrides['MuiNumberField']> = {};
+// @ts-expect-error Style the native input through a descendant selector on root.
+numberFieldOverrides.htmlInput = { paddingTop: 3 };
+// @ts-expect-error Style the scrubbing state through a class selector on root.
+numberFieldOverrides.scrubbing = { opacity: 0.8 };

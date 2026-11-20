@@ -46,6 +46,7 @@ export interface NumberFieldSlots {
   formHelperText: React.ElementType;
   /**
    * The component that renders the native input element.
+   * Use `& .MuiNumberField-htmlInput` in `styleOverrides.root` to style it.
    * @default 'input'
    */
   htmlInput: React.ElementType;
@@ -66,6 +67,8 @@ export interface NumberFieldSlots {
   inputLabel: React.ElementType;
   /**
    * The component that renders the root.
+   * While scrubbing, the root has the `MuiNumberField-scrubbing` class.
+   * Use `&.MuiNumberField-scrubbing` in `styleOverrides.root` to style that state.
    * @default FormControl
    */
   root: React.ElementType;

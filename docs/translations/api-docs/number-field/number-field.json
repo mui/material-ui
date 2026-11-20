@@ -113,21 +113,16 @@
     },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": {
-    "scrubbing": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the root element while scrubbing"
-    }
-  },
+  "classDescriptions": {},
   "slotDescriptions": {
     "controls": "The component that renders each group of stepper buttons.",
     "decrementButton": "The component that renders the decrement button.",
     "formHelperText": "The component that renders the helper text.",
-    "htmlInput": "The component that renders the native input element.",
+    "htmlInput": "The component that renders the native input element. Use <code>&amp; .MuiNumberField-htmlInput</code> in <code>styleOverrides.root</code> to style it.",
     "incrementButton": "The component that renders the increment button.",
     "input": "The component that renders the Material input wrapper.",
     "inputLabel": "The component that renders the input&#39;s label.",
-    "root": "The component that renders the root.",
+    "root": "The component that renders the root. While scrubbing, the root has the <code>MuiNumberField-scrubbing</code> class. Use <code>&amp;.MuiNumberField-scrubbing</code> in <code>styleOverrides.root</code> to style that state.",
     "scrubArea": "The component that renders the drag handle for adjusting the value.",
     "scrubAreaAdornment": "The component that wraps the scrub area in an input adornment.",
     "scrubAreaCursor": "The component that renders the custom cursor while dragging the scrub area."

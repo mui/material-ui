@@ -12,7 +12,10 @@ export interface NumberFieldClasses {
   inputLabel: string;
   /** Styles applied to the helper text. */
   formHelperText: string;
-  /** State class applied to the root element while scrubbing. */
+  /**
+   * State class applied to the root element while scrubbing.
+   * @ignore Documented on the root slot. The generated rule table lists direct theme override keys.
+   */
   scrubbing: string;
   /** Styles applied to each controls adornment. */
   controls: string;

@@ -1,4 +1,4 @@
-import NumberField from '@mui/material/NumberField';
+import NumberField, { numberFieldClasses } from '@mui/material/NumberField';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 
@@ -14,10 +14,12 @@ const customTheme = (outerTheme: Theme): Theme => ({
         scrubAreaPosition: 'start',
       },
       styleOverrides: {
-        scrubbing: {
-          outline: `2px solid ${(outerTheme.vars ?? outerTheme).palette.primary.main}`,
-          outlineOffset: 4,
-          borderRadius: (outerTheme.vars ?? outerTheme).shape.borderRadius,
+        root: {
+          [`&.${numberFieldClasses.scrubbing}`]: {
+            outline: `2px solid ${(outerTheme.vars ?? outerTheme).palette.primary.main}`,
+            outlineOffset: 4,
+            borderRadius: (outerTheme.vars ?? outerTheme).shape.borderRadius,
+          },
         },
         incrementButton: {
           color: (outerTheme.vars ?? outerTheme).palette.success.main,

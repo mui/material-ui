@@ -136,7 +136,7 @@
     },
     {
       "name": "htmlInput",
-      "description": "The component that renders the native input element.",
+      "description": "The component that renders the native input element.\nUse `& .MuiNumberField-htmlInput` in `styleOverrides.root` to style it.",
       "default": "'input'",
       "class": "MuiNumberField-htmlInput"
     },
@@ -160,7 +160,7 @@
     },
     {
       "name": "root",
-      "description": "The component that renders the root.",
+      "description": "The component that renders the root.\nWhile scrubbing, the root has the `MuiNumberField-scrubbing` class.\nUse `&.MuiNumberField-scrubbing` in `styleOverrides.root` to style that state.",
       "default": "FormControl",
       "class": "MuiNumberField-root"
     },
@@ -183,14 +183,7 @@
       "class": "MuiNumberField-scrubAreaCursor"
     }
   ],
-  "classes": [
-    {
-      "key": "scrubbing",
-      "className": "MuiNumberField-scrubbing",
-      "description": "State class applied to the root element while scrubbing.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiNumberField",
