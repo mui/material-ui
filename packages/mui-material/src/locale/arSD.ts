@@ -45,6 +45,15 @@ export const arSD: Localization = {
         openText: 'فتح',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'زيادة' },
+          decrementButton: { 'aria-label': 'تقليل' },
+          htmlInput: { 'aria-roledescription': 'حقل رقمي' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'إغلاق',

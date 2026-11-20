@@ -45,6 +45,15 @@ export const jaJP: Localization = {
         openText: '開く',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': '増やす' },
+          decrementButton: { 'aria-label': '減らす' },
+          htmlInput: { 'aria-roledescription': '数値入力欄' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: '閉じる',

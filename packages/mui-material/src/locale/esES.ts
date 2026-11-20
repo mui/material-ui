@@ -45,6 +45,15 @@ export const esES: Localization = {
         openText: 'Abierto',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Aumentar' },
+          decrementButton: { 'aria-label': 'Disminuir' },
+          htmlInput: { 'aria-roledescription': 'Campo numérico' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Cerrar',

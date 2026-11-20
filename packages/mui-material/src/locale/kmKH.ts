@@ -45,6 +45,15 @@ export const kmKH: Localization = {
         openText: 'បើក',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'បង្កើន' },
+          decrementButton: { 'aria-label': 'បន្ថយ' },
+          htmlInput: { 'aria-roledescription': 'ប្រអប់បញ្ចូលលេខ' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'បិទ',

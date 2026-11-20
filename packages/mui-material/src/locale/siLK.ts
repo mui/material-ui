@@ -45,6 +45,15 @@ export const siLK: Localization = {
         openText: 'විවෘත කරන්න',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'වැඩි කරන්න' },
+          decrementButton: { 'aria-label': 'අඩු කරන්න' },
+          htmlInput: { 'aria-roledescription': 'සංඛ්‍යා ක්ෂේත්‍රය' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'වසන්න',

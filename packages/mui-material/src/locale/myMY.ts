@@ -49,6 +49,15 @@ export const myMY: Localization = {
         openText: 'ဖွင့်သည်။',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'တိုးရန်' },
+          decrementButton: { 'aria-label': 'လျှော့ရန်' },
+          htmlInput: { 'aria-roledescription': 'ကိန်းဂဏန်းထည့်ရန် အကွက်' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'ပိတ်လိုက်',

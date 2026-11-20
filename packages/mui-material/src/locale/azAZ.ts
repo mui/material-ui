@@ -51,6 +51,15 @@ export const azAZ: Localization = {
         openText: 'Открыть',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Artır' },
+          decrementButton: { 'aria-label': 'Azalt' },
+          htmlInput: { 'aria-roledescription': 'Ədəd sahəsi' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Bağlamaq',

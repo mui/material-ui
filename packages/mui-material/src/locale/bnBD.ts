@@ -45,6 +45,15 @@ export const bnBD: Localization = {
         openText: 'ওপেন করুন',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'বাড়ান' },
+          decrementButton: { 'aria-label': 'কমান' },
+          htmlInput: { 'aria-roledescription': 'সংখ্যা লেখার ঘর' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'বন্ধ করুন',

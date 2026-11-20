@@ -45,6 +45,15 @@ export const kkKZ: Localization = {
         openText: 'Ашу',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Арттыру' },
+          decrementButton: { 'aria-label': 'Азайту' },
+          htmlInput: { 'aria-roledescription': 'Сандық өріс' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Жабу',

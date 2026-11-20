@@ -45,6 +45,15 @@ export const roRO: Localization = {
         openText: 'Deschide',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Mărește' },
+          decrementButton: { 'aria-label': 'Micșorează' },
+          htmlInput: { 'aria-roledescription': 'Câmp numeric' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Închide',

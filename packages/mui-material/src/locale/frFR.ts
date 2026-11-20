@@ -45,6 +45,15 @@ export const frFR: Localization = {
         openText: 'Ouvrir',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Augmenter' },
+          decrementButton: { 'aria-label': 'Diminuer' },
+          htmlInput: { 'aria-roledescription': 'Champ numérique' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Fermer',

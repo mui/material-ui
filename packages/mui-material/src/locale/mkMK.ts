@@ -49,6 +49,15 @@ export const mkMK: Localization = {
         openText: 'Отвори',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Зголеми' },
+          decrementButton: { 'aria-label': 'Намали' },
+          htmlInput: { 'aria-roledescription': 'Поле за број' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Затвори',

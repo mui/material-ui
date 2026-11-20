@@ -56,6 +56,15 @@ export const beBY: Localization = {
         openText: 'Адкрыць',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Павялічыць' },
+          decrementButton: { 'aria-label': 'Паменшыць' },
+          htmlInput: { 'aria-roledescription': 'Лікавае поле' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Закрыць',

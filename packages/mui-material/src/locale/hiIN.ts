@@ -45,6 +45,15 @@ export const hiIN: Localization = {
         openText: 'खोलें',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'बढ़ाएँ' },
+          decrementButton: { 'aria-label': 'घटाएँ' },
+          htmlInput: { 'aria-roledescription': 'संख्या फ़ील्ड' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'बंद करें',

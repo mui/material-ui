@@ -45,6 +45,15 @@ export const viVN: Localization = {
         openText: 'Mở',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Tăng' },
+          decrementButton: { 'aria-label': 'Giảm' },
+          htmlInput: { 'aria-roledescription': 'Trường nhập số' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Đóng',
