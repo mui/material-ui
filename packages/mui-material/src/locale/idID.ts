@@ -1,36 +1,38 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('id-ID');
 
 export const idID: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //     expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Tampilkan jalur',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Ke halaman pertama';
+          }
+          if (type === 'last') {
+            return 'Ke halaman terakhir';
+          }
+          if (type === 'next') {
+            return 'Ke halaman berikutnya';
+          }
+          return 'Ke halaman sebelumnya';
+        },
         labelRowsPerPage: 'Baris per halaman:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} dari ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${formatNumber(from)}–${formatNumber(to)} dari ${count !== -1 ? formatNumber(count) : `lebih dari ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {
       defaultProps: {
         getLabelText: (value) => `${value} Bintang`,
-        // emptyLabelText: 'Empty',
+        emptyLabelText: 'Kosong',
       },
     },
     MuiAutocomplete: {
@@ -47,26 +49,26 @@ export const idID: Localization = {
         closeText: 'Tutup',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigasi halaman',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Ke '}halaman ${page}`;
+          }
+          if (type === 'first') {
+            return 'Ke halaman pertama';
+          }
+          if (type === 'last') {
+            return 'Ke halaman terakhir';
+          }
+          if (type === 'next') {
+            return 'Ke halaman berikutnya';
+          }
+          // if (type === 'previous')
+          return 'Ke halaman sebelumnya';
+        },
+      },
+    },
   },
 };
