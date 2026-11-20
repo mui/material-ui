@@ -236,8 +236,8 @@ Remove the top-level `palette` to keep the previous result, or move its values i
 ### createTheme arguments with CSS variables
 
 With CSS variables, the extra arguments of `createTheme()` are deep merged into the options before the theme is created, so they're processed like the options.
-Previously, they were deep merged into the created theme as they were, so the values that depend on them weren't generated again.
-For example, `info.light` and `info.dark` now follow the `main` color of a second call:
+Previously, they were deep merged into the created theme as they were, and the values that depend on them weren't generated again.
+For example, `info.light`, `info.dark`, and `info.contrastText` now follow the `main` color of a second call:
 
 ```js
 theme = createTheme(theme, {
@@ -245,8 +245,10 @@ theme = createTheme(theme, {
 });
 ```
 
+To keep a previous value, pass it in the argument too, like `info: { main, light, dark, contrastText }`.
+
 A theme passed back to `createTheme()` is created again from its options and the values changed in a copy of it, like `{ ...theme, palette: { ...theme.palette, primary } }`.
-A change made to the theme itself is ignored, so make it in a copy, or pass it as an argument:
+Changes made to the theme itself are ignored, so make them in a copy, or pass them as an argument:
 
 ```diff
 -theme.palette.primary.main = red[500];
