@@ -17,10 +17,11 @@ import LockIcon from '@mui/icons-material/Lock';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 const theme = createTheme({
+  cssVariables: { colorSchemeSelector: 'data-mui-color-scheme' },
   focusVisible: {
     outlineWidth: 2,
     outlineOffset: 1,
-    boxShadow: '0 0 0 1px #fff',
+    boxShadow: '0 0 0 1px var(--mui-palette-background-paper)',
     insetOverrides: {
       boxShadow: 'inset 0 0 0 3px #fff',
     },
