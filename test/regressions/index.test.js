@@ -124,19 +124,6 @@ async function main() {
         pool.release(page);
       }
     },
-    // A page that no other test uses, closed afterwards, for tests that leave
-    // state behind that the reset above can't undo.
-    // eslint-disable-next-line no-empty-pattern
-    fresh: async ({}, use) => {
-      const page = await newTestPage(browser);
-      await page.setViewportSize(DEFAULT_VIEWPORT);
-      try {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        await use({ page });
-      } finally {
-        await page.close();
-      }
-    },
   });
 
   const axeSource = await fs.readFile(AXE_SCRIPT, 'utf8');
@@ -216,13 +203,8 @@ async function main() {
       await browser.close();
     });
 
-    // Runs on its own page. Clicking "Hide devtools" moves the sequential focus
-    // navigation starting point (where Tab moves from) to the link, after the
-    // fixtures, and the link is then removed. Pooled pages keep the document
-    // between tests, so the next test to press Tab on a pooled page would move
-    // focus out of the page instead of into its fixture.
-    test('updates devtools visibility after router and hash navigation', async ({ fresh }) => {
-      const { page } = fresh;
+    test('updates devtools visibility after router and hash navigation', async ({ pooled }) => {
+      const { page } = pooled;
       await page.evaluate(() => {
         window.location.hash = '#dev';
       });
@@ -336,6 +318,7 @@ async function main() {
       test('should handle focus-visible correctly', async ({ pooled }) => {
         const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/FocusVisibleRating');
+        await startTabNavigationAt(testcase);
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
           testcase,
@@ -351,6 +334,7 @@ async function main() {
       test('should handle focus-visible with precise ratings correctly', async ({ pooled }) => {
         const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/PreciseFocusVisibleRating');
+        await startTabNavigationAt(testcase);
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
           testcase,
@@ -753,6 +737,28 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
 }
 
 /**
+ * Makes the next Tab move focus to the first tab stop in `testcase`.
+ *
+ * Tab moves from the sequential focus navigation starting point, and pooled
+ * pages keep it between tests along with the rest of the document. An earlier
+ * test can leave it after the fixtures: the devtools test clicks "Hide
+ * devtools", which is then removed, and the next Tab moves focus out of the
+ * page. Focusing an element moves the starting point to it, so focus the
+ * testcase and blur it again. This also blurs whatever an earlier test left
+ * focused.
+ *
+ * @param {import('@playwright/test').ElementHandle} testcase
+ */
+async function startTabNavigationAt(testcase) {
+  await testcase.evaluate((element) => {
+    element.setAttribute('tabindex', '-1');
+    element.focus({ preventScroll: true });
+    element.blur();
+    element.removeAttribute('tabindex');
+  });
+}
+
+/**
  * Registers 2.4.7 Focus Visible, which axe has no rule for and jsdom cannot
  * answer: several components carry a `skipIf(isJsdom())` unit test for it that
  * therefore never runs.
@@ -828,6 +834,7 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
         throw new Error(`${component}: no element matched ${selector} on ${route}`);
       }
 
+      await startTabNavigationAt(testcase);
       const unfocused = await shotAround(page, handle);
       if (!(await tabTo(page, selector, maxTabs))) {
         throw new Error(`${component}: could not reach ${selector} with the Tab key`);
