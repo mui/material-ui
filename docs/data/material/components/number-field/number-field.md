@@ -172,7 +172,7 @@ Set `name` to include the numeric value in form submission.
 The submitted value is the unformatted number, even when the input displays a currency or another format.
 Use `form` to associate a field with a form outside its DOM ancestry.
 
-Uncontrolled fields do not yet support native form reset.
+Uncontrolled fields do not yet support native form reset. See [Base UI issue #1346](https://github.com/mui/base-ui/issues/1346).
 The example below uses a controlled value and restores it in `onReset` so the Reset button returns the field to its initial value.
 
 {{"component": "file://./demos/form/index.ts"}}
