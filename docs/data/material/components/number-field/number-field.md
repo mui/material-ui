@@ -118,7 +118,7 @@ Use `slots.scrubAreaAdornment` or `slotProps.scrubAreaAdornment` to customize th
 Slot-prop callbacks receive `ownerState.position` (`'start'` or `'end'`).
 
 Material slot-prop callbacks also receive the live boolean `ownerState.scrubbing`.
-Style the active state with `MuiNumberField.styleOverrides.scrubbing` or the root's `MuiNumberField-scrubbing` class.
+The root has the `MuiNumberField-scrubbing` class while the user drags the handle.
 
 ### Direction and sensitivity
 
@@ -227,9 +227,11 @@ That element also provides Base UI's NumberField Group semantics with `role="gr
 
 ### Theme overrides
 
-Use `MuiNumberField` in the theme to set default props or override the `root`, `input`, `htmlInput`, `inputLabel`, `formHelperText`, `controls`, `incrementButton`, `decrementButton`, `scrubArea`, `scrubAreaAdornment`, and `scrubAreaCursor` styles.
+Use `MuiNumberField` in the theme to set default props and override slot styles.
+In `styleOverrides.root`, use `& .MuiNumberField-htmlInput` to style the native input and `&.MuiNumberField-scrubbing` to style the root during a drag.
+
 The following example sets small, stacked controls and a scrub handle as theme defaults.
-It gives the buttons different colors and adds an outline while scrubbing through `styleOverrides.scrubbing`.
+It gives the buttons different colors and adds an outline while scrubbing.
 
 {{"component": "file://./demos/theme/index.ts"}}
 

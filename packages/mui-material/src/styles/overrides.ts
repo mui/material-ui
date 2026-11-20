@@ -216,7 +216,7 @@ export interface ComponentNameToClassKey {
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;
-  MuiNumberField: NumberFieldClassKey;
+  MuiNumberField: Exclude<NumberFieldClassKey, 'htmlInput' | 'scrubbing'>;
   MuiOutlinedInput: OutlinedInputClassKey;
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;

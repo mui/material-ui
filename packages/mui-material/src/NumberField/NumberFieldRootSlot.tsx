@@ -7,7 +7,6 @@ import { mergeProps } from '@base-ui/react/merge-props';
 
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import type { NumberFieldClasses } from './numberFieldClasses';
-import numberFieldClasses from './numberFieldClasses';
 import FormControl from '../FormControl';
 import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
@@ -30,12 +29,6 @@ interface NumberFieldRootProps {
 const NumberFieldRoot = styled(FormControl, {
   name: 'MuiNumberField',
   slot: 'root',
-  overridesResolver: ({ ownerState }, styles) => [
-    styles.root,
-    // Keep the Material variant's native input styles and apply overrides through its class.
-    { [`& .${numberFieldClasses.htmlInput}`]: styles.htmlInput },
-    ownerState.scrubbing && styles.scrubbing,
-  ],
 })({});
 
 const NumberFieldInputLabel = styled(InputLabel, {

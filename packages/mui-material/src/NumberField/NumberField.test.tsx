@@ -343,7 +343,7 @@ describe('<NumberField />', () => {
             styleOverrides: {
               inputLabel: { paddingTop: 7 },
               formHelperText: { marginLeft: 9 },
-              htmlInput: { paddingTop: 3 },
+              root: { [`& .${classes.htmlInput}`]: { paddingTop: 3 } },
             },
           },
         },
@@ -2765,8 +2765,8 @@ describe('<NumberField />', () => {
               styleOverrides: {
                 root: ({ ownerState }) => ({
                   paddingTop: ownerState.scrubbing ? '7px' : '0px',
+                  [`&.${classes.scrubbing}`]: { paddingBottom: 9 },
                 }),
-                scrubbing: { paddingBottom: 9 },
               },
             },
           },
