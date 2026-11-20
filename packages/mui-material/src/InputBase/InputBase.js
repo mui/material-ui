@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import isHostComponent from '@mui/utils/isHostComponent';
 import TextareaAutosize from '../TextareaAutosize';
 import FormControlContext from '../FormControl/FormControlContext';
+import InputBaseSizeContext from './inputBaseSizeContext';
 import { useFormControlState } from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -581,43 +582,45 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     >
       {startAdornment}
       <FormControlContext.Provider value={null}>
-        <Input
-          aria-invalid={fcs.error}
-          aria-describedby={ariaDescribedby}
-          aria-label={ariaLabel}
-          autoComplete={autoComplete}
-          autoFocus={autoFocus}
-          defaultValue={defaultValue}
-          disabled={fcs.disabled}
-          id={id}
-          onAnimationStart={handleAutoFill}
-          name={name}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={fcs.required}
-          rows={rows}
-          value={value}
-          onKeyDown={onKeyDown}
-          onKeyUp={onKeyUp}
-          type={type}
-          {...inputProps}
-          {...(!isHostComponent(Input) && {
-            as: InputComponent,
-            ownerState: { ...ownerState, ...inputProps.ownerState },
-          })}
-          ref={handleInputRef}
-          className={clsx(
-            classes.input,
-            {
-              // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-              'MuiInputBase-readOnly': readOnly,
-            },
-            inputProps.className,
-          )}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onFocus={handleFocus}
-        />
+        <InputBaseSizeContext.Provider value={fcs.size}>
+          <Input
+            aria-invalid={fcs.error}
+            aria-describedby={ariaDescribedby}
+            aria-label={ariaLabel}
+            autoComplete={autoComplete}
+            autoFocus={autoFocus}
+            defaultValue={defaultValue}
+            disabled={fcs.disabled}
+            id={id}
+            onAnimationStart={handleAutoFill}
+            name={name}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            required={fcs.required}
+            rows={rows}
+            value={value}
+            onKeyDown={onKeyDown}
+            onKeyUp={onKeyUp}
+            type={type}
+            {...inputProps}
+            {...(!isHostComponent(Input) && {
+              as: InputComponent,
+              ownerState: { ...ownerState, ...inputProps.ownerState },
+            })}
+            ref={handleInputRef}
+            className={clsx(
+              classes.input,
+              {
+                // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+                'MuiInputBase-readOnly': readOnly,
+              },
+              inputProps.className,
+            )}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onFocus={handleFocus}
+          />
+        </InputBaseSizeContext.Provider>
       </FormControlContext.Provider>
       {endAdornment}
       {renderSuffix
