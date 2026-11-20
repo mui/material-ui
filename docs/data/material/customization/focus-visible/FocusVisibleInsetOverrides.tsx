@@ -32,7 +32,6 @@ const theme = createTheme({
 });
 
 export default function FocusVisibleInsetOverrides() {
-  // @focus-start @padding 1
   const [tab, setTab] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -98,5 +97,4 @@ export default function FocusVisibleInsetOverrides() {
       </Stack>
     </ThemeProvider>
   );
-  // @focus-end
 }

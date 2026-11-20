@@ -119,7 +119,7 @@ createTheme({
 });
 ```
 
-{{"component": "file://./demos/inset-overrides/index.ts"}}
+{{"demo": "FocusVisibleInsetOverrides.js"}}
 
 Without `insetOverrides`, the inner focus indicator components use `outlineOffset: -outlineWidth`, so the outline sits just inside the edge.
 They also draw the `boxShadow` inset.
@@ -144,7 +144,7 @@ Call it on the theme, as `theme.applyFocusVisible()`. A destructured method does
 
 For example, a menu with padding leaves room to draw the indicator of `MenuItem` outside:
 
-{{"component": "file://./demos/offset/index.ts"}}
+{{"demo": "FocusVisibleOffset.js"}}
 
 The same method draws the inner indicator on a custom component inside a clipping container:
 

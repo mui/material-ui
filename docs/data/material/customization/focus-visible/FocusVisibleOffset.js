@@ -22,7 +22,6 @@ const theme = createTheme({
 
 export default function FocusVisibleOffset() {
   return (
-    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Paper sx={{ width: 220 }}>
         <MenuList
@@ -34,6 +33,5 @@ export default function FocusVisibleOffset() {
         </MenuList>
       </Paper>
     </ThemeProvider>
-    // @focus-end
   );
 }
