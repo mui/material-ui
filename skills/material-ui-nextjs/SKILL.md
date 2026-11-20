@@ -4,7 +4,7 @@ description: Integrates Material UI with Next.js App and Pages routers using @m
 license: MIT
 metadata:
   author: mui
-  version: '1.0.0'
+  version: '2.0.0'
 ---
 
 # Material UI and Next.js
@@ -16,7 +16,7 @@ Agent skill for Next.js + Material UI wiring (SSR/streaming, cache providers, f
 - New App Router or Pages Router app using `@mui/material`
 - Styles missing, wrong order, or in `body` instead of `head`
 - `next/font` + `ThemeProvider` / `createTheme`
-- Tailwind or CSS Modules + MUI (`enableCssLayer`)
+- Tailwind or CSS Modules + MUI (the `mui` cascade layer)
 - `Button` + `component={Link}` or Next.js v16 client boundary errors
 - `useSearchParams` / URL-driven MUI views and Suspense boundaries
 
@@ -25,10 +25,10 @@ Agent skill for Next.js + Material UI wiring (SSR/streaming, cache providers, f
 | Area          | Topics                                                                                  |
 | :------------ | :-------------------------------------------------------------------------------------- |
 | App Router    | `AppRouterCacheProvider`, `@emotion/cache`, `options`, `useSearchParams` + `<Suspense>` |
-| Pages Router  | `_document`, `_app`, `DocumentHeadTags`, `AppCacheProvider`                             |
+| Pages Router  | `_document`, `_app`, `documentGetInitialProps`, `AppCacheProvider`                      |
 | Fonts         | `'use client'` theme, `next/font`, CSS variables on `html`                              |
 | CSS variables | `cssVariables`, SSR flicker docs                                                        |
-| CSS layers    | `enableCssLayer`, Tailwind / other CSS                                                  |
+| CSS layers    | Always-on `mui` layer, layer order in the global CSS, Tailwind / other CSS              |
 | Link          | Client wrapper, routing guide, examples repo                                            |
 
 ## Full guide

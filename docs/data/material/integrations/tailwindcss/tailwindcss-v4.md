@@ -30,31 +30,15 @@ The [`material-ui-nextjs-tailwind-ts` example](https://github.com/mui/material-u
 ### Next.js Pages Router
 
 To integrate Tailwind CSS v4 with Material UI in a Next.js Pages Router project, start by configuring Material UI with Next.js in the [Pages Router integration guide](/material-ui/integrations/nextjs/#pages-router).
-Then follow these steps:
-
-1. Configure the global Tailwind CSS file:
+Then configure the layer order in the Tailwind CSS file:
 
 ```css title="styles/global.css"
+@layer theme, base, mui, components, utilities;
 @import 'tailwindcss';
 ```
 
-2. Configure the layer order with the `GlobalStyles` component—it must be the first child of the `AppCacheProvider`:
-
-```tsx title="pages/_app.tsx"
-import '../styles/global.css';
-import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
-import GlobalStyles from '@mui/material/GlobalStyles';
-
-export default function MyApp(props: AppProps) {
-  const { Component, pageProps } = props;
-  return (
-    <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-      <Component {...pageProps} />
-    </AppCacheProvider>
-  );
-}
-```
+Import the file in `pages/_app.tsx`.
+Material UI's server-rendered styles come after it, at the end of the `<head>`.
 
 ### Vite.js or any other SPA
 

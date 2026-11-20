@@ -313,3 +313,41 @@ The `enableCssLayer` option of `AppRouterCacheProvider` and `createEmotionCache(
 -createEmotionCache({ enableCssLayer: true });
 +createEmotionCache();
 ```
+
+### DocumentHeadTags removed
+
+`DocumentHeadTags` and `DocumentHeadTagsProps` are removed from the Pages Router entries of `@mui/material-nextjs`, such as `v15-pagesRouter`.
+`documentGetInitialProps()` now adds Material UI's styles to the `styles` that Next.js renders at the end of the `<head>`, after your CSS, so that the layer order your CSS declares applies.
+It no longer returns `emotionStyleTags`.
+
+Remove the component, its props type and the `emotion-insertion-point` meta tag from `pages/_document.tsx`:
+
+```diff title="pages/_document.tsx"
+-import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v15-pagesRouter';
+-import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v15-pagesRouter';
++import { documentGetInitialProps } from '@mui/material-nextjs/v15-pagesRouter';
+
+-export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
++export default function MyDocument() {
+   return (
+     <Html lang="en">
+       <Head>
+-        <meta name="emotion-insertion-point" content="" />
+-        <DocumentHeadTags {...props} />
+       </Head>
+```
+
+If you declared the layer order with `GlobalStyles` as the first child of the `AppCacheProvider`, move it to the top of your global CSS file.
+`GlobalStyles` now comes after your CSS, so `mui` would end up after the layers that your CSS declares, such as Tailwind CSS's `utilities`:
+
+```diff title="styles/global.css"
++@layer theme, base, mui, components, utilities;
+ @import 'tailwindcss';
+```
+
+```diff title="pages/_app.tsx"
+ <AppCacheProvider {...props}>
+-  <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
+   <Component {...pageProps} />
+ </AppCacheProvider>
+```

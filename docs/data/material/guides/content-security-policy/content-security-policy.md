@@ -113,13 +113,12 @@ For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs
 
 ```tsx
 import {
-  DocumentHeadTags,
   documentGetInitialProps,
   createEmotionCache,
 } from '@mui/material-nextjs/v15-pagesRouter';
 // other imports
 
-type Props = DocumentInitialProps & DocumentHeadTagsProps & { nonce?: string };
+type Props = DocumentInitialProps & { nonce?: string };
 
 export default function MyDocument(props: Props) {
   const { nonce } = props;
@@ -129,7 +128,6 @@ export default function MyDocument(props: Props) {
       <Head>
         {/*...*/}
         <meta name="csp-nonce" content={nonce} />
-        <DocumentHeadTags {...props} nonce={nonce} />
       </Head>
       <body>
         {/*...*/}

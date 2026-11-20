@@ -1,8 +1,8 @@
 # Material UI and Next.js
 
-Version 1.0.0 (Material UI v9)
+Version 2.0.0 (Material UI v10)
 
-> **Version notice:** This skill targets Material UI v9 (`>=9.0.0 <10.0.0`). If you are using a different major version, verify the API details before following this guidance.
+> **Version notice:** This skill targets Material UI v10 (`>=10.0.0 <11.0.0`). If you are using a different major version, verify the API details before following this guidance.
 
 > Note: This document is for agents and LLMs integrating Material UI with Next.js. Source: `docs/data/material/integrations/nextjs/nextjs.md` and related integration docs in this repository.
 
@@ -10,7 +10,7 @@ Version 1.0.0 (Material UI v9)
 
 ## Abstract
 
-Material UI uses Emotion for styles. On Next.js you must wire an Emotion cache so SSR and streaming produce correct CSS (prefer injecting styles into `head` instead of only `body`). The `@mui/material-nextjs` package supplies `AppRouterCacheProvider` (App Router) and `AppCacheProvider` / `DocumentHeadTags` (Pages Router). Material UI components ship as client components (`"use client"`); they still SSR but are not React Server Components. Match the package import suffix (for example `v15-appRouter`) to your Next.js major version.
+Material UI uses Emotion for styles. On Next.js you must wire an Emotion cache so SSR and streaming produce correct CSS (prefer injecting styles into `head` instead of only `body`). The `@mui/material-nextjs` package supplies `AppRouterCacheProvider` (App Router) and `AppCacheProvider` / `documentGetInitialProps` (Pages Router). Material UI components ship as client components (`"use client"`); they still SSR but are not React Server Components. Match the package import suffix (for example `v15-appRouter`) to your Next.js major version.
 
 ---
 
@@ -73,22 +73,17 @@ Example: `pnpm add @mui/material-nextjs @emotion/cache @emotion/server`
 
 ### `_document.tsx`
 
-- Import `DocumentHeadTags` and `documentGetInitialProps` from the `v15-pagesRouter` (or matching `v1X-pagesRouter`) entry.
-- Render `<DocumentHeadTags {...props} />` inside `<Head>`.
-- Assign `getInitialProps` to call `documentGetInitialProps`.
+- Import `documentGetInitialProps` from the `v15-pagesRouter` (or matching `v1X-pagesRouter`) entry.
+- Assign `getInitialProps` to call `documentGetInitialProps`. It adds MUI's styles to the `styles` that Next.js renders at the end of `<head>`, after the app's CSS, so the layer order the app's CSS declares applies.
+- Nothing goes inside `<Head>` for MUI: `DocumentHeadTags` and the `emotion-insertion-point` meta were removed in v10.
 
 ### `_app.tsx`
 
 Wrap the app with `AppCacheProvider` from the same major entry (for example `v15-pagesRouter`).
 
-### Optional: custom cache and cascade layers
+### Optional: custom cache
 
-- Pass a custom `emotionCache` into `documentGetInitialProps` options when needed.
-- For `@layer`, use `createEmotionCache({ enableCssLayer: true })` from `@mui/material-nextjs`, pass it from `_document` and align `_app` with the same cache pattern. See [Next.js integration—Cascade layers (optional)](https://mui.com/material-ui/integrations/nextjs.md#cascade-layers-optional).
-
-### TypeScript
-
-Extend `Document` props with `DocumentHeadTagsProps` from the same import path. See [Next.js integration—TypeScript](https://mui.com/material-ui/integrations/nextjs.md#typescript).
+Pass a custom `emotionCache` (for example `createEmotionCache({ key: 'css' })` from `@mui/material-nextjs`) into `documentGetInitialProps` options when needed. See [Next.js integration—Custom cache (optional)](https://mui.com/material-ui/integrations/nextjs.md#custom-cache-optional-2).
 
 ---
 
@@ -116,11 +111,18 @@ Enable `cssVariables: true` in `createTheme` when using [CSS theme variables](ht
 
 ## Other styling stacks (CSS layers)
 
-If you combine MUI with Tailwind CSS, CSS Modules, or other global CSS, set `enableCssLayer: true` on `AppRouterCacheProvider`:
+MUI always puts its styles in `@layer mui`; there is no option to turn it on or off (v9's `enableCssLayer` was removed). CSS that isn't in a layer, such as CSS Modules or plain global CSS, overrides MUI without matching its specificity.
 
-`<AppRouterCacheProvider options={{ enableCssLayer: true }}>`
+To place `mui` among the app's own layers (for example Tailwind CSS v4), declare the order at the top of the global CSS file, before anything else, in both routers:
 
-That wraps MUI output in `@layer mui` so anonymous layers can override as intended. See [Next.js integration—Using other styling solutions](https://mui.com/material-ui/integrations/nextjs.md#using-other-styling-solutions) and [MDN—@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer).
+```css
+@layer theme, base, mui, components, utilities;
+@import 'tailwindcss';
+```
+
+A layer's position is fixed where its name first appears, so the statement must come before MUI's styles: the global CSS loads first in the App Router, and `documentGetInitialProps` puts MUI's styles after it in the Pages Router. With MUI's opt-in sub-layers (`modularCssLayers` in the theme), put the same full order in `modularCssLayers` as a string.
+
+See [Next.js integration—Using other styling solutions](https://mui.com/material-ui/integrations/nextjs.md#using-other-styling-solutions), [CSS layers](https://mui.com/material-ui/customization/css-layers.md), and [MDN—@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer).
 
 ---
 

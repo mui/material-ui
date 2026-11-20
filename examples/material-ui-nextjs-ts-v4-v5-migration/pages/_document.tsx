@@ -1,20 +1,18 @@
 import * as React from 'react';
-import type { DocumentProps, DocumentInitialProps, DocumentContext } from 'next/document';
+import type { DocumentInitialProps, DocumentContext } from 'next/document';
 import { Html, Head, Main, NextScript } from 'next/document';
 import type { AppProps } from 'next/app';
-import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v14-pagesRouter';
-import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v14-pagesRouter';
+import { documentGetInitialProps } from '@mui/material-nextjs/v14-pagesRouter';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import theme from '../src/theme';
 
-export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
+export default function MyDocument() {
   return (
     <Html lang="en">
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="icon" href="/favicon.ico" />
-        <DocumentHeadTags {...props} />
       </Head>
       <body>
         <Main />
