@@ -298,3 +298,21 @@ Without it, `GlobalStyles` comes after the CSS files that load first, such as Ta
 ```
 
 The class names that `<StyledEngineProvider enableCssLayer>` generated started with `mui-`, and now start with `css-`.
+
+### injectFirst removed
+
+The `injectFirst` prop of `StyledEngineProvider` is removed.
+It put Material UI's styles at the top of the `<head>`, so that the CSS after them overrode them.
+CSS that isn't in a layer now overrides Material UI's styles wherever it loads.
+Putting Material UI's styles first would make `mui` the lowest layer, so a `@layer reset, mui;` statement in your CSS would no longer keep the reset below them.
+
+Without `injectFirst` and `enableCssLayer`, `StyledEngineProvider` doesn't do anything, so you can remove it:
+
+```diff
+-<StyledEngineProvider injectFirst>
+-  <App />
+-</StyledEngineProvider>
++<App />
+```
+
+If you create an Emotion cache with the `prepend: true` option, remove the option for the same reason.

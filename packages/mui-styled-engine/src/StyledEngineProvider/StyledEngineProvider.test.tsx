@@ -6,28 +6,22 @@ import { createRenderer } from '@mui/internal-test-utils';
 describe('[Emotion] StyledEngineProvider', () => {
   const { render } = createRenderer();
 
-  it('should reuse the same cache', () => {
-    let upperCache;
+  it('keeps the Emotion cache of its parent', () => {
+    let outerCache;
     let innerCache;
-    function Upper() {
-      const cache = __unsafe_useEmotionCache();
-      upperCache = cache;
+    function Outer() {
+      outerCache = __unsafe_useEmotionCache();
       return (
-        <StyledEngineProvider injectFirst>
+        <StyledEngineProvider>
           <Inner />
         </StyledEngineProvider>
       );
     }
     function Inner() {
-      const cache = __unsafe_useEmotionCache();
-      innerCache = cache;
+      innerCache = __unsafe_useEmotionCache();
       return null;
     }
-    render(
-      <StyledEngineProvider injectFirst>
-        <Upper />
-      </StyledEngineProvider>,
-    );
-    expect(innerCache).to.equal(upperCache);
+    render(<Outer />);
+    expect(innerCache).to.equal(outerCache);
   });
 });
