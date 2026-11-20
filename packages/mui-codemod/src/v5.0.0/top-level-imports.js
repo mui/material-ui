@@ -13,8 +13,8 @@ export default function transformer(fileInfo, api, options) {
   };
 
   const root = j(fileInfo.source);
-  const importRegExp = new RegExp(`^${importModule}/(?:[^/]+/)*([^/]+)$`);
-
+  const escapedImportModule = importModule.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const importRegExp = new RegExp(`^${escapedImportModule}/(?:[^/]+/)*([^/]+)$`);
   const resultSpecifiers = [];
 
   root.find(j.ImportDeclaration).forEach((path) => {
