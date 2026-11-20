@@ -346,6 +346,14 @@ const TEXTFIELD_A11Y_DEMOS = [
  */
 export const A11Y_RULES: A11yRule[] = [
   {
+    test: 'test/regressions/a11y/fixtures/speed-dial/SpeedDialA11yActions',
+    enabled: true,
+    assertions: 'all',
+    // axe cannot resolve the trigger's aria-controls in this fixture context.
+    // Keep the incomplete result in the report for manual review.
+    skipAssertions: ['aria-valid-attr-value'],
+  },
+  {
     test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars}',
     enabled: true,
   },
