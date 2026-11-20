@@ -342,7 +342,7 @@ Forward props, ref, and children to preserve behavior, label associations, and a
 Root attributes can also go on the component or its render element.
 See [Item customization](/material-ui/react-menu2/#item) and [Group customization](/material-ui/react-menu2/#groups).
 
-Checkbox and radio items have separate `indicator` and `indicatorIcon` slots for the container and icon.
+Checkbox and radio items keep their `indicator` slot, `icon`, and `checkedIcon` props.
 `MenuSubmenuTrigger` keeps its `indicator` slot and accepts `slots={{ indicator: null }}` to omit it.
 
 Set label and separator visual props on the corresponding component, and use `sx` for other styles:

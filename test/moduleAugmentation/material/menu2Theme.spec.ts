@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import {
   menu2CheckboxItemClasses,
@@ -147,17 +148,8 @@ createTheme({
     MuiMenu2CheckboxItem: {
       defaultProps: {
         defaultChecked: true,
-        slots: { indicatorIcon: 'span' },
-        slotProps: {
-          indicatorIcon: (ownerState) => {
-            ownerState.checked satisfies boolean;
-            ownerState.highlighted satisfies boolean;
-            return {
-              fontSize: 'small',
-              sx: (theme) => ({ color: theme.menu2TestColor }),
-            };
-          },
-        },
+        icon: React.createElement('span'),
+        checkedIcon: null,
         onCheckedChange: (checked, eventDetails) => {
           checked satisfies boolean;
           eventDetails.cancel();
@@ -173,6 +165,10 @@ createTheme({
           ownerState.checked satisfies boolean;
           ownerState.highlighted satisfies boolean;
           return { [`&.${menu2CheckboxItemIndicatorClasses.checked}`]: { color: 'blue' } };
+        },
+        indicatorIcon: ({ ownerState, theme }) => {
+          ownerState.checked satisfies boolean;
+          return { color: theme.menu2TestColor };
         },
         dense: {},
         divider: {},
@@ -194,17 +190,8 @@ createTheme({
     MuiMenu2RadioItem: {
       defaultProps: {
         value: 'one',
-        slots: { indicatorIcon: 'span' },
-        slotProps: {
-          indicatorIcon: (ownerState) => {
-            ownerState.checked satisfies boolean;
-            ownerState.highlighted satisfies boolean;
-            return {
-              fontSize: 'small',
-              sx: (theme) => ({ color: theme.menu2TestColor }),
-            };
-          },
-        },
+        icon: React.createElement('span'),
+        checkedIcon: 'Checked',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -217,6 +204,7 @@ createTheme({
           ownerState.highlighted satisfies boolean;
           return {};
         },
+        indicatorIcon: ({ theme }) => ({ color: theme.menu2TestColor }),
         dense: {},
         divider: {},
         gutters: {},
@@ -345,7 +333,21 @@ createTheme({
         },
       ],
     },
+    MuiMenu2CheckboxItem: {
+      defaultProps: {
+        // @ts-expect-error Use icon and checkedIcon instead of an icon slot.
+        slots: { indicatorIcon: 'span' },
+        // @ts-expect-error Use icon and checkedIcon instead of icon slot props.
+        slotProps: { indicatorIcon: { fontSize: 'small' } },
+      },
+    },
     MuiMenu2RadioItem: {
+      defaultProps: {
+        // @ts-expect-error Use icon and checkedIcon instead of an icon slot.
+        slots: { indicatorIcon: 'span' },
+        // @ts-expect-error Use icon and checkedIcon instead of icon slot props.
+        slotProps: { indicatorIcon: { fontSize: 'small' } },
+      },
       variants: [
         {
           // @ts-expect-error Checked is a boolean, not a string.

@@ -49,7 +49,6 @@ describe('<Menu2CheckboxItem />', () => {
     slots: {
       root: { expectedClassName: classes.root },
       indicator: { expectedClassName: classes.indicator },
-      indicatorIcon: { expectedClassName: classes.indicatorIcon },
     },
     muiName: 'MuiMenu2CheckboxItem',
     testVariantProps: { checked: true },
@@ -72,11 +71,12 @@ describe('<Menu2CheckboxItem />', () => {
         <Menu2Popup anchor={document.body}>
           <Menu2CheckboxItem
             render={renderItem}
-            slots={{ root: CustomRoot, indicatorIcon: 'span' }}
+            icon={<span data-testid="icon" />}
+            checkedIcon={<span data-testid="checked-icon" />}
+            slots={{ root: CustomRoot }}
             slotProps={{
               root: (state) => ({ ref: slotRef, 'data-slot-checked': String(state.checked) }),
               indicator: { 'data-testid': 'indicator' },
-              indicatorIcon: { children: '✓', 'data-testid': 'icon' },
             }}
             sx={{ paddingLeft: '31px' }}
           >
@@ -94,7 +94,7 @@ describe('<Menu2CheckboxItem />', () => {
     expect(getComputedStyle(item).display).not.to.equal('flex');
     expect(getComputedStyle(item).paddingLeft).not.to.equal('31px');
     expect(indicator).to.have.class(classes.indicator);
-    expect(screen.getByTestId('icon')).to.have.text('✓');
+    expect(indicator.querySelector('[data-testid="icon"]')).not.to.equal(null);
     expect(renderItem).not.toHaveBeenCalled();
 
     await user.click(item);
@@ -102,6 +102,7 @@ describe('<Menu2CheckboxItem />', () => {
     expect(item).to.have.attribute('data-owner-checked', 'true');
     expect(item).to.have.attribute('data-slot-checked', 'true');
     expect(indicator).to.have.attribute('data-checked');
+    expect(indicator.querySelector('[data-testid="checked-icon"]')).not.to.equal(null);
     expect(screen.getByTestId('indicator')).to.equal(indicator);
     expect(slotRef.current).to.equal(item);
   });

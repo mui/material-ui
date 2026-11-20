@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import type { SvgIconProps } from '@mui/material/SvgIcon';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import StarIcon from '@mui/icons-material/Star';
@@ -13,26 +12,8 @@ import MenuRadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import MenuRadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 
-// @focus-start
-interface IndicatorIconProps extends SvgIconProps {
-  ownerState: { checked: boolean };
-}
-
-const StarIndicatorIcon = React.forwardRef<SVGSVGElement, IndicatorIconProps>(
-  function StarIndicatorIcon({ ownerState, fontSize = 'small', ...props }, ref) {
-    const Icon = ownerState.checked ? StarIcon : StarBorderIcon;
-    return <Icon {...props} ref={ref} fontSize={fontSize} />;
-  },
-);
-
-const RadioIndicatorIcon = React.forwardRef<SVGSVGElement, IndicatorIconProps>(
-  function RadioIndicatorIcon({ ownerState, fontSize = 'small', ...props }, ref) {
-    const Icon = ownerState.checked ? CheckCircleIcon : RadioButtonUncheckedIcon;
-    return <Icon {...props} ref={ref} fontSize={fontSize} />;
-  },
-);
-
 export default function IndicatorIconsMenu2() {
+  // @focus-start @padding 1
   const [favorite, setFavorite] = React.useState(true);
   const [pinned, setPinned] = React.useState(false);
   const [sort, setSort] = React.useState('name');
@@ -44,28 +25,38 @@ export default function IndicatorIconsMenu2() {
         <MenuCheckboxItem
           checked={favorite}
           onCheckedChange={setFavorite}
-          slots={{ indicatorIcon: StarIndicatorIcon }}
+          icon={<StarBorderIcon />}
+          checkedIcon={<StarIcon />}
         >
           Favorite
         </MenuCheckboxItem>
         <MenuCheckboxItem
           checked={pinned}
           onCheckedChange={setPinned}
-          slots={{ indicatorIcon: StarIndicatorIcon }}
+          icon={<StarBorderIcon />}
+          checkedIcon={<StarIcon />}
         >
           Pinned
         </MenuCheckboxItem>
         <MenuSeparator />
         <MenuRadioGroup value={sort} onValueChange={setSort}>
-          <MenuRadioItem value="name" slots={{ indicatorIcon: RadioIndicatorIcon }}>
+          <MenuRadioItem
+            value="name"
+            icon={<RadioButtonUncheckedIcon />}
+            checkedIcon={<CheckCircleIcon />}
+          >
             Sort by name
           </MenuRadioItem>
-          <MenuRadioItem value="date" slots={{ indicatorIcon: RadioIndicatorIcon }}>
+          <MenuRadioItem
+            value="date"
+            icon={<RadioButtonUncheckedIcon />}
+            checkedIcon={<CheckCircleIcon />}
+          >
             Sort by date
           </MenuRadioItem>
         </MenuRadioGroup>
       </MenuPopup>
     </Menu>
   );
+  // @focus-end
 }
-// @focus-end

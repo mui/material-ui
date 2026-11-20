@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import clsx from 'clsx';
 import type { ListItemIconProps } from '../ListItemIcon';
 import ListItemIcon from '../ListItemIcon';
 import { styled } from '../zero-styled';
@@ -34,6 +35,19 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(function Indi
   const iconProps = { ...props, as: component };
   return <ListItemIcon {...iconProps} ref={ref} data-mui-menu-indicator="" />;
 });
+
+// Merge the icon classes and default to the small size, as Checkbox and Radio do.
+export function getMenu2IndicatorIcon(icon: React.ReactNode, className: string) {
+  if (
+    !React.isValidElement<{ className?: string | undefined; fontSize?: string | undefined }>(icon)
+  ) {
+    return icon;
+  }
+  return React.cloneElement(icon, {
+    className: clsx(className, icon.props.className),
+    fontSize: icon.props.fontSize ?? 'small',
+  });
+}
 
 // Each item supplies the theme overrides for its indicator slot.
 /**

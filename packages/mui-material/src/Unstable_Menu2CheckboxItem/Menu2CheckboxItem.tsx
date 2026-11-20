@@ -9,11 +9,10 @@ import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import Menu2ItemBase from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
-import Menu2CheckboxItemIcon from '../internal/Menu2CheckboxItemIcon';
-import type SvgIcon from '../SvgIcon';
-import type { SlotProps } from '../utils/types';
+import CheckBoxIcon from '../internal/svg-icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import type { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
-import Menu2IndicatorBase from '../Unstable_Menu2/Menu2IndicatorBase';
+import Menu2IndicatorBase, { getMenu2IndicatorIcon } from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
@@ -56,23 +55,11 @@ export interface Menu2CheckboxItemSlots {
    * @default Menu2CheckboxItemIndicator
    */
   indicator?: React.ElementType | undefined;
-  /**
-   * The component that renders the icon inside the indicator.
-   * @default Menu2CheckboxItemIndicatorIcon
-   */
-  indicatorIcon?: React.ElementType | undefined;
 }
 
 export interface Menu2CheckboxItemSlotProps {
   root?: Menu2RootSlotProps<Menu2CheckboxItemOwnerState>['root'] | undefined;
   indicator?: Menu2IndicatorSlotProps<Menu2CheckboxItemOwnerState> | undefined;
-  indicatorIcon?:
-    | SlotProps<
-        typeof SvgIcon,
-        {} | { [attribute: `data-${string}`]: unknown },
-        Menu2CheckboxItemOwnerState
-      >
-    | undefined;
 }
 
 export interface Menu2CheckboxItemProps
@@ -94,6 +81,16 @@ export interface Menu2CheckboxItemProps
    * To render an uncontrolled checkbox item, use the `defaultChecked` prop instead.
    */
   checked?: boolean | undefined;
+  /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon?: React.ReactNode;
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon?: React.ReactNode;
   /**
    * Whether the checkbox item is initially ticked.
    *
@@ -162,23 +159,32 @@ const Menu2CheckboxItemRoot = styled(Menu2ItemBase, {
 const Menu2CheckboxItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'indicator',
+  overridesResolver: (props, styles) => [
+    { [`& .${menu2CheckboxItemClasses.indicatorIcon}`]: styles.indicatorIcon },
+    styles.indicator,
+  ],
 })<{ ownerState: Menu2CheckboxItemOwnerState }>({});
 
-const Menu2CheckboxItemIndicatorIcon = styled(Menu2CheckboxItemIcon, {
-  name: 'MuiMenu2CheckboxItem',
-  slot: 'indicatorIcon',
-})<{ ownerState: Menu2CheckboxItemOwnerState }>({});
+const defaultCheckedIcon = <CheckBoxIcon fontSize="small" />;
+const defaultIcon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 
 interface Menu2CheckboxItemRootSlotProps extends Pick<
   Menu2CheckboxItemProps,
-  'disableRipple' | 'nativeButton' | 'render' | 'slotProps' | 'slots' | 'sx'
+  | 'checkedIcon'
+  | 'disableRipple'
+  | 'icon'
+  | 'nativeButton'
+  | 'render'
+  | 'slotProps'
+  | 'slots'
+  | 'sx'
 > {
   baseProps: HTMLProps;
   ownerState: Menu2CheckboxItemOwnerState & Pick<Menu2CheckboxItemProps, 'classes'>;
 }
 
 function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
-  const { ownerState, render: renderProp, slotProps, slots, ...other } = props;
+  const { checkedIcon, icon, ownerState, render: renderProp, slotProps, slots, ...other } = props;
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2CheckboxItemIndicator,
     shouldForwardComponentProp: !slots?.indicator,
@@ -192,15 +198,6 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
       ownerState.disabled && menu2CheckboxItemIndicatorClasses.disabled,
       ownerState.highlighted && menu2CheckboxItemIndicatorClasses.highlighted,
     ),
-  });
-  const [IndicatorIconSlot, indicatorIconProps] = useSlot('indicatorIcon', {
-    elementType: Menu2CheckboxItemIndicatorIcon,
-    shouldForwardComponentProp: !slots?.indicatorIcon,
-    externalForwardedProps: { slots, slotProps },
-    ownerState,
-    className: clsx(menu2CheckboxItemClasses.indicatorIcon, ownerState.classes?.indicatorIcon),
-    additionalProps: { fontSize: 'small' as const },
-    internalForwardedProps: { checked: ownerState.checked },
   });
 
   return (
@@ -225,7 +222,12 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
           keepMounted={keepMounted}
           render={getMenu2RootRender(IndicatorSlot, ownerState, {
             ...indicatorProps,
-            children: indicatorProps.children ?? <IndicatorIconSlot {...indicatorIconProps} />,
+            children:
+              indicatorProps.children ??
+              getMenu2IndicatorIcon(
+                ownerState.checked ? checkedIcon : icon,
+                clsx(menu2CheckboxItemClasses.indicatorIcon, ownerState.classes?.indicatorIcon),
+              ),
           })}
         />
       }
@@ -240,10 +242,20 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   baseProps: PropTypes.object.isRequired,
   /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
+  /**
    * If `true`, the ripple effect is disabled.
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
   /**
    * Whether the item renders a native `<button>` element.
    * Inferred from `slots.root="button"` or a button element passed to `render`.
@@ -264,7 +276,6 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    indicatorIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -272,7 +283,6 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     indicator: PropTypes.elementType,
-    indicatorIcon: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 } as any;
@@ -299,6 +309,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   const {
     children,
     checked,
+    checkedIcon = defaultCheckedIcon,
     className,
     classes: classesProp,
     dense: denseProp = false,
@@ -306,6 +317,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     disableGutters = false,
     disableRipple,
     divider = false,
+    icon = defaultIcon,
     nativeButton: nativeButtonProp,
     onCheckedChange,
     render: renderProp,
@@ -346,7 +358,9 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
           <Menu2CheckboxItemRootSlot
             baseProps={renderProps}
             ownerState={{ ...ownerState, ...state }}
+            checkedIcon={checkedIcon}
             disableRipple={disableRipple}
+            icon={icon}
             nativeButton={nativeButton}
             render={renderProp}
             slotProps={slotProps}
@@ -385,6 +399,11 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    * To render an uncontrolled checkbox item, use the `defaultChecked` prop instead.
    */
   checked: PropTypes.bool,
+  /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon: PropTypes.node,
   /**
    * The content of the component.
    */
@@ -436,6 +455,11 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon: PropTypes.node,
+  /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */
   label: PropTypes.string,
@@ -464,7 +488,6 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    indicatorIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -472,7 +495,6 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     indicator: PropTypes.elementType,
-    indicatorIcon: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

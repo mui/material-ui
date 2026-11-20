@@ -4,10 +4,9 @@ import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '@mui/material/styles';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
+import SvgIcon, { svgIconClasses } from '@mui/material/SvgIcon';
 import type { Menu2CheckboxItemSlotProps } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemIndicatorUtilityClass,
@@ -29,27 +28,15 @@ interface IndicatorState {
   highlighted: boolean;
 }
 
-interface IndicatorIconProps {
-  className?: string;
-  component?: React.ElementType;
-  fontSize?: 'small' | 'medium';
-  ref?: (element: Element | null) => void;
-  style?: React.CSSProperties;
-  sx?: SxProps<Theme>;
-  title?: string;
-  'data-testid'?: string;
-  'data-checked'?: string;
-}
-
 interface ItemOptions {
   checked?: boolean;
+  checkedIcon?: React.ReactNode;
   disabled?: boolean;
+  icon?: React.ReactNode;
   indicator?: React.ElementType;
   indicatorClassName?: string;
-  indicatorProps?: Menu2CheckboxItemSlotProps['indicator'];
-  indicatorIcon?: React.ElementType;
   indicatorIconClassName?: string;
-  indicatorIconProps?: IndicatorIconProps | ((state: IndicatorState) => IndicatorIconProps);
+  indicatorProps?: Menu2CheckboxItemSlotProps['indicator'];
   otherRadioItem?: boolean;
 }
 
@@ -63,20 +50,16 @@ const parts = [
     createItem: (options: ItemOptions) => (
       <Menu2CheckboxItem
         defaultChecked={options.checked}
+        checkedIcon={options.checkedIcon}
         disabled={options.disabled}
+        icon={options.icon}
         closeOnClick={false}
         classes={{
           indicator: options.indicatorClassName,
           indicatorIcon: options.indicatorIconClassName,
         }}
-        slots={{
-          ...(options.indicator && { indicator: options.indicator }),
-          ...(options.indicatorIcon && { indicatorIcon: options.indicatorIcon }),
-        }}
-        slotProps={{
-          indicator: options.indicatorProps,
-          indicatorIcon: options.indicatorIconProps,
-        }}
+        slots={{ indicator: options.indicator }}
+        slotProps={{ indicator: options.indicatorProps }}
       >
         Target
       </Menu2CheckboxItem>
@@ -92,20 +75,16 @@ const parts = [
       <Menu2RadioGroup defaultValue={options.checked ? 'target' : undefined}>
         <Menu2RadioItem
           value="target"
+          checkedIcon={options.checkedIcon}
           disabled={options.disabled}
+          icon={options.icon}
           closeOnClick={false}
           classes={{
             indicator: options.indicatorClassName,
             indicatorIcon: options.indicatorIconClassName,
           }}
-          slots={{
-            ...(options.indicator && { indicator: options.indicator }),
-            ...(options.indicatorIcon && { indicatorIcon: options.indicatorIcon }),
-          }}
-          slotProps={{
-            indicator: options.indicatorProps,
-            indicatorIcon: options.indicatorIconProps,
-          }}
+          slots={{ indicator: options.indicator }}
+          slotProps={{ indicator: options.indicatorProps }}
         >
           Target
         </Menu2RadioItem>
@@ -120,12 +99,6 @@ const parts = [
 ] as const;
 
 const CustomIndicator = styled('span')({});
-const CustomIndicatorIcon = styled('span')({});
-const CustomSvgRoot = React.forwardRef<SVGSVGElement, React.SVGAttributes<SVGSVGElement>>(
-  function CustomSvgRoot(props, ref) {
-    return <svg {...props} ref={ref} data-custom-root="true" />;
-  },
-);
 
 describe('Menu2 indicator slots', () => {
   const { render } = createRenderer();
@@ -163,7 +136,7 @@ describe('Menu2 indicator slots', () => {
           renderItem({
             indicator,
             checked: true,
-            indicatorIconProps: { 'data-testid': 'default-icon' },
+            checkedIcon: <span data-testid="checked-icon" />,
             disabled: true,
             indicatorClassName: 'item-indicator-class',
             indicatorProps: {
@@ -200,7 +173,7 @@ describe('Menu2 indicator slots', () => {
           expect(target).not.to.have.attribute('sx');
           expect(target).not.to.have.attribute('keepMounted');
           expect(target.querySelector('[data-testid="custom-child"]')).not.to.equal(null);
-          expect(screen.queryByTestId('default-icon')).to.equal(null);
+          expect(screen.queryByTestId('checked-icon')).to.equal(null);
           if (indicator !== 'i') {
             expect(getComputedStyle(target).paddingLeft).to.equal('13px');
           }
@@ -272,28 +245,31 @@ describe('Menu2 indicator slots', () => {
         );
       });
 
-      [false, true].forEach((overrideThemeIcon) => {
-        it(`updates a custom icon with item state (override theme: ${overrideThemeIcon})`, async () => {
-          interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
-            ownerState: IndicatorState;
-          }
-          function ThemeIcon({ ownerState, ...props }: IconProps) {
-            expect(props).not.to.have.property('checked');
-            return (
-              <span {...props} data-testid="theme-icon" data-checked={String(ownerState.checked)} />
-            );
-          }
-          function ItemIcon({ ownerState, ...props }: IconProps) {
-            expect(props).not.to.have.property('checked');
-            return (
-              <span {...props} data-testid="item-icon" data-checked={String(ownerState.checked)} />
-            );
-          }
+      (
+        [
+          { iconSource: 'theme icons', itemIcons: {}, ids: ['theme-icon', 'theme-checked-icon'] },
+          {
+            iconSource: 'an item checkedIcon over the theme',
+            itemIcons: { checkedIcon: <span data-testid="item-checked-icon" /> },
+            ids: ['theme-icon', 'item-checked-icon'],
+          },
+          {
+            iconSource: 'item icons over the theme',
+            itemIcons: {
+              icon: <span data-testid="item-icon" />,
+              checkedIcon: <span data-testid="item-checked-icon" />,
+            },
+            ids: ['item-icon', 'item-checked-icon'],
+          },
+        ] as const
+      ).forEach(({ iconSource, itemIcons, ids: [uncheckedId, checkedId] }) => {
+        it(`renders the icon for each state from ${iconSource}`, async () => {
           const theme = createTheme({
             components: {
               [name]: {
                 defaultProps: {
-                  slots: { indicatorIcon: ThemeIcon },
+                  icon: <span data-testid="theme-icon" />,
+                  checkedIcon: <span data-testid="theme-checked-icon" />,
                 },
               },
             },
@@ -302,175 +278,128 @@ describe('Menu2 indicator slots', () => {
             <ThemeProvider theme={theme}>
               <Menu2 defaultOpen modal={false}>
                 <Menu2Popup anchor={document.body}>
-                  {createItem({
-                    otherRadioItem: true,
-                    ...(overrideThemeIcon && {
-                      indicatorIcon: ItemIcon,
-                    }),
-                  })}
+                  {createItem({ otherRadioItem: true, ...itemIcons })}
                 </Menu2Popup>
               </Menu2>
             </ThemeProvider>,
           );
           const item = screen.getByRole(role, { name: 'Target' });
-          const iconPrefix = overrideThemeIcon ? 'item' : 'theme';
-          const inactiveIconPrefix = overrideThemeIcon ? 'theme' : 'item';
-          const icon = item.querySelector(`[data-testid="${iconPrefix}-icon"]`);
-          expect(icon).not.to.equal(null);
-          const expectIcon = (checked: boolean) => {
-            expect(item.querySelector(`[data-testid="${iconPrefix}-icon"]`)).to.equal(icon);
-            expect(icon).to.have.attribute('data-checked', String(checked));
-            expect(icon).not.to.have.attribute('ownerState');
-            expect(icon).not.to.have.attribute('checked');
-            expect(item.querySelector(`[data-testid="${inactiveIconPrefix}-icon"]`)).to.equal(null);
+          const expectIcon = (id: string) => {
+            ['theme-icon', 'theme-checked-icon', 'item-icon', 'item-checked-icon'].forEach(
+              (testId) => {
+                expect(item.querySelector(`[data-testid="${testId}"]`) !== null).to.equal(
+                  testId === id,
+                );
+              },
+            );
           };
 
-          expectIcon(false);
+          expectIcon(uncheckedId);
           await user.click(item);
           await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
-          expectIcon(true);
+          expectIcon(checkedId);
           await user.click(
             role === 'menuitemradio' ? screen.getByRole(role, { name: 'Other' }) : item,
           );
           await waitFor(() => expect(item).to.have.attribute('aria-checked', 'false'));
-          expectIcon(false);
+          expectIcon(uncheckedId);
         });
       });
 
-      [false, true].forEach((useCustomSlot) => {
-        it(`hides the icon with ${useCustomSlot ? 'a custom slot that returns null' : 'false indicator children'}`, async () => {
+      (['icon', 'checkedIcon'] as const).forEach((hiddenProp) => {
+        it(`hides only the ${hiddenProp} state with null and keeps the indicator`, async () => {
           const { user } = renderItem({
-            indicatorIcon: useCustomSlot ? () => null : undefined,
-            indicatorProps: {
-              'data-testid': 'indicator',
-              children: useCustomSlot ? undefined : false,
-            },
+            icon: <span data-testid="icon" />,
+            checkedIcon: <span data-testid="checked-icon" />,
+            [hiddenProp]: null,
+            indicatorProps: { 'data-testid': 'indicator' },
           });
-          expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
+          const indicator = screen.getByTestId('indicator');
+          expect(indicator.childNodes).to.have.length(hiddenProp === 'icon' ? 0 : 1);
 
           const item = screen.getByRole(role, { name: 'Target' });
           await user.click(item);
           await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
-          expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
+          expect(screen.getByTestId('indicator')).to.equal(indicator);
+          expect(indicator.childNodes).to.have.length(hiddenProp === 'checkedIcon' ? 0 : 1);
         });
       });
 
-      (
-        [
-          { slotName: 'default', indicatorIcon: undefined },
-          { slotName: 'host', indicatorIcon: 'i' },
-          { slotName: 'custom', indicatorIcon: CustomIndicatorIcon },
-        ] as const
-      ).forEach(({ slotName, indicatorIcon }) => {
-        it(`passes classes, attributes, and a ref to the ${slotName} icon slot`, () => {
-          let iconRef: Element | null = null;
-          const { unmount } = renderItem({
+      it('hides the icon with false indicator children', async () => {
+        const { user } = renderItem({
+          indicatorProps: { 'data-testid': 'indicator', children: false },
+        });
+        expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
+
+        const item = screen.getByRole(role, { name: 'Target' });
+        await user.click(item);
+        await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
+        expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
+      });
+
+      it('applies the icon classes and the small size to the default icon', () => {
+        renderItem({
+          indicatorIconClassName: 'item-icon-class',
+          indicatorProps: { 'data-testid': 'indicator' },
+        });
+        const icon = screen.getByTestId('indicator').firstElementChild!;
+        expect(icon).to.have.class(itemClasses.indicatorIcon);
+        expect(icon).to.have.class('item-icon-class');
+        const svg = icon.tagName.toLowerCase() === 'svg' ? icon : icon.querySelector('svg')!;
+        expect(svg).to.have.class(svgIconClasses.fontSizeSmall);
+      });
+
+      ([undefined, 'medium'] as const).forEach((fontSize) => {
+        it(`merges the icon classes into a custom icon (fontSize: ${fontSize})`, () => {
+          renderItem({
             checked: true,
-            disabled: true,
-            indicatorIcon,
+            checkedIcon: (
+              <SvgIcon data-testid="icon" className="node-icon-class" fontSize={fontSize} />
+            ),
             indicatorIconClassName: 'item-icon-class',
-            indicatorIconProps: {
-              ref: (element) => {
-                iconRef = element;
-              },
-              'data-testid': 'icon',
-              className: 'slot-icon-class',
-              title: 'Selection icon',
-              style: { marginLeft: '7px' },
-              ...(slotName !== 'host' && { sx: { paddingLeft: '13px' } }),
-            },
           });
           const icon = screen.getByTestId('icon');
-          expect(iconRef).to.equal(icon);
-          [itemClasses.indicatorIcon, 'item-icon-class', 'slot-icon-class'].forEach((className) =>
+          [itemClasses.indicatorIcon, 'item-icon-class', 'node-icon-class'].forEach((className) =>
             expect(icon).to.have.class(className),
           );
-          expect(icon).to.have.attribute('title', 'Selection icon');
-          expect(icon.style.marginLeft).to.equal('7px');
-          expect(icon).not.to.have.attribute('ownerState');
-          expect(icon).not.to.have.attribute('checked');
-          if (slotName !== 'host') {
-            expect(getComputedStyle(icon).paddingLeft).to.equal('13px');
-            expect(icon).not.to.have.attribute('sx');
-          }
-          unmount();
-          expect(iconRef).to.equal(null);
+          expect(icon).to.have.class(
+            fontSize === 'medium' ? svgIconClasses.fontSizeMedium : svgIconClasses.fontSizeSmall,
+          );
         });
-
-        if (slotName !== 'host') {
-          it(`supports a component override on the ${slotName} icon slot`, () => {
-            const useSvg = slotName === 'default' && role === 'menuitemcheckbox';
-            renderItem({
-              indicatorIcon,
-              indicatorIconProps: {
-                component: useSvg ? CustomSvgRoot : 'i',
-                'data-testid': 'icon',
-              },
-            });
-            const icon = screen.getByTestId('icon');
-            expect(icon.tagName.toLowerCase()).to.equal(useSvg ? 'svg' : 'i');
-            if (useSvg) {
-              expect(icon).to.have.attribute('data-custom-root', 'true');
-            }
-            expect(icon).not.to.have.attribute('component');
-            expect(icon).not.to.have.attribute('ownerState');
-            expect(icon).not.to.have.attribute('checked');
-          });
-        }
       });
 
-      it('uses icon theme defaults, overrides, and sx without root variants', () => {
-        const theme = createTheme({
-          components: {
-            [name]: {
-              defaultProps: {
-                slotProps: {
-                  indicatorIcon: {
-                    'data-testid': 'icon',
-                    fontSize: 'medium',
-                    sx: { paddingLeft: '13px' },
-                  },
-                },
+      [false, true].forEach((customIcon) => {
+        it(`applies styleOverrides.indicatorIcon to the ${customIcon ? 'custom' : 'default'} icon`, () => {
+          const theme = createTheme({
+            components: {
+              [name]: {
+                styleOverrides: { indicator: { minWidth: 43 }, indicatorIcon: { marginRight: 7 } },
               },
-              styleOverrides: { indicatorIcon: { marginRight: 7 } },
-              variants: [
-                {
-                  props: { disabled: true },
-                  style: { borderTopWidth: 9, borderTopStyle: 'solid' },
-                },
-              ],
             },
-          },
+          });
+          render(
+            <ThemeProvider theme={theme}>
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body}>
+                  {createItem({
+                    icon: customIcon ? <SvgIcon /> : undefined,
+                    indicatorProps: { 'data-testid': 'indicator' },
+                  })}
+                </Menu2Popup>
+              </Menu2>
+            </ThemeProvider>,
+          );
+          const indicator = screen.getByTestId('indicator');
+          const icon = indicator.firstElementChild!;
+          expect(icon).to.have.class(itemClasses.indicatorIcon);
+          expect(getComputedStyle(icon).marginRight).to.equal('7px');
+          expect(getComputedStyle(indicator).marginRight).not.to.equal('7px');
+          expect(getComputedStyle(indicator).minWidth).to.equal('43px');
         });
-        render(
-          <ThemeProvider theme={theme}>
-            <Menu2 defaultOpen modal={false}>
-              <Menu2Popup anchor={document.body}>{createItem({ disabled: true })}</Menu2Popup>
-            </Menu2>
-          </ThemeProvider>,
-        );
-        const item = screen.getByRole(role, { name: 'Target' });
-        const icon = screen.getByTestId('icon');
-        expect(getComputedStyle(item).borderTopWidth).to.equal('9px');
-        expect(getComputedStyle(icon).borderTopWidth).not.to.equal('9px');
-        expect(getComputedStyle(icon).marginRight).to.equal('7px');
-        expect(getComputedStyle(icon).paddingLeft).to.equal('13px');
-        const svg = icon.tagName.toLowerCase() === 'svg' ? icon : icon.querySelector('svg')!;
-        expect(svg).to.have.class('MuiSvgIcon-fontSizeMedium');
       });
 
       it('provides live checked, disabled, and highlighted state to the slot callback', async () => {
         const states: IndicatorState[] = [];
-        const iconStates: IndicatorState[] = [];
-        const customIconStates: IndicatorState[] = [];
-        function StateIcon({
-          ownerState,
-          ...props
-        }: React.HTMLAttributes<HTMLSpanElement> & { ownerState: IndicatorState }) {
-          customIconStates.push(ownerState);
-          expect(props).not.to.have.property('checked');
-          return <span {...props} />;
-        }
         const { user } = render(
           <Menu2>
             <Menu2Trigger render={<button type="button">Options</button>} />
@@ -482,11 +411,6 @@ describe('Menu2 indicator slots', () => {
                   states.push(state);
                   return { 'data-testid': 'indicator' };
                 },
-                indicatorIcon: StateIcon,
-                indicatorIconProps: (state) => {
-                  iconStates.push(state);
-                  return { 'data-testid': 'icon' };
-                },
               })}
               <Menu2Item>After</Menu2Item>
             </Menu2Popup>
@@ -495,12 +419,10 @@ describe('Menu2 indicator slots', () => {
 
         await user.click(screen.getByRole('button', { name: 'Options' }));
         await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
-        [states, iconStates, customIconStates].forEach((slotStates) => {
-          expect(slotStates[slotStates.length - 1]).to.include({
-            checked: false,
-            disabled: false,
-            highlighted: false,
-          });
+        expect(states[states.length - 1]).to.include({
+          checked: false,
+          disabled: false,
+          highlighted: false,
         });
         await user.keyboard('{ArrowDown}{ArrowDown}');
         const item = screen.getByRole(role, { name: 'Target' });
@@ -508,57 +430,19 @@ describe('Menu2 indicator slots', () => {
         const indicator = screen.getByTestId('indicator');
         expect(indicator).to.have.class(classes.highlighted);
         expect(indicator).to.have.attribute('data-highlighted');
-        [states, iconStates, customIconStates].forEach((slotStates) => {
-          expect(slotStates[slotStates.length - 1].highlighted).to.equal(true);
-        });
+        expect(states[states.length - 1].highlighted).to.equal(true);
 
         await user.keyboard('[Space]');
         await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
-        [states, iconStates, customIconStates].forEach((slotStates) => {
-          expect(slotStates[slotStates.length - 1].checked).to.equal(true);
-        });
+        expect(states[states.length - 1].checked).to.equal(true);
         expect(indicator).to.have.class(classes.checked);
         expect(indicator).to.have.attribute('data-checked');
 
         await user.keyboard('{ArrowDown}');
         await waitFor(() => expect(screen.getByRole('menuitem', { name: 'After' })).toHaveFocus());
-        [states, iconStates, customIconStates].forEach((slotStates) => {
-          expect(slotStates[slotStates.length - 1].highlighted).to.equal(false);
-        });
+        expect(states[states.length - 1].highlighted).to.equal(false);
         expect(indicator).not.to.have.class(classes.highlighted);
         expect(indicator).not.to.have.attribute('data-highlighted');
-        expect(screen.getByTestId('icon')).not.to.have.attribute('ownerState');
-        expect(screen.getByTestId('icon')).not.to.have.attribute('checked');
-      });
-
-      it('provides disabled state to the icon component and its slot props', () => {
-        const states: IndicatorState[] = [];
-        const customStates: IndicatorState[] = [];
-        function DisabledIcon({
-          ownerState,
-          ...props
-        }: React.HTMLAttributes<HTMLSpanElement> & { ownerState: IndicatorState }) {
-          customStates.push(ownerState);
-          return <span {...props} />;
-        }
-        renderItem({
-          checked: true,
-          disabled: true,
-          indicatorIcon: DisabledIcon,
-          indicatorIconProps: (state) => {
-            states.push(state);
-            return { 'data-testid': 'icon' };
-          },
-        });
-        [states, customStates].forEach((slotStates) => {
-          expect(slotStates[slotStates.length - 1]).to.include({
-            checked: true,
-            disabled: true,
-            highlighted: false,
-          });
-        });
-        expect(screen.getByTestId('icon')).not.to.have.attribute('ownerState');
-        expect(screen.getByTestId('icon')).not.to.have.attribute('checked');
       });
 
       (

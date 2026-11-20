@@ -1,6 +1,7 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
+    "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon fontSize=\"small\" />" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "closeOnClick": { "type": { "name": "bool" }, "default": "false" },
@@ -9,6 +10,10 @@
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "divider": { "type": { "name": "bool" }, "default": "false" },
+    "icon": {
+      "type": { "name": "node" },
+      "default": "<CheckBoxOutlineBlankIcon fontSize=\"small\" />"
+    },
     "label": { "type": { "name": "string" } },
     "nativeButton": { "type": { "name": "bool" }, "default": "false" },
     "onCheckedChange": {
@@ -22,14 +27,11 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ indicator?: func<br>&#124;&nbsp;object, indicatorIcon?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ indicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       }
     },
     "slots": {
-      "type": {
-        "name": "shape",
-        "description": "{ indicator?: elementType, indicatorIcon?: elementType, root?: elementType }"
-      }
+      "type": { "name": "shape", "description": "{ indicator?: elementType, root?: elementType }" }
     },
     "sx": {
       "type": {
@@ -53,12 +55,6 @@
       "description": "The component that renders the check indicator.",
       "default": "Menu2CheckboxItemIndicator",
       "class": "MuiMenu2CheckboxItem-indicator"
-    },
-    {
-      "name": "indicatorIcon",
-      "description": "The component that renders the icon inside the indicator.",
-      "default": "Menu2CheckboxItemIndicatorIcon",
-      "class": "MuiMenu2CheckboxItem-indicatorIcon"
     }
   ],
   "classes": [
@@ -96,6 +92,12 @@
       "key": "highlighted",
       "className": "MuiMenu2CheckboxItem-highlighted",
       "description": "State class applied to the root element if highlighted.",
+      "isGlobal": false
+    },
+    {
+      "key": "indicatorIcon",
+      "className": "MuiMenu2CheckboxItem-indicatorIcon",
+      "description": "Styles applied to the icon inside the indicator.",
       "isGlobal": false
     }
   ],

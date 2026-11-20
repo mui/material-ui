@@ -4,7 +4,6 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import SvgIcon from '@mui/material/SvgIcon';
-import type { SvgIconProps } from '@mui/material/SvgIcon';
 import { createTheme } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
@@ -152,19 +151,6 @@ export default function Menu2Consumer() {
               return <Button {...props} variant={state.checked ? 'contained' : 'text'} />;
             }}
             slotProps={{
-              indicatorIcon: (state) => {
-                state.checked satisfies boolean;
-                state.highlighted satisfies boolean;
-                state.disabled satisfies boolean;
-                return {
-                  fontSize: 'small',
-                  sx: { opacity: state.checked ? 1 : 0.6 },
-                  'data-testid': 'checkbox-icon',
-                  ref: (node) => {
-                    node satisfies SVGSVGElement | null;
-                  },
-                };
-              },
               indicator: (state) => {
                 state.checked satisfies boolean;
                 state.highlighted satisfies boolean;
@@ -265,19 +251,6 @@ export default function Menu2Consumer() {
                     return <Button {...props} variant={state.checked ? 'contained' : 'text'} />;
                   }}
                   slotProps={{
-                    indicatorIcon: (state) => {
-                      state.checked satisfies boolean;
-                      state.highlighted satisfies boolean;
-                      state.disabled satisfies boolean;
-                      return {
-                        fontSize: 'medium',
-                        sx: { opacity: state.checked ? 1 : 0.6 },
-                        'data-testid': 'radio-icon',
-                        ref: (node) => {
-                          node satisfies HTMLSpanElement | null;
-                        },
-                      };
-                    },
                     indicator: (state) => {
                       state.checked satisfies boolean;
                       state.highlighted satisfies boolean;
@@ -543,15 +516,6 @@ const CustomItemRoot = React.forwardRef<HTMLDivElement, CustomItemRootProps>(
   },
 );
 
-interface CustomIndicatorIconProps extends SvgIconProps {
-  ownerState: { checked: boolean; disabled: boolean; highlighted: boolean };
-}
-const CustomIndicatorIcon = React.forwardRef<SVGSVGElement, CustomIndicatorIconProps>(
-  function CustomIndicatorIcon({ ownerState, ...props }, ref) {
-    return <SvgIcon {...props} ref={ref} data-checked={ownerState.checked} />;
-  },
-);
-
 createTheme({
   components: {
     MuiMenu2Item: {
@@ -656,21 +620,19 @@ createTheme({
     },
     MuiMenu2CheckboxItem: {
       defaultProps: {
-        slots: { root: 'div', indicatorIcon: CustomIndicatorIcon },
-        slotProps: {
-          root: { title: 'Checkbox' },
-          indicatorIcon: { fontSize: 'small', 'data-testid': 'checkbox-icon' },
-        },
+        icon: <SvgIcon />,
+        checkedIcon: null,
+        slots: { root: 'div' },
+        slotProps: { root: { title: 'Checkbox' } },
       },
       styleOverrides: { indicatorIcon: { opacity: 0.8 } },
     },
     MuiMenu2RadioItem: {
       defaultProps: {
-        slots: { root: 'div', indicatorIcon: CustomIndicatorIcon },
-        slotProps: {
-          root: { title: 'Radio' },
-          indicatorIcon: { fontSize: 'small', 'data-testid': 'radio-icon' },
-        },
+        icon: <SvgIcon />,
+        checkedIcon: <SvgIcon fontSize="medium" />,
+        slots: { root: 'div' },
+        slotProps: { root: { title: 'Radio' } },
       },
       styleOverrides: { indicatorIcon: { opacity: 0.8 } },
     },
@@ -696,7 +658,9 @@ createTheme({
   ref={(node) => {
     node satisfies HTMLElement | null;
   }}
-  slots={{ indicator: 'span', indicatorIcon: CustomIndicatorIcon }}
+  icon={<span>Unchecked</span>}
+  checkedIcon={<span>Checked</span>}
+  slots={{ indicator: 'span' }}
 />;
 <Menu2CheckboxItem
   render={<button type="button" aria-label="Checkbox" ref={React.createRef<HTMLButtonElement>()} />}
@@ -712,7 +676,6 @@ createTheme({
 const menuCheckboxItemSlots = {
   root: 'li',
   indicator: 'span',
-  indicatorIcon: CustomIndicatorIcon,
 } satisfies Menu2CheckboxItemSlots;
 const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
   root: (ownerState) => {
@@ -728,7 +691,6 @@ const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
     };
   },
   indicator: { keepMounted: true },
-  indicatorIcon: { fontSize: 'small' },
 };
 <Menu2CheckboxItem
   slots={menuCheckboxItemSlots}
@@ -746,15 +708,13 @@ const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
 <Menu2CheckboxItem render="li" />;
 // @ts-expect-error Omit render to use the default element.
 <Menu2CheckboxItem render={null} />;
-// @ts-expect-error Use the indicatorIcon slot instead of icon.
-<Menu2CheckboxItem icon={<span />} />;
-// @ts-expect-error Use the indicatorIcon slot instead of checkedIcon.
-<Menu2CheckboxItem checkedIcon={<span />} />;
-// @ts-expect-error Slots require component types, not elements.
-<Menu2CheckboxItem slots={{ indicatorIcon: <span /> }} />;
-<Menu2CheckboxItem
-  slotProps={{ indicatorIcon: { fontSize: 'large', viewBox: '0 0 20 20', titleAccess: 'Status' } }}
-/>;
+<Menu2CheckboxItem icon={null} checkedIcon={false} />;
+// @ts-expect-error Icons must be React nodes, not component types.
+<Menu2CheckboxItem icon={() => <span />} />;
+// @ts-expect-error Use icon and checkedIcon instead of an icon slot.
+<Menu2CheckboxItem slots={{ indicatorIcon: 'span' }} />;
+// @ts-expect-error Use icon and checkedIcon instead of icon slot props.
+<Menu2CheckboxItem slotProps={{ indicatorIcon: { fontSize: 'small' } }} />;
 
 <Menu2RadioItem
   value="one"
@@ -762,7 +722,9 @@ const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
   ref={(node) => {
     node satisfies HTMLElement | null;
   }}
-  slots={{ indicator: 'span', indicatorIcon: CustomIndicatorIcon }}
+  icon={<span>Unchecked</span>}
+  checkedIcon={<span>Checked</span>}
+  slots={{ indicator: 'span' }}
 />;
 <Menu2RadioItem
   value="one"
@@ -780,7 +742,6 @@ const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
 const menuRadioItemSlots = {
   root: 'li',
   indicator: 'span',
-  indicatorIcon: CustomIndicatorIcon,
 } satisfies Menu2RadioItemSlots;
 const menuRadioItemSlotProps: Menu2RadioItemSlotProps = {
   root: (ownerState) => {
@@ -796,7 +757,6 @@ const menuRadioItemSlotProps: Menu2RadioItemSlotProps = {
     };
   },
   indicator: { keepMounted: true },
-  indicatorIcon: { fontSize: 'small' },
 };
 <Menu2RadioItem
   value="one"
@@ -815,18 +775,13 @@ const menuRadioItemSlotProps: Menu2RadioItemSlotProps = {
 <Menu2RadioItem value="one" render="li" />;
 // @ts-expect-error Omit render to use the default element.
 <Menu2RadioItem value="one" render={null} />;
-// @ts-expect-error Use the indicatorIcon slot instead of icon.
-<Menu2RadioItem value="one" icon={<span />} />;
-// @ts-expect-error Use the indicatorIcon slot instead of checkedIcon.
-<Menu2RadioItem value="one" checkedIcon={<span />} />;
-// @ts-expect-error Slots require component types, not elements.
-<Menu2RadioItem value="one" slots={{ indicatorIcon: <span /> }} />;
-// @ts-expect-error The default radio icon supports small and medium sizes.
-<Menu2RadioItem value="one" slotProps={{ indicatorIcon: { fontSize: 'large' } }} />;
-<Menu2RadioItem
-  value="one"
-  slotProps={{ indicatorIcon: { fontSize: 'medium', title: 'Status' } }}
-/>;
+<Menu2RadioItem value="one" icon={null} checkedIcon={false} />;
+// @ts-expect-error Icons must be React nodes, not component types.
+<Menu2RadioItem value="one" checkedIcon={() => <span />} />;
+// @ts-expect-error Use icon and checkedIcon instead of an icon slot.
+<Menu2RadioItem value="one" slots={{ indicatorIcon: 'span' }} />;
+// @ts-expect-error Use icon and checkedIcon instead of icon slot props.
+<Menu2RadioItem value="one" slotProps={{ indicatorIcon: { fontSize: 'small' } }} />;
 
 <Menu2SubmenuTrigger
   render={undefined}
