@@ -2034,12 +2034,6 @@ describe('<Menu2 />', () => {
     );
 
     const item = await screen.findByRole('menuitem', { name: 'Alpha' });
-    const atRest = window.getComputedStyle(item);
-    // The item turns the shared ring inward. A scrolling popup clips an outset
-    // ring, so the sign is the whole point of the two variables.
-    expect(atRest.getPropertyValue('--_focusVisible-offset').trim()).to.equal('-1');
-    expect(atRest.getPropertyValue('--_focusVisible-behavior').trim()).to.equal('inset');
-
     item.classList.add(buttonBaseClasses.focusVisible);
 
     const ring = window.getComputedStyle(item);

@@ -16,7 +16,6 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
-import { outsetFocusRing } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -88,12 +87,9 @@ const RatingRoot = styled('span', {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
-    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      // Legacy default, superseded when the curated ring is opted in.
-      ...(!theme.focusVisible && {
-        outline: '1px solid #999',
-      }),
-      ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
+    // Legacy default, superseded when the curated ring is opted in.
+    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: theme.focusVisible || {
+      outline: '1px solid #999',
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -143,10 +139,7 @@ const RatingLabel = styled('label', {
           position: 'absolute',
           width: '100%',
           // Legacy default, superseded when the curated ring is opted in.
-          ...(!theme.focusVisible && {
-            outline: '1px solid #999',
-          }),
-          ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
+          ...(theme.focusVisible || { outline: '1px solid #999' }),
         },
       },
     ],
