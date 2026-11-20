@@ -33,7 +33,7 @@ interface OTPFieldBehaviorProps {
   /** The virtual keyboard hint. Defaults to the keyboard for the validation type. */
   inputMode?: RootProps['inputMode'] | undefined;
   /**
-   * The number of characters in the code. Must be a positive integer.
+   * The number of characters in the code. When passing children, match the number of OTPFieldInput elements.
    * @default 6
    */
   length?: RootProps['length'] | undefined;
@@ -66,8 +66,7 @@ interface OTPFieldBehaviorProps {
 }
 
 /**
- * The group, input, and separator slots replace the host element of the corresponding
- * Base UI part. An explicit slot takes precedence over that part's `slotProps.render`.
+ * The field container, character group, and supporting text slots.
  */
 export interface OTPFieldSlots {
   /**
@@ -86,16 +85,6 @@ export interface OTPFieldSlots {
    */
   group: React.ElementType;
   /**
-   * The host for Base UI OTPField.Input. Replacements must forward props and ref to an input.
-   * @default 'input'
-   */
-  input: React.ElementType;
-  /**
-   * The host for Base UI OTPField.Separator.
-   * @default 'div'
-   */
-  separator: React.ElementType;
-  /**
    * The supporting or error text.
    * @default FormHelperText
    */
@@ -112,7 +101,7 @@ export interface OTPFieldOwnerState {
 }
 
 type OwnedContent = 'children' | 'dangerouslySetInnerHTML';
-type PartProps<Props, State = OTPFieldOwnerState> = SlotComponentProps<React.FC<Props>, {}, State>;
+type PartProps<Props> = SlotComponentProps<React.FC<Props>, {}, OTPFieldOwnerState>;
 
 export type OTPFieldSlotsAndSlotProps = CreateSlotsAndSlotProps<
   OTPFieldSlots,
@@ -123,27 +112,6 @@ export type OTPFieldSlotsAndSlotProps = CreateSlotsAndSlotProps<
     label: PartProps<Omit<FormLabelProps, OwnedContent | 'htmlFor'>>;
     /** Base UI Root element props, including state-aware render, className and style. */
     group: PartProps<Omit<RootProps, keyof OTPFieldBehaviorProps | OwnedContent>>;
-    /** Base UI Input element props. The callback receives the zero-based character index. */
-    input: PartProps<
-      Omit<
-        BaseOTPField.Input.Props,
-        | OwnedContent
-        | 'id'
-        | 'name'
-        | 'form'
-        | 'value'
-        | 'disabled'
-        | 'readOnly'
-        | 'required'
-        | 'tabIndex'
-      >,
-      OTPFieldOwnerState & { index: number }
-    >;
-    /** Base UI Separator props. The callback receives the preceding character's one-based position. */
-    separator: PartProps<
-      Omit<BaseOTPField.Separator.Props, OwnedContent | 'aria-hidden' | 'tabIndex'>,
-      OTPFieldOwnerState & { afterPosition: number }
-    >;
     helperText: PartProps<Omit<FormHelperTextProps, OwnedContent>>;
   }
 >;
@@ -157,6 +125,8 @@ export interface OTPFieldProps
     > {
   /** Focus the first character input on mount. */
   autoFocus?: boolean | undefined;
+  /** Character inputs and optional decorative separators. When omitted, the field renders one OTPFieldInput per character. */
+  children?: React.ReactNode;
   /** Override or extend the styles applied to the component. */
   classes?: Partial<OTPFieldClasses> | undefined;
   /** A CSS class name applied to the outer root element. */
@@ -179,11 +149,6 @@ export interface OTPFieldProps
   inputRef?: React.Ref<HTMLInputElement> | undefined;
   /** The label associated with the first character input. */
   label?: React.ReactNode;
-  /**
-   * Return decorative content between adjacent character inputs, or null to leave the gap empty.
-   * Positions range from 1 to `length - 1`.
-   */
-  renderSeparator?: ((afterPosition: number) => React.ReactNode) | undefined;
   /**
    * The size of the field.
    * @default 'medium'

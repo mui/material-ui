@@ -78,6 +78,8 @@ export default [
   { pathname: '/material-ui/api/native-select' },
   { pathname: '/material-ui/api/no-ssr' },
   { pathname: '/material-ui/api/otp-field' },
+  { pathname: '/material-ui/api/otp-field-input' },
+  { pathname: '/material-ui/api/otp-field-separator' },
   { pathname: '/material-ui/api/outlined-input' },
   { pathname: '/material-ui/api/pagination' },
   { pathname: '/material-ui/api/pagination-item' },

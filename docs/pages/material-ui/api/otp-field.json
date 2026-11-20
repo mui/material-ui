@@ -6,6 +6,7 @@
     "autoComplete": { "type": { "name": "string" }, "default": "'one-time-code'" },
     "autoFocus": { "type": { "name": "bool" } },
     "autoSubmit": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "defaultValue": { "type": { "name": "string" }, "default": "''" },
     "disabled": { "type": { "name": "bool" } },
@@ -35,7 +36,6 @@
     "onValueComplete": { "type": { "name": "func" } },
     "onValueInvalid": { "type": { "name": "func" } },
     "readOnly": { "type": { "name": "bool" } },
-    "renderSeparator": { "type": { "name": "func" } },
     "required": { "type": { "name": "bool" } },
     "size": {
       "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
@@ -44,13 +44,13 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ group?: func<br>&#124;&nbsp;object, helperText?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, separator?: func<br>&#124;&nbsp;object }"
+        "description": "{ group?: func<br>&#124;&nbsp;object, helperText?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       }
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ group?: elementType, helperText?: elementType, input?: elementType, label?: elementType, root?: elementType, separator?: elementType }"
+        "description": "{ group?: elementType, helperText?: elementType, label?: elementType, root?: elementType }"
       }
     },
     "sx": {
@@ -94,25 +94,26 @@
       "class": "MuiOTPField-group"
     },
     {
-      "name": "input",
-      "description": "The host for Base UI OTPField.Input. Replacements must forward props and ref to an input.",
-      "default": "'input'",
-      "class": "MuiOTPField-input"
-    },
-    {
-      "name": "separator",
-      "description": "The host for Base UI OTPField.Separator.",
-      "default": "'div'",
-      "class": "MuiOTPField-separator"
-    },
-    {
       "name": "helperText",
       "description": "The supporting or error text.",
       "default": "FormHelperText",
       "class": "MuiOTPField-helperText"
     }
   ],
-  "classes": [],
+  "classes": [
+    {
+      "key": "input",
+      "className": "MuiOTPField-input",
+      "description": "Styles applied to each character input.",
+      "isGlobal": false
+    },
+    {
+      "key": "separator",
+      "className": "MuiOTPField-separator",
+      "description": "Styles applied to each decorative separator.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "MuiOTPField",

@@ -1,0 +1,28 @@
+{
+  "props": {
+    "aria-describedby": { "type": { "name": "string" } },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
+    "style": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "OTPFieldInput",
+  "imports": [
+    "import OTPFieldInput from '@mui/material/OTPFieldInput';",
+    "import { OTPFieldInput } from '@mui/material';"
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiOTPFieldInput",
+  "filename": "/packages/mui-material/src/OTPFieldInput/OTPFieldInput.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-otp-field/\">OTP Field</a></li></ul>"
+}

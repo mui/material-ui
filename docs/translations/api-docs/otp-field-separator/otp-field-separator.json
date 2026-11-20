@@ -1,0 +1,15 @@
+{
+  "componentDescription": "A decorative separator between OTPField inputs.",
+  "propDescriptions": {
+    "children": { "description": "The content displayed between character inputs." },
+    "className": {
+      "description": "CSS class applied to the element, or a function that returns a class based on the component&#39;s state."
+    },
+    "orientation": { "description": "The orientation of the separator." },
+    "style": {
+      "description": "Style applied to the element, or a function that returns a style object based on the component&#39;s state."
+    },
+    "sx": { "description": "System styles for this decorative separator." }
+  },
+  "classDescriptions": {}
+}

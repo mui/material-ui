@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { Field } from '@base-ui/react/field';
 import { createRenderer, isJsdom, screen, within } from '@mui/internal-test-utils';
 import { formLabelClasses } from '@mui/material/FormLabel';
-import OTPField, { otpFieldClasses as classes } from '@mui/material/OTPField';
+import OTPField, { OTPFieldInput, otpFieldClasses as classes } from '@mui/material/OTPField';
 
 describe('<OTPField />', () => {
   const { render } = createRenderer();
@@ -34,6 +34,67 @@ describe('<OTPField />', () => {
         .forEach((input) => {
           expect(input).to.have.class(classes.input).and.have.class('custom-input');
         });
+    });
+  });
+
+  describe('composition', () => {
+    it('preserves group semantics and the composed inputs when replacing the group host', async () => {
+      const groupRef = React.createRef<HTMLDivElement>();
+      const { user } = render(
+        <OTPField
+          label="PIN"
+          length={2}
+          slots={{ group: 'section' }}
+          slotProps={{
+            group: {
+              ref: groupRef,
+              render: <aside />,
+              className: (state) => (state.complete ? 'complete' : undefined),
+            },
+          }}
+        >
+          <OTPFieldInput />
+          <OTPFieldInput />
+        </OTPField>,
+      );
+
+      const group = screen.getByRole('group', { name: 'PIN' });
+      expect(group.tagName).to.equal('SECTION');
+      expect(groupRef.current).to.equal(group);
+      await user.click(within(group).getByRole('textbox', { name: 'PIN' }));
+      await user.paste('07');
+      expect(group).to.have.class('complete');
+      expect(within(group).getByRole('textbox', { name: 'Character 2 of 2' })).to.have.value('7');
+    });
+
+    it('keeps label and helper slot IDs linked to every composed input and the group', async () => {
+      const { user } = render(
+        <OTPField
+          id="pin"
+          length={2}
+          label="PIN"
+          helperText="Two digits"
+          required
+          slots={{ label: 'label', helperText: 'small' }}
+          slotProps={{
+            label: ({ required }) => ({ id: required ? 'required-label' : 'label' }),
+            helperText: { id: 'hint' },
+          }}
+        >
+          <OTPFieldInput />
+          <OTPFieldInput />
+        </OTPField>,
+      );
+      const group = screen.getByRole('group', { name: 'PIN' });
+      expect(group).to.have.attribute('aria-labelledby', 'required-label');
+      expect(group).toHaveAccessibleDescription('Two digits');
+      expect(screen.getByText('Two digits').tagName).to.equal('SMALL');
+      for (const input of within(group).getAllByRole('textbox')) {
+        expect(input).to.have.attribute('aria-describedby', 'hint');
+        expect(input).toHaveAccessibleDescription('Two digits');
+      }
+      await user.click(screen.getByText('PIN'));
+      expect(within(group).getByRole('textbox', { name: 'PIN' })).toHaveFocus();
     });
   });
 

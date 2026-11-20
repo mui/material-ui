@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import type { OTPField as BaseOTPField } from '@base-ui/react/otp-field';
-import OTPField from '@mui/material/OTPField';
+import OTPField, { OTPFieldInput, OTPFieldSeparator } from '@mui/material/OTPField';
 import type {
   OTPFieldChangeEventDetails,
   OTPFieldCompleteEventDetails,
@@ -52,10 +52,6 @@ function Test() {
           expectType<string, typeof attempt>(attempt);
           expectType<OTPFieldInvalidEventDetails, typeof details>(details);
         }}
-        renderSeparator={(afterPosition) => {
-          expectType<number, typeof afterPosition>(afterPosition);
-          return afterPosition % 2 === 0 ? '–' : null;
-        }}
         slotProps={{
           group: {
             className: (state) => {
@@ -63,38 +59,39 @@ function Test() {
               return state.complete ? 'complete' : undefined;
             },
           },
-          input: ({ index }) => {
-            expectType<number, typeof index>(index);
-            return {
-              render: (props, state) => {
-                expectType<BaseOTPField.Input.State, typeof state>(state);
-                return <input {...props} data-index={index} />;
-              },
-            };
-          },
-          separator: ({ afterPosition }) => {
-            expectType<number, typeof afterPosition>(afterPosition);
-            return {
-              orientation: 'vertical',
-              title: `After character ${afterPosition}`,
-              style: (state) => {
-                expectType<BaseOTPField.Separator.State, typeof state>(state);
-                return { opacity: state.orientation === 'vertical' ? 1 : 0.5 };
-              },
-            };
-          },
+          label: ({ required }) => ({ required }),
+          helperText: { id: 'recovery-hint' },
         }}
-      />
+      >
+        <OTPFieldInput ref={(node) => expectType<HTMLInputElement | null, typeof node>(node)} />
+        <OTPFieldInput
+          className={(state) => {
+            expectType<BaseOTPField.Input.State, typeof state>(state);
+            return state.filled ? 'filled' : undefined;
+          }}
+        />
+        <OTPFieldSeparator
+          orientation="vertical"
+          style={(state) => {
+            expectType<BaseOTPField.Separator.State, typeof state>(state);
+            return { opacity: state.orientation === 'vertical' ? 1 : 0.5 };
+          }}
+        >
+          –
+        </OTPFieldSeparator>
+        <OTPFieldInput />
+        <OTPFieldInput />
+      </OTPField>
       {/* @ts-expect-error A code is a string, including in numeric mode. */}
       <OTPField defaultValue={123456} />
-      {/* @ts-expect-error The field generates its character inputs from length. */}
-      <OTPField>
-        <input />
-      </OTPField>
+      {/* @ts-expect-error Character inputs are composed as children. */}
+      <OTPField slots={{ input: 'input' }} />
+      {/* @ts-expect-error Separators are composed as children. */}
+      <OTPField slotProps={{ separator: { children: '–' } }} />
       {/* @ts-expect-error The field owns the count. */}
       <OTPField slotProps={{ group: { length: 4 } }} />
       {/* @ts-expect-error The field owns the name submitted to the form. */}
-      <OTPField slotProps={{ input: { name: 'per-character' } }} />
+      <OTPFieldInput name="per-character" />
     </React.Fragment>
   );
 }

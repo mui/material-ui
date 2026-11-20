@@ -13,6 +13,9 @@
     },
     "autoFocus": { "description": "Focus the first character input on mount." },
     "autoSubmit": { "description": "Submit the associated form when the code becomes complete." },
+    "children": {
+      "description": "Character inputs and optional decorative separators. When omitted, the field renders one OTPFieldInput per character."
+    },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "defaultValue": { "description": "The initial code for an uncontrolled field." },
     "disabled": {
@@ -33,7 +36,7 @@
     "inputRef": { "description": "A ref to the first visible character input." },
     "label": { "description": "The label associated with the first character input." },
     "length": {
-      "description": "The number of characters in the code. Must be a positive integer."
+      "description": "The number of characters in the code. When passing children, match the number of OTPFieldInput elements."
     },
     "mask": { "description": "Mask the characters as they are entered." },
     "name": { "description": "The name used to submit the field value as one string." },
@@ -50,9 +53,6 @@
       "description": "Called with the attempted input when filtering or normalization rejects characters."
     },
     "readOnly": { "description": "Keep the field focusable while preventing edits." },
-    "renderSeparator": {
-      "description": "Return decorative content between adjacent character inputs, or null to leave the gap empty. Positions range from 1 to <code>length - 1</code>."
-    },
     "required": { "description": "Require a complete code before form submission." },
     "size": { "description": "The size of the field." },
     "slotProps": {
@@ -65,13 +65,20 @@
       "description": "The code when controlling the field. Use an empty string for an empty field."
     }
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "input": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "each character input"
+    },
+    "separator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "each decorative separator"
+    }
+  },
   "slotDescriptions": {
     "group": "The host for Base UI OTPField.Root.",
     "helperText": "The supporting or error text.",
-    "input": "The host for Base UI OTPField.Input. Replacements must forward props and ref to an input.",
     "label": "The visible field label.",
-    "root": "The outer field container.",
-    "separator": "The host for Base UI OTPField.Separator."
+    "root": "The outer field container."
   }
 }

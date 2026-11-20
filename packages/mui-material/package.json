@@ -106,6 +106,8 @@
     "./locale": "./src/locale/index.ts",
     "./NoSsr": "./src/NoSsr/index.ts",
     "./OTPField": "./src/OTPField/index.ts",
+    "./OTPFieldInput": "./src/OTPFieldInput/index.ts",
+    "./OTPFieldSeparator": "./src/OTPFieldSeparator/index.ts",
     "./OverridableComponent": "./src/OverridableComponent/index.ts",
     "./PigmentContainer": "./src/PigmentContainer/index.ts",
     "./PigmentGrid": "./src/PigmentGrid/index.ts",
