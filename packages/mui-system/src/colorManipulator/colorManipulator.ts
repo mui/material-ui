@@ -149,8 +149,7 @@ export function recomposeColor(color: ColorObject): string {
     // Only convert the first 3 values to int (i.e. not alpha)
     values = values.map((n: any, i: number) => (i < 3 ? parseInt(n, 10) : n));
   } else if (type.includes('hsl')) {
-    values[1] = `${values[1]}%`;
-    values[2] = `${values[2]}%`;
+    values = values.map((n: any, i: number) => (i === 1 || i === 2 ? `${n}%` : n));
   }
   if (type.includes('color')) {
     if (values.length === 4) {
