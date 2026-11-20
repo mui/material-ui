@@ -159,6 +159,10 @@ export interface ComponentClassDefinition {
   className: string;
   description: string;
   isGlobal: boolean;
+  /**
+   * `false` when the theme `styleOverrides` do not accept the key.
+   */
+  isStyleOverridesKey?: false;
   isDeprecated?: boolean;
   deprecationInfo?: string;
 }

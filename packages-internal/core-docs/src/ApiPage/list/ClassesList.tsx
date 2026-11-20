@@ -58,8 +58,16 @@ export default function ClassesList(props: ClassesListProps) {
   return (
     <ApiItemContainer>
       {classes.map((classDefinition) => {
-        const { hash, className, key, description, isGlobal, isDeprecated, deprecationInfo } =
-          classDefinition;
+        const {
+          hash,
+          className,
+          key,
+          description,
+          isGlobal,
+          isStyleOverridesKey,
+          isDeprecated,
+          deprecationInfo,
+        } = classDefinition;
 
         let note = isGlobal ? t('api-docs.state') : '';
 
@@ -80,7 +88,7 @@ export default function ClassesList(props: ClassesListProps) {
           >
             {/* eslint-disable-next-line react/no-danger */}
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
-            {displayClassKeys && !isGlobal && (
+            {displayClassKeys && !isGlobal && isStyleOverridesKey !== false && (
               <p className="prop-list-class">
                 <span className="prop-list-title">{'Rule name'}:</span>
                 <code className="Api-code">{key}</code>
