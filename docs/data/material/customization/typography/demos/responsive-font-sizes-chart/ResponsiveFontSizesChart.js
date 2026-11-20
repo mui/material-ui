@@ -1,3 +1,8 @@
+// import of a small, pure module in a private demo
+// bundle size and module duplication is negligible
+
+// eslint-disable-next-line no-restricted-imports
+import { convertLength } from '@mui/material/styles/cssUtils';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { LineChart } from '@mui/x-charts';
@@ -17,10 +22,8 @@ const colors = [
 const variants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1'];
 
 export default function ResponsiveFontSizesChart() {
-  const toPx = (fontSize) =>
-    String(fontSize).endsWith('rem')
-      ? Number((parseFloat(fontSize) * theme.typography.htmlFontSize).toFixed(5))
-      : parseFloat(fontSize);
+  const convert = convertLength(theme.typography.htmlFontSize);
+  const toPx = (rem) => parseFloat(convert(rem, 'px'));
 
   let dataset = theme.breakpoints.keys.map((key) => {
     const viewport = theme.breakpoints.values[key];
