@@ -4,6 +4,7 @@ import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-tes
 import { Field as BaseField } from '@base-ui/react/field';
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import type { BaseUIEvent } from '@base-ui/react/types';
+import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
 import type { IconButtonProps } from '@mui/material/IconButton';
@@ -1911,19 +1912,30 @@ describe('<NumberField />', () => {
         });
       });
 
-      it('lets replacement input slots bypass their render adapters', () => {
+      it('uses the themed root of a replacement input and skips the input render callbacks', () => {
         const renderInput = vi.fn(() => <section />);
         const renderHtmlInput = vi.fn(() => <input />);
+        const theme = createTheme({
+          components: {
+            MuiOutlinedInput: { defaultProps: { slots: { root: 'article' } } },
+            MuiFilledInput: { defaultProps: { slots: { root: MaterialInputRoot } } },
+          },
+        });
         render(
-          <NumberField
-            slots={{ input: TestInput, htmlInput: TestHtmlInput }}
-            slotProps={{
-              input: { render: renderInput },
-              htmlInput: { render: renderHtmlInput },
-            }}
-          />,
+          <ThemeProvider theme={theme}>
+            <NumberField
+              slots={{ input: FilledInput, htmlInput: TestHtmlInput }}
+              slotProps={{
+                input: { render: renderInput },
+                htmlInput: { render: renderHtmlInput },
+              }}
+            />
+          </ThemeProvider>,
         );
 
+        const group = screen.getByRole('group');
+        expect(group.tagName).to.equal('SECTION');
+        expect(group).to.have.attribute('data-adorned-end', 'true');
         expect(renderInput).toHaveBeenCalledTimes(0);
         expect(renderHtmlInput).toHaveBeenCalledTimes(0);
       });
