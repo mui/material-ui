@@ -67,6 +67,50 @@ describe('createTypography', () => {
     });
   });
 
+  it('should apply the font family and allVariants to custom variants', () => {
+    const typography = createTypography(palette, {
+      fontFamily: 'Gotham',
+      allVariants: { marginLeft: 0 },
+      poster: { fontSize: '4rem' },
+    });
+
+    expect(typography.poster).to.deep.equal({
+      fontFamily: 'Gotham',
+      marginLeft: 0,
+      fontSize: '4rem',
+    });
+  });
+
+  it('should keep custom variant overrides isolated from other variants', () => {
+    const typography = createTypography(palette, {
+      allVariants: { '@media (min-width:600px)': { color: 'red' } },
+      poster: { '@media (min-width:600px)': { color: 'blue' } },
+      banner: { fontSize: '3rem' },
+    });
+
+    expect(typography.h1['@media (min-width:600px)']).to.deep.equal({ color: 'red' });
+    expect(typography.poster['@media (min-width:600px)']).to.deep.equal({ color: 'blue' });
+    expect(typography.banner['@media (min-width:600px)']).to.deep.equal({ color: 'red' });
+  });
+
+  it('should not override the font family of a custom variant', () => {
+    const typography = createTypography(palette, {
+      fontFamily: 'Gotham',
+      poster: { fontFamily: 'cursive' },
+    });
+
+    expect(typography.poster.fontFamily).to.equal('cursive');
+  });
+
+  it('should not apply the font family to the inherit variant', () => {
+    const typography = createTypography(palette, {
+      fontFamily: 'Gotham',
+      inherit: { fontSize: 'inherit' },
+    });
+
+    expect(typography.inherit.fontFamily).to.equal('inherit');
+  });
+
   it('only defines letter-spacing if the font-family is not overwritten', () => {
     expect(createTypography(palette, {}).h1.letterSpacing).not.to.equal(undefined);
     expect(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing).to.equal(
