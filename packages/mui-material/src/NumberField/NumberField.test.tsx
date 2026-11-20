@@ -1492,52 +1492,46 @@ describe('<NumberField />', () => {
       });
     });
 
-    it('moves controls after mounting while preserving the input and its start adornment', async () => {
-      function Test() {
-        const [controlsPosition, setControlsPosition] =
-          React.useState<NonNullable<NumberFieldProps['controlsPosition']>>('end');
-
+    it('preserves the input and its adornments when controls move or are removed', async () => {
+      function Test({ controlsPosition }: Pick<NumberFieldProps, 'controlsPosition'>) {
         return (
-          <React.Fragment>
-            <button
-              type="button"
-              onClick={() =>
-                setControlsPosition((position) => {
-                  if (position === 'end') {
-                    return 'stacked';
-                  }
-                  return position === 'stacked' ? 'split' : 'end';
-                })
-              }
-            >
-              Move controls
-            </button>
-            <NumberField
-              label="Amount"
-              defaultValue={5}
-              controlsPosition={controlsPosition}
-              slotProps={{ input: { startAdornment: <input aria-label="Unit" /> } }}
-            />
-          </React.Fragment>
+          <NumberField
+            label="Amount"
+            defaultValue={5}
+            controlsPosition={controlsPosition}
+            slotProps={{
+              input: {
+                startAdornment: <input aria-label="Prefix" />,
+                endAdornment: <input aria-label="Suffix" />,
+              },
+            }}
+          />
         );
       }
 
-      const { user } = render(<Test />);
+      const { user, rerender } = render(<Test controlsPosition="end" />);
       const input = screen.getByRole('textbox', { name: 'Amount' });
 
       await user.clear(input);
       await user.keyboard('8');
-
-      await user.type(screen.getByRole('textbox', { name: 'Unit' }), 'kg');
+      await user.type(screen.getByRole('textbox', { name: 'Prefix' }), '$');
+      await user.type(screen.getByRole('textbox', { name: 'Suffix' }), 'kg');
 
       const moveAndCheckControls = async (
         position: NonNullable<NumberFieldProps['controlsPosition']>,
       ) => {
-        await user.click(screen.getByRole('button', { name: 'Move controls' }));
+        rerender(<Test controlsPosition={position} />);
 
         expect(screen.getByRole('textbox', { name: 'Amount' })).to.equal(input);
         expect(input).to.have.value('8');
-        expect(screen.getByRole('textbox', { name: 'Unit' })).to.have.value('kg');
+        expect(screen.getByRole('textbox', { name: 'Prefix' })).to.have.value('$');
+        expect(screen.getByRole('textbox', { name: 'Suffix' })).to.have.value('kg');
+        if (position === false) {
+          expect(screen.queryByRole('button', { name: 'Increase' })).to.equal(null);
+          expect(screen.queryByRole('button', { name: 'Decrease' })).to.equal(null);
+          return;
+        }
+
         const increment = screen.getByRole('button', { name: 'Increase' });
         const decrement = screen.getByRole('button', { name: 'Decrease' });
 
@@ -1565,6 +1559,7 @@ describe('<NumberField />', () => {
       await moveAndCheckControls('stacked');
       await moveAndCheckControls('split');
       await moveAndCheckControls('end');
+      await moveAndCheckControls(false);
     });
   });
 
@@ -1806,12 +1801,13 @@ describe('<NumberField />', () => {
         });
       });
 
-      it('connects render callbacks to live state and the wrapper and native refs', async () => {
+      it('connects render callbacks to live state and refs even with a themed input root', async () => {
         const wrapperRef = React.createRef<HTMLDivElement>();
         const inputRef = React.createRef<HTMLInputElement>();
         const theme = createTheme({
           components: {
             MuiNumberField: { styleOverrides: { input: { paddingRight: 9 } } },
+            MuiOutlinedInput: { defaultProps: { slots: { root: 'article' } } },
           },
         });
         const { user } = render(
@@ -1833,11 +1829,12 @@ describe('<NumberField />', () => {
           </ThemeProvider>,
         );
         const input = screen.getByRole('textbox', { name: 'Amount' });
-        const wrapper = input.closest('section')!;
+        const wrapper = screen.getByRole('group');
 
+        expect(wrapper.tagName).to.equal('SECTION');
         expect(wrapperRef.current).to.equal(wrapper);
         expect(inputRef.current).to.equal(input);
-        expect(wrapper).to.equal(screen.getByRole('group'));
+        expect(getComputedStyle(wrapper).position).to.equal('relative');
         expect(getComputedStyle(wrapper).paddingRight).to.equal('9px');
 
         await user.clear(input);
@@ -1895,7 +1892,10 @@ describe('<NumberField />', () => {
                 label="Amount"
                 slotProps={{
                   input: {
-                    ...(source === 'slotProps' && { slots: { root: MaterialInputRoot } }),
+                    ...(source === 'slotProps' && {
+                      slots: { root: MaterialInputRoot },
+                      render: <article />,
+                    }),
                     slotProps: { root: { id: 'amount-root' } },
                   },
                 }}

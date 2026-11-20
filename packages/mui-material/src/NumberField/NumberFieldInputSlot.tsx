@@ -233,10 +233,13 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     className: classes.input,
   });
 
-  // Find a custom Material root from slotProps.input.slots.root or the selected
-  // input's theme defaults so Group can share its element without replacing it.
+  const groupRender = externalForwardedProps.slots.input ? undefined : inputRender;
+  // A local render clears the variant's themed root. An explicit root slot still wins.
+  const inputSlots = groupRender
+    ? { root: undefined, ...materialInputProps.slots }
+    : materialInputProps.slots;
   const { slots: materialSlots } = useDefaultProps({
-    props: { slots: materialInputProps.slots },
+    props: { slots: inputSlots },
     // Read defaults for the selected Material input, rather than NumberField.
     // eslint-disable-next-line mui/material-ui-name-matches-component-name
     name: variantName[variant],
@@ -248,7 +251,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       ...materialInputProps.slotProps?.root,
       ...(!materialRootComponent && { as: NumberFieldInputRootSlot }),
       numberFieldInputRoot: {
-        render: externalForwardedProps.slots.input ? undefined : inputRender,
+        render: groupRender,
         rootComponent: materialRootComponent,
       },
     },
@@ -457,7 +460,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       consumerStartAdornment
     );
   const endAdornment =
-    endControls || endScrubArea ? (
+    endControls || endScrubArea || consumerEndAdornment ? (
       <React.Fragment>
         {consumerEndAdornment}
         {endScrubArea}
@@ -495,7 +498,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
       {...materialInputProps}
       slots={{
         input: externalForwardedProps.slots.htmlInput ? HtmlInputSlot : undefined,
-        ...materialInputProps.slots,
+        ...inputSlots,
         ...(materialRootComponent && { root: NumberFieldInputRootSlot }),
       }}
       slotProps={materialSlotProps}
