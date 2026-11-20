@@ -245,7 +245,7 @@ Packaged guidance for common integration topics lives under `skills/`. Each skil
 | [skills/material-ui-styling](./skills/material-ui-styling/AGENTS.md)   | `sx`, `styled()`, theme overrides, slots, global CSS        |
 | [skills/material-ui-theming](./skills/material-ui-theming/AGENTS.md)   | `createTheme`, design tokens, `colorSchemes`, CSS variables |
 | [skills/material-ui-nextjs](./skills/material-ui-nextjs/AGENTS.md)     | App/Pages Router, Emotion cache, `next/font`, `Link`, SSR   |
-| [skills/material-ui-tailwind](./skills/material-ui-tailwind/AGENTS.md) | Tailwind v4 `@layer`, `enableCssLayer`, v3 interop          |
+| [skills/material-ui-tailwind](./skills/material-ui-tailwind/AGENTS.md) | Tailwind v4 `@layer` order, v3 interop                      |
 
 Read the relevant `AGENTS.md` when helping users with those topics.
 

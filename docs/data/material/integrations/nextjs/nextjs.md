@@ -278,23 +278,17 @@ yarn add @mui/material-nextjs @emotion/cache @emotion/server
 
 ### Configuration
 
-Inside the `pages/_document.tsx` file:
-
-- Import `documentGetInitialProps` and use it as the Document's `getInitialProps`.
-- Import `DocumentHeadTags` and render it inside the `<Head>`.
+Inside the `pages/_document.tsx` file, import `documentGetInitialProps` and use it as the Document's `getInitialProps`.
+It adds Material UI's styles at the end of the `<head>`, after your CSS, so that the layer order your CSS declares applies.
 
 ```diff title="pages/_document.tsx"
-+import {
-+  DocumentHeadTags,
-+  documentGetInitialProps,
-+} from '@mui/material-nextjs/v15-pagesRouter';
++import { documentGetInitialProps } from '@mui/material-nextjs/v15-pagesRouter';
  // or `v1X-pagesRouter` if you are using Next.js v1X
 
- export default function MyDocument(props) {
+ export default function MyDocument() {
    return (
      <Html lang="en">
        <Head>
-+        <DocumentHeadTags {...props} />
          ...
        </Head>
        <body>
@@ -412,19 +406,6 @@ MyDocument.getInitialProps = async (ctx) => {
     styledComponentsSheet.seal();
   }
 };
-```
-
-### TypeScript
-
-If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props interface:
-
-```diff
-+import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v15-pagesRouter';
- // or `v1X-pagesRouter` if you are using Next.js v1X
-
-+export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
-   ...
- }
 ```
 
 ### Font optimization

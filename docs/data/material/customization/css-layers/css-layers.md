@@ -28,33 +28,13 @@ jsdom before version 31 and happy-dom ignore the rules inside `@layer` blocks, a
 ## Setting the layer order
 
 A layer takes its place in the order where the browser first finds it.
-To place `mui` among other layers, such as the ones of Tailwind CSS v4, declare the order before Material UI's styles.
-
-### Next.js App Router, Vite or any other SPA
-
-Declare the order at the top of a global CSS file, which loads before Material UI's styles:
+To place `mui` among other layers, such as the ones of Tailwind CSS v4, declare the order at the top of a global CSS file, which loads before Material UI's styles:
 
 ```css title="globals.css"
 @layer theme, base, mui, components, utilities;
 ```
 
-### Next.js Pages Router
-
-Declare the order with the `GlobalStyles` component, as the first child of the `AppCacheProvider`, so that it comes before Material UI's server-rendered styles:
-
-```tsx title="pages/_app.tsx"
-import GlobalStyles from '@mui/material/GlobalStyles';
-
-export default function MyApp(props: AppProps) {
-  const { Component, pageProps } = props;
-  return (
-    <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-      <Component {...pageProps} />
-    </AppCacheProvider>
-  );
-}
-```
+This works with the Next.js App Router and Pages Router, Vite, and any other SPA.
 
 ## Sub-layers
 

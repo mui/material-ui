@@ -44,7 +44,6 @@ export function createGetInitialProps({
       styles: [
         <style id="material-icon-font" key="material-icon-font" />,
         <style id="font-awesome-css" key="font-awesome-css" />,
-        ...finalProps.emotionStyleTags,
         <style id="app-search" key="app-search" />,
         <style id="prismjs" key="prismjs" />,
         ...React.Children.toArray(finalProps.styles),
