@@ -188,7 +188,7 @@ Some components indicate keyboard focus with a translucent background or overlay
 
 ### Recomposing a theme with a palette change
 
-Spreading a created theme into `createTheme()` while changing the palette keeps the indicator color resolved from the original palette. Re-pass `focusVisible` in the same call so the color re-derives from the new palette:
+Without CSS variables, spreading a created theme into `createTheme()` while changing the palette keeps the indicator color resolved from the original palette. Re-pass `focusVisible` in the same call so the color re-derives from the new palette:
 
 ```js
 const base = createTheme({ focusVisible: true });
@@ -200,3 +200,5 @@ createTheme({
   focusVisible: true,
 });
 ```
+
+With CSS variables, the indicator color is the CSS variable of `palette.primary.main`, so it follows the new palette without re-passing `focusVisible`.
