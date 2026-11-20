@@ -1,4 +1,4 @@
-import type { ThemeOptions, FocusVisible } from '@mui/material/styles';
+import type { ThemeOptions, FocusVisible, CssVarsTheme } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { buttonClasses } from '@mui/material/Button';
 import type {} from '@mui/material/themeCssVarsAugmentation';
@@ -354,6 +354,66 @@ const theme = createTheme();
     // @ts-expect-error focusVisible must be a boolean or a CSS properties object
     focusVisible: 'solid',
   });
+}
+
+// focusVisible insetOverrides
+{
+  createTheme({
+    focusVisible: {
+      outlineOffset: 1,
+      boxShadow: '0 0 0 1px #fff',
+      insetOverrides: { outlineOffset: -2, boxShadow: 'inset 0 0 0 3px #fff' },
+    },
+  });
+  createTheme({ focusVisible: { insetOverrides: { borderRadius: 4, outlineColor: 'red' } } });
+
+  createTheme({
+    // @ts-expect-error insetOverrides takes CSS properties
+    focusVisible: { insetOverrides: { outlineOffset: true } },
+  });
+
+  const insetOverrides: React.CSSProperties | undefined =
+    createTheme().unstable_focusVisibleInsetOverrides;
+  createTheme({ focusVisible: { insetOverrides } });
+}
+
+// theme.applyFocusVisible
+{
+  const ringTheme = createTheme({ focusVisible: true });
+  // @ts-expect-error the position is required
+  ringTheme.applyFocusVisible();
+  ringTheme.applyFocusVisible('inset');
+  ringTheme.applyFocusVisible('outset');
+  createTheme({ cssVariables: true }).applyFocusVisible('inset');
+
+  createTheme({
+    components: {
+      MuiMenuItem: {
+        styleOverrides: {
+          root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outset') }),
+        },
+      },
+    },
+  });
+
+  // @ts-expect-error the position is `inset` or `outset`, not a number
+  ringTheme.applyFocusVisible(-1);
+
+  const { applyFocusVisible } = ringTheme;
+  // @ts-expect-error a destructured call has no theme to read the ring from
+  applyFocusVisible('inset');
+
+  const cssVarsTheme = {} as CssVarsTheme;
+  cssVarsTheme.applyFocusVisible('inset');
+  createTheme({ focusVisible: cssVarsTheme.focusVisible });
+
+  ringTheme.components = {
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outset') }),
+      },
+    },
+  };
 }
 
 // `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings
