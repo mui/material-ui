@@ -8,9 +8,12 @@ import appendOwnerState from '@mui/utils/appendOwnerState';
 
 import type { NumberFieldOwnerState } from './NumberField.types';
 import type { IconButtonProps } from '../IconButton';
-import hasNativeKeyboardActivation from '../utils/hasNativeKeyboardActivation';
 import { omitNullishEventHandlers } from './utils';
 import RenderElement from './RenderElement';
+
+type StepperKeyboardEvent = React.KeyboardEvent<HTMLButtonElement> & {
+  defaultMuiPrevented?: boolean | undefined;
+};
 
 interface NumberFieldButtonProps {
   ButtonSlot: React.ElementType;
@@ -65,27 +68,6 @@ function NumberFieldButtonSlot(props: NumberFieldButtonProps) {
     },
   );
 
-  const isNonNativeActivation = (event: React.KeyboardEvent<HTMLButtonElement>) =>
-    buttonProps.nativeButton === false &&
-    event.target === event.currentTarget &&
-    !hasNativeKeyboardActivation(event.currentTarget);
-
-  // Base UI owns non-native activation. Prevent Material's fallback after the
-  // composed handlers run, preserving consumer cancellation and native buttons/links.
-  const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
-    mergedProps.onKeyDown?.(event);
-    if (isNonNativeActivation(event) && (event.key === 'Enter' || event.key === ' ')) {
-      event.preventDefault();
-    }
-  };
-
-  const handleKeyUp: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
-    mergedProps.onKeyUp?.(event);
-    if (isNonNativeActivation(event) && event.key === ' ') {
-      event.preventDefault();
-    }
-  };
-
   return (
     <ButtonSlot
       {...mergedProps}
@@ -97,8 +79,28 @@ function NumberFieldButtonSlot(props: NumberFieldButtonProps) {
         // The bridge is a custom component, so ButtonBase cannot infer its native-button mode.
         nativeButton: buttonProps.nativeButton ?? true,
       })}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
+      {...(buttonProps.nativeButton === false && {
+        // Base UI owns keyboard activation for non-native steppers.
+        onKeyDown(event: StepperKeyboardEvent) {
+          mergedProps.onKeyDown?.(event);
+          if (
+            event.target === event.currentTarget &&
+            (event.key === 'Enter' || event.key === ' ')
+          ) {
+            event.defaultMuiPrevented = true;
+            if (event.key === ' ') {
+              // Canceling the Base UI handler also skips its scroll prevention.
+              event.preventDefault();
+            }
+          }
+        },
+        onKeyUp(event: StepperKeyboardEvent) {
+          mergedProps.onKeyUp?.(event);
+          if (event.target === event.currentTarget && event.key === ' ') {
+            event.defaultMuiPrevented = true;
+          }
+        },
+      })}
     />
   );
 }
