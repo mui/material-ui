@@ -232,3 +232,24 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### createTheme arguments with CSS variables
+
+With CSS variables, the extra arguments of `createTheme()` are deep merged into the options before the theme is created, so they're processed like the options.
+Previously, they were deep merged into the created theme as they were, so the values that depend on them weren't generated again.
+For example, `info.light` and `info.dark` now follow the `main` color of a second call:
+
+```js
+theme = createTheme(theme, {
+  palette: { info: { main: theme.palette.secondary.main } },
+});
+```
+
+A theme passed back to `createTheme()` is created again from its options and the values changed in a copy of it, like `{ ...theme, palette: { ...theme.palette, primary } }`.
+A change made to the theme itself is ignored, so make it in a copy, or pass it as an argument:
+
+```diff
+-theme.palette.primary.main = red[500];
+-theme = createTheme(theme);
++theme = createTheme(theme, { palette: { primary: { main: red[500] } } });
+```

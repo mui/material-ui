@@ -166,10 +166,10 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 #### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme. With CSS variables, they're deep merged into `options` instead, and processed like them.
 
 :::warning
-Only the first argument (`options`) is processed by the `createTheme()` function.
+Without CSS variables, only the first argument (`options`) is processed by the `createTheme()` function.
 While passing multiple arguments currently works for backward compatibility, this behavior may be removed in future versions.
 To ensure your code remains forward-compatible, you should manually deep merge the theme objects and pass the result as a single object to `createTheme()`.
 :::
@@ -231,6 +231,9 @@ theme = createTheme(theme, {
 ```
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
+
+With CSS variables, the theme is created again from its options and the new ones, so `info.light` and `info.dark` are generated from the new `main` color.
+A copy of the theme with changed values, like `createTheme({ ...theme, palette: { ...theme.palette, info } })`, works the same way, but changes made to the theme itself are ignored.
 
 **WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 

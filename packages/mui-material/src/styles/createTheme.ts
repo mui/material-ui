@@ -1,3 +1,4 @@
+import deepmerge, { isPlainObject } from '@mui/utils/deepmerge';
 import createPalette from './createPalette';
 import type { PaletteOptions } from './createPalette';
 import {
@@ -14,7 +15,6 @@ import type {
   ThemeOptions as ThemeNoVarsOptions,
 } from './createThemeNoVars';
 import createThemeNoVars from './createThemeNoVars';
-import { themeBuildKey, isColorSchemeCopy } from './themeComposition';
 
 export type {
   Theme,
@@ -43,40 +43,130 @@ export interface ThemeOptions extends CssVarsOptions, Omit<CssVarsThemeOptions, 
 }
 
 /**
- * A theme passed back has, at the top level, a copy of the palette of one of its color schemes,
- * see `isColorSchemeCopy()`. The copy isn't needed, and a changed one goes to that color scheme.
+ * A theme created with CSS variables keeps, under this key, the options it was created from and
+ * the theme itself. When the theme, or a copy of it, is passed back to `createTheme()`, as in
+ * `createTheme(theme, { palette })` or `createTheme({ ...theme, palette })`, it's created again
+ * from these options, so that every value that depends on a changed one is generated again.
+ * `Symbol.for()` keeps the key the same across copies of the package.
  */
-function getPaletteColorScheme(
-  palette: Record<keyof any, any> | undefined,
-  colorSchemes: Partial<Record<string, any>> | undefined,
-  defaultColorScheme: DefaultColorScheme,
-) {
-  const record = palette?.[themeBuildKey];
-  const scheme =
-    record && colorSchemes
-      ? (Object.keys(colorSchemes).find(
-          (key) => colorSchemes[key]?.palette?.[themeBuildKey] === record,
-        ) as DefaultColorScheme | undefined)
-      : undefined;
-  if (!scheme) {
-    return { scheme: defaultColorScheme, palette };
+const themeInputsKey = Symbol.for('mui.material.themeInputs');
+
+interface ThemeInputs {
+  options: ThemeOptions;
+  theme: Record<string, any>;
+}
+
+/**
+ * Returns the values of `value` that differ from `base`, looking into the plain objects they both
+ * have, or `undefined` if there's none. A function that replaces a function isn't a change: the
+ * theme creates its functions again, and `ThemeProvider` does too, like `typography.pxToRem()`.
+ * A value missing from `base` that's the same as in `fallback` isn't a change either.
+ */
+function getChanges(value: any, base: any, fallback?: Record<string, any>): any {
+  if (value === base || (typeof value === 'function' && typeof base === 'function')) {
+    return undefined;
   }
-  const schemePalette = colorSchemes![scheme].palette;
-  const defaultPalette = colorSchemes![defaultColorScheme]?.palette;
-  if (isColorSchemeCopy(palette, schemePalette, defaultPalette)) {
-    return { scheme, palette: undefined };
+  if (Array.isArray(base) && (Array.isArray(value) || isPlainObject(value))) {
+    // `ThemeProvider` copies an array, like `overlays`, into an object with the same entries.
+    const copy = value as Record<string, unknown>;
+    const keys = Object.keys(copy);
+    if (keys.length === base.length && keys.every((key) => copy[key] === base[Number(key)])) {
+      return undefined;
+    }
+    return Array.isArray(value) ? value : Object.assign([], value);
   }
-  if (scheme === defaultColorScheme) {
-    return { scheme, palette };
+  if (!isPlainObject(value) || !isPlainObject(base)) {
+    return value;
   }
-  // Without the values that the copy took from the default palette.
-  const output = { ...palette };
-  Object.keys(output).forEach((key) => {
-    if (!(key in schemePalette) && output[key] === defaultPalette?.[key]) {
-      delete output[key];
+  const changes: Record<string, any> = {};
+  Object.keys(value).forEach((key) => {
+    if (fallback && !(key in base) && value[key] === fallback[key]) {
+      return;
+    }
+    const change = getChanges(value[key], base[key]);
+    if (change !== undefined) {
+      changes[key] = change;
     }
   });
-  return { scheme, palette: output };
+  return Object.keys(changes).length > 0 ? changes : undefined;
+}
+
+/**
+ * Returns the options of a theme passed back to `createTheme()`: the options the theme was created
+ * from, with the values changed in `copy`, the theme or a copy of it.
+ */
+function getThemeOptions(copy: Record<string, any>, inputs: ThemeInputs): ThemeOptions {
+  const { options, theme } = inputs;
+  const defaultScheme = theme.defaultColorScheme;
+  const changes: Record<string, any> = {};
+  Object.keys(copy).forEach((key) => {
+    // `vars` isn't an option, and `cssVariables: true` keeps the CSS variables options of the theme.
+    if (key === 'vars' || (key === 'cssVariables' && copy[key] === true)) {
+      return;
+    }
+    const schemes = Object.keys(theme.colorSchemes).filter(
+      (scheme) => key in theme.colorSchemes[scheme],
+    );
+    if (schemes.length === 0) {
+      const change = getChanges(copy[key], theme[key]);
+      if (change !== undefined) {
+        changes[key] = change;
+      }
+      return;
+    }
+    // The values of a color scheme, like `palette`, are at the top level too. They're copied from
+    // the default color scheme, or by a `ThemeProvider` with `forceThemeRerender`, from the color
+    // scheme in use over the default one. A change goes to the color scheme it was copied from.
+    const fallback = theme.colorSchemes[defaultScheme]?.[key];
+    let scheme = '';
+    let schemeChange: any;
+    let schemeChangeCount = Infinity;
+    // The default color scheme goes first, so that it's chosen in a tie.
+    schemes.sort((a, b) => Number(b === defaultScheme) - Number(a === defaultScheme));
+    // Stops at a color scheme without changes, usually the default one.
+    schemes.some((item) => {
+      const change = getChanges(copy[key], theme.colorSchemes[item][key], fallback);
+      const count = isPlainObject(change)
+        ? Object.keys(change).length
+        : Number(change !== undefined);
+      if (count < schemeChangeCount) {
+        scheme = item;
+        schemeChange = change;
+        schemeChangeCount = count;
+      }
+      return count === 0;
+    });
+    if (schemeChange === undefined) {
+      return;
+    }
+    // A value given at the top level of the options, like `palette`, goes to the default color scheme.
+    if (scheme === defaultScheme && key in options) {
+      changes[key] = schemeChange;
+    } else {
+      changes.colorSchemes = deepmerge(changes.colorSchemes ?? {}, {
+        [scheme]: { [key]: schemeChange },
+      });
+    }
+  });
+  return deepmerge(options, changes);
+}
+
+/**
+ * Deep merges an extra argument of `createTheme()` into the options. The `palette` option replaces
+ * the palette of the default color scheme, so the `palette` of the argument is merged into that
+ * palette when the options don't have a `palette`.
+ */
+function mergeArgument(options: ThemeOptions, argument: Record<string, any>): ThemeOptions {
+  const { palette, ...other } = argument;
+  if (!palette || options.palette || !options.colorSchemes) {
+    return deepmerge(options, argument);
+  }
+  return deepmerge(options, {
+    ...other,
+    colorSchemes: deepmerge(other.colorSchemes ?? {}, {
+      [options.defaultColorScheme ?? 'light']: { palette },
+    }),
+  });
 }
 
 // eslint-disable-next-line consistent-return
@@ -103,35 +193,38 @@ function attachColorScheme(
  * Generate a theme base on the options received.
  * @param options Takes an incomplete theme object and adds the missing parts.
  * @param args Deep merge the arguments with the about to be returned theme.
+ * With CSS variables, they're deep merged into `options` instead, and processed like them.
  * @returns A complete, ready-to-use theme object.
  */
 export default function createTheme(
   options: ThemeOptions = {} as any, // cast type to skip module augmentation test
   ...args: object[]
 ): Theme {
+  const inputs: ThemeInputs | undefined = (options as any)[themeInputsKey];
+  if (inputs) {
+    return createTheme(getThemeOptions(options, inputs), ...args);
+  }
+  if (options.cssVariables && args.length > 0) {
+    // The arguments are merged into the options, so that they're processed the same way: their
+    // values get CSS variables, and the values that depend on them are generated again.
+    return createTheme(args.reduce<ThemeOptions>(mergeArgument, options));
+  }
   const {
     palette,
-    // A theme created with CSS variables keeps them when it's passed back, for example in `createTheme(theme, { palette })`.
-    cssVariables = themeBuildKey in options,
+    cssVariables = false,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
     ...other
   } = options;
   const defaultColorSchemeInput = (initialDefaultColorScheme as DefaultColorScheme) || 'light';
-  // The `palette` goes to the default color scheme, unless it comes from a theme passed back.
-  const paletteScheme = getPaletteColorScheme(
-    palette,
-    initialColorSchemes,
-    defaultColorSchemeInput,
-  );
-  const schemeInput = initialColorSchemes?.[paletteScheme.scheme];
+  const defaultScheme = initialColorSchemes?.[defaultColorSchemeInput];
   const colorSchemesInput = {
     ...initialColorSchemes,
-    ...(paletteScheme.palette
+    ...(palette
       ? {
-          [paletteScheme.scheme]: {
-            ...(typeof schemeInput !== 'boolean' && schemeInput),
-            palette: paletteScheme.palette,
+          [defaultColorSchemeInput]: {
+            ...(typeof defaultScheme !== 'boolean' && defaultScheme),
+            palette,
           },
         }
       : undefined),
@@ -215,13 +308,13 @@ export default function createTheme(
     colorSchemesInput.light = true;
   }
 
-  return createThemeWithVars(
-    {
-      ...other,
-      colorSchemes: colorSchemesInput,
-      defaultColorScheme: defaultColorSchemeInput,
-      ...(typeof cssVariables !== 'boolean' && cssVariables),
-    },
-    ...args,
-  );
+  const theme = createThemeWithVars({
+    ...other,
+    colorSchemes: colorSchemesInput,
+    defaultColorScheme: defaultColorSchemeInput,
+    ...(typeof cssVariables !== 'boolean' && cssVariables),
+  });
+  // A copy of the options, so that changing them later doesn't change the themes created from this one.
+  (theme as any)[themeInputsKey] = { options: deepmerge({}, options), theme } satisfies ThemeInputs;
+  return theme;
 }
