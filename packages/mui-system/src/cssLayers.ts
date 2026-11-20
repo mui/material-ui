@@ -65,6 +65,10 @@ export function styleCssLayerEnd(props: { theme?: any }) {
   return isSingleCssLayer(props.theme) ? '}' : null;
 }
 
+// The `mui` layer in a layer order statement: a whole name in the list, so not `my-mui`, `mui-x`,
+// `vendor.mui` or a sub-layer such as `mui.sx`.
+const MUI_LAYER_NAME = /(^|[\s,])mui(?=[\s,;]|$)/g;
+
 /**
  * Returns the statement that declares the order of the theme's layers, or `''` if there's none.
  * A `modularCssLayers` string sets where `mui` goes among the app's layers.
@@ -78,7 +82,7 @@ export function getCssLayerOrderStatement(theme: any): string {
   }
   const { modularCssLayers } = theme;
   if (typeof modularCssLayers === 'string') {
-    return modularCssLayers.replace(/mui(?!\.)/g, CSS_LAYER_ORDER);
+    return modularCssLayers.replace(MUI_LAYER_NAME, `$1${CSS_LAYER_ORDER}`);
   }
   return `@layer ${CSS_LAYER_ORDER};`;
 }
