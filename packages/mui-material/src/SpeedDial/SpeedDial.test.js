@@ -117,9 +117,10 @@ describe('<SpeedDial />', () => {
   });
 
   it('should navigate with arrow keys to actions with function-form fab slot props', async () => {
+    clock.restore();
     const actionRefs = [React.createRef(), React.createRef()];
 
-    render(
+    const { user } = render(
       <SpeedDial {...defaultProps}>
         {actionRefs.map((actionRef, index) => (
           <SpeedDialAction
@@ -136,10 +137,10 @@ describe('<SpeedDial />', () => {
       fab.focus();
     });
 
-    fireEvent.keyDown(fab, { key: 'ArrowUp' });
+    await user.keyboard('{ArrowUp}');
     expect(actionRefs[0].current).toHaveFocus();
 
-    fireEvent.keyDown(actionRefs[0].current, { key: 'ArrowUp' });
+    await user.keyboard('{ArrowUp}');
     expect(actionRefs[1].current).toHaveFocus();
 
     await flushEffects();
