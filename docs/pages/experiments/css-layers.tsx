@@ -782,6 +782,12 @@ export default function CssLayers() {
           single layer they had, and apps that used <code>modularCssLayers: true</code> get the same
           sub-layers.
         </Typography>
+        <Typography variant="body2" sx={{ mb: 3, maxWidth: 800, color: 'text.secondary' }}>
+          <strong>Same as v9:</strong> nothing changes. <strong>Intended:</strong> the result
+          changes the way layers are meant to, so the app&apos;s plain CSS overrides Material UI
+          without specificity tricks. <strong>Breaking:</strong> an app that upgrades without
+          changing its code looks different, and needs the step from the upgrade guide.
+        </Typography>
         <Summary />
 
         <Scenario
