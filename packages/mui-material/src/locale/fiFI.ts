@@ -45,6 +45,15 @@ export const fiFI: Localization = {
         openText: 'Avaa',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Suurenna' },
+          decrementButton: { 'aria-label': 'Pienennä' },
+          htmlInput: { 'aria-roledescription': 'Numerokenttä' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Sulje',

@@ -46,6 +46,15 @@ export const tlTL: Localization = {
         openText: 'Bukas',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Dagdagan' },
+          decrementButton: { 'aria-label': 'Bawasan' },
+          htmlInput: { 'aria-roledescription': 'Patlang para sa numero' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Isara',

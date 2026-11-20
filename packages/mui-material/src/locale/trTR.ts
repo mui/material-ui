@@ -45,6 +45,15 @@ export const trTR: Localization = {
         openText: 'Aç',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Artır' },
+          decrementButton: { 'aria-label': 'Azalt' },
+          htmlInput: { 'aria-roledescription': 'Sayı alanı' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Kapat',

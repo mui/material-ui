@@ -53,6 +53,15 @@ export const skSK: Localization = {
         openText: 'Otvoriť',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Zvýšiť' },
+          decrementButton: { 'aria-label': 'Znížiť' },
+          htmlInput: { 'aria-roledescription': 'Číselné pole' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zavrieť',

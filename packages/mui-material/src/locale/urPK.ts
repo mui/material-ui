@@ -45,6 +45,15 @@ export const urPK: Localization = {
         openText: 'کھولیں',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'بڑھائیں' },
+          decrementButton: { 'aria-label': 'گھٹائیں' },
+          htmlInput: { 'aria-roledescription': 'عدد درج کرنے کا خانہ' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'بند کریں',

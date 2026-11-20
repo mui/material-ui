@@ -45,6 +45,15 @@ export const amET: Localization = {
         openText: 'ክፈት',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'ጨምር' },
+          decrementButton: { 'aria-label': 'ቀንስ' },
+          htmlInput: { 'aria-roledescription': 'የቁጥር መስክ' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'ዝጋ',

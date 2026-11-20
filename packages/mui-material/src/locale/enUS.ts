@@ -36,6 +36,13 @@ export const enUS: Localization = {
       noOptionsText: 'No options',
       openText: 'Open',
     }},
+    MuiNumberField: { defaultProps: {
+      slotProps: {
+        incrementButton: { 'aria-label': 'Increase' },
+        decrementButton: { 'aria-label': 'Decrease' },
+        htmlInput: { 'aria-roledescription': 'Number field' },
+      },
+    }},
     MuiAlert: { defaultProps: {
       closeText: 'Close',
     }},

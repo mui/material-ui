@@ -45,6 +45,15 @@ export const ptBR: Localization = {
         openText: 'Abrir',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Aumentar' },
+          decrementButton: { 'aria-label': 'Diminuir' },
+          htmlInput: { 'aria-roledescription': 'Campo numérico' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Fechar',

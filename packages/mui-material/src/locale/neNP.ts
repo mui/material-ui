@@ -49,6 +49,15 @@ export const neNP: Localization = {
         openText: 'खोल्नुहोस्',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'बढाउनुहोस्' },
+          decrementButton: { 'aria-label': 'घटाउनुहोस्' },
+          htmlInput: { 'aria-roledescription': 'सङ्ख्या प्रविष्टि क्षेत्र' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'बन्द गर्नुहोस्',

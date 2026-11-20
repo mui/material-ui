@@ -45,6 +45,15 @@ export const thTH: Localization = {
         openText: 'เปิด',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'เพิ่มค่า' },
+          decrementButton: { 'aria-label': 'ลดค่า' },
+          htmlInput: { 'aria-roledescription': 'ช่องป้อนตัวเลข' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'ปิด',

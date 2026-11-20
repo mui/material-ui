@@ -45,6 +45,15 @@ export const etEE: Localization = {
         openText: 'Ava',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Suurenda' },
+          decrementButton: { 'aria-label': 'Vähenda' },
+          htmlInput: { 'aria-roledescription': 'Arvuväli' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Sulge',

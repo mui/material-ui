@@ -45,6 +45,15 @@ export const nbNO: Localization = {
         openText: 'Åpne',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Øk' },
+          decrementButton: { 'aria-label': 'Reduser' },
+          htmlInput: { 'aria-roledescription': 'Tallfelt' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Lukk',

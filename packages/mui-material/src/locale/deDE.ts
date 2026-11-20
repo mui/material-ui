@@ -45,6 +45,15 @@ export const deDE: Localization = {
         openText: 'Öffnen',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Erhöhen' },
+          decrementButton: { 'aria-label': 'Verringern' },
+          htmlInput: { 'aria-roledescription': 'Zahlenfeld' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Schließen',

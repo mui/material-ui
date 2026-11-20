@@ -34,6 +34,16 @@ export interface Localization {
               >;
             }
           | undefined;
+        MuiNumberField?:
+          | {
+              defaultProps: {
+                slotProps: Pick<
+                  NonNullable<ComponentsPropsList['MuiNumberField']['slotProps']>,
+                  'incrementButton' | 'decrementButton' | 'htmlInput'
+                >;
+              };
+            }
+          | undefined;
         // The core package has no dependencies on the @mui/lab components.
         // We can't use ComponentsPropsList, we have to duplicate and inline the definitions.
         MuiPagination?:
