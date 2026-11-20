@@ -89,8 +89,10 @@ export default function DrawerAppBar(props: Props) {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+          slotProps={{
+            root: {
+              keepMounted: true, // Better open performance on mobile.
+            },
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
