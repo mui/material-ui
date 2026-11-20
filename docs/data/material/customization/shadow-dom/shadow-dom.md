@@ -19,7 +19,6 @@ shadowContainer.appendChild(shadowRootElement);
 
 const cache = createCache({
   key: 'css',
-  prepend: true,
   container: shadowContainer,
 });
 

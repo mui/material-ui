@@ -610,22 +610,12 @@ If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5), check
 
 ```tsx
 import { render } from 'react-dom';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
 import { ThemeProvider } from '@mui/material/styles';
 
-export const muiCache = createCache({
-  key: 'mui',
-  prepend: true,
-});
-
-//NOTE: Don't use <StyledEngineProvider injectFirst/>
 render(
-  <CacheProvider value={muiCache}>
-    <ThemeProvider theme={myTheme}>
-      <Root />
-    </ThemeProvider>
-  </CacheProvider>,
+  <ThemeProvider theme={myTheme}>
+    <Root />
+  </ThemeProvider>,
   document.getElementById('root'),
 );
 ```
