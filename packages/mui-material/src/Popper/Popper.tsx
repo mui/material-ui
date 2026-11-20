@@ -1,27 +1,38 @@
 'use client';
 import type { SxProps } from '@mui/system';
 import { useRtl } from '@mui/system/RtlProvider';
+import type { OverridableComponent, OverrideProps } from '@mui/types';
 import refType from '@mui/utils/refType';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import BasePopper from './BasePopper';
-import type { PopperProps as BasePopperProps } from './BasePopper.types';
+import type { PopperOwnProps as BasePopperOwnProps } from './BasePopper.types';
 import type { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
-export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component?: React.ElementType | undefined;
+export interface PopperOwnProps extends Omit<BasePopperOwnProps, 'direction'> {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
 }
+
+export interface PopperTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & PopperOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type PopperProps<
+  RootComponent extends React.ElementType = PopperTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<PopperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType | undefined;
+};
 
 const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',
@@ -90,7 +101,7 @@ const Popper = React.forwardRef(function Popper(
       ref={ref}
     />
   );
-}) as React.ForwardRefExoticComponent<PopperProps & React.RefAttributes<HTMLDivElement>>;
+}) as OverridableComponent<PopperTypeMap>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
