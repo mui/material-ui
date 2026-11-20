@@ -20,4 +20,5 @@ jobs:
       issues: write
       pull-requests: write
       security-events: read
-    uses: mui/mui-public/.github/workflows/dependabot-fix-workflow.lock.yml@8589bc79f4570958ccbc2a1162ee25eca72d5708 # code-infra/gh-aw-dependabot-fix
+      vulnerability-alerts: read
+    uses: mui/mui-public/.github/workflows/dependabot-fix-workflow.lock.yml@8ffdd482f5f2f69c84ed2ea5344d3c9f505cf52d # code-infra/gh-aw-dependabot-fix
