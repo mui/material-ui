@@ -238,8 +238,6 @@ function removeMuiLayer(css: string) {
   return result;
 }
 
-const LAYER_ORDER_STATEMENT = /^@layer\s[^{]*$/;
-
 // `speedy` is what Emotion uses in production: rules go in with `insertRule`, so the style tags
 // have no text. Setting it here makes the dev server behave like the deploy preview.
 function createFrameCache(doc: Document, unlayered: boolean, globalStylesFirst: boolean) {
@@ -273,20 +271,6 @@ function createFrameCache(doc: Document, unlayered: boolean, globalStylesFirst: 
   }
   const { insert } = cache;
   cache.insert = (selector, serialized, sheet, shouldCache) => {
-    // On the client, `useLayerOrder` prepends the sub-layer order to the `<head>` of the top-level
-    // document, even when the styles render in a frame, so the frame does it for itself. Chrome
-    // doesn't restyle elements that already have styles when a style sheet that only reorders
-    // layers is added, so copy the ThemeProvider's statement as soon as Emotion inserts it.
-    if (
-      LAYER_ORDER_STATEMENT.test(serialized.styles) &&
-      serialized.styles.includes('mui.') &&
-      !doc.head.querySelector('style[data-mui-layer-order]')
-    ) {
-      const style = doc.createElement('style');
-      style.setAttribute('data-mui-layer-order', '');
-      style.textContent = serialized.styles;
-      doc.head.prepend(style);
-    }
     const styles = unlayered ? removeMuiLayer(serialized.styles) : serialized.styles;
     return insert(
       selector,
@@ -771,9 +755,8 @@ export default function CssLayers() {
           Each demo runs in a frame with its own document, React root and Emotion cache in
           production mode, so that this page&apos;s styles and layer order don&apos;t change the
           results. The v9 frames take Material UI&apos;s styles out of <code>@layer mui</code>,
-          which gives the CSS that v9 generated. With sub-layers, <code>useLayerOrder</code> writes
-          the layer order to the top-level document, so each frame copies it to the start of its own{' '}
-          <code>&lt;head&gt;</code>, as on a page.
+          which gives the CSS that v9 generated. With sub-layers, the layer order goes with each
+          frame&apos;s styles, as on a page.
         </Typography>
         <Typography variant="body2" sx={{ mb: 3, maxWidth: 800, color: 'text.secondary' }}>
           The verdicts compare to v9 without layers. The Tailwind CSS cases compare to the setup

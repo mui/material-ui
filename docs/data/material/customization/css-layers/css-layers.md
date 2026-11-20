@@ -63,25 +63,24 @@ Material UI then generates these layers:
 - `@layer mui.custom`: Custom styles for non-Material UI styled components.
 - `@layer mui.sx`: Styles from the `sx` prop.
 
-The `ThemeProvider` declares the order of the sub-layers at the top of the `<head>`, so `mui` comes before any other layer.
+The `ThemeProvider` declares the order of the sub-layers with Material UI's other styles, so they stay inside `mui`, wherever [the layer order](#setting-the-layer-order) puts it.
 
 ### Usage with other styling solutions
 
-To integrate with other styling solutions, such as Tailwind CSS v4, replace the boolean value for `modularCssLayers` with a string specifying the layer order.
-Material UI will look for the `mui` identifier and generate the layers in the correct order:
+To integrate with other styling solutions, such as Tailwind CSS v4, declare the order at the top of your global CSS file, as with the single layer:
 
-```diff title="src/theme.tsx"
- const theme = createTheme({
--  modularCssLayers: true,
-+  modularCssLayers: '@layer theme, base, mui, components, utilities;',
- });
+```css title="globals.css"
+@layer theme, base, mui, components, utilities;
 ```
 
-The generated CSS will look like this:
+The sub-layers then go inside `mui`:
 
 ```css
 @layer theme, base, mui.global, mui.components, mui.theme, mui.custom, mui.sx, components, utilities;
 ```
+
+`modularCssLayers` also accepts the order as a string, such as `'@layer theme, base, mui, components, utilities;'`.
+Material UI declares it with its styles, with `mui` replaced by the sub-layers, so it only orders the layers that no CSS before it declares.
 
 ### Caveats
 

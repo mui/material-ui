@@ -270,6 +270,9 @@ To check styles in tests, prefer computed-style assertions, such as `toHaveStyle
 They work whether the styles are layered or not.
 
 The `modularCssLayers` theme option works as in v9, without `enableCssLayer`: set it to `true` or to a layer order string to split `mui` into [sub-layers](/material-ui/customization/css-layers/#sub-layers).
+The order of the sub-layers is now declared with Material UI's other styles instead of at the top of the `<head>`, so it's in the same place on the server and in the browser.
+As with the single layer, `mui` comes after the layers that your CSS declares before it, unless your CSS puts `mui` in its order.
+If you used the order string to place `mui` among the layers of your CSS, such as Tailwind CSS's, declare that order at the top of your global CSS file instead.
 
 ### StyledEngineProvider removed
 

@@ -45,8 +45,8 @@ export interface ThemeOptions {
    * The generated styles always go in the `mui` CSS layer, so unlayered CSS and the layers declared
    * after `mui` override them. Set it to `true` to split `mui` into sub-layers: `mui.global`,
    * `mui.components`, `mui.theme`, `mui.custom` and `mui.sx`.
-   * A string also turns on the sub-layers and sets where they go among the app's layers, for
-   * example `'@layer theme, base, mui, components, utilities;'`.
+   * A string also turns on the sub-layers and is declared with the styles, with `mui` replaced by
+   * the sub-layers, for example `'@layer theme, base, mui, components, utilities;'`.
    * @default false
    */
   modularCssLayers?: boolean | string | undefined;

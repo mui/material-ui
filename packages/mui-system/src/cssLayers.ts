@@ -71,7 +71,7 @@ const MUI_LAYER_NAME = /(^|[\s,])mui(?=[\s,;]|$)/g;
 
 /**
  * Returns the statement that declares the order of the theme's layers, or `''` if there's none.
- * A `modularCssLayers` string sets where `mui` goes among the app's layers.
+ * A `modularCssLayers` string declares the app's order, with `mui` replaced by the sub-layers.
  * Without sub-layers, nothing is declared: as with v9's `enableCssLayer`, `mui` takes
  * its place among the app's layers when its first style is inserted. Declaring it at the start of
  * `<head>` would make it the lowest layer.

@@ -50,7 +50,7 @@ Adjust file paths to your app (`src/app/global.css`, `styles/global.css`, etc.).
 
 A layer's position is fixed where its name first appears, so this statement must load before MUI's styles. If MUI's styles come first, `mui` becomes the lowest layer and Tailwind's `base` (preflight) overrides it.
 
-If the app opts into MUI's sub-layers (`modularCssLayers` in the theme), put the full order in `modularCssLayers` as a string instead. See [CSS layers](https://mui.com/material-ui/customization/css-layers.md).
+If the app opts into MUI's sub-layers (`modularCssLayers: true` in the theme), keep the same order at the top of the CSS file: the sub-layers go inside `mui`. See [CSS layers](https://mui.com/material-ui/customization/css-layers.md).
 
 ---
 

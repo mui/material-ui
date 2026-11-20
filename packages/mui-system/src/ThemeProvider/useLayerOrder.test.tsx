@@ -1,4 +1,4 @@
-import { describe, afterEach, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { ThemeContext } from '@mui/styled-engine';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -10,38 +10,49 @@ function TestComponent({ theme, themeId }: { theme: any; themeId?: string }) {
   return LayerOrder;
 }
 
+const SUB_LAYERS = 'mui.global,mui.components,mui.theme,mui.custom,mui.sx';
+
+// The layer order statements in the document, as Emotion serialized them.
+function getLayerOrders() {
+  return Array.from(document.querySelectorAll('style'))
+    .map((element) => element.textContent?.trim() ?? '')
+    .filter((css) => /^@layer [^{]*;$/.test(css));
+}
+
 // The styles aren't layered in jsdom.
 describe.skipIf(isJsdom())('useLayerOrder', () => {
   const { render } = createRenderer();
 
-  afterEach(() => {
-    // Clean up any injected style tags
-    document.querySelectorAll('style[data-mui-layer-order]').forEach((el) => el.remove());
-  });
-
   it('attach layer order', () => {
     const theme = { modularCssLayers: true };
     render(<TestComponent theme={theme} />);
-    expect(document.head.firstChild).not.to.equal(null);
-    expect(document.head.firstChild?.textContent).to.contain(
-      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
-    );
+    expect(getLayerOrders()).to.deep.equal([`@layer ${SUB_LAYERS};`]);
+  });
+
+  it("declares the order with the other styles, after the app's CSS", () => {
+    const appStyles = document.createElement('style');
+    appStyles.textContent = '@layer reset;';
+    document.head.append(appStyles);
+    try {
+      render(<TestComponent theme={{ modularCssLayers: true }} />);
+      // On the server, the statement also comes after the app's CSS, so the order doesn't change
+      // at hydration.
+      expect(getLayerOrders()).to.deep.equal(['@layer reset;', `@layer ${SUB_LAYERS};`]);
+    } finally {
+      appStyles.remove();
+    }
   });
 
   it('custom layer order string', () => {
     const theme = { modularCssLayers: '@layer theme, base, mui, utilities;' };
     render(<TestComponent theme={theme} />);
-    expect(document.head.firstChild?.textContent).to.contain(
-      '@layer theme, base, mui.global, mui.components, mui.theme, mui.custom, mui.sx, utilities;',
-    );
+    expect(getLayerOrders()).to.deep.equal([`@layer theme,base,${SUB_LAYERS},utilities;`]);
   });
 
   it('does not replace nested layer', () => {
     const theme = { modularCssLayers: '@layer theme, base, mui.unknown, utilities;' };
     render(<TestComponent theme={theme} />);
-    expect(document.head.firstChild?.textContent).to.contain(
-      '@layer theme, base, mui.unknown, utilities;',
-    );
+    expect(getLayerOrders()).to.deep.equal(['@layer theme,base,mui.unknown,utilities;']);
   });
 
   it('sets the nonce of the Emotion cache on the layer order style tag', () => {
@@ -51,14 +62,36 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
         <TestComponent theme={{ modularCssLayers: true }} />
       </CacheProvider>,
     );
-    const styleElement = document.head.firstChild as HTMLStyleElement;
-    expect(styleElement.hasAttribute('data-mui-layer-order')).to.equal(true);
+    const styleElement = Array.from(document.querySelectorAll('style')).find(
+      (element) => element.textContent === `@layer ${SUB_LAYERS};`,
+    )!;
     expect(styleElement.nonce).to.equal('test-nonce');
+  });
+
+  it("declares the order in the Emotion cache's container, such as a shadow root", () => {
+    const host = document.createElement('div');
+    document.body.append(host);
+    const shadowRoot = host.attachShadow({ mode: 'open' });
+    const cache = createCache({ key: 'shadow', container: shadowRoot });
+    try {
+      render(
+        <CacheProvider value={cache}>
+          <TestComponent theme={{ modularCssLayers: true }} />
+        </CacheProvider>,
+      );
+      const orders = Array.from(shadowRoot.querySelectorAll('style')).map(
+        (element) => element.textContent,
+      );
+      expect(orders).to.deep.equal([`@layer ${SUB_LAYERS};`]);
+      expect(getLayerOrders()).to.deep.equal([]);
+    } finally {
+      host.remove();
+    }
   });
 
   it('returns null if modularCssLayers is falsy', () => {
     render(<TestComponent theme={{}} />);
-    expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
+    expect(getLayerOrders()).to.deep.equal([]);
   });
 
   it('do nothing if upperTheme exists to avoid duplicate elements', () => {
@@ -67,7 +100,7 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
         <TestComponent theme={{}} />
       </ThemeContext.Provider>,
     );
-    expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
+    expect(getLayerOrders()).to.deep.equal([]);
   });
 
   it('does not declare the order again under an upper theme with sub-layers', () => {
@@ -76,7 +109,7 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
         <TestComponent theme={{ modularCssLayers: true }} />
       </ThemeContext.Provider>,
     );
-    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+    expect(getLayerOrders()).to.deep.equal([]);
   });
 
   it('declares the order under an upper theme without modularCssLayers', () => {
@@ -85,14 +118,12 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
         <TestComponent theme={{ modularCssLayers: true }} />
       </ThemeContext.Provider>,
     );
-    expect(document.head.firstChild?.textContent).to.contain(
-      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
-    );
+    expect(getLayerOrders()).to.deep.equal([`@layer ${SUB_LAYERS};`]);
   });
 
   it('declares no order with a single layer', () => {
     render(<TestComponent theme={{ modularCssLayers: false }} />);
-    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+    expect(getLayerOrders()).to.deep.equal([]);
   });
 
   it('declares the sub-layers under an upper theme with a single layer', () => {
@@ -101,9 +132,7 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
         <TestComponent theme={{ modularCssLayers: true }} />
       </ThemeContext.Provider>,
     );
-    expect(document.head.firstChild?.textContent).to.contain(
-      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
-    );
+    expect(getLayerOrders()).to.deep.equal([`@layer ${SUB_LAYERS};`]);
   });
 
   it('declares no order with a single layer under an upper theme with sub-layers', () => {
@@ -112,16 +141,14 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
         <TestComponent theme={{ modularCssLayers: false }} />
       </ThemeContext.Provider>,
     );
-    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+    expect(getLayerOrders()).to.deep.equal([]);
   });
 
   it('reads the theme of the themeId', () => {
     render(
       <TestComponent theme={{ $$material: { modularCssLayers: true } }} themeId="$$material" />,
     );
-    expect(document.head.firstChild?.textContent).to.contain(
-      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
-    );
+    expect(getLayerOrders()).to.deep.equal([`@layer ${SUB_LAYERS};`]);
   });
 
   it('reads the upper theme of the themeId', () => {
@@ -130,6 +157,6 @@ describe.skipIf(isJsdom())('useLayerOrder', () => {
         <TestComponent theme={{ $$material: { modularCssLayers: true } }} themeId="$$material" />
       </ThemeContext.Provider>,
     );
-    expect(document.querySelectorAll('style[data-mui-layer-order]').length).to.equal(0);
+    expect(getLayerOrders()).to.deep.equal([]);
   });
 });

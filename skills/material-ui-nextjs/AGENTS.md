@@ -120,7 +120,7 @@ To place `mui` among the app's own layers (for example Tailwind CSS v4), declar
 @import 'tailwindcss';
 ```
 
-A layer's position is fixed where its name first appears, so the statement must come before MUI's styles: the global CSS loads first in the App Router, and `documentGetInitialProps` puts MUI's styles after it in the Pages Router. With MUI's opt-in sub-layers (`modularCssLayers` in the theme), put the same full order in `modularCssLayers` as a string.
+A layer's position is fixed where its name first appears, so the statement must come before MUI's styles: the global CSS loads first in the App Router, and `documentGetInitialProps` puts MUI's styles after it in the Pages Router. With MUI's opt-in sub-layers (`modularCssLayers: true` in the theme), the same statement applies and the sub-layers go inside `mui`.
 
 See [Next.js integration—Using other styling solutions](https://mui.com/material-ui/integrations/nextjs.md#using-other-styling-solutions), [CSS layers](https://mui.com/material-ui/customization/css-layers.md), and [MDN—@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer).
 

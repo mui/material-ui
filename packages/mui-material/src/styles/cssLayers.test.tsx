@@ -203,7 +203,6 @@ describe.skipIf(isJsdom())('CSS layers', () => {
   });
 
   it("keeps mui where the app's CSS declares it by default", () => {
-    removeLayerOrders();
     // Tailwind CSS v4's setup: the layer order, then preflight in `base`, before Material UI.
     const appStyles = document.createElement('style');
     appStyles.textContent =
@@ -217,6 +216,41 @@ describe.skipIf(isJsdom())('CSS layers', () => {
       );
 
       expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '6px' });
+    } finally {
+      appStyles.remove();
+    }
+  });
+
+  it("keeps mui where the app's CSS declares it with sub-layers", () => {
+    const appStyles = document.createElement('style');
+    appStyles.textContent =
+      '@layer theme, base, mui, components, utilities; @layer base { button { padding-top: 0; } }';
+    document.head.prepend(appStyles);
+    try {
+      render(
+        <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
+          <Button>Hello</Button>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('button')).toHaveComputedStyle({ paddingTop: '6px' });
+    } finally {
+      appStyles.remove();
+    }
+  });
+
+  it("puts the sub-layers after the app's layers that load first, as on the server", () => {
+    const appStyles = document.createElement('style');
+    appStyles.textContent = '@layer reset { button { text-transform: none; } }';
+    document.head.prepend(appStyles);
+    try {
+      render(
+        <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
+          <Button>Hello</Button>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('button')).toHaveComputedStyle({ textTransform: 'uppercase' });
     } finally {
       appStyles.remove();
     }
@@ -249,10 +283,11 @@ function CaptureStyles(props: { inserted: string[] }) {
   return null;
 }
 
-function removeLayerOrders() {
-  document.head.querySelectorAll('style[data-mui-layer-order]').forEach((element) => {
-    element.remove();
-  });
+// The layer order statements in the document, as Emotion serialized them.
+function getLayerOrders() {
+  return Array.from(document.querySelectorAll('style'))
+    .map((element) => element.textContent?.trim() ?? '')
+    .filter((css) => /^@layer [^{]*;$/.test(css));
 }
 
 const PlainDiv = styled('div')({ color: 'rgb(255, 0, 0)' });
@@ -363,7 +398,6 @@ describe.skipIf(isJsdom())('CSS layers: generated styles', () => {
   });
 
   it('declares the sub-layer order under a ThemeProvider with a single layer', () => {
-    removeLayerOrders();
     render(
       <ThemeProvider theme={createTheme()}>
         <ThemeProvider theme={createTheme({ modularCssLayers: true })}>
@@ -371,24 +405,21 @@ describe.skipIf(isJsdom())('CSS layers: generated styles', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    const orders = Array.from(document.head.querySelectorAll('style[data-mui-layer-order]')).map(
-      (element) => element.textContent,
+    expect(getLayerOrders()).to.include(
+      '@layer mui.global,mui.components,mui.theme,mui.custom,mui.sx;',
     );
-    expect(orders).to.include('@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;');
   });
 
   it('declares the layer order for a scoped theme', () => {
-    removeLayerOrders();
     render(
       <ThemeProvider theme={{ [THEME_ID]: createTheme({ modularCssLayers: true }) }}>
         <Button>Hello</Button>
       </ThemeProvider>,
     );
-    expect(document.head.querySelector('style[data-mui-layer-order]')).not.to.equal(null);
+    expect(getLayerOrders()).to.have.length(1);
   });
 
   it('puts every style in the mui layer by default', () => {
-    removeLayerOrders();
     const inserted: string[] = [];
     const theme = createTheme({
       components: { MuiButton: { styleOverrides: { root: { paddingTop: 3 } } } },
@@ -408,7 +439,7 @@ describe.skipIf(isJsdom())('CSS layers: generated styles', () => {
     expect(styles).to.include('@layer mui{html{color:blue;}}');
     expect(styles).to.match(/@layer mui\{padding-bottom:3px;+color:rgb\(255, 0, 0\);\}/);
     // As with v9's `enableCssLayer`, `mui` takes its place among the app's layers.
-    expect(document.head.querySelector('style[data-mui-layer-order]')).to.equal(null);
+    expect(getLayerOrders()).to.deep.equal([]);
   });
 
   it('puts the styles in the mui layer with a theme object made without createTheme()', () => {
@@ -470,7 +501,7 @@ describe.runIf(isJsdom())('CSS layers in jsdom', () => {
     );
 
     expect(inserted.join('')).not.to.include('@layer');
-    expect(document.head.querySelector('style[data-mui-layer-order]')).to.equal(null);
+    expect(getLayerOrders()).to.deep.equal([]);
     expect(screen.getByRole('button')).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
   });
 });
