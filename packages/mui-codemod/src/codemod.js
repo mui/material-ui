@@ -53,7 +53,9 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
     // can't directly spawn `jscodeshiftExecutable` due to https://github.com/facebook/jscodeshift/issues/424
     jscodeshiftExecutable,
     '--transform',
-    transformerPath,
+    // Runs the codemod and keeps the line endings of each file.
+    path.join(__dirname, 'util/preserveLineEndings.js'),
+    `--muiTransform=${transformerPath}`,
     ...codemodFlags,
     '--extensions',
     'js,ts,jsx,tsx,json',
