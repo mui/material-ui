@@ -237,6 +237,8 @@ function createThemeNoVars(options = {}, ...args) {
     return styleFunctionSx({
       sx: props,
       theme: this,
+      // The result goes into other styles, which already sit in a layer.
+      nested: true,
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration

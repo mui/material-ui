@@ -72,7 +72,6 @@ export {
   lighten,
   ColorFormat,
   ColorObject,
-  StyledEngineProvider,
   SxProps,
 } from '@mui/system';
 export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';

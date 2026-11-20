@@ -53,9 +53,9 @@ The root `AGENTS.md` lists each skill and links directly to `skills/<name>/AGENT
 
 ## Catalog
 
-| Folder                                          | Focus                                                                                                          |
-| :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
-| [material-ui-styling](./material-ui-styling/)   | Choosing styling scope: `sx`, `styled()`, theme overrides, global CSS; slots and state                         |
-| [material-ui-theming](./material-ui-theming/)   | Theme object, design tokens, `colorSchemes`, `cssVariables` / `theme.vars`, TypeScript augmentation            |
-| [material-ui-nextjs](./material-ui-nextjs/)     | `@mui/material-nextjs`, App/Pages Router, Emotion cache, `next/font`, CSS layers, Next `Link` + MUI            |
-| [material-ui-tailwind](./material-ui-tailwind/) | Tailwind v4 `@layer` + `enableCssLayer`; `className` / `slotProps`; v3 preflight / `important` / `injectFirst` |
+| Folder                                          | Focus                                                                                               |
+| :---------------------------------------------- | :-------------------------------------------------------------------------------------------------- |
+| [material-ui-styling](./material-ui-styling/)   | Choosing styling scope: `sx`, `styled()`, theme overrides, global CSS; slots and state              |
+| [material-ui-theming](./material-ui-theming/)   | Theme object, design tokens, `colorSchemes`, `cssVariables` / `theme.vars`, TypeScript augmentation |
+| [material-ui-nextjs](./material-ui-nextjs/)     | `@mui/material-nextjs`, App/Pages Router, Emotion cache, `next/font`, CSS layers, Next `Link` + MUI |
+| [material-ui-tailwind](./material-ui-tailwind/) | Tailwind v4 `@layer` order; `className` / `slotProps`; v3 preflight                                 |

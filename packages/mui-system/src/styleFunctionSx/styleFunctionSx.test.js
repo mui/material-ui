@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { isJsdom } from '@mui/internal-test-utils';
 import styleFunctionSx from './styleFunctionSx';
 import cssContainerQueries from '../cssContainerQueries';
 import createBreakpoints from '../createBreakpoints/createBreakpoints';
@@ -569,7 +570,8 @@ describe('styleFunctionSx', () => {
     });
   });
 
-  describe('Modular CSS layers', () => {
+  // The styles aren't layered in jsdom.
+  describe.skipIf(isJsdom())('Modular CSS layers', () => {
     it('should wrapped in @layer', () => {
       const result = styleFunctionSx({
         theme: {
@@ -591,7 +593,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           backgroundColor: 'rgb(0, 255, 0)',
           outline: '1px solid',
@@ -624,12 +626,12 @@ describe('styleFunctionSx', () => {
 
       expect(result).to.deep.equal([
         {
-          '@layer sx': {
+          '@layer mui.sx': {
             backgroundColor: 'rgb(0, 255, 0)',
           },
         },
         {
-          '@layer sx': {
+          '@layer mui.sx': {
             color: 'rgb(0, 0, 255)',
           },
         },
@@ -649,7 +651,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           backgroundColor: 'rgb(0, 255, 0)',
         },
@@ -671,7 +673,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           '&:hover': {
             backgroundColor: 'rgb(0, 255, 0)',
@@ -695,7 +697,7 @@ describe('styleFunctionSx', () => {
       });
 
       expect(result).to.deep.equal({
-        '@layer sx': {
+        '@layer mui.sx': {
           color: 'rgb(0, 0, 255)',
           '&:hover': {
             backgroundColor: 'rgb(0, 255, 0)',

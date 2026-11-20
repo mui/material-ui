@@ -174,14 +174,11 @@ function createMaterialTemplate(templateData: {
   const indexContent = `
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')${templateData.codeVariant === 'TS' ? '!' : ''}).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
+    <App />
   </React.StrictMode>
 );`;
 

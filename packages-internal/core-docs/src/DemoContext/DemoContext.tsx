@@ -32,7 +32,7 @@ export interface SandboxConfig {
   primaryPackage: string;
 
   /**
-   * Default dependency to add when generating sandbox (e.g., '@mui/material' for StyledEngineProvider)
+   * Default dependency to add when generating sandbox (e.g., '@mui/material')
    * Used when the root index template requires a specific package.
    */
   fallbackDependency?: { name: string; version: string };

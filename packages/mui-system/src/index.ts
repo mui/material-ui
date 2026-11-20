@@ -1,5 +1,5 @@
 /* eslint-disable import/export */
-export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
+export { css, keyframes } from '@mui/styled-engine';
 export type { Interpolation, CSSInterpolation, CSSObject } from '@mui/styled-engine';
 export type { DefaultTheme } from '@mui/private-theming';
 export { default as GlobalStyles } from './GlobalStyles';

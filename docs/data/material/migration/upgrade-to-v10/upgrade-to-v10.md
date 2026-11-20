@@ -232,3 +232,129 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### CSS layers are always on
+
+Material UI puts all of its styles in the `mui` [cascade layer](/material-ui/customization/css-layers/), as `enableCssLayer` did in v9.
+This can't be turned off.
+Inside the layer, Material UI's styles keep the v9 precedence.
+Apps that use styled-components as the style engine, with `@mui/styled-engine-sc`, get the `mui` layer too, although `enableCssLayer` only worked with Emotion in v9.
+
+CSS that isn't in a layer, such as a reset or your own stylesheets, now overrides Material UI's styles, whatever its specificity.
+To keep a reset below Material UI's styles, put it in a layer declared before `mui`, and import the CSS that you can't edit into that layer:
+
+```css
+@layer reset, mui;
+
+@import url('normalize.css') layer(reset);
+
+@layer reset {
+  button {
+    padding: 0;
+  }
+}
+```
+
+The styles that you write with Material UI, such as with `sx`, `styled()`, `GlobalStyles` or theme style overrides, are in the `mui` layer too.
+They no longer override CSS that isn't in a layer, such as a third-party library's stylesheet, so import that CSS into a layer declared before `mui` as well.
+
+Declarations with `!important` rank layers in reverse: an `!important` declaration in the `mui` layer, from Material UI or from your `sx`, now beats an `!important` declaration in CSS that isn't in a layer.
+
+Styles that you write with Emotion or styled-components directly aren't in a layer either, so they also override Material UI's styles, even in states such as disabled.
+This includes `@emotion/styled`, the `css` prop, the `Global` component from `@emotion/react` and `styled` from `styled-components`.
+To keep them in the `mui` layer, write them with `styled()` from `@mui/material/styles` and `GlobalStyles` from `@mui/material` instead.
+
+In tests that run in jsdom or happy-dom, Material UI's styles aren't layered, so that style assertions keep working.
+jsdom before version 31 and happy-dom ignore the rules inside `@layer` blocks, and matchers such as `@emotion/jest`'s `toHaveStyleRule` don't look inside them.
+To check styles in tests, prefer computed-style assertions, such as `toHaveStyle` from `@testing-library/jest-dom`.
+They work whether the styles are layered or not.
+
+The `modularCssLayers` theme option works as in v9, without `enableCssLayer`: set it to `true` or to a layer order string to split `mui` into [sub-layers](/material-ui/customization/css-layers/#sub-layers).
+
+### StyledEngineProvider removed
+
+`StyledEngineProvider` is removed from `@mui/material/styles`, `@mui/system`, `@mui/styled-engine` and `@mui/styled-engine-sc`.
+Neither of its props is needed anymore: Material UI always puts its styles in the `mui` layer, as `enableCssLayer` did, and CSS that isn't in a layer overrides them wherever it loads, which is what `injectFirst` was for.
+Remove it:
+
+```diff
+-import { StyledEngineProvider } from '@mui/material/styles';
+
+-<StyledEngineProvider injectFirst>
+-  <App />
+-</StyledEngineProvider>
++<App />
+```
+
+If you declared the layer order with `GlobalStyles` inside `<StyledEngineProvider enableCssLayer>`, move it to the top of your global CSS file.
+The provider put `GlobalStyles` at the top of the `<head>`.
+Without it, `GlobalStyles` comes after the CSS files that load first, such as Tailwind CSS's, so their layer order wins:
+
+```diff title="src/index.css"
++@layer theme, base, mui, components, utilities;
+ @import 'tailwindcss';
+```
+
+```diff title="src/main.tsx"
+-<StyledEngineProvider enableCssLayer>
+-  <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
+-  <App />
+-</StyledEngineProvider>
++<App />
+```
+
+The class names that `<StyledEngineProvider enableCssLayer>` generated started with `mui-`, and now start with `css-`.
+
+`injectFirst` put Material UI's styles at the top of the `<head>`.
+With layers, that would make `mui` the lowest layer, so a `@layer reset, mui;` statement in your CSS would no longer keep the reset below them.
+If you create an Emotion cache with the `prepend: true` option, remove the option for the same reason.
+
+### enableCssLayer removed
+
+The `enableCssLayer` option of `AppRouterCacheProvider` and `createEmotionCache()` from `@mui/material-nextjs` is removed:
+
+```diff
+-<AppRouterCacheProvider options={{ enableCssLayer: true }}>
++<AppRouterCacheProvider>
+
+-createEmotionCache({ enableCssLayer: true });
++createEmotionCache();
+```
+
+### DocumentHeadTags removed
+
+`DocumentHeadTags` and `DocumentHeadTagsProps` are removed from the Pages Router entries of `@mui/material-nextjs`, such as `v15-pagesRouter`.
+`documentGetInitialProps()` now adds Material UI's styles to the `styles` that Next.js renders at the end of the `<head>`, after your CSS, so that the layer order your CSS declares applies.
+It no longer returns `emotionStyleTags`.
+
+Remove the component, its props type and the `emotion-insertion-point` meta tag from `pages/_document.tsx`:
+
+```diff title="pages/_document.tsx"
+-import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v15-pagesRouter';
+-import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v15-pagesRouter';
++import { documentGetInitialProps } from '@mui/material-nextjs/v15-pagesRouter';
+
+-export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
++export default function MyDocument() {
+   return (
+     <Html lang="en">
+       <Head>
+-        <meta name="emotion-insertion-point" content="" />
+-        <DocumentHeadTags {...props} />
+       </Head>
+```
+
+If you declared the layer order with `GlobalStyles` as the first child of the `AppCacheProvider`, move it to the top of your global CSS file.
+`GlobalStyles` now comes after your CSS, so `mui` would end up after the layers that your CSS declares, such as Tailwind CSS's `utilities`:
+
+```diff title="styles/global.css"
++@layer theme, base, mui, components, utilities;
+ @import 'tailwindcss';
+```
+
+```diff title="pages/_app.tsx"
+ <AppCacheProvider {...props}>
+-  <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
+   <Component {...pageProps} />
+ </AppCacheProvider>
+```

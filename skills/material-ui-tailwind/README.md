@@ -1,6 +1,6 @@
 # Material UI + Tailwind CSS (agent skill)
 
-Covers Tailwind CSS v4 with Material UI (cascade layers, `enableCssLayer`) and summarizes v3 patterns from the interoperability guide (preflight, `important`, `injectFirst`).
+Covers Tailwind CSS v4 with Material UI (cascade layer order) and summarizes the v3 setup from the interoperability guide (preflight off).
 
 ## Files in this folder
 

@@ -51,14 +51,11 @@ export function getRootIndex(demoData: DemoData, csbConfig?: SandboxConfig) {
 
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <Demo />
-    </StyledEngineProvider>
+    <Demo />
   </React.StrictMode>
 );`;
 }

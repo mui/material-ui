@@ -95,14 +95,11 @@ export default function BasicButtons() {
       'src/index.js': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <Demo />
-    </StyledEngineProvider>
+    <Demo />
   </React.StrictMode>
 );`,
       },
@@ -190,14 +187,11 @@ export default function BasicButtons() {
       'src/index.tsx': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")!).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <Demo />
-    </StyledEngineProvider>
+    <Demo />
   </React.StrictMode>
 );`,
       },

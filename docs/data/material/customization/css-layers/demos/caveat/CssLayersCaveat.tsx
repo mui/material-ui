@@ -10,10 +10,10 @@ import Switch from '@mui/material/Switch';
 
 export default function CssLayersCaveat() {
   // @focus-start @padding 1
-  const [cssLayers, setCssLayers] = React.useState(false);
+  const [subLayers, setSubLayers] = React.useState(false);
   const theme = React.useMemo(() => {
     return createTheme({
-      modularCssLayers: cssLayers,
+      modularCssLayers: subLayers,
       cssVariables: true,
       components: {
         MuiAccordion: {
@@ -25,7 +25,7 @@ export default function CssLayersCaveat() {
         },
       },
     });
-  }, [cssLayers]);
+  }, [subLayers]);
   return (
     <div>
       <Box
@@ -40,14 +40,14 @@ export default function CssLayersCaveat() {
           component="span"
           sx={{ marginRight: '8px', fontSize: '14px', color: 'text.secondary' }}
         >
-          No CSS Layers
+          Single layer
         </Typography>
-        <Switch checked={cssLayers} onChange={() => setCssLayers(!cssLayers)} />
+        <Switch checked={subLayers} onChange={() => setSubLayers(!subLayers)} />
         <Typography
           component="span"
           sx={{ marginLeft: '8px', fontSize: '14px', color: 'text.secondary' }}
         >
-          With CSS Layers
+          Sub-layers
         </Typography>
       </Box>
       <ThemeProvider theme={theme}>

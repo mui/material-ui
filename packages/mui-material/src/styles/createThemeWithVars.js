@@ -1033,6 +1033,8 @@ export default function createThemeWithVars(options = {}, ...args) {
     return styleFunctionSx({
       sx: props,
       theme: this,
+      // The result goes into other styles, which already sit in a layer.
+      nested: true,
     });
   };
   theme.internal_cache = {};
