@@ -245,7 +245,7 @@ theme = createTheme(theme, {
 });
 ```
 
-To keep a previous value, pass it in the argument too, like `info: { main, light, dark, contrastText }`.
+To keep a previous value, pass it in the argument too, like `light: theme.palette.info.light`.
 
 A theme passed back to `createTheme()` is created again from its options and the values changed in a copy of it, like `{ ...theme, palette: { ...theme.palette, primary } }`.
 Changes made to the theme itself are ignored, so make them in a copy, or pass them as an argument:
