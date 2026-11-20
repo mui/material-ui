@@ -1,7 +1,9 @@
-// Based on https://github.com/TehShrike/deepmerge
-// Based on https://github.com/fastify/deepmerge
-// MIT License
-// Copyright (c) 2012 - 2022 James Halliday, Josh Duff, and other contributors of deepmerge
+/**
+ * @license MIT
+ * Based on https://github.com/TehShrike/deepmerge
+ * Based on https://github.com/fastify/deepmerge
+ * Copyright (c) 2012 - 2022 James Halliday, Josh Duff, and other contributors of deepmerge
+ */
 
 /* eslint-disable no-else-return */
 
