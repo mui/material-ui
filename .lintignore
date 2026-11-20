@@ -30,8 +30,6 @@ dist
 node_modules
 .nyc_output
 pnpm-lock.yaml
-# Compiled by `gh aw compile`; its metadata header hashes the exact output
-.github/workflows/*.lock.yml
 .claude/worktrees
 .nx
 

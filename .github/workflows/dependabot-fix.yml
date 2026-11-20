@@ -1,0 +1,23 @@
+name: Dependabot fix
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  fix:
+    # Maximum grant required by the reusable workflow; its agent job only gets read access.
+    permissions:
+      actions: read
+      checks: read
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+      security-events: read
+    uses: mui/mui-public/.github/workflows/dependabot-fix.lock.yml@b2df2a1efecdceec1e4b725cc299f7c04035c0e0 # code-infra/gh-aw-dependabot-fix
+    # Its safe-output jobs open the PRs as the code-infra Renovate App.
+    secrets: inherit
