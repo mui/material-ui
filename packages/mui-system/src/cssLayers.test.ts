@@ -35,6 +35,16 @@ describe.skipIf(isJsdom())('getCssLayerOrderStatement', () => {
     );
   });
 
+  it("replaces only the mui layer, not the app's layers whose names contain mui", () => {
+    expect(
+      getCssLayerOrderStatement({
+        modularCssLayers: '@layer my-mui, mui-x, vendor.mui,\n  mui;',
+      }),
+    ).to.equal(
+      '@layer my-mui, mui-x, vendor.mui,\n  mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
+    );
+  });
+
   it('declares nothing without sub-layers', () => {
     expect(getCssLayerOrderStatement({ modularCssLayers: false })).to.equal('');
     expect(getCssLayerOrderStatement({})).to.equal('');
