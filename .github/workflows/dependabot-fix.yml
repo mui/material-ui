@@ -10,6 +10,8 @@ permissions: {}
 jobs:
   fix:
     # Maximum grant required by the reusable workflow; its agent job only gets read access.
+    # The jobs that publish its PRs read the code-infra-auditor App credentials from this
+    # repository's `code-infra-auditor` environment, so no secrets are passed.
     permissions:
       actions: read
       checks: read
@@ -18,6 +20,4 @@ jobs:
       issues: write
       pull-requests: write
       security-events: read
-    uses: mui/mui-public/.github/workflows/dependabot-fix.lock.yml@b2df2a1efecdceec1e4b725cc299f7c04035c0e0 # code-infra/gh-aw-dependabot-fix
-    # Its safe-output jobs open the PRs as the code-infra Renovate App.
-    secrets: inherit
+    uses: mui/mui-public/.github/workflows/dependabot-fix.lock.yml@171467d39ffc7ddfef34789b0cd8282f387c3be2 # code-infra/gh-aw-dependabot-fix
