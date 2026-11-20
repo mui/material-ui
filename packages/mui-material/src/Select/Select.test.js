@@ -2839,6 +2839,17 @@ describe('<Select />', () => {
         expect(container.querySelector(`.${classes.select}`)).toHaveComputedStyle(style);
         expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(style);
       });
+
+      it('should not apply when an explicit undefined `size` replaces the custom `input` size', () => {
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Select size={undefined} input={<OutlinedInput size="small" />} value="" />
+          </ThemeProvider>,
+        );
+
+        expect(container.querySelector(`.${classes.select}`)).not.toHaveComputedStyle(style);
+        expect(container.querySelector(`.${classes.icon}`)).not.toHaveComputedStyle(style);
+      });
     });
   });
 

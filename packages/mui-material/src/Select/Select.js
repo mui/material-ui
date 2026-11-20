@@ -117,7 +117,8 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 onOpen,
                 open,
                 renderValue,
-                size: other.size ?? input?.props.size ?? fcs.size,
+                // `...other` below replaces a custom input's `size`, even with `undefined`.
+                size: ('size' in other ? other.size : input?.props.size) ?? fcs.size,
                 SelectDisplayProps: { id, ...SelectDisplayProps },
               }),
           ...inputProps,
