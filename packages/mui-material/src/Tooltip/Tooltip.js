@@ -139,21 +139,22 @@ const TooltipTooltip = styled('div', {
     margin: 2,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
+    '--_spacing': '14px',
     [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
       transformOrigin: 'right center',
-      marginInlineEnd: '14px',
+      marginInlineEnd: 'var(--_spacing)',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
       transformOrigin: 'left center',
-      marginInlineStart: '14px',
+      marginInlineStart: 'var(--_spacing)',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
       transformOrigin: 'center bottom',
-      marginBottom: '14px',
+      marginBottom: 'var(--_spacing)',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
       transformOrigin: 'center top',
-      marginTop: '14px',
+      marginTop: 'var(--_spacing)',
     },
     variants: [
       {
@@ -166,27 +167,11 @@ const TooltipTooltip = styled('div', {
       {
         props: ({ ownerState }) => ownerState.touch,
         style: {
+          '--_spacing': '24px',
           padding: '8px 16px',
           fontSize: theme.typography.pxToRem(14),
           lineHeight: `${round(16 / 14)}em`,
           fontWeight: theme.typography.fontWeightRegular,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.touch,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginInlineEnd: '24px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginInlineStart: '24px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-            marginBottom: '24px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-            marginTop: '24px',
-          },
         },
       },
     ],
