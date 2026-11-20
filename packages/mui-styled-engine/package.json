@@ -28,7 +28,7 @@
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --entrypoints \".\" \"GlobalStyles\" \"StyledEngineProvider\""
+    "attw": "attw --pack ./build --entrypoints \".\" \"GlobalStyles\""
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7 || ^8.0.5",

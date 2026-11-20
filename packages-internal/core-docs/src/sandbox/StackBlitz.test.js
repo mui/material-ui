@@ -92,14 +92,11 @@ export default function BasicButtons() {
 `,
         'src/index.jsx': `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <Demo />
-    </StyledEngineProvider>
+    <Demo />
   </React.StrictMode>
 );`,
         'vite.config.js': `
@@ -205,14 +202,11 @@ export default function BasicButtons() {
 `,
         'src/index.tsx': `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
 
 ReactDOM.createRoot(document.querySelector("#root")!).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <Demo />
-    </StyledEngineProvider>
+    <Demo />
   </React.StrictMode>
 );`,
 

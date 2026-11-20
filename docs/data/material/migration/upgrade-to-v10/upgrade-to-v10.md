@@ -264,20 +264,19 @@ They work whether the styles are layered or not.
 
 The `modularCssLayers` theme option works as in v9: set it to `true` or to a layer order string to split `mui` into [sub-layers](/material-ui/customization/css-layers/#sub-layers).
 
-### enableCssLayer removed
+### StyledEngineProvider removed
 
-The `enableCssLayer` prop of `StyledEngineProvider`, and the `enableCssLayer` option of `AppRouterCacheProvider` and `createEmotionCache()` from `@mui/material-nextjs`, are removed.
-Remove them:
+`StyledEngineProvider` is removed from `@mui/material/styles`, `@mui/system`, `@mui/styled-engine` and `@mui/styled-engine-sc`.
+Neither of its props is needed anymore: Material UI always puts its styles in the `mui` layer, as `enableCssLayer` did, and CSS that isn't in a layer overrides them wherever it loads, which is what `injectFirst` was for.
+Remove it:
 
 ```diff
--<StyledEngineProvider enableCssLayer>
-+<StyledEngineProvider>
+-import { StyledEngineProvider } from '@mui/material/styles';
 
--<AppRouterCacheProvider options={{ enableCssLayer: true }}>
-+<AppRouterCacheProvider>
-
--createEmotionCache({ enableCssLayer: true });
-+createEmotionCache();
+-<StyledEngineProvider injectFirst>
+-  <App />
+-</StyledEngineProvider>
++<App />
 ```
 
 If you declared the layer order with `GlobalStyles` inside `<StyledEngineProvider enableCssLayer>`, move it to the top of your global CSS file.
@@ -299,20 +298,18 @@ Without it, `GlobalStyles` comes after the CSS files that load first, such as Ta
 
 The class names that `<StyledEngineProvider enableCssLayer>` generated started with `mui-`, and now start with `css-`.
 
-### injectFirst removed
+`injectFirst` put Material UI's styles at the top of the `<head>`.
+With layers, that would make `mui` the lowest layer, so a `@layer reset, mui;` statement in your CSS would no longer keep the reset below them.
+If you create an Emotion cache with the `prepend: true` option, remove the option for the same reason.
 
-The `injectFirst` prop of `StyledEngineProvider` is removed.
-It put Material UI's styles at the top of the `<head>`, so that the CSS after them overrode them.
-CSS that isn't in a layer now overrides Material UI's styles wherever it loads.
-Putting Material UI's styles first would make `mui` the lowest layer, so a `@layer reset, mui;` statement in your CSS would no longer keep the reset below them.
+### enableCssLayer removed
 
-Without `injectFirst` and `enableCssLayer`, `StyledEngineProvider` doesn't do anything, so you can remove it:
+The `enableCssLayer` option of `AppRouterCacheProvider` and `createEmotionCache()` from `@mui/material-nextjs` is removed:
 
 ```diff
--<StyledEngineProvider injectFirst>
--  <App />
--</StyledEngineProvider>
-+<App />
-```
+-<AppRouterCacheProvider options={{ enableCssLayer: true }}>
++<AppRouterCacheProvider>
 
-If you create an Emotion cache with the `prepend: true` option, remove the option for the same reason.
+-createEmotionCache({ enableCssLayer: true });
++createEmotionCache();
+```
