@@ -19,6 +19,7 @@ import {
   CssVarsTheme,
   CssVarsPalette,
   ColorSystemOptions,
+  FocusVisibleThemeMembers,
   Shape,
   ShapeOptions,
   SupportedColorScheme,
@@ -43,6 +44,15 @@ export interface CssThemeVariables {}
  */
 export type FocusVisible = React.CSSProperties;
 
+/**
+ * The `focusVisible` theme option. `insetOverrides` holds the styles that change on components that
+ * draw the ring inside their edge. Without it, those components use `outlineOffset: -outlineWidth`
+ * and the same `boxShadow` drawn `inset`.
+ */
+export type FocusVisibleOptions = React.CSSProperties & {
+  insetOverrides?: React.CSSProperties | undefined;
+};
+
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
 }
@@ -60,13 +70,13 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   typography?:
     TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   zIndex?: ZIndexOptions | undefined;
-  focusVisible?: boolean | FocusVisible | undefined;
+  focusVisible?: boolean | FocusVisibleOptions | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   modularCssLayers?: boolean | string | undefined;
 }
 
-export interface BaseTheme extends SystemTheme {
+export interface BaseTheme extends SystemTheme, FocusVisibleThemeMembers {
   mixins: Mixins;
   motion: Motion;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
@@ -75,7 +85,6 @@ export interface BaseTheme extends SystemTheme {
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
-  focusVisible?: FocusVisible | false | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }
