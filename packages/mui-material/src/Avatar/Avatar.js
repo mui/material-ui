@@ -224,7 +224,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } else if (!!childrenProp || childrenProp === 0) {
     children = childrenProp;
   } else if (hasImg && alt) {
-    children = alt[0];
+    children = [...alt][0];
   } else {
     children = <FallbackSlot {...fallbackSlotProps} />;
   }

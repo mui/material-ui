@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -86,6 +86,25 @@ describe('<Avatar />', () => {
       expect(image.crossOrigin).to.equal('anonymous');
 
       globalThis.Image = originalImage;
+    });
+
+    it('should fall back to the first code point of alt', () => {
+      const originalImage = globalThis.Image;
+      const image = {};
+      globalThis.Image = function Image() {
+        return image;
+      };
+
+      try {
+        const { container } = render(<Avatar src="/fake.png" alt="𠮷田 花子" />);
+        act(() => {
+          image.onerror();
+        });
+
+        expect(container.firstChild).to.have.text('𠮷');
+      } finally {
+        globalThis.Image = originalImage;
+      }
     });
   });
 
