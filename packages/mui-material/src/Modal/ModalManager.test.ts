@@ -1,5 +1,6 @@
 import { describe, beforeAll, afterAll, it, expect, beforeEach, afterEach } from 'vitest';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
+import { registerSnackbar } from '../utils/snackbarRegistry';
 import { ModalManager } from './ModalManager';
 
 interface Modal {
@@ -44,6 +45,27 @@ describe('ModalManager', () => {
     modalManager2.mount(modal, {});
     expect(modalManager2.add(modal, container1)).to.equal(idx);
     modalManager2.remove(modal);
+  });
+
+  it('finds the top modal within each document independently', () => {
+    const manager = new ModalManager();
+    const otherDocument = document.implementation.createHTMLDocument();
+    const first = getDummyModal();
+    const second = {
+      mount: otherDocument.createElement('div'),
+      modalRef: otherDocument.createElement('div'),
+    };
+
+    manager.add(first, container1);
+    manager.add(second, otherDocument.body);
+    expect(manager.getTopModal(document)).to.equal(first);
+    expect(manager.getTopModal(otherDocument)).to.equal(second);
+
+    manager.remove(second);
+    expect(manager.getTopModal(otherDocument)).to.equal(undefined);
+    expect(manager.getTopModal(document)).to.equal(first);
+    manager.remove(first);
+    expect(manager.getTopModal(document)).to.equal(undefined);
   });
 
   describe('managing modals', () => {
@@ -320,6 +342,194 @@ describe('ModalManager', () => {
     afterEach(() => {
       document.body.removeChild(container3);
       document.body.removeChild(container4);
+    });
+  });
+
+  describe('registered snackbars', () => {
+    let container: HTMLDivElement;
+    let lower: Modal;
+    let upper: Modal;
+    let unregisterSnackbars: Array<() => void>;
+
+    beforeEach(() => {
+      modalManager = new ModalManager();
+      container = document.createElement('div');
+      document.body.appendChild(container);
+      lower = getDummyModal();
+      upper = getDummyModal();
+      container.appendChild(lower.modalRef);
+      unregisterSnackbars = [];
+    });
+
+    afterEach(() => {
+      unregisterSnackbars.forEach((unregister) => unregister());
+      modalManager.remove(upper);
+      modalManager.remove(lower);
+      container.remove();
+    });
+
+    it('keeps a portaled snackbar readable while hiding the application', () => {
+      const application = document.createElement('div');
+      const background = document.createElement('button');
+      const snackbar = document.createElement('div');
+      snackbar.setAttribute('role', 'alert');
+      application.appendChild(background);
+      container.append(application, snackbar);
+
+      modalManager.add(lower, container);
+      expect(application).toBeInaccessible();
+
+      unregisterSnackbars.push(registerSnackbar(snackbar));
+
+      expect(application).toBeInaccessible();
+      expect(snackbar).not.toBeInaccessible();
+      expect(lower.modalRef).not.toBeInaccessible();
+      expect(background).toBeInaccessible();
+      expect(snackbar.parentElement).to.equal(container);
+    });
+
+    it('does not expose raw application text beside a nested snackbar', () => {
+      const application = document.createElement('div');
+      const privateText = document.createTextNode('Private account balance');
+      const background = document.createElement('button');
+      const snackbar = document.createElement('div');
+      snackbar.setAttribute('role', 'alert');
+      application.append(privateText, background, snackbar);
+      container.appendChild(application);
+      modalManager.add(lower, container);
+
+      unregisterSnackbars.push(registerSnackbar(snackbar));
+
+      expect(application.getAttribute('aria-hidden')).to.equal('true');
+      expect(application).toBeInaccessible();
+      expect(background).toBeInaccessible();
+      expect(snackbar).toBeInaccessible();
+      expect(privateText.parentElement).to.equal(application);
+      expect(lower.modalRef).not.toBeInaccessible();
+    });
+
+    it('preserves an author-hidden portaled snackbar', () => {
+      const snackbar = document.createElement('div');
+      snackbar.setAttribute('role', 'alert');
+      snackbar.setAttribute('aria-hidden', 'true');
+      container.appendChild(snackbar);
+      unregisterSnackbars.push(registerSnackbar(snackbar));
+
+      modalManager.add(lower, container);
+
+      expect(snackbar.getAttribute('aria-hidden')).to.equal('true');
+      expect(snackbar).toBeInaccessible();
+
+      modalManager.remove(lower);
+
+      expect(snackbar.getAttribute('aria-hidden')).to.equal('true');
+      expect(snackbar).toBeInaccessible();
+    });
+
+    it('preserves an author-hidden ancestor of a registered snackbar', () => {
+      const hiddenSection = document.createElement('div');
+      hiddenSection.setAttribute('aria-hidden', 'true');
+      const snackbar = document.createElement('div');
+      snackbar.setAttribute('role', 'alert');
+      hiddenSection.appendChild(snackbar);
+      container.appendChild(hiddenSection);
+      unregisterSnackbars.push(registerSnackbar(snackbar));
+
+      modalManager.add(lower, container);
+
+      expect(hiddenSection.getAttribute('aria-hidden')).to.equal('true');
+      expect(snackbar).toBeInaccessible();
+      expect(lower.modalRef).not.toBeInaccessible();
+
+      modalManager.remove(lower);
+
+      expect(hiddenSection.getAttribute('aria-hidden')).to.equal('true');
+      expect(snackbar).toBeInaccessible();
+    });
+
+    it('keeps a registered snackbar in the lower modal hidden until the upper modal closes', () => {
+      const lowerSnackbar = document.createElement('div');
+      lowerSnackbar.setAttribute('role', 'alert');
+      lower.modalRef.appendChild(lowerSnackbar);
+      modalManager.add(lower, container);
+      unregisterSnackbars.push(registerSnackbar(lowerSnackbar));
+      expect(lowerSnackbar).not.toBeInaccessible();
+
+      const upperSnackbar = document.createElement('div');
+      upperSnackbar.setAttribute('role', 'alert');
+      upper.modalRef.appendChild(upperSnackbar);
+      container.appendChild(upper.modalRef);
+      modalManager.add(upper, container);
+      unregisterSnackbars.push(registerSnackbar(upperSnackbar));
+
+      expect(lower.modalRef).toBeInaccessible();
+      expect(lowerSnackbar).toBeInaccessible();
+      expect(upper.modalRef).not.toBeInaccessible();
+      expect(upperSnackbar).not.toBeInaccessible();
+      expect(upperSnackbar.parentElement).to.equal(upper.modalRef);
+
+      modalManager.remove(upper);
+
+      expect(lower.modalRef).not.toBeInaccessible();
+      expect(lowerSnackbar).not.toBeInaccessible();
+      expect(upperSnackbar).toBeInaccessible();
+    });
+
+    it('hides an unregistered portal while the modal stays open', () => {
+      const application = document.createElement('div');
+      const background = document.createElement('button');
+      const snackbar = document.createElement('div');
+      snackbar.setAttribute('role', 'alert');
+      application.appendChild(background);
+      container.append(application, snackbar);
+      modalManager.add(lower, container);
+      const unregister = registerSnackbar(snackbar);
+      unregisterSnackbars.push(unregister);
+
+      expect(snackbar).not.toBeInaccessible();
+      expect(background).toBeInaccessible();
+
+      unregister();
+
+      expect(application).toBeInaccessible();
+      expect(snackbar).toBeInaccessible();
+      expect(snackbar.getAttribute('aria-hidden')).to.equal('true');
+      expect(lower.modalRef).not.toBeInaccessible();
+
+      modalManager.remove(lower);
+
+      expect(application).not.toBeInaccessible();
+      expect(background).not.toBeInaccessible();
+      expect(snackbar).not.toBeInaccessible();
+    });
+
+    it('does not reveal background content in another modal container', () => {
+      const otherContainer = document.createElement('div');
+      const otherBackground = document.createElement('button');
+      otherContainer.append(otherBackground, upper.modalRef);
+      document.body.appendChild(otherContainer);
+      const application = document.createElement('div');
+      const snackbar = document.createElement('div');
+      snackbar.setAttribute('role', 'alert');
+      container.append(application, snackbar);
+
+      try {
+        modalManager.add(lower, container);
+        modalManager.add(upper, otherContainer);
+        unregisterSnackbars.push(registerSnackbar(snackbar));
+
+        expect(snackbar).not.toBeInaccessible();
+        expect(otherBackground).toBeInaccessible();
+        expect(otherBackground.getAttribute('aria-hidden')).to.equal('true');
+
+        modalManager.remove(lower);
+
+        expect(otherBackground).toBeInaccessible();
+        expect(upper.modalRef).not.toBeInaccessible();
+      } finally {
+        modalManager.remove(upper);
+        otherContainer.remove();
+      }
     });
   });
 

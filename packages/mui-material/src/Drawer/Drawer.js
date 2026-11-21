@@ -18,6 +18,7 @@ import { getDrawerUtilityClass } from './drawerClasses';
 import useSlot from '../utils/useSlot';
 import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
 import { mergeSlotProps } from '../utils';
+import SnackbarContainer from '../utils/SnackbarContainer';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -307,7 +308,12 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     },
   });
 
-  const drawer = <PaperSlot {...paperSlotProps}>{children}</PaperSlot>;
+  const drawer = (
+    <PaperSlot {...paperSlotProps}>
+      {children}
+      {variant === 'temporary' && <SnackbarContainer />}
+    </PaperSlot>
+  );
 
   if (variant === 'permanent') {
     return <DockedSlot {...dockedSlotProps}>{drawer}</DockedSlot>;
