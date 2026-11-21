@@ -197,6 +197,10 @@ export interface UseAutocompleteProps<
    * Used to determine the key for a given option.
    * This can be useful when the labels of options are not unique (since labels are used as keys by default).
    *
+   * It also identifies an option when `options` change: if the user highlighted an option, the
+   * option with the same key keeps the highlight. When provided, it takes priority over
+   * `isOptionEqualToValue` and the label for this.
+   *
    * @param {Value} option The option to get the key for.
    * @returns {string | number}
    */
@@ -209,6 +213,10 @@ export interface UseAutocompleteProps<
    * of the option type. The returned value must be a unique, non-null primitive.
    * When `freeSolo` is enabled, it must not return a string because strings are reserved for
    * free-solo values.
+   *
+   * When `options` change and `getOptionKey` is not provided, it is also used to keep a user-chosen
+   * highlight: a new option keeps the highlight when `isOptionEqualToValue` (strict equality by
+   * default) matches it against the value of the previously highlighted option.
    *
    * @param {Value} option The option to get the value for.
    * @returns {MappedValue}
@@ -260,6 +268,11 @@ export interface UseAutocompleteProps<
    * Uses strict equality against the option by default, or against the value returned by
    * `getOptionValue` when that prop is provided.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
+   *
+   * When `options` change and `getOptionKey` is not provided, it also decides which option keeps a
+   * user-chosen highlight. If this prop or `getOptionValue` is provided, a new option keeps the
+   * highlight when it matches the previously highlighted option, mapped through `getOptionValue`
+   * when that prop is provided. Otherwise, options are matched by label.
    *
    * @param {Value} option The option to test.
    * @param {Value|MappedValue|string} value The selected value to test against. When `getOptionValue` is
