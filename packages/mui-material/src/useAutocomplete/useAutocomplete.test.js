@@ -438,6 +438,52 @@ describe('useAutocomplete', () => {
     });
   });
 
+  describe('prop: readOnly', () => {
+    let result;
+
+    function Test(props) {
+      result = useAutocomplete({
+        freeSolo: true,
+        options: ['one', 'two'],
+        readOnly: props.readOnly,
+        onChange: props.onChange,
+      });
+      const { getRootProps, getInputProps } = result;
+
+      return (
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+        </div>
+      );
+    }
+
+    it('should not create a new value on Enter', async () => {
+      const onChange = spy();
+      const { user, rerender } = render(<Test onChange={onChange} />);
+      const input = screen.getByRole('combobox');
+
+      await user.type(input, 'draft');
+      rerender(<Test readOnly onChange={onChange} />);
+      await user.keyboard('{Enter}');
+
+      expect(result.value).to.equal(null);
+      expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should create a new value on Enter when not readOnly', async () => {
+      const onChange = spy();
+      const { user } = render(<Test onChange={onChange} />);
+      const input = screen.getByRole('combobox');
+
+      await user.type(input, 'draft{Enter}');
+
+      expect(result.value).to.equal('draft');
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.firstCall.args[1]).to.equal('draft');
+      expect(onChange.firstCall.args[2]).to.equal('createOption');
+    });
+  });
+
   describe('getInputProps', () => {
     it('should disable input element', () => {
       function Test(props) {
