@@ -1133,7 +1133,12 @@ function useAutocomplete(props) {
                 inputRef.current.value.length,
               );
             }
-          } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
+          } else if (
+            freeSolo &&
+            !readOnly &&
+            inputValue !== '' &&
+            inputValueIsSelectedValue === false
+          ) {
             if (multiple || shouldPreventSubmitAfterFreeSoloCommit) {
               // Allow people to commit the freeSolo value before they submit the form.
               event.preventDefault();
