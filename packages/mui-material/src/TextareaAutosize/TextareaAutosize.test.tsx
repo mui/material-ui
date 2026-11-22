@@ -468,6 +468,27 @@ describe('<TextareaAutosize />', () => {
     });
   });
 
+  it.skipIf(isJsdom())('should allow scrolling when a CSS max-height constrains it', async () => {
+    render(
+      <div style={{ height: 120 }}>
+        <TextareaAutosize
+          defaultValue={'One\nTwo\nThree\nFour\nFive\nSix'}
+          style={{ width: 200, lineHeight: '20px', padding: 0, border: 0 }}
+        />
+      </div>,
+    );
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox');
+    expect(input.clientHeight).to.equal(120);
+
+    input.style.maxHeight = '50%';
+
+    expect(input.clientHeight).to.equal(60);
+    expect(input.scrollHeight).to.equal(120);
+    await waitFor(() => {
+      expect(input).toHaveComputedStyle({ overflowY: 'auto' });
+    });
+  });
+
   it.skipIf(isJsdom())('should apply the inline styles using the "style" prop', function test() {
     render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
     const input = screen.getByRole<HTMLTextAreaElement>('textbox', {

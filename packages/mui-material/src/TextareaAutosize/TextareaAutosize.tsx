@@ -32,7 +32,7 @@ const styles: {
 
 type TextareaStyles = {
   outerHeightStyle: number;
-  overflowing: boolean;
+  overflow: 'hidden' | '';
 };
 
 function isObjectEmpty(object: TextareaStyles) {
@@ -44,7 +44,7 @@ function isObjectEmpty(object: TextareaStyles) {
 }
 
 function isEmpty(obj: TextareaStyles) {
-  return isObjectEmpty(obj) || (obj.outerHeightStyle === 0 && !obj.overflowing);
+  return isObjectEmpty(obj) || (obj.outerHeightStyle === 0 && !obj.overflow);
 }
 
 /**
@@ -69,7 +69,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const heightRef = React.useRef<number>(null);
   const hiddenTextareaRef = React.useRef<HTMLTextAreaElement>(null);
 
-  const calculateTextareaStyles = React.useCallback(() => {
+  const calculateTextareaStyles = React.useCallback((): TextareaStyles | undefined => {
     const textarea = textareaRef.current;
     const hiddenTextarea = hiddenTextareaRef.current;
 
@@ -84,7 +84,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     if (computedStyle.width === '0px') {
       return {
         outerHeightStyle: 0,
-        overflowing: false,
+        overflow: '',
       };
     }
 
@@ -123,12 +123,14 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     // Take the box sizing into account for applying this value as a style.
     const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
-    const overflowing = Math.abs(outerHeight - innerHeight) <= 1;
+    const maxHeight = computedStyle.maxHeight;
+    const hasMaxHeight = Boolean(maxHeight) && maxHeight !== 'none';
+    const overflow = !hasMaxHeight && Math.abs(outerHeight - innerHeight) <= 1 ? 'hidden' : '';
 
-    return { outerHeightStyle, overflowing };
+    return { outerHeightStyle, overflow };
   }, [maxRows, minRows, props.placeholder]);
 
-  const didHeightChange = useEventCallback(() => {
+  const didTextareaStylesChange = useEventCallback(() => {
     const textarea = textareaRef.current;
     const textareaStyles = calculateTextareaStyles();
 
@@ -136,9 +138,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return false;
     }
 
-    const outerHeightStyle = textareaStyles.outerHeightStyle;
-
-    return heightRef.current != null && heightRef.current !== outerHeightStyle;
+    return (
+      heightRef.current != null &&
+      (heightRef.current !== textareaStyles.outerHeightStyle ||
+        textarea.style.overflow !== textareaStyles.overflow)
+    );
   });
 
   const syncHeight = React.useCallback(() => {
@@ -154,7 +158,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       heightRef.current = outerHeightStyle;
       textarea.style.height = `${outerHeightStyle}px`;
     }
-    textarea.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
+    textarea.style.overflow = textareaStyles.overflow;
   }, [calculateTextareaStyles]);
 
   const frameRef = React.useRef(-1);
@@ -175,7 +179,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => {
-        if (didHeightChange()) {
+        if (didTextareaStylesChange()) {
           // avoid "ResizeObserver loop completed with undelivered notifications" error
           // by temporarily unobserving the textarea element while manipulating the height
           // and reobserving one frame later
@@ -198,7 +202,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         resizeObserver.disconnect();
       }
     };
-  }, [calculateTextareaStyles, syncHeight, didHeightChange]);
+  }, [calculateTextareaStyles, syncHeight, didTextareaStylesChange]);
 
   useEnhancedEffect(() => {
     syncHeight();
