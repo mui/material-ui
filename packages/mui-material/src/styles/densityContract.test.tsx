@@ -69,12 +69,12 @@ import Check from '@mui/icons-material/Check';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
-import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX } from './densityScale';
 import {
   DENSITIES,
   FIELDS,
   MASTER_LOSES_WITHOUT_LAYERS,
   MEDIUM,
+  MEDIUM_DENSITY,
   SIZES,
   THEMES,
   USER_COMPONENTS,
@@ -1145,7 +1145,12 @@ describe.skipIf(isJsdom())('density contract', () => {
           <InputBase />
         </FormControl>
       ));
-      render(sideBySide({ master: createTheme(), enhanced: MEDIUM }, cases(fields)));
+      render(
+        sideBySide(
+          { master: createTheme(), enhanced: enhanceDensity(createTheme()) },
+          cases(fields),
+        ),
+      );
       const transforms = (theme: string) =>
         byName(Object.keys(fields), (name) => css('label', inTheme(theme, name)).transform);
       expect(transforms('enhanced')).to.deep.equal(transforms('master'));
@@ -1154,7 +1159,7 @@ describe.skipIf(isJsdom())('density contract', () => {
     test('helper text with inline elements flows as text', () => {
       render(
         sideBySide(
-          { master: createTheme(), enhanced: MEDIUM },
+          { master: createTheme(), enhanced: enhanceDensity(createTheme()) },
           cases({
             field: (
               <TextField
@@ -1307,10 +1312,10 @@ describe.skipIf(isJsdom())('density contract', () => {
         return Math.min(innerBox.top - outerBox.top, outerBox.bottom - innerBox.bottom);
       };
       expect(inset('.MuiTableCell-root', '[data-testid="cell-text"]')).to.be.at.least(
-        DEFAULT_STEP_PX.xxSmall,
+        MEDIUM_DENSITY.step.xxSmall,
       );
       expect(inset('.MuiAccordionSummary-root', '[data-testid="summary-text"]')).to.be.at.least(
-        DEFAULT_STEP_PX.xxSmall,
+        MEDIUM_DENSITY.step.xxSmall,
       );
     });
 
@@ -1340,7 +1345,7 @@ describe.skipIf(isJsdom())('density contract', () => {
       );
       const button = query('.MuiButton-root');
       expect(button.scrollHeight).to.be.at.most(button.clientHeight);
-      expect(rect('.MuiButton-root').height).to.be.greaterThan(DEFAULT_SIZING_PX.touchTarget);
+      expect(rect('.MuiButton-root').height).to.be.greaterThan(MEDIUM_DENSITY.touchTarget);
     });
 
     test('sx block padding grows the Button', () => {
@@ -1350,7 +1355,7 @@ describe.skipIf(isJsdom())('density contract', () => {
           Save
         </Button>,
       );
-      expect(rect('.MuiButton-root').height).to.be.greaterThan(DEFAULT_SIZING_PX.touchTarget);
+      expect(rect('.MuiButton-root').height).to.be.greaterThan(MEDIUM_DENSITY.touchTarget);
     });
 
     test('an IconButton keeps its box with width: min-content', () => {
@@ -1360,7 +1365,7 @@ describe.skipIf(isJsdom())('density contract', () => {
           <SearchIcon />
         </IconButton>,
       );
-      expect(rect('.MuiIconButton-root').width).to.equal(DEFAULT_SIZING_PX.touchTarget);
+      expect(rect('.MuiIconButton-root').width).to.equal(MEDIUM_DENSITY.touchTarget);
     });
 
     test('a small Button inside a ButtonGroup matches the group height', () => {
@@ -1385,7 +1390,7 @@ describe.skipIf(isJsdom())('density contract', () => {
       );
       const button = query('.MuiToggleButton-root');
       expect(button.scrollHeight).to.be.at.most(button.clientHeight);
-      expect(rect('.MuiToggleButton-root').height).to.be.greaterThan(DEFAULT_SIZING_PX.touchTarget);
+      expect(rect('.MuiToggleButton-root').height).to.be.greaterThan(MEDIUM_DENSITY.touchTarget);
     });
 
     test('the loading spinner takes the place of the icon', () => {
@@ -1710,7 +1715,7 @@ describe.skipIf(isJsdom())('density contract', () => {
         />,
         '.MuiAutocomplete-groupLabel',
         '.MuiAutocomplete-option',
-        DEFAULT_STEP_PX.small - DEFAULT_STEP_PX.xSmall,
+        MEDIUM_DENSITY.step.small - MEDIUM_DENSITY.step.xSmall,
       ],
       [
         'List with ListItemButton',
@@ -1945,8 +1950,8 @@ describe.skipIf(isJsdom())('density contract', () => {
           expect(
             drift(
               rect('.MuiTablePagination-toolbar', inTheme('density', 'pagination')).height -
-                DEFAULT_SIZING_PX.touchTarget -
-                DEFAULT_STEP_PX.medium,
+                MEDIUM_DENSITY.touchTarget -
+                MEDIUM_DENSITY.step.medium,
             ),
           ).to.equal(0);
         } finally {
@@ -2050,7 +2055,7 @@ describe.skipIf(isJsdom())('density contract', () => {
           <Typography>Current</Typography>
         </Breadcrumbs>,
       );
-      expect(rect('[data-testid="link"]').height).to.equal(DEFAULT_SIZING_PX.touchTarget);
+      expect(rect('[data-testid="link"]').height).to.equal(MEDIUM_DENSITY.touchTarget);
     });
 
     DENSITIES.forEach((density) => {

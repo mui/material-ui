@@ -32,7 +32,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 import enhanceDensity from '../src/styles/enhanceDensity';
-import { DEFAULT_SIZING_PX, DEFAULT_STEP_PX } from '../src/styles/densityScale';
 import type { DensityKey } from '../src/styles/densityScale';
 
 export type Density = {
@@ -58,9 +57,15 @@ export const DENSITIES: Density[] = [
   },
   {
     id: 'medium',
-    step: DEFAULT_STEP_PX,
-    touchTarget: DEFAULT_SIZING_PX.touchTarget,
-    iconSize: DEFAULT_SIZING_PX.iconSize,
+    step: { xxSmall: 4, xSmall: 8, small: 12, medium: 16, large: 24, xLarge: 32, xxLarge: 48 },
+    touchTarget: 32,
+    iconSize: 16,
+    typography: {
+      body1: { fontSize: '0.875rem', lineHeight: '20px' },
+      body2: { fontSize: '0.8125rem', lineHeight: '18px' },
+      caption: { fontSize: '0.75rem', lineHeight: '16px' },
+      button: { fontSize: '0.875rem', lineHeight: '20px' },
+    },
   },
 ];
 
@@ -75,6 +80,7 @@ export const THEMES: Record<string, Theme> = Object.fromEntries(
   ]),
 );
 export const MEDIUM = THEMES.medium;
+export const MEDIUM_DENSITY = DENSITIES.find((density) => density.id === 'medium')!;
 
 export const VARIANTS = ['outlined', 'filled', 'standard'] as const;
 export const SIZES = ['small', 'medium'] as const;

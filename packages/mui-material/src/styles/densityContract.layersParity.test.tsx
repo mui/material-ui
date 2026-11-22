@@ -11,7 +11,6 @@ import type { Theme } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
 import {
   FIELDS,
-  MEDIUM,
   SIZES,
   TABLE_PAGINATION,
   TITLED_DIALOG_CONTENT,
@@ -168,7 +167,7 @@ describe.skipIf(isJsdom())('density contract parity with modularCssLayers', () =
       unmount();
       return values;
     };
-    const unlayered = read(MEDIUM);
+    const unlayered = read(enhanceDensity(createTheme()));
 
     expect(read(enhanceDensity(createTheme({ modularCssLayers: true })))).to.deep.equal(unlayered);
   });

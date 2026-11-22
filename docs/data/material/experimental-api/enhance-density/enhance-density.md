@@ -34,6 +34,11 @@ With the enhancer, the Button's CSS implementation switches from raw pixel value
 
 The enhancer also modernizes components like Button that use the margin-based spacing between children to use the `gap` property instead. This makes the component more resilient and easier to customize.
 
+Some components change in other ways too:
+
+- FormControlLabel no longer adds its own margin. FormGroup spaces its labels with `gap`, so add the spacing yourself when labels sit outside a FormGroup.
+- Button and ToggleButton use `theme.typography.button` for every size. Without the enhancer, the small and large sizes use 13px and 15px text.
+
 :::info
 `enhanceDensity` is fully opt-in: themes that skip the enhancer render exactly as they did before.
 :::
@@ -157,6 +162,10 @@ The two sizing constants also ship as variables:
 }
 ```
 
+:::warning
+A nested `ThemeProvider` doesn't apply its own scale when its theme uses CSS variables with the same `cssVarPrefix` as the outer theme. The nested provider skips its style sheet, so the components inside it read the outer theme's variables. To change the density of one part of the page, override the variables on a wrapper element as shown above, or give the inner theme a different `cssVarPrefix`.
+:::
+
 Because they size a box rather than space one, they are not spacing keys. Read them off the theme instead:
 
 ```js
@@ -222,6 +231,8 @@ const theme = enhanceDensity(
 A control's height must fit one line of its text plus padding. With the default type ramp, one body1 line is 24px, so a 24px `touchTarget` leaves no room for padding. When you lower `touchTarget`, lower the type ramp with it, as in the example above.
 
 The scale is a closed set of seven steps, plus the two sizings. The values must be numbers, which are interpreted as pixels. Anything left out keeps its default value.
+
+Pass the scale on the first call. Calling `enhanceDensity` on a theme that is already enhanced logs an error in development and returns that theme unchanged.
 
 The numbers the theme ended up with are readable as `theme.unstable_densityScale` (`spacing`, `touchTarget`, `iconSize`), for code that derives sizes in JavaScript rather than CSS.
 

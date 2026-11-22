@@ -88,6 +88,15 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   theme: T,
   scale?: DensityScaleOverrides,
 ): DensityEnhancedTheme<T> {
+  if (theme.unstable_densityScale) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(
+        'MUI: `enhanceDensity` was called on a theme that is already enhanced. ' +
+          'Call it once, on the result of `createTheme()`. The theme is returned unchanged.',
+      );
+    }
+    return theme as DensityEnhancedTheme<T>;
+  }
   const enhanced = applyDensity(theme, scale);
   emitComponentDensity(enhanced);
   return enhanced;

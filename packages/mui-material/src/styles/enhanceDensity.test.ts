@@ -55,6 +55,16 @@ describe('enhanceDensity', () => {
     expect(theme.mixins.toolbar).to.include({ gap: 4, minHeight: 'calc(32px + 2*8px)' });
   });
 
+  test('returns an already enhanced theme unchanged and warns', () => {
+    const enhanced = enhanceDensity(createTheme());
+    let again: unknown;
+
+    expect(() => {
+      again = enhanceDensity(enhanced, { touchTarget: 24 });
+    }).toErrorDev('MUI: `enhanceDensity` was called on a theme that is already enhanced.');
+    expect(again).to.equal(enhanced);
+  });
+
   test('leaves the input theme unchanged', () => {
     const input = createTheme({
       components: {
