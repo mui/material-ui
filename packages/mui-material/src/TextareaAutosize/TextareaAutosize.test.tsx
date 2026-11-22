@@ -479,13 +479,14 @@ describe('<TextareaAutosize />', () => {
     );
     const input = screen.getByRole<HTMLTextAreaElement>('textbox');
     expect(input.clientHeight).to.equal(120);
+    expect(input.style.overflow).to.equal('hidden');
 
     input.style.maxHeight = '50%';
 
     expect(input.clientHeight).to.equal(60);
     expect(input.scrollHeight).to.equal(120);
     await waitFor(() => {
-      expect(input).toHaveComputedStyle({ overflowY: 'auto' });
+      expect(input.style.overflow).to.equal('');
     });
   });
 
