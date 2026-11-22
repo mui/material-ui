@@ -242,7 +242,7 @@ The enhancer does not support adding new steps or removing existing ones. The se
 
 ## Density recipes
 
-This recipe demonstrates a design system that needs multiple densities to support various context of applications. The densities are defined as low/medium/high, each with its own set of spacing values and target sizes. Everything else stays on the default theme.
+This recipe demonstrates a design system that needs multiple densities to support various context of applications. The densities are defined as low/medium/high, each with its own set of spacing values and target sizes. Low and high also change the type ramp to fit their target sizes. Medium keeps the default.
 
 Use the density select at the top to see the differences between each density. To see the actual values of each density, click the "Show code" and find the `./densityRecipes.ts` file.
 

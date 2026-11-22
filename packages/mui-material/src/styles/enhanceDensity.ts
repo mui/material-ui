@@ -117,7 +117,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
   const iconLarge = `calc(${iconSize} + 8px)`;
   const inputMediumPadBlock = `calc((${touchTarget} - 1lh) / 2)`;
   const wcagTargetSize = '24px';
-  const indicatorBox = `max(${wcagTargetSize}, ${smallBox})`;
+  const smallTargetBox = `max(${wcagTargetSize}, ${smallBox})`;
   const buttonSpinnerSize = 16;
   const tooltipArrowSize = 10;
   const borderWidth = '1px';
@@ -152,25 +152,25 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { size: 'small' },
         style: {
-          width: `max(${wcagTargetSize}, ${smallBox})`,
-          height: `max(${wcagTargetSize}, ${smallBox})`,
+          width: smallTargetBox,
+          height: smallTargetBox,
           [`.${formControlLabelClasses.labelPlacementEnd}:has(&)`]: {
-            '--_labelMarginLeft': `calc((max(${wcagTargetSize}, ${smallBox}) - ${iconSmall}) / -2)`,
+            '--_labelMarginLeft': `calc((${smallTargetBox} - ${iconSmall}) / -2)`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(&)`]: {
-            '--_labelMarginRight': `calc((max(${wcagTargetSize}, ${smallBox}) - ${iconSmall}) / -2)`,
+            '--_labelMarginRight': `calc((${smallTargetBox} - ${iconSmall}) / -2)`,
           },
         },
       },
       { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
       {
         props: { edge: 'start', size: 'small' },
-        style: { marginLeft: `calc(max(${wcagTargetSize}, ${smallBox}) / -8)` },
+        style: { marginLeft: `calc(${smallTargetBox} / -8)` },
       },
       { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
       {
         props: { edge: 'end', size: 'small' },
-        style: { marginRight: `calc(max(${wcagTargetSize}, ${smallBox}) / -8)` },
+        style: { marginRight: `calc(${smallTargetBox} / -8)` },
       },
     ],
   };
@@ -332,7 +332,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { size: 'small', orientation: 'vertical' },
         style: {
-          minHeight: `max(${wcagTargetSize}, ${smallBox})`,
+          minHeight: smallTargetBox,
           '&::before': { content: 'none' },
         },
       },
@@ -740,7 +740,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
             },
           },
           [`&.${toggleButtonGroupClasses.grouped}`]: {
-            '--_size': `max(${wcagTargetSize}, ${smallBox})`,
+            '--_size': smallTargetBox,
             '--_touchMargin': '0px',
           },
         },
@@ -752,7 +752,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     ],
   });
   const switchPullIn = `calc((${spacing('medium')} - ${touchTarget}) / 2)`;
-  const switchSmallPullIn = `calc((${spacing('medium')} - 4px - max(${wcagTargetSize}, ${smallBox})) / 2)`;
+  const switchSmallPullIn = `calc((${spacing('medium')} - 4px - ${smallTargetBox}) / 2)`;
   const switchThumbPadding = 'calc((var(--_touchSize) - var(--_thumbHeight)) / 2)';
   const switchCheckedTransform = `translateX(calc(${dirSign} * (var(--_trackWidth) - var(--_trackHeight) - (var(--_thumbWidth) - var(--_thumbHeight)))))`;
   addStyleOverride(enhanced.components, 'MuiSwitch', 'root', {
@@ -784,7 +784,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       {
         props: { size: 'small' },
         style: {
-          '--_touchSize': `max(${wcagTargetSize}, ${smallBox})`,
+          '--_touchSize': smallTargetBox,
           '--_thumbWidth': `calc(${spacing('medium')} - 4px)`,
           '--_thumbHeight': `calc(${spacing('medium')} - 4px)`,
           '--_defaultPull': switchSmallPullIn,
@@ -829,9 +829,9 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
       { paddingBlock: 0 },
     [`&.${autocompleteClasses.hasPopupIcon} .${autocompleteClasses.inputRoot}, &.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
-      { paddingRight: `calc(${indicatorBox} + 2px + var(--_endOffset, 0px))` },
+      { paddingRight: `calc(${smallTargetBox} + 2px + var(--_endOffset, 0px))` },
     [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${autocompleteClasses.inputRoot}`]:
-      { paddingRight: `calc(2 * ${indicatorBox} + var(--_endOffset, 0px))` },
+      { paddingRight: `calc(2 * ${smallTargetBox} + var(--_endOffset, 0px))` },
     [`& .${outlinedInputClasses.root}, & .${filledInputClasses.root}`]: {
       '--_endOffset': `calc(${spacing('xSmall')} / 2)`,
       [`& .${autocompleteClasses.endAdornment}`]: { right: 'var(--_endOffset)' },
@@ -905,12 +905,12 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     height: 'var(--_tagHeight)',
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'clearIndicator', {
-    minWidth: indicatorBox,
-    minHeight: indicatorBox,
+    minWidth: smallTargetBox,
+    minHeight: smallTargetBox,
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'popupIndicator', {
-    minWidth: indicatorBox,
-    minHeight: indicatorBox,
+    minWidth: smallTargetBox,
+    minHeight: smallTargetBox,
   });
   addStyleOverride(enhanced.components, 'MuiAutocomplete', 'listbox', {
     '--_subheaderInline': spacing('xSmall'),
@@ -1075,7 +1075,7 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { dense: false },
         style: { minHeight: touchTarget },
       },
-      { props: { dense: true }, style: { minHeight: `max(${wcagTargetSize}, ${smallBox})` } },
+      { props: { dense: true }, style: { minHeight: smallTargetBox } },
       {
         props: { dense: false, disableGutters: false },
         style: { paddingInline: spacing('small') },
