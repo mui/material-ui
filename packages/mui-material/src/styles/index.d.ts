@@ -8,6 +8,7 @@ export {
   Theme,
   CssThemeVariables,
   FocusVisible,
+  FocusVisibleOptions,
 } from './createTheme';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
@@ -126,10 +127,8 @@ export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
-export * from './ThemeProviderWithVars';
+export { useColorScheme } from './ThemeProviderWithVars';
 export type { StorageManager } from '@mui/system/cssVars';
-
-export { default as extendTheme } from './createThemeWithVars';
 
 export type {
   ColorSchemeOverrides,
@@ -173,8 +172,4 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
-export {
-  applyInsetFocusVisible as private_applyInsetFocusVisible,
-  applyChildrenFocusVisible as private_applyChildrenFocusVisible,
-  outsetFocusRing as private_outsetFocusRing,
-} from './focusVisible';
+export { applyChildrenFocusVisible as private_applyChildrenFocusVisible } from './focusVisible';

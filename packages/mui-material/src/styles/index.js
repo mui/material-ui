@@ -43,9 +43,7 @@ export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
-export * from './ThemeProviderWithVars';
-export { default as extendTheme } from './createThemeWithVars';
-export { default as experimental_extendTheme } from './experimental_extendTheme'; // TODO: Remove in v7
+export { useColorScheme } from './ThemeProviderWithVars';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
@@ -53,8 +51,4 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 export { default as private_createTypography } from './createTypography';
 export { default as private_createMixins } from './createMixins';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
-export {
-  applyInsetFocusVisible as private_applyInsetFocusVisible,
-  applyChildrenFocusVisible as private_applyChildrenFocusVisible,
-  outsetFocusRing as private_outsetFocusRing,
-} from './focusVisible';
+export { applyChildrenFocusVisible as private_applyChildrenFocusVisible } from './focusVisible';

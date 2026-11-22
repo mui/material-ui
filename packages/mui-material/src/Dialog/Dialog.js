@@ -424,10 +424,8 @@ Dialog.propTypes /* remove-proptypes */ = {
    * Set to `false` to disable `maxWidth`.
    * @default 'sm'
    */
-  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
-    PropTypes.string,
-  ]),
+  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]), PropTypes.string]),
   onClick: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
