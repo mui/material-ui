@@ -94,6 +94,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Tagalog                 | tl-TL               | `tlTL`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
 | Urdu (Pakistan)         | ur-PK               | `urPK`      |
+| Uzbek                   | uz-UZ               | `uzUZ`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
 <!-- #target-branch-reference -->

@@ -54,6 +54,7 @@ export * from './trTR';
 export * from './tlTL';
 export * from './ukUA';
 export * from './urPK';
+export * from './uzUZ';
 export * from './viVN';
 export * from './zhCN';
 export * from './zhHK';
