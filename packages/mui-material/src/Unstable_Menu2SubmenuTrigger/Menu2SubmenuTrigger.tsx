@@ -8,13 +8,17 @@ import ListContext from '../List/ListContext';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import type { SlotProps } from '../utils/types';
-import Menu2SubmenuTriggerRootSlot from './Menu2SubmenuTriggerRootSlot';
+import Menu2SubmenuTriggerRootSlot, {
+  Menu2SubmenuTriggerEndAdornment,
+  Menu2SubmenuTriggerStartAdornment,
+} from './Menu2SubmenuTriggerRootSlot';
 import type {
   Menu2ItemBaseOwnerState,
   Menu2ItemVisualProps,
   Menu2SubmenuTriggerBaseProps,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
+  getMenu2ItemAdornments,
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
   useMenu2ItemListContext,
@@ -151,10 +155,13 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     disableGutters = false,
     disableRipple,
     divider = false,
+    endAdornment,
+    inset = false,
     nativeButton: nativeButtonProp,
     render: renderProp,
     slotProps,
     slots,
+    startAdornment,
     sx,
     style,
     ...other
@@ -163,7 +170,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
   const { dense } = childContext;
   const ownerState = {
     ...props,
-    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider }),
+    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, inset }),
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2SubmenuTriggerClasses>(
@@ -181,22 +188,34 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     <ListContext.Provider value={childContext}>
       <BaseMenu.SubmenuTrigger
         ref={ref}
-        render={(renderProps, state) => (
-          <Menu2SubmenuTriggerRootSlot
-            baseProps={{
-              ...renderProps,
-              // Private styling marker; keep exit timing out of the public owner state.
-              'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
-            }}
-            ownerState={{ ...ownerState, ...state }}
-            disableRipple={disableRipple}
-            nativeButton={nativeButton}
-            render={renderProp}
-            slotProps={slotProps}
-            slots={slots}
-            sx={sx}
-          />
-        )}
+        render={(renderProps, state) => {
+          const itemOwnerState = { ...ownerState, ...state };
+          return (
+            <Menu2SubmenuTriggerRootSlot
+              baseProps={{
+                ...renderProps,
+                // Private styling marker; keep exit timing out of the public owner state.
+                'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
+              }}
+              ownerState={itemOwnerState}
+              disableRipple={disableRipple}
+              nativeButton={nativeButton}
+              render={renderProp}
+              slotProps={slotProps}
+              slots={slots}
+              sx={sx}
+              {...getMenu2ItemAdornments({
+                classes,
+                endAdornment,
+                EndAdornment: Menu2SubmenuTriggerEndAdornment,
+                inset,
+                ownerState: itemOwnerState,
+                startAdornment,
+                StartAdornment: Menu2SubmenuTriggerStartAdornment,
+              })}
+            />
+          );
+        }}
         className={(state) =>
           clsx(
             className,
@@ -271,6 +290,17 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment: PropTypes.node,
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset: PropTypes.bool,
+  /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */
   label: PropTypes.string,
@@ -307,6 +337,10 @@ Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
     indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment: PropTypes.node,
   /**
    * Styles applied to the root element.
    */

@@ -8,7 +8,7 @@ import { StyleSheetManager } from 'styled-components';
 import rtlPlugin from '@mui/stylis-plugin-rtl';
 import FormatPaintIcon from '@mui/icons-material/FormatPaint';
 import Box from '@mui/material/Box';
-import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
+import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
@@ -66,34 +66,21 @@ function MixedMenu({ direction, dense }: MixedMenuProps) {
             slots={{ transition: null }}
             slotProps={{ root: { sx: { width: 224 } }, list: { dense } }}
           >
-            <Menu2Item>
-              <ListItemIcon>
-                <FormatPaintIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Paint format</ListItemText>
+            <Menu2Item startAdornment={<FormatPaintIcon fontSize="small" />}>
+              Paint format
             </Menu2Item>
-            <Menu2CheckboxItem defaultChecked>
-              <ListItemText>Show labels</ListItemText>
-            </Menu2CheckboxItem>
-            <Menu2CheckboxItem>
-              <ListItemText>Show guide lines</ListItemText>
-            </Menu2CheckboxItem>
+            <Menu2CheckboxItem defaultChecked>Show labels</Menu2CheckboxItem>
+            <Menu2CheckboxItem>Show guide lines</Menu2CheckboxItem>
             <Menu2RadioGroup defaultValue="list">
-              <Menu2RadioItem value="list">
-                <ListItemText>List view</ListItemText>
-              </Menu2RadioItem>
-              <Menu2RadioItem value="grid">
-                <ListItemText>Grid view</ListItemText>
-              </Menu2RadioItem>
+              <Menu2RadioItem value="list">List view</Menu2RadioItem>
+              <Menu2RadioItem value="grid">Grid view</Menu2RadioItem>
               <Menu2RadioItem value="wide" slotProps={{ indicator: { children: wideIndicator } }}>
                 <ListItemText slotProps={{ primary: { noWrap: true } }}>
                   Keep this wide radio indicator at its full size
                 </ListItemText>
               </Menu2RadioItem>
             </Menu2RadioGroup>
-            <Menu2Item>
-              <ListItemText inset>Reset layout</ListItemText>
-            </Menu2Item>
+            <Menu2Item inset>Reset layout</Menu2Item>
             <Menu2Submenu>
               <Menu2SubmenuTrigger>More layouts</Menu2SubmenuTrigger>
               <Menu2SubmenuPopup>
@@ -163,26 +150,16 @@ function WideIconColumnMenu({ direction }: Pick<MixedMenuProps, 'direction'>) {
             slots={{ transition: null }}
             slotProps={{ root: { sx: { width: 224 } } }}
           >
-            <Menu2Item>
-              <ListItemIcon>
-                <FormatPaintIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Paint format</ListItemText>
+            <Menu2Item startAdornment={<FormatPaintIcon fontSize="small" />}>
+              Paint format
             </Menu2Item>
-            <Menu2CheckboxItem defaultChecked>
-              <ListItemText>Show labels</ListItemText>
-            </Menu2CheckboxItem>
+            <Menu2CheckboxItem defaultChecked>Show labels</Menu2CheckboxItem>
             <Menu2RadioGroup defaultValue="list">
-              <Menu2RadioItem value="list">
-                <ListItemText>List view</ListItemText>
-              </Menu2RadioItem>
+              <Menu2RadioItem value="list">List view</Menu2RadioItem>
             </Menu2RadioGroup>
             <Menu2Submenu>
-              <Menu2SubmenuTrigger>
-                <ListItemIcon>
-                  <FormatPaintIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>More layouts</ListItemText>
+              <Menu2SubmenuTrigger startAdornment={<FormatPaintIcon fontSize="small" />}>
+                More layouts
               </Menu2SubmenuTrigger>
               <Menu2SubmenuPopup>
                 <Menu2Item>Compact layout</Menu2Item>

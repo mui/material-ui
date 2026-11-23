@@ -10,10 +10,12 @@
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "divider": { "type": { "name": "bool" }, "default": "false" },
+    "endAdornment": { "type": { "name": "node" } },
     "icon": {
       "type": { "name": "node" },
       "default": "<CheckBoxOutlineBlankIcon fontSize=\"small\" />"
     },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "nativeButton": { "type": { "name": "bool" }, "default": "false" },
     "onCheckedChange": {
@@ -33,6 +35,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ indicator?: elementType, root?: elementType }" }
     },
+    "startAdornment": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -83,6 +86,12 @@
       "isGlobal": false
     },
     {
+      "key": "endAdornment",
+      "className": "MuiMenu2CheckboxItem-endAdornment",
+      "description": "Styles applied to the end adornment element.",
+      "isGlobal": false
+    },
+    {
       "key": "gutters",
       "className": "MuiMenu2CheckboxItem-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
@@ -98,6 +107,18 @@
       "key": "indicatorIcon",
       "className": "MuiMenu2CheckboxItem-indicatorIcon",
       "description": "Styles applied to the icon inside the indicator.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiMenu2CheckboxItem-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startAdornment",
+      "className": "MuiMenu2CheckboxItem-startAdornment",
+      "description": "Styles applied to the start adornment element.",
       "isGlobal": false
     }
   ],

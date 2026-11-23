@@ -7,6 +7,7 @@ describe('menuItemOverridesResolver', () => {
     dense: { padding: 2 },
     divider: { padding: 3 },
     gutters: { padding: 4 },
+    inset: { padding: 5 },
   };
 
   [false, true].forEach((dense) => {
@@ -20,6 +21,7 @@ describe('menuItemOverridesResolver', () => {
             dense && styles.dense,
             divider && styles.divider,
             !disableGutters && styles.gutters,
+            undefined,
           ]);
         });
       });
@@ -29,6 +31,15 @@ describe('menuItemOverridesResolver', () => {
   it('accepts partial theme overrides', () => {
     expect(
       menuItemOverridesResolver({ ownerState: { dense: true, divider: true } }, {}),
-    ).to.deep.equal([undefined, undefined, undefined, undefined]);
+    ).to.deep.equal([undefined, undefined, undefined, undefined, undefined]);
+  });
+
+  it('applies the inset override for Menu2 items', () => {
+    expect(
+      menuItemOverridesResolver(
+        { ownerState: { dense: false, divider: false, disableGutters: true, inset: true } },
+        styles,
+      ),
+    ).to.deep.equal([styles.root, false, false, false, styles.inset]);
   });
 });

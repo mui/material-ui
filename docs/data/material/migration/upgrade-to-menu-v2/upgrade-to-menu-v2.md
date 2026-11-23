@@ -374,8 +374,25 @@ These `MenuList` props move or change:
 
 Removed item and `MenuList` props, such as `selected`, are listed in [Check the removed props](#9-check-the-removed-props).
 
-`ListItemIcon`, `ListItemText`, and `Typography` carry over unchanged.
-`ListItemText inset` still aligns with the icon column.
+Move icons and shortcut hints to the item props:
+
+```diff
+-<MenuItem>
+-  <ListItemIcon>
+-    <ContentCut fontSize="small" />
+-  </ListItemIcon>
+-  <ListItemText>Cut</ListItemText>
+-  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+-    ⌘X
+-  </Typography>
+-</MenuItem>
++<MenuItem startAdornment={<ContentCut fontSize="small" />} endAdornment="⌘X">
++  Cut
++</MenuItem>
+```
+
+`<ListItemText inset>` becomes `inset` on the item.
+`ListItemIcon` and `ListItemText` children still render, so you can move them to the props one item at a time.
 
 ### 7. Update the theme keys
 

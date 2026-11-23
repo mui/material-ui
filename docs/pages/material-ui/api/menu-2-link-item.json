@@ -6,13 +6,16 @@
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "divider": { "type": { "name": "bool" }, "default": "false" },
+    "endAdornment": { "type": { "name": "node" } },
     "href": { "type": { "name": "string" } },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
     },
     "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
+    "startAdornment": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -45,6 +48,12 @@
       "isGlobal": false
     },
     {
+      "key": "endAdornment",
+      "className": "MuiMenu2LinkItem-endAdornment",
+      "description": "Styles applied to the end adornment element.",
+      "isGlobal": false
+    },
+    {
       "key": "gutters",
       "className": "MuiMenu2LinkItem-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
@@ -54,6 +63,18 @@
       "key": "highlighted",
       "className": "MuiMenu2LinkItem-highlighted",
       "description": "State class applied to the root element if highlighted.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiMenu2LinkItem-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startAdornment",
+      "className": "MuiMenu2LinkItem-startAdornment",
+      "description": "Styles applied to the start adornment element.",
       "isGlobal": false
     }
   ],

@@ -17,12 +17,17 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import {
+  Menu2ItemEndAdornment,
+  Menu2ItemStartAdornment,
+} from '../Unstable_Menu2/Menu2ItemAdornment';
 import type {
   Menu2ItemBaseOwnerState,
   Menu2ItemBaseProps,
   Menu2ItemVisualProps,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
+  getMenu2ItemAdornments,
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
   Menu2ItemRootSlot,
@@ -156,6 +161,16 @@ const Menu2CheckboxItemRoot = styled(Menu2ItemBase, {
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2CheckboxItemOwnerState }>({});
 
+const Menu2CheckboxItemStartAdornment = styled(Menu2ItemStartAdornment, {
+  name: 'MuiMenu2CheckboxItem',
+  slot: 'startAdornment',
+})({});
+
+const Menu2CheckboxItemEndAdornment = styled(Menu2ItemEndAdornment, {
+  name: 'MuiMenu2CheckboxItem',
+  slot: 'endAdornment',
+})({});
+
 const Menu2CheckboxItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'indicator',
@@ -172,11 +187,13 @@ interface Menu2CheckboxItemRootSlotProps extends Pick<
   Menu2CheckboxItemProps,
   | 'checkedIcon'
   | 'disableRipple'
+  | 'endAdornment'
   | 'icon'
   | 'nativeButton'
   | 'render'
   | 'slotProps'
   | 'slots'
+  | 'startAdornment'
   | 'sx'
 > {
   baseProps: HTMLProps;
@@ -216,6 +233,7 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
         disableGutters: ownerState.disableGutters,
         divider: ownerState.divider,
         highlighted: ownerState.highlighted,
+        inset: ownerState.inset,
       }}
       startIndicator={
         <BaseMenu.CheckboxItemIndicator
@@ -317,12 +335,15 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     disableGutters = false,
     disableRipple,
     divider = false,
+    endAdornment,
     icon = defaultIcon,
+    inset = false,
     nativeButton: nativeButtonProp,
     onCheckedChange,
     render: renderProp,
     slotProps,
     slots,
+    startAdornment,
     sx,
     style,
     ...other
@@ -337,6 +358,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
       disabled,
       disableGutters,
       divider,
+      inset,
     }),
     classes: classesProp,
   };
@@ -354,20 +376,32 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     <ListContext.Provider value={childContext}>
       <BaseMenu.CheckboxItem
         ref={ref}
-        render={(renderProps, state) => (
-          <Menu2CheckboxItemRootSlot
-            baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state }}
-            checkedIcon={checkedIcon}
-            disableRipple={disableRipple}
-            icon={icon}
-            nativeButton={nativeButton}
-            render={renderProp}
-            slotProps={slotProps}
-            slots={slots}
-            sx={sx}
-          />
-        )}
+        render={(renderProps, state) => {
+          const itemOwnerState = { ...ownerState, ...state };
+          return (
+            <Menu2CheckboxItemRootSlot
+              baseProps={renderProps}
+              ownerState={itemOwnerState}
+              checkedIcon={checkedIcon}
+              disableRipple={disableRipple}
+              icon={icon}
+              nativeButton={nativeButton}
+              render={renderProp}
+              slotProps={slotProps}
+              slots={slots}
+              sx={sx}
+              {...getMenu2ItemAdornments({
+                classes,
+                endAdornment,
+                EndAdornment: Menu2CheckboxItemEndAdornment,
+                inset,
+                ownerState: itemOwnerState,
+                startAdornment,
+                StartAdornment: Menu2CheckboxItemStartAdornment,
+              })}
+            />
+          );
+        }}
         className={(state) =>
           clsx(
             className,
@@ -455,10 +489,21 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment: PropTypes.node,
+  /**
    * The icon to display when the item is unchecked.
    * @default <CheckBoxOutlineBlankIcon fontSize="small" />
    */
   icon: PropTypes.node,
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset: PropTypes.bool,
   /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */
@@ -497,6 +542,10 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
     indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment: PropTypes.node,
   /**
    * Styles applied to the root element.
    */

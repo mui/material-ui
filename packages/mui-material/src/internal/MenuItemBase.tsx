@@ -69,11 +69,12 @@ const MenuItemBase = styled(ButtonBase, {
     [`& .${listItemTextClasses.inset}`]: {
       paddingLeft: 36,
     },
-    // Selection indicators set their own column width so their slot overrides
-    // do not need to compete with this descendant selector.
-    [`& .${listItemIconClasses.root}:not(:where([data-mui-menu-indicator]))`]: {
-      minWidth: 36,
-    },
+    // Menu2 indicators and adornments set their own column width so their slot
+    // overrides do not need to compete with this descendant selector.
+    [`& .${listItemIconClasses.root}:not(:where([data-mui-menu-indicator], [data-mui-menu-adornment]))`]:
+      {
+        minWidth: 36,
+      },
     variants: [
       {
         props: ({ ownerState }: MenuItemBaseProps) => !ownerState?.disableGutters,

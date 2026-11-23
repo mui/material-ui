@@ -11,7 +11,11 @@
     "divider": {
       "description": "If <code>true</code>, a 1px light border is added to the bottom of the menu item."
     },
+    "endAdornment": { "description": "Content after the label, such as a keyboard shortcut." },
     "href": { "description": "The URL that the link item points to." },
+    "inset": {
+      "description": "If <code>true</code>, the item keeps an empty start adornment column. Its label then aligns with the labels of items that have a start adornment. It has no effect when <code>startAdornment</code> is set."
+    },
     "label": {
       "description": "Overrides the text label to use when the item is matched during keyboard text navigation."
     },
@@ -20,6 +24,7 @@
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
+    "startAdornment": { "description": "Content before the label, such as an icon." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
@@ -35,6 +40,10 @@
       "nodeName": "the root element",
       "conditions": "<code>divider={true}</code>"
     },
+    "endAdornment": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the end adornment element"
+    },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
@@ -44,6 +53,15 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "highlighted"
+    },
+    "inset": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>inset={true}</code>"
+    },
+    "startAdornment": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the start adornment element"
     }
   },
   "slotDescriptions": {

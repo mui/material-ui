@@ -79,7 +79,7 @@ import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The Menu2 surface and item theme styles apply before the more specific component styles. Default checkbox and radio indicators use `ListItemIcon`, so icon-column selectors also apply to them. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
+The classic `Menu` keeps its API. Classic and successor items share `MenuItemBase` and the focus and hover styles. Menu2 popups and indicators also share styled bases. The Menu2 surface and item theme styles apply before the more specific component styles. Default checkbox and radio indicators and start adornments use `ListItemIcon`, so icon-column selectors also apply to them. The experiment also adds a `defaultMuiPrevented` check to `useButtonBase`, so Base UI can own Enter and Space activation without ButtonBase activating the item again.
 
 ### Rules for Base UI-backed components (Menu is the first)
 
@@ -263,6 +263,7 @@ These choices are proposed for maintainer review.
 | Item press focus   | An item press that closes the menu focuses the trigger at once, as in classic Menu. A Dialog that the item opens saves the trigger as its return target. A root `finalFocus` other than `true` skips this.     |
 | Final focus target | A ref or function `finalFocus` applies only when focus is on the page body or in the menu tree. Base UI also takes focus from an outside element, such as a Dialog field.                                      |
 | Forced colors      | `enhanceHighContrast` styles the item parts and indicators. Disabled cues take precedence over highlight styling.                                                                                              |
+| Item adornments    | Items take `startAdornment`, `endAdornment`, and `inset` in place of `ListItemIcon`, `ListItemText`, and a shortcut `Typography` child. `inset` is opt-in. The API takes priority over classic parity.         |
 
 Menu2 passes `modal={false}` to Base UI and implements `modal` with Material UI parts. The scroll lock uses the `ModalManager` instance that Modal uses, so a menu and a Modal on one page share one lock. An internal layer blocks outside clicks for a modal root menu. Both are absent for hover-opened menus and `modal={false}`. The visual `backdrop` slot cannot remove the layer: `slots.backdrop: null` removes only the visual layer. To let outside clicks through, use `modal={false}`.
 
@@ -420,6 +421,7 @@ This example follows the system preference. The playground also shows the theme 
 | Classic MenuItem / MenuList                                        | New equivalent                          | Notes                                                                                                                                             |
 | :----------------------------------------------------------------- | :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `disableGutters`, `divider`                                        | Same props                              | Presentation remains Material-owned.                                                                                                              |
+| `ListItemIcon`, `ListItemText inset`, shortcut `Typography`        | `startAdornment`, `endAdornment`        | `ListItemText inset` becomes `inset`. The children still render; the docs show only the props.                                                    |
 | `dense`, `MenuList.dense`                                          | Undocumented                            | Still work. A later sizing and spacing API can replace them.                                                                                      |
 | `<Divider />`                                                      | `Menu2Separator`                        | Owns its margins, including beside submenu focus guards.                                                                                          |
 | `selected`                                                         | Removed                                 | Use dedicated checkbox and radio items for checked state.                                                                                         |

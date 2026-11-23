@@ -14,6 +14,7 @@ import type {
   Menu2ItemVisualProps,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
+  getMenu2ItemAdornments,
   getMenu2ItemOwnerState,
   Menu2ItemRootSlot,
   mergeMenu2ItemClassName,
@@ -23,6 +24,10 @@ import {
 import type { Menu2ItemClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2ItemUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import {
+  Menu2ItemEndAdornment,
+  Menu2ItemStartAdornment,
+} from '../Unstable_Menu2/Menu2ItemAdornment';
 
 export interface Menu2ItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether Base UI currently highlights the item. */
@@ -127,10 +132,13 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     disableGutters = false,
     disableRipple,
     divider = false,
+    endAdornment,
+    inset = false,
     nativeButton: nativeButtonProp,
     render: renderProp,
     slots,
     slotProps,
+    startAdornment,
     sx,
     style,
     ...other
@@ -139,7 +147,7 @@ const Menu2Item = React.forwardRef(function Menu2Item(
   const { dense } = childContext;
   const ownerState = {
     ...props,
-    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider }),
+    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, inset }),
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2ItemClasses>(
@@ -156,27 +164,40 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     <ListContext.Provider value={childContext}>
       <BaseMenu.Item
         ref={ref}
-        render={(renderProps, state) => (
-          <Menu2ItemRootSlot<Menu2ItemOwnerState>
-            baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state }}
-            elementType={Menu2ItemRoot}
-            component={renderProp ? Menu2RenderRoot : undefined}
-            disableRipple={disableRipple}
-            nativeButton={nativeButton}
-            internalRender={renderProp}
-            internalRenderState={{
-              dense,
-              disabled: state.disabled,
-              disableGutters,
-              divider,
-              highlighted: state.highlighted,
-            }}
-            slots={slots}
-            slotProps={slotProps}
-            sx={sx}
-          />
-        )}
+        render={(renderProps, state) => {
+          const itemOwnerState = { ...ownerState, ...state };
+          return (
+            <Menu2ItemRootSlot<Menu2ItemOwnerState>
+              baseProps={renderProps}
+              ownerState={itemOwnerState}
+              elementType={Menu2ItemRoot}
+              component={renderProp ? Menu2RenderRoot : undefined}
+              disableRipple={disableRipple}
+              nativeButton={nativeButton}
+              internalRender={renderProp}
+              internalRenderState={{
+                dense,
+                disabled: state.disabled,
+                disableGutters,
+                divider,
+                highlighted: state.highlighted,
+                inset,
+              }}
+              slots={slots}
+              slotProps={slotProps}
+              sx={sx}
+              {...getMenu2ItemAdornments({
+                classes,
+                endAdornment,
+                EndAdornment: Menu2ItemEndAdornment,
+                inset,
+                ownerState: itemOwnerState,
+                startAdornment,
+                StartAdornment: Menu2ItemStartAdornment,
+              })}
+            />
+          );
+        }}
         className={mergeMenu2ItemClassName(className, classes, ownerState)}
         disabled={disabled}
         nativeButton={nativeButton}
@@ -236,6 +257,17 @@ Menu2Item.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment: PropTypes.node,
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset: PropTypes.bool,
+  /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */
   label: PropTypes.string,
@@ -265,6 +297,10 @@ Menu2Item.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment: PropTypes.node,
   /**
    * Styles applied to the root element.
    */

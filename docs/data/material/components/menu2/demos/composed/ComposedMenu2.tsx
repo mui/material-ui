@@ -1,8 +1,5 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatClearIcon from '@mui/icons-material/FormatClear';
 import FormatPaintIcon from '@mui/icons-material/FormatPaint';
@@ -18,14 +15,6 @@ import MenuSeparator from '@mui/material/Unstable_Menu2Separator';
 import MenuSubmenu from '@mui/material/Unstable_Menu2Submenu';
 import MenuSubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 
-function Shortcut({ children }: { children: React.ReactNode }) {
-  return (
-    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-      {children}
-    </Typography>
-  );
-}
-
 export default function ComposedMenu2() {
   // @focus-start @padding 1
   const [bold, setBold] = React.useState(true);
@@ -36,21 +25,22 @@ export default function ComposedMenu2() {
     <Menu>
       <MenuTrigger render={<Button>Format</Button>} />
       <MenuPopup sx={{ width: 260 }}>
-        <MenuCheckboxItem checked={bold} onCheckedChange={setBold}>
-          <ListItemText>Bold</ListItemText>
-          <Shortcut>⌘B</Shortcut>
+        <MenuCheckboxItem checked={bold} onCheckedChange={setBold} endAdornment="⌘B">
+          Bold
         </MenuCheckboxItem>
-        <MenuCheckboxItem checked={italic} onCheckedChange={setItalic}>
-          <ListItemText>Italic</ListItemText>
-          <Shortcut>⌘I</Shortcut>
+        <MenuCheckboxItem
+          checked={italic}
+          onCheckedChange={setItalic}
+          endAdornment="⌘I"
+        >
+          Italic
         </MenuCheckboxItem>
         <MenuSeparator />
         <MenuSubmenu>
-          <MenuSubmenuTrigger>
-            <ListItemIcon>
-              <FormatAlignLeftIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Align</ListItemText>
+          <MenuSubmenuTrigger
+            startAdornment={<FormatAlignLeftIcon fontSize="small" />}
+          >
+            Align
           </MenuSubmenuTrigger>
           <MenuSubmenuPopup>
             <MenuRadioGroup value={alignment} onValueChange={setAlignment}>
@@ -62,18 +52,14 @@ export default function ComposedMenu2() {
           </MenuSubmenuPopup>
         </MenuSubmenu>
         <MenuSeparator />
-        <MenuItem>
-          <ListItemIcon>
-            <FormatClearIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Clear formatting</ListItemText>
-          <Shortcut>⌘\</Shortcut>
+        <MenuItem
+          startAdornment={<FormatClearIcon fontSize="small" />}
+          endAdornment={'⌘\\'}
+        >
+          Clear formatting
         </MenuItem>
-        <MenuItem disabled>
-          <ListItemIcon>
-            <FormatPaintIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Paste format</ListItemText>
+        <MenuItem disabled startAdornment={<FormatPaintIcon fontSize="small" />}>
+          Paste format
         </MenuItem>
       </MenuPopup>
     </Menu>

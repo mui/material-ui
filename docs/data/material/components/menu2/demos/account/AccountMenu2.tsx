@@ -2,7 +2,6 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import PersonAdd from '@mui/icons-material/PersonAdd';
@@ -39,31 +38,16 @@ export default function AccountMenu2() {
             '& .MuiAvatar-root': { width: 32, height: 32, ml: -0.5, mr: 1 },
           }}
         >
-          <MenuItem>
-            <Avatar /> Profile
-          </MenuItem>
-          <MenuItem>
-            <Avatar /> My account
-          </MenuItem>
+          <MenuItem startAdornment={<Avatar />}>Profile</MenuItem>
+          <MenuItem startAdornment={<Avatar />}>My account</MenuItem>
           <MenuSeparator />
-          <MenuItem>
-            <ListItemIcon>
-              <PersonAdd fontSize="small" />
-            </ListItemIcon>
+          <MenuItem startAdornment={<PersonAdd fontSize="small" />}>
             Add another account
           </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
+          <MenuItem startAdornment={<Settings fontSize="small" />}>
             Settings
           </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Logout fontSize="small" />
-            </ListItemIcon>
-            Logout
-          </MenuItem>
+          <MenuItem startAdornment={<Logout fontSize="small" />}>Logout</MenuItem>
         </MenuPopup>
       </Menu>
     </Box>

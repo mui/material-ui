@@ -16,12 +16,17 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import {
+  Menu2ItemEndAdornment,
+  Menu2ItemStartAdornment,
+} from '../Unstable_Menu2/Menu2ItemAdornment';
 import type {
   Menu2ItemBaseOwnerState,
   Menu2ItemBaseProps,
   Menu2ItemVisualProps,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
+  getMenu2ItemAdornments,
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
   Menu2ItemRootSlot,
@@ -136,6 +141,16 @@ const Menu2RadioItemRoot = styled(Menu2ItemBase, {
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2RadioItemOwnerState }>({});
 
+const Menu2RadioItemStartAdornment = styled(Menu2ItemStartAdornment, {
+  name: 'MuiMenu2RadioItem',
+  slot: 'startAdornment',
+})({});
+
+const Menu2RadioItemEndAdornment = styled(Menu2ItemEndAdornment, {
+  name: 'MuiMenu2RadioItem',
+  slot: 'endAdornment',
+})({});
+
 const Menu2RadioItemIndicator = styled(Menu2IndicatorBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'indicator',
@@ -153,11 +168,13 @@ interface Menu2RadioItemRootSlotProps extends Pick<
   Menu2RadioItemProps,
   | 'checkedIcon'
   | 'disableRipple'
+  | 'endAdornment'
   | 'icon'
   | 'nativeButton'
   | 'render'
   | 'slotProps'
   | 'slots'
+  | 'startAdornment'
   | 'sx'
 > {
   baseProps: HTMLProps;
@@ -197,6 +214,7 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
         disableGutters: ownerState.disableGutters,
         divider: ownerState.divider,
         highlighted: ownerState.highlighted,
+        inset: ownerState.inset,
       }}
       startIndicator={
         <BaseMenu.RadioItemIndicator
@@ -297,11 +315,14 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     disableGutters = false,
     disableRipple,
     divider = false,
+    endAdornment,
     icon = defaultIcon,
+    inset = false,
     nativeButton: nativeButtonProp,
     render: renderProp,
     slotProps,
     slots,
+    startAdornment,
     sx,
     style,
     ...other
@@ -310,7 +331,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
   const { dense } = childContext;
   const ownerState = {
     ...props,
-    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider }),
+    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, inset }),
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2RadioItemClasses>(
@@ -327,20 +348,32 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     <ListContext.Provider value={childContext}>
       <BaseMenu.RadioItem
         ref={ref}
-        render={(renderProps, state) => (
-          <Menu2RadioItemRootSlot
-            baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state }}
-            checkedIcon={checkedIcon}
-            disableRipple={disableRipple}
-            icon={icon}
-            nativeButton={nativeButton}
-            render={renderProp}
-            slotProps={slotProps}
-            slots={slots}
-            sx={sx}
-          />
-        )}
+        render={(renderProps, state) => {
+          const itemOwnerState = { ...ownerState, ...state };
+          return (
+            <Menu2RadioItemRootSlot
+              baseProps={renderProps}
+              ownerState={itemOwnerState}
+              checkedIcon={checkedIcon}
+              disableRipple={disableRipple}
+              icon={icon}
+              nativeButton={nativeButton}
+              render={renderProp}
+              slotProps={slotProps}
+              slots={slots}
+              sx={sx}
+              {...getMenu2ItemAdornments({
+                classes,
+                endAdornment,
+                EndAdornment: Menu2RadioItemEndAdornment,
+                inset,
+                ownerState: itemOwnerState,
+                startAdornment,
+                StartAdornment: Menu2RadioItemStartAdornment,
+              })}
+            />
+          );
+        }}
         className={(state) =>
           clsx(
             className,
@@ -413,10 +446,21 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment: PropTypes.node,
+  /**
    * The icon to display when the item is unchecked.
    * @default <RadioButtonIcon fontSize="small" />
    */
   icon: PropTypes.node,
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset: PropTypes.bool,
   /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */
@@ -449,6 +493,10 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
     indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment: PropTypes.node,
   /**
    * Styles applied to the root element.
    */

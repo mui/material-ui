@@ -4,7 +4,12 @@ import type { MenuItemProps } from './MenuItem';
 import menuItemClasses from './menuItemClasses';
 
 export function menuItemOverridesResolver(
-  props: { ownerState: Pick<MenuItemProps, 'dense' | 'divider' | 'disableGutters'> },
+  props: {
+    // Only Menu2 items have `inset`.
+    ownerState: Pick<MenuItemProps, 'dense' | 'divider' | 'disableGutters'> & {
+      inset?: boolean | undefined;
+    };
+  },
   styles: Record<string, CSSInterpolation>,
 ): CSSInterpolation {
   const { ownerState } = props;
@@ -14,6 +19,7 @@ export function menuItemOverridesResolver(
     ownerState.dense && styles.dense,
     ownerState.divider && styles.divider,
     !ownerState.disableGutters && styles.gutters,
+    ownerState.inset && styles.inset,
   ];
 }
 

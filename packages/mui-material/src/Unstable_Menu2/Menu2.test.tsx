@@ -850,8 +850,10 @@ describe('<Menu2 />', () => {
           <Menu2>
             <Menu2Trigger render={<Button disableRipple>Options</Button>} />
             <Menu2Popup>
-              <Menu2Item>Profile</Menu2Item>
-              <Menu2CheckboxItem defaultChecked>Bookmarks</Menu2CheckboxItem>
+              <Menu2Item endAdornment="⌘P">Profile</Menu2Item>
+              <Menu2CheckboxItem defaultChecked endAdornment="⌘B">
+                Bookmarks
+              </Menu2CheckboxItem>
               <Menu2Submenu>
                 <Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>
                 <Menu2SubmenuPopup>
@@ -897,7 +899,7 @@ describe('<Menu2 />', () => {
       }
       expect(matches(menu2SubmenuTriggerClasses.open)).to.equal(true);
       const indicator = screen
-        .getByRole('menuitemcheckbox', { name: 'Bookmarks' })
+        .getByRole('menuitemcheckbox', { name: /Bookmarks/ })
         .querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)!;
       expect(indicator).not.to.equal(null);
       // The item owns the indicator styles; the old indicator root class remains
@@ -920,6 +922,23 @@ describe('<Menu2 />', () => {
             text.includes('background-color: transparent;'),
         ),
       ).to.equal(true);
+      // Highlighted roots opt out of forced colors, so the end adornment must
+      // inherit HighlightText instead of keeping text.secondary.
+      ['Profile', 'Bookmarks'].forEach((name) => {
+        const endAdornment = screen
+          .getByText(name)
+          .closest('[role^="menuitem"]')!
+          .querySelector('[class*="-endAdornment"]')!;
+        const endAdornmentStyleClass = Array.from(endAdornment.classList).find(
+          (className) => !className.startsWith('Mui') && className.endsWith('-endAdornment'),
+        )!;
+        expect(endAdornmentStyleClass).not.to.equal(undefined);
+        expect(
+          menu2ForcedColorsRules.some(
+            (text) => text.includes(endAdornmentStyleClass) && text.includes('color: inherit;'),
+          ),
+        ).to.equal(true);
+      });
     },
   );
 
@@ -1820,8 +1839,8 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    // `inset` is a ListItemText prop, not an item prop: the shared item styles
-    // align it with the icon column so icon-less items line up.
+    // Legacy composition: the shared item styles still align `ListItemText inset`
+    // with the icon column. Items also have their own `inset` prop.
     const insetText = await screen.findByTestId('inset-text');
     expect(window.getComputedStyle(insetText).paddingLeft).to.equal('36px');
     expect(window.getComputedStyle(screen.getByTestId('icon')).minWidth).to.equal('36px');

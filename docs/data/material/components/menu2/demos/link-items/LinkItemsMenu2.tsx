@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import OpenInNew from '@mui/icons-material/OpenInNew';
 import Menu from '@mui/material/Unstable_Menu2';
 import MenuPopup from '@mui/material/Unstable_Menu2Popup';
@@ -26,12 +24,9 @@ export default function LinkItemsMenu2() {
           href="https://github.com/mui/material-ui"
           target="_blank"
           rel="noopener"
-          sx={{ '& .MuiListItemIcon-root': { minWidth: 'auto' } }}
+          endAdornment={<OpenInNew fontSize="small" />}
         >
-          <ListItemText>GitHub repository</ListItemText>
-          <ListItemIcon>
-            <OpenInNew fontSize="small" />
-          </ListItemIcon>
+          GitHub repository
         </MenuLinkItem>
       </MenuPopup>
     </Menu>

@@ -15,6 +15,10 @@ import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuIt
 import type { Theme } from '../styles';
 import { Menu2ItemRootSlot } from '../Unstable_Menu2/menu2ItemShared';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
+import {
+  Menu2ItemEndAdornment,
+  Menu2ItemStartAdornment,
+} from '../Unstable_Menu2/Menu2ItemAdornment';
 import type {
   Menu2SubmenuTriggerProps,
   Menu2SubmenuTriggerOwnerState,
@@ -52,6 +56,16 @@ const Menu2SubmenuTriggerRoot = styled(Menu2SubmenuTriggerBase, {
   overridesResolver: menuItemOverridesResolver,
 })({});
 
+export const Menu2SubmenuTriggerStartAdornment = styled(Menu2ItemStartAdornment, {
+  name: 'MuiMenu2SubmenuTrigger',
+  slot: 'startAdornment',
+})({});
+
+export const Menu2SubmenuTriggerEndAdornment = styled(Menu2ItemEndAdornment, {
+  name: 'MuiMenu2SubmenuTrigger',
+  slot: 'endAdornment',
+})({});
+
 const Menu2SubmenuTriggerIndicator = styled('span', {
   name: 'MuiMenu2SubmenuTrigger',
   slot: 'indicator',
@@ -61,6 +75,11 @@ const Menu2SubmenuTriggerIndicator = styled('span', {
   flexShrink: 0,
   marginLeft: 'auto',
   paddingLeft: 8,
+  // The end adornment takes the free space, so the chevron follows it.
+  // `*:where()` keeps (0,1,0) so indicator overrides win; a leading `:` would nest.
+  [`*:where(.${menu2SubmenuTriggerClasses.endAdornment}) + &`]: {
+    marginLeft: 0,
+  },
 });
 
 /**
@@ -69,7 +88,14 @@ const Menu2SubmenuTriggerIndicator = styled('span', {
 function Menu2SubmenuTriggerRootSlot(
   props: Pick<
     Menu2SubmenuTriggerProps,
-    'disableRipple' | 'nativeButton' | 'render' | 'slotProps' | 'slots' | 'sx'
+    | 'disableRipple'
+    | 'endAdornment'
+    | 'nativeButton'
+    | 'render'
+    | 'slotProps'
+    | 'slots'
+    | 'startAdornment'
+    | 'sx'
   > & {
     baseProps: HTMLProps & { 'data-mui-internal-retain-open-tint'?: string | undefined };
     ownerState: Menu2SubmenuTriggerOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
@@ -110,6 +136,7 @@ function Menu2SubmenuTriggerRootSlot(
         disableGutters: ownerState.disableGutters,
         divider: ownerState.divider,
         highlighted: ownerState.highlighted,
+        inset: ownerState.inset,
         open: ownerState.open,
       }}
       endIndicator={slots?.indicator === null ? null : <IndicatorSlot {...indicatorProps} />}

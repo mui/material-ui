@@ -84,6 +84,12 @@ export interface Menu2ItemClasses {
   divider: string;
   /** Styles applied to the root element unless `disableGutters={true}`. */
   gutters: string;
+  /** Styles applied to the root element if `inset={true}`. */
+  inset: string;
+  /** Styles applied to the start adornment element. */
+  startAdornment: string;
+  /** Styles applied to the end adornment element. */
+  endAdornment: string;
 }
 
 export type Menu2ItemClassKey = keyof Menu2ItemClasses;
@@ -99,6 +105,9 @@ export const menu2ItemClasses: Menu2ItemClasses = generateUtilityClasses('MuiMen
   'dense',
   'divider',
   'gutters',
+  'inset',
+  'startAdornment',
+  'endAdornment',
 ]);
 
 export interface Menu2LinkItemClasses extends Omit<Menu2ItemClasses, 'disabled'> {}
@@ -111,7 +120,7 @@ export function getMenu2LinkItemUtilityClass(slot: string): string {
 
 export const menu2LinkItemClasses: Menu2LinkItemClasses = generateUtilityClasses(
   'MuiMenu2LinkItem',
-  ['root', 'highlighted', 'dense', 'divider', 'gutters'],
+  ['root', 'highlighted', 'dense', 'divider', 'gutters', 'inset', 'startAdornment', 'endAdornment'],
 );
 
 export interface Menu2CheckboxItemClasses extends Menu2ItemClasses {
@@ -138,6 +147,9 @@ export const menu2CheckboxItemClasses: Menu2CheckboxItemClasses = generateUtilit
     'dense',
     'divider',
     'gutters',
+    'inset',
+    'startAdornment',
+    'endAdornment',
     'checked',
     'indicator',
     'indicatorIcon',
@@ -211,6 +223,9 @@ export const menu2RadioItemClasses: Menu2RadioItemClasses = generateUtilityClass
     'dense',
     'divider',
     'gutters',
+    'inset',
+    'startAdornment',
+    'endAdornment',
     'checked',
     'indicator',
     'indicatorIcon',
@@ -304,5 +319,17 @@ export function getMenu2SubmenuTriggerUtilityClass(slot: string): string {
 
 export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUtilityClasses(
   'MuiMenu2SubmenuTrigger',
-  ['root', 'highlighted', 'disabled', 'dense', 'divider', 'gutters', 'open', 'indicator'],
+  [
+    'root',
+    'highlighted',
+    'disabled',
+    'dense',
+    'divider',
+    'gutters',
+    'inset',
+    'startAdornment',
+    'endAdornment',
+    'open',
+    'indicator',
+  ],
 );

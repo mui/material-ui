@@ -24,6 +24,7 @@ export interface Menu2ItemBaseOwnerState {
   disabled: boolean;
   divider: boolean;
   disableGutters: boolean;
+  inset: boolean;
 }
 
 export interface Menu2ItemVisualProps<Classes, Slots = never, SlotProps = never> {
@@ -55,6 +56,21 @@ export interface Menu2ItemVisualProps<Classes, Slots = never, SlotProps = never>
    * @default false
    */
   divider?: boolean | undefined;
+  /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment?: React.ReactNode;
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset?: boolean | undefined;
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment?: React.ReactNode;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -189,6 +205,8 @@ export interface Menu2ItemRootSlotProps<OwnerState extends object> {
   slotProps?: Menu2RootSlotProps<OwnerState, 'a' | 'div'> | undefined;
   sx?: SxProps<Theme> | undefined;
   startIndicator?: React.ReactNode;
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
   endIndicator?: React.ReactNode;
 }
 
@@ -202,6 +220,7 @@ export function Menu2ItemRootSlot<OwnerState extends object>(
     defaultComponent = 'div',
     disableRipple,
     elementType,
+    endAdornment,
     endIndicator,
     internalRender,
     internalRenderState,
@@ -209,6 +228,7 @@ export function Menu2ItemRootSlot<OwnerState extends object>(
     ownerState,
     slotProps,
     slots,
+    startAdornment,
     startIndicator,
     sx,
   } = props;
@@ -238,7 +258,9 @@ export function Menu2ItemRootSlot<OwnerState extends object>(
     children: (
       <React.Fragment>
         {startIndicator}
+        {startAdornment}
         {rootProps.children}
+        {endAdornment}
         {endIndicator}
       </React.Fragment>
     ),
@@ -257,19 +279,56 @@ export function getMenu2ItemOwnerState(
     disabled: props.disabled ?? false,
     divider: props.divider ?? false,
     disableGutters: props.disableGutters ?? false,
+    inset: props.inset ?? false,
+  };
+}
+
+function hasAdornment(node: React.ReactNode) {
+  return node != null && typeof node !== 'boolean' && node !== '';
+}
+
+export interface Menu2ItemAdornmentOptions<OwnerState> {
+  startAdornment: React.ReactNode;
+  endAdornment: React.ReactNode;
+  inset: boolean;
+  classes: { startAdornment?: string | undefined; endAdornment?: string | undefined };
+  ownerState: OwnerState;
+  StartAdornment: React.ElementType;
+  EndAdornment: React.ElementType;
+}
+
+// `inset` renders an empty start adornment to keep the column.
+export function getMenu2ItemAdornments<OwnerState>(options: Menu2ItemAdornmentOptions<OwnerState>) {
+  const { classes, endAdornment, EndAdornment, inset, ownerState, startAdornment, StartAdornment } =
+    options;
+  const hasStartAdornment = hasAdornment(startAdornment);
+
+  return {
+    startAdornment:
+      hasStartAdornment || inset ? (
+        <StartAdornment className={classes.startAdornment} ownerState={ownerState}>
+          {hasStartAdornment ? startAdornment : null}
+        </StartAdornment>
+      ) : null,
+    endAdornment: hasAdornment(endAdornment) ? (
+      <EndAdornment className={classes.endAdornment} ownerState={ownerState}>
+        {endAdornment}
+      </EndAdornment>
+    ) : null,
   };
 }
 
 export function useMenu2ItemUtilityClasses<Classes extends object>(
-  ownerState: Omit<Menu2ItemBaseOwnerState, 'disabled'> & {
+  ownerState: Omit<Menu2ItemBaseOwnerState, 'disabled' | 'inset'> & {
     disabled?: boolean | undefined;
+    inset?: boolean | undefined;
     classes?: Partial<Classes> | undefined;
     checked?: boolean | undefined;
     open?: boolean | undefined;
   },
   getUtilityClass: (slot: string) => string,
 ) {
-  const { dense, disabled, divider, disableGutters, checked, open, classes } = ownerState;
+  const { dense, disabled, divider, disableGutters, inset, checked, open, classes } = ownerState;
   const slots = {
     root: [
       'root',
@@ -277,11 +336,14 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
       disabled && 'disabled',
       !disableGutters && 'gutters',
       divider && 'divider',
+      inset && 'inset',
       checked && 'checked',
       open && 'open',
     ],
     highlighted: ['highlighted'],
     disabled: ['disabled'],
+    startAdornment: ['startAdornment'],
+    endAdornment: ['endAdornment'],
     checked: ['checked'],
     open: ['open'],
   };

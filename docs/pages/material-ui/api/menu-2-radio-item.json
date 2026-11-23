@@ -12,7 +12,9 @@
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "divider": { "type": { "name": "bool" }, "default": "false" },
+    "endAdornment": { "type": { "name": "node" } },
     "icon": { "type": { "name": "node" }, "default": "<RadioButtonIcon fontSize=\"small\" />" },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "nativeButton": { "type": { "name": "bool" }, "default": "false" },
     "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
@@ -25,6 +27,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ indicator?: elementType, root?: elementType }" }
     },
+    "startAdornment": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -75,6 +78,12 @@
       "isGlobal": false
     },
     {
+      "key": "endAdornment",
+      "className": "MuiMenu2RadioItem-endAdornment",
+      "description": "Styles applied to the end adornment element.",
+      "isGlobal": false
+    },
+    {
       "key": "gutters",
       "className": "MuiMenu2RadioItem-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
@@ -90,6 +99,18 @@
       "key": "indicatorIcon",
       "className": "MuiMenu2RadioItem-indicatorIcon",
       "description": "Styles applied to the icon inside the indicator.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiMenu2RadioItem-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startAdornment",
+      "className": "MuiMenu2RadioItem-startAdornment",
+      "description": "Styles applied to the start adornment element.",
       "isGlobal": false
     }
   ],

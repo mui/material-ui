@@ -8,6 +8,8 @@
     "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "divider": { "type": { "name": "bool" }, "default": "false" },
+    "endAdornment": { "type": { "name": "node" } },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "nativeButton": { "type": { "name": "bool" }, "default": "false" },
     "openOnHover": { "type": { "name": "bool" }, "default": "true" },
@@ -21,6 +23,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ indicator?: elementType, root?: elementType }" }
     },
+    "startAdornment": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -65,6 +68,12 @@
       "isGlobal": false
     },
     {
+      "key": "endAdornment",
+      "className": "MuiMenu2SubmenuTrigger-endAdornment",
+      "description": "Styles applied to the end adornment element.",
+      "isGlobal": false
+    },
+    {
       "key": "gutters",
       "className": "MuiMenu2SubmenuTrigger-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
@@ -77,10 +86,22 @@
       "isGlobal": false
     },
     {
+      "key": "inset",
+      "className": "MuiMenu2SubmenuTrigger-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
       "key": "open",
       "className": "Mui-open",
       "description": "State class applied to the root element if the submenu is open.",
       "isGlobal": true
+    },
+    {
+      "key": "startAdornment",
+      "className": "MuiMenu2SubmenuTrigger-startAdornment",
+      "description": "Styles applied to the start adornment element.",
+      "isGlobal": false
     }
   ],
   "spread": true,

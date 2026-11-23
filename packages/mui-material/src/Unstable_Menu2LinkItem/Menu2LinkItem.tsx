@@ -5,6 +5,10 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn } from '@base-ui/react/types';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
+import {
+  Menu2ItemEndAdornment,
+  Menu2ItemStartAdornment,
+} from '../Unstable_Menu2/Menu2ItemAdornment';
 import Menu2ItemBase from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -15,6 +19,7 @@ import type {
   Menu2ItemVisualProps,
 } from '../Unstable_Menu2/menu2ItemShared';
 import {
+  getMenu2ItemAdornments,
   Menu2ItemRootSlot,
   mergeMenu2ItemClassName,
   useMenu2ItemListContext,
@@ -95,6 +100,16 @@ const Menu2LinkItemRoot = styled(Menu2ItemBase, {
   overridesResolver: menuItemOverridesResolver,
 })<{ ownerState: Menu2LinkItemOwnerState }>({});
 
+const Menu2LinkItemStartAdornment = styled(Menu2ItemStartAdornment, {
+  name: 'MuiMenu2LinkItem',
+  slot: 'startAdornment',
+})({});
+
+const Menu2LinkItemEndAdornment = styled(Menu2ItemEndAdornment, {
+  name: 'MuiMenu2LinkItem',
+  slot: 'endAdornment',
+})({});
+
 /**
  *
  * Demos:
@@ -121,9 +136,12 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     disableGutters = false,
     disableRipple,
     divider = false,
+    endAdornment,
+    inset = false,
     render: renderProp,
     slots,
     slotProps,
+    startAdornment,
     sx,
     style,
     ...other
@@ -136,6 +154,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     dense,
     disableGutters,
     divider,
+    inset,
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2LinkItemClasses>(
@@ -147,26 +166,39 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     <ListContext.Provider value={childContext}>
       <BaseMenu.LinkItem
         ref={ref}
-        render={(renderProps, state) => (
-          <Menu2ItemRootSlot<Menu2LinkItemOwnerState>
-            baseProps={renderProps}
-            ownerState={{ ...ownerState, ...state }}
-            elementType={Menu2LinkItemRoot}
-            defaultComponent="a"
-            component={renderProp ? Menu2RenderRoot : undefined}
-            disableRipple={disableRipple}
-            internalRender={renderProp}
-            internalRenderState={{
-              dense,
-              disableGutters,
-              divider,
-              highlighted: state.highlighted,
-            }}
-            slots={slots}
-            slotProps={slotProps}
-            sx={sx}
-          />
-        )}
+        render={(renderProps, state) => {
+          const itemOwnerState = { ...ownerState, ...state };
+          return (
+            <Menu2ItemRootSlot<Menu2LinkItemOwnerState>
+              baseProps={renderProps}
+              ownerState={itemOwnerState}
+              elementType={Menu2LinkItemRoot}
+              defaultComponent="a"
+              component={renderProp ? Menu2RenderRoot : undefined}
+              disableRipple={disableRipple}
+              internalRender={renderProp}
+              internalRenderState={{
+                dense,
+                disableGutters,
+                divider,
+                highlighted: state.highlighted,
+                inset,
+              }}
+              slots={slots}
+              slotProps={slotProps}
+              sx={sx}
+              {...getMenu2ItemAdornments({
+                classes,
+                endAdornment,
+                EndAdornment: Menu2LinkItemEndAdornment,
+                inset,
+                ownerState: itemOwnerState,
+                startAdornment,
+                StartAdornment: Menu2LinkItemStartAdornment,
+              })}
+            />
+          );
+        }}
         className={mergeMenu2ItemClassName(className, classes, ownerState)}
         style={style}
         {...other}
@@ -219,9 +251,20 @@ Menu2LinkItem.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment: PropTypes.node,
+  /**
    * The URL that the link item points to.
    */
   href: PropTypes.string,
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset: PropTypes.bool,
   /**
    * Overrides the text label to use when the item is matched during keyboard text navigation.
    */
@@ -245,6 +288,10 @@ Menu2LinkItem.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment: PropTypes.node,
   /**
    * Styles applied to the root element.
    */

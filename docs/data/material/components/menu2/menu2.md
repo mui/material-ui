@@ -132,7 +132,9 @@ Pass `closeParentOnEsc` to `MenuSubmenu` to close the whole menu.
 
 ## Icon menu
 
-Compose the same list primitives that you use with the current Menu: `ListItemIcon`, `ListItemText`, and `Typography` for a shortcut hint.
+Use `startAdornment` for an icon and `endAdornment` for a shortcut hint.
+The end adornment uses the secondary text color and moves to the end of the item.
+Set `inset` on an item without a start adornment to align its label with the other labels.
 
 {{"component": "file://./demos/icon/index.ts"}}
 
@@ -324,7 +326,7 @@ The sections below describe the state and visual options for each part.
 ### Item
 
 `MenuItem` renders a styled `<div>` by default.
-A render function receives props and the `highlighted`, `disabled`, `disableGutters`, and `divider` states.
+A render function receives props and the `highlighted`, `disabled`, `disableGutters`, `divider`, and `inset` states.
 For example, wrap the root element in a Tooltip:
 
 ```jsx
@@ -399,7 +401,10 @@ The separator state contains `orientation`, which is `"horizontal"` or `"vertica
 
 `MuiMenu2Popup.styleOverrides` also applies to matching submenu popup slots.
 `MuiMenu2Item.styleOverrides` applies to the default styled item roots, including link, checkbox, and radio items and submenu triggers.
-The `divider` and `gutters` overrides apply when the corresponding state matches.
+It also applies to their `startAdornment` and `endAdornment` slots.
+The `divider`, `gutters`, and `inset` overrides apply when the corresponding state matches.
+The start adornment uses `ListItemIcon`, so `MuiListItemIcon` colors and selectors also apply to it.
+Use `styleOverrides.startAdornment` to change its column width.
 Theme variants are shared too; menu variants apply only to the `root` slot.
 
 Component-specific styles apply after shared styles, with `sx` last; CSS specificity still applies.
