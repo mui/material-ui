@@ -3288,6 +3288,24 @@ describe('<Autocomplete />', () => {
       expect(screen.queryAllByRole('option').length).to.equal(2);
     });
 
+    it('passes the options array to filterOptions without copying it', () => {
+      const options = ['one', 'two', 'three'];
+      const filterOptions = spy((opts) => opts);
+      render(
+        <Autocomplete
+          open
+          options={options}
+          renderInput={(params) => <TextField {...params} />}
+          filterOptions={filterOptions}
+        />,
+      );
+
+      expect(filterOptions.callCount).to.be.greaterThan(0);
+      filterOptions.args.forEach(([filterOptionsArg]) => {
+        expect(filterOptionsArg).to.equal(options);
+      });
+    });
+
     it('does not limit the amount of rendered options when `limit` is not set in `createFilterOptions`', () => {
       const filterOptions = createFilterOptions({});
       render(

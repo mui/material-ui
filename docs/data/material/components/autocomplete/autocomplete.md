@@ -504,6 +504,31 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 {{"component": "file://./demos/virtualize/index.ts"}}
 
+### Expensive options
+
+Every rendered option re-renders when the input value or the selection changes.
+If `renderOption` renders something expensive for each option, such as a `Checkbox`, memoize it so only the options that changed re-render.
+Props passed to the memoized component need to keep the same identity between renders, so define icons and styles outside of `renderOption`.
+
+```jsx
+const MemoCheckbox = React.memo(Checkbox);
+
+<Autocomplete
+  multiple
+  disableCloseOnSelect
+  renderOption={(props, option, { selected }) => {
+    const { key, ...optionProps } = props;
+    return (
+      <li key={key} {...optionProps}>
+        <MemoCheckbox checked={selected} />
+        {option.title}
+      </li>
+    );
+  }}
+  // ...
+/>;
+```
+
 ## Events
 
 If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:

@@ -297,12 +297,7 @@ function useAutocomplete(props) {
   const popupOpen = open && !readOnly;
   const filteredOptions = popupOpen
     ? filterOptions(
-        options.filter((option) => {
-          if (filterSelectedOptions && isOptionSelected(option)) {
-            return false;
-          }
-          return true;
-        }),
+        filterSelectedOptions ? options.filter((option) => !isOptionSelected(option)) : options,
         // we use the empty string to manipulate `filterOptions` to not filter any options
         // i.e. the filter predicate always returns true
         {
