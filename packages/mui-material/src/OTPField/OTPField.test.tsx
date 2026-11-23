@@ -246,7 +246,7 @@ describe('<OTPField />', () => {
       expect(first).toHaveFocus();
     });
 
-    it('uses the accessible name and direction of the rendered group for its inputs', async () => {
+    it('uses the name, description, and direction of the rendered group for its inputs', async () => {
       const { user } = render(
         <React.Fragment>
           <p id="pin-hint">Check your messages.</p>
@@ -264,6 +264,7 @@ describe('<OTPField />', () => {
       );
       const group = screen.getByRole('group', { name: 'PIN' });
       const first = within(group).getByRole('textbox', { name: 'PIN' });
+      expect(group).toHaveAccessibleDescription('Check your messages. Two digits.');
       expect(first).toHaveAccessibleDescription('Check your messages. Two digits.');
       await user.click(first);
       await user.keyboard('{ArrowLeft}');

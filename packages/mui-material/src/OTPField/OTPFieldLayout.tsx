@@ -57,12 +57,9 @@ const RenderElement = React.forwardRef(function RenderElement(
 });
 
 // useRender gives a JSX element's own attributes precedence. Read those when linking the slots.
-function getRenderElementProps(
-  render: OTPFieldProps['render'],
-  slot: React.ElementType | undefined,
-) {
+function getRenderElement(render: OTPFieldProps['render'], slot: React.ElementType | undefined) {
   return !slot && React.isValidElement<React.HTMLAttributes<HTMLElement>>(render)
-    ? render.props
+    ? render
     : undefined;
 }
 
@@ -114,12 +111,12 @@ function OTPFieldLayout({
   const hasLabel = label != null && label !== '' && label !== false;
   const hasHelperText = helperText != null && helperText !== '' && helperText !== false;
   const labelId = hasLabel
-    ? (getRenderElementProps(labelRender, slots?.label)?.id ??
+    ? (getRenderElement(labelRender, slots?.label)?.props.id ??
       labelProps.id ??
       (id && `${id}-label`))
     : undefined;
   const helperId = hasHelperText
-    ? (getRenderElementProps(helperRender, slots?.helperText)?.id ??
+    ? (getRenderElement(helperRender, slots?.helperText)?.props.id ??
       helperProps.id ??
       (id && `${id}-helper-text`))
     : undefined;
@@ -148,7 +145,8 @@ function OTPFieldLayout({
       ? { as: RenderElement, render: groupRender, renderState: baseState }
       : undefined,
   });
-  const groupRenderProps = getRenderElementProps(groupRender, slots?.group);
+  const groupRenderElement = getRenderElement(groupRender, slots?.group);
+  const groupRenderProps = groupRenderElement?.props;
   const ariaLabel = groupRenderProps?.['aria-label'] ?? groupSlotProps['aria-label'];
   // An explicit aria-labelledby wins over aria-label. Use Base UI's inferred label ID
   // only when the consumer hasn't supplied either name.
@@ -168,7 +166,7 @@ function OTPFieldLayout({
   const dir =
     groupRenderProps?.dir ??
     groupSlotProps.dir ??
-    getRenderElementProps(render, slots?.root)?.dir ??
+    getRenderElement(render, slots?.root)?.props.dir ??
     rootProps.dir;
   const themeDirection = isRtl ? 'rtl' : inheritedDirection;
   const direction = dir === 'ltr' || dir === 'rtl' ? dir : themeDirection;
@@ -194,6 +192,11 @@ function OTPFieldLayout({
         <OTPFieldContextProvider value={contextValue}>
           <GroupSlot
             {...groupSlotProps}
+            {...(groupRenderElement &&
+              helperId && {
+                // useRender applies the element's own props last. Keep its description in sync with the inputs.
+                render: React.cloneElement(groupRenderElement, { 'aria-describedby': describedBy }),
+              })}
             role="group"
             aria-labelledby={labelledBy}
             aria-describedby={describedBy}
