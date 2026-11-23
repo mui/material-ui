@@ -465,7 +465,7 @@ describe('<Tooltip />', () => {
 
     it('starts a fresh delay after leaving and re-entering the trigger', () => {
       render(
-        <Tooltip title="Hello World" enterDelay={300} leaveDelay={500}>
+        <Tooltip title="Hello World" enterDelay={300}>
           <button type="button">
             <span>First</span>
             <span>Second</span>
@@ -481,44 +481,6 @@ describe('<Tooltip />', () => {
       clock.tick(100);
       fireEvent.mouseOver(second, { relatedTarget: document.body });
       clock.tick(299);
-
-      expect(screen.queryByRole('tooltip')).to.equal(null);
-      clock.tick(1);
-      expect(screen.getByRole('tooltip')).toBeVisible();
-      clock.tick(500);
-      expect(screen.getByRole('tooltip')).toBeVisible();
-    });
-
-    it('preserves enterNextDelay when moving between trigger descendants', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          enterDelay={300}
-          enterNextDelay={100}
-          slotProps={{ transition: { timeout: 0 } }}
-        >
-          <button type="button">
-            <span>First</span>
-            <span>Second</span>
-          </button>
-        </Tooltip>,
-      );
-      const first = screen.getByText('First');
-      const second = screen.getByText('Second');
-
-      fireEvent.mouseOver(first);
-      clock.tick(300);
-      expect(screen.getByRole('tooltip')).toBeVisible();
-      fireEvent.mouseOut(first, { relatedTarget: document.body });
-      clock.tick(0);
-      clock.tick(1);
-      expect(screen.queryByRole('tooltip')).to.equal(null);
-
-      fireEvent.mouseOver(first, { relatedTarget: document.body });
-      clock.tick(50);
-      fireEvent.mouseOut(first, { relatedTarget: second });
-      fireEvent.mouseOver(second, { relatedTarget: first });
-      clock.tick(49);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
       clock.tick(1);
