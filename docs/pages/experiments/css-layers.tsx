@@ -29,6 +29,7 @@ const RED = 'rgb(255, 0, 0)';
 const GREEN = 'rgb(0, 128, 0)';
 const PRIMARY = 'rgb(25, 118, 210)';
 const LIGHT_GREEN = 'rgb(200, 230, 201)';
+const BLUE = 'rgb(0, 0, 255)';
 
 // `'none'` stands for v9 without layers. The frame takes the styles of the default theme out of
 // `@layer mui`, see `removeMuiLayer()`.
@@ -454,6 +455,16 @@ const SUMMARY: Array<{ id: string; label: React.ReactNode; single: Verdict; sub:
   { id: 'global-css', label: 'Plain CSS class overrides', single: 'intended', sub: 'intended' },
   {
     id: 'global-css',
+    label: (
+      <React.Fragment>
+        <code>sx</code> on top of the app&apos;s own class
+      </React.Fragment>
+    ),
+    single: 'breaking',
+    sub: 'breaking',
+  },
+  {
+    id: 'global-css',
     label: 'Element resets (normalize.css, starter CSS)',
     single: 'breaking',
     sub: 'breaking',
@@ -487,6 +498,26 @@ const SUMMARY: Array<{ id: string; label: React.ReactNode; single: Verdict; sub:
       </React.Fragment>
     ),
     single: 'breaking',
+    sub: 'breaking',
+  },
+  {
+    id: 'third-party-css',
+    label: (
+      <React.Fragment>
+        <code>sx</code> overriding a library&apos;s CSS, with and without <code>!important</code>
+      </React.Fragment>
+    ),
+    single: 'breaking',
+    sub: 'breaking',
+  },
+  {
+    id: 'sub-layers-from-v9',
+    label: (
+      <React.Fragment>
+        Apps that used <code>modularCssLayers</code> in v9
+      </React.Fragment>
+    ),
+    single: 'same',
     sub: 'breaking',
   },
 ];
@@ -587,6 +618,7 @@ const LAYERED_RESET_CSS = [
 function GlobalCssDemo(props: { layers: LayersMode }) {
   const { layers } = props;
   const ref = React.useRef<HTMLButtonElement>(null);
+  const sxRef = React.useRef<HTMLButtonElement>(null);
   return (
     <ThemeProvider theme={themes[layers]}>
       <Button variant="contained" className="my-button" ref={ref}>
@@ -595,6 +627,15 @@ function GlobalCssDemo(props: { layers: LayersMode }) {
       <Computed target={ref} property="paddingTop" v9="6px" />
       <Computed target={ref} property="textTransform" v9="uppercase" />
       <Computed target={ref} property="fontSize" v9="14px" />
+      <Button
+        variant="contained"
+        className="my-button"
+        sx={{ paddingTop: '10px', mt: 1 }}
+        ref={sxRef}
+      >
+        sx on top
+      </Button>
+      <Computed target={sxRef} property="paddingTop" v9="10px" />
     </ThemeProvider>
   );
 }
@@ -698,6 +739,61 @@ function WrappedStyledDemo(props: { layers: LayersMode }) {
   );
 }
 
+// A library's CSS, loaded before Material UI, and the app's overrides written with `sx`.
+const VENDOR_RULES = [
+  '.vendor-day { color: rgb(0, 0, 255); }',
+  '.vendor-day.is-selected { color: rgb(0, 0, 255) !important; }',
+];
+const VENDOR_CSS = ['/* vendor.css */', ...VENDOR_RULES].join('\n');
+const LAYERED_VENDOR_CSS = [
+  '@layer vendor, mui;',
+  '@layer vendor {',
+  ...VENDOR_RULES.map((rule) => `  ${rule}`),
+  '}',
+].join('\n');
+
+function VendorDemo(props: { layers: LayersMode }) {
+  const { layers } = props;
+  const plainRef = React.useRef<HTMLDivElement>(null);
+  const importantRef = React.useRef<HTMLDivElement>(null);
+  return (
+    <ThemeProvider theme={themes[layers]}>
+      <Box className="vendor-day" ref={plainRef} sx={{ color: RED }}>
+        sx override
+      </Box>
+      <Computed target={plainRef} property="color" v9={RED} />
+      <Box
+        className="vendor-day is-selected"
+        ref={importantRef}
+        sx={{ color: `${RED} !important` }}
+      >
+        sx override with !important
+      </Box>
+      <Computed target={importantRef} property="color" v9={BLUE} />
+    </ThemeProvider>
+  );
+}
+
+// v9's `useLayerOrder` put the sub-layer order at the start of `<head>`. The v9 frames below put
+// the same statement first in their CSS.
+const V9_SUB_LAYER_ORDER = '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;';
+const V9_STRING_ORDER =
+  '@layer theme, base, mui.global, mui.components, mui.theme, mui.custom, mui.sx, components, utilities;';
+const RESET_LAYER_CSS = ['@layer reset {', '  button { text-transform: none; }', '}'].join('\n');
+
+function SubLayersResetDemo() {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return (
+    <ThemeProvider theme={subLayersTheme}>
+      <Button variant="contained" ref={ref}>
+        Contained
+      </Button>
+      <Computed target={ref} property="textTransform" v9="none" />
+      <LayerNames target={ref} />
+    </ThemeProvider>
+  );
+}
+
 const CustomButton = styled(Button)({ paddingTop: '3px' });
 
 function NoThemeProviderDemo() {
@@ -756,14 +852,15 @@ export default function CssLayers() {
           production mode, so that this page&apos;s styles and layer order don&apos;t change the
           results. The v9 frames take Material UI&apos;s styles out of <code>@layer mui</code>,
           which gives the CSS that v9 generated. With sub-layers, the layer order goes with each
-          frame&apos;s styles, as on a page.
+          frame&apos;s styles, as on a page. The frames render on the client only, so they
+          don&apos;t show server rendering or hydration, which were checked in Next.js apps.
         </Typography>
         <Typography variant="body2" sx={{ mb: 3, maxWidth: 800, color: 'text.secondary' }}>
           The verdicts compare to v9 without layers. The Tailwind CSS cases compare to the setup
           from v9&apos;s docs, which used <code>enableCssLayer</code>, so their v9 frames keep the{' '}
           <code>mui</code> layer. Apps that already used <code>enableCssLayer</code> in v9 get the
-          single layer they had, and apps that used <code>modularCssLayers: true</code> get the same
-          sub-layers.
+          single layer they had. Apps that used <code>modularCssLayers</code> get the same
+          sub-layers, but <code>mui</code> now goes where their CSS puts it (case 8).
         </Typography>
         <Typography variant="body2" sx={{ mb: 3, maxWidth: 800, color: 'text.secondary' }}>
           <strong>Same as v9:</strong> nothing changes. <strong>Intended:</strong> the result
@@ -824,6 +921,11 @@ export default function CssLayers() {
             <React.Fragment>
               <ForApps verdict="intended" who="Class overrides, both">
                 <code>.my-button</code> wins without specificity tricks or <code>injectFirst</code>.
+              </ForApps>
+              <ForApps verdict="breaking" who="sx on top of an app class, both">
+                The second Button adds <code>sx</code> on top of <code>.my-button</code>. In v9,{' '}
+                <code>sx</code> won because Emotion inserted it later. Now the unlayered class wins
+                over <code>sx</code>, so tweaks written with <code>sx</code> no longer apply.
               </ForApps>
               <ForApps verdict="breaking" who="Element resets, both">
                 Resets from normalize.css, a CSS framework or a starter template&apos;s{' '}
@@ -1013,13 +1115,113 @@ export default function CssLayers() {
           </Frame>
         </Scenario>
 
+        <Scenario
+          id="third-party-css"
+          title="7. sx overriding a library's CSS"
+          description={
+            <React.Fragment>
+              A library&apos;s stylesheet loads before Material UI, and the app overrides its color
+              with <code>sx</code>, once plainly and once with <code>!important</code> against the
+              library&apos;s own <code>!important</code>. Styles written with Material UI are in the{' '}
+              <code>mui</code> layer too, so the library&apos;s unlayered CSS beats them, and{' '}
+              <code>!important</code> ranks layers in reverse.
+              <CssBlock>{VENDOR_CSS}</CssBlock>
+            </React.Fragment>
+          }
+          verdicts={
+            <ForApps verdict="breaking" who="Both">
+              The library&apos;s color wins over the plain <code>sx</code> override, and the{' '}
+              <code>sx</code> override with <code>!important</code> now wins over the library&apos;s
+              more specific <code>!important</code>. Importing the library&apos;s CSS into a layer
+              declared before <code>mui</code>, as the upgrade guide shows, gives the v9 results
+              back.
+            </ForApps>
+          }
+        >
+          {SETUPS.map((setup) => (
+            <Frame
+              key={setup.title}
+              title={setup.title}
+              css={VENDOR_CSS}
+              unlayered={setup.layers === 'none'}
+              baseline={setup.baseline}
+            >
+              <VendorDemo layers={setup.layers} />
+            </Frame>
+          ))}
+          <Frame title="Single layer + library in @layer vendor" css={LAYERED_VENDOR_CSS}>
+            <VendorDemo layers="single" />
+          </Frame>
+        </Scenario>
+
+        <Scenario
+          id="sub-layers-from-v9"
+          title="8. Apps that used modularCssLayers in v9"
+          description={
+            <React.Fragment>
+              v9&apos;s <code>ThemeProvider</code> put the sub-layer order at the start of{' '}
+              <code>&lt;head&gt;</code>, so <code>mui</code> came before the app&apos;s layers. Now
+              the order goes with Material UI&apos;s other styles, and <code>mui</code> takes its
+              place as with the single layer, the same on the server and after hydration. The v9
+              frames put v9&apos;s statement first in their CSS. The first three frames use Tailwind
+              CSS with the order only in the <code>modularCssLayers</code> string, and the last
+              three a reset in a layer that the app&apos;s CSS doesn&apos;t order.
+              <CssBlock>{RESET_LAYER_CSS}</CssBlock>
+            </React.Fragment>
+          }
+          verdicts={
+            <React.Fragment>
+              <ForApps verdict="breaking" who="Order string only">
+                <code>mui</code> comes after <code>utilities</code>, so <code>pt-px</code> no longer
+                applies. Declaring the order at the top of the CSS file, as the upgrade guide shows,
+                restores it.
+              </ForApps>
+              <ForApps verdict="breaking" who="Layers the CSS doesn't order">
+                <code>mui</code> is no longer the lowest layer, so the reset now stays below
+                Material UI, as with the single layer. Declaring <code>@layer mui, reset;</code>{' '}
+                keeps the v9 result.
+              </ForApps>
+            </React.Fragment>
+          }
+        >
+          <Frame
+            title="v9: string order first in <head>"
+            css={[V9_STRING_ORDER, TAILWIND_OUTPUT].join('\n')}
+            baseline
+          >
+            <TailwindDemo theme={modularStringTheme} />
+          </Frame>
+          <Frame title="modularCssLayers string only" css={TAILWIND_OUTPUT}>
+            <TailwindDemo theme={modularStringTheme} />
+          </Frame>
+          <Frame title="String + order at the top of the CSS file" css={TAILWIND_CSS}>
+            <TailwindDemo theme={modularStringTheme} />
+          </Frame>
+          <Frame
+            title="v9: sub-layer order first in <head>"
+            css={[V9_SUB_LAYER_ORDER, RESET_LAYER_CSS].join('\n')}
+            baseline
+          >
+            <SubLayersResetDemo />
+          </Frame>
+          <Frame title="modularCssLayers: true" css={RESET_LAYER_CSS}>
+            <SubLayersResetDemo />
+          </Frame>
+          <Frame
+            title="@layer mui, reset; in the CSS"
+            css={['@layer mui, reset;', RESET_LAYER_CSS].join('\n')}
+          >
+            <SubLayersResetDemo />
+          </Frame>
+        </Scenario>
+
         <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
           Implementation checks
         </Typography>
 
         <Scenario
           id="wrapped-styled"
-          title="7. styled() around a styled component"
+          title="9. styled() around a styled component"
           description={
             <React.Fragment>
               Emotion puts the wrapped component&apos;s styles first, in the same class. In v9, the
@@ -1046,7 +1248,7 @@ export default function CssLayers() {
 
         <Scenario
           id="no-create-theme"
-          title="8. Without createTheme()"
+          title="10. Without createTheme()"
           description={
             <React.Fragment>
               Components without a <code>ThemeProvider</code> get the default theme, and a theme
