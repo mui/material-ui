@@ -162,15 +162,21 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
           },
         },
       },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
+      {
+        props: { edge: 'start' },
+        style: { marginLeft: `calc((${iconSize} - ${touchTarget}) / 2)` },
+      },
       {
         props: { edge: 'start', size: 'small' },
-        style: { marginLeft: `calc(${smallTargetBox} / -8)` },
+        style: { marginLeft: `calc((${iconSmall} - ${smallTargetBox}) / 2)` },
       },
-      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
+      {
+        props: { edge: 'end' },
+        style: { marginRight: `calc((${iconSize} - ${touchTarget}) / 2)` },
+      },
       {
         props: { edge: 'end', size: 'small' },
-        style: { marginRight: `calc(${smallTargetBox} / -8)` },
+        style: { marginRight: `calc((${iconSmall} - ${smallTargetBox}) / 2)` },
       },
     ],
   };
@@ -313,8 +319,30 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
         props: { size: 'large' },
         style: { fontSize: iconLarge, minWidth: largeBox, minHeight: largeBox },
       },
-      { props: { edge: 'start' }, style: { marginLeft: `calc(${touchTarget} / -4)` } },
-      { props: { edge: 'end' }, style: { marginRight: `calc(${touchTarget} / -4)` } },
+      {
+        props: { edge: 'start' },
+        style: { marginLeft: `calc((${iconSize} - ${touchTarget}) / 2)` },
+      },
+      {
+        props: { edge: 'end' },
+        style: { marginRight: `calc((${iconSize} - ${touchTarget}) / 2)` },
+      },
+      {
+        props: { edge: 'start', size: 'small' },
+        style: { marginLeft: `calc((${iconSize} - ${smallBox}) / 2)` },
+      },
+      {
+        props: { edge: 'end', size: 'small' },
+        style: { marginRight: `calc((${iconSize} - ${smallBox}) / 2)` },
+      },
+      {
+        props: { edge: 'start', size: 'large' },
+        style: { marginLeft: `calc((${iconSize} - ${largeBox}) / 2)` },
+      },
+      {
+        props: { edge: 'end', size: 'large' },
+        style: { marginRight: `calc((${iconSize} - ${largeBox}) / 2)` },
+      },
     ],
   });
   addStyleOverride(enhanced.components, 'MuiButtonGroup', 'root', {

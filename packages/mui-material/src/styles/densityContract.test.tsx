@@ -622,7 +622,7 @@ describe.skipIf(isJsdom())('density contract', () => {
             outlined: { margin: [margin, 0, margin, 0], tapHeight: borderedTap, spansWidth: true },
             icon: { margin: [margin, margin, margin, margin], tap: { width: tap, height: tap } },
             edgeStart: {
-              margin: [margin, margin, margin, -density.touchTarget / 4],
+              margin: [margin, margin, margin, (density.iconSize - small) / 2],
               tap: { width: tap, height: tap },
             },
           });
@@ -1492,6 +1492,51 @@ describe.skipIf(isJsdom())('density contract', () => {
     });
 
     DENSITIES.forEach((density) => {
+      test(`${density.id}: an edge control pulls its icon onto the container edge`, () => {
+        const controls: Record<string, (edge: 'start' | 'end') => React.ReactNode> = {
+          'IconButton small': (edge) => (
+            <IconButton size="small" edge={edge}>
+              <AddIcon />
+            </IconButton>
+          ),
+          'IconButton medium': (edge) => (
+            <IconButton edge={edge}>
+              <AddIcon />
+            </IconButton>
+          ),
+          'IconButton large': (edge) => (
+            <IconButton size="large" edge={edge}>
+              <AddIcon />
+            </IconButton>
+          ),
+          'Checkbox small': (edge) => <Checkbox size="small" edge={edge} />,
+          'Checkbox medium': (edge) => <Checkbox edge={edge} />,
+          'Radio small': (edge) => <Radio size="small" edge={edge} />,
+          'Radio medium': (edge) => <Radio edge={edge} />,
+        };
+        const names = Object.keys(controls).flatMap((name) => [`${name} start`, `${name} end`]);
+        const edgeOf = (name: string) => (name.endsWith(' start') ? 'start' : 'end');
+        renderIn(
+          THEMES[density.id],
+          cases(
+            byName(names, (name) => (
+              <div style={{ display: 'flex', justifyContent: `flex-${edgeOf(name)}` }}>
+                {controls[name.replace(/ (start|end)$/, '')](edgeOf(name))}
+              </div>
+            )),
+          ),
+        );
+        expect(
+          byName(names, (name) => {
+            const container = inCase(name).getBoundingClientRect();
+            const icon = rect('svg', inCase(name));
+            return drift(
+              edgeOf(name) === 'start' ? icon.left - container.left : container.right - icon.right,
+            );
+          }),
+        ).to.deep.equal(byName(names, () => 0));
+      });
+
       test(`${density.id}: a Checkbox label pulls the glyph onto the container edge`, () => {
         renderIn(
           THEMES[density.id],
