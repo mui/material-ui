@@ -465,7 +465,7 @@ Tested by: unit `Radio.test.js`
 ## Scope and test environment
 
 - **Standard.** WCAG 2.2, Level A and AA.
-- **Component version.** `@mui/material` 9.5.0.
+- **Component version.** `@mui/material` 9.6.0.
 
 <!-- scope:start -->
 
