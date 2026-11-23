@@ -1069,34 +1069,8 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
       },
     ],
   });
-  const { values: breakpointValues, unit: breakpointUnit } = enhanced.breakpoints;
-  const xsDialogCap = Math.max(breakpointValues.xs, 444);
-  const dialogCaps = Object.keys(breakpointValues).map((maxWidth) => {
-    if (maxWidth === 'xs') {
-      return {
-        maxWidth,
-        width: xsDialogCap,
-        cap:
-          breakpointUnit === 'px'
-            ? `${xsDialogCap}px`
-            : `max(${breakpointValues.xs}${breakpointUnit}, 444px)`,
-      };
-    }
-    const width = breakpointValues[maxWidth as Breakpoint];
-    return { maxWidth, width, cap: `${width}${breakpointUnit}` };
-  });
-  const dialogShrinkBand = Math.max(2 * enhanced.unstable_densityScale.spacing.large, 64);
   addStyleOverride(enhanced.components, 'MuiDialog', 'paper', {
     '--_dialogMargin': spacing('large'),
-    variants: dialogCaps.map(({ maxWidth, width, cap }) => ({
-      props: ({ ownerState }: { ownerState: Record<string, unknown> }) =>
-        ownerState.scroll === 'body' && ownerState.maxWidth === maxWidth && !ownerState.fullScreen,
-      style: {
-        [enhanced.breakpoints.down(width + dialogShrinkBand)]: {
-          maxWidth: `min(${cap}, calc(100% - 2*var(--_dialogMargin)))`,
-        },
-      },
-    })),
   });
   addStyleOverride(enhanced.components, 'MuiList', 'root', {
     '&:where([role="menu"], [role="listbox"])': { '--_subheaderInline': spacing('xSmall') },

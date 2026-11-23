@@ -232,6 +232,8 @@ A control's height must fit one line of its text plus padding. With the default 
 
 The scale is a closed set of seven steps, plus the two sizings. The values must be numbers, which are interpreted as pixels. Anything left out keeps its default value.
 
+The `large` step sets the Dialog margin. A Dialog with `scroll="body"` still makes room for a 32px margin on narrow screens, so a `large` step above 32px makes that Dialog wider than the screen.
+
 Pass the scale on the first call. Calling `enhanceDensity` on a theme that is already enhanced logs an error in development and returns that theme unchanged.
 
 The numbers the theme ended up with are readable as `theme.unstable_densityScale` (`spacing`, `touchTarget`, `iconSize`), for code that derives sizes in JavaScript rather than CSS.
