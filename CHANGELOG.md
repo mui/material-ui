@@ -1,5 +1,126 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.6.0
+
+<!-- generated comparing v9.5.0..v9.x -->
+
+_Nov 23, 2026_
+
+A big thanks to the 37 contributors who made this release possible. Here are some highlights ✨:
+
+- 📐 Apply consistent, adjustable sizing across components with the experimental [`unstable_enhanceDensity`](https://mui.com/material-ui/experimental-api/enhance-density/) theme enhancer.
+- 🎯 Customize [focus visible](https://mui.com/material-ui/customization/focus-visible/) further with `focusVisible.insetOverrides` and `theme.applyFocusVisible`.
+- 🌐 Add the Uzbek (uz-UZ) locale.
+
+### `@mui/material@9.6.0`
+
+- Add `focusVisible.insetOverrides` and `theme.applyFocusVisible` (#49849) @siriwatknp
+- Fix `theme.vars` types for zIndex, opacity and action opacities (#49498) @drakeo338
+- Fix palette colors added in a second `createTheme()` call with CSS theme variables (#49829) @aarongarciah
+- Render the `theme.focusVisible` ring on inputs (#49495) @siriwatknp
+- [accordion] Inherit font in AccordionSummary (#49608) @siriwatknp
+- [autocomplete] Complete automatically highlighted options inline (#49457) @dvd233
+- [autocomplete] Fix `onInputChange` event and reason types (#49681) @sadatsajid
+- [autocomplete] Fix `React.ComponentProps<typeof Autocomplete>` spread type error (#49501) @LukasTy
+- [autocomplete] Fix TypeScript performance when using `slotProps` (#49720) @devbite-enzo
+- [autocomplete] Respect `readOnly` when clearing on Escape (#49857) @Marve10s
+- [autocomplete] Scroll highlighted option into view when options use CSS transform (#49781) @pavstev
+- [buttonbase] Let handlers set `defaultMuiPrevented` to skip built-in keyboard handling for the event (#49859) @silviuaavram
+- [buttongroup] Fix children remounting when siblings are added, removed or reordered (#49655) @sai6855
+- [chip] Improve default avatar text contrast (#49678) @iBreaker
+- [chip] Prevent keyboard deletion when disabled (#49606) @Marve10s
+- [focustrap] Keep focus on the last focused element when effects re-run (#49820) @LukasTy
+- [focustrap] Keep trap active after descendant focus (#49621) @Aditya-myst
+- [grid] Accept readonly arrays for responsive props (#49619) @Marve10s
+- [inputbase] Fix "Maximum update depth exceeded" error with a start adornment (#49811) @leshaduduk
+- [inputbase] Inject the autofill keyframes with the input styles (#49776) @Janpot
+- [l10n] Add Uzbek (uz-UZ) locale (#49869) @XakimovNosirbek
+- [menu] Fix MenuItem `autoFocus` and React 17 bugs (#49767) @LukasTy
+- [menulist] Fix infinite loop on ArrowUp when no item is focusable (#49478) @Dev-next-gen
+- [nativeselect] Remove the unused `iconOpen` class (#49587) @dualfroz
+- [popover] Respect `marginThreshold={null}` at the right edge (#49822) @Marve10s
+- [popper] Fix "Maximum update depth exceeded" error with React 19 (#49810) @leshaduduk
+- [select] Fix matching option values of a different type on click and autofill (#49588) @kkatalz
+- [select] Match theme variants on size for the icon and select slots (#49855) @Marve10s
+- [slider] Fix keyboard steps producing floating-point values (#49528) @kkatalz
+- [slider] Fix `onChangeCommitted` reporting a stale value (#49661) @kkatalz
+- [slider] Fix thumb lagging behind the pointer while dragging (#49545) @shivenaggarwal
+- [slider] Keep the decimals of a non-integer `min` when snapping to the step (#49726) @b84330808
+- [swipeabledrawer] Fix swipe gestures inside shadow DOM (#49787) @Ganeshguru5
+- [tablecell] Fix translucent border with `nativeColor` (#49748) @lazerg
+- [tablepagination] Fix the focus ring on the rows-per-page select and page buttons (#49596) @siriwatknp
+- [tabs] Fix indicator position and size when an ancestor is scaled (#49461) @maricastroc
+- [textfield] Fix outline gap without a label in Firefox (#49579) @dualfroz
+- [theme] Add `unstable_enhanceDensity` (#49870) @siriwatknp
+- [tooltip] Keep popper lifecycle handlers when `slotProps.transition` sets `onEnter` or `onExited` (#49790) @Marve10s
+
+### `@mui/system@9.6.0`
+
+- Fix named container queries (#49657) @b84330808
+- Fix `resolveBreakpointValues` return type for scalar values (#49682) @lazerg
+- Keep the alpha of `color()` colors in the color manipulators (#49744) @b84330808
+- Keep the unit of container query sizes (#49772) @b84330808
+- Set the CSP nonce on style tags created at runtime (#49602) @aarongarciah
+
+### `@mui/utils@9.6.0`
+
+- Fix roving tab index leaving no tab stop when the requested last item is disabled (#49769) @kkatalz
+
+### `@mui/styled-engine@9.6.0`
+
+- Preserve prop filtering for styled wrappers in `@mui/styled-engine` and `@mui/styled-engine-sc` (#49656) @Marve10s
+
+### `@mui/styled-engine-sc@9.6.0`
+
+- Preserve independent `sx` with styled-components (#49819) @henricop
+
+### `@mui/private-theming@9.6.0`
+
+- Remove the nested theme marker (#49613) @Marve10s
+
+### `@mui/codemod@9.6.0`
+
+- Fix CLI crash with yargs 18 (#49643) @jeltehomminga
+- Fix `v5.0.0/top-level-imports` and `v5.0.0/path-imports` outside the package (#49760) @LukasTy
+- [grid] Keep JSX spreads when removing Grid `item` and `zeroMinWidth` (#49789) @Marve10s
+
+### Docs
+
+- Clarify Transfer List is a composition example (#49686) @canakyuz
+- Fix implicit `any` in crud-dashboard `useDialogs` under typescript@next (#49824) @LukasTy
+- Replace deprecated APIs in documentation (#49463) @brijeshb42
+- [autocomplete] Document how to keep option types with `styled()` (#49532) @mitulkheni
+- [autocomplete][lists] Fix a11y and keyboard scrolling in react-window virtualization demos (#49667) @github-actions[bot]
+- [drawer] Document `allowSwipeInChildren` for interactive swipeable edges (#49404) @LanguidSquid
+- [examples] Add Next.js App Router + Tailwind CSS v4 example (#49662) @joelng25
+- [examples] Use stable MUI releases in v9 Next.js Tailwind example (#49664) @sai6855
+- [material-icons] Make outline-only icons searchable (#49699) @iBreaker
+- [material-ui] Fix the Pages Router setup in the CSS layers guide (#49605) @aarongarciah
+- [radio] Use fieldset and legend for radio group labels (#49791) @maksimgm
+- [stepper] Don't focus the vertical stepper's Continue button on mount (#49851) @aarongarciah
+- [textfield] Apply visible theme overrides in dark mode (#49782) @silviuaavram
+- [textfield] Document the autofill `box-shadow` theme token (#49700) @Seybel
+
+### Core
+
+- [code-infra] Bump Next.js to 16.4.3 (#49618) @Janpot
+- [code-infra] Enable consistent type imports (#49609) @Janpot
+- [code-infra] Fail API docs generation on undocumented props, slots, and classes (#49770) @Janpot
+- [code-infra] Run React 17 tests nightly (#49823) @LukasTy
+- [core] Document and test the TypeScript 5 support policy (#49465) @LukasTy
+- [docs-infra] Make inline code follow its context (#49616) @Janpot
+- [docs-infra] Space only a link's own trailing icon (#49817) @aarongarciah
+- [infra] Remove `engines.node` from UI packages (#49466) @Janpot
+- [test] Add render benchmarks (#49541) @Janpot
+- [test] Re-enable Firefox scroll tests fixed in Vitest 5 (#49677) @ZeeshanTamboli
+- [test] Retry e2e-website tests on CI (#49645) @LukasTy
+- [test] Run the visual regression browser in headless mode (#49768) @LukasTy
+- [test][circularprogress] Add axe tests and WCAG conformance report (#49520) @rohits2501
+- [test][l10n] Test locales through the theme (#49808) @maksimgm
+- [test][pagination] Test ellipses with zero boundary and sibling counts (#49595) @lprnmns
+
+All contributors of this release in alphabetical order: @aarongarciah, @Aditya-myst, @b84330808, @brijeshb42, @canakyuz, @Dev-next-gen, @devbite-enzo, @drakeo338, @dualfroz, @dvd233, @Ganeshguru5, @github-actions[bot], @henricop, @iBreaker, @Janpot, @jeltehomminga, @joelng25, @kkatalz, @LanguidSquid, @lazerg, @leshaduduk, @lprnmns, @LukasTy, @maksimgm, @maricastroc, @Marve10s, @mitulkheni, @pavstev, @rohits2501, @sadatsajid, @sai6855, @Seybel, @shivenaggarwal, @silviuaavram, @siriwatknp, @XakimovNosirbek, @ZeeshanTamboli
+
 ## 9.5.0
 
 <!-- generated comparing v9.4.0..v9.x -->
