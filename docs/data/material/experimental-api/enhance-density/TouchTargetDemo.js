@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   createTheme,
   unstable_enhanceDensity as enhanceDensity,
@@ -18,8 +19,7 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 import InboxIcon from '@mui/icons-material/Inbox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import StarIcon from '@mui/icons-material/Star';
-import type { Claim } from '../../densityAnnotations';
-import { Annotate, useClaims } from '../../densityAnnotations';
+import { Annotate, useClaims } from './densityAnnotations';
 
 const TOUCH_STEPS = [32, 36, 40, 44];
 const ICON_STEPS = [12, 14, 16, 20, 24];
@@ -31,7 +31,7 @@ const ITEMS = [
   { label: 'Settings', icon: <SettingsIcon /> },
 ];
 
-const CLAIMS: Claim[] = [
+const CLAIMS = [
   {
     on: '.MuiListItemButton-root',
     aspect: 'touch-target',
@@ -46,17 +46,7 @@ const CLAIMS: Claim[] = [
   },
 ];
 
-function Knob({
-  label,
-  value,
-  steps,
-  onChange,
-}: {
-  label: string;
-  value: number;
-  steps: number[];
-  onChange: (next: number) => void;
-}) {
+function Knob({ label, value, steps, onChange }) {
   return (
     <Box sx={{ px: 3, py: 1.5 }}>
       <Typography variant="body2" sx={{ mb: 0.5 }}>
@@ -64,7 +54,7 @@ function Knob({
       </Typography>
       <Slider
         value={value}
-        onChange={(event, next) => onChange(next as number)}
+        onChange={(event, next) => onChange(next)}
         step={null}
         min={steps[0]}
         max={steps[steps.length - 1]}
@@ -76,8 +66,15 @@ function Knob({
   );
 }
 
-const themes = new Map<string, ReturnType<typeof enhanceDensity>>();
-function themeFor(touchTarget: number, iconSize: number) {
+Knob.propTypes = {
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  steps: PropTypes.arrayOf(PropTypes.number).isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+const themes = new Map();
+function themeFor(touchTarget, iconSize) {
   const key = `${touchTarget}:${iconSize}`;
   let theme = themes.get(key);
   if (!theme) {
@@ -97,8 +94,8 @@ export default function TouchTargetDemo() {
   // @focus-start @padding 1
   const [touchTarget, setTouchTarget] = React.useState(32);
   const [iconSize, setIconTarget] = React.useState(16);
-  const stageRef = React.useRef<HTMLDivElement>(null);
-  const demoRef = React.useRef<HTMLDivElement>(null);
+  const stageRef = React.useRef(null);
+  const demoRef = React.useRef(null);
   const state = useClaims(stageRef, demoRef, CLAIMS);
 
   const theme = React.useMemo(
@@ -154,5 +151,6 @@ export default function TouchTargetDemo() {
       </Box>
     </Paper>
   );
+
   // @focus-end
 }

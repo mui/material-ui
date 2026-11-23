@@ -22,12 +22,11 @@ import {
   DENSITY_TARGETS,
   DENSITY_THEME,
   useClaims,
-} from '../../densityAnnotations';
-import { annotationsFor } from '../../densityAnnotationSpecs';
-import type { Control, ControlValue } from '../../densityComponents';
-import { COMPONENT_NAMES, DENSITY_COMPONENTS } from '../../densityComponents';
+} from './densityAnnotations';
+import { annotationsFor } from './densityAnnotationSpecs';
+import { COMPONENT_NAMES, DENSITY_COMPONENTS } from './densityComponents';
 
-const NO_CONTROLS: Control[] = [];
+const NO_CONTROLS = [];
 
 const SCALE_GROUPS = [
   Object.entries(DENSITY_SCALE),
@@ -35,7 +34,7 @@ const SCALE_GROUPS = [
 ];
 
 function ScaleLegend() {
-  const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);
+  const [anchor, setAnchor] = React.useState(null);
   return (
     <React.Fragment>
       <IconButton
@@ -90,17 +89,15 @@ function ScaleLegend() {
 export default function AllComponentsDemo() {
   // @focus-start @padding 1
   const [component, setComponent] = React.useState(COMPONENT_NAMES[0]);
-  const [byComponent, setByComponent] = React.useState<
-    Record<string, Record<string, ControlValue>>
-  >({});
-  const [hidden, setHidden] = React.useState<Record<string, string[]>>({});
-  const stageRef = React.useRef<HTMLDivElement>(null);
-  const demoRef = React.useRef<HTMLDivElement>(null);
+  const [byComponent, setByComponent] = React.useState({});
+  const [hidden, setHidden] = React.useState({});
+  const stageRef = React.useRef(null);
+  const demoRef = React.useRef(null);
 
   const spec = DENSITY_COMPONENTS[component];
   const controls = spec.controls ?? NO_CONTROLS;
   const values = React.useMemo(() => {
-    const initial: Record<string, ControlValue> = {};
+    const initial = {};
     controls.forEach((control) => {
       initial[control.prop] = control.initial;
     });
@@ -123,7 +120,7 @@ export default function AllComponentsDemo() {
   );
   const resolved = useClaims(stageRef, demoRef, shown);
 
-  const toggle = (slot: string) =>
+  const toggle = (slot) =>
     setHidden((previous) => {
       const current = previous[component] ?? [];
       return {
@@ -134,7 +131,7 @@ export default function AllComponentsDemo() {
       };
     });
 
-  const setValue = (prop: string, next: ControlValue) =>
+  const setValue = (prop, next) =>
     setByComponent((previous) => ({
       ...previous,
       [component]: { ...previous[component], [prop]: next },
@@ -174,7 +171,7 @@ export default function AllComponentsDemo() {
               select
               size="small"
               label={control.prop}
-              value={values[control.prop] as string}
+              value={values[control.prop]}
               onChange={(event) => setValue(control.prop, event.target.value)}
               sx={{ minWidth: 140 }}
             >
@@ -271,5 +268,6 @@ export default function AllComponentsDemo() {
       </Box>
     </Paper>
   );
+
   // @focus-end
 }

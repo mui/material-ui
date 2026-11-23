@@ -12,10 +12,10 @@ import Switch from '@mui/material/Switch';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
-import densityRecipes from '../../densityRecipes';
-import recipeUis from '../../recipeUis';
-import type { Claim } from '../../densityAnnotations';
-import { Annotate, useClaims } from '../../densityAnnotations';
+import densityRecipes from './densityRecipes';
+import recipeUis from './recipeUis';
+import type { Claim } from './densityAnnotations';
+import { Annotate, useClaims } from './densityAnnotations';
 
 const colorSchemes = { light: true, dark: true };
 
