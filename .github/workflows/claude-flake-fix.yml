@@ -28,9 +28,10 @@ jobs:
       contents: write # push the fix branch (publish job)
       pull-requests: write # open the draft PR (publish job)
       issues: write # tracking issue report (publish job)
-    uses: mui/mui-public/.github/workflows/claude-flake-fix-workflow.yml@d8dbf9990bf4e33fc33bcb6f9fa692c54e4cfb4b # master
+    uses: mui/mui-public/.github/workflows/claude-flake-fix-workflow.yml@5fabbb1428f3c28e07f7ae4cbe6eb73ecdd55a59 # mui/mui-public#2108 (e2e test, do not merge)
     with:
-      dry-run: ${{ inputs.dry-run || false }}
+      dry-run: true # e2e test: never post
+      branch: flake-fix-e2e-base # material-ui just before #49879, so both failures are still unfixed
       model: ${{ inputs.model }} # blank falls through to mui-public's central default
       debug: true # always surface the agent's full output in the run log
       circleci-token-environment: flake-fix # master-gated environment holding CIRCLECI_TOKEN
