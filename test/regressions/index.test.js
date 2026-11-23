@@ -318,6 +318,7 @@ async function main() {
       test('should handle focus-visible correctly', async ({ pooled }) => {
         const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/FocusVisibleRating');
+        await startTabNavigationAt(testcase);
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
           testcase,
@@ -333,6 +334,7 @@ async function main() {
       test('should handle focus-visible with precise ratings correctly', async ({ pooled }) => {
         const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/PreciseFocusVisibleRating');
+        await startTabNavigationAt(testcase);
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
           testcase,
@@ -735,6 +737,27 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
 }
 
 /**
+ * Makes the next Tab move focus to the first tab stop in `elm`.
+ *
+ * Tab moves from the sequential focus navigation starting point, and pooled
+ * pages keep it between tests along with the rest of the document. An earlier
+ * test can leave it after the fixtures: the devtools test clicks "Hide
+ * devtools", which is then removed, and the next Tab moves focus out of the
+ * page. Focusing an element moves the starting point to it, so focus `elm`
+ * and blur it again. This also blurs whatever an earlier test left focused.
+ *
+ * @param {import('@playwright/test').ElementHandle} elm
+ */
+async function startTabNavigationAt(elm) {
+  await elm.evaluate((element) => {
+    element.setAttribute('tabindex', '-1');
+    element.focus({ preventScroll: true });
+    element.blur();
+    element.removeAttribute('tabindex');
+  });
+}
+
+/**
  * Registers 2.4.7 Focus Visible, which axe has no rule for and jsdom cannot
  * answer: several components carry a `skipIf(isJsdom())` unit test for it that
  * therefore never runs.
@@ -810,6 +833,7 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
         throw new Error(`${component}: no element matched ${selector} on ${route}`);
       }
 
+      await startTabNavigationAt(testcase);
       const unfocused = await shotAround(page, handle);
       if (!(await tabTo(page, selector, maxTabs))) {
         throw new Error(`${component}: could not reach ${selector} with the Tab key`);
