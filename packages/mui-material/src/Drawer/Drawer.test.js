@@ -461,6 +461,22 @@ describe('<Drawer />', () => {
     });
   });
 
+  describe('prop: slotProps.root', () => {
+    it('should forward props to the Modal', () => {
+      render(
+        <Drawer
+          open={false}
+          slotProps={{ root: { keepMounted: true, 'data-testid': 'drawer-root' } }}
+        >
+          <div data-testid="content" />
+        </Drawer>,
+      );
+
+      expect(screen.getByTestId('drawer-root')).to.have.class(modalClasses.root);
+      expect(screen.getByTestId('content')).not.to.equal(null);
+    });
+  });
+
   describe('slide direction', () => {
     it('should return the opposing slide direction', () => {
       const MockedSlide = React.forwardRef(function MockedSlide(props, ref) {
