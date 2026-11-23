@@ -36,6 +36,7 @@
     "onValueComplete": { "type": { "name": "func" } },
     "onValueInvalid": { "type": { "name": "func" } },
     "readOnly": { "type": { "name": "bool" } },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "required": { "type": { "name": "bool" } },
     "size": {
       "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
@@ -115,8 +116,9 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": null,
+  "themeDefaultProps": true,
   "muiName": "MuiOTPField",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/OTPField/OTPField.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-otp-field/\">OTP Field</a></li></ul>"

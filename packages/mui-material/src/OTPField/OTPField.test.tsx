@@ -3,10 +3,26 @@ import { describe, expect, it } from 'vitest';
 import { Field } from '@base-ui/react/field';
 import { createRenderer, isJsdom, screen, within } from '@mui/internal-test-utils';
 import { formLabelClasses } from '@mui/material/FormLabel';
-import OTPField, { OTPFieldInput, otpFieldClasses as classes } from '@mui/material/OTPField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import type { OTPFieldOwnerState } from '@mui/material/OTPField';
+import OTPField, {
+  OTPFieldInput,
+  OTPFieldSeparator,
+  otpFieldClasses as classes,
+} from '@mui/material/OTPField';
+import describeConformance from '../../test/describeConformance';
 
 describe('<OTPField />', () => {
   const { render } = createRenderer();
+
+  describeConformance(<OTPField label="PIN" length={2} />, () => ({
+    classes,
+    render,
+    muiName: 'MuiOTPField',
+    refInstanceof: window.HTMLDivElement,
+    testVariantProps: { mask: true },
+    skip: ['componentProp'],
+  }));
 
   describe('structure', () => {
     it.each([
@@ -38,6 +54,81 @@ describe('<OTPField />', () => {
   });
 
   describe('composition', () => {
+    it('shares the generated input ID with slot callbacks and the custom group', () => {
+      const Group = React.forwardRef(function Group(
+        {
+          ownerState,
+          ...props
+        }: React.ComponentPropsWithoutRef<'div'> & { ownerState: OTPFieldOwnerState },
+        ref: React.Ref<HTMLDivElement>,
+      ) {
+        return <div {...props} ref={ref} id={`${ownerState.id}-group`} />;
+      });
+      render(
+        <OTPField
+          label="PIN"
+          helperText="Two digits"
+          length={2}
+          slots={{ group: Group }}
+          slotProps={{ helperText: ({ id }) => ({ id: `${id}-hint` }) }}
+        />,
+      );
+
+      const group = screen.getByRole('group', { name: 'PIN' });
+      const first = within(group).getByRole('textbox', { name: 'PIN' });
+      expect(group).to.have.attribute('id', `${first.id}-group`);
+      expect(first).to.have.attribute('aria-describedby', `${first.id}-hint`);
+      expect(first).toHaveAccessibleDescription('Two digits');
+    });
+
+    it('preserves field state, label focus, and descriptions through custom render elements', async () => {
+      const rootRef = React.createRef<HTMLDivElement>();
+      const { user } = render(
+        <OTPField
+          ref={rootRef}
+          label="PIN"
+          helperText="Two digits"
+          length={2}
+          error
+          render={(props, state) => <section {...props} data-complete={state.complete} />}
+          slotProps={{
+            group: { render: <fieldset /> },
+            label: { render: <label /> },
+            helperText: {
+              render: (props, state) => <small {...props} data-length={state.length} />,
+            },
+          }}
+        />,
+      );
+
+      const group = screen.getByRole('group', { name: 'PIN' });
+      const label = screen.getByText('PIN');
+      const first = within(group).getByRole('textbox', { name: 'PIN' });
+      expect(rootRef.current?.tagName).to.equal('SECTION');
+      expect(rootRef.current).to.contain(group);
+      expect(group.tagName).to.equal('FIELDSET');
+      expect(label).to.have.class(formLabelClasses.error);
+      expect(screen.getByText('Two digits')).to.have.attribute('data-length', '2');
+      expect(first).toHaveAccessibleDescription('Two digits');
+      await user.click(label);
+      expect(first).toHaveFocus();
+      await user.keyboard('12');
+      expect(rootRef.current).to.have.attribute('data-complete', 'true');
+    });
+
+    it('initializes the composed inputs from the field defaultValue', () => {
+      render(
+        <OTPField label="PIN" length={2} defaultValue="01">
+          <OTPFieldInput />
+          <OTPFieldInput />
+        </OTPField>,
+      );
+
+      const [first, second] = screen.getAllByRole('textbox');
+      expect(first).to.have.value('0');
+      expect(second).to.have.value('1');
+    });
+
     it('preserves group semantics and the composed inputs when replacing the group host', async () => {
       const groupRef = React.createRef<HTMLDivElement>();
       const { user } = render(
@@ -96,9 +187,89 @@ describe('<OTPField />', () => {
       await user.click(screen.getByText('PIN'));
       expect(within(group).getByRole('textbox', { name: 'PIN' })).toHaveFocus();
     });
+
+    it('links the group and inputs to the IDs on the rendered label and helper text', () => {
+      render(
+        <OTPField
+          label="PIN"
+          helperText="Two digits"
+          length={2}
+          slotProps={{
+            label: { render: <label id="pin-label" /> },
+            helperText: { render: <small id="pin-hint" /> },
+          }}
+        />,
+      );
+
+      const group = screen.getByRole('group', { name: 'PIN' });
+      expect(group).to.have.attribute('aria-labelledby', 'pin-label');
+      expect(group).toHaveAccessibleDescription('Two digits');
+      for (const input of within(group).getAllByRole('textbox')) {
+        expect(input).toHaveAccessibleDescription('Two digits');
+      }
+    });
   });
 
   describe('accessibility', () => {
+    it.each([
+      ['Verification code', undefined, 'Verification code', 'Verification code'],
+      [undefined, 'First digit', 'PIN', 'First digit'],
+    ])(
+      'uses explicit accessible names with field aria-label %s and input aria-label %s',
+      async (fieldLabel, inputLabel, groupName, firstName) => {
+        const { user } = render(
+          <OTPField label="PIN" aria-label={fieldLabel} length={2}>
+            <OTPFieldInput aria-label={inputLabel} />
+            <OTPFieldInput />
+          </OTPField>,
+        );
+        const group = screen.getByRole('group', { name: groupName });
+        const first = within(group).getByRole('textbox', { name: firstName });
+        await user.click(screen.getByText('PIN'));
+        expect(first).toHaveFocus();
+      },
+    );
+
+    it('moves focus in the visual direction of the arrow keys in an RTL theme', async () => {
+      const { user } = render(
+        <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
+          <div dir="rtl">
+            <OTPField label="PIN" length={2} defaultValue="12" />
+          </div>
+        </ThemeProvider>,
+      );
+      const [first, second] = screen.getAllByRole('textbox');
+      await user.click(first);
+      await user.keyboard('{ArrowLeft}');
+      expect(second).toHaveFocus();
+      await user.keyboard('{ArrowRight}');
+      expect(first).toHaveFocus();
+    });
+
+    it('uses the accessible name and direction of the rendered group for its inputs', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <p id="pin-hint">Check your messages.</p>
+          <OTPField
+            length={2}
+            defaultValue="12"
+            helperText="Two digits."
+            slotProps={{
+              group: {
+                render: <fieldset aria-label="PIN" aria-describedby="pin-hint" dir="rtl" />,
+              },
+            }}
+          />
+        </React.Fragment>,
+      );
+      const group = screen.getByRole('group', { name: 'PIN' });
+      const first = within(group).getByRole('textbox', { name: 'PIN' });
+      expect(first).toHaveAccessibleDescription('Check your messages. Two digits.');
+      await user.click(first);
+      await user.keyboard('{ArrowLeft}');
+      expect(within(group).getByRole('textbox', { name: 'Character 2 of 2' })).toHaveFocus();
+    });
+
     it('forwards ref to the field root and inputRef to the input targeted by the label', async () => {
       const rootRef = React.createRef<HTMLDivElement>();
       const inputRef = React.createRef<HTMLInputElement>();
@@ -136,11 +307,12 @@ describe('<OTPField />', () => {
       render(
         <React.Fragment>
           <h2 id="code-label">Recovery code</h2>
-          <OTPField label="Code" aria-labelledby="code-label" />
+          <OTPField label="Code" aria-label="PIN" aria-labelledby="code-label" />
         </React.Fragment>,
       );
 
-      const [first] = screen.getAllByRole('textbox');
+      const group = screen.getByRole('group', { name: 'Recovery code' });
+      const [first] = within(group).getAllByRole('textbox');
       expect(first).toHaveAccessibleName('Recovery code');
     });
 
@@ -199,6 +371,30 @@ describe('<OTPField />', () => {
   });
 
   describe.skipIf(isJsdom())('styling', () => {
+    it('applies named slot overrides using the field props', () => {
+      const theme = createTheme({
+        components: {
+          MuiOTPField: {
+            styleOverrides: {
+              group: ({ ownerState }) => ({ columnGap: ownerState.mask ? '11px' : '0px' }),
+              separator: ({ ownerState }) => ({ marginRight: ownerState.mask ? '7px' : '0px' }),
+            },
+          },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <OTPField label="PIN" length={2} mask>
+            <OTPFieldInput />
+            <OTPFieldSeparator />
+            <OTPFieldInput />
+          </OTPField>
+        </ThemeProvider>,
+      );
+      expect(screen.getByRole('group', { name: 'PIN' })).toHaveComputedStyle({ columnGap: '11px' });
+      expect(screen.getByText('-')).toHaveComputedStyle({ marginRight: '7px' });
+    });
+
     it('outlines the focused character input and keeps the label neutral', async () => {
       const { user } = render(<OTPField label="Verification code" defaultValue="12" length={2} />);
 

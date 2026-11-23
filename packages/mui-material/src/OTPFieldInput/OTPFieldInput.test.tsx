@@ -10,6 +10,27 @@ import OTPField, {
 describe('<OTPFieldInput />', () => {
   const { render } = createRenderer();
 
+  it('keeps the first input ref attached while editing and releases it when replaced', async () => {
+    const cleanup = vi.fn();
+    const inputRef = vi.fn(() => cleanup);
+    const nextRef = React.createRef<HTMLInputElement>();
+    const { user, rerender, unmount } = render(<OTPField label="Code" inputRef={inputRef} />);
+    const first = screen.getByRole('textbox', { name: 'Code' });
+    inputRef.mockClear();
+    cleanup.mockClear();
+
+    await user.click(first);
+    await user.keyboard('01');
+    expect(inputRef).not.toHaveBeenCalled();
+    expect(cleanup).not.toHaveBeenCalled();
+
+    rerender(<OTPField label="Code" inputRef={nextRef} />);
+    expect(cleanup).toHaveBeenCalledTimes(1);
+    expect(nextRef.current).to.equal(first);
+    unmount();
+    expect(nextRef.current).to.equal(null);
+  });
+
   it('keeps one code and navigates across a decorative separator and a nested input', async () => {
     const inputRef = React.createRef<HTMLInputElement>();
     const firstRef = React.createRef<HTMLInputElement>();

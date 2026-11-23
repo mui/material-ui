@@ -2,12 +2,9 @@
 
 import * as React from 'react';
 import type { OTPFieldClasses } from './otpFieldClasses';
-import type { OTPFieldProps, OTPFieldOwnerState } from './OTPField.types';
+import type { OTPFieldOwnerState } from './OTPField.types';
 
 interface OTPFieldContextValue {
-  autoFocus: OTPFieldProps['autoFocus'];
-  inputRef: OTPFieldProps['inputRef'];
-  getInputAriaLabel: NonNullable<OTPFieldProps['getInputAriaLabel']>;
   ariaLabel: string | undefined;
   labelledBy: string | undefined;
   describedBy: string | undefined;

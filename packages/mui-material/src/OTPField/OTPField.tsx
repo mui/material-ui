@@ -8,7 +8,7 @@ import useId from '@mui/utils/useId';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import OTPFieldLayout from './OTPFieldLayout';
 import OTPFieldInput from '../OTPFieldInput';
-import type { OTPFieldProps } from './OTPField.types';
+import type { OTPFieldOwnerState, OTPFieldProps } from './OTPField.types';
 import { getOTPFieldUtilityClass } from './otpFieldClasses';
 
 function useUtilityClasses(classes: OTPFieldProps['classes']) {
@@ -27,7 +27,9 @@ function useUtilityClasses(classes: OTPFieldProps['classes']) {
 function defaultGetInputAriaLabel(position: number, length: number) {
   return `Character ${position} of ${length}`;
 }
+
 /**
+ * A field for entering a one-time password, one character per input.
  *
  * Demos:
  *
@@ -51,8 +53,6 @@ const OTPField = React.forwardRef(function OTPField(
     autoSubmit,
     children,
     classes: classesProp,
-    // FormControl interprets the legacy HTML color attribute as a theme palette key.
-    color,
     defaultValue,
     disabled,
     error = false,
@@ -71,6 +71,7 @@ const OTPField = React.forwardRef(function OTPField(
     onValueComplete,
     onValueInvalid,
     readOnly,
+    render,
     required,
     size = 'medium',
     slotProps,
@@ -110,25 +111,38 @@ const OTPField = React.forwardRef(function OTPField(
       aria-describedby={ariaDescribedBy}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      render={(groupProps, state) => (
-        <OTPFieldLayout
-          groupProps={groupProps}
-          state={state}
-          size={size}
-          error={error || state.valid === false}
-          classes={classes}
-          externalForwardedProps={externalForwardedProps}
-          rootRef={ref}
-          id={id}
-          label={label}
-          helperText={helperText}
-          autoFocus={autoFocus}
-          inputRef={inputRef}
-          getInputAriaLabel={getInputAriaLabel}
-        >
-          {inputs}
-        </OTPFieldLayout>
-      )}
+      render={(groupProps, baseState) => {
+        // Base UI owns the group inside FormControl. Its resolved field state also drives the label and helper text.
+        const ownerState: OTPFieldOwnerState = {
+          ...props,
+          autoFocus,
+          disabled: baseState.disabled,
+          error: error || baseState.valid === false,
+          getInputAriaLabel,
+          helperText,
+          id,
+          inputRef,
+          label,
+          length: baseState.length,
+          readOnly: baseState.readOnly,
+          render,
+          required: baseState.required,
+          size,
+        };
+
+        return (
+          <OTPFieldLayout
+            groupProps={groupProps}
+            baseState={baseState}
+            ownerState={ownerState}
+            classes={classes}
+            externalForwardedProps={externalForwardedProps}
+            rootRef={ref}
+          >
+            {inputs}
+          </OTPFieldLayout>
+        );
+      }}
     />
   );
 });
@@ -179,7 +193,6 @@ OTPField.propTypes /* remove-proptypes */ = {
    * A CSS class name applied to the outer root element.
    */
   className: PropTypes.string,
-  color: PropTypes.string,
   /**
    * The initial code for an uncontrolled field.
    * @default ''
@@ -274,6 +287,11 @@ OTPField.propTypes /* remove-proptypes */ = {
    * Keep the field focusable while preventing edits.
    */
   readOnly: PropTypes.bool,
+  /**
+   * Replaces the outer field element while preserving its styles and behavior.
+   * Accepts an element or a function that receives the root props and Base UI field state.
+   */
+  render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * Require a complete code before form submission.
    */

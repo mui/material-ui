@@ -1,11 +1,12 @@
 'use client';
 
 import * as React from 'react';
-import clsx from 'clsx';
+import { DirectionProvider, useDirection } from '@base-ui/react/direction-provider';
 import { mergeProps } from '@base-ui/react/merge-props';
 import type { OTPField as BaseOTPField } from '@base-ui/react/otp-field';
 import { useRender } from '@base-ui/react/use-render';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import { useRtl } from '@mui/system/RtlProvider';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import FormLabel from '../FormLabel';
@@ -15,23 +16,21 @@ import { OTPFieldContextProvider } from './OTPFieldContext';
 import type { OTPFieldOwnerState, OTPFieldProps } from './OTPField.types';
 import type { OTPFieldClasses } from './otpFieldClasses';
 
-const OTPFieldGroup = styled('div', { name: 'MuiOTPField', slot: 'Group' })(({ theme }) => ({
+const OTPFieldGroup = styled('div', { name: 'MuiOTPField', slot: 'Group' })<{
+  ownerState: OTPFieldOwnerState;
+}>(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(1),
   'label + &': { marginTop: theme.spacing(0.5) },
 }));
 
-interface OTPFieldLayoutProps extends Pick<
-  OTPFieldProps,
-  'label' | 'helperText' | 'children' | 'inputRef' | 'autoFocus' | 'id'
-> {
+interface OTPFieldLayoutProps {
+  children: React.ReactNode;
   rootRef: React.ForwardedRef<HTMLDivElement>;
   groupProps: React.ComponentPropsWithRef<'div'>;
-  state: BaseOTPField.Root.State;
-  size: OTPFieldOwnerState['size'];
-  error: boolean;
+  baseState: BaseOTPField.Root.State;
+  ownerState: OTPFieldOwnerState;
   classes: OTPFieldClasses;
-  getInputAriaLabel: NonNullable<OTPFieldProps['getInputAriaLabel']>;
   externalForwardedProps: Pick<OTPFieldProps, 'slotProps' | 'slots'> &
     React.HTMLAttributes<HTMLDivElement>;
 }
@@ -40,129 +39,179 @@ const OTPFieldRoot = styled(FormControl, { name: 'MuiOTPField', slot: 'Root' })(
 const OTPFieldLabel = styled(FormLabel, { name: 'MuiOTPField', slot: 'Label' })({});
 const OTPFieldHelperText = styled(FormHelperText, { name: 'MuiOTPField', slot: 'HelperText' })({});
 
+interface RenderElementProps extends React.HTMLAttributes<HTMLElement> {
+  render: NonNullable<OTPFieldProps['render']>;
+  renderState: BaseOTPField.Root.State;
+}
+
+const RenderElement = React.forwardRef(function RenderElement(
+  { render, renderState, ...props }: RenderElementProps,
+  ref: React.Ref<HTMLElement>,
+) {
+  return useRender({
+    // Passing state directly to the callback keeps the OTP value out of generated data attributes.
+    render: typeof render === 'function' ? (hostProps) => render(hostProps, renderState) : render,
+    props,
+    ref,
+  });
+});
+
+// useRender gives a JSX element's own attributes precedence. Read those when linking the slots.
+function getRenderElementProps(
+  render: OTPFieldProps['render'],
+  slot: React.ElementType | undefined,
+) {
+  return !slot && React.isValidElement<React.HTMLAttributes<HTMLElement>>(render)
+    ? render.props
+    : undefined;
+}
+
 /** @ignore - internal component. */
 function OTPFieldLayout({
   groupProps,
-  state,
-  size,
-  error,
+  baseState,
+  ownerState,
   classes,
   externalForwardedProps,
   rootRef,
-  id,
-  label,
-  helperText,
-  autoFocus,
-  inputRef,
-  getInputAriaLabel,
   children,
 }: OTPFieldLayoutProps) {
   const { slots, slotProps } = externalForwardedProps;
-  const { length, disabled, readOnly, required } = state;
-  const ownerState = React.useMemo(
-    () => ({ length, disabled, readOnly, required, error, size }),
-    [length, disabled, readOnly, required, error, size],
-  );
-  const common = { ownerState, externalForwardedProps, shouldForwardComponentProp: true };
-  const [Root, rootProps] = useSlot('root', {
-    ...common,
+  const { helperText, id, label, render } = ownerState;
+
+  // FormControl, FormLabel, and FormHelperText use component to replace their host
+  // while keeping Material styles and context. An explicit slot supplies its own host.
+  function getHostProps(renderProp: OTPFieldProps['render'], slot: React.ElementType | undefined) {
+    return renderProp && !slot
+      ? { component: RenderElement, render: renderProp, renderState: baseState }
+      : undefined;
+  }
+
+  const isRootHost = typeof slots?.root === 'string';
+  const [RootSlot, rootProps] = useSlot('root', {
     elementType: OTPFieldRoot,
+    externalForwardedProps,
+    ownerState,
     className: classes.root,
     ref: rootRef,
+    // FormControl accepts presentation defaults here. Its disabled and required flags must match the inputs.
+    additionalProps: isRootHost ? undefined : { error: ownerState.error, size: ownerState.size },
+    internalForwardedProps: getHostProps(render, slots?.root),
   });
-  const [Label, labelProps] = useSlot('label', {
-    ...common,
+  const [LabelSlot, { render: labelRender, ...labelProps }] = useSlot('label', {
     elementType: OTPFieldLabel,
+    externalForwardedProps,
+    ownerState,
     className: classes.label,
+    additionalProps: { htmlFor: id },
   });
-  const [HelperText, helperProps] = useSlot('helperText', {
-    ...common,
+  const [HelperTextSlot, { render: helperRender, ...helperProps }] = useSlot('helperText', {
     elementType: OTPFieldHelperText,
+    externalForwardedProps,
+    ownerState,
     className: classes.helperText,
   });
   const hasLabel = label != null && label !== '' && label !== false;
   const hasHelperText = helperText != null && helperText !== '' && helperText !== false;
-  const labelId = hasLabel ? (labelProps.id ?? (id && `${id}-label`)) : undefined;
-  const helperId = hasHelperText ? (helperProps.id ?? (id && `${id}-helper-text`)) : undefined;
+  const labelId = hasLabel
+    ? (getRenderElementProps(labelRender, slots?.label)?.id ??
+      labelProps.id ??
+      (id && `${id}-label`))
+    : undefined;
+  const helperId = hasHelperText
+    ? (getRenderElementProps(helperRender, slots?.helperText)?.id ??
+      helperProps.id ??
+      (id && `${id}-helper-text`))
+    : undefined;
 
+  // The slotProps callback receives Material ownerState. Its className and style callbacks
+  // receive live Base UI state, including whether the code is complete.
   const {
-    render,
-    ref: groupRef,
+    render: groupRender,
     className,
     style,
     ...otherGroupProps
   } = resolveComponentProps(slotProps?.group, ownerState) ?? {};
-  const Group = slots?.group ?? OTPFieldGroup;
-  const mergedGroupProps = mergeProps(groupProps, otherGroupProps);
-  const labelledBy = otherGroupProps['aria-labelledby'] ?? groupProps['aria-labelledby'] ?? labelId;
-  const describedBy =
-    [mergedGroupProps['aria-describedby'], helperId].filter(Boolean).join(' ') || undefined;
-  const groupRender =
-    typeof render === 'function'
-      ? (props: React.HTMLAttributes<HTMLDivElement>) => render(props, state)
-      : render;
-  const group = useRender({
-    render: (!slots?.group && groupRender) || <Group />,
-    ref: groupRef,
-    props: mergeProps(mergedGroupProps, {
-      className: clsx(
-        classes.group,
-        typeof className === 'function' ? className(state) : className,
-      ),
-      style: typeof style === 'function' ? style(state) : style,
-      'aria-labelledby': labelledBy,
-      'aria-describedby': describedBy,
-      role: 'group',
-      children,
-    }),
+  const resolvedGroupProps = {
+    ...otherGroupProps,
+    className: resolveComponentProps(className, baseState),
+    style: resolveComponentProps(style, baseState),
+  };
+  const [GroupSlot, groupSlotProps] = useSlot('group', {
+    elementType: OTPFieldGroup,
+    externalForwardedProps: { slots, slotProps: { group: resolvedGroupProps } },
+    ownerState,
+    className: classes.group,
+    // Base UI runs the consumer's handlers first for cancellation. useSlot combines the refs.
+    getSlotProps: (externalHandlers) => mergeProps(groupProps, externalHandlers),
+    internalForwardedProps: groupRender
+      ? { as: RenderElement, render: groupRender, renderState: baseState }
+      : undefined,
   });
+  const groupRenderProps = getRenderElementProps(groupRender, slots?.group);
+  const ariaLabel = groupRenderProps?.['aria-label'] ?? groupSlotProps['aria-label'];
+  // An explicit aria-labelledby wins over aria-label. Use Base UI's inferred label ID
+  // only when the consumer hasn't supplied either name.
+  const labelledBy =
+    groupRenderProps?.['aria-labelledby'] ??
+    otherGroupProps['aria-labelledby'] ??
+    ownerState['aria-labelledby'] ??
+    (ariaLabel?.trim() ? undefined : (groupSlotProps['aria-labelledby'] ?? labelId));
+  const describedBy =
+    [groupRenderProps?.['aria-describedby'] ?? groupSlotProps['aria-describedby'], helperId]
+      .filter(Boolean)
+      .join(' ') || undefined;
 
-  const ariaLabel = mergedGroupProps['aria-label'];
+  const isRtl = useRtl();
+  const inheritedDirection = useDirection();
+  // Base UI reads direction from its provider when moving focus with the arrow keys.
+  const dir =
+    groupRenderProps?.dir ??
+    groupSlotProps.dir ??
+    getRenderElementProps(render, slots?.root)?.dir ??
+    rootProps.dir;
+  const themeDirection = isRtl ? 'rtl' : inheritedDirection;
+  const direction = dir === 'ltr' || dir === 'rtl' ? dir : themeDirection;
   const contextValue = React.useMemo(
-    () => ({
-      autoFocus,
-      inputRef,
-      getInputAriaLabel,
-      ariaLabel,
-      labelledBy,
-      describedBy,
-      classes,
-      ownerState,
-    }),
-    [
-      autoFocus,
-      inputRef,
-      getInputAriaLabel,
-      ariaLabel,
-      labelledBy,
-      describedBy,
-      classes,
-      ownerState,
-    ],
+    () => ({ ownerState, classes, ariaLabel, labelledBy, describedBy }),
+    [ownerState, classes, ariaLabel, labelledBy, describedBy],
   );
 
   return (
-    <Root
+    <RootSlot
       {...rootProps}
-      {...(typeof Root !== 'string' && {
+      {...(!isRootHost && {
         disabled: ownerState.disabled,
-        error: ownerState.error,
         required: ownerState.required,
-        size: ownerState.size,
       })}
     >
       {hasLabel && (
-        <Label {...labelProps} id={labelId} htmlFor={id}>
+        <LabelSlot {...labelProps} {...getHostProps(labelRender, slots?.label)} id={labelId}>
           {label}
-        </Label>
+        </LabelSlot>
       )}
-      <OTPFieldContextProvider value={contextValue}>{group}</OTPFieldContextProvider>
+      <DirectionProvider direction={direction}>
+        <OTPFieldContextProvider value={contextValue}>
+          <GroupSlot
+            {...groupSlotProps}
+            role="group"
+            aria-labelledby={labelledBy}
+            aria-describedby={describedBy}
+          >
+            {children}
+          </GroupSlot>
+        </OTPFieldContextProvider>
+      </DirectionProvider>
       {hasHelperText && (
-        <HelperText {...helperProps} id={helperId}>
+        <HelperTextSlot
+          {...helperProps}
+          {...getHostProps(helperRender, slots?.helperText)}
+          id={helperId}
+        >
           {helperText}
-        </HelperText>
+        </HelperTextSlot>
       )}
-    </Root>
+    </RootSlot>
   );
 }
 

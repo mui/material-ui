@@ -1,5 +1,5 @@
 {
-  "componentDescription": "",
+  "componentDescription": "A field for entering a one-time password, one character per input.",
   "propDescriptions": {
     "aria-describedby": {
       "description": "Identifies the element (or elements) that describes the object."
@@ -53,6 +53,9 @@
       "description": "Called with the attempted input when filtering or normalization rejects characters."
     },
     "readOnly": { "description": "Keep the field focusable while preventing edits." },
+    "render": {
+      "description": "Replaces the outer field element while preserving its styles and behavior. Accepts an element or a function that receives the root props and Base UI field state."
+    },
     "required": { "description": "Require a complete code before form submission." },
     "size": { "description": "The size of the field." },
     "slotProps": {

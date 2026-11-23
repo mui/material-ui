@@ -9,12 +9,9 @@ import type {
   OTPFieldProps,
 } from '@mui/material/OTPField';
 
-// Base UI's render maps to the group slot. Material supplies a default length.
+// Material supplies a default length.
 type SharedFieldOption =
-  | Exclude<
-      keyof BaseOTPField.Root.Props,
-      keyof React.ComponentPropsWithRef<'div'> | 'render' | 'length'
-    >
+  | Exclude<keyof BaseOTPField.Root.Props, keyof React.ComponentPropsWithRef<'div'> | 'length'>
   // These field options also exist on a native div.
   | 'defaultValue'
   | 'id'
@@ -53,6 +50,7 @@ function Test() {
           expectType<OTPFieldInvalidEventDetails, typeof details>(details);
         }}
         slotProps={{
+          root: { fullWidth: true, sx: { mt: 1 } },
           group: {
             className: (state) => {
               expectType<BaseOTPField.Root.State, typeof state>(state);
@@ -82,16 +80,35 @@ function Test() {
         <OTPFieldInput />
         <OTPFieldInput />
       </OTPField>
+      <OTPField defaultValue="0012" />
+      {/* @ts-expect-error Use render to change the outer element. */}
+      <OTPField component="section" />
+      {/* @ts-expect-error The outer element is customized with the field's render prop. */}
+      <OTPField slotProps={{ root: { component: 'section' } }} />
+      {/* @ts-expect-error Use render to change the group element. */}
+      <OTPField slotProps={{ group: { component: 'section' } }} />
+      {/* @ts-expect-error Use render to change the label element. */}
+      <OTPField slotProps={{ label: { component: 'label' } }} />
+      {/* @ts-expect-error Use render to change the helper text element. */}
+      <OTPField slotProps={{ helperText: { component: 'small' } }} />
       {/* @ts-expect-error A code is a string, including in numeric mode. */}
       <OTPField defaultValue={123456} />
+      {/* @ts-expect-error The field has no checked state. */}
+      <OTPField defaultChecked />
+      {/* @ts-expect-error The field does not accept the legacy HTML color attribute. */}
+      <OTPField color="red" />
       {/* @ts-expect-error Character inputs are composed as children. */}
       <OTPField slots={{ input: 'input' }} />
       {/* @ts-expect-error Separators are composed as children. */}
       <OTPField slotProps={{ separator: { children: '–' } }} />
       {/* @ts-expect-error The field owns the count. */}
       <OTPField slotProps={{ group: { length: 4 } }} />
-      {/* @ts-expect-error The field owns the name submitted to the form. */}
-      <OTPFieldInput name="per-character" />
+      {/* @ts-expect-error The group always uses the group role. */}
+      <OTPField slotProps={{ group: { role: 'switch' } }} />
+      {/* @ts-expect-error The field initializes all character inputs. */}
+      <OTPFieldInput defaultValue="1" />
+      {/* @ts-expect-error A separator has no initial value. */}
+      <OTPFieldSeparator defaultValue="-" />
     </React.Fragment>
   );
 }

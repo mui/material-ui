@@ -17,4 +17,16 @@ describe('<OTPFieldSeparator />', () => {
     expect(screen.getByText(':')).to.have.attribute('aria-hidden', 'true');
     expect(screen.queryByText('-')).to.equal(null);
   });
+
+  it('renders default separator', () => {
+    render(
+      <OTPField length={2} label="Code">
+        <OTPFieldInput />
+        <OTPFieldSeparator />
+        <OTPFieldInput />
+      </OTPField>,
+    );
+    expect(screen.getByText('-')).to.have.attribute('aria-hidden', 'true');
+    expect(screen.queryByText(':')).to.equal(null);
+  });
 });

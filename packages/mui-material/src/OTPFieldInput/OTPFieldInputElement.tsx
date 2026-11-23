@@ -1,15 +1,37 @@
 'use client';
 
-import * as React from 'react';
-import clsx from 'clsx';
+import type * as React from 'react';
 import type { OTPField as BaseOTPField } from '@base-ui/react/otp-field';
-import useForkRef from '@mui/utils/useForkRef';
-import { styled } from '../zero-styled';
-import { useOTPFieldContext } from '../OTPField/OTPFieldContext';
+import { useRender } from '@base-ui/react/use-render';
 import type { OTPFieldOwnerState } from '../OTPField/OTPField.types';
-import type { OTPFieldInputProps } from './OTPFieldInput';
+import { styled } from '../zero-styled';
 
-const OTPFieldInputRoot = styled('input', { name: 'MuiOTPField', slot: 'Input' })<{
+interface OTPFieldInputElementProps {
+  className?: string | undefined;
+  inputProps: React.ComponentPropsWithRef<'input'>;
+  inputRef?: React.Ref<HTMLInputElement> | undefined;
+  render: BaseOTPField.Input.Props['render'];
+  state: BaseOTPField.Input.State;
+}
+
+/** @ignore - internal component. */
+function InputElement({
+  className,
+  inputProps,
+  inputRef,
+  render,
+  state,
+}: OTPFieldInputElementProps) {
+  // useRender attaches Base UI's input ref, the field's inputRef, and any ref on the render element.
+  return useRender({
+    defaultTagName: 'input',
+    render: typeof render === 'function' ? (props) => render(props, state) : render,
+    props: { ...inputProps, className },
+    ref: inputRef,
+  });
+}
+
+const OTPFieldInputElement = styled(InputElement, { name: 'MuiOTPField', slot: 'Input' })<{
   ownerState: OTPFieldOwnerState;
 }>(({ theme, ownerState }) => {
   const { palette, shape } = theme.vars || theme;
@@ -40,44 +62,5 @@ const OTPFieldInputRoot = styled('input', { name: 'MuiOTPField', slot: 'Input' }
     },
   };
 });
-
-/** @ignore - internal component. */
-function OTPFieldInputElement({
-  inputProps,
-  state,
-  sx,
-  ariaLabel,
-  ariaLabelledBy,
-  ariaDescribedBy,
-}: {
-  inputProps: React.ComponentPropsWithRef<'input'>;
-  state: BaseOTPField.Input.State;
-  sx: OTPFieldInputProps['sx'];
-  ariaLabel: string | undefined;
-  ariaLabelledBy: string | undefined;
-  ariaDescribedBy: string | undefined;
-}) {
-  const field = useOTPFieldContext();
-  const first = state.index === 0;
-  const ref = useForkRef(inputProps.ref, first ? field.inputRef : undefined);
-  const label =
-    ariaLabel ?? (first ? field.ariaLabel : field.getInputAriaLabel(state.index + 1, state.length));
-  const labelledBy = ariaLabelledBy ?? (first ? field.labelledBy : undefined);
-
-  return (
-    <OTPFieldInputRoot
-      {...inputProps}
-      ref={ref}
-      sx={sx}
-      ownerState={field.ownerState}
-      className={clsx(field.classes.input, inputProps.className)}
-      autoFocus={inputProps.autoFocus ?? (first && field.autoFocus)}
-      aria-label={label}
-      aria-labelledby={labelledBy ?? (label ? undefined : inputProps['aria-labelledby'])}
-      aria-describedby={[field.describedBy, ariaDescribedBy].filter(Boolean).join(' ') || undefined}
-      aria-invalid={field.ownerState.error && !state.disabled ? true : inputProps['aria-invalid']}
-    />
-  );
-}
 
 export default OTPFieldInputElement;

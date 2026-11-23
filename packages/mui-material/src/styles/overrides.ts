@@ -70,6 +70,7 @@ import type { MenuListClassKey } from '../MenuList';
 import type { MobileStepperClassKey } from '../MobileStepper';
 import type { ModalClassKey } from '../Modal';
 import type { NativeSelectClassKey } from '../NativeSelect';
+import type { OTPFieldClassKey } from '../OTPField';
 import type { OutlinedInputClassKey } from '../OutlinedInput';
 import type { PaginationClassKey } from '../Pagination';
 import type { PaginationItemClassKey } from '../PaginationItem';
@@ -215,6 +216,7 @@ export interface ComponentNameToClassKey {
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;
+  MuiOTPField: OTPFieldClassKey;
   MuiOutlinedInput: OutlinedInputClassKey;
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;

@@ -6,12 +6,15 @@ import clsx from 'clsx';
 import { OTPField as BaseOTPField } from '@base-ui/react/otp-field';
 import { styled } from '../zero-styled';
 import { useOTPFieldContext } from '../OTPField/OTPFieldContext';
+import type { OTPFieldProps } from '../OTPField/OTPField.types';
 import type { SxProps, Theme } from '../styles';
 
-export interface OTPFieldSeparatorProps extends Omit<
-  BaseOTPField.Separator.Props,
-  'tabIndex' | 'aria-hidden' | 'render'
-> {
+export interface OTPFieldSeparatorProps extends BaseOTPField.Separator.Props {
+  /**
+   * Hide the separator from assistive technology.
+   * @default true
+   */
+  'aria-hidden'?: BaseOTPField.Separator.Props['aria-hidden'] | undefined;
   /**
    * The content displayed between character inputs.
    * @default '-'
@@ -26,7 +29,9 @@ export interface OTPFieldSeparatorProps extends Omit<
   sx?: SxProps<Theme> | undefined;
 }
 
-const SeparatorRoot = styled('div', { name: 'MuiOTPField', slot: 'Separator' })({
+const SeparatorRoot = styled(BaseOTPField.Separator, { name: 'MuiOTPField', slot: 'Separator' })<{
+  ownerState: OTPFieldProps;
+}>({
   alignSelf: 'center',
 });
 
@@ -45,26 +50,28 @@ const OTPFieldSeparator = React.forwardRef(function OTPFieldSeparator(
   props: OTPFieldSeparatorProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const { children = '-', className, orientation = 'vertical', style, sx, ...other } = props;
+  const {
+    'aria-hidden': ariaHidden = true,
+    children = '-',
+    className,
+    orientation = 'vertical',
+    ...other
+  } = props;
   const field = useOTPFieldContext();
   return (
-    <BaseOTPField.Separator
-      orientation={orientation}
-      style={style}
+    <SeparatorRoot
       {...other}
+      ownerState={field?.ownerState ?? {}}
       ref={ref}
-      aria-hidden
-      className={(state) =>
-        clsx(
-          field?.classes.separator,
-          typeof className === 'function' ? className(state) : className,
-        )
-      }
-      tabIndex={undefined}
-      render={<SeparatorRoot sx={sx} />}
+      aria-hidden={ariaHidden}
+      className={clsx(
+        field?.classes.separator,
+        typeof className === 'function' ? className({ orientation }) : className,
+      )}
+      orientation={orientation}
     >
       {children}
-    </BaseOTPField.Separator>
+    </SeparatorRoot>
   );
 });
 
@@ -73,6 +80,11 @@ OTPFieldSeparator.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * Hide the separator from assistive technology.
+   * @default true
+   */
+  'aria-hidden': PropTypes.oneOfType([PropTypes.oneOf(['false', 'true']), PropTypes.bool]),
   /**
    * The content displayed between character inputs.
    * @default '-'
@@ -88,6 +100,13 @@ OTPFieldSeparator.propTypes /* remove-proptypes */ = {
    * @default 'vertical'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * Allows you to replace the component's HTML element
+   * with a different tag, or compose it with another component.
+   *
+   * Accepts a `ReactElement` or a function that returns the element to render.
+   */
+  render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * Style applied to the element, or a function that
    * returns a style object based on the component's state.

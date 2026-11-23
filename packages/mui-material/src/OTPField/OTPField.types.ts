@@ -7,6 +7,7 @@ import type { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types
 import type { OTPFieldClasses } from './otpFieldClasses';
 
 type RootProps = BaseOTPField.Root.Props;
+type RootHTMLProps = React.HTMLAttributes<HTMLDivElement>;
 
 interface OTPFieldBehaviorProps {
   /**
@@ -91,7 +92,8 @@ export interface OTPFieldSlots {
   helperText: React.ElementType;
 }
 
-export interface OTPFieldOwnerState {
+export interface OTPFieldOwnerState extends OTPFieldProps {
+  getInputAriaLabel: NonNullable<OTPFieldProps['getInputAriaLabel']>;
   length: number;
   size: NonNullable<FormControlProps['size']>;
   error: boolean;
@@ -101,18 +103,37 @@ export interface OTPFieldOwnerState {
 }
 
 type OwnedContent = 'children' | 'dangerouslySetInnerHTML';
-type PartProps<Props> = SlotComponentProps<React.FC<Props>, {}, OTPFieldOwnerState>;
+type GroupProps = Omit<RootProps, keyof OTPFieldBehaviorProps | OwnedContent | 'role'>;
+
+export interface OTPFieldRootSlotPropsOverrides {}
+export interface OTPFieldLabelSlotPropsOverrides {}
+export interface OTPFieldGroupSlotPropsOverrides {}
+export interface OTPFieldHelperTextSlotPropsOverrides {}
 
 export type OTPFieldSlotsAndSlotProps = CreateSlotsAndSlotProps<
   OTPFieldSlots,
   {
-    root: PartProps<
-      Omit<FormControlProps, OwnedContent | 'disabled' | 'required' | 'error' | 'size'>
+    root: SlotComponentProps<
+      React.FC<Omit<FormControlProps, 'component'>>,
+      OTPFieldRootSlotPropsOverrides,
+      OTPFieldOwnerState
     >;
-    label: PartProps<Omit<FormLabelProps, OwnedContent | 'htmlFor'>>;
+    label: SlotComponentProps<
+      React.FC<Omit<FormLabelProps, 'component'>>,
+      OTPFieldLabelSlotPropsOverrides & Pick<RootProps, 'render'>,
+      OTPFieldOwnerState
+    >;
     /** Base UI Root element props, including state-aware render, className and style. */
-    group: PartProps<Omit<RootProps, keyof OTPFieldBehaviorProps | OwnedContent>>;
-    helperText: PartProps<Omit<FormHelperTextProps, OwnedContent>>;
+    group: SlotComponentProps<
+      React.FC<GroupProps>,
+      OTPFieldGroupSlotPropsOverrides & Pick<FormControlProps, 'sx'>,
+      OTPFieldOwnerState
+    >;
+    helperText: SlotComponentProps<
+      React.FC<Omit<FormHelperTextProps, 'component'>>,
+      OTPFieldHelperTextSlotPropsOverrides & Pick<RootProps, 'render'>,
+      OTPFieldOwnerState
+    >;
   }
 >;
 
@@ -120,8 +141,8 @@ export interface OTPFieldProps
   extends
     OTPFieldBehaviorProps,
     Omit<
-      React.HTMLAttributes<HTMLDivElement>,
-      keyof OTPFieldBehaviorProps | OwnedContent | 'onChange'
+      Pick<RootHTMLProps, keyof RootHTMLProps & keyof RootProps>,
+      keyof OTPFieldBehaviorProps | OwnedContent
     > {
   /** Focus the first character input on mount. */
   autoFocus?: boolean | undefined;
@@ -150,6 +171,11 @@ export interface OTPFieldProps
   inputRef?: React.Ref<HTMLInputElement> | undefined;
   /** The label associated with the first character input. */
   label?: React.ReactNode;
+  /**
+   * Replaces the outer field element while preserving its styles and behavior.
+   * Accepts an element or a function that receives the root props and Base UI field state.
+   */
+  render?: RootProps['render'] | undefined;
   /**
    * The size of the field.
    * @default 'medium'

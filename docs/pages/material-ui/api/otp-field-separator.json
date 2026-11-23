@@ -1,11 +1,19 @@
 {
   "props": {
+    "aria-hidden": {
+      "type": {
+        "name": "union",
+        "description": "'false'<br>&#124;&nbsp;'true'<br>&#124;&nbsp;bool"
+      },
+      "default": "true"
+    },
     "children": { "type": { "name": "node" }, "default": "'-'" },
     "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'vertical'"
     },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "style": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "sx": {
       "type": {

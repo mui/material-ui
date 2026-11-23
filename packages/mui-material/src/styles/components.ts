@@ -501,6 +501,8 @@ export interface Components<Theme = unknown> {
   MuiOTPField?:
     | {
         defaultProps?: ComponentsProps['MuiOTPField'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiOTPField'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiOTPField'] | undefined;
       }
     | undefined;
   MuiOutlinedInput?:
