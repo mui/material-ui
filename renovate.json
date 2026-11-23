@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>mui/mui-public//renovate/experimental"],
+  "extends": ["github>mui/mui-public//renovate/default"],
   "schedule": "* 0-4 * * 7",
   "lockFileMaintenance": {
     "schedule": "* 0-4 1 * *"
