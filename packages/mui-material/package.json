@@ -113,6 +113,7 @@
     "./Portal": "./src/Portal/index.ts",
     "./TextareaAutosize": "./src/TextareaAutosize/index.ts",
     "./themeCssVarsAugmentation": "./src/themeCssVarsAugmentation/index.ts",
+    "./themeDensityAugmentation": "./src/themeDensityAugmentation/index.ts",
     "./transitions": "./src/transitions/index.ts",
     "./Unstable_Menu2": "./src/Unstable_Menu2/index.ts",
     "./Unstable_Menu2Popup": "./src/Unstable_Menu2Popup/index.ts",
