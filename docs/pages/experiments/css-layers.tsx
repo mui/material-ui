@@ -458,7 +458,7 @@ const SUMMARY: Array<{ id: string; label: React.ReactNode; single: Verdict; sub:
     single: 'breaking',
     sub: 'breaking',
   },
-  { id: 'tailwind', label: 'Tailwind CSS v4 setup from our docs', single: 'same', sub: 'breaking' },
+  { id: 'tailwind', label: 'Tailwind CSS v4 setup from our docs', single: 'same', sub: 'same' },
   {
     id: 'tailwind-global-styles',
     label: (
@@ -869,12 +869,10 @@ export default function CssLayers() {
               <ForApps verdict="same" who="Single layer">
                 <code>mui</code> sits where the app declares it, as in v9.
               </ForApps>
-              <ForApps verdict="breaking" who="Sub-layers">
-                With <code>modularCssLayers: true</code>, the <code>ThemeProvider</code> declares
-                the sub-layers at the start of <code>&lt;head&gt;</code>, so <code>mui</code>{' '}
-                becomes the lowest layer and preflight wipes the Button. Passing the app&apos;s
-                layer order as the <code>modularCssLayers</code> string, as the CSS layers page
-                shows, keeps it.
+              <ForApps verdict="same" who="Sub-layers">
+                The sub-layer order goes with Material UI&apos;s other styles, so <code>mui</code>{' '}
+                keeps the place the app&apos;s CSS gives it, with or without the{' '}
+                <code>modularCssLayers</code> string.
               </ForApps>
             </React.Fragment>
           }
@@ -912,8 +910,9 @@ export default function CssLayers() {
                 it.
               </ForApps>
               <ForApps verdict="breaking" who="Sub-layers">
-                As in case 3, <code>mui</code> is the lowest layer and preflight wipes the Button.
-                Passing the order as the <code>modularCssLayers</code> string keeps it.
+                The same as with the single layer: <code>mui</code> goes after{' '}
+                <code>utilities</code>, and declaring the order at the top of the CSS file restores
+                it.
               </ForApps>
             </React.Fragment>
           }
