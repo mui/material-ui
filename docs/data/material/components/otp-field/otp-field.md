@@ -53,6 +53,7 @@ After an incorrect PIN, the form uses `inputRef` to focus the first character so
 ### Rendering custom elements
 
 Use `render` on `OTPField` to change its outer element and keep its Material styles and `FormControl` context.
+The root `FormControl` uses the field's resolved `disabled`, `error`, `required`, and `size` values even when `slotProps.root` supplies different values.
 The `group`, `label`, and `helperText` slots also accept `render` through `slotProps`.
 When using a render callback, supply IDs, accessible names, and text direction through the field or its `slotProps`, and forward the callback props to the element.
 Pass props and refs for an individual character directly to its `OTPFieldInput`.

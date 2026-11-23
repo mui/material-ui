@@ -2,6 +2,7 @@ import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { Field } from '@base-ui/react/field';
 import { createRenderer, isJsdom, screen, within } from '@mui/internal-test-utils';
+import { formHelperTextClasses } from '@mui/material/FormHelperText';
 import { formLabelClasses } from '@mui/material/FormLabel';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import type { OTPFieldOwnerState } from '@mui/material/OTPField';
@@ -362,9 +363,21 @@ describe('<OTPField />', () => {
       expect(screen.getByText('Verification code')).to.have.class(formLabelClasses.error);
     });
 
-    it('marks each character input invalid when the Material error prop is set', () => {
-      render(<OTPField label="Verification code" error />);
+    it('uses the field error state and size when root slot props conflict', () => {
+      render(
+        <OTPField
+          label="Verification code"
+          helperText="Try again"
+          error
+          size="small"
+          slotProps={{ root: { error: false, size: 'medium' } }}
+        />,
+      );
 
+      expect(screen.getByText('Verification code')).to.have.class(formLabelClasses.error);
+      expect(screen.getByText('Try again'))
+        .to.have.class(formHelperTextClasses.error)
+        .and.have.class(formHelperTextClasses.sizeSmall);
       screen.getAllByRole('textbox').forEach((input) => {
         expect(input).to.have.attribute('aria-invalid', 'true');
       });

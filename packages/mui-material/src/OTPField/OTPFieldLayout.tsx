@@ -84,15 +84,12 @@ function OTPFieldLayout({
       : undefined;
   }
 
-  const isRootHost = typeof slots?.root === 'string';
   const [RootSlot, rootProps] = useSlot('root', {
     elementType: OTPFieldRoot,
     externalForwardedProps,
     ownerState,
     className: classes.root,
     ref: rootRef,
-    // FormControl accepts presentation defaults here. Its disabled and required flags must match the inputs.
-    additionalProps: isRootHost ? undefined : { error: ownerState.error, size: ownerState.size },
     internalForwardedProps: getHostProps(render, slots?.root),
   });
   const [LabelSlot, { render: labelRender, ...labelProps }] = useSlot('label', {
@@ -178,9 +175,11 @@ function OTPFieldLayout({
   return (
     <RootSlot
       {...rootProps}
-      {...(!isRootHost && {
+      {...(typeof slots?.root !== 'string' && {
         disabled: ownerState.disabled,
+        error: ownerState.error,
         required: ownerState.required,
+        size: ownerState.size,
       })}
     >
       {hasLabel && (
