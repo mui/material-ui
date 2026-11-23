@@ -12,11 +12,17 @@ const messages = {
 export default function OTPFieldForm() {
   // @focus-start @padding 1
   const [result, setResult] = React.useState<keyof typeof messages>('idle');
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const pin = new FormData(event.currentTarget).get('pin');
-    setResult(pin === '0012' ? 'accepted' : 'rejected');
+    if (pin === '0012') {
+      setResult('accepted');
+    } else {
+      setResult('rejected');
+      inputRef.current?.focus();
+    }
   }
 
   return (
@@ -29,6 +35,7 @@ export default function OTPFieldForm() {
       <OTPField
         label="Verification PIN"
         name="pin"
+        inputRef={inputRef}
         length={4}
         required
         error={result === 'rejected'}

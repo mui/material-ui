@@ -13,11 +13,15 @@ export default function ControlledRecoveryCode() {
       onValueChange={setCode}
       validationType="alphanumeric"
       normalizeValue={(value) => value.toUpperCase()}
+      size="small"
+      slotProps={{
+        group: ({ size }) => ({ sx: { gap: size === 'small' ? 0.5 : 1 } }),
+      }}
     >
       <OTPFieldInput />
       <OTPFieldInput />
       <OTPFieldInput />
-      <OTPFieldSeparator />
+      <OTPFieldSeparator>·</OTPFieldSeparator>
       <OTPFieldInput />
       <OTPFieldInput />
       <OTPFieldInput />
