@@ -32,6 +32,7 @@ jobs:
     with:
       dry-run: true # e2e test: never post
       branch: flake-fix-e2e-base # material-ui just before #49879, so both failures are still unfixed
+      circleci-branch: master # but triage the CircleCI history of master
       model: ${{ inputs.model }} # blank falls through to mui-public's central default
       debug: true # always surface the agent's full output in the run log
       circleci-token-environment: flake-fix # master-gated environment holding CIRCLECI_TOKEN
