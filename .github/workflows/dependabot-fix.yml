@@ -19,7 +19,7 @@ jobs:
       pull-requests: write
       security-events: read
       vulnerability-alerts: read
-    uses: mui/mui-public/.github/workflows/dependabot-fix-workflow.lock.yml@e412696f98ea2e095560a187f1535279851b65df # code-infra/gh-aw-dependabot-fix
+    uses: mui/mui-public/.github/workflows/dependabot-fix-workflow.lock.yml@b1a42d96785e8ab08487ad8e481acf906316d87c # master
     # Reusable workflows only get secrets the caller passes. These resolve to the code-infra-auditor
     # environment's secrets, because the jobs that use them run in that environment.
     secrets:
