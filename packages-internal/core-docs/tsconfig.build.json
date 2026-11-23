@@ -9,7 +9,6 @@
     "emitDeclarationOnly": true,
     "outDir": "build",
     "rootDir": "./src",
-    "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo",
     "paths": {
       "@mui/internal-markdown": ["../markdown/index.d.mts"],
       "@mui/internal-markdown/prism": ["../markdown/prism.d.mts"]
