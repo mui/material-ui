@@ -13,6 +13,7 @@ const packageDir = path.resolve(currentDirectory, '..');
 // and https://github.com/microsoft/TypeScript/issues/60854.
 const wildcardExports = {
   './package.json': './package.json',
+  './_virtual/*': null,
   '.': {
     require: './index.js',
     import: './index.mjs',

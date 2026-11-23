@@ -26,7 +26,7 @@
   },
   "scripts": {
     "prebuild": "node ./scripts/stagePublishedDocs.mjs",
-    "build": "code-infra build --tsgo --flat --copy \"published-docs/**:docs\"",
+    "build": "code-infra build-new --copy \"published-docs/**:docs\"",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
