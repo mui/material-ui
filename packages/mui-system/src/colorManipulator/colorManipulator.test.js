@@ -115,6 +115,11 @@ describe('utils/colorManipulator', () => {
     it('allow to convert values only', () => {
       expect(hslToRgb(decomposeColor('hsl(281, 60%, 57%)'))).to.equal('rgb(169, 80, 211)');
     });
+
+    it('wraps negative hues', () => {
+      expect(hslToRgb('hsl(-240, 100%, 50%)')).to.equal('rgb(0, 255, 0)');
+      expect(hslToRgb('hsla(-480, 100%, 50%, 0.5)')).to.equal('rgba(0, 0, 255, 0.5)');
+    });
   });
 
   describe('decomposeColor', () => {
