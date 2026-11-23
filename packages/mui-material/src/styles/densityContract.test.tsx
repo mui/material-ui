@@ -35,6 +35,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import InputLabel from '@mui/material/InputLabel';
+import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -428,6 +429,17 @@ const CONTROLS: Record<string, Spec> = {
   ListItemButtonDense: {
     render: () => <ListItemButton dense>Item</ListItemButton>,
     selector: '.MuiListItemButton-root',
+    axis: 'minHeight',
+    height: (density) => Math.max(24, density.touchTarget - density.step.xxSmall),
+  },
+  ListItem: {
+    sizes: ['dense'],
+    render: () => (
+      <List dense>
+        <ListItem>Item</ListItem>
+      </List>
+    ),
+    selector: '.MuiListItem-root',
     axis: 'minHeight',
     height: (density) => Math.max(24, density.touchTarget - density.step.xxSmall),
   },
@@ -1827,6 +1839,31 @@ describe.skipIf(isJsdom())('density contract', () => {
   });
 
   describe('overlays', () => {
+    test('a body-scrolling Dialog on a narrow screen keeps the density margin as its gutter', async () => {
+      const { page } = await import('vitest/browser' as string);
+      const { innerWidth, innerHeight } = window;
+      const viewport = 500;
+      await page.viewport(viewport, 900);
+      try {
+        const gutters = Object.fromEntries(
+          [24, 48].map((large) => {
+            const { unmount } = renderIn(
+              enhanceDensity(createTheme(), { spacing: { large } }),
+              <Dialog open scroll="body" maxWidth="sm" transitionDuration={0}>
+                <div style={{ width: 2000, height: 50 }} />
+              </Dialog>,
+            );
+            const paper = rect('.MuiDialog-paper');
+            unmount();
+            return [large, [paper.left, viewport - paper.right]];
+          }),
+        );
+        expect(gutters).to.deep.equal({ 24: [24, 24], 48: [48, 48] });
+      } finally {
+        await page.viewport(innerWidth, innerHeight);
+      }
+    });
+
     (['top', 'bottom', 'left', 'right'] as const).forEach((placement) => {
       test(`${placement}: the tooltip arrow tip keeps the bubble's gap to the anchor`, async () => {
         renderIn(
