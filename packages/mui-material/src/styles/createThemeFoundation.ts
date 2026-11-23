@@ -17,6 +17,7 @@ import type { Transitions } from './createTransitions';
 import type { Mixins } from './createMixins';
 import type { TypographyVariants } from './createTypography';
 import type { ZIndex } from './zIndex';
+import type { ResolvedDensityScale } from './densityScale';
 
 /**
  * default MD color-schemes
@@ -462,6 +463,8 @@ export interface CssVarsTheme extends ColorSystem, FocusVisibleThemeMembers {
    */
   shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
+  /** The scale `enhanceDensity` resolved, in px numbers; unset until the enhancer runs. */
+  unstable_densityScale?: ResolvedDensityScale | undefined;
   unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }
