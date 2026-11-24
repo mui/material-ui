@@ -243,6 +243,97 @@ title: "Our docs just got a major upgrade—here's what that means for you"
         ],
       });
     });
+
+    it('should accept quoted multi-word tab titles', () => {
+      const codeblock = getCodeblock(
+        [
+          '<codeblock storageKey="coding-agent">',
+          '',
+          '```bash "Claude Code"',
+          'claude plugin marketplace add mui/material-ui',
+          '```',
+          '',
+          "```bash 'OpenAI Codex'",
+          'codex plugin add material-ui@material-ui',
+          '```',
+          '',
+          '</codeblock>',
+        ].join('\n'),
+      );
+      expect(codeblock).to.deep.equal({
+        type: 'codeblock',
+        storageKey: 'coding-agent',
+        data: [
+          {
+            language: 'bash',
+            tab: 'Claude Code',
+            code: 'claude plugin marketplace add mui/material-ui',
+          },
+          {
+            language: 'bash',
+            tab: 'OpenAI Codex',
+            code: 'codex plugin add material-ui@material-ui',
+          },
+        ],
+      });
+    });
+
+    it('should throw on unquoted multi-word tab titles', () => {
+      expect(() => {
+        getCodeblock(
+          [
+            '<codeblock storageKey="coding-agent">',
+            '',
+            '```bash Claude Code',
+            'claude plugin marketplace add mui/material-ui',
+            '```',
+            '',
+            '</codeblock>',
+          ].join('\n'),
+        );
+      }).to.throw(`docs-infra: Invalid codeblock tab title.
+The fence \`\`\`bash Claude Code has a tab title that could not be parsed.
+Use a single word (e.g. \`\`\`bash Claude) or quote multi-word titles (e.g. \`\`\`bash "Claude Code").
+`);
+    });
+
+    it('should throw when the tab title is missing', () => {
+      expect(() => {
+        getCodeblock(
+          [
+            '<codeblock storageKey="package-manager">',
+            '',
+            '```bash',
+            'npm install @mui/material',
+            '```',
+            '',
+            '</codeblock>',
+          ].join('\n'),
+        );
+      }).to.throw(`docs-infra: Missing codeblock tab title.
+The fence \`\`\`bash is missing a tab title.
+Add a single-word title (e.g. \`\`\`bash npm) or a quoted multi-word title (e.g. \`\`\`bash "Claude Code").
+`);
+    });
+
+    it('should throw on empty quoted tab titles', () => {
+      expect(() => {
+        getCodeblock(
+          [
+            '<codeblock storageKey="package-manager">',
+            '',
+            '```bash ""',
+            'npm install @mui/material',
+            '```',
+            '',
+            '</codeblock>',
+          ].join('\n'),
+        );
+      }).to.throw(`docs-infra: Empty codeblock tab title.
+The fence \`\`\`bash "" has an empty quoted tab title.
+Provide a non-empty title (e.g. \`\`\`bash "Claude Code").
+`);
+    });
   });
 
   describe('renderMarkdown', () => {
