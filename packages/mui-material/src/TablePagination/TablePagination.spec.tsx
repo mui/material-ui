@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { TablePaginationOwnerState } from '@mui/material/TablePagination';
 import TablePagination from '@mui/material/TablePagination';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -175,3 +176,24 @@ function classesTest() {
     },
   }}
 />;
+
+function RefTest() {
+  const tdRef = React.useRef<HTMLTableCellElement>(null);
+  const divRef = React.useRef<HTMLDivElement>(null);
+
+  return (
+    <React.Fragment>
+      <TablePagination ref={tdRef} count={1} page={0} rowsPerPage={10} onPageChange={() => {}} />
+      <TablePagination
+        component="div"
+        ref={divRef}
+        count={1}
+        page={0}
+        rowsPerPage={10}
+        onPageChange={() => {}}
+      />
+      {/* @ts-expect-error default td root does not accept HTMLDivElement ref */}
+      <TablePagination ref={divRef} count={1} page={0} rowsPerPage={10} onPageChange={() => {}} />
+    </React.Fragment>
+  );
+}
