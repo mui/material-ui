@@ -24,7 +24,6 @@ describe('getMaterialUiComponentInfo', () => {
   });
 
   it.each([
-    ['internal/MenuItemBase.tsx', true],
     ['internal/Menu2ItemBase.tsx', true],
     ['Unstable_Menu2/Menu2IndicatorBase.tsx', true],
     ['Unstable_Menu2/Menu2PopupSlotBases.tsx', true],

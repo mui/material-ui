@@ -14,7 +14,7 @@ const theme = createTheme({
     MuiMenu2SubmenuPopup: { styleOverrides: { root: { minWidth: 160 } } },
     MuiMenu2SubmenuTrigger: { defaultProps: { openOnHover: false } },
     MuiMenu2Trigger: { defaultProps: { openOnHover: true, delay: 200 } },
-    MuiMenu2Item: { defaultProps: { dense: true } },
+    MuiMenu2Item: { defaultProps: { divider: true } },
     MuiMenu2CheckboxItem: { defaultProps: { defaultChecked: true } },
     MuiMenu2RadioItem: { defaultProps: { value: 'one' } },
     MuiMenu2LinkItem: { defaultProps: { href: '/profile' } },
@@ -28,7 +28,7 @@ const theme = createTheme({
 theme.components?.MuiMenu2?.defaultProps?.modal satisfies boolean | undefined;
 theme.components?.MuiMenu2Popup?.defaultProps?.align satisfies
   'start' | 'center' | 'end' | undefined;
-theme.components?.MuiMenu2Item?.defaultProps?.dense satisfies boolean | undefined;
+theme.components?.MuiMenu2Item?.defaultProps?.divider satisfies boolean | undefined;
 
 createTheme({
   components: {

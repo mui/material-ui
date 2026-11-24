@@ -98,7 +98,6 @@ createTheme({
           ownerState.highlighted satisfies boolean;
           return {};
         },
-        dense: {},
         divider: {},
         gutters: {},
       },
@@ -116,20 +115,19 @@ createTheme({
       ],
     },
     MuiMenu2Item: {
-      defaultProps: { dense: true },
+      defaultProps: { divider: true },
       styleOverrides: {
         root: (props) => {
           const { ownerState, theme } = props;
-          ownerState.dense satisfies boolean;
+          ownerState.divider satisfies boolean;
           ownerState.highlighted satisfies boolean;
           // @ts-expect-error Live state belongs to ownerState, not the slot's own props.
           props.highlighted satisfies boolean;
           return {
-            padding: theme.spacing(ownerState.dense ? 1 : 2),
+            padding: theme.spacing(ownerState.divider ? 1 : 2),
             [`&.${menu2ItemClasses.highlighted}`]: { color: theme.menu2TestColor },
           };
         },
-        dense: { minHeight: 24 },
         divider: ({ theme }) => ({ borderColor: theme.menu2TestColor }),
         gutters: ({ theme }) => ({ paddingInline: theme.spacing(2) }),
       },
@@ -170,7 +168,6 @@ createTheme({
           ownerState.checked satisfies boolean;
           return { color: theme.menu2TestColor };
         },
-        dense: {},
         divider: {},
         gutters: {},
       },
@@ -205,7 +202,6 @@ createTheme({
           return {};
         },
         indicatorIcon: ({ theme }) => ({ color: theme.menu2TestColor }),
-        dense: {},
         divider: {},
         gutters: {},
       },
@@ -229,7 +225,6 @@ createTheme({
           ownerState.highlighted satisfies boolean;
           return {};
         },
-        dense: {},
         divider: {},
         gutters: {},
       },
@@ -322,8 +317,8 @@ createTheme({
     },
     MuiMenu2Item: {
       defaultProps: {
-        // @ts-expect-error Dense is a boolean, not a string.
-        dense: 'true',
+        // @ts-expect-error Divider is a boolean, not a string.
+        divider: 'true',
       },
       variants: [
         {

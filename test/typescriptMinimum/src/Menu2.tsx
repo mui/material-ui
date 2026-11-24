@@ -65,15 +65,15 @@ import type {
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 
+// @ts-expect-error Menu2 has no dense mode.
 <Menu2Popup slotProps={{ list: { dense: true } }} />;
-<Menu2Popup slotProps={{ list: () => ({ dense: false }) }} />;
 <Menu2SubmenuPopup slotProps={{ list: { disablePadding: true, sx: { py: 1 } } }} />;
 <Menu2SubmenuPopup
   slotProps={{ list: (ownerState) => ({ disablePadding: true, 'data-side': ownerState.side }) }}
 />;
-// @ts-expect-error Submenu list density is inherited from the parent menu.
+// @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
-// @ts-expect-error Submenu list density cannot be changed through callback slot props.
+// @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: () => ({ dense: false }) }} />;
 
 export default function Menu2Consumer() {
@@ -141,7 +141,6 @@ export default function Menu2Consumer() {
               state.checked satisfies boolean;
               state.highlighted satisfies boolean;
               state.disabled satisfies boolean;
-              state.dense satisfies boolean;
               state.disableGutters satisfies boolean;
               state.divider satisfies boolean;
               // @ts-expect-error Render props omit the legacy HTML color attribute.
@@ -187,7 +186,6 @@ export default function Menu2Consumer() {
                 state.open satisfies boolean;
                 state.highlighted satisfies boolean;
                 state.disabled satisfies boolean;
-                state.dense satisfies boolean;
                 state.disableGutters satisfies boolean;
                 state.divider satisfies boolean;
                 // @ts-expect-error Exit timing is internal to the submenu.
@@ -241,7 +239,6 @@ export default function Menu2Consumer() {
                     state.checked satisfies boolean;
                     state.highlighted satisfies boolean;
                     state.disabled satisfies boolean;
-                    state.dense satisfies boolean;
                     state.disableGutters satisfies boolean;
                     state.divider satisfies boolean;
                     // @ts-expect-error Render props omit the legacy HTML color attribute.
@@ -337,7 +334,6 @@ const CustomButton = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
   render={(props, state) => {
     state.highlighted satisfies boolean;
     state.disabled satisfies boolean;
-    state.dense satisfies boolean;
     state.disableGutters satisfies boolean;
     state.divider satisfies boolean;
     // @ts-expect-error Highlighted is a boolean.
@@ -357,7 +353,6 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
     ownerState satisfies Menu2ItemOwnerState;
     ownerState.highlighted satisfies boolean;
     ownerState.disabled satisfies boolean;
-    ownerState.dense satisfies boolean;
     ownerState.disableGutters satisfies boolean;
     ownerState.divider satisfies boolean;
     // @ts-expect-error Highlighted is a boolean.
@@ -368,7 +363,7 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
       ref: React.createRef<HTMLDivElement>(),
       title: 'Item',
       'data-highlighted': ownerState.highlighted,
-      sx: { px: ownerState.dense ? 1 : 2 },
+      sx: { px: ownerState.divider ? 1 : 2 },
     };
   },
 };
@@ -434,7 +429,6 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
     props.href satisfies string | undefined;
     props.target satisfies React.HTMLAttributeAnchorTarget | undefined;
     state.highlighted satisfies boolean;
-    state.dense satisfies boolean;
     state.disableGutters satisfies boolean;
     state.divider satisfies boolean;
     // @ts-expect-error Link items have no disabled state.
@@ -480,7 +474,7 @@ const menuLinkItemSlotProps: Menu2LinkItemSlotProps = {
       target: '_blank',
       rel: 'noopener',
       'data-highlighted': ownerState.highlighted,
-      sx: { px: ownerState.dense ? 1 : 2 },
+      sx: { px: ownerState.divider ? 1 : 2 },
       ref: React.createRef<HTMLAnchorElement>(),
       onClick: (event) => {
         event.currentTarget satisfies HTMLAnchorElement;
@@ -524,10 +518,9 @@ createTheme({
         slotProps: {
           root: (ownerState) => {
             ownerState.highlighted satisfies boolean;
-            ownerState.dense satisfies boolean;
             return {
               'data-highlighted': ownerState.highlighted,
-              sx: { px: ownerState.dense ? 1 : 2 },
+              sx: { px: ownerState.divider ? 1 : 2 },
             };
           },
         },

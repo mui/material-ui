@@ -31,8 +31,8 @@ const theme = createTheme({
       styleOverrides: { root: { minWidth: 180 } },
     },
     MuiMenu2Item: {
-      defaultProps: { dense: true },
-      styleOverrides: { dense: { minHeight: 24 } },
+      defaultProps: { divider: true },
+      styleOverrides: { divider: { minHeight: 24 } },
     },
     MuiMenu2Trigger: { defaultProps: { openOnHover: true, delay: 200 } },
   },
