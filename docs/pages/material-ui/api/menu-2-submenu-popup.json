@@ -100,13 +100,13 @@
   "slots": [
     {
       "name": "portal",
-      "description": "The component used for the portal element, which contains the menu.",
+      "description": "The component used for the portal element, which contains the menu.\nTakes precedence over `slotProps.portal.render`.",
       "default": "'div'",
       "class": "MuiMenu2SubmenuPopup-portal"
     },
     {
       "name": "positioner",
-      "description": "The component used to position the menu surface.",
+      "description": "The component used to position the menu surface.\nTakes precedence over `slotProps.positioner.render`.",
       "default": "'div'",
       "class": "MuiMenu2SubmenuPopup-positioner"
     },

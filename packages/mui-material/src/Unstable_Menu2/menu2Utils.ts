@@ -3,11 +3,14 @@ import clsx from 'clsx';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import useForkRef from '@mui/utils/useForkRef';
+import { mergeProps } from '@base-ui/react/merge-props';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '../styles';
 import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
 import type { SlotComponentProps, WithDataAttributes } from '../utils/types';
+import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 
 // One log per component for each warning, so a bad trigger does not spam the
 // console on every render.
@@ -147,4 +150,51 @@ export function getMenu2RootRender<OwnerState>(
   }
 
   return React.createElement(RootSlot, appendOwnerState(RootSlot, rootProps, ownerState));
+}
+
+interface Menu2SlotRenderRootProps {
+  baseProps: HTMLProps;
+  state: object;
+  slot: React.ElementType;
+  ownerState: object;
+  slotProps: Record<string, any>;
+  render: Menu2SlotRender<any>;
+  renderKey: 'as' | 'component';
+}
+
+function Menu2SlotRenderRoot(props: Menu2SlotRenderRootProps) {
+  const { baseProps, state, slot, ownerState, slotProps, render, renderKey } = props;
+  const ref = useForkRef(baseProps.ref, slotProps.ref);
+  return getMenu2RootRender(slot, ownerState, {
+    ...mergeProps(baseProps, slotProps),
+    ref,
+    [renderKey]: Menu2RenderRoot,
+    internalRender: render,
+    internalRenderState: state,
+  });
+}
+
+// Base UI gives the part state only to a render function, so `render` goes through one.
+// `renderKey` is the slot prop that sets the rendered element.
+export function getMenu2SlotRender(
+  slot: React.ElementType,
+  ownerState: object,
+  slotProps: Record<string, any>,
+  render: Menu2SlotRender<any> | undefined,
+  renderKey: 'as' | 'component' = 'as',
+) {
+  if (!render) {
+    return getMenu2RootRender(slot, ownerState, slotProps);
+  }
+  return function renderSlot(baseProps: HTMLProps, state: object) {
+    return React.createElement(Menu2SlotRenderRoot, {
+      baseProps,
+      state,
+      slot,
+      ownerState,
+      slotProps,
+      render,
+      renderKey,
+    });
+  };
 }

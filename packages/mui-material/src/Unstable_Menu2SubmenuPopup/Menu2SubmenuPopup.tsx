@@ -29,6 +29,10 @@ export type Menu2SubmenuPopupState = BaseMenu.Popup.State;
 
 export type Menu2SubmenuPopupListState = BaseMenu.List.State;
 
+export type Menu2SubmenuPopupPortalState = BaseMenu.Portal.State;
+
+export type Menu2SubmenuPopupPositionerState = BaseMenu.Positioner.State;
+
 export interface Menu2SubmenuPopupProps extends Omit<
   Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,
   | 'classes'
@@ -165,11 +169,13 @@ export interface Menu2SubmenuPopupOwnerState extends Menu2SubmenuPopupProps {}
 export interface Menu2SubmenuPopupSlots {
   /**
    * The component used for the portal element, which contains the menu.
+   * Takes precedence over `slotProps.portal.render`.
    * @default 'div'
    */
   portal?: React.ElementType | undefined;
   /**
    * The component used to position the menu surface.
+   * Takes precedence over `slotProps.positioner.render`.
    * @default 'div'
    */
   positioner?: React.ElementType | undefined;

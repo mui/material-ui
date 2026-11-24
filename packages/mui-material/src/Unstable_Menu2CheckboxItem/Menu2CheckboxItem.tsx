@@ -11,12 +11,9 @@ import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import type { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
-import Menu2IndicatorBase, {
-  getMenu2IndicatorIcon,
-  getMenu2IndicatorRender,
-} from '../Unstable_Menu2/Menu2IndicatorBase';
+import Menu2IndicatorBase, { getMenu2IndicatorIcon } from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { resolveMenu2SlotRender } from '../Unstable_Menu2/menu2Utils';
+import { getMenu2SlotRender, resolveMenu2SlotRender } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   Menu2ItemEndAdornment,
@@ -250,7 +247,7 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
       startIndicator={
         <BaseMenu.CheckboxItemIndicator
           keepMounted={keepMounted}
-          render={getMenu2IndicatorRender(
+          render={getMenu2SlotRender(
             IndicatorSlot,
             ownerState,
             {
@@ -263,6 +260,8 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
                 ),
             },
             slots?.indicator ? undefined : indicatorRender,
+            // The indicator passes `component` to ListItemIcon, so its styles stay.
+            'component',
           )}
         />
       }

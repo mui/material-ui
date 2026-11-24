@@ -10,12 +10,9 @@ import Menu2ItemBase, { menu2ItemOverridesResolver } from '../internal/Menu2Item
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import RadioButtonIcon from '../Radio/RadioButtonIcon';
 import type { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
-import Menu2IndicatorBase, {
-  getMenu2IndicatorIcon,
-  getMenu2IndicatorRender,
-} from '../Unstable_Menu2/Menu2IndicatorBase';
+import Menu2IndicatorBase, { getMenu2IndicatorIcon } from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { resolveMenu2SlotRender } from '../Unstable_Menu2/menu2Utils';
+import { getMenu2SlotRender, resolveMenu2SlotRender } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   Menu2ItemEndAdornment,
@@ -230,7 +227,7 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
       startIndicator={
         <BaseMenu.RadioItemIndicator
           keepMounted={keepMounted}
-          render={getMenu2IndicatorRender(
+          render={getMenu2SlotRender(
             IndicatorSlot,
             ownerState,
             {
@@ -243,6 +240,8 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
                 ),
             },
             slots?.indicator ? undefined : indicatorRender,
+            // The indicator passes `component` to ListItemIcon, so its styles stay.
+            'component',
           )}
         />
       }

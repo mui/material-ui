@@ -100,19 +100,19 @@
   "slots": [
     {
       "name": "portal",
-      "description": "The component used for the portal element, which contains the menu and its backdrops.",
+      "description": "The component used for the portal element, which contains the menu and its backdrops.\nTakes precedence over `slotProps.portal.render`.",
       "default": "'div'",
       "class": "MuiMenu2Popup-portal"
     },
     {
       "name": "positioner",
-      "description": "The component used to position the menu surface.",
+      "description": "The component used to position the menu surface.\nTakes precedence over `slotProps.positioner.render`.",
       "default": "'div'",
       "class": "MuiMenu2Popup-positioner"
     },
     {
       "name": "backdrop",
-      "description": "The component used for the visual backdrop beneath the menu.\nIt renders only when you set this slot or `slotProps.backdrop`. By default, it is transparent and lets clicks through.\nSet to `null` to remove it, including when the theme sets it. This removes only the visual layer: a modal menu still blocks outside clicks.",
+      "description": "The component used for the visual backdrop beneath the menu.\nIt renders only when you set this slot or `slotProps.backdrop`. By default, it is transparent and lets clicks through.\nTakes precedence over `slotProps.backdrop.render`.\nSet to `null` to remove it, including when the theme sets it. This removes only the visual layer: a modal menu still blocks outside clicks.",
       "default": "'div'",
       "class": "MuiMenu2Popup-backdrop"
     },

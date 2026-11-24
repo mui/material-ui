@@ -264,126 +264,230 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         expect(popup).not.to.have.attribute('component');
       });
 
-      it('hides a retained portal only after its popup exit transition', async () => {
-        const completed = vi.fn();
-        function RetainedMenu() {
-          const [open, setOpen] = React.useState(false);
-          return (
+      it('keeps the portal and positioner styles when render changes the elements', async () => {
+        const portalRef = React.createRef<HTMLDivElement>();
+        const positionerRef = React.createRef<HTMLDivElement>();
+        const positionerStates: Array<{ side: string; align: string }> = [];
+        const theme = createTheme({
+          components: {
+            MuiMenu2Popup: {
+              styleOverrides: { portal: { outlineOffset: 5 }, positioner: { outlineOffset: 6 } },
+            },
+          },
+        });
+        const { user } = render(
+          <ThemeProvider theme={theme}>
             <TestMenu
-              open={open}
-              onOpenChange={setOpen}
-              onOpenChangeComplete={completed}
-              keepMounted
-              transitionDuration={{ enter: 0, exit: 200 }}
               slotProps={{
-                portal: {
-                  sx: { position: 'fixed', inset: 0, padding: 1, backgroundColor: 'rgb(1, 2, 3)' },
+                portal: { ref: portalRef, render: <section />, sx: { paddingTop: '3px' } },
+                positioner: {
+                  ref: positionerRef,
+                  sx: { paddingTop: '4px' },
+                  render: (props, state) => {
+                    positionerStates.push({ side: state.side, align: state.align });
+                    return <aside {...props} />;
+                  },
                 },
               }}
-            >
-              <Menu2Item closeOnClick={false} onClick={() => setOpen(false)}>
-                Alpha
-              </Menu2Item>
-            </TestMenu>
-          );
-        }
-        const { user } = render(<RetainedMenu />);
-        if (submenu) {
-          await user.click(screen.getByRole('button', { name: 'Options' }));
-          await screen.findByRole('menuitem', { name: 'More' });
-        }
-        // The closed retained popup has no accessible name, so start from its portal.
-        const root = document.querySelector<HTMLElement>(`.${popupClasses.portal}`)!;
-        const popup = within(root).getByRole('menu', { hidden: true });
-        const positioner = popup.parentElement!;
-        const list = popup.querySelector(`.${popupClasses.list}`)!;
-        function expectOpenState(open: boolean) {
-          [popup, positioner].forEach((element) => {
-            expect(element).to.have.attribute(open ? 'data-open' : 'data-closed', '');
-            expect(element).not.to.have.attribute(open ? 'data-closed' : 'data-open');
-          });
-          [root, list].forEach((element) => {
-            ['data-open', 'data-closed', 'data-starting-style', 'data-ending-style'].forEach(
-              (attribute) => expect(element).not.to.have.attribute(attribute),
-            );
-          });
-        }
-        const getOutsideTarget = () =>
-          document.elementFromPoint(window.innerWidth - 8, window.innerHeight - 8);
-        expectOpenState(false);
-        expect(getComputedStyle(root).display).to.equal('none');
-        expect(root).not.toBeVisible();
-        expect(getOutsideTarget()).not.to.equal(root);
-
-        await user.click(
-          submenu
-            ? screen.getByRole('menuitem', { name: 'More' })
-            : screen.getByRole('button', { name: 'Options' }),
+            />
+          </ThemeProvider>,
         );
-        const item = await screen.findByRole('menuitem', { name: 'Alpha' });
-        expect(item.closest('[role="menu"]')).to.equal(popup);
-        await waitFor(() => expect(completed).toHaveBeenCalledWith(true));
-        expectOpenState(true);
-        expect(popup.getAttribute('data-side')).to.equal(positioner.getAttribute('data-side'));
-        expect(popup.getAttribute('data-align')).to.equal(positioner.getAttribute('data-align'));
-        expect(popup).not.to.have.attribute('data-starting-style');
-        expect(root).toBeVisible();
-        expect(getComputedStyle(root).backgroundColor).to.equal('rgb(1, 2, 3)');
-        expect(getOutsideTarget()).to.equal(root);
-        completed.mockClear();
 
-        // Browser clicks can return after a short exit transition completes.
-        // Capture the intermediate state when Base UI starts the exit.
-        const exitStates: object[] = [];
-        const observer = new MutationObserver(() => {
-          if (popup.hasAttribute('data-ending-style')) {
-            exitStates.push({
-              popupClosed: popup.hasAttribute('data-closed'),
-              positionerClosed: positioner.hasAttribute('data-closed'),
-              positionerEnding: positioner.hasAttribute('data-ending-style'),
-              portalVisible: getComputedStyle(root).display !== 'none',
-              outsideTargetIsPortal: getOutsideTarget() === root,
-              completedCalls: completed.mock.calls.length,
+        const popup = await openMenu(user);
+        const positioner = popup.parentElement!;
+        const portal = positioner.parentElement!;
+        expect(positioner.tagName).to.equal('ASIDE');
+        expect(portal.tagName).to.equal('SECTION');
+        expect(positionerRef.current).to.equal(positioner);
+        expect(portalRef.current).to.equal(portal);
+        expect(positioner).to.have.class(popupClasses.positioner);
+        expect(portal).to.have.class(popupClasses.portal);
+        // Base UI links its hidden owner element to the portal by id.
+        expect(portal.id).not.to.equal('');
+        expect(document.querySelector(`[aria-owns="${portal.id}"]`)).not.to.equal(null);
+        expect(positioner).toHaveComputedStyle({
+          position: 'absolute',
+          zIndex: '1',
+          outlineOffset: '6px',
+          paddingTop: '4px',
+        });
+        expect(portal).toHaveComputedStyle({
+          position: 'absolute',
+          outlineOffset: '5px',
+          paddingTop: '3px',
+        });
+        expect(positionerStates.at(-1)).to.deep.equal({
+          side: positioner.getAttribute('data-side'),
+          align: positioner.getAttribute('data-align'),
+        });
+      });
+
+      it('lets the portal and positioner slots take precedence over render', async () => {
+        const renderSpy = vi.fn((props: React.HTMLAttributes<HTMLElement>) => (
+          <section {...props} />
+        ));
+        const { user } = render(
+          <TestMenu
+            slots={{ portal: 'div', positioner: 'div' }}
+            slotProps={{ portal: { render: renderSpy }, positioner: { render: renderSpy } }}
+          />,
+        );
+
+        const positioner = (await openMenu(user)).parentElement!;
+        expect(positioner.tagName).to.equal('DIV');
+        expect(positioner.parentElement!.tagName).to.equal('DIV');
+        expect(renderSpy).not.toHaveBeenCalled();
+      });
+
+      it('ignores a component in the portal and positioner slot props', async () => {
+        const { user } = render(
+          <TestMenu
+            slotProps={{
+              // The casts pass `component` as a JavaScript caller can.
+              portal: { ...({ component: 'section' } as object) },
+              positioner: { ...({ component: 'section' } as object) },
+            }}
+          />,
+        );
+
+        const positioner = (await openMenu(user)).parentElement!;
+        [positioner, positioner.parentElement!].forEach((element) => {
+          expect(element.tagName).to.equal('DIV');
+          expect(element).not.to.have.attribute('component');
+        });
+      });
+
+      [false, true].forEach((rendered) => {
+        it(`hides a retained portal only after its popup exit transition, render=${rendered}`, async () => {
+          const completed = vi.fn();
+          function RetainedMenu() {
+            const [open, setOpen] = React.useState(false);
+            return (
+              <TestMenu
+                open={open}
+                onOpenChange={setOpen}
+                onOpenChangeComplete={completed}
+                keepMounted
+                transitionDuration={{ enter: 0, exit: 200 }}
+                slotProps={{
+                  portal: {
+                    render: rendered ? <section /> : undefined,
+                    sx: {
+                      position: 'fixed',
+                      inset: 0,
+                      padding: 1,
+                      backgroundColor: 'rgb(1, 2, 3)',
+                    },
+                  },
+                  positioner: { render: rendered ? <aside /> : undefined },
+                }}
+              >
+                <Menu2Item closeOnClick={false} onClick={() => setOpen(false)}>
+                  Alpha
+                </Menu2Item>
+              </TestMenu>
+            );
+          }
+          const { user } = render(<RetainedMenu />);
+          if (submenu) {
+            await user.click(screen.getByRole('button', { name: 'Options' }));
+            await screen.findByRole('menuitem', { name: 'More' });
+          }
+          // The closed retained popup has no accessible name, so start from its portal.
+          const root = document.querySelector<HTMLElement>(`.${popupClasses.portal}`)!;
+          const popup = within(root).getByRole('menu', { hidden: true });
+          const positioner = popup.parentElement!;
+          const list = popup.querySelector(`.${popupClasses.list}`)!;
+          expect(root.tagName).to.equal(rendered ? 'SECTION' : 'DIV');
+          expect(positioner.tagName).to.equal(rendered ? 'ASIDE' : 'DIV');
+          function expectOpenState(open: boolean) {
+            [popup, positioner].forEach((element) => {
+              expect(element).to.have.attribute(open ? 'data-open' : 'data-closed', '');
+              expect(element).not.to.have.attribute(open ? 'data-closed' : 'data-open');
+            });
+            [root, list].forEach((element) => {
+              ['data-open', 'data-closed', 'data-starting-style', 'data-ending-style'].forEach(
+                (attribute) => expect(element).not.to.have.attribute(attribute),
+              );
             });
           }
+          const getOutsideTarget = () =>
+            document.elementFromPoint(window.innerWidth - 8, window.innerHeight - 8);
+          expectOpenState(false);
+          expect(getComputedStyle(root).display).to.equal('none');
+          expect(root).not.toBeVisible();
+          expect(getOutsideTarget()).not.to.equal(root);
+
+          await user.click(
+            submenu
+              ? screen.getByRole('menuitem', { name: 'More' })
+              : screen.getByRole('button', { name: 'Options' }),
+          );
+          const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+          expect(item.closest('[role="menu"]')).to.equal(popup);
+          await waitFor(() => expect(completed).toHaveBeenCalledWith(true));
+          expectOpenState(true);
+          expect(popup.getAttribute('data-side')).to.equal(positioner.getAttribute('data-side'));
+          expect(popup.getAttribute('data-align')).to.equal(positioner.getAttribute('data-align'));
+          expect(popup).not.to.have.attribute('data-starting-style');
+          expect(root).toBeVisible();
+          expect(getComputedStyle(root).backgroundColor).to.equal('rgb(1, 2, 3)');
+          expect(getOutsideTarget()).to.equal(root);
+          completed.mockClear();
+
+          // Browser clicks can return after a short exit transition completes.
+          // Capture the intermediate state when Base UI starts the exit.
+          const exitStates: object[] = [];
+          const observer = new MutationObserver(() => {
+            if (popup.hasAttribute('data-ending-style')) {
+              exitStates.push({
+                popupClosed: popup.hasAttribute('data-closed'),
+                positionerClosed: positioner.hasAttribute('data-closed'),
+                positionerEnding: positioner.hasAttribute('data-ending-style'),
+                portalVisible: getComputedStyle(root).display !== 'none',
+                outsideTargetIsPortal: getOutsideTarget() === root,
+                completedCalls: completed.mock.calls.length,
+              });
+            }
+          });
+          observer.observe(popup, { attributes: true, attributeFilter: ['data-ending-style'] });
+          try {
+            await user.click(item);
+            expect(exitStates).to.deep.equal([
+              {
+                popupClosed: true,
+                positionerClosed: true,
+                positionerEnding: false,
+                portalVisible: true,
+                outsideTargetIsPortal: true,
+                completedCalls: 0,
+              },
+            ]);
+          } finally {
+            observer.disconnect();
+          }
+
+          await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
+          expectOpenState(false);
+          expect(popup).not.to.have.attribute('data-ending-style');
+          expect(root.isConnected).to.equal(true);
+          expect(popup.isConnected).to.equal(true);
+          expect(getComputedStyle(root).display).to.equal('none');
+          expect(root).not.toBeVisible();
+          expect(getOutsideTarget()).not.to.equal(root);
+
+          completed.mockClear();
+          await user.click(
+            submenu
+              ? screen.getByRole('menuitem', { name: 'More' })
+              : screen.getByRole('button', { name: 'Options' }),
+          );
+          await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
+          expect(screen.getByRole('menu', { name: submenu ? 'More' : 'Options' })).to.equal(popup);
+          expectOpenState(true);
+          expect(popup).not.to.have.attribute('data-ending-style');
+          expect(root).toBeVisible();
         });
-        observer.observe(popup, { attributes: true, attributeFilter: ['data-ending-style'] });
-        try {
-          await user.click(item);
-          expect(exitStates).to.deep.equal([
-            {
-              popupClosed: true,
-              positionerClosed: true,
-              positionerEnding: false,
-              portalVisible: true,
-              outsideTargetIsPortal: true,
-              completedCalls: 0,
-            },
-          ]);
-        } finally {
-          observer.disconnect();
-        }
-
-        await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(false));
-        expectOpenState(false);
-        expect(popup).not.to.have.attribute('data-ending-style');
-        expect(root.isConnected).to.equal(true);
-        expect(popup.isConnected).to.equal(true);
-        expect(getComputedStyle(root).display).to.equal('none');
-        expect(root).not.toBeVisible();
-        expect(getOutsideTarget()).not.to.equal(root);
-
-        completed.mockClear();
-        await user.click(
-          submenu
-            ? screen.getByRole('menuitem', { name: 'More' })
-            : screen.getByRole('button', { name: 'Options' }),
-        );
-        await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
-        expect(screen.getByRole('menu', { name: submenu ? 'More' : 'Options' })).to.equal(popup);
-        expectOpenState(true);
-        expect(popup).not.to.have.attribute('data-ending-style');
-        expect(root).toBeVisible();
       });
 
       it('preserves placement inside a positioned portal container', async () => {

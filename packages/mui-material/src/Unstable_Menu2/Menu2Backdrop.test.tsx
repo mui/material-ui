@@ -338,6 +338,78 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
     }
   });
 
+  it('keeps the backdrop styles when render changes the element', async () => {
+    const backdropRef = React.createRef<HTMLDivElement>();
+    const states: Array<{ open: boolean; transitionStatus: unknown }> = [];
+    const { baseElement, user, unmount } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiMenu2Popup: {
+              styleOverrides: { backdrop: { backgroundColor: 'rgb(12, 34, 56)' } },
+            },
+          },
+        })}
+      >
+        <Menu2>
+          <Menu2Trigger render={<button type="button">Options</button>} />
+          <Menu2Popup
+            slotProps={{
+              backdrop: {
+                ref: backdropRef,
+                sx: { opacity: 0.5 },
+                render: (props, state) => {
+                  states.push({ open: state.open, transitionStatus: state.transitionStatus });
+                  return <section {...props} />;
+                },
+              },
+            }}
+          >
+            <Menu2Item>Profile</Menu2Item>
+          </Menu2Popup>
+        </Menu2>
+      </ThemeProvider>,
+    );
+
+    try {
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      await screen.findByRole('menu');
+      const backdrop = baseElement.querySelector<HTMLElement>(`.${menu2PopupClasses.backdrop}`)!;
+      expect(backdrop.tagName).to.equal('SECTION');
+      expect(backdropRef.current).to.equal(backdrop);
+      expect(backdrop).toHaveComputedStyle({
+        backgroundColor: 'rgb(12, 34, 56)',
+        opacity: '0.5',
+      });
+      expect(backdrop).to.have.attribute('data-open');
+      expect(states.at(-1)?.open).to.equal(true);
+    } finally {
+      unmount();
+    }
+  });
+
+  it('lets slots.backdrop take precedence over render', async () => {
+    const renderSpy = vi.fn((props: React.HTMLAttributes<HTMLElement>) => <section {...props} />);
+    const { baseElement, user, unmount } = render(
+      <Menu2>
+        <Menu2Trigger render={<button type="button">Options</button>} />
+        <Menu2Popup slots={{ backdrop: 'div' }} slotProps={{ backdrop: { render: renderSpy } }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    try {
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      await screen.findByRole('menu');
+      const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
+      expect(backdrop.tagName).to.equal('DIV');
+      expect(renderSpy).not.toHaveBeenCalled();
+    } finally {
+      unmount();
+    }
+  });
+
   it('forwards slot props and state to a custom backdrop component', async () => {
     interface CustomBackdropProps extends React.HTMLAttributes<HTMLDivElement> {
       ownerState?: Menu2PopupProps;

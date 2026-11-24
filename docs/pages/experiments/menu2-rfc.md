@@ -83,7 +83,7 @@ The classic `Menu` keeps its API. Menu2 reuses no code from the classic `Menu`, 
 
 ### Rules for Base UI-backed components (Menu is the first)
 
-- **Customization:** use `render` for the unstyled `Menu2Trigger`. On items, groups, labels, separators, and popups, `render` keeps Material styles; `slots.root` replaces the styled root. Use `slots`/`slotProps` for the other popup layers. The list and indicator slots take `render` instead of `component`. The customization targets below define the forwarding contract.
+- **Customization:** use `render` for the unstyled `Menu2Trigger`. On items, groups, labels, separators, and popups, `render` keeps Material styles; `slots.root` replaces the styled root. The other DOM slots follow the same rule with `slotProps.<slot>.render` and `slots.<slot>`. No part or slot takes `component`. The customization targets below define the forwarding contract.
 - **Slot handling:** use `useSlot` for item, group, label, and separator roots and the popup list. At Base UI render boundaries, reuse `appendOwnerState`, `resolveComponentProps`, and Material UI's `mergeSlotProps`. Use Base UI's `mergeProps` for behavioral props and compose refs. Keep adapters local until another integration needs them. They filter Material props from host elements, combine state classes, infer native buttons, and prevent duplicate keyboard activation.
 - **Style reuse:** do not reuse code from the classic `Menu`, `MenuList`, or `MenuItem`. Copy their styles where Menu2 needs them. General components, such as `Paper`, `List`, `Divider`, and `ListItemIcon`, stay. New parts own their spacing; use `Menu2Separator` between items.
 - **Presentation:** retain `disableGutters` and `divider`. Omit the visual-only `selected` prop; checkbox and radio items express checked state.
@@ -141,8 +141,9 @@ All item parts, groups, labels, separators, and popups share this contract, with
 - Separator state contains `orientation`.
 - Popup state contains `open`, `side`, `align`, and `transitionStatus`. The popup `render` targets the menu surface.
 - List state is empty, as in Base UI's `Menu.List`. Checkbox and radio indicators receive the Base UI indicator state. The submenu indicator receives the trigger state.
+- Portal state is empty. Positioner state contains `open`, `side`, `align`, `anchorHidden`, `nested`, and `instant`. Backdrop state contains `open` and `transitionStatus`.
 
-Indicators remain separate slots. `slotProps.list.render` and `slotProps.indicator.render` change the slot element and keep its styles. A replacement slot takes precedence over `render`. Set `slots.indicator` to `null` on a submenu trigger to omit its arrow.
+Indicators remain separate slots. On the portal, positioner, backdrop, list, and indicator slots, `slotProps.<slot>.render` changes the slot element and keeps its styles. A replacement slot takes precedence over `render`. The transition slot wraps the surface and renders no element, so it takes no `render`. Set `slots.indicator` to `null` on a submenu trigger to omit its arrow.
 
 Labels use non-sticky ListSubheader styles, controlled by `color`, `disableGutters`, and `inset`; there is no `disableSticky` prop.
 Separators use Divider styles and menu spacing, controlled by `absolute`, `flexItem`, `textAlign`, `variant`, and `orientation`.

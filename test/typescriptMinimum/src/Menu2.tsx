@@ -40,7 +40,7 @@ import type {
   Menu2LinkItemState,
 } from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
-import type { Menu2PopupState } from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2PopupPositionerState, Menu2PopupState } from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type {
   Menu2RadioGroupOwnerState,
@@ -88,6 +88,18 @@ import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
 <Menu2Popup slotProps={{ list: { render: <ul /> } }} />;
+<Menu2Popup
+  slotProps={{
+    positioner: {
+      render: (props, state) => {
+        state satisfies Menu2PopupPositionerState;
+        return <div {...props} data-side={state.side} />;
+      },
+    },
+  }}
+/>;
+// @ts-expect-error The positioner takes render, not component.
+<Menu2Popup slotProps={{ positioner: { component: 'section' } }} />;
 // @ts-expect-error The list takes render, not component.
 <Menu2Popup slotProps={{ list: { component: 'ul' } }} />;
 // @ts-expect-error The indicator takes render, not component.

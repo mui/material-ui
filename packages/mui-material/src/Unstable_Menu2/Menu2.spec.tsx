@@ -11,7 +11,10 @@ import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import type {
   Menu2PopupClassKey,
   Menu2PopupClasses,
+  Menu2PopupBackdropState,
   Menu2PopupListState,
+  Menu2PopupPortalState,
+  Menu2PopupPositionerState,
   Menu2PopupProps,
   Menu2PopupState,
 } from '@mui/material/Unstable_Menu2Popup';
@@ -23,6 +26,8 @@ import type {
   Menu2SubmenuPopupClassKey,
   Menu2SubmenuPopupClasses,
   Menu2SubmenuPopupListState,
+  Menu2SubmenuPopupPortalState,
+  Menu2SubmenuPopupPositionerState,
   Menu2SubmenuPopupState,
 } from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuPopup, {
@@ -829,12 +834,45 @@ createTheme({
   <Menu2Popup
     slotProps={{
       portal: {
-        // @ts-expect-error Base UI render prop is intentionally not supported.
-        render: <div />,
+        render: (props, state) => {
+          expectType<Menu2PopupPortalState, typeof state>(state);
+          return <div {...props} />;
+        },
+      },
+      backdrop: {
+        render: (props, state) => {
+          expectType<Menu2PopupBackdropState, typeof state>(state);
+          expectType<boolean, typeof state.open>(state.open);
+          return <div {...props} />;
+        },
       },
     }}
   ></Menu2Popup>
 </Menu2>;
+<Menu2SubmenuPopup
+  slotProps={{
+    portal: {
+      render: (props, state) => {
+        expectType<Menu2SubmenuPopupPortalState, typeof state>(state);
+        return <div {...props} />;
+      },
+    },
+    positioner: {
+      render: (props, state) => {
+        expectType<Menu2SubmenuPopupPositionerState, typeof state>(state);
+        return <div {...props} />;
+      },
+    },
+  }}
+/>;
+// @ts-expect-error The portal takes render, not component.
+<Menu2Popup slotProps={{ portal: { component: 'section' } }} />;
+// @ts-expect-error The positioner takes render, not component.
+<Menu2Popup slotProps={{ positioner: { component: 'section' } }} />;
+// @ts-expect-error The backdrop takes render, not component.
+<Menu2Popup slotProps={{ backdrop: { component: 'section' } }} />;
+// @ts-expect-error Pass an element or a function, not a tag name.
+<Menu2Popup slotProps={{ portal: { render: 'section' } }} />;
 
 <Menu2 open>
   <Menu2Trigger render={<button type="button">Open</button>} />
@@ -969,8 +1007,11 @@ const controlledPopupProps: Menu2PopupProps = {
   <Menu2Popup
     slotProps={{
       positioner: {
-        // @ts-expect-error Base UI render prop is intentionally not supported.
-        render: <div />,
+        render: (props, state) => {
+          expectType<Menu2PopupPositionerState, typeof state>(state);
+          expectType<boolean, typeof state.anchorHidden>(state.anchorHidden);
+          return <div {...props} data-side={state.side} />;
+        },
       },
     }}
   ></Menu2Popup>

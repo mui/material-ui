@@ -31,6 +31,12 @@ export type Menu2PopupState = BaseMenu.Popup.State;
 
 export type Menu2PopupListState = BaseMenu.List.State;
 
+export type Menu2PopupPortalState = BaseMenu.Portal.State;
+
+export type Menu2PopupPositionerState = BaseMenu.Positioner.State;
+
+export type Menu2PopupBackdropState = BaseMenu.Backdrop.State;
+
 export interface Menu2PopupProps extends Omit<
   Menu2PopupSharedProps<Menu2PopupOwnerState>,
   | 'classes'
@@ -165,17 +171,20 @@ export interface Menu2PopupOwnerState extends Menu2PopupProps {}
 export interface Menu2PopupSlots {
   /**
    * The component used for the portal element, which contains the menu and its backdrops.
+   * Takes precedence over `slotProps.portal.render`.
    * @default 'div'
    */
   portal?: React.ElementType | undefined;
   /**
    * The component used to position the menu surface.
+   * Takes precedence over `slotProps.positioner.render`.
    * @default 'div'
    */
   positioner?: React.ElementType | undefined;
   /**
    * The component used for the visual backdrop beneath the menu.
    * It renders only when you set this slot or `slotProps.backdrop`. By default, it is transparent and lets clicks through.
+   * Takes precedence over `slotProps.backdrop.render`.
    * Set to `null` to remove it, including when the theme sets it. This removes only the visual layer: a modal menu still blocks outside clicks.
    * @default 'div'
    */

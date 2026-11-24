@@ -279,6 +279,7 @@ Submenus stay within the root menu stacking context, so set `slotProps.portal.sx
 
 :::warning
 A replacement `slots.portal` must provide its own stacking and closed-state styles.
+To change the element and keep these styles, use `slotProps.portal.render`.
 With `keepMounted`, the default portal hides after the exit transition, when its positioner becomes hidden.
 :::
 
@@ -319,7 +320,7 @@ Put item content in the item children.
 With `render`, forward `props.children` to keep the ripple and any indicator; children set on the render element can replace them.
 A root-slot replacement also receives the item content and indicator as children.
 On `MenuPopup` and `MenuSubmenuPopup`, `render` changes the menu surface. Forward `style` too, so that the transition works.
-The popup `list` slot and the item `indicator` slots take `render` in their slot props, not `component`.
+The popup `portal`, `positioner`, `backdrop`, and `list` slots and the item `indicator` slots take `render` in their slot props, not `component`.
 It changes the slot element and keeps its styles. A replacement slot takes precedence over `render`.
 
 Use `slotProps.root` for root attributes, a ref, and `sx`.

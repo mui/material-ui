@@ -22,7 +22,7 @@ import type { PaperProps } from '../Paper';
 import type { ListProps } from '../List';
 import { manager as modalManager } from '../Modal/useModal';
 import type { Menu2SlotRender, SlotProps } from './menu2Utils';
-import { resolveMenu2SlotRender } from './menu2Utils';
+import { getMenu2RootRender, getMenu2SlotRender, resolveMenu2SlotRender } from './menu2Utils';
 import { Menu2SubmenuClosingState } from './Menu2SubmenuClosingContext';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 
@@ -92,7 +92,6 @@ function getModalBlockerStyle(state: BaseMenu.Backdrop.State): React.CSSProperti
   };
 }
 
-const sxHostOmittedProps = ['sx'] as const;
 const paperHostOmittedProps = [
   'classes',
   'component',
@@ -118,17 +117,20 @@ export interface Menu2PopupSharedSlots {
   transition?: React.JSXElementConstructor<any> | null | undefined;
   /**
    * The component used for the portal element, which contains the menu and its backdrops.
+   * Takes precedence over `slotProps.portal.render`.
    * @default 'div'
    */
   portal?: React.ElementType | undefined;
   /**
    * The component used to position the menu surface.
+   * Takes precedence over `slotProps.positioner.render`.
    * @default 'div'
    */
   positioner?: React.ElementType | undefined;
   /**
    * The component used for the visual backdrop beneath the menu.
    * It renders only when you set this slot or `slotProps.backdrop`. By default, it is transparent and lets clicks through.
+   * Takes precedence over `slotProps.backdrop.render`.
    * Set to `null` to remove it. This removes only the visual layer: a modal menu still blocks outside clicks.
    * @default 'div'
    */
@@ -151,12 +153,12 @@ type WithSx = { sx?: SxProps<Theme> | undefined };
 // Menu2 has no dense mode.
 export type Menu2ListProps = Omit<ListProps, 'dense'> & { dense?: never | undefined };
 
-// The list takes `render` instead of `component`.
-type Menu2ListSlotProps = Omit<ExternalSlotProps<Omit<Menu2ListProps, 'component'>>, 'render'> & {
+// These slots take `render` instead of `component`.
+type Menu2RenderSlotProps<Props, State> = Omit<ExternalSlotProps<Props>, 'render'> & {
   /**
-   * The element to render, or a function that returns it. The list styles stay.
+   * The element to render, or a function that returns it. The slot styles stay.
    */
-  render?: Menu2SlotRender<BaseMenu.List.State> | undefined;
+  render?: Menu2SlotRender<State> | undefined;
 };
 
 export interface Menu2PopupSharedSlotProps<OwnerState> {
@@ -174,13 +176,30 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
       >
     | undefined;
   portal?:
-    | SlotProps<ExternalSlotProps<React.ComponentPropsWithRef<'div'>> & WithSx, OwnerState>
+    | SlotProps<
+        Menu2RenderSlotProps<React.ComponentPropsWithRef<'div'>, BaseMenu.Portal.State> & WithSx,
+        OwnerState
+      >
     | undefined;
   positioner?:
-    SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
-  backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props> & WithSx, OwnerState> | undefined;
+    | SlotProps<
+        Menu2RenderSlotProps<BaseMenu.Positioner.Props, BaseMenu.Positioner.State> & WithSx,
+        OwnerState
+      >
+    | undefined;
+  backdrop?:
+    | SlotProps<
+        Menu2RenderSlotProps<BaseMenu.Backdrop.Props, BaseMenu.Backdrop.State> & WithSx,
+        OwnerState
+      >
+    | undefined;
   root?: SlotProps<ExternalSlotProps<Omit<PaperProps, 'component'>>, OwnerState> | undefined;
-  list?: SlotProps<Menu2ListSlotProps, OwnerState> | undefined;
+  list?:
+    | SlotProps<
+        Menu2RenderSlotProps<Omit<Menu2ListProps, 'component'>, BaseMenu.List.State>,
+        OwnerState
+      >
+    | undefined;
 }
 
 type Menu2PositionerProps = BaseMenu.Positioner.Props;
@@ -336,11 +355,18 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const resolvedRootProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), {
     sx,
   });
-  const resolvedPortalProps = resolveComponentProps(slotProps?.portal, ownerState);
-  const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
-  const resolvedBackdropProps = BackdropSlot
-    ? resolveComponentProps(slotProps?.backdrop, ownerState)
-    : undefined;
+  const { render: portalSlotRender, props: resolvedPortalProps } = resolveMenu2SlotRender(
+    slotProps?.portal,
+    ownerState,
+  );
+  const { render: positionerSlotRender, props: resolvedPositionerProps } = resolveMenu2SlotRender(
+    slotProps?.positioner,
+    ownerState,
+  );
+  const { render: backdropSlotRender, props: resolvedBackdropProps } = resolveMenu2SlotRender(
+    BackdropSlot ? slotProps?.backdrop : undefined,
+    ownerState,
+  );
   // Base UI merges className, style, and ref into the element that `render`
   // gives a part, so those go through the part. `sx` and the Paper props go on
   // the element. All HTML attributes and handlers target the popup surface.
@@ -358,17 +384,17 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     className: portalSlotClassName,
     sx: portalSlotSx,
     ...portalSlotOtherProps
-  } = resolvedPortalProps ?? {};
+  } = resolvedPortalProps;
   const {
     className: positionerSlotClassName,
     sx: positionerSlotSx,
     ...positionerSlotOtherProps
-  } = resolvedPositionerProps ?? {};
+  } = resolvedPositionerProps;
   const {
     sx: backdropSlotSx,
     style: backdropSlotStyle,
     ...backdropSlotOtherProps
-  } = resolvedBackdropProps ?? {};
+  } = resolvedBackdropProps;
   const popupRef = React.useRef<HTMLDivElement>(null);
   const handleRootRef = useForkRef(ref, rootSlotRef, popupRef);
   // Keep focus off the body on an outside press, or a Dialog's FocusTrap takes it before
@@ -425,23 +451,23 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   setDefinedProp(positionerProps, 'disableAnchorTracking', disableAnchorTracking);
   setDefinedProp(positionerProps, 'collisionAvoidance', collisionAvoidance);
 
-  const portalRender = (
-    <PortalSlot
-      {...getSlotProps(
-        PortalSlot,
-        appendOwnerState(PortalSlot, { sx: portalSlotSx }, ownerState),
-        sxHostOmittedProps,
-      )}
-    />
-  );
-  const positionerRender = (
-    <PositionerSlot
-      {...getSlotProps(
-        PositionerSlot,
-        appendOwnerState(PositionerSlot, { sx: positionerSlotSx }, ownerState),
-        sxHostOmittedProps,
-      )}
-    />
+  // `render` keeps the styled slot. A `slots.<slot>` replacement takes precedence.
+  // Base UI reads the portal `id` from the element, so the portal uses the element form.
+  // The portal state is empty, as in Base UI.
+  const portalRender = getMenu2RootRender(PortalSlot, ownerState, {
+    sx: portalSlotSx,
+    ...(portalSlotRender &&
+      !slots?.portal && {
+        as: Menu2RenderRoot,
+        internalRender: portalSlotRender,
+        internalRenderState: {},
+      }),
+  });
+  const positionerRender = getMenu2SlotRender(
+    PositionerSlot,
+    ownerState,
+    { sx: positionerSlotSx },
+    slots?.positioner ? undefined : positionerSlotRender,
   );
   const rootProps = getSlotProps(
     RootSlot,
@@ -485,15 +511,12 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
         <BaseMenu.Backdrop
           {...backdropSlotOtherProps}
           style={backdropSlotStyle}
-          render={
-            <BackdropSlot
-              {...getSlotProps(
-                BackdropSlot,
-                appendOwnerState(BackdropSlot, { sx: backdropSlotSx }, ownerState),
-                sxHostOmittedProps,
-              )}
-            />
-          }
+          render={getMenu2SlotRender(
+            BackdropSlot,
+            ownerState,
+            { sx: backdropSlotSx },
+            slots?.backdrop ? undefined : backdropSlotRender,
+          )}
           className={clsx(classes?.backdrop, backdropSlotOtherProps.className)}
         />
       ) : null}
