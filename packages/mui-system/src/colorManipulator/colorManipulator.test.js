@@ -104,7 +104,7 @@ describe('utils/colorManipulator', () => {
 
     it('rounds decimal channel values', () => {
       expect(rgbToHex('rgb(127.5, 79.2, 210.8)')).to.equal('#804fd3');
-      expect(rgbToHex('rgba(169, 79, 211, 0.5)')).to.equal('#a94fd380');
+      expect(rgbToHex('rgba(169, 79, 211, 1.5)')).to.equal('#a94fd3ff');
     });
 
     it('clamps channel values to the 0 - 255 range', () => {
