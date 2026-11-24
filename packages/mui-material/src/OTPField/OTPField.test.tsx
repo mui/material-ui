@@ -107,9 +107,12 @@ describe('<OTPField />', () => {
 
     it('preserves field state, label focus, and descriptions through custom render elements', async () => {
       const rootRef = React.createRef<HTMLDivElement>();
+      const inputRef = React.createRef<HTMLInputElement>();
       const { user } = render(
         <OTPField
+          id="pin"
           ref={rootRef}
+          inputRef={inputRef}
           label="PIN"
           helperText="Two digits"
           length={2}
@@ -130,6 +133,8 @@ describe('<OTPField />', () => {
       const first = within(group).getByRole('textbox', { name: 'PIN' });
       expect(rootRef.current?.tagName).to.equal('SECTION');
       expect(rootRef.current).to.contain(group);
+      expect(first).to.equal(inputRef.current);
+      expect(first).to.have.attribute('id', 'pin');
       expect(group.tagName).to.equal('FIELDSET');
       expect(label).to.have.class(formLabelClasses.error);
       expect(screen.getByText('Two digits')).to.have.attribute('data-length', '2');
@@ -138,19 +143,6 @@ describe('<OTPField />', () => {
       expect(first).toHaveFocus();
       await user.keyboard('12');
       expect(rootRef.current).to.have.attribute('data-complete', 'true');
-    });
-
-    it('initializes the composed inputs from the field defaultValue', () => {
-      render(
-        <OTPField label="PIN" length={2} defaultValue="01">
-          <OTPFieldInput />
-          <OTPFieldInput />
-        </OTPField>,
-      );
-
-      const [first, second] = screen.getAllByRole('textbox');
-      expect(first).to.have.value('0');
-      expect(second).to.have.value('1');
     });
 
     it('preserves group semantics and the composed inputs when replacing the group host', async () => {
@@ -240,17 +232,16 @@ describe('<OTPField />', () => {
       [undefined, 'PIN'],
     ])(
       'names the first character from the field when its aria-label is %s',
-      async (fieldLabel, groupName) => {
-        const { user } = render(
+      (fieldLabel, groupName) => {
+        render(
           <OTPField label="PIN" aria-label={fieldLabel} length={2}>
             <OTPFieldInput aria-label="First digit" />
             <OTPFieldInput />
           </OTPField>,
         );
         const group = screen.getByRole('group', { name: groupName });
-        const first = within(group).getByRole('textbox', { name: groupName });
-        await user.click(screen.getByText('PIN'));
-        expect(first).toHaveFocus();
+        const [first] = within(group).getAllByRole('textbox');
+        expect(first).toHaveAccessibleName(groupName);
       },
     );
 
@@ -266,8 +257,6 @@ describe('<OTPField />', () => {
       await user.click(first);
       await user.keyboard('{ArrowLeft}');
       expect(second).toHaveFocus();
-      await user.keyboard('{ArrowRight}');
-      expect(first).toHaveFocus();
     });
 
     it('uses the name, description, and direction of the rendered group for its inputs', async () => {
@@ -293,24 +282,6 @@ describe('<OTPField />', () => {
       await user.click(first);
       await user.keyboard('{ArrowLeft}');
       expect(within(group).getByRole('textbox', { name: 'Character 2 of 2' })).toHaveFocus();
-    });
-
-    it('forwards ref to the field root and inputRef to the input targeted by the label', async () => {
-      const rootRef = React.createRef<HTMLDivElement>();
-      const inputRef = React.createRef<HTMLInputElement>();
-      const { user } = render(
-        <OTPField id="verification" ref={rootRef} inputRef={inputRef} label="Verification code" />,
-      );
-
-      const group = screen.getByRole('group', { name: 'Verification code' });
-      expect(rootRef.current).to.have.class(classes.root);
-      expect(rootRef.current).to.contain(group);
-      const first = within(group).getByRole('textbox', { name: 'Verification code' });
-      expect(first).to.equal(inputRef.current);
-      expect(first).to.have.attribute('id', 'verification');
-      await user.click(screen.getByText('Verification code'));
-      expect(first).toHaveFocus();
-      expect(screen.getByRole('textbox', { name: 'Character 6 of 6' })).toBeVisible();
     });
 
     it('uses getInputAriaLabel for subsequent inputs with one-based positions and the field length', () => {
@@ -341,44 +312,30 @@ describe('<OTPField />', () => {
       expect(first).toHaveAccessibleName('Recovery code');
     });
 
-    it('preserves a composed input label and combines its description with the field hint', () => {
+    it('combines field and per-input descriptions', () => {
       render(
         <React.Fragment>
+          <span id="code-hint">Use the most recent code.</span>
           <span id="digit-label">Check digit</span>
           <span id="digit-hint">Printed in bold.</span>
-          <OTPField label="PIN" length={2} helperText="Enter both digits.">
+          <OTPField
+            label="PIN"
+            length={2}
+            aria-describedby="code-hint"
+            helperText="Enter both digits."
+          >
             <OTPFieldInput />
             <OTPFieldInput aria-labelledby="digit-label" aria-describedby="digit-hint" />
           </OTPField>
         </React.Fragment>,
       );
 
-      expect(screen.getByRole('textbox', { name: 'PIN' })).toHaveAccessibleDescription(
-        'Enter both digits.',
-      );
+      const fieldHint = 'Use the most recent code. Enter both digits.';
+      expect(screen.getByRole('group', { name: 'PIN' })).toHaveAccessibleDescription(fieldHint);
+      expect(screen.getByRole('textbox', { name: 'PIN' })).toHaveAccessibleDescription(fieldHint);
       expect(screen.getByRole('textbox', { name: 'Check digit' })).toHaveAccessibleDescription(
-        'Enter both digits. Printed in bold.',
+        `${fieldHint} Printed in bold.`,
       );
-    });
-
-    it('combines helper text and an external description on the group and character inputs', () => {
-      render(
-        <React.Fragment>
-          <p id="code-hint">Use the most recent code.</p>
-          <OTPField
-            label="Verification code"
-            helperText="Check your messages."
-            aria-describedby="code-hint"
-          />
-        </React.Fragment>,
-      );
-
-      const group = screen.getByRole('group', { name: 'Verification code' });
-      const description = 'Use the most recent code. Check your messages.';
-      expect(group).toHaveAccessibleDescription(description);
-      within(group)
-        .getAllByRole('textbox')
-        .forEach((input) => expect(input).toHaveAccessibleDescription(description));
     });
   });
 

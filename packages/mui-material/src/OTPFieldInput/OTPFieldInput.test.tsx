@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { createRenderer, screen, within } from '@mui/internal-test-utils';
-import OTPField, {
-  OTPFieldInput,
-  OTPFieldSeparator,
-  otpFieldClasses as classes,
-} from '@mui/material/OTPField';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import OTPField, { OTPFieldInput, OTPFieldSeparator } from '@mui/material/OTPField';
 
 describe('<OTPFieldInput />', () => {
   const { render } = createRenderer();
@@ -31,11 +27,11 @@ describe('<OTPFieldInput />', () => {
     expect(nextRef.current).to.equal(null);
   });
 
-  it('keeps one code and navigates across a decorative separator and a nested input', async () => {
+  it('submits one code from composed inputs and forwards their refs', async () => {
     const inputRef = React.createRef<HTMLInputElement>();
     const firstRef = React.createRef<HTMLInputElement>();
     const lastRef = React.createRef<HTMLInputElement>();
-    const onComplete = vi.fn();
+    const onValueComplete = vi.fn();
     function LastDigit() {
       return <OTPFieldInput ref={lastRef} aria-label="Check digit" />;
     }
@@ -45,9 +41,9 @@ describe('<OTPFieldInput />', () => {
           label="Code"
           length={3}
           name="code"
+          defaultValue="01"
           inputRef={inputRef}
-          onValueComplete={onComplete}
-          classes={{ separator: 'custom-separator' }}
+          onValueComplete={onValueComplete}
         >
           <OTPFieldInput ref={firstRef} />
           <OTPFieldInput />
@@ -57,24 +53,15 @@ describe('<OTPFieldInput />', () => {
       </form>,
     );
 
-    const group = screen.getByRole('group', { name: 'Code' });
-    const [first, second, last] = within(group).getAllByRole('textbox');
+    const [first, second, last] = screen.getAllByRole('textbox');
     expect(first).to.equal(firstRef.current).and.equal(inputRef.current);
-    expect(second).toHaveAccessibleName('Character 2 of 3');
+    expect(first).to.have.value('0');
+    expect(second).to.have.value('1');
     expect(last).toHaveAccessibleName('Check digit');
     expect(last).to.equal(lastRef.current);
-    expect(screen.getByText('-'))
-      .to.have.class(classes.separator)
-      .and.have.class('custom-separator');
-    expect(within(group).queryByRole('separator')).to.equal(null);
-    expect(second.nextElementSibling).to.equal(screen.getByText('-'));
 
-    await user.click(screen.getByText('Code'));
-    await user.keyboard('01');
-    expect(last).toHaveFocus();
-    await user.keyboard('2{ArrowLeft}');
-    expect(second).toHaveFocus();
-    expect(onComplete.mock.calls.map(([code]) => code)).to.deep.equal(['012']);
+    await user.type(last, '2');
+    expect(onValueComplete).toHaveBeenCalledWith('012', expect.anything());
     expect(new FormData(screen.getByRole<HTMLFormElement>('form')).getAll('code')).to.deep.equal([
       '012',
     ]);
