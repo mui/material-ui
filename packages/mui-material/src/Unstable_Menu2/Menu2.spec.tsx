@@ -575,18 +575,12 @@ createTheme({
 
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2Popup slotProps={{ list: { dense: true } }} />;
+// @ts-expect-error Menu2 has no dense mode.
+<Menu2Popup slotProps={{ list: () => ({ dense: false }) }} />;
 <Menu2SubmenuPopup slotProps={{ list: { disablePadding: true, sx: { py: 1 } } }} />;
 <Menu2SubmenuPopup
   slotProps={{ list: (ownerState) => ({ disablePadding: true, 'data-side': ownerState.side }) }}
 />;
-interface CustomSubmenuListProps {
-  customValue: string;
-}
-const customSubmenuListProps: CustomSubmenuListProps = {
-  customValue: 'custom',
-};
-<Menu2SubmenuPopup slotProps={{ list: customSubmenuListProps }} />;
-<Menu2SubmenuPopup slotProps={{ list: () => customSubmenuListProps }} />;
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
 // @ts-expect-error Menu2 has no dense mode.

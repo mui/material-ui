@@ -42,11 +42,16 @@ function Menu2ScrollLock({
   return null;
 }
 
-type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
+type ExternalSlotPropsBase<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
   className?: string | undefined;
   render?: never | undefined;
   style?: React.CSSProperties | undefined;
-} & Record<string, any>;
+};
+
+// Keep typed props assignable while also accepting data attributes in literals.
+type ExternalSlotProps<Props> =
+  | ExternalSlotPropsBase<Props>
+  | (ExternalSlotPropsBase<Props> & { [attribute: `data-${string}`]: unknown });
 
 function setDefinedProp(props: Record<string, any>, key: string, value: unknown) {
   if (value !== undefined) {
@@ -166,7 +171,7 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
     | undefined;
   positioner?:
     SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
-  backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props>, OwnerState> | undefined;
+  backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props> & WithSx, OwnerState> | undefined;
   root?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
   list?: SlotProps<ExternalSlotProps<Menu2ListProps>, OwnerState> | undefined;
 }

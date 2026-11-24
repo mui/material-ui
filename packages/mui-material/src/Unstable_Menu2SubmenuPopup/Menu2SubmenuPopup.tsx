@@ -8,7 +8,6 @@ import { styled } from '../zero-styled';
 import type { Theme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import type {
-  Menu2ListProps,
   Menu2PopupPublicProps,
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
@@ -23,7 +22,6 @@ import {
 import type { Menu2SubmenuPopupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SubmenuPopupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
-import type { SlotProps } from '../Unstable_Menu2/menu2Utils';
 
 export interface Menu2SubmenuPopupProps extends Omit<
   Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,
@@ -177,22 +175,10 @@ export interface Menu2SubmenuPopupSlots {
   list?: React.ElementType | undefined;
 }
 
-interface Menu2SubmenuPopupListProps extends Partial<Menu2ListProps> {
-  render?: never | undefined;
-  // Callbacks must match the callback signature, not the loose slot props object.
-  apply?: never | undefined;
-  [key: string]: any;
-}
-
 export interface Menu2SubmenuPopupSlotProps extends Omit<
   Menu2PopupSharedSlotProps<Menu2SubmenuPopupOwnerState>,
-  'backdrop' | 'list'
-> {
-  /**
-   * Props for the presentational list wrapper.
-   */
-  list?: SlotProps<Menu2SubmenuPopupListProps, Menu2SubmenuPopupOwnerState> | undefined;
-}
+  'backdrop'
+> {}
 
 const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
   const { classes } = ownerState;

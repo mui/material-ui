@@ -67,6 +67,8 @@ import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2Popup slotProps={{ list: { dense: true } }} />;
+// @ts-expect-error Menu2 has no dense mode.
+<Menu2Popup slotProps={{ list: () => ({ dense: false }) }} />;
 <Menu2SubmenuPopup slotProps={{ list: { disablePadding: true, sx: { py: 1 } } }} />;
 <Menu2SubmenuPopup
   slotProps={{ list: (ownerState) => ({ disablePadding: true, 'data-side': ownerState.side }) }}
