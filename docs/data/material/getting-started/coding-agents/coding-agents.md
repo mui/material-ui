@@ -11,8 +11,8 @@ Install the skills with your coding agent:
 <codeblock storageKey="coding-agent">
 
 ```bash Claude
-/plugin marketplace add mui/material-ui
-/plugin install material-ui@material-ui
+claude plugin marketplace add mui/material-ui
+claude plugin install material-ui@material-ui
 ```
 
 ```bash Codex
