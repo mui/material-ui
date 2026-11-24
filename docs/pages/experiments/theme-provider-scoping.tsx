@@ -83,6 +83,8 @@ const lightOnlyTheme = createTheme({
   cssVariables: { colorSchemeSelector: 'class' },
   palette: { primary: { main: '#2e7d32' } },
 });
+// A page theme with a single color scheme has no color scheme selector by default.
+const darkPageTheme = createTheme({ cssVariables: true, palette: { mode: 'dark' } });
 // A page theme with another prefix, like the docs' own theme around the Material UI demos.
 const docsTheme = createTheme({
   cssVariables: { cssVarPrefix: 'docs', colorSchemeSelector: 'class' },
@@ -827,6 +829,34 @@ const scenarios: Scenario[] = [
             </Box>
           </ThemeProvider>
         </div>
+      </Root>
+    ),
+  },
+  {
+    title: '17. Page theme with a single color scheme',
+    description:
+      'A page theme with only a dark scheme, like createTheme({ cssVariables: true, palette: { mode: "dark" } }), never changes its color scheme, and nothing on the page selects it. A nested theme with light and dark uses its dark scheme there: its variables, applyStyles("dark") and its portals.',
+    code: `<ThemeProvider theme={darkPageTheme /* palette: { mode: 'dark' } */}>
+  <Button />
+  <ThemeProvider theme={promoTheme /* light and dark */}>
+    <SchemeLabel /><Button /><Dialog /><Menu />
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={darkPageTheme}>
+        <Box
+          data-inspect="page child"
+          sx={{ p: 1, bgcolor: 'background.default', color: 'text.primary' }}
+        >
+          <Swatch label="page, dark" />
+          <ThemeProvider theme={promoTheme}>
+            <div data-inspect="promo in dark page">
+              <SchemeLabel>promo</SchemeLabel>
+              <Swatch label="promo, dark" />
+              <Portals label="promo in dark page" />
+            </div>
+          </ThemeProvider>
+        </Box>
       </Root>
     ),
   },
