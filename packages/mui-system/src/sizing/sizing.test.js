@@ -41,5 +41,32 @@ describe('sizing', () => {
         maxWidth: '10rem',
       });
     });
+
+    it('should use the default breakpoints without a theme', () => {
+      const output = sizing({
+        maxWidth: 'sm',
+      });
+
+      expect(output).to.deep.equal({
+        maxWidth: 600,
+      });
+    });
+
+    it('should use px when the theme breakpoints have no unit', () => {
+      const output = sizing({
+        maxWidth: 'md',
+        theme: {
+          breakpoints: {
+            values: {
+              md: 900,
+            },
+          },
+        },
+      });
+
+      expect(output).to.deep.equal({
+        maxWidth: 900,
+      });
+    });
   });
 });

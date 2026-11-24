@@ -28,9 +28,11 @@ export const maxWidth = ((props: any) => {
         };
       }
 
-      if (props.theme?.breakpoints?.unit !== 'px') {
+      // Without a theme unit, the breakpoint values are in px, as in the rest of the system.
+      const unit = props.theme?.breakpoints?.unit;
+      if (unit && unit !== 'px') {
         return {
-          maxWidth: `${breakpoint}${props.theme.breakpoints.unit}`,
+          maxWidth: `${breakpoint}${unit}`,
         };
       }
 
