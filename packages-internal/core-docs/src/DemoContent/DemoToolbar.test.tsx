@@ -209,6 +209,17 @@ describe('DemoToolbar', () => {
     expect(view).not.to.contain('aria-label="Show TypeScript source"');
   });
 
+  it('marks one tab stop in server markup when the styling toggle renders', () => {
+    const view = ReactDOMServer.renderToStaticMarkup(
+      toolbarElement({ variants: ['Default', 'Tailwind'] }),
+    );
+    const buttons = view.match(/<button[^>]*>/g) ?? [];
+    const tabStops = buttons.filter((button) => !button.includes('tabindex="-1"'));
+
+    expect(tabStops).to.have.length(1);
+    expect(tabStops[0]).to.contain('aria-controls="demo-source"');
+  });
+
   it('keeps expanded language controls selectable and keyboard reachable', async () => {
     const selections: Array<string | null> = [];
     const { user } = renderToolbar({

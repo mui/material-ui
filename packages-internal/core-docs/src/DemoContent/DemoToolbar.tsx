@@ -135,7 +135,7 @@ function isFocusableToolbarButton(button: HTMLElement): boolean {
 
 /**
  * The initial stop is baked into the markup (`tabIndex={-1}` on every control
- * but the first), so nothing runs on mount: `checkVisibility` forces a style
+ * but the always-rendered show-source toggle), so nothing runs on mount: `checkVisibility` forces a style
  * flush per button, and a page hydrates dozens of toolbars. The visible set is
  * only resolved once focus enters the toolbar.
  */
@@ -384,7 +384,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
         {/* JS/TS toggle (only relevant when code is open). */}
         <ToggleButtonGroup
           ref={languageToggleRef}
@@ -430,6 +430,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
       <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}>
         {hasNonSystemDemos && (
           <ToolbarButton
+            tabIndex={-1}
             size="small"
             onClick={() => {
               const idx = variants.indexOf(selectedVariant);
@@ -448,7 +449,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
         ) : null}
 
         <ToolbarButton
-          tabIndex={hasNonSystemDemos ? -1 : 0}
+          tabIndex={0}
           ref={toggleRef}
           onClick={onToggleExpand}
           aria-controls={demoSourceId}
