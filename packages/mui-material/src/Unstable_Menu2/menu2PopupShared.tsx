@@ -3,6 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { mergeProps } from '@base-ui/react/merge-props';
+import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import ownerDocument from '@mui/utils/ownerDocument';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
@@ -22,6 +23,7 @@ import type { ListProps } from '../List';
 import { manager as modalManager } from '../Modal/useModal';
 import type { SlotProps } from './menu2Utils';
 import { Menu2SubmenuClosingState } from './Menu2SubmenuClosingContext';
+import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 
 function Menu2ScrollLock({
   locked,
@@ -167,7 +169,7 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
   positioner?:
     SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
   backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props> & WithSx, OwnerState> | undefined;
-  root?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
+  root?: SlotProps<ExternalSlotProps<Omit<PaperProps, 'component'>>, OwnerState> | undefined;
   list?: SlotProps<ExternalSlotProps<Menu2ListProps>, OwnerState> | undefined;
 }
 
@@ -233,6 +235,13 @@ export interface Menu2PopupPublicProps
    * @default 8
    */
   elevation?: number | undefined;
+  /**
+   * The element to render for the menu surface, or a function that returns it.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, BaseMenu.Popup.State>
+    | undefined;
 }
 
 export interface Menu2PopupSharedProps<OwnerState>
@@ -291,6 +300,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     elevation,
     transitionDuration = 'auto',
     style,
+    render: renderProp,
     ...other
   } = props;
 
@@ -325,13 +335,15 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   // gives a part, so those go through the part. `sx` and the Paper props go on
   // the element. All HTML attributes and handlers target the popup surface.
   // Handlers run before Base UI handles navigation keys and stops propagation.
+  // JavaScript callers can still pass `component`; the surface takes `render` instead.
   const {
     className: rootSlotClassName,
     ref: rootSlotRef,
     style: rootSlotStyle,
     sx: rootSlotSx,
+    component: ignoredRootSlotComponent,
     ...rootSlotOtherProps
-  } = resolvedRootProps ?? {};
+  }: NonNullable<typeof resolvedRootProps> & { component?: unknown } = resolvedRootProps ?? {};
   const {
     className: portalSlotClassName,
     sx: portalSlotSx,
@@ -497,7 +509,18 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
             mergedRootProps['aria-labelledby'] =
               popupProps['aria-labelledby'] ??
               (popupProps['aria-label'] !== undefined ? undefined : renderProps['aria-labelledby']);
-            const root = <RootSlot {...mergedRootProps} />;
+            // `render` keeps the styled surface; a `slots.root` replacement takes precedence.
+            const root =
+              renderProp && !slots?.root ? (
+                <RootSlot
+                  {...mergedRootProps}
+                  component={Menu2RenderRoot}
+                  internalRender={renderProp}
+                  internalRenderState={state}
+                />
+              ) : (
+                <RootSlot {...mergedRootProps} />
+              );
             const surface = TransitionSlot ? (
               <TransitionSlot
                 timeout={transitionTimeout}

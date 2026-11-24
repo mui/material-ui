@@ -323,7 +323,7 @@ Its target can be a descendant of the item.
 `MenuCheckboxItem`, `MenuRadioItem`, and `MenuLinkItem` keep the menu open by default.
 Set `closeOnClick` on these items to close the menu after selection.
 
-All item parts, groups, labels, and separators use optional `render` instead of `component`.
+All item parts, groups, labels, separators, and popups use optional `render` instead of `component`.
 Put custom component props on the supplied element:
 
 ```diff
@@ -464,6 +464,7 @@ Each prop targets one element:
 
 - `ref`, `className`, `style`, `sx`, event handlers, and HTML attributes target the menu surface, which is the `root` slot.
   `elevation` sets its Paper elevation, with the default 8.
+  `PaperProps.component` becomes `render` on `MenuPopup`.
 - `side`, `align`, and `slotProps.positioner` target the positioned element.
 - `slotProps.portal` sets the stacking level for the menu and its modal interaction layer.
 - `slots` and `slotProps` also customize the `list`, `backdrop`, and `transition` slots.

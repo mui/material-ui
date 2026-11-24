@@ -12,6 +12,7 @@ import type {
   Menu2PopupClassKey,
   Menu2PopupClasses,
   Menu2PopupProps,
+  Menu2PopupState,
 } from '@mui/material/Unstable_Menu2Popup';
 import Menu2Popup, {
   getMenu2PopupUtilityClass,
@@ -20,6 +21,7 @@ import Menu2Popup, {
 import type {
   Menu2SubmenuPopupClassKey,
   Menu2SubmenuPopupClasses,
+  Menu2SubmenuPopupState,
 } from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuPopup, {
   getMenu2SubmenuPopupUtilityClass,
@@ -733,8 +735,26 @@ createTheme({
   ></Menu2Popup>
 </Menu2>;
 
-// @ts-expect-error Use slots.root to replace the popup surface.
-<Menu2Popup render={<button aria-label="Options" type="button" />} />;
+<Menu2Popup render={<section />} />;
+<Menu2Popup
+  render={(props, state) => {
+    expectType<Menu2PopupState, typeof state>(state);
+    expectType<boolean, typeof state.open>(state.open);
+    return <section {...props} />;
+  }}
+/>;
+<Menu2SubmenuPopup
+  render={(props, state) => {
+    expectType<Menu2SubmenuPopupState, typeof state>(state);
+    return <section {...props} />;
+  }}
+/>;
+// @ts-expect-error Pass an element or a function, not a tag name.
+<Menu2Popup render="section" />;
+// @ts-expect-error The surface takes render, not a component slot prop.
+<Menu2Popup slotProps={{ root: { component: 'section' } }} />;
+// @ts-expect-error The surface takes the top-level render only.
+<Menu2Popup slotProps={{ root: { render: <section /> } }} />;
 
 <Menu2>
   <Menu2Popup

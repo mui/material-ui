@@ -521,7 +521,8 @@ describe('<Menu2 />', () => {
           slotProps={{
             root: {
               classes: { root: 'paper-root' },
-              component: 'section',
+              // The cast passes `component` as a JavaScript caller can.
+              ...({ component: 'section' } as object),
               elevation: 4,
             },
             list: {

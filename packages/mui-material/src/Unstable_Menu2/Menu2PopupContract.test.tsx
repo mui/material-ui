@@ -14,6 +14,7 @@ import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
 import type { PaperProps } from '../Paper';
 import Paper from '../Paper';
+import { createTheme, ThemeProvider } from '../styles';
 
 interface TestMenuProps
   extends
@@ -200,6 +201,67 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             });
           });
         });
+      });
+
+      it('keeps the Material surface when render changes the element', async () => {
+        const popupRef = React.createRef<HTMLDivElement>();
+        const states: Array<{ open: boolean; side: string; align: string }> = [];
+        const theme = createTheme({
+          components: { MuiMenu2Popup: { styleOverrides: { root: { outlineOffset: 7 } } } },
+        });
+        const { user } = render(
+          <ThemeProvider theme={theme}>
+            <TestMenu
+              ref={popupRef}
+              className="public-popup"
+              sx={{ minWidth: 123 }}
+              render={(props, state) => {
+                states.push({ open: state.open, side: state.side, align: state.align });
+                return <section {...props} />;
+              }}
+            />
+          </ThemeProvider>,
+        );
+
+        // A keyboard open moves focus into the submenu too.
+        const popup = await openMenu(user, { keyboard: true });
+        expect(popup.tagName).to.equal('SECTION');
+        expect(popupRef.current).to.equal(popup);
+        expect(popup).to.have.class(popupClasses.root);
+        expect(popup).to.have.class('MuiPaper-root');
+        expect(popup).to.have.class('public-popup');
+        expect(popup).toHaveComputedStyle({ minWidth: '123px', outlineOffset: '7px' });
+        expect(screen.getByRole('menuitem', { name: 'Alpha' }).closest('section')).to.equal(popup);
+        // Grow and focus management reach the rendered element.
+        await waitFor(() => expect(popup.style.opacity).to.equal('1'));
+        await waitFor(() => expect(popup.contains(document.activeElement)).to.equal(true));
+        expect(states.at(-1)).to.deep.equal({
+          open: true,
+          side: popup.getAttribute('data-side'),
+          align: popup.getAttribute('data-align'),
+        });
+      });
+
+      it('lets slots.root take precedence over render', async () => {
+        const renderSpy = vi.fn((props: React.HTMLAttributes<HTMLElement>) => (
+          <section {...props} />
+        ));
+        const { user } = render(<TestMenu slots={{ root: 'div' }} render={renderSpy} />);
+
+        const popup = await openMenu(user);
+        expect(popup.tagName).to.equal('DIV');
+        expect(renderSpy).not.toHaveBeenCalled();
+      });
+
+      it('ignores a component in the root slot props', async () => {
+        const { user } = render(
+          // The cast passes `component` as a JavaScript caller can.
+          <TestMenu slotProps={{ root: { ...({ component: 'section' } as object) } }} />,
+        );
+
+        const popup = await openMenu(user);
+        expect(popup.tagName).to.equal('DIV');
+        expect(popup).not.to.have.attribute('component');
       });
 
       it('hides a retained portal only after its popup exit transition', async () => {

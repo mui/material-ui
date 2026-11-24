@@ -309,7 +309,7 @@ The focus guards have a `data-base-ui-focus-guard` attribute.
 
 ### Render and root slots
 
-Items (including submenu triggers), groups, labels, and separators support two levels of replacement:
+Items (including submenu triggers), groups, labels, separators, and popups support two levels of replacement:
 
 - **`render`** changes the root element or composes another component while keeping Material styles, theme overrides, and `sx` processing. Items also keep their ripple.
 - **`slots.root`** replaces the entire styled root and takes precedence over `render`. It receives utility classes and Base UI behavior props, but no automatic Material styles, theme styles, ripple, or `sx` processing. Add these features in the replacement if needed.
@@ -318,6 +318,7 @@ In both cases, forward the supplied props, ref, and children to the root element
 Put item content in the item children.
 With `render`, forward `props.children` to keep the ripple and any indicator; children set on the render element can replace them.
 A root-slot replacement also receives the item content and indicator as children.
+On `MenuPopup` and `MenuSubmenuPopup`, `render` changes the menu surface. Forward `style` too, so that the transition works.
 
 Use `slotProps.root` for root attributes, a ref, and `sx`.
 Its callback receives the props and the live state.

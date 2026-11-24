@@ -31,6 +31,9 @@
     "positionMethod": {
       "description": "Determines which CSS <code>position</code> property to use."
     },
+    "render": {
+      "description": "The element to render for the menu surface, or a function that returns it. Forward the props, ref, and children to the element to preserve Material styles, the transition, and focus. Applies to the default root only. Use <code>slots.root</code> to replace the styled root."
+    },
     "side": { "description": "Which side of the anchor element to align the popup against." },
     "sideOffset": { "description": "Distance between the anchor and the popup in pixels." },
     "slotProps": { "description": "The props used for each slot inside." },

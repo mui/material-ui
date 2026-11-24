@@ -83,7 +83,7 @@ The classic `Menu` keeps its API. Menu2 reuses no code from the classic `Menu`, 
 
 ### Rules for Base UI-backed components (Menu is the first)
 
-- **Customization:** use `render` for the unstyled `Menu2Trigger`. On items, groups, labels, and separators, `render` keeps Material styles; `slots.root` replaces the styled root. Use `slots`/`slotProps` for popup layers and indicators. The customization targets below define the forwarding contract.
+- **Customization:** use `render` for the unstyled `Menu2Trigger`. On items, groups, labels, separators, and popups, `render` keeps Material styles; `slots.root` replaces the styled root. Use `slots`/`slotProps` for the other popup layers and indicators. The customization targets below define the forwarding contract.
 - **Slot handling:** use `useSlot` for item, group, label, and separator roots and the popup list. At Base UI render boundaries, reuse `appendOwnerState`, `resolveComponentProps`, and Material UI's `mergeSlotProps`. Use Base UI's `mergeProps` for behavioral props and compose refs. Keep adapters local until another integration needs them. They filter Material props from host elements, combine state classes, infer native buttons, and prevent duplicate keyboard activation.
 - **Style reuse:** do not reuse code from the classic `Menu`, `MenuList`, or `MenuItem`. Copy their styles where Menu2 needs them. General components, such as `Paper`, `List`, `Divider`, and `ListItemIcon`, stay. New parts own their spacing; use `Menu2Separator` between items.
 - **Presentation:** retain `disableGutters` and `divider`. Omit the visual-only `selected` prop; checkbox and radio items express checked state.
@@ -127,7 +127,7 @@ For the classic controlled pattern, omit `Menu2Trigger`, set `open` on `Menu2`, 
 
 #### Customization targets
 
-All item parts, groups, labels, and separators share this contract, without a `component` prop:
+All item parts, groups, labels, separators, and popups share this contract, without a `component` prop:
 
 - **`render`** accepts an element or a function with props and typed state. It changes the element or composes a component while keeping Material styles, theme overrides, `sx`, and item ripple. Forward props, ref, and children to preserve behavior, label associations, indicators, and ripple.
 - **`slotProps.root`** supplies root attributes, a ref, and `sx`. Its callback receives the props and the live state. `render` receives the Base UI state of the part, unchanged. Root attributes can also go on the component or render element; element-specific props and refs belong on that element.
@@ -139,6 +139,7 @@ All item parts, groups, labels, and separators share this contract, without a `c
 - Submenu triggers expose the logical `open` state, not the retained exit tint.
 - Group and label state is empty. Radio group state contains only `disabled`, not the selected value.
 - Separator state contains `orientation`.
+- Popup state contains `open`, `side`, `align`, and `transitionStatus`. The popup `render` targets the menu surface.
 
 Indicators remain separate slots. Set `slots.indicator` to `null` on a submenu trigger to omit its arrow.
 

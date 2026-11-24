@@ -40,6 +40,7 @@ import type {
   Menu2LinkItemState,
 } from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import type { Menu2PopupState } from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type {
   Menu2RadioGroupOwnerState,
@@ -72,6 +73,14 @@ import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2Popup slotProps={{ list: { dense: true } }} />;
+<Menu2Popup
+  render={(props, state) => {
+    state satisfies Menu2PopupState;
+    return <section {...props} />;
+  }}
+/>;
+// @ts-expect-error The surface takes render, not a component slot prop.
+<Menu2Popup slotProps={{ root: { component: 'section' } }} />;
 <Menu2SubmenuPopup slotProps={{ list: { disablePadding: true, sx: { py: 1 } } }} />;
 <Menu2SubmenuPopup
   slotProps={{ list: (ownerState) => ({ disablePadding: true, 'data-side': ownerState.side }) }}

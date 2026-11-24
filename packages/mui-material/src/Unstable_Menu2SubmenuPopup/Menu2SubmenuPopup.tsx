@@ -1,6 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import type { Menu as BaseMenu } from '@base-ui/react/menu';
+import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import type { SxProps } from '@mui/system';
@@ -22,6 +24,8 @@ import {
 import type { Menu2SubmenuPopupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SubmenuPopupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
+
+export type Menu2SubmenuPopupState = BaseMenu.Popup.State;
 
 export interface Menu2SubmenuPopupProps extends Omit<
   Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,
@@ -119,6 +123,15 @@ export interface Menu2SubmenuPopupProps extends Omit<
    * @default 8
    */
   elevation?: Menu2PopupPublicProps['elevation'] | undefined;
+  /**
+   * The element to render for the menu surface, or a function that returns it.
+   * Forward the props, ref, and children to the element to preserve Material styles, the transition, and focus.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SubmenuPopupState>
+    | undefined;
   /**
    * The transition duration in milliseconds, or separate enter and exit durations.
    * Set to 'auto' for height-dependent Grow timing, or 0 to disable the transition.
@@ -375,6 +388,12 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
    * @default 'absolute'
    */
   positionMethod: PropTypes.oneOf(['absolute', 'fixed']),
+  /**
+   * The element to render for the menu surface, or a function that returns it.
+   * Forward the props, ref, and children to the element to preserve Material styles, the transition, and focus.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * Which side of the anchor element to align the popup against.
    * @default 'inline-end'
