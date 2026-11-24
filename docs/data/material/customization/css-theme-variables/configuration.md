@@ -310,6 +310,9 @@ It follows the outer light or dark mode:
 }
 ```
 
+A theme with a single color scheme, like `createTheme({ cssVariables: true, palette: { mode: 'dark' } })`, keeps it whatever the outer mode is.
+The providers nested in it, its `theme.applyStyles()` styles, and `useColorScheme().colorScheme` follow that color scheme, while `setMode()` still changes the outer mode.
+
 A theme passed as a function, like `theme={(outer) => createTheme(outer, { palette })}`, is applied the same way.
 Providers with the same theme, like the ones of a themed card in a list, share one class and one stylesheet.
 

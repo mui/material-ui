@@ -828,6 +828,113 @@ describe('ThemeProvider', () => {
           '#00ff00',
         );
       });
+
+      describe('single color scheme', () => {
+        const pageTheme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        const darkOnlyTheme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          palette: { mode: 'dark' },
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: ({ theme: buttonTheme }) =>
+                  buttonTheme.applyStyles('dark', { outlineColor: 'rgb(0, 255, 0)' }),
+              },
+            },
+          },
+        });
+        const inner = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: {
+            light: { palette: { primary: { main: '#ff0000' } } },
+            dark: { palette: { primary: { main: '#00ff00' } } },
+          },
+        });
+
+        it('marks its element with its color scheme when the outer one can differ', () => {
+          render(
+            <ThemeProvider theme={pageTheme} defaultMode="light" storageManager={null}>
+              <ThemeProvider theme={darkOnlyTheme}>
+                <div data-testid="dark-only" />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          const element = screen.getByTestId('dark-only').parentElement!;
+          expect(element).to.have.attribute('data-mui-isolated');
+          expect(element).to.have.attribute('data-mui-scheme', 'dark');
+          expect(document.documentElement.classList.contains('light')).to.equal(true);
+        });
+
+        it('has no marker when the outer theme only has the same color scheme', () => {
+          render(
+            <ThemeProvider theme={blueTheme}>
+              <ThemeProvider theme={redTheme}>
+                <div data-testid="inner" />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          const element = screen.getByTestId('inner').parentElement!;
+          expect(element).not.to.have.attribute('data-mui-scheme');
+          expect(element).not.to.have.attribute('data-mui-isolated');
+        });
+
+        it.skipIf(isJsdom())(
+          'keeps its color scheme for its styles, nested themes and portals',
+          () => {
+            render(
+              <ThemeProvider theme={pageTheme} defaultMode="light" storageManager={null}>
+                <ThemeProvider theme={darkOnlyTheme}>
+                  <div data-testid="dark-only" />
+                  <Button data-testid="button">Button</Button>
+                  <ThemeProvider theme={inner}>
+                    <div data-testid="inner" />
+                    <Dialog open>
+                      <div data-testid="inner-dialog" />
+                    </Dialog>
+                  </ThemeProvider>
+                </ThemeProvider>
+              </ThemeProvider>,
+            );
+            expect(
+              getVar(screen.getByTestId('dark-only'), '--mui-palette-background-default'),
+            ).to.equal('#121212');
+            expect(getComputedStyle(screen.getByTestId('button')).outlineColor).to.equal(
+              'rgb(0, 255, 0)',
+            );
+            expect(getVar(screen.getByTestId('inner'), '--mui-palette-primary-main')).to.equal(
+              '#00ff00',
+            );
+            expect(
+              getVar(screen.getByTestId('inner-dialog'), '--mui-palette-primary-main'),
+            ).to.equal('#00ff00');
+          },
+        );
+
+        it('gives useColorScheme() its color scheme and keeps the outer mode', () => {
+          function Report() {
+            const { mode, colorScheme, setMode } = useColorScheme();
+            return (
+              <button data-testid="report" onClick={() => setMode('dark')}>
+                {mode} {colorScheme}
+              </button>
+            );
+          }
+          render(
+            <ThemeProvider theme={pageTheme} defaultMode="light" storageManager={null}>
+              <ThemeProvider theme={darkOnlyTheme}>
+                <Report />
+              </ThemeProvider>
+            </ThemeProvider>,
+          );
+          expect(screen.getByTestId('report')).to.have.text('light dark');
+          fireEvent.click(screen.getByTestId('report'));
+          expect(screen.getByTestId('report')).to.have.text('dark dark');
+          expect(document.documentElement.classList.contains('dark')).to.equal(true);
+        });
+      });
     });
 
     describe('isolated prop', () => {

@@ -256,16 +256,20 @@ export default function createCssVarsProvider<
   const defaultColorSchemes = {};
   const defaultComponents = {};
 
-  // The provider that owns the color scheme of the providers nested in it: the top-level one or an isolated one.
+  // The provider that owns the color scheme of the providers nested in it: the top-level one, an isolated one,
+  // or a nested one with a single color scheme.
   interface Owner {
     // The rule that the color schemes of nested providers follow, see `getColorSchemeRule()`.
     colorSchemeRule: string | undefined;
-    // How many isolated providers it's nested in, the fallback for its id on React 17.
+    // The color schemes that its subtree can use.
+    colorSchemes: string[];
+    // How many providers with a marker it's nested in, the fallback for its id on React 17.
     depth: number;
-    isolated: boolean;
-    // The variables that portaled elements get from `:root`: the top-level theme's, none for an isolated provider.
+    // Whether its color scheme is in a marker, on its element and its portal roots.
+    hasMarker: boolean;
+    // The variables that portaled elements get from `:root`: the top-level theme's, none for a provider with a marker.
     generateCssVarsByColorScheme: (() => CssVarsByColorScheme) | undefined;
-    // The marker that portaled elements need to follow an isolated provider's color scheme.
+    // The marker that portaled elements need to follow its color scheme.
     markerProps: Record<string, string> | undefined;
     prefix: string | undefined;
     // The scope stylesheets of the whole tree, so each one is inserted once.
@@ -447,9 +451,21 @@ export default function createCssVarsProvider<
     let mode = stateMode;
     let colorScheme = stateColorScheme;
 
+    // A nested theme with a single color scheme uses it whatever the outer mode is, unless the outer provider
+    // only uses that one too. So it owns the color scheme of its subtree, with a marker like an isolated provider,
+    // but it keeps the outer mode, so `setMode()` still changes the page.
+    const fixedColorScheme =
+      nested &&
+      allColorSchemes.length === 1 &&
+      allColorSchemes[0] &&
+      !(owner?.colorSchemes.length === 1 && owner.colorSchemes[0] === allColorSchemes[0])
+        ? allColorSchemes[0]
+        : undefined;
+    const hasMarker = isolated || !!fixedColorScheme;
+
     if (nested) {
       mode = ctx.mode;
-      colorScheme = ctx.colorScheme;
+      colorScheme = fixedColorScheme ?? ctx.colorScheme;
     }
     if (isolated && !isolatedStorage) {
       // Without the storage, the mode is known on the server, so the provider renders its marker there.
@@ -461,13 +477,13 @@ export default function createCssVarsProvider<
 
     // The rule that the color schemes of the theme follow, see `getColorSchemeRule()`.
     // The top-level provider follows its own selector, and nested providers follow their owner.
-    // An isolated provider follows its own marker: its id and its color scheme, whatever the page's selector is.
-    // In `system` mode, the OS is the same for the whole page, so it follows the media query,
+    // A provider with a marker follows it: its id and its color scheme, whatever the page's selector is.
+    // In `system` mode, the OS is the same for the whole page, so an isolated provider follows the media query,
     // which renders correctly on the server.
     const isolatedId = reactId ?? String((owner?.depth ?? 0) + 1);
     const followsMedia = isolated && !isolatedStorage && mode === 'system';
     let colorSchemeRule: string | undefined;
-    if (isolated) {
+    if (hasMarker) {
       colorSchemeRule = followsMedia ? 'media' : getIsolatedColorSchemeRule(isolatedId);
     } else if (nested) {
       colorSchemeRule = owner?.colorSchemeRule;
@@ -667,6 +683,11 @@ export default function createCssVarsProvider<
         isolated,
       ],
     );
+    // Under a single color scheme, the mode and its setters stay the outer provider's.
+    const fixedContextValue = React.useMemo(
+      () => (fixedColorScheme ? { ...ctx, colorScheme: fixedColorScheme } : undefined),
+      [ctx, fixedColorScheme],
+    );
 
     const canGenerateStyleSheet =
       !disableStyleSheetGeneration && restThemeProp.cssVariables !== false;
@@ -682,7 +703,7 @@ export default function createCssVarsProvider<
       if (!canGenerateStyleSheet || !generateCssVarsByColorScheme) {
         return null;
       }
-      if (isolated) {
+      if (hasMarker) {
         return getIsolatedStyleSheets(
           generateCssVarsByColorScheme,
           cssVarPrefix,
@@ -708,13 +729,13 @@ export default function createCssVarsProvider<
       defaultLightColorScheme,
       defaultDarkColorScheme,
       nested,
-      isolated,
+      hasMarker,
     ]);
 
     const scopeClassName = scope?.className;
-    // The marker of an isolated provider, on its element and its portal roots.
+    // The marker of an isolated provider or of a single color scheme, on its element and its portal roots.
     const markerProps = React.useMemo(() => {
-      if (!isolated) {
+      if (!hasMarker) {
         return undefined;
       }
       const result: Record<string, string> = {};
@@ -725,21 +746,22 @@ export default function createCssVarsProvider<
         result[SCHEME_ATTRIBUTE] = colorScheme;
       }
       return result;
-    }, [isolated, followsMedia, isolatedId, colorScheme]);
+    }, [hasMarker, followsMedia, isolatedId, colorScheme]);
     // Portaled elements aren't under the provider's element, so they get one class with the variables that the
-    // closest theme changes compared to the ones they get from `:root`: the top-level theme's, or none under an
-    // isolated provider. One class, instead of one per provider, so the closest theme always wins.
+    // closest theme changes compared to the ones they get from `:root`: the top-level theme's, or none under a
+    // provider with a marker. One class, instead of one per provider, so the closest theme always wins.
     const sharesOwnerPrefix = !!owner && owner.prefix === cssVarPrefix;
     const portalScope = React.useMemo(() => {
       if (
         !nested ||
+        hasMarker ||
         !canGenerateStyleSheet ||
         !generateCssVarsByColorScheme ||
         !sharesOwnerPrefix
       ) {
         return scope;
       }
-      if (owner!.isolated) {
+      if (owner!.hasMarker) {
         return getIsolatedStyleSheets(
           generateCssVarsByColorScheme,
           cssVarPrefix,
@@ -755,6 +777,7 @@ export default function createCssVarsProvider<
       );
     }, [
       nested,
+      hasMarker,
       canGenerateStyleSheet,
       generateCssVarsByColorScheme,
       sharesOwnerPrefix,
@@ -767,7 +790,7 @@ export default function createCssVarsProvider<
     ]);
     const portalClassName = portalScope?.className;
     const scopeProps = React.useMemo(() => {
-      if (isolated) {
+      if (hasMarker) {
         return { ...markerProps, className: scopeClassName };
       }
       if (!nested) {
@@ -781,7 +804,7 @@ export default function createCssVarsProvider<
         ? { ...upperScope, className: clsx(upperScope?.className, scopeClassName) }
         : upperScope;
     }, [
-      isolated,
+      hasMarker,
       nested,
       sharesOwnerPrefix,
       owner,
@@ -793,16 +816,18 @@ export default function createCssVarsProvider<
     const ownerValue = React.useMemo(
       () => ({
         colorSchemeRule,
-        depth: isolated ? (owner?.depth ?? 0) + 1 : 0,
-        isolated,
-        generateCssVarsByColorScheme: isolated ? undefined : generateCssVarsByColorScheme,
+        colorSchemes: allColorSchemes,
+        depth: hasMarker ? (owner?.depth ?? 0) + 1 : 0,
+        hasMarker,
+        generateCssVarsByColorScheme: hasMarker ? undefined : generateCssVarsByColorScheme,
         markerProps,
         prefix: cssVarPrefix,
         styleSheets,
       }),
       [
         colorSchemeRule,
-        isolated,
+        allColorSchemes,
+        hasMarker,
         owner,
         generateCssVarsByColorScheme,
         markerProps,
@@ -942,12 +967,12 @@ export default function createCssVarsProvider<
       </React.Fragment>
     );
 
-    if (nested) {
+    if (nested && !fixedColorScheme) {
       return element;
     }
 
     return (
-      <ColorSchemeContext.Provider value={contextValue}>
+      <ColorSchemeContext.Provider value={fixedColorScheme ? fixedContextValue : contextValue}>
         <OwnerContext.Provider value={ownerValue}>{element}</OwnerContext.Provider>
       </ColorSchemeContext.Provider>
     );
