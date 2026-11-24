@@ -360,7 +360,7 @@ The Markdown file in the component's respective folder—in this case, `buttons.
 +{{"component": "file://./demos/super/index.ts"}}
 ```
 
-Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`) are defined by the `DemoOptions` interface in [`packages-internal/core-docs/src/DemoContent/DemoContent.tsx`](packages-internal/core-docs/src/DemoContent/DemoContent.tsx). See the [demo variants experiment page](docs/pages/experiments/docs/demos.md) for live examples.
+Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `anchorId`) are defined by the `DemoOptions` interface in [`packages-internal/core-docs/src/DemoContent/DemoContent.tsx`](packages-internal/core-docs/src/DemoContent/DemoContent.tsx). See the [demo variants experiment page](docs/pages/experiments/docs/demos.md) for live examples.
 
 #### 5. Submit your PR
 
