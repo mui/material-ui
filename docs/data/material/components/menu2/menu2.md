@@ -372,6 +372,7 @@ The `MenuRadioGroup` state contains only `disabled`, not the selected value; use
 
 `MenuGroupLabel` uses a non-sticky `ListSubheader` rendered as a `<div>` by default.
 Set `color`, `disableGutters`, and `inset` on `MenuGroupLabel` to use the corresponding ListSubheader styles.
+With `inset`, the label starts at the label column of inset items.
 Use `sx` for style overrides and `render` to change the element:
 
 ```jsx
@@ -384,6 +385,7 @@ The default label stays non-sticky; there is no `disableSticky` prop.
 
 `MenuSeparator` uses a `Divider` rendered as a `<div>`, with menu spacing.
 Set `absolute`, `flexItem`, `textAlign`, and `variant` on `MenuSeparator` to use the corresponding Divider styles.
+The `inset` variant starts at the label column of items with a start adornment or `inset`.
 Use `sx` for custom spacing:
 
 ```jsx

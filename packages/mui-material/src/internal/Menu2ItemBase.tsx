@@ -66,12 +66,12 @@ export const Menu2ItemBaseRoot = styled(ButtonBase, {
     [`&.${buttonBaseClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
-    // Menu2Separator owns its vertical margins, including theme and sx overrides.
+    // Menu2Separator owns its margins and inset, including theme and sx overrides.
     [`& + .${dividerClasses.root}:not(:where([data-mui-menu-separator]))`]: {
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
     },
-    [`& + .${dividerClasses.inset}`]: {
+    [`& + .${dividerClasses.inset}:not(:where([data-mui-menu-separator]))`]: {
       marginLeft: 52,
     },
     [`& .${listItemTextClasses.root}`]: {

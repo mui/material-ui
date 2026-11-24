@@ -1,7 +1,8 @@
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import { describe, expect, it, vi } from 'vitest';
 import * as React from 'react';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import { StyledEngineProvider } from '@mui/styled-engine';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
@@ -383,7 +384,7 @@ describe('<Menu2GroupLabel />', () => {
       expect(label).not.to.have.class('MuiListSubheader-gutters');
       expect(label).not.to.have.class('MuiListSubheader-sticky');
       expect(getComputedStyle(label).position).not.to.equal('sticky');
-      expect(getComputedStyle(label).paddingLeft).to.equal('72px');
+      expect(getComputedStyle(label).paddingLeft).to.equal('36px');
       expect(getComputedStyle(label).paddingRight).to.equal('30px');
       expect(getComputedStyle(label).paddingTop).to.equal('23px');
       expect(getComputedStyle(label).color).to.equal('rgb(1, 2, 3)');
@@ -505,6 +506,79 @@ describe('<Menu2GroupLabel />', () => {
     expect(explicitLabel).to.have.class('MuiListSubheader-colorPrimary');
     expect(explicitLabel).not.to.have.class('MuiListSubheader-gutters');
     expect(explicitLabel).to.have.class('MuiListSubheader-inset');
-    expect(getComputedStyle(explicitLabel).paddingLeft).to.equal('72px');
+    expect(getComputedStyle(explicitLabel).paddingLeft).to.equal('36px');
+  });
+
+  describe.skipIf(isJsdom())('inset', () => {
+    function textLeft(element: HTMLElement) {
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      const range = document.createRange();
+      range.selectNodeContents(walker.nextNode()!);
+      return range.getBoundingClientRect().left;
+    }
+
+    [false, true].forEach((modularCssLayers) => {
+      it(`aligns with inset item labels (modularCssLayers: ${modularCssLayers})`, () => {
+        render(
+          <StyledEngineProvider enableCssLayer={modularCssLayers}>
+            <ThemeProvider theme={createTheme({ modularCssLayers })}>
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body}>
+                  <Menu2Group>
+                    <Menu2GroupLabel inset>Label</Menu2GroupLabel>
+                    <Menu2Item inset>Item</Menu2Item>
+                  </Menu2Group>
+                  <Menu2Group>
+                    <Menu2GroupLabel inset disableGutters>
+                      Flush label
+                    </Menu2GroupLabel>
+                    <Menu2Item inset disableGutters>
+                      Flush item
+                    </Menu2Item>
+                  </Menu2Group>
+                </Menu2Popup>
+              </Menu2>
+            </ThemeProvider>
+          </StyledEngineProvider>,
+        );
+
+        expect(screen.getByText('Label')).toHaveComputedStyle({ paddingLeft: '52px' });
+        expect(screen.getByText('Flush label')).toHaveComputedStyle({ paddingLeft: '36px' });
+        expect(textLeft(screen.getByText('Label'))).to.equal(
+          textLeft(screen.getByRole('menuitem', { name: 'Item' })),
+        );
+        expect(textLeft(screen.getByText('Flush label'))).to.equal(
+          textLeft(screen.getByRole('menuitem', { name: 'Flush item' })),
+        );
+      });
+
+      it(`lets sx and theme overrides replace the inset (modularCssLayers: ${modularCssLayers})`, () => {
+        const theme = createTheme({
+          modularCssLayers,
+          components: { MuiMenu2GroupLabel: { styleOverrides: { root: { paddingLeft: 44 } } } },
+        });
+        render(
+          <StyledEngineProvider enableCssLayer={modularCssLayers}>
+            <ThemeProvider theme={theme}>
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body}>
+                  <Menu2Group>
+                    <Menu2GroupLabel inset>Theme</Menu2GroupLabel>
+                  </Menu2Group>
+                  <Menu2Group>
+                    <Menu2GroupLabel inset sx={{ paddingLeft: '40px' }}>
+                      Sx
+                    </Menu2GroupLabel>
+                  </Menu2Group>
+                </Menu2Popup>
+              </Menu2>
+            </ThemeProvider>
+          </StyledEngineProvider>,
+        );
+
+        expect(screen.getByText('Theme')).toHaveComputedStyle({ paddingLeft: '44px' });
+        expect(screen.getByText('Sx')).toHaveComputedStyle({ paddingLeft: '40px' });
+      });
+    });
   });
 });

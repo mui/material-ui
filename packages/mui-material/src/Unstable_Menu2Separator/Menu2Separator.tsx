@@ -90,13 +90,18 @@ const Menu2SeparatorRoot = styled(Divider, {
   component: React.ElementType;
   ownerState: Menu2SeparatorProps & Menu2SeparatorOwnerState;
 }>(
-  // Own the classic item/divider spacing instead of relying on the legacy
-  // `[item] + divider` adjacency rule: Base UI mounts inline focus-guard
-  // nodes next to an open submenu trigger, which breaks that selector and
-  // collapses the gap.
+  // Own the spacing and the inset. The item `+ divider` rules miss separators after labels,
+  // groups, and open submenu triggers, where Base UI adds focus guards.
   memoTheme(({ theme }) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+    variants: [
+      {
+        // Align with item labels: the 16px gutter plus the 36px start adornment column.
+        props: { variant: 'inset' },
+        style: { marginLeft: 52 },
+      },
+    ],
   })),
 );
 

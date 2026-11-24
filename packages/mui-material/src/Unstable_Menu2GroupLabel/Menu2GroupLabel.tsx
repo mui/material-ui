@@ -89,7 +89,13 @@ const useUtilityClasses = (ownerState: Menu2GroupLabelProps) => {
 const Menu2GroupLabelRoot = styled(ListSubheader, {
   name: 'MuiMenu2GroupLabel',
   slot: 'root',
-})<{ component?: React.ElementType | undefined; ownerState: Menu2GroupLabelProps }>({});
+})<{ component?: React.ElementType | undefined; ownerState: Menu2GroupLabelProps }>({
+  // Align with inset item labels: the gutter plus the 36px start adornment column.
+  variants: [
+    { props: { inset: true }, style: { paddingLeft: 52 } },
+    { props: { inset: true, disableGutters: true }, style: { paddingLeft: 36 } },
+  ],
+});
 
 /**
  *

@@ -8,6 +8,8 @@ import { StyledEngineProvider } from '@mui/styled-engine';
 import Divider from '@mui/material/Divider';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
@@ -344,7 +346,7 @@ describe('<Menu2Separator />', () => {
     ].forEach((className) => expect(overrideSeparator).not.to.have.class(className));
     expect(getComputedStyle(overrideSeparator).position).not.to.equal('absolute');
     expect(getComputedStyle(overrideSeparator).alignSelf).not.to.equal('stretch');
-    expect(getComputedStyle(overrideSeparator).marginLeft).to.equal('72px');
+    expect(getComputedStyle(overrideSeparator).marginLeft).to.equal('52px');
     expect(defaultSeparator).to.have.text('Default');
     expect(overrideSeparator).to.have.text('Override');
     [defaultSeparator, overrideSeparator].forEach((separator) => {
@@ -457,6 +459,8 @@ describe('<Menu2Separator />', () => {
                   <Menu2Item>Item</Menu2Item>
                   <Divider />
                   <Menu2Item>Item before inset</Menu2Item>
+                  <Divider variant="inset" data-testid="plain-inset" />
+                  <Menu2Item>Item before separator inset</Menu2Item>
                   <Menu2Separator variant="inset" data-testid="menu2-inset" />
                 </Menu2Popup>
               </Menu2>
@@ -467,10 +471,11 @@ describe('<Menu2Separator />', () => {
         screen.getAllByRole('separator').forEach((separator) => {
           expect(separator).toHaveComputedStyle({ marginTop: '10px', marginBottom: '10px' });
         });
+        expect(screen.getByTestId('plain-inset')).toHaveComputedStyle({ marginLeft: '52px' });
         expect(screen.getByTestId('menu2-inset')).toHaveComputedStyle({ marginLeft: '52px' });
       });
 
-      it(`preserves a standalone Divider inset margin (modularCssLayers: ${modularCssLayers})`, () => {
+      it(`uses the Menu2 inset with a Divider render element (modularCssLayers: ${modularCssLayers})`, () => {
         render(
           <StyledEngineProvider enableCssLayer={modularCssLayers}>
             <ThemeProvider theme={createTheme({ modularCssLayers })}>
@@ -481,7 +486,62 @@ describe('<Menu2Separator />', () => {
 
         const separator = screen.getByRole('separator');
         expect(separator).to.have.class('MuiDivider-inset');
-        expect(separator).toHaveComputedStyle({ marginLeft: '72px' });
+        expect(separator).toHaveComputedStyle({ marginLeft: '52px' });
+      });
+    });
+  });
+
+  describe.skipIf(isJsdom())('inset spacing', () => {
+    const cases: {
+      name: string;
+      props?: Partial<Menu2SeparatorProps>;
+      overrides?: React.CSSProperties;
+      expected: string;
+    }[] = [
+      { name: 'the default', expected: '52px' },
+      { name: 'sx', props: { sx: { marginLeft: '40px' } }, expected: '40px' },
+      { name: 'theme overrides', overrides: { marginLeft: 44 }, expected: '44px' },
+    ];
+
+    [false, true].forEach((modularCssLayers) => {
+      cases.forEach(({ name, props, overrides, expected }) => {
+        it(`uses ${name} inset in every position (modularCssLayers: ${modularCssLayers})`, async () => {
+          const theme = createTheme({
+            modularCssLayers,
+            components: { MuiMenu2Separator: { styleOverrides: { root: overrides } } },
+          });
+          render(
+            <StyledEngineProvider enableCssLayer={modularCssLayers}>
+              <ThemeProvider theme={theme}>
+                <Menu2 defaultOpen modal={false}>
+                  <Menu2Popup anchor={document.body} slots={{ transition: null }}>
+                    <Menu2Item>Item</Menu2Item>
+                    <Menu2Separator variant="inset" data-testid="after-item" {...props} />
+                    <Menu2Group>
+                      <Menu2GroupLabel>Label</Menu2GroupLabel>
+                      <Menu2Separator variant="inset" data-testid="after-label" {...props} />
+                      <Menu2Item>Grouped item</Menu2Item>
+                    </Menu2Group>
+                    <Menu2Separator variant="inset" data-testid="after-group" {...props} />
+                    <Menu2Submenu defaultOpen>
+                      <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                      <Menu2SubmenuPopup>
+                        <Menu2Item>Nested item</Menu2Item>
+                      </Menu2SubmenuPopup>
+                    </Menu2Submenu>
+                    <Menu2Separator variant="inset" data-testid="after-submenu" {...props} />
+                    <Menu2Item>Last</Menu2Item>
+                  </Menu2Popup>
+                </Menu2>
+              </ThemeProvider>
+            </StyledEngineProvider>,
+          );
+
+          await screen.findByRole('menuitem', { name: 'Nested item' });
+          ['after-item', 'after-label', 'after-group', 'after-submenu'].forEach((testId) => {
+            expect(screen.getByTestId(testId)).toHaveComputedStyle({ marginLeft: expected });
+          });
+        });
       });
     });
   });
