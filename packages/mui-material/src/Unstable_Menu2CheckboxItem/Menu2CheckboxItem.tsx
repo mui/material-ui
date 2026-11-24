@@ -38,6 +38,8 @@ import {
   menu2CheckboxItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
+export type Menu2CheckboxItemState = BaseMenu.CheckboxItem.State;
+
 export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether the item is currently checked, including uncontrolled selection. */
   checked: boolean;
@@ -144,7 +146,7 @@ export interface Menu2CheckboxItemProps
    */
   render?:
     | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2CheckboxItemOwnerState>
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2CheckboxItemState>
     | undefined;
   /**
    * Styles applied to the root element.
@@ -195,10 +197,20 @@ interface Menu2CheckboxItemRootSlotProps extends Pick<
 > {
   baseProps: HTMLProps;
   ownerState: Menu2CheckboxItemOwnerState & Pick<Menu2CheckboxItemProps, 'classes'>;
+  renderState: Menu2CheckboxItemState;
 }
 
 function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
-  const { checkedIcon, icon, ownerState, render: renderProp, slotProps, slots, ...other } = props;
+  const {
+    checkedIcon,
+    icon,
+    ownerState,
+    render: renderProp,
+    renderState,
+    slotProps,
+    slots,
+    ...other
+  } = props;
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2CheckboxItemIndicator,
     shouldForwardComponentProp: !slots?.indicator,
@@ -223,14 +235,7 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
       elementType={Menu2CheckboxItemRoot}
       component={renderProp ? Menu2RenderRoot : undefined}
       internalRender={renderProp}
-      internalRenderState={{
-        checked: ownerState.checked,
-        disabled: ownerState.disabled,
-        disableGutters: ownerState.disableGutters,
-        divider: ownerState.divider,
-        highlighted: ownerState.highlighted,
-        inset: ownerState.inset,
-      }}
+      internalRenderState={renderState}
       startIndicator={
         <BaseMenu.CheckboxItemIndicator
           keepMounted={keepMounted}
@@ -285,6 +290,11 @@ Menu2CheckboxItemRootSlot.propTypes /* remove-proptypes */ = {
    * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  renderState: PropTypes.shape({
+    checked: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    highlighted: PropTypes.bool.isRequired,
+  }).isRequired,
   /**
    * The props used for each slot inside.
    */
@@ -373,6 +383,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
           <Menu2CheckboxItemRootSlot
             baseProps={renderProps}
             ownerState={itemOwnerState}
+            renderState={state}
             checkedIcon={checkedIcon}
             disableRipple={disableRipple}
             icon={icon}

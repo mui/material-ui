@@ -15,6 +15,8 @@ import {
 
 export type { Menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
 
+export type Menu2TriggerState = BaseMenu.Trigger.State;
+
 export interface Menu2TriggerProps
   extends
     Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'color'>,
@@ -34,7 +36,7 @@ export interface Menu2TriggerProps
    * Forward the props and ref to the element.
    * Set visual props, such as `color`, `sx`, and `variant`, on this element.
    */
-  render: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, BaseMenu.Trigger.State>;
+  render: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2TriggerState>;
 }
 
 /**

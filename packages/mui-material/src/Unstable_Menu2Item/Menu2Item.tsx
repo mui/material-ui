@@ -26,6 +26,8 @@ import {
   Menu2ItemStartAdornment,
 } from '../Unstable_Menu2/Menu2ItemAdornment';
 
+export type Menu2ItemState = BaseMenu.Item.State;
+
 export interface Menu2ItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether Base UI currently highlights the item. */
   highlighted: boolean;
@@ -90,9 +92,7 @@ export interface Menu2ItemProps
    * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2ItemOwnerState>
-    | undefined;
+    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2ItemState> | undefined;
   /**
    * Styles applied to the root element.
    */
@@ -157,7 +157,7 @@ const Menu2Item = React.forwardRef(function Menu2Item(
       render={(renderProps, state) => {
         const itemOwnerState = { ...ownerState, ...state };
         return (
-          <Menu2ItemRootSlot<Menu2ItemOwnerState>
+          <Menu2ItemRootSlot<Menu2ItemOwnerState, Menu2ItemState>
             baseProps={renderProps}
             ownerState={itemOwnerState}
             elementType={Menu2ItemRoot}
@@ -165,13 +165,7 @@ const Menu2Item = React.forwardRef(function Menu2Item(
             disableRipple={disableRipple}
             nativeButton={nativeButton}
             internalRender={renderProp}
-            internalRenderState={{
-              disabled: state.disabled,
-              disableGutters,
-              divider,
-              highlighted: state.highlighted,
-              inset,
-            }}
+            internalRenderState={state}
             slots={slots}
             slotProps={slotProps}
             sx={sx}

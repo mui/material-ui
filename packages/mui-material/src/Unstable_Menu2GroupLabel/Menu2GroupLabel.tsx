@@ -18,6 +18,8 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2GroupLabelClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2GroupLabelUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
+export type Menu2GroupLabelState = BaseMenu.GroupLabel.State;
+
 export interface Menu2GroupLabelOwnerState extends BaseMenu.GroupLabel.State {}
 
 export interface Menu2GroupLabelSlots {
@@ -56,7 +58,7 @@ export interface Menu2GroupLabelProps
    */
   render?:
     | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupLabelOwnerState>
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupLabelState>
     | undefined;
   /**
    * The props used for each slot inside.

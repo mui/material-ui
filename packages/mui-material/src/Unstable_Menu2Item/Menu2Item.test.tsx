@@ -402,8 +402,7 @@ describe('<Menu2Item />', () => {
                 {...props}
                 data-render-highlighted={String(state.highlighted)}
                 data-render-disabled={String(state.disabled)}
-                data-render-divider={String(state.divider)}
-                data-render-gutters={String(state.disableGutters)}
+                data-state-keys={Object.keys(state).sort().join(',')}
               />
             )}
           >
@@ -419,8 +418,8 @@ describe('<Menu2Item />', () => {
     await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
     expect(item).to.have.attribute('data-render-highlighted', 'false');
     expect(item).to.have.attribute('data-render-disabled', 'false');
-    expect(item).to.have.attribute('data-render-divider', 'true');
-    expect(item).to.have.attribute('data-render-gutters', 'true');
+    // The Base UI state as is, without the visual props.
+    expect(item).to.have.attribute('data-state-keys', 'disabled,highlighted');
 
     await user.keyboard('{ArrowDown}{ArrowDown}');
     await waitFor(() => expect(item).toHaveFocus());

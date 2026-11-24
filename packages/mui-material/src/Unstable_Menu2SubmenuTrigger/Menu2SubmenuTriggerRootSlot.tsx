@@ -21,6 +21,7 @@ import {
 import type {
   Menu2SubmenuTriggerProps,
   Menu2SubmenuTriggerOwnerState,
+  Menu2SubmenuTriggerState,
 } from './Menu2SubmenuTrigger';
 
 function menu2SubmenuTriggerStyles(theme: Theme, selector: string) {
@@ -97,9 +98,10 @@ function Menu2SubmenuTriggerRootSlot(
   > & {
     baseProps: HTMLProps & { 'data-mui-internal-retain-open-tint'?: string | undefined };
     ownerState: Menu2SubmenuTriggerOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
+    renderState: Menu2SubmenuTriggerState;
   },
 ) {
-  const { ownerState, render: renderProp, slotProps, slots, ...other } = props;
+  const { ownerState, render: renderProp, renderState, slotProps, slots, ...other } = props;
   const isRtl = useRtl();
   const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
     elementType: Menu2SubmenuTriggerIndicator,
@@ -128,14 +130,7 @@ function Menu2SubmenuTriggerRootSlot(
       elementType={Menu2SubmenuTriggerRoot}
       component={renderProp ? Menu2RenderRoot : undefined}
       internalRender={renderProp}
-      internalRenderState={{
-        disabled: ownerState.disabled,
-        disableGutters: ownerState.disableGutters,
-        divider: ownerState.divider,
-        highlighted: ownerState.highlighted,
-        inset: ownerState.inset,
-        open: ownerState.open,
-      }}
+      internalRenderState={renderState}
       endIndicator={slots?.indicator === null ? null : <IndicatorSlot {...indicatorProps} />}
     />
   );

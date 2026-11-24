@@ -320,13 +320,14 @@ With `render`, forward `props.children` to keep the ripple and any indicator; ch
 A root-slot replacement also receives the item content and indicator as children.
 
 Use `slotProps.root` for root attributes, a ref, and `sx`.
-Its callback receives the same public state as the render function.
+Its callback receives the props and the live state.
+The render function receives only the Base UI state of the part, as in Base UI.
 The sections below describe the state and visual options for each part.
 
 ### Item
 
 `MenuItem` renders a styled `<div>` by default.
-A render function receives props and the `highlighted`, `disabled`, `disableGutters`, `divider`, and `inset` states.
+A render function receives props and the Base UI item state: `highlighted` and `disabled`.
 For example, wrap the root element in a Tooltip:
 
 ```jsx

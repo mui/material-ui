@@ -15,6 +15,8 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RadioGroupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2RadioGroupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
+export type Menu2RadioGroupState = BaseMenu.RadioGroup.State;
+
 export interface Menu2RadioGroupOwnerState extends BaseMenu.RadioGroup.State {}
 
 export interface Menu2RadioGroupSlots {
@@ -64,7 +66,7 @@ export interface Menu2RadioGroupProps extends Omit<React.HTMLAttributes<HTMLElem
    */
   render?:
     | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioGroupOwnerState>
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioGroupState>
     | undefined;
   /**
    * The props used for each slot inside.

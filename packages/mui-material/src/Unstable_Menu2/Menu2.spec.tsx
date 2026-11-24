@@ -31,6 +31,7 @@ import type {
   Menu2CheckboxItemOwnerState,
   Menu2CheckboxItemSlotProps,
   Menu2CheckboxItemSlots,
+  Menu2CheckboxItemState,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2CheckboxItem, {
   getMenu2CheckboxItemUtilityClass,
@@ -57,12 +58,14 @@ import type {
   Menu2ItemOwnerState,
   Menu2ItemSlotProps,
   Menu2ItemSlots,
+  Menu2ItemState,
 } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import type {
   Menu2LinkItemOwnerState,
   Menu2LinkItemSlotProps,
   Menu2LinkItemSlots,
+  Menu2LinkItemState,
 } from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type {
@@ -76,6 +79,7 @@ import type {
   Menu2RadioItemOwnerState,
   Menu2RadioItemSlotProps,
   Menu2RadioItemSlots,
+  Menu2RadioItemState,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2RadioItem, {
   getMenu2RadioItemUtilityClass,
@@ -99,6 +103,7 @@ import type {
   Menu2SubmenuTriggerOwnerState,
   Menu2SubmenuTriggerSlotProps,
   Menu2SubmenuTriggerSlots,
+  Menu2SubmenuTriggerState,
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import { createTheme } from '@mui/material/styles';
 // @ts-expect-error Menu2 is intentionally not exported from the root barrel for this POC.
@@ -236,8 +241,9 @@ function Menu2Composition() {
             render={(props, state) => {
               expectType<boolean, typeof state.highlighted>(state.highlighted);
               expectType<boolean, typeof state.disabled>(state.disabled);
-              expectType<boolean, typeof state.disableGutters>(state.disableGutters);
-              expectType<boolean, typeof state.divider>(state.divider);
+              expectType<Menu2ItemState, typeof state>(state);
+              // @ts-expect-error The render state has no visual props.
+              state.divider;
               // @ts-expect-error Menu2 has no dense mode.
               state.dense;
               // @ts-expect-error Visual selection is not part of the item state.
@@ -251,8 +257,9 @@ function Menu2Composition() {
             href="/profile"
             render={(props, state) => {
               expectType<boolean, typeof state.highlighted>(state.highlighted);
-              expectType<boolean, typeof state.disableGutters>(state.disableGutters);
-              expectType<boolean, typeof state.divider>(state.divider);
+              expectType<Menu2LinkItemState, typeof state>(state);
+              // @ts-expect-error The render state has no visual props.
+              state.divider;
               // @ts-expect-error Link items have no disabled state.
               state.disabled;
               // @ts-expect-error Visual selection is not part of the link item state.
@@ -268,8 +275,9 @@ function Menu2Composition() {
               expectType<boolean, typeof state.checked>(state.checked);
               expectType<boolean, typeof state.highlighted>(state.highlighted);
               expectType<boolean, typeof state.disabled>(state.disabled);
-              expectType<boolean, typeof state.disableGutters>(state.disableGutters);
-              expectType<boolean, typeof state.divider>(state.divider);
+              expectType<Menu2CheckboxItemState, typeof state>(state);
+              // @ts-expect-error The render state has no visual props.
+              state.divider;
               // @ts-expect-error Checkbox items use checked, not selected.
               state.selected;
               return <div {...props} data-active={state.checked} />;
@@ -313,8 +321,9 @@ function Menu2Composition() {
                 expectType<boolean, typeof state.checked>(state.checked);
                 expectType<boolean, typeof state.highlighted>(state.highlighted);
                 expectType<boolean, typeof state.disabled>(state.disabled);
-                expectType<boolean, typeof state.disableGutters>(state.disableGutters);
-                expectType<boolean, typeof state.divider>(state.divider);
+                expectType<Menu2RadioItemState, typeof state>(state);
+                // @ts-expect-error The render state has no visual props.
+                state.divider;
                 // @ts-expect-error Radio items use checked, not selected.
                 state.selected;
                 return <div {...props} data-active={state.checked} />;
@@ -618,8 +627,9 @@ createTheme({
     expectType<boolean, typeof state.open>(state.open);
     expectType<boolean, typeof state.highlighted>(state.highlighted);
     expectType<boolean, typeof state.disabled>(state.disabled);
-    expectType<boolean, typeof state.disableGutters>(state.disableGutters);
-    expectType<boolean, typeof state.divider>(state.divider);
+    expectType<Menu2SubmenuTriggerState, typeof state>(state);
+    // @ts-expect-error The render state has no visual props.
+    state.divider;
     // @ts-expect-error Exit timing is internal to the submenu.
     state.closing;
     // @ts-expect-error Exit tint handling is internal to the submenu.

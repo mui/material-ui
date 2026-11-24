@@ -41,6 +41,8 @@ export interface Menu2SubmenuTriggerSlots {
   indicator?: React.ElementType | null | undefined;
 }
 
+export type Menu2SubmenuTriggerState = BaseMenu.SubmenuTrigger.State;
+
 export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether the submenu is currently open. */
   open: boolean;
@@ -122,7 +124,7 @@ export interface Menu2SubmenuTriggerProps
    */
   render?:
     | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SubmenuTriggerOwnerState>
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SubmenuTriggerState>
     | undefined;
 }
 
@@ -192,6 +194,7 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
               'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
             }}
             ownerState={itemOwnerState}
+            renderState={state}
             disableRipple={disableRipple}
             nativeButton={nativeButton}
             render={renderProp}

@@ -162,7 +162,7 @@ export interface Menu2BaseItemState {
   highlighted?: boolean | undefined;
 }
 
-export interface Menu2ItemRootSlotProps<OwnerState extends object> {
+export interface Menu2ItemRootSlotProps<OwnerState extends object, RenderState extends object> {
   /**
    * The props that Base UI passes to the `render` function of the item.
    */
@@ -183,8 +183,11 @@ export interface Menu2ItemRootSlotProps<OwnerState extends object> {
   component?: React.ElementType | undefined;
   disableRipple?: boolean | undefined;
   internalRender?:
-    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, OwnerState> | undefined;
-  internalRenderState?: OwnerState | undefined;
+    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, RenderState> | undefined;
+  /**
+   * The Base UI state that `render` receives.
+   */
+  internalRenderState?: RenderState | undefined;
   nativeButton?: boolean | undefined;
   slots?: Menu2RootSlots | undefined;
   slotProps?: Menu2RootSlotProps<OwnerState, 'a' | 'div'> | undefined;
@@ -196,8 +199,8 @@ export interface Menu2ItemRootSlotProps<OwnerState extends object> {
 }
 
 // Resolve root slots with live Base UI state, like the default root styles.
-export function Menu2ItemRootSlot<OwnerState extends object>(
-  props: Menu2ItemRootSlotProps<OwnerState>,
+export function Menu2ItemRootSlot<OwnerState extends object, RenderState extends object>(
+  props: Menu2ItemRootSlotProps<OwnerState, RenderState>,
 ) {
   const {
     baseProps,

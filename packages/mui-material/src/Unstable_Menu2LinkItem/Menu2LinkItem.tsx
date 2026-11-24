@@ -26,6 +26,8 @@ import type { Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2LinkItemUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 
+export type Menu2LinkItemState = BaseMenu.LinkItem.State;
+
 export interface Menu2LinkItemOwnerState extends Omit<Menu2ItemBaseOwnerState, 'disabled'> {
   /** Whether Base UI currently highlights the item. */
   highlighted: boolean;
@@ -83,7 +85,7 @@ export interface Menu2LinkItemProps
    */
   render?:
     | React.ReactElement
-    | ComponentRenderFn<Omit<React.ComponentPropsWithRef<'a'>, 'color'>, Menu2LinkItemOwnerState>
+    | ComponentRenderFn<Omit<React.ComponentPropsWithRef<'a'>, 'color'>, Menu2LinkItemState>
     | undefined;
   /**
    * Styles applied to the root element.
@@ -161,7 +163,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
       render={(renderProps, state) => {
         const itemOwnerState = { ...ownerState, ...state };
         return (
-          <Menu2ItemRootSlot<Menu2LinkItemOwnerState>
+          <Menu2ItemRootSlot<Menu2LinkItemOwnerState, Menu2LinkItemState>
             baseProps={renderProps}
             ownerState={itemOwnerState}
             elementType={Menu2LinkItemRoot}
@@ -169,12 +171,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
             component={renderProp ? Menu2RenderRoot : undefined}
             disableRipple={disableRipple}
             internalRender={renderProp}
-            internalRenderState={{
-              disableGutters,
-              divider,
-              highlighted: state.highlighted,
-              inset,
-            }}
+            internalRenderState={state}
             slots={slots}
             slotProps={slotProps}
             sx={sx}

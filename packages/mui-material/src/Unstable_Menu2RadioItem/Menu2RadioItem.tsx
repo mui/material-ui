@@ -37,6 +37,8 @@ import {
   menu2RadioItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
+export type Menu2RadioItemState = BaseMenu.RadioItem.State;
+
 export interface Menu2RadioItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether the item is currently checked, including uncontrolled selection. */
   checked: boolean;
@@ -124,7 +126,7 @@ export interface Menu2RadioItemProps
    */
   render?:
     | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioItemOwnerState>
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioItemState>
     | undefined;
   /**
    * Styles applied to the root element.
@@ -176,10 +178,20 @@ interface Menu2RadioItemRootSlotProps extends Pick<
 > {
   baseProps: HTMLProps;
   ownerState: Menu2RadioItemOwnerState & Pick<Menu2RadioItemProps, 'classes'>;
+  renderState: Menu2RadioItemState;
 }
 
 function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
-  const { checkedIcon, icon, ownerState, render: renderProp, slotProps, slots, ...other } = props;
+  const {
+    checkedIcon,
+    icon,
+    ownerState,
+    render: renderProp,
+    renderState,
+    slotProps,
+    slots,
+    ...other
+  } = props;
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2RadioItemIndicator,
     shouldForwardComponentProp: !slots?.indicator,
@@ -204,14 +216,7 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
       elementType={Menu2RadioItemRoot}
       component={renderProp ? Menu2RenderRoot : undefined}
       internalRender={renderProp}
-      internalRenderState={{
-        checked: ownerState.checked,
-        disabled: ownerState.disabled,
-        disableGutters: ownerState.disableGutters,
-        divider: ownerState.divider,
-        highlighted: ownerState.highlighted,
-        inset: ownerState.inset,
-      }}
+      internalRenderState={renderState}
       startIndicator={
         <BaseMenu.RadioItemIndicator
           keepMounted={keepMounted}
@@ -266,6 +271,11 @@ Menu2RadioItemRootSlot.propTypes /* remove-proptypes */ = {
    * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  renderState: PropTypes.shape({
+    checked: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    highlighted: PropTypes.bool.isRequired,
+  }).isRequired,
   /**
    * The props used for each slot inside.
    */
@@ -346,6 +356,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
           <Menu2RadioItemRootSlot
             baseProps={renderProps}
             ownerState={itemOwnerState}
+            renderState={state}
             checkedIcon={checkedIcon}
             disableRipple={disableRipple}
             icon={icon}

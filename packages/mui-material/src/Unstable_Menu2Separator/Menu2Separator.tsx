@@ -18,6 +18,8 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2SeparatorClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SeparatorUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
+export type Menu2SeparatorState = BaseSeparator.State;
+
 export interface Menu2SeparatorOwnerState extends BaseSeparator.State {}
 
 export interface Menu2SeparatorSlots {
@@ -53,7 +55,7 @@ export interface Menu2SeparatorProps
    */
   render?:
     | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SeparatorOwnerState>
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SeparatorState>
     | undefined;
   /**
    * The props used for each slot inside.

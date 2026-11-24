@@ -15,6 +15,8 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2GroupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2GroupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
+export type Menu2GroupState = BaseMenu.Group.State;
+
 export interface Menu2GroupOwnerState extends BaseMenu.Group.State {}
 
 export interface Menu2GroupSlots {
@@ -49,9 +51,7 @@ export interface Menu2GroupProps extends Omit<React.HTMLAttributes<HTMLElement>,
    * Applies to the default root only. Use `slots.root` to replace the styled root.
    */
   render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupOwnerState>
-    | undefined;
+    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupState> | undefined;
   /**
    * The props used for each slot inside.
    */

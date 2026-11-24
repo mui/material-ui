@@ -676,8 +676,7 @@ describe('<Menu2SubmenuTrigger />', () => {
                   {...props}
                   data-open-state={String(state.open)}
                   data-highlighted-state={String(state.highlighted)}
-                  data-divider={String(state.divider)}
-                  data-gutters={String(state.disableGutters)}
+                  data-state-keys={Object.keys(state).sort().join(',')}
                 />
               )}
               slotProps={{
@@ -699,8 +698,8 @@ describe('<Menu2SubmenuTrigger />', () => {
     );
     const trigger = screen.getByRole('menuitem', { name: 'More' });
     expect(forwardedRef.current).to.equal(trigger);
-    expect(trigger).to.have.attribute('data-divider', 'true');
-    expect(trigger).to.have.attribute('data-gutters', 'true');
+    // The Base UI state as is, without the visual props.
+    expect(trigger).to.have.attribute('data-state-keys', 'disabled,highlighted,open');
     expect(indicatorRef.current).to.equal(trigger.querySelector(`.${classes.indicator}`));
     expect(indicatorRef.current).to.have.attribute('data-open-state', 'false');
     expect(getComputedStyle(indicatorRef.current!).color).to.equal('rgb(4, 5, 6)');

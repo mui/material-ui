@@ -130,7 +130,7 @@ For the classic controlled pattern, omit `Menu2Trigger`, set `open` on `Menu2`, 
 All item parts, groups, labels, and separators share this contract, without a `component` prop:
 
 - **`render`** accepts an element or a function with props and typed state. It changes the element or composes a component while keeping Material styles, theme overrides, `sx`, and item ripple. Forward props, ref, and children to preserve behavior, label associations, indicators, and ripple.
-- **`slotProps.root`** supplies root attributes, a ref, and `sx`. Its callback receives the same live state as `render`. Root attributes can also go on the component or render element; element-specific props and refs belong on that element.
+- **`slotProps.root`** supplies root attributes, a ref, and `sx`. Its callback receives the props and the live state. `render` receives the Base UI state of the part, unchanged. Root attributes can also go on the component or render element; element-specific props and refs belong on that element.
 - **`slots.root`** replaces the styled root and its render adapter, so it takes precedence over `render`. The replacement receives utility classes, Base UI behavior props and data attributes, and children, including indicators. It must forward props, ref, and children. Default Material styles, theme style overrides, ripple, and `sx` processing are not added automatically.
 
 `Menu2Item`, groups, labels, and separators default to a `div`. Render functions and root-slot callbacks expose these part-specific states:
@@ -296,6 +296,15 @@ Keep the numbering for existing review references. "Resolved" means chosen in th
 7. ✅ **Explicit composition:** use the [root, trigger, and popup API](#api-shape-explicit-root-trigger-and-popup) above, with one behavioral owner per trigger. A Material Menubar remains separate work.
 
 8. ✅ **TypeScript minimum:** Material UI supports TypeScript 5 and later ([#49323](https://github.com/mui/material-ui/pull/49323)). This supports the `const` type parameters in Base UI declarations. Include all `MuiMenu2*` theme types in the standard Material UI theme types; no extra import is needed.
+
+### Open questions
+
+These need a maintainer decision before the API is stable.
+
+1. **`render` state shape:** on every part, `render` receives the Base UI state of its part, unchanged. The Material props, such as `divider`, `disableGutters`, and `inset`, are only in `ownerState`, which the `slotProps` callbacks, theme variants, and `styleOverrides` receive.
+   - Gains: one rule for all parts, and the Base UI docs and types apply to `render`.
+   - Costs: `render` does not see values from theme `defaultProps`, and one element has two state shapes.
+   - Alternative: pass `ownerState`, the props plus the live state, to `render` on every part. The popup `ownerState` would then also need the live `open` state.
 
 ### Rollout plan
 

@@ -244,8 +244,7 @@ describe('Menu2 live checked ownerState', () => {
               <div
                 {...props}
                 data-disabled={String(state.disabled)}
-                data-divider={String(state.divider)}
-                data-gutters={String(state.disableGutters)}
+                data-state-keys={Object.keys(state).sort().join(',')}
               />
             ),
           };
@@ -277,8 +276,8 @@ describe('Menu2 live checked ownerState', () => {
         const { user } = render(<Fixture />);
         const item = screen.getByRole(role, { name: 'One' });
         expect(item).to.have.attribute('data-disabled', 'false');
-        expect(item).to.have.attribute('data-divider', 'true');
-        expect(item).to.have.attribute('data-gutters', 'true');
+        // The Base UI state as is, without the visual props.
+        expect(item).to.have.attribute('data-state-keys', 'checked,disabled,highlighted');
         await act(async () => item.focus());
         await user.keyboard('{F2}');
         expect(item).to.have.attribute('data-disabled', 'true');

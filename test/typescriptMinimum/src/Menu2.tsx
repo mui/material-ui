@@ -11,6 +11,7 @@ import type {
   Menu2CheckboxItemOwnerState,
   Menu2CheckboxItemSlotProps,
   Menu2CheckboxItemSlots,
+  Menu2CheckboxItemState,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import type {
@@ -29,12 +30,14 @@ import type {
   Menu2ItemOwnerState,
   Menu2ItemSlotProps,
   Menu2ItemSlots,
+  Menu2ItemState,
 } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import type {
   Menu2LinkItemOwnerState,
   Menu2LinkItemSlotProps,
   Menu2LinkItemSlots,
+  Menu2LinkItemState,
 } from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
@@ -48,6 +51,7 @@ import type {
   Menu2RadioItemOwnerState,
   Menu2RadioItemSlotProps,
   Menu2RadioItemSlots,
+  Menu2RadioItemState,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import type {
@@ -62,6 +66,7 @@ import type {
   Menu2SubmenuTriggerOwnerState,
   Menu2SubmenuTriggerSlotProps,
   Menu2SubmenuTriggerSlots,
+  Menu2SubmenuTriggerState,
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 
@@ -139,8 +144,9 @@ export default function Menu2Consumer() {
               state.checked satisfies boolean;
               state.highlighted satisfies boolean;
               state.disabled satisfies boolean;
-              state.disableGutters satisfies boolean;
-              state.divider satisfies boolean;
+              state satisfies Menu2CheckboxItemState;
+              // @ts-expect-error The render state has no visual props.
+              'divider' satisfies keyof typeof state;
               // @ts-expect-error Render props omit the legacy HTML color attribute.
               'color' satisfies keyof typeof props;
               // @ts-expect-error Checkbox items use checked, not selected.
@@ -184,8 +190,9 @@ export default function Menu2Consumer() {
                 state.open satisfies boolean;
                 state.highlighted satisfies boolean;
                 state.disabled satisfies boolean;
-                state.disableGutters satisfies boolean;
-                state.divider satisfies boolean;
+                state satisfies Menu2SubmenuTriggerState;
+                // @ts-expect-error The render state has no visual props.
+                'divider' satisfies keyof typeof state;
                 // @ts-expect-error Exit timing is internal to the submenu.
                 'closing' satisfies keyof typeof state;
                 // @ts-expect-error Exit tint handling is internal to the submenu.
@@ -237,8 +244,9 @@ export default function Menu2Consumer() {
                     state.checked satisfies boolean;
                     state.highlighted satisfies boolean;
                     state.disabled satisfies boolean;
-                    state.disableGutters satisfies boolean;
-                    state.divider satisfies boolean;
+                    state satisfies Menu2RadioItemState;
+                    // @ts-expect-error The render state has no visual props.
+                    'divider' satisfies keyof typeof state;
                     // @ts-expect-error Render props omit the legacy HTML color attribute.
                     'color' satisfies keyof typeof props;
                     // @ts-expect-error Radio items use checked, not selected.
@@ -332,8 +340,9 @@ const CustomButton = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
   render={(props, state) => {
     state.highlighted satisfies boolean;
     state.disabled satisfies boolean;
-    state.disableGutters satisfies boolean;
-    state.divider satisfies boolean;
+    state satisfies Menu2ItemState;
+    // @ts-expect-error The render state has no visual props.
+    'divider' satisfies keyof typeof state;
     // @ts-expect-error Highlighted is a boolean.
     state.highlighted satisfies string;
     // @ts-expect-error Render props omit the legacy HTML color attribute.
@@ -426,8 +435,9 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
     props.href satisfies string | undefined;
     props.target satisfies React.HTMLAttributeAnchorTarget | undefined;
     state.highlighted satisfies boolean;
-    state.disableGutters satisfies boolean;
-    state.divider satisfies boolean;
+    state satisfies Menu2LinkItemState;
+    // @ts-expect-error The render state has no visual props.
+    'divider' satisfies keyof typeof state;
     // @ts-expect-error Link items have no disabled state.
     state.disabled satisfies boolean;
     // @ts-expect-error Highlighted is a boolean.
