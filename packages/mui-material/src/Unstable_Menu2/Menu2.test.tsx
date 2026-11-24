@@ -11,8 +11,6 @@ import type { ListProps } from '@mui/material/List';
 import List, { listClasses } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ClassicMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
 import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import Menu2 from '@mui/material/Unstable_Menu2';
@@ -1796,8 +1794,8 @@ describe('<Menu2 />', () => {
     }
   });
 
-  // A menu popup scrolls, so an outset ring gets clipped. The item takes the
-  // same inset ring as the classic MenuItem. `Mui-focusVisible` goes on by
+  // A menu popup scrolls, so an outset ring gets clipped. The item takes an
+  // inset ring. `Mui-focusVisible` goes on by
   // hand: ButtonBase sets it from `:focus-visible`, a browser heuristic on the
   // input modality that no test event moves.
   it.skipIf(isJsdom())('insets the focus ring under theme.focusVisible', async () => {
@@ -1822,13 +1820,9 @@ describe('<Menu2 />', () => {
   });
 
   // `theme.focusVisible` swaps the item focus background for an outline ring.
-  // Menu2 must match the classic MenuItem: the ring replaces the background.
   it.skipIf(isJsdom())('drops the highlight background under theme.focusVisible', async () => {
     const { user } = render(
       <ThemeProvider theme={createTheme({ focusVisible: true })}>
-        <MenuList>
-          <ClassicMenuItem>Classic</ClassicMenuItem>
-        </MenuList>
         <Menu2 modal={false}>
           <Menu2Trigger render={<Button disableRipple>Options</Button>} />
           <Menu2Popup>
@@ -1838,12 +1832,6 @@ describe('<Menu2 />', () => {
         </Menu2>
       </ThemeProvider>,
     );
-
-    // The classic reference: a keyboard-focused MenuItem under the ring theme.
-    await user.tab();
-    const classicItem = screen.getByRole('menuitem', { name: 'Classic' });
-    expect(classicItem).to.have.class(menuItemClasses.focusVisible);
-    const classicBackground = window.getComputedStyle(classicItem).backgroundColor;
 
     await user.tab();
     expect(screen.getByRole('button', { name: 'Options' })).toHaveFocus();
@@ -1863,7 +1851,5 @@ describe('<Menu2 />', () => {
     // The ring shows, and the 0.12 focus background does not.
     expect(highlighted.outlineWidth).to.equal('2px');
     expect(highlighted.backgroundColor).to.equal(atRest);
-    // The classic MenuItem paints the same background in the same state.
-    expect(highlighted.backgroundColor).to.equal(classicBackground);
   });
 });

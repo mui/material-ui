@@ -56,7 +56,7 @@ export function getMenu2IndicatorIcon(icon: React.ReactNode, className: string) 
 const Menu2IndicatorBase = styled(Indicator, { slot: 'root' })(
   memoTheme(({ theme }) => ({
     alignItems: 'center',
-    // Match MenuItemBase's fixed ListItemIcon column and ListItemText inset.
+    // Match the item's fixed ListItemIcon column and ListItemText inset.
     minWidth: 36,
     // Match Checkbox and Radio colors, not the color of a decorative ListItemIcon.
     color: (theme.vars || theme).palette.text.secondary,

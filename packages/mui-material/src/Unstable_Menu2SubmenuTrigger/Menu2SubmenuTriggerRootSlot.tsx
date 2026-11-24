@@ -3,15 +3,14 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { useRtl } from '@mui/system/RtlProvider';
 import type { HTMLProps } from '@base-ui/react/types';
-import MenuItemBase from '../internal/MenuItemBase';
+import { Menu2ItemBaseRoot, menu2ItemOverridesResolver } from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import menuItemClasses from '../MenuItem/menuItemClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { getMenuItemHighlightStyles, menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import type { Theme } from '../styles';
 import { Menu2ItemRootSlot } from '../Unstable_Menu2/menu2ItemShared';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
@@ -28,7 +27,7 @@ function menu2SubmenuTriggerStyles(theme: Theme, selector: string) {
   // Keyboard focus takes precedence over the open tint. With a focus ring,
   // the tint stays because it shows the open state, not focus.
   // Keep the focus guard at zero specificity so state style overrides can win.
-  const notFocused = theme.focusVisible ? '' : `:where(:not(.${menuItemClasses.focusVisible}))`;
+  const notFocused = theme.focusVisible ? '' : `:where(:not(.${buttonBaseClasses.focusVisible}))`;
 
   return {
     [`&${selector}${notFocused}`]: {
@@ -38,12 +37,11 @@ function menu2SubmenuTriggerStyles(theme: Theme, selector: string) {
 }
 
 // Put the open tint before the common item overrides, as with the other defaults.
-const Menu2SubmenuTriggerBase = styled(MenuItemBase, {
+const Menu2SubmenuTriggerBase = styled(Menu2ItemBaseRoot, {
   name: 'MuiMenu2Item',
   slot: 'root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: menu2ItemOverridesResolver,
 })<{ ownerState: Menu2SubmenuTriggerOwnerState }>(
-  memoTheme(({ theme }) => getMenuItemHighlightStyles(theme)),
   memoTheme(({ theme }) => ({
     ...menu2SubmenuTriggerStyles(theme, `.${menu2SubmenuTriggerClasses.open}`),
     ...menu2SubmenuTriggerStyles(theme, '[data-mui-internal-retain-open-tint]'),
@@ -53,7 +51,7 @@ const Menu2SubmenuTriggerBase = styled(MenuItemBase, {
 const Menu2SubmenuTriggerRoot = styled(Menu2SubmenuTriggerBase, {
   name: 'MuiMenu2SubmenuTrigger',
   slot: 'root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: menu2ItemOverridesResolver,
 })({});
 
 export const Menu2SubmenuTriggerStartAdornment = styled(Menu2ItemStartAdornment, {

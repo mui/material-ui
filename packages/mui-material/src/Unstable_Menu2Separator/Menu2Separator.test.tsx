@@ -6,8 +6,6 @@ import * as React from 'react';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
@@ -405,10 +403,6 @@ describe('<Menu2Separator />', () => {
                     <Menu2Item>After</Menu2Item>
                   </Menu2Popup>
                 </Menu2>
-                <MenuList>
-                  <MenuItem>Classic item</MenuItem>
-                  <Menu2Separator {...props} />
-                </MenuList>
               </ThemeProvider>
             </StyledEngineProvider>,
           );
@@ -458,12 +452,6 @@ describe('<Menu2Separator />', () => {
         render(
           <StyledEngineProvider enableCssLayer={modularCssLayers}>
             <ThemeProvider theme={createTheme({ modularCssLayers, spacing: 10 })}>
-              <MenuList>
-                <MenuItem>Classic item</MenuItem>
-                <Divider />
-                <MenuItem>Classic item before inset</MenuItem>
-                <Divider variant="inset" data-testid="classic-inset" />
-              </MenuList>
               <Menu2 defaultOpen modal={false}>
                 <Menu2Popup anchor={document.body}>
                   <Menu2Item>Item</Menu2Item>
@@ -479,7 +467,6 @@ describe('<Menu2Separator />', () => {
         screen.getAllByRole('separator').forEach((separator) => {
           expect(separator).toHaveComputedStyle({ marginTop: '10px', marginBottom: '10px' });
         });
-        expect(screen.getByTestId('classic-inset')).toHaveComputedStyle({ marginLeft: '52px' });
         expect(screen.getByTestId('menu2-inset')).toHaveComputedStyle({ marginLeft: '52px' });
       });
 

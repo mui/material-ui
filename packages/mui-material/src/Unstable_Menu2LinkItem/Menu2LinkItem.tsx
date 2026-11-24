@@ -9,10 +9,9 @@ import {
   Menu2ItemEndAdornment,
   Menu2ItemStartAdornment,
 } from '../Unstable_Menu2/Menu2ItemAdornment';
-import Menu2ItemBase from '../internal/Menu2ItemBase';
+import Menu2ItemBase, { menu2ItemOverridesResolver } from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import type {
   Menu2ItemBaseOwnerState,
   Menu2LinkItemBaseProps,
@@ -97,7 +96,7 @@ export interface Menu2LinkItemProps
 const Menu2LinkItemRoot = styled(Menu2ItemBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: menu2ItemOverridesResolver,
 })<{ ownerState: Menu2LinkItemOwnerState }>({});
 
 const Menu2LinkItemStartAdornment = styled(Menu2ItemStartAdornment, {

@@ -45,9 +45,11 @@ export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
   slot: 'Paper',
 })({
-  // Leave space outside the menu for a press that closes it.
+  // specZ: The maximum height of a simple menu should be one or more rows less than the view
+  // height. This ensures a tappable area outside of the simple menu with which to dismiss
+  // the menu.
   maxHeight: 'calc(100% - 96px)',
-  // Support momentum scrolling on iOS versions before 13.
+  // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
 });
 
@@ -55,7 +57,7 @@ const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
   slot: 'List',
 })({
-  // The items, not the list, show focus.
+  // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });
 

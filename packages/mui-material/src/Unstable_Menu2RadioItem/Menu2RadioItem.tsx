@@ -7,13 +7,12 @@ import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import useSlot from '../utils/useSlot';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
-import Menu2ItemBase from '../internal/Menu2ItemBase';
+import Menu2ItemBase, { menu2ItemOverridesResolver } from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import RadioButtonIcon from '../Radio/RadioButtonIcon';
 import type { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
 import Menu2IndicatorBase, { getMenu2IndicatorIcon } from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { menuItemOverridesResolver } from '../MenuItem/menuItemStyles';
 import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
@@ -138,7 +137,7 @@ export interface Menu2RadioItemProps
 const Menu2RadioItemRoot = styled(Menu2ItemBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'root',
-  overridesResolver: menuItemOverridesResolver,
+  overridesResolver: menu2ItemOverridesResolver,
 })<{ ownerState: Menu2RadioItemOwnerState }>({});
 
 const Menu2RadioItemStartAdornment = styled(Menu2ItemStartAdornment, {

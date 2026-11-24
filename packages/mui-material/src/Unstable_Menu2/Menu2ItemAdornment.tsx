@@ -5,7 +5,7 @@ import ListItemIcon from '../ListItemIcon';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 
-// A span stays valid inside a native button. The marker keeps the MenuItemBase
+// A span stays valid inside a native button. The marker keeps the item's
 // ListItemIcon column width off this element, so theme overrides win.
 const StartAdornment = React.forwardRef<HTMLDivElement, ListItemIconProps>(
   function StartAdornment(props, ref) {

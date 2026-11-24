@@ -1,5 +1,6 @@
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import checkboxClasses from '../Checkbox/checkboxClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
 import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses';
@@ -104,7 +105,7 @@ function menu2ItemOverrides(
 ) {
   return {
     [`&.${classes.highlighted}`]: menu2ActiveOverrides(hcTokens),
-    [`&.${menuItemClasses.focusVisible}, &:hover`]: {
+    [`&.${buttonBaseClasses.focusVisible}, &:hover`]: {
       [HCM]: {
         forcedColorAdjust: 'none',
         color: hcTokens.activeText,
@@ -121,7 +122,7 @@ function menu2ItemOverrides(
           opacity: 1,
         },
       },
-      [`&.${classes.disabled}.${menuItemClasses.focusVisible}`]: {
+      [`&.${classes.disabled}.${buttonBaseClasses.focusVisible}`]: {
         [HCM]: {
           forcedColorAdjust: 'none',
           color: hcTokens.disabled,

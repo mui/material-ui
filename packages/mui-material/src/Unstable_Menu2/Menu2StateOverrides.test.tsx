@@ -7,7 +7,7 @@ import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-uti
 import { StyledEngineProvider } from '@mui/styled-engine';
 import type { Theme, ThemeOptions } from '../styles';
 import { createTheme, enhanceHighContrast, ThemeProvider } from '../styles';
-import menuItemClasses from '../MenuItem/menuItemClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
 import type { Menu2ItemProps } from '../Unstable_Menu2Item';
 import Menu2Item from '../Unstable_Menu2Item';
@@ -575,7 +575,7 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             await user.keyboard('{F2}');
             expect(popup).to.have.attribute('data-ending-style');
             expect(trigger).not.to.have.class(menu2SubmenuTriggerClasses.open);
-            expect(trigger).not.to.have.class(menuItemClasses.focusVisible);
+            expect(trigger).not.to.have.class(buttonBaseClasses.focusVisible);
             expect(getComputedStyle(trigger).backgroundColor).to.equal(
               override ? 'rgb(1, 2, 3)' : openColor,
             );
