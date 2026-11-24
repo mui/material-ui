@@ -53,6 +53,7 @@
     {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
+      "default": "Backdrop",
       "class": "MuiModal-backdrop"
     }
   ],

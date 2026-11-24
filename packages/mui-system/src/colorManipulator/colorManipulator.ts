@@ -187,7 +187,7 @@ export function rgbToHex(color: string): string {
 export function hslToRgb(color: string): string {
   color = decomposeColor(color) as any;
   const { values } = color as any;
-  const h = values[0];
+  const h = ((values[0] % 360) + 360) % 360;
   const s = values[1] / 100;
   const l = values[2] / 100;
   const a = s * Math.min(l, 1 - l);

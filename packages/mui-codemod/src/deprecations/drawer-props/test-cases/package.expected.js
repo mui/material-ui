@@ -14,6 +14,13 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@org/u
 }} />;
 
 <Drawer slotProps={{
+  root: { keepMounted: true }
+}} />;
+<SwipeableDrawer slotProps={{
+  root: { keepMounted: true }
+}} />;
+
+<Drawer slotProps={{
   paper: { elevation: 20 }
 }} />;
 <SwipeableDrawer slotProps={{
@@ -33,6 +40,7 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@org/u
   }}
   slotProps={{
     backdrop: { transitionDuration: 300 },
+    root: { keepMounted: true },
     paper: { elevation: 20 },
     transition: { direction: 'right' }
   }} />;
@@ -42,6 +50,7 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@org/u
   }}
   slotProps={{
     backdrop: { transitionDuration: 300 },
+    root: { keepMounted: true },
     paper: { elevation: 20 },
     transition: { direction: 'right' }
   }} />;

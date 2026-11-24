@@ -32,7 +32,7 @@ export interface DrawerSlots {
   backdrop: React.ElementType;
   /**
    * The component used for the root element when the variant is `permanent` or `persistent`.
-   * @default div
+   * @default 'div'
    */
   docked: React.ElementType;
   /**
@@ -116,6 +116,7 @@ export interface DrawerProps
   /**
    * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
    * @default {}
+   * @deprecated Use `slotProps.root` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ModalProps?: Partial<ModalProps> | undefined;
   /**
