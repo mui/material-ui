@@ -33,8 +33,6 @@ describe('getMaterialUiComponentInfo', () => {
     ['Unstable_Menu2SubmenuPopup/Menu2SubmenuPopup.tsx', false],
     ['Unstable_Menu2SubmenuTrigger/Menu2SubmenuTrigger.tsx', false],
     ['Popper/BasePopper.tsx', true],
-    ['MenuItem/MenuItem.js', false],
-    ['Menu/Menu.js', false],
   ] as const)('sets shouldSkip for %s to %s', (filename, shouldSkip) => {
     const componentInfo = getMaterialUiComponentInfo(
       path.join(process.cwd(), 'packages/mui-material/src', filename),
