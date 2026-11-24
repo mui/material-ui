@@ -409,11 +409,13 @@ Its mode isn't stored, so it doesn't overwrite the page's mode.
 To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`, or a `storageManager`.
 With the storage keys, the provider also renders a small script that applies the stored mode before the page hydrates, for server-side rendering.
 
-`CssBaseline` styles the whole page, so for the baseline styles of an embedded widget, render the provider as a [`ScopedCssBaseline`](/material-ui/react-css-baseline/#scoping-on-children):
+`CssBaseline` styles the whole page, so for the baseline styles of an embedded widget, use [`ScopedCssBaseline`](/material-ui/react-css-baseline/#scoping-on-children) inside the provider:
 
 ```jsx
-<ThemeProvider theme={widgetTheme} isolated render={<ScopedCssBaseline />}>
-  <Widget />
+<ThemeProvider theme={widgetTheme} isolated>
+  <ScopedCssBaseline>
+    <Widget />
+  </ScopedCssBaseline>
 </ThemeProvider>
 ```
 
