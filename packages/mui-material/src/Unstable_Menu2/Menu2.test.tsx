@@ -1841,8 +1841,10 @@ describe('<Menu2 />', () => {
     // ArrowDown opens the successor menu and highlights the first item.
     await user.keyboard('{ArrowDown}');
     const item = await screen.findByRole('menuitem', { name: 'Alpha' });
+    // Base UI highlights the item before it moves focus, so also wait for the ring class.
     await waitFor(() => {
       expect(item).to.have.class(menu2ItemClasses.highlighted);
+      expect(item).to.have.class(buttonBaseClasses.focusVisible);
     });
 
     const atRest = window.getComputedStyle(
