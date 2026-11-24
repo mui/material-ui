@@ -515,13 +515,16 @@ const scenarios: Scenario[] = [
   {
     title: '7. The render prop',
     description:
-      'Pick the element where a div is not valid, or pass a function that receives the props and the state.',
+      'Pick the element where a div is not valid, render the themed component itself so no wrapper is added, or pass a function that receives the props and the state.',
     code: `<ul>
   <ThemeProvider theme={promoTheme} render={<li />}>…</ThemeProvider>
 </ul>
 <table>
   <ThemeProvider theme={promoTheme} render={<tbody />}><tr>…</tr></ThemeProvider>
 </table>
+<ThemeProvider theme={promoTheme} render={<Button variant="contained" />}>
+  Promo
+</ThemeProvider>
 <ThemeProvider
   theme={promoTheme}
   render={(props, state) => <section {...props} data-mode={state.mode} />}
@@ -544,6 +547,14 @@ const scenarios: Scenario[] = [
               </tr>
             </ThemeProvider>
           </table>
+          <ThemeProvider
+            theme={promoTheme}
+            render={
+              <Button variant="contained" sx={{ m: 0.5 }} data-inspect="Button as the element" />
+            }
+          >
+            Promo
+          </ThemeProvider>
           <ModeToggle label="outer mode" />
           <ThemeProvider
             theme={promoTheme}

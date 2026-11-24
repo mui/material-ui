@@ -44,7 +44,7 @@ Previously, its variables were ignored when it had the same `cssVarPrefix` as th
 
 It renders a `div` with `display: contents` and sets the variables that differ from the outer theme on it.
 The `div` doesn't change the layout, but it's in the DOM.
-Where a `div` isn't valid, or where CSS selectors like `>` and `:nth-child()` depend on the DOM structure, use the `render` prop to choose the element:
+Where a `div` isn't valid, or where CSS selectors like `>`, `:first-of-type`, and `:nth-child()` depend on the DOM structure, use the `render` prop to choose the element:
 
 ```diff
  <ul>
@@ -70,8 +70,23 @@ Its mode is only stored when you pass a `modeStorageKey`, `colorSchemeStorageKey
 Two `ThemeProvider`s that aren't nested in each other still overwrite each other's variables on `:root`, and now log a warning in development.
 Add the `isolated` prop to the one that shouldn't apply to the whole page, like an embedded widget.
 
-A nested `ThemeProvider` follows the outer mode, so its `defaultMode` doesn't apply, and now logs a warning in development.
+A nested `ThemeProvider` follows the outer mode, so its `defaultMode` and storage props, like `modeStorageKey`, don't apply, and now log a warning in development.
 Add the `isolated` prop to give a section its own mode.
+
+A nested theme with a single color scheme now keeps it whatever the outer mode is.
+A theme created without `colorSchemes` only has the light one, so its subtree now stays light on a dark page.
+To follow the outer mode, give it both color schemes:
+
+```diff
+ const promoTheme = createTheme({
+   cssVariables: true,
+-  palette: { primary: { main: '#9c27b0' } },
++  colorSchemes: {
++    light: { palette: { primary: { main: '#9c27b0' } } },
++    dark: { palette: { primary: { main: '#ce93d8' } } },
++  },
+ });
+```
 
 See [Nested and multiple theme providers](/material-ui/customization/css-theme-variables/configuration/#nested-and-multiple-theme-providers) for details.
 

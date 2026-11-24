@@ -312,12 +312,24 @@ It follows the outer light or dark mode:
 
 A theme with a single color scheme, like `createTheme({ cssVariables: true, palette: { mode: 'dark' } })`, keeps it whatever the outer mode is.
 The providers nested in it, its `theme.applyStyles()` styles, and `useColorScheme().colorScheme` follow that color scheme, while `setMode()` still changes the outer mode.
+So a theme created without `colorSchemes`, which only has the light color scheme, stays light on a dark page.
+To follow the outer mode, give the nested theme both color schemes:
+
+```js
+const promoTheme = createTheme({
+  cssVariables: true,
+  colorSchemes: {
+    light: { palette: { primary: { main: '#9c27b0' } } },
+    dark: { palette: { primary: { main: '#ce93d8' } } },
+  },
+});
+```
 
 A theme passed as a function, like `theme={(outer) => createTheme(outer, { palette })}`, is applied the same way.
 Providers with the same theme, like the ones of a themed card in a list, share one class and one stylesheet.
 
 Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
-For elements that other libraries portal, use the `useThemeScope()` hook to get the class:
+For other elements in a portal, like the ones you render with `ReactDOM.createPortal()` or the [Portal](/material-ui/react-portal/) component, or that another library portals, use the `useThemeScope()` hook to get the class:
 
 ```jsx
 import { useThemeScope } from '@mui/material/styles';
@@ -330,7 +342,7 @@ function Toast() {
 
 ### Choosing the element
 
-Use the `render` prop where a `div` isn't valid, like in a list or a table, or where CSS selectors like `>` and `:nth-child()` depend on the DOM structure:
+Use the `render` prop where a `div` isn't valid, like in a list or a table, or where CSS selectors like `>`, `:first-of-type`, and `:nth-child()` depend on the DOM structure:
 
 ```jsx
 <ul>
@@ -341,6 +353,14 @@ Use the `render` prop where a `div` isn't valid, like in a list or a table, or w
 ```
 
 The element gets the provider's props, like its class, merged with its own, and doesn't get `display: contents`.
+To theme a single component, render the component itself, so no other element is added:
+
+```jsx
+<ThemeProvider theme={promoTheme} render={<Card />}>
+  <CardContent>Uses promoTheme</CardContent>
+</ThemeProvider>
+```
+
 To read the props or the mode, pass a function that receives them:
 
 ```jsx
@@ -381,13 +401,21 @@ Use it for a sibling of the top-level provider, like an embedded widget, or for 
 ```
 
 Two providers that aren't nested in each other and aren't isolated both write to `:root` and overwrite each other, which logs a warning in development.
-A nested provider without `isolated` follows the outer mode, so `defaultMode` doesn't apply to it and logs a warning in development.
+A nested provider without `isolated` follows the outer mode, so its `defaultMode` and storage props, like `modeStorageKey`, don't apply to it and log a warning in development.
 
 The element of an isolated provider holds its mode in its own `data-mui-scheme` attribute, whatever the theme's `colorSchemeSelector` is.
 The page's mode doesn't apply inside it, including the styles of `theme.applyStyles()`, and its mode doesn't change the page.
 Its mode isn't stored, so it doesn't overwrite the page's mode.
 To remember it across visits, pass your own `modeStorageKey` and `colorSchemeStorageKey`, or a `storageManager`.
 With the storage keys, the provider also renders a small script that applies the stored mode before the page hydrates, for server-side rendering.
+
+`CssBaseline` styles the whole page, so for the baseline styles of an embedded widget, render the provider as a [`ScopedCssBaseline`](/material-ui/react-css-baseline/#scoping-on-children):
+
+```jsx
+<ThemeProvider theme={widgetTheme} isolated render={<ScopedCssBaseline />}>
+  <Widget />
+</ThemeProvider>
+```
 
 :::info
 A CSS variable that you override on `:root` doesn't reach the elements under a provider that sets it, because the closest declaration wins.

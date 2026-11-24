@@ -55,3 +55,23 @@ The Portal component cannot be used to render child elements on the server—cli
 This is because React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
 See [this GitHub issue](https://github.com/react/react/issues/13097) for details.
 :::
+
+### Nested theme providers
+
+A nested `ThemeProvider` sets its CSS theme variables on its element, so they don't reach the children that Portal mounts elsewhere.
+Spread the props of the `useThemeScope()` hook on the element that you portal to apply them:
+
+```jsx
+import { useThemeScope } from '@mui/material/styles';
+
+function FilterPanel() {
+  const themeScope = useThemeScope();
+  return (
+    <Portal>
+      <div {...themeScope}>…</div>
+    </Portal>
+  );
+}
+```
+
+See [Nested and multiple theme providers](/material-ui/customization/css-theme-variables/configuration/#nested-and-multiple-theme-providers) for details.
