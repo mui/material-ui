@@ -1455,6 +1455,25 @@ describe('ThemeProvider', () => {
         expect(ref.current!.tagName).to.equal('SECTION');
       });
 
+      it('keeps the children of the element when the provider has none', () => {
+        render(
+          <ThemeProvider theme={blueTheme}>
+            <ThemeProvider theme={redTheme} render={<button data-testid="own">Own</button>} />
+            <ThemeProvider theme={redTheme} render={<button data-testid="provider">Own</button>}>
+              Provider
+            </ThemeProvider>
+            <ThemeProvider
+              theme={createTheme()}
+              render={<button data-testid="no-variables">Own</button>}
+            />
+          </ThemeProvider>,
+        );
+        expect(screen.getByTestId('own').textContent).to.equal('Own');
+        expect(screen.getByTestId('own').className).to.match(/^mui-theme-[a-z0-9]+$/);
+        expect(screen.getByTestId('provider').textContent).to.equal('Provider');
+        expect(screen.getByTestId('no-variables').textContent).to.equal('Own');
+      });
+
       it('calls the function with the props and the state', () => {
         const theme = createTheme({
           cssVariables: { colorSchemeSelector: 'class' },

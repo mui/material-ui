@@ -27,7 +27,7 @@ import {
   SCHEME_ATTRIBUTE,
 } from './scopeCssVars';
 import type { CssVarsByColorScheme } from './scopeCssVars';
-import useRenderElement from './useRenderElement';
+import useRenderElement, { getElementChildren } from './useRenderElement';
 import ScopeStyleSheet, { createScopeStyleSheetRegistry } from './ScopeStyleSheet';
 import type { ScopeStyleSheetRegistry } from './ScopeStyleSheet';
 import type { ThemeProviderRender } from './useRenderElement';
@@ -917,7 +917,7 @@ export default function createCssVarsProvider<
             colorSchemeStorageKey={colorSchemeStorageKey}
             nonce={nonce}
           />
-          {children}
+          {getElementChildren(render, children)}
         </React.Fragment>
       ) : (
         children

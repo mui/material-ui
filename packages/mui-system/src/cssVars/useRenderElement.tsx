@@ -34,6 +34,19 @@ export type ThemeProviderRender =
   | ((props: ThemeProviderRenderProps, state: ThemeProviderState) => React.ReactElement<any>);
 
 /**
+ * The children of the element of a `ThemeProvider`: the provider's ones, or the ones of the `render` element
+ * when the provider has none, e.g. `<ThemeProvider render={<Button>Text</Button>} />`.
+ */
+export function getElementChildren(
+  render: ThemeProviderRender | undefined,
+  children: React.ReactNode,
+): React.ReactNode {
+  return children === undefined && React.isValidElement<{ children?: React.ReactNode }>(render)
+    ? render.props.children
+    : children;
+}
+
+/**
  * Renders the element of a `ThemeProvider`: a `div` by default, the `render` element with the props merged in,
  * or the result of the `render` function called with the props and the state.
  */
@@ -52,6 +65,7 @@ export default function useRenderElement(
     const elementProps = element.props as { className?: string | undefined };
     return React.cloneElement(element, {
       ...props,
+      children: getElementChildren(element, props.children),
       className: clsx(elementProps.className, props.className) || undefined,
       ref: handleRef,
     } as any);
