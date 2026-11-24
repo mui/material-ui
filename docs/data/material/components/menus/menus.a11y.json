@@ -50,7 +50,7 @@
         "tags": ["wcag2a"]
       },
       "aria-valid-attr-value": {
-        "status": "incomplete",
+        "status": "pass",
         "tags": ["wcag2a"]
       },
       "avoid-inline-spacing": {
@@ -130,7 +130,7 @@
         "tags": ["wcag2a"]
       },
       "aria-valid-attr-value": {
-        "status": "incomplete",
+        "status": "pass",
         "tags": ["wcag2a"]
       },
       "avoid-inline-spacing": {
@@ -210,7 +210,7 @@
         "tags": ["wcag2a"]
       },
       "aria-valid-attr-value": {
-        "status": "incomplete",
+        "status": "pass",
         "tags": ["wcag2a"]
       },
       "avoid-inline-spacing": {
