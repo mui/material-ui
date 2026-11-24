@@ -713,10 +713,6 @@ export function Demo(props: DemoProps) {
                         '& .MuiCode-copy': {
                           display: 'none',
                         },
-                        '& pre': {
-                          borderBottomLeftRadius: 12,
-                          borderBottomRightRadius: 12,
-                        },
                       }}
                     />
                   ) : (

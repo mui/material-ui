@@ -447,9 +447,7 @@ export default function DemoContent(props: DemoContentProps) {
       )
     : undefined;
 
-  const afterCode = hideToolbar ? null : (
-    <React.Fragment>{showAd ? <AdCarbonInline /> : null}</React.Fragment>
-  );
+  const afterCode = !hideToolbar && showAd ? <AdCarbonInline /> : null;
 
   // Build the inner-sandbox style only when a constraint is set so the common
   // case keeps the preview area's flex-child layout untouched.
