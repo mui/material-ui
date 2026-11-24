@@ -76,8 +76,7 @@ export const Menu2ItemBaseRoot = styled(ButtonBase, {
         },
       },
       {
-        props: ({ ownerState }: { ownerState?: Menu2ItemStyleOwnerState | undefined }) =>
-          Boolean(ownerState?.divider),
+        props: { divider: true },
         style: {
           borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
           backgroundClip: 'padding-box',
