@@ -314,10 +314,8 @@ Divider.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'fullWidth'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['fullWidth', 'inset', 'middle']), PropTypes.string]),
 };
 
 export default Divider;

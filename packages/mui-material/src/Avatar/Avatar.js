@@ -303,10 +303,8 @@ Avatar.propTypes /* remove-proptypes */ = {
    * The shape of the avatar.
    * @default 'circular'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circular', 'rounded', 'square']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['circular', 'rounded', 'square']), PropTypes.string]),
 };
 
 export default Avatar;

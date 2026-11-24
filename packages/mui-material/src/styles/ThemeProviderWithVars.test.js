@@ -1,19 +1,16 @@
 import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import * as React from 'react';
-import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, isJsdom, reactMajor } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
-import {
-  CssVarsProvider,
-  extendTheme,
-  useTheme,
-  ThemeProvider,
-  createTheme,
-  useColorScheme,
-} from '@mui/material/styles';
+import { useTheme, ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
 describe('[Material UI] ThemeProviderWithVars', () => {
+  const cssVarsTheme = createTheme({ cssVariables: true });
+
   let originalMatchmedia;
   const { render } = createRenderer();
+  // StrictMode runs mount effects twice on React 18+ only.
+  const mountEffectRuns = reactMajor >= 18 ? 2 : 1;
   let storage = {};
 
   beforeEach(() => {
@@ -69,9 +66,11 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       render(
-        <CssVarsProvider theme={extendTheme({ colorSchemes: { light: true, dark: true } })}>
+        <ThemeProvider
+          theme={createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } })}
+        >
           <Vars />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(screen.getByTestId('palette-primary').textContent).to.equal(
@@ -208,9 +207,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Vars />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(screen.getByTestId('opacity').textContent).to.equal(
@@ -234,9 +233,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Vars />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(screen.getByTestId('shape').textContent).to.equal(
@@ -255,9 +254,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Text />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(container.firstChild?.textContent).to.equal(
@@ -274,9 +273,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Text />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(container.firstChild?.textContent).to.equal('calc(2 * var(--mui-spacing))');
@@ -291,9 +290,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Text />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(container.firstChild?.textContent).to.equal('@media (min-width:600px)');
@@ -308,9 +307,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Consumer />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(container.firstChild?.textContent).not.to.equal('variants');
@@ -323,9 +322,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       }
 
       const { container } = render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Consumer />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(container.firstChild?.textContent).not.to.equal('focus');
@@ -336,7 +335,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     "should use numeric values in system's spacing",
     function test() {
       render(
-        <CssVarsProvider>
+        <ThemeProvider theme={cssVarsTheme}>
           <Box
             data-testid="box-1"
             sx={{
@@ -349,7 +348,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
               borderRadius: 4,
             }}
           />
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       expect(screen.getByTestId('box-1')).toHaveComputedStyle({
@@ -409,8 +408,6 @@ describe('[Material UI] ThemeProviderWithVars', () => {
   });
 
   it('theme should remain the same when ThemeProvider rerenders', () => {
-    const theme = createTheme({ cssVariables: true });
-
     function Inner() {
       const upperTheme = useTheme();
       const themeRef = React.useRef(upperTheme);
@@ -426,7 +423,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       const [, setState] = React.useState({});
       const rerender = () => setState({});
       return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={cssVarsTheme}>
           <button onClick={() => rerender()}>rerender</button>
           <Inner />
         </ThemeProvider>
@@ -467,11 +464,11 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const view = render(<App />);
 
-    expect(view.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`${mountEffectRuns} light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(view.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`${mountEffectRuns} light`);
   });
 
   it('palette mode should change if not using CSS variables', () => {
@@ -502,12 +499,14 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const view = render(<App />);
 
-    expect(view.container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
+    expect(view.container).to.have.text(
+      `${mountEffectRuns} light ${createTheme().palette.primary.main}`,
+    );
 
     fireEvent.click(screen.getByRole('button'));
 
     expect(view.container).to.have.text(
-      `3 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
+      `${mountEffectRuns + 1} dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
     );
   });
 
@@ -539,10 +538,10 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const view = render(<App />);
 
-    expect(view.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`${mountEffectRuns} light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(view.container).to.have.text(`3 dark`);
+    expect(view.container).to.have.text(`${mountEffectRuns + 1} dark`);
   });
 });
