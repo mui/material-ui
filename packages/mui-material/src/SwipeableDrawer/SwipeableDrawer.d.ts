@@ -7,7 +7,7 @@ export interface SwipeableDrawerSwipeAreaSlotPropsOverrides {}
 export interface SwipeableDrawerSlots {
   /**
    * The component used for the swipeArea slot.
-   * @default div
+   * @default 'div'
    */
   swipeArea?: React.ElementType | undefined;
 }

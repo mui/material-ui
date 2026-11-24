@@ -8,6 +8,7 @@ import {
   screen,
   flushEffects,
   isJsdom,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
@@ -17,7 +18,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDial />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { clock, render, renderToString } = createRenderer({ clock: 'fake' });
 
   const icon = <Icon>font_icon</Icon>;
   function FakeAction() {
@@ -88,6 +89,61 @@ describe('<SpeedDial />', () => {
     );
 
     expect(actionRef.current).to.equal(screen.getByRole('menuitem'));
+  });
+
+  it('should apply function-form action fab slot props with the ownerState of the action', () => {
+    const actionRef = React.createRef();
+
+    render(
+      <SpeedDial {...defaultProps}>
+        <SpeedDialAction
+          icon={icon}
+          slotProps={{
+            fab: (ownerState) => ({
+              ref: actionRef,
+              'data-open': ownerState.open,
+              'data-tooltip-placement': ownerState.tooltipPlacement,
+            }),
+            tooltip: { title: 'Action' },
+          }}
+        />
+      </SpeedDial>,
+    );
+
+    const action = screen.getByRole('menuitem');
+    expect(action).to.have.attribute('data-open', 'true');
+    expect(action).to.have.attribute('data-tooltip-placement', 'left');
+    expect(actionRef.current).to.equal(action);
+  });
+
+  it('should navigate with arrow keys to actions with function-form fab slot props', async () => {
+    clock.restore();
+    const actionRefs = [React.createRef(), React.createRef()];
+
+    const { user } = render(
+      <SpeedDial {...defaultProps}>
+        {actionRefs.map((actionRef, index) => (
+          <SpeedDialAction
+            key={index}
+            icon={icon}
+            slotProps={{ fab: () => ({ ref: actionRef }), tooltip: { title: `action${index}` } }}
+          />
+        ))}
+      </SpeedDial>,
+    );
+
+    const fab = screen.getByRole('button');
+    await act(async () => {
+      fab.focus();
+    });
+
+    await user.keyboard('{ArrowUp}');
+    expect(actionRefs[0].current).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(actionRefs[1].current).toHaveFocus();
+
+    await flushEffects();
   });
 
   it('should pass the open prop to its children', () => {
@@ -184,7 +240,7 @@ describe('<SpeedDial />', () => {
           </SpeedDial>,
         );
 
-        expect(screen.getByRole('presentation')).to.have.class(classes[className]);
+        expect(screen.getByRole('none')).to.have.class(classes[className]);
       });
     });
 
@@ -490,6 +546,30 @@ describe('<SpeedDial />', () => {
   });
 
   describe('dial focus with slotProps.fab', () => {
+    it('runs cleanup for a ref returned by a fab slot callback', () => {
+      const registeredButtons = new Set();
+      const buttonRef = (button) => {
+        if (button) {
+          registeredButtons.add(button);
+          return () => {
+            registeredButtons.delete(button);
+          };
+        }
+        return undefined;
+      };
+      const { unmount } = render(
+        <SpeedDial ariaLabel="actions" open>
+          <SpeedDialAction slotProps={{ fab: () => ({ ref: buttonRef }) }} />
+        </SpeedDial>,
+      );
+
+      expect(registeredButtons.has(screen.getByRole('menuitem'))).to.equal(true);
+
+      unmount();
+
+      expect(registeredButtons.size).to.equal(0);
+    });
+
     let actionButtons;
     let fabButton;
 
@@ -759,5 +839,110 @@ describe('<SpeedDial />', () => {
         transitionDelay: '0s',
       });
     });
+  });
+
+  describe('prop: id', () => {
+    const actions = [
+      <SpeedDialAction key="1" icon={icon} slotProps={{ tooltip: { title: 'One', open: true } }} />,
+      <SpeedDialAction key="2" icon={icon} slotProps={{ tooltip: { title: 'Two', open: true } }} />,
+    ];
+
+    function TwoSpeedDials(props) {
+      return (
+        <React.Fragment>
+          <SpeedDial {...defaultProps} ariaLabel="Same label" {...props}>
+            {actions}
+          </SpeedDial>
+          <SpeedDial {...defaultProps} ariaLabel="Same label" {...props}>
+            {actions}
+          </SpeedDial>
+        </React.Fragment>
+      );
+    }
+
+    function getIds(container) {
+      return Array.from(container.querySelectorAll('[id]')).map((element) => element.id);
+    }
+
+    it('does not produce duplicate ids for speed dials with the same ariaLabel', () => {
+      const { container } = render(<TwoSpeedDials />);
+
+      const ids = getIds(container);
+      expect(ids.length).to.be.greaterThan(0);
+      expect(new Set(ids).size).to.equal(ids.length);
+    });
+
+    it('resolves aria-controls and aria-labelledby inside its own menu', () => {
+      const { container } = render(<TwoSpeedDials />);
+
+      const fabs = screen.getAllByRole('button', { expanded: true });
+      const menus = screen.getAllByRole('menu');
+      expect(fabs).to.have.lengthOf(2);
+      expect(menus).to.have.lengthOf(2);
+
+      fabs.forEach((fab, index) => {
+        const controlsId = fab.getAttribute('aria-controls');
+        expect(container.querySelectorAll(`[id="${controlsId}"]`)).to.have.lengthOf(1);
+        expect(menus[index]).to.have.attribute('id', controlsId);
+
+        const items = menus[index].querySelectorAll('[aria-labelledby]');
+        expect(items).to.have.lengthOf(2);
+        items.forEach((item) => {
+          const labelId = item.getAttribute('aria-labelledby');
+          expect(container.querySelectorAll(`[id="${labelId}"]`)).to.have.lengthOf(1);
+          expect(menus[index].querySelectorAll(`[id="${labelId}"]`)).to.have.lengthOf(1);
+        });
+      });
+    });
+
+    it('uses the id prop as the base of the generated ids', () => {
+      const { container } = render(
+        <SpeedDial {...defaultProps} id="custom">
+          {actions}
+        </SpeedDial>,
+      );
+
+      expect(container.firstChild).to.have.attribute('id', 'custom');
+      expect(screen.getByRole('button', { expanded: true })).to.have.attribute(
+        'aria-controls',
+        'custom-actions',
+      );
+      expect(screen.getByRole('menu')).to.have.attribute('id', 'custom-actions');
+      expect(container.querySelector('#custom-action-0')).not.to.equal(null);
+      expect(container.querySelector('#custom-action-1')).not.to.equal(null);
+      expect(container.querySelector('#custom-action-0-label')).not.to.equal(null);
+      expect(container.querySelector('#custom-action-1-label')).not.to.equal(null);
+    });
+
+    it('does not derive the ids from ariaLabel', () => {
+      const { container } = render(
+        <SpeedDial {...defaultProps} ariaLabel="derivedFromLabel">
+          {actions}
+        </SpeedDial>,
+      );
+
+      getIds(container).forEach((id) => {
+        expect(id).not.to.contain('derivedFromLabel');
+      });
+      expect(screen.getByRole('menu').id).not.to.contain('derivedFromLabel');
+    });
+
+    // React 17 has no `React.useId`, so the server cannot render the client ids.
+    it.skipIf(reactMajor < 18)(
+      'generates the same ids after server-side rendering and hydration',
+      () => {
+        function App() {
+          return <TwoSpeedDials />;
+        }
+
+        const { container, hydrate } = renderToString(<App />);
+        const serverIds = getIds(container);
+        expect(serverIds.length).to.be.greaterThan(0);
+
+        hydrate();
+
+        expect(getIds(container)).to.deep.equal(serverIds);
+      },
+    );
   });
 });

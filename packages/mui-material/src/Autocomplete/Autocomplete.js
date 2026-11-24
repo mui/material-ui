@@ -23,7 +23,6 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
-import { applyInsetFocusVisible } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -370,12 +369,9 @@ const AutocompleteListbox = styled('ul', {
         pointerEvents: 'none',
       },
       [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
-        ? {
-            // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
-            // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
-            ...applyInsetFocusVisible(1),
-            ...theme.focusVisible,
-          }
+        ? // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
+          // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
+          theme.applyFocusVisible('inset')
         : {
             backgroundColor: (theme.vars || theme).palette.action.focus,
           },
@@ -655,7 +651,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         // rendered options would pass undefined to selectNewValue.
         pointerEvents: popupOpen ? undefined : 'none',
       },
-      role: 'presentation',
+      role: 'none',
       anchorEl,
       open: popupOpen,
     },
@@ -920,9 +916,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The icon to display in place of the default clear icon.
@@ -1192,7 +1185,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onInputChange: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when a key is pressed.
+   * Set `event.defaultMuiPrevented` to `true` to skip the default keyboard handling of the component.
+   * @param {React.KeyboardEvent} event The event source of the callback.
    */
   onKeyDown: PropTypes.func,
   /**
@@ -1289,24 +1284,23 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['small', 'medium']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({
+      chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
   /**
    * The components used for each slot inside.
    * @default {}

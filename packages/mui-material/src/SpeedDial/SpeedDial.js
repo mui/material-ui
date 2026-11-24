@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import setRef from '@mui/utils/setRef';
+import useId from '@mui/utils/useId';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -164,6 +165,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     direction = 'up',
     hidden = false,
     icon,
+    id: idProp,
     onBlur,
     onClose,
     onFocus,
@@ -227,9 +229,22 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
    */
   const createHandleSpeedDialActionButtonRef = (dialActionIndex, fabSlotOrigButtonRef) => {
     return (buttonRef) => {
-      actions.current[dialActionIndex + 1] = buttonRef;
+      const actionIndex = dialActionIndex + 1;
+      actions.current[actionIndex] = buttonRef;
 
-      setRef(fabSlotOrigButtonRef, buttonRef);
+      if (typeof fabSlotOrigButtonRef === 'function') {
+        const cleanup = fabSlotOrigButtonRef(buttonRef);
+        if (typeof cleanup === 'function') {
+          return () => {
+            actions.current[actionIndex] = null;
+            cleanup();
+          };
+        }
+      } else {
+        setRef(fabSlotOrigButtonRef, buttonRef);
+      }
+
+      return undefined;
     };
   };
 
@@ -350,8 +365,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     }
   };
 
-  // Filter the label for valid id characters.
-  const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
+  const id = useId(idProp);
 
   const allItems = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -371,18 +385,22 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const children = allItems.map((child, index) => {
     const { slotProps: childSlotProps = {} } = child.props;
 
-    const { fab: { ref: fabSlotOrigButtonRef, ...fabSlotProps } = {}, ...restOfSlotProps } =
-      childSlotProps;
+    const { fab: fabSlotProps, ...restOfSlotProps } = childSlotProps;
+
+    const withActionButtonRef = (resolvedFabSlotProps) => ({
+      ...resolvedFabSlotProps,
+      ref: createHandleSpeedDialActionButtonRef(index, resolvedFabSlotProps?.ref),
+    });
 
     const defaultPlacement = getOrientation(direction) === 'vertical' ? 'left' : 'top';
 
     return React.cloneElement(child, {
       slotProps: {
         ...restOfSlotProps,
-        fab: {
-          ...fabSlotProps,
-          ref: createHandleSpeedDialActionButtonRef(index, fabSlotOrigButtonRef),
-        },
+        fab:
+          typeof fabSlotProps === 'function'
+            ? (state) => withActionButtonRef(fabSlotProps(state))
+            : withActionButtonRef(fabSlotProps),
         tooltip:
           typeof restOfSlotProps.tooltip === 'function'
             ? (state) => ({
@@ -412,7 +430,8 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     additionalProps: {
-      role: 'presentation',
+      role: 'none',
+      id: idProp,
     },
     getSlotProps: (handlers) => ({
       ...handlers,
@@ -485,7 +504,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The aria-label of the button element.
-   * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: PropTypes.string.isRequired,
   /**
@@ -496,9 +514,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The direction the actions open relative to the floating action button.
@@ -521,8 +536,10 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
+  id: PropTypes.string,
   onBlur: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
@@ -531,21 +548,9 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseLeave: PropTypes.func,
   /**
    * Callback fired when the component requests to be open.

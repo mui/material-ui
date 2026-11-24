@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/c025608c1f0746d496278aff1317a6ce8e61abde/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/ec8c2711053d1af76170138fa7e33de3ac77c055/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -35,7 +35,7 @@ default-job: &default-job
   working_directory: /tmp/material-ui
   executor:
     name: code-infra/mui-node
-    node-version: '22.23.4'
+    node-version: '22.23.5'
   resource_class: medium.gen2
 
 default-context: &default-context
@@ -164,7 +164,7 @@ jobs:
       - run:
           name: Upgrade Node.js to match engines.node
           command: |
-            curl -fsSL https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            curl -fsSL https://nodejs.org/dist/v22.23.5/node-v22.23.5-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
       - code-infra/install-deps:
           react-version: << parameters.react-version >>
@@ -189,7 +189,7 @@ jobs:
     resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -216,7 +216,7 @@ jobs:
     resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     steps:
       - checkout
       - code-infra/install-deps
@@ -255,7 +255,7 @@ jobs:
     resource_class: medium
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -269,7 +269,7 @@ jobs:
     resource_class: medium
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     steps:
       - checkout
       - code-infra/install-deps
@@ -283,7 +283,7 @@ jobs:
     resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     steps:
       - checkout
       - code-infra/install-deps:
@@ -358,7 +358,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -374,7 +374,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -390,7 +390,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -406,7 +406,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -422,7 +422,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -437,7 +437,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.63.0-noble
+      - image: mcr.microsoft.com/playwright:v1.65.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -453,7 +453,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.63.0-noble
+      playwright-img-version: v1.65.1-noble
       environment:
         GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
@@ -591,42 +591,28 @@ workflows:
           react-version: ^17.0.0
           name: test_e2e-react@17
 
-  # This workflow is identical to react-17, but scheduled
-  # TODO: The v17 tests have deteriorated to the point of no return. Fix for v18 once we
-  #       deprecate v17, and reenable this workflow.
-  # react-17-cron:
-  #   triggers:
-  #     - schedule:
-  #         cron: '0 0 * * *'
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
-  #               - next
-  #   jobs:
-  #     - test_unit:
-  #         <<: *default-context
-  #         react-version: ^17.0.0
-  #         name: test_unit-react@17
-  #     - test_browser:
-  #         <<: *default-context
-  #         react-version: ^17.0.0
-  #         name: test_browser-react@17
-  #     - test_regressions:
-  #         <<: *default-context
-  #         react-version: ^17.0.0
-  #         name: test_regressions-react@17
-  #     - test_e2e:
-  #         <<: *default-context
-  #         react-version: ^17.0.0
-  #         name: test_e2e-react@17
-
   # Manually-triggered counterpart of nightly-cron — runs the compatibility
-  # suite (react@18, react@next, typescript@next, minimum TypeScript) on the current PR branch.
+  # suite (react@17, react@18, react@next, typescript@next, minimum TypeScript) on the current PR branch.
   nightly:
     when:
       equal: [nightly, << pipeline.parameters.workflow >>]
     jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_unit-react@17
+      - test_browser:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_browser-react@17
+      - test_regressions:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_regressions-react@17
+      - test_e2e:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_e2e-react@17
       - test_unit:
           <<: *default-context
           react-version: ^18.0.0
@@ -667,6 +653,7 @@ workflows:
 
   # Scheduled counterpart of `nightly`. react@18 runs on all listed branches;
   # the react@next and typescript@next jobs skip v5.x via per-job branch filters.
+  # react@17 runs on master only. The weekly `claude-flake-fix.yml` triage reports failures.
   nightly-cron:
     triggers:
       - schedule:
@@ -680,6 +667,42 @@ workflows:
                 - v6.x
                 - v7.x
     jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_unit-react@17
+          filters:
+            branches:
+              only:
+                # #target-branch-reference
+                - master
+      - test_browser:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_browser-react@17
+          filters:
+            branches:
+              only:
+                # #target-branch-reference
+                - master
+      - test_regressions:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_regressions-react@17
+          filters:
+            branches:
+              only:
+                # #target-branch-reference
+                - master
+      - test_e2e:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_e2e-react@17
+          filters:
+            branches:
+              only:
+                # #target-branch-reference
+                - master
       - test_unit:
           <<: *default-context
           react-version: ^18.0.0
