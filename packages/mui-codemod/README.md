@@ -1283,11 +1283,13 @@ npx @mui/codemod@latest deprecations/drawer-classes <path>
  <Drawer
 -  BackdropComponent={CustomBackdrop}
 -  BackdropProps={{ transitionDuration: 300 }}
+-  ModalProps={{ keepMounted: true }}
 -  PaperProps={{ elevation: 20 }}
 -  SlideProps={{ direction: 'right' }}
 +  slots={{ backdrop: CustomBackdrop }}
 +  slotProps={{
 +    backdrop: { transitionDuration: 300 },
++    root: { keepMounted: true },
 +    paper: { elevation: 20 },
 +    transition: { direction: 'right' },
 +  }}
@@ -1301,11 +1303,13 @@ The same applies to `SwipeableDrawer`.
    defaultProps: {
 -    BackdropComponent: CustomBackdrop,
 -    BackdropProps: { transitionDuration: 300 },
+-    ModalProps: { keepMounted: true },
 -    PaperProps: { elevation: 20 },
 -    SlideProps: { direction: 'right' },
 +    slots: { backdrop: CustomBackdrop },
 +    slotProps: {
 +      backdrop: { transitionDuration: 300 },
++      root: { keepMounted: true },
 +      paper: { elevation: 20 },
 +      transition: { direction: 'right' },
 +    },
