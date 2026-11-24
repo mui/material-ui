@@ -1,5 +1,6 @@
 import type * as React from 'react';
 import type { OTPField as BaseOTPField } from '@base-ui/react/otp-field';
+import type { OverridableStringUnion } from '@mui/types';
 import type { FormControlProps } from '../FormControl';
 import type { FormHelperTextProps } from '../FormHelperText';
 import type { FormLabelProps } from '../FormLabel';
@@ -92,12 +93,15 @@ export interface OTPFieldSlots {
   formHelperText: React.ElementType;
 }
 
+export interface OTPFieldPropsColorOverrides {}
+export interface OTPFieldPropsSizeOverrides {}
+
 export interface OTPFieldOwnerState extends OTPFieldProps {
-  color: NonNullable<FormControlProps['color']>;
+  color: NonNullable<OTPFieldProps['color']>;
   fullWidth: boolean;
   getInputAriaLabel: NonNullable<OTPFieldProps['getInputAriaLabel']>;
   length: number;
-  size: NonNullable<FormControlProps['size']>;
+  size: NonNullable<OTPFieldProps['size']>;
   error: boolean;
   disabled: boolean;
   readOnly: boolean;
@@ -159,10 +163,15 @@ export interface OTPFieldProps
   /**
    * The theme palette color of the focused character's outline.
    * To use a [custom palette color](https://mui.com/material-ui/customization/palette/#custom-colors)
-   * in TypeScript, augment `FormControlPropsColorOverrides`.
+   * in TypeScript, augment `OTPFieldPropsColorOverrides`.
    * @default 'primary'
    */
-  color?: FormControlProps['color'] | undefined;
+  color?:
+    | OverridableStringUnion<
+        'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+        OTPFieldPropsColorOverrides
+      >
+    | undefined;
   /**
    * Display the field in an error state.
    * @default false
@@ -193,10 +202,10 @@ export interface OTPFieldProps
    */
   render?: RootProps['render'] | undefined;
   /**
-   * The size of the field. Augment `FormControlPropsSizeOverrides` to add a custom size.
+   * The size of the field. Augment `OTPFieldPropsSizeOverrides` to add a custom size.
    * @default 'medium'
    */
-  size?: FormControlProps['size'] | undefined;
+  size?: OverridableStringUnion<'small' | 'medium', OTPFieldPropsSizeOverrides> | undefined;
   /** Props for the Material slots and their corresponding Base UI parts. */
   slotProps?: OTPFieldSlotsAndSlotProps['slotProps'] | undefined;
   /** Components used to render the field's slots. */

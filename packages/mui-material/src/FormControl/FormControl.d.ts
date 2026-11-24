@@ -117,6 +117,7 @@ export interface FormControlTypeMap<
  *
  * - [Checkbox](https://next.mui.com/material-ui/react-checkbox/)
  * - [Number Field](https://next.mui.com/material-ui/react-number-field/)
+ * - [OTP Field](https://next.mui.com/material-ui/react-otp-field/)
  * - [Radio Group](https://next.mui.com/material-ui/react-radio-button/)
  * - [Switch](https://next.mui.com/material-ui/react-switch/)
  * - [Text Field](https://next.mui.com/material-ui/react-text-field/)

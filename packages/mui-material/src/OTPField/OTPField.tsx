@@ -213,7 +213,7 @@ OTPField.propTypes /* remove-proptypes */ = {
   /**
    * The theme palette color of the focused character's outline.
    * To use a [custom palette color](https://mui.com/material-ui/customization/palette/#custom-colors)
-   * in TypeScript, augment `FormControlPropsColorOverrides`.
+   * in TypeScript, augment `OTPFieldPropsColorOverrides`.
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */
@@ -330,7 +330,7 @@ OTPField.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
-   * The size of the field. Augment `FormControlPropsSizeOverrides` to add a custom size.
+   * The size of the field. Augment `OTPFieldPropsSizeOverrides` to add a custom size.
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */

@@ -9,6 +9,8 @@ export default function ValidationOTPField() {
     <OTPField
       label="Device code"
       length={4}
+      fullWidth
+      sx={{ maxWidth: 256 }}
       error={error}
       helperText={
         error ? 'Use digits 0–9.' : 'Enter the four digits on your device.'

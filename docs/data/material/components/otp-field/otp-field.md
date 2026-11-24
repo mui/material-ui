@@ -15,8 +15,7 @@ Use an OTP field for fixed-length codes, such as a sign-in code sent by text mes
 
 ## Basic OTPField
 
-`OTPField` includes a label, a row of character inputs, and optional helper text.
-It accepts a six-digit code by default. Use `length` to change the number of inputs.
+`OTPField` accepts six digits by default and renders one input per digit. Use `length` to change the number of inputs.
 Users can type the digits one at a time, paste the whole code, or autofill it in browsers that support `autoComplete="one-time-code"` (the default).
 Use `label` to name the field and `helperText` to tell users where to find the code.
 
@@ -40,25 +39,21 @@ Use `defaultValue` for the initial code in an uncontrolled field. To control the
 
 ## Validation
 
-Use `error` to mark a field as invalid and `helperText` to explain how to correct it.
-`onValueInvalid(attempt, details)` receives the original typed or pasted text when characters are rejected.
-In this example, type a letter to display an error, then enter a digit to clear it.
+Use `validationType` to accept digits (`numeric`, the default), letters A–Z and a–z (`alpha`), or both (`alphanumeric`). Choose `none` for a code with other characters.
+The field strips whitespace, silently filters out unsupported characters, and limits the code to `length` characters. Use `inputMode` to choose the mobile keyboard independently.
+
+To give feedback, use `onValueInvalid(attempt, details)` to set `error` and show a message with `helperText`. The callback receives the original typed or pasted text.
+In this example, typing a letter leaves the code unchanged and displays a message. Enter a digit to clear the message.
 
 {{"component": "file://./demos/validation/index.ts"}}
 
-## Accepted characters
-
-Use `validationType` to accept digits (`numeric`, the default), letters A–Z and a–z (`alpha`), or both (`alphanumeric`). Choose `none` for a code with other characters.
-The field strips whitespace, filters the input, and limits the result to `length` characters. Use `inputMode` to choose the mobile keyboard independently.
-
-Use `normalizeValue` to transform the filtered string. A normalizer should return the same result when applied twice.
-
 ### Grouped recovery code
 
-Try pasting `ab1-cd2` into the first input. With `validationType="alphanumeric"`, the field drops the hyphen. Its `normalizeValue` callback converts the letters to uppercase, giving the value `"AB1CD2"`.
+Paste `ab1-cd2` into the first input. With `validationType="alphanumeric"`, the field drops the hyphen, then `normalizeValue` converts the letters to uppercase. The resulting value is `"AB1CD2"`.
+When writing a normalizer, make sure applying it twice gives the same result as applying it once.
 
-Compose `OTPFieldInput` and `OTPFieldSeparator` as children to display the code as `AB1-CD2`. Set `length` to the number of character inputs.
-The separator displays a hyphen by default and accepts children for a custom separator.
+Place an `OTPFieldSeparator` between `OTPFieldInput` children to display the code as `AB1-CD2`. The separator displays a hyphen by default and accepts custom content as children.
+Set `length` to the number of character inputs.
 
 {{"component": "file://./demos/grouped/index.ts"}}
 
@@ -84,19 +79,22 @@ Use `fullWidth` to fill the width of the field's container. The character inputs
 ## Form submission
 
 Set `name` on `OTPField` to submit the whole code under one form key. For example, `name="pin"` lets the submit handler read `new FormData(form).get('pin')`.
-Base UI renders a visually hidden input alongside the Material field for native validation and submission.
 If the field is outside the form, pass the form's `id` to the `form` prop.
 
-Try an incorrect four-digit PIN, then enter the sample PIN `0012`.
-The form uses `error` and `helperText` to explain how to correct a rejected PIN and `inputRef` to focus the first character.
+Submit an incorrect four-digit PIN to see the error message and return focus to the first input. Then try the sample PIN `0012`.
 
 {{"component": "file://./demos/form/index.ts"}}
 
 Use `onValueComplete(code, details)` to respond when the user finishes entering a code or pastes a complete one. Set `autoSubmit` to submit the associated form after this callback runs.
 
-## Controlling the input
+An uncontrolled field keeps its current code when the form resets, even if you supplied `defaultValue`.
+For a [controlled field](#controlled-and-uncontrolled-values) that starts at `'01'`, set `onReset={() => setCode('01')}` on the form to restore that value.
 
-Set `value` or `defaultValue` on `OTPField` for the whole code. To pass native attributes, event handlers, or a ref to an individual character, supply them on an `OTPFieldInput` child.
+## Customization
+
+### Individual inputs
+
+Pass native attributes, event handlers, or a ref directly to an `OTPFieldInput` child.
 Use `slotProps.group` for the row that contains those inputs.
 
 ```jsx
@@ -109,8 +107,6 @@ import OTPField, { OTPFieldInput } from '@mui/material/OTPField';
 ```
 
 The field's `ref` points to the outer container. Use `inputRef` to focus the first input programmatically or `autoFocus` to focus it on mount.
-
-## Customization
 
 ### Rendering custom elements
 
@@ -168,22 +164,20 @@ root (FormControl)
 └── formHelperText (FormHelperText, optional)
 ```
 
-The `group` slot hosts Base UI's `OTPField.Root`. By default, the field renders one `OTPFieldInput` per character.
-Supply inputs and separators as children to change their arrangement.
+The `group` slot hosts Base UI's `OTPField.Root`. Base UI also renders a visually hidden input alongside the outer container for native validation and form submission.
 
 ## Accessibility
 
 ### Labels and descriptions
 
-The group and first input share the field label. Clicking the label focuses the first input.
+The group and first input share the field label. Clicking the label focuses the first input. When there is no visible label, set `aria-label` or `aria-labelledby` on `OTPField`.
 Set `id` on `OTPField` to choose the first input's ID. The field generates one when omitted and links the label's `htmlFor` to it.
 The helper text describes the group and each character input. Use `aria-describedby` on the field to add another description.
 When customizing a label or helper, set its ID through `slotProps.label.id` or `slotProps.formHelperText.id` and forward the supplied attributes so these links stay intact.
 
-Subsequent inputs announce their position, such as "Character 2 of 6."
-When there is no visible label, put `aria-label` or `aria-labelledby` on `OTPField`. To name a particular character after the first, pass `aria-label` to its `OTPFieldInput`.
-The [theme locale](/material-ui/guides/localization/#locale-text) supplies the position labels. For example, the German locale (`deDE`) announces "Zeichen 2 von 6."
-To customize the wording across your app, set `components.MuiOTPField.defaultProps.getInputAriaLabel` in the theme. To override it for one field, pass `getInputAriaLabel` directly. The callback receives the one-based position and the field length.
+Subsequent inputs announce their position, such as "Character 2 of 6." The [theme locale](/material-ui/guides/localization/#locale-text) supplies these labels.
+Use `getInputAriaLabel(position, length)` to customize them for one field, or set `components.MuiOTPField.defaultProps.getInputAriaLabel` across your app. Positions start at one.
+To name just one character after the first, pass `aria-label` to its `OTPFieldInput`.
 
 ### Keyboard and focus
 

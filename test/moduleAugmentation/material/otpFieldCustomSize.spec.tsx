@@ -2,11 +2,11 @@ import * as React from 'react';
 import OTPField from '@mui/material/OTPField';
 import { createTheme } from '@mui/material/styles';
 
-declare module '@mui/material/FormControl' {
-  interface FormControlPropsColorOverrides {
+declare module '@mui/material/OTPField' {
+  interface OTPFieldPropsColorOverrides {
     brand: true;
   }
-  interface FormControlPropsSizeOverrides {
+  interface OTPFieldPropsSizeOverrides {
     compact: true;
   }
 }
