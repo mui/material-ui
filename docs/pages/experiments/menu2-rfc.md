@@ -25,7 +25,7 @@ We propose a Base UI-backed successor with Material visuals and full theme supp
 2. **Pointer support:** hover-open delays and safe diagonal travel from a trigger to its submenu.
 3. **Positioning:** flip at boundaries, track the anchor, and limit the popup to the available space.
 4. **Material presentation and customization:** shared styles, `sx`, utility classes, root composition, slots, and theme `defaultProps`/`styleOverrides`/`variants`.
-5. **Low cost for existing users:** preserve the classic API and behavior. Keep Base UI out of bundles that do not use the successor. Measure the shared-style and barrel costs separately.
+5. **Low cost for existing users:** preserve the classic API and behavior. Keep Base UI out of bundles that do not use the successor. Measure the classic subpath and barrel import costs separately.
 6. **Familiar API where possible:** document changed behavior and features with no direct replacement.
 7. **Related menu features:** checkbox and radio items, labeled groups, and hover-open. A dedicated context menu follows separately.
 8. **Maintained behavior:** reuse Base UI's focus, dismissal, and positioning logic.
@@ -445,9 +445,9 @@ This example follows the system preference. The playground also shows the theme 
 
 ### Bundle cost
 
-These measurements compare `2d07df256a` with the merge base `f0a678be0b`, using the same installed dependencies and build tools.
+These measurements compare `7a793d8033` with the merge base `3d182746fe`, using the same installed dependencies and build tools.
 They include the explicit Root/Trigger/Popup API and exclude the removed Material detached-trigger API.
-Both revisions use production ESM builds, Node.js 24.16.0, Vite 8.3.4, and gzip level 9.
+Both revisions use production ESM builds, Node.js 24.16.0, Vite 8.3.8, and gzip level 9.
 React, React DOM, `@emotion/react`, and `@emotion/styled` are external.
 The Menu2 measurements include Base UI 1.9.0 without a local patch.
 These are import bundles, not complete applications. Sizes use decimal kB.
@@ -459,24 +459,25 @@ The table uses component subpath imports. The Menu2 imports use the `Unstable_` 
 
 | Imports                             | Minified kB | Gzip kB |
 | :---------------------------------- | ----------: | ------: |
-| Classic Menu, merge base            |     126.497 |  40.481 |
-| Classic Menu, this PR               |     127.773 |  40.937 |
-| Classic + high contrast, merge base |     135.742 |  42.369 |
-| Classic + high contrast, this PR    |     139.770 |  43.318 |
-| Menu2                               |     238.824 |  78.404 |
-| Menu2 with submenu                  |     247.538 |  80.812 |
-| Classic Menu and Menu2              |     269.223 |  87.999 |
-| Classic Menu and Menu2 with submenu |     277.930 |  90.487 |
+| Classic Menu, merge base            |     128.146 |  41.015 |
+| Classic Menu, this PR               |     128.524 |  41.117 |
+| Classic + high contrast, merge base |     137.384 |  42.890 |
+| Classic + high contrast, this PR    |     140.792 |  43.522 |
+| Menu2                               |     245.964 |  80.587 |
+| Menu2 with submenu                  |     255.115 |  83.027 |
+| Classic Menu and Menu2              |     274.178 |  89.517 |
+| Classic Menu and Menu2 with submenu |     283.317 |  91.931 |
 
-The classic subpath case grows by **456 B gzip**. Named barrel imports grow by **470 B gzip**.
-Button-only imports grow by **14 B gzip** through either import path.
-With `enhanceHighContrast`, the classic case grows by **949 B gzip**, including the new Menu2 styles in the helper.
+The classic subpath case grows by **102 B gzip**. Named barrel imports grow by **136 B gzip**.
+This growth comes from the `ModalManager` scroll lock that Menu2 shares with Modal.
+Button-only imports stay within 1 B gzip through either import path.
+With `enhanceHighContrast`, the classic case grows by **632 B gzip**, including the new Menu2 styles in the helper.
 None of these classic-only cases retains Base UI or Floating UI modules.
-These are total PR costs for the measured imports, not only the cost of shared styles or a guarantee for every classic component.
+These are total PR costs for the measured imports, not a guarantee for every classic component.
 
-Menu2 is not a size reduction: it costs **37.467 kB gzip** more than the classic case.
-Adding Menu2 alongside classic Menu costs **47.062 kB gzip** in this fixture.
-Adding submenu support to the Menu2 case costs a further **2.408 kB gzip**.
+Menu2 is not a size reduction: it costs **39.470 kB gzip** more than the classic case.
+Adding Menu2 alongside classic Menu costs **48.400 kB gzip** in this fixture.
+Adding submenu support to the Menu2 case costs a further **2.440 kB gzip**.
 Application results depend on the components and dependencies already in use.
 
 Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the comparison.
