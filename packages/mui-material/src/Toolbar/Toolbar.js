@@ -106,7 +106,7 @@ Toolbar.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -131,10 +131,8 @@ Toolbar.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'regular'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['dense', 'regular']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['dense', 'regular']), PropTypes.string]),
 };
 
 export default Toolbar;

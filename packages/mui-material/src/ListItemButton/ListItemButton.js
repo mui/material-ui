@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
@@ -106,14 +105,12 @@ const ListItemButtonRoot = styled(ButtonBase, {
         ),
       },
     },
-    ...(theme.focusVisible
+    [`&.${listItemButtonClasses.focusVisible}`]: theme.focusVisible
       ? // Inset the ring: a scrolling List (drawers, long lists) clips an outset ring.
-        applyInsetFocusVisible(1)
+        theme.applyFocusVisible('inset')
       : {
-          [`&.${listItemButtonClasses.focusVisible}`]: {
-            backgroundColor: (theme.vars || theme).palette.action.focus,
-          },
-        }),
+          backgroundColor: (theme.vars || theme).palette.action.focus,
+        },
     [`&.${listItemButtonClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
@@ -251,7 +248,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -290,7 +287,8 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
-   * @ignore
+   * The URL to link to when the button is clicked.
+   * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes.string,
   /**

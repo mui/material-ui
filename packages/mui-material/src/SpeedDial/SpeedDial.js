@@ -229,9 +229,22 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
    */
   const createHandleSpeedDialActionButtonRef = (dialActionIndex, fabSlotOrigButtonRef) => {
     return (buttonRef) => {
-      actions.current[dialActionIndex + 1] = buttonRef;
+      const actionIndex = dialActionIndex + 1;
+      actions.current[actionIndex] = buttonRef;
 
-      setRef(fabSlotOrigButtonRef, buttonRef);
+      if (typeof fabSlotOrigButtonRef === 'function') {
+        const cleanup = fabSlotOrigButtonRef(buttonRef);
+        if (typeof cleanup === 'function') {
+          return () => {
+            actions.current[actionIndex] = null;
+            cleanup();
+          };
+        }
+      } else {
+        setRef(fabSlotOrigButtonRef, buttonRef);
+      }
+
+      return undefined;
     };
   };
 
@@ -372,18 +385,22 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const children = allItems.map((child, index) => {
     const { slotProps: childSlotProps = {} } = child.props;
 
-    const { fab: { ref: fabSlotOrigButtonRef, ...fabSlotProps } = {}, ...restOfSlotProps } =
-      childSlotProps;
+    const { fab: fabSlotProps, ...restOfSlotProps } = childSlotProps;
+
+    const withActionButtonRef = (resolvedFabSlotProps) => ({
+      ...resolvedFabSlotProps,
+      ref: createHandleSpeedDialActionButtonRef(index, resolvedFabSlotProps?.ref),
+    });
 
     const defaultPlacement = getOrientation(direction) === 'vertical' ? 'left' : 'top';
 
     return React.cloneElement(child, {
       slotProps: {
         ...restOfSlotProps,
-        fab: {
-          ...fabSlotProps,
-          ref: createHandleSpeedDialActionButtonRef(index, fabSlotOrigButtonRef),
-        },
+        fab:
+          typeof fabSlotProps === 'function'
+            ? (state) => withActionButtonRef(fabSlotProps(state))
+            : withActionButtonRef(fabSlotProps),
         tooltip:
           typeof restOfSlotProps.tooltip === 'function'
             ? (state) => ({
@@ -413,7 +430,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     additionalProps: {
-      role: 'presentation',
+      role: 'none',
       id: idProp,
     },
     getSlotProps: (handlers) => ({
@@ -497,9 +514,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * The direction the actions open relative to the floating action button.
@@ -526,9 +540,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
-  /**
-   * @ignore
-   */
   onBlur: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
@@ -537,21 +548,9 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseLeave: PropTypes.func,
   /**
    * Callback fired when the component requests to be open.

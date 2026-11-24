@@ -15,7 +15,7 @@ export const html = (theme, enableColorScheme) => ({
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-  // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
+  // With CSS theme variables, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
   ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
 });
 

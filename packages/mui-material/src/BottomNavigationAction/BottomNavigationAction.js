@@ -5,9 +5,8 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 import { getTransitionStyles } from '../transitions/utils';
 import bottomNavigationActionClasses, {
@@ -48,7 +47,9 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     [`&.${bottomNavigationActionClasses.selected}`]: {
       color: (theme.vars || theme).palette.primary.main,
     },
-    ...(theme.focusVisible && applyInsetFocusVisible(1)),
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible}`]: theme.applyFocusVisible('inset'),
+    }),
     variants: [
       {
         props: ({ showLabel, selected }) => !showLabel && !selected,
@@ -181,7 +182,7 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -192,13 +193,7 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    * The label element.
    */
   label: PropTypes.node,
-  /**
-   * @ignore
-   */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * If `true`, the component appears selected.

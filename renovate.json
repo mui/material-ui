@@ -31,22 +31,9 @@
   ],
   "packageRules": [
     {
-      "groupName": "Pigment CSS",
-      "matchPackageNames": ["@pigment-css/*"]
-    },
-    {
-      "groupName": "Emotion",
-      "description": "Keep stylis in sync with emotion to avoid duplicated stylis versions in the bundle.",
-      "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
-    },
-    {
       "groupName": "DocSearch",
       "description": "Keep the pinned @docsearch/css CDN link (AppSearch.tsx, tracked via customManagers) in lockstep with the @docsearch/react package.",
       "matchPackageNames": ["@docsearch/react", "@docsearch/css"]
-    },
-    {
-      "groupName": "Font awesome SVG icons",
-      "matchPackageNames": "@fortawesome/*"
     },
     {
       "groupName": "MUI X",
@@ -107,6 +94,12 @@
       "matchFileNames": ["test/typescriptMinimum/package.json"],
       "matchPackageNames": ["typescript"],
       "allowedVersions": ">=5.0.0 <6.0.0"
+    },
+    {
+      "description": "Keep the docs stylis on the version that @emotion/cache pins. A newer stylis prefixer throws on the styles that Emotion's stylis parses.",
+      "matchFileNames": ["pnpm-workspace.yaml"],
+      "matchPackageNames": ["stylis"],
+      "enabled": false
     }
   ]
 }
