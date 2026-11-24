@@ -1512,7 +1512,9 @@ describe('ThemeProvider', () => {
               </ThemeProvider>
             </ThemeProvider>,
           ),
-        ).toErrorDev("the element of its `render` prop didn't receive its props");
+        ).toErrorDev(
+          "MUI: The element of this ThemeProvider's `render` prop didn't attach the `ref` it was given",
+        );
       });
 
       it('does not log an error when the variables are the same', () => {

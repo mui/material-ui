@@ -939,8 +939,8 @@ export default function createCssVarsProvider<
           warnedElement.current = true;
           console.error(
             [
-              "MUI: The CSS theme variables of this ThemeProvider can't be applied because the element of its `render` prop didn't receive its props.",
-              'Spread the props that the `render` function receives on the element it returns, including the `ref`.',
+              "MUI: The element of this ThemeProvider's `render` prop didn't attach the `ref` it was given, so the provider's CSS theme variables may not apply to its children.",
+              'Make sure that the component of the element passes `className` and `ref` on to its DOM element, or that the `render` function spreads the props it receives, including the `ref`.',
             ].join('\n'),
           );
         }
