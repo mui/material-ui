@@ -8,6 +8,7 @@ export default function FormPropsOTPFields() {
       <OTPField label="Required" length={4} required />
       <OTPField label="Disabled" length={4} defaultValue="0123" disabled />
       <OTPField label="Read only" length={4} defaultValue="0123" readOnly />
+      <OTPField label="Masked" length={4} defaultValue="01" mask />
       {/* @focus-end */}
     </Box>
   );

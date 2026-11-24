@@ -41,6 +41,7 @@ const OTPFieldInputElement = styled(InputElement, { name: 'MuiOTPField', slot: '
     ...theme.typography.body1,
     boxSizing: 'border-box',
     width: theme.spacing(small ? 5 : 6),
+    flex: ownerState.fullWidth ? '1 1 0' : undefined,
     minWidth: 0,
     height: theme.spacing(small ? 5 : 7),
     padding: 0,
@@ -53,7 +54,8 @@ const OTPFieldInputElement = styled(InputElement, { name: 'MuiOTPField', slot: '
     borderRadius: shape.borderRadius,
     '&:focus': {
       outline: '2px solid',
-      outlineColor: ownerState.error ? palette.error.main : palette.primary.main,
+      outlineColor:
+        palette[ownerState.error ? 'error' : ownerState.color]?.main ?? palette.primary.main,
       outlineOffset: -2,
     },
     '&:disabled': {

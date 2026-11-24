@@ -6,7 +6,7 @@ export default function OTPFieldRender() {
     <OTPField
       label="Pairing code"
       length={4}
-      helperText="Enter the four digits shown on your device."
+      helperText="Enter your device code."
       render={<section aria-label="Device pairing" />}
       slotProps={{
         formHelperText: {

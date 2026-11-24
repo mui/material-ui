@@ -54,10 +54,12 @@ const OTPField = React.forwardRef(function OTPField(
     autoSubmit,
     children,
     classes: classesProp,
+    color = 'primary',
     defaultValue,
     disabled,
     error = false,
     form,
+    fullWidth = false,
     getInputAriaLabel = defaultGetInputAriaLabel,
     helperText,
     id: idProp,
@@ -129,8 +131,10 @@ const OTPField = React.forwardRef(function OTPField(
         const ownerState: OTPFieldOwnerState = {
           ...props,
           autoFocus,
+          color,
           disabled: baseState.disabled,
           error: error || baseState.valid === false,
+          fullWidth,
           getInputAriaLabel,
           helperText,
           id,
@@ -207,6 +211,17 @@ OTPField.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The theme palette color of the focused character's outline.
+   * To use a [custom palette color](https://mui.com/material-ui/customization/palette/#custom-colors)
+   * in TypeScript, augment `FormControlPropsColorOverrides`.
+   * @default 'primary'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
+  /**
    * The initial code for an uncontrolled field.
    * @default ''
    */
@@ -224,6 +239,11 @@ OTPField.propTypes /* remove-proptypes */ = {
    * The ID of the form that owns the field.
    */
   form: PropTypes.string,
+  /**
+   * If `true`, the field fills its container and the character inputs share the available width equally.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
   /**
    * Accessible name for a character after the first. Positions start at one.
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).

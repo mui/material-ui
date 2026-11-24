@@ -93,6 +93,8 @@ export interface OTPFieldSlots {
 }
 
 export interface OTPFieldOwnerState extends OTPFieldProps {
+  color: NonNullable<FormControlProps['color']>;
+  fullWidth: boolean;
   getInputAriaLabel: NonNullable<OTPFieldProps['getInputAriaLabel']>;
   length: number;
   size: NonNullable<FormControlProps['size']>;
@@ -155,10 +157,22 @@ export interface OTPFieldProps
   /** A CSS class name applied to the outer root element. */
   className?: string | undefined;
   /**
+   * The theme palette color of the focused character's outline.
+   * To use a [custom palette color](https://mui.com/material-ui/customization/palette/#custom-colors)
+   * in TypeScript, augment `FormControlPropsColorOverrides`.
+   * @default 'primary'
+   */
+  color?: FormControlProps['color'] | undefined;
+  /**
    * Display the field in an error state.
    * @default false
    */
   error?: boolean | undefined;
+  /**
+   * If `true`, the field fills its container and the character inputs share the available width equally.
+   * @default false
+   */
+  fullWidth?: boolean | undefined;
   /**
    * Accessible name for a character after the first. Positions start at one.
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).

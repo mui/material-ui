@@ -17,12 +17,18 @@
       "description": "Character inputs and optional decorative separators. When omitted, the field renders one OTPFieldInput per character."
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
+    "color": {
+      "description": "The theme palette color of the focused character&#39;s outline. To use a <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">custom palette color</a> in TypeScript, augment <code>FormControlPropsColorOverrides</code>."
+    },
     "defaultValue": { "description": "The initial code for an uncontrolled field." },
     "disabled": {
       "description": "Disable all the character inputs and omit the code from form submission."
     },
     "error": { "description": "Display the field in an error state." },
     "form": { "description": "The ID of the form that owns the field." },
+    "fullWidth": {
+      "description": "If <code>true</code>, the field fills its container and the character inputs share the available width equally."
+    },
     "getInputAriaLabel": {
       "description": "Accessible name for a character after the first. Positions start at one. For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },

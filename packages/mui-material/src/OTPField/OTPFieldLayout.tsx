@@ -94,6 +94,7 @@ function OTPFieldLayout({
     ownerState,
     className: classes.root,
     ref: rootRef,
+    additionalProps: { color: formControlState?.color, fullWidth: formControlState?.fullWidth },
     internalForwardedProps: getHostProps(render, slots?.root),
   });
   const [LabelSlot, { render: labelRender, ...labelProps }] = useSlot('label', {

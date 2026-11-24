@@ -30,13 +30,14 @@ export default function OTPFieldForm() {
       component="form"
       onSubmit={handleSubmit}
       spacing={2}
-      sx={{ alignItems: 'flex-start' }}
+      sx={{ width: 320, maxWidth: '100%', alignItems: 'flex-start' }}
     >
       <OTPField
         label="Verification PIN"
         name="pin"
         inputRef={inputRef}
         length={4}
+        fullWidth
         required
         error={result === 'rejected'}
         helperText={<span role="status">{messages[result]}</span>}

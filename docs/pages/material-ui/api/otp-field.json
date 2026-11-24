@@ -8,10 +8,18 @@
     "autoSubmit": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
     "defaultValue": { "type": { "name": "string" }, "default": "''" },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "form": { "type": { "name": "string" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "getInputAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetInputAriaLabel(position: number, length: number) {\n  return `Character ${position} of ${length}`;\n}"

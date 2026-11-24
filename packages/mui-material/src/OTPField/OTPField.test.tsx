@@ -4,7 +4,7 @@ import { Field } from '@base-ui/react/field';
 import { createRenderer, isJsdom, screen, within } from '@mui/internal-test-utils';
 import { formHelperTextClasses } from '@mui/material/FormHelperText';
 import { formLabelClasses } from '@mui/material/FormLabel';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, hexToRgb, ThemeProvider } from '@mui/material/styles';
 import type { OTPFieldOwnerState } from '@mui/material/OTPField';
 import OTPField, {
   OTPFieldInput,
@@ -410,15 +410,46 @@ describe('<OTPField />', () => {
       expect(screen.getByText('-')).toHaveComputedStyle({ marginRight: '7px' });
     });
 
-    it('outlines the focused character input and keeps the label neutral', async () => {
-      const { user } = render(<OTPField label="Verification code" defaultValue="12" length={2} />);
+    it('uses the field color for focus and the error color for an invalid field', async () => {
+      const theme = createTheme({ cssVariables: true });
+      const { user, rerender } = render(<OTPField label="PIN" color="secondary" length={2} />, {
+        wrapper: ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>,
+      });
 
-      const input = screen.getByRole('textbox', { name: 'Character 2 of 2' });
+      const input = screen.getByRole('textbox', { name: 'PIN' });
       await user.click(input);
 
       expect(input).toHaveFocus();
-      expect(input).toHaveComputedStyle({ outlineStyle: 'solid' });
-      expect(screen.getByText('Verification code')).not.to.have.class(formLabelClasses.focused);
+      expect(input).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineColor: hexToRgb(theme.palette.secondary.main),
+      });
+      expect(screen.getByText('PIN')).not.to.have.class(formLabelClasses.focused);
+
+      rerender(<OTPField label="PIN" color="secondary" length={2} error />);
+      expect(input).toHaveComputedStyle({ outlineColor: hexToRgb(theme.palette.error.main) });
+    });
+
+    it('fills the container by growing the character inputs equally around a separator', () => {
+      render(
+        <div style={{ width: 320 }}>
+          <OTPField label="PIN" length={2} fullWidth>
+            <OTPFieldInput />
+            <OTPFieldSeparator />
+            <OTPFieldInput />
+          </OTPField>
+        </div>,
+      );
+
+      const group = screen.getByRole('group', { name: 'PIN' }).getBoundingClientRect();
+      const [first, last] = screen
+        .getAllByRole('textbox')
+        .map((input) => input.getBoundingClientRect());
+      expect(group.width).to.equal(320);
+      expect(first.left).to.equal(group.left);
+      expect(last.right).to.equal(group.right);
+      expect(first.width).to.be.closeTo(last.width, 0.1);
+      expect(screen.getByText('-').getBoundingClientRect().width).to.be.lessThan(first.width);
     });
 
     it('lays out the character inputs in a row between the label and helper text', () => {

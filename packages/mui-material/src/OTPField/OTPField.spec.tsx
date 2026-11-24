@@ -29,6 +29,8 @@ function Test() {
     <React.Fragment>
       <OTPField
         label="Recovery code"
+        color="secondary"
+        fullWidth
         length={4}
         name="code"
         form="verify"
@@ -100,7 +102,7 @@ function Test() {
       <OTPField defaultValue={123456} />
       {/* @ts-expect-error The field has no checked state. */}
       <OTPField defaultChecked />
-      {/* @ts-expect-error The field does not accept the legacy HTML color attribute. */}
+      {/* @ts-expect-error The color must be a theme palette color. */}
       <OTPField color="red" />
       {/* @ts-expect-error Character inputs are composed as children. */}
       <OTPField slots={{ input: 'input' }} />

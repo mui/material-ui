@@ -1,29 +1,21 @@
-import OTPField, {
-  otpFieldClasses,
-  OTPFieldRootDataAttributes,
-} from '@mui/material/OTPField';
+import OTPField from '@mui/material/OTPField';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 
-// @focus-start
 const customTheme = (outerTheme: Theme): Theme => ({
   ...outerTheme,
   components: {
     ...outerTheme.components,
+    // @focus-start
     MuiOTPField: {
-      defaultProps: { size: 'small' },
+      defaultProps: { size: 'small', color: 'secondary' },
       styleOverrides: {
         input: { borderRadius: '50%' },
-        group: {
-          [`&[${OTPFieldRootDataAttributes.complete}] .${otpFieldClasses.input}`]: {
-            borderColor: (outerTheme.vars ?? outerTheme).palette.primary.main,
-          },
-        },
       },
     },
+    // @focus-end
   },
 });
-// @focus-end
 
 export default function OTPFieldTheme() {
   const outerTheme = useTheme();
@@ -33,7 +25,7 @@ export default function OTPFieldTheme() {
       <OTPField
         label="Unlock code"
         length={4}
-        helperText="Fill all four inputs to highlight their borders."
+        helperText="Enter the four digits shown on your device."
       />
     </ThemeProvider>
   );
