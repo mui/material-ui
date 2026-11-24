@@ -10,7 +10,7 @@ Install the skills with your coding agent:
 
 <codeblock storageKey="coding-agent">
 
-```bash Claude Code
+```bash Claude
 /plugin marketplace add mui/material-ui
 /plugin install material-ui@material-ui
 ```
@@ -20,7 +20,7 @@ codex plugin marketplace add mui/material-ui
 codex plugin add material-ui@material-ui
 ```
 
-```bash Other agents
+```bash Other
 npx skills add mui/material-ui
 ```
 
