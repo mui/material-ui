@@ -38,127 +38,6 @@ import {
   menu2CheckboxItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
-export type Menu2CheckboxItemState = BaseMenu.CheckboxItem.State;
-
-export type Menu2CheckboxItemIndicatorState = BaseMenu.CheckboxItemIndicator.State;
-
-export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
-  /** Whether the item is currently checked, including uncontrolled selection. */
-  checked: boolean;
-  /** Whether Base UI currently highlights the item. */
-  highlighted: boolean;
-}
-
-export interface Menu2CheckboxItemSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2CheckboxItemRoot
-   */
-  root?: React.ElementType | undefined;
-  /**
-   * The component that renders the check indicator.
-   * Takes precedence over `slotProps.indicator.render`.
-   * @default Menu2CheckboxItemIndicator
-   */
-  indicator?: React.ElementType | undefined;
-}
-
-export interface Menu2CheckboxItemSlotProps {
-  root?: Menu2RootSlotProps<Menu2CheckboxItemOwnerState>['root'] | undefined;
-  indicator?:
-    | Menu2IndicatorSlotProps<Menu2CheckboxItemOwnerState, Menu2CheckboxItemIndicatorState>
-    | undefined;
-}
-
-export interface Menu2CheckboxItemProps
-  extends
-    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
-    Menu2ItemBaseProps,
-    Menu2ItemVisualProps<
-      Menu2CheckboxItemClasses,
-      Menu2CheckboxItemSlots,
-      Menu2CheckboxItemSlotProps
-    > {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Whether the checkbox item is currently ticked.
-   *
-   * To render an uncontrolled checkbox item, use the `defaultChecked` prop instead.
-   */
-  checked?: boolean | undefined;
-  /**
-   * The icon to display when the item is checked.
-   * @default <CheckBoxIcon fontSize="small" />
-   */
-  checkedIcon?: React.ReactNode;
-  /**
-   * The icon to display when the item is unchecked.
-   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
-   */
-  icon?: React.ReactNode;
-  /**
-   * Whether the checkbox item is initially ticked.
-   *
-   * To render a controlled checkbox item, use the `checked` prop instead.
-   * @default false
-   */
-  defaultChecked?: boolean | undefined;
-  /**
-   * Event handler called when the checkbox item is ticked or unticked.
-   * @param {boolean} checked The new checked state.
-   * @param {object} eventDetails The reason for the change and the native event.
-   */
-  onCheckedChange?: BaseMenu.CheckboxItem.Props['onCheckedChange'] | undefined;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * Overrides the text label to use when the item is matched during keyboard text navigation.
-   */
-  label?: string | undefined;
-  /**
-   * Whether to close the menu when the item is clicked.
-   * @default false
-   */
-  closeOnClick?: boolean | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * If `true`, the ripple effect is disabled.
-   * @default false
-   */
-  disableRipple?: boolean | undefined;
-  /**
-   * Whether the item renders a native `<button>` element.
-   * Inferred from `slots.root="button"` or a button element passed to `render`.
-   * Set to `true` for a custom component or render function that returns a button.
-   * @default false
-   */
-  nativeButton?: boolean | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
-   * Put content in the children prop of Menu2CheckboxItem. Replacing the supplied children can remove the indicator and ripple.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2CheckboxItemState>
-    | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-}
-
 const Menu2CheckboxItemRoot = styled(Menu2ItemBase, {
   name: 'MuiMenu2CheckboxItem',
   slot: 'root',
@@ -437,6 +316,127 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     </BaseMenu.CheckboxItem>
   );
 });
+
+export type Menu2CheckboxItemState = BaseMenu.CheckboxItem.State;
+
+export type Menu2CheckboxItemIndicatorState = BaseMenu.CheckboxItemIndicator.State;
+
+export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
+  /** Whether the item is currently checked, including uncontrolled selection. */
+  checked: boolean;
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
+export interface Menu2CheckboxItemSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2CheckboxItemRoot
+   */
+  root?: React.ElementType | undefined;
+  /**
+   * The component that renders the check indicator.
+   * Takes precedence over `slotProps.indicator.render`.
+   * @default Menu2CheckboxItemIndicator
+   */
+  indicator?: React.ElementType | undefined;
+}
+
+export interface Menu2CheckboxItemSlotProps {
+  root?: Menu2RootSlotProps<Menu2CheckboxItemOwnerState>['root'] | undefined;
+  indicator?:
+    | Menu2IndicatorSlotProps<Menu2CheckboxItemOwnerState, Menu2CheckboxItemIndicatorState>
+    | undefined;
+}
+
+export interface Menu2CheckboxItemProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
+    Menu2ItemBaseProps,
+    Menu2ItemVisualProps<
+      Menu2CheckboxItemClasses,
+      Menu2CheckboxItemSlots,
+      Menu2CheckboxItemSlotProps
+    > {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the checkbox item is currently ticked.
+   *
+   * To render an uncontrolled checkbox item, use the `defaultChecked` prop instead.
+   */
+  checked?: boolean | undefined;
+  /**
+   * The icon to display when the item is checked.
+   * @default <CheckBoxIcon fontSize="small" />
+   */
+  checkedIcon?: React.ReactNode;
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <CheckBoxOutlineBlankIcon fontSize="small" />
+   */
+  icon?: React.ReactNode;
+  /**
+   * Whether the checkbox item is initially ticked.
+   *
+   * To render a controlled checkbox item, use the `checked` prop instead.
+   * @default false
+   */
+  defaultChecked?: boolean | undefined;
+  /**
+   * Event handler called when the checkbox item is ticked or unticked.
+   * @param {boolean} checked The new checked state.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onCheckedChange?: BaseMenu.CheckboxItem.Props['onCheckedChange'] | undefined;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default false
+   */
+  closeOnClick?: boolean | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
+   * Whether the item renders a native `<button>` element.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
+   * Set to `true` for a custom component or render function that returns a button.
+   * @default false
+   */
+  nativeButton?: boolean | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
+   * Put content in the children prop of Menu2CheckboxItem. Replacing the supplied children can remove the indicator and ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2CheckboxItemState>
+    | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+}
 
 Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

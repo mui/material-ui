@@ -16,152 +16,6 @@ import {
   suppressButtonBaseKeyboardActivation,
 } from './menu2Utils';
 
-// The owner state from the props. Each part adds the live Base UI state.
-export interface Menu2ItemBaseOwnerState {
-  checked?: boolean | undefined;
-  disabled: boolean;
-  divider: boolean;
-  disableGutters: boolean;
-  inset: boolean;
-}
-
-export interface Menu2ItemVisualProps<Classes, Slots = never, SlotProps = never> {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<Classes> | undefined;
-  /**
-   * The components used for each slot inside.
-   */
-  slots?: Slots | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: SlotProps | undefined;
-  /**
-   * If `true`, the left and right padding is removed.
-   * @default false
-   */
-  disableGutters?: boolean | undefined;
-  /**
-   * If `true`, a 1px light border is added to the bottom of the menu item.
-   * @default false
-   */
-  divider?: boolean | undefined;
-  /**
-   * Content after the label, such as a keyboard shortcut.
-   */
-  endAdornment?: React.ReactNode;
-  /**
-   * If `true`, the item keeps an empty start adornment column.
-   * Its label then aligns with the labels of items that have a start adornment.
-   * It has no effect when `startAdornment` is set.
-   * @default false
-   */
-  inset?: boolean | undefined;
-  /**
-   * Content before the label, such as an icon.
-   */
-  startAdornment?: React.ReactNode;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme> | undefined;
-}
-
-export interface Menu2ItemBaseProps {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * Whether the component renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
-   * Set to `true` for a custom component or render function that returns a button.
-   */
-  nativeButton?: boolean | undefined;
-  /**
-   * Overrides the text label to use when the item is matched during keyboard text navigation.
-   */
-  label?: string | undefined;
-  /**
-   * Whether to close the menu when the item is clicked.
-   * @default true
-   */
-  closeOnClick?: boolean | undefined;
-}
-
-export interface Menu2LinkItemBaseProps {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * The URL that the link item points to.
-   */
-  href?: string | undefined;
-  /**
-   * Overrides the text label to use when the item is matched during keyboard text navigation.
-   */
-  label?: string | undefined;
-  /**
-   * Whether to close the menu when the item is clicked.
-   * @default false
-   */
-  closeOnClick?: boolean | undefined;
-}
-
-export interface Menu2SubmenuTriggerBaseProps {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * Whether the component renders a native `<button>` element.
-   * Inferred from a button element passed to `render`.
-   * Set to `true` for a custom component or render function that returns a button.
-   */
-  nativeButton?: boolean | undefined;
-  /**
-   * Overrides the text label to use when the item is matched during keyboard text navigation.
-   */
-  label?: string | undefined;
-  /**
-   * How long to wait before the submenu may be opened on hover, in milliseconds.
-   *
-   * Requires the `openOnHover` prop.
-   * @default 100
-   */
-  delay?: number | undefined;
-  /**
-   * How long to wait before closing the submenu that was opened on hover, in milliseconds.
-   *
-   * Requires the `openOnHover` prop.
-   * @default 0
-   */
-  closeDelay?: number | undefined;
-  /**
-   * Whether the submenu should also open when the trigger is hovered.
-   * @default true
-   */
-  openOnHover?: boolean | undefined;
-}
-
-export interface Menu2BaseItemState {
-  disabled?: boolean | undefined;
-  highlighted?: boolean | undefined;
-}
-
 export interface Menu2ItemRootSlotProps<OwnerState extends object, RenderState extends object> {
   /**
    * The props that Base UI passes to the `render` function of the item.
@@ -360,4 +214,150 @@ export function mergeMenu2ItemClassName<State extends Menu2BaseItemState>(
   return mergeStateClassName(className, (state) =>
     getMenu2ItemClassName(classes, ownerState, state),
   );
+}
+
+// The owner state from the props. Each part adds the live Base UI state.
+export interface Menu2ItemBaseOwnerState {
+  checked?: boolean | undefined;
+  disabled: boolean;
+  divider: boolean;
+  disableGutters: boolean;
+  inset: boolean;
+}
+
+export interface Menu2ItemVisualProps<Classes, Slots = never, SlotProps = never> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<Classes> | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Slots | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: SlotProps | undefined;
+  /**
+   * If `true`, the left and right padding is removed.
+   * @default false
+   */
+  disableGutters?: boolean | undefined;
+  /**
+   * If `true`, a 1px light border is added to the bottom of the menu item.
+   * @default false
+   */
+  divider?: boolean | undefined;
+  /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment?: React.ReactNode;
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset?: boolean | undefined;
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+export interface Menu2ItemBaseProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Whether the component renders a native `<button>` element.
+   * Inferred from a button element passed to `render`.
+   * Set to `true` for a custom component or render function that returns a button.
+   */
+  nativeButton?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default true
+   */
+  closeOnClick?: boolean | undefined;
+}
+
+export interface Menu2LinkItemBaseProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * The URL that the link item points to.
+   */
+  href?: string | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default false
+   */
+  closeOnClick?: boolean | undefined;
+}
+
+export interface Menu2SubmenuTriggerBaseProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Whether the component renders a native `<button>` element.
+   * Inferred from a button element passed to `render`.
+   * Set to `true` for a custom component or render function that returns a button.
+   */
+  nativeButton?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * How long to wait before the submenu may be opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 100
+   */
+  delay?: number | undefined;
+  /**
+   * How long to wait before closing the submenu that was opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 0
+   */
+  closeDelay?: number | undefined;
+  /**
+   * Whether the submenu should also open when the trigger is hovered.
+   * @default true
+   */
+  openOnHover?: boolean | undefined;
+}
+
+export interface Menu2BaseItemState {
+  disabled?: boolean | undefined;
+  highlighted?: boolean | undefined;
 }

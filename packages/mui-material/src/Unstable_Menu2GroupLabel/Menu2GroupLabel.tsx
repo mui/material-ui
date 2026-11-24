@@ -18,66 +18,6 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2GroupLabelClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2GroupLabelUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
-export type Menu2GroupLabelState = BaseMenu.GroupLabel.State;
-
-export interface Menu2GroupLabelOwnerState extends BaseMenu.GroupLabel.State {}
-
-export interface Menu2GroupLabelSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2GroupLabelRoot
-   */
-  root?: React.ElementType | undefined;
-}
-
-export interface Menu2GroupLabelSlotProps {
-  root?: Menu2RootSlotProps<Menu2GroupLabelOwnerState>['root'] | undefined;
-}
-
-export interface Menu2GroupLabelProps
-  extends
-    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
-    Pick<ListSubheaderOwnProps, 'color' | 'disableGutters' | 'inset'> {
-  /**
-   * The content of the label.
-   */
-  children?: React.ReactNode;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<Menu2GroupLabelClasses> | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to preserve Material styles and accessibility.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupLabelState>
-    | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: Menu2GroupLabelSlotProps | undefined;
-  /**
-   * The components used for each slot inside.
-   */
-  slots?: Menu2GroupLabelSlots | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme> | undefined;
-}
-
 const useUtilityClasses = (ownerState: Menu2GroupLabelProps) => {
   const { classes } = ownerState;
 
@@ -170,6 +110,66 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     />
   );
 });
+
+export type Menu2GroupLabelState = BaseMenu.GroupLabel.State;
+
+export interface Menu2GroupLabelOwnerState extends BaseMenu.GroupLabel.State {}
+
+export interface Menu2GroupLabelSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2GroupLabelRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2GroupLabelSlotProps {
+  root?: Menu2RootSlotProps<Menu2GroupLabelOwnerState>['root'] | undefined;
+}
+
+export interface Menu2GroupLabelProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
+    Pick<ListSubheaderOwnProps, 'color' | 'disableGutters' | 'inset'> {
+  /**
+   * The content of the label.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<Menu2GroupLabelClasses> | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles and accessibility.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupLabelState>
+    | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2GroupLabelSlotProps | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2GroupLabelSlots | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
 
 Menu2GroupLabel.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

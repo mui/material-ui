@@ -11,19 +11,6 @@ import type { Menu2RootSlotProps, Menu2RootSlots } from '../Unstable_Menu2/menu2
 import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
 import Menu2RenderRoot from './Menu2RenderRoot';
 
-interface Menu2RootSlotComponentProps<State extends object> {
-  baseProps: HTMLProps;
-  elementType: React.ElementType;
-  ownerState: State;
-  internalForwardedProps?: Record<string, unknown> | undefined;
-  render?: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, State> | undefined;
-  renderState: State;
-  shouldForwardComponentProp?: boolean | undefined;
-  slots?: Menu2RootSlots | undefined;
-  slotProps?: Menu2RootSlotProps<State> | undefined;
-  sx?: SxProps<Theme> | undefined;
-}
-
 /**
  * @ignore - internal component.
  */
@@ -64,4 +51,17 @@ export default function Menu2RootSlot<State extends object>(
   });
 
   return getMenu2RootRender(RootSlot, ownerState, rootProps);
+}
+
+interface Menu2RootSlotComponentProps<State extends object> {
+  baseProps: HTMLProps;
+  elementType: React.ElementType;
+  ownerState: State;
+  internalForwardedProps?: Record<string, unknown> | undefined;
+  render?: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, State> | undefined;
+  renderState: State;
+  shouldForwardComponentProp?: boolean | undefined;
+  slots?: Menu2RootSlots | undefined;
+  slotProps?: Menu2RootSlotProps<State> | undefined;
+  sx?: SxProps<Theme> | undefined;
 }

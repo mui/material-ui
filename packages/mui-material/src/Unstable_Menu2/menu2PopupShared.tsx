@@ -45,12 +45,6 @@ function Menu2ScrollLock({
   return null;
 }
 
-type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
-  className?: string | undefined;
-  render?: never | undefined;
-  style?: React.CSSProperties | undefined;
-};
-
 function setDefinedProp(props: Record<string, any>, key: string, value: unknown) {
   if (value !== undefined) {
     props[key] = value;
@@ -108,192 +102,6 @@ const listHostOmittedProps = [
   'subheader',
   'sx',
 ] as const;
-
-export interface Menu2PopupSharedSlots {
-  /**
-   * The transition applied to the popup element. Set to null to use CSS animations instead.
-   * @default Grow
-   */
-  transition?: React.JSXElementConstructor<any> | null | undefined;
-  /**
-   * The component used for the portal element, which contains the menu and its backdrops.
-   * Takes precedence over `slotProps.portal.render`.
-   * @default 'div'
-   */
-  portal?: React.ElementType | undefined;
-  /**
-   * The component used to position the menu surface.
-   * Takes precedence over `slotProps.positioner.render`.
-   * @default 'div'
-   */
-  positioner?: React.ElementType | undefined;
-  /**
-   * The component used for the visual backdrop beneath the menu.
-   * It renders only when you set this slot or `slotProps.backdrop`. By default, it is transparent and lets clicks through.
-   * Takes precedence over `slotProps.backdrop.render`.
-   * Set to `null` to remove it. This removes only the visual layer: a modal menu still blocks outside clicks.
-   * @default 'div'
-   */
-  backdrop?: React.ElementType | null | undefined;
-  /**
-   * The component used for the menu surface. The popup renders as this element.
-   * @default Paper
-   */
-  root?: React.ElementType | undefined;
-  /**
-   * The component used for the presentational list wrapper.
-   * Takes precedence over `slotProps.list.render`.
-   * @default List
-   */
-  list?: React.ElementType | undefined;
-}
-
-type WithSx = { sx?: SxProps<Theme> | undefined };
-
-// Menu2 has no dense mode.
-export type Menu2ListProps = Omit<ListProps, 'dense'> & { dense?: never | undefined };
-
-// These slots take `render` instead of `component`.
-type Menu2RenderSlotProps<Props, State> = Omit<ExternalSlotProps<Props>, 'render'> & {
-  /**
-   * The element to render, or a function that returns it. The slot styles stay.
-   */
-  render?: Menu2SlotRender<State> | undefined;
-};
-
-export interface Menu2PopupSharedSlotProps<OwnerState> {
-  /**
-   * Props for the transition component. Use onOpenChangeComplete for completion.
-   * Base UI owns the open state and mounting lifecycle.
-   */
-  transition?:
-    | SlotProps<
-        Omit<
-          Partial<GrowProps>,
-          'children' | 'in' | 'appear' | 'mountOnEnter' | 'unmountOnExit' | 'onEntered' | 'onExited'
-        >,
-        OwnerState
-      >
-    | undefined;
-  portal?:
-    | SlotProps<
-        Menu2RenderSlotProps<React.ComponentPropsWithRef<'div'>, BaseMenu.Portal.State> & WithSx,
-        OwnerState
-      >
-    | undefined;
-  positioner?:
-    | SlotProps<
-        Menu2RenderSlotProps<BaseMenu.Positioner.Props, BaseMenu.Positioner.State> & WithSx,
-        OwnerState
-      >
-    | undefined;
-  backdrop?:
-    | SlotProps<
-        Menu2RenderSlotProps<BaseMenu.Backdrop.Props, BaseMenu.Backdrop.State> & WithSx,
-        OwnerState
-      >
-    | undefined;
-  root?: SlotProps<ExternalSlotProps<Omit<PaperProps, 'component'>>, OwnerState> | undefined;
-  list?:
-    | SlotProps<
-        Menu2RenderSlotProps<Omit<Menu2ListProps, 'component'>, BaseMenu.List.State>,
-        OwnerState
-      >
-    | undefined;
-}
-
-type Menu2PositionerProps = BaseMenu.Positioner.Props;
-type Menu2PortalProps = BaseMenu.Portal.Props;
-
-export type Menu2PopupSide = NonNullable<Menu2PositionerProps['side']>;
-export type Menu2PopupAlign = NonNullable<Menu2PositionerProps['align']>;
-
-/**
- * These positioning and portal props use Base UI types.
- * Pick limits the public API to the listed props.
- * Material UI additions and different defaults are declared below.
- */
-export interface Menu2PopupPublicProps
-  extends
-    Pick<
-      Menu2PositionerProps,
-      | 'anchor'
-      | 'positionMethod'
-      | 'sideOffset'
-      | 'alignOffset'
-      | 'collisionBoundary'
-      | 'collisionPadding'
-      | 'sticky'
-      | 'disableAnchorTracking'
-      | 'collisionAvoidance'
-    >,
-    Pick<Menu2PortalProps, 'container' | 'keepMounted'>,
-    Pick<BaseMenu.Popup.Props, 'finalFocus'> {
-  /**
-   * The transition duration in milliseconds, or separate enter and exit durations.
-   * Set to 'auto' for height-dependent Grow timing, or 0 to disable the transition.
-   * Ignored when slots.transition is null.
-   * @default 'auto'
-   */
-  transitionDuration?: GrowProps['timeout'] | undefined;
-  /**
-   * The menu items.
-   */
-  children?: React.ReactNode;
-  /**
-   * CSS class applied to the root element.
-   */
-  className?: string | undefined;
-  /**
-   * Inline styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-  /**
-   * Which side of the anchor element to align the popup against.
-   * @default 'bottom'
-   */
-  side?: Menu2PopupSide | undefined;
-  /**
-   * How to align the popup relative to the specified side.
-   * Defaults to `start` to match the classic Menu (Base UI defaults to `center`).
-   * @default 'start'
-   */
-  align?: Menu2PopupAlign | undefined;
-  /**
-   * The elevation of the menu surface.
-   * @default 8
-   */
-  elevation?: number | undefined;
-  /**
-   * The element to render for the menu surface, or a function that returns it.
-   */
-  render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, BaseMenu.Popup.State>
-    | undefined;
-}
-
-export interface Menu2PopupSharedProps<OwnerState>
-  extends
-    Omit<BaseMenu.Popup.Props, 'children' | 'className' | 'render' | 'style' | 'finalFocus'>,
-    Menu2PopupPublicProps {
-  classes?:
-    Partial<Record<'root' | 'portal' | 'positioner' | 'backdrop' | 'list', string>> | undefined;
-  ownerState: OwnerState;
-  modal?: boolean | undefined;
-  onClosingChange?: ((closing: boolean) => void) | undefined;
-  slots?: Menu2PopupSharedSlots | undefined;
-  slotProps?: Menu2PopupSharedSlotProps<OwnerState> | undefined;
-  defaultSlots: {
-    root: React.ElementType;
-    portal: React.ElementType;
-    positioner: React.ElementType;
-    list: React.ElementType;
-    backdrop?: React.ElementType | undefined;
-  };
-  defaultPositionerProps?: Partial<BaseMenu.Positioner.Props> | undefined;
-  sx?: SxProps<Theme> | undefined;
-}
 
 export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerState extends object>(
   props: Menu2PopupSharedProps<OwnerState>,
@@ -606,3 +414,197 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
 }) as <OwnerState extends object>(
   props: Menu2PopupSharedProps<OwnerState> & React.RefAttributes<HTMLDivElement>,
 ) => React.JSX.Element;
+
+type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
+  className?: string | undefined;
+  render?: never | undefined;
+  style?: React.CSSProperties | undefined;
+};
+
+export interface Menu2PopupSharedSlots {
+  /**
+   * The transition applied to the popup element. Set to null to use CSS animations instead.
+   * @default Grow
+   */
+  transition?: React.JSXElementConstructor<any> | null | undefined;
+  /**
+   * The component used for the portal element, which contains the menu and its backdrops.
+   * Takes precedence over `slotProps.portal.render`.
+   * @default 'div'
+   */
+  portal?: React.ElementType | undefined;
+  /**
+   * The component used to position the menu surface.
+   * Takes precedence over `slotProps.positioner.render`.
+   * @default 'div'
+   */
+  positioner?: React.ElementType | undefined;
+  /**
+   * The component used for the visual backdrop beneath the menu.
+   * It renders only when you set this slot or `slotProps.backdrop`. By default, it is transparent and lets clicks through.
+   * Takes precedence over `slotProps.backdrop.render`.
+   * Set to `null` to remove it. This removes only the visual layer: a modal menu still blocks outside clicks.
+   * @default 'div'
+   */
+  backdrop?: React.ElementType | null | undefined;
+  /**
+   * The component used for the menu surface. The popup renders as this element.
+   * @default Paper
+   */
+  root?: React.ElementType | undefined;
+  /**
+   * The component used for the presentational list wrapper.
+   * Takes precedence over `slotProps.list.render`.
+   * @default List
+   */
+  list?: React.ElementType | undefined;
+}
+
+type WithSx = { sx?: SxProps<Theme> | undefined };
+
+// Menu2 has no dense mode.
+export type Menu2ListProps = Omit<ListProps, 'dense'> & { dense?: never | undefined };
+
+// These slots take `render` instead of `component`.
+type Menu2RenderSlotProps<Props, State> = Omit<ExternalSlotProps<Props>, 'render'> & {
+  /**
+   * The element to render, or a function that returns it. The slot styles stay.
+   */
+  render?: Menu2SlotRender<State> | undefined;
+};
+
+export interface Menu2PopupSharedSlotProps<OwnerState> {
+  /**
+   * Props for the transition component. Use onOpenChangeComplete for completion.
+   * Base UI owns the open state and mounting lifecycle.
+   */
+  transition?:
+    | SlotProps<
+        Omit<
+          Partial<GrowProps>,
+          'children' | 'in' | 'appear' | 'mountOnEnter' | 'unmountOnExit' | 'onEntered' | 'onExited'
+        >,
+        OwnerState
+      >
+    | undefined;
+  portal?:
+    | SlotProps<
+        Menu2RenderSlotProps<React.ComponentPropsWithRef<'div'>, BaseMenu.Portal.State> & WithSx,
+        OwnerState
+      >
+    | undefined;
+  positioner?:
+    | SlotProps<
+        Menu2RenderSlotProps<BaseMenu.Positioner.Props, BaseMenu.Positioner.State> & WithSx,
+        OwnerState
+      >
+    | undefined;
+  backdrop?:
+    | SlotProps<
+        Menu2RenderSlotProps<BaseMenu.Backdrop.Props, BaseMenu.Backdrop.State> & WithSx,
+        OwnerState
+      >
+    | undefined;
+  root?: SlotProps<ExternalSlotProps<Omit<PaperProps, 'component'>>, OwnerState> | undefined;
+  list?:
+    | SlotProps<
+        Menu2RenderSlotProps<Omit<Menu2ListProps, 'component'>, BaseMenu.List.State>,
+        OwnerState
+      >
+    | undefined;
+}
+
+type Menu2PositionerProps = BaseMenu.Positioner.Props;
+
+type Menu2PortalProps = BaseMenu.Portal.Props;
+
+export type Menu2PopupSide = NonNullable<Menu2PositionerProps['side']>;
+
+export type Menu2PopupAlign = NonNullable<Menu2PositionerProps['align']>;
+
+/**
+ * These positioning and portal props use Base UI types.
+ * Pick limits the public API to the listed props.
+ * Material UI additions and different defaults are declared below.
+ */
+export interface Menu2PopupPublicProps
+  extends
+    Pick<
+      Menu2PositionerProps,
+      | 'anchor'
+      | 'positionMethod'
+      | 'sideOffset'
+      | 'alignOffset'
+      | 'collisionBoundary'
+      | 'collisionPadding'
+      | 'sticky'
+      | 'disableAnchorTracking'
+      | 'collisionAvoidance'
+    >,
+    Pick<Menu2PortalProps, 'container' | 'keepMounted'>,
+    Pick<BaseMenu.Popup.Props, 'finalFocus'> {
+  /**
+   * The transition duration in milliseconds, or separate enter and exit durations.
+   * Set to 'auto' for height-dependent Grow timing, or 0 to disable the transition.
+   * Ignored when slots.transition is null.
+   * @default 'auto'
+   */
+  transitionDuration?: GrowProps['timeout'] | undefined;
+  /**
+   * The menu items.
+   */
+  children?: React.ReactNode;
+  /**
+   * CSS class applied to the root element.
+   */
+  className?: string | undefined;
+  /**
+   * Inline styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+  /**
+   * Which side of the anchor element to align the popup against.
+   * @default 'bottom'
+   */
+  side?: Menu2PopupSide | undefined;
+  /**
+   * How to align the popup relative to the specified side.
+   * Defaults to `start` to match the classic Menu (Base UI defaults to `center`).
+   * @default 'start'
+   */
+  align?: Menu2PopupAlign | undefined;
+  /**
+   * The elevation of the menu surface.
+   * @default 8
+   */
+  elevation?: number | undefined;
+  /**
+   * The element to render for the menu surface, or a function that returns it.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, BaseMenu.Popup.State>
+    | undefined;
+}
+
+export interface Menu2PopupSharedProps<OwnerState>
+  extends
+    Omit<BaseMenu.Popup.Props, 'children' | 'className' | 'render' | 'style' | 'finalFocus'>,
+    Menu2PopupPublicProps {
+  classes?:
+    Partial<Record<'root' | 'portal' | 'positioner' | 'backdrop' | 'list', string>> | undefined;
+  ownerState: OwnerState;
+  modal?: boolean | undefined;
+  onClosingChange?: ((closing: boolean) => void) | undefined;
+  slots?: Menu2PopupSharedSlots | undefined;
+  slotProps?: Menu2PopupSharedSlotProps<OwnerState> | undefined;
+  defaultSlots: {
+    root: React.ElementType;
+    portal: React.ElementType;
+    positioner: React.ElementType;
+    list: React.ElementType;
+    backdrop?: React.ElementType | undefined;
+  };
+  defaultPositionerProps?: Partial<BaseMenu.Positioner.Props> | undefined;
+  sx?: SxProps<Theme> | undefined;
+}

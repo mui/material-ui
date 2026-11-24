@@ -27,6 +27,92 @@ import {
 import type { Menu2PopupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2PopupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
+const useUtilityClasses = (ownerState: Pick<Menu2PopupOwnerState, 'classes'>) => {
+  const { classes } = ownerState;
+
+  const slots = {
+    root: ['root'],
+    portal: ['portal'],
+    positioner: ['positioner'],
+    backdrop: ['backdrop'],
+    list: ['list'],
+  };
+
+  return composeClasses(slots, getMenu2PopupUtilityClass, classes);
+};
+
+const Menu2PopupBackdrop = styled('div', {
+  name: 'MuiMenu2Popup',
+  slot: 'backdrop',
+})({
+  position: 'fixed',
+  inset: 0,
+  // The portal controls page stacking. The positioner sits above this layer.
+  zIndex: 0,
+  // Transparent and click-through. A modal menu blocks clicks with a separate internal layer.
+  backgroundColor: 'transparent',
+  pointerEvents: 'none',
+  WebkitTapHighlightColor: 'transparent',
+}) as any;
+
+/**
+ *
+ * Demos:
+ *
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2Popup API](https://next.mui.com/material-ui/api/menu-2-popup/)
+ */
+const Menu2Popup = React.forwardRef(function Menu2Popup(
+  inProps: Menu2PopupProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenu2Popup' });
+  const { children, ...other } = props;
+  const modal = React.useContext(Menu2ModalContext);
+  const customFinalFocusRef = React.useContext(Menu2FinalFocusContext);
+  // A custom `finalFocus` stops the root from focusing the trigger on an item press.
+  // `true` keeps the default target.
+  const customFinalFocus = props.finalFocus !== undefined && props.finalFocus !== true;
+  useEnhancedEffect(() => {
+    if (customFinalFocusRef) {
+      customFinalFocusRef.current = customFinalFocus;
+    }
+  }, [customFinalFocusRef, customFinalFocus]);
+
+  const ownerState: Menu2PopupOwnerState = {
+    side: 'bottom',
+    align: 'start',
+    ...props,
+  };
+  const classes = useUtilityClasses(ownerState);
+
+  return (
+    <Menu2PopupBase
+      ref={ref}
+      {...other}
+      ownerState={ownerState}
+      modal={modal}
+      classes={classes}
+      defaultSlots={{
+        root: Menu2RootBase,
+        portal: Menu2PortalBase,
+        positioner: Menu2PositionerBase,
+        list: Menu2ListBase,
+        backdrop: Menu2PopupBackdrop,
+      }}
+      defaultPositionerProps={{
+        side: 'bottom',
+        align: 'start',
+      }}
+    >
+      {children}
+    </Menu2PopupBase>
+  );
+});
+
 export type Menu2PopupState = BaseMenu.Popup.State;
 
 export type Menu2PopupListState = BaseMenu.List.State;
@@ -208,92 +294,6 @@ export interface Menu2PopupSlots {
 }
 
 export interface Menu2PopupSlotProps extends Menu2PopupSharedSlotProps<Menu2PopupOwnerState> {}
-
-const useUtilityClasses = (ownerState: Pick<Menu2PopupOwnerState, 'classes'>) => {
-  const { classes } = ownerState;
-
-  const slots = {
-    root: ['root'],
-    portal: ['portal'],
-    positioner: ['positioner'],
-    backdrop: ['backdrop'],
-    list: ['list'],
-  };
-
-  return composeClasses(slots, getMenu2PopupUtilityClass, classes);
-};
-
-const Menu2PopupBackdrop = styled('div', {
-  name: 'MuiMenu2Popup',
-  slot: 'backdrop',
-})({
-  position: 'fixed',
-  inset: 0,
-  // The portal controls page stacking. The positioner sits above this layer.
-  zIndex: 0,
-  // Transparent and click-through. A modal menu blocks clicks with a separate internal layer.
-  backgroundColor: 'transparent',
-  pointerEvents: 'none',
-  WebkitTapHighlightColor: 'transparent',
-}) as any;
-
-/**
- *
- * Demos:
- *
- * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
- *
- * API:
- *
- * - [Menu2Popup API](https://next.mui.com/material-ui/api/menu-2-popup/)
- */
-const Menu2Popup = React.forwardRef(function Menu2Popup(
-  inProps: Menu2PopupProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  const props = useDefaultProps({ props: inProps, name: 'MuiMenu2Popup' });
-  const { children, ...other } = props;
-  const modal = React.useContext(Menu2ModalContext);
-  const customFinalFocusRef = React.useContext(Menu2FinalFocusContext);
-  // A custom `finalFocus` stops the root from focusing the trigger on an item press.
-  // `true` keeps the default target.
-  const customFinalFocus = props.finalFocus !== undefined && props.finalFocus !== true;
-  useEnhancedEffect(() => {
-    if (customFinalFocusRef) {
-      customFinalFocusRef.current = customFinalFocus;
-    }
-  }, [customFinalFocusRef, customFinalFocus]);
-
-  const ownerState: Menu2PopupOwnerState = {
-    side: 'bottom',
-    align: 'start',
-    ...props,
-  };
-  const classes = useUtilityClasses(ownerState);
-
-  return (
-    <Menu2PopupBase
-      ref={ref}
-      {...other}
-      ownerState={ownerState}
-      modal={modal}
-      classes={classes}
-      defaultSlots={{
-        root: Menu2RootBase,
-        portal: Menu2PortalBase,
-        positioner: Menu2PositionerBase,
-        list: Menu2ListBase,
-        backdrop: Menu2PopupBackdrop,
-      }}
-      defaultPositionerProps={{
-        side: 'bottom',
-        align: 'start',
-      }}
-    >
-      {children}
-    </Menu2PopupBase>
-  );
-});
 
 Menu2Popup.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

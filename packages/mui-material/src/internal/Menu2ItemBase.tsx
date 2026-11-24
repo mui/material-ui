@@ -8,11 +8,6 @@ import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import type { Menu2ItemBaseOwnerState } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2ItemOwnerState } from '../Unstable_Menu2Item/Menu2Item';
 
-type Menu2ItemStyleOwnerState = Pick<
-  Menu2ItemBaseOwnerState,
-  'divider' | 'disableGutters' | 'inset'
->;
-
 export function menu2ItemOverridesResolver(
   props: { ownerState: Menu2ItemStyleOwnerState },
   styles: Record<string, CSSInterpolation>,
@@ -102,5 +97,10 @@ const Menu2ItemBase = styled(Menu2ItemBaseRoot, {
   slot: 'root',
   overridesResolver: menu2ItemOverridesResolver,
 })<{ ownerState: Menu2ItemOwnerState }>({});
+
+type Menu2ItemStyleOwnerState = Pick<
+  Menu2ItemBaseOwnerState,
+  'divider' | 'disableGutters' | 'inset'
+>;
 
 export default Menu2ItemBase;

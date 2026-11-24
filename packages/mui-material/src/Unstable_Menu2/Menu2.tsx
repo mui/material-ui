@@ -13,48 +13,6 @@ import Menu2ModalContext from './Menu2ModalContext';
 import Menu2FinalFocusContext from './Menu2FinalFocusContext';
 
 /**
- * Controls a menu without rendering an element.
- * Place `Menu2Trigger` and `Menu2Popup` inside this component.
- */
-export interface Menu2Props extends Pick<
-  BaseMenu.Root.Props,
-  'defaultOpen' | 'disabled' | 'highlightItemOnHover' | 'loopFocus' | 'open'
-> {
-  /**
-   * A ref to imperative actions.
-   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
-   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
-   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2Popup`.
-   * - `close`: Closes the menu imperatively when called.
-   */
-  actionsRef?: BaseMenu.Root.Props['actionsRef'] | undefined;
-  /**
-   * The menu trigger and popup.
-   */
-  children?: React.ReactNode;
-  /**
-   * Determines if the menu enters a modal state when open.
-   * - `true`: the page scroll is locked, and an internal popup layer blocks pointer interactions outside the menu.
-   * - `false`: user interaction with the rest of the document is allowed.
-   *
-   * Nested menus ignore this prop, and menus opened by hover are never modal.
-   * @default true
-   */
-  modal?: boolean | undefined;
-  /**
-   * Event handler called when the menu is opened or closed.
-   * @param {boolean} open The new open state.
-   * @param {object} eventDetails The reason for the change and the native event.
-   */
-  onOpenChange?: BaseMenu.Root.Props['onOpenChange'] | undefined;
-  /**
-   * Event handler called after the opening or closing animation completes.
-   * @param {boolean} open Whether the menu is open.
-   */
-  onOpenChangeComplete?: BaseMenu.Root.Props['onOpenChangeComplete'] | undefined;
-}
-
-/**
  * Controls a menu without rendering a DOM element.
  * Use `MuiMenu2.defaultProps` to set behavior defaults in the theme.
  *
@@ -139,6 +97,48 @@ function Menu2(inProps: Menu2Props) {
       </BaseMenu.Root>
     </DirectionProvider>
   );
+}
+
+/**
+ * Controls a menu without rendering an element.
+ * Place `Menu2Trigger` and `Menu2Popup` inside this component.
+ */
+export interface Menu2Props extends Pick<
+  BaseMenu.Root.Props,
+  'defaultOpen' | 'disabled' | 'highlightItemOnHover' | 'loopFocus' | 'open'
+> {
+  /**
+   * A ref to imperative actions.
+   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
+   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
+   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2Popup`.
+   * - `close`: Closes the menu imperatively when called.
+   */
+  actionsRef?: BaseMenu.Root.Props['actionsRef'] | undefined;
+  /**
+   * The menu trigger and popup.
+   */
+  children?: React.ReactNode;
+  /**
+   * Determines if the menu enters a modal state when open.
+   * - `true`: the page scroll is locked, and an internal popup layer blocks pointer interactions outside the menu.
+   * - `false`: user interaction with the rest of the document is allowed.
+   *
+   * Nested menus ignore this prop, and menus opened by hover are never modal.
+   * @default true
+   */
+  modal?: boolean | undefined;
+  /**
+   * Event handler called when the menu is opened or closed.
+   * @param {boolean} open The new open state.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onOpenChange?: BaseMenu.Root.Props['onOpenChange'] | undefined;
+  /**
+   * Event handler called after the opening or closing animation completes.
+   * @param {boolean} open Whether the menu is open.
+   */
+  onOpenChangeComplete?: BaseMenu.Root.Props['onOpenChangeComplete'] | undefined;
 }
 
 Menu2.propTypes /* remove-proptypes */ = {

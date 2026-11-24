@@ -15,61 +15,6 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2GroupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2GroupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
-export type Menu2GroupState = BaseMenu.Group.State;
-
-export interface Menu2GroupOwnerState extends BaseMenu.Group.State {}
-
-export interface Menu2GroupSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2GroupRoot
-   */
-  root?: React.ElementType | undefined;
-}
-
-export interface Menu2GroupSlotProps {
-  root?: Menu2RootSlotProps<Menu2GroupOwnerState>['root'] | undefined;
-}
-
-export interface Menu2GroupProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
-  /**
-   * The content of the group.
-   */
-  children?: React.ReactNode;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<Menu2GroupClasses> | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to preserve Material styles and the group label.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupState> | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: Menu2GroupSlotProps | undefined;
-  /**
-   * The components used for each slot inside.
-   */
-  slots?: Menu2GroupSlots | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme> | undefined;
-}
-
 const useUtilityClasses = (ownerState: Menu2GroupProps) => {
   const { classes } = ownerState;
 
@@ -142,6 +87,61 @@ const Menu2Group = React.forwardRef(function Menu2Group(
     />
   );
 });
+
+export type Menu2GroupState = BaseMenu.Group.State;
+
+export interface Menu2GroupOwnerState extends BaseMenu.Group.State {}
+
+export interface Menu2GroupSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2GroupRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2GroupSlotProps {
+  root?: Menu2RootSlotProps<Menu2GroupOwnerState>['root'] | undefined;
+}
+
+export interface Menu2GroupProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
+  /**
+   * The content of the group.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<Menu2GroupClasses> | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles and the group label.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2GroupState> | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2GroupSlotProps | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2GroupSlots | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
 
 Menu2Group.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

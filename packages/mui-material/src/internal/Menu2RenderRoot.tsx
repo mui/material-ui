@@ -3,11 +3,6 @@ import * as React from 'react';
 import { useRender } from '@base-ui/react/use-render';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 
-interface Menu2RenderRootProps<OwnerState extends object> extends HTMLProps {
-  internalRender: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, OwnerState>;
-  internalRenderState: OwnerState;
-}
-
 /**
  * @ignore - internal component.
  */
@@ -27,5 +22,10 @@ const Menu2RenderRoot = React.forwardRef(function Menu2RenderRoot<OwnerState ext
     ref,
   });
 });
+
+interface Menu2RenderRootProps<OwnerState extends object> extends HTMLProps {
+  internalRender: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, OwnerState>;
+  internalRenderState: OwnerState;
+}
 
 export default Menu2RenderRoot;

@@ -15,82 +15,6 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RadioGroupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2RadioGroupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
-export type Menu2RadioGroupState = BaseMenu.RadioGroup.State;
-
-export interface Menu2RadioGroupOwnerState extends BaseMenu.RadioGroup.State {}
-
-export interface Menu2RadioGroupSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2RadioGroupRoot
-   */
-  root?: React.ElementType | undefined;
-}
-
-export interface Menu2RadioGroupSlotProps {
-  root?: Menu2RootSlotProps<Menu2RadioGroupOwnerState>['root'] | undefined;
-}
-
-export interface Menu2RadioGroupProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<Menu2RadioGroupClasses> | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * The controlled value of the radio item that should be currently selected.
-   */
-  value?: any;
-  /**
-   * The uncontrolled value of the radio item that should be initially selected.
-   */
-  defaultValue?: any;
-  /**
-   * Function called when the selected value changes.
-   * @param {any} value The new value.
-   * @param {object} eventDetails The reason for the change and the native event.
-   */
-  onValueChange?: BaseMenu.RadioGroup.Props['onValueChange'] | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to preserve Material styles, the group label, and radio items.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioGroupState>
-    | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: Menu2RadioGroupSlotProps | undefined;
-  /**
-   * The components used for each slot inside.
-   */
-  slots?: Menu2RadioGroupSlots | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme> | undefined;
-}
-
 const useUtilityClasses = (ownerState: Menu2RadioGroupProps) => {
   const { classes } = ownerState;
 
@@ -169,6 +93,82 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
     />
   );
 });
+
+export type Menu2RadioGroupState = BaseMenu.RadioGroup.State;
+
+export interface Menu2RadioGroupOwnerState extends BaseMenu.RadioGroup.State {}
+
+export interface Menu2RadioGroupSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2RadioGroupRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2RadioGroupSlotProps {
+  root?: Menu2RootSlotProps<Menu2RadioGroupOwnerState>['root'] | undefined;
+}
+
+export interface Menu2RadioGroupProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<Menu2RadioGroupClasses> | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * The controlled value of the radio item that should be currently selected.
+   */
+  value?: any;
+  /**
+   * The uncontrolled value of the radio item that should be initially selected.
+   */
+  defaultValue?: any;
+  /**
+   * Function called when the selected value changes.
+   * @param {any} value The new value.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onValueChange?: BaseMenu.RadioGroup.Props['onValueChange'] | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles, the group label, and radio items.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioGroupState>
+    | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2RadioGroupSlotProps | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2RadioGroupSlots | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
 
 Menu2RadioGroup.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

@@ -26,79 +26,6 @@ import {
   Menu2ItemStartAdornment,
 } from '../Unstable_Menu2/Menu2ItemAdornment';
 
-export type Menu2ItemState = BaseMenu.Item.State;
-
-export interface Menu2ItemOwnerState extends Menu2ItemBaseOwnerState {
-  /** Whether Base UI currently highlights the item. */
-  highlighted: boolean;
-}
-
-export interface Menu2ItemSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2ItemRoot
-   */
-  root?: React.ElementType | undefined;
-}
-
-export interface Menu2ItemSlotProps {
-  root?: Menu2RootSlotProps<Menu2ItemOwnerState>['root'] | undefined;
-}
-
-export interface Menu2ItemProps
-  extends
-    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
-    Menu2ItemBaseProps,
-    Menu2ItemVisualProps<Menu2ItemClasses, Menu2ItemSlots, Menu2ItemSlotProps> {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * Overrides the text label to use when the item is matched during keyboard text navigation.
-   */
-  label?: string | undefined;
-  /**
-   * Whether to close the menu when the item is clicked.
-   * @default true
-   */
-  closeOnClick?: boolean | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * If `true`, the ripple effect is disabled.
-   * @default false
-   */
-  disableRipple?: boolean | undefined;
-  /**
-   * Whether the item renders a native `<button>` element.
-   * Inferred from `slots.root="button"` or a button element passed to `render`.
-   * Set to `true` for a custom component or render function that returns a button.
-   * @default false
-   */
-  nativeButton?: boolean | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to the element to preserve Material styles and ripple.
-   * Put content in the children prop of Menu2Item. Replacing the supplied children can remove the ripple.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2ItemState> | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-}
-
 /**
  *
  * Demos:
@@ -189,6 +116,79 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     />
   );
 });
+
+export type Menu2ItemState = BaseMenu.Item.State;
+
+export interface Menu2ItemOwnerState extends Menu2ItemBaseOwnerState {
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
+export interface Menu2ItemSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2ItemRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2ItemSlotProps {
+  root?: Menu2RootSlotProps<Menu2ItemOwnerState>['root'] | undefined;
+}
+
+export interface Menu2ItemProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
+    Menu2ItemBaseProps,
+    Menu2ItemVisualProps<Menu2ItemClasses, Menu2ItemSlots, Menu2ItemSlotProps> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default true
+   */
+  closeOnClick?: boolean | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
+   * Whether the item renders a native `<button>` element.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
+   * Set to `true` for a custom component or render function that returns a button.
+   * @default false
+   */
+  nativeButton?: boolean | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to the element to preserve Material styles and ripple.
+   * Put content in the children prop of Menu2Item. Replacing the supplied children can remove the ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2ItemState> | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+}
 
 Menu2Item.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

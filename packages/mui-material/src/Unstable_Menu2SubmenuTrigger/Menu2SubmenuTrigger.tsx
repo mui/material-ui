@@ -26,6 +26,106 @@ import type { Menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes'
 import { getMenu2SubmenuTriggerUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import type { Menu2RootSlotProps, Menu2SlotRender } from '../Unstable_Menu2/menu2Utils';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2SubmenuTrigger API](https://next.mui.com/material-ui/api/menu-2-submenu-trigger/)
+ */
+const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
+  inProps: Menu2SubmenuTriggerProps,
+  ref: React.ForwardedRef<HTMLElement>,
+) {
+  const props = useDefaultProps({
+    props: inProps,
+    name: 'MuiMenu2SubmenuTrigger',
+  });
+
+  const {
+    className,
+    classes: classesProp,
+    disabled = false,
+    disableGutters = false,
+    disableRipple,
+    divider = false,
+    endAdornment,
+    inset = false,
+    nativeButton: nativeButtonProp,
+    render: renderProp,
+    slotProps,
+    slots,
+    startAdornment,
+    sx,
+    style,
+    ...other
+  } = props;
+  const ownerState = {
+    ...props,
+    ...getMenu2ItemOwnerState({ disabled, disableGutters, divider, inset }),
+    classes: classesProp,
+  };
+  const classes = useMenu2ItemUtilityClasses<Menu2SubmenuTriggerClasses>(
+    ownerState,
+    getMenu2SubmenuTriggerUtilityClass,
+  );
+  const nativeButton =
+    nativeButtonProp ??
+    (slots?.root
+      ? slots.root === 'button'
+      : React.isValidElement(renderProp) && renderProp.type === 'button');
+  const { closing, retainClosingTint } = React.useContext(Menu2SubmenuClosingContext);
+
+  return (
+    <BaseMenu.SubmenuTrigger
+      ref={ref}
+      render={(renderProps, state) => {
+        const itemOwnerState = { ...ownerState, ...state };
+        return (
+          <Menu2SubmenuTriggerRootSlot
+            baseProps={{
+              ...renderProps,
+              // Private styling marker; keep exit timing out of the public owner state.
+              'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
+            }}
+            ownerState={itemOwnerState}
+            renderState={state}
+            disableRipple={disableRipple}
+            nativeButton={nativeButton}
+            render={renderProp}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+            {...getMenu2ItemAdornments({
+              classes,
+              endAdornment,
+              EndAdornment: Menu2SubmenuTriggerEndAdornment,
+              inset,
+              ownerState: itemOwnerState,
+              startAdornment,
+              StartAdornment: Menu2SubmenuTriggerStartAdornment,
+            })}
+          />
+        );
+      }}
+      className={(state) =>
+        clsx(
+          className,
+          getMenu2ItemClassName(classes, ownerState, state),
+          state.open && classes.open,
+        )
+      }
+      disabled={disabled}
+      nativeButton={nativeButton}
+      style={style}
+      {...other}
+    />
+  );
+});
+
 export interface Menu2SubmenuTriggerSlots {
   /**
    * The component that renders the root.
@@ -140,106 +240,6 @@ export interface Menu2SubmenuTriggerProps
     | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SubmenuTriggerState>
     | undefined;
 }
-
-/**
- *
- * Demos:
- *
- * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
- *
- * API:
- *
- * - [Menu2SubmenuTrigger API](https://next.mui.com/material-ui/api/menu-2-submenu-trigger/)
- */
-const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
-  inProps: Menu2SubmenuTriggerProps,
-  ref: React.ForwardedRef<HTMLElement>,
-) {
-  const props = useDefaultProps({
-    props: inProps,
-    name: 'MuiMenu2SubmenuTrigger',
-  });
-
-  const {
-    className,
-    classes: classesProp,
-    disabled = false,
-    disableGutters = false,
-    disableRipple,
-    divider = false,
-    endAdornment,
-    inset = false,
-    nativeButton: nativeButtonProp,
-    render: renderProp,
-    slotProps,
-    slots,
-    startAdornment,
-    sx,
-    style,
-    ...other
-  } = props;
-  const ownerState = {
-    ...props,
-    ...getMenu2ItemOwnerState({ disabled, disableGutters, divider, inset }),
-    classes: classesProp,
-  };
-  const classes = useMenu2ItemUtilityClasses<Menu2SubmenuTriggerClasses>(
-    ownerState,
-    getMenu2SubmenuTriggerUtilityClass,
-  );
-  const nativeButton =
-    nativeButtonProp ??
-    (slots?.root
-      ? slots.root === 'button'
-      : React.isValidElement(renderProp) && renderProp.type === 'button');
-  const { closing, retainClosingTint } = React.useContext(Menu2SubmenuClosingContext);
-
-  return (
-    <BaseMenu.SubmenuTrigger
-      ref={ref}
-      render={(renderProps, state) => {
-        const itemOwnerState = { ...ownerState, ...state };
-        return (
-          <Menu2SubmenuTriggerRootSlot
-            baseProps={{
-              ...renderProps,
-              // Private styling marker; keep exit timing out of the public owner state.
-              'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
-            }}
-            ownerState={itemOwnerState}
-            renderState={state}
-            disableRipple={disableRipple}
-            nativeButton={nativeButton}
-            render={renderProp}
-            slotProps={slotProps}
-            slots={slots}
-            sx={sx}
-            {...getMenu2ItemAdornments({
-              classes,
-              endAdornment,
-              EndAdornment: Menu2SubmenuTriggerEndAdornment,
-              inset,
-              ownerState: itemOwnerState,
-              startAdornment,
-              StartAdornment: Menu2SubmenuTriggerStartAdornment,
-            })}
-          />
-        );
-      }}
-      className={(state) =>
-        clsx(
-          className,
-          getMenu2ItemClassName(classes, ownerState, state),
-          state.open && classes.open,
-        )
-      }
-      disabled={disabled}
-      nativeButton={nativeButton}
-      style={style}
-      {...other}
-    />
-  );
-});
 
 Menu2SubmenuTrigger.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

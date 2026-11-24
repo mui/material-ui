@@ -37,107 +37,6 @@ import {
   menu2RadioItemIndicatorClasses,
 } from '../Unstable_Menu2/menu2Classes';
 
-export type Menu2RadioItemState = BaseMenu.RadioItem.State;
-
-export type Menu2RadioItemIndicatorState = BaseMenu.RadioItemIndicator.State;
-
-export interface Menu2RadioItemOwnerState extends Menu2ItemBaseOwnerState {
-  /** Whether the item is currently checked, including uncontrolled selection. */
-  checked: boolean;
-  /** Whether Base UI currently highlights the item. */
-  highlighted: boolean;
-}
-
-export interface Menu2RadioItemSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2RadioItemRoot
-   */
-  root?: React.ElementType | undefined;
-  /**
-   * The component that renders the check indicator.
-   * Takes precedence over `slotProps.indicator.render`.
-   * @default Menu2RadioItemIndicator
-   */
-  indicator?: React.ElementType | undefined;
-}
-
-export interface Menu2RadioItemSlotProps {
-  root?: Menu2RootSlotProps<Menu2RadioItemOwnerState>['root'] | undefined;
-  indicator?:
-    Menu2IndicatorSlotProps<Menu2RadioItemOwnerState, Menu2RadioItemIndicatorState> | undefined;
-}
-
-export interface Menu2RadioItemProps
-  extends
-    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
-    Menu2ItemBaseProps,
-    Menu2ItemVisualProps<Menu2RadioItemClasses, Menu2RadioItemSlots, Menu2RadioItemSlotProps> {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * The icon to display when the item is checked.
-   * @default <RadioButtonIcon checked fontSize="small" />
-   */
-  checkedIcon?: React.ReactNode;
-  /**
-   * The icon to display when the item is unchecked.
-   * @default <RadioButtonIcon fontSize="small" />
-   */
-  icon?: React.ReactNode;
-  /**
-   * Value of the radio item.
-   */
-  value: any;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * Overrides the text label to use when the item is matched during keyboard text navigation.
-   */
-  label?: string | undefined;
-  /**
-   * Whether to close the menu when the item is clicked.
-   * @default false
-   */
-  closeOnClick?: boolean | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * If `true`, the ripple effect is disabled.
-   * @default false
-   */
-  disableRipple?: boolean | undefined;
-  /**
-   * Whether the item renders a native `<button>` element.
-   * Inferred from `slots.root="button"` or a button element passed to `render`.
-   * Set to `true` for a custom component or render function that returns a button.
-   * @default false
-   */
-  nativeButton?: boolean | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
-   * Put content in the children prop of Menu2RadioItem. Replacing the supplied children can remove the indicator and ripple.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioItemState>
-    | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-}
-
 const Menu2RadioItemRoot = styled(Menu2ItemBase, {
   name: 'MuiMenu2RadioItem',
   slot: 'root',
@@ -407,6 +306,107 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     </BaseMenu.RadioItem>
   );
 });
+
+export type Menu2RadioItemState = BaseMenu.RadioItem.State;
+
+export type Menu2RadioItemIndicatorState = BaseMenu.RadioItemIndicator.State;
+
+export interface Menu2RadioItemOwnerState extends Menu2ItemBaseOwnerState {
+  /** Whether the item is currently checked, including uncontrolled selection. */
+  checked: boolean;
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
+export interface Menu2RadioItemSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2RadioItemRoot
+   */
+  root?: React.ElementType | undefined;
+  /**
+   * The component that renders the check indicator.
+   * Takes precedence over `slotProps.indicator.render`.
+   * @default Menu2RadioItemIndicator
+   */
+  indicator?: React.ElementType | undefined;
+}
+
+export interface Menu2RadioItemSlotProps {
+  root?: Menu2RootSlotProps<Menu2RadioItemOwnerState>['root'] | undefined;
+  indicator?:
+    Menu2IndicatorSlotProps<Menu2RadioItemOwnerState, Menu2RadioItemIndicatorState> | undefined;
+}
+
+export interface Menu2RadioItemProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
+    Menu2ItemBaseProps,
+    Menu2ItemVisualProps<Menu2RadioItemClasses, Menu2RadioItemSlots, Menu2RadioItemSlotProps> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * The icon to display when the item is checked.
+   * @default <RadioButtonIcon checked fontSize="small" />
+   */
+  checkedIcon?: React.ReactNode;
+  /**
+   * The icon to display when the item is unchecked.
+   * @default <RadioButtonIcon fontSize="small" />
+   */
+  icon?: React.ReactNode;
+  /**
+   * Value of the radio item.
+   */
+  value: any;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default false
+   */
+  closeOnClick?: boolean | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
+   * Whether the item renders a native `<button>` element.
+   * Inferred from `slots.root="button"` or a button element passed to `render`.
+   * Set to `true` for a custom component or render function that returns a button.
+   * @default false
+   */
+  nativeButton?: boolean | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles, the indicator, and ripple.
+   * Put content in the children prop of Menu2RadioItem. Replacing the supplied children can remove the indicator and ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2RadioItemState>
+    | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+}
 
 Menu2RadioItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

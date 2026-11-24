@@ -7,39 +7,6 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
-/**
- * Controls a submenu without rendering an element.
- * Place `Menu2SubmenuTrigger` and `Menu2SubmenuPopup` inside this component.
- */
-export interface Menu2SubmenuProps extends Pick<
-  BaseMenu.SubmenuRoot.Props,
-  'closeParentOnEsc' | 'defaultOpen' | 'highlightItemOnHover' | 'loopFocus' | 'open'
-> {
-  /**
-   * A ref to imperative actions.
-   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
-   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
-   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2SubmenuPopup`.
-   * - `close`: Closes the menu imperatively when called.
-   */
-  actionsRef?: BaseMenu.SubmenuRoot.Props['actionsRef'] | undefined;
-  /**
-   * The submenu trigger and popup.
-   */
-  children?: React.ReactNode;
-  /**
-   * Event handler called when the submenu is opened or closed.
-   * @param {boolean} open The new open state.
-   * @param {object} eventDetails The reason for the change and the native event.
-   */
-  onOpenChange?: BaseMenu.SubmenuRoot.Props['onOpenChange'] | undefined;
-  /**
-   * Event handler called after the opening or closing animation completes.
-   * @param {boolean} open Whether the submenu is open.
-   */
-  onOpenChangeComplete?: BaseMenu.SubmenuRoot.Props['onOpenChangeComplete'] | undefined;
-}
-
 // With these close reasons the pointer is on another row, so focus does not return.
 const pointerLeaveReasons = new Set<string>(['trigger-hover', 'sibling-open']);
 
@@ -107,6 +74,39 @@ function Menu2Submenu(inProps: Menu2SubmenuProps) {
       </Menu2SubmenuClosingContext.Provider>
     </BaseMenu.SubmenuRoot>
   );
+}
+
+/**
+ * Controls a submenu without rendering an element.
+ * Place `Menu2SubmenuTrigger` and `Menu2SubmenuPopup` inside this component.
+ */
+export interface Menu2SubmenuProps extends Pick<
+  BaseMenu.SubmenuRoot.Props,
+  'closeParentOnEsc' | 'defaultOpen' | 'highlightItemOnHover' | 'loopFocus' | 'open'
+> {
+  /**
+   * A ref to imperative actions.
+   * - `unmount`: Ends the closing phase of the menu after an externally controlled closing animation finishes.
+   *   Call `preventUnmountOnClose()` in `onOpenChange` first, otherwise the menu completes closing on its own.
+   *   Whether it leaves the DOM is decided by `keepMounted` on `Menu2SubmenuPopup`.
+   * - `close`: Closes the menu imperatively when called.
+   */
+  actionsRef?: BaseMenu.SubmenuRoot.Props['actionsRef'] | undefined;
+  /**
+   * The submenu trigger and popup.
+   */
+  children?: React.ReactNode;
+  /**
+   * Event handler called when the submenu is opened or closed.
+   * @param {boolean} open The new open state.
+   * @param {object} eventDetails The reason for the change and the native event.
+   */
+  onOpenChange?: BaseMenu.SubmenuRoot.Props['onOpenChange'] | undefined;
+  /**
+   * Event handler called after the opening or closing animation completes.
+   * @param {boolean} open Whether the submenu is open.
+   */
+  onOpenChangeComplete?: BaseMenu.SubmenuRoot.Props['onOpenChangeComplete'] | undefined;
 }
 
 Menu2Submenu.propTypes /* remove-proptypes */ = {

@@ -26,73 +26,6 @@ import type { Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2LinkItemUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 
-export type Menu2LinkItemState = BaseMenu.LinkItem.State;
-
-export interface Menu2LinkItemOwnerState extends Omit<Menu2ItemBaseOwnerState, 'disabled'> {
-  /** Whether Base UI currently highlights the item. */
-  highlighted: boolean;
-}
-
-export interface Menu2LinkItemSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2LinkItemRoot
-   */
-  root?: React.ElementType | undefined;
-}
-
-export interface Menu2LinkItemSlotProps {
-  root?: Menu2RootSlotProps<Menu2LinkItemOwnerState, 'a'>['root'] | undefined;
-}
-
-export interface Menu2LinkItemProps
-  extends
-    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'>,
-    Menu2LinkItemBaseProps,
-    Menu2ItemVisualProps<Menu2LinkItemClasses, Menu2LinkItemSlots, Menu2LinkItemSlotProps> {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * The URL that the link item points to.
-   */
-  href?: string | undefined;
-  /**
-   * Overrides the text label to use when the item is matched during keyboard text navigation.
-   */
-  label?: string | undefined;
-  /**
-   * Whether to close the menu when the item is clicked.
-   * @default false
-   */
-  closeOnClick?: boolean | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * If `true`, the ripple effect is disabled.
-   * @default false
-   */
-  disableRipple?: boolean | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to an anchor element to preserve link behavior, Material styles, and ripple.
-   * Put content in the children prop of Menu2LinkItem. Replacing the supplied children can remove the ripple.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<React.ComponentPropsWithRef<'a'>, 'color'>, Menu2LinkItemState>
-    | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-}
-
 const Menu2LinkItemRoot = styled(Menu2ItemBase, {
   name: 'MuiMenu2LinkItem',
   slot: 'root',
@@ -193,6 +126,73 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     />
   );
 });
+
+export type Menu2LinkItemState = BaseMenu.LinkItem.State;
+
+export interface Menu2LinkItemOwnerState extends Omit<Menu2ItemBaseOwnerState, 'disabled'> {
+  /** Whether Base UI currently highlights the item. */
+  highlighted: boolean;
+}
+
+export interface Menu2LinkItemSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2LinkItemRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2LinkItemSlotProps {
+  root?: Menu2RootSlotProps<Menu2LinkItemOwnerState, 'a'>['root'] | undefined;
+}
+
+export interface Menu2LinkItemProps
+  extends
+    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'>,
+    Menu2LinkItemBaseProps,
+    Menu2ItemVisualProps<Menu2LinkItemClasses, Menu2LinkItemSlots, Menu2LinkItemSlotProps> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * The URL that the link item points to.
+   */
+  href?: string | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default false
+   */
+  closeOnClick?: boolean | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to an anchor element to preserve link behavior, Material styles, and ripple.
+   * Put content in the children prop of Menu2LinkItem. Replacing the supplied children can remove the ripple.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<React.ComponentPropsWithRef<'a'>, 'color'>, Menu2LinkItemState>
+    | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+}
 
 Menu2LinkItem.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

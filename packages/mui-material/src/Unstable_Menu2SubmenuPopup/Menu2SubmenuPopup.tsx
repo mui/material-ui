@@ -25,6 +25,92 @@ import type { Menu2SubmenuPopupClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SubmenuPopupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 
+const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
+  const { classes } = ownerState;
+
+  const slots = {
+    root: ['root'],
+    portal: ['portal'],
+    positioner: ['positioner'],
+    list: ['list'],
+  };
+
+  return composeClasses(slots, getMenu2SubmenuPopupUtilityClass, classes);
+};
+
+const Menu2SubmenuPopupRoot = styled(Menu2RootBase, {
+  name: 'MuiMenu2SubmenuPopup',
+  slot: 'root',
+})({});
+
+const Menu2SubmenuPopupPositioner = styled(Menu2PositionerBase, {
+  name: 'MuiMenu2SubmenuPopup',
+  slot: 'positioner',
+})({});
+
+const Menu2SubmenuPopupPortal = styled(Menu2PortalBase, {
+  name: 'MuiMenu2SubmenuPopup',
+  slot: 'portal',
+})({});
+
+const Menu2SubmenuPopupList = styled(Menu2ListBase, {
+  name: 'MuiMenu2SubmenuPopup',
+  slot: 'list',
+})({});
+
+/**
+ *
+ * Demos:
+ *
+ * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
+ *
+ * API:
+ *
+ * - [Menu2SubmenuPopup API](https://next.mui.com/material-ui/api/menu-2-submenu-popup/)
+ */
+const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
+  inProps: Menu2SubmenuPopupProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiMenu2SubmenuPopup' });
+  const { children, ...other } = props;
+  const { onClosingChange } = React.useContext(Menu2SubmenuClosingContext);
+
+  const ownerState: Menu2SubmenuPopupOwnerState = {
+    side: 'inline-end',
+    align: 'start',
+    ...props,
+  };
+  const classes = useUtilityClasses(ownerState);
+
+  return (
+    <Menu2PopupBase
+      ref={ref}
+      {...other}
+      ownerState={ownerState}
+      onClosingChange={onClosingChange}
+      classes={classes}
+      defaultSlots={{
+        root: Menu2SubmenuPopupRoot,
+        portal: Menu2SubmenuPopupPortal,
+        positioner: Menu2SubmenuPopupPositioner,
+        list: Menu2SubmenuPopupList,
+      }}
+      defaultPositionerProps={{
+        side: 'inline-end',
+        align: 'start',
+        // A submenu overlaps its parent by a small amount, the way Base UI
+        // positions one. `alignOffset` cancels the list's 8px top padding, so
+        // the first item lines up with the trigger row.
+        sideOffset: -4,
+        alignOffset: -8,
+      }}
+    >
+      {children}
+    </Menu2PopupBase>
+  );
+});
+
 export type Menu2SubmenuPopupState = BaseMenu.Popup.State;
 
 export type Menu2SubmenuPopupListState = BaseMenu.List.State;
@@ -201,92 +287,6 @@ export interface Menu2SubmenuPopupSlotProps extends Omit<
   Menu2PopupSharedSlotProps<Menu2SubmenuPopupOwnerState>,
   'backdrop'
 > {}
-
-const useUtilityClasses = (ownerState: Menu2SubmenuPopupOwnerState) => {
-  const { classes } = ownerState;
-
-  const slots = {
-    root: ['root'],
-    portal: ['portal'],
-    positioner: ['positioner'],
-    list: ['list'],
-  };
-
-  return composeClasses(slots, getMenu2SubmenuPopupUtilityClass, classes);
-};
-
-const Menu2SubmenuPopupRoot = styled(Menu2RootBase, {
-  name: 'MuiMenu2SubmenuPopup',
-  slot: 'root',
-})({});
-
-const Menu2SubmenuPopupPositioner = styled(Menu2PositionerBase, {
-  name: 'MuiMenu2SubmenuPopup',
-  slot: 'positioner',
-})({});
-
-const Menu2SubmenuPopupPortal = styled(Menu2PortalBase, {
-  name: 'MuiMenu2SubmenuPopup',
-  slot: 'portal',
-})({});
-
-const Menu2SubmenuPopupList = styled(Menu2ListBase, {
-  name: 'MuiMenu2SubmenuPopup',
-  slot: 'list',
-})({});
-
-/**
- *
- * Demos:
- *
- * - [Menu v2](https://next.mui.com/material-ui/react-menu2/)
- *
- * API:
- *
- * - [Menu2SubmenuPopup API](https://next.mui.com/material-ui/api/menu-2-submenu-popup/)
- */
-const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
-  inProps: Menu2SubmenuPopupProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  const props = useDefaultProps({ props: inProps, name: 'MuiMenu2SubmenuPopup' });
-  const { children, ...other } = props;
-  const { onClosingChange } = React.useContext(Menu2SubmenuClosingContext);
-
-  const ownerState: Menu2SubmenuPopupOwnerState = {
-    side: 'inline-end',
-    align: 'start',
-    ...props,
-  };
-  const classes = useUtilityClasses(ownerState);
-
-  return (
-    <Menu2PopupBase
-      ref={ref}
-      {...other}
-      ownerState={ownerState}
-      onClosingChange={onClosingChange}
-      classes={classes}
-      defaultSlots={{
-        root: Menu2SubmenuPopupRoot,
-        portal: Menu2SubmenuPopupPortal,
-        positioner: Menu2SubmenuPopupPositioner,
-        list: Menu2SubmenuPopupList,
-      }}
-      defaultPositionerProps={{
-        side: 'inline-end',
-        align: 'start',
-        // A submenu overlaps its parent by a small amount, the way Base UI
-        // positions one. `alignOffset` cancels the list's 8px top padding, so
-        // the first item lines up with the trigger row.
-        sideOffset: -4,
-        alignOffset: -8,
-      }}
-    >
-      {children}
-    </Menu2PopupBase>
-  );
-});
 
 Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

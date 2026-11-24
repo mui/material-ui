@@ -15,30 +15,6 @@ import {
 
 export type { Menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
 
-export type Menu2TriggerState = BaseMenu.Trigger.State;
-
-export interface Menu2TriggerProps
-  extends
-    Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'color'>,
-    Pick<BaseMenu.Trigger.Props, 'disabled' | 'openOnHover' | 'delay' | 'closeDelay'> {
-  /**
-   * The content of the trigger.
-   */
-  children?: React.ReactNode;
-  /**
-   * Whether the trigger renders a native `<button>` element.
-   * Set to `false` when the trigger renders a different element.
-   * @default true
-   */
-  nativeButton?: BaseMenu.Trigger.Props['nativeButton'] | undefined;
-  /**
-   * The element that opens the menu, or a function that returns it.
-   * Forward the props and ref to the element.
-   * Set visual props, such as `color`, `sx`, and `variant`, on this element.
-   */
-  render: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2TriggerState>;
-}
-
 /**
  *
  * Demos:
@@ -90,6 +66,30 @@ const Menu2Trigger = React.forwardRef(function Menu2Trigger(
     />
   );
 });
+
+export type Menu2TriggerState = BaseMenu.Trigger.State;
+
+export interface Menu2TriggerProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'color'>,
+    Pick<BaseMenu.Trigger.Props, 'disabled' | 'openOnHover' | 'delay' | 'closeDelay'> {
+  /**
+   * The content of the trigger.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the trigger renders a native `<button>` element.
+   * Set to `false` when the trigger renders a different element.
+   * @default true
+   */
+  nativeButton?: BaseMenu.Trigger.Props['nativeButton'] | undefined;
+  /**
+   * The element that opens the menu, or a function that returns it.
+   * Forward the props and ref to the element.
+   * Set visual props, such as `color`, `sx`, and `variant`, on this element.
+   */
+  render: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2TriggerState>;
+}
 
 Menu2Trigger.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

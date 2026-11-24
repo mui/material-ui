@@ -18,63 +18,6 @@ import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2SeparatorClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SeparatorUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
-export type Menu2SeparatorState = BaseSeparator.State;
-
-export interface Menu2SeparatorOwnerState extends BaseSeparator.State {}
-
-export interface Menu2SeparatorSlots {
-  /**
-   * The component that renders the root.
-   * Replaces the default styled root and takes precedence over `render`.
-   * @default Menu2SeparatorRoot
-   */
-  root?: React.ElementType | undefined;
-}
-
-export interface Menu2SeparatorSlotProps {
-  root?: Menu2RootSlotProps<Menu2SeparatorOwnerState>['root'] | undefined;
-}
-
-export interface Menu2SeparatorProps
-  extends
-    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
-    Pick<DividerOwnProps, 'absolute' | 'children' | 'flexItem' | 'textAlign' | 'variant'>,
-    Pick<BaseSeparator.Props, 'orientation'> {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<Menu2SeparatorClasses> | undefined;
-  /**
-   * CSS class applied to the element.
-   */
-  className?: string | undefined;
-  /**
-   * The element to render, or a function that returns it.
-   * Forward the props, ref, and children to preserve Material styles and separator semantics.
-   * Applies to the default root only. Use `slots.root` to replace the styled root.
-   */
-  render?:
-    | React.ReactElement
-    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SeparatorState>
-    | undefined;
-  /**
-   * The props used for each slot inside.
-   */
-  slotProps?: Menu2SeparatorSlotProps | undefined;
-  /**
-   * The components used for each slot inside.
-   */
-  slots?: Menu2SeparatorSlots | undefined;
-  /**
-   * Styles applied to the root element.
-   */
-  style?: React.CSSProperties | undefined;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme> | undefined;
-}
-
 const useUtilityClasses = (ownerState: Menu2SeparatorProps) => {
   const { classes } = ownerState;
 
@@ -180,6 +123,63 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
     />
   );
 });
+
+export type Menu2SeparatorState = BaseSeparator.State;
+
+export interface Menu2SeparatorOwnerState extends BaseSeparator.State {}
+
+export interface Menu2SeparatorSlots {
+  /**
+   * The component that renders the root.
+   * Replaces the default styled root and takes precedence over `render`.
+   * @default Menu2SeparatorRoot
+   */
+  root?: React.ElementType | undefined;
+}
+
+export interface Menu2SeparatorSlotProps {
+  root?: Menu2RootSlotProps<Menu2SeparatorOwnerState>['root'] | undefined;
+}
+
+export interface Menu2SeparatorProps
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
+    Pick<DividerOwnProps, 'absolute' | 'children' | 'flexItem' | 'textAlign' | 'variant'>,
+    Pick<BaseSeparator.Props, 'orientation'> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<Menu2SeparatorClasses> | undefined;
+  /**
+   * CSS class applied to the element.
+   */
+  className?: string | undefined;
+  /**
+   * The element to render, or a function that returns it.
+   * Forward the props, ref, and children to preserve Material styles and separator semantics.
+   * Applies to the default root only. Use `slots.root` to replace the styled root.
+   */
+  render?:
+    | React.ReactElement
+    | ComponentRenderFn<Omit<HTMLProps, 'color'>, Menu2SeparatorState>
+    | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: Menu2SeparatorSlotProps | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Menu2SeparatorSlots | undefined;
+  /**
+   * Styles applied to the root element.
+   */
+  style?: React.CSSProperties | undefined;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
 
 Menu2Separator.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

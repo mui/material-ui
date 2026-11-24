@@ -16,12 +16,6 @@ const Menu2SubmenuClosingContext = React.createContext<Menu2SubmenuClosingContex
   retainClosingTint: true,
 });
 
-export interface Menu2SubmenuClosingStateProps {
-  children: React.ReactElement;
-  closing: boolean;
-  onClosingChange: (closing: boolean) => void;
-}
-
 /** Reports committed popup state, including retained popups and unmounts. */
 export function Menu2SubmenuClosingState({
   children,
@@ -36,6 +30,12 @@ export function Menu2SubmenuClosingState({
   }, [closing, onClosingChange]);
 
   return children;
+}
+
+export interface Menu2SubmenuClosingStateProps {
+  children: React.ReactElement;
+  closing: boolean;
+  onClosingChange: (closing: boolean) => void;
 }
 
 if (process.env.NODE_ENV !== 'production') {
