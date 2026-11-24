@@ -344,7 +344,7 @@ describe('<Menu2 />', () => {
     }
   });
 
-  it('keeps List styles and props when the list component changes', async () => {
+  it('keeps List styles and props when the list renders another element', async () => {
     const listRef = React.createRef<HTMLUListElement>();
     const handleClick = vi.fn();
     const { user } = render(
@@ -354,7 +354,7 @@ describe('<Menu2 />', () => {
           align="end"
           slotProps={{
             list: (ownerState) => ({
-              component: 'ul',
+              render: <ul />,
               ref: listRef,
               'data-align': ownerState.align,
               className: 'custom-list',
@@ -444,7 +444,7 @@ describe('<Menu2 />', () => {
               align="end"
               slotProps={{
                 list: (ownerState) => ({
-                  component: 'ul',
+                  render: <ul />,
                   ref: listRef,
                   disablePadding: true,
                   className: 'custom-list',
@@ -476,7 +476,7 @@ describe('<Menu2 />', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it('passes the list component, owner state, and ref to a custom slot', async () => {
+  it('passes the owner state and ref to a custom list slot', async () => {
     const listRef = React.createRef<HTMLUListElement>();
     const CustomList = React.forwardRef<
       HTMLUListElement,
@@ -489,11 +489,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup
-          align="end"
-          slots={{ list: CustomList }}
-          slotProps={{ list: { component: 'ul', ref: listRef } }}
-        >
+        <Menu2Popup align="end" slots={{ list: CustomList }} slotProps={{ list: { ref: listRef } }}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -503,11 +499,11 @@ describe('<Menu2 />', () => {
 
     // The items are direct children of the list.
     const list = (await screen.findByRole('menuitem', { name: 'Profile' })).parentElement!;
-    expect(list.tagName).to.equal('UL');
+    expect(list.tagName).to.equal('DIV');
     expect(listRef.current).to.equal(list);
     expect(list).to.have.attribute('data-align', 'end');
     expect(list).to.have.class(menu2PopupClasses.list);
-    expect(list).to.have.attribute('data-component', 'ul');
+    expect(list).to.have.attribute('data-component', 'div');
     expect(list).to.have.class(listClasses.padding);
   });
 
@@ -527,7 +523,7 @@ describe('<Menu2 />', () => {
             },
             list: {
               classes: { root: 'list-root' },
-              component: 'ul',
+              ...({ component: 'ul' } as object),
               disablePadding: false,
               sx: { color: 'red' },
             },

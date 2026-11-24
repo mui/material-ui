@@ -43,7 +43,7 @@
     },
     {
       "name": "indicator",
-      "description": "The component that renders the submenu indicator.\nSet to `null` to omit the indicator. Custom indicators are not mirrored in RTL.",
+      "description": "The component that renders the submenu indicator.\nSet to `null` to omit the indicator. Custom indicators are not mirrored in RTL.\nTakes precedence over `slotProps.indicator.render`.",
       "default": "'span'",
       "class": "MuiMenu2SubmenuTrigger-indicator"
     }

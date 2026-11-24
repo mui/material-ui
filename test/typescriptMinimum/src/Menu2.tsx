@@ -87,6 +87,11 @@ import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 />;
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
+<Menu2Popup slotProps={{ list: { render: <ul /> } }} />;
+// @ts-expect-error The list takes render, not component.
+<Menu2Popup slotProps={{ list: { component: 'ul' } }} />;
+// @ts-expect-error The indicator takes render, not component.
+<Menu2CheckboxItem slotProps={{ indicator: { component: 'i' } }} />;
 
 export default function Menu2Consumer() {
   return (
@@ -167,7 +172,7 @@ export default function Menu2Consumer() {
                 state.checked satisfies boolean;
                 state.highlighted satisfies boolean;
                 state.disabled satisfies boolean;
-                return { component: 'i', keepMounted: true, sx: { color: 'primary.main' } };
+                return { render: <i />, keepMounted: true, sx: { color: 'primary.main' } };
               },
             }}
             onCheckedChange={(checked, eventDetails) => {
@@ -267,7 +272,7 @@ export default function Menu2Consumer() {
                       state.checked satisfies boolean;
                       state.highlighted satisfies boolean;
                       state.disabled satisfies boolean;
-                      return { component: 'i', keepMounted: true, sx: { color: 'primary.main' } };
+                      return { render: <i />, keepMounted: true, sx: { color: 'primary.main' } };
                     },
                   }}
                 >

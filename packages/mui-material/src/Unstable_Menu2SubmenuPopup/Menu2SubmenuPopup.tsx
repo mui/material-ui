@@ -27,6 +27,8 @@ import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingCon
 
 export type Menu2SubmenuPopupState = BaseMenu.Popup.State;
 
+export type Menu2SubmenuPopupListState = BaseMenu.List.State;
+
 export interface Menu2SubmenuPopupProps extends Omit<
   Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,
   | 'classes'
@@ -183,6 +185,7 @@ export interface Menu2SubmenuPopupSlots {
   transition?: React.JSXElementConstructor<any> | null | undefined;
   /**
    * The component used for the presentational list wrapper.
+   * Takes precedence over `slotProps.list.render`.
    * @default List
    */
   list?: React.ElementType | undefined;

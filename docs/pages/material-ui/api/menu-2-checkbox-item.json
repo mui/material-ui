@@ -55,7 +55,7 @@
     },
     {
       "name": "indicator",
-      "description": "The component that renders the check indicator.",
+      "description": "The component that renders the check indicator.\nTakes precedence over `slotProps.indicator.render`.",
       "default": "Menu2CheckboxItemIndicator",
       "class": "MuiMenu2CheckboxItem-indicator"
     }

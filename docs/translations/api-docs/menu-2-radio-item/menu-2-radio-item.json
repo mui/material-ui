@@ -80,7 +80,7 @@
     }
   },
   "slotDescriptions": {
-    "indicator": "The component that renders the check indicator.",
+    "indicator": "The component that renders the check indicator. Takes precedence over <code>slotProps.indicator.render</code>.",
     "root": "The component that renders the root. Replaces the default styled root and takes precedence over <code>render</code>."
   }
 }

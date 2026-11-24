@@ -81,7 +81,7 @@
     }
   },
   "slotDescriptions": {
-    "indicator": "The component that renders the submenu indicator. Set to <code>null</code> to omit the indicator. Custom indicators are not mirrored in RTL.",
+    "indicator": "The component that renders the submenu indicator. Set to <code>null</code> to omit the indicator. Custom indicators are not mirrored in RTL. Takes precedence over <code>slotProps.indicator.render</code>.",
     "root": "The component that renders the root. Replaces the default styled root and takes precedence over <code>render</code>."
   }
 }

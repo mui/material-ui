@@ -184,21 +184,41 @@ describe('Menu2 indicator slots', () => {
         });
       });
 
-      it('supports a component override on the default slot', () => {
-        renderItem({ indicatorProps: { component: 'i' } });
+      it('renders another element on the default slot', () => {
+        renderItem({ indicatorProps: { render: <i /> } });
         const indicator = queryIndicator()!;
         expect(indicator.tagName).to.equal('I');
         expect(indicator).to.have.class(listItemIconClasses.root);
+        expect(indicator).to.have.attribute('aria-hidden', 'true');
       });
 
-      it('supports a component override on a custom styled slot', () => {
-        renderItem({
-          indicator: CustomIndicator,
-          indicatorProps: { component: 'i' },
+      it('passes the Base UI state and refs to a render function', async () => {
+        const ref = React.createRef<HTMLElement>();
+        const { user } = renderItem({
+          indicatorProps: {
+            ref,
+            render: (props, state) => <i {...props} data-render-checked={String(state.checked)} />,
+          },
         });
         const indicator = queryIndicator()!;
         expect(indicator.tagName).to.equal('I');
-        expect(indicator).not.to.have.attribute('component');
+        expect(indicator).to.have.class(listItemIconClasses.root);
+        expect(indicator).to.have.attribute('data-render-checked', 'false');
+        expect(ref.current).to.equal(indicator);
+
+        await user.click(screen.getByRole(role, { name: 'Target' }));
+        expect(queryIndicator()).to.have.attribute('data-render-checked', 'true');
+        expect(ref.current).to.equal(queryIndicator());
+      });
+
+      it('ignores render on a custom slot', () => {
+        renderItem({
+          indicator: CustomIndicator,
+          indicatorProps: { render: <i /> },
+        });
+        const indicator = queryIndicator()!;
+        expect(indicator.tagName).to.equal('SPAN');
+        expect(indicator).not.to.have.attribute('render');
       });
 
       [false, true].forEach((modularCssLayers) => {

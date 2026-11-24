@@ -21,7 +21,8 @@ import Grow from '../Grow';
 import type { PaperProps } from '../Paper';
 import type { ListProps } from '../List';
 import { manager as modalManager } from '../Modal/useModal';
-import type { SlotProps } from './menu2Utils';
+import type { Menu2SlotRender, SlotProps } from './menu2Utils';
+import { resolveMenu2SlotRender } from './menu2Utils';
 import { Menu2SubmenuClosingState } from './Menu2SubmenuClosingContext';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 
@@ -139,6 +140,7 @@ export interface Menu2PopupSharedSlots {
   root?: React.ElementType | undefined;
   /**
    * The component used for the presentational list wrapper.
+   * Takes precedence over `slotProps.list.render`.
    * @default List
    */
   list?: React.ElementType | undefined;
@@ -148,6 +150,14 @@ type WithSx = { sx?: SxProps<Theme> | undefined };
 
 // Menu2 has no dense mode.
 export type Menu2ListProps = Omit<ListProps, 'dense'> & { dense?: never | undefined };
+
+// The list takes `render` instead of `component`.
+type Menu2ListSlotProps = Omit<ExternalSlotProps<Omit<Menu2ListProps, 'component'>>, 'render'> & {
+  /**
+   * The element to render, or a function that returns it. The list styles stay.
+   */
+  render?: Menu2SlotRender<BaseMenu.List.State> | undefined;
+};
 
 export interface Menu2PopupSharedSlotProps<OwnerState> {
   /**
@@ -170,7 +180,7 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
     SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
   backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props> & WithSx, OwnerState> | undefined;
   root?: SlotProps<ExternalSlotProps<Omit<PaperProps, 'component'>>, OwnerState> | undefined;
-  list?: SlotProps<ExternalSlotProps<Menu2ListProps>, OwnerState> | undefined;
+  list?: SlotProps<Menu2ListSlotProps, OwnerState> | undefined;
 }
 
 type Menu2PositionerProps = BaseMenu.Positioner.Props;
@@ -443,11 +453,20 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     mergeProps({ elevation: elevation ?? 8 }, other, rootSlotOtherProps),
     paperHostOmittedProps,
   );
+  const { render: listRender, props: resolvedListProps } = resolveMenu2SlotRender(
+    slotProps?.list,
+    ownerState,
+  );
+  const renderList = listRender && !slots?.list;
   const [ListSlot, mergedListProps] = useSlot('list', {
     elementType: defaultSlots.list,
-    externalForwardedProps: { slots, slotProps },
+    externalForwardedProps: { slots, slotProps: { list: resolvedListProps } },
     ownerState,
-    additionalProps: { component: 'div', disablePadding: false },
+    additionalProps: { component: renderList ? Menu2RenderRoot : 'div', disablePadding: false },
+    // The list state is empty, as in Base UI's Menu.List.
+    internalForwardedProps: renderList
+      ? { internalRender: listRender, internalRenderState: {} }
+      : undefined,
     className: classes?.list,
     shouldForwardComponentProp: true,
   });

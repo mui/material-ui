@@ -182,7 +182,7 @@ describe('Menu2 live checked ownerState', () => {
         const itemProps: Menu2CheckboxItemProps = {
           className: 'external-class',
           sx: [false, (t) => ({ paddingLeft: t.spacing(3) })],
-          slotProps: { indicator: { component: 'strong' } },
+          slotProps: { indicator: { render: <strong /> } },
         };
         render(
           <ThemeProvider theme={customTheme}>
@@ -410,7 +410,7 @@ describe('Menu2 live checked ownerState', () => {
         });
       }
 
-      it('passes live state, component props, and refs to a custom indicator slot', async () => {
+      it('passes live state, props, and refs to a custom indicator slot', async () => {
         const indicatorRef = React.createRef<HTMLElement>();
         const Indicator = React.forwardRef<
           HTMLElement,
@@ -425,7 +425,6 @@ describe('Menu2 live checked ownerState', () => {
           slots: { indicator: Indicator },
           slotProps: {
             indicator: {
-              component: 'strong' as const,
               ref: indicatorRef,
               className: 'custom-indicator',
               style: { marginLeft: '7px' },
@@ -449,7 +448,7 @@ describe('Menu2 live checked ownerState', () => {
         );
 
         const indicator = queryIndicator()!;
-        expect(indicator.tagName).to.equal('STRONG');
+        expect(indicator.tagName).to.equal('SPAN');
         expect(indicator).to.have.class('custom-indicator');
         expect(indicator.style.marginLeft).to.equal('7px');
         expect(indicator).not.to.have.attribute('keepMounted');

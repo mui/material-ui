@@ -163,6 +163,55 @@ describe('<Menu2SubmenuTrigger />', () => {
     expect(trigger.querySelector('#custom-indicator')).to.equal(indicator);
   });
 
+  it('passes the trigger state and refs to an indicator render function', async () => {
+    const indicatorRef = React.createRef<HTMLElement>();
+    const { user } = render(
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Trigger render={<button type="button">Options</button>} />
+        <Menu2Popup transitionDuration={0}>
+          <Menu2Submenu>
+            <Menu2SubmenuTrigger
+              openOnHover={false}
+              slotProps={{
+                indicator: {
+                  ref: indicatorRef,
+                  render: (props, state) => <i {...props} data-render-open={String(state.open)} />,
+                },
+              }}
+            >
+              More
+            </Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup transitionDuration={0}>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2Submenu>
+        </Menu2Popup>
+      </Menu2>,
+    );
+    const trigger = screen.getByRole('menuitem', { name: 'More' });
+    const indicator = trigger.querySelector(`.${classes.indicator}`)!;
+    expect(indicator.tagName).to.equal('I');
+    expect(indicator).to.have.attribute('aria-hidden', 'true');
+    expect(indicator).to.have.attribute('data-render-open', 'false');
+    expect(indicator.querySelector('svg')).not.to.equal(null);
+    expect(indicatorRef.current).to.equal(indicator);
+    [
+      'internalRender',
+      'internalrender',
+      'internalRenderState',
+      'internalrenderstate',
+      'render',
+    ].forEach((attribute) => expect(indicator).not.to.have.attribute(attribute));
+
+    await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
+    await user.click(trigger);
+    expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
+    expect(trigger.querySelector(`.${classes.indicator}`)).to.have.attribute(
+      'data-render-open',
+      'true',
+    );
+  });
+
   renderCases.forEach(({ name, render: renderProp, nativeButton, slots }) => {
     (['pointer', 'Enter', 'Space'] as const).forEach((activation) => {
       it(`opens once after ${activation} activation with a ${name}`, async () => {

@@ -24,7 +24,7 @@ import {
 } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
 import { getMenu2SubmenuTriggerUtilityClass } from '../Unstable_Menu2/menu2Classes';
-import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
+import type { Menu2RootSlotProps, Menu2SlotRender } from '../Unstable_Menu2/menu2Utils';
 
 export interface Menu2SubmenuTriggerSlots {
   /**
@@ -36,6 +36,7 @@ export interface Menu2SubmenuTriggerSlots {
   /**
    * The component that renders the submenu indicator.
    * Set to `null` to omit the indicator. Custom indicators are not mirrored in RTL.
+   * Takes precedence over `slotProps.indicator.render`.
    * @default 'span'
    */
   indicator?: React.ElementType | null | undefined;
@@ -52,7 +53,19 @@ export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemBaseOwnerState {
 
 export interface Menu2SubmenuTriggerSlotProps {
   root?: Menu2RootSlotProps<Menu2SubmenuTriggerOwnerState>['root'] | undefined;
-  indicator?: SlotProps<'span', {}, Menu2SubmenuTriggerOwnerState> | undefined;
+  indicator?:
+    | SlotProps<
+        'span',
+        {
+          /**
+           * The element to render, or a function that returns it. The indicator styles stay.
+           */
+          render?: Menu2SlotRender<Menu2SubmenuTriggerState> | undefined;
+          component?: never | undefined;
+        },
+        Menu2SubmenuTriggerOwnerState
+      >
+    | undefined;
 }
 
 export interface Menu2SubmenuTriggerProps

@@ -130,7 +130,7 @@
     },
     {
       "name": "list",
-      "description": "The component used for the presentational list wrapper.",
+      "description": "The component used for the presentational list wrapper.\nTakes precedence over `slotProps.list.render`.",
       "default": "List",
       "class": "MuiMenu2Popup-list"
     }

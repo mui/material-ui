@@ -319,6 +319,8 @@ Put item content in the item children.
 With `render`, forward `props.children` to keep the ripple and any indicator; children set on the render element can replace them.
 A root-slot replacement also receives the item content and indicator as children.
 On `MenuPopup` and `MenuSubmenuPopup`, `render` changes the menu surface. Forward `style` too, so that the transition works.
+The popup `list` slot and the item `indicator` slots take `render` in their slot props, not `component`.
+It changes the slot element and keeps its styles. A replacement slot takes precedence over `render`.
 
 Use `slotProps.root` for root attributes, a ref, and `sx`.
 Its callback receives the props and the live state.
@@ -481,6 +483,8 @@ Use `MuiMenu2RadioItem.defaultProps` to set the radio item icons.
 An `icon` or `checkedIcon` prop on an item replaces only the matching theme value.
 
 Use `slotProps.indicator` to customize the indicator container, or `slots.indicator` to replace it.
+Use `slotProps.indicator.render` to change the container element and keep its styles.
+A render function receives the Base UI indicator state.
 If `slotProps.indicator.children` is neither `null` nor `undefined`, it replaces the icon.
 Slot callbacks receive the live checked, disabled, and highlighted state.
 A replacement must forward the supplied props and ref, including the state classes in `className`.

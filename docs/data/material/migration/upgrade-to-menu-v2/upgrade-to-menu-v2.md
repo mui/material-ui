@@ -370,6 +370,7 @@ These `MenuList` props move or change:
 - `MenuList.disableListWrap` becomes `loopFocus` on `Menu` (default `true`), with the value inverted.
 - `MenuList.disablePadding` moves to `slotProps.list` on `MenuPopup`.
   The `list` slot is a `List`, so the prop is unchanged.
+- `slotProps.list.component` becomes `slotProps.list.render`, for example `render: <section />`.
 - Naming attributes on `slotProps.list` move to `MenuPopup`.
   See [Move popup props to MenuPopup](#8-move-popup-props-to-menupopup).
 

@@ -50,7 +50,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "list": "The component used for the presentational list wrapper.",
+    "list": "The component used for the presentational list wrapper. Takes precedence over <code>slotProps.list.render</code>.",
     "portal": "The component used for the portal element, which contains the menu.",
     "positioner": "The component used to position the menu surface.",
     "root": "The component used for the menu surface. The popup renders as this element.",

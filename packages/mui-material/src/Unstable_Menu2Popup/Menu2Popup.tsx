@@ -29,6 +29,8 @@ import { getMenu2PopupUtilityClass } from '../Unstable_Menu2/menu2Classes';
 
 export type Menu2PopupState = BaseMenu.Popup.State;
 
+export type Menu2PopupListState = BaseMenu.List.State;
+
 export interface Menu2PopupProps extends Omit<
   Menu2PopupSharedProps<Menu2PopupOwnerState>,
   | 'classes'
@@ -190,6 +192,7 @@ export interface Menu2PopupSlots {
   transition?: React.JSXElementConstructor<any> | null | undefined;
   /**
    * The component used for the presentational list wrapper.
+   * Takes precedence over `slotProps.list.render`.
    * @default List
    */
   list?: React.ElementType | undefined;

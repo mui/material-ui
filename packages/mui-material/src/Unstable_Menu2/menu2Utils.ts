@@ -2,6 +2,8 @@ import * as React from 'react';
 import clsx from 'clsx';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '../styles';
 import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
@@ -96,6 +98,19 @@ export function mergeStateClassName<State>(
   getClassName: (state: State) => string | undefined,
 ) {
   return (state: State) => clsx(getClassName(state), resolveStateClassName(className, state));
+}
+
+export type Menu2SlotRender<State> =
+  React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, State>;
+
+// Split `render` from the slot props. Slots take `render` instead of `component`.
+export function resolveMenu2SlotRender<OwnerState>(slotProps: unknown, ownerState: OwnerState) {
+  const {
+    render,
+    component: ignoredComponent,
+    ...props
+  }: Record<string, any> = resolveComponentProps(slotProps as any, ownerState) ?? {};
+  return { render: render as Menu2SlotRender<any> | undefined, props };
 }
 
 export type SlotProps<SlotPropsValue, OwnerState> =

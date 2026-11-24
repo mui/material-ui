@@ -11,9 +11,12 @@ import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import type { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
-import Menu2IndicatorBase, { getMenu2IndicatorIcon } from '../Unstable_Menu2/Menu2IndicatorBase';
+import Menu2IndicatorBase, {
+  getMenu2IndicatorIcon,
+  getMenu2IndicatorRender,
+} from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
+import { resolveMenu2SlotRender } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   Menu2ItemEndAdornment,
@@ -40,6 +43,8 @@ import {
 
 export type Menu2CheckboxItemState = BaseMenu.CheckboxItem.State;
 
+export type Menu2CheckboxItemIndicatorState = BaseMenu.CheckboxItemIndicator.State;
+
 export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether the item is currently checked, including uncontrolled selection. */
   checked: boolean;
@@ -56,6 +61,7 @@ export interface Menu2CheckboxItemSlots {
   root?: React.ElementType | undefined;
   /**
    * The component that renders the check indicator.
+   * Takes precedence over `slotProps.indicator.render`.
    * @default Menu2CheckboxItemIndicator
    */
   indicator?: React.ElementType | undefined;
@@ -63,7 +69,9 @@ export interface Menu2CheckboxItemSlots {
 
 export interface Menu2CheckboxItemSlotProps {
   root?: Menu2RootSlotProps<Menu2CheckboxItemOwnerState>['root'] | undefined;
-  indicator?: Menu2IndicatorSlotProps<Menu2CheckboxItemOwnerState> | undefined;
+  indicator?:
+    | Menu2IndicatorSlotProps<Menu2CheckboxItemOwnerState, Menu2CheckboxItemIndicatorState>
+    | undefined;
 }
 
 export interface Menu2CheckboxItemProps
@@ -211,10 +219,13 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
     slots,
     ...other
   } = props;
+  const { render: indicatorRender, props: resolvedIndicatorProps } = resolveMenu2SlotRender(
+    slotProps?.indicator,
+    ownerState,
+  );
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2CheckboxItemIndicator,
-    shouldForwardComponentProp: !slots?.indicator,
-    externalForwardedProps: { slots, slotProps },
+    externalForwardedProps: { slots, slotProps: { indicator: resolvedIndicatorProps } },
     ownerState,
     className: clsx(
       menu2CheckboxItemClasses.indicator,
@@ -239,15 +250,20 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
       startIndicator={
         <BaseMenu.CheckboxItemIndicator
           keepMounted={keepMounted}
-          render={getMenu2RootRender(IndicatorSlot, ownerState, {
-            ...indicatorProps,
-            children:
-              indicatorProps.children ??
-              getMenu2IndicatorIcon(
-                ownerState.checked ? checkedIcon : icon,
-                clsx(menu2CheckboxItemClasses.indicatorIcon, ownerState.classes?.indicatorIcon),
-              ),
-          })}
+          render={getMenu2IndicatorRender(
+            IndicatorSlot,
+            ownerState,
+            {
+              ...indicatorProps,
+              children:
+                indicatorProps.children ??
+                getMenu2IndicatorIcon(
+                  ownerState.checked ? checkedIcon : icon,
+                  clsx(menu2CheckboxItemClasses.indicatorIcon, ownerState.classes?.indicatorIcon),
+                ),
+            },
+            slots?.indicator ? undefined : indicatorRender,
+          )}
         />
       }
     />

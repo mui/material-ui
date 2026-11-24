@@ -13,6 +13,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import type { Theme } from '../styles';
 import { Menu2ItemRootSlot } from '../Unstable_Menu2/menu2ItemShared';
+import { resolveMenu2SlotRender } from '../Unstable_Menu2/menu2Utils';
 import { menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
 import {
   Menu2ItemEndAdornment,
@@ -103,13 +104,20 @@ function Menu2SubmenuTriggerRootSlot(
 ) {
   const { ownerState, render: renderProp, renderState, slotProps, slots, ...other } = props;
   const isRtl = useRtl();
+  const { render: indicatorRender, props: resolvedIndicatorProps } = resolveMenu2SlotRender(
+    slotProps?.indicator,
+    ownerState,
+  );
   const [IndicatorSlot, indicatorProps] = useSlot('indicator', {
     elementType: Menu2SubmenuTriggerIndicator,
     externalForwardedProps: {
       slots: { indicator: slots?.indicator ?? undefined },
-      slotProps,
+      slotProps: { indicator: resolvedIndicatorProps },
     },
     ownerState,
+    internalForwardedProps: indicatorRender
+      ? { as: Menu2RenderRoot, internalRender: indicatorRender, internalRenderState: renderState }
+      : undefined,
     className: clsx(menu2SubmenuTriggerClasses.indicator, ownerState.classes?.indicator),
     additionalProps: {
       'aria-hidden': true,

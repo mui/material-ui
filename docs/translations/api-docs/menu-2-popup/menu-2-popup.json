@@ -51,7 +51,7 @@
   "classDescriptions": {},
   "slotDescriptions": {
     "backdrop": "The component used for the visual backdrop beneath the menu. It renders only when you set this slot or <code>slotProps.backdrop</code>. By default, it is transparent and lets clicks through. Set to <code>null</code> to remove it, including when the theme sets it. This removes only the visual layer: a modal menu still blocks outside clicks.",
-    "list": "The component used for the presentational list wrapper.",
+    "list": "The component used for the presentational list wrapper. Takes precedence over <code>slotProps.list.render</code>.",
     "portal": "The component used for the portal element, which contains the menu and its backdrops.",
     "positioner": "The component used to position the menu surface.",
     "root": "The component used for the menu surface. The popup renders as this element.",

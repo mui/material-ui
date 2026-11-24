@@ -10,9 +10,12 @@ import Menu2ItemBase, { menu2ItemOverridesResolver } from '../internal/Menu2Item
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import RadioButtonIcon from '../Radio/RadioButtonIcon';
 import type { Menu2IndicatorSlotProps } from '../Unstable_Menu2/Menu2IndicatorBase';
-import Menu2IndicatorBase, { getMenu2IndicatorIcon } from '../Unstable_Menu2/Menu2IndicatorBase';
+import Menu2IndicatorBase, {
+  getMenu2IndicatorIcon,
+  getMenu2IndicatorRender,
+} from '../Unstable_Menu2/Menu2IndicatorBase';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { getMenu2RootRender } from '../Unstable_Menu2/menu2Utils';
+import { resolveMenu2SlotRender } from '../Unstable_Menu2/menu2Utils';
 import type { Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   Menu2ItemEndAdornment,
@@ -39,6 +42,8 @@ import {
 
 export type Menu2RadioItemState = BaseMenu.RadioItem.State;
 
+export type Menu2RadioItemIndicatorState = BaseMenu.RadioItemIndicator.State;
+
 export interface Menu2RadioItemOwnerState extends Menu2ItemBaseOwnerState {
   /** Whether the item is currently checked, including uncontrolled selection. */
   checked: boolean;
@@ -55,6 +60,7 @@ export interface Menu2RadioItemSlots {
   root?: React.ElementType | undefined;
   /**
    * The component that renders the check indicator.
+   * Takes precedence over `slotProps.indicator.render`.
    * @default Menu2RadioItemIndicator
    */
   indicator?: React.ElementType | undefined;
@@ -62,7 +68,8 @@ export interface Menu2RadioItemSlots {
 
 export interface Menu2RadioItemSlotProps {
   root?: Menu2RootSlotProps<Menu2RadioItemOwnerState>['root'] | undefined;
-  indicator?: Menu2IndicatorSlotProps<Menu2RadioItemOwnerState> | undefined;
+  indicator?:
+    Menu2IndicatorSlotProps<Menu2RadioItemOwnerState, Menu2RadioItemIndicatorState> | undefined;
 }
 
 export interface Menu2RadioItemProps
@@ -192,10 +199,13 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
     slots,
     ...other
   } = props;
+  const { render: indicatorRender, props: resolvedIndicatorProps } = resolveMenu2SlotRender(
+    slotProps?.indicator,
+    ownerState,
+  );
   const [IndicatorSlot, { keepMounted = true, ...indicatorProps }] = useSlot('indicator', {
     elementType: Menu2RadioItemIndicator,
-    shouldForwardComponentProp: !slots?.indicator,
-    externalForwardedProps: { slots, slotProps },
+    externalForwardedProps: { slots, slotProps: { indicator: resolvedIndicatorProps } },
     ownerState,
     className: clsx(
       menu2RadioItemClasses.indicator,
@@ -220,15 +230,20 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
       startIndicator={
         <BaseMenu.RadioItemIndicator
           keepMounted={keepMounted}
-          render={getMenu2RootRender(IndicatorSlot, ownerState, {
-            ...indicatorProps,
-            children:
-              indicatorProps.children ??
-              getMenu2IndicatorIcon(
-                ownerState.checked ? checkedIcon : icon,
-                clsx(menu2RadioItemClasses.indicatorIcon, ownerState.classes?.indicatorIcon),
-              ),
-          })}
+          render={getMenu2IndicatorRender(
+            IndicatorSlot,
+            ownerState,
+            {
+              ...indicatorProps,
+              children:
+                indicatorProps.children ??
+                getMenu2IndicatorIcon(
+                  ownerState.checked ? checkedIcon : icon,
+                  clsx(menu2RadioItemClasses.indicatorIcon, ownerState.classes?.indicatorIcon),
+                ),
+            },
+            slots?.indicator ? undefined : indicatorRender,
+          )}
         />
       }
     />

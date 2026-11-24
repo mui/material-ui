@@ -11,6 +11,7 @@ import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import type {
   Menu2PopupClassKey,
   Menu2PopupClasses,
+  Menu2PopupListState,
   Menu2PopupProps,
   Menu2PopupState,
 } from '@mui/material/Unstable_Menu2Popup';
@@ -21,6 +22,7 @@ import Menu2Popup, {
 import type {
   Menu2SubmenuPopupClassKey,
   Menu2SubmenuPopupClasses,
+  Menu2SubmenuPopupListState,
   Menu2SubmenuPopupState,
 } from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuPopup, {
@@ -30,6 +32,7 @@ import Menu2SubmenuPopup, {
 import type {
   Menu2CheckboxItemIndicatorClassKey,
   Menu2CheckboxItemIndicatorClasses,
+  Menu2CheckboxItemIndicatorState,
   Menu2CheckboxItemOwnerState,
   Menu2CheckboxItemSlotProps,
   Menu2CheckboxItemSlots,
@@ -78,6 +81,7 @@ import type {
 import type {
   Menu2RadioItemIndicatorClassKey,
   Menu2RadioItemIndicatorClasses,
+  Menu2RadioItemIndicatorState,
   Menu2RadioItemOwnerState,
   Menu2RadioItemSlotProps,
   Menu2RadioItemSlots,
@@ -290,7 +294,7 @@ function Menu2Composition() {
                 expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
                 expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
                 return {
-                  component: 'i',
+                  render: <i />,
                   keepMounted: false,
                   sx: { color: 'primary.main' },
                   ref: (node) => expectType<HTMLSpanElement | null, typeof node>(node),
@@ -336,7 +340,7 @@ function Menu2Composition() {
                   expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
                   expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
                   return {
-                    component: 'i',
+                    render: <i />,
                     keepMounted: false,
                     sx: { color: 'primary.main' },
                     ref: (node) => expectType<HTMLSpanElement | null, typeof node>(node),
@@ -594,6 +598,71 @@ createTheme({
 />;
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
+<Menu2Popup slotProps={{ list: { render: <ul /> } }} />;
+<Menu2Popup
+  slotProps={{
+    list: {
+      render: (props, state) => {
+        expectType<Menu2PopupListState, typeof state>(state);
+        return <ul {...props} />;
+      },
+    },
+  }}
+/>;
+<Menu2SubmenuPopup
+  slotProps={{
+    list: {
+      render: (props, state) => {
+        expectType<Menu2SubmenuPopupListState, typeof state>(state);
+        return <ul {...props} />;
+      },
+    },
+  }}
+/>;
+// @ts-expect-error The list takes render, not component.
+<Menu2Popup slotProps={{ list: { component: 'ul' } }} />;
+// @ts-expect-error The list takes render, not component.
+<Menu2SubmenuPopup slotProps={{ list: { component: 'ul' } }} />;
+
+<Menu2CheckboxItem
+  slotProps={{
+    indicator: {
+      render: (props, state) => {
+        expectType<Menu2CheckboxItemIndicatorState, typeof state>(state);
+        expectType<boolean, typeof state.checked>(state.checked);
+        return <i {...props} />;
+      },
+    },
+  }}
+/>;
+<Menu2RadioItem
+  value="one"
+  slotProps={{
+    indicator: {
+      render: (props, state) => {
+        expectType<Menu2RadioItemIndicatorState, typeof state>(state);
+        expectType<boolean, typeof state.checked>(state.checked);
+        return <i {...props} />;
+      },
+    },
+  }}
+/>;
+<Menu2SubmenuTrigger
+  slotProps={{
+    indicator: {
+      render: (props, state) => {
+        expectType<Menu2SubmenuTriggerState, typeof state>(state);
+        return <i {...props} />;
+      },
+    },
+  }}
+/>;
+// @ts-expect-error The indicator takes render, not component.
+<Menu2CheckboxItem slotProps={{ indicator: { component: 'i' } }} />;
+// @ts-expect-error The indicator takes render, not component.
+<Menu2RadioItem value="one" slotProps={{ indicator: { component: 'i' } }} />;
+// @ts-expect-error The indicator takes render, not component.
+<Menu2SubmenuTrigger slotProps={{ indicator: { component: 'i' } }} />;
 createTheme({
   components: {
     MuiMenu2SubmenuPopup: {
