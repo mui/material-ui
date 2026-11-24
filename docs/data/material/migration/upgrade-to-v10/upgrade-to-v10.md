@@ -232,3 +232,22 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### Collapse and TableCell component prop types
+
+`Collapse` and `TableCell` are now typed as `OverridableComponent`.
+With TypeScript, components created with `styled(Collapse)` or `styled(TableCell)` no longer accept the `component` prop unless you cast the returned component back with `as typeof Collapse` or `as typeof TableCell`:
+
+```diff
+ const StyledTableCell = styled(TableCell)({
+   // your custom styles go here
+-});
++}) as typeof TableCell;
+
+ const StyledCollapse = styled(Collapse)({
+   // your custom styles go here
+-});
++}) as typeof Collapse;
+```
+
+See [Complications with the `component` prop](/material-ui/guides/typescript/#complications-with-the-component-prop) in the TypeScript guide for more details.
