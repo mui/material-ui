@@ -33,7 +33,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(function Indi
   ref,
 ) {
   const iconProps = { ...props, as: component };
-  return <ListItemIcon {...iconProps} ref={ref} data-mui-menu-indicator="" />;
+  return <ListItemIcon {...iconProps} ref={ref} />;
 });
 
 // Merge the icon classes and default to the small size, as Checkbox and Radio do.
@@ -56,7 +56,7 @@ export function getMenu2IndicatorIcon(icon: React.ReactNode, className: string) 
 const Menu2IndicatorBase = styled(Indicator, { slot: 'root' })(
   memoTheme(({ theme }) => ({
     alignItems: 'center',
-    // Match the item's fixed ListItemIcon column and ListItemText inset.
+    // Match the start adornment column, so labels align across item kinds.
     minWidth: 36,
     // Match Checkbox and Radio colors, not the color of a decorative ListItemIcon.
     color: (theme.vars || theme).palette.text.secondary,

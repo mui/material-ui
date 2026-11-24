@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn } from '@base-ui/react/types';
-import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import {
   Menu2ItemEndAdornment,
@@ -21,7 +20,6 @@ import {
   getMenu2ItemAdornments,
   Menu2ItemRootSlot,
   mergeMenu2ItemClassName,
-  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2LinkItemClasses } from '../Unstable_Menu2/menu2Classes';
@@ -144,7 +142,6 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(disableGutters);
   // Base UI link items have no disabled state.
   const ownerState = {
     ...props,
@@ -159,46 +156,44 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
   );
 
   return (
-    <ListContext.Provider value={childContext}>
-      <BaseMenu.LinkItem
-        ref={ref}
-        render={(renderProps, state) => {
-          const itemOwnerState = { ...ownerState, ...state };
-          return (
-            <Menu2ItemRootSlot<Menu2LinkItemOwnerState>
-              baseProps={renderProps}
-              ownerState={itemOwnerState}
-              elementType={Menu2LinkItemRoot}
-              defaultComponent="a"
-              component={renderProp ? Menu2RenderRoot : undefined}
-              disableRipple={disableRipple}
-              internalRender={renderProp}
-              internalRenderState={{
-                disableGutters,
-                divider,
-                highlighted: state.highlighted,
-                inset,
-              }}
-              slots={slots}
-              slotProps={slotProps}
-              sx={sx}
-              {...getMenu2ItemAdornments({
-                classes,
-                endAdornment,
-                EndAdornment: Menu2LinkItemEndAdornment,
-                inset,
-                ownerState: itemOwnerState,
-                startAdornment,
-                StartAdornment: Menu2LinkItemStartAdornment,
-              })}
-            />
-          );
-        }}
-        className={mergeMenu2ItemClassName(className, classes, ownerState)}
-        style={style}
-        {...other}
-      />
-    </ListContext.Provider>
+    <BaseMenu.LinkItem
+      ref={ref}
+      render={(renderProps, state) => {
+        const itemOwnerState = { ...ownerState, ...state };
+        return (
+          <Menu2ItemRootSlot<Menu2LinkItemOwnerState>
+            baseProps={renderProps}
+            ownerState={itemOwnerState}
+            elementType={Menu2LinkItemRoot}
+            defaultComponent="a"
+            component={renderProp ? Menu2RenderRoot : undefined}
+            disableRipple={disableRipple}
+            internalRender={renderProp}
+            internalRenderState={{
+              disableGutters,
+              divider,
+              highlighted: state.highlighted,
+              inset,
+            }}
+            slots={slots}
+            slotProps={slotProps}
+            sx={sx}
+            {...getMenu2ItemAdornments({
+              classes,
+              endAdornment,
+              EndAdornment: Menu2LinkItemEndAdornment,
+              inset,
+              ownerState: itemOwnerState,
+              startAdornment,
+              StartAdornment: Menu2LinkItemStartAdornment,
+            })}
+          />
+        );
+      }}
+      className={mergeMenu2ItemClassName(className, classes, ownerState)}
+      style={style}
+      {...other}
+    />
   );
 });
 

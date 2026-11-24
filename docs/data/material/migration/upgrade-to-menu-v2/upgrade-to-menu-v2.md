@@ -307,6 +307,7 @@ See [Transitions](/material-ui/react-menu2/#transitions).
 Separators, groups, links, and checked items become dedicated parts:
 
 - `<Divider />` between items becomes `MenuSeparator`, which controls its own margins.
+  Items do not add margins to a plain `Divider`.
 - `ListSubheader` becomes `MenuGroup` with `MenuGroupLabel`, which adds the correct ARIA relationship.
 - Items with `href`, `LinkComponent`, or `component="a"` become `MenuLinkItem`, which renders a real `<a role="menuitem">`.
   For a router link, use `render={<RouterLink to="/profile" />}` and forward props, ref, and children to an anchor.
@@ -392,7 +393,9 @@ Move icons and shortcut hints to the item props:
 ```
 
 `<ListItemText inset>` becomes `inset` on the item.
-`ListItemIcon` and `ListItemText` children still render, so you can move them to the props one item at a time.
+`ListItemIcon` and `ListItemText` children still render, but with their List styles.
+`ListItemText` adds vertical margins, and `ListItemText inset` adds a 56px left padding.
+Move them to the props to keep the menu layout.
 
 ### 7. Update the theme keys
 

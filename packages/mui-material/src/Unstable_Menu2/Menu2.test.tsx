@@ -1576,14 +1576,17 @@ describe('<Menu2 />', () => {
     },
   );
 
-  it.skipIf(isJsdom())('supports inset list text composed inside items', async () => {
+  // Items do not restyle List children. Use the adornment props and `inset` instead.
+  it.skipIf(isJsdom())('keeps the own styles of List children inside items', async () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
         <Menu2Popup>
           <Menu2Item>
-            <ListItemIcon data-testid="icon">i</ListItemIcon>
-            <ListItemText>Cut</ListItemText>
+            <ListItemIcon data-testid="icon" sx={{ minWidth: 'auto' }}>
+              i
+            </ListItemIcon>
+            <ListItemText data-testid="text">Cut</ListItemText>
           </Menu2Item>
           <Menu2Item>
             <ListItemText inset data-testid="inset-text">
@@ -1596,11 +1599,12 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    // Legacy composition: the shared item styles still align `ListItemText inset`
-    // with the icon column. Items also have their own `inset` prop.
-    const insetText = await screen.findByTestId('inset-text');
-    expect(window.getComputedStyle(insetText).paddingLeft).to.equal('36px');
-    expect(window.getComputedStyle(screen.getByTestId('icon')).minWidth).to.equal('36px');
+    expect(await screen.findByTestId('icon')).toHaveComputedStyle({ minWidth: 'auto' });
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
+      marginTop: '4px',
+      marginBottom: '4px',
+    });
+    expect(screen.getByTestId('inset-text')).toHaveComputedStyle({ paddingLeft: '56px' });
   });
 
   it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
@@ -1625,8 +1629,8 @@ describe('<Menu2 />', () => {
 
     const separator = screen.getByRole('separator');
     const { marginTop, marginBottom } = window.getComputedStyle(separator);
-    // Regression: the inline focus-guard nodes of an open submenu broke the
-    // legacy `[item] + divider` adjacency rule and collapsed this spacing.
+    // Base UI adds focus guards next to an open submenu trigger. The separator
+    // spacing must not depend on the previous element.
     expect(marginTop).to.equal('8px');
     expect(marginBottom).to.equal('8px');
   });

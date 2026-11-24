@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
-import ListContext from '../List/ListContext';
 import Menu2SubmenuClosingContext from '../Unstable_Menu2/Menu2SubmenuClosingContext';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import type { SlotProps } from '../utils/types';
@@ -21,7 +20,6 @@ import {
   getMenu2ItemAdornments,
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
-  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2SubmenuTriggerClasses } from '../Unstable_Menu2/menu2Classes';
@@ -165,7 +163,6 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(disableGutters);
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({ disabled, disableGutters, divider, inset }),
@@ -183,50 +180,48 @@ const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
   const { closing, retainClosingTint } = React.useContext(Menu2SubmenuClosingContext);
 
   return (
-    <ListContext.Provider value={childContext}>
-      <BaseMenu.SubmenuTrigger
-        ref={ref}
-        render={(renderProps, state) => {
-          const itemOwnerState = { ...ownerState, ...state };
-          return (
-            <Menu2SubmenuTriggerRootSlot
-              baseProps={{
-                ...renderProps,
-                // Private styling marker; keep exit timing out of the public owner state.
-                'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
-              }}
-              ownerState={itemOwnerState}
-              disableRipple={disableRipple}
-              nativeButton={nativeButton}
-              render={renderProp}
-              slotProps={slotProps}
-              slots={slots}
-              sx={sx}
-              {...getMenu2ItemAdornments({
-                classes,
-                endAdornment,
-                EndAdornment: Menu2SubmenuTriggerEndAdornment,
-                inset,
-                ownerState: itemOwnerState,
-                startAdornment,
-                StartAdornment: Menu2SubmenuTriggerStartAdornment,
-              })}
-            />
-          );
-        }}
-        className={(state) =>
-          clsx(
-            className,
-            getMenu2ItemClassName(classes, ownerState, state),
-            state.open && classes.open,
-          )
-        }
-        disabled={disabled}
-        nativeButton={nativeButton}
-        style={style}
-        {...other}
-      />
-    </ListContext.Provider>
+    <BaseMenu.SubmenuTrigger
+      ref={ref}
+      render={(renderProps, state) => {
+        const itemOwnerState = { ...ownerState, ...state };
+        return (
+          <Menu2SubmenuTriggerRootSlot
+            baseProps={{
+              ...renderProps,
+              // Private styling marker; keep exit timing out of the public owner state.
+              'data-mui-internal-retain-open-tint': closing && retainClosingTint ? '' : undefined,
+            }}
+            ownerState={itemOwnerState}
+            disableRipple={disableRipple}
+            nativeButton={nativeButton}
+            render={renderProp}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+            {...getMenu2ItemAdornments({
+              classes,
+              endAdornment,
+              EndAdornment: Menu2SubmenuTriggerEndAdornment,
+              inset,
+              ownerState: itemOwnerState,
+              startAdornment,
+              StartAdornment: Menu2SubmenuTriggerStartAdornment,
+            })}
+          />
+        );
+      }}
+      className={(state) =>
+        clsx(
+          className,
+          getMenu2ItemClassName(classes, ownerState, state),
+          state.open && classes.open,
+        )
+      }
+      disabled={disabled}
+      nativeButton={nativeButton}
+      style={style}
+      {...other}
+    />
   );
 });
 

@@ -162,11 +162,6 @@ export interface Menu2BaseItemState {
   highlighted?: boolean | undefined;
 }
 
-// Menu2 has no dense mode. Keep an outer dense List from reaching user List children.
-export function useMenu2ItemListContext(disableGutters: boolean) {
-  return React.useMemo(() => ({ dense: false, disableGutters }), [disableGutters]);
-}
-
 export interface Menu2ItemRootSlotProps<OwnerState extends object> {
   /**
    * The props that Base UI passes to the `render` function of the item.

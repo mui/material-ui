@@ -9,7 +9,7 @@ import rtlPlugin from '@mui/stylis-plugin-rtl';
 import FormatPaintIcon from '@mui/icons-material/FormatPaint';
 import Box from '@mui/material/Box';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
@@ -75,9 +75,9 @@ function MixedMenu({ direction, dark }: MixedMenuProps) {
               <Menu2RadioItem value="list">List view</Menu2RadioItem>
               <Menu2RadioItem value="grid">Grid view</Menu2RadioItem>
               <Menu2RadioItem value="wide" slotProps={{ indicator: { children: wideIndicator } }}>
-                <ListItemText slotProps={{ primary: { noWrap: true } }}>
+                <Typography variant="inherit" noWrap>
                   Keep this wide radio indicator at its full size
-                </ListItemText>
+                </Typography>
               </Menu2RadioItem>
             </Menu2RadioGroup>
             <Menu2Item inset>Reset layout</Menu2Item>
@@ -88,17 +88,17 @@ function MixedMenu({ direction, dark }: MixedMenuProps) {
               </Menu2SubmenuPopup>
             </Menu2Submenu>
             <Menu2CheckboxItem defaultChecked>
-              <ListItemText slotProps={{ primary: { noWrap: true } }}>
+              <Typography variant="inherit" noWrap>
                 Keep this long menu label on one line
-              </ListItemText>
+              </Typography>
             </Menu2CheckboxItem>
             <Menu2CheckboxItem
               defaultChecked
               slotProps={{ indicator: { children: wideIndicator } }}
             >
-              <ListItemText slotProps={{ primary: { noWrap: true } }}>
+              <Typography variant="inherit" noWrap>
                 Keep this wide custom indicator at its full size
-              </ListItemText>
+              </Typography>
             </Menu2CheckboxItem>
           </Menu2Popup>
         </Menu2>

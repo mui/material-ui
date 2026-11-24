@@ -5,9 +5,6 @@ import memoTheme from '../utils/memoTheme';
 import ButtonBase from '../ButtonBase';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
-import { dividerClasses } from '../Divider';
-import { listItemIconClasses } from '../ListItemIcon';
-import { listItemTextClasses } from '../ListItemText';
 import type { Menu2ItemBaseOwnerState } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2ItemOwnerState } from '../Unstable_Menu2Item/Menu2Item';
 
@@ -66,27 +63,6 @@ export const Menu2ItemBaseRoot = styled(ButtonBase, {
     [`&.${buttonBaseClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
-    // Menu2Separator owns its margins and inset, including theme and sx overrides.
-    [`& + .${dividerClasses.root}:not(:where([data-mui-menu-separator]))`]: {
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-    },
-    [`& + .${dividerClasses.inset}:not(:where([data-mui-menu-separator]))`]: {
-      marginLeft: 52,
-    },
-    [`& .${listItemTextClasses.root}`]: {
-      marginTop: 0,
-      marginBottom: 0,
-    },
-    [`& .${listItemTextClasses.inset}`]: {
-      paddingLeft: 36,
-    },
-    // Menu2 indicators and adornments set their own column width so their slot
-    // overrides do not need to compete with this descendant selector.
-    [`& .${listItemIconClasses.root}:not(:where([data-mui-menu-indicator], [data-mui-menu-adornment]))`]:
-      {
-        minWidth: 36,
-      },
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },

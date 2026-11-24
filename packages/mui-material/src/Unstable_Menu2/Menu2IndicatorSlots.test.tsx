@@ -195,7 +195,6 @@ describe('Menu2 indicator slots', () => {
         const indicator = screen.getByTestId('indicator');
         expect(indicator.tagName).to.equal('I');
         expect(indicator).not.to.have.attribute('component');
-        expect(indicator).not.to.have.attribute('data-mui-menu-indicator');
       });
 
       [false, true].forEach((modularCssLayers) => {

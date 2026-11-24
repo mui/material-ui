@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
-import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import Menu2ItemBase from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
@@ -18,7 +17,6 @@ import {
   getMenu2ItemOwnerState,
   Menu2ItemRootSlot,
   mergeMenu2ItemClassName,
-  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2ItemClasses } from '../Unstable_Menu2/menu2Classes';
@@ -142,7 +140,6 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(disableGutters);
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({ disabled, disableGutters, divider, inset }),
@@ -159,49 +156,47 @@ const Menu2Item = React.forwardRef(function Menu2Item(
       : React.isValidElement(renderProp) && renderProp.type === 'button');
 
   return (
-    <ListContext.Provider value={childContext}>
-      <BaseMenu.Item
-        ref={ref}
-        render={(renderProps, state) => {
-          const itemOwnerState = { ...ownerState, ...state };
-          return (
-            <Menu2ItemRootSlot<Menu2ItemOwnerState>
-              baseProps={renderProps}
-              ownerState={itemOwnerState}
-              elementType={Menu2ItemRoot}
-              component={renderProp ? Menu2RenderRoot : undefined}
-              disableRipple={disableRipple}
-              nativeButton={nativeButton}
-              internalRender={renderProp}
-              internalRenderState={{
-                disabled: state.disabled,
-                disableGutters,
-                divider,
-                highlighted: state.highlighted,
-                inset,
-              }}
-              slots={slots}
-              slotProps={slotProps}
-              sx={sx}
-              {...getMenu2ItemAdornments({
-                classes,
-                endAdornment,
-                EndAdornment: Menu2ItemEndAdornment,
-                inset,
-                ownerState: itemOwnerState,
-                startAdornment,
-                StartAdornment: Menu2ItemStartAdornment,
-              })}
-            />
-          );
-        }}
-        className={mergeMenu2ItemClassName(className, classes, ownerState)}
-        disabled={disabled}
-        nativeButton={nativeButton}
-        style={style}
-        {...other}
-      />
-    </ListContext.Provider>
+    <BaseMenu.Item
+      ref={ref}
+      render={(renderProps, state) => {
+        const itemOwnerState = { ...ownerState, ...state };
+        return (
+          <Menu2ItemRootSlot<Menu2ItemOwnerState>
+            baseProps={renderProps}
+            ownerState={itemOwnerState}
+            elementType={Menu2ItemRoot}
+            component={renderProp ? Menu2RenderRoot : undefined}
+            disableRipple={disableRipple}
+            nativeButton={nativeButton}
+            internalRender={renderProp}
+            internalRenderState={{
+              disabled: state.disabled,
+              disableGutters,
+              divider,
+              highlighted: state.highlighted,
+              inset,
+            }}
+            slots={slots}
+            slotProps={slotProps}
+            sx={sx}
+            {...getMenu2ItemAdornments({
+              classes,
+              endAdornment,
+              EndAdornment: Menu2ItemEndAdornment,
+              inset,
+              ownerState: itemOwnerState,
+              startAdornment,
+              StartAdornment: Menu2ItemStartAdornment,
+            })}
+          />
+        );
+      }}
+      className={mergeMenu2ItemClassName(className, classes, ownerState)}
+      disabled={disabled}
+      nativeButton={nativeButton}
+      style={style}
+      {...other}
+    />
   );
 });
 

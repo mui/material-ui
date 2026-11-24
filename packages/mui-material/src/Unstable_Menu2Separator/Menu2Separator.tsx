@@ -90,8 +90,8 @@ const Menu2SeparatorRoot = styled(Divider, {
   component: React.ElementType;
   ownerState: Menu2SeparatorProps & Menu2SeparatorOwnerState;
 }>(
-  // Own the spacing and the inset. The item `+ divider` rules miss separators after labels,
-  // groups, and open submenu triggers, where Base UI adds focus guards.
+  // Own the spacing and the inset, so they do not depend on the previous element.
+  // Base UI adds focus guards next to an open submenu trigger.
   memoTheme(({ theme }) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -150,7 +150,6 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
   return (
     <BaseSeparator
       ref={handleRef}
-      data-mui-menu-separator=""
       orientation={orientation}
       render={(renderProps, state) => (
         <Menu2RootSlot<Menu2SeparatorOwnerState>

@@ -126,7 +126,6 @@ describe('<Menu2Separator />', () => {
         const separator = screen.getByRole('separator');
         expect(separator).to.have.attribute('aria-orientation', orientation);
         expect(separator).to.have.attribute('data-orientation', orientation);
-        expect(separator).to.have.attribute('data-mui-menu-separator');
         expect(separator).to.have.class('MuiDivider-root');
         const styles = getComputedStyle(separator);
         if (orientation === 'vertical') {
@@ -204,7 +203,6 @@ describe('<Menu2Separator />', () => {
         expect(separator).to.have.attribute('aria-orientation', orientation);
         expect(separator).to.have.attribute('data-orientation', orientation);
         expect(separator).to.have.attribute('data-slot-orientation', orientation);
-        expect(separator).to.have.attribute('data-mui-menu-separator');
         if (custom) {
           expect(separator).to.have.attribute('data-root-orientation', orientation);
         }
@@ -448,31 +446,6 @@ describe('<Menu2Separator />', () => {
           marginTop: '13px',
           marginBottom: '17px',
         });
-      });
-
-      it(`preserves plain Divider spacing and inset margins (modularCssLayers: ${modularCssLayers})`, () => {
-        render(
-          <StyledEngineProvider enableCssLayer={modularCssLayers}>
-            <ThemeProvider theme={createTheme({ modularCssLayers, spacing: 10 })}>
-              <Menu2 defaultOpen modal={false}>
-                <Menu2Popup anchor={document.body}>
-                  <Menu2Item>Item</Menu2Item>
-                  <Divider />
-                  <Menu2Item>Item before inset</Menu2Item>
-                  <Divider variant="inset" data-testid="plain-inset" />
-                  <Menu2Item>Item before separator inset</Menu2Item>
-                  <Menu2Separator variant="inset" data-testid="menu2-inset" />
-                </Menu2Popup>
-              </Menu2>
-            </ThemeProvider>
-          </StyledEngineProvider>,
-        );
-
-        screen.getAllByRole('separator').forEach((separator) => {
-          expect(separator).toHaveComputedStyle({ marginTop: '10px', marginBottom: '10px' });
-        });
-        expect(screen.getByTestId('plain-inset')).toHaveComputedStyle({ marginLeft: '52px' });
-        expect(screen.getByTestId('menu2-inset')).toHaveComputedStyle({ marginLeft: '52px' });
       });
 
       it(`uses the Menu2 inset with a Divider render element (modularCssLayers: ${modularCssLayers})`, () => {

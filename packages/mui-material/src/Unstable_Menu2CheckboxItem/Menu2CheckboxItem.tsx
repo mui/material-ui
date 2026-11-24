@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import useSlot from '../utils/useSlot';
-import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
 import Menu2ItemBase, { menu2ItemOverridesResolver } from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
@@ -30,7 +29,6 @@ import {
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,
   Menu2ItemRootSlot,
-  useMenu2ItemListContext,
   useMenu2ItemUtilityClasses,
 } from '../Unstable_Menu2/menu2ItemShared';
 import type { Menu2CheckboxItemClasses } from '../Unstable_Menu2/menu2Classes';
@@ -345,7 +343,6 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(disableGutters);
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({
@@ -368,52 +365,50 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
       : React.isValidElement(renderProp) && renderProp.type === 'button');
 
   return (
-    <ListContext.Provider value={childContext}>
-      <BaseMenu.CheckboxItem
-        ref={ref}
-        render={(renderProps, state) => {
-          const itemOwnerState = { ...ownerState, ...state };
-          return (
-            <Menu2CheckboxItemRootSlot
-              baseProps={renderProps}
-              ownerState={itemOwnerState}
-              checkedIcon={checkedIcon}
-              disableRipple={disableRipple}
-              icon={icon}
-              nativeButton={nativeButton}
-              render={renderProp}
-              slotProps={slotProps}
-              slots={slots}
-              sx={sx}
-              {...getMenu2ItemAdornments({
-                classes,
-                endAdornment,
-                EndAdornment: Menu2CheckboxItemEndAdornment,
-                inset,
-                ownerState: itemOwnerState,
-                startAdornment,
-                StartAdornment: Menu2CheckboxItemStartAdornment,
-              })}
-            />
-          );
-        }}
-        className={(state) =>
-          clsx(
-            className,
-            getMenu2ItemClassName(classes, ownerState, state),
-            state.checked && classes.checked,
-          )
-        }
-        checked={checked}
-        disabled={disabled}
-        nativeButton={nativeButton}
-        onCheckedChange={onCheckedChange}
-        style={style}
-        {...other}
-      >
-        {children}
-      </BaseMenu.CheckboxItem>
-    </ListContext.Provider>
+    <BaseMenu.CheckboxItem
+      ref={ref}
+      render={(renderProps, state) => {
+        const itemOwnerState = { ...ownerState, ...state };
+        return (
+          <Menu2CheckboxItemRootSlot
+            baseProps={renderProps}
+            ownerState={itemOwnerState}
+            checkedIcon={checkedIcon}
+            disableRipple={disableRipple}
+            icon={icon}
+            nativeButton={nativeButton}
+            render={renderProp}
+            slotProps={slotProps}
+            slots={slots}
+            sx={sx}
+            {...getMenu2ItemAdornments({
+              classes,
+              endAdornment,
+              EndAdornment: Menu2CheckboxItemEndAdornment,
+              inset,
+              ownerState: itemOwnerState,
+              startAdornment,
+              StartAdornment: Menu2CheckboxItemStartAdornment,
+            })}
+          />
+        );
+      }}
+      className={(state) =>
+        clsx(
+          className,
+          getMenu2ItemClassName(classes, ownerState, state),
+          state.checked && classes.checked,
+        )
+      }
+      checked={checked}
+      disabled={disabled}
+      nativeButton={nativeButton}
+      onCheckedChange={onCheckedChange}
+      style={style}
+      {...other}
+    >
+      {children}
+    </BaseMenu.CheckboxItem>
   );
 });
 
