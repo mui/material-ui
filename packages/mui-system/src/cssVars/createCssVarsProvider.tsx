@@ -145,7 +145,7 @@ export interface CreateCssVarsProviderResult<
          * If `true`, the provider doesn't follow an outer provider: it sets all its CSS theme variables
          * on its element instead of `:root`, and has its own mode, set with `defaultMode` and `useColorScheme()`.
          * Use it for an embedded widget, a sibling of the top-level provider, or a section with its own mode.
-         * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
+         * Its mode is only stored when `modeStorageKey`, `colorSchemeStorageKey`, or `storageManager` is set.
          * @default false
          */
         isolated?: boolean | undefined;
@@ -168,6 +168,17 @@ const noCssVars = (): CssVarsByColorScheme => ({ root: {}, colorSchemes: [] });
  */
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
+
+// The props that set the mode and where it's stored. A nested provider follows the outer mode, so it ignores them.
+const MODE_PROPS = [
+  'defaultMode',
+  'modeStorageKey',
+  'colorSchemeStorageKey',
+  'storageManager',
+  'storageWindow',
+  'colorSchemeNode',
+  'noSsr',
+] as const;
 
 export default function createCssVarsProvider<
   ColorScheme extends string,
@@ -335,7 +346,7 @@ export default function createCssVarsProvider<
   const rootStyleSheets: Map<string, string[]> = new Map();
   let warnedMultipleRoots = false;
   let warnedDisableNestedContext = false;
-  let warnedNestedDefaultMode = false;
+  let warnedNestedModeProps = false;
 
   function CssVarsProvider(props: any) {
     const {
@@ -379,11 +390,12 @@ export default function createCssVarsProvider<
         warnedDisableNestedContext = true;
         console.warn('MUI: The `disableNestedContext` prop is deprecated. Use `isolated` instead.');
       }
-      if (nested && props.defaultMode !== undefined && !warnedNestedDefaultMode) {
-        warnedNestedDefaultMode = true;
+      const ignoredModeProps = nested ? MODE_PROPS.filter((name) => props[name] !== undefined) : [];
+      if (ignoredModeProps.length > 0 && !warnedNestedModeProps) {
+        warnedNestedModeProps = true;
         console.warn(
           [
-            'MUI: The `defaultMode` prop of a nested ThemeProvider has no effect, since it follows the mode of the outer provider.',
+            `MUI: A nested ThemeProvider follows the mode of the outer provider, so these props have no effect: ${ignoredModeProps.map((name) => `\`${name}\``).join(', ')}.`,
             'Add the `isolated` prop to give it a mode of its own.',
           ].join('\n'),
         );
@@ -443,7 +455,8 @@ export default function createCssVarsProvider<
       modeStorageKey,
       colorSchemeStorageKey,
       defaultMode,
-      storageManager: isolated && !isolatedStorage ? null : storageManager,
+      // A nested provider follows the outer mode, so it doesn't read the storage.
+      storageManager: nested || (isolated && !isolatedStorage) ? null : storageManager,
       storageWindow,
       noSsr,
     });

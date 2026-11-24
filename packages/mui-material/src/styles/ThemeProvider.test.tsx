@@ -1333,7 +1333,7 @@ describe('ThemeProvider', () => {
         expect(document.documentElement).not.to.have.attribute('data-dark');
       });
 
-      it('warns when a nested provider gets defaultMode without isolated', () => {
+      it('warns when a nested provider gets mode props without isolated', () => {
         const theme = createTheme({
           cssVariables: { colorSchemeSelector: 'class' },
           colorSchemes: { light: true, dark: true },
@@ -1341,12 +1341,40 @@ describe('ThemeProvider', () => {
         expect(() =>
           render(
             <ThemeProvider theme={theme} storageManager={null}>
-              <ThemeProvider theme={theme} defaultMode="dark">
+              <ThemeProvider theme={theme} defaultMode="dark" modeStorageKey="section-mode">
                 <div />
               </ThemeProvider>
             </ThemeProvider>,
           ),
-        ).toWarnDev('MUI: The `defaultMode` prop of a nested ThemeProvider has no effect');
+        ).toWarnDev(
+          'MUI: A nested ThemeProvider follows the mode of the outer provider, so these props have no effect: `defaultMode`, `modeStorageKey`.',
+        );
+      });
+
+      it("doesn't read the stored mode in a nested provider", () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+        const keys: string[] = [];
+        const { getItem } = window.localStorage;
+        window.localStorage.getItem = (key: string) => {
+          keys.push(key);
+          return getItem(key);
+        };
+        render(
+          <ThemeProvider
+            theme={theme}
+            modeStorageKey="page-mode"
+            colorSchemeStorageKey="page-color-scheme"
+          >
+            <ThemeProvider theme={theme}>
+              <div />
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        expect(keys.length).to.be.greaterThan(0);
+        expect(keys.filter((key) => !key.startsWith('page-'))).to.deep.equal([]);
       });
 
       it('warns when two providers with different themes write to :root', () => {

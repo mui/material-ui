@@ -41,7 +41,7 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * If `true`, the provider doesn't follow an outer provider: it sets all its CSS theme variables
        * on its element instead of `:root`, and has its own mode, set with `defaultMode` and `useColorScheme()`.
        * Use it for an embedded widget, a sibling of the top-level provider, or a section with its own mode.
-       * Its mode is only stored when `modeStorageKey` or `colorSchemeStorageKey` is set.
+       * Its mode is only stored when `modeStorageKey`, `colorSchemeStorageKey`, or `storageManager` is set.
        * @default false
        */
       isolated?: boolean | undefined;
