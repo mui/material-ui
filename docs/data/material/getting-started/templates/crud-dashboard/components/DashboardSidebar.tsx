@@ -262,8 +262,10 @@ export default function DashboardSidebar({
         variant="temporary"
         open={expanded}
         onClose={handleSetSidebarExpanded(false)}
-        ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+        slotProps={{
+          root: {
+            keepMounted: true, // Better open performance on mobile.
+          },
         }}
         sx={[
           {

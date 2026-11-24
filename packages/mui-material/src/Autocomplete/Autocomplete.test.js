@@ -5165,6 +5165,31 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: readOnly', () => {
+    it('should not clear the value on Escape when clearOnEscape=true', async () => {
+      const handleChange = spy();
+      const handleKeyDown = spy();
+      const { user } = render(
+        <div onKeyDown={handleKeyDown}>
+          <Autocomplete
+            readOnly
+            clearOnEscape
+            defaultValue="one"
+            options={['one', 'two']}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </div>,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.click(textbox);
+      await user.keyboard('{Escape}');
+
+      expect(textbox).to.have.value('one');
+      expect(handleChange.callCount).to.equal(0);
+      expect(handleKeyDown.callCount).to.equal(1);
+    });
+
     it('should make the input readonly', () => {
       render(
         <Autocomplete
@@ -5947,6 +5972,66 @@ describe('<Autocomplete />', () => {
       expect(listbox).not.to.have.property('scrollTop', 0);
     },
   );
+
+  // https://github.com/mui/material-ui/issues/49653
+  describe('options positioned with a CSS transform', () => {
+    const options = Array.from({ length: 30 }, (_, index) => `option ${index}`);
+
+    function TransformedAutocomplete() {
+      return (
+        <Autocomplete
+          disablePortal
+          options={options}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={(props, option, { index }) => (
+            <li
+              {...props}
+              key={option}
+              style={{
+                position: 'absolute',
+                top: 0,
+                height: 36,
+                transform: `translateY(${index * 36}px)`,
+              }}
+            >
+              {option}
+            </li>
+          )}
+          slotProps={{ listbox: { style: { padding: 0, height: 108 } } }}
+        />
+      );
+    }
+
+    async function expectScrollToFollowHighlight(user) {
+      await user.click(screen.getByRole('combobox'));
+      const listbox = screen.getByRole('listbox');
+
+      await user.keyboard('{ArrowDown>10/}');
+      checkHighlightIs(listbox, 'option 9');
+      expect(listbox.scrollTop).to.be.closeTo(252, 1);
+
+      await user.keyboard('{ArrowUp>9/}');
+      checkHighlightIs(listbox, 'option 0');
+      expect(listbox.scrollTop).to.be.closeTo(0, 1);
+    }
+
+    it.skipIf(isJsdom())('should scroll the highlighted option into view', async () => {
+      const { user } = render(<TransformedAutocomplete />);
+      await expectScrollToFollowHighlight(user);
+    });
+
+    it.skipIf(isJsdom())(
+      'should scroll the highlighted option into view inside a scaled ancestor',
+      async () => {
+        const { user } = render(
+          <div style={{ transform: 'scale(0.5)', transformOrigin: '0 0' }}>
+            <TransformedAutocomplete />
+          </div>,
+        );
+        await expectScrollToFollowHighlight(user);
+      },
+    );
+  });
 
   describe('exit transition', () => {
     it.skipIf(isJsdom())(

@@ -25,7 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
-import { resolveFocusVisible, mergeFocusVisibleInput } from './focusVisible';
+import { attachFocusVisible, mergeFocusVisibleInput } from './focusVisible';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -138,7 +138,7 @@ function attachColorScheme(colorSpace, colorSchemes, scheme, restTheme, colorSch
 export default function createThemeWithVars(options = {}, ...args) {
   const {
     colorSchemes: colorSchemesInput = { light: true },
-    defaultColorScheme: defaultColorSchemeInput,
+    defaultColorScheme = 'light',
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
     nativeColor = false,
@@ -149,10 +149,6 @@ export default function createThemeWithVars(options = {}, ...args) {
     rootSelector = ':root',
     ...input
   } = options;
-  const firstColorScheme = Object.keys(colorSchemesInput)[0];
-  const defaultColorScheme =
-    defaultColorSchemeInput ||
-    (colorSchemesInput.light && firstColorScheme !== 'light' ? 'light' : firstColorScheme);
   const getCssVar = createGetCssVar(cssVarPrefix);
   const {
     [defaultColorScheme]: defaultSchemeInput,
@@ -1003,10 +999,11 @@ export default function createThemeWithVars(options = {}, ...args) {
   // Default color is the palette var, not a hex: `focusVisible` is spread inline (skipped from var
   // generation, see `shouldSkipGeneratingVar`), so the var adapts per scheme at the CSS level — no
   // per-scheme copy needed here, unlike the no-vars path in `createTheme`.
-  const focusVisibleInput = mergeFocusVisibleInput(options.focusVisible, args);
-  if (focusVisibleInput != null && focusVisibleInput !== false) {
-    theme.focusVisible = resolveFocusVisible(focusVisibleInput, getCssVar('palette-primary-main'));
-  }
+  attachFocusVisible(
+    theme,
+    mergeFocusVisibleInput(options.focusVisible, args),
+    getCssVar('palette-primary-main'),
+  );
 
   const parserConfig = {
     prefix: cssVarPrefix,
