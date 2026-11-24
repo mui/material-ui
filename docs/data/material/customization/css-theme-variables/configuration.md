@@ -325,7 +325,22 @@ const promoTheme = createTheme({
 });
 ```
 
-A theme passed as a function, like `theme={(outer) => createTheme(outer, { palette })}`, is applied the same way.
+A theme passed as a function is applied the same way.
+When it extends the outer theme, set the colors in `colorSchemes`, since `palette` only changes the default color scheme of a theme with both:
+
+```jsx
+<ThemeProvider
+  theme={(outer) =>
+    createTheme(outer, {
+      colorSchemes: {
+        light: { palette: { primary: { main: '#9c27b0' } } },
+        dark: { palette: { primary: { main: '#ce93d8' } } },
+      },
+    })
+  }
+>
+```
+
 Providers with the same theme, like the ones of a themed card in a list, share one class and one stylesheet.
 
 Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
@@ -359,6 +374,20 @@ To theme a single component, render the component itself, so no other element is
 <ThemeProvider theme={promoTheme} render={<Card />}>
   <CardContent>Uses promoTheme</CardContent>
 </ThemeProvider>
+```
+
+Some components pass props to their children, like `Tabs` to each `Tab`.
+To theme one of those children, create a component that spreads its props on the element:
+
+```jsx
+function PromoTab(props) {
+  return <ThemeProvider theme={promoTheme} render={<Tab {...props} />} />;
+}
+
+<Tabs value={value} onChange={handleChange}>
+  <Tab label="Plans" />
+  <PromoTab label="Offers" />
+</Tabs>;
 ```
 
 To read the props or the mode, pass a function that receives them:
