@@ -424,5 +424,19 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal(['direction-xs-row', 'direction-sm-column', 'direction-md-row']);
     });
+
+    it('should use breakpoint names for a responsive array', () => {
+      expect(generateDirectionClasses(['column', null, 'row'])).to.deep.equal([
+        'direction-xs-column',
+        'direction-md-row',
+      ]);
+      expect(generateDirectionClasses(['column', 'row'], ['mobile', 'tablet'])).to.deep.equal([
+        'direction-mobile-column',
+        'direction-tablet-row',
+      ]);
+      expect(generateDirectionClasses('row', ['mobile', 'tablet'])).to.deep.equal([
+        'direction-mobile-row',
+      ]);
+    });
   });
 });
