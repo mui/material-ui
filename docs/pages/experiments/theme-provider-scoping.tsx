@@ -72,6 +72,17 @@ function createLinkTheme(main: string) {
 }
 const blueLinkTheme = createLinkTheme('#1976d2');
 const redLinkTheme = createLinkTheme('#d32f2f');
+const roundedTheme = createTheme({
+  cssVariables: { colorSchemeSelector: 'class' },
+  colorSchemes: { light: true, dark: true },
+  shape: { borderRadius: 16 },
+  spacing: 12,
+  typography: { fontFamily: 'Georgia, serif' },
+});
+const lightOnlyTheme = createTheme({
+  cssVariables: { colorSchemeSelector: 'class' },
+  palette: { primary: { main: '#2e7d32' } },
+});
 // A page theme with another prefix, like the docs' own theme around the Material UI demos.
 const docsTheme = createTheme({
   cssVariables: { cssVarPrefix: 'docs', colorSchemeSelector: 'class' },
@@ -188,6 +199,15 @@ function ModeToggle({ label = 'mode' }: { label?: string }) {
     >
       {label}: {mode ?? '…'}
     </Button>
+  );
+}
+
+function ColorSchemeReport() {
+  const { mode, colorScheme } = useColorScheme();
+  return (
+    <Typography variant="caption" component="div" sx={{ m: 0.5 }}>
+      useColorScheme(): mode {mode ?? '…'}, colorScheme {colorScheme ?? '…'}
+    </Typography>
   );
 }
 
@@ -353,11 +373,14 @@ const scenarios: Scenario[] = [
   {
     title: '3. Nested, different variables',
     description:
-      'The provider renders a div with display: contents, whose class only sets the variables that differ. It follows the outer mode.',
+      'The provider renders a div with display: contents, whose class only sets the variables that differ. It follows the outer mode, also when its theme has another colorSchemeSelector, and useColorScheme() inside it reads and sets the outer mode.',
     code: `<ThemeProvider theme={appTheme}>
   <Button />
   <ThemeProvider theme={promoTheme}>
-    <Button />
+    <ModeToggle /><Button />
+  </ThemeProvider>
+  <ThemeProvider theme={widgetDataTheme /* colorSchemeSelector: 'data' */}>
+    <SchemeLabel /><Button />
   </ThemeProvider>
 </ThemeProvider>`,
     render: () => (
@@ -366,8 +389,14 @@ const scenarios: Scenario[] = [
           <ModeToggle label="outer mode" />
           <Swatch label="outer" />
           <ThemeProvider theme={promoTheme}>
+            <ModeToggle label="nested mode" />
             <Swatch label="nested" />
             <span data-inspect="nested child" />
+          </ThemeProvider>
+          <ThemeProvider theme={widgetDataTheme}>
+            <SchemeLabel>data selector</SchemeLabel>
+            <Swatch label="nested" />
+            <span data-inspect="nested child, data selector" />
           </ThemeProvider>
         </div>
       </Root>
@@ -447,7 +476,7 @@ const scenarios: Scenario[] = [
   {
     title: '6. Function themes',
     description:
-      'A function theme applies like the object theme it returns: a copy of the outer theme with changes, or createTheme(outer, …), is scoped too. As in createTheme(), `palette` is the default (light) color scheme, so in dark mode both keep the outer dark primary unless they change colorSchemes.dark. createTheme(outer, …) also keeps the outer primary light and dark shades, since it merges { main } into the outer primary color.',
+      'A function theme applies like the object theme it returns: a copy of the outer theme with changes, or createTheme(outer, …), is scoped too, and both derive the primary light and dark shades from the new main color. As in createTheme(), `palette` is the default (light) color scheme, so in dark mode both keep the outer dark primary unless they change colorSchemes.dark.',
     code: `<ThemeProvider theme={appTheme}>
   <ThemeProvider theme={(outer) => ({ ...outer, palette: { ...outer.palette, primary: { main: '#2e7d32' } } })}>
     <Button />
@@ -699,23 +728,54 @@ const scenarios: Scenario[] = [
     ),
   },
   {
-    title: '14. Forced single-scheme nested section',
-    description: 'A nested theme with only a dark scheme stays dark whatever the outer mode is.',
+    title: '14. Single-scheme nested themes',
+    description:
+      'A nested theme with only a dark scheme stays dark, and one with only a light scheme, like createTheme({ cssVariables: true, palette }), stays light, whatever the outer mode is. Inside them, applyStyles("dark"), useColorScheme().colorScheme, nested themes and their portals follow that color scheme, while setMode() still changes the page.',
     code: `<ThemeProvider theme={appTheme}>
-  <ThemeProvider theme={forcedDarkTheme}>
-    <Button />
+  <ThemeProvider theme={forcedDarkTheme /* palette: { mode: 'dark' } */}>
+    <ModeToggle /><SchemeLabel /><Button />
+    <ThemeProvider theme={promoTheme}>
+      <Button /><Dialog /><Menu />
+    </ThemeProvider>
+  </ThemeProvider>
+  <ThemeProvider theme={lightOnlyTheme /* palette: { primary } */}>
+    <SchemeLabel /><Button />
   </ThemeProvider>
 </ThemeProvider>`,
     render: () => (
       <Root theme={appTheme}>
-        <div data-inspect="outer child">
+        <Box
+          data-inspect="outer child"
+          sx={{ p: 1, bgcolor: 'background.default', color: 'text.primary' }}
+        >
           <ModeToggle label="outer mode" />
           <ThemeProvider theme={forcedDarkTheme}>
-            <Box data-inspect="forced dark child" sx={{ p: 1, bgcolor: 'background.default' }}>
+            <Box
+              data-inspect="dark-only child"
+              sx={{ p: 1, bgcolor: 'background.default', color: 'text.primary' }}
+            >
+              <ModeToggle label="page mode, from the dark section" />
+              <ColorSchemeReport />
+              <SchemeLabel>dark only</SchemeLabel>
               <Swatch label="always dark" />
+              <ThemeProvider theme={promoTheme}>
+                <div data-inspect="promo in dark-only">
+                  <Swatch label="promo, dark" />
+                  <Portals label="promo in dark-only" />
+                </div>
+              </ThemeProvider>
             </Box>
           </ThemeProvider>
-        </div>
+          <ThemeProvider theme={lightOnlyTheme}>
+            <Box
+              data-inspect="light-only child"
+              sx={{ p: 1, bgcolor: 'background.default', color: 'text.primary' }}
+            >
+              <SchemeLabel>light only</SchemeLabel>
+              <Swatch label="always light" />
+            </Box>
+          </ThemeProvider>
+        </Box>
       </Root>
     ),
   },
@@ -734,13 +794,38 @@ const scenarios: Scenario[] = [
       </Root>
     ),
   },
+  {
+    title: '16. Nested, other tokens',
+    description:
+      'Shape, spacing and typography are variables too, so a nested theme that changes them, like a rounded or denser section, scopes them like the palette, and theme.spacing() inside it uses the nested spacing.',
+    code: `<ThemeProvider theme={appTheme}>
+  <Box sx={{ p: 1 }}><Button /></Box>
+  <ThemeProvider theme={roundedTheme /* borderRadius 16, spacing 12, Georgia */}>
+    <Box sx={{ p: 1 }}><Button /></Box>
+  </ThemeProvider>
+</ThemeProvider>`,
+    render: () => (
+      <Root theme={appTheme}>
+        <div>
+          <Box data-inspect="outer box" sx={{ p: 1 }}>
+            <Swatch label="outer" />
+          </Box>
+          <ThemeProvider theme={roundedTheme}>
+            <Box data-inspect="nested box" sx={{ p: 1 }}>
+              <Swatch label="nested" />
+            </Box>
+          </ThemeProvider>
+        </div>
+      </Root>
+    ),
+  },
 ];
 
 // ---------------------------------------------------------------------------
 // Inspector: reads what ended up in the iframe.
 
 const interestingDeclaration =
-  /color-scheme|--(mui|docs)-palette-(primary-main|secondary-main|text-link):/;
+  /color-scheme|--(mui|docs)-palette-(primary-main|secondary-main|text-link):|--mui-(spacing|shape-borderRadius|font-button):/;
 
 function describeRule(cssText: string) {
   const [selector, body = ''] = cssText.split('{');
@@ -766,7 +851,13 @@ function inspect(doc: Document) {
     const read = (name: string) => style.getPropertyValue(name).trim() || '—';
     const link = read('--mui-palette-text-link');
     const docsPrimary = read('--docs-palette-primary-main');
-    return `primary ${read('--mui-palette-primary-main')}, secondary ${read('--mui-palette-secondary-main')}, ${docsPrimary === '—' ? '' : `docs primary ${docsPrimary}, `}${link === '—' ? '' : `link color ${style.color}, `}color-scheme ${style.colorScheme}`;
+    // Spacing and border radius are only shown where they differ from `:root`.
+    const rootStyle = view.getComputedStyle(doc.documentElement);
+    const tokens = ['--mui-spacing', '--mui-shape-borderRadius']
+      .filter((name) => read(name) !== (rootStyle.getPropertyValue(name).trim() || '—'))
+      .map((name) => `${name.replace('--mui-', '')} ${read(name)}, `)
+      .join('');
+    return `primary ${read('--mui-palette-primary-main')}, secondary ${read('--mui-palette-secondary-main')}, ${docsPrimary === '—' ? '' : `docs primary ${docsPrimary}, `}${link === '—' ? '' : `link color ${style.color}, `}${tokens}color-scheme ${style.colorScheme}`;
   };
   const scope = (element: Element) => {
     const classes = Array.from(element.classList)
@@ -899,9 +990,9 @@ export default function ThemeProviderScoping() {
         <Typography variant="body2" sx={{ mb: 2 }}>
           Temporary page for #49581. Each scenario renders in its own iframe. The right column shows
           what ended up there: the scope classes and markers, the computed primary and secondary
-          colors and color scheme, and the scoped CSS rules (palette and color scheme declarations
-          only). Bugs 1 to 4 are the ones from the review. Open the browser console for the
-          development warnings.
+          colors and color scheme, and the scoped CSS rules (palette, color scheme, spacing, shape
+          and button font declarations only). Bugs 1 to 4 are the ones from the review. Open the
+          browser console for the development warnings.
         </Typography>
         <Stack spacing={3} sx={{ mt: 2 }}>
           {scenarios.map((scenario) => (
