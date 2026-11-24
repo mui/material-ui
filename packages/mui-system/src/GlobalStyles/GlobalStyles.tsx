@@ -60,14 +60,15 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  styles: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.array,
-    PropTypes.func,
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.bool,
-  ]),
+  styles: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.array,
+      PropTypes.func,
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
   themeId: PropTypes.string,
 } as any;
 
