@@ -42,9 +42,9 @@ export function getStyleValue(
   if (typeof themeMapping === 'function') {
     value = themeMapping(valueFinal);
   } else if (Array.isArray(themeMapping)) {
-    value = themeMapping[valueFinal as any] || userValue;
+    value = themeMapping[valueFinal as any] ?? userValue;
   } else if (typeof valueFinal === 'string') {
-    value = getPath(themeMapping, valueFinal) || userValue;
+    value = getPath(themeMapping, valueFinal) ?? userValue;
   } else {
     value = userValue;
   }
@@ -89,9 +89,10 @@ export function getStyleValue2(
   if (typeof themeMapping === 'function') {
     value = themeMapping(userValue);
   } else if (Array.isArray(themeMapping)) {
-    value = themeMapping[userValue as any] || userValue;
+    value = themeMapping[userValue as any] ?? userValue;
   } else if (typeof userValue === 'string') {
-    value = getPath(themeMapping, userValue, true, alternateProp) || userValue;
+    // A theme value can be 0 (e.g. `zIndex: { base: 0 }`), so only fall back when it's missing.
+    value = getPath(themeMapping, userValue, true, alternateProp) ?? userValue;
   } else {
     value = userValue;
   }

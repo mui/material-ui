@@ -237,6 +237,14 @@ describe('styleFunctionSx', () => {
         margin: '0px',
       });
     });
+
+    it('resolves a theme value of 0', () => {
+      const result = styleFunctionSx({
+        theme: createTheme({ zIndex: { base: 0 } }),
+        sx: { zIndex: 'base' },
+      });
+      expect(result).to.deep.equal({ zIndex: 0 });
+    });
   });
 
   it('resolves non system CSS properties if specified', () => {
