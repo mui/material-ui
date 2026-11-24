@@ -144,6 +144,9 @@ export interface Menu2PopupSharedSlots {
 
 type WithSx = { sx?: SxProps<Theme> | undefined };
 
+// Menu2 has no dense mode.
+export type Menu2ListProps = Omit<ListProps, 'dense'> & { dense?: never | undefined };
+
 export interface Menu2PopupSharedSlotProps<OwnerState> {
   /**
    * Props for the transition component. Use onOpenChangeComplete for completion.
@@ -165,7 +168,7 @@ export interface Menu2PopupSharedSlotProps<OwnerState> {
     SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props> & WithSx, OwnerState> | undefined;
   backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props>, OwnerState> | undefined;
   root?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
-  list?: SlotProps<ExternalSlotProps<ListProps>, OwnerState> | undefined;
+  list?: SlotProps<ExternalSlotProps<Menu2ListProps>, OwnerState> | undefined;
 }
 
 type Menu2PositionerProps = BaseMenu.Positioner.Props;

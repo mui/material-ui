@@ -228,7 +228,6 @@ function Menu2CheckboxItemRootSlot(props: Menu2CheckboxItemRootSlotProps) {
       internalRender={renderProp}
       internalRenderState={{
         checked: ownerState.checked,
-        dense: ownerState.dense,
         disabled: ownerState.disabled,
         disableGutters: ownerState.disableGutters,
         divider: ownerState.divider,
@@ -330,7 +329,6 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     checkedIcon = defaultCheckedIcon,
     className,
     classes: classesProp,
-    dense: denseProp = false,
     disabled = false,
     disableGutters = false,
     disableRipple,
@@ -348,13 +346,11 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
-  const { dense } = childContext;
+  const childContext = useMenu2ItemListContext(disableGutters);
   const ownerState = {
     ...props,
     ...getMenu2ItemOwnerState({
       checked,
-      dense,
       disabled,
       disableGutters,
       divider,
@@ -462,12 +458,6 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   defaultChecked: PropTypes.bool,
-  /**
-   * @ignore
-   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-   * @default false
-   */
-  dense: PropTypes.bool,
   /**
    * Whether the component should ignore user interaction.
    * @default false

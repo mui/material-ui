@@ -364,7 +364,6 @@ describe('<Menu2 />', () => {
               'data-testid': 'list',
               'data-align': ownerState.align,
               className: 'custom-list',
-              dense: true,
               disablePadding: true,
               sx: { paddingLeft: '13px' },
               onClick: handleClick,
@@ -385,7 +384,6 @@ describe('<Menu2 />', () => {
     expect(list).to.have.class('custom-list');
     expect(list).to.have.class(menu2PopupClasses.list);
     expect(list).to.have.class(listClasses.root);
-    expect(list).to.have.class(listClasses.dense);
     expect(list).not.to.have.class(listClasses.padding);
     expect(list).toHaveComputedStyle({ paddingLeft: '13px' });
 
@@ -393,24 +391,67 @@ describe('<Menu2 />', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  // The classic `MenuListProps={{ dense: true }}` makes each row dense.
-  it('passes the dense state of the list to each item part', async () => {
+  it('ignores an outer dense List and the MuiList dense theme default', async () => {
+    const theme = createTheme({ components: { MuiList: { defaultProps: { dense: true } } } });
+    const { user } = render(
+      <ThemeProvider theme={theme}>
+        <List dense>
+          <li>
+            <Menu2>
+              <Menu2Trigger render={<Button disableRipple>Options</Button>} />
+              <Menu2Popup slotProps={{ list: { 'data-testid': 'list' } }}>
+                <Menu2Item>
+                  <ListItemText data-testid="text">Item</ListItemText>
+                </Menu2Item>
+                <Menu2Submenu>
+                  <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+                  <Menu2SubmenuPopup slotProps={{ list: { 'data-testid': 'submenu-list' } }}>
+                    <Menu2Item>Nested</Menu2Item>
+                  </Menu2SubmenuPopup>
+                </Menu2Submenu>
+              </Menu2Popup>
+            </Menu2>
+          </li>
+        </List>
+      </ThemeProvider>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    await user.click(await screen.findByRole('menuitem', { name: 'More' }));
+    await screen.findByRole('menuitem', { name: 'Nested' });
+
+    expect(screen.getByTestId('list')).not.to.have.class(listClasses.dense);
+    expect(screen.getByTestId('submenu-list')).not.to.have.class(listClasses.dense);
+    expect(screen.getByTestId('text')).not.to.have.class('MuiListItemText-dense');
+    ['Item', 'More', 'Nested'].forEach((name) => {
+      expect(screen.getByRole('menuitem', { name }).className).not.to.match(/-dense\b/);
+    });
+  });
+
+  it('passes callback list props and the owner state to a submenu list', async () => {
+    const listRef = React.createRef<HTMLUListElement>();
+    const handleClick = vi.fn();
     const { user } = render(
       <Menu2>
-        <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup slotProps={{ list: { dense: true } }}>
-          <Menu2Item>
-            <ListItemText data-testid="text">Item</ListItemText>
-          </Menu2Item>
-          <Menu2LinkItem href="/docs">Link</Menu2LinkItem>
-          <Menu2CheckboxItem>Checkbox</Menu2CheckboxItem>
-          <Menu2RadioGroup defaultValue="a">
-            <Menu2RadioItem value="a">Radio</Menu2RadioItem>
-          </Menu2RadioGroup>
+        <Menu2Trigger render={<Button>Options</Button>} />
+        <Menu2Popup>
           <Menu2Submenu>
-            <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
-            <Menu2SubmenuPopup>
-              <Menu2Item>Nested</Menu2Item>
+            <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup
+              align="end"
+              slotProps={{
+                list: (ownerState) => ({
+                  component: 'ul',
+                  ref: listRef,
+                  disablePadding: true,
+                  className: 'custom-list',
+                  'data-testid': 'callback-list',
+                  'data-align': ownerState.align,
+                  onClick: handleClick,
+                }),
+              }}
+            >
+              <Menu2Item closeOnClick={false}>Nested</Menu2Item>
             </Menu2SubmenuPopup>
           </Menu2Submenu>
         </Menu2Popup>
@@ -418,299 +459,17 @@ describe('<Menu2 />', () => {
     );
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
-    await screen.findByRole('menu');
+    await user.click(await screen.findByRole('menuitem', { name: 'More' }));
 
-    [
-      screen.getByRole('menuitem', { name: 'Item' }),
-      screen.getByRole('menuitem', { name: 'Link' }),
-      screen.getByRole('menuitemcheckbox', { name: 'Checkbox' }),
-      screen.getByRole('menuitemradio', { name: 'Radio' }),
-      screen.getByRole('menuitem', { name: 'More' }),
-    ].forEach((row) => {
-      expect(row.className).to.match(/MuiMenu2\w+-dense/);
-    });
-    // The item gives the resolved value to its children, not its own prop.
-    expect(screen.getByTestId('text')).to.have.class('MuiListItemText-dense');
-  });
+    const list = await screen.findByTestId('callback-list');
+    expect(list.tagName).to.equal('UL');
+    expect(listRef.current).to.equal(list);
+    expect(list).to.have.attribute('data-align', 'end');
+    expect(list).to.have.class('custom-list');
+    expect(list).not.to.have.class(listClasses.padding);
 
-  describe('submenu density', () => {
-    it('updates an open submenu when the parent list density changes', async () => {
-      function TestMenu() {
-        const [dense, setDense] = React.useState(false);
-        return (
-          <Menu2>
-            <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-            <Menu2Popup slotProps={{ list: { dense } }}>
-              <Menu2Submenu>
-                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
-                <Menu2SubmenuPopup slotProps={{ list: { 'data-testid': 'submenu-list' } }}>
-                  <Menu2CheckboxItem
-                    checked={dense}
-                    onCheckedChange={setDense}
-                    closeOnClick={false}
-                  >
-                    Dense
-                  </Menu2CheckboxItem>
-                  <Menu2Item>Nested</Menu2Item>
-                </Menu2SubmenuPopup>
-              </Menu2Submenu>
-            </Menu2Popup>
-          </Menu2>
-        );
-      }
-
-      const { user } = render(<TestMenu />);
-      await user.click(screen.getByRole('button', { name: 'Options' }));
-      await user.click(await screen.findByRole('menuitem', { name: 'More' }));
-      await screen.findByRole('menuitemcheckbox', { name: 'Dense' });
-
-      function expectDensity(dense: boolean) {
-        expect(
-          screen
-            .getByRole('menuitem', { name: 'More' })
-            .classList.contains(menu2SubmenuTriggerClasses.dense),
-        ).to.equal(dense);
-        expect(screen.getByTestId('submenu-list').classList.contains(listClasses.dense)).to.equal(
-          dense,
-        );
-        expect(
-          screen
-            .getByRole('menuitem', { name: 'Nested' })
-            .classList.contains(menu2ItemClasses.dense),
-        ).to.equal(dense);
-      }
-
-      expectDensity(false);
-
-      await user.click(screen.getByRole('menuitemcheckbox', { name: 'Dense' }));
-      expectDensity(true);
-
-      await user.click(screen.getByRole('menuitemcheckbox', { name: 'Dense' }));
-      expectDensity(false);
-    });
-
-    it('inherits density through custom list slots and multiple submenu levels', async () => {
-      const CustomList = React.forwardRef<HTMLUListElement, ListProps & { ownerState: object }>(
-        function CustomList({ ownerState, ...props }, ref) {
-          return <List {...props} ref={ref} data-dense={props.dense} />;
-        },
-      );
-      const { user } = render(
-        <Menu2>
-          <Menu2Trigger render={<Button>Options</Button>} />
-          <Menu2Popup slotProps={{ list: { dense: true } }}>
-            <Menu2Submenu>
-              <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup
-                slots={{ list: CustomList }}
-                slotProps={{ list: { component: 'ul', 'data-testid': 'custom-list' } }}
-              >
-                <Menu2Item>
-                  <ListItemText data-testid="nested-text">Nested</ListItemText>
-                </Menu2Item>
-                <Menu2Submenu>
-                  <Menu2SubmenuTrigger openOnHover={false}>Deeper</Menu2SubmenuTrigger>
-                  <Menu2SubmenuPopup slotProps={{ list: { 'data-testid': 'deep-list' } }}>
-                    <Menu2Item>Deep item</Menu2Item>
-                  </Menu2SubmenuPopup>
-                </Menu2Submenu>
-              </Menu2SubmenuPopup>
-            </Menu2Submenu>
-          </Menu2Popup>
-        </Menu2>,
-      );
-
-      await user.click(screen.getByRole('button', { name: 'Options' }));
-      await user.click(await screen.findByRole('menuitem', { name: 'More' }));
-
-      expect(await screen.findByTestId('custom-list')).to.have.attribute('data-dense', 'true');
-      expect(screen.getByTestId('custom-list')).to.have.class(listClasses.dense);
-      expect(screen.getByRole('menuitem', { name: 'Nested' })).to.have.class(
-        menu2ItemClasses.dense,
-      );
-      expect(screen.getByTestId('nested-text')).to.have.class('MuiListItemText-dense');
-      expect(screen.getByRole('menuitem', { name: 'Deeper' })).to.have.class(
-        menu2SubmenuTriggerClasses.dense,
-      );
-
-      await user.click(screen.getByRole('menuitem', { name: 'Deeper' }));
-
-      expect(await screen.findByRole('menuitem', { name: 'Deep item' })).to.have.class(
-        menu2ItemClasses.dense,
-      );
-      expect(screen.getByTestId('deep-list')).to.have.class(listClasses.dense);
-    });
-
-    it.each([false, true])(
-      'preserves inherited dense=%s despite a submenu list override',
-      async (dense) => {
-        const { user } = render(
-          <Menu2>
-            <Menu2Trigger render={<Button>Options</Button>} />
-            <Menu2Popup slotProps={{ list: { dense } }}>
-              <Menu2Submenu>
-                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
-                <Menu2SubmenuPopup
-                  slotProps={{
-                    // @ts-expect-error Test an unsupported density override from JavaScript.
-                    list: { dense: !dense, 'data-testid': 'overridden-list' },
-                  }}
-                >
-                  <Menu2Item>Nested</Menu2Item>
-                  <Menu2Submenu>
-                    <Menu2SubmenuTrigger openOnHover={false}>Deeper</Menu2SubmenuTrigger>
-                    <Menu2SubmenuPopup slotProps={{ list: { 'data-testid': 'deep-list' } }}>
-                      <Menu2Item>Deep item</Menu2Item>
-                    </Menu2SubmenuPopup>
-                  </Menu2Submenu>
-                </Menu2SubmenuPopup>
-              </Menu2Submenu>
-            </Menu2Popup>
-          </Menu2>,
-        );
-
-        await user.click(screen.getByRole('button', { name: 'Options' }));
-        await user.click(await screen.findByRole('menuitem', { name: 'More' }));
-
-        expect(
-          (await screen.findByTestId('overridden-list')).classList.contains(listClasses.dense),
-        ).to.equal(dense);
-        expect(
-          screen
-            .getByRole('menuitem', { name: 'Nested' })
-            .classList.contains(menu2ItemClasses.dense),
-        ).to.equal(dense);
-
-        await user.click(screen.getByRole('menuitem', { name: 'Deeper' }));
-
-        expect(
-          (await screen.findByRole('menuitem', { name: 'Deep item' })).classList.contains(
-            menu2ItemClasses.dense,
-          ),
-        ).to.equal(dense);
-        expect(screen.getByTestId('deep-list').classList.contains(listClasses.dense)).to.equal(
-          dense,
-        );
-      },
-    );
-
-    it.each([false, true])(
-      'preserves callback list props and owner state with inherited dense=%s',
-      async (dense) => {
-        const listRef = React.createRef<HTMLUListElement>();
-        const handleClick = vi.fn();
-        const { user } = render(
-          <Menu2>
-            <Menu2Trigger render={<Button>Options</Button>} />
-            <Menu2Popup slotProps={{ list: { dense } }}>
-              <Menu2Submenu>
-                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
-                <Menu2SubmenuPopup
-                  align="end"
-                  slotProps={{
-                    // @ts-expect-error Test an unsupported density override from JavaScript.
-                    list: (ownerState) => ({
-                      component: 'ul',
-                      ref: listRef,
-                      dense: !dense,
-                      disablePadding: true,
-                      className: 'custom-list',
-                      'data-testid': 'callback-list',
-                      'data-align': ownerState.align,
-                      onClick: handleClick,
-                    }),
-                  }}
-                >
-                  <Menu2Item closeOnClick={false}>Nested</Menu2Item>
-                </Menu2SubmenuPopup>
-              </Menu2Submenu>
-            </Menu2Popup>
-          </Menu2>,
-        );
-
-        await user.click(screen.getByRole('button', { name: 'Options' }));
-        await user.click(await screen.findByRole('menuitem', { name: 'More' }));
-
-        const list = await screen.findByTestId('callback-list');
-        expect(list.tagName).to.equal('UL');
-        expect(listRef.current).to.equal(list);
-        expect(list).to.have.attribute('data-align', 'end');
-        expect(list).to.have.class('custom-list');
-        expect(list).not.to.have.class(listClasses.padding);
-        expect(list.classList.contains(listClasses.dense)).to.equal(dense);
-        expect(
-          screen
-            .getByRole('menuitem', { name: 'Nested' })
-            .classList.contains(menu2ItemClasses.dense),
-        ).to.equal(dense);
-
-        await user.click(screen.getByRole('menuitem', { name: 'Nested' }));
-        expect(handleClick).toHaveBeenCalledTimes(1);
-      },
-    );
-
-    it('preserves inherited density despite a submenu theme default', async () => {
-      const theme = createTheme({
-        components: {
-          MuiMenu2SubmenuPopup: {
-            // @ts-expect-error Test an unsupported density override from JavaScript.
-            defaultProps: { slotProps: { list: { dense: false } } },
-          },
-        },
-      });
-      const { user } = render(
-        <ThemeProvider theme={theme}>
-          <Menu2>
-            <Menu2Trigger render={<Button>Options</Button>} />
-            <Menu2Popup slotProps={{ list: { dense: true } }}>
-              <Menu2Submenu>
-                <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
-                <Menu2SubmenuPopup slotProps={{ list: { 'data-testid': 'themed-list' } }}>
-                  <Menu2Item>Nested</Menu2Item>
-                </Menu2SubmenuPopup>
-              </Menu2Submenu>
-            </Menu2Popup>
-          </Menu2>
-        </ThemeProvider>,
-      );
-
-      await user.click(screen.getByRole('button', { name: 'Options' }));
-      await user.click(await screen.findByRole('menuitem', { name: 'More' }));
-
-      expect(await screen.findByTestId('themed-list')).to.have.class(listClasses.dense);
-      expect(screen.getByRole('menuitem', { name: 'Nested' })).to.have.class(
-        menu2ItemClasses.dense,
-      );
-    });
-
-    it('keeps a normal-density submenu normal even when its trigger is dense', async () => {
-      const { user } = render(
-        <Menu2>
-          <Menu2Trigger render={<Button>Options</Button>} />
-          <Menu2Popup>
-            <Menu2Submenu>
-              <Menu2SubmenuTrigger dense openOnHover={false}>
-                More
-              </Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup slotProps={{ list: { 'data-testid': 'normal-list' } }}>
-                <Menu2Item>Nested</Menu2Item>
-              </Menu2SubmenuPopup>
-            </Menu2Submenu>
-          </Menu2Popup>
-        </Menu2>,
-      );
-
-      await user.click(screen.getByRole('button', { name: 'Options' }));
-      const trigger = await screen.findByRole('menuitem', { name: 'More' });
-      expect(trigger).to.have.class(menu2SubmenuTriggerClasses.dense);
-
-      await user.click(trigger);
-
-      expect(await screen.findByTestId('normal-list')).not.to.have.class(listClasses.dense);
-      expect(screen.getByRole('menuitem', { name: 'Nested' })).not.to.have.class(
-        menu2ItemClasses.dense,
-      );
-    });
+    await user.click(screen.getByRole('menuitem', { name: 'Nested' }));
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   it('passes the list component, owner state, and ref to a custom slot', async () => {

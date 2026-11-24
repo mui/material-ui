@@ -29,7 +29,7 @@ describe('<Menu2Item />', () => {
     skip: ['componentProp'],
     slots: { root: { expectedClassName: classes.root } },
     muiName: 'MuiMenu2Item',
-    testVariantProps: { dense: true },
+    testVariantProps: { divider: true },
   }));
 
   it('forwards DOM props and refs to a custom render element without internal props', async () => {
@@ -78,7 +78,7 @@ describe('<Menu2Item />', () => {
       components: {
         MuiMenu2Item: {
           styleOverrides: { root: { paddingTop: '21px' } },
-          variants: [{ props: { dense: true }, style: { paddingBottom: '19px' } }],
+          variants: [{ props: { divider: true }, style: { paddingBottom: '19px' } }],
         },
       },
     });
@@ -87,7 +87,7 @@ describe('<Menu2Item />', () => {
         <Menu2 defaultOpen modal={false}>
           <Menu2Popup anchor={document.body}>
             <Menu2Item
-              dense
+              divider
               className="external-item"
               render={<li className="custom-item" />}
               sx={[false, (t) => ({ paddingLeft: t.spacing(3), paddingRight: t.spacing(2) })]}
@@ -110,7 +110,7 @@ describe('<Menu2Item />', () => {
     const item = screen.getByRole('menuitem', { name: 'Item' });
     expect(item.tagName).to.equal('LI');
     expect(item).to.have.class(classes.root);
-    expect(item).to.have.class(classes.dense);
+    expect(item).to.have.class(classes.divider);
     expect(item).to.have.class('MuiButtonBase-root');
     expect(item).to.have.class('custom-item');
     expect(item).to.have.class('external-item');
@@ -141,7 +141,6 @@ describe('<Menu2Item />', () => {
             <Menu2Popup anchor={document.body}>
               <Menu2Item
                 ref={rootRef}
-                dense
                 divider
                 closeOnClick={false}
                 className="external-item"
@@ -162,7 +161,6 @@ describe('<Menu2Item />', () => {
       expect(rootRef.current).to.equal(item);
       expect(slotRef.current).to.equal(item);
       expect(item).to.have.class(classes.root);
-      expect(item).to.have.class(classes.dense);
       expect(item).to.have.class(classes.divider);
       expect(item).to.have.class('external-item');
       expect(item).to.have.class('slot-item');
@@ -192,12 +190,12 @@ describe('<Menu2Item />', () => {
         React.HTMLAttributes<HTMLDivElement> & { ownerState?: Menu2ItemOwnerState; sx?: unknown }
       >(function CustomRoot({ ownerState, sx, ...props }, ref) {
         received = Object.keys(props);
-        return <div {...props} ref={ref} data-custom-dense={String(ownerState?.dense)} />;
+        return <div {...props} ref={ref} data-custom-divider={String(ownerState?.divider)} />;
       });
       render(
         <Menu2 defaultOpen modal={false}>
           <Menu2Popup anchor={document.body}>
-            <Menu2Item dense disableRipple slots={{ root: CustomRoot }} render={renderItem}>
+            <Menu2Item divider disableRipple slots={{ root: CustomRoot }} render={renderItem}>
               Item
             </Menu2Item>
           </Menu2Popup>
@@ -205,7 +203,7 @@ describe('<Menu2Item />', () => {
       );
 
       const item = screen.getByRole('menuitem', { name: 'Item' });
-      expect(item).to.have.attribute('data-custom-dense', 'true');
+      expect(item).to.have.attribute('data-custom-divider', 'true');
       expect(item).to.have.class(classes.root);
       expect(item).not.to.have.class('MuiButtonBase-root');
       expect(renderItem).not.toHaveBeenCalled();
@@ -225,7 +223,7 @@ describe('<Menu2Item />', () => {
       const { user } = render(
         <Menu2>
           <Menu2Trigger render={<button type="button">Options</button>} />
-          <Menu2Popup transitionDuration={0} slotProps={{ list: { dense: true } }}>
+          <Menu2Popup transitionDuration={0}>
             <Menu2Item>Before</Menu2Item>
             <Menu2Item
               divider
@@ -235,7 +233,6 @@ describe('<Menu2Item />', () => {
                 root: (state) => ({
                   'data-slot-highlighted': String(state.highlighted),
                   'data-slot-disabled': String(state.disabled),
-                  'data-slot-dense': String(state.dense),
                   'data-slot-divider': String(state.divider),
                   'data-slot-gutters': String(state.disableGutters),
                 }),
@@ -253,7 +250,6 @@ describe('<Menu2Item />', () => {
       await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
       expect(item).to.have.attribute('data-slot-highlighted', 'false');
       expect(item).to.have.attribute('data-slot-disabled', 'false');
-      expect(item).to.have.attribute('data-slot-dense', 'true');
       expect(item).to.have.attribute('data-slot-divider', 'true');
       expect(item).to.have.attribute('data-slot-gutters', 'true');
 
@@ -391,7 +387,7 @@ describe('<Menu2Item />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<button type="button">Options</button>} />
-        <Menu2Popup transitionDuration={0} slotProps={{ list: { dense: true } }}>
+        <Menu2Popup transitionDuration={0}>
           <Menu2Item>Before</Menu2Item>
           <Menu2Item
             divider
@@ -401,7 +397,6 @@ describe('<Menu2Item />', () => {
                 {...props}
                 data-render-highlighted={String(state.highlighted)}
                 data-render-disabled={String(state.disabled)}
-                data-render-dense={String(state.dense)}
                 data-render-divider={String(state.divider)}
                 data-render-gutters={String(state.disableGutters)}
               />
@@ -419,7 +414,6 @@ describe('<Menu2Item />', () => {
     await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
     expect(item).to.have.attribute('data-render-highlighted', 'false');
     expect(item).to.have.attribute('data-render-disabled', 'false');
-    expect(item).to.have.attribute('data-render-dense', 'true');
     expect(item).to.have.attribute('data-render-divider', 'true');
     expect(item).to.have.attribute('data-render-gutters', 'true');
 

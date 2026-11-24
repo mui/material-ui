@@ -7,7 +7,6 @@ import type { SxProps } from '@mui/system';
 import { mergeProps } from '@base-ui/react/merge-props';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
 import type { Theme } from '../styles';
-import ListContext from '../List/ListContext';
 import mergeSlotProps from '../utils/mergeSlotProps';
 import useSlot from '../utils/useSlot';
 import type { Menu2RootSlotProps, Menu2RootSlots, StateClassName } from './menu2Utils';
@@ -20,7 +19,6 @@ import {
 // The owner state from the props. Each part adds the live Base UI state.
 export interface Menu2ItemBaseOwnerState {
   checked?: boolean | undefined;
-  dense: boolean;
   disabled: boolean;
   divider: boolean;
   disableGutters: boolean;
@@ -40,12 +38,6 @@ export interface Menu2ItemVisualProps<Classes, Slots = never, SlotProps = never>
    * The props used for each slot inside.
    */
   slotProps?: SlotProps | undefined;
-  /**
-   * @ignore
-   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-   * @default false
-   */
-  dense?: boolean | undefined;
   /**
    * If `true`, the left and right padding is removed.
    * @default false
@@ -170,11 +162,9 @@ export interface Menu2BaseItemState {
   highlighted?: boolean | undefined;
 }
 
-// Like the classic MenuItem: the item prop wins, then the `dense` of the list.
-export function useMenu2ItemListContext(denseProp: boolean, disableGutters: boolean) {
-  const context = React.useContext(ListContext);
-  const dense = denseProp || context.dense || false;
-  return React.useMemo(() => ({ dense, disableGutters }), [dense, disableGutters]);
+// Menu2 has no dense mode. Keep an outer dense List from reaching user List children.
+export function useMenu2ItemListContext(disableGutters: boolean) {
+  return React.useMemo(() => ({ dense: false, disableGutters }), [disableGutters]);
 }
 
 export interface Menu2ItemRootSlotProps<OwnerState extends object> {
@@ -275,7 +265,6 @@ export function getMenu2ItemOwnerState(
 ): Menu2ItemBaseOwnerState {
   return {
     checked: props.checked,
-    dense: props.dense ?? false,
     disabled: props.disabled ?? false,
     divider: props.divider ?? false,
     disableGutters: props.disableGutters ?? false,
@@ -328,11 +317,10 @@ export function useMenu2ItemUtilityClasses<Classes extends object>(
   },
   getUtilityClass: (slot: string) => string,
 ) {
-  const { dense, disabled, divider, disableGutters, inset, checked, open, classes } = ownerState;
+  const { disabled, divider, disableGutters, inset, checked, open, classes } = ownerState;
   const slots = {
     root: [
       'root',
-      dense && 'dense',
       disabled && 'disabled',
       !disableGutters && 'gutters',
       divider && 'divider',

@@ -131,7 +131,6 @@ function Menu2SubmenuTriggerRootSlot(
       component={renderProp ? Menu2RenderRoot : undefined}
       internalRender={renderProp}
       internalRenderState={{
-        dense: ownerState.dense,
         disabled: ownerState.disabled,
         disableGutters: ownerState.disableGutters,
         divider: ownerState.divider,

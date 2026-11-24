@@ -115,13 +115,13 @@ describe('<Menu2LinkItem />', () => {
             href="/profile"
             target="_blank"
             rel="noopener"
-            dense
+            divider
             render={renderItem}
             slots={{ root: 'a' }}
             slotProps={{
               root: (state) => ({
                 ref: slotRef,
-                'data-slot-dense': String(state.dense),
+                'data-slot-divider': String(state.divider),
                 onClick: (event) => event.preventDefault(),
               }),
             }}
@@ -137,7 +137,7 @@ describe('<Menu2LinkItem />', () => {
     expect(item).to.have.attribute('href', '/profile');
     expect(item).to.have.attribute('target', '_blank');
     expect(item).to.have.attribute('rel', 'noopener');
-    expect(item).to.have.attribute('data-slot-dense', 'true');
+    expect(item).to.have.attribute('data-slot-divider', 'true');
     expect(rootRef.current).to.equal(item);
     expect(slotRef.current).to.equal(item);
     expect(item).not.to.have.class('MuiButtonBase-root');
@@ -154,9 +154,9 @@ describe('<Menu2LinkItem />', () => {
       spacing: 10,
       components: {
         MuiMenu2LinkItem: {
-          defaultProps: { dense: true, render: <Link className="custom-link" /> },
+          defaultProps: { divider: true, render: <Link className="custom-link" /> },
           styleOverrides: { root: { paddingTop: '21px' } },
-          variants: [{ props: { dense: true }, style: { paddingBottom: '19px' } }],
+          variants: [{ props: { divider: true }, style: { paddingBottom: '19px' } }],
         },
       },
     });
@@ -177,7 +177,7 @@ describe('<Menu2LinkItem />', () => {
     );
     const item = screen.getByRole('menuitem', { name: 'Profile' });
     expect(item).to.have.class(classes.root);
-    expect(item).to.have.class(classes.dense);
+    expect(item).to.have.class(classes.divider);
     expect(item).to.have.class('MuiLink-root');
     expect(item).to.have.class('MuiButtonBase-root');
     expect(item).to.have.class('custom-link');

@@ -62,7 +62,6 @@ interface PlaygroundSettings {
   backdrop: 'default' | 'none' | 'dimmed';
   animation: 'grow' | 'fade' | 'zoom' | 'css' | 'off';
   reducedMotion: 'never' | 'system' | 'always';
-  dense: boolean;
   dividers: boolean;
   rtl: boolean;
   highContrast: boolean;
@@ -88,7 +87,6 @@ const defaultSettings: PlaygroundSettings = {
   backdrop: 'default',
   animation: 'grow',
   reducedMotion: 'never',
-  dense: false,
   dividers: false,
   rtl: false,
   highContrast: true,
@@ -164,7 +162,7 @@ function PlaygroundDemo({
   onLog: (entry: string) => void;
 }) {
   const popupKnobProps = usePopupKnobProps(settings);
-  const itemProps = { dense: settings.dense, divider: settings.dividers };
+  const itemProps = { divider: settings.dividers };
   // The explicit trigger accepts both item appearance and submenu behavior.
   const submenuTriggerProps = {
     openOnHover: settings.submenusOpenOnHover,
@@ -310,7 +308,7 @@ const parityItems = [
 function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings }) {
   const [classicAnchorEl, setClassicAnchorEl] = React.useState<null | HTMLElement>(null);
   const popupKnobProps = usePopupKnobProps(settings);
-  const itemProps = { dense: settings.dense, divider: settings.dividers };
+  const itemProps = { divider: settings.dividers };
 
   return (
     <Stack direction="row" spacing={2}>
@@ -384,7 +382,7 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
 function FocusRingComparisonDemo({ settings }: { settings: PlaygroundSettings }) {
   const [classicAnchorEl, setClassicAnchorEl] = React.useState<null | HTMLElement>(null);
   const [open, setOpen] = React.useState(false);
-  const itemProps = { dense: settings.dense, divider: settings.dividers };
+  const itemProps = { divider: settings.dividers };
 
   return (
     <Stack direction="row" spacing={4} sx={{ alignItems: 'flex-start' }}>
@@ -552,9 +550,7 @@ function TypeaheadScrollDemo() {
       />
       <Menu2Popup sx={{ maxHeight: 320 }} sideOffset={4}>
         {typeaheadEntries.map((entry) => (
-          <Menu2Item key={entry} dense>
-            {entry}
-          </Menu2Item>
+          <Menu2Item key={entry}>{entry}</Menu2Item>
         ))}
       </Menu2Popup>
     </Menu2>
@@ -723,7 +719,6 @@ function SettingsPanel({
             <option value="dimmed">Dimmed</option>
           </select>
         </label>
-        {renderCheckbox('dense', 'dense items')}
         {renderCheckbox('dividers', 'item dividers')}
         {renderCheckbox('rtl', 'RTL direction')}
         {renderCheckbox('highContrast', 'enhanceHighContrast theme')}
@@ -815,10 +810,9 @@ export default function MenuRfcExperiment() {
             <h2 id="classic-parity">Classic vs successor</h2>
             <p>
               The same item set rendered by the classic Menu and the successor, for visual parity
-              checks (dense, dividers, and elevation knobs apply to both). Only the classic Menu
-              marks My account as selected. The classic Menu takes <code>elevation</code> on the
-              root; the successor takes it on <code>Menu2Popup</code>, whose root slot is the Paper
-              surface.
+              checks (dividers and elevation knobs apply to both). Only the classic Menu marks My
+              account as selected. The classic Menu takes <code>elevation</code> on the root; the
+              successor takes it on <code>Menu2Popup</code>, whose root slot is the Paper surface.
             </p>
             <ThemeProvider theme={playgroundTheme}>
               <ClassicVersusSuccessorDemo settings={settings} />

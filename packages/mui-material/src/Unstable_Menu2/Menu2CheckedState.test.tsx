@@ -165,9 +165,9 @@ describe('Menu2 live checked ownerState', () => {
           spacing: 10,
           components: {
             [componentName]: {
-              defaultProps: { dense: true, render: <CustomRoot className="custom-root" /> },
+              defaultProps: { divider: true, render: <CustomRoot className="custom-root" /> },
               styleOverrides: { root: { paddingTop: '21px' } },
-              variants: [{ props: { dense: true }, style: { paddingBottom: '19px' } }],
+              variants: [{ props: { divider: true }, style: { paddingBottom: '19px' } }],
             },
           },
         });
@@ -196,7 +196,7 @@ describe('Menu2 live checked ownerState', () => {
         const item = screen.getByRole(role, { name: 'One' });
         [
           `${componentName}-root`,
-          `${componentName}-dense`,
+          `${componentName}-divider`,
           'MuiButtonBase-root',
           'custom-root',
           'external-class',
@@ -230,14 +230,12 @@ describe('Menu2 live checked ownerState', () => {
           const [disabled, setDisabled] = React.useState(false);
           const itemProps: Menu2CheckboxItemProps = {
             disabled,
-            dense: true,
             divider: true,
             disableGutters: true,
             render: (props, state) => (
               <div
                 {...props}
                 data-disabled={String(state.disabled)}
-                data-dense={String(state.dense)}
                 data-divider={String(state.divider)}
                 data-gutters={String(state.disableGutters)}
               />
@@ -271,7 +269,6 @@ describe('Menu2 live checked ownerState', () => {
         const { user } = render(<Fixture />);
         const item = screen.getByRole(role, { name: 'One' });
         expect(item).to.have.attribute('data-disabled', 'false');
-        expect(item).to.have.attribute('data-dense', 'true');
         expect(item).to.have.attribute('data-divider', 'true');
         expect(item).to.have.attribute('data-gutters', 'true');
         await act(async () => item.focus());

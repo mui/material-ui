@@ -1,8 +1,10 @@
 'use client';
+import * as React from 'react';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import Paper from '../Paper';
 import List from '../List';
+import type { ListProps } from '../List';
 import { menu2PopupClasses, menu2SubmenuPopupClasses } from './menu2Classes';
 
 // Common Menu2 theme styles precede the submenu-specific styles.
@@ -44,7 +46,12 @@ export const Menu2RootBase = styled(Paper, { name: 'MuiMenu2Popup', slot: 'root'
   transformOrigin: 'var(--transform-origin)',
 });
 
-export const Menu2ListBase = styled(List, { name: 'MuiMenu2Popup', slot: 'list' })({
+// Menu2 has no dense mode. Pin `dense`, so the MuiList theme default does not apply.
+const Menu2List = React.forwardRef<HTMLUListElement, ListProps>(function Menu2List(props, ref) {
+  return <List {...props} ref={ref} dense={false} />;
+});
+
+export const Menu2ListBase = styled(Menu2List, { name: 'MuiMenu2Popup', slot: 'list' })({
   // The items, not the list, show focus.
   outline: 0,
 });

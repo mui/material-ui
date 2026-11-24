@@ -36,12 +36,6 @@
   ],
   "classes": [
     {
-      "key": "dense",
-      "className": "MuiMenu2LinkItem-dense",
-      "description": "Styles applied to the root element if `dense={true}`.",
-      "isGlobal": false
-    },
-    {
       "key": "divider",
       "className": "MuiMenu2LinkItem-divider",
       "description": "Styles applied to the root element if `divider={true}`.",

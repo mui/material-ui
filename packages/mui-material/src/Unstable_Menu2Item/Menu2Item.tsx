@@ -127,7 +127,6 @@ const Menu2Item = React.forwardRef(function Menu2Item(
   const {
     className,
     classes: classesProp,
-    dense: denseProp = false,
     disabled = false,
     disableGutters = false,
     disableRipple,
@@ -143,11 +142,10 @@ const Menu2Item = React.forwardRef(function Menu2Item(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
-  const { dense } = childContext;
+  const childContext = useMenu2ItemListContext(disableGutters);
   const ownerState = {
     ...props,
-    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, inset }),
+    ...getMenu2ItemOwnerState({ disabled, disableGutters, divider, inset }),
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2ItemClasses>(
@@ -176,7 +174,6 @@ const Menu2Item = React.forwardRef(function Menu2Item(
               nativeButton={nativeButton}
               internalRender={renderProp}
               internalRenderState={{
-                dense,
                 disabled: state.disabled,
                 disableGutters,
                 divider,
@@ -230,12 +227,6 @@ Menu2Item.propTypes /* remove-proptypes */ = {
    * @default true
    */
   closeOnClick: PropTypes.bool,
-  /**
-   * @ignore
-   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-   * @default false
-   */
-  dense: PropTypes.bool,
   /**
    * Whether the component should ignore user interaction.
    * @default false

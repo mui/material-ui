@@ -3,14 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
-import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import type { SxProps } from '@mui/system';
-import ListContext from '../List/ListContext';
-import type { ListProps } from '../List';
 import { styled } from '../zero-styled';
 import type { Theme } from '../styles';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import type {
+  Menu2ListProps,
   Menu2PopupPublicProps,
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
@@ -179,8 +177,7 @@ export interface Menu2SubmenuPopupSlots {
   list?: React.ElementType | undefined;
 }
 
-interface Menu2SubmenuPopupListProps extends Partial<ListProps> {
-  dense?: never | undefined;
+interface Menu2SubmenuPopupListProps extends Partial<Menu2ListProps> {
   render?: never | undefined;
   // Callbacks must match the callback signature, not the loose slot props object.
   apply?: never | undefined;
@@ -192,7 +189,7 @@ export interface Menu2SubmenuPopupSlotProps extends Omit<
   'backdrop' | 'list'
 > {
   /**
-   * Props for the presentational list wrapper. Density is inherited from the parent menu.
+   * Props for the presentational list wrapper.
    */
   list?: SlotProps<Menu2SubmenuPopupListProps, Menu2SubmenuPopupOwnerState> | undefined;
 }
@@ -245,9 +242,8 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const props = useDefaultProps({ props: inProps, name: 'MuiMenu2SubmenuPopup' });
-  const { children, slotProps, ...other } = props;
+  const { children, ...other } = props;
   const { onClosingChange } = React.useContext(Menu2SubmenuClosingContext);
-  const parentListContext = React.useContext(ListContext);
 
   const ownerState: Menu2SubmenuPopupOwnerState = {
     side: 'inline-end',
@@ -255,19 +251,11 @@ const Menu2SubmenuPopup = React.forwardRef(function Menu2SubmenuPopup(
     ...props,
   };
   const classes = useUtilityClasses(ownerState);
-  const listProps = resolveComponentProps(slotProps?.list, ownerState);
 
   return (
     <Menu2PopupBase
       ref={ref}
       {...other}
-      slotProps={{
-        ...slotProps,
-        list: {
-          ...listProps,
-          dense: parentListContext.dense,
-        },
-      }}
       ownerState={ownerState}
       onClosingChange={onClosingChange}
       classes={classes}

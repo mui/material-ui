@@ -499,6 +499,7 @@ The initial focus props, such as `autoFocus`, have none because Menu v2 sets the
 | :----------------------- | :----------------------------------------------------------------------------------------- |
 | `autoFocus`              | Delete it.                                                                                 |
 | `autoFocusItem`          | Delete it.                                                                                 |
+| `dense`                  | Delete it. Menu v2 has no dense mode.                                                      |
 | `variant`                | Delete it. See [The selectedMenu variant is gone](#the-selectedmenu-variant-is-gone).      |
 | `disabledItemsFocusable` | Delete it. Disabled items are always focusable. See [Behavior changes](#behavior-changes). |
 
@@ -507,6 +508,7 @@ The initial focus props, such as `autoFocus`, have none because Menu v2 sets the
 | Props to remove         | What to do instead                                                                                                                                                                                                         |
 | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `autoFocus`             | Delete it.                                                                                                                                                                                                                 |
+| `dense`                 | Delete it. Menu v2 has no dense mode.                                                                                                                                                                                      |
 | `selected`              | For one current value, use `MenuRadioItem` inside a `MenuRadioGroup`, and add `closeOnClick` to close the menu on selection. For independent toggles, use `MenuCheckboxItem`. See [Update the items](#6-update-the-items). |
 | `focusVisibleClassName` | Style `.Mui-focusVisible` for keyboard focus only. Style `.MuiMenu2Item-highlighted`, or `menu2ItemClasses.highlighted`, to also match pointer navigation.                                                                 |
 | `onFocusVisible`        | Delete it.                                                                                                                                                                                                                 |

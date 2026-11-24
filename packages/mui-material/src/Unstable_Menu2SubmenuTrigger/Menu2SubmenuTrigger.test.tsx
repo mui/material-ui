@@ -325,7 +325,7 @@ describe('<Menu2SubmenuTrigger />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
     muiName: 'MuiMenu2SubmenuTrigger',
-    testVariantProps: { dense: true },
+    testVariantProps: { divider: true },
     slots: {
       root: { expectedClassName: classes.root },
       indicator: { expectedClassName: classes.indicator },
@@ -664,7 +664,6 @@ describe('<Menu2SubmenuTrigger />', () => {
           <Menu2Submenu>
             <Menu2SubmenuTrigger
               openOnHover={false}
-              dense
               divider
               disableGutters
               ref={forwardedRef}
@@ -674,7 +673,6 @@ describe('<Menu2SubmenuTrigger />', () => {
                   {...props}
                   data-open-state={String(state.open)}
                   data-highlighted-state={String(state.highlighted)}
-                  data-dense={String(state.dense)}
                   data-divider={String(state.divider)}
                   data-gutters={String(state.disableGutters)}
                 />
@@ -698,7 +696,6 @@ describe('<Menu2SubmenuTrigger />', () => {
     );
     const trigger = screen.getByRole('menuitem', { name: 'More' });
     expect(forwardedRef.current).to.equal(trigger);
-    expect(trigger).to.have.attribute('data-dense', 'true');
     expect(trigger).to.have.attribute('data-divider', 'true');
     expect(trigger).to.have.attribute('data-gutters', 'true');
     expect(indicatorRef.current).to.equal(trigger.querySelector(`.${classes.indicator}`));
@@ -718,12 +715,11 @@ describe('<Menu2SubmenuTrigger />', () => {
     expect(forwardedRef.current).to.equal(trigger);
   });
 
-  it('themes the trigger independently of its parent list', () => {
+  it('applies the trigger theme defaults, overrides, and variants', () => {
     const theme = createTheme({
       components: {
         MuiMenu2SubmenuTrigger: {
           defaultProps: {
-            dense: true,
             disableRipple: true,
             render: <li className="custom-trigger" />,
           },
@@ -758,7 +754,6 @@ describe('<Menu2SubmenuTrigger />', () => {
     expect(trigger).to.have.class('MuiButtonBase-root');
     expect(trigger).to.have.class('custom-trigger');
     expect(trigger).to.have.class('external-trigger');
-    expect(trigger).to.have.class(classes.dense);
     expect(trigger).to.have.class(classes.divider);
     expect(getComputedStyle(trigger).color).to.equal('rgb(1, 2, 3)');
     expect(getComputedStyle(trigger).paddingLeft).to.equal('24px');

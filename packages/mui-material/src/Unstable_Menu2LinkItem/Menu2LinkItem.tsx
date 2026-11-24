@@ -132,7 +132,6 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
   const {
     className,
     classes: classesProp,
-    dense: denseProp = false,
     disableGutters = false,
     disableRipple,
     divider = false,
@@ -146,12 +145,10 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
-  const { dense } = childContext;
+  const childContext = useMenu2ItemListContext(disableGutters);
   // Base UI link items have no disabled state.
   const ownerState = {
     ...props,
-    dense,
     disableGutters,
     divider,
     inset,
@@ -178,7 +175,6 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
               disableRipple={disableRipple}
               internalRender={renderProp}
               internalRenderState={{
-                dense,
                 disableGutters,
                 divider,
                 highlighted: state.highlighted,
@@ -229,12 +225,6 @@ Menu2LinkItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   closeOnClick: PropTypes.bool,
-  /**
-   * @ignore
-   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-   * @default false
-   */
-  dense: PropTypes.bool,
   /**
    * If `true`, the left and right padding is removed.
    * @default false

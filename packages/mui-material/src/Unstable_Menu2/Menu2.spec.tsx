@@ -230,14 +230,14 @@ function Menu2Composition() {
         <Menu2Group>
           <Menu2GroupLabel>Menu2Group</Menu2GroupLabel>
           <Menu2Item
-            dense
             nativeButton={false}
             render={(props, state) => {
               expectType<boolean, typeof state.highlighted>(state.highlighted);
               expectType<boolean, typeof state.disabled>(state.disabled);
-              expectType<boolean, typeof state.dense>(state.dense);
               expectType<boolean, typeof state.disableGutters>(state.disableGutters);
               expectType<boolean, typeof state.divider>(state.divider);
+              // @ts-expect-error Menu2 has no dense mode.
+              state.dense;
               // @ts-expect-error Visual selection is not part of the item state.
               state.selected;
               return <div {...props} data-active={state.highlighted} />;
@@ -249,7 +249,6 @@ function Menu2Composition() {
             href="/profile"
             render={(props, state) => {
               expectType<boolean, typeof state.highlighted>(state.highlighted);
-              expectType<boolean, typeof state.dense>(state.dense);
               expectType<boolean, typeof state.disableGutters>(state.disableGutters);
               expectType<boolean, typeof state.divider>(state.divider);
               // @ts-expect-error Link items have no disabled state.
@@ -267,7 +266,6 @@ function Menu2Composition() {
               expectType<boolean, typeof state.checked>(state.checked);
               expectType<boolean, typeof state.highlighted>(state.highlighted);
               expectType<boolean, typeof state.disabled>(state.disabled);
-              expectType<boolean, typeof state.dense>(state.dense);
               expectType<boolean, typeof state.disableGutters>(state.disableGutters);
               expectType<boolean, typeof state.divider>(state.divider);
               // @ts-expect-error Checkbox items use checked, not selected.
@@ -313,7 +311,6 @@ function Menu2Composition() {
                 expectType<boolean, typeof state.checked>(state.checked);
                 expectType<boolean, typeof state.highlighted>(state.highlighted);
                 expectType<boolean, typeof state.disabled>(state.disabled);
-                expectType<boolean, typeof state.dense>(state.dense);
                 expectType<boolean, typeof state.disableGutters>(state.disableGutters);
                 expectType<boolean, typeof state.divider>(state.divider);
                 // @ts-expect-error Radio items use checked, not selected.
@@ -454,7 +451,6 @@ createTheme({
     MuiMenu2SubmenuTrigger: {
       defaultProps: {
         openOnHover: false,
-        dense: true,
         disableRipple: true,
         slots: { root: 'div' },
         slotProps: { root: { title: 'More actions' } },
@@ -466,14 +462,13 @@ createTheme({
     },
     MuiMenu2Item: {
       defaultProps: {
-        dense: true,
         slots: { root: 'div' },
         slotProps: {
           root: (ownerState) => {
             expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
             return {
               'data-highlighted': ownerState.highlighted,
-              sx: { px: ownerState.dense ? 1 : 2 },
+              sx: { px: ownerState.divider ? 1 : 2 },
             };
           },
         },
@@ -578,8 +573,8 @@ createTheme({
 // @ts-expect-error Submenu popups have no backdrop slot.
 <Menu2SubmenuPopup slotProps={{ backdrop: {} }} />;
 
+// @ts-expect-error Menu2 has no dense mode.
 <Menu2Popup slotProps={{ list: { dense: true } }} />;
-<Menu2Popup slotProps={{ list: () => ({ dense: false }) }} />;
 <Menu2SubmenuPopup slotProps={{ list: { disablePadding: true, sx: { py: 1 } } }} />;
 <Menu2SubmenuPopup
   slotProps={{ list: (ownerState) => ({ disablePadding: true, 'data-side': ownerState.side }) }}
@@ -592,14 +587,14 @@ const customSubmenuListProps: CustomSubmenuListProps = {
 };
 <Menu2SubmenuPopup slotProps={{ list: customSubmenuListProps }} />;
 <Menu2SubmenuPopup slotProps={{ list: () => customSubmenuListProps }} />;
-// @ts-expect-error Submenu list density is inherited from the parent menu.
+// @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
-// @ts-expect-error Submenu list density cannot be changed through callback slot props.
+// @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: () => ({ dense: false }) }} />;
 createTheme({
   components: {
     MuiMenu2SubmenuPopup: {
-      // @ts-expect-error Submenu list density cannot be changed through theme defaults.
+      // @ts-expect-error Menu2 has no dense mode.
       defaultProps: { slotProps: { list: { dense: true } } },
     },
   },
@@ -631,7 +626,6 @@ createTheme({
     expectType<boolean, typeof state.open>(state.open);
     expectType<boolean, typeof state.highlighted>(state.highlighted);
     expectType<boolean, typeof state.disabled>(state.disabled);
-    expectType<boolean, typeof state.dense>(state.dense);
     expectType<boolean, typeof state.disableGutters>(state.disableGutters);
     expectType<boolean, typeof state.divider>(state.divider);
     // @ts-expect-error Exit timing is internal to the submenu.
@@ -986,7 +980,6 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
   root: (ownerState) => {
     expectType<Menu2ItemOwnerState, typeof ownerState>(ownerState);
     expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
-    expectType<boolean, typeof ownerState.dense>(ownerState.dense);
     expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
     expectType<boolean, typeof ownerState.disableGutters>(ownerState.disableGutters);
     expectType<boolean, typeof ownerState.divider>(ownerState.divider);
@@ -996,7 +989,7 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
       ref: React.createRef<HTMLDivElement>(),
       title: 'Item',
       'data-highlighted': ownerState.highlighted,
-      sx: { px: ownerState.dense ? 1 : 2 },
+      sx: { px: ownerState.divider ? 1 : 2 },
     };
   },
 };
@@ -1100,7 +1093,7 @@ const menuLinkItemSlotProps: Menu2LinkItemSlotProps = {
       target: '_blank',
       rel: 'noopener',
       'data-highlighted': ownerState.highlighted,
-      sx: { px: ownerState.dense ? 1 : 2 },
+      sx: { px: ownerState.divider ? 1 : 2 },
       ref: React.createRef<HTMLAnchorElement>(),
       onClick: (event) => {
         expectType<EventTarget & HTMLAnchorElement, typeof event.currentTarget>(

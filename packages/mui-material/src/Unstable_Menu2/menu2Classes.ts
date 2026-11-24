@@ -78,8 +78,6 @@ export interface Menu2ItemClasses {
   highlighted: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Styles applied to the root element if `dense={true}`. */
-  dense: string;
   /** Styles applied to the root element if `divider={true}`. */
   divider: string;
   /** Styles applied to the root element unless `disableGutters={true}`. */
@@ -102,7 +100,6 @@ export const menu2ItemClasses: Menu2ItemClasses = generateUtilityClasses('MuiMen
   'root',
   'highlighted',
   'disabled',
-  'dense',
   'divider',
   'gutters',
   'inset',
@@ -120,7 +117,7 @@ export function getMenu2LinkItemUtilityClass(slot: string): string {
 
 export const menu2LinkItemClasses: Menu2LinkItemClasses = generateUtilityClasses(
   'MuiMenu2LinkItem',
-  ['root', 'highlighted', 'dense', 'divider', 'gutters', 'inset', 'startAdornment', 'endAdornment'],
+  ['root', 'highlighted', 'divider', 'gutters', 'inset', 'startAdornment', 'endAdornment'],
 );
 
 export interface Menu2CheckboxItemClasses extends Menu2ItemClasses {
@@ -144,7 +141,6 @@ export const menu2CheckboxItemClasses: Menu2CheckboxItemClasses = generateUtilit
     'root',
     'highlighted',
     'disabled',
-    'dense',
     'divider',
     'gutters',
     'inset',
@@ -220,7 +216,6 @@ export const menu2RadioItemClasses: Menu2RadioItemClasses = generateUtilityClass
     'root',
     'highlighted',
     'disabled',
-    'dense',
     'divider',
     'gutters',
     'inset',
@@ -323,7 +318,6 @@ export const menu2SubmenuTriggerClasses: Menu2SubmenuTriggerClasses = generateUt
     'root',
     'highlighted',
     'disabled',
-    'dense',
     'divider',
     'gutters',
     'inset',

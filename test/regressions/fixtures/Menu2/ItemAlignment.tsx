@@ -32,20 +32,20 @@ const wideIndicator = (
 
 interface MixedMenuProps {
   direction: 'ltr' | 'rtl';
-  dense: boolean;
+  dark: boolean;
 }
 
-function MixedMenu({ direction, dense }: MixedMenuProps) {
+function MixedMenu({ direction, dark }: MixedMenuProps) {
   const [anchor, setAnchor] = React.useState<HTMLDivElement | null>(null);
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const theme = React.useMemo(
     () =>
       createTheme({
         direction,
-        spacing: dense ? 12 : 8,
-        palette: { mode: dense ? 'dark' : 'light' },
+        spacing: dark ? 12 : 8,
+        palette: { mode: dark ? 'dark' : 'light' },
       }),
-    [direction, dense],
+    [direction, dark],
   );
 
   const menu = (
@@ -56,7 +56,7 @@ function MixedMenu({ direction, dense }: MixedMenuProps) {
         sx={{ width: 240, height: 440, bgcolor: 'background.default', color: 'text.primary' }}
       >
         <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
-          {direction.toUpperCase()} / {dense ? 'dense / dark' : 'regular / light'}
+          {direction.toUpperCase()} / {dark ? 'dark / spacing 12' : 'light'}
         </Box>
         <Menu2 open={Boolean(anchor && container)} modal={false}>
           <Menu2Popup
@@ -64,7 +64,7 @@ function MixedMenu({ direction, dense }: MixedMenuProps) {
             container={container}
             sideOffset={8}
             slots={{ transition: null }}
-            slotProps={{ root: { sx: { width: 224 } }, list: { dense } }}
+            slotProps={{ root: { sx: { width: 224 } } }}
           >
             <Menu2Item startAdornment={<FormatPaintIcon fontSize="small" />}>
               Paint format
@@ -186,8 +186,8 @@ export default function ItemAlignment() {
   return (
     <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 240px)', width: 960 }}>
       {(['ltr', 'rtl'] as const).flatMap((direction) =>
-        [false, true].map((dense) => (
-          <MixedMenu key={`${direction}-${dense}`} direction={direction} dense={dense} />
+        [false, true].map((dark) => (
+          <MixedMenu key={`${direction}-${dark}`} direction={direction} dark={dark} />
         )),
       )}
       {(['ltr', 'rtl'] as const).map((direction) => (

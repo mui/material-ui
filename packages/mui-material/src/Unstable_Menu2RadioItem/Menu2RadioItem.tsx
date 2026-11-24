@@ -209,7 +209,6 @@ function Menu2RadioItemRootSlot(props: Menu2RadioItemRootSlotProps) {
       internalRender={renderProp}
       internalRenderState={{
         checked: ownerState.checked,
-        dense: ownerState.dense,
         disabled: ownerState.disabled,
         disableGutters: ownerState.disableGutters,
         divider: ownerState.divider,
@@ -310,7 +309,6 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     children,
     className,
     classes: classesProp,
-    dense: denseProp = false,
     disabled = false,
     disableGutters = false,
     disableRipple,
@@ -327,11 +325,10 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     style,
     ...other
   } = props;
-  const childContext = useMenu2ItemListContext(denseProp, disableGutters);
-  const { dense } = childContext;
+  const childContext = useMenu2ItemListContext(disableGutters);
   const ownerState = {
     ...props,
-    ...getMenu2ItemOwnerState({ dense, disabled, disableGutters, divider, inset }),
+    ...getMenu2ItemOwnerState({ disabled, disableGutters, divider, inset }),
     classes: classesProp,
   };
   const classes = useMenu2ItemUtilityClasses<Menu2RadioItemClasses>(
@@ -419,12 +416,6 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   closeOnClick: PropTypes.bool,
-  /**
-   * @ignore
-   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-   * @default false
-   */
-  dense: PropTypes.bool,
   /**
    * Whether the component should ignore user interaction.
    * @default false

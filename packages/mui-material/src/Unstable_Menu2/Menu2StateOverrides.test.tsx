@@ -25,10 +25,7 @@ import {
   menu2RadioItemClasses,
 } from './menu2Classes';
 
-interface ItemTestProps extends Pick<
-  Menu2ItemProps,
-  'dense' | 'divider' | 'disableGutters' | 'sx'
-> {
+interface ItemTestProps extends Pick<Menu2ItemProps, 'divider' | 'disableGutters' | 'sx'> {
   'data-testid': string;
 }
 
@@ -387,20 +384,18 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
       });
 
       itemCases.forEach(({ name, classes, renderItem }) => {
-        it(`supports ${name} dense, divider, and gutters overrides`, async () => {
+        it(`supports ${name} divider and gutters overrides`, async () => {
           renderWithTheme(
             <Menu2 defaultOpen modal={false}>
               <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                 {renderItem({ 'data-testid': 'default' })}
                 {renderItem({
                   'data-testid': 'states',
-                  dense: true,
                   divider: true,
                   disableGutters: true,
                 })}
                 {renderItem({
                   'data-testid': 'sx',
-                  dense: true,
                   divider: true,
                   sx: {
                     paddingTop: '21px',
@@ -413,9 +408,9 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             {
               [name]: {
                 styleOverrides: {
-                  dense: { '--menu2-dense-test': 'active', paddingTop: '11px' },
                   divider: {
                     '--menu2-divider-test': 'active',
+                    paddingTop: '11px',
                     marginTop: '12px',
                   },
                   gutters: {
@@ -434,24 +429,19 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
           const stateStyle = getComputedStyle(stateItem);
           const sxStyle = getComputedStyle(sxItem);
 
-          expect(defaultItem).not.to.have.class(classes.dense);
           expect(defaultItem).not.to.have.class(classes.divider);
           expect(defaultItem).to.have.class(classes.gutters);
-          expect(defaultStyle.getPropertyValue('--menu2-dense-test')).to.equal('');
           expect(defaultStyle.getPropertyValue('--menu2-divider-test')).to.equal('');
           expect(defaultStyle.getPropertyValue('--menu2-gutters-test').trim()).to.equal('active');
           expect(defaultStyle.paddingLeft).to.equal('13px');
 
-          expect(stateItem).to.have.class(classes.dense);
           expect(stateItem).to.have.class(classes.divider);
           expect(stateItem).not.to.have.class(classes.gutters);
-          expect(stateStyle.getPropertyValue('--menu2-dense-test').trim()).to.equal('active');
           expect(stateStyle.getPropertyValue('--menu2-divider-test').trim()).to.equal('active');
           expect(stateStyle.getPropertyValue('--menu2-gutters-test')).to.equal('');
           expect(stateStyle.paddingTop).to.equal('11px');
           expect(stateStyle.marginTop).to.equal('12px');
 
-          expect(sxItem).to.have.class(classes.dense);
           expect(sxItem).to.have.class(classes.divider);
           expect(sxItem).to.have.class(classes.gutters);
           expect(sxStyle.paddingTop).to.equal('21px');

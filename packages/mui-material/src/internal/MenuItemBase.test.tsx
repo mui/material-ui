@@ -21,9 +21,9 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
 
   [false, true].forEach((modularCssLayers) => {
     describe(`modularCssLayers: ${modularCssLayers}`, () => {
-      [false, true].forEach((dense) => {
-        it(`preserves dividers and gutters for every item with dense: ${dense}`, () => {
-          const itemProps = { dense, divider: true, disableGutters: dense };
+      [false, true].forEach((disableGutters) => {
+        it(`preserves dividers and gutters for every item with disableGutters: ${disableGutters}`, () => {
+          const itemProps = { divider: true, disableGutters };
           render(
             <StyledEngineProvider enableCssLayer={modularCssLayers}>
               <ThemeProvider theme={createTheme({ modularCssLayers })}>
@@ -68,8 +68,8 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
             expect(styles.borderBottomWidth).to.equal('1px');
             expect(styles.borderBottomStyle).to.equal('solid');
             expect(styles.borderTopWidth).to.equal('0px');
-            expect(styles.paddingTop).to.equal(dense ? '4px' : '6px');
-            expect(styles.paddingLeft).to.equal(dense ? '0px' : '16px');
+            expect(styles.paddingTop).to.equal('6px');
+            expect(styles.paddingLeft).to.equal(disableGutters ? '0px' : '16px');
             expect(element).not.to.have.attribute('ownerState');
           });
         });
@@ -183,7 +183,7 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
             },
             MuiMenu2Item: {
               styleOverrides: { root: { paddingTop: 31 }, divider: { borderBottomWidth: 3 } },
-              variants: [{ props: { dense: true }, style: { paddingTop: 32 } }],
+              variants: [{ props: { divider: true }, style: { paddingTop: 32 } }],
             },
           },
         });
@@ -197,18 +197,17 @@ describe.skipIf(isJsdom())('MenuItem shared styled base', () => {
               </MenuList>
               <Menu2 defaultOpen modal={false}>
                 <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                  <Menu2Item dense divider data-testid="item">
+                  <Menu2Item divider data-testid="item">
                     Item
                   </Menu2Item>
                   <Menu2Item
-                    dense
                     divider
                     sx={{ paddingTop: '42px', borderBottomWidth: 4 }}
                     data-testid="sx"
                   >
                     Sx
                   </Menu2Item>
-                  <Menu2LinkItem dense divider data-testid="link">
+                  <Menu2LinkItem divider data-testid="link">
                     Link
                   </Menu2LinkItem>
                 </Menu2Popup>

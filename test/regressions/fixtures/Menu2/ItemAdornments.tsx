@@ -23,10 +23,9 @@ const cacheRtl = createCache({
 
 interface AdornmentMenuProps {
   direction: 'ltr' | 'rtl';
-  dense: boolean;
 }
 
-function AdornmentMenu({ direction, dense }: AdornmentMenuProps) {
+function AdornmentMenu({ direction }: AdornmentMenuProps) {
   const [anchor, setAnchor] = React.useState<HTMLDivElement | null>(null);
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const theme = React.useMemo(() => createTheme({ direction }), [direction]);
@@ -35,7 +34,7 @@ function AdornmentMenu({ direction, dense }: AdornmentMenuProps) {
     <ThemeProvider theme={theme}>
       <Box ref={setContainer} dir={direction} sx={{ width: 240, height: 300 }}>
         <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
-          {direction.toUpperCase()} / {dense ? 'dense' : 'regular'}
+          {direction.toUpperCase()}
         </Box>
         <Menu2 open={Boolean(anchor && container)} modal={false}>
           <Menu2Popup
@@ -43,7 +42,7 @@ function AdornmentMenu({ direction, dense }: AdornmentMenuProps) {
             container={container}
             sideOffset={8}
             slots={{ transition: null }}
-            slotProps={{ root: { sx: { width: 224 } }, list: { dense } }}
+            slotProps={{ root: { sx: { width: 224 } } }}
           >
             <Menu2Item startAdornment={<ContentCutIcon fontSize="small" />} endAdornment="⌘X">
               Cut
@@ -89,12 +88,10 @@ function AdornmentMenu({ direction, dense }: AdornmentMenuProps) {
 
 export default function ItemAdornments() {
   return (
-    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 240px)', width: 960 }}>
-      {(['ltr', 'rtl'] as const).flatMap((direction) =>
-        [false, true].map((dense) => (
-          <AdornmentMenu key={`${direction}-${dense}`} direction={direction} dense={dense} />
-        )),
-      )}
+    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 240px)', width: 480 }}>
+      {(['ltr', 'rtl'] as const).map((direction) => (
+        <AdornmentMenu key={direction} direction={direction} />
+      ))}
     </Box>
   );
 }

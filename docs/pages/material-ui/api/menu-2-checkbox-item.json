@@ -68,12 +68,6 @@
       "isGlobal": true
     },
     {
-      "key": "dense",
-      "className": "MuiMenu2CheckboxItem-dense",
-      "description": "Styles applied to the root element if `dense={true}`.",
-      "isGlobal": false
-    },
-    {
       "key": "disabled",
       "className": "Mui-disabled",
       "description": "State class applied to the root element if `disabled={true}`.",

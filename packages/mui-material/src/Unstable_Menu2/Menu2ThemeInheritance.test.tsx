@@ -17,10 +17,7 @@ import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 
-interface ItemTestProps extends Pick<
-  Menu2ItemProps,
-  'dense' | 'divider' | 'disableGutters' | 'sx'
-> {
+interface ItemTestProps extends Pick<Menu2ItemProps, 'divider' | 'disableGutters' | 'sx'> {
   'data-testid': string;
 }
 
@@ -222,16 +219,15 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
             <Menu2 defaultOpen modal={false}>
               <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                 {renderItem({ 'data-testid': 'default' })}
-                {renderItem({ 'data-testid': 'states', dense: true, divider: true })}
+                {renderItem({ 'data-testid': 'states', divider: true })}
                 {renderItem({ 'data-testid': 'no-gutters', disableGutters: true })}
               </Menu2Popup>
             </Menu2>,
             {
               MuiMenu2Item: {
                 styleOverrides: {
-                  root: ({ ownerState }) => ({ paddingBottom: ownerState.dense ? 11 : 10 }),
-                  dense: { paddingTop: 12 },
-                  divider: { marginTop: 13 },
+                  root: ({ ownerState }) => ({ paddingBottom: ownerState.divider ? 11 : 10 }),
+                  divider: { paddingTop: 12, marginTop: 13 },
                   gutters: { paddingLeft: 14 },
                 },
                 variants: [{ props: { divider: true }, style: { marginBottom: 15 } }],
@@ -259,10 +255,9 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           renderWithTheme(
             <Menu2 defaultOpen modal={false}>
               <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                {renderItem({ 'data-testid': 'specific', dense: true, divider: true })}
+                {renderItem({ 'data-testid': 'specific', divider: true })}
                 {renderItem({
                   'data-testid': 'sx',
-                  dense: true,
                   divider: true,
                   sx: {
                     paddingBottom: '31px',
@@ -278,8 +273,7 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
               MuiMenu2Item: {
                 styleOverrides: {
                   root: { paddingBottom: 11 },
-                  dense: { paddingTop: 12 },
-                  divider: { marginTop: 13 },
+                  divider: { paddingTop: 12, marginTop: 13 },
                   gutters: { paddingLeft: 14 },
                 },
                 variants: [{ props: { divider: true }, style: { marginBottom: 15 } }],
@@ -287,8 +281,7 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
               [name]: {
                 styleOverrides: {
                   root: { paddingBottom: 21, marginBottom: 25 },
-                  dense: { paddingTop: 22 },
-                  divider: { marginTop: 23 },
+                  divider: { paddingTop: 22, marginTop: 23 },
                   gutters: { paddingLeft: 24 },
                 },
               },
@@ -338,7 +331,7 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
         renderWithTheme(
           <Menu2 defaultOpen modal={false}>
             <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-              <Menu2Item dense data-testid="item" sx={{ paddingTop: '21px' }}>
+              <Menu2Item divider data-testid="item" sx={{ paddingTop: '21px' }}>
                 Action
               </Menu2Item>
             </Menu2Popup>
@@ -346,7 +339,7 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           {
             MuiMenu2Item: {
               styleOverrides: { root: { paddingTop: 11 } },
-              variants: [{ props: { dense: true }, style: { paddingTop: 12 } }],
+              variants: [{ props: { divider: true }, style: { paddingTop: 12 } }],
             },
           },
         );
@@ -365,17 +358,15 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
             </Menu2Popup>
           </Menu2>,
           {
-            MuiMenu2Item: { defaultProps: { dense: true, divider: true, disableGutters: true } },
+            MuiMenu2Item: { defaultProps: { divider: true, disableGutters: true } },
           },
         );
 
         const item = await screen.findByTestId('item');
-        expect(item).to.have.class('MuiMenu2Item-dense');
         expect(item).to.have.class('MuiMenu2Item-divider');
         expect(item).not.to.have.class('MuiMenu2Item-gutters');
         itemCases.forEach(({ name }) => {
           const target = screen.getByTestId(name);
-          expect(target).not.to.have.class(`${name}-dense`);
           expect(target).not.to.have.class(`${name}-divider`);
           expect(target).to.have.class(`${name}-gutters`);
         });
