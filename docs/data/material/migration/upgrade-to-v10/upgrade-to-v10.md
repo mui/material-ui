@@ -269,8 +269,10 @@ This change affects TypeScript usage in the following ways:
    });
   ```
 
-- Attributes specific to `td` are no longer accepted when `component` overrides the root to a non-cell element (for example, `<TableCell component="div" colSpan={2} />`).
-  Remove those attributes or keep a table-cell root element.
+- Props are now checked against the element or component passed to `component`, so attributes that it doesn't accept are rejected.
+  For example, `<TableCell component="div" />` no longer accepts `colSpan`.
+  Likewise, `<TableCell component="th" />` no longer accepts `width`, `height`, or `valign`, which React's types allow on `td` but not on `th`.
+  Remove those attributes, or use `sx` or `style` for sizing and alignment.
 
 - `React.ComponentProps<typeof Collapse>` and `React.ComponentProps<typeof TableCell>` no longer include the `component` prop.
   Use `CollapseProps` and `TableCellProps` instead:
