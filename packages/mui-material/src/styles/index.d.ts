@@ -138,6 +138,7 @@ export { useColorScheme } from './ThemeProviderWithVars';
 export type {
   StorageManager,
   ThemeScopeProps,
+  ThemeProviderRender,
   ThemeProviderRenderProps,
   ThemeProviderState,
 } from '@mui/system/cssVars';
