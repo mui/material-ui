@@ -67,6 +67,16 @@ export type EnhanceableTheme = Theme &
   > &
   Pick<ThemeOptions, 'modularCssLayers'>;
 
+// The CSS declarations that nested and isolated `ThemeProvider`s scope, see `prepareCssVars()`.
+interface WithCssVarsByColorScheme {
+  generateCssVarsByColorScheme?:
+    | (() => {
+        root: Record<string, string | number>;
+        colorSchemes: Array<[string, Record<string, string | number>]>;
+      })
+    | undefined;
+}
+
 export type DensityEnhancedTheme<T extends EnhanceableTheme> = T & {
   components: NonNullable<EnhanceableTheme['components']>;
   vars?: Partial<Record<DensitySizingKey, string>> | undefined;
@@ -190,6 +200,16 @@ export function applyDensity<T extends EnhanceableTheme>(
       ...(prevStyleSheets ? prevStyleSheets() : []),
       { [rootSelector]: rootVars },
     ];
+    // Nested and isolated `ThemeProvider`s set the variables of `generateCssVarsByColorScheme()` on their element,
+    // so the scale is added there too, to apply to their children.
+    const prevCssVarsByColorScheme = (themeInput as WithCssVarsByColorScheme)
+      .generateCssVarsByColorScheme;
+    if (prevCssVarsByColorScheme) {
+      (theme as WithCssVarsByColorScheme).generateCssVarsByColorScheme = () => {
+        const css = prevCssVarsByColorScheme();
+        return { ...css, root: { ...css.root, ...rootVars } };
+      };
+    }
   }
 
   return theme;

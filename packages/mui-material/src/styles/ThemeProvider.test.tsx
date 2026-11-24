@@ -7,6 +7,7 @@ import {
   useColorScheme,
   useTheme,
   useThemeScope,
+  unstable_enhanceDensity as enhanceDensity,
 } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -359,6 +360,28 @@ describe('ThemeProvider', () => {
             '#ff0000',
           );
         }
+      });
+
+      it.skipIf(isJsdom())('applies the density scale of an enhanced theme', () => {
+        const pageTheme = enhanceDensity(createTheme({ cssVariables: true }));
+        const denseTheme = enhanceDensity(createTheme({ cssVariables: true }), {
+          spacing: { small: 4 },
+          touchTarget: 20,
+        });
+        render(
+          <ThemeProvider theme={pageTheme}>
+            <ThemeProvider theme={denseTheme}>
+              <div data-testid="nested" />
+            </ThemeProvider>
+            <ThemeProvider theme={denseTheme} isolated>
+              <div data-testid="isolated" />
+            </ThemeProvider>
+          </ThemeProvider>,
+        );
+        ['nested', 'isolated'].forEach((testId) => {
+          expect(getVar(screen.getByTestId(testId), '--mui-spacing-small')).to.equal('4px');
+          expect(getVar(screen.getByTestId(testId), '--mui-touchTarget')).to.equal('20px');
+        });
       });
 
       describe('function theme', () => {
