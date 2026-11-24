@@ -58,7 +58,7 @@ describe('getConfig', () => {
         test: path,
         enabled: true,
         assertions: 'all',
-        skipAssertions: ['aria-hidden-focus', 'aria-valid-attr-value'],
+        skipAssertions: ['aria-hidden-focus'],
       });
       expect(getConfig(SCREENSHOT_RULES, path)).to.deep.equal({
         test: path,
