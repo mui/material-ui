@@ -240,6 +240,7 @@ export const REACT_FLOOR_RULES: ReactFloorRule[] = [
   { test: 'docs/data/material/components/autocomplete/InfiniteLoading', minReactMajor: 18 },
   { test: 'docs/data/material/components/lists/VirtualizedList', minReactMajor: 18 },
   { test: 'test/regressions/fixtures/AppSearch/*', minReactMajor: 18 },
+  { test: 'test/regressions/fixtures/Autocomplete/Virtualize', minReactMajor: 18 },
 ];
 
 // Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
