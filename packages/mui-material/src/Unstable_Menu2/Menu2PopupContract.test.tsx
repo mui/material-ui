@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { act, createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen, waitFor, within } from '@mui/internal-test-utils';
 import Menu2Trigger from '../Unstable_Menu2Trigger';
 import type { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
-import Menu2SubmenuPopup from '../Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuPopup, { menu2SubmenuPopupClasses } from '../Unstable_Menu2SubmenuPopup';
 import type { Menu2PopupProps } from '../Unstable_Menu2Popup';
-import Menu2Popup from '../Unstable_Menu2Popup';
+import Menu2Popup, { menu2PopupClasses } from '../Unstable_Menu2Popup';
 import Menu2 from './Menu2';
 import type { Menu2PopupSharedSlotProps } from './menu2PopupShared';
 import Menu2Item from '../Unstable_Menu2Item';
@@ -41,6 +41,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
 
   [false, true].forEach((submenu) => {
     describe(`Menu2${submenu ? 'Submenu' : ''}`, () => {
+      const popupClasses = submenu ? menu2SubmenuPopupClasses : menu2PopupClasses;
       const TestMenu = React.forwardRef<HTMLDivElement, TestMenuProps>(function TestMenu(
         {
           children = <Menu2Item>Alpha</Menu2Item>,
@@ -90,15 +91,18 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         );
       });
 
-      async function openMenu(user: ReturnType<typeof render>['user'], keyboard = false) {
+      async function openMenu(
+        user: ReturnType<typeof render>['user'],
+        { keyboard = false, name = submenu ? 'More' : 'Options' } = {},
+      ) {
         await user.click(screen.getByRole('button', { name: 'Options' }));
         if (submenu) {
           const trigger = await screen.findByRole('menuitem', { name: 'More' });
           if (keyboard) {
             await waitFor(() =>
-              expect(trigger.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(
-                true,
-              ),
+              expect(
+                screen.getByRole('menu', { name: 'Options' }).contains(document.activeElement),
+              ).to.equal(true),
             );
             await act(async () => trigger.focus());
             await user.keyboard('{ArrowRight}');
@@ -106,8 +110,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             await user.click(trigger);
           }
         }
-        const item = await screen.findByRole('menuitem', { name: 'Alpha' });
-        return item.closest<HTMLDivElement>('[role="menu"]')!;
+        return screen.findByRole<HTMLDivElement>('menu', { name });
       }
 
       [false, true].forEach((slotOverride) => {
@@ -154,23 +157,25 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
                 positioner: slot === 'host' ? 'div' : CustomPositioner,
                 root: slot === 'host' ? 'div' : CustomPaper,
               }}
+              // The casts pass data-* without a DataAttributesOverrides augmentation.
               slotProps={{
-                portal: { 'data-testid': 'root' },
                 positioner: {
                   align: 'start',
-                  'data-testid': 'positioner',
-                  'data-custom': 'positioner',
+                  ...({ 'data-custom': 'positioner' } as object),
                   className: 'custom-positioner',
                   ref: positionerRef,
                 },
-                root: { 'data-custom': 'paper', className: 'custom-paper', ref: paperRef },
-                list: { 'data-testid': 'list' },
+                root: {
+                  ...({ 'data-custom': 'paper' } as object),
+                  className: 'custom-paper',
+                  ref: paperRef,
+                },
               }}
             />,
           );
           const popup = await openMenu(user);
-          const root = screen.getByTestId('root');
-          const positioner = screen.getByTestId('positioner');
+          const root = popup.closest(`.${popupClasses.portal}`)!;
+          const positioner = popup.closest<HTMLElement>(`.${popupClasses.positioner}`)!;
           expect(popup.parentElement).to.equal(positioner);
           expect(positioner.parentElement).to.equal(root);
           expect(paperRef.current).to.equal(popup);
@@ -189,7 +194,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           });
           expect(positioner.style.position).to.equal('absolute');
           expect(positioner.style.transform).not.to.equal('');
-          [root, screen.getByTestId('list')].forEach((element) => {
+          [root, popup.querySelector(`.${popupClasses.list}`)!].forEach((element) => {
             ['data-align', 'data-side', 'data-open', 'data-closed'].forEach((attribute) => {
               expect(element).not.to.have.attribute(attribute);
             });
@@ -210,11 +215,8 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
               transitionDuration={{ enter: 0, exit: 200 }}
               slotProps={{
                 portal: {
-                  'data-testid': 'retained-root',
                   sx: { position: 'fixed', inset: 0, padding: 1, backgroundColor: 'rgb(1, 2, 3)' },
                 },
-                root: { 'data-testid': 'retained-paper' },
-                list: { 'data-testid': 'retained-list' },
               }}
             >
               <Menu2Item closeOnClick={false} onClick={() => setOpen(false)}>
@@ -228,10 +230,11 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           await user.click(screen.getByRole('button', { name: 'Options' }));
           await screen.findByRole('menuitem', { name: 'More' });
         }
-        const root = await screen.findByTestId('retained-root');
-        const popup = screen.getByTestId('retained-paper');
+        // The closed retained popup has no accessible name, so start from its portal.
+        const root = document.querySelector<HTMLElement>(`.${popupClasses.portal}`)!;
+        const popup = within(root).getByRole('menu', { hidden: true });
         const positioner = popup.parentElement!;
-        const list = screen.getByTestId('retained-list');
+        const list = popup.querySelector(`.${popupClasses.list}`)!;
         function expectOpenState(open: boolean) {
           [popup, positioner].forEach((element) => {
             expect(element).to.have.attribute(open ? 'data-open' : 'data-closed', '');
@@ -315,7 +318,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             : screen.getByRole('button', { name: 'Options' }),
         );
         await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
-        expect(screen.getByTestId('retained-paper')).to.equal(popup);
+        expect(screen.getByRole('menu', { name: submenu ? 'More' : 'Options' })).to.equal(popup);
         expectOpenState(true);
         expect(popup).not.to.have.attribute('data-ending-style');
         expect(root).toBeVisible();
@@ -412,7 +415,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
       namingCases.forEach(({ title, props, name, labelledby }) => {
         it(`${title}`, async () => {
           const { user } = render(<TestMenu {...props} />);
-          const popup = await openMenu(user);
+          const popup = await openMenu(user, { name });
           expect(popup).toHaveAccessibleName(name);
           expect(popup.getAttribute('aria-labelledby')).to.equal(labelledby ?? null);
           expect(popup.parentElement).not.to.have.attribute('aria-label');
@@ -450,7 +453,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           );
         }
         const { user } = render(<ChangeName />);
-        const popup = await openMenu(user);
+        const popup = await openMenu(user, { name: 'Actions' });
         expect(popup).toHaveAccessibleName('Actions');
 
         await user.click(screen.getByRole('menuitem', { name: 'Alpha' }));
@@ -479,7 +482,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             <Menu2Item>Beta</Menu2Item>
           </TestMenu>,
         );
-        const popup = await openMenu(user, true);
+        const popup = await openMenu(user, { keyboard: true });
         const alpha = screen.getByRole('menuitem', { name: 'Alpha' });
         await waitFor(() => expect(popup.contains(document.activeElement)).to.equal(true));
         await act(async () => alpha.focus());
@@ -514,7 +517,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
             <Menu2Item>Beta</Menu2Item>
           </TestMenu>,
         );
-        const popup = await openMenu(user, true);
+        const popup = await openMenu(user, { keyboard: true });
         const alpha = screen.getByRole('menuitem', { name: 'Alpha' });
         await waitFor(() => expect(popup.contains(document.activeElement)).to.equal(true));
         await act(async () => alpha.focus());
@@ -559,10 +562,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         />
         <Menu2>
           <Menu2Trigger render={<button type="button">Options</button>} />
-          <Menu2Popup
-            slots={{ transition: null }}
-            slotProps={{ portal: { 'data-testid': 'root', sx: { zIndex: 2000 } } }}
-          >
+          <Menu2Popup slots={{ transition: null }} slotProps={{ portal: { sx: { zIndex: 2000 } } }}>
             <Menu2Item>Alpha</Menu2Item>
           </Menu2Popup>
         </Menu2>
@@ -570,7 +570,7 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
     );
     await user.click(screen.getByRole('button', { name: 'Options' }));
     const popup = await screen.findByRole('menu');
-    const root = screen.getByTestId('root');
+    const root = popup.closest<HTMLElement>(`.${menu2PopupClasses.portal}`)!;
     const positioner = popup.parentElement!;
     const blocker = positioner.previousElementSibling!;
     screen.getByTestId('overlay').style.pointerEvents = 'auto';

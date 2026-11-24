@@ -8,6 +8,7 @@ import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type { Menu2RadioItemProps } from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2RadioItem, {
   menu2RadioItemClasses as classes,
+  menu2RadioItemIndicatorClasses,
 } from '@mui/material/Unstable_Menu2RadioItem';
 import describeConformance from '../../test/describeConformance';
 
@@ -69,7 +70,6 @@ describe('<Menu2RadioItem />', () => {
               slots={{ root: 'div' }}
               slotProps={{
                 root: (state) => ({ ref: slotRef, 'data-slot-checked': String(state.checked) }),
-                indicator: { 'data-testid': 'indicator' },
               }}
               sx={{ paddingLeft: '31px' }}
             >
@@ -80,7 +80,7 @@ describe('<Menu2RadioItem />', () => {
       </Menu2>,
     );
     const item = screen.getByRole('menuitemradio', { name: 'Two' });
-    const indicator = screen.getByTestId('indicator');
+    const indicator = item.querySelector(`.${menu2RadioItemIndicatorClasses.root}`)!;
     expect(slotRef.current).to.equal(item);
     expect(item).to.have.attribute('data-slot-checked', 'false');
     expect(item).not.to.have.class('MuiButtonBase-root');
@@ -95,7 +95,7 @@ describe('<Menu2RadioItem />', () => {
     expect(item).to.have.attribute('data-slot-checked', 'true');
     expect(indicator).to.have.attribute('data-checked');
     expect(indicator.querySelector('[data-testid="checked-icon"]')).not.to.equal(null);
-    expect(screen.getByTestId('indicator')).to.equal(indicator);
+    expect(item.querySelector(`.${menu2RadioItemIndicatorClasses.root}`)).to.equal(indicator);
     expect(slotRef.current).to.equal(item);
   });
 

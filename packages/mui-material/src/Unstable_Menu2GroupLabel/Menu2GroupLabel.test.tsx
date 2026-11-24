@@ -288,7 +288,12 @@ describe('<Menu2GroupLabel />', () => {
                     render={renderLabel}
                     slots={{ root: custom ? CustomLabel : 'div' }}
                     slotProps={{
-                      root: { ref: slotRef, onClick: onSlotClick, 'data-label': 'slot' },
+                      root: {
+                        ref: slotRef,
+                        onClick: onSlotClick,
+                        // The cast passes data-* without a DataAttributesOverrides augmentation.
+                        ...({ 'data-label': 'slot' } as object),
+                      },
                     }}
                     sx={{ paddingLeft: '31px' }}
                   >

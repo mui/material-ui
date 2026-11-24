@@ -1,4 +1,6 @@
-import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuPopup, {
+  menu2SubmenuPopupClasses,
+} from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import * as React from 'react';
@@ -18,39 +20,35 @@ import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 
 interface ItemTestProps extends Pick<Menu2ItemProps, 'divider' | 'disableGutters' | 'sx'> {
-  'data-testid': string;
+  children: string;
 }
 
 const itemCases = [
   {
     name: 'MuiMenu2LinkItem',
-    renderItem: (props: ItemTestProps) => (
-      <Menu2LinkItem {...props} href="#target">
-        Target
-      </Menu2LinkItem>
-    ),
+    role: 'menuitem',
+    renderItem: (props: ItemTestProps) => <Menu2LinkItem {...props} href="#target" />,
   },
   {
     name: 'MuiMenu2CheckboxItem',
-    renderItem: (props: ItemTestProps) => <Menu2CheckboxItem {...props}>Target</Menu2CheckboxItem>,
+    role: 'menuitemcheckbox',
+    renderItem: (props: ItemTestProps) => <Menu2CheckboxItem {...props} />,
   },
   {
     name: 'MuiMenu2RadioItem',
+    role: 'menuitemradio',
     renderItem: (props: ItemTestProps) => (
       <Menu2RadioGroup defaultValue="target">
-        <Menu2RadioItem {...props} value="target">
-          Target
-        </Menu2RadioItem>
+        <Menu2RadioItem {...props} value="target" />
       </Menu2RadioGroup>
     ),
   },
   {
     name: 'MuiMenu2SubmenuTrigger',
+    role: 'menuitem',
     renderItem: (props: ItemTestProps) => (
       <Menu2Submenu>
-        <Menu2SubmenuTrigger {...props} openOnHover={false}>
-          Target
-        </Menu2SubmenuTrigger>
+        <Menu2SubmenuTrigger {...props} openOnHover={false} />
         <Menu2SubmenuPopup>
           <Menu2Item>Nested</Menu2Item>
         </Menu2SubmenuPopup>
@@ -87,22 +85,10 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
                     align="end"
                     slots={{ transition: null }}
                     slotProps={{
-                      portal: {
-                        'data-testid': 'root',
-                        sx: useSx ? { zIndex: 1501 } : undefined,
-                      },
-                      positioner: {
-                        'data-testid': 'positioner',
-                        sx: useSx ? { paddingLeft: '3px' } : undefined,
-                      },
-                      root: {
-                        'data-testid': 'paper',
-                        sx: useSx ? { maxHeight: 303, outlineOffset: 21 } : undefined,
-                      },
-                      list: {
-                        'data-testid': 'list',
-                        sx: useSx ? { outlineWidth: '3px' } : undefined,
-                      },
+                      portal: { sx: useSx ? { zIndex: 1501 } : undefined },
+                      positioner: { sx: useSx ? { paddingLeft: '3px' } : undefined },
+                      root: { sx: useSx ? { maxHeight: 303, outlineOffset: 21 } : undefined },
+                      list: { sx: useSx ? { outlineWidth: '3px' } : undefined },
                     }}
                   >
                     <Menu2Item>Nested</Menu2Item>
@@ -138,10 +124,10 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           await user.click(screen.getByRole('menuitem', { name: 'More' }));
           await screen.findByRole('menuitem', { name: 'Nested' });
 
-          const root = screen.getByTestId('root');
-          const positioner = screen.getByTestId('positioner');
-          const paper = screen.getByTestId('paper');
-          const list = screen.getByTestId('list');
+          const paper = screen.getByRole('menu', { name: 'More' });
+          const root = paper.closest(`.${menu2SubmenuPopupClasses.portal}`)!;
+          const positioner = paper.closest(`.${menu2SubmenuPopupClasses.positioner}`)!;
+          const list = paper.querySelector(`.${menu2SubmenuPopupClasses.list}`)!;
           const expectedIndex = { common: 1, specific: 2, sx: 3 }[source];
           expect(getComputedStyle(root).zIndex).to.equal(
             String(useSx ? 1501 : 1400 + expectedIndex),
@@ -158,14 +144,14 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
         });
       });
 
-      itemCases.forEach(({ name, renderItem }) => {
+      itemCases.forEach(({ name, role, renderItem }) => {
         it(`updates common highlighted overrides and variants during keyboard navigation in ${name}`, async () => {
           const { user } = renderWithTheme(
             <Menu2>
               <Menu2Trigger render={<button type="button">Options</button>} />
               <Menu2Popup slots={{ transition: null }}>
                 <Menu2Item>Before</Menu2Item>
-                {renderItem({ 'data-testid': 'target' })}
+                {renderItem({ children: 'Target' })}
                 <Menu2Item>After</Menu2Item>
               </Menu2Popup>
             </Menu2>,
@@ -185,7 +171,7 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           );
 
           await user.click(screen.getByRole('button', { name: 'Options' }));
-          const target = await screen.findByTestId('target');
+          const target = await screen.findByRole(role, { name: 'Target' });
           await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
           expect(getComputedStyle(target).outlineOffset).to.equal('1px');
           expect(getComputedStyle(target).getPropertyValue('--menu2-highlight-variant')).to.equal(
@@ -218,9 +204,9 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           renderWithTheme(
             <Menu2 defaultOpen modal={false}>
               <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                {renderItem({ 'data-testid': 'default' })}
-                {renderItem({ 'data-testid': 'states', divider: true })}
-                {renderItem({ 'data-testid': 'no-gutters', disableGutters: true })}
+                {renderItem({ children: 'Default' })}
+                {renderItem({ children: 'States', divider: true })}
+                {renderItem({ children: 'No gutters', disableGutters: true })}
               </Menu2Popup>
             </Menu2>,
             {
@@ -235,9 +221,9 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
             },
           );
 
-          const defaultStyle = getComputedStyle(await screen.findByTestId('default'));
-          const stateStyle = getComputedStyle(screen.getByTestId('states'));
-          const noGuttersStyle = getComputedStyle(screen.getByTestId('no-gutters'));
+          const defaultStyle = getComputedStyle(await screen.findByRole(role, { name: 'Default' }));
+          const stateStyle = getComputedStyle(screen.getByRole(role, { name: 'States' }));
+          const noGuttersStyle = getComputedStyle(screen.getByRole(role, { name: 'No gutters' }));
           expect(defaultStyle.paddingBottom).to.equal('10px');
           expect(defaultStyle.paddingTop).not.to.equal('12px');
           expect(defaultStyle.marginTop).to.equal('0px');
@@ -255,9 +241,9 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           renderWithTheme(
             <Menu2 defaultOpen modal={false}>
               <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                {renderItem({ 'data-testid': 'specific', divider: true })}
+                {renderItem({ children: 'Specific', divider: true })}
                 {renderItem({
-                  'data-testid': 'sx',
+                  children: 'Sx',
                   divider: true,
                   sx: {
                     paddingBottom: '31px',
@@ -288,9 +274,9 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
             },
           );
 
-          await screen.findByTestId('specific');
-          ['specific', 'sx'].forEach((testId, index) => {
-            const style = getComputedStyle(screen.getByTestId(testId));
+          await screen.findByRole(role, { name: 'Specific' });
+          ['Specific', 'Sx'].forEach((label, index) => {
+            const style = getComputedStyle(screen.getByRole(role, { name: label }));
             expect(style.paddingBottom).to.equal(`${21 + index * 10}px`);
             expect(style.paddingTop).to.equal(`${22 + index * 10}px`);
             expect(style.marginTop).to.equal(`${23 + index * 10}px`);
@@ -331,7 +317,7 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
         renderWithTheme(
           <Menu2 defaultOpen modal={false}>
             <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-              <Menu2Item divider data-testid="item" sx={{ paddingTop: '21px' }}>
+              <Menu2Item divider sx={{ paddingTop: '21px' }}>
                 Action
               </Menu2Item>
             </Menu2Popup>
@@ -344,16 +330,17 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           },
         );
 
-        expect(getComputedStyle(await screen.findByTestId('item')).paddingTop).to.equal('21px');
+        const item = await screen.findByRole('menuitem', { name: 'Action' });
+        expect(getComputedStyle(item).paddingTop).to.equal('21px');
       });
 
       it('does not inherit MuiMenu2Item default props in other item components', async () => {
         renderWithTheme(
           <Menu2 defaultOpen modal={false}>
             <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-              <Menu2Item data-testid="item">Action</Menu2Item>
+              <Menu2Item>Action</Menu2Item>
               {itemCases.map(({ name, renderItem }) => (
-                <React.Fragment key={name}>{renderItem({ 'data-testid': name })}</React.Fragment>
+                <React.Fragment key={name}>{renderItem({ children: name })}</React.Fragment>
               ))}
             </Menu2Popup>
           </Menu2>,
@@ -362,11 +349,11 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           },
         );
 
-        const item = await screen.findByTestId('item');
+        const item = await screen.findByRole('menuitem', { name: 'Action' });
         expect(item).to.have.class('MuiMenu2Item-divider');
         expect(item).not.to.have.class('MuiMenu2Item-gutters');
-        itemCases.forEach(({ name }) => {
-          const target = screen.getByTestId(name);
+        itemCases.forEach(({ name, role }) => {
+          const target = screen.getByRole(role, { name });
           expect(target).not.to.have.class(`${name}-divider`);
           expect(target).to.have.class(`${name}-gutters`);
         });
@@ -375,17 +362,10 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
       it('does not inherit MuiMenu2Popup default props in submenu popups', async () => {
         const { user } = renderWithTheme(
           <Menu2 defaultOpen modal={false}>
-            <Menu2Popup
-              anchor={document.body}
-              slots={{ transition: null }}
-              slotProps={{ root: { 'data-testid': 'parent-paper' } }}
-            >
+            <Menu2Popup anchor={document.body} slots={{ transition: null }}>
               <Menu2Submenu>
                 <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
-                <Menu2SubmenuPopup
-                  slots={{ transition: null }}
-                  slotProps={{ root: { 'data-testid': 'child-paper' } }}
-                >
+                <Menu2SubmenuPopup slots={{ transition: null }}>
                   <Menu2Item>Nested</Menu2Item>
                 </Menu2SubmenuPopup>
               </Menu2Submenu>
@@ -394,9 +374,11 @@ describe.skipIf(isJsdom())('Menu2 theme style inheritance', () => {
           { MuiMenu2Popup: { defaultProps: { elevation: 2 } } },
         );
 
-        expect(screen.getByTestId('parent-paper')).to.have.class('MuiPaper-elevation2');
-        await user.click(screen.getByRole('menuitem', { name: 'More' }));
-        expect(await screen.findByTestId('child-paper')).to.have.class('MuiPaper-elevation8');
+        const trigger = screen.getByRole('menuitem', { name: 'More' });
+        expect(screen.getByRole('menu')).to.have.class('MuiPaper-elevation2');
+        await user.click(trigger);
+        await screen.findByRole('menuitem', { name: 'Nested' });
+        expect(screen.getByRole('menu', { name: 'More' })).to.have.class('MuiPaper-elevation8');
       });
     });
   });

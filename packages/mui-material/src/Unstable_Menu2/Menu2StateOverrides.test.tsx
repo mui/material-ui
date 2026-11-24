@@ -23,51 +23,49 @@ import {
   menu2ItemClasses,
   menu2LinkItemClasses,
   menu2RadioItemClasses,
+  menu2RadioItemIndicatorClasses,
 } from './menu2Classes';
 
 interface ItemTestProps extends Pick<Menu2ItemProps, 'divider' | 'disableGutters' | 'sx'> {
-  'data-testid': string;
+  children: string;
 }
 
 const itemCases = [
   {
     name: 'MuiMenu2Item',
+    role: 'menuitem',
     classes: menu2ItemClasses,
-    renderItem: (props: ItemTestProps) => <Menu2Item {...props}>Target</Menu2Item>,
+    renderItem: (props: ItemTestProps) => <Menu2Item {...props} />,
   },
   {
     name: 'MuiMenu2LinkItem',
+    role: 'menuitem',
     classes: menu2LinkItemClasses,
-    renderItem: (props: ItemTestProps) => (
-      <Menu2LinkItem {...props} href="#target">
-        Target
-      </Menu2LinkItem>
-    ),
+    renderItem: (props: ItemTestProps) => <Menu2LinkItem {...props} href="#target" />,
   },
   {
     name: 'MuiMenu2CheckboxItem',
+    role: 'menuitemcheckbox',
     classes: menu2CheckboxItemClasses,
-    renderItem: (props: ItemTestProps) => <Menu2CheckboxItem {...props}>Target</Menu2CheckboxItem>,
+    renderItem: (props: ItemTestProps) => <Menu2CheckboxItem {...props} />,
   },
   {
     name: 'MuiMenu2RadioItem',
+    role: 'menuitemradio',
     classes: menu2RadioItemClasses,
     renderItem: (props: ItemTestProps) => (
       <Menu2RadioGroup defaultValue="target">
-        <Menu2RadioItem {...props} value="target">
-          Target
-        </Menu2RadioItem>
+        <Menu2RadioItem {...props} value="target" />
       </Menu2RadioGroup>
     ),
   },
   {
     name: 'MuiMenu2SubmenuTrigger',
+    role: 'menuitem',
     classes: menu2SubmenuTriggerClasses,
     renderItem: (props: ItemTestProps) => (
       <Menu2Submenu>
-        <Menu2SubmenuTrigger {...props} openOnHover={false}>
-          Target
-        </Menu2SubmenuTrigger>
+        <Menu2SubmenuTrigger {...props} openOnHover={false} />
         <Menu2SubmenuPopup>
           <Menu2Item>Nested</Menu2Item>
         </Menu2SubmenuPopup>
@@ -77,33 +75,40 @@ const itemCases = [
 ] as const;
 
 const highlightedCases = [
-  ...itemCases.map(({ name, renderItem }) => ({
+  ...itemCases.map(({ name, role, renderItem }) => ({
     name,
-    item: renderItem({ 'data-testid': 'target' }),
+    role,
+    item: renderItem({ children: 'Target' }),
   })),
   {
     name: 'MuiMenu2CheckboxItem',
+    role: 'menuitemcheckbox',
     slot: 'indicator',
     stateName: 'MuiMenu2CheckboxItemIndicator',
-    item: (
-      <Menu2CheckboxItem defaultChecked slotProps={{ indicator: { 'data-testid': 'target' } }}>
-        Target
-      </Menu2CheckboxItem>
-    ),
+    indicatorClass: menu2CheckboxItemIndicatorClasses.root,
+    item: <Menu2CheckboxItem defaultChecked>Target</Menu2CheckboxItem>,
   },
   {
     name: 'MuiMenu2RadioItem',
+    role: 'menuitemradio',
     slot: 'indicator',
     stateName: 'MuiMenu2RadioItemIndicator',
+    indicatorClass: menu2RadioItemIndicatorClasses.root,
     item: (
       <Menu2RadioGroup defaultValue="target">
-        <Menu2RadioItem value="target" slotProps={{ indicator: { 'data-testid': 'target' } }}>
-          Target
-        </Menu2RadioItem>
+        <Menu2RadioItem value="target">Target</Menu2RadioItem>
       </Menu2RadioGroup>
     ),
   },
 ] as const;
+
+// Indicators have no role, so find them by class inside their item.
+async function findTarget(entry: (typeof highlightedCases)[number]) {
+  const item = await screen.findByRole(entry.role, { name: 'Target' });
+  return 'indicatorClass' in entry
+    ? item.querySelector<HTMLElement>(`.${entry.indicatorClass}`)!
+    : item;
+}
 
 describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
   const { render } = createRenderer();
@@ -150,7 +155,7 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
           </Menu2>
         </ThemeProvider>,
       );
-      const target = await screen.findByTestId('target');
+      const target = await findTarget(entry);
       // The generated class name carries the styles; the utility class does not.
       const rootClassName = Array.from(target.classList).find(
         (className) => className !== `${name}-${slot}` && className.endsWith(`${name}-${slot}`),
@@ -274,7 +279,7 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
 
           try {
             await user.click(screen.getByRole('button', { name: 'Options' }));
-            const target = await screen.findByTestId('target');
+            const target = await findTarget(entry);
             await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
             const marker = () =>
               getComputedStyle(target).getPropertyValue('--menu2-highlighted-test').trim();
@@ -337,14 +342,9 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
                 <Menu2Trigger render={<button type="button">Options</button>} />
                 <Menu2Popup transitionDuration={0}>
                   {kind === 'item' ? (
-                    <Menu2Item data-testid="target" sx={sx}>
-                      Target
-                    </Menu2Item>
+                    <Menu2Item sx={sx}>Target</Menu2Item>
                   ) : (
-                    <Menu2CheckboxItem
-                      defaultChecked
-                      slotProps={{ indicator: { 'data-testid': 'target', sx } }}
-                    >
+                    <Menu2CheckboxItem defaultChecked slotProps={{ indicator: { sx } }}>
                       Target
                     </Menu2CheckboxItem>
                   )}
@@ -359,7 +359,14 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
 
             try {
               await user.click(screen.getByRole('button', { name: 'Options' }));
-              const target = await screen.findByTestId('target');
+              const item = await screen.findByRole(
+                kind === 'item' ? 'menuitem' : 'menuitemcheckbox',
+                { name: 'Target' },
+              );
+              const target =
+                kind === 'item'
+                  ? item
+                  : item.querySelector<HTMLElement>(`.${menu2CheckboxItemIndicatorClasses.root}`)!;
               await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
               expect(getComputedStyle(target).backgroundColor).not.to.equal('rgb(4, 5, 6)');
               expect(
@@ -383,19 +390,19 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
         });
       });
 
-      itemCases.forEach(({ name, classes, renderItem }) => {
+      itemCases.forEach(({ name, role, classes, renderItem }) => {
         it(`supports ${name} divider and gutters overrides`, async () => {
           renderWithTheme(
             <Menu2 defaultOpen modal={false}>
               <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                {renderItem({ 'data-testid': 'default' })}
+                {renderItem({ children: 'Default' })}
                 {renderItem({
-                  'data-testid': 'states',
+                  children: 'States',
                   divider: true,
                   disableGutters: true,
                 })}
                 {renderItem({
-                  'data-testid': 'sx',
+                  children: 'Sx',
                   divider: true,
                   sx: {
                     paddingTop: '21px',
@@ -422,9 +429,9 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             },
           );
 
-          const defaultItem = await screen.findByTestId('default');
-          const stateItem = screen.getByTestId('states');
-          const sxItem = screen.getByTestId('sx');
+          const defaultItem = await screen.findByRole(role, { name: 'Default' });
+          const stateItem = screen.getByRole(role, { name: 'States' });
+          const sxItem = screen.getByRole(role, { name: 'Sx' });
           const defaultStyle = getComputedStyle(defaultItem);
           const stateStyle = getComputedStyle(stateItem);
           const sxStyle = getComputedStyle(sxItem);
@@ -494,7 +501,7 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
           );
           await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
           expect(marker()).to.equal('open');
-          const popup = screen.getByRole('menuitem', { name: 'Nested' }).closest('[role="menu"]')!;
+          const popup = screen.getByRole('menu', { name: 'More' });
 
           completed.mockClear();
           await user.keyboard('{Escape}');
@@ -567,9 +574,7 @@ describe.skipIf(isJsdom())('Menu2 state style overrides', () => {
             await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
             const openColor = getComputedStyle(trigger).backgroundColor;
             expect(openColor).not.to.equal('rgba(0, 0, 0, 0)');
-            const popup = screen
-              .getByRole('menuitem', { name: 'Nested' })
-              .closest('[role="menu"]')!;
+            const popup = screen.getByRole('menu', { name: 'More' });
 
             completed.mockClear();
             await user.keyboard('{F2}');

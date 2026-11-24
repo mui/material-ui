@@ -193,14 +193,10 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
 
   it('keeps the visual backdrop click-through when the menu opens on hover', async () => {
     const changed = vi.fn();
-    const { user, unmount } = render(
+    const { baseElement, user, unmount } = render(
       <Menu2 onOpenChange={changed}>
         <Menu2Trigger openOnHover delay={0} render={<button type="button">Options</button>} />
-        <Menu2Popup
-          slotProps={{
-            backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
-          }}
-        >
+        <Menu2Popup slotProps={{ backdrop: { sx: { backgroundColor: 'rgb(0, 0, 0)' } } }}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -211,7 +207,7 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
       const popup = await screen.findByRole('menu');
       await waitFor(() => expect(popup).toHaveFocus());
 
-      const backdrop = screen.getByTestId('backdrop');
+      const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
       expect(getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
       expect(getComputedStyle(backdrop).pointerEvents).to.equal('none');
 
@@ -221,7 +217,9 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
         false,
         expect.objectContaining({ reason: 'escape-key' }),
       );
-      await waitFor(() => expect(screen.queryByTestId('backdrop')).to.equal(null));
+      await waitFor(() =>
+        expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(null),
+      );
       expect(screen.queryByRole('menu')).to.equal(null);
     } finally {
       unmount();
@@ -231,7 +229,7 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
   ['default', 'host'].forEach((slot) => {
     it(`keeps the ${slot} backdrop in sync with a retained popup`, async () => {
       const completed = vi.fn();
-      const { user, unmount } = render(
+      const { baseElement, user, unmount } = render(
         <div style={{ paddingTop: 96 }}>
           <Menu2 onOpenChangeComplete={completed}>
             <Menu2Trigger render={<button type="button">Options</button>} />
@@ -241,7 +239,6 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
               slots={slot === 'host' ? { backdrop: 'div' } : undefined}
               slotProps={{
                 backdrop: {
-                  'data-testid': 'backdrop',
                   sx: { opacity: 0.5 },
                   style: {
                     position: 'fixed',
@@ -262,7 +259,7 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
       );
 
       try {
-        const backdrop = screen.getByTestId('backdrop');
+        const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
         expect(backdrop).not.to.have.attribute('sx');
         expect(backdrop).to.have.attribute('hidden');
         expect(backdrop).to.have.attribute('data-closed');
@@ -297,7 +294,7 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
         completed.mockClear();
         await user.click(trigger);
         await waitFor(() => expect(completed).toHaveBeenCalledExactlyOnceWith(true));
-        expect(screen.getByTestId('backdrop')).to.equal(backdrop);
+        expect(baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)).to.equal(backdrop);
         expect(backdrop).not.to.have.attribute('hidden');
         expect(backdrop).to.have.attribute('data-open');
         expect(document.elementFromPoint(10, 10)).to.equal(backdrop);
@@ -308,7 +305,7 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
   });
 
   it('keeps theme overrides and sx on the default backdrop', async () => {
-    const { user, unmount } = render(
+    const { baseElement, user, unmount } = render(
       <ThemeProvider
         theme={createTheme({
           components: {
@@ -320,7 +317,7 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
       >
         <Menu2>
           <Menu2Trigger render={<button type="button">Options</button>} />
-          <Menu2Popup slotProps={{ backdrop: { 'data-testid': 'backdrop', sx: { opacity: 0.5 } } }}>
+          <Menu2Popup slotProps={{ backdrop: { sx: { opacity: 0.5 } } }}>
             <Menu2Item>Profile</Menu2Item>
           </Menu2Popup>
         </Menu2>
@@ -329,7 +326,8 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
 
     try {
       await user.click(screen.getByRole('button', { name: 'Options' }));
-      const backdrop = await screen.findByTestId('backdrop');
+      await screen.findByRole('menu');
+      const backdrop = baseElement.querySelector(`.${menu2PopupClasses.backdrop}`)!;
       const styles = getComputedStyle(backdrop);
       expect(styles.backgroundColor).to.equal('rgb(12, 34, 56)');
       expect(styles.opacity).to.equal('0.5');

@@ -113,6 +113,11 @@ describe('Menu2 indicator slots', () => {
         );
       }
 
+      // The indicator is aria-hidden, so find it by its utility class.
+      function queryIndicator() {
+        return screen.getByRole(role, { name: 'Target' }).querySelector(`.${classes.root}`);
+      }
+
       it('exports the existing indicator class names from the item entry point', () => {
         expect(classes.root).to.equal(`${name}Indicator-root`);
         expect(classes.checked).to.equal('Mui-checked');
@@ -141,7 +146,6 @@ describe('Menu2 indicator slots', () => {
             indicatorClassName: 'item-indicator-class',
             indicatorProps: {
               ref,
-              'data-testid': 'indicator',
               className: 'slot-indicator-class',
               title: 'Indicator title',
               children: <span data-testid="custom-child" />,
@@ -149,7 +153,7 @@ describe('Menu2 indicator slots', () => {
             },
           });
 
-          const target = screen.getByTestId('indicator');
+          const target = screen.getByTitle('Indicator title');
           expect(ref.current).to.equal(target);
           expect(target.tagName).to.equal(indicator === 'i' ? 'I' : 'SPAN');
           if (slotName === 'default') {
@@ -181,8 +185,8 @@ describe('Menu2 indicator slots', () => {
       });
 
       it('supports a component override on the default slot', () => {
-        renderItem({ indicatorProps: { component: 'i', 'data-testid': 'indicator' } });
-        const indicator = screen.getByTestId('indicator');
+        renderItem({ indicatorProps: { component: 'i' } });
+        const indicator = queryIndicator()!;
         expect(indicator.tagName).to.equal('I');
         expect(indicator).to.have.class(listItemIconClasses.root);
       });
@@ -190,9 +194,9 @@ describe('Menu2 indicator slots', () => {
       it('supports a component override on a custom styled slot', () => {
         renderItem({
           indicator: CustomIndicator,
-          indicatorProps: { component: 'i', 'data-testid': 'indicator' },
+          indicatorProps: { component: 'i' },
         });
-        const indicator = screen.getByTestId('indicator');
+        const indicator = queryIndicator()!;
         expect(indicator.tagName).to.equal('I');
         expect(indicator).not.to.have.attribute('component');
       });
@@ -222,20 +226,22 @@ describe('Menu2 indicator slots', () => {
                   <Menu2 defaultOpen modal={false}>
                     <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                       <Menu2Item>
-                        <ListItemIcon data-testid="decorative-icon">
+                        <ListItemIcon>
                           <svg width={20} height={20} aria-hidden="true" />
                         </ListItemIcon>
                         Action
                       </Menu2Item>
-                      {createItem({ indicatorProps: { 'data-testid': 'indicator' } })}
+                      {createItem({})}
                     </Menu2Popup>
                   </Menu2>
                 </ThemeProvider>
               </StyledEngineProvider>,
             );
 
-            ['decorative-icon', 'indicator'].forEach((id) => {
-              const icon = screen.getByTestId(id);
+            const decorativeIcon = screen
+              .getByRole('menuitem', { name: 'Action' })
+              .querySelector(`.${listItemIconClasses.root}`)!;
+            [decorativeIcon, queryIndicator()!].forEach((icon) => {
               expect(icon).to.have.class(listItemIconClasses.root);
               expect(getComputedStyle(icon).minWidth).to.equal('48px');
               expect(getComputedStyle(icon).paddingRight).to.equal('11px');
@@ -311,37 +317,31 @@ describe('Menu2 indicator slots', () => {
             icon: <span data-testid="icon" />,
             checkedIcon: <span data-testid="checked-icon" />,
             [hiddenProp]: null,
-            indicatorProps: { 'data-testid': 'indicator' },
           });
-          const indicator = screen.getByTestId('indicator');
+          const indicator = queryIndicator()!;
           expect(indicator.childNodes).to.have.length(hiddenProp === 'icon' ? 0 : 1);
 
           const item = screen.getByRole(role, { name: 'Target' });
           await user.click(item);
           await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
-          expect(screen.getByTestId('indicator')).to.equal(indicator);
+          expect(queryIndicator()).to.equal(indicator);
           expect(indicator.childNodes).to.have.length(hiddenProp === 'checkedIcon' ? 0 : 1);
         });
       });
 
       it('hides the icon with false indicator children', async () => {
-        const { user } = renderItem({
-          indicatorProps: { 'data-testid': 'indicator', children: false },
-        });
-        expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
+        const { user } = renderItem({ indicatorProps: { children: false } });
+        expect(queryIndicator()!.childNodes).to.have.length(0);
 
         const item = screen.getByRole(role, { name: 'Target' });
         await user.click(item);
         await waitFor(() => expect(item).to.have.attribute('aria-checked', 'true'));
-        expect(screen.getByTestId('indicator').childNodes).to.have.length(0);
+        expect(queryIndicator()!.childNodes).to.have.length(0);
       });
 
       it('applies the icon classes and the small size to the default icon', () => {
-        renderItem({
-          indicatorIconClassName: 'item-icon-class',
-          indicatorProps: { 'data-testid': 'indicator' },
-        });
-        const icon = screen.getByTestId('indicator').firstElementChild!;
+        renderItem({ indicatorIconClassName: 'item-icon-class' });
+        const icon = queryIndicator()!.firstElementChild!;
         expect(icon).to.have.class(itemClasses.indicatorIcon);
         expect(icon).to.have.class('item-icon-class');
         const svg = icon.tagName.toLowerCase() === 'svg' ? icon : icon.querySelector('svg')!;
@@ -380,15 +380,12 @@ describe('Menu2 indicator slots', () => {
             <ThemeProvider theme={theme}>
               <Menu2 defaultOpen modal={false}>
                 <Menu2Popup anchor={document.body}>
-                  {createItem({
-                    icon: customIcon ? <SvgIcon /> : undefined,
-                    indicatorProps: { 'data-testid': 'indicator' },
-                  })}
+                  {createItem({ icon: customIcon ? <SvgIcon /> : undefined })}
                 </Menu2Popup>
               </Menu2>
             </ThemeProvider>,
           );
-          const indicator = screen.getByTestId('indicator');
+          const indicator = queryIndicator()!;
           const icon = indicator.firstElementChild!;
           expect(icon).to.have.class(itemClasses.indicatorIcon);
           expect(getComputedStyle(icon).marginRight).to.equal('7px');
@@ -408,7 +405,7 @@ describe('Menu2 indicator slots', () => {
                 indicator: CustomIndicator,
                 indicatorProps: (state) => {
                   states.push(state);
-                  return { 'data-testid': 'indicator' };
+                  return {};
                 },
               })}
               <Menu2Item>After</Menu2Item>
@@ -426,7 +423,7 @@ describe('Menu2 indicator slots', () => {
         await user.keyboard('{ArrowDown}{ArrowDown}');
         const item = screen.getByRole(role, { name: 'Target' });
         await waitFor(() => expect(item).toHaveFocus());
-        const indicator = screen.getByTestId('indicator');
+        const indicator = queryIndicator()!;
         expect(indicator).to.have.class(classes.highlighted);
         expect(indicator).to.have.attribute('data-highlighted');
         expect(states[states.length - 1].highlighted).to.equal(true);
@@ -455,12 +452,13 @@ describe('Menu2 indicator slots', () => {
           it(`uses keepMounted=${keepMounted} for the ${slotName} slot`, async () => {
             const { user } = renderItem({
               indicator,
-              indicatorProps: { 'data-testid': 'indicator', keepMounted },
+              indicatorProps: { keepMounted },
             });
 
-            expect(screen.queryByTestId('indicator') === null).to.equal(keepMounted === false);
+            expect(queryIndicator() === null).to.equal(keepMounted === false);
             await user.click(screen.getByRole(role, { name: 'Target' }));
-            expect(await screen.findByTestId('indicator')).to.have.attribute('data-checked');
+            await waitFor(() => expect(queryIndicator()).not.to.equal(null));
+            expect(queryIndicator()).to.have.attribute('data-checked');
           });
         });
       });
@@ -471,7 +469,7 @@ describe('Menu2 indicator slots', () => {
             [name]: {
               defaultProps: {
                 slotProps: {
-                  indicator: { 'data-testid': 'indicator', sx: { paddingLeft: '13px' } },
+                  indicator: { sx: { paddingLeft: '13px' } },
                 },
               },
               styleOverrides: { indicator: { minWidth: 43 } },
@@ -493,7 +491,7 @@ describe('Menu2 indicator slots', () => {
         );
 
         const item = screen.getByRole(role, { name: 'Target' });
-        const indicator = screen.getByTestId('indicator');
+        const indicator = queryIndicator()!;
         expect(getComputedStyle(item).borderTopWidth).to.equal('7px');
         expect(getComputedStyle(indicator).borderTopWidth).not.to.equal('7px');
         expect(getComputedStyle(indicator).minWidth).to.equal('43px');

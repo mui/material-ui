@@ -112,7 +112,7 @@ describe('<Menu2Trigger />', () => {
 
     expect(container.children).to.have.length(1);
     expect(button.parentElement).to.equal(container);
-    expect(screen.getByTestId('trigger')).to.equal(button);
+    expect(button).to.have.attribute('data-testid', 'trigger');
     expect(button).to.have.attribute('title', 'Open actions');
     expect(button).to.have.class('child-class');
     expect(button).to.have.class('trigger-class');

@@ -17,10 +17,7 @@ describe('Menu2CheckboxItem indicator slot', () => {
     return render(
       <Menu2 defaultOpen modal={false}>
         <Menu2Popup anchor={document.body}>
-          <Menu2CheckboxItem
-            {...itemProps}
-            slotProps={{ indicator: { 'data-testid': 'indicator', ...indicatorProps } }}
-          >
+          <Menu2CheckboxItem {...itemProps} slotProps={{ indicator: indicatorProps }}>
             Ruler
           </Menu2CheckboxItem>
         </Menu2Popup>
@@ -28,11 +25,18 @@ describe('Menu2CheckboxItem indicator slot', () => {
     );
   }
 
+  // The indicator is aria-hidden, so find it by its utility class.
+  function getIndicator() {
+    return screen
+      .getByRole('menuitemcheckbox', { name: 'Ruler' })
+      .querySelector(`.${classes.root}`)!;
+  }
+
   describe('icons', () => {
     it('renders the outlined box when unchecked', () => {
       renderItem();
 
-      const indicator = screen.getByTestId('indicator');
+      const indicator = getIndicator();
       expect(indicator.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]')).not.to.equal(
         null,
       );
@@ -42,7 +46,7 @@ describe('Menu2CheckboxItem indicator slot', () => {
     it('renders the filled box when checked', () => {
       renderItem({}, { defaultChecked: true });
 
-      const indicator = screen.getByTestId('indicator');
+      const indicator = getIndicator();
       expect(indicator.querySelector('[data-testid="CheckBoxIcon"]')).not.to.equal(null);
       expect(indicator.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]')).to.equal(null);
     });
@@ -50,7 +54,7 @@ describe('Menu2CheckboxItem indicator slot', () => {
     it('keeps the default icons on a disabled item', () => {
       renderItem({}, { disabled: true });
 
-      const indicator = screen.getByTestId('indicator');
+      const indicator = getIndicator();
       expect(indicator).to.have.attribute('data-disabled', '');
       expect(indicator).to.have.class(classes.disabled);
       expect(indicator.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]')).not.to.equal(
@@ -61,7 +65,7 @@ describe('Menu2CheckboxItem indicator slot', () => {
     it('lets children replace the icon', () => {
       renderItem({ children: <span data-testid="custom-icon" /> });
 
-      const indicator = screen.getByTestId('indicator');
+      const indicator = getIndicator();
       expect(indicator.querySelector('[data-testid="custom-icon"]')).not.to.equal(null);
       expect(indicator.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]')).to.equal(null);
     });

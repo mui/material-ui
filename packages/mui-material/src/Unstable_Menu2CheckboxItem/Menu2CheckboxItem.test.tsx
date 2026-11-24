@@ -10,6 +10,7 @@ import type {
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2CheckboxItem, {
   menu2CheckboxItemClasses as classes,
+  menu2CheckboxItemIndicatorClasses,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
 import describeConformance from '../../test/describeConformance';
 
@@ -76,7 +77,6 @@ describe('<Menu2CheckboxItem />', () => {
             slots={{ root: CustomRoot }}
             slotProps={{
               root: (state) => ({ ref: slotRef, 'data-slot-checked': String(state.checked) }),
-              indicator: { 'data-testid': 'indicator' },
             }}
             sx={{ paddingLeft: '31px' }}
           >
@@ -86,7 +86,7 @@ describe('<Menu2CheckboxItem />', () => {
       </Menu2>,
     );
     const item = screen.getByRole('menuitemcheckbox', { name: 'Ruler' });
-    const indicator = screen.getByTestId('indicator');
+    const indicator = item.querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)!;
     expect(slotRef.current).to.equal(item);
     expect(item).to.have.attribute('data-owner-checked', 'false');
     expect(item).to.have.attribute('data-slot-checked', 'false');
@@ -103,7 +103,7 @@ describe('<Menu2CheckboxItem />', () => {
     expect(item).to.have.attribute('data-slot-checked', 'true');
     expect(indicator).to.have.attribute('data-checked');
     expect(indicator.querySelector('[data-testid="checked-icon"]')).not.to.equal(null);
-    expect(screen.getByTestId('indicator')).to.equal(indicator);
+    expect(item.querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)).to.equal(indicator);
     expect(slotRef.current).to.equal(item);
   });
 

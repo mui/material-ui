@@ -7,9 +7,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { touchRippleClasses } from '@mui/material/ButtonBase';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import type { Menu2CheckboxItemProps } from '@mui/material/Unstable_Menu2CheckboxItem';
-import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2CheckboxItem, {
+  menu2CheckboxItemIndicatorClasses,
+} from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2RadioItem, {
+  menu2RadioItemIndicatorClasses,
+} from '@mui/material/Unstable_Menu2RadioItem';
 
 describe('Menu2 live checked ownerState', () => {
   const { render } = createRenderer();
@@ -18,6 +22,10 @@ describe('Menu2 live checked ownerState', () => {
     describe(`${kind} item`, () => {
       const role = kind === 'checkbox' ? 'menuitemcheckbox' : 'menuitemradio';
       const componentName = kind === 'checkbox' ? 'MuiMenu2CheckboxItem' : 'MuiMenu2RadioItem';
+      const indicatorClasses =
+        kind === 'checkbox' ? menu2CheckboxItemIndicatorClasses : menu2RadioItemIndicatorClasses;
+      // The indicator is aria-hidden, so find it by its utility class.
+      const queryIndicator = () => document.querySelector<HTMLElement>(`.${indicatorClasses.root}`);
       const renderItem: Menu2CheckboxItemProps['render'] = (props, state) => (
         <div
           {...props}
@@ -174,7 +182,7 @@ describe('Menu2 live checked ownerState', () => {
         const itemProps: Menu2CheckboxItemProps = {
           className: 'external-class',
           sx: [false, (t) => ({ paddingLeft: t.spacing(3) })],
-          slotProps: { indicator: { component: 'strong', 'data-testid': 'indicator' } },
+          slotProps: { indicator: { component: 'strong' } },
         };
         render(
           <ThemeProvider theme={customTheme}>
@@ -206,7 +214,7 @@ describe('Menu2 live checked ownerState', () => {
         expect(styles.paddingTop).to.equal('21px');
         expect(styles.paddingBottom).to.equal('19px');
         expect(styles.paddingLeft).to.equal('30px');
-        const indicator = screen.getByTestId('indicator');
+        const indicator = queryIndicator()!;
         expect(item).to.contain(indicator);
         expect(indicator.tagName).to.equal('STRONG');
         expect(indicator).to.have.class(`${componentName}-indicator`);
@@ -287,7 +295,6 @@ describe('Menu2 live checked ownerState', () => {
             const itemProps: Menu2CheckboxItemProps = {
               disableRipple,
               render: (props, state) => <div {...props} data-checked={String(state.checked)} />,
-              slotProps: { indicator: { 'data-testid': 'indicator' } },
             };
             const { user } = render(
               <Menu2 defaultOpen modal={false}>
@@ -305,7 +312,7 @@ describe('Menu2 live checked ownerState', () => {
               </Menu2>,
             );
             const item = screen.getByRole(role, { name: 'One' });
-            const indicator = screen.getByTestId('indicator');
+            const indicator = queryIndicator()!;
             expect(item).to.contain(indicator);
             expect(indicator).not.to.have.attribute('data-checked');
             await user.pointer({ keys: '[MouseLeft>]', target: item });
@@ -321,7 +328,7 @@ describe('Menu2 live checked ownerState', () => {
             await user.pointer({ keys: '[/MouseLeft]', target: item });
             expect(item).to.have.attribute('data-checked', 'true');
             expect(indicator).to.have.attribute('data-checked');
-            expect(screen.getByTestId('indicator')).to.equal(indicator);
+            expect(queryIndicator()).to.equal(indicator);
           },
         );
       });
@@ -421,7 +428,6 @@ describe('Menu2 live checked ownerState', () => {
             indicator: {
               component: 'strong' as const,
               ref: indicatorRef,
-              'data-testid': 'indicator',
               className: 'custom-indicator',
               style: { marginLeft: '7px' },
             },
@@ -443,7 +449,7 @@ describe('Menu2 live checked ownerState', () => {
           </Menu2>,
         );
 
-        const indicator = screen.getByTestId('indicator');
+        const indicator = queryIndicator()!;
         expect(indicator.tagName).to.equal('STRONG');
         expect(indicator).to.have.class('custom-indicator');
         expect(indicator.style.marginLeft).to.equal('7px');

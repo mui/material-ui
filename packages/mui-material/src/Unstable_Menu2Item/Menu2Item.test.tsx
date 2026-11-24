@@ -146,7 +146,12 @@ describe('<Menu2Item />', () => {
                 className="external-item"
                 slots={{ root: 'div' }}
                 slotProps={{
-                  root: { ref: slotRef, className: 'slot-item', 'data-custom': 'value' },
+                  root: {
+                    ref: slotRef,
+                    className: 'slot-item',
+                    // The cast passes data-* without a DataAttributesOverrides augmentation.
+                    ...({ 'data-custom': 'value' } as object),
+                  },
                 }}
                 sx={{ paddingLeft: '31px' }}
               >

@@ -32,10 +32,7 @@ export default function SubmenuPointerExit() {
           <Menu2Item>Plain</Menu2Item>
           <Menu2Submenu>
             <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
-            <Menu2SubmenuPopup
-              transitionDuration={{ enter: 0, exit: 1000 }}
-              slotProps={{ root: { 'data-testid': 'submenu-popup' } }}
-            >
+            <Menu2SubmenuPopup transitionDuration={{ enter: 0, exit: 1000 }}>
               <Menu2Item>Nested</Menu2Item>
             </Menu2SubmenuPopup>
           </Menu2Submenu>

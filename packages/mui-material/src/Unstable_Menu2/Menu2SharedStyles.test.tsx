@@ -1,18 +1,30 @@
-import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
-import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2SubmenuPopup, {
+  menu2SubmenuPopupClasses,
+} from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup, { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2CheckboxItem, {
+  menu2CheckboxItemClasses,
+} from '@mui/material/Unstable_Menu2CheckboxItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2RadioItem, { menu2RadioItemClasses } from '@mui/material/Unstable_Menu2RadioItem';
+
+function getIndicator(role: 'menuitemcheckbox' | 'menuitemradio', checked: boolean) {
+  const className =
+    role === 'menuitemcheckbox'
+      ? menu2CheckboxItemClasses.indicator
+      : menu2RadioItemClasses.indicator;
+  return screen.getByRole(role, { checked }).querySelector<HTMLElement>(`.${className}`)!;
+}
 
 describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
   const { render } = createRenderer();
@@ -55,29 +67,21 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               <ThemeProvider theme={theme}>
                 <Menu2 defaultOpen modal={false}>
                   <Menu2Popup
+                    aria-label="Actions"
                     anchor={document.body}
                     align="center"
                     slots={{ transition: null }}
                     slotProps={{
-                      portal: {
-                        'data-testid': 'parent-root',
-                        sx: useSx ? { zIndex: 1501 } : undefined,
-                      },
-                      positioner: {
-                        'data-testid': 'parent-positioner',
-                        sx: useSx ? { paddingLeft: '3px' } : undefined,
-                      },
+                      portal: { sx: useSx ? { zIndex: 1501 } : undefined },
+                      positioner: { sx: useSx ? { paddingLeft: '3px' } : undefined },
                       root: {
-                        'data-testid': 'parent-paper',
                         sx: useSx
                           ? { maxHeight: 311, overflowY: 'hidden', outlineOffset: 21 }
                           : undefined,
                       },
-                      list: {
-                        'data-testid': 'parent-list',
-                        sx: useSx ? { outlineWidth: '3px' } : undefined,
-                      },
-                      backdrop: { 'data-testid': 'parent-backdrop' },
+                      list: { sx: useSx ? { outlineWidth: '3px' } : undefined },
+                      // Any backdrop slot props render the visual backdrop.
+                      backdrop: {},
                     }}
                   >
                     <Menu2Submenu>
@@ -86,24 +90,14 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                         align="end"
                         slots={{ transition: null }}
                         slotProps={{
-                          portal: {
-                            'data-testid': 'child-root',
-                            sx: useSx ? { zIndex: 1502 } : undefined,
-                          },
-                          positioner: {
-                            'data-testid': 'child-positioner',
-                            sx: useSx ? { paddingLeft: '4px' } : undefined,
-                          },
+                          portal: { sx: useSx ? { zIndex: 1502 } : undefined },
+                          positioner: { sx: useSx ? { paddingLeft: '4px' } : undefined },
                           root: {
-                            'data-testid': 'child-paper',
                             sx: useSx
                               ? { maxHeight: 211, overflowY: 'hidden', outlineOffset: 22 }
                               : undefined,
                           },
-                          list: {
-                            'data-testid': 'child-list',
-                            sx: useSx ? { outlineWidth: '4px' } : undefined,
-                          },
+                          list: { sx: useSx ? { outlineWidth: '4px' } : undefined },
                         }}
                       >
                         <Menu2Item>Nested</Menu2Item>
@@ -118,11 +112,19 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           await user.click(screen.getByRole('menuitem', { name: 'More' }));
           await screen.findByRole('menuitem', { name: 'Nested' });
 
-          ['parent', 'child'].forEach((prefix, index) => {
-            const root = screen.getByTestId(`${prefix}-root`);
-            const positioner = screen.getByTestId(`${prefix}-positioner`);
-            const paper = screen.getByTestId(`${prefix}-paper`);
-            const list = screen.getByTestId(`${prefix}-list`);
+          [
+            {
+              paper: screen.getByRole('menu', { name: 'Actions' }),
+              classes: menu2PopupClasses,
+            },
+            {
+              paper: screen.getByRole('menu', { name: 'More' }),
+              classes: menu2SubmenuPopupClasses,
+            },
+          ].forEach(({ paper, classes }, index) => {
+            const root = paper.closest<HTMLElement>(`.${classes.portal}`)!;
+            const positioner = paper.closest<HTMLElement>(`.${classes.positioner}`)!;
+            const list = paper.querySelector<HTMLElement>(`.${classes.list}`)!;
             expect(getComputedStyle(root).zIndex).to.equal(String((useSx ? 1501 : 1401) + index));
             expect(getComputedStyle(paper).outlineOffset).to.equal(
               `${(useSx ? 21 : 11) + index}px`,
@@ -143,9 +145,8 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               expect(element).not.to.have.attribute('sx');
             });
           });
-          expect(getComputedStyle(screen.getByTestId('parent-backdrop')).outlineOffset).to.equal(
-            '0px',
-          );
+          const backdrop = document.querySelector(`.${menu2PopupClasses.backdrop}`)!;
+          expect(getComputedStyle(backdrop).outlineOffset).to.equal('0px');
         });
       });
 
@@ -164,27 +165,19 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               <Menu2 defaultOpen modal={false}>
                 <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                   <Menu2Item>
-                    <ListItemIcon data-testid="decorative-icon">
+                    <ListItemIcon>
                       <svg width={20} height={20} aria-hidden="true" />
                     </ListItemIcon>
                     Action
                   </Menu2Item>
                   {[true, false].map((checked) => (
-                    <Menu2CheckboxItem
-                      key={String(checked)}
-                      defaultChecked={checked}
-                      slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
-                    >
+                    <Menu2CheckboxItem key={String(checked)} defaultChecked={checked}>
                       Checkbox
                     </Menu2CheckboxItem>
                   ))}
                   <Menu2RadioGroup defaultValue="true">
                     {[true, false].map((checked) => (
-                      <Menu2RadioItem
-                        key={String(checked)}
-                        value={String(checked)}
-                        slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
-                      >
+                      <Menu2RadioItem key={String(checked)} value={String(checked)}>
                         Radio
                       </Menu2RadioItem>
                     ))}
@@ -195,14 +188,15 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           </StyledEngineProvider>,
         );
 
-        expect(getComputedStyle(screen.getByTestId('decorative-icon')).color).to.equal(
-          theme.palette.action.active,
-        );
-        ['checkbox', 'radio'].forEach((kind) => {
-          expect(getComputedStyle(screen.getByTestId(`${kind}-true`)).color).to.equal(
+        const decorativeIcon = screen
+          .getByRole('menuitem', { name: 'Action' })
+          .querySelector(`.${listItemIconClasses.root}`)!;
+        expect(getComputedStyle(decorativeIcon).color).to.equal(theme.palette.action.active);
+        (['menuitemcheckbox', 'menuitemradio'] as const).forEach((role) => {
+          expect(getComputedStyle(getIndicator(role, true)).color).to.equal(
             theme.palette.primary.main,
           );
-          expect(getComputedStyle(screen.getByTestId(`${kind}-false`)).color).to.equal(
+          expect(getComputedStyle(getIndicator(role, false)).color).to.equal(
             theme.palette.text.secondary,
           );
         });
@@ -222,21 +216,13 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
               <Menu2 defaultOpen modal={false}>
                 <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                   {[true, false].map((checked) => (
-                    <Menu2CheckboxItem
-                      key={String(checked)}
-                      defaultChecked={checked}
-                      slotProps={{ indicator: { 'data-testid': `checkbox-${checked}` } }}
-                    >
+                    <Menu2CheckboxItem key={String(checked)} defaultChecked={checked}>
                       Checkbox
                     </Menu2CheckboxItem>
                   ))}
                   <Menu2RadioGroup defaultValue="true">
                     {[true, false].map((checked) => (
-                      <Menu2RadioItem
-                        key={String(checked)}
-                        value={String(checked)}
-                        slotProps={{ indicator: { 'data-testid': `radio-${checked}` } }}
-                      >
+                      <Menu2RadioItem key={String(checked)} value={String(checked)}>
                         Radio
                       </Menu2RadioItem>
                     ))}
@@ -247,11 +233,11 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
           </StyledEngineProvider>,
         );
 
-        ['checkbox', 'radio'].forEach((kind) => {
-          expect(getComputedStyle(screen.getByTestId(`${kind}-true`)).color).to.equal(
+        (['menuitemcheckbox', 'menuitemradio'] as const).forEach((role) => {
+          expect(getComputedStyle(getIndicator(role, true)).color).to.equal(
             modularCssLayers ? iconColor : 'rgb(25, 118, 210)',
           );
-          expect(getComputedStyle(screen.getByTestId(`${kind}-false`)).color).to.equal(
+          expect(getComputedStyle(getIndicator(role, false)).color).to.equal(
             modularCssLayers ? iconColor : 'rgba(0, 0, 0, 0.6)',
           );
         });
@@ -296,15 +282,12 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
                   <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                     <Menu2CheckboxItem
                       defaultChecked
-                      slotProps={{ indicator: { 'data-testid': 'checkbox', sx: indicatorSx } }}
+                      slotProps={{ indicator: { sx: indicatorSx } }}
                     >
                       Checkbox
                     </Menu2CheckboxItem>
                     <Menu2RadioGroup defaultValue="one">
-                      <Menu2RadioItem
-                        value="one"
-                        slotProps={{ indicator: { 'data-testid': 'radio', sx: indicatorSx } }}
-                      >
+                      <Menu2RadioItem value="one" slotProps={{ indicator: { sx: indicatorSx } }}>
                         Radio
                       </Menu2RadioItem>
                     </Menu2RadioGroup>
@@ -314,8 +297,8 @@ describe.skipIf(isJsdom())('Menu2 shared styled bases', () => {
             </StyledEngineProvider>,
           );
 
-          ['checkbox', 'radio'].forEach((id, index) => {
-            const indicator = screen.getByTestId(id);
+          (['menuitemcheckbox', 'menuitemradio'] as const).forEach((role, index) => {
+            const indicator = getIndicator(role, true);
             const styles = getComputedStyle(indicator);
             expect(indicator).to.have.attribute('data-checked');
             expect(styles.minWidth).to.equal(

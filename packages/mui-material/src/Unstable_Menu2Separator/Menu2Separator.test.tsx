@@ -307,7 +307,7 @@ describe('<Menu2Separator />', () => {
     });
     render(
       <ThemeProvider theme={theme}>
-        <Menu2Separator data-testid="default-separator" render={<span />}>
+        <Menu2Separator aria-label="Default" render={<span />}>
           Default
         </Menu2Separator>
         <Menu2Separator
@@ -315,14 +315,14 @@ describe('<Menu2Separator />', () => {
           flexItem={false}
           textAlign="left"
           variant="inset"
-          data-testid="override-separator"
+          aria-label="Override"
           render={<span />}
         >
           Override
         </Menu2Separator>
       </ThemeProvider>,
     );
-    const defaultSeparator = screen.getByTestId('default-separator');
+    const defaultSeparator = screen.getByRole('separator', { name: 'Default' });
     [
       'MuiDivider-absolute',
       'MuiDivider-flexItem',
@@ -333,7 +333,7 @@ describe('<Menu2Separator />', () => {
     expect(getComputedStyle(defaultSeparator).alignSelf).to.equal('stretch');
     expect(getComputedStyle(defaultSeparator).marginLeft).to.equal('20px');
 
-    const overrideSeparator = screen.getByTestId('override-separator');
+    const overrideSeparator = screen.getByRole('separator', { name: 'Override' });
     expect(overrideSeparator).to.have.class('MuiDivider-textAlignLeft');
     expect(overrideSeparator).to.have.class('MuiDivider-inset');
     [
@@ -489,20 +489,20 @@ describe('<Menu2Separator />', () => {
                 <Menu2 defaultOpen modal={false}>
                   <Menu2Popup anchor={document.body} slots={{ transition: null }}>
                     <Menu2Item>Item</Menu2Item>
-                    <Menu2Separator variant="inset" data-testid="after-item" {...props} />
+                    <Menu2Separator variant="inset" aria-label="After item" {...props} />
                     <Menu2Group>
                       <Menu2GroupLabel>Label</Menu2GroupLabel>
-                      <Menu2Separator variant="inset" data-testid="after-label" {...props} />
+                      <Menu2Separator variant="inset" aria-label="After label" {...props} />
                       <Menu2Item>Grouped item</Menu2Item>
                     </Menu2Group>
-                    <Menu2Separator variant="inset" data-testid="after-group" {...props} />
+                    <Menu2Separator variant="inset" aria-label="After group" {...props} />
                     <Menu2Submenu defaultOpen>
                       <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
                       <Menu2SubmenuPopup>
                         <Menu2Item>Nested item</Menu2Item>
                       </Menu2SubmenuPopup>
                     </Menu2Submenu>
-                    <Menu2Separator variant="inset" data-testid="after-submenu" {...props} />
+                    <Menu2Separator variant="inset" aria-label="After submenu" {...props} />
                     <Menu2Item>Last</Menu2Item>
                   </Menu2Popup>
                 </Menu2>
@@ -511,8 +511,10 @@ describe('<Menu2Separator />', () => {
           );
 
           await screen.findByRole('menuitem', { name: 'Nested item' });
-          ['after-item', 'after-label', 'after-group', 'after-submenu'].forEach((testId) => {
-            expect(screen.getByTestId(testId)).toHaveComputedStyle({ marginLeft: expected });
+          ['After item', 'After label', 'After group', 'After submenu'].forEach((label) => {
+            expect(screen.getByRole('separator', { name: label })).toHaveComputedStyle({
+              marginLeft: expected,
+            });
           });
         });
       });

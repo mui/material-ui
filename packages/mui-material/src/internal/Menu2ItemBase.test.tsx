@@ -14,6 +14,15 @@ import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 
+// One item of each kind, as [role, name].
+const ITEMS = [
+  ['menuitem', 'Item'],
+  ['menuitem', 'Link'],
+  ['menuitemcheckbox', 'Checkbox'],
+  ['menuitemradio', 'Radio'],
+  ['menuitem', 'More'],
+] as const;
+
 describe.skipIf(isJsdom())('Menu2 item styled base', () => {
   const { render } = createRenderer();
 
@@ -27,24 +36,18 @@ describe.skipIf(isJsdom())('Menu2 item styled base', () => {
               <ThemeProvider theme={createTheme({ modularCssLayers })}>
                 <Menu2 defaultOpen modal={false}>
                   <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                    <Menu2Item {...itemProps} data-testid="item">
-                      Item
-                    </Menu2Item>
-                    <Menu2LinkItem {...itemProps} href="#target" data-testid="link">
+                    <Menu2Item {...itemProps}>Item</Menu2Item>
+                    <Menu2LinkItem {...itemProps} href="#target">
                       Link
                     </Menu2LinkItem>
-                    <Menu2CheckboxItem {...itemProps} data-testid="checkbox">
-                      Checkbox
-                    </Menu2CheckboxItem>
+                    <Menu2CheckboxItem {...itemProps}>Checkbox</Menu2CheckboxItem>
                     <Menu2RadioGroup>
-                      <Menu2RadioItem {...itemProps} value="one" data-testid="radio">
+                      <Menu2RadioItem {...itemProps} value="one">
                         Radio
                       </Menu2RadioItem>
                     </Menu2RadioGroup>
                     <Menu2Submenu>
-                      <Menu2SubmenuTrigger {...itemProps} data-testid="submenu">
-                        More
-                      </Menu2SubmenuTrigger>
+                      <Menu2SubmenuTrigger {...itemProps}>More</Menu2SubmenuTrigger>
                       <Menu2SubmenuPopup>
                         <Menu2Item>Nested</Menu2Item>
                       </Menu2SubmenuPopup>
@@ -55,8 +58,8 @@ describe.skipIf(isJsdom())('Menu2 item styled base', () => {
             </StyledEngineProvider>,
           );
 
-          ['item', 'link', 'checkbox', 'radio', 'submenu'].forEach((id) => {
-            const element = screen.getByTestId(id);
+          ITEMS.forEach(([role, name]) => {
+            const element = screen.getByRole(role, { name });
             const styles = getComputedStyle(element);
             expect(styles.borderBottomWidth).to.equal('1px');
             expect(styles.borderBottomStyle).to.equal('solid');
@@ -75,24 +78,20 @@ describe.skipIf(isJsdom())('Menu2 item styled base', () => {
               <ThemeProvider theme={createTheme({ modularCssLayers, focusVisible })}>
                 <Menu2 defaultOpen modal={false}>
                   <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                    <Menu2Item className="Mui-focusVisible" data-testid="focus-only">
-                      Focus only
-                    </Menu2Item>
-                    <Menu2Item className={menu2ItemClasses.highlighted} data-testid="highlighted">
-                      Highlighted
-                    </Menu2Item>
+                    <Menu2Item className="Mui-focusVisible">Focus only</Menu2Item>
+                    <Menu2Item className={menu2ItemClasses.highlighted}>Highlighted</Menu2Item>
                   </Menu2Popup>
                 </Menu2>
               </ThemeProvider>
             </StyledEngineProvider>,
           );
 
-          expect(getComputedStyle(screen.getByTestId('focus-only')).backgroundColor).to.equal(
-            focusVisible ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.12)',
-          );
-          expect(getComputedStyle(screen.getByTestId('highlighted')).backgroundColor).to.equal(
-            'rgba(0, 0, 0, 0)',
-          );
+          expect(
+            getComputedStyle(screen.getByRole('menuitem', { name: 'Focus only' })).backgroundColor,
+          ).to.equal(focusVisible ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.12)');
+          expect(
+            getComputedStyle(screen.getByRole('menuitem', { name: 'Highlighted' })).backgroundColor,
+          ).to.equal('rgba(0, 0, 0, 0)');
         });
 
         it(`has no selected styles with focusVisible: ${focusVisible}`, () => {
@@ -101,20 +100,14 @@ describe.skipIf(isJsdom())('Menu2 item styled base', () => {
               <ThemeProvider theme={createTheme({ modularCssLayers, focusVisible })}>
                 <Menu2 defaultOpen modal={false}>
                   <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                    <Menu2Item data-testid="item">Item</Menu2Item>
-                    <Menu2LinkItem href="#target" data-testid="link">
-                      Link
-                    </Menu2LinkItem>
-                    <Menu2CheckboxItem defaultChecked data-testid="checkbox">
-                      Checkbox
-                    </Menu2CheckboxItem>
+                    <Menu2Item>Item</Menu2Item>
+                    <Menu2LinkItem href="#target">Link</Menu2LinkItem>
+                    <Menu2CheckboxItem defaultChecked>Checkbox</Menu2CheckboxItem>
                     <Menu2RadioGroup defaultValue="one">
-                      <Menu2RadioItem value="one" data-testid="radio">
-                        Radio
-                      </Menu2RadioItem>
+                      <Menu2RadioItem value="one">Radio</Menu2RadioItem>
                     </Menu2RadioGroup>
                     <Menu2Submenu>
-                      <Menu2SubmenuTrigger data-testid="submenu">More</Menu2SubmenuTrigger>
+                      <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
                       <Menu2SubmenuPopup>
                         <Menu2Item>Nested</Menu2Item>
                       </Menu2SubmenuPopup>
@@ -125,11 +118,17 @@ describe.skipIf(isJsdom())('Menu2 item styled base', () => {
             </StyledEngineProvider>,
           );
 
-          expect(screen.getByTestId('checkbox')).to.have.attribute('aria-checked', 'true');
-          expect(screen.getByTestId('radio')).to.have.attribute('aria-checked', 'true');
+          expect(screen.getByRole('menuitemcheckbox', { name: 'Checkbox' })).to.have.attribute(
+            'aria-checked',
+            'true',
+          );
+          expect(screen.getByRole('menuitemradio', { name: 'Radio' })).to.have.attribute(
+            'aria-checked',
+            'true',
+          );
 
-          ['item', 'link', 'checkbox', 'radio', 'submenu'].forEach((id) => {
-            const element = screen.getByTestId(id);
+          ITEMS.forEach(([role, name]) => {
+            const element = screen.getByRole(role, { name });
             expect(element).not.to.have.class('Mui-selected');
             expect(getComputedStyle(element).backgroundColor).to.equal('rgba(0, 0, 0, 0)');
 
@@ -162,31 +161,23 @@ describe.skipIf(isJsdom())('Menu2 item styled base', () => {
             <ThemeProvider theme={theme}>
               <Menu2 defaultOpen modal={false}>
                 <Menu2Popup anchor={document.body} slots={{ transition: null }}>
-                  <Menu2Item divider data-testid="item">
-                    Item
-                  </Menu2Item>
-                  <Menu2Item
-                    divider
-                    sx={{ paddingTop: '42px', borderBottomWidth: 4 }}
-                    data-testid="sx"
-                  >
+                  <Menu2Item divider>Item</Menu2Item>
+                  <Menu2Item divider sx={{ paddingTop: '42px', borderBottomWidth: 4 }}>
                     Sx
                   </Menu2Item>
-                  <Menu2LinkItem divider data-testid="link">
-                    Link
-                  </Menu2LinkItem>
+                  <Menu2LinkItem divider>Link</Menu2LinkItem>
                 </Menu2Popup>
               </Menu2>
             </ThemeProvider>
           </StyledEngineProvider>,
         );
         const expected = [
-          ['item', '32px', '3px'],
-          ['sx', '42px', '4px'],
-          ['link', '32px', '3px'],
+          ['Item', '32px', '3px'],
+          ['Sx', '42px', '4px'],
+          ['Link', '32px', '3px'],
         ];
-        expected.forEach(([id, paddingTop, borderBottomWidth]) => {
-          const styles = getComputedStyle(screen.getByTestId(id));
+        expected.forEach(([name, paddingTop, borderBottomWidth]) => {
+          const styles = getComputedStyle(screen.getByRole('menuitem', { name }));
           expect(styles.paddingTop).to.equal(paddingTop);
           expect(styles.borderBottomWidth).to.equal(borderBottomWidth);
           expect(styles.color).to.equal('rgb(10, 20, 30)');

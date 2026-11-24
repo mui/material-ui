@@ -5,7 +5,7 @@ import isHostComponent from '@mui/utils/isHostComponent';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '../styles';
 import type { MuiKeyboardEvent } from '../ButtonBase/useButtonBase';
-import type { SlotComponentProps } from '../utils/types';
+import type { SlotComponentProps, WithDataAttributes } from '../utils/types';
 
 // One log per component for each warning, so a bad trigger does not spam the
 // console on every render.
@@ -99,7 +99,9 @@ export function mergeStateClassName<State>(
 }
 
 export type SlotProps<SlotPropsValue, OwnerState> =
-  SlotPropsValue | ((ownerState: OwnerState) => SlotPropsValue) | undefined;
+  | WithDataAttributes<SlotPropsValue>
+  | ((ownerState: OwnerState) => WithDataAttributes<SlotPropsValue>)
+  | undefined;
 
 export interface Menu2RootSlots {
   root?: React.ElementType | undefined;
@@ -110,13 +112,7 @@ interface Menu2RootVisualProps {
 }
 
 export interface Menu2RootSlotProps<OwnerState, RootComponent extends React.ElementType = 'div'> {
-  root?:
-    | SlotComponentProps<
-        RootComponent,
-        Menu2RootVisualProps | (Menu2RootVisualProps & { [attribute: `data-${string}`]: unknown }),
-        OwnerState
-      >
-    | undefined;
+  root?: SlotComponentProps<RootComponent, Menu2RootVisualProps, OwnerState> | undefined;
 }
 
 export function getMenu2RootRender<OwnerState>(

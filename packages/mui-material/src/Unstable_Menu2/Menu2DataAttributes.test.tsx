@@ -4,10 +4,12 @@ import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
-import Menu2CheckboxItem from '../Unstable_Menu2CheckboxItem';
+import Menu2CheckboxItem, {
+  menu2CheckboxItemIndicatorClasses,
+} from '../Unstable_Menu2CheckboxItem';
 import Menu2Item from '../Unstable_Menu2Item';
 import Menu2RadioGroup from '../Unstable_Menu2RadioGroup';
-import Menu2RadioItem from '../Unstable_Menu2RadioItem';
+import Menu2RadioItem, { menu2RadioItemIndicatorClasses } from '../Unstable_Menu2RadioItem';
 import Menu2Submenu from '../Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
 import Menu2 from './Menu2';
@@ -88,14 +90,12 @@ describe('Menu2 state data attributes', () => {
     const { user } = render(
       <Menu2 defaultOpen modal={false}>
         <Menu2Popup anchor={document.body}>
-          <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'indicator' } }}>
-            Ruler
-          </Menu2CheckboxItem>
+          <Menu2CheckboxItem>Ruler</Menu2CheckboxItem>
         </Menu2Popup>
       </Menu2>,
     );
     const item = screen.getByRole('menuitemcheckbox', { name: 'Ruler' });
-    const indicator = screen.getByTestId('indicator');
+    const indicator = item.querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)!;
     expectCheckedState([item, indicator], false);
 
     await user.click(item);
@@ -111,26 +111,16 @@ describe('Menu2 state data attributes', () => {
       <Menu2 defaultOpen modal={false}>
         <Menu2Popup anchor={document.body}>
           <Menu2RadioGroup defaultValue="one">
-            <Menu2RadioItem
-              value="one"
-              slotProps={{ indicator: { 'data-testid': 'one-indicator' } }}
-            >
-              One
-            </Menu2RadioItem>
-            <Menu2RadioItem
-              value="two"
-              slotProps={{ indicator: { 'data-testid': 'two-indicator' } }}
-            >
-              Two
-            </Menu2RadioItem>
+            <Menu2RadioItem value="one">One</Menu2RadioItem>
+            <Menu2RadioItem value="two">Two</Menu2RadioItem>
           </Menu2RadioGroup>
         </Menu2Popup>
       </Menu2>,
     );
     const one = screen.getByRole('menuitemradio', { name: 'One' });
     const two = screen.getByRole('menuitemradio', { name: 'Two' });
-    const oneIndicator = screen.getByTestId('one-indicator');
-    const twoIndicator = screen.getByTestId('two-indicator');
+    const oneIndicator = one.querySelector(`.${menu2RadioItemIndicatorClasses.root}`)!;
+    const twoIndicator = two.querySelector(`.${menu2RadioItemIndicatorClasses.root}`)!;
     expectCheckedState([one, oneIndicator], true);
     expectCheckedState([two, twoIndicator], false);
 
@@ -154,18 +144,9 @@ describe('Menu2 state data attributes', () => {
               Enable items
             </Menu2Item>
             <Menu2Item disabled={disabled}>Action</Menu2Item>
-            <Menu2CheckboxItem
-              disabled={disabled}
-              slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}
-            >
-              Ruler
-            </Menu2CheckboxItem>
+            <Menu2CheckboxItem disabled={disabled}>Ruler</Menu2CheckboxItem>
             <Menu2RadioGroup>
-              <Menu2RadioItem
-                value="one"
-                disabled={disabled}
-                slotProps={{ indicator: { 'data-testid': 'radio-indicator' } }}
-              >
+              <Menu2RadioItem value="one" disabled={disabled}>
                 One
               </Menu2RadioItem>
             </Menu2RadioGroup>
@@ -176,12 +157,14 @@ describe('Menu2 state data attributes', () => {
 
     const { user } = render(<Demo />);
     const enableItem = screen.getByRole('menuitem', { name: 'Enable items' });
+    const checkboxItem = screen.getByRole('menuitemcheckbox', { name: 'Ruler' });
+    const radioItem = screen.getByRole('menuitemradio', { name: 'One' });
     const targets = [
       screen.getByRole('menuitem', { name: 'Action' }),
-      screen.getByRole('menuitemcheckbox', { name: 'Ruler' }),
-      screen.getByRole('menuitemradio', { name: 'One' }),
-      screen.getByTestId('checkbox-indicator'),
-      screen.getByTestId('radio-indicator'),
+      checkboxItem,
+      radioItem,
+      checkboxItem.querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)!,
+      radioItem.querySelector(`.${menu2RadioItemIndicatorClasses.root}`)!,
     ];
     expect(enableItem).not.to.have.attribute('data-disabled');
     targets.forEach((target) => expect(target).to.have.attribute('data-disabled', ''));

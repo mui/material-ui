@@ -16,7 +16,7 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
   async function focusTrigger(name: string) {
     const trigger = await screen.findByRole('menuitem', { name });
     await waitFor(() =>
-      expect(trigger.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(true),
+      expect(screen.getByRole('menu').contains(document.activeElement)).to.equal(true),
     );
     await act(async () => trigger.focus());
     return trigger;
@@ -59,7 +59,7 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
             </ThemeProvider>,
           );
           const more = await focusTrigger('More');
-          const root = more.closest('[role="menu"]')!;
+          const root = screen.getByRole('menu');
           const openKey = direction === 'rtl' ? '{ArrowLeft}' : '{ArrowRight}';
           await user.keyboard(openKey);
           const deeper = await screen.findByRole('menuitem', { name: 'Deeper' });
@@ -181,7 +181,7 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
         <div style={{ padding: 100 }}>
           <div ref={anchorRef} style={{ width: 100, height: 32 }} />
           <Menu2 defaultOpen modal={false} onOpenChange={changed} onOpenChangeComplete={completed}>
-            <Menu2Popup anchor={anchorRef}>
+            <Menu2Popup anchor={anchorRef} aria-label="Actions">
               <Menu2Submenu onOpenChange={firstChanged}>
                 <Menu2SubmenuTrigger openOnHover={method === 'hover'} delay={0}>
                   First
@@ -222,7 +222,7 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
           method === 'hover' ? ['trigger-hover', 'sibling-open'] : ['sibling-open'],
         );
         expect(changed).not.toHaveBeenCalled();
-        expect(first.closest('[role="menu"]')).to.have.attribute('data-open');
+        expect(screen.getByRole('menu', { name: 'Actions' })).to.have.attribute('data-open');
       } finally {
         unmount();
       }

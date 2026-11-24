@@ -22,16 +22,10 @@ describe('Menu2RadioItem indicator slot', () => {
       <Menu2 defaultOpen modal={false}>
         <Menu2Popup anchor={document.body}>
           <Menu2RadioGroup defaultValue="one">
-            <Menu2RadioItem
-              value="one"
-              slotProps={{ indicator: { 'data-testid': 'checked', ...indicatorProps } }}
-            >
+            <Menu2RadioItem value="one" slotProps={{ indicator: indicatorProps }}>
               One
             </Menu2RadioItem>
-            <Menu2RadioItem
-              value="two"
-              slotProps={{ indicator: { 'data-testid': 'unchecked', ...indicatorProps } }}
-            >
+            <Menu2RadioItem value="two" slotProps={{ indicator: indicatorProps }}>
               Two
             </Menu2RadioItem>
           </Menu2RadioGroup>
@@ -40,12 +34,17 @@ describe('Menu2RadioItem indicator slot', () => {
     );
   }
 
+  // The indicator is aria-hidden, so find it by its utility class.
+  function getIndicator(name: string) {
+    return screen.getByRole('menuitemradio', { name }).querySelector(`.${classes.root}`)!;
+  }
+
   describe('icons', () => {
     it('renders both Radio layers and scales the dot with the state', () => {
       renderGroup();
 
-      const checked = screen.getByTestId('checked');
-      const unchecked = screen.getByTestId('unchecked');
+      const checked = getIndicator('One');
+      const unchecked = getIndicator('Two');
 
       [checked, unchecked].forEach((indicator) => {
         expect(indicator.querySelector('[data-testid="RadioButtonUncheckedIcon"]')).not.to.equal(
@@ -64,15 +63,13 @@ describe('Menu2RadioItem indicator slot', () => {
     it.skipIf(isJsdom())('keeps the transition the real Radio animates the dot with', () => {
       renderGroup();
 
-      const dot = screen
-        .getByTestId('checked')
-        .querySelector('[data-testid="RadioButtonCheckedIcon"]')!;
+      const dot = getIndicator('One').querySelector('[data-testid="RadioButtonCheckedIcon"]')!;
       expect(window.getComputedStyle(dot).transitionProperty).to.contain('transform');
     });
 
     it('keeps the icon and dot mounted when selection changes', async () => {
       const { user } = renderGroup();
-      const indicator = screen.getByTestId('unchecked');
+      const indicator = getIndicator('Two');
       const icon = indicator.firstElementChild;
       const dot = indicator.querySelector('[data-testid="RadioButtonCheckedIcon"]')!;
       expect(getScale(dot)).to.equal(0);
@@ -96,7 +93,7 @@ describe('Menu2RadioItem indicator slot', () => {
       // user.hover() has no movement delta. Base UI ignores that event in WebKit.
       fireEvent.mouseMove(item, { movementX: 1, movementY: 0 });
 
-      const indicator = screen.getByTestId('unchecked');
+      const indicator = getIndicator('Two');
       expect(indicator).to.have.class(classes.highlighted);
       expect(indicator.querySelector('[data-testid="RadioButtonUncheckedIcon"]')).not.to.equal(
         null,
@@ -106,7 +103,7 @@ describe('Menu2RadioItem indicator slot', () => {
     it('lets children replace the icon', () => {
       renderGroup({ children: <span data-testid="custom-icon" /> });
 
-      const indicator = screen.getByTestId('checked');
+      const indicator = getIndicator('One');
       expect(indicator.querySelector('[data-testid="custom-icon"]')).not.to.equal(null);
       expect(indicator.querySelector('[data-testid="RadioButtonUncheckedIcon"]')).to.equal(null);
     });

@@ -15,12 +15,7 @@ interface IndicatorSlotProps {
   keepMounted?: boolean | undefined;
 }
 
-// Keep typed DOM props assignable while also accepting data attributes in literals.
-export type Menu2IndicatorSlotProps<OwnerState> = SlotProps<
-  'span',
-  IndicatorSlotProps | (IndicatorSlotProps & { [attribute: `data-${string}`]: unknown }),
-  OwnerState
->;
+export type Menu2IndicatorSlotProps<OwnerState> = SlotProps<'span', IndicatorSlotProps, OwnerState>;
 
 interface IndicatorProps extends ListItemIconProps {
   component?: React.ElementType | undefined;

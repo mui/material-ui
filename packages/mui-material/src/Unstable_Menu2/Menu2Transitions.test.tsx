@@ -329,7 +329,7 @@ describe.skipIf(isJsdom())('Menu2 transitions', () => {
     );
     const trigger = await screen.findByRole('menuitem', { name: 'More' });
     await waitFor(() =>
-      expect(trigger.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(true),
+      expect(screen.getByRole('menu').contains(document.activeElement)).to.equal(true),
     );
     await act(async () => trigger.focus());
     await user.keyboard('{ArrowLeft}');

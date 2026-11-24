@@ -42,16 +42,11 @@ function Menu2ScrollLock({
   return null;
 }
 
-type ExternalSlotPropsBase<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
+type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
   className?: string | undefined;
   render?: never | undefined;
   style?: React.CSSProperties | undefined;
 };
-
-// Keep typed props assignable while also accepting data attributes in literals.
-type ExternalSlotProps<Props> =
-  | ExternalSlotPropsBase<Props>
-  | (ExternalSlotPropsBase<Props> & { [attribute: `data-${string}`]: unknown });
 
 function setDefinedProp(props: Record<string, any>, key: string, value: unknown) {
   if (value !== undefined) {

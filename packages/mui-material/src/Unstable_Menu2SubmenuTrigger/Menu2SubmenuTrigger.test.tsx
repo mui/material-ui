@@ -402,9 +402,7 @@ describe('<Menu2SubmenuTrigger />', () => {
       <Menu2 defaultOpen modal={false}>
         <Menu2Popup anchor={document.body} slots={{ transition: null }}>
           <Menu2Submenu>
-            <Menu2SubmenuTrigger sx={{ width: 240 }}>
-              <span data-testid="label">More</span>
-            </Menu2SubmenuTrigger>
+            <Menu2SubmenuTrigger sx={{ width: 240 }}>More</Menu2SubmenuTrigger>
             <Menu2SubmenuPopup>
               <Menu2Item>Nested</Menu2Item>
             </Menu2SubmenuPopup>
@@ -416,7 +414,12 @@ describe('<Menu2SubmenuTrigger />', () => {
     const indicator = trigger.querySelector(`.${classes.indicator}`)!;
     const triggerRect = trigger.getBoundingClientRect();
     const iconRect = indicator.querySelector('svg')!.getBoundingClientRect();
-    const labelRect = screen.getByTestId('label').getBoundingClientRect();
+    // Measure the label text node, not the whole row.
+    const label = document.createRange();
+    label.selectNodeContents(
+      Array.from(trigger.childNodes).find((node) => node.textContent === 'More')!,
+    );
+    const labelRect = label.getBoundingClientRect();
     expect(triggerRect.right - iconRect.right).to.be.closeTo(16, 0.1);
     expect(iconRect.left - labelRect.right).to.be.greaterThan(8);
   });

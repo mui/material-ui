@@ -44,7 +44,7 @@ function ClassicMenuHarness(props: ClassicMenuHarnessProps) {
       >
         Options
       </button>
-      <p data-testid="sibling">sibling content</p>
+      <p>sibling content</p>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -70,12 +70,12 @@ function Menu2Harness() {
           <Menu2Item>Gamma</Menu2Item>
         </Menu2Popup>
       </Menu2>
-      <p data-testid="sibling">sibling content</p>
+      <p>sibling content</p>
     </div>
   );
 }
 
-const menuEl = () => document.querySelector('[role="menu"]');
+const menuEl = () => screen.queryByRole('menu', { hidden: true });
 const openTrigger = () => screen.getByRole('button', { name: 'Options' });
 const waitForOpen = () => waitFor(() => expect(menuEl()).not.to.equal(null));
 
@@ -291,9 +291,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       const { user: successorUser } = render(
         <React.Fragment>
           <Menu2Harness />
-          <button type="button" data-testid="next">
-            Next
-          </button>
+          <button type="button">Next</button>
         </React.Fragment>,
       );
       await successorUser.click(openTrigger());
@@ -303,7 +301,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       await successorUser.tab();
       await waitFor(() => expect(menuEl()).to.equal(null));
       // The successor lets the Tab through, so focus advances as the user asked.
-      expect(screen.getByTestId('next')).toHaveFocus();
+      expect(screen.getByRole('button', { name: 'Next' })).toHaveFocus();
     });
   });
 
@@ -327,7 +325,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       await waitForOpen();
       expect(document.querySelector('.MuiBackdrop-root')).not.to.equal(null);
       expect(
-        screen.getByTestId('sibling').closest('[aria-hidden="true"]'),
+        screen.getByText('sibling content').closest('[aria-hidden="true"]'),
         'classic marks sibling content aria-hidden',
       ).not.to.equal(null);
       unmountClassic();
@@ -337,7 +335,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       await waitForOpen();
       expect(document.querySelector('.MuiBackdrop-root')).to.equal(null);
       expect(
-        screen.getByTestId('sibling').closest('[aria-hidden="true"]'),
+        screen.getByText('sibling content').closest('[aria-hidden="true"]'),
         'Menu2 leaves sibling content in the accessibility tree',
       ).to.equal(null);
     });

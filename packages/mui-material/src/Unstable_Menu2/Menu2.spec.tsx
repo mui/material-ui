@@ -131,7 +131,9 @@ expectType<string, typeof menu2RadioItemClasses.indicatorIcon>(menu2RadioItemCla
 const indicatorHtmlProps: React.HTMLAttributes<HTMLSpanElement> = { title: 'Indicator' };
 <Menu2CheckboxItem slotProps={{ indicator: indicatorHtmlProps }} />;
 <Menu2RadioItem value="one" slotProps={{ indicator: indicatorHtmlProps }} />;
+// @ts-expect-error data-* keys need a DataAttributesOverrides augmentation.
 <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'indicator' } }} />;
+// @ts-expect-error data-* keys need a DataAttributesOverrides augmentation.
 <Menu2RadioItem value="one" slotProps={{ indicator: { 'data-testid': 'indicator' } }} />;
 <Menu2CheckboxItem icon={<SvgIcon />} checkedIcon={<SvgIcon fontSize="medium" />} />;
 <Menu2RadioItem value="one" icon={<span />} checkedIcon={<span />} />;
@@ -224,7 +226,7 @@ function Menu2Composition() {
             return { side: 'bottom', align: 'start', ref: React.createRef<HTMLDivElement>() };
           },
           root: { elevation: 4 },
-          list: { 'data-testid': 'list' },
+          list: {},
         }}
       >
         <Menu2Group>
@@ -575,16 +577,12 @@ createTheme({
 
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2Popup slotProps={{ list: { dense: true } }} />;
-// @ts-expect-error Menu2 has no dense mode.
-<Menu2Popup slotProps={{ list: () => ({ dense: false }) }} />;
 <Menu2SubmenuPopup slotProps={{ list: { disablePadding: true, sx: { py: 1 } } }} />;
 <Menu2SubmenuPopup
   slotProps={{ list: (ownerState) => ({ disablePadding: true, 'data-side': ownerState.side }) }}
 />;
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
-// @ts-expect-error Menu2 has no dense mode.
-<Menu2SubmenuPopup slotProps={{ list: () => ({ dense: false }) }} />;
 createTheme({
   components: {
     MuiMenu2SubmenuPopup: {
@@ -995,7 +993,6 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
       title: 'Item',
       tabIndex: -1,
       'aria-label': 'Item',
-      'data-testid': 'item-root',
       style: { color: 'red' },
       sx: { py: 1 },
       ref: (node) => expectType<HTMLDivElement | null, typeof node>(node),

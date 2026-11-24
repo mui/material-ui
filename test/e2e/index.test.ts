@@ -366,7 +366,8 @@ describe('e2e', () => {
           await page.getByRole('checkbox', { name: 'Focus ring' }).setChecked(focusVisible);
           await page.getByRole('button', { name: 'Options' }).click();
           const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
-          const popup = page.getByTestId('submenu-popup');
+          // includeHidden keeps the attach checks about DOM presence, not visibility.
+          const popup = page.getByRole('menu', { name: 'More', exact: true, includeHidden: true });
           const idleColors = await trigger.evaluate((element) => {
             const style = getComputedStyle(element);
             return { color: style.color, backgroundColor: style.backgroundColor };
@@ -397,7 +398,7 @@ describe('e2e', () => {
         await renderFixture('Menu2/SubmenuPointerExit');
         await page.getByRole('button', { name: 'Options' }).click();
         const trigger = page.getByRole('menuitem', { name: 'More', exact: true });
-        const popup = page.getByTestId('submenu-popup');
+        const popup = page.getByRole('menu', { name: 'More', exact: true, includeHidden: true });
         await trigger.hover();
         await expect(trigger).toHaveClass(/Mui-open/);
         await expect(popup).toBeVisible();

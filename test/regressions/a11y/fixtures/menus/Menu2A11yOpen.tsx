@@ -27,7 +27,7 @@ export function Menu2A11yFixture({ nested = false }: Menu2A11yFixtureProps) {
     <div ref={setContainer} style={{ width: 700, height: 600 }}>
       <Menu2 defaultOpen>
         <Menu2Trigger render={<Button>Document options</Button>} />
-        <Menu2Popup container={container} slotProps={{ root: { 'data-testid': 'root-menu' } }}>
+        <Menu2Popup container={container} data-testid="root-menu">
           <Menu2Group>
             <Menu2GroupLabel>Document</Menu2GroupLabel>
             <Menu2Item>Save</Menu2Item>
@@ -47,10 +47,7 @@ export function Menu2A11yFixture({ nested = false }: Menu2A11yFixtureProps) {
           </Menu2RadioGroup>
           <Menu2Submenu defaultOpen={nested}>
             <Menu2SubmenuTrigger>Export</Menu2SubmenuTrigger>
-            <Menu2SubmenuPopup
-              container={container}
-              slotProps={{ root: { 'data-testid': 'nested-menu' } }}
-            >
+            <Menu2SubmenuPopup container={container} data-testid="nested-menu">
               <Menu2Item>PDF document</Menu2Item>
               <Menu2Item disabled>Image</Menu2Item>
             </Menu2SubmenuPopup>

@@ -17,7 +17,6 @@ import Menu2 from './Menu2';
 // Every item part gives its render or slot callback and theme variants the live state.
 const slotProps = {
   root: (ownerState: { highlighted?: boolean }) => ({
-    'data-testid': 'target',
     'data-owner-highlighted': String(ownerState.highlighted),
   }),
 };
@@ -25,6 +24,7 @@ const slotProps = {
 const cases = [
   {
     name: 'MuiMenu2Item',
+    role: 'menuitem',
     item: (
       <Menu2Item render={(props, state) => <div {...props} {...slotProps.root(state)} />}>
         Target
@@ -33,6 +33,7 @@ const cases = [
   },
   {
     name: 'MuiMenu2LinkItem',
+    role: 'menuitem',
     item: (
       <Menu2LinkItem
         href="#target"
@@ -48,6 +49,7 @@ const cases = [
   },
   {
     name: 'MuiMenu2CheckboxItem',
+    role: 'menuitemcheckbox',
     item: (
       <Menu2CheckboxItem render={(props, state) => <div {...props} {...slotProps.root(state)} />}>
         Target
@@ -56,6 +58,7 @@ const cases = [
   },
   {
     name: 'MuiMenu2RadioItem',
+    role: 'menuitemradio',
     item: (
       <Menu2RadioGroup defaultValue="target">
         <Menu2RadioItem
@@ -69,6 +72,7 @@ const cases = [
   },
   {
     name: 'MuiMenu2SubmenuTrigger',
+    role: 'menuitem',
     item: (
       <Menu2Submenu>
         <Menu2SubmenuTrigger
@@ -88,7 +92,7 @@ const cases = [
 describe.skipIf(isJsdom())('Menu2 live highlighted ownerState', () => {
   const { render } = createRenderer();
 
-  cases.forEach(({ name, item }) => {
+  cases.forEach(({ name, role, item }) => {
     it(`${name} gives its root customization and theme variants the live highlighted state`, async () => {
       const theme = createTheme({
         components: {
@@ -109,7 +113,7 @@ describe.skipIf(isJsdom())('Menu2 live highlighted ownerState', () => {
       );
 
       await user.click(screen.getByRole('button', { name: 'Options' }));
-      const target = await screen.findByTestId('target');
+      const target = await screen.findByRole(role, { name: 'Target' });
       await waitFor(() => expect(screen.getByRole('menu')).toHaveFocus());
       expect(target).to.have.attribute('data-owner-highlighted', 'false');
       const idlePadding = getComputedStyle(target).paddingRight;

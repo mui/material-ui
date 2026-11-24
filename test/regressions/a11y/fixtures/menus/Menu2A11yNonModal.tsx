@@ -13,11 +13,7 @@ export default function Menu2A11yNonModal() {
       <Button>Before</Button>
       <Menu2 defaultOpen modal={false}>
         <Menu2Trigger render={<Button>Document actions</Button>} />
-        <Menu2Popup
-          container={container}
-          transitionDuration={0}
-          slotProps={{ root: { 'data-testid': 'non-modal-menu' } }}
-        >
+        <Menu2Popup container={container} transitionDuration={0} data-testid="non-modal-menu">
           <Menu2Item>Open document</Menu2Item>
         </Menu2Popup>
       </Menu2>

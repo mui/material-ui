@@ -17,14 +17,15 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
 
   async function openSubmenu(user: ReturnType<typeof render>['user']) {
     const trigger = await screen.findByRole('menuitem', { name: 'More' });
+    const menu = screen.getByRole('menu', { name: 'Options' });
     await waitFor(() => {
-      expect(trigger.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(true);
+      expect(menu.contains(document.activeElement)).to.equal(true);
     });
     await act(async () => trigger.focus());
     await user.keyboard('{ArrowRight}');
     const item = await screen.findByRole('menuitem', { name: 'Nested' });
     await waitFor(() => expect(item).toHaveFocus());
-    const popup = item.closest('[role="menu"]')!;
+    const popup = screen.getByRole('menu', { name: 'More' });
     await waitFor(() => expect(popup.getAnimations()).to.have.length(0));
     return { trigger, item, popup };
   }
@@ -275,12 +276,12 @@ describe.skipIf(isJsdom())('Menu2 submenu transitions', () => {
     const { trigger, popup } = await openSubmenu(user);
     await user.keyboard('{ArrowDown}{ArrowRight}');
     const deep = await screen.findByRole('menuitem', { name: 'Deep' });
+    const innerPopup = screen.getByRole('menu', { name: 'Inner' });
     await waitFor(() => {
       expect(deep).toHaveFocus();
-      expect(deep.closest('[role="menu"]')!.getAnimations()).to.have.length(0);
+      expect(innerPopup.getAnimations()).to.have.length(0);
     });
     const inner = screen.getByRole('menuitem', { name: 'Inner' });
-    const innerPopup = deep.closest('[role="menu"]')!;
     const openBackground = getComputedStyle(trigger).backgroundColor;
     const innerOpenBackground = getComputedStyle(inner).backgroundColor;
     await user.keyboard('{Escape}');

@@ -1,6 +1,8 @@
 import Menu2Popup, { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
-import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuPopup, {
+  menu2SubmenuPopupClasses,
+} from '@mui/material/Unstable_Menu2SubmenuPopup';
 import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { spy } from 'sinon';
@@ -10,7 +12,7 @@ import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import type { ListProps } from '@mui/material/List';
 import List, { listClasses } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import ListItemText, { listItemTextClasses } from '@mui/material/ListItemText';
 import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import Menu2 from '@mui/material/Unstable_Menu2';
@@ -23,7 +25,9 @@ import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2RadioItem, {
+  menu2RadioItemIndicatorClasses,
+} from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
@@ -37,11 +41,11 @@ describe('<Menu2 />', () => {
   it('does not render a DOM wrapper or an implicit popup', () => {
     const { container } = render(
       <Menu2 defaultOpen modal={false}>
-        <span data-testid="child">Child</span>
+        <span>Child</span>
       </Menu2>,
     );
 
-    expect(container.firstElementChild).to.equal(screen.getByTestId('child'));
+    expect(container.firstElementChild).to.equal(screen.getByText('Child'));
     expect(container.children).to.have.length(1);
     expect(screen.queryByRole('menu')).to.equal(null);
   });
@@ -85,13 +89,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup
-          slotProps={{
-            portal: { 'data-testid': 'root' },
-            positioner: { 'data-testid': 'positioner' },
-            root: { 'data-testid': 'paper' },
-          }}
-        >
+        <Menu2Popup>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -108,15 +106,13 @@ describe('<Menu2 />', () => {
     expect(menu).to.have.attribute('aria-labelledby', trigger.id);
     expect(menu).to.have.class(menu2PopupClasses.root);
     expect(menu).to.have.class(paperClasses.root);
-    expect(screen.getByTestId('paper')).to.equal(menu);
-    const root = screen.getByTestId('root');
+    expect(document.querySelector(`.${menu2PopupClasses.root}`)).to.equal(menu);
+    const positioner = menu.parentElement!;
+    expect(positioner).to.have.class(menu2PopupClasses.positioner);
+    const root = positioner.parentElement!;
     expect(root).to.have.class(menu2PopupClasses.portal);
     expect(root).to.contain(menu);
     expect(root).not.to.equal(menu);
-    const positioner = screen.getByTestId('positioner');
-    expect(positioner).to.have.class(menu2PopupClasses.positioner);
-    expect(menu.parentElement).to.equal(positioner);
-    expect(positioner.parentElement).to.equal(root);
 
     const list = menu.querySelector(`.${menu2PopupClasses.list}`);
     expect(list).not.to.equal(null);
@@ -134,7 +130,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup slots={{ portal: 'div' }} slotProps={{ portal: { 'data-testid': 'popup' } }}>
+        <Menu2Popup slots={{ portal: 'div' }}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -142,7 +138,8 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    expect(await screen.findByTestId('popup')).not.to.have.attribute('ownerState');
+    const menu = await screen.findByRole('menu', { name: 'Options' });
+    expect(menu.closest(`.${menu2PopupClasses.portal}`)!).not.to.have.attribute('ownerState');
   });
 
   it.skipIf(isJsdom())('opens on hover when openOnHover is set', async () => {
@@ -359,7 +356,6 @@ describe('<Menu2 />', () => {
             list: (ownerState) => ({
               component: 'ul',
               ref: listRef,
-              'data-testid': 'list',
               'data-align': ownerState.align,
               className: 'custom-list',
               disablePadding: true,
@@ -375,7 +371,8 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    const list = await screen.findByTestId('list');
+    // The items are direct children of the list.
+    const list = (await screen.findByRole('menuitem', { name: 'Profile' })).parentElement!;
     expect(list.tagName).to.equal('UL');
     expect(listRef.current).to.equal(list);
     expect(list).to.have.attribute('data-align', 'end');
@@ -397,13 +394,13 @@ describe('<Menu2 />', () => {
           <li>
             <Menu2>
               <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-              <Menu2Popup slotProps={{ list: { 'data-testid': 'list' } }}>
+              <Menu2Popup>
                 <Menu2Item>
-                  <ListItemText data-testid="text">Item</ListItemText>
+                  <ListItemText>Item</ListItemText>
                 </Menu2Item>
                 <Menu2Submenu>
                   <Menu2SubmenuTrigger openOnHover={false}>More</Menu2SubmenuTrigger>
-                  <Menu2SubmenuPopup slotProps={{ list: { 'data-testid': 'submenu-list' } }}>
+                  <Menu2SubmenuPopup>
                     <Menu2Item>Nested</Menu2Item>
                   </Menu2SubmenuPopup>
                 </Menu2Submenu>
@@ -418,9 +415,17 @@ describe('<Menu2 />', () => {
     await user.click(await screen.findByRole('menuitem', { name: 'More' }));
     await screen.findByRole('menuitem', { name: 'Nested' });
 
-    expect(screen.getByTestId('list')).not.to.have.class(listClasses.dense);
-    expect(screen.getByTestId('submenu-list')).not.to.have.class(listClasses.dense);
-    expect(screen.getByTestId('text')).not.to.have.class('MuiListItemText-dense');
+    expect(
+      screen.getByRole('menu', { name: 'Options' }).querySelector(`.${menu2PopupClasses.list}`)!,
+    ).not.to.have.class(listClasses.dense);
+    expect(
+      screen
+        .getByRole('menu', { name: 'More' })
+        .querySelector(`.${menu2SubmenuPopupClasses.list}`)!,
+    ).not.to.have.class(listClasses.dense);
+    expect(
+      screen.getByRole('menuitem', { name: 'Item' }).querySelector(`.${listItemTextClasses.root}`)!,
+    ).not.to.have.class('MuiListItemText-dense');
     ['Item', 'More', 'Nested'].forEach((name) => {
       expect(screen.getByRole('menuitem', { name }).className).not.to.match(/-dense\b/);
     });
@@ -443,7 +448,6 @@ describe('<Menu2 />', () => {
                   ref: listRef,
                   disablePadding: true,
                   className: 'custom-list',
-                  'data-testid': 'callback-list',
                   'data-align': ownerState.align,
                   onClick: handleClick,
                 }),
@@ -459,7 +463,9 @@ describe('<Menu2 />', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
     await user.click(await screen.findByRole('menuitem', { name: 'More' }));
 
-    const list = await screen.findByTestId('callback-list');
+    const list = (await screen.findByRole('menu', { name: 'More' })).querySelector(
+      `.${menu2SubmenuPopupClasses.list}`,
+    )!;
     expect(list.tagName).to.equal('UL');
     expect(listRef.current).to.equal(list);
     expect(list).to.have.attribute('data-align', 'end');
@@ -486,7 +492,7 @@ describe('<Menu2 />', () => {
         <Menu2Popup
           align="end"
           slots={{ list: CustomList }}
-          slotProps={{ list: { component: 'ul', ref: listRef, 'data-testid': 'list' } }}
+          slotProps={{ list: { component: 'ul', ref: listRef } }}
         >
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
@@ -495,7 +501,8 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    const list = await screen.findByTestId('list');
+    // The items are direct children of the list.
+    const list = (await screen.findByRole('menuitem', { name: 'Profile' })).parentElement!;
     expect(list.tagName).to.equal('UL');
     expect(listRef.current).to.equal(list);
     expect(list).to.have.attribute('data-align', 'end');
@@ -513,13 +520,11 @@ describe('<Menu2 />', () => {
           slots={{ root: 'div', list: 'div' }}
           slotProps={{
             root: {
-              'data-testid': 'paper',
               classes: { root: 'paper-root' },
               component: 'section',
               elevation: 4,
             },
             list: {
-              'data-testid': 'list',
               classes: { root: 'list-root' },
               component: 'ul',
               disablePadding: false,
@@ -534,13 +539,13 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    const paper = await screen.findByTestId('paper');
+    const paper = await screen.findByRole('menu', { name: 'Options' });
     expect(paper).not.to.have.attribute('classes');
     expect(paper).not.to.have.attribute('component');
     expect(paper).not.to.have.attribute('elevation');
     expect(paper).not.to.have.attribute('sx');
 
-    const list = screen.getByTestId('list');
+    const list = paper.querySelector(`.${menu2PopupClasses.list}`)!;
     expect(list.tagName).to.equal('DIV');
     expect(list).not.to.have.attribute('classes');
     expect(list).not.to.have.attribute('component');
@@ -553,7 +558,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup slotProps={{ root: { 'data-testid': 'paper' } }}>
+        <Menu2Popup>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -561,14 +566,16 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    expect(await screen.findByTestId('paper')).to.have.class(paperClasses.elevation8);
+    expect(await screen.findByRole('menu', { name: 'Options' })).to.have.class(
+      paperClasses.elevation8,
+    );
   });
 
   it('forwards a custom elevation to the popup surface', async () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup elevation={4} slotProps={{ root: { 'data-testid': 'paper' } }}>
+        <Menu2Popup elevation={4}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -576,7 +583,9 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    expect(await screen.findByTestId('paper')).to.have.class(paperClasses.elevation4);
+    expect(await screen.findByRole('menu', { name: 'Options' })).to.have.class(
+      paperClasses.elevation4,
+    );
   });
 
   it.skipIf(isJsdom())('animates the popup surface by default', async () => {
@@ -681,11 +690,11 @@ describe('<Menu2 />', () => {
       ).to.equal(true);
       // Highlighted roots opt out of forced colors, so the end adornment must
       // inherit HighlightText instead of keeping text.secondary.
-      ['Profile', 'Bookmarks'].forEach((name) => {
-        const endAdornment = screen
-          .getByText(name)
-          .closest('[role^="menuitem"]')!
-          .querySelector('[class*="-endAdornment"]')!;
+      [
+        screen.getByRole('menuitem', { name: /Profile/ }),
+        screen.getByRole('menuitemcheckbox', { name: /Bookmarks/ }),
+      ].forEach((item) => {
+        const endAdornment = item.querySelector('[class*="-endAdornment"]')!;
         const endAdornmentStyleClass = Array.from(endAdornment.classList).find(
           (className) => !className.startsWith('Mui') && className.endsWith('-endAdornment'),
         )!;
@@ -722,7 +731,8 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}>
+        {/* An empty backdrop slot prop turns on the visual backdrop. */}
+        <Menu2Popup slotProps={{ backdrop: {} }}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -730,10 +740,11 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    const backdrop = await screen.findByTestId('backdrop');
-    expect(backdrop).to.have.class(menu2PopupClasses.backdrop);
+    await screen.findByRole('menu', { name: 'Options' });
+    const backdrop = document.querySelector(`.${menu2PopupClasses.backdrop}`);
+    expect(backdrop).not.to.equal(null);
     // A modal menu blocks outside clicks with a separate internal layer.
-    const { backgroundColor, pointerEvents } = window.getComputedStyle(backdrop);
+    const { backgroundColor, pointerEvents } = window.getComputedStyle(backdrop!);
     expect(backgroundColor).to.equal('rgba(0, 0, 0, 0)');
     expect(pointerEvents).to.equal('none');
   });
@@ -744,7 +755,7 @@ describe('<Menu2 />', () => {
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
         <Menu2Popup
           slotProps={{
-            backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
+            backdrop: { sx: { backgroundColor: 'rgb(0, 0, 0)' } },
           }}
         >
           <Menu2Item>Profile</Menu2Item>
@@ -754,15 +765,15 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    const backdrop = await screen.findByTestId('backdrop');
+    await screen.findByRole('menu', { name: 'Options' });
+    const backdrop = document.querySelector(`.${menu2PopupClasses.backdrop}`)!;
     expect(window.getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
   });
 
   it.skipIf(isJsdom())('puts the click blocker above an element at the app bar level', async () => {
     const { user } = render(
       <React.Fragment>
-        <div
-          data-testid="bar"
+        <header
           style={{
             position: 'fixed',
             top: 0,
@@ -783,13 +794,15 @@ describe('<Menu2 />', () => {
       </React.Fragment>,
     );
 
+    // Query the bar before the modal menu hides the outside content.
+    const bar = screen.getByRole('banner');
     await user.click(screen.getByRole('button', { name: 'Options' }));
     await screen.findByRole('menu');
 
     // The classic backdrop sits in the Modal root, so it covers an AppBar.
     // The blocker has no class or slot, so find it by hit testing.
     const blocker = document.elementFromPoint(10, 10)!;
-    expect(blocker).not.to.equal(screen.getByTestId('bar'));
+    expect(blocker).not.to.equal(bar);
     expect(blocker).to.have.attribute('data-base-ui-inert', '');
     expect(blocker.parentElement).to.have.class(menu2PopupClasses.portal);
     // The menu stays above the blocker.
@@ -826,7 +839,7 @@ describe('<Menu2 />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup slotProps={{ root: { 'data-testid': 'paper' } }}>
+        <Menu2Popup>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -834,7 +847,7 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    const paper = await screen.findByTestId('paper');
+    const paper = await screen.findByRole('menu', { name: 'Options' });
     const { maxHeight, overflowY } = window.getComputedStyle(paper);
     // Regression: the classic `calc(100% - 96px)` resolved against the
     // content-sized popup instead of the viewport and clipped the end of the
@@ -1102,9 +1115,11 @@ describe('<Menu2 />', () => {
       );
 
       await user.click(screen.getByRole('button', { name: 'Options' }));
-      const item = await screen.findByRole('menuitem', { name: 'Profile' });
+      await screen.findByRole('menuitem', { name: 'Profile' });
       await waitFor(() => {
-        expect(item.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(true);
+        expect(
+          screen.getByRole('menu', { name: 'Options' }).contains(document.activeElement),
+        ).to.equal(true);
       });
       handleOpenChange.resetHistory();
 
@@ -1145,13 +1160,13 @@ describe('<Menu2 />', () => {
       <React.Fragment>
         <Menu2 modal>
           <Menu2Trigger render={<Button disableRipple>Modal menu</Button>} />
-          <Menu2Popup slotProps={{ positioner: { 'data-testid': 'modal-positioner' } }}>
+          <Menu2Popup>
             <Menu2Item>Profile</Menu2Item>
           </Menu2Popup>
         </Menu2>
         <Menu2 modal={false}>
           <Menu2Trigger render={<Button disableRipple>Non-modal menu</Button>} />
-          <Menu2Popup slotProps={{ positioner: { 'data-testid': 'non-modal-positioner' } }}>
+          <Menu2Popup>
             <Menu2Item>Settings</Menu2Item>
           </Menu2Popup>
         </Menu2>
@@ -1159,11 +1174,10 @@ describe('<Menu2 />', () => {
     );
 
     await user.click(screen.getByRole('button', { name: 'Modal menu' }));
-    await screen.findByRole('menu');
-    expect(screen.getByTestId('modal-positioner').previousElementSibling).to.have.attribute(
-      'role',
-      'presentation',
-    );
+    const modalMenu = await screen.findByRole('menu', { name: 'Modal menu' });
+    expect(
+      modalMenu.closest(`.${menu2PopupClasses.positioner}`)!.previousElementSibling,
+    ).to.have.attribute('role', 'presentation');
 
     await user.keyboard('[Escape]');
     await waitFor(() => {
@@ -1171,8 +1185,10 @@ describe('<Menu2 />', () => {
     });
 
     await user.click(screen.getByRole('button', { name: 'Non-modal menu' }));
-    await screen.findByRole('menu');
-    expect(screen.getByTestId('non-modal-positioner').previousElementSibling).to.equal(null);
+    const nonModalMenu = await screen.findByRole('menu', { name: 'Non-modal menu' });
+    expect(
+      nonModalMenu.closest(`.${menu2PopupClasses.positioner}`)!.previousElementSibling,
+    ).to.equal(null);
   });
 
   it.skipIf(isJsdom())(
@@ -1196,9 +1212,9 @@ describe('<Menu2 />', () => {
 
       const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
       await waitFor(() => {
-        expect(submenuTrigger.closest('[role="menu"]')!.contains(document.activeElement)).to.equal(
-          true,
-        );
+        expect(
+          screen.getByRole('menu', { name: 'Options' }).contains(document.activeElement),
+        ).to.equal(true);
       });
       await act(async () => submenuTrigger.focus());
       await user.keyboard('{ArrowLeft}');
@@ -1220,12 +1236,7 @@ describe('<Menu2 />', () => {
       <div style={{ padding: 96 }}>
         <Menu2>
           <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-          <Menu2Popup
-            side="bottom"
-            align="start"
-            sideOffset={4}
-            slotProps={{ positioner: { 'data-testid': 'positioner' } }}
-          >
+          <Menu2Popup side="bottom" align="start" sideOffset={4}>
             <Menu2Item>Profile</Menu2Item>
           </Menu2Popup>
         </Menu2>
@@ -1234,7 +1245,9 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    const positioner = await screen.findByTestId('positioner');
+    const positioner = (await screen.findByRole('menu', { name: 'Options' })).closest<HTMLElement>(
+      `.${menu2PopupClasses.positioner}`,
+    )!;
     expect(positioner).to.have.attribute('data-side', 'bottom');
     expect(positioner).to.have.attribute('data-align', 'start');
     expect(positioner.style.transform).not.to.equal('');
@@ -1396,28 +1409,11 @@ describe('<Menu2 />', () => {
       <Menu2 open>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
         <Menu2Popup>
-          <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'unchecked-checkbox' } }}>
-            Show hidden files
-          </Menu2CheckboxItem>
-          <Menu2CheckboxItem
-            defaultChecked
-            slotProps={{ indicator: { 'data-testid': 'checked-checkbox' } }}
-          >
-            Show the sidebar
-          </Menu2CheckboxItem>
+          <Menu2CheckboxItem>Show hidden files</Menu2CheckboxItem>
+          <Menu2CheckboxItem defaultChecked>Show the sidebar</Menu2CheckboxItem>
           <Menu2RadioGroup defaultValue="small">
-            <Menu2RadioItem
-              value="small"
-              slotProps={{ indicator: { 'data-testid': 'checked-radio' } }}
-            >
-              Small
-            </Menu2RadioItem>
-            <Menu2RadioItem
-              value="large"
-              slotProps={{ indicator: { 'data-testid': 'unchecked-radio' } }}
-            >
-              Large
-            </Menu2RadioItem>
+            <Menu2RadioItem value="small">Small</Menu2RadioItem>
+            <Menu2RadioItem value="large">Large</Menu2RadioItem>
           </Menu2RadioGroup>
         </Menu2Popup>
       </Menu2>,
@@ -1425,14 +1421,18 @@ describe('<Menu2 />', () => {
 
     // The checkbox swaps the icon the way the real Checkbox does: an outlined
     // empty box, then the filled box with the check.
-    const uncheckedCheckbox = screen.getByTestId('unchecked-checkbox');
+    const uncheckedCheckbox = screen
+      .getByRole('menuitemcheckbox', { name: 'Show hidden files' })
+      .querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)!;
     expect(uncheckedCheckbox).to.have.attribute('data-unchecked', '');
     expect(
       uncheckedCheckbox.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]'),
     ).not.to.equal(null);
     expect(uncheckedCheckbox.querySelector('[data-testid="CheckBoxIcon"]')).to.equal(null);
 
-    const checkedCheckbox = screen.getByTestId('checked-checkbox');
+    const checkedCheckbox = screen
+      .getByRole('menuitemcheckbox', { name: 'Show the sidebar' })
+      .querySelector(`.${menu2CheckboxItemIndicatorClasses.root}`)!;
     expect(checkedCheckbox).to.have.attribute('data-checked', '');
     expect(checkedCheckbox.querySelector('[data-testid="CheckBoxIcon"]')).not.to.equal(null);
     expect(checkedCheckbox.querySelector('[data-testid="CheckBoxOutlineBlankIcon"]')).to.equal(
@@ -1441,8 +1441,12 @@ describe('<Menu2 />', () => {
 
     // The radio keeps both layers of `RadioButtonIcon` mounted, so the dot can
     // animate; only the scale changes with the state.
-    const checkedRadio = screen.getByTestId('checked-radio');
-    const uncheckedRadio = screen.getByTestId('unchecked-radio');
+    const checkedRadio = screen
+      .getByRole('menuitemradio', { name: 'Small' })
+      .querySelector(`.${menu2RadioItemIndicatorClasses.root}`)!;
+    const uncheckedRadio = screen
+      .getByRole('menuitemradio', { name: 'Large' })
+      .querySelector(`.${menu2RadioItemIndicatorClasses.root}`)!;
     expect(checkedRadio).to.have.attribute('data-checked', '');
     expect(uncheckedRadio).to.have.attribute('data-unchecked', '');
 
@@ -1509,7 +1513,6 @@ describe('<Menu2 />', () => {
           <div
             ref={areaRef}
             tabIndex={-1}
-            data-testid="context-area"
             onContextMenu={(event) => {
               event.preventDefault();
               const { clientX, clientY } = event;
@@ -1560,7 +1563,7 @@ describe('<Menu2 />', () => {
 
       // A detached menu has no trigger; without finalFocus, closing it restores
       // focus to that stale record instead of the invoked surface.
-      const area = screen.getByTestId('context-area');
+      const area = screen.getByText('Context area');
       fireEvent.contextMenu(area, { clientX: 100, clientY: 100 });
       await screen.findByRole('menuitem', { name: 'Copy' });
       // finalFocus does not take focus that is still outside the menu at close.
@@ -1583,15 +1586,11 @@ describe('<Menu2 />', () => {
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
         <Menu2Popup>
           <Menu2Item>
-            <ListItemIcon data-testid="icon" sx={{ minWidth: 'auto' }}>
-              i
-            </ListItemIcon>
-            <ListItemText data-testid="text">Cut</ListItemText>
+            <ListItemIcon sx={{ minWidth: 'auto' }}>i</ListItemIcon>
+            <ListItemText>Cut</ListItemText>
           </Menu2Item>
           <Menu2Item>
-            <ListItemText inset data-testid="inset-text">
-              Paste
-            </ListItemText>
+            <ListItemText inset>Paste</ListItemText>
           </Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -1599,12 +1598,14 @@ describe('<Menu2 />', () => {
 
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
-    expect(await screen.findByTestId('icon')).toHaveComputedStyle({ minWidth: 'auto' });
-    expect(screen.getByTestId('text')).toHaveComputedStyle({
+    expect(await screen.findByText('i')).toHaveComputedStyle({ minWidth: 'auto' });
+    expect(screen.getByText('Cut').closest(`.${listItemTextClasses.root}`)!).toHaveComputedStyle({
       marginTop: '4px',
       marginBottom: '4px',
     });
-    expect(screen.getByTestId('inset-text')).toHaveComputedStyle({ paddingLeft: '56px' });
+    expect(screen.getByText('Paste').closest(`.${listItemTextClasses.root}`)!).toHaveComputedStyle({
+      paddingLeft: '56px',
+    });
   });
 
   it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
@@ -1745,7 +1746,7 @@ describe('<Menu2 />', () => {
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
         <Menu2Popup>
           <Tooltip title="Unavailable while offline" describeChild enterDelay={0} leaveDelay={0}>
-            <span data-testid="disabled-item-tooltip-target">
+            <span>
               <Menu2Item disabled>Import from Drive</Menu2Item>
             </span>
           </Tooltip>
@@ -1759,7 +1760,7 @@ describe('<Menu2 />', () => {
     );
     await expectTooltipOnHover(
       user,
-      screen.getByTestId('disabled-item-tooltip-target'),
+      screen.getByRole('menuitem', { name: 'Import from Drive' }).parentElement!,
       'Unavailable while offline',
     );
   });

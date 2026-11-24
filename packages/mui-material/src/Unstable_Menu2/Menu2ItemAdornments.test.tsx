@@ -21,7 +21,6 @@ import Menu2SubmenuTrigger, {
 } from '@mui/material/Unstable_Menu2SubmenuTrigger';
 
 interface AdornmentTestProps {
-  'data-testid'?: string;
   children?: React.ReactNode;
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
@@ -30,6 +29,7 @@ interface AdornmentTestProps {
 
 interface Part {
   name: string;
+  role: 'menuitem' | 'menuitemcheckbox' | 'menuitemradio';
   classes: { root: string; inset: string; startAdornment: string; endAdornment: string };
   // The indicator classes that render before the start adornment or after the end adornment.
   startIndicator?: string;
@@ -40,22 +40,26 @@ interface Part {
 const PARTS: Part[] = [
   {
     name: 'Menu2Item',
+    role: 'menuitem',
     classes: menu2ItemClasses,
     render: (props) => <Menu2Item {...props} />,
   },
   {
     name: 'Menu2LinkItem',
+    role: 'menuitem',
     classes: menu2LinkItemClasses,
     render: (props) => <Menu2LinkItem href="#" {...props} />,
   },
   {
     name: 'Menu2CheckboxItem',
+    role: 'menuitemcheckbox',
     classes: menu2CheckboxItemClasses,
     startIndicator: menu2CheckboxItemClasses.indicator,
     render: (props) => <Menu2CheckboxItem {...props} />,
   },
   {
     name: 'Menu2RadioItem',
+    role: 'menuitemradio',
     classes: menu2RadioItemClasses,
     startIndicator: menu2RadioItemClasses.indicator,
     render: (props) => (
@@ -66,6 +70,7 @@ const PARTS: Part[] = [
   },
   {
     name: 'Menu2SubmenuTrigger',
+    role: 'menuitem',
     classes: menu2SubmenuTriggerClasses,
     endIndicator: menu2SubmenuTriggerClasses.indicator,
     render: (props) => (
@@ -100,8 +105,8 @@ describe('Menu2 item adornments', () => {
     );
   }
 
-  function getAdornments(testId: string, part: Part) {
-    const item = screen.getByTestId(testId);
+  function getAdornments(name: string, part: Part) {
+    const item = screen.getByRole(part.role, { name });
     return {
       item,
       start: item.querySelectorAll<HTMLElement>(`.${part.classes.startAdornment}`),
@@ -114,13 +119,12 @@ describe('Menu2 item adornments', () => {
       it('renders the parts in order', () => {
         renderInMenu(
           part.render({
-            'data-testid': 'item',
             startAdornment: <svg data-testid="icon" />,
             endAdornment: '⌘X',
             children: 'Cut',
           }),
         );
-        const { item, start, end } = getAdornments('item', part);
+        const { item, start, end } = getAdornments('Cut ⌘X', part);
         const nodes = Array.from(item.childNodes);
         const label = nodes.find(
           (node) => node.nodeType === Node.TEXT_NODE && node.textContent === 'Cut',
@@ -143,13 +147,12 @@ describe('Menu2 item adornments', () => {
       it('applies the classes', () => {
         renderInMenu(
           part.render({
-            'data-testid': 'item',
             startAdornment: <svg />,
             endAdornment: '⌘X',
             children: 'Cut',
           }),
         );
-        const { item, start, end } = getAdornments('item', part);
+        const { item, start, end } = getAdornments('Cut ⌘X', part);
 
         expect(start).to.have.length(1);
         expect(start[0]).to.have.class(listItemIconClasses.root);
@@ -160,8 +163,8 @@ describe('Menu2 item adornments', () => {
       });
 
       it('renders an empty start adornment for inset', () => {
-        renderInMenu(part.render({ 'data-testid': 'item', inset: true, children: 'Paste' }));
-        const { item, start, end } = getAdornments('item', part);
+        renderInMenu(part.render({ inset: true, children: 'Paste' }));
+        const { item, start, end } = getAdornments('Paste', part);
 
         expect(start).to.have.length(1);
         expect(start[0].childNodes).to.have.length(0);
@@ -172,13 +175,12 @@ describe('Menu2 item adornments', () => {
       it('renders one start adornment with inset and startAdornment', () => {
         renderInMenu(
           part.render({
-            'data-testid': 'item',
             inset: true,
             startAdornment: <svg data-testid="icon" />,
             children: 'Cut',
           }),
         );
-        const { start } = getAdornments('item', part);
+        const { start } = getAdornments('Cut', part);
 
         expect(start).to.have.length(1);
         expect(start[0]).to.contain(screen.getByTestId('icon'));
@@ -187,19 +189,14 @@ describe('Menu2 item adornments', () => {
       it('skips empty adornments', () => {
         renderInMenu(
           <React.Fragment>
-            {part.render({ 'data-testid': 'false', startAdornment: false, children: 'False' })}
-            {part.render({
-              'data-testid': 'null',
-              startAdornment: null,
-              endAdornment: null,
-              children: 'Null',
-            })}
-            {part.render({ 'data-testid': 'empty', endAdornment: '', children: 'Empty' })}
+            {part.render({ startAdornment: false, children: 'False' })}
+            {part.render({ startAdornment: null, endAdornment: null, children: 'Null' })}
+            {part.render({ endAdornment: '', children: 'Empty' })}
           </React.Fragment>,
         );
 
-        ['false', 'null', 'empty'].forEach((testId) => {
-          const { start, end } = getAdornments(testId, part);
+        ['False', 'Null', 'Empty'].forEach((name) => {
+          const { start, end } = getAdornments(name, part);
           expect(start).to.have.length(0);
           expect(end).to.have.length(0);
         });
@@ -208,14 +205,13 @@ describe('Menu2 item adornments', () => {
       it('does not forward the adornment props', () => {
         renderInMenu(
           part.render({
-            'data-testid': 'item',
             inset: true,
             startAdornment: <svg />,
             endAdornment: '⌘X',
             children: 'Cut',
           }),
         );
-        const item = screen.getByTestId('item');
+        const { item } = getAdornments('Cut ⌘X', part);
 
         ['inset', 'startadornment', 'endadornment'].forEach((attribute) => {
           expect(item).not.to.have.attribute(attribute);
@@ -229,17 +225,16 @@ describe('Menu2 item adornments', () => {
               renderInMenu(
                 <React.Fragment>
                   {part.render({
-                    'data-testid': 'adorned',
                     startAdornment: <svg width="20" height="20" />,
                     children: 'Cut',
                   })}
-                  {part.render({ 'data-testid': 'inset', inset: true, children: 'Paste' })}
+                  {part.render({ inset: true, children: 'Paste' })}
                 </React.Fragment>,
                 createTheme({ modularCssLayers }),
                 modularCssLayers,
               );
-              const adorned = getAdornments('adorned', part).start[0].getBoundingClientRect();
-              const inset = getAdornments('inset', part).start[0].getBoundingClientRect();
+              const adorned = getAdornments('Cut', part).start[0].getBoundingClientRect();
+              const inset = getAdornments('Paste', part).start[0].getBoundingClientRect();
 
               expect(adorned.width).to.equal(36);
               expect(inset.width).to.equal(36);
@@ -250,11 +245,10 @@ describe('Menu2 item adornments', () => {
               renderInMenu(
                 <React.Fragment>
                   {part.render({
-                    'data-testid': 'adorned',
                     startAdornment: <svg width="20" height="20" />,
                     children: 'Cut',
                   })}
-                  {part.render({ 'data-testid': 'inset', inset: true, children: 'Paste' })}
+                  {part.render({ inset: true, children: 'Paste' })}
                 </React.Fragment>,
                 createTheme({
                   modularCssLayers,
@@ -265,10 +259,10 @@ describe('Menu2 item adornments', () => {
                 modularCssLayers,
               );
 
-              expect(
-                getAdornments('adorned', part).start[0].getBoundingClientRect().width,
-              ).to.equal(48);
-              expect(getAdornments('inset', part).start[0].getBoundingClientRect().width).to.equal(
+              expect(getAdornments('Cut', part).start[0].getBoundingClientRect().width).to.equal(
+                48,
+              );
+              expect(getAdornments('Paste', part).start[0].getBoundingClientRect().width).to.equal(
                 48,
               );
             });
@@ -277,18 +271,14 @@ describe('Menu2 item adornments', () => {
               const theme = createTheme({ modularCssLayers });
               renderInMenu(
                 <React.Fragment>
-                  {part.render({ 'data-testid': 'short', endAdornment: '⌘X', children: 'Cut' })}
-                  {part.render({
-                    'data-testid': 'long',
-                    endAdornment: '⌘Y',
-                    children: 'A much longer label',
-                  })}
+                  {part.render({ endAdornment: '⌘X', children: 'Cut' })}
+                  {part.render({ endAdornment: '⌘Y', children: 'A much longer label' })}
                 </React.Fragment>,
                 theme,
                 modularCssLayers,
               );
-              const short = getAdornments('short', part);
-              const long = getAdornments('long', part);
+              const short = getAdornments('Cut ⌘X', part);
+              const long = getAdornments('A much longer label ⌘Y', part);
               const style = getComputedStyle(short.end[0]);
 
               expect(style.color).to.equal('rgba(0, 0, 0, 0.6)');
@@ -315,9 +305,7 @@ describe('Menu2 item adornments', () => {
           renderInMenu(
             <React.Fragment>
               <Menu2Submenu>
-                <Menu2SubmenuTrigger data-testid="item" endAdornment="3">
-                  Recent
-                </Menu2SubmenuTrigger>
+                <Menu2SubmenuTrigger endAdornment="3">Recent</Menu2SubmenuTrigger>
                 <Menu2SubmenuPopup slots={{ transition: null }}>
                   <Menu2Item>Child</Menu2Item>
                 </Menu2SubmenuPopup>
@@ -327,7 +315,7 @@ describe('Menu2 item adornments', () => {
             createTheme({ modularCssLayers }),
             modularCssLayers,
           );
-          const item = screen.getByTestId('item');
+          const item = screen.getByRole('menuitem', { name: 'Recent 3' });
           const end = item
             .querySelector(`.${menu2SubmenuTriggerClasses.endAdornment}`)!
             .getBoundingClientRect();
@@ -343,7 +331,6 @@ describe('Menu2 item adornments', () => {
           renderInMenu(
             <Menu2Submenu>
               <Menu2SubmenuTrigger
-                data-testid="item"
                 endAdornment="3"
                 slotProps={{ indicator: { sx: { marginLeft: '12px' } } }}
               >
@@ -357,7 +344,7 @@ describe('Menu2 item adornments', () => {
             modularCssLayers,
           );
           const indicator = screen
-            .getByTestId('item')
+            .getByRole('menuitem', { name: 'Recent 3' })
             .querySelector(`.${menu2SubmenuTriggerClasses.indicator}`)!;
 
           expect(getComputedStyle(indicator).marginLeft).to.equal('12px');
@@ -366,13 +353,9 @@ describe('Menu2 item adornments', () => {
         it('applies the inset theme key to the root', () => {
           renderInMenu(
             <React.Fragment>
-              <Menu2Item data-testid="inset" inset>
-                Inset
-              </Menu2Item>
-              <Menu2Item data-testid="plain">Plain</Menu2Item>
-              <Menu2CheckboxItem data-testid="checkbox" inset>
-                Checkbox
-              </Menu2CheckboxItem>
+              <Menu2Item inset>Inset</Menu2Item>
+              <Menu2Item>Plain</Menu2Item>
+              <Menu2CheckboxItem inset>Checkbox</Menu2CheckboxItem>
             </React.Fragment>,
             createTheme({
               modularCssLayers,
@@ -385,25 +368,21 @@ describe('Menu2 item adornments', () => {
             }),
             modularCssLayers,
           );
-          const backgroundColor = (testId: string) =>
-            getComputedStyle(screen.getByTestId(testId)).backgroundColor;
+          const backgroundColor = (role: Part['role'], name: string) =>
+            getComputedStyle(screen.getByRole(role, { name })).backgroundColor;
 
-          expect(backgroundColor('inset')).to.equal('rgb(7, 8, 9)');
-          expect(backgroundColor('plain')).not.to.equal('rgb(7, 8, 9)');
-          expect(backgroundColor('checkbox')).to.equal('rgb(10, 11, 12)');
+          expect(backgroundColor('menuitem', 'Inset')).to.equal('rgb(7, 8, 9)');
+          expect(backgroundColor('menuitem', 'Plain')).not.to.equal('rgb(7, 8, 9)');
+          expect(backgroundColor('menuitemcheckbox', 'Checkbox')).to.equal('rgb(10, 11, 12)');
         });
 
         it('applies the shared and the part theme keys', () => {
           renderInMenu(
             <React.Fragment>
-              <Menu2Item data-testid="item" endAdornment="X">
-                Item
-              </Menu2Item>
-              <Menu2CheckboxItem data-testid="checkbox" endAdornment="X">
-                Checkbox
-              </Menu2CheckboxItem>
+              <Menu2Item endAdornment="X">Item</Menu2Item>
+              <Menu2CheckboxItem endAdornment="X">Checkbox</Menu2CheckboxItem>
               <Menu2RadioGroup defaultValue="a">
-                <Menu2RadioItem data-testid="radio" value="a" endAdornment="X">
+                <Menu2RadioItem value="a" endAdornment="X">
                   Radio
                 </Menu2RadioItem>
               </Menu2RadioGroup>
@@ -419,13 +398,16 @@ describe('Menu2 item adornments', () => {
             }),
             modularCssLayers,
           );
-          const color = (testId: string, classes: { endAdornment: string }) =>
-            getComputedStyle(screen.getByTestId(testId).querySelector(`.${classes.endAdornment}`)!)
-              .color;
+          const color = (role: Part['role'], name: string, classes: { endAdornment: string }) =>
+            getComputedStyle(
+              screen.getByRole(role, { name }).querySelector(`.${classes.endAdornment}`)!,
+            ).color;
 
-          expect(color('item', menu2ItemClasses)).to.equal('rgb(1, 2, 3)');
-          expect(color('checkbox', menu2CheckboxItemClasses)).to.equal('rgb(4, 5, 6)');
-          expect(color('radio', menu2RadioItemClasses)).to.equal('rgb(1, 2, 3)');
+          expect(color('menuitem', 'Item X', menu2ItemClasses)).to.equal('rgb(1, 2, 3)');
+          expect(color('menuitemcheckbox', 'Checkbox X', menu2CheckboxItemClasses)).to.equal(
+            'rgb(4, 5, 6)',
+          );
+          expect(color('menuitemradio', 'Radio X', menu2RadioItemClasses)).to.equal('rgb(1, 2, 3)');
         });
       });
     });

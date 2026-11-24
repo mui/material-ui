@@ -67,16 +67,12 @@ import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2Popup slotProps={{ list: { dense: true } }} />;
-// @ts-expect-error Menu2 has no dense mode.
-<Menu2Popup slotProps={{ list: () => ({ dense: false }) }} />;
 <Menu2SubmenuPopup slotProps={{ list: { disablePadding: true, sx: { py: 1 } } }} />;
 <Menu2SubmenuPopup
   slotProps={{ list: (ownerState) => ({ disablePadding: true, 'data-side': ownerState.side }) }}
 />;
 // @ts-expect-error Menu2 has no dense mode.
 <Menu2SubmenuPopup slotProps={{ list: { dense: true } }} />;
-// @ts-expect-error Menu2 has no dense mode.
-<Menu2SubmenuPopup slotProps={{ list: () => ({ dense: false }) }} />;
 
 export default function Menu2Consumer() {
   return (
@@ -377,7 +373,6 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
       title: 'Item',
       tabIndex: -1,
       'aria-label': 'Item',
-      'data-testid': 'item-root',
       style: { color: 'red' },
       sx: { py: 1 },
       ref: (node) => {

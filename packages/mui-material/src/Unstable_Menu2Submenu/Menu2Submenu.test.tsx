@@ -56,8 +56,7 @@ describe('<Menu2Submenu />', () => {
 
   // The popup takes the focus in a frame callback, not with the render. A key
   // that arrives first lands on the body and is lost.
-  async function waitForPopupFocus(itemInPopup: HTMLElement) {
-    const popup = itemInPopup.closest('[role="menu"]')!;
+  async function waitForPopupFocus(popup: HTMLElement) {
     await waitFor(() => {
       expect(popup.contains(document.activeElement)).to.equal(true);
     });
@@ -144,7 +143,7 @@ describe('<Menu2Submenu />', () => {
       async function openSubmenu(user: ReturnType<typeof render>['user'], keyboard = false) {
         if (componentName === 'Menu2Submenu') {
           const trigger = screen.getByRole('menuitem', { name: 'More' });
-          await waitForPopupFocus(trigger);
+          await waitForPopupFocus(screen.getByRole('menu', { name: 'Options' }));
           if (keyboard) {
             await act(async () => trigger.focus());
             await user.keyboard('{ArrowRight}');
@@ -155,10 +154,9 @@ describe('<Menu2Submenu />', () => {
         }
       }
 
-      function getPopup() {
-        return screen
-          .getByRole('menuitem', { name: 'Alpha' })
-          .closest<HTMLDivElement>('[role="menu"]')!;
+      // The submenu popup takes its trigger's name. The root popup is the only menu.
+      function getPopup(name = componentName === 'Menu2Submenu' ? 'More' : undefined) {
+        return screen.getByRole<HTMLDivElement>('menu', { name });
       }
 
       function getRoot() {
@@ -282,18 +280,15 @@ describe('<Menu2Submenu />', () => {
               positioner: {
                 className: 'positioner-slot',
                 sx: { paddingTop: '5px' },
-                'data-testid': 'positioner',
               },
               root: {
                 className: 'paper-slot',
                 style: { paddingRight: '4px' },
                 sx: { paddingTop: '11px' },
-                'data-testid': 'paper',
               },
               list: {
                 className: 'list-slot',
                 sx: { paddingTop: '13px' },
-                'data-testid': 'list',
               },
             }}
           />,
@@ -301,10 +296,13 @@ describe('<Menu2Submenu />', () => {
 
         await openSubmenu(user);
         const root = getRoot();
-        const positioner = screen.getByTestId('positioner');
-        const paper = screen.getByTestId('paper');
-        const list = screen.getByTestId('list');
-        expect(paper).to.equal(getPopup());
+        const popupClasses =
+          componentName === 'Menu2Submenu' ? menu2SubmenuPopupClasses : menu2PopupClasses;
+        const paper = getPopup();
+        const positioner = paper.parentElement!;
+        const list = paper.querySelector<HTMLElement>(`.${popupClasses.list}`)!;
+        expect(paper).to.have.class(popupClasses.root);
+        expect(positioner).to.have.class(popupClasses.positioner);
         expect(paper).to.have.class('custom-root');
         expect(root).to.have.class('root-class');
         expect(root).to.have.class('root-slot');
@@ -445,7 +443,7 @@ describe('<Menu2Submenu />', () => {
         );
 
         await openSubmenu(user);
-        const popup = getPopup();
+        const popup = getPopup('Actions');
         expect(popup).to.have.attribute('id', 'actions-popup');
         expect(popup).to.have.attribute('aria-label', 'Actions');
         expect(popup).toHaveAccessibleName('Actions');
@@ -468,7 +466,7 @@ describe('<Menu2Submenu />', () => {
         );
 
         await openSubmenu(user);
-        const root = getPopup();
+        const root = getPopup('Slot label');
         expect(root).to.have.attribute('id', 'slot-id');
         expect(root).to.have.attribute('aria-label', 'Slot label');
         expect(root).to.have.attribute('title', 'Forwarded title');
@@ -488,8 +486,8 @@ describe('<Menu2Submenu />', () => {
           await openSubmenu(user, true);
           const firstItem = screen.getByRole('menuitem', { name: 'Alpha' });
           const lastItem = screen.getByRole('menuitem', { name: 'Beta' });
-          const popup = firstItem.closest('[role="menu"]')!;
-          await waitForPopupFocus(firstItem);
+          const popup = getPopup();
+          await waitForPopupFocus(popup);
           await act(async () => firstItem.focus());
 
           await user.keyboard('{ArrowDown}{ArrowDown}');
@@ -518,7 +516,7 @@ describe('<Menu2Submenu />', () => {
     const { user } = render(
       <Menu2>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup slots={{ portal: 'div' }} slotProps={{ portal: { 'data-testid': 'root' } }}>
+        <Menu2Popup slots={{ portal: 'div' }}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
       </Menu2>,
@@ -527,10 +525,10 @@ describe('<Menu2Submenu />', () => {
     await user.click(screen.getByRole('button', { name: 'Options' }));
 
     const menu = await screen.findByRole('menu');
+    const portal = menu.parentElement!.parentElement;
     expect(menu).to.have.class(menu2PopupClasses.root);
-    expect(menu.parentElement!.parentElement).to.equal(screen.getByTestId('root'));
     expect(menu.parentElement!.style.position).to.equal('absolute');
-    expect(screen.getByTestId('root')).to.have.class(menu2PopupClasses.portal);
+    expect(portal).to.have.class(menu2PopupClasses.portal);
     expect(screen.getByRole('menuitem', { name: 'Profile' })).not.to.equal(null);
   });
 
@@ -585,12 +583,12 @@ describe('<Menu2Submenu />', () => {
         );
         const parentTrigger = screen.getByRole('button', { name: 'Options' });
         const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
-        const parentPopup = submenuTrigger.closest('[role="menu"]')!;
-        await waitForPopupFocus(submenuTrigger);
+        const parentPopup = screen.getByRole('menu', { name: 'Options' });
+        await waitForPopupFocus(parentPopup);
         await act(async () => submenuTrigger.focus());
         await user.keyboard('{ArrowRight}');
         const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
-        await waitForPopupFocus(nestedItem);
+        await waitForPopupFocus(screen.getByRole('menu', { name: 'More' }));
         await act(async () => nestedItem.focus());
         onSubmenuOpenChange.mockClear();
 
@@ -641,13 +639,13 @@ describe('<Menu2Submenu />', () => {
         </Menu2>,
       );
       const trigger = await screen.findByRole('menuitem', { name: 'More' });
-      await waitForPopupFocus(trigger);
+      await waitForPopupFocus(screen.getByRole('menu', { name: 'Options' }));
       await act(async () => trigger.focus());
       await user.keyboard('{ArrowRight}');
       const nested = await screen.findByRole('menuitem', { name: 'Nested' });
-      await waitForPopupFocus(nested);
+      const popup = screen.getByRole('menu', { name: 'More' });
+      await waitForPopupFocus(popup);
       await act(async () => nested.focus());
-      const popup = nested.closest('[role="menu"]')!;
       await waitFor(() => {
         expect(popup.getAnimations()).to.have.length(0);
       });
@@ -704,7 +702,7 @@ describe('<Menu2Submenu />', () => {
           </Menu2>,
         );
         const trigger = await screen.findByRole('menuitem', { name: 'More' });
-        await waitForPopupFocus(trigger);
+        await waitForPopupFocus(screen.getByRole('menu', { name: 'Options' }));
         if (openMethod === 'pointer') {
           await user.click(trigger);
         } else {
@@ -712,7 +710,7 @@ describe('<Menu2Submenu />', () => {
           await user.keyboard('{ArrowRight}');
         }
         const nested = await screen.findByRole('menuitem', { name: 'Nested' });
-        const popup = nested.closest('[role="menu"]')!;
+        const popup = screen.getByRole('menu', { name: 'More' });
         if (openMethod === 'keyboard') {
           await waitFor(() => expect(nested).toHaveFocus());
         }
@@ -829,10 +827,10 @@ describe('<Menu2Submenu />', () => {
       <ThemeProvider theme={theme}>
         <Menu2>
           <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-          <Menu2Popup slotProps={{ root: { 'data-testid': 'paper' } }}>
+          <Menu2Popup>
             <Menu2Submenu>
               <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
-              <Menu2SubmenuPopup slotProps={{ root: { 'data-testid': 'submenu-paper' } }}>
+              <Menu2SubmenuPopup>
                 <Menu2Item>Nested</Menu2Item>
               </Menu2SubmenuPopup>
             </Menu2Submenu>
@@ -845,7 +843,7 @@ describe('<Menu2Submenu />', () => {
 
     await user.click(trigger);
     const menu = await screen.findByRole('menu');
-    expect(window.getComputedStyle(screen.getByTestId('paper')).paddingTop).to.equal('9px');
+    expect(window.getComputedStyle(menu).paddingTop).to.equal('9px');
     const list = menu.querySelector(`.${menu2PopupClasses.list}`)!;
     expect(window.getComputedStyle(list).paddingBottom).to.equal('7px');
 
@@ -853,9 +851,9 @@ describe('<Menu2Submenu />', () => {
 
     await user.click(submenuTrigger);
     await waitFor(() => {
-      expect(screen.queryByTestId('submenu-paper')).not.to.equal(null);
+      expect(screen.queryByRole('menu', { name: 'More' })).not.to.equal(null);
     });
-    expect(window.getComputedStyle(screen.getByTestId('submenu-paper')).paddingTop).to.equal(
+    expect(window.getComputedStyle(screen.getByRole('menu', { name: 'More' })).paddingTop).to.equal(
       '11px',
     );
   });
@@ -952,7 +950,7 @@ describe('<Menu2Submenu />', () => {
       );
 
       const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
-      await waitForPopupFocus(submenuTrigger);
+      await waitForPopupFocus(screen.getByRole('menu', { name: 'Options' }));
       await user[activation](submenuTrigger);
 
       await waitFor(() => expect(submenuTrigger).to.have.attribute('aria-expanded', 'true'), {
@@ -987,8 +985,8 @@ describe('<Menu2Submenu />', () => {
     );
 
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
-    const parentPopup = submenuTrigger.closest('[role="menu"]')!;
-    await waitForPopupFocus(submenuTrigger);
+    const parentPopup = screen.getByRole('menu', { name: 'Options' });
+    await waitForPopupFocus(parentPopup);
     await user.pointer({ keys: '[TouchA]', target: submenuTrigger });
 
     expect(await screen.findByRole('menuitem', { name: 'Nested' })).not.to.equal(null);
@@ -1058,8 +1056,7 @@ describe('<Menu2Submenu />', () => {
 
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
     await user.hover(submenuTrigger);
-    const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
-    const popup = nestedItem.closest('[role="menu"]')!;
+    const popup = await screen.findByRole('menu', { name: 'More' });
     await waitFor(() => expect(onOpenChangeComplete).toHaveBeenCalledWith(true));
     onOpenChange.mockClear();
     const triggerRect = submenuTrigger.getBoundingClientRect();
@@ -1123,8 +1120,7 @@ describe('<Menu2Submenu />', () => {
 
     const submenuTrigger = await screen.findByRole('menuitem', { name: 'More' });
     await user.hover(submenuTrigger);
-    const nestedItem = await screen.findByRole('menuitem', { name: 'Nested' });
-    const popup = nestedItem.closest('[role="menu"]')!;
+    const popup = await screen.findByRole('menu', { name: 'More' });
     await waitFor(() => expect(onOpenChangeComplete).toHaveBeenCalledWith(true));
     onOpenChange.mockClear();
 
@@ -1230,7 +1226,7 @@ describe('<Menu2Submenu />', () => {
 
     const plain = await screen.findByRole('menuitem', { name: 'Plain' });
     const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
-    await waitForPopupFocus(plain);
+    await waitForPopupFocus(screen.getByRole('menu', { name: 'Options' }));
 
     // Keyboard: the trigger takes the highlight the same way a plain item does.
     await user.keyboard('{ArrowDown}');
@@ -1268,10 +1264,10 @@ describe('<Menu2Submenu />', () => {
     const { user } = render(
       <Menu2 defaultOpen>
         <Menu2Trigger render={<Button disableRipple>Options</Button>} />
-        <Menu2Popup slotProps={{ root: { 'data-testid': 'paper' } }}>
+        <Menu2Popup>
           <Menu2Submenu>
             <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
-            <Menu2SubmenuPopup slotProps={{ root: { 'data-testid': 'submenu-paper' } }}>
+            <Menu2SubmenuPopup>
               <Menu2Item>Nested</Menu2Item>
             </Menu2SubmenuPopup>
           </Menu2Submenu>
@@ -1281,15 +1277,15 @@ describe('<Menu2Submenu />', () => {
 
     const menu = await screen.findByRole('menu');
     await settle(menu);
-    const parent = screen.getByTestId('paper').getBoundingClientRect();
+    const parent = menu.getBoundingClientRect();
     const triggerRect = screen.getByRole('menuitem', { name: 'More' }).getBoundingClientRect();
 
     await user.click(screen.getByRole('menuitem', { name: 'More' }));
     await waitFor(() => {
-      expect(screen.queryByTestId('submenu-paper')).not.to.equal(null);
+      expect(screen.queryByRole('menu', { name: 'More' })).not.to.equal(null);
     });
-    await settle(document.querySelectorAll('[role="menu"]')[1] as HTMLElement);
-    const submenu = screen.getByTestId('submenu-paper').getBoundingClientRect();
+    await settle(screen.getByRole('menu', { name: 'More' }));
+    const submenu = screen.getByRole('menu', { name: 'More' }).getBoundingClientRect();
 
     // The submenu starts before the parent's right edge, so the two overlap.
     expect(submenu.left).to.be.lessThan(parent.right);
@@ -1309,7 +1305,7 @@ describe('<Menu2Submenu />', () => {
             <Menu2Popup>
               <Menu2Submenu>
                 <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
-                <Menu2SubmenuPopup slotProps={{ root: { 'data-testid': 'submenu-paper' } }}>
+                <Menu2SubmenuPopup>
                   <Menu2Item>Nested</Menu2Item>
                 </Menu2SubmenuPopup>
               </Menu2Submenu>
@@ -1322,7 +1318,7 @@ describe('<Menu2Submenu />', () => {
     const trigger = await screen.findByRole('menuitem', { name: 'More' });
     const triggerRect = trigger.getBoundingClientRect();
     await user.click(trigger);
-    const paper = await screen.findByTestId('submenu-paper');
+    const paper = await screen.findByRole('menu', { name: 'More' });
     await waitFor(() => {
       const submenu = paper.getBoundingClientRect();
       expect(submenu.left).to.be.lessThan(triggerRect.left);
@@ -1499,7 +1495,7 @@ describe('<Menu2Submenu />', () => {
 
         const plain = await screen.findByRole('menuitem', { name: 'Plain' });
         const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
-        await waitForPopupFocus(plain);
+        await waitForPopupFocus(screen.getByRole('menu'));
 
         await user.keyboard('{ArrowDown}');
         await waitFor(() => {
@@ -1536,7 +1532,7 @@ describe('<Menu2Submenu />', () => {
 
     const plain = await screen.findByRole('menuitem', { name: 'Plain' });
     const submenuTrigger = screen.getByRole('menuitem', { name: 'More' });
-    await waitForPopupFocus(plain);
+    await waitForPopupFocus(screen.getByRole('menu', { name: 'Options' }));
 
     await user.keyboard('{ArrowDown}');
     await waitFor(() => {
@@ -1591,7 +1587,7 @@ describe('<Menu2Submenu />', () => {
     const { user } = render(nestedChain);
 
     const parent = await screen.findByRole('menuitem', { name: 'View options' });
-    await waitForPopupFocus(parent);
+    await waitForPopupFocus(screen.getByRole('menu', { name: 'Options' }));
 
     await user.keyboard('{ArrowDown}');
     await user.keyboard('{ArrowRight}');
