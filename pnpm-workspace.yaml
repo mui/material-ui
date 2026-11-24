@@ -39,10 +39,9 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
-    '@mui/internal-docs-infra': '0.13.1-canary.33'
+    '@mui/internal-docs-infra': '0.13.1-canary.38'
 
 overrides:
-  '@mui/internal-docs-infra': '0.13.1-canary.33'
   # Bundled twice in the docs build
   'docs>react-is': '19.3.1'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
