@@ -9,7 +9,7 @@ export default function OTPFieldRender() {
       helperText="Enter the four digits shown on your device."
       render={<section aria-label="Device pairing" />}
       slotProps={{
-        helperText: {
+        formHelperText: {
           render: (props, state) => (
             <p {...props} role="status">
               {state.complete ? 'All four digits entered.' : props.children}

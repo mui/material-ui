@@ -28,14 +28,7 @@ const OTPFieldInput = React.forwardRef(function OTPFieldInput(
   props: OTPFieldInputProps,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const {
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledBy,
-    'aria-describedby': ariaDescribedBy,
-    render,
-    sx,
-    ...other
-  } = props;
+  const { render, sx, ...other } = props;
   const field = useOTPFieldContext();
 
   return (
@@ -46,13 +39,13 @@ const OTPFieldInput = React.forwardRef(function OTPFieldInput(
         const { ownerState } = field;
         const first = state.index === 0;
         // The first input shares the group's accessible name. The remaining inputs announce their position.
-        const label =
-          ariaLabel ??
-          (first ? field.ariaLabel : ownerState.getInputAriaLabel(state.index + 1, state.length));
+        const fieldLabelledBy = first ? field.labelledBy : undefined;
         const labelledBy =
-          ariaLabelledBy ??
-          (first && !ariaLabel?.trim() ? field.labelledBy : undefined) ??
-          (label ? undefined : inputProps['aria-labelledby']);
+          props['aria-labelledby'] != null ? inputProps['aria-labelledby'] : fieldLabelledBy;
+        const label = first
+          ? field.ariaLabel
+          : (inputProps['aria-label'] ??
+            (labelledBy ? undefined : ownerState.getInputAriaLabel(state.index + 1, state.length)));
 
         return (
           <OTPFieldInputElement
@@ -63,7 +56,8 @@ const OTPFieldInput = React.forwardRef(function OTPFieldInput(
               'aria-label': label,
               'aria-labelledby': labelledBy,
               'aria-describedby':
-                [field.describedBy, ariaDescribedBy].filter(Boolean).join(' ') || undefined,
+                [field.describedBy, inputProps['aria-describedby']].filter(Boolean).join(' ') ||
+                undefined,
               'aria-invalid':
                 ownerState.error && !state.disabled ? true : inputProps['aria-invalid'],
             }}
@@ -84,22 +78,12 @@ OTPFieldInput.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
-  /**
-   * Identifies the element (or elements) that describes the object.
-   * @see aria-labelledby
-   */
-  'aria-describedby': PropTypes.string,
-  /**
-   * Defines a string value that labels the current element.
-   * @see aria-labelledby.
-   */
-  'aria-label': PropTypes.string,
-  /**
-   * Identifies the element (or elements) that labels the current element.
-   * @see aria-describedby.
-   */
-  'aria-labelledby': PropTypes.string,
   children: PropTypes.node,
+  /**
+   * CSS class applied to the element, or a function that
+   * returns a class based on the component's state.
+   */
+  className: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**
    * Allows you to replace the component's HTML element
    * with a different tag, or compose it with another component.
@@ -107,6 +91,11 @@ OTPFieldInput.propTypes /* remove-proptypes */ = {
    * Accepts a `ReactElement` or a function that returns the element to render.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  /**
+   * Style applied to the element, or a function that
+   * returns a style object based on the component's state.
+   */
+  style: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * System styles for this character input.
    */

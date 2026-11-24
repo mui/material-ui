@@ -37,7 +37,10 @@ interface OTPFieldLayoutProps {
 
 const OTPFieldRoot = styled(FormControl, { name: 'MuiOTPField', slot: 'Root' })({});
 const OTPFieldLabel = styled(FormLabel, { name: 'MuiOTPField', slot: 'Label' })({});
-const OTPFieldHelperText = styled(FormHelperText, { name: 'MuiOTPField', slot: 'HelperText' })({});
+const OTPFieldFormHelperText = styled(FormHelperText, {
+  name: 'MuiOTPField',
+  slot: 'FormHelperText',
+})({});
 
 interface RenderElementProps extends React.HTMLAttributes<HTMLElement> {
   render: NonNullable<OTPFieldProps['render']>;
@@ -75,6 +78,7 @@ function OTPFieldLayout({
 }: OTPFieldLayoutProps) {
   const { slots, slotProps } = externalForwardedProps;
   const { helperText, id, label, render } = ownerState;
+  const formControlState = typeof slots?.root === 'string' ? undefined : ownerState;
 
   // FormControl, FormLabel, and FormHelperText use component to replace their host
   // while keeping Material styles and context. An explicit slot supplies its own host.
@@ -99,11 +103,11 @@ function OTPFieldLayout({
     className: classes.label,
     additionalProps: { htmlFor: id },
   });
-  const [HelperTextSlot, { render: helperRender, ...helperProps }] = useSlot('helperText', {
-    elementType: OTPFieldHelperText,
+  const [HelperTextSlot, { render: helperRender, ...helperProps }] = useSlot('formHelperText', {
+    elementType: OTPFieldFormHelperText,
     externalForwardedProps,
     ownerState,
-    className: classes.helperText,
+    className: classes.formHelperText,
   });
   const hasLabel = label != null && label !== '' && label !== false;
   const hasHelperText = helperText != null && helperText !== '' && helperText !== false;
@@ -113,7 +117,7 @@ function OTPFieldLayout({
       (id && `${id}-label`))
     : undefined;
   const helperId = hasHelperText
-    ? (getRenderElement(helperRender, slots?.helperText)?.props.id ??
+    ? (getRenderElement(helperRender, slots?.formHelperText)?.props.id ??
       helperProps.id ??
       (id && `${id}-helper-text`))
     : undefined;
@@ -175,12 +179,10 @@ function OTPFieldLayout({
   return (
     <RootSlot
       {...rootProps}
-      {...(typeof slots?.root !== 'string' && {
-        disabled: ownerState.disabled,
-        error: ownerState.error,
-        required: ownerState.required,
-        size: ownerState.size,
-      })}
+      disabled={formControlState?.disabled}
+      error={formControlState?.error}
+      required={formControlState?.required}
+      size={formControlState?.size}
     >
       {hasLabel && (
         <LabelSlot {...labelProps} {...getHostProps(labelRender, slots?.label)} id={labelId}>
@@ -207,7 +209,7 @@ function OTPFieldLayout({
       {hasHelperText && (
         <HelperTextSlot
           {...helperProps}
-          {...getHostProps(helperRender, slots?.helperText)}
+          {...getHostProps(helperRender, slots?.formHelperText)}
           id={helperId}
         >
           {helperText}

@@ -13,7 +13,7 @@ export interface OTPFieldClasses {
   /** Styles applied to each decorative separator. */
   separator: string;
   /** Styles applied to the supporting or error text. */
-  helperText: string;
+  formHelperText: string;
 }
 
 export type OTPFieldClassKey = keyof OTPFieldClasses;
@@ -28,7 +28,7 @@ const otpFieldClasses: OTPFieldClasses = generateUtilityClasses('MuiOTPField', [
   'group',
   'input',
   'separator',
-  'helperText',
+  'formHelperText',
 ]);
 
 export default otpFieldClasses;

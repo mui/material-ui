@@ -4,6 +4,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OTPField as BaseOTPField } from '@base-ui/react/otp-field';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useId from '@mui/utils/useId';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import OTPFieldLayout from './OTPFieldLayout';
@@ -18,7 +19,7 @@ function useUtilityClasses(classes: OTPFieldProps['classes']) {
     group: ['group'],
     input: ['input'],
     separator: ['separator'],
-    helperText: ['helperText'],
+    formHelperText: ['formHelperText'],
   };
 
   return composeClasses(slots, getOTPFieldUtilityClass, classes);
@@ -74,7 +75,7 @@ const OTPField = React.forwardRef(function OTPField(
     render,
     required,
     size = 'medium',
-    slotProps,
+    slotProps: slotPropsProp,
     slots,
     validationType,
     value,
@@ -82,7 +83,19 @@ const OTPField = React.forwardRef(function OTPField(
   } = props;
   const id = useId(idProp);
   const classes = useUtilityClasses(classesProp);
-  const externalForwardedProps = { slots, slotProps, ...other };
+  // OTPField uses `render` for host customization, so useSlot must ignore `component`.
+  const slotProps: OTPFieldProps['slotProps'] =
+    slotPropsProp &&
+    Object.fromEntries(
+      Object.entries(slotPropsProp).map(([slotName, slotProp]) => [
+        slotName,
+        (state: OTPFieldOwnerState) => ({
+          ...resolveComponentProps(slotProp, state),
+          component: undefined,
+        }),
+      ]),
+    );
+  const externalForwardedProps = { ...other, slots, slotProps, component: undefined };
   const inputs =
     children === undefined && Number.isInteger(length) && length > 0
       ? Array.from({ length }, (_, index) => <OTPFieldInput key={index} />)
@@ -297,16 +310,17 @@ OTPField.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
-   * The size of the field.
+   * The size of the field. Augment `FormControlPropsSizeOverrides` to add a custom size.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   /**
    * Props for the Material slots and their corresponding Base UI parts.
    */
   slotProps: PropTypes.shape({
+    formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     group: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    helperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -314,8 +328,8 @@ OTPField.propTypes /* remove-proptypes */ = {
    * Components used to render the field's slots.
    */
   slots: PropTypes.shape({
+    formHelperText: PropTypes.elementType,
     group: PropTypes.elementType,
-    helperText: PropTypes.elementType,
     label: PropTypes.elementType,
     root: PropTypes.elementType,
   }),

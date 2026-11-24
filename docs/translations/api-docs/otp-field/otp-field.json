@@ -57,7 +57,9 @@
       "description": "Replaces the outer field element while preserving its styles and behavior. Accepts an element or a function that receives the root props and Base UI field state."
     },
     "required": { "description": "Require a complete code before form submission." },
-    "size": { "description": "The size of the field." },
+    "size": {
+      "description": "The size of the field. Augment <code>FormControlPropsSizeOverrides</code> to add a custom size."
+    },
     "slotProps": {
       "description": "Props for the Material slots and their corresponding Base UI parts."
     },
@@ -79,8 +81,8 @@
     }
   },
   "slotDescriptions": {
+    "formHelperText": "The supporting or error text.",
     "group": "The host for Base UI OTPField.Root.",
-    "helperText": "The supporting or error text.",
     "label": "The visible field label.",
     "root": "The outer field container."
   }

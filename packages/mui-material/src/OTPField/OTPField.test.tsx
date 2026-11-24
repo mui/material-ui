@@ -55,6 +55,28 @@ describe('<OTPField />', () => {
   });
 
   describe('composition', () => {
+    it('preserves the Material root and label when JavaScript passes component', () => {
+      const componentProp = { component: 'aside' };
+      render(
+        <OTPField
+          {...componentProp}
+          label="PIN"
+          error
+          render={<section />}
+          slotProps={{
+            // @ts-expect-error Simulate a JavaScript slot callback.
+            label: () => ({ id: 'pin-label', ...componentProp }),
+          }}
+        />,
+      );
+
+      const group = screen.getByRole('group', { name: 'PIN' });
+      expect(group.parentElement?.tagName).to.equal('SECTION');
+      const label = screen.getByText('PIN');
+      expect(label.tagName).to.equal('LABEL');
+      expect(label).to.have.class(formLabelClasses.error);
+    });
+
     it('shares the generated input ID with slot callbacks and the custom group', () => {
       const Group = React.forwardRef(function Group(
         {
@@ -71,7 +93,7 @@ describe('<OTPField />', () => {
           helperText="Two digits"
           length={2}
           slots={{ group: Group }}
-          slotProps={{ helperText: ({ id }) => ({ id: `${id}-hint` }) }}
+          slotProps={{ formHelperText: ({ id }) => ({ id: `${id}-hint` }) }}
         />,
       );
 
@@ -80,6 +102,7 @@ describe('<OTPField />', () => {
       expect(group).to.have.attribute('id', `${first.id}-group`);
       expect(first).to.have.attribute('aria-describedby', `${first.id}-hint`);
       expect(first).toHaveAccessibleDescription('Two digits');
+      expect(screen.getByText('Two digits')).to.have.class(classes.formHelperText);
     });
 
     it('preserves field state, label focus, and descriptions through custom render elements', async () => {
@@ -95,7 +118,7 @@ describe('<OTPField />', () => {
           slotProps={{
             group: { render: <fieldset /> },
             label: { render: <label /> },
-            helperText: {
+            formHelperText: {
               render: (props, state) => <small {...props} data-length={state.length} />,
             },
           }}
@@ -167,10 +190,10 @@ describe('<OTPField />', () => {
           label="PIN"
           helperText="Two digits"
           required
-          slots={{ label: 'label', helperText: 'small' }}
+          slots={{ label: 'label', formHelperText: 'small' }}
           slotProps={{
             label: ({ required }) => ({ id: required ? 'required-label' : 'label' }),
-            helperText: { id: 'hint' },
+            formHelperText: { id: 'hint' },
           }}
         >
           <OTPFieldInput />
@@ -197,7 +220,7 @@ describe('<OTPField />', () => {
           length={2}
           slotProps={{
             label: { render: <label id="pin-label" /> },
-            helperText: { render: <small id="pin-hint" /> },
+            formHelperText: { render: <small id="pin-hint" /> },
           }}
         />,
       );
@@ -213,19 +236,19 @@ describe('<OTPField />', () => {
 
   describe('accessibility', () => {
     it.each([
-      ['Verification code', undefined, 'Verification code', 'Verification code'],
-      [undefined, 'First digit', 'PIN', 'First digit'],
+      ['Verification code', 'Verification code'],
+      [undefined, 'PIN'],
     ])(
-      'uses explicit accessible names with field aria-label %s and input aria-label %s',
-      async (fieldLabel, inputLabel, groupName, firstName) => {
+      'names the first character from the field when its aria-label is %s',
+      async (fieldLabel, groupName) => {
         const { user } = render(
           <OTPField label="PIN" aria-label={fieldLabel} length={2}>
-            <OTPFieldInput aria-label={inputLabel} />
+            <OTPFieldInput aria-label="First digit" />
             <OTPFieldInput />
           </OTPField>,
         );
         const group = screen.getByRole('group', { name: groupName });
-        const first = within(group).getByRole('textbox', { name: firstName });
+        const first = within(group).getByRole('textbox', { name: groupName });
         await user.click(screen.getByText('PIN'));
         expect(first).toHaveFocus();
       },
@@ -318,6 +341,26 @@ describe('<OTPField />', () => {
       expect(first).toHaveAccessibleName('Recovery code');
     });
 
+    it('preserves a composed input label and combines its description with the field hint', () => {
+      render(
+        <React.Fragment>
+          <span id="digit-label">Check digit</span>
+          <span id="digit-hint">Printed in bold.</span>
+          <OTPField label="PIN" length={2} helperText="Enter both digits.">
+            <OTPFieldInput />
+            <OTPFieldInput aria-labelledby="digit-label" aria-describedby="digit-hint" />
+          </OTPField>
+        </React.Fragment>,
+      );
+
+      expect(screen.getByRole('textbox', { name: 'PIN' })).toHaveAccessibleDescription(
+        'Enter both digits.',
+      );
+      expect(screen.getByRole('textbox', { name: 'Check digit' })).toHaveAccessibleDescription(
+        'Enter both digits. Printed in bold.',
+      );
+    });
+
     it('combines helper text and an external description on the group and character inputs', () => {
       render(
         <React.Fragment>
@@ -370,6 +413,7 @@ describe('<OTPField />', () => {
           helperText="Try again"
           error
           size="small"
+          // @ts-expect-error JavaScript callers can still supply conflicting field state.
           slotProps={{ root: { error: false, size: 'medium' } }}
         />,
       );

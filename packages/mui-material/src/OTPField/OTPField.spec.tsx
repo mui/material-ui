@@ -58,11 +58,12 @@ function Test() {
             },
           },
           label: ({ required }) => ({ required }),
-          helperText: { id: 'recovery-hint' },
+          formHelperText: { id: 'recovery-hint' },
         }}
       >
         <OTPFieldInput ref={(node) => expectType<HTMLInputElement | null, typeof node>(node)} />
         <OTPFieldInput
+          type="password"
           className={(state) => {
             expectType<BaseOTPField.Input.State, typeof state>(state);
             return state.filled ? 'filled' : undefined;
@@ -90,7 +91,11 @@ function Test() {
       {/* @ts-expect-error Use render to change the label element. */}
       <OTPField slotProps={{ label: { component: 'label' } }} />
       {/* @ts-expect-error Use render to change the helper text element. */}
-      <OTPField slotProps={{ helperText: { component: 'small' } }} />
+      <OTPField slotProps={{ formHelperText: { component: 'small' } }} />
+      {/* @ts-expect-error Slot callbacks use the same render API as slot objects. */}
+      <OTPField slotProps={{ root: () => ({ fullWidth: true, component: 'section' }) }} />
+      {/* @ts-expect-error Set the label content with the field's label prop. */}
+      <OTPField slotProps={{ label: { children: 'PIN' } }} />
       {/* @ts-expect-error A code is a string, including in numeric mode. */}
       <OTPField defaultValue={123456} />
       {/* @ts-expect-error The field has no checked state. */}

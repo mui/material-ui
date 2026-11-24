@@ -53,8 +53,8 @@ After an incorrect PIN, the form uses `inputRef` to focus the first character so
 ### Rendering custom elements
 
 Use `render` on `OTPField` to change its outer element and keep its Material styles and `FormControl` context.
-The root `FormControl` uses the field's resolved `disabled`, `error`, `required`, and `size` values even when `slotProps.root` supplies different values.
-The `group`, `label`, and `helperText` slots also accept `render` through `slotProps`.
+Set `disabled`, `error`, `required`, and `size` on `OTPField` so the inputs, label, and helper text share the field state.
+The `group`, `label`, and `formHelperText` slots also accept `render` through `slotProps`.
 When using a render callback, supply IDs, accessible names, and text direction through the field or its `slotProps`, and forward the callback props to the element.
 Pass props and refs for an individual character directly to its `OTPFieldInput`.
 
@@ -70,7 +70,7 @@ This field renders its helper text in a native `<small>` element and links each 
 <OTPField
   label="Verification code"
   helperText="Check your text messages."
-  slots={{ helperText: 'small' }}
+  slots={{ formHelperText: 'small' }}
 />
 ```
 
@@ -86,6 +86,7 @@ This example makes the inputs small and round. When all four digits are present,
 
 Each character input has an accessible name.
 The first input uses the field label, and subsequent inputs announce their position, such as "Character 2 of 6."
+When there is no visible label, put `aria-label` or `aria-labelledby` on `OTPField`. To name a particular character after the first, pass `aria-label` to its `OTPFieldInput`.
 The [theme locale](/material-ui/guides/localization/#locale-text) supplies the position labels. For example, the German locale (`deDE`) announces "Zeichen 2 von 6."
 To customize the wording across your app, set `components.MuiOTPField.defaultProps.getInputAriaLabel` in the theme. To override it for one field, pass `getInputAriaLabel` directly. The callback receives the one-based position and the field length.
 

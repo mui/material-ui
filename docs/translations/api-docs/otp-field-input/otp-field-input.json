@@ -1,13 +1,6 @@
 {
   "componentDescription": "A single character in an OTPField.",
   "propDescriptions": {
-    "aria-describedby": {
-      "description": "Identifies the element (or elements) that describes the object."
-    },
-    "aria-label": { "description": "Defines a string value that labels the current element." },
-    "aria-labelledby": {
-      "description": "Identifies the element (or elements) that labels the current element."
-    },
     "className": {
       "description": "CSS class applied to the element, or a function that returns a class based on the component&#39;s state."
     },

@@ -39,19 +39,22 @@
     "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
     "required": { "type": { "name": "bool" } },
     "size": {
-      "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ group?: func<br>&#124;&nbsp;object, helperText?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ formHelperText?: func<br>&#124;&nbsp;object, group?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       }
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ group?: elementType, helperText?: elementType, label?: elementType, root?: elementType }"
+        "description": "{ formHelperText?: elementType, group?: elementType, label?: elementType, root?: elementType }"
       }
     },
     "sx": {
@@ -95,10 +98,10 @@
       "class": "MuiOTPField-group"
     },
     {
-      "name": "helperText",
+      "name": "formHelperText",
       "description": "The supporting or error text.",
       "default": "FormHelperText",
-      "class": "MuiOTPField-helperText"
+      "class": "MuiOTPField-formHelperText"
     }
   ],
   "classes": [
