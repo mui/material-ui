@@ -101,6 +101,25 @@ describe('createScopedStyleSheets', () => {
     ]);
   });
 
+  it('compares and writes a single color scheme with onlyColorScheme', () => {
+    const result = createScopedStyleSheets({
+      css: {
+        root: upper.root,
+        colorSchemes: [
+          ['light', { ...upper.colorSchemes[0][1], '--mui-primary': 'red' }],
+          ['dark', { ...upper.colorSchemes[1][1], '--mui-primary': 'pink' }],
+        ],
+      },
+      upper: { root: upper.root, colorSchemes: [upper.colorSchemes[1]] },
+      colorSchemeRule: '.%s &',
+      prefix: 'mui',
+      onlyColorScheme: 'dark',
+    })!;
+    expect(result.styles).to.deep.equal([
+      { [`.${result.className}`]: { '--mui-primary': 'pink' } },
+    ]);
+  });
+
   it('uses media queries with the media rule', () => {
     const result = createScopedStyleSheets({
       css: {
@@ -269,6 +288,8 @@ describe('createColorSchemeSelectorGetter', () => {
       '@media (prefers-color-scheme: dark)',
     );
     expect(createColorSchemeSelectorGetter(undefined)('dark')).to.equal('&');
+    expect(createColorSchemeSelectorGetter(undefined, 'dark')('dark')).to.equal('&');
+    expect(createColorSchemeSelectorGetter('.%s &', 'dark')('light')).to.equal('&:not(*)');
     expect(createColorSchemeSelectorGetter(getIsolatedColorSchemeRule('a"b'))('dark')).to.equal(
       '&:where([data-mui-isolated="a\\"b"][data-mui-scheme="dark"], [data-mui-isolated="a\\"b"][data-mui-scheme="dark"] *)',
     );

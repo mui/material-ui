@@ -9,6 +9,7 @@ import {
   useThemeScope,
   unstable_enhanceDensity as enhanceDensity,
 } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Popper from '@mui/material/Popper';
@@ -956,6 +957,65 @@ describe('ThemeProvider', () => {
           fireEvent.click(screen.getByTestId('report'));
           expect(screen.getByTestId('report')).to.have.text('dark dark');
           expect(document.documentElement.classList.contains('dark')).to.equal(true);
+        });
+
+        describe('top-level theme with a single color scheme', () => {
+          const lightAndDarkTheme = createTheme({
+            cssVariables: true,
+            colorSchemes: {
+              light: { palette: { primary: { main: '#ff0000' } } },
+              dark: { palette: { primary: { main: '#00ff00' } } },
+            },
+            components: {
+              MuiButton: {
+                styleOverrides: {
+                  root: ({ theme: buttonTheme }) => ({
+                    ...buttonTheme.applyStyles('light', { textDecorationColor: 'rgb(255, 0, 0)' }),
+                    ...buttonTheme.applyStyles('dark', { outlineColor: 'rgb(0, 255, 0)' }),
+                  }),
+                },
+              },
+            },
+          });
+
+          function renderUnder(topLevelTheme: Theme) {
+            render(
+              <ThemeProvider theme={topLevelTheme}>
+                <ThemeProvider theme={lightAndDarkTheme}>
+                  <Button data-testid="button">Button</Button>
+                  <Dialog open>
+                    <div data-testid="dialog" />
+                  </Dialog>
+                </ThemeProvider>
+              </ThemeProvider>,
+            );
+            const button = getComputedStyle(screen.getByTestId('button'));
+            return {
+              primary: getVar(screen.getByTestId('button'), '--mui-palette-primary-main'),
+              portalPrimary: getVar(screen.getByTestId('dialog'), '--mui-palette-primary-main'),
+              light: button.textDecorationColor === 'rgb(255, 0, 0)',
+              dark: button.outlineColor === 'rgb(0, 255, 0)',
+            };
+          }
+
+          it.skipIf(isJsdom())('uses the light color scheme under a light theme', () => {
+            expect(renderUnder(blueTheme)).to.deep.equal({
+              primary: '#ff0000',
+              portalPrimary: '#ff0000',
+              light: true,
+              dark: false,
+            });
+          });
+
+          it.skipIf(isJsdom())('uses the dark color scheme under a dark theme', () => {
+            const darkTheme = createTheme({ cssVariables: true, palette: { mode: 'dark' } });
+            expect(renderUnder(darkTheme)).to.deep.equal({
+              primary: '#00ff00',
+              portalPrimary: '#00ff00',
+              light: false,
+              dark: true,
+            });
+          });
         });
       });
     });

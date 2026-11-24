@@ -51,9 +51,16 @@ export function getIsolatedColorSchemeRule(id: string) {
 
 /**
  * Creates `theme.getColorSchemeSelector` from a color scheme rule.
+ * With `onlyColorScheme`, that color scheme always applies and the other ones never do.
  */
-export function createColorSchemeSelectorGetter(rule: string | undefined) {
+export function createColorSchemeSelectorGetter(
+  rule: string | undefined,
+  onlyColorScheme?: string,
+) {
   return function getColorSchemeSelector(colorScheme: string) {
+    if (onlyColorScheme) {
+      return colorScheme === onlyColorScheme ? '&' : '&:not(*)';
+    }
     if (!rule) {
       return '&';
     }
@@ -138,6 +145,16 @@ function getClassName(prefix: string, content: unknown) {
   return `${prefix ? `${prefix}-` : ''}theme-${hash(JSON.stringify(content))}`;
 }
 
+function pickColorScheme(
+  css: CssVarsByColorScheme,
+  colorScheme: string | undefined,
+): CssVarsByColorScheme {
+  if (!colorScheme) {
+    return css;
+  }
+  return { root: css.root, colorSchemes: css.colorSchemes.filter(([key]) => key === colorScheme) };
+}
+
 function getMode(css: CssVarsByColorScheme, colorScheme: string) {
   const declarations = Object.fromEntries(css.colorSchemes)[colorScheme];
   return (declarations?.colorScheme as string | undefined) || colorScheme;
@@ -150,6 +167,9 @@ function getMode(css: CssVarsByColorScheme, colorScheme: string) {
  * and the color schemes follow the outer provider through `colorSchemeRule`:
  * `.dark .scope` under the top-level provider, the marker of the closest isolated provider under one.
  *
+ * With `onlyColorScheme`, the themes are compared as if they only had that color scheme,
+ * and it's written without any rule.
+ *
  * Returns `null` when there's nothing to write.
  */
 export function createScopedStyleSheets(options: {
@@ -157,8 +177,12 @@ export function createScopedStyleSheets(options: {
   upper: CssVarsByColorScheme;
   colorSchemeRule: string | undefined;
   prefix: string;
+  onlyColorScheme?: string | undefined;
 }) {
-  const { css, upper, colorSchemeRule: rule, prefix } = options;
+  const { prefix, onlyColorScheme } = options;
+  const css = pickColorScheme(options.css, onlyColorScheme);
+  const upper = pickColorScheme(options.upper, onlyColorScheme);
+  const rule = onlyColorScheme ? undefined : options.colorSchemeRule;
   const [defaultScheme, ...otherSchemes] = css.colorSchemes;
   const upperSchemes = Object.fromEntries(upper.colorSchemes);
   // A theme with a single color scheme uses it whatever the outer color scheme is,

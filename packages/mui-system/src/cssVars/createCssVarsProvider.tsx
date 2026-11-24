@@ -322,9 +322,20 @@ export default function createCssVarsProvider<
     upperGenerate: () => CssVarsByColorScheme,
     colorSchemeRule: string | undefined,
     prefix: string,
+    onlyColorScheme: string | undefined,
   ) {
-    return getCachedStyleSheets(generate, upperGenerate, `${colorSchemeRule}|${prefix}`, () =>
-      createScopedStyleSheets({ css: generate(), upper: upperGenerate(), colorSchemeRule, prefix }),
+    return getCachedStyleSheets(
+      generate,
+      upperGenerate,
+      `${colorSchemeRule}|${prefix}|${onlyColorScheme}`,
+      () =>
+        createScopedStyleSheets({
+          css: generate(),
+          upper: upperGenerate(),
+          colorSchemeRule,
+          prefix,
+          onlyColorScheme,
+        }),
     );
   }
   function getIsolatedStyleSheets(
@@ -475,6 +486,16 @@ export default function createCssVarsProvider<
         ? allColorSchemes[0]
         : undefined;
     const hasMarker = isolated || !!fixedColorScheme;
+    // A top-level theme with a single color scheme always uses it, and by default nothing on the page selects it.
+    // So a nested theme that has that color scheme only uses that one, without any rule.
+    const ownerColorScheme =
+      owner && !owner.hasMarker && owner.colorSchemes.length === 1
+        ? owner.colorSchemes[0]
+        : undefined;
+    const onlyColorScheme =
+      nested && !hasMarker && ownerColorScheme && colorSchemes[ownerColorScheme]
+        ? ownerColorScheme
+        : undefined;
 
     if (nested) {
       mode = ctx.mode;
@@ -538,7 +559,10 @@ export default function createCssVarsProvider<
       }
       if (!isRoot && theme.vars) {
         // `applyStyles()` and the styles that use `theme.getColorSchemeSelector()` follow the owner's color scheme.
-        theme.getColorSchemeSelector = createColorSchemeSelectorGetter(colorSchemeRule);
+        theme.getColorSchemeSelector = createColorSchemeSelectorGetter(
+          colorSchemeRule,
+          onlyColorScheme,
+        );
       }
 
       // 4. Resolve the color scheme and merge it to the theme
@@ -574,6 +598,7 @@ export default function createCssVarsProvider<
       cssVarPrefix,
       isRoot,
       colorSchemeRule,
+      onlyColorScheme,
     ]);
 
     // 5. Declaring effects
@@ -730,6 +755,7 @@ export default function createCssVarsProvider<
           upperGenerateCssVarsByColorScheme,
           colorSchemeRule,
           cssVarPrefix,
+          onlyColorScheme,
         );
       }
       return null;
@@ -738,6 +764,7 @@ export default function createCssVarsProvider<
       generateCssVarsByColorScheme,
       upperGenerateCssVarsByColorScheme,
       colorSchemeRule,
+      onlyColorScheme,
       cssVarPrefix,
       defaultLightColorScheme,
       defaultDarkColorScheme,
@@ -787,6 +814,7 @@ export default function createCssVarsProvider<
         owner!.generateCssVarsByColorScheme || noCssVars,
         colorSchemeRule,
         cssVarPrefix,
+        onlyColorScheme,
       );
     }, [
       nested,
@@ -800,6 +828,7 @@ export default function createCssVarsProvider<
       defaultLightColorScheme,
       defaultDarkColorScheme,
       colorSchemeRule,
+      onlyColorScheme,
     ]);
     const portalClassName = portalScope?.className;
     const scopeProps = React.useMemo(() => {
