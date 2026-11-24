@@ -39,6 +39,22 @@ function getNewValue(
   return direction === 1 ? Math.min(newValue, max) : Math.max(newValue, min);
 }
 
+// The value doesn't have to be one of the marks (e.g. a `defaultValue` between two marks),
+// so find its neighbour by value rather than by its index in `marksValues`.
+function getAdjacentMarkValue(marksValues: number[], value: number, direction: 1 | -1) {
+  let adjacentValue: number | undefined;
+  for (let i = 0; i < marksValues.length; i += 1) {
+    const markValue = marksValues[i];
+    if (
+      (markValue - value) * direction > 0 &&
+      (adjacentValue === undefined || (markValue - adjacentValue) * direction < 0)
+    ) {
+      adjacentValue = markValue;
+    }
+  }
+  return adjacentValue;
+}
+
 function asc(a: number, b: number) {
   return a - b;
 }
@@ -341,7 +357,6 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const changeValue = (event: React.KeyboardEvent | React.ChangeEvent, valueInput: number) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
-    const marksIndex = marksValues.indexOf(value);
 
     let newValue: number | number[] = valueInput;
     if (marks && step == null) {
@@ -351,7 +366,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       } else if (newValue <= marksValues[0]) {
         newValue = marksValues[0];
       } else {
-        newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+        newValue = getAdjacentMarkValue(marksValues, value, newValue < value ? -1 : 1) ?? value;
       }
     }
 
@@ -457,13 +472,13 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
             if (currentMarkIndex === 0) {
               newValue = marksValues[0];
             } else {
-              newValue = marksValues[currentMarkIndex - 1];
+              newValue = getAdjacentMarkValue(marksValues, value, -1);
             }
           } else if (incrementKeys.includes(event.key)) {
             if (currentMarkIndex === marksValues.length - 1) {
               newValue = maxMarksValue;
             } else {
-              newValue = marksValues[currentMarkIndex + 1];
+              newValue = getAdjacentMarkValue(marksValues, value, 1);
             }
           }
         }

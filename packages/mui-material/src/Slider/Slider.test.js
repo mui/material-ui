@@ -1337,6 +1337,49 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(handleChange.callCount).to.equal(0);
       expect(slider).to.have.attribute('aria-valuenow', '10');
     });
+
+    [
+      { key: 'ArrowRight', expected: '30' },
+      { key: 'ArrowUp', expected: '30' },
+      { key: 'ArrowLeft', expected: '20' },
+      { key: 'ArrowDown', expected: '20' },
+    ].forEach(({ key, expected }) => {
+      it(`key: ${key} moves a value between two marks to the adjacent mark`, () => {
+        render(
+          <Slider
+            marks={[{ value: 10 }, { value: 20 }, { value: 30 }, { value: 40 }]}
+            step={null}
+            defaultValue={25}
+          />,
+        );
+
+        const slider = screen.getByRole('slider');
+        expect(slider).to.have.attribute('aria-valuenow', '25');
+
+        act(() => {
+          slider.focus();
+        });
+
+        fireEvent.keyDown(slider, { key });
+        expect(slider).to.have.attribute('aria-valuenow', expected);
+      });
+    });
+
+    it('moves a value between two marks to the adjacent mark on a change event', () => {
+      render(
+        <Slider
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }, { value: 40 }]}
+          step={null}
+          defaultValue={25}
+        />,
+      );
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-valuenow', '25');
+
+      fireEvent.change(slider, { target: { value: 26 } });
+      expect(slider).to.have.attribute('aria-valuenow', '30');
+    });
   });
 
   describe('warnings', () => {
