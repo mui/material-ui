@@ -200,18 +200,6 @@ const useUtilityClasses = (ownerState: Pick<Menu2PopupOwnerState, 'classes'>) =>
   return composeClasses(slots, getMenu2PopupUtilityClass, classes);
 };
 
-const Menu2PopupRoot = styled(Menu2RootBase, {
-  slot: 'root',
-})({});
-
-const Menu2PopupPositioner = styled(Menu2PositionerBase, {
-  slot: 'positioner',
-})({});
-
-const Menu2PopupPortal = styled(Menu2PortalBase, {
-  slot: 'portal',
-})({});
-
 const Menu2PopupBackdrop = styled('div', {
   name: 'MuiMenu2Popup',
   slot: 'backdrop',
@@ -225,10 +213,6 @@ const Menu2PopupBackdrop = styled('div', {
   pointerEvents: 'none',
   WebkitTapHighlightColor: 'transparent',
 }) as any;
-
-const Menu2PopupList = styled(Menu2ListBase, {
-  slot: 'list',
-})({});
 
 /**
  *
@@ -272,10 +256,10 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
       modal={modal}
       classes={classes}
       defaultSlots={{
-        root: Menu2PopupRoot,
-        portal: Menu2PopupPortal,
-        positioner: Menu2PopupPositioner,
-        list: Menu2PopupList,
+        root: Menu2RootBase,
+        portal: Menu2PortalBase,
+        positioner: Menu2PositionerBase,
+        list: Menu2ListBase,
         backdrop: Menu2PopupBackdrop,
       }}
       defaultPositionerProps={{

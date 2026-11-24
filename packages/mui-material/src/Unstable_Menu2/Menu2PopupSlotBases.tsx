@@ -7,8 +7,8 @@ import List from '../List';
 import type { ListProps } from '../List';
 import { menu2PopupClasses, menu2SubmenuPopupClasses } from './menu2Classes';
 
-// Common Menu2 theme styles precede the submenu-specific styles.
-// The final popup wrappers resolve sx after both theme layers.
+// The bases apply the MuiMenu2Popup theme styles. The submenu wrappers add the
+// MuiMenu2SubmenuPopup styles after them, and sx runs on the outermost component.
 /**
  * @ignore - internal component.
  */

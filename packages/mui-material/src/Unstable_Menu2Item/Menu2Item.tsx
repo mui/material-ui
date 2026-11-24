@@ -3,8 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
-import { styled } from '../zero-styled';
-import Menu2ItemBase from '../internal/Menu2ItemBase';
+import Menu2ItemRoot from '../internal/Menu2ItemBase';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import type {
@@ -99,9 +98,6 @@ export interface Menu2ItemProps
    */
   style?: React.CSSProperties | undefined;
 }
-
-// Keep sx on the final styled component, after the shared theme styles.
-const Menu2ItemRoot = styled(Menu2ItemBase, { slot: 'root' })({});
 
 /**
  *
