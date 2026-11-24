@@ -32,7 +32,6 @@ import {
   sourceAnchorTransform,
   toJavascriptFileName,
 } from './sourceAnchors';
-import { useMuiChatExporter } from './useMuiChatExporter';
 import { buildExportConfig } from './exportConfig';
 
 // ---------------------------------------------------------------------------
@@ -190,13 +189,6 @@ export default function DemoContent(props: DemoContentProps) {
   const handleReset = React.useCallback(() => {
     resetDemo(demo.reset, remountPreview);
   }, [demo.reset]);
-
-  const openMuiChat = useMuiChatExporter({
-    props,
-    selectedVariant: demo.selectedVariant,
-    selectedTransform: demo.selectedTransform,
-    exportConfig,
-  });
 
   const t = useTranslate();
 
@@ -443,7 +435,6 @@ export default function DemoContent(props: DemoContentProps) {
       variants={demo.variants}
       selectedVariant={demo.selectedVariant}
       onSelectVariant={demo.selectVariant}
-      openMuiChat={openMuiChat}
       hideEditButton={hideEditButton}
       onOpenStackBlitz={demo.openStackBlitz}
       onOpenCodeSandbox={demo.openCodeSandbox}

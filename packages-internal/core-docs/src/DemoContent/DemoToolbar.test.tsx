@@ -36,7 +36,6 @@ function Toolbar(props: Partial<DemoToolbarProps>) {
         variants={['Default']}
         selectedVariant="Default"
         onSelectVariant={noop}
-        openMuiChat={asyncNoop}
         onOpenStackBlitz={noop}
         onOpenCodeSandbox={noop}
         onCopySource={asyncNoop}
@@ -92,7 +91,7 @@ describe('DemoToolbar', () => {
       },
     });
 
-    renderToolbar({ openMuiChat: undefined }, theme);
+    renderToolbar({}, theme);
 
     expect(menuRenders).to.equal(0);
     expect(snackbarRenders).to.equal(0);
@@ -151,7 +150,7 @@ describe('DemoToolbar', () => {
         },
       });
       const sourceFile = 'Example.tsx';
-      renderTimed(toolbarElement({ tsSourceAnchor: sourceFile, openMuiChat: undefined }, theme));
+      renderTimed(toolbarElement({ tsSourceAnchor: sourceFile }, theme));
       const writeText = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue();
       onTestFinished(() => writeText.mockRestore());
       const sourceUrl = new URL(window.location.href);
@@ -188,12 +187,13 @@ describe('DemoToolbar', () => {
     const toolbar = screen.getByRole('toolbar');
     const buttons = Array.from(toolbar.querySelectorAll('button'));
 
-    expect(buttons.filter((button) => button.tabIndex === 0)).to.have.length(1);
-    act(() => buttons[0].focus());
-    fireEvent.keyDown(buttons[0], { key: 'ArrowRight' });
     const expand = screen.getByRole('button', { name: 'Show source' });
-    expect(document.activeElement).to.equal(expand);
-    expect(expand.tabIndex).to.equal(0);
+    expect(buttons.filter((button) => button.tabIndex === 0)).to.deep.equal([expand]);
+    act(() => expand.focus());
+    fireEvent.keyDown(expand, { key: 'ArrowRight' });
+    expect(document.activeElement).to.equal(buttons[1]);
+    expect(buttons[1].tabIndex).to.equal(0);
+    expect(expand.tabIndex).to.equal(-1);
   });
 
   it('marks one tab stop and omits collapsed language controls in server markup', () => {
@@ -217,11 +217,10 @@ describe('DemoToolbar', () => {
     });
     const javascript = screen.getByRole('button', { name: 'Show JavaScript source' });
     const typescript = screen.getByRole('button', { name: 'Show TypeScript source' });
-    const chat = screen.getByRole('button', { name: 'Edit in Chat' });
 
     expect(typescript).to.have.attribute('aria-pressed', 'true');
-    act(() => chat.focus());
-    fireEvent.keyDown(chat, { key: 'ArrowRight' });
+    act(() => typescript.focus());
+    fireEvent.keyDown(typescript, { key: 'ArrowLeft' });
     expect(document.activeElement).to.equal(javascript);
     await user.click(javascript);
     expect(selections).to.deep.equal(['js']);
@@ -256,9 +255,6 @@ describe('DemoToolbar', () => {
 
     const expand = screen.getByRole('button', { name: 'Show source' });
     expect(expand.getAttribute('data-ga-event-action')).to.equal('expand');
-    expect(
-      screen.getByRole('button', { name: 'Edit in Chat' }).getAttribute('data-ga-event-category'),
-    ).to.equal('mui-chat');
 
     await user.click(screen.getByRole('button', { name: /Reset focus/ }));
     await user.click(screen.getByRole('button', { name: 'Reset demo' }));

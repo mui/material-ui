@@ -18,7 +18,6 @@ import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 import copy from 'clipboard-copy';
 import { useTranslate } from '../i18n';
-import { OpenInMUIChatButton } from './OpenInMUIChatButton';
 import type { DemoDeploymentLinks } from './demoDeploymentLinks';
 
 export type { DemoDeploymentLinks } from './demoDeploymentLinks';
@@ -244,7 +243,6 @@ export interface DemoToolbarProps {
   variants: readonly string[];
   selectedVariant: string;
   onSelectVariant: (variant: string) => void;
-  openMuiChat?: () => Promise<void>;
   hideEditButton?: boolean;
   onOpenStackBlitz: () => void;
   onOpenCodeSandbox: () => void;
@@ -297,7 +295,6 @@ export function DemoToolbar(props: DemoToolbarProps) {
     variants,
     selectedVariant,
     onSelectVariant,
-    openMuiChat,
     hideEditButton,
     onOpenStackBlitz,
     onOpenCodeSandbox,
@@ -388,14 +385,6 @@ export function DemoToolbar(props: DemoToolbarProps) {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        {/* Open in MUI Chat */}
-        <OpenInMUIChatButton
-          openMuiChat={openMuiChat}
-          data-ga-event-category="mui-chat"
-          data-ga-event-label={gaLabel}
-          data-ga-event-action="open-in-mui-chat"
-        />
-
         {/* JS/TS toggle (only relevant when code is open). */}
         <ToggleButtonGroup
           ref={languageToggleRef}
@@ -441,7 +430,6 @@ export function DemoToolbar(props: DemoToolbarProps) {
       <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}>
         {hasNonSystemDemos && (
           <ToolbarButton
-            tabIndex={-1}
             size="small"
             onClick={() => {
               const idx = variants.indexOf(selectedVariant);
@@ -460,7 +448,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
         ) : null}
 
         <ToolbarButton
-          tabIndex={-1}
+          tabIndex={hasNonSystemDemos ? -1 : 0}
           ref={toggleRef}
           onClick={onToggleExpand}
           aria-controls={demoSourceId}

@@ -98,7 +98,6 @@ export function useDemoLoading(
         variants={[]}
         selectedVariant=""
         onSelectVariant={noop}
-        openMuiChat={noopAsync}
         hideEditButton={hideEditButton}
         onOpenStackBlitz={noop}
         onOpenCodeSandbox={noop}
