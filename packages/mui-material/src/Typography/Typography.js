@@ -181,7 +181,7 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -189,20 +189,21 @@ Typography.propTypes /* remove-proptypes */ = {
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'primary',
-      'secondary',
-      'success',
-      'error',
-      'info',
-      'warning',
-      'textPrimary',
-      'textSecondary',
-      'textDisabled',
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'primary',
+        'secondary',
+        'success',
+        'error',
+        'info',
+        'warning',
+        'textPrimary',
+        'textSecondary',
+        'textDisabled',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -221,9 +222,6 @@ Typography.propTypes /* remove-proptypes */ = {
    * @default false
    */
   noWrap: PropTypes.bool,
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -237,25 +235,26 @@ Typography.propTypes /* remove-proptypes */ = {
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'body1',
-      'body2',
-      'button',
-      'caption',
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'inherit',
-      'overline',
-      'subtitle1',
-      'subtitle2',
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'body1',
+        'body2',
+        'button',
+        'caption',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'inherit',
+        'overline',
+        'subtitle1',
+        'subtitle2',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * The component maps the variant prop to a range of different HTML element types.
    * For instance, subtitle1 to `<h6>`.

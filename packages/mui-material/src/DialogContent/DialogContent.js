@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import { applyInsetFocusVisible } from '../styles/focusVisible';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
@@ -36,10 +35,7 @@ const DialogContentRoot = styled('div', {
     overflowY: 'auto',
     padding: '20px 24px',
     ...(theme.focusVisible && {
-      '&:focus-visible': {
-        ...applyInsetFocusVisible(1),
-        ...theme.focusVisible,
-      },
+      '&:focus-visible': theme.applyFocusVisible('inset'),
     }),
     variants: [
       {
@@ -95,9 +91,6 @@ DialogContent.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * Display the top and bottom dividers.

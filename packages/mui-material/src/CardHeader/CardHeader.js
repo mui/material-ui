@@ -189,9 +189,6 @@ CardHeader.propTypes /* remove-proptypes */ = {
    * The Avatar element to display.
    */
   avatar: PropTypes.node,
-  /**
-   * @ignore
-   */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
@@ -214,14 +211,15 @@ CardHeader.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    avatar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    subheader: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    title: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({
+      action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      avatar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      subheader: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      title: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
   /**
    * The components used for each slot inside.
    * @default {}

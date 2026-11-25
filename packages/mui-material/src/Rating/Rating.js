@@ -16,7 +16,6 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
-import { outsetFocusRing } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -88,12 +87,9 @@ const RatingRoot = styled('span', {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
-    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      // Legacy default, superseded when the curated ring is opted in.
-      ...(!theme.focusVisible && {
-        outline: '1px solid #999',
-      }),
-      ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
+    // Legacy default, superseded when the curated ring is opted in.
+    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: theme.focusVisible || {
+      outline: '1px solid #999',
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -143,10 +139,7 @@ const RatingLabel = styled('label', {
           position: 'absolute',
           width: '100%',
           // Legacy default, superseded when the curated ring is opted in.
-          ...(!theme.focusVisible && {
-            outline: '1px solid #999',
-          }),
-          ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
+          ...(theme.focusVisible || { outline: '1px solid #999' }),
         },
       },
     ],
@@ -706,16 +699,13 @@ Rating.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
-  /**
-   * @ignore
-   */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * A CSS class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -788,13 +778,7 @@ Rating.propTypes /* remove-proptypes */ = {
    * @param {number} value The new value.
    */
   onChangeActive: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseLeave: PropTypes.func,
-  /**
-   * @ignore
-   */
   onMouseMove: PropTypes.func,
   /**
    * The minimum increment value change allowed.
@@ -820,10 +804,8 @@ Rating.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium', 'large']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['small', 'medium', 'large']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}

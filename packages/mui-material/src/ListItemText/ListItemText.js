@@ -165,9 +165,6 @@ ListItemText.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
    * If `true`, the children won't be wrapped by a Typography component.
@@ -195,11 +192,12 @@ ListItemText.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({
+      primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
   /**
    * The components used for each slot inside.
    * @default {}

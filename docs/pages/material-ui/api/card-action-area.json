@@ -39,7 +39,7 @@
     {
       "name": "focusHighlight",
       "description": "The component that renders the focusHighlight.",
-      "default": "span",
+      "default": "'span'",
       "class": "MuiCardActionArea-focusHighlight"
     }
   ],

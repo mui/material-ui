@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7 || ^8.0.5",
-    "es-toolkit": "^1.52.0",
-    "marked": "^18.1.2",
+    "es-toolkit": "^1.53.2",
+    "marked": "^18.2.0",
     "prismjs": "^1.30.0"
   },
   "publishConfig": {
