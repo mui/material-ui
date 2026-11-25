@@ -1022,6 +1022,28 @@ describe('createTheme', () => {
         });
       });
 
+      it('should throw for a CSS variable main color of a copy of the theme or a second call, like for options', () => {
+        const message = "can't be generated from `var(--brand)`";
+        const palette = { primary: { main: 'var(--brand)' } };
+        const theme = createTheme({ cssVariables: true });
+
+        expect(() => createTheme({ cssVariables: true, palette })).toThrowMinified(message);
+        expect(() => createTheme({ cssVariables: true }, { palette })).toThrowMinified(message);
+        expect(() => createTheme(theme, { palette })).toThrowMinified(message);
+        expect(() =>
+          createTheme({
+            ...theme,
+            palette: {
+              ...theme.palette,
+              primary: { ...theme.palette.primary, main: 'var(--brand)' },
+            },
+          }),
+        ).toThrowMinified(message);
+
+        const nativeTheme = createTheme({ cssVariables: { nativeColor: true } });
+        expect(createTheme(nativeTheme, { palette }).palette.primary.main).to.equal('var(--brand)');
+      });
+
       it('should apply the changes of a copy of the theme or a second call to a typography function', () => {
         const typography = () => ({ fontSize: 12, fontFamily: 'serif' });
         const theme = createTheme({ cssVariables: true, typography });

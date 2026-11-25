@@ -1,5 +1,5 @@
 import deepmerge from '@mui/utils/deepmerge';
-import { darken, getContrastRatio, lighten } from '@mui/system/colorManipulator';
+import { darken, decomposeColor, getContrastRatio, lighten } from '@mui/system/colorManipulator';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import purple from '../colors/purple';
@@ -82,6 +82,16 @@ function getDark() {
 }
 
 export const dark = getDark();
+
+// Whether `lighten()`, `darken()` and `getContrastRatio()` can read the color.
+function canGenerateFrom(color) {
+  try {
+    decomposeColor(color);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 
 function addLightOrDark(intent, direction, shade, tonalOffset) {
   const tonalOffsetLight = tonalOffset.light || tonalOffset;
@@ -281,6 +291,21 @@ export default function createPalette(palette) {
           'const theme2 = createTheme({ palette: {\n' +
           '  primary: { main: green[500] },\n' +
           '} });',
+      );
+    }
+
+    if (
+      !colorSpace &&
+      ((!color.light && !color.hasOwnProperty(lightShade)) ||
+        (!color.dark && !color.hasOwnProperty(darkShade)) ||
+        !color.contrastText) &&
+      !canGenerateFrom(color.main)
+    ) {
+      throw /* minify-error */ new Error(
+        `MUI: The color${name ? ` (${name})` : ''} provided to augmentColor(color) is invalid.\n` +
+          `The missing \`light\`, \`dark\` or \`contrastText\` can't be generated from \`${color.main}\`.\n` +
+          'Provide them, or set `nativeColor: true` in the `cssVariables` option to generate them with CSS.\n' +
+          'Without `nativeColor`, these formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
       );
     }
 
