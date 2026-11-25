@@ -22,7 +22,7 @@ jobs:
       id-token: write # Anthropic WIF
       issues: write # failure reports
       pull-requests: write # the review
-    uses: mui/mui-public/.github/workflows/docs-style-review-workflow.lock.yml@36e25de79350820a4abafd656bb5376c19f676cb # master
+    uses: mui/mui-public/.github/workflows/docs-style-review-workflow.lock.yml@440cdb52ea34c33c052f6dd8e0d3a49a3c2b2add # master
     with:
       # Hand-written docs only, one glob per line.
       exclude: |
