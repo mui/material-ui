@@ -191,6 +191,43 @@ describe('<Switch />', () => {
     });
   });
 
+  describe('theme.focusVisible', () => {
+    function getCheckedTrack(theme, props) {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Switch defaultChecked {...props} />
+        </ThemeProvider>,
+      );
+      return container.querySelector(`.${classes.track}`);
+    }
+
+    it.skipIf(isJsdom())('dims the track through its background color, not opacity', () => {
+      // so the ring drawn on the track keeps its full color
+      expect(getCheckedTrack(createTheme())).toHaveComputedStyle({
+        opacity: '1',
+        backgroundColor: 'rgba(25, 118, 210, 0.5)',
+      });
+    });
+
+    it.skipIf(isJsdom())('shows a track backgroundColor override at full strength', () => {
+      const track = getCheckedTrack(createTheme(), {
+        sx: {
+          [`& .${classes.switchBase}.${classes.checked} + .${classes.track}`]: {
+            backgroundColor: 'rgb(216, 27, 96)',
+          },
+        },
+      });
+      expect(track).toHaveComputedStyle({ opacity: '1', backgroundColor: 'rgb(216, 27, 96)' });
+    });
+
+    it.skipIf(isJsdom())('dims the track with opacity when focusVisible is false', () => {
+      expect(getCheckedTrack(createTheme({ focusVisible: false }))).toHaveComputedStyle({
+        opacity: '0.5',
+        backgroundColor: 'rgb(25, 118, 210)',
+      });
+    });
+  });
+
   describe('WCAG 2.2 conformance', () => {
     it('2.1.1 Keyboard: toggles the checked state with the Space key', async () => {
       const handleChange = spy();

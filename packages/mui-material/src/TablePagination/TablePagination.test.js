@@ -599,7 +599,7 @@ describe('<TablePagination />', () => {
     }
 
     it.skipIf(isJsdom())('keeps the focus tint on the select without the theme ring', () => {
-      const combobox = setup(createTheme());
+      const combobox = setup(createTheme({ focusVisible: false }));
 
       act(() => combobox.focus());
 
@@ -806,6 +806,7 @@ describe('<TablePagination />', () => {
         'should apply a focus background only to the default InputBase-backed select',
         async () => {
           const theme = createTheme({
+            focusVisible: false,
             palette: {
               action: {
                 focus: 'rgb(1, 2, 3)',

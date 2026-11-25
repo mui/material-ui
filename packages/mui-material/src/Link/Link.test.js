@@ -299,9 +299,27 @@ describe('<Link />', () => {
 
     // JSDOM doesn't support :focus-visible
     it.skipIf(isJsdom())(
-      '2.4.7 Focus Visible: a button link shows the browser outline on keyboard focus',
+      '2.4.7 Focus Visible: a button link shows the theme ring on keyboard focus',
       () => {
         render(<Link component="button">Show more</Link>);
+        const button = screen.getByRole('button');
+
+        expect(button).toHaveComputedStyle({ outlineStyle: 'none' });
+        focusVisible(button);
+        expect(button).to.have.class(classes.focusVisible);
+        expect(button).toHaveComputedStyle({ outlineStyle: 'solid' });
+      },
+    );
+
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())(
+      '2.4.7 Focus Visible: with `focusVisible: false`, a button link shows the browser outline on keyboard focus',
+      () => {
+        render(
+          <ThemeProvider theme={createTheme({ focusVisible: false })}>
+            <Link component="button">Show more</Link>
+          </ThemeProvider>,
+        );
         const button = screen.getByRole('button');
 
         expect(button).toHaveComputedStyle({ outlineStyle: 'none' });

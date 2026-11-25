@@ -567,11 +567,21 @@ describe('createTheme', () => {
       expect(theme.focusVisible.outlineColor).to.equal(theme.palette.primary.main);
     });
 
-    it('`false` and `undefined` leave focusVisible off (non-breaking)', () => {
-      expect(createTheme({ cssVariables: false, focusVisible: false }).focusVisible).to.equal(
-        false,
-      );
-      expect(createTheme({ cssVariables: false }).focusVisible).to.equal(undefined);
+    it('is on by default', () => {
+      [false, true].forEach((cssVariables) => {
+        expect(createTheme({ cssVariables }).focusVisible).to.deep.equal(
+          createTheme({ cssVariables, focusVisible: true }).focusVisible,
+        );
+      });
+    });
+
+    it('`false` turns focusVisible off', () => {
+      [false, true].forEach((cssVariables) => {
+        const theme = createTheme({ cssVariables, focusVisible: false });
+        expect(theme.focusVisible).to.equal(false);
+        expect(createTheme(theme).focusVisible).to.equal(false);
+        expect(createTheme({ cssVariables }, { focusVisible: false }).focusVisible).to.equal(false);
+      });
     });
 
     describe('insetOverrides', () => {
@@ -673,7 +683,7 @@ describe('createTheme', () => {
       });
 
       it('returns an empty object when focusVisible is off', () => {
-        const theme = createTheme({ cssVariables: false });
+        const theme = createTheme({ cssVariables: false, focusVisible: false });
         expect(theme.applyFocusVisible('inset')).to.deep.equal({});
         expect(theme.applyFocusVisible('outset')).to.deep.equal({});
       });

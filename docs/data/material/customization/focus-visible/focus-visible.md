@@ -2,18 +2,11 @@
 
 <p class="description">Apply an outline or inset keyboard focus across Material UI components.</p>
 
-Starting from v9.4, Material UI provides built-in support for visual keyboard focus indicator through CSS. The demos on this page opt out of the ripple to show only the focus visible indicator.
+Material UI draws a keyboard focus indicator through CSS, on by default starting from v10. The demos on this page opt out of the ripple to show only the focus visible indicator.
 
 ## Usage
 
-Set `focusVisible: true` on the theme to render a default focus indicator on every [ButtonBase](/material-ui/api/button-base/)-derived component when it receives **keyboard** focus:
-
-```js
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme({ focusVisible: true });
-```
-
+The theme renders a focus indicator on every [ButtonBase](/material-ui/api/button-base/)-derived component when it receives **keyboard** focus.
 The default focus indicator is a two-pixel solid outline with `palette.primary.main` color, offset by two pixels:
 
 {{"component": "file://./demos/default/index.ts"}}
@@ -35,13 +28,25 @@ To see the full list of components that show inner focus indicator, check out th
 
 ### Colored surface container
 
-Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. This comes by default when the focus visible feature is enabled, unless a custom box-shadow is provided.
+Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. This comes by default, unless a custom box-shadow is provided.
 
 {{"component": "file://./demos/colored-surface/index.ts"}}
 
 ## Customization
 
 The `focusVisible` can be customized by passing a CSS object to merge with the default styles.
+
+### Turning the indicator off
+
+Set `focusVisible` to `false` to turn the indicator off, for example when your app styles keyboard focus itself:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({ focusVisible: false });
+```
+
+Components then go back to their own focus styles, such as the focus ripple and the backgrounds listed in [Component focus-visible styles are replaced by the theme](#component-focus-visible-styles-are-replaced-by-the-theme).
 
 ### Changing the outline color
 
@@ -164,7 +169,7 @@ Otherwise, the container clips the indicator, or the indicator overlaps neighbor
 
 ## Full focus visible demo
 
-The complete set of components that render the focus indicator when `focusVisible` is enabled. Use the keyboard (<kbd>Tab</kbd> and arrow keys) to move focus and reveal the ring.
+The complete set of components that render the focus indicator. Use the keyboard (<kbd>Tab</kbd> and arrow keys) to move focus and reveal the ring.
 
 {{"component": "file://./demos/full/index.ts"}}
 
@@ -184,14 +189,14 @@ The indicator hugs whatever box the svg renders at, so smaller replacement icons
 
 ### Component focus-visible styles are replaced by the theme
 
-Some components indicate keyboard focus with a translucent background or overlay by default — the `Chip`, `MenuItem`, `ListItemButton`, `AccordionSummary`, `PaginationItem`, `CardActionArea`, `Autocomplete` options, and the `Slider` thumb. When `focusVisible` is enabled, these component focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components — hover, selected, and active styles are unchanged.
+Some components indicate keyboard focus with a translucent background or overlay by default — the `Chip`, `MenuItem`, `ListItemButton`, `AccordionSummary`, `PaginationItem`, `CardActionArea`, `Autocomplete` options, and the `Slider` thumb. With the theme's indicator on, these component focus-visible styles are removed so that the theme's indicator is the only one, consistent across all components — hover, selected, and active styles are unchanged.
 
 ### Recomposing a theme with a palette change
 
 Spreading a created theme into `createTheme()` while changing the palette keeps the indicator color resolved from the original palette. Re-pass `focusVisible` in the same call so the color re-derives from the new palette:
 
 ```js
-const base = createTheme({ focusVisible: true });
+const base = createTheme();
 
 // ✅ re-pass focusVisible to re-derive the color from the new palette
 createTheme({

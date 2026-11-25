@@ -1627,8 +1627,17 @@ describe('<ButtonBase />', () => {
       },
     );
 
-    it.skipIf(isJsdom())('renders no ring when focusVisible is unset (non-breaking)', () => {
+    it.skipIf(isJsdom())('renders the curated ring by default', () => {
       const button = focusVisibleButton(undefined);
+      expect(button).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('renders no ring when focusVisible is false', () => {
+      const button = focusVisibleButton(false);
       expect(button).toHaveComputedStyle({ outlineStyle: 'none' });
     });
 

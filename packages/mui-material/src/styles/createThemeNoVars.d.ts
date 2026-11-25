@@ -71,6 +71,10 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   typography?:
     TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   zIndex?: ZIndexOptions | undefined;
+  /**
+   * The keyboard focus ring. An object merges over the default ring, and `false` turns it off.
+   * @default true
+   */
   focusVisible?: boolean | FocusVisibleOptions | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;

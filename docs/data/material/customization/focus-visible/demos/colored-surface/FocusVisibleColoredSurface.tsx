@@ -13,7 +13,6 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 
 const theme = createTheme({
-  focusVisible: true,
   colorSchemes: { light: true, dark: true },
   // These demos opt out of the ripple, so the focus ring is the only keyboard indicator.
   components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
