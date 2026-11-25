@@ -554,6 +554,11 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
           name: 'Actions',
         },
         {
+          title: 'render element label applies when the top-level label is undefined',
+          props: { 'aria-label': undefined, render: <section aria-label="Actions" /> },
+          name: 'Actions',
+        },
+        {
           title: 'top-level labelledby replaces the inferred trigger label',
           props: { 'aria-labelledby': 'menu-label' },
           name: 'Available actions',

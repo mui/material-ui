@@ -353,9 +353,10 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
         className={clsx(classes?.positioner, positionerSlotClassName)}
       >
         <BaseMenu.Popup
-          aria-label={renderElementLabel}
           finalFocus={popupFinalFocus}
           {...popupProps}
+          // An undefined label prop falls back to the element label, as in Base UI.
+          aria-label={popupProps['aria-label'] ?? renderElementLabel}
           ref={handleRootRef}
           render={(renderProps, state) => {
             // Let Base UI apply its initial transition:none before Grow starts.
