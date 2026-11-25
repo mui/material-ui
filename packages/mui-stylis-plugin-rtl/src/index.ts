@@ -2,7 +2,7 @@
 
 /**
  * Copied from https://github.com/styled-components/stylis-plugin-rtl/blob/main/src/stylis-rtl.ts
- * with a modification at line 67 to handle layer rules.
+ * with a modification to handle layer and container rules.
  */
 
 // @ts-expect-error: cssjanus does not ship TypeScript declarations.
@@ -55,6 +55,10 @@ function stringifyPreserveComments(
     : '';
 }
 
+function isWithinSupports(element: MiddlewareParams[0]): boolean {
+  return element.type === SUPPORTS || (!!element.parent && isWithinSupports(element.parent));
+}
+
 function stylisRTLPlugin(
   element: MiddlewareParams[0],
   index: MiddlewareParams[1],
@@ -68,7 +72,8 @@ function stylisRTLPlugin(
       (!element.parent ||
         element.parent.type === MEDIA ||
         element.parent.type === RULESET ||
-        element.parent.type === LAYER))
+        element.parent.type === LAYER ||
+        (element.parent.type === '@container' && !isWithinSupports(element.parent))))
   ) {
     const stringified = cssjanus.transform(stringifyPreserveComments(element, index, children));
 

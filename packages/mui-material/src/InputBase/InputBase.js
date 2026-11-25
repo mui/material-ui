@@ -8,6 +8,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import isHostComponent from '@mui/utils/isHostComponent';
 import TextareaAutosize from '../TextareaAutosize';
 import FormControlContext from '../FormControl/FormControlContext';
+import InputBaseSizeContext from './inputBaseSizeContext';
 import { useFormControlState } from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -199,24 +200,19 @@ export const InputBaseInput = styled('input', {
         opacity: 1, // Reset iOS opacity
         WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
       },
+      // Keep keyframes non-empty for Emotion production builds. Animation properties are ignored
+      // inside keyframes, avoiding the visible display animation triggered by Chrome 117+.
+      [`@keyframes ${MUI_AUTO_FILL}`]: { from: { animationName: MUI_AUTO_FILL } },
+      [`@keyframes ${MUI_AUTO_FILL_CANCEL}`]: {
+        from: { animationName: MUI_AUTO_FILL_CANCEL },
+      },
+      animationName: MUI_AUTO_FILL_CANCEL,
+      animationDuration: '10ms',
+      '&:-webkit-autofill': {
+        animationDuration: '5000s',
+        animationName: MUI_AUTO_FILL,
+      },
       variants: [
-        {
-          props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
-          style: {
-            // Keep keyframes non-empty for Emotion production builds. Animation properties are ignored
-            // inside keyframes, avoiding the visible display animation triggered by Chrome 117+.
-            [`@keyframes ${MUI_AUTO_FILL}`]: { from: { animationName: MUI_AUTO_FILL } },
-            [`@keyframes ${MUI_AUTO_FILL_CANCEL}`]: {
-              from: { animationName: MUI_AUTO_FILL_CANCEL },
-            },
-            animationName: MUI_AUTO_FILL_CANCEL,
-            animationDuration: '10ms',
-            '&:-webkit-autofill': {
-              animationDuration: '5000s',
-              animationName: MUI_AUTO_FILL,
-            },
-          },
-        },
         {
           props: {
             size: 'small',
@@ -261,7 +257,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     color,
     defaultValue,
     disabled,
-    disableInjectingGlobalStyles,
     endAdornment,
     error,
     fullWidth = false,
@@ -514,11 +509,13 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     checkDirty(event.animationName === MUI_AUTO_FILL_CANCEL ? inputRef.current : { value: 'x' });
   };
 
+  const hasStartAdornment = Boolean(startAdornment);
+  const setAdornedStart = muiFormControl ? muiFormControl.setAdornedStart : undefined;
   React.useEffect(() => {
-    if (muiFormControl) {
-      muiFormControl.setAdornedStart(Boolean(startAdornment));
+    if (setAdornedStart) {
+      setAdornedStart(hasStartAdornment);
     }
-  }, [muiFormControl, startAdornment]);
+  }, [setAdornedStart, hasStartAdornment]);
 
   const ownerState = {
     ...props,
@@ -565,43 +562,45 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     >
       {startAdornment}
       <FormControlContext.Provider value={null}>
-        <Input
-          aria-invalid={fcs.error}
-          aria-describedby={ariaDescribedby}
-          aria-label={ariaLabel}
-          autoComplete={autoComplete}
-          autoFocus={autoFocus}
-          defaultValue={defaultValue}
-          disabled={fcs.disabled}
-          id={id}
-          onAnimationStart={handleAutoFill}
-          name={name}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={fcs.required}
-          rows={rows}
-          value={value}
-          onKeyDown={onKeyDown}
-          onKeyUp={onKeyUp}
-          type={type}
-          {...inputProps}
-          {...(!isHostComponent(Input) && {
-            as: InputComponent,
-            ownerState: { ...ownerState, ...inputProps.ownerState },
-          })}
-          ref={handleInputRef}
-          className={clsx(
-            classes.input,
-            {
-              // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-              'MuiInputBase-readOnly': readOnly,
-            },
-            inputProps.className,
-          )}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onFocus={handleFocus}
-        />
+        <InputBaseSizeContext.Provider value={fcs.size}>
+          <Input
+            aria-invalid={fcs.error}
+            aria-describedby={ariaDescribedby}
+            aria-label={ariaLabel}
+            autoComplete={autoComplete}
+            autoFocus={autoFocus}
+            defaultValue={defaultValue}
+            disabled={fcs.disabled}
+            id={id}
+            onAnimationStart={handleAutoFill}
+            name={name}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            required={fcs.required}
+            rows={rows}
+            value={value}
+            onKeyDown={onKeyDown}
+            onKeyUp={onKeyUp}
+            type={type}
+            {...inputProps}
+            {...(!isHostComponent(Input) && {
+              as: InputComponent,
+              ownerState: { ...ownerState, ...inputProps.ownerState },
+            })}
+            ref={handleInputRef}
+            className={clsx(
+              classes.input,
+              {
+                // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+                'MuiInputBase-readOnly': readOnly,
+              },
+              inputProps.className,
+            )}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onFocus={handleFocus}
+          />
+        </InputBaseSizeContext.Provider>
       </FormControlContext.Provider>
       {endAdornment}
       {renderSuffix
@@ -648,10 +647,11 @@ InputBase.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -661,12 +661,6 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, the auto-fill keyframes are not injected with the input styles. Make sure to inject them at the top of your application.
-   * @deprecated The keyframes are injected with the input styles, so there is no longer a style sheet per input to avoid. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default false
-   */
-  disableInjectingGlobalStyles: PropTypes.bool,
   /**
    * End `InputAdornment` for this component.
    */
@@ -778,10 +772,8 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

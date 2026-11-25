@@ -245,7 +245,7 @@ describe('<ButtonBase />', () => {
       });
       expect(onBlur.callCount).to.equal(1);
 
-      fireEvent.mouseLeave(button);
+      await user.unhover(button);
       expect(onMouseLeave.callCount).to.equal(1);
     });
 

@@ -174,20 +174,21 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf([
-      'inherit',
-      'action',
-      'disabled',
-      'primary',
-      'secondary',
-      'error',
-      'info',
-      'success',
-      'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf([
+        'inherit',
+        'action',
+        'disabled',
+        'primary',
+        'secondary',
+        'error',
+        'info',
+        'success',
+        'warning',
+      ]),
+      PropTypes.string,
     ]),
-    PropTypes.string,
-  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -197,10 +198,8 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
-    PropTypes.string,
-  ]),
+  fontSize: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), PropTypes.string]),
   /**
    * Applies a color attribute to the SVG element.
    */

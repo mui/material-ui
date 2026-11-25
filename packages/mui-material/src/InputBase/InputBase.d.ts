@@ -66,12 +66,6 @@ export interface InputBaseProps extends StandardProps<
    */
   disabled?: boolean | undefined;
   /**
-   * If `true`, the auto-fill keyframes are not injected with the input styles. Make sure to inject them at the top of your application.
-   * @deprecated The keyframes are injected with the input styles, so there is no longer a style sheet per input to avoid. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default false
-   */
-  disableInjectingGlobalStyles?: boolean | undefined;
-  /**
    * End `InputAdornment` for this component.
    */
   endAdornment?: React.ReactNode;

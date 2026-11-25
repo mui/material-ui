@@ -132,7 +132,7 @@ const ListboxComponent = React.forwardRef<
         }}
         overscanCount={5}
         tagName="ul"
-        role="presentation"
+        role="none"
       />
     </div>
   );

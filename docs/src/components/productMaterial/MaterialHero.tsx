@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { extendTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -195,9 +195,8 @@ function SlideDemo() {
 }
 const { palette: lightPalette } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
-const customTheme = extendTheme({
-  cssVarPrefix: 'hero',
-  colorSchemeSelector: 'data-mui-color-scheme',
+const customTheme = createTheme({
+  cssVariables: { cssVarPrefix: 'hero', colorSchemeSelector: 'data-mui-color-scheme' },
   colorSchemes: {
     light: {
       palette: {

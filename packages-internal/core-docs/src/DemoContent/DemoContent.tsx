@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { Tabs } from '@base-ui/react/tabs';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { CodeControllerContext } from '@mui/internal-docs-infra/CodeControllerContext';
-import { preloadCodeEditor } from '@mui/internal-docs-infra/useCode';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
 import { useUrlHashState } from '@mui/internal-docs-infra/useUrlHashState';
 import { useTranslate } from '../i18n';
@@ -12,7 +11,8 @@ import DemoContext from '../DemoContext';
 import { AdCarbonInline } from '../Ad/AdCarbon';
 import { CODE_VARIANTS, stylingSolutionMapping } from '../constants/constants';
 import { DemoAiSuggestionHero } from './DemoAiSuggestionHero';
-import { DemoAnchorLink, DemoContainer, DemoFileTabBar } from './DemoContainer';
+import { DemoAnchorLink, DemoFileTabBar } from './DemoContainer';
+import { DemoFrameContent } from './DemoFrameContext';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 import { CodeSource, FileTab } from './CodeSource';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
@@ -298,24 +298,6 @@ export default function DemoContent(props: DemoContentProps) {
     }
     expandSource();
   }, [codeController, disableLiveEdit, editingDependencies, expandSource]);
-  // Warm the live-editing runtime (build engine, transpile worker, editor chunk)
-  // while the browser is idle, so the first click into a code area edits instantly.
-  // All preloads are module-level singletons, so per-demo scheduling is deduped.
-  React.useEffect(() => {
-    if (disableLiveEdit || !codeController?.onActivate) {
-      return undefined;
-    }
-    const warm = () => {
-      codeController.onActivate?.(editingDependencies);
-      preloadCodeEditor();
-    };
-    if (typeof window.requestIdleCallback === 'function') {
-      const handle = window.requestIdleCallback(warm);
-      return () => window.cancelIdleCallback(handle);
-    }
-    const handle = setTimeout(warm, 1500);
-    return () => clearTimeout(handle);
-  }, [codeController, disableLiveEdit, editingDependencies]);
   const handleExpand = React.useCallback(() => {
     expandDemo(expandWithEditingPreload, remountPreview);
   }, [expandWithEditingPreload]);
@@ -529,7 +511,7 @@ export default function DemoContent(props: DemoContentProps) {
   }, [maxWidth, height]);
 
   return (
-    <DemoContainer
+    <DemoFrameContent
       anchorId={anchorName}
       anchors={anchors}
       sourceAnchorIds={sourceAnchorIds}

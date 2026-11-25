@@ -1227,6 +1227,17 @@ The Drawer's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop
  />
 ```
 
+### ModalProps
+
+The Drawer's `ModalProps` prop was deprecated in favor of `slotProps.root`:
+
+```diff
+ <Drawer
+-  ModalProps={modalProps}
++  slotProps={{ root: modalProps }}
+ />
+```
+
 ### PaperProps
 
 The Drawer's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
@@ -1484,35 +1495,6 @@ The InputBase's prop `componentsProps` was deprecated in favor of `slotProps`:
 -  componentsProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
 +  slotProps={{ input: { id: 'test-input-id' }, root: { id: 'test-root-id' } }}
  />
-```
-
-### disableInjectingGlobalStyles
-
-The InputBase's prop `disableInjectingGlobalStyles` was deprecated: the auto-fill keyframes are injected with the input styles, so there is no longer a style sheet per input to avoid.
-Remove the prop, along with the `GlobalStyles` for the auto-fill keyframes it required:
-
-```diff
- const theme = createTheme({
-   components: {
-     MuiInputBase: {
--      defaultProps: {
--        disableInjectingGlobalStyles: true,
--      },
-     },
-   },
- });
-
- <ThemeProvider theme={theme}>
--  <GlobalStyles
--    styles={{
--      '@keyframes mui-auto-fill': { from: { animationName: 'mui-auto-fill' } },
--      '@keyframes mui-auto-fill-cancel': {
--        from: { animationName: 'mui-auto-fill-cancel' },
--      },
--    }}
--  />
-   ...
- </ThemeProvider>
 ```
 
 ## ListItem
