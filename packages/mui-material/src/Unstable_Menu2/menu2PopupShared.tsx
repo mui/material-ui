@@ -260,12 +260,16 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   setDefinedProp(positionerProps, 'collisionAvoidance', collisionAvoidance);
 
   // `render` keeps the styled slot. A `slots.<slot>` replacement takes precedence.
-  // Base UI reads the portal `id` from the element, so the portal uses the element form.
-  // The portal state is empty, as in Base UI.
+  // Base UI reads the portal `id` from the element, so the portal uses the element form
+  // and lifts the id of a render element. The portal state is empty, as in Base UI.
+  const portalRenderId = React.isValidElement<{ id?: string | undefined }>(portalSlotRender)
+    ? portalSlotRender.props.id
+    : undefined;
   const portalRender = getMenu2RootRender(PortalSlot, ownerState, {
     sx: portalSlotSx,
     ...(portalSlotRender &&
       !slots?.portal && {
+        ...(portalRenderId !== undefined && { id: portalRenderId }),
         as: Menu2RenderRoot,
         internalRender: portalSlotRender,
         internalRenderState: {},
@@ -287,6 +291,11 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     mergeProps({ elevation: elevation ?? 8 }, other, rootSlotOtherProps),
     paperHostOmittedProps,
   );
+  // Base UI names the popup from a `render` element, but the Material render function hides it.
+  const renderElementLabel =
+    !slots?.root && React.isValidElement<HTMLProps>(renderProp)
+      ? renderProp.props['aria-label']
+      : undefined;
   const { render: listRender, props: resolvedListProps } = resolveMenu2SlotRender(
     slotProps?.list,
     ownerState,
@@ -347,6 +356,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
         className={clsx(classes?.positioner, positionerSlotClassName)}
       >
         <BaseMenu.Popup
+          aria-label={renderElementLabel}
           finalFocus={popupFinalFocus}
           {...popupProps}
           ref={handleRootRef}
@@ -354,11 +364,6 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
             // Let Base UI apply its initial transition:none before Grow starts.
             // The opening popup must remain focusable while Grow is still exited.
             const mergedRootProps = mergeProps(renderProps, rootProps);
-            // A supplied name takes precedence over Base UI's trigger label.
-            // Keep an explicit labelledby when both naming attributes are set.
-            mergedRootProps['aria-labelledby'] =
-              popupProps['aria-labelledby'] ??
-              (popupProps['aria-label'] !== undefined ? undefined : renderProps['aria-labelledby']);
             // `render` keeps the styled surface; a `slots.root` replacement takes precedence.
             const root =
               renderProp && !slots?.root ? (

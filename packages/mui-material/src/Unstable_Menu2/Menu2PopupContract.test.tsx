@@ -322,6 +322,16 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         });
       });
 
+      it('links the hidden owner element to the id of a portal render element', async () => {
+        const { user } = render(
+          <TestMenu slotProps={{ portal: { render: <section id="custom-portal" /> } }} />,
+        );
+
+        const popup = await openMenu(user);
+        expect(popup.parentElement!.parentElement).to.have.attribute('id', 'custom-portal');
+        expect(document.querySelector('[aria-owns="custom-portal"]')).not.to.equal(null);
+      });
+
       it('lets the portal and positioner slots take precedence over render', async () => {
         const renderSpy = vi.fn((props: React.HTMLAttributes<HTMLElement>) => (
           <section {...props} />
@@ -536,6 +546,11 @@ describe.skipIf(isJsdom())('Menu2 popup contract', () => {
         {
           title: 'root label replaces the inferred trigger label',
           props: { slotProps: { root: { 'aria-label': 'Actions' } } },
+          name: 'Actions',
+        },
+        {
+          title: 'render element label replaces the inferred trigger label',
+          props: { render: <section aria-label="Actions" /> },
           name: 'Actions',
         },
         {

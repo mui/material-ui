@@ -94,6 +94,29 @@ describe('<Menu2GroupLabel />', () => {
       });
     });
 
+    it(`registers the ${name} label id from a render element`, () => {
+      render(
+        <Menu2 defaultOpen modal={false}>
+          <Menu2Popup anchor={document.body}>
+            <Group>
+              <Menu2GroupLabel
+                id="top-level-label"
+                render={<p id="render-label" />}
+                slotProps={{ root: { id: 'slot-label' } }}
+              >
+                Account
+              </Menu2GroupLabel>
+              {item}
+            </Group>
+          </Menu2Popup>
+        </Menu2>,
+      );
+      const label = screen.getByText('Account');
+      const group = screen.getByRole('group', { name: 'Account' });
+      expect(label.id).to.equal('render-label');
+      expect(group).to.have.attribute('aria-labelledby', label.id);
+    });
+
     [undefined, 'top-level-label'].forEach((id) => {
       it(`keeps the ${name} label association when the root-slot id is undefined, explicit id=${Boolean(id)}`, () => {
         render(

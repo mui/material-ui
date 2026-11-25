@@ -78,7 +78,12 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
   const classes = useUtilityClasses(ownerState);
   const handleRef = useForkRef(ref);
   // Base UI must register the same ID that is rendered on the label.
+  // A render element ID takes precedence in the DOM.
   const { id: rootId, ...rootSlotProps } = resolveComponentProps(slotProps?.root, ownerState) ?? {};
+  const renderId =
+    !slots?.root && React.isValidElement<{ id?: string | undefined }>(renderProp)
+      ? renderProp.props.id
+      : undefined;
 
   return (
     <BaseMenu.GroupLabel
@@ -106,7 +111,7 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
       className={clsx(className, classes.root)}
       style={style}
       {...other}
-      id={rootId ?? other.id}
+      id={renderId ?? rootId ?? other.id}
     />
   );
 });

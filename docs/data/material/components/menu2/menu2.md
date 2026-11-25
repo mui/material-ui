@@ -582,7 +582,7 @@ It handles the trigger, the roles, the keyboard behavior, focus management, and 
 - Escape closes one level at a time and returns focus to the trigger of that level.
 
 The menu takes its accessible name from the trigger.
-`aria-label` or `aria-labelledby` on `MenuPopup` replaces it, and an explicit `aria-labelledby` takes precedence over `aria-label`.
+`aria-label` or `aria-labelledby` on `MenuPopup` or its `render` element replaces it, and an explicit `aria-labelledby` takes precedence over `aria-label`.
 Matching attributes on `slotProps.root` take precedence over the top-level ones.
 
 Two things stay your responsibility:
