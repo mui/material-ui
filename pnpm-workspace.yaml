@@ -40,6 +40,9 @@ catalogs:
     '@mui/internal-docs-infra': '0.13.1-canary.38'
 
 overrides:
+  # Until https://github.com/mui/mui-public/pull/2118 is released.
+  '@mui/internal-docs-infra': https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@4e2b2f14
+  '@mui/internal-docs-infra>@mui/internal-typescript-api-extractor': 0.1.1-canary.3
   # Bundled twice in the docs build
   'docs>react-is': '19.3.1'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
