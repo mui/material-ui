@@ -102,6 +102,27 @@ describe('DemoContainer', () => {
     expect(document.getElementById('demo-source')).to.have.text('source');
   });
 
+  it.skipIf(isJsdom())('keeps fixed overlays positioned relative to the viewport', () => {
+    const overlayPosition = { left: 16, top: 24 };
+
+    render(
+      <UserLanguageProvider defaultUserLanguage="en">
+        <ThemeProvider theme={brandingLightTheme}>
+          <div style={{ position: 'fixed', left: 80, top: 120 }}>
+            <DemoContainer
+              preview={<div style={{ position: 'fixed', ...overlayPosition }}>Fixed overlay</div>}
+            />
+          </div>
+        </ThemeProvider>
+      </UserLanguageProvider>,
+    );
+
+    const overlay = screen.getByText('Fixed overlay').getBoundingClientRect();
+
+    expect(overlay.left).to.equal(overlayPosition.left);
+    expect(overlay.top).to.equal(overlayPosition.top);
+  });
+
   it.skipIf(isJsdom())('separates an inline preview from its toolbar', () => {
     render(
       <UserLanguageProvider defaultUserLanguage="en">
