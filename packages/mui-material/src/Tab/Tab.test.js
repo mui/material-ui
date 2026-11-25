@@ -49,7 +49,7 @@ describe('<Tab />', () => {
   it('should have a ripple', async () => {
     const { container } = render(
       <Tabs value={0}>
-        <Tab value={0} TouchRippleProps={{ className: 'touch-ripple' }} />
+        <Tab value={0} disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }} />
       </Tabs>,
     );
     await ripple.startTouch(container.querySelector('button'));
@@ -71,7 +71,11 @@ describe('<Tab />', () => {
   it.skipIf(isJsdom())('should have a focusRipple', async function test() {
     const { container } = render(
       <Tabs value={0}>
-        <Tab value={0} TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />
+        <Tab
+          value={0}
+          disableRipple={false}
+          TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }}
+        />
       </Tabs>,
     );
     simulatePointerDevice();
@@ -86,6 +90,7 @@ describe('<Tab />', () => {
       <Tabs value={0}>
         <Tab
           value={0}
+          disableRipple={false}
           disableFocusRipple
           TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }}
         />

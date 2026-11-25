@@ -6,8 +6,6 @@ import Button from '@mui/material/Button';
 const theme = createTheme({
   focusVisible: { outlineColor: '#9c27b0' },
   colorSchemes: { light: true, dark: true },
-  // These demos opt out of the ripple, so the focus ring is the only keyboard indicator.
-  components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
 });
 
 export default function FocusVisibleRecolor() {

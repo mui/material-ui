@@ -2,7 +2,7 @@
 
 <p class="description">Apply an outline or inset keyboard focus across Material UI components.</p>
 
-Material UI draws a keyboard focus indicator through CSS, on by default starting from v10. The demos on this page opt out of the ripple to show only the focus visible indicator.
+Material UI draws a keyboard focus indicator through CSS, on by default starting from v10.
 
 ## Usage
 
@@ -46,7 +46,12 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({ focusVisible: false });
 ```
 
-Components then go back to their own focus styles, such as the focus ripple and the backgrounds listed in [Component focus-visible styles are replaced by the theme](#component-focus-visible-styles-are-replaced-by-the-theme).
+Components then go back to their own focus styles, such as the backgrounds listed in [Component focus-visible styles are replaced by the theme](#component-focus-visible-styles-are-replaced-by-the-theme).
+
+:::warning
+Most buttons have no other keyboard focus style than the ring and the focus ripple, and the ripple is off by default.
+With `focusVisible: false`, style the `.Mui-focusVisible` class yourself, or turn the ripple on with `disableRipple: false` in the `MuiButtonBase` default props.
+:::
 
 ### Changing the outline color
 

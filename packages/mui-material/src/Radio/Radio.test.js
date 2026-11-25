@@ -158,8 +158,8 @@ describe('<Radio />', () => {
   });
 
   describe('prop: disableRipple', () => {
-    it('should have a ripple by default', async () => {
-      render(<Radio TouchRippleProps={{ className: 'touch-ripple' }} />);
+    it('should have a ripple when disableRipple is false', async () => {
+      render(<Radio disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }} />);
 
       const radio = screen.getByRole('radio').parentElement;
       await ripple.startTouch(radio);

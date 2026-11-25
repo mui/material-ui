@@ -8,8 +8,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const theme = createTheme({
   colorSchemes: { light: true, dark: true },
-  // These demos opt out of the ripple, so the focus ring is the only keyboard indicator.
-  components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
 });
 
 export default function FocusVisibleDefault() {

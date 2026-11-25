@@ -6,7 +6,7 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "custom", "description": "element type" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "true" },
     "disableTouchRipple": { "type": { "name": "bool" }, "default": "false" },
     "focusRipple": { "type": { "name": "bool" }, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" } },

@@ -94,7 +94,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     className,
     component = 'button',
     disabled = false,
-    disableRipple = false,
+    disableRipple = true,
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
@@ -376,9 +376,9 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the ripple effect is disabled.
    *
-   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
-   * @default false
+   * ⚠️ If the theme turns `focusVisible` off, there is no styling for :focus-visible without a ripple.
+   * Be sure to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
+   * @default true
    */
   disableRipple: PropTypes.bool,
   /**

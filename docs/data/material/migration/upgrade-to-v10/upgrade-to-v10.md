@@ -257,3 +257,30 @@ Add the transparency to the color:
 +  backgroundColor: alpha(pink[600], 0.5),
  },
 ```
+
+### Ripple off by default
+
+The `disableRipple` prop of ButtonBase now defaults to `true`, so ButtonBase and the components built on it no longer show the ripple.
+Keyboard focus shows the [focus ring](#focus-ring-on-by-default) instead of the focus ripple.
+Hover styles don't change: IconButton, Checkbox and Radio keep their hover background unless you set `disableRipple` on them.
+
+To bring the ripple back, set the default prop in the theme:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: false,
+      },
+    },
+  },
+});
+```
+
+If your theme already sets `disableRipple: true` there, you can remove it.
+
+Tests that query the ripple, for example `.MuiTouchRipple-root`, need the same setting or `disableRipple={false}` on the component.
+
+If your theme turns the focus ring off with `focusVisible: false`, most buttons have no keyboard focus style left.
+Bring the ripple back as shown above, or style the `.Mui-focusVisible` class.

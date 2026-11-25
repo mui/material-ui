@@ -91,7 +91,6 @@ export default function ButtonBaseDemo() {
       {/* @focus-start */}
       {images.map((image) => (
         <ImageButton
-          focusRipple
           key={image.title}
           style={{
             width: image.width,

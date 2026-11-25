@@ -133,7 +133,7 @@ describe('<ButtonGroup />', () => {
 
   it('should have a ripple', async () => {
     const { container } = render(
-      <ButtonGroup>
+      <ButtonGroup disableRipple={false}>
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
@@ -201,7 +201,10 @@ describe('<ButtonGroup />', () => {
       const { container } = render(
         <ThemeProvider
           theme={createTheme({
-            components: { MuiButton: { defaultProps: { disableFocusRipple: true } } },
+            components: {
+              MuiButtonBase: { defaultProps: { disableRipple: false } },
+              MuiButton: { defaultProps: { disableFocusRipple: true } },
+            },
           })}
         >
           <ButtonGroup>
@@ -227,7 +230,10 @@ describe('<ButtonGroup />', () => {
       const { container } = render(
         <ThemeProvider
           theme={createTheme({
-            components: { MuiButton: { defaultProps: { disableFocusRipple: true } } },
+            components: {
+              MuiButtonBase: { defaultProps: { disableRipple: false } },
+              MuiButton: { defaultProps: { disableFocusRipple: true } },
+            },
           })}
         >
           <ButtonGroup disableFocusRipple={false}>

@@ -295,6 +295,7 @@ describe('<ButtonBase />', () => {
       it('should not have a focus ripple by default', () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 ripplePulsate: 'ripple-pulsate',
@@ -314,6 +315,7 @@ describe('<ButtonBase />', () => {
       it('should start the ripple when the mouse is pressed', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 rippleVisible: 'ripple-visible',
@@ -337,6 +339,7 @@ describe('<ButtonBase />', () => {
       it('should stop the ripple when the mouse is released', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 rippleVisible: 'ripple-visible',
@@ -361,6 +364,7 @@ describe('<ButtonBase />', () => {
       it('should start the ripple when the mouse is pressed 2', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 rippleVisible: 'ripple-visible',
@@ -387,6 +391,7 @@ describe('<ButtonBase />', () => {
       it('should stop the ripple when the button blurs', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 rippleVisible: 'ripple-visible',
@@ -411,6 +416,7 @@ describe('<ButtonBase />', () => {
       it('should restart the ripple when the mouse is pressed again', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 rippleVisible: 'ripple-visible',
@@ -442,6 +448,7 @@ describe('<ButtonBase />', () => {
       it('should stop the ripple when the mouse leaves', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 rippleVisible: 'ripple-visible',
@@ -467,6 +474,7 @@ describe('<ButtonBase />', () => {
         async function test() {
           render(
             <ButtonBase
+              disableRipple={false}
               TouchRippleProps={{
                 classes: {
                   rippleVisible: 'ripple-visible',
@@ -492,6 +500,7 @@ describe('<ButtonBase />', () => {
       it('should stop the ripple when the context menu opens', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             TouchRippleProps={{
               classes: {
                 rippleVisible: 'ripple-visible',
@@ -571,6 +580,7 @@ describe('<ButtonBase />', () => {
 
         render(
           <ButtonBase
+            disableRipple={false}
             action={buttonActions}
             focusRipple
             disableTouchRipple
@@ -603,6 +613,7 @@ describe('<ButtonBase />', () => {
     it('centers the TouchRipple', async () => {
       const { container } = render(
         <ButtonBase
+          disableRipple={false}
           centerRipple
           TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
         >
@@ -631,6 +642,7 @@ describe('<ButtonBase />', () => {
     it('is disabled by default', async () => {
       const { container } = render(
         <ButtonBase
+          disableRipple={false}
           TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
         >
           Hello
@@ -659,6 +671,7 @@ describe('<ButtonBase />', () => {
     it('should pulsate the ripple when focusVisible', async () => {
       render(
         <ButtonBase
+          disableRipple={false}
           focusRipple
           TouchRippleProps={{
             classes: {
@@ -679,6 +692,7 @@ describe('<ButtonBase />', () => {
     it('should not stop the ripple when the mouse leaves', async () => {
       render(
         <ButtonBase
+          disableRipple={false}
           focusRipple
           TouchRippleProps={{
             classes: {
@@ -700,6 +714,7 @@ describe('<ButtonBase />', () => {
     it('should stop pulsate and start a ripple when the space button is pressed', async () => {
       render(
         <ButtonBase
+          disableRipple={false}
           focusRipple
           TouchRippleProps={{
             classes: {
@@ -724,6 +739,7 @@ describe('<ButtonBase />', () => {
     it('should stop and re-pulsate when space bar is released', async () => {
       render(
         <ButtonBase
+          disableRipple={false}
           focusRipple
           TouchRippleProps={{
             classes: {
@@ -751,6 +767,7 @@ describe('<ButtonBase />', () => {
     it('should stop on blur and set focusVisible to false', async () => {
       render(
         <ButtonBase
+          disableRipple={false}
           focusRipple
           TouchRippleProps={{
             classes: {
@@ -1050,7 +1067,11 @@ describe('<ButtonBase />', () => {
   describe.skipIf(isJsdom())('event: keydown', () => {
     it('ripples on repeated keydowns', async () => {
       const { container } = render(
-        <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
+        <ButtonBase
+          disableRipple={false}
+          focusRipple
+          TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}
+        >
           Hello
         </ButtonBase>,
       );
@@ -1088,6 +1109,7 @@ describe('<ButtonBase />', () => {
       it('creates no ripples on click', async () => {
         render(
           <ButtonBase
+            disableRipple={false}
             disableTouchRipple
             TouchRippleProps={{
               classes: {
@@ -1108,6 +1130,33 @@ describe('<ButtonBase />', () => {
     });
 
     describe('prop: disableRipple', () => {
+      it('is true by default', async () => {
+        render(<ButtonBase TouchRippleProps={{ className: 'touch-ripple' }}>Hello</ButtonBase>);
+
+        const button = screen.getByText('Hello');
+
+        await ripple.startTouch(button);
+
+        expect(button.querySelector('.touch-ripple')).to.equal(null);
+      });
+
+      it('can be set to false in the theme default props', async () => {
+        const theme = createTheme({
+          components: { MuiButtonBase: { defaultProps: { disableRipple: false } } },
+        });
+        render(
+          <ThemeProvider theme={theme}>
+            <ButtonBase TouchRippleProps={{ className: 'touch-ripple' }}>Hello</ButtonBase>
+          </ThemeProvider>,
+        );
+
+        const button = screen.getByText('Hello');
+
+        await ripple.startTouch(button);
+
+        expect(button.querySelector('.touch-ripple')).not.to.equal(null);
+      });
+
       it('removes the TouchRipple', async () => {
         render(
           <ButtonBase disableRipple focusRipple TouchRippleProps={{ className: 'touch-ripple' }}>
@@ -1550,7 +1599,7 @@ describe('<ButtonBase />', () => {
   describe('prop: touchRippleRef', () => {
     it('should return a ref', async () => {
       const ref = React.createRef();
-      render(<ButtonBase touchRippleRef={ref} />);
+      render(<ButtonBase disableRipple={false} touchRippleRef={ref} />);
       await ripple.startTouch(screen.getByRole('button'));
       expect(ref.current).not.to.equal(null);
     });

@@ -12,7 +12,7 @@
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "true" },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "onChange": {
       "type": { "name": "func" },
