@@ -1,13 +1,9 @@
 'use client';
 import * as React from 'react';
-import { GlobalStyles } from '@mui/styled-engine';
+import { GlobalStyles, internal_useStyleCache as useStyleCache } from '@mui/styled-engine';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
-/**
- * The stylesheets of the providers in one tree, by class name. A class name is a hash of its declarations,
- * so one stylesheet serves every provider that uses it.
- */
-export interface ScopeStyleSheetRegistry {
+interface ScopeStyleSheets {
   // The provider that inserts the stylesheet of each class.
   owners: Map<string, object>;
   // The mounted providers that use each class.
@@ -16,8 +12,27 @@ export interface ScopeStyleSheetRegistry {
   listeners: Map<object, () => void>;
 }
 
+/**
+ * The stylesheets of the providers in one tree, by style engine cache and by class name.
+ * A class name is a hash of its declarations, so one stylesheet serves every provider that uses it.
+ * A cache inserts its styles in its own container, like a shadow root, so each one gets its stylesheets.
+ */
+export type ScopeStyleSheetRegistry = WeakMap<object, ScopeStyleSheets>;
+
 export function createScopeStyleSheetRegistry(): ScopeStyleSheetRegistry {
-  return { owners: new Map(), users: new Map(), listeners: new Map() };
+  return new WeakMap();
+}
+
+// For a style engine without a cache in context.
+const defaultCache = {};
+
+function getStyleSheets(registry: ScopeStyleSheetRegistry, cache: object): ScopeStyleSheets {
+  let styleSheets = registry.get(cache);
+  if (!styleSheets) {
+    styleSheets = { owners: new Map(), users: new Map(), listeners: new Map() };
+    registry.set(cache, styleSheets);
+  }
+  return styleSheets;
 }
 
 // React 17 has no `useInsertionEffect`; spread into a plain object so reading the missing property returns `undefined`
@@ -41,57 +56,58 @@ interface ScopeStyleSheetProps {
  */
 function SharedScopeStyleSheet(props: ScopeStyleSheetProps) {
   const { registry, className, styles } = props;
+  const styleSheets = getStyleSheets(registry, useStyleCache() ?? defaultCache);
   const token = React.useRef<object>(null);
   if (!token.current) {
     token.current = {};
   }
   const [, forceUpdate] = React.useReducer((count: number) => count + 1, 0);
 
-  if (!registry.owners.has(className)) {
-    registry.owners.set(className, token.current);
+  if (!styleSheets.owners.has(className)) {
+    styleSheets.owners.set(className, token.current);
   }
-  const insertsStyles = registry.owners.get(className) === token.current;
+  const insertsStyles = styleSheets.owners.get(className) === token.current;
 
   useInsertionEffect(() => {
     const user = token.current!;
-    const users = registry.users.get(className) ?? [];
+    const users = styleSheets.users.get(className) ?? [];
     users.push(user);
-    registry.users.set(className, users);
+    styleSheets.users.set(className, users);
     return () => {
-      const current = registry.users.get(className)!;
+      const current = styleSheets.users.get(className)!;
       current.splice(current.indexOf(user), 1);
       if (current.length === 0) {
-        registry.users.delete(className);
+        styleSheets.users.delete(className);
       }
     };
-  }, [registry, className]);
+  }, [styleSheets, className]);
 
   useEnhancedEffect(() => {
     const user = token.current!;
-    registry.listeners.set(user, forceUpdate);
+    styleSheets.listeners.set(user, forceUpdate);
     return () => {
-      registry.listeners.delete(user);
-      if (registry.owners.get(className) === user) {
+      styleSheets.listeners.delete(user);
+      if (styleSheets.owners.get(className) === user) {
         // The next provider inserts the stylesheet now.
-        const next = registry.users.get(className)?.find((other) => other !== user);
+        const next = styleSheets.users.get(className)?.find((other) => other !== user);
         if (next) {
-          registry.owners.set(className, next);
-          registry.listeners.get(next)?.();
+          styleSheets.owners.set(className, next);
+          styleSheets.listeners.get(next)?.();
         } else {
-          registry.owners.delete(className);
+          styleSheets.owners.delete(className);
         }
       }
     };
-  }, [registry, className]);
+  }, [styleSheets, className]);
 
   useEnhancedEffect(() => {
     const user = token.current!;
-    const owner = registry.owners.get(className);
-    if (owner === undefined || !registry.users.get(className)?.includes(owner)) {
+    const owner = styleSheets.owners.get(className);
+    if (owner === undefined || !styleSheets.users.get(className)?.includes(owner)) {
       // The provider that claimed the stylesheet didn't mount.
-      registry.owners.set(className, user);
+      styleSheets.owners.set(className, user);
     }
-    if ((registry.owners.get(className) === user) !== insertsStyles) {
+    if ((styleSheets.owners.get(className) === user) !== insertsStyles) {
       forceUpdate();
     }
   });

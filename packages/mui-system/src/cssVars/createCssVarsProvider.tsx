@@ -283,7 +283,7 @@ export default function createCssVarsProvider<
     // The marker that portaled elements need to follow its color scheme.
     markerProps: Record<string, string> | undefined;
     prefix: string | undefined;
-    // The scope stylesheets of the whole tree, so each one is inserted once.
+    // The scope stylesheets of the whole tree, so the providers that share one insert it once.
     styleSheets: ScopeStyleSheetRegistry;
   }
   const OwnerContext = React.createContext<Owner | undefined>(undefined);

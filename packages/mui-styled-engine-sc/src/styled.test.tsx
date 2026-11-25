@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
+import * as React from 'react';
+import { StyleSheetManager } from 'styled-components';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import styled from '@mui/styled-engine-sc';
+import styled, { internal_useStyleCache as useStyleCache } from '@mui/styled-engine-sc';
 
 describe('styled', () => {
   const { render } = createRenderer();
@@ -42,5 +44,29 @@ describe('styled', () => {
   // The babel-plugin-styled-components depends on the withConfig option to be defined
   it("should allow styled-components's APIs: .withConfig", () => {
     expect(typeof styled('span').withConfig).to.equal('function');
+  });
+});
+
+describe('internal_useStyleCache', () => {
+  const { render } = createRenderer();
+
+  it('returns the style sheet of the closest StyleSheetManager', () => {
+    const caches: Record<string, any> = {};
+    function Cache(props: { name: string }) {
+      caches[props.name] = useStyleCache();
+      return null;
+    }
+    const target = document.createElement('div');
+    render(
+      <React.Fragment>
+        <Cache name="page" />
+        <StyleSheetManager target={target}>
+          <Cache name="target" />
+        </StyleSheetManager>
+      </React.Fragment>,
+    );
+    expect(caches.page).not.to.equal(null);
+    expect(caches.target).not.to.equal(caches.page);
+    expect(caches.target.options.target).to.equal(target);
   });
 });
