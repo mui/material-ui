@@ -168,7 +168,7 @@ Use `fullWidth` to fill the width of the field's container.
 
 ## Form submission
 
-Set `name` to include the numeric value in form submission.
+Set `name` directly on `NumberField` to include its numeric value in form submission.
 The submitted value is the unformatted number, even when the input displays a currency or another format.
 Use `form` to associate a field with a form outside its DOM ancestry.
 

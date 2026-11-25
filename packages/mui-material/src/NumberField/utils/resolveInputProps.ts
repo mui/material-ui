@@ -10,6 +10,8 @@ type ResolvedSlotProps<T> = Exclude<
 >;
 export type ResolvedInputSlotProps = ResolvedSlotProps<SlotProps['input']>;
 
+let warnedAboutSlotName = false;
+
 /** Resolves the wrapper and native props before Base UI composes its input handlers and ref. */
 export default function resolveInputProps(
   slotProps: SlotProps,
@@ -24,6 +26,7 @@ export default function resolveInputProps(
     onKeyUp,
     value,
     defaultValue,
+    name: inputName,
     type,
     multiline,
     rows,
@@ -36,6 +39,17 @@ export default function resolveInputProps(
 
   // InputBase applies its nested input slot last. Only NumberField's htmlInput configures it.
   const { input: ignoredNativeSlot, ...materialSlotProps } = wrapperSlotProps ?? {};
+  const nativeSlotProps = resolveComponentProps(slotProps.htmlInput, ownerState) ?? {};
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedAboutSlotName && !ownerState.name && (inputName || nativeSlotProps.name)) {
+      warnedAboutSlotName = true;
+      console.warn(
+        'MUI: NumberField ignores `name` on its input slots. ' +
+          'Set `name` directly on NumberField to submit its numeric value.',
+      );
+    }
+  }
 
   return {
     materialInputProps: {
@@ -43,8 +57,8 @@ export default function resolveInputProps(
       slotProps: materialSlotProps,
     },
     nativeSlotProps: omitNullishEventHandlers(
-      resolveComponentProps(slotProps.htmlInput, ownerState) ?? {},
-      ([key]) => key !== 'value' && key !== 'defaultValue' && key !== 'type',
+      nativeSlotProps,
+      ([key]) => key !== 'value' && key !== 'defaultValue' && key !== 'type' && key !== 'name',
     ),
   };
 }

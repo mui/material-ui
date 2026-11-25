@@ -2316,6 +2316,45 @@ describe('<NumberField />', () => {
   // External forms own the visible input for validation and Enter submission, and
   // Base UI's submission input for contributing one raw numeric value.
   describe('form submission', () => {
+    it.each([
+      { slot: 'input', slotProps: { input: { name: 'price' } } },
+      { slot: 'htmlInput', slotProps: { htmlInput: () => ({ name: 'price' }) } },
+    ])('submits only the raw value when slotProps.$slot also supplies name', ({ slotProps }) => {
+      render(
+        <form aria-label="Order">
+          <NumberField
+            name="price"
+            defaultValue={5}
+            locale="en-US"
+            format={{ style: 'currency', currency: 'EUR' }}
+            // @ts-expect-error Exercise slot names supplied by JavaScript callers.
+            slotProps={slotProps}
+          />
+        </form>,
+      );
+
+      expect(screen.getByRole('textbox')).to.have.value('€5.00');
+      const form = screen.getByRole<HTMLFormElement>('form', { name: 'Order' });
+      expect(new FormData(form).getAll('price')).to.deep.equal(['5']);
+    });
+
+    it('warns when only an input slot supplies the field name', () => {
+      expect(() => {
+        render(
+          <form aria-label="Order">
+            <NumberField
+              defaultValue={5}
+              // @ts-expect-error Exercise a slot name supplied by a JavaScript caller.
+              slotProps={{ htmlInput: { name: 'price' } }}
+            />
+          </form>,
+        );
+      }).toWarnDev('MUI: NumberField ignores `name` on its input slots.');
+
+      const form = screen.getByRole<HTMLFormElement>('form', { name: 'Order' });
+      expect(Array.from(new FormData(form).entries())).to.deep.equal([]);
+    });
+
     it('submits one raw numeric value to an external form from a formatted field', async () => {
       const submissions: FormData[] = [];
       const { user } = render(

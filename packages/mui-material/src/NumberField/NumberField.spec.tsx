@@ -78,6 +78,10 @@ function VariantWrapper<Variant extends NumberFieldVariants>(props: NumberFieldP
 <NumberField slotProps={{ input: { value: 1 } }} />;
 // @ts-expect-error Set the initial value on NumberField.
 <NumberField slotProps={{ htmlInput: () => ({ defaultValue: '1', inputMode: 'decimal' }) }} />;
+// @ts-expect-error Set the form field name on NumberField.
+<NumberField slotProps={{ input: { name: 'price' } }} />;
+// @ts-expect-error Native input slot callbacks also cannot name the visible input.
+<NumberField slotProps={{ htmlInput: () => ({ name: 'price', inputMode: 'decimal' }) }} />;
 // @ts-expect-error NumberField formats numbers in a text input.
 <NumberField slotProps={{ htmlInput: { type: 'number' } }} />;
 <NumberField

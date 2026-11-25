@@ -22,7 +22,7 @@ export type NumberFieldVariants = 'outlined' | 'standard' | 'filled';
 
 type ControlsPosition = 'stacked' | 'end' | 'split' | false;
 
-type OwnedInputProps = Partial<Record<'defaultValue' | 'type' | 'value', undefined>>;
+type OwnedInputProps = Partial<Record<'defaultValue' | 'name' | 'type' | 'value', undefined>>;
 
 type NativeInputProps = React.ComponentPropsWithRef<'input'>;
 type MaterialInputEvents = Pick<NativeInputProps, 'onBlur' | 'onChange' | 'onFocus'>;
@@ -106,8 +106,7 @@ export interface NumberFieldScrubAreaCursorSlotPropsOverrides {}
 
 type NumberFieldInputSlotProps<Props, Overrides> = SlotComponentProps<
   React.FunctionComponent<Props>,
-  // A function's `name` also matches input props. Require functions to match the callback signature.
-  Overrides & OwnedInputProps & { apply?: undefined },
+  Overrides & OwnedInputProps,
   NumberFieldOwnerState
 >;
 
