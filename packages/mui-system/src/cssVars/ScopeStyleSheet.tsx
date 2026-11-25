@@ -29,17 +29,17 @@ const safeReact = { ...React };
 const useInsertionEffect: typeof React.useLayoutEffect =
   safeReact.useInsertionEffect ?? useEnhancedEffect;
 
-/**
- * Inserts the stylesheet of a class once for all the providers of a tree that use it, instead of once per provider,
- * since a theme used by many components, like a themed card in a list, renders many providers.
- * The first provider that renders claims it, so the others render nothing, on the server too.
- * When it doesn't mount, for example because it suspended, or when it unmounts, another provider takes over.
- */
-export default function ScopeStyleSheet(props: {
+interface ScopeStyleSheetProps {
   registry: ScopeStyleSheetRegistry;
   className: string;
   styles: any;
-}) {
+}
+
+/**
+ * The first provider that renders claims the stylesheet, so the others render nothing.
+ * When it doesn't mount, for example because it suspended, or when it unmounts, another provider takes over.
+ */
+function SharedScopeStyleSheet(props: ScopeStyleSheetProps) {
   const { registry, className, styles } = props;
   const token = React.useRef<object>(null);
   if (!token.current) {
@@ -97,4 +97,18 @@ export default function ScopeStyleSheet(props: {
   });
 
   return insertsStyles ? <GlobalStyles styles={styles} /> : null;
+}
+
+/**
+ * Inserts the stylesheet of a class once for all the providers of a tree that use it, instead of once per provider,
+ * since a theme used by many components, like a themed card in a list, renders many providers.
+ */
+export default function ScopeStyleSheet(props: ScopeStyleSheetProps) {
+  if (typeof document === 'undefined') {
+    // The server can't tell which providers reach the HTML, since no effect runs there: the content of
+    // a Suspense boundary that suspends doesn't. So each provider renders the stylesheet,
+    // and a style engine that extracts the styles inserts it once.
+    return <GlobalStyles styles={props.styles} />;
+  }
+  return <SharedScopeStyleSheet {...props} />;
 }
