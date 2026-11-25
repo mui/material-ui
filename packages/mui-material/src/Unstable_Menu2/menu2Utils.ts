@@ -17,6 +17,19 @@ import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 const warnedFragmentTrigger = new Set<string>();
 const warnedTriggerRef = new Set<string>();
 
+// Base UI marks each popup of a menu tree, submenus included, with the root id.
+export function isOutsideMenuTree(element: Element | null, popup: Element | null | undefined) {
+  if (!element || element === element.ownerDocument.body) {
+    return false;
+  }
+  const rootOwnerId = popup?.getAttribute('data-rootownerid');
+  return !(
+    popup?.contains(element) ||
+    (rootOwnerId != null &&
+      element.closest('[data-rootownerid]')?.getAttribute('data-rootownerid') === rootOwnerId)
+  );
+}
+
 export function resetMenu2WarningFlags() {
   warnedFragmentTrigger.clear();
   warnedTriggerRef.clear();

@@ -476,6 +476,35 @@ describe.skipIf(isJsdom())('Menu2 opening a Material Dialog', () => {
     });
   });
 
+  [false, true].forEach((modal) => {
+    it(`keeps the focus that onOpenChange moves out of the menu on an item press, modal=${modal}`, async () => {
+      const inputRef = React.createRef<HTMLInputElement>();
+      const { user } = render(
+        <React.Fragment>
+          <Menu2
+            modal={modal}
+            onOpenChange={(nextOpen, eventDetails) => {
+              if (!nextOpen && eventDetails.reason === 'item-press') {
+                inputRef.current!.focus();
+              }
+            }}
+          >
+            <Menu2Trigger render={<button type="button">Options</button>} />
+            <Menu2Popup>
+              <Menu2Item>Filter</Menu2Item>
+            </Menu2Popup>
+          </Menu2>
+          <input aria-label="Filter" ref={inputRef} />
+        </React.Fragment>,
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      await user.click(await screen.findByRole('menuitem', { name: 'Filter' }));
+      await waitFor(() => expect(screen.queryByRole('menu')).to.equal(null));
+      expect(screen.getByRole('textbox', { name: 'Filter' })).toHaveFocus();
+    });
+  });
+
   it('keeps focus on the item when a controlled menu ignores the item press close', async () => {
     const menuCompleted = vi.fn();
 

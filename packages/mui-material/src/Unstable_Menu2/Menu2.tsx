@@ -9,6 +9,7 @@ import { DirectionProvider } from '@base-ui/react/direction-provider';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import getActiveElement from '../utils/getActiveElement';
+import { isOutsideMenuTree } from './menu2Utils';
 import Menu2ModalContext from './Menu2ModalContext';
 import Menu2FinalFocusContext from './Menu2FinalFocusContext';
 
@@ -61,8 +62,13 @@ function Menu2(inProps: Menu2Props) {
         !customFinalFocusRef.current &&
         trigger?.isConnected
       ) {
-        // Like classic Menu, focus the trigger before a Dialog that the item opens saves its return target.
         const previous = getActiveElement(trigger.ownerDocument) as HTMLElement | null;
+        // Like Base UI, keep focus that onOpenChange moved out of the menu.
+        const popup = (eventDetails.event.target as Element | null)?.closest('[data-rootownerid]');
+        if (popup && isOutsideMenuTree(previous, popup)) {
+          return;
+        }
+        // Like classic Menu, focus the trigger before a Dialog that the item opens saves its return target.
         trigger.focus({ preventScroll: true });
         // A controlled menu can ignore the close. Then focus goes back into the menu.
         queueMicrotask(() => {

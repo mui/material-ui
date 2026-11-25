@@ -22,7 +22,12 @@ import type { PaperProps } from '../Paper';
 import type { ListProps } from '../List';
 import { manager as modalManager } from '../Modal/useModal';
 import type { Menu2SlotRender, SlotProps } from './menu2Utils';
-import { getMenu2RootRender, getMenu2SlotRender, resolveMenu2SlotRender } from './menu2Utils';
+import {
+  getMenu2RootRender,
+  getMenu2SlotRender,
+  isOutsideMenuTree,
+  resolveMenu2SlotRender,
+} from './menu2Utils';
 import { Menu2SubmenuClosingState } from './Menu2SubmenuClosingContext';
 import Menu2RenderRoot from '../internal/Menu2RenderRoot';
 
@@ -227,15 +232,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     }
     return (closeType) => {
       const popup = popupRef.current;
-      const doc = ownerDocument(popup);
-      const active = getActiveElement(doc);
-      // Base UI marks each popup of a menu tree, submenus included, with the root id.
-      const rootOwnerId = popup?.getAttribute('data-rootownerid');
-      const insideTree =
-        popup?.contains(active) ||
-        (rootOwnerId != null &&
-          active?.closest('[data-rootownerid]')?.getAttribute('data-rootownerid') === rootOwnerId);
-      if (active && active !== doc.body && !insideTree) {
+      if (isOutsideMenuTree(getActiveElement(ownerDocument(popup)), popup)) {
         return false;
       }
       return typeof finalFocus === 'function' ? finalFocus(closeType) : finalFocus.current;

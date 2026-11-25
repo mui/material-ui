@@ -264,7 +264,7 @@ These choices are proposed for maintainer review.
 | Behavior defaults  | Keep Base UI behavior unless an integration requirement needs a change. Material UI owns the modal layer and adds start alignment, submenu offsets, and Grow.                                                  |
 | Open tint on close | Track the popup's ending state internally. Clear the exit tint when exit ends or the popup unmounts; do not add a timer or wait for focus return.                                                              |
 | Item press focus   | An item press that closes the menu focuses the trigger at once, as in classic Menu. A Dialog that the item opens saves the trigger as its return target. A root `finalFocus` other than `true` skips this.     |
-| Final focus target | A ref or function `finalFocus` applies only when focus is on the page body or in the menu tree. Base UI also takes focus from an outside element, such as a Dialog field.                                      |
+| Final focus target | A ref or function `finalFocus` and the item press focus apply only when focus is on the body or in the menu tree. In Base UI, `finalFocus` also takes focus from an outside element, such as a Dialog field.   |
 | Forced colors      | `enhanceHighContrast` styles the item parts and indicators. Disabled cues take precedence over highlight styling.                                                                                              |
 | Item adornments    | Items take `startAdornment`, `endAdornment`, and `inset` in place of `ListItemIcon`, `ListItemText`, and a shortcut `Typography` child. `inset` is opt-in. The API takes priority over classic parity.         |
 
