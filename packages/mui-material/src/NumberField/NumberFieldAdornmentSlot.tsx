@@ -18,20 +18,22 @@ interface NumberFieldAdornmentProps {
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
 
+// Filled start adornments have a top offset. Match it on both end adornments in split mode.
+const splitEndAdornment = {
+  props: { controlsPosition: 'split', position: 'end' },
+  style: {
+    [`&:where(.${inputAdornmentClasses.filled}:not(.${inputAdornmentClasses.hiddenLabel}))`]: {
+      marginTop: 16,
+    },
+  },
+} as const;
+
 const NumberFieldControls = styled(InputAdornment, {
   name: 'MuiNumberField',
   slot: 'controls',
 })<{ ownerState: NumberFieldOwnerState }>({
   variants: [
-    {
-      props: { controlsPosition: 'split', position: 'end' },
-      style: {
-        // Match the filled start adornment's offset to align both controls with the value.
-        [`&:where(.${inputAdornmentClasses.filled}:not(.${inputAdornmentClasses.hiddenLabel}))`]: {
-          marginTop: 16,
-        },
-      },
-    },
+    splitEndAdornment,
     {
       props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
         ownerState.controlsPosition === 'stacked',
@@ -55,7 +57,7 @@ const NumberFieldControls = styled(InputAdornment, {
 const NumberFieldScrubAreaAdornment = styled(InputAdornment, {
   name: 'MuiNumberField',
   slot: 'scrubAreaAdornment',
-})({});
+})<{ ownerState: NumberFieldOwnerState }>({ variants: [splitEndAdornment] });
 
 /**
  * Shared InputAdornment adapter for the controls and scrub area adornment slots.
