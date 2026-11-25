@@ -348,6 +348,8 @@ describe('<Menu2Trigger />', () => {
       const { user } = render(
         <BaseMenu.Root>
           <Menu2Trigger
+            // A static id keeps the hover listeners on React 17. See the RFC known issues.
+            id="trigger"
             openOnHover={openOnHover}
             delay={0}
             closeDelay={0}

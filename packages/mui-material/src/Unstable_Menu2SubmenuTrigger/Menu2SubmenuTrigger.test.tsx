@@ -361,19 +361,26 @@ describe('<Menu2SubmenuTrigger />', () => {
 
   describeConformance(<Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>, () => ({
     classes,
-    render: (node) =>
-      render(
+    render: (node) => {
+      const wrap = (child: React.ReactElement) => (
         <Menu2 defaultOpen modal={false}>
           <Menu2Popup anchor={document.body}>
             <Menu2Submenu>
-              {node}
+              {child}
               <Menu2SubmenuPopup>
                 <Menu2Item>Nested</Menu2Item>
               </Menu2SubmenuPopup>
             </Menu2Submenu>
           </Menu2Popup>
-        </Menu2>,
-      ),
+        </Menu2>
+      );
+      const view = render(wrap(node));
+      // `setProps` must reach `node` (the ThemeProvider), not the Menu2 wrapper.
+      return {
+        ...view,
+        setProps: (props: object) => view.rerender(wrap(React.cloneElement(node, props))),
+      };
+    },
     getRootElement: ({ baseElement }) =>
       baseElement.querySelector('[role="menuitem"][aria-haspopup="menu"]'),
     refInstanceof: window.HTMLDivElement,

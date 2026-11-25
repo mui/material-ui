@@ -45,7 +45,12 @@ describe.skipIf(isJsdom())('Menu2 inside a Material Dialog', () => {
       >
         <div style={{ display: 'flex', gap: 32, padding: 24 }}>
           <Menu2 modal={modal} onOpenChangeComplete={onOpenChangeComplete}>
-            <Menu2Trigger {...triggerProps} render={<button type="button">Options</button>} />
+            <Menu2Trigger
+              // A static id keeps the hover listeners on React 17. See the RFC known issues.
+              id="trigger"
+              {...triggerProps}
+              render={<button type="button">Options</button>}
+            />
             <Menu2Popup {...menuProps}>
               {menuProps?.children ?? <Menu2Item>Profile</Menu2Item>}
             </Menu2Popup>
@@ -534,6 +539,8 @@ describe.skipIf(isJsdom())('Menu2 modal state', () => {
           onOpenChangeComplete={onOpenChangeComplete}
         >
           <Menu2Trigger
+            // A static id keeps the hover listeners on React 17. See the RFC known issues.
+            id="trigger"
             openOnHover={openOnHover}
             delay={0}
             render={<button type="button">Options</button>}

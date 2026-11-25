@@ -97,7 +97,7 @@ describe.skipIf(isJsdom())('Menu2 without a trigger', () => {
     it(`supports a controlled external anchor across reopen, keepMounted=${keepMounted}`, async () => {
       const changes = vi.fn();
       function Demo() {
-        const id = React.useId();
+        const id = 'external-anchor';
         const buttonId = `${id}-button`;
         const menuId = `${id}-menu`;
         const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);

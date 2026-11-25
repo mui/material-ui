@@ -145,7 +145,13 @@ describe('<Menu2 />', () => {
   it.skipIf(isJsdom())('opens on hover when openOnHover is set', async () => {
     const { user } = render(
       <Menu2>
-        <Menu2Trigger openOnHover delay={0} render={<button type="button">Options</button>} />
+        <Menu2Trigger
+          // A static id keeps the hover listeners on React 17. See the RFC known issues.
+          id="trigger"
+          openOnHover
+          delay={0}
+          render={<button type="button">Options</button>}
+        />
         <Menu2Popup>
           <Menu2Item>Item</Menu2Item>
         </Menu2Popup>

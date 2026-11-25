@@ -195,7 +195,13 @@ describe.skipIf(isJsdom())('Menu2 backdrop slots', () => {
     const changed = vi.fn();
     const { baseElement, user, unmount } = render(
       <Menu2 onOpenChange={changed}>
-        <Menu2Trigger openOnHover delay={0} render={<button type="button">Options</button>} />
+        <Menu2Trigger
+          // A static id keeps the hover listeners on React 17. See the RFC known issues.
+          id="trigger"
+          openOnHover
+          delay={0}
+          render={<button type="button">Options</button>}
+        />
         <Menu2Popup slotProps={{ backdrop: { sx: { backgroundColor: 'rgb(0, 0, 0)' } } }}>
           <Menu2Item>Profile</Menu2Item>
         </Menu2Popup>
