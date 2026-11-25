@@ -248,8 +248,8 @@ importers:
         specifier: 1.1.1-canary.9
         version: 1.1.1-canary.9(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.16)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0)
       '@mui/internal-code-infra':
-        specifier: 0.1.1-canary.37
-        version: 0.1.1-canary.37(870674c9c4dd2a179a3a80a02fbb3da8)
+        specifier: 0.1.1-canary.38
+        version: 0.1.1-canary.38(870674c9c4dd2a179a3a80a02fbb3da8)
       '@mui/internal-docs-infra':
         specifier: catalog:docs
         version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
@@ -3745,8 +3745,8 @@ packages:
     resolution: {integrity: sha512-5gWbMSL2R+ZCHzJVPQuSnauGOLpnCyw2Kw3dETk70tgfWIct/3tzHjN5pDhOO9wP/zgCZjwTBGnXRwUQIBVJtQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.1.1-canary.37':
-    resolution: {integrity: sha512-FHKvexSZB73VzbBkq0L0S9pQ5GN6foS5KnFyYhVR2F7FxyUN4JFNakZMXIMgSPRIHL56C7nQONwDNNfWStQyaQ==}
+  '@mui/internal-code-infra@0.1.1-canary.38':
+    resolution: {integrity: sha512-C7iPhqh3KFmtiJXLBt8dGW7zcWGKgdVIaZYrV+qQdGVnr7cBgu+BlEhT2GUfMCkGP66+NluE9sB2ZiRSmj6HcQ==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -13956,7 +13956,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.1.1-canary.37(870674c9c4dd2a179a3a80a02fbb3da8)':
+  '@mui/internal-code-infra@0.1.1-canary.38(870674c9c4dd2a179a3a80a02fbb3da8)':
     dependencies:
       '@argos-ci/core': 6.8.8(@types/node@22.20.5)(supports-color@11.0.0)
       '@babel/cli': 8.1.0(@babel/core@8.1.2)
