@@ -23,8 +23,15 @@ jobs:
     uses: mui/mui-public/.github/workflows/ahrefs-audit-workflow.lock.yml@d00a1e968f89aef79bcbc065d23192d1fffcc100 # code-infra/gh-aw-ahrefs-audit
     with:
       project_id: '3524616' # MUI Core
-      # mui.com is built from several repos; these are the paths others build.
-      exclude_paths: /x/ /store/ /legal/ /toolpad/ /base-ui/ /joy-ui/ /pigment-css/
+      # mui.com is built from several repos; these are the paths others build, one per line.
+      exclude_paths: |
+        /x/
+        /store/
+        /legal/
+        /toolpad/
+        /base-ui/
+        /joy-ui/
+        /pigment-css/
     # Reusable workflows only get secrets the caller passes. These resolve to the code-infra-auditor
     # environment's secrets, because the jobs that use them run in that environment.
     secrets:
