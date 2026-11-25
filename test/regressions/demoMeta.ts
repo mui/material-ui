@@ -390,6 +390,40 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // Alert docs demos enrolled for axe.
+  {
+    test: 'docs/data/material/components/alert/{ActionAlerts,BasicAlerts,ColorAlerts,DescriptionAlerts,IconAlerts,OutlinedAlerts,SimpleAlert,TransitionAlerts}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `FilledAlerts` renders every severity, and the default palette's filled
+  // `warning` (3.11:1) and `info` (3.85:1) text is below 4.5:1 in light mode.
+  // The Alert report rates this under 1.4.3, so `color-contrast` is recorded
+  // and not asserted.
+  {
+    test: 'docs/data/material/components/alert/FilledAlerts',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/alert/` (no
+  // docs page consumes them); the suite name maps their results into the same
+  // `alert.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/alert/AlertA11ySemanticStates',
+    enabled: true,
+    assertions: 'all',
+  },
+  // The color matrix covers every severity and variant, and the default
+  // palette's `filled` `warning` and `info` (light) text falls below 4.5:1, so
+  // `color-contrast` is recorded and not asserted. The Alert report rates it
+  // under 1.4.3.
+  {
+    test: 'test/regressions/a11y/fixtures/alert/AlertA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
   {
     test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
     enabled: true,

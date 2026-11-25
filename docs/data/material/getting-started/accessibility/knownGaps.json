@@ -9,6 +9,10 @@
     "gap": "Some default palette colors fall short of contrast minimums",
     "criteria": ["1.4.3", "1.4.11"],
     "affected": [
+      {
+        "component": "Alert",
+        "note": "`filled` `warning` and `info` text, and the `warning` icon (light)"
+      },
       "Avatar",
       "Button",
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
@@ -24,6 +28,12 @@
     "criteria": ["1.4.1"],
     "affected": [{ "component": "ToggleButton", "note": "`primary`, `error`, `info`, `success`" }],
     "workaround": "Add a non-color cue to the selected state, such as an icon"
+  },
+  {
+    "gap": "The default severity icon is hidden from assistive technology",
+    "criteria": ["1.1.1"],
+    "affected": [{ "component": "Alert", "note": "the severity icon" }],
+    "workaround": "Put the severity in an `AlertTitle` or the message text, or name a custom icon with `titleAccess`"
   },
   {
     "gap": "Dynamic state changes are not announced",

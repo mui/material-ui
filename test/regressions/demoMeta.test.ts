@@ -192,6 +192,28 @@ describe('getConfig', () => {
     ).to.equal(undefined);
   });
 
+  it('enrols the Alert demos and fixtures for axe, and records the color matrix contrast without asserting it', () => {
+    ['BasicAlerts', 'ActionAlerts', 'TransitionAlerts'].forEach((demo) => {
+      expect(getConfig(A11Y_RULES, `docs/data/material/components/alert/${demo}`)).to.deep.include({
+        enabled: true,
+        assertions: 'all',
+      });
+    });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/alert/FilledAlerts'),
+    ).to.deep.include({ enabled: true, skipAssertions: ['color-contrast'] });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/alert/AlertA11ySemanticStates'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/alert/AlertA11yColorMatrix'),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
   it('opts the LinearProgress a11y fixtures out of screenshots', () => {
     expect(
       getConfig(

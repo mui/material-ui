@@ -10,6 +10,7 @@ export const CSS_LAYOUT_SUITES = [
   { component: 'Accordion', route: '/docs-components-accordion/AccordionUsage' },
   // The same demo renders the summary header, which is rated separately.
   { component: 'AccordionSummary', route: '/docs-components-accordion/AccordionUsage' },
+  { component: 'Alert', route: '/docs-components-alert/BasicAlerts' },
   {
     component: 'Avatar',
     route: '/docs-components-avatars/LetterAvatars',
