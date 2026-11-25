@@ -28,7 +28,7 @@ const useUtilityClasses = (ownerState: Menu2GroupProps) => {
 const Menu2GroupRoot = styled('div', {
   name: 'MuiMenu2Group',
   slot: 'root',
-})<{ ownerState: Menu2GroupProps }>({});
+})<{ ownerState: Menu2GroupOwnerState }>({});
 
 /**
  *
@@ -70,7 +70,7 @@ const Menu2Group = React.forwardRef(function Menu2Group(
     <BaseMenu.Group
       ref={handleRef}
       render={(renderProps, state) => (
-        <Menu2RootSlot<Menu2GroupOwnerState>
+        <Menu2RootSlot<Menu2GroupOwnerState, Menu2GroupState>
           baseProps={renderProps}
           elementType={Menu2GroupRoot}
           ownerState={ownerState}
@@ -90,7 +90,7 @@ const Menu2Group = React.forwardRef(function Menu2Group(
 
 export type Menu2GroupState = BaseMenu.Group.State;
 
-export interface Menu2GroupOwnerState extends BaseMenu.Group.State {}
+export interface Menu2GroupOwnerState extends Menu2GroupProps, Menu2GroupState {}
 
 export interface Menu2GroupSlots {
   /**

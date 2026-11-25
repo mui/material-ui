@@ -33,7 +33,7 @@ const Menu2SeparatorRoot = styled(Divider, {
   slot: 'root',
 })<{
   component: React.ElementType;
-  ownerState: Menu2SeparatorProps & Menu2SeparatorOwnerState;
+  ownerState: Menu2SeparatorOwnerState;
 }>(
   // Own the spacing and the inset, so they do not depend on the previous element.
   // Base UI adds focus guards next to an open submenu trigger.
@@ -97,7 +97,7 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
       ref={handleRef}
       orientation={orientation}
       render={(renderProps, state) => (
-        <Menu2RootSlot<Menu2SeparatorOwnerState>
+        <Menu2RootSlot<Menu2SeparatorOwnerState, Menu2SeparatorState>
           baseProps={renderProps}
           elementType={Menu2SeparatorRoot}
           ownerState={ownerState}
@@ -126,7 +126,8 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
 
 export type Menu2SeparatorState = BaseSeparator.State;
 
-export interface Menu2SeparatorOwnerState extends BaseSeparator.State {}
+export interface Menu2SeparatorOwnerState
+  extends Omit<Menu2SeparatorProps, 'orientation'>, Menu2SeparatorState {}
 
 export interface Menu2SeparatorSlots {
   /**

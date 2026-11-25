@@ -325,6 +325,7 @@ It changes the slot element and keeps its styles. A replacement slot takes prece
 
 Use `slotProps.root` for root attributes, a ref, and `sx`.
 Its callback receives the props and the live state.
+On `MenuPopup` and `MenuSubmenuPopup`, it receives only the props.
 The render function receives only the Base UI state of the part, as in Base UI.
 The sections below describe the state and visual options for each part.
 
@@ -415,7 +416,8 @@ Use `styleOverrides.startAdornment` to change its column width.
 Theme variants are shared too; menu variants apply only to the `root` slot.
 
 Component-specific styles apply after shared styles, with `sx` last; CSS specificity still applies.
-Callbacks receive the live state of the rendered component.
+Callbacks receive the owner state of the rendered component.
+On items, it contains the props and the live state. On popups, it contains only the props.
 Utility classes remain component-specific, and **`defaultProps` are not shared** between theme keys.
 
 Use scoped state selectors such as `.MuiMenu2CheckboxItem-root.Mui-checked` inside a slot override, or a theme variant for states such as `highlighted`.

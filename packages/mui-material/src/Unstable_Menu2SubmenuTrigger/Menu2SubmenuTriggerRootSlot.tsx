@@ -98,7 +98,7 @@ function Menu2SubmenuTriggerRootSlot(
     | 'sx'
   > & {
     baseProps: HTMLProps & { 'data-mui-internal-retain-open-tint'?: string | undefined };
-    ownerState: Menu2SubmenuTriggerOwnerState & Pick<Menu2SubmenuTriggerProps, 'classes'>;
+    ownerState: Menu2SubmenuTriggerOwnerState;
     renderState: Menu2SubmenuTriggerState;
   },
 ) {

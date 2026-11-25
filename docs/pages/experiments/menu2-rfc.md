@@ -130,10 +130,10 @@ For the classic controlled pattern, omit `Menu2Trigger`, set `open` on `Menu2`, 
 All item parts, groups, labels, separators, and popups share this contract, without a `component` prop:
 
 - **`render`** accepts an element or a function with props and typed state. It changes the element or composes a component while keeping Material styles, theme overrides, `sx`, and item ripple. Forward props, ref, and children to preserve behavior, label associations, indicators, and ripple.
-- **`slotProps.root`** supplies root attributes, a ref, and `sx`. Its callback receives the props and the live state. `render` receives the Base UI state of the part, unchanged. Root attributes can also go on the component or render element; element-specific props and refs belong on that element.
+- **`slotProps.root`** supplies root attributes, a ref, and `sx`. Its callback receives the props and the live state; on popups, it receives only the props. `render` receives the Base UI state of the part, unchanged. Root attributes can also go on the component or render element; element-specific props and refs belong on that element.
 - **`slots.root`** replaces the styled root and its render adapter, so it takes precedence over `render`. The replacement receives utility classes, Base UI behavior props and data attributes, and children, including indicators. It must forward props, ref, and children. Default Material styles, theme style overrides, ripple, and `sx` processing are not added automatically.
 
-`Menu2Item`, groups, labels, and separators default to a `div`. Render functions and root-slot callbacks expose these part-specific states:
+`Menu2Item`, groups, labels, and separators default to a `div`. Render functions receive these part-specific states:
 
 - Items receive live state, including `highlighted`; checkbox and radio items also expose `checked`.
 - Submenu triggers expose the logical `open` state, not the retained exit tint.
@@ -152,7 +152,7 @@ With `slots.root`, provide appearance in the replacement instead. The separator 
 
 `MuiMenu2` and `MuiMenu2Submenu` configure behavioral `defaultProps`. They have no DOM ref, `sx`, slots, style overrides, or theme variants. `MuiMenu2Trigger` also supports `defaultProps` only. The surface theme keys are `MuiMenu2Popup` and `MuiMenu2SubmenuPopup`, with their own exported class hooks.
 
-Submenu popups inherit `MuiMenu2Popup` styles for their matching slots. Default styled item roots inherit `MuiMenu2Item` styles. Shared overrides and variants apply first, then the component-specific theme styles, with `sx` last. CSS specificity still applies. Callbacks use the rendered component's state. Utility classes remain component-specific, and `defaultProps` do not pass between theme keys.
+Submenu popups inherit `MuiMenu2Popup` styles for their matching slots. Default styled item roots inherit `MuiMenu2Item` styles. Shared overrides and variants apply first, then the component-specific theme styles, with `sx` last. CSS specificity still applies. Callbacks receive the owner state of the rendered component: on items, the props and the live state; on popups, only the props. Utility classes remain component-specific, and `defaultProps` do not pass between theme keys.
 
 Use class selectors in `styleOverrides.root` for the highlighted state. Items retain the `divider` and `gutters` override keys from the classic MenuItem. Items have no `dense` key. The utility classes stay available; the classic MenuItem theme API is unchanged.
 

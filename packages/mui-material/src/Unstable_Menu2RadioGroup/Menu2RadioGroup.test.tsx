@@ -216,9 +216,10 @@ describe('<Menu2RadioGroup />', () => {
                   sx={[false, (t) => ({ paddingRight: t.spacing(3) })]}
                   slots={replaceRoot ? { root: 'section' } : undefined}
                   slotProps={{
-                    root: (state) => ({
+                    root: (ownerState) => ({
                       ref: slotRef,
-                      'data-slot-disabled': String(state.disabled),
+                      'data-slot-disabled': String(ownerState.disabled),
+                      'data-slot-default-value': ownerState.defaultValue,
                       sx: { paddingRight: '41px' },
                     }),
                   }}
@@ -238,6 +239,7 @@ describe('<Menu2RadioGroup />', () => {
       expect(group.tagName).to.equal('SECTION');
       expect(slotRef.current).to.equal(group);
       expect(group).to.have.attribute('data-slot-disabled', 'false');
+      expect(group).to.have.attribute('data-slot-default-value', 'one');
       if (replaceRoot) {
         expect(group).not.to.have.attribute('data-render-disabled');
         expect(getComputedStyle(group).paddingLeft).not.to.equal('13px');

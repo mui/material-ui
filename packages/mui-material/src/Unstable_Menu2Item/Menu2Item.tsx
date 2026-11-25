@@ -119,7 +119,8 @@ const Menu2Item = React.forwardRef(function Menu2Item(
 
 export type Menu2ItemState = BaseMenu.Item.State;
 
-export interface Menu2ItemOwnerState extends Menu2ItemBaseOwnerState {
+export interface Menu2ItemOwnerState
+  extends Omit<Menu2ItemProps, keyof Menu2ItemBaseOwnerState>, Menu2ItemBaseOwnerState {
   /** Whether Base UI currently highlights the item. */
   highlighted: boolean;
 }

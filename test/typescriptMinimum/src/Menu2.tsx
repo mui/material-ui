@@ -18,12 +18,14 @@ import type {
   Menu2GroupOwnerState,
   Menu2GroupSlotProps,
   Menu2GroupSlots,
+  Menu2GroupState,
 } from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import type {
   Menu2GroupLabelOwnerState,
   Menu2GroupLabelSlotProps,
   Menu2GroupLabelSlots,
+  Menu2GroupLabelState,
 } from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import type {
@@ -46,6 +48,7 @@ import type {
   Menu2RadioGroupOwnerState,
   Menu2RadioGroupSlotProps,
   Menu2RadioGroupSlots,
+  Menu2RadioGroupState,
 } from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import type {
@@ -59,6 +62,7 @@ import type {
   Menu2SeparatorOwnerState,
   Menu2SeparatorSlotProps,
   Menu2SeparatorSlots,
+  Menu2SeparatorState,
 } from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
@@ -130,7 +134,7 @@ export default function Menu2Consumer() {
       >
         <Menu2Group
           render={(props, state) => {
-            state satisfies Menu2GroupOwnerState;
+            state satisfies Menu2GroupState;
             // @ts-expect-error Group render state has no fields.
             'disabled' satisfies keyof typeof state;
             // @ts-expect-error Render props omit the legacy HTML color attribute.
@@ -147,7 +151,7 @@ export default function Menu2Consumer() {
             inset
             sx={{ fontWeight: 700 }}
             render={(props, state) => {
-              state satisfies Menu2GroupLabelOwnerState;
+              state satisfies Menu2GroupLabelState;
               // @ts-expect-error GroupLabel render state has no fields.
               'disabled' satisfies keyof typeof state;
               // @ts-expect-error Visual props are not part of the render state.
@@ -199,7 +203,7 @@ export default function Menu2Consumer() {
             flexItem
             textAlign="right"
             render={(props, state) => {
-              state satisfies Menu2SeparatorOwnerState;
+              state satisfies Menu2SeparatorState;
               state.orientation satisfies 'horizontal' | 'vertical';
               // @ts-expect-error Separators have no item state.
               'highlighted' satisfies keyof typeof state;
@@ -246,7 +250,7 @@ export default function Menu2Consumer() {
               <Menu2RadioGroup
                 defaultValue="list"
                 render={(props, state) => {
-                  state satisfies Menu2RadioGroupOwnerState;
+                  state satisfies Menu2RadioGroupState;
                   state.disabled satisfies boolean;
                   // @ts-expect-error Radio group render state does not expose its value.
                   'value' satisfies keyof typeof state;
@@ -384,6 +388,8 @@ const menuItemSlots = { root: 'li' } satisfies Menu2ItemSlots;
 const menuItemSlotProps: Menu2ItemSlotProps = {
   root: (ownerState) => {
     ownerState satisfies Menu2ItemOwnerState;
+    // The callback receives the props.
+    ownerState.label satisfies string | undefined;
     ownerState.highlighted satisfies boolean;
     ownerState.disabled satisfies boolean;
     ownerState.disableGutters satisfies boolean;
@@ -499,6 +505,8 @@ const menuLinkItemSlots = { root: 'a' } satisfies Menu2LinkItemSlots;
 const menuLinkItemSlotProps: Menu2LinkItemSlotProps = {
   root: (ownerState) => {
     ownerState satisfies Menu2LinkItemOwnerState;
+    // The callback receives the props.
+    ownerState.href satisfies string | undefined;
     ownerState.highlighted satisfies boolean;
     // @ts-expect-error Link item state does not include an open state.
     ownerState.open satisfies boolean;
@@ -574,11 +582,12 @@ createTheme({
         slotProps: {
           root: (ownerState) => {
             ownerState satisfies Menu2GroupLabelOwnerState;
+            ownerState.inset satisfies boolean | undefined;
             return { title: 'Section', sx: { fontWeight: 700 } };
           },
         },
         render: (props, state) => {
-          state satisfies Menu2GroupLabelOwnerState;
+          state satisfies Menu2GroupLabelState;
           return <p {...props} />;
         },
       },
@@ -618,7 +627,7 @@ createTheme({
           },
         },
         render: (props, state) => {
-          state satisfies Menu2GroupOwnerState;
+          state satisfies Menu2GroupState;
           return <div {...props} />;
         },
       },
@@ -706,6 +715,8 @@ const menuCheckboxItemSlots = {
 const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
   root: (ownerState) => {
     ownerState satisfies Menu2CheckboxItemOwnerState;
+    // The callback receives the props.
+    ownerState.icon satisfies React.ReactNode;
     ownerState.checked satisfies boolean;
     ownerState.highlighted satisfies boolean;
     // @ts-expect-error Checkbox item state does not include an open state.
@@ -772,6 +783,8 @@ const menuRadioItemSlots = {
 const menuRadioItemSlotProps: Menu2RadioItemSlotProps = {
   root: (ownerState) => {
     ownerState satisfies Menu2RadioItemOwnerState;
+    // The callback receives the props.
+    ownerState.icon satisfies React.ReactNode;
     ownerState.checked satisfies boolean;
     ownerState.highlighted satisfies boolean;
     // @ts-expect-error Radio item state does not include an open state.
@@ -849,6 +862,8 @@ const menuSubmenuTriggerSlots = {
 const menuSubmenuTriggerSlotProps: Menu2SubmenuTriggerSlotProps = {
   root: (ownerState) => {
     ownerState satisfies Menu2SubmenuTriggerOwnerState;
+    // The callback receives the props.
+    ownerState.label satisfies string | undefined;
     ownerState.open satisfies boolean;
     ownerState.highlighted satisfies boolean;
     // @ts-expect-error The open state is a boolean.
@@ -897,7 +912,9 @@ const menuGroupSlots = { root: 'section' } satisfies Menu2GroupSlots;
 const menuGroupSlotProps: Menu2GroupSlotProps = {
   root: (ownerState) => {
     ownerState satisfies Menu2GroupOwnerState;
-    // @ts-expect-error Group state has no fields.
+    // The callback receives the props.
+    ownerState.title satisfies string | undefined;
+    // @ts-expect-error Groups have no disabled state.
     ownerState.disabled satisfies boolean;
     return {
       title: 'Projects',
@@ -945,8 +962,8 @@ const menuRadioGroupSlotProps: Menu2RadioGroupSlotProps = {
     ownerState.disabled satisfies boolean;
     // @ts-expect-error Disabled is a boolean.
     ownerState.disabled satisfies string;
-    // @ts-expect-error Radio group state does not expose its value.
-    ownerState.value satisfies string;
+    // The callback receives the props.
+    ownerState.title satisfies string | undefined;
     return {
       title: 'Layout',
       'data-disabled': ownerState.disabled,
@@ -1000,10 +1017,10 @@ const menuGroupLabelSlots = { root: 'p' } satisfies Menu2GroupLabelSlots;
 const menuGroupLabelSlotProps: Menu2GroupLabelSlotProps = {
   root: (ownerState) => {
     ownerState satisfies Menu2GroupLabelOwnerState;
-    // @ts-expect-error GroupLabel state has no fields.
+    // The callback receives the props, including the visual props.
+    ownerState.inset satisfies boolean | undefined;
+    // @ts-expect-error Labels have no disabled state.
     ownerState.disabled satisfies boolean;
-    // @ts-expect-error Visual props are not part of the public slot state.
-    ownerState.inset satisfies boolean;
     return {
       title: 'Projects',
       'data-label': 'projects',
@@ -1062,8 +1079,8 @@ const menuSeparatorSlotProps: Menu2SeparatorSlotProps = {
     ownerState.orientation satisfies 'horizontal' | 'vertical';
     // @ts-expect-error The separator has no item state.
     ownerState.highlighted satisfies boolean;
-    // @ts-expect-error Visual props are not part of the public slot state.
-    ownerState.variant satisfies string;
+    // The callback receives the props, including the visual props.
+    ownerState.variant satisfies 'fullWidth' | 'inset' | 'middle' | undefined;
     return {
       title: 'Section end',
       'data-direction': ownerState.orientation,

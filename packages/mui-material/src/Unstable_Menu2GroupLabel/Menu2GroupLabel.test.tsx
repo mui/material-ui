@@ -44,6 +44,26 @@ describe('<Menu2GroupLabel />', () => {
     testVariantProps: { 'data-variant': 'probe' },
   }));
 
+  it('passes the props to the slotProps.root callback', () => {
+    render(
+      <Menu2 defaultOpen modal={false}>
+        <Menu2Popup anchor={document.body}>
+          <Menu2Group>
+            <Menu2GroupLabel
+              inset
+              slotProps={{
+                root: (ownerState) => ({ 'data-slot-inset': String(ownerState.inset) }),
+              }}
+            >
+              Account
+            </Menu2GroupLabel>
+          </Menu2Group>
+        </Menu2Popup>
+      </Menu2>,
+    );
+    expect(screen.getByText('Account')).to.have.attribute('data-slot-inset', 'true');
+  });
+
   groupCases.forEach(({ name, Group, item }) => {
     [false, true].forEach((replaceRoot) => {
       [false, true].forEach((callback) => {

@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: Menu2RadioGroupProps) => {
 const Menu2RadioGroupRoot = styled('div', {
   name: 'MuiMenu2RadioGroup',
   slot: 'root',
-})<{ ownerState: Menu2RadioGroupProps & Menu2RadioGroupOwnerState }>({});
+})<{ ownerState: Menu2RadioGroupOwnerState }>({});
 
 /**
  *
@@ -75,7 +75,7 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
     <BaseMenu.RadioGroup
       ref={handleRef}
       render={(renderProps, state) => (
-        <Menu2RootSlot<Menu2RadioGroupOwnerState>
+        <Menu2RootSlot<Menu2RadioGroupOwnerState, Menu2RadioGroupState>
           baseProps={renderProps}
           elementType={Menu2RadioGroupRoot}
           ownerState={{ ...ownerState, ...state }}
@@ -96,7 +96,8 @@ const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
 
 export type Menu2RadioGroupState = BaseMenu.RadioGroup.State;
 
-export interface Menu2RadioGroupOwnerState extends BaseMenu.RadioGroup.State {}
+export interface Menu2RadioGroupOwnerState
+  extends Omit<Menu2RadioGroupProps, 'disabled'>, Menu2RadioGroupState {}
 
 export interface Menu2RadioGroupSlots {
   /**

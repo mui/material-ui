@@ -119,9 +119,10 @@ describe('<Menu2LinkItem />', () => {
             render={renderItem}
             slots={{ root: 'a' }}
             slotProps={{
-              root: (state) => ({
+              root: (ownerState) => ({
                 ref: slotRef,
-                'data-slot-divider': String(state.divider),
+                'data-slot-divider': String(ownerState.divider),
+                'data-slot-href': ownerState.href,
                 onClick: (event) => event.preventDefault(),
               }),
             }}
@@ -138,6 +139,7 @@ describe('<Menu2LinkItem />', () => {
     expect(item).to.have.attribute('target', '_blank');
     expect(item).to.have.attribute('rel', 'noopener');
     expect(item).to.have.attribute('data-slot-divider', 'true');
+    expect(item).to.have.attribute('data-slot-href', '/profile');
     expect(rootRef.current).to.equal(item);
     expect(slotRef.current).to.equal(item);
     expect(item).not.to.have.class('MuiButtonBase-root');

@@ -144,7 +144,8 @@ export interface Menu2SubmenuTriggerSlots {
 
 export type Menu2SubmenuTriggerState = BaseMenu.SubmenuTrigger.State;
 
-export interface Menu2SubmenuTriggerOwnerState extends Menu2ItemBaseOwnerState {
+export interface Menu2SubmenuTriggerOwnerState
+  extends Omit<Menu2SubmenuTriggerProps, keyof Menu2ItemBaseOwnerState>, Menu2ItemBaseOwnerState {
   /** Whether the submenu is currently open. */
   open: boolean;
   /** Whether Base UI currently highlights the trigger. */

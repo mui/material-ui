@@ -144,13 +144,17 @@ export type ComponentsProps = {
 
 // Add resolved state here for theme customization without changing defaultProps.
 export interface ComponentsOwnerStateList extends ComponentsPropsList {
-  MuiMenu2CheckboxItem: Menu2CheckboxItemProps & Menu2CheckboxItemOwnerState;
-  MuiMenu2Item: Menu2ItemProps & Menu2ItemOwnerState;
-  MuiMenu2LinkItem: Menu2LinkItemProps & Menu2LinkItemOwnerState;
-  MuiMenu2RadioGroup: Menu2RadioGroupProps & Menu2RadioGroupOwnerState;
-  MuiMenu2RadioItem: Menu2RadioItemProps & Menu2RadioItemOwnerState;
-  MuiMenu2Separator: Menu2SeparatorProps & Menu2SeparatorOwnerState;
-  MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps & Menu2SubmenuTriggerOwnerState;
+  MuiMenu2CheckboxItem: Menu2CheckboxItemOwnerState;
+  // The shared key also styles the other item parts, so their own fields are optional.
+  MuiMenu2Item: Omit<Menu2ItemOwnerState, 'disabled'> & {
+    disabled?: boolean | undefined;
+    open?: boolean | undefined;
+  };
+  MuiMenu2LinkItem: Menu2LinkItemOwnerState;
+  MuiMenu2RadioGroup: Menu2RadioGroupOwnerState;
+  MuiMenu2RadioItem: Menu2RadioItemOwnerState;
+  MuiMenu2Separator: Menu2SeparatorOwnerState;
+  MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerOwnerState;
 }
 
 export interface ComponentsPropsList {

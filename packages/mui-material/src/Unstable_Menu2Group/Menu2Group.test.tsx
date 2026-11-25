@@ -173,7 +173,13 @@ describe('<Menu2Group />', () => {
                 title="Actions"
                 render={renderGroup}
                 slots={{ root: rootType === 'host' ? 'div' : CustomRoot }}
-                slotProps={{ root: () => ({ ref: slotRef, 'data-slot': 'root' }) }}
+                slotProps={{
+                  root: (ownerState) => ({
+                    ref: slotRef,
+                    'data-slot': 'root',
+                    'data-slot-title': ownerState.title,
+                  }),
+                }}
                 sx={{ paddingRight: '31px' }}
               >
                 <Menu2GroupLabel>Account</Menu2GroupLabel>
@@ -190,6 +196,7 @@ describe('<Menu2Group />', () => {
       expect(slotRef.current).to.equal(group);
       expect(group).to.have.attribute('aria-labelledby', screen.getByText('Account').id);
       expect(group).to.have.attribute('data-slot', 'root');
+      expect(group).to.have.attribute('data-slot-title', 'Actions');
       expect(group).to.have.class(classes.root);
       expect(item.parentElement).to.equal(group);
       expect(renderGroup).not.toHaveBeenCalled();

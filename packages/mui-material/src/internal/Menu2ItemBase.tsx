@@ -6,7 +6,6 @@ import ButtonBase from '../ButtonBase';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import type { Menu2ItemBaseOwnerState } from '../Unstable_Menu2/menu2ItemShared';
-import type { Menu2ItemOwnerState } from '../Unstable_Menu2Item/Menu2Item';
 
 export function menu2ItemOverridesResolver(
   props: { ownerState: Menu2ItemStyleOwnerState },
@@ -96,7 +95,7 @@ const Menu2ItemBase = styled(Menu2ItemBaseRoot, {
   name: 'MuiMenu2Item',
   slot: 'root',
   overridesResolver: menu2ItemOverridesResolver,
-})<{ ownerState: Menu2ItemOwnerState }>({});
+})<{ ownerState: Menu2ItemStyleOwnerState }>({});
 
 type Menu2ItemStyleOwnerState = Pick<
   Menu2ItemBaseOwnerState,

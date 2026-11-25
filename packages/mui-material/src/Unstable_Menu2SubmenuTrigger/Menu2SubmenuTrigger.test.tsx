@@ -129,7 +129,11 @@ describe('<Menu2SubmenuTrigger />', () => {
               render={renderTrigger}
               slots={{ root: 'div', indicator: CustomIndicator }}
               slotProps={{
-                root: (state) => ({ ref: slotRef, 'data-slot-open': String(state.open) }),
+                root: (ownerState) => ({
+                  ref: slotRef,
+                  'data-slot-open': String(ownerState.open),
+                  'data-slot-open-on-hover': String(ownerState.openOnHover),
+                }),
                 indicator: { children: '+', id: 'custom-indicator' },
               }}
               sx={{ paddingLeft: '31px' }}
@@ -147,6 +151,7 @@ describe('<Menu2SubmenuTrigger />', () => {
     const indicator = trigger.querySelector('#custom-indicator')!;
     expect(slotRef.current).to.equal(trigger);
     expect(trigger).to.have.attribute('data-slot-open', 'false');
+    expect(trigger).to.have.attribute('data-slot-open-on-hover', 'false');
     expect(trigger).to.have.attribute('aria-haspopup', 'menu');
     expect(trigger).not.to.have.class('MuiButtonBase-root');
     expect(getComputedStyle(trigger).display).not.to.equal('flex');

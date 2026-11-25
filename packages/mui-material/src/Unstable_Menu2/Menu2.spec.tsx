@@ -56,12 +56,14 @@ import type {
   Menu2GroupOwnerState,
   Menu2GroupSlotProps,
   Menu2GroupSlots,
+  Menu2GroupState,
 } from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import type {
   Menu2GroupLabelOwnerState,
   Menu2GroupLabelSlotProps,
   Menu2GroupLabelSlots,
+  Menu2GroupLabelState,
 } from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
 import type {
@@ -80,8 +82,10 @@ import type {
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import type {
   Menu2RadioGroupOwnerState,
+  Menu2RadioGroupProps,
   Menu2RadioGroupSlotProps,
   Menu2RadioGroupSlots,
+  Menu2RadioGroupState,
 } from '@mui/material/Unstable_Menu2RadioGroup';
 import type {
   Menu2RadioItemIndicatorClassKey,
@@ -103,8 +107,10 @@ import Menu2RadioItem, {
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import type {
   Menu2SeparatorOwnerState,
+  Menu2SeparatorProps,
   Menu2SeparatorSlotProps,
   Menu2SeparatorSlots,
+  Menu2SeparatorState,
 } from '@mui/material/Unstable_Menu2Separator';
 import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
 import Menu2SubmenuTrigger, {
@@ -497,10 +503,20 @@ createTheme({
       },
       styleOverrides: {
         root: { [`&.${menu2ItemClasses.highlighted}`]: { color: 'red' } },
+        // The shared key also styles link items, which have no disabled state, and submenu triggers.
+        startAdornment: ({ ownerState }) => {
+          expectType<boolean | undefined, typeof ownerState.disabled>(ownerState.disabled);
+          expectType<boolean | undefined, typeof ownerState.open>(ownerState.open);
+          return {};
+        },
       },
       variants: [
         {
           props: { divider: true },
+          style: {},
+        },
+        {
+          props: { open: true },
           style: {},
         },
       ],
@@ -1115,6 +1131,8 @@ const menuItemSlotProps: Menu2ItemSlotProps = {
     expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
     expectType<boolean, typeof ownerState.disableGutters>(ownerState.disableGutters);
     expectType<boolean, typeof ownerState.divider>(ownerState.divider);
+    // The callback receives the props.
+    expectType<string | undefined, typeof ownerState.label>(ownerState.label);
     // @ts-expect-error Item state does not include an open state.
     ownerState.open;
     return {
@@ -1217,6 +1235,8 @@ const menuLinkItemSlotProps: Menu2LinkItemSlotProps = {
   root: (ownerState) => {
     expectType<Menu2LinkItemOwnerState, typeof ownerState>(ownerState);
     expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // The callback receives the props.
+    expectType<string | undefined, typeof ownerState.href>(ownerState.href);
     // @ts-expect-error Link item state does not include an open state.
     ownerState.open;
     return {
@@ -1289,6 +1309,8 @@ const menuCheckboxItemSlotProps: Menu2CheckboxItemSlotProps = {
     expectType<Menu2CheckboxItemOwnerState, typeof ownerState>(ownerState);
     expectType<boolean, typeof ownerState.checked>(ownerState.checked);
     expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // The callback receives the props.
+    expectType<React.ReactNode, typeof ownerState.icon>(ownerState.icon);
     // @ts-expect-error Checkbox item state does not include an open state.
     ownerState.open;
     return {
@@ -1363,6 +1385,8 @@ const menuRadioItemSlotProps: Menu2RadioItemSlotProps = {
     expectType<Menu2RadioItemOwnerState, typeof ownerState>(ownerState);
     expectType<boolean, typeof ownerState.checked>(ownerState.checked);
     expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // The callback receives the props.
+    expectType<React.ReactNode, typeof ownerState.icon>(ownerState.icon);
     // @ts-expect-error Radio item state does not include an open state.
     ownerState.open;
     return {
@@ -1422,6 +1446,8 @@ const menuSubmenuTriggerSlotProps: Menu2SubmenuTriggerSlotProps = {
     expectType<Menu2SubmenuTriggerOwnerState, typeof ownerState>(ownerState);
     expectType<boolean, typeof ownerState.open>(ownerState.open);
     expectType<boolean, typeof ownerState.highlighted>(ownerState.highlighted);
+    // The callback receives the props.
+    expectType<string | undefined, typeof ownerState.label>(ownerState.label);
     // @ts-expect-error The open state is a boolean.
     expectType<string, typeof ownerState.open>(ownerState.open);
     return {
@@ -1474,7 +1500,7 @@ createTheme({
 />;
 <Menu2Group
   render={(props, state) => {
-    expectType<Menu2GroupOwnerState, typeof state>(state);
+    expectType<Menu2GroupState, typeof state>(state);
     // @ts-expect-error Group render state has no fields.
     state.disabled;
     // @ts-expect-error Groups do not expose item state.
@@ -1498,7 +1524,9 @@ const menuGroupSlots = { root: 'section' } satisfies Menu2GroupSlots;
 const menuGroupSlotProps: Menu2GroupSlotProps = {
   root: (ownerState) => {
     expectType<Menu2GroupOwnerState, typeof ownerState>(ownerState);
-    // @ts-expect-error Group state has no fields.
+    // The callback receives the props.
+    expectType<string | undefined, typeof ownerState.title>(ownerState.title);
+    // @ts-expect-error Groups have no disabled state.
     ownerState.disabled;
     return {
       title: 'Projects',
@@ -1534,7 +1562,7 @@ const menuGroupSlotProps: Menu2GroupSlotProps = {
   disabled
   defaultValue="list"
   render={(props, state) => {
-    expectType<Menu2RadioGroupOwnerState, typeof state>(state);
+    expectType<Menu2RadioGroupState, typeof state>(state);
     expectType<boolean, typeof state.disabled>(state.disabled);
     // @ts-expect-error Radio group render state does not expose its value.
     state.value;
@@ -1561,8 +1589,10 @@ const menuRadioGroupSlotProps: Menu2RadioGroupSlotProps = {
     expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
     // @ts-expect-error Disabled is a boolean.
     expectType<string, typeof ownerState.disabled>(ownerState.disabled);
-    // @ts-expect-error Radio group state does not expose its value.
-    ownerState.value;
+    // The callback receives the props.
+    expectType<Menu2RadioGroupProps['onValueChange'], typeof ownerState.onValueChange>(
+      ownerState.onValueChange,
+    );
     return {
       title: 'Layout',
       'data-disabled': ownerState.disabled,
@@ -1614,7 +1644,7 @@ const menuRadioGroupSlotProps: Menu2RadioGroupSlotProps = {
   inset
   sx={{ fontWeight: 700 }}
   render={(props, state) => {
-    expectType<Menu2GroupLabelOwnerState, typeof state>(state);
+    expectType<Menu2GroupLabelState, typeof state>(state);
     expectType<BaseMenu.GroupLabel.State, typeof state>(state);
     // @ts-expect-error GroupLabel render state has no fields.
     state.disabled;
@@ -1640,10 +1670,10 @@ const menuGroupLabelSlots = { root: 'p' } satisfies Menu2GroupLabelSlots;
 const menuGroupLabelSlotProps: Menu2GroupLabelSlotProps = {
   root: (ownerState) => {
     expectType<Menu2GroupLabelOwnerState, typeof ownerState>(ownerState);
-    // @ts-expect-error GroupLabel state has no fields.
+    // The callback receives the props, including the visual props.
+    expectType<boolean | undefined, typeof ownerState.inset>(ownerState.inset);
+    // @ts-expect-error Labels have no disabled state.
     ownerState.disabled;
-    // @ts-expect-error Visual props are not part of the public slot state.
-    ownerState.inset;
     return {
       title: 'Projects',
       'data-label': 'projects',
@@ -1692,7 +1722,7 @@ const menuGroupLabelSlotProps: Menu2GroupLabelSlotProps = {
   flexItem
   textAlign="right"
   render={(props, state) => {
-    expectType<Menu2SeparatorOwnerState, typeof state>(state);
+    expectType<Menu2SeparatorState, typeof state>(state);
     expectType<'horizontal' | 'vertical', typeof state.orientation>(state.orientation);
     // @ts-expect-error The separator has no item state.
     state.highlighted;
@@ -1719,8 +1749,8 @@ const menuSeparatorSlotProps: Menu2SeparatorSlotProps = {
     expectType<'horizontal' | 'vertical', typeof ownerState.orientation>(ownerState.orientation);
     // @ts-expect-error The separator has no item state.
     ownerState.highlighted;
-    // @ts-expect-error Visual props are not part of the public slot state.
-    ownerState.variant;
+    // The callback receives the props, including the visual props.
+    expectType<Menu2SeparatorProps['variant'], typeof ownerState.variant>(ownerState.variant);
     return {
       title: 'Section end',
       'data-direction': ownerState.orientation,
@@ -1769,7 +1799,7 @@ createTheme({
           },
         },
         render: (props, state) => {
-          expectType<Menu2GroupLabelOwnerState, typeof state>(state);
+          expectType<Menu2GroupLabelState, typeof state>(state);
           return <p {...props} />;
         },
       },
@@ -1813,7 +1843,7 @@ createTheme({
           },
         },
         render: (props, state) => {
-          expectType<Menu2GroupOwnerState, typeof state>(state);
+          expectType<Menu2GroupState, typeof state>(state);
           return <div {...props} />;
         },
       },

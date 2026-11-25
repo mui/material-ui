@@ -335,7 +335,7 @@ These parts share three customization options:
 
 - `render` changes the element or composes another component while keeping Material styles, theme overrides, and item ripple.
 - `slotProps.root` supplies root attributes, a ref, and `sx`.
-  Its callback receives the props and the live state. The render function receives the Base UI state, as in Base UI.
+  Its callback receives the props and the live state; on popups, it receives only the props. The render function receives the Base UI state, as in Base UI.
 - `slots.root` replaces the styled root and takes precedence over `render`.
   Utility classes and Base UI props remain, but Material styles, theme overrides, ripple, and `sx` processing are not added automatically.
 

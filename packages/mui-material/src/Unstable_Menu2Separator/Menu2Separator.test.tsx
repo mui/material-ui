@@ -183,10 +183,11 @@ describe('<Menu2Separator />', () => {
               render={renderSeparator}
               slots={{ root: custom ? CustomSeparator : 'div' }}
               slotProps={{
-                root: (state) => ({
+                root: (ownerState) => ({
                   ref: slotRef,
                   onClick: onSlotClick,
-                  'data-slot-orientation': state.orientation,
+                  'data-slot-orientation': ownerState.orientation,
+                  'data-slot-variant': ownerState.variant,
                   style: { opacity: 0.7 },
                 }),
               }}
@@ -203,6 +204,7 @@ describe('<Menu2Separator />', () => {
         expect(separator).to.have.attribute('aria-orientation', orientation);
         expect(separator).to.have.attribute('data-orientation', orientation);
         expect(separator).to.have.attribute('data-slot-orientation', orientation);
+        expect(separator).to.have.attribute('data-slot-variant', 'inset');
         if (custom) {
           expect(separator).to.have.attribute('data-root-orientation', orientation);
         }

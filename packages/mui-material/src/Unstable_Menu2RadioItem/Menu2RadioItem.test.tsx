@@ -69,7 +69,11 @@ describe('<Menu2RadioItem />', () => {
               checkedIcon={<span data-testid="checked-icon" />}
               slots={{ root: 'div' }}
               slotProps={{
-                root: (state) => ({ ref: slotRef, 'data-slot-checked': String(state.checked) }),
+                root: (ownerState) => ({
+                  ref: slotRef,
+                  'data-slot-checked': String(ownerState.checked),
+                  'data-slot-value': ownerState.value,
+                }),
               }}
               sx={{ paddingLeft: '31px' }}
             >
@@ -83,6 +87,7 @@ describe('<Menu2RadioItem />', () => {
     const indicator = item.querySelector(`.${menu2RadioItemIndicatorClasses.root}`)!;
     expect(slotRef.current).to.equal(item);
     expect(item).to.have.attribute('data-slot-checked', 'false');
+    expect(item).to.have.attribute('data-slot-value', 'two');
     expect(item).not.to.have.class('MuiButtonBase-root');
     expect(getComputedStyle(item).display).not.to.equal('flex');
     expect(getComputedStyle(item).paddingLeft).not.to.equal('31px');

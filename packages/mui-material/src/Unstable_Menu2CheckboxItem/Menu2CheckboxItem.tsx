@@ -80,7 +80,7 @@ interface Menu2CheckboxItemRootSlotProps extends Pick<
   | 'sx'
 > {
   baseProps: HTMLProps;
-  ownerState: Menu2CheckboxItemOwnerState & Pick<Menu2CheckboxItemProps, 'classes'>;
+  ownerState: Menu2CheckboxItemOwnerState;
   renderState: Menu2CheckboxItemState;
 }
 
@@ -321,7 +321,8 @@ export type Menu2CheckboxItemState = BaseMenu.CheckboxItem.State;
 
 export type Menu2CheckboxItemIndicatorState = BaseMenu.CheckboxItemIndicator.State;
 
-export interface Menu2CheckboxItemOwnerState extends Menu2ItemBaseOwnerState {
+export interface Menu2CheckboxItemOwnerState
+  extends Omit<Menu2CheckboxItemProps, keyof Menu2ItemBaseOwnerState>, Menu2ItemBaseOwnerState {
   /** Whether the item is currently checked, including uncontrolled selection. */
   checked: boolean;
   /** Whether Base UI currently highlights the item. */

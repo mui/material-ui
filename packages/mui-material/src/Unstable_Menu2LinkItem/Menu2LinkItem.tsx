@@ -129,7 +129,10 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
 
 export type Menu2LinkItemState = BaseMenu.LinkItem.State;
 
-export interface Menu2LinkItemOwnerState extends Omit<Menu2ItemBaseOwnerState, 'disabled'> {
+export interface Menu2LinkItemOwnerState
+  extends
+    Omit<Menu2LinkItemProps, keyof Menu2ItemBaseOwnerState>,
+    Omit<Menu2ItemBaseOwnerState, 'disabled'> {
   /** Whether Base UI currently highlights the item. */
   highlighted: boolean;
 }

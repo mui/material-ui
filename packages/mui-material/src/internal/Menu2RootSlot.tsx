@@ -14,8 +14,8 @@ import Menu2RenderRoot from './Menu2RenderRoot';
 /**
  * @ignore - internal component.
  */
-export default function Menu2RootSlot<State extends object>(
-  props: Menu2RootSlotComponentProps<State>,
+export default function Menu2RootSlot<OwnerState extends object, RenderState extends object>(
+  props: Menu2RootSlotComponentProps<OwnerState, RenderState>,
 ) {
   const {
     baseProps,
@@ -53,15 +53,16 @@ export default function Menu2RootSlot<State extends object>(
   return getMenu2RootRender(RootSlot, ownerState, rootProps);
 }
 
-interface Menu2RootSlotComponentProps<State extends object> {
+interface Menu2RootSlotComponentProps<OwnerState extends object, RenderState extends object> {
   baseProps: HTMLProps;
   elementType: React.ElementType;
-  ownerState: State;
+  ownerState: OwnerState;
   internalForwardedProps?: Record<string, unknown> | undefined;
-  render?: React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, State> | undefined;
-  renderState: State;
+  render?:
+    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, RenderState> | undefined;
+  renderState: RenderState;
   shouldForwardComponentProp?: boolean | undefined;
   slots?: Menu2RootSlots | undefined;
-  slotProps?: Menu2RootSlotProps<State> | undefined;
+  slotProps?: Menu2RootSlotProps<OwnerState> | undefined;
   sx?: SxProps<Theme> | undefined;
 }

@@ -71,12 +71,17 @@ describe('<Menu2CheckboxItem />', () => {
       <Menu2 defaultOpen modal={false}>
         <Menu2Popup anchor={document.body}>
           <Menu2CheckboxItem
+            label="Ruler"
             render={renderItem}
             icon={<span data-testid="icon" />}
             checkedIcon={<span data-testid="checked-icon" />}
             slots={{ root: CustomRoot }}
             slotProps={{
-              root: (state) => ({ ref: slotRef, 'data-slot-checked': String(state.checked) }),
+              root: (ownerState) => ({
+                ref: slotRef,
+                'data-slot-checked': String(ownerState.checked),
+                'data-slot-label': ownerState.label,
+              }),
             }}
             sx={{ paddingLeft: '31px' }}
           >
@@ -90,6 +95,7 @@ describe('<Menu2CheckboxItem />', () => {
     expect(slotRef.current).to.equal(item);
     expect(item).to.have.attribute('data-owner-checked', 'false');
     expect(item).to.have.attribute('data-slot-checked', 'false');
+    expect(item).to.have.attribute('data-slot-label', 'Ruler');
     expect(item).not.to.have.class('MuiButtonBase-root');
     expect(getComputedStyle(item).display).not.to.equal('flex');
     expect(getComputedStyle(item).paddingLeft).not.to.equal('31px');

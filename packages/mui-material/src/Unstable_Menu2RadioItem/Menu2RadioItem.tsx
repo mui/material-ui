@@ -80,7 +80,7 @@ interface Menu2RadioItemRootSlotProps extends Pick<
   | 'sx'
 > {
   baseProps: HTMLProps;
-  ownerState: Menu2RadioItemOwnerState & Pick<Menu2RadioItemProps, 'classes'>;
+  ownerState: Menu2RadioItemOwnerState;
   renderState: Menu2RadioItemState;
 }
 
@@ -311,7 +311,8 @@ export type Menu2RadioItemState = BaseMenu.RadioItem.State;
 
 export type Menu2RadioItemIndicatorState = BaseMenu.RadioItemIndicator.State;
 
-export interface Menu2RadioItemOwnerState extends Menu2ItemBaseOwnerState {
+export interface Menu2RadioItemOwnerState
+  extends Omit<Menu2RadioItemProps, keyof Menu2ItemBaseOwnerState>, Menu2ItemBaseOwnerState {
   /** Whether the item is currently checked, including uncontrolled selection. */
   checked: boolean;
   /** Whether Base UI currently highlights the item. */

@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: Menu2GroupLabelProps) => {
 const Menu2GroupLabelRoot = styled(ListSubheader, {
   name: 'MuiMenu2GroupLabel',
   slot: 'root',
-})<{ component?: React.ElementType | undefined; ownerState: Menu2GroupLabelProps }>({
+})<{ component?: React.ElementType | undefined; ownerState: Menu2GroupLabelOwnerState }>({
   // Align with inset item labels: the gutter plus the 36px start adornment column.
   variants: [
     { props: { inset: true }, style: { paddingLeft: 52 } },
@@ -84,7 +84,7 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     <BaseMenu.GroupLabel
       ref={handleRef}
       render={(renderProps, state) => (
-        <Menu2RootSlot<Menu2GroupLabelOwnerState>
+        <Menu2RootSlot<Menu2GroupLabelOwnerState, Menu2GroupLabelState>
           baseProps={renderProps}
           elementType={Menu2GroupLabelRoot}
           ownerState={ownerState}
@@ -113,7 +113,7 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
 
 export type Menu2GroupLabelState = BaseMenu.GroupLabel.State;
 
-export interface Menu2GroupLabelOwnerState extends BaseMenu.GroupLabel.State {}
+export interface Menu2GroupLabelOwnerState extends Menu2GroupLabelProps, Menu2GroupLabelState {}
 
 export interface Menu2GroupLabelSlots {
   /**

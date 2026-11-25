@@ -233,13 +233,15 @@ describe('<Menu2Item />', () => {
             <Menu2Item
               divider
               disableGutters
+              label="Item"
               slots={{ root: 'div' }}
               slotProps={{
-                root: (state) => ({
-                  'data-slot-highlighted': String(state.highlighted),
-                  'data-slot-disabled': String(state.disabled),
-                  'data-slot-divider': String(state.divider),
-                  'data-slot-gutters': String(state.disableGutters),
+                root: (ownerState) => ({
+                  'data-slot-highlighted': String(ownerState.highlighted),
+                  'data-slot-disabled': String(ownerState.disabled),
+                  'data-slot-divider': String(ownerState.divider),
+                  'data-slot-gutters': String(ownerState.disableGutters),
+                  'data-slot-label': ownerState.label,
                 }),
               }}
             >
@@ -257,6 +259,7 @@ describe('<Menu2Item />', () => {
       expect(item).to.have.attribute('data-slot-disabled', 'false');
       expect(item).to.have.attribute('data-slot-divider', 'true');
       expect(item).to.have.attribute('data-slot-gutters', 'true');
+      expect(item).to.have.attribute('data-slot-label', 'Item');
 
       await user.keyboard('{ArrowDown}{ArrowDown}');
       await waitFor(() => expect(item).toHaveFocus());
