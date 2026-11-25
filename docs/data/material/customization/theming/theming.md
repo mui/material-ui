@@ -198,6 +198,7 @@ When the value for a theme option is dependent on another theme option, you shou
 import { createTheme } from '@mui/material/styles';
 
 let theme = createTheme({
+  cssVariables: true,
   palette: {
     primary: {
       main: '#0052cc',
