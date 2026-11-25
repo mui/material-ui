@@ -30,6 +30,7 @@ export default function responsiveFontSizes(themeInput, options = {}) {
   // Set the baseFontSize for your project. Defaults to 16px (also the browser default).
   const convert = convertLength(typography.htmlFontSize);
   const breakpointValues = breakpoints.map((x) => theme.breakpoints.values[x]);
+  const breakpointUnit = theme.breakpoints.unit ?? 'px';
 
   variants.forEach((variant) => {
     const style = typography[variant];
@@ -77,6 +78,7 @@ export default function responsiveFontSizes(themeInput, options = {}) {
       max: maxFontSize,
       unit: 'rem',
       breakpoints: breakpointValues,
+      breakpointUnit,
       transform,
     });
 
@@ -85,7 +87,7 @@ export default function responsiveFontSizes(themeInput, options = {}) {
     // Grid alignment can snap the max value away from the original designed size.
     if (breakpointValues.length > 0) {
       const lastBreakpoint = breakpointValues[breakpointValues.length - 1];
-      responsive[`@media (min-width:${lastBreakpoint}px)`] = {
+      responsive[`@media (min-width:${lastBreakpoint}${breakpointUnit})`] = {
         fontSize: `${Math.round(maxFontSize * 10000) / 10000}rem`,
       };
     }

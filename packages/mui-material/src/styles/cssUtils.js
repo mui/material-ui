@@ -94,6 +94,7 @@ export function fontGrid({ lineHeight, pixels, htmlFontSize }) {
  * @param {number} params.max - The largest value of the CSS property
  * @param {string} [params.unit] - The unit to be used for the CSS property
  * @param {Array.number} [params.breakpoints]  - An array of breakpoints
+ * @param {string} [params.breakpointUnit] - The unit of the breakpoint values
  * @param {number} [params.alignStep] - Round scaled value to fall under this grid
  * @returns {Object} responsive styles for {params.cssProperty}
  */
@@ -103,6 +104,7 @@ export function responsiveProperty({
   max,
   unit = 'rem',
   breakpoints = [600, 900, 1200],
+  breakpointUnit = 'px',
   transform = null,
 }) {
   const output = {
@@ -117,7 +119,7 @@ export function responsiveProperty({
       value = transform(value);
     }
 
-    output[`@media (min-width:${breakpoint}px)`] = {
+    output[`@media (min-width:${breakpoint}${breakpointUnit})`] = {
       [cssProperty]: `${Math.round(value * 10000) / 10000}${unit}`,
     };
   });

@@ -86,6 +86,19 @@ describe('responsiveFontSizes', () => {
     });
   });
 
+  it('should use the breakpoints unit of the theme in the media queries', () => {
+    const theme = createTheme({
+      breakpoints: { unit: 'em', values: { xs: 0, sm: 37.5, md: 56, lg: 75, xl: 96 } },
+    });
+    const { typography } = responsiveFontSizes(theme);
+
+    expect(Object.keys(typography.h1).filter((key) => key.startsWith('@media'))).to.deep.equal([
+      '@media (min-width:37.5em)',
+      '@media (min-width:56em)',
+      '@media (min-width:75em)',
+    ]);
+  });
+
   it('should handle variants that have been reset to undefined', () => {
     const theme = createTheme({
       typography: {
