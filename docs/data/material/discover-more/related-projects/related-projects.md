@@ -20,7 +20,7 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 
 ### Layout
 
-- [MUI Treasury Layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page.
+- [MUI Treasury Layout](https://www.mui-treasury.com/layout): Components to handle the overall layout of a page.
 
 ### Image
 
