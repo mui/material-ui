@@ -390,6 +390,51 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // Badge docs demos enrolled for axe.
+  {
+    test: 'docs/data/material/components/badges/{SimpleBadge,ColorBadge,DotBadge,BadgeMax,ShowZeroBadge,BadgeOverlap,BadgeIntro,BadgeVisibility}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // The Avatars in CustomizedBadges use the default `colorDefault` styling
+  // (white on grey[400], ~1.9:1), which the Avatar report rates under 1.4.3, and
+  // each list item's `aria-label` ("Remy Sharp, online") does not contain the
+  // item's visible text as a whole, which axe reports as
+  // `label-content-name-mismatch` (2.5.3). Both are recorded, not asserted.
+  {
+    test: 'docs/data/material/components/badges/CustomizedBadges',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast', 'label-content-name-mismatch'],
+  },
+  // The list item shows the badge count as visible text next to "Inbox", and
+  // its `aria-label` ("Inbox, 4 unread messages") does not contain that visible
+  // text as a whole, so axe reports `label-content-name-mismatch`. The Badge
+  // report rates this under 2.5.3. Recorded, not asserted.
+  {
+    test: 'docs/data/material/components/badges/BadgeListItem',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['label-content-name-mismatch'],
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/badges/` (no
+  // docs page consumes them); the suite name maps their results into the same
+  // `badges.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/badges/BadgeA11ySemanticStates',
+    enabled: true,
+    assertions: 'all',
+  },
+  // The color matrix covers every palette color, and the default palette's
+  // `warning` and `info` (light) badge text falls below 4.5:1, so
+  // `color-contrast` is recorded and not asserted. The Badge report rates it
+  // under 1.4.3.
+  {
+    test: 'test/regressions/a11y/fixtures/badges/BadgeA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
   {
     test: `docs/data/material/components/buttons/{${BUTTON_A11Y_DEMOS.join(',')}}`,
     enabled: true,

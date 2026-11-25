@@ -20,6 +20,7 @@ export const CSS_LAYOUT_SUITES = [
     // Manual rather than silently downgraded. See Avatar/accessibility.md.
     skipCriteria: ['1.4.4'],
   },
+  { component: 'Badge', route: '/docs-components-badges/BadgeMax' },
   { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
   { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
   {

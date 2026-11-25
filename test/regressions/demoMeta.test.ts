@@ -192,6 +192,33 @@ describe('getConfig', () => {
     ).to.equal(undefined);
   });
 
+  it('enrols the Badge demos and fixtures for axe, and records the color matrix contrast without asserting it', () => {
+    ['SimpleBadge', 'ColorBadge', 'DotBadge', 'BadgeMax', 'BadgeVisibility'].forEach((demo) => {
+      expect(getConfig(A11Y_RULES, `docs/data/material/components/badges/${demo}`)).to.deep.include(
+        {
+          enabled: true,
+          assertions: 'all',
+        },
+      );
+    });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/badges/BadgeA11ySemanticStates'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/badges/BadgeA11yColorMatrix'),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/badges/BadgeListItem'),
+    ).to.deep.include({ enabled: true, skipAssertions: ['label-content-name-mismatch'] });
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/badges/BadgeAlignment')).to.equal(
+      undefined,
+    );
+  });
+
   it('opts the LinearProgress a11y fixtures out of screenshots', () => {
     expect(
       getConfig(

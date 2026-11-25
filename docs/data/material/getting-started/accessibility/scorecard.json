@@ -1,12 +1,12 @@
 {
   "standard": "WCAG 2.2 Level A and AA",
-  "componentCount": 13,
+  "componentCount": 14,
   "totals": {
     "rated": 32,
-    "supports": 27,
-    "partiallySupports": 5,
+    "supports": 25,
+    "partiallySupports": 7,
     "doesNotSupport": 0,
-    "flagged": 13
+    "flagged": 15
   },
   "criteria": [
     {
@@ -21,9 +21,9 @@
       "number": "1.3.1",
       "name": "Info and Relationships",
       "level": "A",
-      "conformance": "Supports",
-      "flagged": false,
-      "affected": []
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": ["Badge"]
     },
     {
       "number": "1.3.2",
@@ -63,7 +63,7 @@
       "level": "AA",
       "conformance": "Partially Supports",
       "flagged": true,
-      "affected": ["Avatar", "Button", "TextField", "ToggleButton"]
+      "affected": ["Avatar", "Badge", "Button", "TextField", "ToggleButton"]
     },
     {
       "number": "1.4.4",
@@ -200,9 +200,9 @@
       "number": "2.5.3",
       "name": "Label in Name",
       "level": "A",
-      "conformance": "Supports",
-      "flagged": false,
-      "affected": []
+      "conformance": "Partially Supports",
+      "flagged": true,
+      "affected": ["Badge"]
     },
     {
       "number": "2.5.8",
@@ -274,7 +274,7 @@
       "level": "AA",
       "conformance": "Partially Supports",
       "flagged": true,
-      "affected": ["Button", "CircularProgress", "LinearProgress", "TextField"]
+      "affected": ["Badge", "Button", "CircularProgress", "LinearProgress", "TextField"]
     }
   ],
   "components": [
@@ -859,6 +859,150 @@
         "doesNotSupport": 0,
         "verified": 6,
         "automated": 2
+      }
+    },
+    {
+      "component": "Badge",
+      "counts": {
+        "supports": 7,
+        "partiallySupports": 4,
+        "doesNotSupport": 0,
+        "notApplicable": 44,
+        "flagged": 5,
+        "rated": 11
+      },
+      "gaps": [
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "4.1.3",
+          "name": "Status Messages",
+          "conformance": "Partially Supports"
+        }
+      ],
+      "criteria": [
+        {
+          "number": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Author",
+          "group": "Manual",
+          "flagged": false
+        },
+        {
+          "number": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Hybrid",
+          "flagged": true
+        },
+        {
+          "number": "4.1.3",
+          "name": "Status Messages",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        }
+      ],
+      "summary": {
+        "rated": 11,
+        "levelA": 5,
+        "levelAA": 6,
+        "supports": 7,
+        "partiallySupports": 4,
+        "doesNotSupport": 0,
+        "verified": 6,
+        "automated": 3
       }
     },
     {
