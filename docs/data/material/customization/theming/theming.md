@@ -168,21 +168,8 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 
 #### Arguments
 
-1. `options` (_object_): Takes an incomplete theme object and adds the missing parts. It can also be a theme created with `cssVariables`, see the theme composition example below.
-2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme. When `options` has `cssVariables`, or is a theme created with it, they're deep merged into `options` instead, so they're processed like `options`.
-
-:::warning
-Without `cssVariables`, only the first argument (`options`) is processed by the `createTheme()` function.
-While passing multiple arguments currently works for backward compatibility, this behavior may be removed in future versions.
-To ensure your code remains forward-compatible, you should manually deep merge the theme objects and pass the result as a single object to `createTheme()`.
-:::
-
-```js
-import { deepmerge } from '@mui/utils';
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme(deepmerge(options1, options2));
-```
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts. It can also be a theme created by `createTheme()`, see the theme composition example below.
+2. `...args` (_object[]_): Deep merge the arguments into the created theme, which is then created again with the values they change, so they're processed like `options`.
 
 #### Returns
 
@@ -236,11 +223,10 @@ theme = createTheme(theme, {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
-Since `theme` is created with `cssVariables`, `createTheme(theme, …)` creates it again from its options and the new ones, so `info.light`, `info.dark`, and `info.contrastText` are generated from the new `main` color, like in a single call.
-Without `cssVariables`, the new options are deep merged into `theme` as they are, so these values stay the ones of the default `info` color.
+`createTheme(theme, …)` creates the theme again with the values the new options change, so `info.light`, `info.dark`, and `info.contrastText` are generated from the new `main` color, like in a single call.
 
-A copy of such a theme with changed values is created again the same way, like `createTheme({ ...theme, palette: { ...theme.palette, info } })`.
-Changes made to such a theme itself, like `theme.palette.info.main = '#edf2ff'`, are ignored.
+A copy of the theme with changed values is created again the same way, like `createTheme({ ...theme, palette: { ...theme.palette, info } })`.
+Changes made to the theme itself, like `theme.palette.info.main = '#edf2ff'`, are ignored.
 
 **WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
