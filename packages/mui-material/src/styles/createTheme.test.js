@@ -622,14 +622,21 @@ describe('createTheme', () => {
       });
 
       it('should keep a color scheme enabled again in a second call', () => {
-        const theme = createTheme({
+        const options = {
           cssVariables: true,
-          colorSchemes: { light: true, dark: true },
-        });
+          colorSchemes: { light: true, dark: { palette: { primary: { main: '#ff0000' } } } },
+        };
+        const theme = createTheme(options);
+        const colorSchemes = { light: true, dark: true };
 
-        expect(
-          createTheme(theme, { colorSchemes: { light: true, dark: true } }).generateStyleSheets(),
-        ).to.deep.equal(theme.generateStyleSheets());
+        [
+          createTheme(options, { colorSchemes }),
+          createTheme(theme, { colorSchemes }),
+          createTheme({ ...theme, colorSchemes: { ...theme.colorSchemes, dark: true } }),
+        ].forEach((composed) => {
+          expect(composed.colorSchemes.dark.palette.primary.main).to.equal('#ff0000');
+          expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+        });
       });
 
       it('should remove a color scheme turned off in a second call', () => {
@@ -746,21 +753,81 @@ describe('createTheme', () => {
               <Capture />
             </ThemeProvider>,
           );
-          const composed = createTheme({
-            ...providedTheme,
-            palette: { ...providedTheme.palette, primary: { main: '#4caf50' } },
-          });
           // The change goes to the color scheme that the provided palette comes from:
           // the default one, or the one in use with `forceThemeRerender`.
           const scheme = forceThemeRerender ? 'dark' : 'light';
+          // The color of the other color scheme, so that only the provider tells them apart.
+          const main =
+            theme.colorSchemes[forceThemeRerender ? 'light' : 'dark'].palette.primary.main;
+          const composed = createTheme({
+            ...providedTheme,
+            palette: { ...providedTheme.palette, primary: { main } },
+          });
           const expected = createTheme(options, {
-            colorSchemes: { [scheme]: { palette: { primary: { main: '#4caf50' } } } },
+            colorSchemes: { [scheme]: { palette: { primary: { main } } } },
           });
 
-          expect(composed.colorSchemes[scheme].palette.primary.main).to.equal('#4caf50');
+          expect(composed.colorSchemes[scheme].palette.primary.main).to.equal(main);
           expect(composed.colorSchemes.light.palette.secondary.main).to.equal('#ff9800');
           expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
         });
+      });
+
+      it('should give a color changed in a copy of the theme to its default color scheme', () => {
+        const options = { cssVariables: true, colorSchemes: { light: true, dark: true } };
+        const theme = createTheme(options);
+        // The primary color of the dark color scheme
+        const main = theme.colorSchemes.dark.palette.primary.main;
+        const composed = createTheme({ ...theme, palette: { primary: { main } } });
+        const expected = createTheme({
+          ...options,
+          colorSchemes: { light: { palette: { primary: { main } } }, dark: true },
+        });
+
+        expect(composed.colorSchemes.light.palette.primary.main).to.equal(main);
+        expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should give the palette of a second call to the default color scheme it sets', () => {
+        const options = { cssVariables: true, colorSchemes: { light: true, dark: true } };
+        [
+          { defaultColorScheme: 'dark', palette: { primary: { main: '#ff0000' } } },
+          { palette: { mode: 'dark', primary: { main: '#ff0000' } } },
+        ].forEach((argument) => {
+          const expected = createTheme({ ...options, ...argument });
+
+          [
+            createTheme(options, argument),
+            createTheme(createTheme(options), argument),
+            // A copy has the `defaultColorScheme` of the theme, so only one that sets it again
+            ...(argument.defaultColorScheme
+              ? [createTheme({ ...createTheme(options), ...argument })]
+              : []),
+          ].forEach((theme) => {
+            expect(theme.defaultColorScheme).to.equal('dark');
+            expect(theme.colorSchemes.dark.palette.primary.main).to.equal('#ff0000');
+            expect(theme.colorSchemes.light.palette.primary.main).to.equal(
+              expected.colorSchemes.light.palette.primary.main,
+            );
+            expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+          });
+        });
+      });
+
+      it('should keep a function changed in a copy of the theme', () => {
+        const theme = createTheme({
+          cssVariables: true,
+          components: { MuiButton: { styleOverrides: { root: () => ({ color: 'red' }) } } },
+        });
+        const components = { MuiButton: { styleOverrides: { root: () => ({ color: 'blue' }) } } };
+
+        [createTheme({ ...theme, components }), createTheme(theme, { components })].forEach(
+          (composed) => {
+            expect(composed.components.MuiButton.styleOverrides.root({})).to.deep.equal({
+              color: 'blue',
+            });
+          },
+        );
       });
 
       it('should process the extra arguments like the options', () => {
