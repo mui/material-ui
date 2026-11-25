@@ -166,7 +166,7 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 #### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts. It can also be a theme created with `cssVariables`, see the theme composition example below.
-2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme. When `options` has `cssVariables`, or is a theme created with it, they're deep merged into `options` instead, so they're processed like `options`.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme. When `options` has `cssVariables`, or is a theme created with it, the theme is then created again with the values they change, so they're processed like `options`.
 
 :::warning
 Without `cssVariables`, only the first argument (`options`) is processed by the `createTheme()` function.
@@ -233,7 +233,7 @@ theme = createTheme(theme, {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
-Since `theme` is created with `cssVariables`, `createTheme(theme, …)` creates it again from its options and the new ones, so `info.light`, `info.dark`, and `info.contrastText` are generated from the new `main` color, like in a single call.
+Since `theme` is created with `cssVariables`, `createTheme(theme, …)` creates it again with the values the new options change, so `info.light`, `info.dark`, and `info.contrastText` are generated from the new `main` color, like in a single call.
 Without `cssVariables`, the new options are deep merged into `theme` as they are, so these values stay the ones of the default `info` color.
 
 A copy of such a theme with changed values is created again the same way, like `createTheme({ ...theme, palette: { ...theme.palette, info } })`.

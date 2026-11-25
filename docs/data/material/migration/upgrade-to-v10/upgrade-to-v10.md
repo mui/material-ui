@@ -235,8 +235,8 @@ Remove the top-level `palette` to keep the previous result, or move its values i
 
 ### createTheme arguments with CSS variables
 
-With CSS variables, the extra arguments of `createTheme()` are deep merged into the options before the theme is created, so they're processed like the options.
-Previously, they were deep merged into the created theme as they were, and the values that depend on them weren't generated again.
+With CSS variables, the extra arguments of `createTheme()` are deep merged into the created theme, which is then created again with the values they change, so they're processed like the options.
+Previously, the created theme was returned with them merged in as they were, and the values that depend on them weren't generated again.
 For example, `info.light`, `info.dark`, and `info.contrastText` now follow the `main` color of a second call:
 
 ```js
@@ -246,6 +246,9 @@ theme = createTheme(theme, {
 ```
 
 To keep a previous value, pass it in the argument too, like `light: theme.palette.info.light`.
+
+As with the options, a `palette.mode` in an argument makes that color scheme the default one.
+A `main` color that can't be read, like `var(--brand)`, throws an error unless the argument also has its `light`, `dark`, and `contrastText`, or the theme uses [native color](/material-ui/customization/css-theme-variables/native-color/).
 
 A theme passed back to `createTheme()` is created again from its options and the values changed in a copy of it, like `{ ...theme, palette: { ...theme.palette, primary } }`.
 Changes made to the theme itself are ignored, so make them in a copy, or pass them as an argument:
