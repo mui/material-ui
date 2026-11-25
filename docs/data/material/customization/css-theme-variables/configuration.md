@@ -342,6 +342,8 @@ When it extends the outer theme, set the colors in `colorSchemes`, since `palett
 ```
 
 Providers with the same theme, like the ones of a themed card in a list, share one class and one stylesheet.
+On the server, they only share the stylesheet when the styles are extracted, like the [server rendering guide](/material-ui/guides/server-rendering/) and the [Next.js integration](/material-ui/integrations/nextjs/) do.
+Otherwise, each provider renders it inline.
 
 Dialogs, menus, popovers, tooltips, and other components that render in a portal apply the class to their own root, so they use the nested theme too.
 For other elements in a portal, like the ones you render with `ReactDOM.createPortal()` or the [Portal](/material-ui/react-portal/) component, or that another library portals, use the `useThemeScope()` hook to get the class:
