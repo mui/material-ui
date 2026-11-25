@@ -116,16 +116,9 @@ const NumberFieldRootSlot = React.forwardRef(
       ownerState.controlsPosition === 'split' ||
       ownerState.scrubAreaPosition === 'start' ||
       Boolean(startAdornment);
-    const { hiddenLabel = ownerState.variant === 'filled' && !hasLabel ? true : undefined } =
-      rootProps;
 
     return (
-      <RootSlot
-        {...rootProps}
-        disabled={ownerState.disabled}
-        hiddenLabel={hiddenLabel}
-        required={ownerState.required}
-      >
+      <RootSlot {...rootProps} disabled={ownerState.disabled} required={ownerState.required}>
         <SSRInitialFilled value={baseState.inputValue} startAdornment={adornedStart} />
         {hasLabel && (
           <InputLabelSlot
