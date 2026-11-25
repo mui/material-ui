@@ -59,6 +59,11 @@ interface ThemeInputs {
    */
   options: Record<string, any>;
   theme: Record<string, any>;
+  /**
+   * Changes a theme created again from these inputs like `theme` was changed after it was
+   * created, as `enhanceDensity()` does.
+   */
+  enhance?: ((theme: Theme) => Theme) | undefined;
 }
 
 /**
@@ -321,7 +326,8 @@ export default function createTheme(
       (acc, argument) => deepmerge(acc, argument),
       options,
     );
-    return createTheme(getThemeOptions(copy, inputs) as ThemeOptions);
+    const theme = createTheme(getThemeOptions(copy, inputs) as ThemeOptions);
+    return inputs.enhance ? inputs.enhance(theme) : theme;
   }
   if (options.cssVariables && args.length > 0) {
     // The arguments change the created theme, which is created again with their changes, so that
