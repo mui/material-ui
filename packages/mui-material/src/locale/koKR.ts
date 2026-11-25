@@ -25,15 +25,15 @@ export const koKR: Localization = {
           // if (type === 'previous') {
           return '이전 페이지로 이동';
         },
-        labelRowsPerPage: '페이지 당 행:',
+        labelRowsPerPage: '페이지당 행:',
         labelDisplayedRows: ({ from, to, count }) =>
           `${formatNumber(from)}–${formatNumber(to)} / ${count !== -1 ? formatNumber(count) : `${formatNumber(to)}개 이상`}`,
       },
     },
     MuiRating: {
       defaultProps: {
-        getLabelText: (value) => `${value} 점`,
-        emptyLabelText: '빈 텍스트',
+        getLabelText: (value) => `${value}점`,
+        emptyLabelText: '평점 없음',
       },
     },
     MuiAutocomplete: {
@@ -55,7 +55,7 @@ export const koKR: Localization = {
         'aria-label': '페이지네이션 네비게이션',
         getItemAriaLabel: (type, page, selected) => {
           if (type === 'page') {
-            return `${page} 번째 페이지${selected ? '' : '로 이동'}`;
+            return `${page}페이지${selected ? '' : '로 이동'}`;
           }
           if (type === 'first') {
             return '첫 번째 페이지로 이동';
