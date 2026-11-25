@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { MenuProps } from '../Menu';
+import { InputBaseProps } from '../InputBase';
 
 /**
  * The change can be caused by different kind of events.
@@ -42,6 +43,7 @@ export interface SelectInputProps<Value = unknown> {
   readOnly?: boolean | undefined;
   renderValue?: ((value: SelectInputProps<Value>['value']) => React.ReactNode) | undefined;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement> | undefined;
+  size?: InputBaseProps['size'] | undefined;
   sx?: SxProps<Theme> | undefined;
   tabIndex?: number | undefined;
   value?: Value | undefined;

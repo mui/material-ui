@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
 import { UserLanguageProvider } from '../i18n';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
+import { CodeSource } from './CodeSource';
 import '../ThemeContext/syntax.css';
 
 // Stand-in demo that records the isolation props injected by `IsolatedDemo` via
@@ -101,6 +102,27 @@ describe('DemoContainer', () => {
     expect(document.getElementById('demo-source')).to.have.text('source');
   });
 
+  it.skipIf(isJsdom())('keeps fixed overlays positioned relative to the viewport', () => {
+    const overlayPosition = { left: 16, top: 24 };
+
+    render(
+      <UserLanguageProvider defaultUserLanguage="en">
+        <ThemeProvider theme={brandingLightTheme}>
+          <div style={{ position: 'fixed', left: 80, top: 120 }}>
+            <DemoContainer
+              preview={<div style={{ position: 'fixed', ...overlayPosition }}>Fixed overlay</div>}
+            />
+          </div>
+        </ThemeProvider>
+      </UserLanguageProvider>,
+    );
+
+    const overlay = screen.getByText('Fixed overlay').getBoundingClientRect();
+
+    expect(overlay.left).to.equal(overlayPosition.left);
+    expect(overlay.top).to.equal(overlayPosition.top);
+  });
+
   it.skipIf(isJsdom())('separates an inline preview from its toolbar', () => {
     render(
       <UserLanguageProvider defaultUserLanguage="en">
@@ -130,6 +152,90 @@ describe('DemoContainer', () => {
   // 133+); older engines skip the optimisation and this test.
   const supportsTypedAttr = () =>
     !isJsdom() && CSS.supports('contain-intrinsic-size', 'calc(attr(x type(<number>), 0) * 1px)');
+
+  it.skipIf(!supportsTypedAttr())(
+    'keeps source height stable when revealing long lines',
+    async () => {
+      const offscreenTop = 10_000;
+      const source = 'const value = "A source line that extends past the available code window.";';
+
+      const nextPaint = () =>
+        new Promise<void>((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+        });
+
+      function view(phase: 'loading' | 'live', text = source) {
+        return (
+          <div
+            style={
+              {
+                width: 320,
+                marginTop: offscreenTop,
+                '--muidocs-spacing': '8px',
+              } as React.CSSProperties
+            }
+          >
+            <UserLanguageProvider defaultUserLanguage="en">
+              <ThemeProvider theme={brandingLightTheme}>
+                <DemoContainer
+                  sourceVisible
+                  preview={<div />}
+                  toolbar={<div />}
+                  code={
+                    <CodeSource key={phase} data-testid="code-source">
+                      <pre>
+                        <code data-total-lines="1">
+                          <span className="frame" data-lined="">
+                            <span className="line">{text}</span>
+                          </span>
+                        </code>
+                      </pre>
+                    </CodeSource>
+                  }
+                />
+              </ThemeProvider>
+            </UserLanguageProvider>
+          </div>
+        );
+      }
+
+      const { rerender } = render(view('loading'));
+      const codeWindow = () => screen.getByTestId('code-source').parentElement!.parentElement!;
+
+      try {
+        await nextPaint();
+        const initialHeight = codeWindow().getBoundingClientRect().height;
+
+        codeWindow().scrollIntoView();
+        await nextPaint();
+
+        expect(codeWindow().getBoundingClientRect().height).to.equal(initialHeight);
+        expect(codeWindow().scrollWidth).to.be.greaterThan(codeWindow().clientWidth);
+
+        window.scrollTo(0, 0);
+        await nextPaint();
+        rerender(view('live'));
+        await nextPaint();
+
+        expect(codeWindow().getBoundingClientRect().height).to.equal(initialHeight);
+
+        codeWindow().scrollIntoView();
+        await nextPaint();
+
+        expect(codeWindow().getBoundingClientRect().height).to.equal(initialHeight);
+        codeWindow().scrollLeft = codeWindow().scrollWidth;
+        expect(codeWindow().scrollLeft).to.be.greaterThan(0);
+
+        rerender(view('live', 'const value = 1;'));
+        await nextPaint();
+
+        expect(codeWindow().scrollWidth).to.equal(codeWindow().clientWidth);
+        expect(codeWindow().offsetHeight).to.equal(codeWindow().clientHeight);
+      } finally {
+        window.scrollTo(0, 0);
+      }
+    },
+  );
 
   it.skipIf(!supportsTypedAttr())('reserves the focus window height for collapsed source', () => {
     function renderSource(expanded: boolean) {

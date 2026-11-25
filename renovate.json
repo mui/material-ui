@@ -1,10 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>mui/mui-public//renovate/experimental"],
+  "extends": ["github>mui/mui-public//renovate/default"],
   "schedule": "* 0-4 * * 7",
   "lockFileMaintenance": {
-    "description": "Match the schedule above, so the lockfile refresh lands in the weekly npm non-major group PR.",
-    "schedule": "* 0-4 * * 7"
+    "schedule": "* 0-4 1 * *"
   },
   "customManagers": [
     {

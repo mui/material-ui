@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true
+  },
+  "files": ["densityDeclarationEmit.spec.ts"]
+}
