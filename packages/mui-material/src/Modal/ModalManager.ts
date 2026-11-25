@@ -304,9 +304,12 @@ export class ModalManager {
       // Use computed style, here to get the real padding to add our scrollbar width.
       scrollContainer.style.paddingRight = `${getPaddingRight(scrollContainer) + scrollbarSize}px`;
 
-      acquireStyles(this.fixedPaddings, doc, scrollContainer, () =>
-        padFixedElements(doc, scrollbarSize),
-      );
+      // Skip a zero size, so that a later lock that measures a scrollbar pads the fixed elements.
+      if (scrollbarSize > 0) {
+        acquireStyles(this.fixedPaddings, doc, scrollContainer, () =>
+          padFixedElements(doc, scrollbarSize),
+        );
+      }
     }
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard

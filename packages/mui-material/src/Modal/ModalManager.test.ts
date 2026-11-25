@@ -247,6 +247,29 @@ describe('ModalManager', () => {
       document.body.removeChild(container2);
     });
 
+    it('should pad the fixed elements when a later lock measures a scrollbar', () => {
+      fixedNode.style.paddingRight = '8px';
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+
+      // The page has no scrollbar when the first lock measures it.
+      const innerWidth = window.innerWidth;
+      window.innerWidth = document.documentElement.clientWidth;
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, {});
+      window.innerWidth = innerWidth;
+      expect(fixedNode.style.paddingRight).to.equal('8px');
+
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(fixedNode.style.paddingRight).to.equal(`${8 + getScrollbarSize(window)}px`);
+
+      modalManager.remove(modal2);
+      modalManager.remove(modal1);
+      expect(fixedNode.style.paddingRight).to.equal('8px');
+      expect(document.body.style.paddingRight).to.equal('');
+    });
+
     describe('shadow dom', () => {
       let shadowContainer: HTMLDivElement;
       let container2: HTMLDivElement;
