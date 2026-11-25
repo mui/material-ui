@@ -35,6 +35,12 @@ export const CSS_LAYOUT_SUITES = [
     skipCriteria: ['1.4.4', '1.4.12'],
   },
   { component: 'Radio', route: '/docs-components-radio-buttons/RadioButtonsGroup' },
+  {
+    component: 'Skeleton',
+    route: '/docs-components-skeleton/Animations',
+    // The placeholder renders no text, so the report rates 1.4.4 and 1.4.12 not applicable.
+    skipCriteria: ['1.4.4', '1.4.12'],
+  },
   { component: 'Switch', route: '/docs-components-switches/BasicSwitches' },
   { component: 'TextField', route: '/docs-components-text-fields/BasicTextFields' },
   { component: 'ToggleButton', route: '/docs-components-toggle-button/ToggleButtons' },

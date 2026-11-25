@@ -457,6 +457,21 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // Skeleton docs demos that do not load remote images are enrolled for axe.
+  // `SkeletonChildren`, `Facebook` and `YouTube` fetch remote images, so they stay out.
+  {
+    test: 'docs/data/material/components/skeleton/{Animations,SkeletonColor,SkeletonTypography,Variants}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/skeleton/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `skeleton.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/skeleton/{SkeletonA11yStates,SkeletonA11yAnimationMatrix}',
+    enabled: true,
+    assertions: 'all',
+  },
   {
     test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
     enabled: true,

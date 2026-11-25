@@ -192,6 +192,24 @@ describe('getConfig', () => {
     ).to.equal(undefined);
   });
 
+  it('enrols the Skeleton demos and fixtures for axe, and leaves out the remote-image demos', () => {
+    ['Animations', 'SkeletonColor', 'SkeletonTypography', 'Variants'].forEach((demo) => {
+      expect(
+        getConfig(A11Y_RULES, `docs/data/material/components/skeleton/${demo}`),
+      ).to.deep.include({ enabled: true, assertions: 'all' });
+    });
+    ['SkeletonA11yStates', 'SkeletonA11yAnimationMatrix'].forEach((fixture) => {
+      expect(
+        getConfig(A11Y_RULES, `test/regressions/a11y/fixtures/skeleton/${fixture}`),
+      ).to.deep.include({ enabled: true, assertions: 'all' });
+    });
+    ['Facebook', 'SkeletonChildren', 'YouTube'].forEach((demo) => {
+      expect(getConfig(A11Y_RULES, `docs/data/material/components/skeleton/${demo}`)).to.equal(
+        undefined,
+      );
+    });
+  });
+
   it('opts the LinearProgress a11y fixtures out of screenshots', () => {
     expect(
       getConfig(
