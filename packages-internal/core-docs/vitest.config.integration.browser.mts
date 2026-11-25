@@ -6,6 +6,8 @@ export default mergeConfig(await sharedConfig(import.meta.url, { enableScrollbar
     include: [
       '@mui/internal-docs-infra/useCode',
       '@mui/internal-docs-infra > sucrase',
+      '@mui/internal-docs-infra > path-module',
+      '@mui/internal-docs-infra > @wooorm/starry-night',
       '@mui/internal-docs-infra/useDemoController',
       '@mui/internal-docs-infra/pipeline/parseSource',
       '@mui/internal-docs-infra/pipeline/enhanceCodeEmphasis',

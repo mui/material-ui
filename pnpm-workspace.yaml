@@ -9,7 +9,8 @@ packages:
 engineStrict: true
 updateNotifier: false
 autoDedupe: true
-blockExoticSubdeps: true
+# Temporary for preview dependencies from https://github.com/mui/mui-public/pull/2125.
+blockExoticSubdeps: false
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@mui/*'
