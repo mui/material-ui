@@ -3,6 +3,7 @@ import * as React from 'react';
 import type { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
 import { CodeHighlighter } from '@mui/internal-docs-infra/CodeHighlighter';
+import { CodeProviderLazy } from '@mui/internal-docs-infra/CodeProvider';
 import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
@@ -55,27 +56,29 @@ function Demo({
     <RouterContext.Provider value={router}>
       <UserLanguageProvider defaultUserLanguage="en">
         <ThemeProvider theme={brandingLightTheme}>
-          <CodeHighlighter
-            precompute={{
-              Default: {
-                fileName: 'Counter.jsx',
-                source: 'export default function Counter() { return null; }',
-                totalLines: 1,
-                focusedLines,
-                collapsible: true,
-              },
-            }}
-            components={{ Default: <Counter /> }}
-            initialVariant="Default"
-            highlightAfter="hydration"
-            enhanceAfter="hydration"
-            Content={Content}
-            ContentFrame={DemoContentFrame}
-            ContentLoading={DemoContentLoading}
-            contentProps={{ disableLiveEdit: true, disableAd: true }}
-            collapseToEmpty={collapseMode === 'empty'}
-            initialExpanded={initialView === 'expanded'}
-          />
+          <CodeProviderLazy>
+            <CodeHighlighter
+              precompute={{
+                Default: {
+                  fileName: 'Counter.jsx',
+                  source: 'export default function Counter() { return null; }',
+                  totalLines: 1,
+                  focusedLines,
+                  collapsible: true,
+                },
+              }}
+              components={{ Default: <Counter /> }}
+              initialVariant="Default"
+              highlightAfter="hydration"
+              enhanceAfter="hydration"
+              Content={Content}
+              ContentFrame={DemoContentFrame}
+              ContentLoading={DemoContentLoading}
+              contentProps={{ disableLiveEdit: true, disableAd: true }}
+              collapseToEmpty={collapseMode === 'empty'}
+              initialExpanded={initialView === 'expanded'}
+            />
+          </CodeProviderLazy>
         </ThemeProvider>
       </UserLanguageProvider>
     </RouterContext.Provider>
