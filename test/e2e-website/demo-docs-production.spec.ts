@@ -109,24 +109,37 @@ test.describe('Demo docs', () => {
       await expect(demo.locator('pre code')).toContainText('Edited live');
     });
 
-    test('resets preview edits when expanding, then runs full-source edits', async ({ page }) => {
+    test('preserves preview and full-source edits across source toggles', async ({ page }) => {
       const demo = getDemo(page, 'BasicButtons');
       await (await editor(demo)).fill('<Button>Preview edit</Button>');
       await expect(demo.getByRole('button', { name: 'Preview edit' })).toBeVisible();
 
+      const preview = await demo.getByRole('button', { name: 'Preview edit' }).elementHandle();
+
       await demo.getByRole('button', { name: 'Expand code' }).click();
 
       const textarea = await editor(demo);
-      await expect(textarea).not.toHaveValue(/Preview edit/);
+
+      await expect(textarea).toHaveValue(/Preview edit/);
+      expect(await preview!.evaluate((node) => node.isConnected)).toBe(true);
       await expect(textarea).toHaveValue(/export default function BasicButtons/);
       await textarea.fill(`import Button from '@mui/material/Button';
 
 export default function BasicButtons() {
   return <Button variant="contained">Full source edit</Button>;
 }`);
-      await expect(demo.getByRole('button', { name: 'Full source edit' })).toBeVisible();
+      const editedButton = demo.getByRole('button', { name: 'Full source edit' });
+
+      await expect(editedButton).toBeVisible();
+      const fullPreview = await editedButton.elementHandle();
 
       await demo.getByRole('button', { name: 'Collapse code' }).click();
+
+      await expect(await editor(demo)).toHaveValue(/Full source edit/);
+      await expect(editedButton).toBeVisible();
+      expect(await fullPreview!.evaluate((node) => node.isConnected)).toBe(true);
+
+      await demo.getByRole('button', { name: 'Reset demo' }).click();
 
       await expectButtonsPreview(demo);
       await expect(demo.getByRole('button', { name: 'Text' })).toBeVisible();
