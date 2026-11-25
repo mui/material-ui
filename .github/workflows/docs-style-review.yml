@@ -18,6 +18,8 @@ jobs:
   docs-style-review:
     # Maximum grant required by the reusable workflow; its agent job only gets read access.
     permissions:
+      actions: read
+      checks: read
       contents: read
       id-token: write # Anthropic WIF
       issues: write # failure reports
