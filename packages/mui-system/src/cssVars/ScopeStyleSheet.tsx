@@ -44,7 +44,7 @@ const safeReact = { ...React };
 const useInsertionEffect: typeof React.useLayoutEffect =
   safeReact.useInsertionEffect ?? useEnhancedEffect;
 
-interface ScopeStyleSheetProps {
+export interface ScopeStyleSheetProps {
   registry: ScopeStyleSheetRegistry;
   className: string;
   styles: any;
@@ -118,6 +118,7 @@ function SharedScopeStyleSheet(props: ScopeStyleSheetProps) {
 /**
  * Inserts the stylesheet of a class once for all the providers of a tree that use it, instead of once per provider,
  * since a theme used by many components, like a themed card in a list, renders many providers.
+ * On the server, each provider renders it and the style engine is the one that can insert it once.
  */
 export default function ScopeStyleSheet(props: ScopeStyleSheetProps) {
   if (typeof document === 'undefined') {
