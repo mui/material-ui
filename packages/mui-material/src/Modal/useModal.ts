@@ -95,8 +95,14 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
     if (open && isTopModal()) {
       handleMounted();
-    } else if (modalRef.current) {
-      ariaHidden(modalRef.current, ariaHiddenProp);
+    } else {
+      // A modal below another one that opens in the same commit also needs the scroll lock.
+      if (open) {
+        manager.mount(getModal(), { disableScrollLock });
+      }
+      if (modalRef.current) {
+        ariaHidden(modalRef.current, ariaHiddenProp);
+      }
     }
   });
 

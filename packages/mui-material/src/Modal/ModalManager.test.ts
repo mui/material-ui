@@ -179,6 +179,52 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('');
     });
 
+    it('should lock the scroll for a modal above a modal without the lock', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, { disableScrollLock: true });
+      expect(container1.style.overflow).to.equal('');
+      modalManager.add(modal2, container1);
+      modalManager.mount(modal2, {});
+      expect(container1.style.overflow).to.equal('hidden');
+      modalManager.remove(modal2);
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+      modalManager.remove(modal1);
+      expect(container1.style.overflow).to.equal('');
+    });
+
+    it('should restore the scroll when the last modal with the lock is removed', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, {});
+      modalManager.add(modal2, container1);
+      modalManager.mount(modal2, { disableScrollLock: true });
+      expect(container1.style.overflow).to.equal('hidden');
+      modalManager.remove(modal1);
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+      modalManager.remove(modal2);
+      expect(container1.style.overflow).to.equal('');
+    });
+
+    it('should keep the lock while a modal with the lock stays', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, {});
+      modalManager.add(modal2, container1);
+      modalManager.mount(modal2, {});
+      modalManager.mount(modal2, {});
+      modalManager.remove(modal1);
+      expect(container1.style.overflow).to.equal('hidden');
+      modalManager.remove(modal2);
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+    });
+
     describe('shadow dom', () => {
       let shadowContainer: HTMLDivElement;
       let container2: HTMLDivElement;
