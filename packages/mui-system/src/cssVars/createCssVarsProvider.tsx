@@ -341,7 +341,11 @@ export default function createCssVarsProvider<
         if (scheme && typeof scheme === 'object') {
           // 4.1 Merge the selected color scheme to the theme
           Object.keys(scheme).forEach((schemeKey) => {
-            if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
+            if (
+              scheme[schemeKey] &&
+              typeof scheme[schemeKey] === 'object' &&
+              !Array.isArray(scheme[schemeKey])
+            ) {
               // shallow merge the 1st level structure of the theme.
               theme[schemeKey] = {
                 ...theme[schemeKey],
