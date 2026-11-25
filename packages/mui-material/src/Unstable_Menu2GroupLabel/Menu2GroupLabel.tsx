@@ -62,8 +62,8 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     className,
     classes: classesProp,
     color,
-    disableGutters,
-    inset,
+    disableGutters: disableGuttersProp,
+    inset: insetProp,
     render: renderProp,
     slots,
     slotProps,
@@ -71,9 +71,17 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     style,
     ...other
   } = props;
+  // ListSubheader theme defaults also apply. Resolve them, so the Menu2 inset styles match.
+  const { disableGutters, inset } = useDefaultProps({
+    props: { disableGutters: disableGuttersProp, inset: insetProp },
+    // eslint-disable-next-line mui/material-ui-name-matches-component-name
+    name: 'MuiListSubheader',
+  });
   const ownerState = {
     ...props,
     classes: classesProp,
+    disableGutters,
+    inset,
   };
   const classes = useUtilityClasses(ownerState);
   const handleRef = useForkRef(ref);

@@ -497,7 +497,8 @@ describe('<Menu2GroupLabel />', () => {
       expect(label).not.to.have.class('MuiListSubheader-gutters');
       expect(label).not.to.have.class('MuiListSubheader-sticky');
       expect(getComputedStyle(label).position).not.to.equal('sticky');
-      expect(getComputedStyle(label).paddingLeft).to.equal('72px');
+      // The theme defaults set inset and disableGutters, so the label uses the 36px column only.
+      expect(getComputedStyle(label).paddingLeft).to.equal('36px');
       expect(getComputedStyle(label).paddingTop).to.equal('11px');
       expect(getComputedStyle(label).backgroundColor).to.equal('rgb(9, 8, 7)');
     });
@@ -597,6 +598,32 @@ describe('<Menu2GroupLabel />', () => {
         );
         expect(textLeft(screen.getByText('Flush label'))).to.equal(
           textLeft(screen.getByRole('menuitem', { name: 'Flush item' })),
+        );
+      });
+
+      it(`aligns a MuiListSubheader inset default with inset item labels (modularCssLayers: ${modularCssLayers})`, () => {
+        const theme = createTheme({
+          modularCssLayers,
+          components: { MuiListSubheader: { defaultProps: { inset: true } } },
+        });
+        render(
+          <StyledEngineProvider enableCssLayer={modularCssLayers}>
+            <ThemeProvider theme={theme}>
+              <Menu2 defaultOpen modal={false}>
+                <Menu2Popup anchor={document.body}>
+                  <Menu2Group>
+                    <Menu2GroupLabel>Label</Menu2GroupLabel>
+                    <Menu2Item inset>Item</Menu2Item>
+                  </Menu2Group>
+                </Menu2Popup>
+              </Menu2>
+            </ThemeProvider>
+          </StyledEngineProvider>,
+        );
+
+        expect(screen.getByText('Label')).toHaveComputedStyle({ paddingLeft: '52px' });
+        expect(textLeft(screen.getByText('Label'))).to.equal(
+          textLeft(screen.getByRole('menuitem', { name: 'Item' })),
         );
       });
 

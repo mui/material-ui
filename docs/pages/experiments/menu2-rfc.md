@@ -316,6 +316,11 @@ These need a maintainer decision before the API is stable.
    - Costs: `render` does not see values from theme `defaultProps`, and one element has two state shapes.
    - Alternative: pass `ownerState`, the props plus the live state, to `render` on every part. The popup `ownerState` would then also need the live `open` state.
 
+2. **Classic theme keys:** Menu2 parts render classic components. The separator renders `Divider`, the group label `ListSubheader`, the start adornment and the indicators `ListItemIcon`, the popup list `List`, the popup surface `Paper`, and the item roots `ButtonBase`. The theme defaults and styles of these classic keys also reach the Menu2 parts, for example `MuiDivider.defaultProps.variant`. Menu2 resolves the `MuiDivider` variant and the `MuiListSubheader` inset, so an inset from these defaults lines up with the Menu2 items.
+   - Gains: an existing theme for these components also styles Menu2.
+   - Costs: a theme change for a classic component also changes Menu2, and Menu2 must adjust values that do not fit, such as the 72px List inset.
+   - Alternative: separate the Menu2 parts from these keys, as Menu2 already does for `MuiMenu` and `MuiMenuItem`. Theme authors then style Menu2 only through the `MuiMenu2*` keys.
+
 ### Rollout plan
 
 1. **Review the proposal:** the benchmark and API experiment are ready for maintainer feedback.

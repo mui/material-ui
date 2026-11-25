@@ -463,6 +463,24 @@ describe('<Menu2Separator />', () => {
         expect(separator).to.have.class('MuiDivider-inset');
         expect(separator).toHaveComputedStyle({ marginLeft: '52px' });
       });
+
+      it(`uses the Menu2 inset for a MuiDivider inset default (modularCssLayers: ${modularCssLayers})`, () => {
+        const theme = createTheme({
+          modularCssLayers,
+          components: { MuiDivider: { defaultProps: { variant: 'inset' } } },
+        });
+        render(
+          <StyledEngineProvider enableCssLayer={modularCssLayers}>
+            <ThemeProvider theme={theme}>
+              <Menu2Separator />
+            </ThemeProvider>
+          </StyledEngineProvider>,
+        );
+
+        const separator = screen.getByRole('separator');
+        expect(separator).to.have.class('MuiDivider-inset');
+        expect(separator).toHaveComputedStyle({ marginLeft: '52px' });
+      });
     });
   });
 

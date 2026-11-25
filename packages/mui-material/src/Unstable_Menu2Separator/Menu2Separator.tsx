@@ -81,13 +81,20 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
     sx,
     style,
     textAlign,
-    variant,
+    variant: variantProp,
     ...other
   } = props;
+  // Divider theme defaults also apply. Resolve the variant, so the Menu2 inset style matches.
+  const { variant } = useDefaultProps({
+    props: { variant: variantProp },
+    // eslint-disable-next-line mui/material-ui-name-matches-component-name
+    name: 'MuiDivider',
+  });
   const ownerState = {
     ...props,
     classes: classesProp,
     orientation,
+    variant,
   };
   const classes = useUtilityClasses(ownerState);
   const handleRef = useForkRef(ref);
