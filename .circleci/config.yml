@@ -86,7 +86,6 @@ jobs:
       - code-infra/install-deps
       - code-infra/eslint
       - code-infra/stylelint
-      - code-infra/valelint
   test_static:
     <<: *default-job
     resource_class: medium

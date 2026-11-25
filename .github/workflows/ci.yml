@@ -86,24 +86,6 @@ jobs:
       - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
         if: failure()
         run: cat ./docs/.next/export-detail.json || true
-      - name: Extract Vale version
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        id: vale-version
-        run: |
-          VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
-          echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
-      - uses: vale-cli/vale-action@518a9136acc6e6668ce7c00d367051e0941e87ff # v3.0.0
-        continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          version: ${{ steps.vale-version.outputs.vale_version }}
-          # Errors should be more visible
-          fail_on_error: true
-          # The other reports don't work, not really https://github.com/reviewdog/reviewdog#reporters
-          reporter: github-pr-check
-          # Required, set by GitHub actions automatically:
-          # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
-          token: ${{secrets.GITHUB_TOKEN}}
 
   # Mirrors the real publish workflow environment (`publish.yml`) so an env
   # mismatch — e.g. the Node version pinned by `publish-prepare` violating our

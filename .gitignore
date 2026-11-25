@@ -41,8 +41,6 @@ package-lock.json
 size-snapshot.json
 bundle-sizes/
 docs/public/static/blog/feed/*
-# vale downloaded config
-.github/styles/
 .nx/cache/
 .nx/workspace-data/
 screenshots/
