@@ -9,7 +9,8 @@ packages:
 engineStrict: true
 updateNotifier: false
 autoDedupe: true
-blockExoticSubdeps: true
+# Restore after https://github.com/mui/mui-public/pull/2118 is released.
+blockExoticSubdeps: false
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@mui/*'

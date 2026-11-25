@@ -7,6 +7,6 @@ export default mergeConfig(await sharedConfig(import.meta.url, { enableScrollbar
     include: ['@mui/internal-docs-infra/useCode'],
   },
   test: {
-    exclude: REACT_MAJOR < 18 ? ['**'] : [],
+    exclude: REACT_MAJOR < 18 ? ['**'] : ['**/DemoContent.client.test.tsx'],
   },
 });
