@@ -124,6 +124,13 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
 
+  // Take or release the scroll lock when `disableScrollLock` changes while the modal is open.
+  React.useEffect(() => {
+    if (open && mountNodeRef.current) {
+      manager.mount(modal.current, { disableScrollLock });
+    }
+  }, [open, disableScrollLock]);
+
   const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
     otherHandlers.onKeyDown?.(event);
 

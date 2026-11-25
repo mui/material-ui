@@ -211,6 +211,13 @@ function handleContainer(containerInfo: Container) {
   return restore;
 }
 
+function releaseScrollLock(containerInfo: Container, modal: Modal) {
+  if (containerInfo.scrollLocks.delete(modal) && containerInfo.scrollLocks.size === 0) {
+    containerInfo.restore!();
+    containerInfo.restore = null;
+  }
+}
+
 interface Modal {
   mount: Element;
   modalRef: Element;
@@ -277,7 +284,12 @@ export class ModalManager {
     const containerInfo = this.containers[containerIndex];
 
     // With `disablePortal`, the portal ref can run before `add()`.
-    if (!containerInfo || props.disableScrollLock) {
+    if (!containerInfo) {
+      return;
+    }
+
+    if (props.disableScrollLock) {
+      releaseScrollLock(containerInfo, modal);
       return;
     }
 
@@ -301,10 +313,7 @@ export class ModalManager {
     this.modals.splice(modalIndex, 1);
 
     // Restore the scroll even when modals without the lock stay open.
-    if (containerInfo.scrollLocks.delete(modal) && containerInfo.scrollLocks.size === 0) {
-      containerInfo.restore!();
-      containerInfo.restore = null;
-    }
+    releaseScrollLock(containerInfo, modal);
 
     // If that was the last modal in a container, clean up the container.
     if (containerInfo.modals.length === 0) {

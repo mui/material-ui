@@ -730,6 +730,36 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
     });
 
+    it('should update the lock when disableScrollLock changes while open', () => {
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.first}>
+              <div>Hello</div>
+            </Modal>
+            <Modal open disableScrollLock={props.disableScrollLock}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+      TestCase.propTypes = {
+        disableScrollLock: PropTypes.bool,
+        first: PropTypes.bool,
+      };
+
+      const { setProps } = render(<TestCase first disableScrollLock />);
+
+      setProps({ first: true, disableScrollLock: false });
+      setProps({ first: false, disableScrollLock: false });
+
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ first: false, disableScrollLock: true });
+
+      expect(document.body.style).to.have.property('overflow', '');
+    });
+
     it('should open and close with Transitions', () => {
       function TestCase(props) {
         return (
