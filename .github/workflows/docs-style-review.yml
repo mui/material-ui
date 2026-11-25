@@ -1,16 +1,16 @@
 name: Docs style review
 
-# Runs the reusable docs style review on pull requests that change Markdown. The setup it needs is
+# Runs the reusable docs style review hourly, or by hand for one pull request. The setup it needs is
 # in the README's "Agentic workflows" section of mui/mui-public.
 
 on:
-  # Pull requests from forks get reviews too. The reusable workflow never checks out the pull
-  # request, and only authors with write access get a review.
-  pull_request_target:
-    types: [opened, reopened, synchronize, ready_for_review]
-    # The code-infra-auditor environment its review is published from is restricted to master.
-    branches: [master]
-    paths: ['**/*.md', '**/*.mdx']
+  schedule:
+    - cron: '17 * * * *' # hourly
+  workflow_dispatch:
+    inputs:
+      pull_request:
+        description: Pull request to review, whoever wrote it. Empty polls as on the schedule.
+        type: number
 
 permissions: {}
 
@@ -18,14 +18,15 @@ jobs:
   docs-style-review:
     # Maximum grant required by the reusable workflow; its agent job only gets read access.
     permissions:
-      actions: read
+      actions: read # the cache entries that record reviews
       checks: read
       contents: read
       id-token: write # Anthropic WIF
       issues: write # failure reports
       pull-requests: write # the review
-    uses: mui/mui-public/.github/workflows/docs-style-review-workflow.lock.yml@440cdb52ea34c33c052f6dd8e0d3a49a3c2b2add # master
+    uses: mui/mui-public/.github/workflows/docs-style-review-workflow.lock.yml@3ab3e6411ce813c74b4f1ecc61d3211b4d032a30 # master
     with:
+      pull_request: ${{ inputs.pull_request || 0 }}
       # Hand-written docs only, one glob per line.
       exclude: |
         **/CHANGELOG*.md
