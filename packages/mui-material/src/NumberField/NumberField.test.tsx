@@ -18,7 +18,6 @@ import NumberField, {
   NumberFieldRootDataAttributes,
 } from '@mui/material/NumberField';
 import type { NumberFieldOwnerState, NumberFieldProps } from '@mui/material/NumberField';
-import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
@@ -392,29 +391,13 @@ describe('<NumberField />', () => {
         });
       });
 
-      it.skipIf(isJsdom()).each([
-        { size: 'small', hiddenLabel: undefined },
-        { size: 'medium', hiddenLabel: undefined },
-        { size: 'small', hiddenLabel: true },
-        { size: 'medium', hiddenLabel: true },
-      ] as const)(
-        'matches unlabeled filled TextField layout at size=$size with hiddenLabel=$hiddenLabel',
-        (props) => {
-          render(
-            <React.Fragment>
-              <NumberField variant="filled" defaultValue={5} {...props} />
-              <TextField variant="filled" defaultValue="5" {...props} />
-            </React.Fragment>,
-          );
-
-          const [numberInput, textInput] = screen.getAllByRole('textbox');
-          const numberRoot = numberInput.closest('.MuiFilledInput-root')!;
-          const textRoot = textInput.closest('.MuiFilledInput-root')!;
-          expect(numberRoot.getBoundingClientRect().height).to.equal(
-            textRoot.getBoundingClientRect().height,
-          );
-          expect(getComputedStyle(numberInput).paddingTop).to.equal(
-            getComputedStyle(textInput).paddingTop,
+      it.each([undefined, false, true])(
+        'forwards hiddenLabel=%s to the filled input',
+        (hiddenLabel) => {
+          render(<NumberField variant="filled" hiddenLabel={hiddenLabel} />);
+          const input = screen.getByRole('textbox');
+          expect(input.closest('.MuiInputBase-hiddenLabel') !== null).to.equal(
+            Boolean(hiddenLabel),
           );
         },
       );

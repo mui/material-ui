@@ -41,6 +41,12 @@ const NumberFieldControls = styled(InputAdornment, {
         alignSelf: 'stretch',
         height: 'auto',
         maxHeight: 'none',
+        // Let the input set the field height, then divide it between the two buttons.
+        '& > *': {
+          height: 0,
+          minHeight: '50%',
+          '& > svg': { maxHeight: '100%' },
+        },
       },
     },
   ],
