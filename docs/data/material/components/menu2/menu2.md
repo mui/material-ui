@@ -413,6 +413,8 @@ It also applies to their `startAdornment` and `endAdornment` slots.
 The `divider`, `gutters`, and `inset` overrides apply when the corresponding state matches.
 The start adornment uses `ListItemIcon`, so `MuiListItemIcon` colors and selectors also apply to it.
 Use `styleOverrides.startAdornment` to change its column width.
+The `indicator` slot of checkbox and radio items, and inset group labels and separators, use fixed offsets for the default width.
+Change these offsets too.
 Theme variants are shared too; menu variants apply only to the `root` slot.
 
 Component-specific styles apply after shared styles, with `sx` last; CSS specificity still applies.
