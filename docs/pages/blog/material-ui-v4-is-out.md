@@ -126,11 +126,7 @@ Documentation was reported as the 3rd most critical pain point in the Developer 
 
 ![switch](/static/blog/material-ui-v4-is-out/switch.png)
 
-<!-- vale MUI.CorrectReferenceAllCases = NO -->
-
 <p class="blog-description">Use the JS/TS toggle to see code in JavaScript or TypeScript</p>
-
-<!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 - **i18n**. Developers come to Material UI's documentation from all around the world. We want to include as many people as possible 🌎🌍🌏. We have completed the effort started in v3 by working on the Algolia search support, Google search indexing, Table Of Contents and Side Nav infrastructure.
 

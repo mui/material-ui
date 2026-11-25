@@ -51,8 +51,6 @@ The responses to this question are a very clear indicator to us about what we ne
 
 As the answers to these questions were pretty different, we grouped them into different categories and counted the different number of times the concern was mentioned. You can see all of them sorted in descending order:
 
-<!-- vale MUI.CorrectReferenceAllCases = NO -->
-
 <style>th { text-align: left; border-bottom: 3px solid !important; }</style>
 
 <table>
@@ -180,8 +178,6 @@ As the answers to these questions were pretty different, we grouped them into di
   <tr><th>3</th><th>components consistency</th></tr>
   <tr><th>3</th><th>grid - improve</th></tr>
 </table>
-
-<!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 ### Comparison with last year
 

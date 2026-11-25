@@ -90,14 +90,10 @@ For users of Emotion and styled-components, the benefits of adopting Pigment CS
 
 When comparing the same Material UI app built with Next.js and either Emotion or Pigment CSS, we've observed the following page load performance gains using the same code:
 
-<!-- vale MUI.CorrectReferenceAllCases = NO -->
-
 | Metrics             |                                                                                                        Emotion |                                                                                                        Pigment CSS | Change |
 | :------------------ | -------------------------------------------------------------------------------------------------------------: | -----------------------------------------------------------------------------------------------------------------: | -----: |
 | First Load JS       |                                                            [131 kB](https://emotion-demo.vercel.app/?metric=1) |                                                            [104 kB](https://pigment-css-demo.vercel.app/?metric=1) |   -20% |
 | Total blocking time | [280 ms](https://pagespeed.web.dev/analysis/https-emotion-demo-vercel-app/uxfpkvbp31?hl=fr&form_factor=mobile) | [210 ms](https://pagespeed.web.dev/analysis/https-pigment-css-demo-vercel-app/azcw1qxkec?hl=fr&form_factor=mobile) |   -25% |
-
-<!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 :::info
 To reproduce those numbers yourself, check out these live demos and repositories:

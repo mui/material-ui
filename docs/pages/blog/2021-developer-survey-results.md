@@ -104,8 +104,6 @@ And what has decreased:
     It seems to be a transfer effect: people who previously cared more about Material Design now care more about the outcome than the specification itself.
     <br/>
 
-<!-- vale MUI.CorrectReferenceAllCases = NO -->
-
 <details>
   <summary>Click to see the breakdown of categories.</summary>
 
@@ -411,8 +409,6 @@ If you are interested in an analysis of the growing and decreasing pain, you can
     <tr><th>2</th><th>class components</th></tr>
   </table>
 </details>
-
-<!-- vale MUI.CorrectReferenceAllCases = YES -->
 
 Have ideas for improvements? Please share them with us! Here's how to make sure that your requests get top priority:
 
