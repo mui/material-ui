@@ -233,9 +233,9 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
 
-### createTheme arguments with CSS variables
+### createTheme arguments
 
-With CSS variables, the extra arguments of `createTheme()` are deep merged into the created theme, which is then created again with the values they change, so they're processed like the options.
+The extra arguments of `createTheme()` are deep merged into the created theme, which is then created again with the values they change, so they're processed like the options.
 Previously, the created theme was returned with them merged in as they were, and the values that depend on them weren't generated again.
 For example, `info.light`, `info.dark`, and `info.contrastText` now follow the `main` color of a second call:
 
