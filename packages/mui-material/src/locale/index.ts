@@ -49,6 +49,7 @@ export * from './siLK';
 export * from './skSK';
 export * from './srRS';
 export * from './svSE';
+export * from './tgTJ';
 export * from './thTH';
 export * from './trTR';
 export * from './tlTL';
