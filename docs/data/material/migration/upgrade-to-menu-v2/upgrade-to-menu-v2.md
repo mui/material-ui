@@ -167,12 +167,15 @@ Update any checks of the close reason:
 | `tabKeyDown`                                           | `focus-out`                   |
 | No reason; an item's `onClick` handler closed the menu | `item-press`                  |
 
-The `trigger-press` reason can report either opening or closing.
-Check the `open` argument before you run close-only logic:
+The `trigger-press` reason reports an open, and on a menu with `modal={false}` also a close.
+On a modal menu, the internal click layer covers the trigger.
+A second trigger click then closes the menu with `outside-press`, like the `backdropClick` reason of Menu.
+Check the `open` argument and both reasons before you run close-only logic:
 
 ```js
 function handleOpenChange(open, eventDetails) {
-  if (!open && eventDetails.reason === 'trigger-press') {
+  const { reason } = eventDetails;
+  if (!open && (reason === 'trigger-press' || reason === 'outside-press')) {
     saveDraft();
   }
 }

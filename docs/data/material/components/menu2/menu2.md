@@ -226,7 +226,8 @@ The trigger still sets the ARIA attributes and receives focus when the menu clos
 
 `onOpenChange` receives the reason for the change in `eventDetails.reason`.
 Call `eventDetails.cancel()` to prevent a close, for example on an outside press.
-This works for controlled and uncontrolled menus:
+This works for controlled and uncontrolled menus.
+On a modal menu, a second trigger click also reports `outside-press`, so the example below also keeps the menu open on a trigger click.
 
 ```jsx
 <Menu
