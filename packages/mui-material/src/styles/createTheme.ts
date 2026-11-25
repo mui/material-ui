@@ -63,13 +63,23 @@ interface ThemeInputs {
 const themeColorSchemeKey = Symbol.for('mui.themeColorScheme');
 
 /**
+ * Marks, in the changes of a copy, a value that the copy dropped, to remove it from the options.
+ */
+const removedValue = Symbol('removed');
+
+/**
  * Returns the values of `value` that differ from `base`, looking into the plain objects they both
  * have, or `undefined` if there's none. A value missing from `base` that's the same as in
- * `fallback` isn't a change.
+ * `fallback` isn't a change. A value of `base` that `value` drops, or sets to `undefined`, is
+ * removed when `options`, the options at the same place, have it: the other values of `base` are
+ * generated from the options, so they're generated again without it.
  */
-function getChanges(value: any, base: any, fallback?: Record<string, any>): any {
+function getChanges(value: any, base: any, fallback?: Record<string, any>, options?: any): any {
   if (value === base) {
     return undefined;
+  }
+  if (value === undefined) {
+    return options === undefined ? undefined : removedValue;
   }
   if (Array.isArray(base) && (Array.isArray(value) || isPlainObject(value))) {
     // `ThemeProvider` copies an array, like `overlays`, into an object with the same entries.
@@ -83,17 +93,31 @@ function getChanges(value: any, base: any, fallback?: Record<string, any>): any 
   if (!isPlainObject(value) || !isPlainObject(base)) {
     return value;
   }
+  const valueOptions: Record<string, any> = isPlainObject(options) ? options : {};
   const changes: Record<string, any> = {};
-  Object.keys(value).forEach((key) => {
+  new Set([...Object.keys(value), ...Object.keys(base)]).forEach((key) => {
     if (fallback && !(key in base) && value[key] === fallback[key]) {
       return;
     }
-    const change = getChanges(value[key], base[key]);
+    const change = getChanges(value[key], base[key], undefined, valueOptions[key]);
     if (change !== undefined) {
       changes[key] = change;
     }
   });
   return Object.keys(changes).length > 0 ? changes : undefined;
+}
+
+/**
+ * Removes from `target` the values that `changes` marks as removed.
+ */
+function removeValues(target: Record<string, any>, changes: Record<string, any>) {
+  Object.keys(changes).forEach((key) => {
+    if (changes[key] === removedValue) {
+      delete target[key];
+    } else if (isPlainObject(changes[key]) && isPlainObject(target[key])) {
+      removeValues(target[key], changes[key]);
+    }
+  });
 }
 
 /**
@@ -104,6 +128,9 @@ function mergeColorSchemes(
   options: ThemeOptions,
   colorSchemes: Record<string, any>,
 ): Record<string, any> {
+  if (!isPlainObject(colorSchemes)) {
+    return colorSchemes;
+  }
   const existing: Record<string, any> = options.colorSchemes ?? {};
   const changes: Record<string, any> = {};
   Object.keys(colorSchemes).forEach((scheme) => {
@@ -129,7 +156,8 @@ function getThemeOptions(copy: Record<string | symbol, any>, inputs: ThemeInputs
   // `palette` option, to the default color scheme of the copy.
   const targetScheme: string = copy[themeColorSchemeKey] ?? copy.defaultColorScheme;
   const changes: Record<string, any> = {};
-  Object.keys(copy).forEach((key) => {
+  // The keys of the theme too, for the values that the copy dropped.
+  new Set([...Object.keys(copy), ...Object.keys(theme)]).forEach((key) => {
     if (
       // `vars` isn't an option, and `cssVariables: true` keeps the CSS variables options.
       key === 'vars' ||
@@ -142,20 +170,29 @@ function getThemeOptions(copy: Record<string | symbol, any>, inputs: ThemeInputs
     }
     const isSchemeValue = Object.values<any>(theme.colorSchemes).some((scheme) => key in scheme);
     if (!isSchemeValue) {
-      const change = getChanges(copy[key], theme[key]);
+      const change = getChanges(
+        copy[key],
+        theme[key],
+        undefined,
+        options[key as keyof ThemeOptions],
+      );
       if (change !== undefined) {
         changes[key] = change;
       }
       return;
     }
     const base = key in sourceScheme ? sourceScheme[key] : defaultScheme[key];
+    const isOption = targetScheme === copy.defaultColorScheme && key in options;
+    const schemeOptions = isOption
+      ? options[key as keyof ThemeOptions]
+      : (options.colorSchemes as Record<string, any> | undefined)?.[targetScheme]?.[key];
     // `ThemeProvider` merges the values of a color scheme over the default ones, so a value missing
     // from that color scheme is the default one.
-    const change = getChanges(copy[key], base, defaultScheme[key]);
+    const change = getChanges(copy[key], base, defaultScheme[key], schemeOptions);
     if (change === undefined) {
       return;
     }
-    if (targetScheme === copy.defaultColorScheme && key in options) {
+    if (isOption) {
       changes[key] = change;
     } else {
       changes.colorSchemes = deepmerge(changes.colorSchemes ?? {}, {
@@ -192,7 +229,9 @@ function mergeArgument(options: ThemeOptions, argument: Record<string, any>): Th
       });
     }
   }
-  return deepmerge(options, changes);
+  const merged = deepmerge(options, changes);
+  removeValues(merged, changes);
+  return merged;
 }
 
 // eslint-disable-next-line consistent-return

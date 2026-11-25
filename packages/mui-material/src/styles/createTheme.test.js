@@ -830,6 +830,70 @@ describe('createTheme', () => {
         );
       });
 
+      it('should remove a value dropped in a copy of the theme', () => {
+        const options = {
+          cssVariables: true,
+          colorSchemes: {
+            light: {
+              palette: {
+                primary: { main: '#ff0000', light: '#ff8080' },
+                brand: { main: '#123456' },
+              },
+            },
+            dark: true,
+          },
+          components: { MuiButton: { styleOverrides: { root: { color: 'red' } } } },
+        };
+        const theme = createTheme(options);
+        const { components, ...withoutComponents } = theme;
+        const { brand, ...paletteWithoutBrand } = theme.palette;
+
+        [
+          createTheme({ ...theme, components: {} }),
+          createTheme({ ...theme, components: { ...theme.components, MuiButton: undefined } }),
+          createTheme(withoutComponents),
+        ].forEach((composed) => {
+          expect(composed.components?.MuiButton).to.equal(undefined);
+        });
+
+        const withoutDark = createTheme({
+          ...theme,
+          colorSchemes: { light: theme.colorSchemes.light },
+        });
+        const withoutBrand = createTheme({ ...theme, palette: paletteWithoutBrand });
+        expect(withoutBrand.palette.brand).to.equal(undefined);
+        expect(withoutBrand.generateStyleSheets()).to.deep.equal(
+          createTheme({
+            ...options,
+            colorSchemes: {
+              ...options.colorSchemes,
+              light: { palette: { primary: options.colorSchemes.light.palette.primary } },
+            },
+          }).generateStyleSheets(),
+        );
+
+        expect(Object.keys(withoutDark.colorSchemes)).to.deep.equal(['light']);
+        expect(withoutDark.generateStyleSheets()).to.deep.equal(
+          createTheme({
+            ...options,
+            colorSchemes: { light: options.colorSchemes.light },
+          }).generateStyleSheets(),
+        );
+
+        // The `light` color given in the options is generated again from the new `main` color.
+        const primary = { main: '#00ff00' };
+        const composed = createTheme({ ...theme, palette: { ...theme.palette, primary } });
+        const expected = createTheme({
+          ...options,
+          colorSchemes: {
+            ...options.colorSchemes,
+            light: { palette: { ...options.colorSchemes.light.palette, primary } },
+          },
+        });
+        expect(composed.palette.primary.light).to.equal(expected.palette.primary.light);
+        expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
       it('should process the extra arguments like the options', () => {
         const argument = {
           palette: { primary: { main: '#ff0000' } },
