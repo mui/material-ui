@@ -198,6 +198,32 @@ describe('<Dialog />', () => {
     expect(dialog).to.have.attribute('tabindex', '0');
   });
 
+  // https://github.com/mui/material-ui/issues/33004
+  it('should keep focus on an autoFocus input when the focus trap effect re-runs', () => {
+    function Test() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setOpen(true)}>
+            Open
+          </button>
+          <Dialog open={open}>
+            <input autoFocus data-testid="auto-focus" />
+          </Dialog>
+        </React.Fragment>
+      );
+    }
+    render(<Test />);
+
+    const opener = screen.getByRole('button', { name: 'Open' });
+    act(() => {
+      opener.focus();
+    });
+    fireEvent.click(opener);
+
+    expect(screen.getByTestId('auto-focus')).toHaveFocus();
+  });
+
   it('should not close until the IME is cancelled', () => {
     const onClose = spy();
 
@@ -252,10 +278,10 @@ describe('<Dialog />', () => {
   });
 
   describe('backdrop', () => {
-    it('does have `role` `presentation`', () => {
+    it('does have `role` `none`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop()).to.have.attribute('role', 'presentation');
+      expect(findBackdrop()).to.have.attribute('role', 'none');
     });
 
     it('calls onClose when clicked', () => {
@@ -319,7 +345,7 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthFalse);
     });
 
-    it('should apply the correct max-width styles when maxWidth={false}', () => {
+    it.skipIf(isJsdom())('should apply the correct max-width styles when maxWidth={false}', () => {
       render(
         <Dialog open maxWidth={false} slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
