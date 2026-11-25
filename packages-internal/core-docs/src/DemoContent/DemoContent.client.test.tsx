@@ -81,7 +81,7 @@ function Demo({
                 initialVariant="Default"
                 highlightAfter="init"
                 enhanceAfter="init"
-                editActivation="interaction"
+                editActivation="idle"
                 Content={DemoContent}
                 ContentFrame={DemoContentFrame}
                 ContentLoading={DemoContentLoading}
