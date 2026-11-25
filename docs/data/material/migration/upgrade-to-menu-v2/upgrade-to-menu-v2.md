@@ -4,7 +4,7 @@
 
 ## Menu v2 status
 
-Menu v2 is an unstable component in Material UI v9.
+Starting from v9.7, Material UI includes Menu v2 as an unstable component.
 Import it from the `Unstable_Menu2` subpaths.
 Its API can change in a minor release.
 

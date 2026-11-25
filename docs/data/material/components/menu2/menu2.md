@@ -15,7 +15,7 @@ githubSource: packages/mui-material/src/Unstable_Menu2
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 :::warning
-Menu v2 is an unstable component.
+Starting from v9.7, Material UI includes Menu v2 as an unstable component.
 Import it from the `Unstable_Menu2` subpaths.
 Its API can change in a minor release.
 
