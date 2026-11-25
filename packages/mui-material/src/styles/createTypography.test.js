@@ -67,6 +67,13 @@ describe('createTypography', () => {
     });
   });
 
+  it('should keep `allVariants`, so that the typography can be created again from it', () => {
+    const typography = createTypography(palette, { allVariants: { marginLeft: 0 } });
+
+    expect(typography.allVariants).to.deep.equal({ marginLeft: 0 });
+    expect(createTypography(palette, typography)).to.deep.equal(typography);
+  });
+
   it('only defines letter-spacing if the font-family is not overwritten', () => {
     expect(createTypography(palette, {}).h1.letterSpacing).not.to.equal(undefined);
     expect(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing).to.equal(
