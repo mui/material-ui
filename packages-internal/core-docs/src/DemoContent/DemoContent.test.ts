@@ -1,11 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import {
   createDemoUseOptions,
-  expandDemo,
   getDemoEditingDependencies,
   resetDemo,
   resolveDemoSourceView,
-  toggleDemoExpanded,
 } from './DemoContent.helpers';
 import { buildDemoDeploymentLinks } from './demoDeploymentLinks';
 
@@ -21,7 +19,6 @@ describe('DemoContent behavior', () => {
 
     expect(options).to.include({
       disabled: true,
-      resetOnExpand: true,
       actionSource: 'initial',
       selectedTransform: 'js',
       onSelectedTransformChange,
@@ -81,64 +78,6 @@ describe('DemoContent behavior', () => {
       remountCount += 1;
     });
 
-    expect(remountCount).to.equal(1);
-  });
-
-  it('routes expansion through expand and collapse through setExpanded', () => {
-    let expandCount = 0;
-    let remountCount = 0;
-    let collapseCount = 0;
-    const expandedValues: boolean[] = [];
-
-    toggleDemoExpanded(
-      false,
-      () => {
-        expandCount += 1;
-      },
-      (value) => expandedValues.push(value),
-      () => {
-        remountCount += 1;
-      },
-      () => {
-        collapseCount += 1;
-      },
-    );
-    expect(collapseCount).to.equal(0);
-
-    toggleDemoExpanded(
-      true,
-      () => {
-        expandCount += 1;
-      },
-      (value) => expandedValues.push(value),
-      () => {
-        remountCount += 1;
-      },
-      () => {
-        collapseCount += 1;
-      },
-    );
-
-    expect(expandCount).to.equal(1);
-    expect(remountCount).to.equal(1);
-    expect(collapseCount).to.equal(1);
-    expect(expandedValues).to.deep.equal([false]);
-  });
-
-  it('uses one expansion path for source reset and preview remount', () => {
-    let expandCount = 0;
-    let remountCount = 0;
-
-    expandDemo(
-      () => {
-        expandCount += 1;
-      },
-      () => {
-        remountCount += 1;
-      },
-    );
-
-    expect(expandCount).to.equal(1);
     expect(remountCount).to.equal(1);
   });
 

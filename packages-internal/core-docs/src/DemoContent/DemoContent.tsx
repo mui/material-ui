@@ -18,12 +18,10 @@ import { CodeSource, FileTab } from './CodeSource';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
 import {
   createDemoUseOptions,
-  expandDemo,
   getDemoEditingDependencies,
   hasJavascriptTransform,
   resetDemo,
   resolveDemoSourceView,
-  toggleDemoExpanded,
 } from './DemoContent.helpers';
 import { buildDemoDeploymentLinks } from './demoDeploymentLinks';
 import {
@@ -285,8 +283,8 @@ export default function DemoContent(props: DemoContentProps) {
     };
   }, [aiSuggestion, demoName, props.code, demo.selectedVariant, demo.selectedFileName, demo.slug]);
 
-  const expandedRef = React.useRef(demo.expanded);
-  expandedRef.current = demo.expanded;
+  const { expanded, setExpanded } = demo;
+
   const editingDependencies = React.useMemo(
     () => getDemoEditingDependencies(props.code),
     [props.code],
@@ -298,28 +296,18 @@ export default function DemoContent(props: DemoContentProps) {
     }
     expandSource();
   }, [codeController, disableLiveEdit, editingDependencies, expandSource]);
-  const handleExpand = React.useCallback(() => {
-    expandDemo(expandWithEditingPreload, remountPreview);
-  }, [expandWithEditingPreload]);
-  // The collapsed preview projects the unedited main file, so restore both the
-  // file selection and the original source when the viewer closes.
-  const resetSourceFile = React.useCallback(() => {
-    const mainFileName = demo.files[0]?.name;
-    if (mainFileName && demo.selectedFileName !== mainFileName) {
-      demo.selectFileName(mainFileName);
-    }
-    resetDemo(demo.reset, remountPreview);
-  }, [demo]);
+
   const handleToggleFrames = React.useCallback(() => {
     setAdShown(true);
-    toggleDemoExpanded(
-      expandedRef.current,
-      expandWithEditingPreload,
-      demo.setExpanded,
-      remountPreview,
-      resetSourceFile,
-    );
-  }, [expandWithEditingPreload, demo.setExpanded, resetSourceFile]);
+
+    if (expanded) {
+      setExpanded(false);
+
+      return;
+    }
+
+    expandWithEditingPreload();
+  }, [expanded, setExpanded, expandWithEditingPreload]);
 
   // GA event label — the canonical demo slug is used since it uniquely
   // identifies a demo within a page and is stable across renders.
@@ -370,9 +358,9 @@ export default function DemoContent(props: DemoContentProps) {
     }
     appliedHashRef.current = hash;
     // Landing on a source link reveals the source and selects its language.
-    handleExpand();
+    expandWithEditingPreload();
     selectTransform(sourceAnchorTransform(hash));
-  }, [hash, sourceAnchorIds, handleExpand, selectTransform]);
+  }, [hash, sourceAnchorIds, expandWithEditingPreload, selectTransform]);
 
   // The main `#<DemoName>` anchor is rendered by `DemoContainer` (via the
   // `anchorId` prop) so the loading skeleton emits it too. Here we only add the

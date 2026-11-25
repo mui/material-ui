@@ -89,6 +89,7 @@
     "./*": "./src/*/index.ts",
     "./ApiPage/private": "./src/ApiPage/private.ts",
     "./utils/createDemo": "./src/utils/createDemo.tsx",
-    "./utils/createDemoClient": "./src/utils/createDemoClient.ts"
+    "./utils/createDemoClient": "./src/utils/createDemoClient.ts",
+    "./ThemeContext/syntax.css": "./src/ThemeContext/syntax.css"
   }
 }

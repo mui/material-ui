@@ -22,7 +22,6 @@ export function createDemoUseOptions({
     export: exportConfig,
     exportCodeSandbox: codeSandboxTsconfigOverride,
     disabled: disableLiveEdit,
-    resetOnExpand: true,
     actionSource: 'initial',
     selectedTransform,
     onSelectedTransformChange,
@@ -100,24 +99,4 @@ export function getDemoEditingDependencies(code: Code | undefined) {
 export function resetDemo(resetSource: (() => void) | undefined, remountPreview: () => void) {
   resetSource?.();
   remountPreview();
-}
-
-export function expandDemo(expand: () => void, remountPreview: () => void) {
-  expand();
-  remountPreview();
-}
-
-export function toggleDemoExpanded(
-  expanded: boolean,
-  expand: () => void,
-  setExpanded: (expanded: boolean) => void,
-  remountPreview: () => void,
-  onCollapse?: () => void,
-) {
-  if (expanded) {
-    setExpanded(false);
-    onCollapse?.();
-  } else {
-    expandDemo(expand, remountPreview);
-  }
 }
