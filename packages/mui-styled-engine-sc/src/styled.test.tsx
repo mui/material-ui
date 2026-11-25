@@ -50,23 +50,33 @@ describe('styled', () => {
 describe('internal_useStyleCache', () => {
   const { render } = createRenderer();
 
-  it('returns the style sheet of the closest StyleSheetManager', () => {
-    const caches: Record<string, any> = {};
+  it('returns a cache for each style sheet and each way to compile the styles', () => {
+    const caches: Record<string, object | null> = {};
     function Cache(props: { name: string }) {
       caches[props.name] = useStyleCache();
       return null;
     }
     const target = document.createElement('div');
-    render(
+    const { setProps } = render(
       <React.Fragment>
         <Cache name="page" />
+        <Cache name="samePage" />
         <StyleSheetManager target={target}>
           <Cache name="target" />
         </StyleSheetManager>
+        {/* It keeps the style sheet of the page and prefixes the selectors. */}
+        <StyleSheetManager namespace="#widget">
+          <Cache name="namespace" />
+        </StyleSheetManager>
       </React.Fragment>,
     );
-    expect(caches.page).not.to.equal(null);
-    expect(caches.target).not.to.equal(caches.page);
-    expect(caches.target.options.target).to.equal(target);
+    const { page } = caches;
+    expect(page).not.to.equal(null);
+    expect(caches.samePage).to.equal(page);
+    expect(caches.target).not.to.equal(page);
+    expect(caches.namespace).not.to.equal(page);
+    expect(caches.namespace).not.to.equal(caches.target);
+    setProps({});
+    expect(caches.page).to.equal(page);
   });
 });

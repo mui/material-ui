@@ -77,7 +77,8 @@ export function internal_useNonce(): string | undefined {
 /**
  * For internal usage in `@mui/system` package.
  * Returns the Emotion cache in context. A subtree with its own cache inserts its styles somewhere else,
- * like a shadow root, so it can't share a stylesheet with the rest of the tree.
+ * like a shadow root, or writes them differently, like with other plugins,
+ * so it can't share a stylesheet with the rest of the tree.
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_useStyleCache(): object | null {
