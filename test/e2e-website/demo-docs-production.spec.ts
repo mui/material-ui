@@ -135,14 +135,39 @@ export default function BasicButtons() {
 
       await demo.getByRole('button', { name: 'Collapse code' }).click();
 
-      await expect(await editor(demo)).toHaveValue(/Full source edit/);
+      await expect(demo.locator('pre:visible, textarea:visible')).toHaveCount(0);
       await expect(editedButton).toBeVisible();
       expect(await fullPreview!.evaluate((node) => node.isConnected)).toBe(true);
 
+      await demo.getByRole('button', { name: 'Expand code' }).click();
+      await expect(await editor(demo)).toHaveValue(/Full source edit/);
+      await demo.getByRole('button', { name: 'Collapse code' }).click();
       await demo.getByRole('button', { name: 'Reset demo' }).click();
 
       await expectButtonsPreview(demo);
       await expect(demo.getByRole('button', { name: 'Text' })).toBeVisible();
+    });
+
+    test('hides edited JavaScript focus source until expanded', async ({ page }) => {
+      const demo = getDemo(page, 'BasicButtons');
+
+      await demo.getByRole('button', { name: 'Expand code' }).click();
+      await demo.getByRole('button', { name: 'Show JavaScript source' }).click();
+
+      const textarea = await editor(demo);
+
+      await textarea.fill((await textarea.inputValue()).replace('>Text<', '>JavaScript edit<'));
+      const preview = demo.getByRole('button', { name: 'JavaScript edit', exact: true });
+
+      await expect(preview).toBeVisible();
+      await demo.getByRole('button', { name: 'Collapse code' }).click();
+
+      await expect(demo.locator('pre:visible, textarea:visible')).toHaveCount(0);
+      await expect(preview).toBeVisible();
+
+      await demo.getByRole('button', { name: 'Expand code' }).click();
+
+      await expect(await editor(demo)).toHaveValue(/JavaScript edit/);
     });
 
     test('reports live syntax errors without replacing the last valid render', async ({ page }) => {

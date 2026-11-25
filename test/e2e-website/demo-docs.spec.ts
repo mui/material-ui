@@ -165,6 +165,7 @@ test.describe('Demo docs', () => {
       const editedPreview = await preview.elementHandle();
 
       await sourceToggle.click();
+      await expect(demo.locator('pre:visible, textarea:visible')).toHaveCount(0);
       await expect(page.getByTestId('focused-message')).toHaveText(editedMessage);
       expect(await editedPreview!.evaluate((node) => node.isConnected)).toBe(true);
 
@@ -194,6 +195,29 @@ test.describe('Demo docs', () => {
       await expect(await getSelectedFileEditor(demo)).toHaveValue(/helper/);
       await demo.getByRole('tab', { name: 'FocusedLiveEdit.module.css' }).click();
       await expect(await getSelectedFileEditor(demo)).toHaveValue(/rgb\(20 70 120\)/);
+    });
+
+    test('hides helper source while collapsed without changing the selected file', async ({
+      page,
+    }) => {
+      await page.goto(validationPage);
+      const demo = getDemo(page, 'FocusedLiveEdit');
+
+      await demo.getByRole('button', { name: 'Expand code' }).click();
+      await demo.getByRole('tab', { name: 'message.ts' }).click();
+      await expect(demo.locator('pre').first()).toContainText('function getMessage');
+      await demo.getByRole('button', { name: 'Collapse code' }).click();
+
+      await expect(demo.locator('pre:visible, textarea:visible')).toHaveCount(0);
+      await expect(demo.getByRole('tab')).toHaveCount(0);
+
+      await demo.getByRole('button', { name: 'Expand code' }).click();
+
+      await expect(demo.getByRole('tab', { name: 'message.ts' })).toHaveAttribute(
+        'aria-selected',
+        'true',
+      );
+      await expect(demo.locator('pre').first()).toContainText('function getMessage');
     });
 
     test('reset remounts component state', async ({ page }) => {

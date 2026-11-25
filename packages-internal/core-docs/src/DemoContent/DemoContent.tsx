@@ -333,9 +333,13 @@ export default function DemoContent(props: DemoContentProps) {
 
   // The root file is the selected variant's entry file (`VariantCode.fileName`,
   // e.g. `ButtonBaseDemo.tsx`).
-  const rootVariantCode = props.code?.[demo.selectedVariant];
-  const rootFileName =
-    rootVariantCode && typeof rootVariantCode !== 'string' ? rootVariantCode.fileName : undefined;
+  const rootVariant = initialCodeRef.current?.[demo.selectedVariant];
+  const rootCode = rootVariant && typeof rootVariant !== 'string' ? rootVariant : undefined;
+  const rootFileName = rootCode?.fileName;
+
+  const hasCollapsedSource =
+    demo.selectedFileOriginalName === rootFileName &&
+    (!rootCode?.sourceProjection || hasSourceFocus);
 
   // The demo's deep-link anchor: the root file's base name (e.g. `#ContainedButtons`
   // from `ContainedButtons.tsx`), matching the existing/shipped slugs in `master`
@@ -520,7 +524,7 @@ export default function DemoContent(props: DemoContentProps) {
       onToolbarKeyDown={handleToolbarKeyDown}
       onToolbarFocus={handleToolbarFocus}
       expanded={demo.expanded}
-      sourceVisible={sourceVisible}
+      sourceVisible={sourceVisible && (demo.expanded || hasCollapsedSource)}
       tabs={tabs}
       code={code}
       codeId={demoSourceId}
