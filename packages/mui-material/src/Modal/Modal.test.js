@@ -760,6 +760,55 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
     });
 
+    ['the same render', 'separate renders'].forEach((sequence) => {
+      it(`should restore the body after a body modal and a shadow root modal open in ${sequence}`, () => {
+        const host = document.createElement('div');
+        document.body.appendChild(host);
+        const shadowContainer = document.createElement('div');
+        host.attachShadow({ mode: 'open' }).appendChild(shadowContainer);
+        const fixedNode = document.createElement('div');
+        fixedNode.classList.add('mui-fixed');
+        fixedNode.style.paddingRight = '8px';
+        document.body.appendChild(fixedNode);
+
+        function TestCase(props) {
+          return (
+            <React.Fragment>
+              <Modal open={props.first}>
+                <div>Hello</div>
+              </Modal>
+              <Modal open={props.second} container={shadowContainer}>
+                <div>World</div>
+              </Modal>
+            </React.Fragment>
+          );
+        }
+        TestCase.propTypes = {
+          first: PropTypes.bool,
+          second: PropTypes.bool,
+        };
+
+        const { setProps } = render(<TestCase first={false} second={false} />);
+
+        if (sequence === 'separate renders') {
+          setProps({ first: true, second: false });
+        }
+        setProps({ first: true, second: true });
+        setProps({ first: false, second: true });
+
+        expect(document.body.style).to.have.property('overflow', 'hidden');
+
+        setProps({ first: false, second: false });
+
+        expect(document.body.style).to.have.property('overflow', '');
+        expect(document.body.style).to.have.property('padding-right', '');
+        expect(fixedNode.style).to.have.property('padding-right', '8px');
+
+        document.body.removeChild(fixedNode);
+        document.body.removeChild(host);
+      });
+    });
+
     it('should open and close with Transitions', () => {
       function TestCase(props) {
         return (
