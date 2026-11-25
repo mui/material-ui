@@ -637,7 +637,12 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     if (newFingerValue && onChangeCommitted) {
-      onChangeCommitted(nativeEvent, lastChangedValueRef.current ?? newFingerValue.newValue);
+      const value = lastChangedValueRef.current ?? newFingerValue.newValue;
+      const committedValue = Array.isArray(value)
+        ? value.map((rangeValue) => clamp(rangeValue, min, max))
+        : clamp(value, min, max);
+
+      onChangeCommitted(nativeEvent, committedValue);
     }
 
     // Release pointer capture if applicable
