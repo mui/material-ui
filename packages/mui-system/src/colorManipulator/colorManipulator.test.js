@@ -73,6 +73,14 @@ describe('utils/colorManipulator', () => {
         }),
       ).to.equal('hsla(100, 50%, 25%, 0.5)');
     });
+
+    it('does not modify the decomposed hsl color object', () => {
+      const color = { type: 'hsl', values: [100, 50, 25] };
+
+      expect(recomposeColor(color)).to.equal('hsl(100, 50%, 25%)');
+      expect(recomposeColor(color)).to.equal('hsl(100, 50%, 25%)');
+      expect(color.values).to.deep.equal([100, 50, 25]);
+    });
   });
 
   describe('hexToRgb', () => {
@@ -100,6 +108,15 @@ describe('utils/colorManipulator', () => {
 
     it('idempotent', () => {
       expect(rgbToHex('#A94FD3')).to.equal('#A94FD3');
+    });
+
+    it('rounds decimal channel values', () => {
+      expect(rgbToHex('rgb(127.5, 79.2, 210.8)')).to.equal('#804fd3');
+      expect(rgbToHex('rgba(169, 79, 211, 1.5)')).to.equal('#a94fd3ff');
+    });
+
+    it('clamps channel values to the 0 - 255 range', () => {
+      expect(rgbToHex('rgb(300, -20, 211)')).to.equal('#ff00d3');
     });
   });
 
@@ -521,6 +538,17 @@ describe('utils/colorManipulator', () => {
 
     it('selects only the overlay color with an opacity of 1.0', () => {
       expect(blend('rgb(90, 90, 90)', 'rgb(10, 100, 255)', 1.0)).to.equal('rgb(10, 100, 255)');
+    });
+
+    it('converts hsl colors to rgb before blending', () => {
+      expect(blend('#fff', 'hsl(0, 100%, 50%)', 0.5)).to.equal('rgb(255, 128, 128)');
+      expect(blend('hsl(0, 0%, 100%)', 'rgb(255, 0, 0)', 0.5)).to.equal('rgb(255, 128, 128)');
+      expect(blend('#fff', 'hsla(0, 100%, 50%, 0.4)', 0.5)).to.equal('rgb(255, 128, 128)');
+    });
+
+    it('converts color() colors to rgb before blending', () => {
+      expect(blend('#fff', 'color(srgb 1 0 0)', 0.5)).to.equal('rgb(255, 128, 128)');
+      expect(blend('color(srgb 1 1 1)', 'rgb(255, 0, 0)', 0.5)).to.equal('rgb(255, 128, 128)');
     });
   });
 });
