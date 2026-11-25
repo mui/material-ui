@@ -71,8 +71,11 @@ export function createColorSchemeSelectorGetter(
   };
 }
 
-// FNV-1a, enough to give each set of declarations a short and stable class name.
 /* eslint-disable no-bitwise */
+/**
+ * Hashes a string with FNV-1a, which is enough to give each set of declarations
+ * a short and stable class name.
+ */
 function hash(value: string) {
   let result = 0x811c9dc5;
   for (let i = 0; i < value.length; i += 1) {
@@ -83,6 +86,9 @@ function hash(value: string) {
 }
 /* eslint-enable no-bitwise */
 
+/**
+ * Returns the declarations of `css` that `upperCss` doesn't have with the same value.
+ */
 function pickChanged(css: CssDeclarations, upperCss: CssDeclarations | undefined) {
   if (!upperCss) {
     return { ...css };
@@ -134,6 +140,9 @@ function addDependents(
   }
 }
 
+/**
+ * Tells if there's no declaration to write, in `root` or in any of the color schemes.
+ */
 function isEmpty(root: CssDeclarations, schemes: Array<[string, CssDeclarations]>) {
   return (
     Object.keys(root).length === 0 &&
@@ -141,10 +150,17 @@ function isEmpty(root: CssDeclarations, schemes: Array<[string, CssDeclarations]
   );
 }
 
+/**
+ * Returns the class name of a scope from what it declares,
+ * so that the providers that declare the same share a class and its stylesheet.
+ */
 function getClassName(prefix: string, content: unknown) {
   return `${prefix ? `${prefix}-` : ''}theme-${hash(JSON.stringify(content))}`;
 }
 
+/**
+ * Returns `css` with only the given color scheme, or as is without one.
+ */
 function pickColorScheme(
   css: CssVarsByColorScheme,
   colorScheme: string | undefined,
@@ -155,6 +171,9 @@ function pickColorScheme(
   return { root: css.root, colorSchemes: css.colorSchemes.filter(([key]) => key === colorScheme) };
 }
 
+/**
+ * Returns the mode of a color scheme: the `color-scheme` that it declares, or its name.
+ */
 function getMode(css: CssVarsByColorScheme, colorScheme: string) {
   const declarations = Object.fromEntries(css.colorSchemes)[colorScheme];
   return (declarations?.colorScheme as string | undefined) || colorScheme;
