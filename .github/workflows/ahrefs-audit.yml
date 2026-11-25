@@ -1,0 +1,40 @@
+name: Ahrefs audit
+
+# Runs the reusable Ahrefs audit workflow against the mui.com pages this repo builds, daily or by
+# hand. The setup it needs is in the README's "Agentic workflows" section of mui/mui-public.
+
+on:
+  schedule:
+    - cron: '41 6 * * *' # daily 06:41 UTC
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ahrefs-audit:
+    # Maximum grant required by the reusable workflow; its agent job only gets read access.
+    permissions:
+      actions: read
+      checks: read
+      contents: write # push the fix branches
+      id-token: write # Anthropic WIF
+      issues: write # failure reports
+      pull-requests: write # draft fix PRs
+    uses: mui/mui-public/.github/workflows/ahrefs-audit-workflow.lock.yml@62d3ee50b8c03a237b186efc05cbba1bbc8186ba # master
+    with:
+      project_id: '3524616' # MUI Core
+      # mui.com is built from several repos; these are the paths others build, one per line.
+      exclude_paths: |
+        /x/
+        /store/
+        /legal/
+        /toolpad/
+        /base-ui/
+        /joy-ui/
+        /pigment-css/
+    # Reusable workflows only get secrets the caller passes. These resolve to the code-infra-auditor
+    # environment's secrets, because the jobs that use them run in that environment.
+    secrets:
+      AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
+      CODE_INFRA_AUDITOR_CLIENT_ID: ${{ secrets.CODE_INFRA_AUDITOR_CLIENT_ID }}
+      CODE_INFRA_AUDITOR_PRIVATE_KEY: ${{ secrets.CODE_INFRA_AUDITOR_PRIVATE_KEY }}
