@@ -20,7 +20,7 @@ FormHelperText shows a hint or an error message below a field. It is not focusab
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->In dark mode, the default `error.main` text falls below 4.5:1 on a Paper with elevation 2 or more, for example `3.13:1` in a Dialog.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->In dark mode, the default `error.main` text falls below 4.5:1 on a Paper with elevation 2 or more, for example `3.14:1` in a Dialog.<!-- 1.4.3:gap:end -->
 - ⚠️ **4.1.3 Status Messages.** <!-- 4.1.3:gap:start -->The helper text has no live region. A screen reader probably does not announce a new error message until the user moves focus to the field.<!-- 4.1.3:gap:end -->
 
 ## Success criteria
@@ -105,8 +105,8 @@ Tested by: unit `FormHelperText.test.js`
 <!-- 1.3.1:start -->
 
 - By default, the root is a `<p>`. The `component` prop can change it. It has no association of its own.
-- TextField gives the helper text an `id` and sets `aria-describedby` on its input. A screen reader then reads the helper text as the description. A unit test confirms this. For a non-native select, TextField sets the attribute on the combobox element.
-- A standalone FormHelperText inside a `FormControl` gets no association. The author sets an `id` on it and `aria-describedby` on the input. Unit tests confirm both cases.
+- TextField gives the helper text an `id` and sets `aria-describedby` on its input. A screen reader then reads the helper text as the description. A TextField unit test confirms this ("links the helper text to the input as its accessible description" in `TextField.test.js`). For a non-native select, TextField sets the attribute on the combobox element.
+- A standalone FormHelperText inside a `FormControl` gets no association. The author sets an `id` on it and `aria-describedby` on the input. A unit test confirms that FormControl does not connect it. The 3.3.1 unit test confirms the connection that the author sets.
 - With `helperText=" "`, the helper text reserves one line. Its content is an `aria-hidden` zero-width space, so the description is empty.
 
 **Manual testing steps**
@@ -155,8 +155,8 @@ Tested by: unit `FormHelperText.test.js` · axe-core `color-contrast` ❌
   | Error, `error.main`       |              4.98:1 |                5.09:1 |
   | Disabled, `text.disabled` |              2.68:1 |                5.32:1 |
 
-- In dark mode, a Paper with elevation adds a white overlay. The default `error.main` (`#f44336`) then falls below 4.5:1 from elevation 2: `4.30:1` at elevation 2, `3.68:1` at elevation 8 (Menu, Popover), and `3.13:1` at elevation 24 (Dialog). At elevation 1, it is `4.52:1`. A unit test confirms the elevation 2 and 24 values. The resting text stays above 4.5:1.
-- A unit test confirms the resting and error colors in light mode. axe-core `color-contrast` passes on the helper text in both fixtures. The variants fixture also shows the red label of the filled error field. That label is a known TextField 1.4.3 failure, so the fixture does not assert `color-contrast`. On the variants fixture, axe can also return `incomplete` results: an empty outlined input has no value to test, and the notched outline and the floating label overlap some inputs.
+- In dark mode, a Paper with elevation adds a white overlay. The default `error.main` (`#f44336`) then falls below 4.5:1 from elevation 2: about `4.3:1` at elevation 2, `3.69:1` at elevation 8 (Menu, Popover), and `3.14:1` at elevation 24 (Dialog). At elevation 1, it is about `4.5:1`, which is borderline. A browser test renders the error text in a dark Paper at elevation 1, 2, and 24. It blends the computed overlay of the Paper with its background color, and measures the text against the result. The resting text stays above 4.5:1.
+- A unit test confirms the resting and error colors in light mode. axe-core `color-contrast` passes on the states fixture, which asserts it. The variants fixture also shows the red label of the filled error field. That label is a known TextField 1.4.3 failure, so the fixture does not assert `color-contrast`. Its stored result is a fail, and it does not name the failing element. Thus it does not show that the helper text passes there. On the variants fixture, axe can also return `incomplete` results: an empty outlined input has no value to test, and the notched outline and the floating label overlap some inputs.
 - When the field is disabled, the helper text is part of the disabled TextField. WCAG exempts text that is part of an inactive user interface component, so 1.4.3 does not apply. axe-core cannot see this link and reports a failure, so the fixtures leave out a disabled field. The TextField report takes the same position. A disabled FormHelperText with no disabled field is not exempt.
 - Helper text that tells why a field is disabled is content that the user needs. Keep this text readable, for example with `text.secondary`.
 
