@@ -267,8 +267,7 @@ const CHECKBOX_A11Y_DEMOS = [
 ];
 
 // Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
-// excluded: its `aria-label` on a role-less FormGroup div trips
-// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+// not enrolled. It shows label placement only, which the other demos cover.
 const SWITCH_A11Y_DEMOS = [
   'BasicSwitches',
   'SwitchLabels',
