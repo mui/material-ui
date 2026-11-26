@@ -29,7 +29,7 @@ export const CSS_LAYOUT_SUITES = [
     skipCriteria: ['1.4.4', '1.4.12'],
   },
   {
-    // No docs page consumes FormHelperText, so the layout suite runs on its a11y fixture.
+    // FormHelperText has no docs page of its own, so the layout suite runs on its a11y fixture.
     component: 'FormHelperText',
     route: '/a11y-form-helper-text/FormHelperTextA11yStates',
   },
