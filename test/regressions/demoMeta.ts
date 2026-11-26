@@ -417,7 +417,8 @@ export const A11Y_RULES: A11yRule[] = [
   // error field is a known TextField 1.4.3 failure that this fixture shows. axe
   // also returns `incomplete` for the empty outlined input (no value to test),
   // and for the other outlined input and the `standard` label, which the notched
-  // outline and the floating label overlap. The helper text itself passes.
+  // outline and the floating label overlap. The stored result does not name the
+  // failing element.
   {
     test: 'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yVariants',
     enabled: true,
