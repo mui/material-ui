@@ -225,6 +225,29 @@ describe('ModalManager', () => {
       expect(container1.style.paddingRight).to.equal('20px');
     });
 
+    it('should resolve the scroll container again after the lock is released', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, document.body);
+      modalManager.mount(modal1, { disableScrollLock: true });
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(document.body.style.overflow).to.equal('hidden');
+      modalManager.remove(modal2);
+
+      // For example, a media query changes the overflow of html while modal1 stays open.
+      document.documentElement.style.overflowY = 'scroll';
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(document.documentElement.style.overflow).to.equal('hidden');
+      expect(document.body.style.overflow).to.equal('');
+
+      modalManager.remove(modal2);
+      modalManager.remove(modal1);
+      expect(document.documentElement.style.overflowY).to.equal('scroll');
+      document.documentElement.style.removeProperty('overflow-y');
+    });
+
     it('should pad the fixed elements once for two overflowing containers', () => {
       fixedNode.style.paddingRight = '8px';
       const container2 = document.createElement('div');

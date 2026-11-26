@@ -214,7 +214,7 @@ interface Container {
   container: HTMLElement;
   hiddenSet: Set<Element>;
   modals: Modal[];
-  // Resolved once, because the lock changes the styles that the resolution reads.
+  // Kept while the container holds the lock, because the lock changes what the resolution reads.
   scrollContainer?: HTMLElement | undefined;
 }
 
@@ -341,8 +341,17 @@ export class ModalManager {
   }
 
   private releaseScrollLock(containerInfo: Container, modal: Modal) {
-    if (containerInfo.scrollContainer) {
-      releaseStyles(this.scrollLocks, containerInfo.scrollContainer, modal);
+    const { scrollContainer } = containerInfo;
+    if (!scrollContainer) {
+      return;
+    }
+
+    releaseStyles(this.scrollLocks, scrollContainer, modal);
+
+    // Resolve it again for the next lock, because the overflow of html can change in between.
+    const owners = this.scrollLocks.get(scrollContainer)?.owners;
+    if (!containerInfo.modals.some((item) => owners?.has(item))) {
+      containerInfo.scrollContainer = undefined;
     }
   }
 
