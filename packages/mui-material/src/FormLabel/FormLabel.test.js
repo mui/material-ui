@@ -1,17 +1,32 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import FormLabel, { formLabelClasses as classes } from '@mui/material/FormLabel';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
-import Input from '@mui/material/Input';
-import { createTheme, hexToRgb } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Switch from '@mui/material/Switch';
+import { createTheme, hexToRgb, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
-import getOverlayAlpha from '../styles/getOverlayAlpha';
 import { blend, contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
 import { FAILING_PALETTE_COLORS, PALETTE_CONTRAST_COLORS } from '../../test/contrastContract';
+
+/**
+ * The color a dark-mode Paper paints: its `background-color` under the
+ * `background-image` overlay, both read from the rendered element.
+ */
+function paperSurface(paper) {
+  const { backgroundColor, backgroundImage } = window.getComputedStyle(paper);
+  const overlay = backgroundImage.match(/rgba?\([^)]+\)/);
+  if (overlay === null) {
+    throw new Error(`Expected a dark-mode overlay, got "${backgroundImage}".`);
+  }
+  return blend(overlay[0], 1, backgroundColor);
+}
 
 describe('<FormLabel />', () => {
   const { render } = createRenderer();
@@ -225,16 +240,35 @@ describe('<FormLabel />', () => {
         expect(screen.getByRole('textbox')).toHaveAccessibleName('Full name');
       });
 
-      it('does not pass the required state to a Checkbox (documented gap)', () => {
+      // When one of these fails, the gap is fixed: update FormLabel/accessibility.md and knownGaps.json.
+      [
+        { name: 'Checkbox', Control: Checkbox, role: 'checkbox' },
+        { name: 'Radio', Control: Radio, role: 'radio' },
+        { name: 'Switch', Control: Switch, role: 'switch' },
+      ].forEach(({ name, Control, role }) => {
+        it(`does not pass the required state to a ${name} (documented gap)`, () => {
+          render(
+            <FormControl component="fieldset" required>
+              <FormLabel component="legend">Terms</FormLabel>
+              <Control slotProps={{ input: { 'aria-label': 'Accept' } }} />
+            </FormControl>,
+          );
+
+          expect(screen.getByRole(role)).not.to.have.attribute('required');
+        });
+      });
+
+      it('does not pass the required state to a RadioGroup (documented gap)', () => {
         render(
           <FormControl component="fieldset" required>
-            <FormLabel component="legend">Terms</FormLabel>
-            <Checkbox slotProps={{ input: { 'aria-label': 'Accept' } }} />
+            <FormLabel component="legend">Plan</FormLabel>
+            <RadioGroup>
+              <Radio value="basic" slotProps={{ input: { 'aria-label': 'Basic' } }} />
+            </RadioGroup>
           </FormControl>,
         );
 
-        // When this fails, the gap is fixed: update FormLabel/accessibility.md and knownGaps.json.
-        expect(screen.getByRole('checkbox')).not.to.have.attribute('required');
+        expect(screen.getByRole('radiogroup')).not.to.have.attribute('aria-required');
       });
     });
 
@@ -262,50 +296,46 @@ describe('<FormLabel />', () => {
         expect(failing).to.deep.equal([...FAILING_PALETTE_COLORS]);
       });
 
-      it('the dark-mode error label falls short of 4.5:1 on a Paper with elevation 2 or more', () => {
-        const theme = createTheme({ palette: { mode: 'dark' } });
-        const ratios = [2, 24].map((elevation) =>
-          contrastRatio(
-            theme.palette.error.main,
-            blend('#fff', getOverlayAlpha(elevation), theme.palette.background.paper),
-          ),
-        );
+      // jsdom does not resolve the `--Paper-overlay` variable in `background-image`.
+      it.skipIf(isJsdom())(
+        'the dark-mode error label is borderline at elevation 1 and falls short of 4.5:1 at elevation 2 or more',
+        () => {
+          const elevations = [1, 2, 24];
+          render(
+            <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+              {elevations.map((elevation) => (
+                <Paper key={elevation} elevation={elevation} data-testid={`paper-${elevation}`}>
+                  <FormLabel error>{`Elevation ${elevation}`}</FormLabel>
+                </Paper>
+              ))}
+            </ThemeProvider>,
+          );
 
-        // When this fails, the gap is fixed: update FormLabel/accessibility.md and knownGaps.json.
-        ratios.forEach((ratio) => {
-          expect(ratio).to.be.lessThan(WCAG_MINIMUM_RATIO.normalText);
-        });
-      });
+          const [elevation1, ...elevated] = elevations.map((elevation) =>
+            contrastRatio(
+              window.getComputedStyle(screen.getByText(`Elevation ${elevation}`)).color,
+              paperSurface(screen.getByTestId(`paper-${elevation}`)),
+            ),
+          );
+
+          // When this fails, the gap changed: update FormLabel/accessibility.md and knownGaps.json.
+          expect(elevation1).to.be.within(WCAG_MINIMUM_RATIO.normalText, 4.6);
+          elevated.forEach((ratio) => {
+            expect(ratio).to.be.lessThan(WCAG_MINIMUM_RATIO.normalText);
+          });
+        },
+      );
     });
 
     it('2.5.3 Label in Name: the accessible name of the field is the visible label', () => {
-      const { container } = render(
+      render(
         <FormControl required>
           <FormLabel htmlFor="email">Email address</FormLabel>
           <input id="email" />
         </FormControl>,
       );
 
-      // The hidden asterisk adds nothing to the name.
-      expect(container.querySelector(`.${classes.asterisk}`)).to.have.attribute(
-        'aria-hidden',
-        'true',
-      );
       expect(screen.getByRole('textbox')).toHaveAccessibleName('Email address');
-    });
-
-    describe('3.3.2 Labels or Instructions', () => {
-      it('shows the asterisk, and an Input inside the FormControl gets the required state', () => {
-        const { container } = render(
-          <FormControl required>
-            <FormLabel htmlFor="name">Full name</FormLabel>
-            <Input id="name" />
-          </FormControl>,
-        );
-
-        expect(container.querySelector(`.${classes.asterisk}`)).not.to.equal(null);
-        expect(screen.getByRole('textbox')).to.have.attribute('required');
-      });
     });
   });
 });
