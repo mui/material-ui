@@ -114,7 +114,7 @@ This demo shows how to display multiple Snackbars without stacking them by using
 ### Stacked Snackbars
 
 Material Design recommends showing one Snackbar at a time, but stacking several of them vertically is still a common pattern.
-This demo uses the [Base UI Toast](https://base-ui.com/react/components/toast) component to manage the stack, the auto-hide timers, and keyboard interactions, and renders each toast with Material UI's `SnackbarContent`.
+This demo uses the [Base UI Toast](https://base-ui.com/react/components/toast) component to manage the stack, the auto-hide timers, and keyboard interactions, and renders each toast with Material UI's `SnackbarContent`.
 
 {{"demo": "StackedSnackbars.js", "defaultCodeOpen": false}}
 
