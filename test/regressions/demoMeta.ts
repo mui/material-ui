@@ -116,10 +116,10 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'docs/data/material/components/snackbars/CustomizedSnackbars', enabled: false }, // Redundant
   { test: 'docs/data/material/components/snackbars/DirectionSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/FabIntegrationSnackbar', enabled: false }, // Needs interaction
-  { test: 'docs/data/material/components/snackbars/IntegrationNotistack', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/PortaledDialogSnackbar', enabled: false }, // Needs interaction; open UI covered by dedicated fixtures
   { test: 'docs/data/material/components/snackbars/PositionedSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/SimpleSnackbar', enabled: false }, // Needs interaction
+  { test: 'docs/data/material/components/snackbars/StackedSnackbars', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/TransitionsSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/stack/InteractiveStack', enabled: false }, // Redundant
   { test: 'docs/data/material/components/steppers/HorizontalNonLinearStepper', enabled: false }, // Redundant
@@ -225,6 +225,7 @@ export const REACT_FLOOR_RULES: ReactFloorRule[] = [
   { test: 'docs/data/material/components/autocomplete/InfiniteLoading', minReactMajor: 18 },
   { test: 'docs/data/material/components/lists/VirtualizedList', minReactMajor: 18 },
   { test: 'test/regressions/fixtures/AppSearch/*', minReactMajor: 18 },
+  { test: 'test/regressions/fixtures/Autocomplete/Virtualize', minReactMajor: 18 },
 ];
 
 // Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
@@ -271,7 +272,8 @@ const CIRCULARPROGRESS_A11Y_DEMOS = [
   'CircularUnderLoad',
 ];
 
-// Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
+// Button docs demos enrolled for axe assertions. The IconButton demos have their own
+// list below, and neither list enrolls the ButtonBase demo.
 const BUTTON_A11Y_DEMOS = [
   'BasicButtons',
   'TextButtons',
@@ -284,6 +286,16 @@ const BUTTON_A11Y_DEMOS = [
   'InputFileUpload',
   'LoadingButtons',
   'CustomizedButtons',
+];
+
+// IconButton docs demos enrolled for axe assertions. They share the `buttons` slug, so
+// `IconButton/accessibility.json` names them in `axeDemos` to keep them out of Button's report.
+const ICON_BUTTON_A11Y_DEMOS = [
+  'IconButtons',
+  'IconButtonColors',
+  'IconButtonSizes',
+  'IconButtonWithBadge',
+  'LoadingIconButton',
 ];
 
 // Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
@@ -421,6 +433,18 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/buttons/{${ICON_BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures for IconButton, recorded into `buttons.a11y.json` like the
+  // Button fixtures above.
+  {
+    test: 'test/regressions/a11y/fixtures/buttons/{IconButtonA11yNonNative,IconButtonA11ySemanticStates}',
+    enabled: true,
+    assertions: 'all',
   },
   // IndeterminateCheckbox needs no skip: the component sets the native
   // `.indeterminate` property and no aria-checked attribute (#49053), so

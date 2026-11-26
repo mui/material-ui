@@ -460,16 +460,19 @@ async function main() {
         });
       });
 
-      test('should style virtualized listbox correctly', async ({ pooled }) => {
-        const { page } = pooled;
-        const testcase = await renderFixture(page, '/regression-Autocomplete/Virtualize');
-        await page.getByRole('combobox').click();
-        await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize2' });
-        await page.hover('[role="option"]');
-        await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize3' });
-        await page.click('[role="option"]');
-        await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize4' });
-      });
+      test.skipIf(reactMajor < getMinReactMajor('/regression-Autocomplete/Virtualize'))(
+        'should style virtualized listbox correctly',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          const testcase = await renderFixture(page, '/regression-Autocomplete/Virtualize');
+          await page.getByRole('combobox').click();
+          await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize2' });
+          await page.hover('[role="option"]');
+          await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize3' });
+          await page.click('[role="option"]');
+          await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize4' });
+        },
+      );
     });
 
     describe('Switch', () => {
@@ -782,6 +785,7 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
     { component: 'Button (outlined)', route: RING_ROUTE, selector: '.MuiButton-outlined' },
     { component: 'Button (contained)', route: RING_ROUTE, selector: '.MuiButton-contained' },
     { component: 'Checkbox', route: RING_ROUTE, selector: '.MuiCheckbox-root' },
+    { component: 'IconButton', route: RING_ROUTE, selector: '.MuiIconButton-root' },
     { component: 'Radio', route: RING_ROUTE, selector: '.MuiRadio-root' },
     { component: 'Switch', route: RING_ROUTE, selector: '.MuiSwitch-root' },
     { component: 'ToggleButton', route: RING_ROUTE, selector: '.MuiToggleButton-root' },

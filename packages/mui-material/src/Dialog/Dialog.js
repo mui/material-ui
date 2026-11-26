@@ -115,7 +115,8 @@ const DialogPaper = styled(Paper, {
   },
 })(
   memoTheme(({ theme }) => ({
-    margin: 32,
+    '--_dialogMargin': '32px',
+    margin: 'var(--_dialogMargin)',
     position: 'relative',
     overflowY: 'auto',
     // We disable the focus ring for mouse, touch and keyboard users.
@@ -132,7 +133,7 @@ const DialogPaper = styled(Paper, {
         style: {
           display: 'flex',
           flexDirection: 'column',
-          maxHeight: 'calc(100% - 64px)',
+          maxHeight: 'calc(100% - 2*var(--_dialogMargin))',
         },
       },
       {
@@ -148,7 +149,7 @@ const DialogPaper = styled(Paper, {
       {
         props: ({ ownerState }) => !ownerState.maxWidth,
         style: {
-          maxWidth: 'calc(100% - 64px)',
+          maxWidth: 'calc(100% - 2*var(--_dialogMargin))',
         },
       },
       {
@@ -194,7 +195,7 @@ const DialogPaper = styled(Paper, {
       {
         props: ({ ownerState }) => ownerState.fullWidth,
         style: {
-          width: 'calc(100% - 64px)',
+          width: 'calc(100% - 2*var(--_dialogMargin))',
         },
       },
       {

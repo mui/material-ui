@@ -364,6 +364,7 @@ Drawer.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
    * @default {}
+   * @deprecated Use `slotProps.root` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ModalProps: PropTypes.object,
   /**
