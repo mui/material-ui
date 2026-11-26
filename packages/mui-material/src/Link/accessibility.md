@@ -189,7 +189,7 @@ Tested by: unit `Link.test.js` · axe-core `link-in-text-block` ❌
 
 <!-- 1.4.1:end -->
 
-**Pass:** <!-- 1.4.1:pass:start -->the link is at least `3:1` against the body text and shows a non-color cue on hover and on focus. Otherwise, the link fails. `underline="none"` fails unless the author adds another non-color cue.<!-- 1.4.1:pass:end -->
+**Pass:** <!-- 1.4.1:pass:start -->a link with the default `underline="always"` passes. With `underline="hover"` or `underline="none"`, the link is at least `3:1` against the body text and shows a non-color cue on hover and on focus. Otherwise, the link fails. `underline="none"` fails unless the author adds another non-color cue.<!-- 1.4.1:pass:end -->
 
 #### 1.4.3 Contrast (Minimum) · AA
 
@@ -409,7 +409,7 @@ Tested by: unit `Link.test.js`
 
 <!-- 2.5.2:start -->
 
-- Activation runs on `click`, on the pointer up-event. A unit test confirms that a release off the link cancels the activation.
+- Activation runs on the native `click` event, on the pointer up-event. Link adds no pointer-down handlers.
 
 <!-- 2.5.2:end -->
 

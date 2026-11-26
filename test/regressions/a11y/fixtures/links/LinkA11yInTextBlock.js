@@ -11,6 +11,8 @@ const colors = [
   'warning',
   'textSecondary',
   'textDisabled',
+  'textPrimary',
+  'inherit',
 ];
 
 // Links inside body text, for each `underline` value and color. axe-core
