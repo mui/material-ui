@@ -278,6 +278,9 @@ The Material input root also serves as Base UI's Group, without an extra wrappe
 With split controls, the `controls` slot renders once on each side of the input.
 The `scrubAreaCursor` slot renders in a portal while scrubbing.
 
+A visually hidden native input follows the `root` slot as a sibling in the DOM.
+To space adjacent fields, use `gap` on their flex or grid container.
+
 ## Accessibility
 
 NumberField renders a native text input with the implicit `textbox` role.
