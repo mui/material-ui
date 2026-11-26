@@ -244,7 +244,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     [focusInitialTarget],
   );
 
-  const rovingContainerProps = getContainerProps(undefined, other.onFocus);
+  const rovingContainerProps = getContainerProps(undefined, (event) => {
+    // Reopening a kept-mounted menu starts a fresh query. Moving focus between items continues it.
+    if (!contains(event.currentTarget, event.relatedTarget)) {
+      textCriteriaRef.current.keys = [];
+    }
+    other.onFocus?.(event);
+  });
   const handleRef = useForkRef(listRef, rovingContainerProps.ref, ref);
   const menuListContextValue = React.useMemo(
     () => ({
@@ -270,20 +276,19 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
 
     rovingContainerProps.onKeyDown(event);
 
-    if (event.key.length === 1) {
-      const criteria = textCriteriaRef.current;
+    const criteria = textCriteriaRef.current;
+    const currTime = performance.now();
+    const hasActiveQuery = criteria.keys.length > 0 && currTime - criteria.lastTime <= 500;
+    // Leave a standalone Space to the list's keydown handler for option activation.
+    if (event.key.length === 1 && (event.key !== ' ' || hasActiveQuery)) {
       const lowerKey = event.key.toLowerCase();
-      const currTime = performance.now();
 
-      if (criteria.keys.length > 0) {
-        // Reset
-        if (currTime - criteria.lastTime > 500) {
-          criteria.keys = [];
-          criteria.repeating = true;
-          criteria.previousKeyMatched = true;
-        } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
-          criteria.repeating = false;
-        }
+      if (!hasActiveQuery) {
+        criteria.keys = [];
+        criteria.repeating = true;
+        criteria.previousKeyMatched = true;
+      } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+        criteria.repeating = false;
       }
 
       criteria.lastTime = currTime;
@@ -293,14 +298,14 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
       const keepFocusOnCurrent =
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
 
-      if (
+      criteria.previousKeyMatched =
         criteria.previousKeyMatched &&
         (keepFocusOnCurrent ||
-          focusNext((item) => isItemFocusableWithTextCriteria(item, criteria)) != null)
-      ) {
+          focusNext((item) => isItemFocusableWithTextCriteria(item, criteria)) != null);
+
+      // A space in the query belongs to typeahead even when the prefix has no match.
+      if (criteria.previousKeyMatched || event.key === ' ') {
         event.preventDefault();
-      } else {
-        criteria.previousKeyMatched = false;
       }
     }
 

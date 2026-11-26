@@ -11,6 +11,7 @@ import {
   waitFor,
 } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Menu from '@mui/material/Menu';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
@@ -524,6 +525,126 @@ describe('<Select />', () => {
     expect(handleKeyDown.callCount).to.equal(1);
     expect(handleChange.callCount).to.equal(1);
     expect(callOrder).to.deep.equal(['keydown', 'change']);
+  });
+
+  describe('Space in the open listbox', () => {
+    beforeEach(() => {
+      clock.restore();
+      vi.useFakeTimers({ toFake: ['performance'] });
+    });
+
+    it('uses Space in a query and selects with Space after the query expires', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultOpen defaultValue="" onChange={onChange}>
+          <MenuItem value="night">Night shift</MenuItem>
+          <MenuItem value="off">Day off</MenuItem>
+          <MenuItem value="day">Day shift</MenuItem>
+        </Select>,
+      );
+
+      await user.keyboard('day s');
+      expect(screen.getByRole('option', { name: 'Day shift' })).toHaveFocus();
+
+      // No option starts with "day s ". Space still belongs to the query.
+      await user.keyboard(' ');
+      expect(onChange.mock.calls.length).to.equal(0);
+
+      clock.tick(501);
+      await user.keyboard(' ');
+      expect(screen.getByRole('combobox')).to.have.text('Day shift');
+      expect(onChange.mock.calls.length).to.equal(1);
+    });
+
+    it('starts a fresh query after Space toggles an option', async () => {
+      const { user } = render(
+        <Select multiple defaultOpen defaultValue={[]}>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">User</MenuItem>
+        </Select>,
+      );
+
+      await user.keyboard(' u');
+      expect(screen.getByRole('option', { selected: true })).to.have.text('Admin');
+      expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
+    });
+
+    it('lets the themed list key handler cancel option activation', async () => {
+      const onKeyDown = vi.fn((event) => event.preventDefault());
+      const theme = createTheme({
+        components: { MuiMenu: { defaultProps: { slotProps: { list: { onKeyDown } } } } },
+      });
+      const onChange = vi.fn();
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <Select defaultOpen defaultValue="" onChange={onChange}>
+            <MenuItem value="admin">Admin</MenuItem>
+          </Select>
+        </ThemeProvider>,
+      );
+
+      await user.keyboard(' ');
+      expect(onKeyDown.mock.calls.length).to.equal(1);
+      expect(onChange.mock.calls.length).to.equal(0);
+    });
+
+    it.each(['Control', 'Meta', 'Alt'])('leaves %s+Space to the caller', async (modifier) => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select multiple defaultOpen defaultValue={[]} onChange={onChange}>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">User</MenuItem>
+        </Select>,
+      );
+
+      await user.keyboard(`{${modifier}>} {/${modifier}}u`);
+      expect(onChange.mock.calls.length).to.equal(0);
+      expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
+    });
+
+    it.each([false, true])(
+      'leaves Space in a nested menu to that menu (disablePortal=%s)',
+      async (disablePortal) => {
+        const onClick = vi.fn();
+        const { user } = render(
+          <Select defaultOpen defaultValue="">
+            <MenuItem value="outer">
+              Outer option
+              <Menu
+                open
+                disablePortal={disablePortal}
+                anchorReference="none"
+                slotProps={{ list: { role: 'listbox' } }}
+              >
+                <li role="option" aria-selected="false" tabIndex={-1} onClick={onClick}>
+                  Inner option
+                </li>
+              </Menu>
+            </MenuItem>
+          </Select>,
+        );
+
+        const option = screen.getByText('Inner option');
+        await act(async () => option.focus());
+        expect(option).toHaveFocus();
+        await user.keyboard(' ');
+        expect(onClick.mock.calls.length).to.equal(0);
+      },
+    );
+
+    it('starts a new query when a kept-mounted listbox reopens', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultValue="" onChange={onChange} MenuProps={{ keepMounted: true }}>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">User</MenuItem>
+        </Select>,
+      );
+
+      await user.tab();
+      await user.keyboard('{ArrowDown}u{Escape}{ArrowDown} ');
+      expect(onChange.mock.calls.length).to.equal(1);
+    });
   });
 
   it('should not select an option when space is pressed on a non-target element', async () => {
