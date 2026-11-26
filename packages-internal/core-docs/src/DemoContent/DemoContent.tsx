@@ -15,6 +15,7 @@ import { DemoAnchorLink, DemoFileTabBar } from './DemoContainer';
 import { DemoFrameContent } from './DemoFrameContext';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 import { CodeSource, FileTab } from './CodeSource';
+import { useIdleEditor } from './useIdleEditor';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
 import {
   createDemoUseOptions,
@@ -183,6 +184,10 @@ export default function DemoContent(props: DemoContentProps) {
       exportConfig,
     }),
   );
+  const [sourceElement, setSourceElement] = React.useState<HTMLDivElement | null>(null);
+
+  useIdleEditor(sourceElement, demo.prepareEditor, demo.editable ? 'idle' : 'disabled');
+
   useTypescriptRef.current = demo.selectedTransform !== 'js';
   const [previewEpoch, remountPreview] = React.useReducer((epoch: number) => epoch + 1, 0);
   const handleReset = React.useCallback(() => {
@@ -463,7 +468,9 @@ export default function DemoContent(props: DemoContentProps) {
     ) : null;
 
   const code = hideToolbar ? null : (
-    <CodeSource expanded={demo.expanded}>{demo.selectedFile}</CodeSource>
+    <CodeSource ref={setSourceElement} expanded={demo.expanded}>
+      {demo.selectedFile}
+    </CodeSource>
   );
 
   // When the demo has multiple files, wrap the tabs + code region in a

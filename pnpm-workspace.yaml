@@ -38,7 +38,7 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
-    '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@b8b593e'
+    '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@03d54d36'
 
 overrides:
   '@mui/internal-docs-infra>@mui/internal-typescript-api-extractor': 0.1.1-canary.3

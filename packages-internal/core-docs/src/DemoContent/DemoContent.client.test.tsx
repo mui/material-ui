@@ -81,7 +81,7 @@ function Demo({
                 initialVariant="Default"
                 highlightAfter="init"
                 enhanceAfter="init"
-                editActivation="idle"
+                editActivation="interaction"
                 Content={DemoContent}
                 ContentFrame={DemoContentFrame}
                 ContentLoading={DemoContentLoading}
@@ -135,6 +135,24 @@ describe.skipIf(isJsdom())('DemoContent source visibility', () => {
         },
       },
     };
+  });
+
+  it('prepares visible source without focusing or remounting the preview', async () => {
+    const { container } = render(<Demo initialView="expanded" />);
+    const preview = screen.getByRole('button', { name: 'Count 0' });
+
+    // eslint-disable-next-line testing-library/no-unnecessary-act -- Vitest browser actions do not wrap React updates.
+    await act(async () => {
+      await userEvent.click(preview);
+    });
+
+    expect(container.querySelector('textarea')).toBeNull();
+    const focusBefore = document.activeElement;
+    const editor = await screen.findByRole('textbox', {}, { timeout: 10000 });
+
+    expect(document.activeElement).toBe(focusBefore);
+    expect(screen.getByRole('button', { name: 'Count 1' })).toBe(preview);
+    expect(editor).not.toBe(document.activeElement);
   });
 
   it('preserves the preview instance and state across source toggles', async () => {

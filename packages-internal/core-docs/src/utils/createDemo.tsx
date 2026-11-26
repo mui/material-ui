@@ -68,7 +68,7 @@ function withNormalizedDemoOptions<T extends React.ComponentType<any>>(Demo: T):
   return Object.assign(NormalizedDemo, Demo) as T;
 }
 
-const EDIT_ACTIVATION = 'idle';
+const EDIT_ACTIVATION = 'interaction';
 
 const demoFactoryOptions = {
   DemoContent: DemoContentLazy,
