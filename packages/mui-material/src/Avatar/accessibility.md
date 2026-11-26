@@ -201,6 +201,7 @@ Tested by: Playwright
 <!-- 1.4.4:start -->
 
 - The container is a fixed 40px square with text in rem (`pxToRem(20)`) and `overflow: hidden`. Under 200% page zoom, the box and the text scale together, so initials stay fully visible. A Playwright test confirms this on the letter avatars demo. Page zoom decides the 1.4.4 rating (WCAG technique G142).
+- The page zoom check and the 1.4.10 reflow check cover 1.4.4 together. The page zoom viewport (500 × 350 px) is wider than the 320 px reflow viewport. So the page zoom check adds the clipping check, and the reflow check covers the narrow width.
 - Under text-only resize (for example Firefox "Zoom Text Only"), the text grows but the px box does not. Initials longer than two letters can then be clipped. The layout suite does not run the text-only check for Avatar.
 
 <!-- 1.4.4:end -->

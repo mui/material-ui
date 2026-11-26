@@ -651,6 +651,8 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
 
       // 200% page zoom halves the CSS viewport. It decides the 1.4.4 rating
       // (WCAG technique G142). The text-only check below is stricter.
+      // This viewport is wider than the 1.4.10 one, so this check adds the clipping test.
+      // The reports state that the two checks cover 1.4.4 together.
       test.runIf(covers('1.4.4'))(
         '1.4.4 Resize Text: content survives 200% page zoom',
         async ({ pooled }) => {
