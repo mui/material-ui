@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   buildRoleMarkdown,
+  collectCareersData,
   extractActiveOpenRoles,
   hasMeaningfulMarkdownChanges,
   htmlToMarkdown,
@@ -248,6 +249,54 @@ describe('collectAshbyJobs', () => {
       });
 
       expect(hasMeaningfulMarkdownChanges(existing, changed)).to.equal(true);
+    });
+  });
+
+  describe('collectCareersData', () => {
+    it('reconciles active jobs and roles to deactivate without filesystem or network I/O', () => {
+      const result = collectCareersData({
+        now: Date.parse('2026-11-26T00:00:00.000Z'),
+        jobs: [
+          {
+            id: '4bfd5851-6252-489d-a7b1-06a704c285a7',
+            title: 'Operations Engineer',
+            department: 'Operations',
+            isListed: true,
+            publishedAt: '2026-08-25T00:19:24.371+00:00',
+            descriptionHtml: '<h2>Overview</h2><p>Join us.</p>',
+          },
+        ],
+        openRolesData: [
+          {
+            title: 'Operations',
+            roles: [
+              {
+                title: 'Closed Role',
+                description: 'No longer active.',
+                url: '/careers/closed-role/',
+              },
+            ],
+          },
+        ],
+        entries: ['closed-role.md', 'closed-role.js'],
+        existingRoleFiles: [
+          {
+            slug: 'closed-role',
+            content: '# Closed Role\n\n<p class="description">No longer active.</p>\n',
+          },
+        ],
+      });
+
+      expect(result.summary).to.deep.equal({
+        activeJobsCount: 1,
+        matchedByIdCount: 0,
+        matchedByTitleCount: 0,
+        newJobsCount: 1,
+        contentChangedCount: 1,
+        rolesToDeactivateCount: 1,
+      });
+      expect(result.activeJobs[0].suggestedSlug).to.equal('operations-engineer');
+      expect(result.rolesToDeactivate.map((role) => role.slug)).to.deep.equal(['closed-role']);
     });
   });
 });

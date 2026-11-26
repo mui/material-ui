@@ -1,6 +1,7 @@
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { mapAsync } from 'es-toolkit/array';
 import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeRemark from 'rehype-remark';
@@ -57,6 +58,19 @@ export interface AshbyJob {
   isListed?: boolean;
   jobUrl?: string | null;
   descriptionHtml?: string | null;
+}
+
+export interface ExistingRoleFile {
+  slug: string;
+  content: string;
+}
+
+export interface CollectCareersDataInput {
+  jobs: AshbyJob[];
+  openRolesData: OpenRolesData;
+  entries: string[];
+  existingRoleFiles: ExistingRoleFile[];
+  now?: number;
 }
 
 export interface ExistingRole {
@@ -478,20 +492,16 @@ export function parseRoleMarkdown(markdown: string): {
   return { title, description, ashbyId };
 }
 
-async function readExistingRoles(
-  careersDirectory: string,
+function parseExistingRoles(
+  existingRoleFiles: ExistingRoleFile[],
   activeOpenSlugs: Set<string>,
   entries: string[],
-): Promise<ExistingRole[]> {
-  const mdFiles = entries
-    .filter((file) => file.endsWith('.md') && file !== 'ROLE_TEMPLATE.md')
-    .sort();
+): ExistingRole[] {
   const jsFiles = new Set(entries.filter((file) => file.endsWith('.js')));
 
-  return Promise.all(
-    mdFiles.map(async (file) => {
-      const slug = file.slice(0, -3);
-      const content = await fs.readFile(path.join(careersDirectory, file), 'utf8');
+  return [...existingRoleFiles]
+    .sort((a, b) => a.slug.localeCompare(b.slug))
+    .map(({ slug, content }) => {
       const { title, description, ashbyId } = parseRoleMarkdown(content);
 
       return {
@@ -503,8 +513,7 @@ async function readExistingRoles(
         hasJsPage: jsFiles.has(`${slug}.js`),
         activeInOpenRoles: activeOpenSlugs.has(slug),
       };
-    }),
-  );
+    });
 }
 
 export function isActiveAshbyJob(
@@ -567,29 +576,20 @@ export function matchJobs<
     });
 }
 
-export async function collectCareersData() {
-  const response = await fetch(ASHBY_API_URL, {
-    headers: { Accept: 'application/json' },
-    signal: AbortSignal.timeout(30_000),
-  });
-  if (!response.ok) {
-    throw new Error(`Ashby API request failed: HTTP ${response.status} ${await response.text()}`);
-  }
-  const payload = (await response.json()) as { jobs?: AshbyJob[] };
-  if (!Array.isArray(payload.jobs)) {
-    throw new Error('Ashby API response is missing a jobs array');
-  }
-
-  const { careersDirectory, openRolesPath } = getCareersPaths();
-  const openRolesData: OpenRolesData = JSON.parse(await fs.readFile(openRolesPath, 'utf8'));
+export function collectCareersData({
+  jobs,
+  openRolesData,
+  entries,
+  existingRoleFiles,
+  now = Date.now(),
+}: CollectCareersDataInput) {
   const { categories, activeOpenRoles } = extractActiveOpenRoles(openRolesData);
 
   const activeOpenSlugs = new Set(
     activeOpenRoles.map((role) => role.slug).filter((slug): slug is string => Boolean(slug)),
   );
-  const entries = await fs.readdir(careersDirectory);
-  const existingRolesFull = await readExistingRoles(careersDirectory, activeOpenSlugs, entries);
-  const listedJobs = payload.jobs.filter((job) => isActiveAshbyJob(job));
+  const existingRolesFull = parseExistingRoles(existingRoleFiles, activeOpenSlugs, entries);
+  const listedJobs = jobs.filter((job) => isActiveAshbyJob(job, now));
   const matches = matchJobs(listedJobs, existingRolesFull, entries);
   const activeMatchedSlugs = new Set<string>();
 
@@ -642,7 +642,7 @@ export async function collectCareersData() {
   const existingRoles = existingRolesFull.map(({ rawMarkdown, ...rest }) => rest);
 
   return {
-    fetchedAt: new Date().toISOString(),
+    fetchedAt: new Date(now).toISOString(),
     categories,
     activeJobs,
     rolesToDeactivate,
@@ -659,7 +659,42 @@ export async function collectCareersData() {
 }
 
 async function main() {
-  const data = await collectCareersData();
+  const response = await fetch(ASHBY_API_URL, {
+    headers: { Accept: 'application/json' },
+    signal: AbortSignal.timeout(30_000),
+  });
+  if (!response.ok) {
+    throw new Error(`Ashby API request failed: HTTP ${response.status} ${await response.text()}`);
+  }
+  const payload = (await response.json()) as { jobs?: AshbyJob[] };
+  if (!Array.isArray(payload.jobs)) {
+    throw new Error('Ashby API response is missing a jobs array');
+  }
+
+  const { careersDirectory, openRolesPath } = getCareersPaths();
+  const [openRolesRaw, entries] = await Promise.all([
+    fs.readFile(openRolesPath, 'utf8'),
+    fs.readdir(careersDirectory),
+  ]);
+  const openRolesData: OpenRolesData = JSON.parse(openRolesRaw);
+  const mdFiles = entries
+    .filter((file) => file.endsWith('.md') && file !== 'ROLE_TEMPLATE.md')
+    .sort();
+  const existingRoleFiles: ExistingRoleFile[] = await mapAsync(
+    mdFiles,
+    async (file) => ({
+      slug: file.slice(0, -3),
+      content: await fs.readFile(path.join(careersDirectory, file), 'utf8'),
+    }),
+    { concurrency: 5 },
+  );
+
+  const data = collectCareersData({
+    jobs: payload.jobs,
+    openRolesData,
+    entries,
+    existingRoleFiles,
+  });
   process.stdout.write(`${JSON.stringify(data, null, 2)}\n`);
 }
 
