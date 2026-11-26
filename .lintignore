@@ -30,6 +30,7 @@ dist
 node_modules
 .nyc_output
 pnpm-lock.yaml
+/.github/workflows/*.lock.yml
 .claude/worktrees
 .nx
 

@@ -120,11 +120,18 @@
     "@types/semver": "7.8.0",
     "@types/stylis": "4.2.7",
     "cross-fetch": "4.1.0",
-    "sharp": "0.35.5",
+    "hast-util-to-string": "^3.0.1",
+    "mdast-util-to-string": "^4.0.0",
     "prettier": "3.10.1",
     "raw-loader": "4.0.2",
+    "rehype-parse": "^9.0.1",
+    "rehype-remark": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-stringify": "^11.0.0",
+    "sharp": "0.35.5",
     "tailwindcss": "4.3.5",
     "typescript": "npm:@typescript/typescript6@6.0.2",
+    "unified": "^11.0.5",
     "yargs": "18.2.0"
   }
 }

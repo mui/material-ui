@@ -1,0 +1,45 @@
+[
+  {
+    "title": "Engineering",
+    "roles": []
+  },
+  {
+    "title": "Sales",
+    "roles": []
+  },
+  {
+    "title": "People",
+    "roles": []
+  },
+  {
+    "title": "Marketing",
+    "roles": []
+  },
+  {
+    "title": "Design",
+    "roles": []
+  },
+  {
+    "title": "Developer Experience",
+    "roles": []
+  },
+  {
+    "title": "Product",
+    "roles": []
+  },
+  {
+    "title": "Operations",
+    "roles": [
+      {
+        "title": "Director of Business Operations",
+        "description": "Bridge company strategy and operational execution, unlock the next phase of growth.",
+        "url": "/careers/business-operations/"
+      },
+      {
+        "title": "Operations Engineer",
+        "description": "Help up reach operational excellence using engineering skills.",
+        "url": "/careers/operations-engineer/"
+      }
+    ]
+  }
+]

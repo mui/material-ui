@@ -1,0 +1,570 @@
+/* eslint-disable no-console */
+import * as fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { unified } from 'unified';
+import rehypeParse from 'rehype-parse';
+import rehypeRemark from 'rehype-remark';
+import remarkParse from 'remark-parse';
+import remarkStringify from 'remark-stringify';
+import { toString as hastToString } from 'hast-util-to-string';
+import { toString as mdastToString } from 'mdast-util-to-string';
+
+const ASHBY_API_URL = 'https://api.ashbyhq.com/posting-api/job-board/MUI';
+const ASHBY_UTM_SOURCE = 'ZNRrPGBkqO';
+// General application linked separately in the "Next roles" section of careers.tsx.
+const DREAM_JOB_ASHBY_ID = '4715d81f-d00f-42d4-a0d0-221f40f73e19';
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const STRIP_IF_EMPTY_TAGS = new Set([
+  'p',
+  'div',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'li',
+  'blockquote',
+]);
+
+function getCareersPaths() {
+  const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+  return {
+    careersDirectory: path.resolve(currentDirectory, '../pages/careers'),
+    openRolesPath: path.resolve(currentDirectory, '../data/careers/openRoles.json'),
+  };
+}
+
+function applyMuiNonBreakingSpaces(text) {
+  return text
+    .replace(/\u00A0/g, ' ')
+    .replace(/\bMaterial UI\b/g, 'Material\u00A0UI')
+    .replace(/\bMUI X\b/g, 'MUI\u00A0X')
+    .replace(/\bBase UI\b/g, 'Base\u00A0UI')
+    .replace(/\bJoy UI\b/g, 'Joy\u00A0UI');
+}
+
+/**
+ * Rehype plugin that removes empty spacer blocks (`<p></p>`, `<div>&nbsp;</div>`, empty headings)
+ * emitted by Ashby's ProseMirror/Tiptap editor, strips leading/trailing `<hr>` dividers, and
+ * unwraps `<u>` tags (used around link labels).
+ */
+function rehypeCleanAshbyHtml() {
+  function transformChildren(children) {
+    const cleaned = [];
+    for (const child of children) {
+      if (child.type === 'element') {
+        if (child.tagName === 'u') {
+          cleaned.push(...transformChildren(child.children ?? []));
+          continue;
+        }
+        child.children = transformChildren(child.children ?? []);
+        if (
+          STRIP_IF_EMPTY_TAGS.has(child.tagName) &&
+          hastToString(child)
+            .replace(/\u00A0/g, ' ')
+            .trim() === '' &&
+          !child.children.some((nested) => nested.type === 'element' && nested.tagName === 'img')
+        ) {
+          continue;
+        }
+      }
+      cleaned.push(child);
+    }
+    return cleaned;
+  }
+
+  function isWhitespaceText(node) {
+    return node.type === 'text' && node.value.replace(/\u00A0/g, ' ').trim() === '';
+  }
+
+  return (tree) => {
+    const children = transformChildren(tree.children ?? []);
+    while (
+      children.length > 0 &&
+      (isWhitespaceText(children[0]) ||
+        (children[0].type === 'element' && children[0].tagName === 'hr'))
+    ) {
+      children.shift();
+    }
+    while (
+      children.length > 0 &&
+      (isWhitespaceText(children[children.length - 1]) ||
+        (children[children.length - 1].type === 'element' &&
+          children[children.length - 1].tagName === 'hr'))
+    ) {
+      children.pop();
+    }
+    tree.children = children;
+  };
+}
+
+/**
+ * Remark plugin that normalizes non-breaking spaces in text nodes (applying MUI brand NBSPs),
+ * tightens list items (spread: false), and inserts the `## How to apply` section.
+ */
+function remarkNormalizeAshbyJob({ applyUrl } = {}) {
+  function visitMdast(node) {
+    if (node.type === 'text' && typeof node.value === 'string') {
+      node.value = applyMuiNonBreakingSpaces(node.value);
+    }
+    if (node.type === 'list' || node.type === 'listItem') {
+      node.spread = false;
+    }
+    if (Array.isArray(node.children)) {
+      for (const child of node.children) {
+        visitMdast(child);
+      }
+    }
+  }
+
+  return (tree) => {
+    visitMdast(tree);
+
+    if (!applyUrl) {
+      return;
+    }
+
+    const hasHowToApply = tree.children.some(
+      (node) =>
+        node.type === 'heading' && mdastToString(node).trim().toLowerCase() === 'how to apply',
+    );
+    if (hasHowToApply) {
+      return;
+    }
+
+    const howToApplyNodes = [
+      {
+        type: 'heading',
+        depth: 2,
+        children: [{ type: 'text', value: 'How to apply' }],
+      },
+      {
+        type: 'paragraph',
+        children: [
+          {
+            type: 'link',
+            url: applyUrl,
+            children: [{ type: 'text', value: 'Apply now for this position 📮' }],
+          },
+        ],
+      },
+    ];
+
+    const insertIndex = tree.children.findIndex(
+      (node) =>
+        node.type === 'paragraph' &&
+        mdastToString(node).trim().startsWith("Don't meet every requirement?"),
+    );
+
+    if (insertIndex !== -1) {
+      tree.children.splice(insertIndex, 0, ...howToApplyNodes);
+    } else {
+      tree.children.push(...howToApplyNodes);
+    }
+  };
+}
+
+export function normalizeTitle(title) {
+  return String(title ?? '')
+    .toLowerCase()
+    .replace(/[\u2013\u2014]+/g, ' ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+export function slugifyTitle(title) {
+  return String(title ?? '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Converts Ashby's job `descriptionHtml` into clean Markdown using unified/rehype/remark.
+ */
+export function htmlToMarkdown(html, { applyUrl } = {}) {
+  const file = unified()
+    .use(rehypeParse, { fragment: true })
+    .use(rehypeCleanAshbyHtml)
+    .use(rehypeRemark)
+    .use(remarkNormalizeAshbyJob, { applyUrl })
+    .use(remarkStringify, {
+      bullet: '-',
+      emphasis: '*',
+      fences: true,
+      listItemIndent: 'one',
+      rule: '-',
+      strong: '*',
+    })
+    .processSync(html ?? '');
+
+  return String(file).trim();
+}
+
+/**
+ * Builds a complete career role Markdown document from Ashby `descriptionHtml`.
+ */
+export function buildRoleMarkdown({ title, description, descriptionHtml, applyUrl }) {
+  const parts = [`# ${title}`];
+  if (description) {
+    parts.push(`<p class="description">${description}</p>`);
+  }
+  const body = htmlToMarkdown(descriptionHtml, { applyUrl });
+  if (body) {
+    parts.push(body);
+  }
+  return `${parts.join('\n\n')}\n`;
+}
+
+function normalizeUrlForComparison(rawUrl) {
+  try {
+    const parsed = new URL(rawUrl);
+    if (parsed.pathname === '/') {
+      return `${parsed.origin}${parsed.search}${parsed.hash}`;
+    }
+    return parsed.href;
+  } catch {
+    return rawUrl;
+  }
+}
+
+function canonicalizeMdast(node) {
+  if (node.type === 'html') {
+    return null;
+  }
+  if (node.type === 'text') {
+    const value = node.value.replace(/[\u00A0\s]+/g, ' ');
+    return { type: 'text', value };
+  }
+  const canonical = { type: node.type };
+  if (node.depth !== undefined) {
+    canonical.depth = node.depth;
+  }
+  if (node.ordered !== undefined) {
+    canonical.ordered = node.ordered;
+  }
+  if (node.url !== undefined) {
+    canonical.url = normalizeUrlForComparison(node.url);
+  }
+  if (node.value !== undefined) {
+    canonical.value = node.value;
+  }
+  if (Array.isArray(node.children)) {
+    const children = [];
+    for (const child of node.children) {
+      const normalized = canonicalizeMdast(child);
+      if (!normalized) {
+        continue;
+      }
+      const prev = children[children.length - 1];
+      if (normalized.type === 'text' && prev?.type === 'text') {
+        prev.value = `${prev.value}${normalized.value}`.replace(/\s+/g, ' ');
+      } else {
+        children.push(normalized);
+      }
+    }
+    if (children.length > 0 && children[0].type === 'text') {
+      children[0].value = children[0].value.trimStart();
+    }
+    if (children.length > 0 && children[children.length - 1].type === 'text') {
+      children[children.length - 1].value = children[children.length - 1].value.trimEnd();
+    }
+    canonical.children = children;
+  }
+  return canonical;
+}
+
+/**
+ * Compares existing and generated role Markdown semantically (ignoring soft line-breaks,
+ * `<p class="description">`, HTML comments, and root trailing slashes on URLs).
+ */
+export function hasMeaningfulMarkdownChanges(existingMarkdown, generatedMarkdown) {
+  const parser = unified().use(remarkParse);
+  const existingAst = canonicalizeMdast(parser.parse(existingMarkdown ?? ''));
+  const generatedAst = canonicalizeMdast(parser.parse(generatedMarkdown ?? ''));
+  return JSON.stringify(existingAst) !== JSON.stringify(generatedAst);
+}
+
+/**
+ * Flattens `docs/data/careers/openRoles.json` into category names and active role entries.
+ */
+export function extractActiveOpenRoles(openRolesData) {
+  const categories = [];
+  const activeOpenRoles = [];
+
+  for (const category of openRolesData) {
+    categories.push(category.title);
+    for (const role of category.roles ?? []) {
+      const segments = String(role.url ?? '')
+        .split('/')
+        .filter(Boolean);
+      const slug = segments[0] === 'careers' && segments[1] ? segments[1] : null;
+      activeOpenRoles.push({
+        category: category.title,
+        title: role.title,
+        description: role.description ?? '',
+        url: role.url,
+        slug,
+      });
+    }
+  }
+
+  return { categories, activeOpenRoles };
+}
+
+function extractAshbyIdFromUrl(rawUrl) {
+  try {
+    const parsed = new URL(rawUrl);
+    if (parsed.hostname !== 'jobs.ashbyhq.com') {
+      return null;
+    }
+    const segments = parsed.pathname.split('/').filter(Boolean);
+    if (segments[0]?.toLowerCase() === 'mui' && segments[1] && UUID_PATTERN.test(segments[1])) {
+      return segments[1].toLowerCase();
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+/**
+ * Parses an existing `docs/pages/careers/<slug>.md` file with remark + rehype to extract its
+ * title, `<p class="description">` text, and Ashby job UUID.
+ */
+export function parseRoleMarkdown(markdown) {
+  const mdast = unified().use(remarkParse).parse(markdown);
+  let title = null;
+  let description = null;
+  let ashbyId = null;
+
+  function visit(node) {
+    if (node.type === 'heading' && node.depth === 1 && title === null) {
+      title = mdastToString(node).trim();
+    } else if (node.type === 'html' && description === null) {
+      const hast = unified().use(rehypeParse, { fragment: true }).parse(node.value);
+      for (const child of hast.children) {
+        if (
+          child.type === 'element' &&
+          child.tagName === 'p' &&
+          Array.isArray(child.properties?.className) &&
+          child.properties.className.includes('description')
+        ) {
+          description = hastToString(child).trim();
+          break;
+        }
+      }
+    } else if (node.type === 'link' && ashbyId === null) {
+      const id = extractAshbyIdFromUrl(node.url);
+      if (id) {
+        ashbyId = id;
+      }
+    }
+
+    if (Array.isArray(node.children)) {
+      for (const child of node.children) {
+        visit(child);
+      }
+    }
+  }
+
+  visit(mdast);
+  return { title, description, ashbyId };
+}
+
+async function readExistingRoles(careersDirectory, activeOpenSlugs) {
+  const entries = await fs.readdir(careersDirectory);
+  const mdFiles = entries
+    .filter((file) => file.endsWith('.md') && file !== 'ROLE_TEMPLATE.md')
+    .sort();
+  const jsFiles = new Set(entries.filter((file) => file.endsWith('.js')));
+
+  return Promise.all(
+    mdFiles.map(async (file) => {
+      const slug = file.slice(0, -3);
+      const content = await fs.readFile(path.join(careersDirectory, file), 'utf8');
+      const { title, description, ashbyId } = parseRoleMarkdown(content);
+
+      return {
+        slug,
+        title,
+        description,
+        ashbyId,
+        rawMarkdown: content,
+        hasJsPage: jsFiles.has(`${slug}.js`),
+        activeInOpenRoles: activeOpenSlugs.has(slug),
+      };
+    }),
+  );
+}
+
+export function isActiveAshbyJob(job, now = Date.now()) {
+  if (!job || job.isListed !== true) {
+    return false;
+  }
+  if (!job.id || String(job.id).toLowerCase() === DREAM_JOB_ASHBY_ID) {
+    return false;
+  }
+  if (!job.publishedAt) {
+    return false;
+  }
+  const publishedMs = Date.parse(job.publishedAt);
+  if (Number.isNaN(publishedMs) || publishedMs > now) {
+    return false;
+  }
+  return true;
+}
+
+export async function collectCareersData() {
+  const response = await fetch(ASHBY_API_URL, {
+    headers: { Accept: 'application/json' },
+    signal: AbortSignal.timeout(30_000),
+  });
+  if (!response.ok) {
+    throw new Error(`Ashby API request failed: HTTP ${response.status} ${await response.text()}`);
+  }
+  const payload = await response.json();
+  if (!Array.isArray(payload.jobs)) {
+    throw new Error('Ashby API response is missing a jobs array');
+  }
+
+  const { careersDirectory, openRolesPath } = getCareersPaths();
+  const openRolesData = JSON.parse(await fs.readFile(openRolesPath, 'utf8'));
+  const { categories, activeOpenRoles } = extractActiveOpenRoles(openRolesData);
+
+  const activeOpenSlugs = new Set(activeOpenRoles.map((role) => role.slug).filter(Boolean));
+  const existingRolesFull = await readExistingRoles(careersDirectory, activeOpenSlugs);
+  const roleByAshbyId = new Map();
+  const roleByNormalizedTitle = new Map();
+  for (const role of existingRolesFull) {
+    if (role.ashbyId) {
+      roleByAshbyId.set(role.ashbyId, role);
+    }
+    if (role.title) {
+      const normalized = normalizeTitle(role.title);
+      if (normalized && !roleByNormalizedTitle.has(normalized)) {
+        roleByNormalizedTitle.set(normalized, role);
+      }
+    }
+  }
+
+  const listedJobs = payload.jobs.filter((job) => isActiveAshbyJob(job));
+  const activeMatchedSlugs = new Set();
+
+  const activeJobs = listedJobs.map((job) => {
+    const id = String(job.id).toLowerCase();
+    const applyUrl = `https://jobs.ashbyhq.com/MUI/${job.id}/application?utm_source=${ASHBY_UTM_SOURCE}`;
+
+    let existing = roleByAshbyId.get(id) ?? null;
+    let matchType = existing ? 'ashbyId' : null;
+    if (!existing) {
+      const titleMatch = roleByNormalizedTitle.get(normalizeTitle(job.title)) ?? null;
+      if (titleMatch) {
+        existing = titleMatch;
+        matchType = 'title';
+      }
+    }
+
+    if (existing) {
+      activeMatchedSlugs.add(existing.slug);
+    }
+
+    const markdown = buildRoleMarkdown({
+      title: job.title,
+      description: existing?.description ?? null,
+      descriptionHtml: job.descriptionHtml,
+      applyUrl,
+    });
+    const contentChanged = existing
+      ? hasMeaningfulMarkdownChanges(existing.rawMarkdown, markdown)
+      : true;
+    const existingHasJsPage = existing?.hasJsPage ?? false;
+    const isCurrentlyActiveInOpenRoles = existing ? activeOpenSlugs.has(existing.slug) : false;
+
+    return {
+      id: job.id,
+      title: job.title,
+      department: job.department ?? null,
+      team: job.team ?? null,
+      location: job.location ?? null,
+      isRemote: Boolean(job.isRemote),
+      employmentType: job.employmentType ?? null,
+      publishedAt: job.publishedAt ?? null,
+      jobUrl: job.jobUrl ?? `https://jobs.ashbyhq.com/MUI/${job.id}`,
+      applyUrl,
+      existingSlug: existing?.slug ?? null,
+      matchType,
+      suggestedSlug: existing?.slug ?? slugifyTitle(job.title),
+      existingTitle: existing?.title ?? null,
+      existingDescription: existing?.description ?? null,
+      existingHasJsPage,
+      isCurrentlyActiveInOpenRoles,
+      contentChanged,
+      markdown,
+    };
+  });
+
+  const rolesToDeactivate = activeOpenRoles.filter(
+    (role) => !role.slug || !activeMatchedSlugs.has(role.slug),
+  );
+
+  const existingRoles = existingRolesFull.map(({ rawMarkdown, ...rest }) => rest);
+
+  return {
+    fetchedAt: new Date().toISOString(),
+    categories,
+    activeJobs,
+    rolesToDeactivate,
+    existingRoles,
+    summary: {
+      activeJobsCount: activeJobs.length,
+      matchedByIdCount: activeJobs.filter((job) => job.matchType === 'ashbyId').length,
+      matchedByTitleCount: activeJobs.filter((job) => job.matchType === 'title').length,
+      newJobsCount: activeJobs.filter((job) => job.existingSlug === null).length,
+      contentChangedCount: activeJobs.filter((job) => job.contentChanged).length,
+      rolesToDeactivateCount: rolesToDeactivate.length,
+    },
+  };
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  let outFile = process.env.OUT_FILE ?? null;
+
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i] === '--out' && args[i + 1]) {
+      outFile = args[i + 1];
+      i += 1;
+    }
+  }
+
+  const data = await collectCareersData();
+  const serialized = `${JSON.stringify(data, null, 2)}\n`;
+
+  if (outFile) {
+    await fs.mkdir(path.dirname(outFile), { recursive: true });
+    await fs.writeFile(outFile, serialized, 'utf8');
+    const { activeJobsCount, matchedByIdCount, newJobsCount, rolesToDeactivateCount } =
+      data.summary;
+    console.log(
+      `Collected ${activeJobsCount} active Ashby jobs (${matchedByIdCount} matched by ID, ${newJobsCount} new), ${rolesToDeactivateCount} roles to deactivate -> ${outFile}`,
+    );
+  } else {
+    process.stdout.write(serialized);
+  }
+}
+
+if (
+  typeof process !== 'undefined' &&
+  process.argv?.[1] &&
+  path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
