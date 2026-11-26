@@ -230,20 +230,20 @@ importers:
         specifier: 0.18.5
         version: 0.18.5
       '@babel/core':
-        specifier: 8.1.2
-        version: 8.1.2
+        specifier: 8.1.3
+        version: 8.1.3
       '@babel/node':
         specifier: 8.1.2
-        version: 8.1.2(@babel/core@8.1.2)
+        version: 8.1.2(@babel/core@8.1.3)
       '@babel/plugin-transform-react-constant-elements':
         specifier: 8.0.5
-        version: 8.0.5(@babel/core@8.1.2)
+        version: 8.0.5(@babel/core@8.1.3)
       '@eslint/compat':
         specifier: 2.1.1
         version: 2.1.1(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))
       '@mui/internal-babel-plugin-minify-errors':
         specifier: 3.0.1-canary.4
-        version: 3.0.1-canary.4(@babel/core@8.1.2)
+        version: 3.0.1-canary.4(@babel/core@8.1.3)
       '@mui/internal-bundle-size-checker':
         specifier: 1.1.1-canary.9
         version: 1.1.1-canary.9(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(rolldown@1.2.16)(terser@5.50.0)(tsx@4.23.15)(yaml@2.9.0)
@@ -252,7 +252,7 @@ importers:
         version: 0.1.1-canary.41(870674c9c4dd2a179a3a80a02fbb3da8)
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -426,7 +426,7 @@ importers:
     dependencies:
       '@babel/core':
         specifier: ^8.1.2
-        version: 8.1.2
+        version: 8.1.3
       '@babel/runtime':
         specifier: ^8.1.2
         version: 8.1.2
@@ -456,7 +456,7 @@ importers:
         version: link:../packages-internal/core-docs/build
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages-internal/markdown
@@ -588,7 +588,7 @@ importers:
         version: 7.2.0
       next:
         specifier: 16.4.6
-        version: 16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       notistack:
         specifier: 3.0.2
         version: 3.0.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -667,10 +667,10 @@ importers:
     devDependencies:
       '@babel/plugin-transform-react-constant-elements':
         specifier: 8.0.5
-        version: 8.0.5(@babel/core@8.1.2)
+        version: 8.0.5(@babel/core@8.1.3)
       '@babel/preset-typescript':
         specifier: 8.0.7
-        version: 8.0.7(@babel/core@8.1.2)
+        version: 8.0.7(@babel/core@8.1.3)
       '@mui/internal-api-docs-builder':
         specifier: workspace:^
         version: link:../packages-internal/api-docs-builder/build
@@ -754,10 +754,10 @@ importers:
     dependencies:
       '@babel/core':
         specifier: ^8.1.2
-        version: 8.1.2
+        version: 8.1.3
       '@babel/preset-typescript':
         specifier: ^8.0.7
-        version: 8.0.7(@babel/core@8.1.2)
+        version: 8.0.7(@babel/core@8.1.3)
       '@babel/traverse':
         specifier: ^8.1.2
         version: 8.1.3
@@ -865,7 +865,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0)
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -953,7 +953,7 @@ importers:
         version: 19.3.0(@types/react@19.3.0)
       next:
         specifier: 16.4.6
-        version: 16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       typescript:
         specifier: npm:@typescript/typescript6@6.0.2
         version: '@typescript/typescript6@6.0.2'
@@ -988,19 +988,19 @@ importers:
     dependencies:
       '@babel/core':
         specifier: ^8.1.2
-        version: 8.1.2
+        version: 8.1.3
       '@babel/plugin-syntax-jsx':
         specifier: ^8.0.1
-        version: 8.0.1(@babel/core@8.1.2)
+        version: 8.0.1(@babel/core@8.1.3)
       '@babel/plugin-syntax-typescript':
         specifier: ^8.0.3
-        version: 8.0.3(@babel/core@8.1.2)
+        version: 8.0.3(@babel/core@8.1.3)
       '@babel/types':
         specifier: ^8.1.2
         version: 8.1.3
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: 0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils/build
@@ -1016,7 +1016,7 @@ importers:
     devDependencies:
       '@babel/register':
         specifier: 8.1.2
-        version: 8.1.2(@babel/core@8.1.2)
+        version: 8.1.2(@babel/core@8.1.3)
       '@types/doctrine':
         specifier: 0.0.9
         version: 0.0.9
@@ -1043,7 +1043,7 @@ importers:
     dependencies:
       '@babel/core':
         specifier: ^8.1.2
-        version: 8.1.2
+        version: 8.1.3
       '@babel/runtime':
         specifier: ^7.29.7 || ^8.0.5
         version: 8.1.2
@@ -1311,7 +1311,7 @@ importers:
         version: 19.3.0
       next:
         specifier: 16.4.6
-        version: 16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react:
         specifier: 19.3.1
         version: 19.3.1
@@ -1951,10 +1951,6 @@ packages:
   '@babel/core@7.29.13':
     resolution: {integrity: sha512-j1nvOQCZYSgp7HLmisnCXFTpVvFODiijQ9QHkORfGKWH6YDtskTEeCJS7eV545GZ9UBzrq0e2xsOd5QQ5PjIqw==}
     engines: {node: '>=6.9.0'}
-
-  '@babel/core@8.1.2':
-    resolution: {integrity: sha512-xqDajHAAOjklW5UtWzFd9vSmlQ16+emgGi0HsyDQFGRQWZ/GjuwCoYGC3PnHxspmOR+HJBzDIOkMxNq/VvC98w==}
-    engines: {node: ^22.18.0 || >=24.11.0}
 
   '@babel/core@8.1.3':
     resolution: {integrity: sha512-kcHuFAOr6mQDd9acrkBd138f+HzIjFmhPAP3yMKL+M3/ncMEYjd3JKvdK7G+b1FR9tc0uhzo9PqgXMtLIL/qzg==}
@@ -12131,25 +12127,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/core@8.1.2':
-    dependencies:
-      '@babel/code-frame': 8.0.6
-      '@babel/generator': 8.1.3
-      '@babel/helper-compilation-targets': 8.0.7
-      '@babel/helpers': 8.1.3
-      '@babel/parser': 8.1.3
-      '@babel/template': 8.1.2
-      '@babel/traverse': 8.1.3
-      '@babel/types': 8.1.3
-      '@types/gensync': 1.0.5
-      convert-source-map: 2.0.0
-      empathic: 2.1.0
-      gensync: 1.0.0-beta.2
-      import-meta-resolve: 4.2.0
-      json5: 2.2.3
-      obug: 3.0.0
-      verkit: 0.5.0
-
   '@babel/core@8.1.3':
     dependencies:
       '@babel/code-frame': 8.0.6
@@ -12224,17 +12201,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-create-class-features-plugin@8.0.7(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-annotate-as-pure': 8.0.0
-      '@babel/helper-member-expression-to-functions': 8.0.5
-      '@babel/helper-optimise-call-expression': 8.0.0
-      '@babel/helper-replace-supers': 8.0.1(@babel/core@8.1.2)
-      '@babel/helper-skip-transparent-expression-wrappers': 8.0.0
-      '@babel/traverse': 8.1.3
-      verkit: 0.5.0
-
   '@babel/helper-create-class-features-plugin@8.0.7(@babel/core@8.1.3)':
     dependencies:
       '@babel/core': 8.1.3
@@ -12297,13 +12263,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-module-transforms@8.0.5(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-module-imports': 8.0.0
-      '@babel/helper-validator-identifier': 8.0.6
-      '@babel/traverse': 8.1.3
-
   '@babel/helper-module-transforms@8.0.5(@babel/core@8.1.3)':
     dependencies:
       '@babel/core': 8.1.3
@@ -12320,10 +12279,6 @@ snapshots:
       '@babel/types': 8.1.3
 
   '@babel/helper-plugin-utils@7.29.7': {}
-
-  '@babel/helper-plugin-utils@8.0.1(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
 
   '@babel/helper-plugin-utils@8.0.1(@babel/core@8.1.3)':
     dependencies:
@@ -12344,13 +12299,6 @@ snapshots:
       '@babel/traverse': 7.29.13(supports-color@11.0.0)
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/helper-replace-supers@8.0.1(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-member-expression-to-functions': 8.0.5
-      '@babel/helper-optimise-call-expression': 8.0.0
-      '@babel/traverse': 8.1.3
 
   '@babel/helper-replace-supers@8.0.1(@babel/core@8.1.3)':
     dependencies:
@@ -12399,10 +12347,10 @@ snapshots:
       '@babel/template': 8.1.2
       '@babel/types': 8.1.3
 
-  '@babel/node@8.1.2(@babel/core@8.1.2)':
+  '@babel/node@8.1.2(@babel/core@8.1.3)':
     dependencies:
-      '@babel/core': 8.1.2
-      '@babel/register': 8.1.2(@babel/core@8.1.2)
+      '@babel/core': 8.1.3
+      '@babel/register': 8.1.2(@babel/core@8.1.3)
       commander: 14.0.3
       core-js: 3.50.0
       v8flags: 4.0.1
@@ -12466,11 +12414,6 @@ snapshots:
       '@babel/core': 7.29.13(supports-color@11.0.0)
       '@babel/helper-plugin-utils': 7.29.7
 
-  '@babel/plugin-syntax-jsx@8.0.1(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.2)
-
   '@babel/plugin-syntax-jsx@8.0.1(@babel/core@8.1.3)':
     dependencies:
       '@babel/core': 8.1.3
@@ -12480,11 +12423,6 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.13(supports-color@11.0.0)
       '@babel/helper-plugin-utils': 7.29.7
-
-  '@babel/plugin-syntax-typescript@8.0.3(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.2)
 
   '@babel/plugin-syntax-typescript@8.0.3(@babel/core@8.1.3)':
     dependencies:
@@ -12650,12 +12588,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/plugin-transform-modules-commonjs@8.0.1(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-module-transforms': 8.0.5(@babel/core@8.1.2)
-      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.2)
-
   '@babel/plugin-transform-modules-commonjs@8.0.1(@babel/core@8.1.3)':
     dependencies:
       '@babel/core': 8.1.3
@@ -12765,10 +12697,10 @@ snapshots:
       '@babel/core': 8.1.3
       '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.3)
 
-  '@babel/plugin-transform-react-constant-elements@8.0.5(@babel/core@8.1.2)':
+  '@babel/plugin-transform-react-constant-elements@8.0.5(@babel/core@8.1.3)':
     dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.2)
+      '@babel/core': 8.1.3
+      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.3)
 
   '@babel/plugin-transform-react-display-name@8.0.1(@babel/core@8.1.3)':
     dependencies:
@@ -12853,15 +12785,6 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.29.7(@babel/core@7.29.13(supports-color@11.0.0))
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/plugin-transform-typescript@8.0.6(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-annotate-as-pure': 8.0.0
-      '@babel/helper-create-class-features-plugin': 8.0.7(@babel/core@8.1.2)
-      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.2)
-      '@babel/helper-skip-transparent-expression-wrappers': 8.0.0
-      '@babel/plugin-syntax-typescript': 8.0.3(@babel/core@8.1.2)
 
   '@babel/plugin-transform-typescript@8.0.6(@babel/core@8.1.3)':
     dependencies:
@@ -13001,14 +12924,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/preset-typescript@8.0.7(@babel/core@8.1.2)':
-    dependencies:
-      '@babel/core': 8.1.2
-      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.2)
-      '@babel/helper-validator-option': 8.0.0
-      '@babel/plugin-transform-modules-commonjs': 8.0.1(@babel/core@8.1.2)
-      '@babel/plugin-transform-typescript': 8.0.6(@babel/core@8.1.2)
-
   '@babel/preset-typescript@8.0.7(@babel/core@8.1.3)':
     dependencies:
       '@babel/core': 8.1.3
@@ -13026,9 +12941,9 @@ snapshots:
       pirates: 4.0.7
       source-map-support: 0.5.21
 
-  '@babel/register@8.1.2(@babel/core@8.1.2)':
+  '@babel/register@8.1.2(@babel/core@8.1.3)':
     dependencies:
-      '@babel/core': 8.1.2
+      '@babel/core': 8.1.3
       '@cspotcode/source-map-support': 0.8.1
       cacache: 20.0.3
       clone-deep: 4.0.1
@@ -13985,9 +13900,9 @@ snapshots:
       '@babel/core': 8.1.3
       '@babel/preset-react': 8.0.1(@babel/core@8.1.3)
 
-  '@mui/internal-babel-plugin-minify-errors@3.0.1-canary.4(@babel/core@8.1.2)':
+  '@mui/internal-babel-plugin-minify-errors@3.0.1-canary.4(@babel/core@8.1.3)':
     dependencies:
-      '@babel/core': 8.1.2
+      '@babel/core': 8.1.3
       '@babel/helper-module-imports': 8.0.0
       find-package-json: 1.2.0
 
@@ -14204,7 +14119,7 @@ snapshots:
       - vitest
       - vue-tsc
 
-  '@mui/internal-docs-infra@0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))':
+  '@mui/internal-docs-infra@0.13.1-canary.38(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))':
     dependencies:
       '@babel/runtime': 8.1.2
       '@csstools/postcss-light-dark-function': 3.0.8(postcss@8.5.33)
@@ -14259,7 +14174,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.3.0
       eslint: 10.15.0(jiti@2.7.0)(supports-color@11.0.0)
-      next: 16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      next: 16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       prettier: 3.10.1
       webpack: 5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3)
     transitivePeerDependencies:
@@ -20456,7 +20371,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
+  next@16.4.6(@babel/core@8.1.3)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       '@next/env': 16.4.6
       '@swc/helpers': 0.5.23
@@ -20465,7 +20380,7 @@ snapshots:
       postcss: 8.5.23
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
-      styled-jsx: 5.1.6(@babel/core@8.1.2)(babel-plugin-macros@3.1.0)(react@19.3.1)
+      styled-jsx: 5.1.6(@babel/core@8.1.3)(babel-plugin-macros@3.1.0)(react@19.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.4.6
       '@next/swc-darwin-x64': 16.4.6
@@ -22500,12 +22415,12 @@ snapshots:
     optionalDependencies:
       react-dom: 19.3.1(react@19.3.1)
 
-  styled-jsx@5.1.6(@babel/core@8.1.2)(babel-plugin-macros@3.1.0)(react@19.3.1):
+  styled-jsx@5.1.6(@babel/core@8.1.3)(babel-plugin-macros@3.1.0)(react@19.3.1):
     dependencies:
       client-only: 0.0.1
       react: 19.3.1
     optionalDependencies:
-      '@babel/core': 8.1.2
+      '@babel/core': 8.1.3
       babel-plugin-macros: 3.1.0
 
   stylelint-config-recommended@19.0.0(stylelint@18.0.0):
