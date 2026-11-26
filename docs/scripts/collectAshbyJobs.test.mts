@@ -3,7 +3,6 @@ import {
   buildRoleMarkdown,
   collectCareersData,
   extractActiveOpenRoles,
-  hasMeaningfulMarkdownChanges,
   htmlToMarkdown,
   isActiveAshbyJob,
   matchJobs,
@@ -67,6 +66,36 @@ describe('collectAshbyJobs', () => {
           '',
           `[Apply now for this position 📮](${applyUrl})`,
         ].join('\n'),
+      );
+    });
+
+    it('inserts the application link under an existing How to apply heading when missing', () => {
+      const html = '<h2>Overview</h2><p>Join us.</p><h2>How to apply</h2><p>Apply below.</p>';
+      const applyUrl = 'https://jobs.ashbyhq.com/MUI/5678/application?utm_source=ZNRrPGBkqO';
+
+      expect(htmlToMarkdown(html, { applyUrl })).to.equal(
+        [
+          '## Overview',
+          '',
+          'Join us.',
+          '',
+          '## How to apply',
+          '',
+          `[Apply now for this position 📮](${applyUrl})`,
+          '',
+          'Apply below.',
+        ].join('\n'),
+      );
+    });
+
+    it('does not duplicate the application link if it is already present', () => {
+      const applyUrl = 'https://jobs.ashbyhq.com/MUI/5678/application?utm_source=ZNRrPGBkqO';
+      const html = `<h2>How to apply</h2><p><a href="https://jobs.ashbyhq.com/MUI/5678/application">Apply here</a></p>`;
+
+      expect(htmlToMarkdown(html, { applyUrl })).to.equal(
+        ['## How to apply', '', '[Apply here](https://jobs.ashbyhq.com/MUI/5678/application)'].join(
+          '\n',
+        ),
       );
     });
   });
@@ -204,7 +233,7 @@ describe('collectAshbyJobs', () => {
     });
   });
 
-  describe('deterministic slug & semantic diff helpers', () => {
+  describe('slugifyTitle & buildRoleMarkdown', () => {
     it('slugifies job titles into clean kebab-case', () => {
       expect(slugifyTitle('React Engineer — MUI X Grid')).to.equal('react-engineer-mui-x-grid');
       expect(slugifyTitle('Director of Business Operations')).to.equal(
@@ -212,43 +241,30 @@ describe('collectAshbyJobs', () => {
       );
     });
 
-    it('builds complete Markdown and ignores soft line-break or comment-only diffs', () => {
-      const existing = [
-        '# Operations Engineer',
-        '',
-        '<p class="description">Help us reach operational excellence.</p>',
-        '',
-        '## The culture',
-        '',
-        'Line one.',
-        'Line two with [Handbook](https://mui-org.notion.site).',
-        '',
-        '## How to apply',
-        '',
-        '[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/1234/application?utm_source=ZNRrPGBkqO)',
-        '',
-        '<!-- ## Interview process -->',
-      ].join('\n');
-
+    it('builds complete Markdown with title, description, body, and apply link', () => {
       const generated = buildRoleMarkdown({
         title: 'Operations Engineer',
         description: 'Help us reach operational excellence.',
-        descriptionHtml:
-          '<h2>The culture</h2><p>Line one. Line two with <a href="https://mui-org.notion.site/"><u>Handbook</u></a>.</p>',
+        descriptionHtml: '<h2>The culture</h2><p>Remote and async.</p>',
         applyUrl: 'https://jobs.ashbyhq.com/MUI/1234/application?utm_source=ZNRrPGBkqO',
       });
 
-      expect(hasMeaningfulMarkdownChanges(existing, generated)).to.equal(false);
-
-      const changed = buildRoleMarkdown({
-        title: 'Operations Engineer',
-        description: 'Help us reach operational excellence.',
-        descriptionHtml:
-          '<h2>The culture</h2><p>Line one updated. Line two with <a href="https://mui-org.notion.site/"><u>Handbook</u></a>.</p>',
-        applyUrl: 'https://jobs.ashbyhq.com/MUI/1234/application?utm_source=ZNRrPGBkqO',
-      });
-
-      expect(hasMeaningfulMarkdownChanges(existing, changed)).to.equal(true);
+      expect(generated).to.equal(
+        [
+          '# Operations Engineer',
+          '',
+          '<p class="description">Help us reach operational excellence.</p>',
+          '',
+          '## The culture',
+          '',
+          'Remote and async.',
+          '',
+          '## How to apply',
+          '',
+          '[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/1234/application?utm_source=ZNRrPGBkqO)',
+          '',
+        ].join('\n'),
+      );
     });
   });
 
@@ -292,7 +308,6 @@ describe('collectAshbyJobs', () => {
         matchedByIdCount: 0,
         matchedByTitleCount: 0,
         newJobsCount: 1,
-        contentChangedCount: 1,
         rolesToDeactivateCount: 1,
       });
       expect(result.activeJobs[0].suggestedSlug).to.equal('operations-engineer');

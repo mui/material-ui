@@ -78,7 +78,6 @@ export interface ExistingRole {
   title: string | null;
   description: string | null;
   ashbyId: string | null;
-  rawMarkdown: string;
   hasJsPage: boolean;
   activeInOpenRoles: boolean;
 }
@@ -214,14 +213,58 @@ function remarkNormalizeAshbyJob({ applyUrl }: { applyUrl?: string } = {}) {
       return;
     }
 
-    const hasHowToApply = tree.children.some(
+    const targetApplyUrl = applyUrl;
+    let hasApplyLink = false;
+    function checkApplyLink(node: MdastNode) {
+      if (node.type === 'link' && node.url) {
+        try {
+          const expected = new URL(targetApplyUrl);
+          const actual = new URL(node.url);
+          if (actual.origin === expected.origin && actual.pathname === expected.pathname) {
+            hasApplyLink = true;
+            return;
+          }
+        } catch {
+          if (node.url === targetApplyUrl) {
+            hasApplyLink = true;
+            return;
+          }
+        }
+      }
+      if (Array.isArray(node.children)) {
+        for (const child of node.children) {
+          checkApplyLink(child);
+          if (hasApplyLink) {
+            return;
+          }
+        }
+      }
+    }
+    checkApplyLink(tree);
+    if (hasApplyLink) {
+      return;
+    }
+
+    const applyParagraph: MdastNode = {
+      type: 'paragraph',
+      children: [
+        {
+          type: 'link',
+          url: applyUrl,
+          children: [{ type: 'text', value: 'Apply now for this position 📮' }],
+        },
+      ],
+    };
+
+    const howToApplyIndex = tree.children.findIndex(
       (node) =>
         node.type === 'heading' &&
         mdastToString(node as never)
           .trim()
           .toLowerCase() === 'how to apply',
     );
-    if (hasHowToApply) {
+    if (howToApplyIndex !== -1) {
+      tree.children.splice(howToApplyIndex + 1, 0, applyParagraph);
       return;
     }
 
@@ -231,16 +274,7 @@ function remarkNormalizeAshbyJob({ applyUrl }: { applyUrl?: string } = {}) {
         depth: 2,
         children: [{ type: 'text', value: 'How to apply' }],
       },
-      {
-        type: 'paragraph',
-        children: [
-          {
-            type: 'link',
-            url: applyUrl,
-            children: [{ type: 'text', value: 'Apply now for this position 📮' }],
-          },
-        ],
-      },
+      applyParagraph,
     ];
 
     const insertIndex = tree.children.findIndex(
@@ -326,78 +360,6 @@ export function buildRoleMarkdown({
   return `${parts.join('\n\n')}\n`;
 }
 
-function normalizeUrlForComparison(rawUrl: string): string {
-  try {
-    const parsed = new URL(rawUrl);
-    if (parsed.pathname === '/') {
-      return `${parsed.origin}${parsed.search}${parsed.hash}`;
-    }
-    return parsed.href;
-  } catch {
-    return rawUrl;
-  }
-}
-
-function canonicalizeMdast(node: MdastNode): MdastNode | null {
-  if (node.type === 'html') {
-    return null;
-  }
-  if (node.type === 'text') {
-    const value = (node.value ?? '').replace(/[\u00A0\s]+/g, ' ');
-    return { type: 'text', value };
-  }
-  const canonical: MdastNode = { type: node.type };
-  if (node.depth !== undefined) {
-    canonical.depth = node.depth;
-  }
-  if (node.ordered !== undefined) {
-    canonical.ordered = node.ordered;
-  }
-  if (node.url !== undefined) {
-    canonical.url = normalizeUrlForComparison(node.url);
-  }
-  if (node.value !== undefined) {
-    canonical.value = node.value;
-  }
-  if (Array.isArray(node.children)) {
-    const children: MdastNode[] = [];
-    for (const child of node.children) {
-      const normalized = canonicalizeMdast(child);
-      if (!normalized) {
-        continue;
-      }
-      const prev = children[children.length - 1];
-      if (normalized.type === 'text' && prev?.type === 'text') {
-        prev.value = `${prev.value ?? ''}${normalized.value ?? ''}`.replace(/\s+/g, ' ');
-      } else {
-        children.push(normalized);
-      }
-    }
-    if (children.length > 0 && children[0].type === 'text') {
-      children[0].value = (children[0].value ?? '').trimStart();
-    }
-    if (children.length > 0 && children[children.length - 1].type === 'text') {
-      children[children.length - 1].value = (children[children.length - 1].value ?? '').trimEnd();
-    }
-    canonical.children = children;
-  }
-  return canonical;
-}
-
-/**
- * Compares existing and generated role Markdown semantically (ignoring soft line-breaks,
- * `<p class="description">`, HTML comments, and root trailing slashes on URLs).
- */
-export function hasMeaningfulMarkdownChanges(
-  existingMarkdown: string | null | undefined,
-  generatedMarkdown: string | null | undefined,
-): boolean {
-  const parser = unified().use(remarkParse);
-  const existingAst = canonicalizeMdast(parser.parse(existingMarkdown ?? '') as MdastNode);
-  const generatedAst = canonicalizeMdast(parser.parse(generatedMarkdown ?? '') as MdastNode);
-  return JSON.stringify(existingAst) !== JSON.stringify(generatedAst);
-}
-
 /**
  * Flattens `docs/data/careers/openRoles.json` into category names and active role entries.
  */
@@ -425,7 +387,7 @@ export function extractActiveOpenRoles(openRolesData: OpenRolesData): {
     }
   }
 
-  return { categories, activeOpenRoles };
+  return { categories: Array.from(new Set(categories)), activeOpenRoles };
 }
 
 function extractAshbyIdFromUrl(rawUrl: string): string | null {
@@ -509,7 +471,6 @@ function parseExistingRoles(
         title,
         description,
         ashbyId,
-        rawMarkdown: content,
         hasJsPage: jsFiles.has(`${slug}.js`),
         activeInOpenRoles: activeOpenSlugs.has(slug),
       };
@@ -588,9 +549,9 @@ export function collectCareersData({
   const activeOpenSlugs = new Set(
     activeOpenRoles.map((role) => role.slug).filter((slug): slug is string => Boolean(slug)),
   );
-  const existingRolesFull = parseExistingRoles(existingRoleFiles, activeOpenSlugs, entries);
+  const existingRoles = parseExistingRoles(existingRoleFiles, activeOpenSlugs, entries);
   const listedJobs = jobs.filter((job) => isActiveAshbyJob(job, now));
-  const matches = matchJobs(listedJobs, existingRolesFull, entries);
+  const matches = matchJobs(listedJobs, existingRoles, entries);
   const activeMatchedSlugs = new Set<string>();
 
   const activeJobs = matches.map(({ job, existing, matchType, suggestedSlug }) => {
@@ -606,9 +567,6 @@ export function collectCareersData({
       descriptionHtml: job.descriptionHtml,
       applyUrl,
     });
-    const contentChanged = existing
-      ? hasMeaningfulMarkdownChanges(existing.rawMarkdown, markdown)
-      : true;
     const existingHasJsPage = existing?.hasJsPage ?? false;
     const isCurrentlyActiveInOpenRoles = existing ? activeOpenSlugs.has(existing.slug) : false;
 
@@ -630,7 +588,6 @@ export function collectCareersData({
       existingDescription: existing?.description ?? null,
       existingHasJsPage,
       isCurrentlyActiveInOpenRoles,
-      contentChanged,
       markdown,
     };
   });
@@ -638,8 +595,6 @@ export function collectCareersData({
   const rolesToDeactivate = activeOpenRoles.filter(
     (role) => !role.slug || !activeMatchedSlugs.has(role.slug),
   );
-
-  const existingRoles = existingRolesFull.map(({ rawMarkdown, ...rest }) => rest);
 
   return {
     fetchedAt: new Date(now).toISOString(),
@@ -652,7 +607,6 @@ export function collectCareersData({
       matchedByIdCount: activeJobs.filter((job) => job.matchType === 'ashbyId').length,
       matchedByTitleCount: activeJobs.filter((job) => job.matchType === 'title').length,
       newJobsCount: activeJobs.filter((job) => job.existingSlug === null).length,
-      contentChangedCount: activeJobs.filter((job) => job.contentChanged).length,
       rolesToDeactivateCount: rolesToDeactivate.length,
     },
   };

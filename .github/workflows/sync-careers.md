@@ -119,7 +119,6 @@ Keep the MUI careers listings (`docs/data/careers/openRoles.json`) and individua
   - `activeJobs`: currently listed, published jobs from Ashby, each with:
     - metadata (`id`, `title`, `department`, `team`, `location`, `isRemote`, `employmentType`, `applyUrl`),
     - deterministic matching (`existingSlug`, `matchType` of `'ashbyId' | 'title' | null`, `suggestedSlug`, `existingDescription`, `existingHasJsPage`, `isCurrentlyActiveInOpenRoles`),
-    - `contentChanged` (semantic AST diff against the existing `.md`, ignoring soft line-breaks, HTML comments, and `<p class="description">`),
     - `markdown` (complete role Markdown already converted from Ashby HTML, with `# <Title>`, preserved `<p class="description">` when matched, MUI non-breaking spaces, stripped empty headings/boundary `<hr>`, and `## How to apply`).
   - `rolesToDeactivate`: roles currently listed in `docs/data/careers/openRoles.json` that are no longer active on Ashby.
   - `existingRoles`: index of all existing `docs/pages/careers/*.md` files (`slug`, `title`, `ashbyId`, `hasJsPage`, `activeInOpenRoles`).
@@ -136,10 +135,9 @@ Use `suggestedSlug` for each job. The collector reserves existing page names and
 
 ### 2b. Create or update `docs/pages/careers/<slug>.md`
 
-- If `existingSlug` is non-null and `contentChanged` is `false` (and `matchType === 'ashbyId'`), leave `docs/pages/careers/<slug>.md` untouched.
-- Otherwise, use the pre-built `markdown` from `ashby-jobs.json` as your base and apply only the cleanup that requires judgment:
+- Use the pre-built `markdown` from `ashby-jobs.json` as your base and apply only the cleanup that requires judgment:
   - For a new role (where `existingDescription` is null), add `<p class="description">...</p>` directly under `# <Title>` with a crisp, single-sentence summary of the role's mission in MUI's voice (roughly 8–20 words, matching existing roles in `docs/data/careers/openRoles.json`).
-  - For an existing role with `contentChanged: true`, inspect the diff against the current file: skip purely cosmetic differences (such as paragraph splits that don't change meaning), and apply real content updates (updated responsibilities, requirements, location, level, title, or Ashby apply URL).
+  - For an existing role (`existingSlug` is non-null), compare against the current `docs/pages/careers/<slug>.md`: leave it untouched if there are only cosmetic formatting differences (such as line wrapping or paragraph splits that don't change meaning), and update it when real content changed (updated responsibilities, requirements, location, level, title, or Ashby apply URL).
   - Fix any remaining rich-text conversion quirks (broken links, odd heading nesting) without inventing qualifications, compensation, or details not in the Ashby listing.
   - Follow `docs/pages/careers/ROLE_TEMPLATE.md` conventions (including non-breaking spaces in `Material UI`, `MUI X`, `Base UI`, `Joy UI`).
 
