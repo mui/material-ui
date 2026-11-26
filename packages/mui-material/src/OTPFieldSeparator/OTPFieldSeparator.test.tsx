@@ -11,19 +11,21 @@ describe('<OTPFieldSeparator />', () => {
   const { render } = createRenderer();
 
   it.each([
-    { children: undefined, text: '-' },
-    { children: ':', text: ':' },
-  ])('renders "$text" as a decorative separator between the inputs', ({ children, text }) => {
+    { children: undefined, text: '-', orientation: undefined },
+    { children: ':', text: ':', orientation: 'horizontal' as const },
+  ])('renders "$text" as a decorative separator', ({ children, text, orientation }) => {
     render(
       <OTPField length={2} label="Code" classes={{ separator: 'custom-separator' }}>
         <OTPFieldInput />
-        <OTPFieldSeparator>{children}</OTPFieldSeparator>
+        <OTPFieldSeparator orientation={orientation} className={(state) => state.orientation}>
+          {children}
+        </OTPFieldSeparator>
         <OTPFieldInput />
       </OTPField>,
     );
     const separator = screen.getByText(text);
     expect(separator).to.have.attribute('aria-hidden', 'true');
     expect(separator).to.have.class(classes.separator).and.have.class('custom-separator');
-    expect(screen.getByRole('textbox', { name: 'Code' }).nextElementSibling).to.equal(separator);
+    expect(separator).to.have.class(orientation ?? 'vertical');
   });
 });

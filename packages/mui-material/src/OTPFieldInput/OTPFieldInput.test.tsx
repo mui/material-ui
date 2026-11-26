@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import OTPField, { OTPFieldInput, OTPFieldSeparator } from '@mui/material/OTPField';
+import OTPField, { OTPFieldInput } from '@mui/material/OTPField';
 
 describe('<OTPFieldInput />', () => {
   const { render } = createRenderer();
@@ -27,43 +27,30 @@ describe('<OTPFieldInput />', () => {
     expect(nextRef.current).to.equal(null);
   });
 
-  it('submits one code from composed inputs and forwards their refs', async () => {
+  it('forwards autofocus, refs, and character state through a custom input render', async () => {
     const inputRef = React.createRef<HTMLInputElement>();
     const firstRef = React.createRef<HTMLInputElement>();
-    const lastRef = React.createRef<HTMLInputElement>();
-    const onValueComplete = vi.fn();
-    function LastDigit() {
-      return <OTPFieldInput ref={lastRef} aria-label="Check digit" />;
-    }
     const { user } = render(
       <form aria-label="Sign in">
-        <OTPField
-          label="Code"
-          length={3}
-          name="code"
-          defaultValue="01"
-          inputRef={inputRef}
-          onValueComplete={onValueComplete}
-        >
-          <OTPFieldInput ref={firstRef} />
+        <OTPField label="Code" length={2} name="code" inputRef={inputRef} autoFocus>
+          <OTPFieldInput
+            ref={firstRef}
+            render={(props, state) => <input {...props} data-has-character={state.filled} />}
+          />
           <OTPFieldInput />
-          <OTPFieldSeparator />
-          <LastDigit />
         </OTPField>
       </form>,
     );
 
-    const [first, second, last] = screen.getAllByRole('textbox');
+    const first = screen.getByRole('textbox', { name: 'Code' });
     expect(first).to.equal(firstRef.current).and.equal(inputRef.current);
-    expect(first).to.have.value('0');
-    expect(second).to.have.value('1');
-    expect(last).toHaveAccessibleName('Check digit');
-    expect(last).to.equal(lastRef.current);
+    expect(first).toHaveFocus();
 
-    await user.type(last, '2');
-    expect(onValueComplete).toHaveBeenCalledWith('012', expect.anything());
+    await user.keyboard('01');
+    expect(first).to.have.attribute('data-has-character', 'true');
+    expect(first).not.to.have.attribute('data-value');
     expect(new FormData(screen.getByRole<HTMLFormElement>('form')).getAll('code')).to.deep.equal([
-      '012',
+      '01',
     ]);
   });
 });

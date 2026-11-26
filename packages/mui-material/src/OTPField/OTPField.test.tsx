@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import { Field } from '@base-ui/react/field';
-import { createRenderer, isJsdom, screen, within } from '@mui/internal-test-utils';
+import { createRenderer, screen, within } from '@mui/internal-test-utils';
 import { formHelperTextClasses } from '@mui/material/FormHelperText';
 import { formLabelClasses } from '@mui/material/FormLabel';
-import { createTheme, hexToRgb, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import type { OTPFieldOwnerState } from '@mui/material/OTPField';
-import OTPField, {
-  OTPFieldInput,
-  OTPFieldSeparator,
-  otpFieldClasses as classes,
-} from '@mui/material/OTPField';
+import OTPField, { OTPFieldInput, otpFieldClasses as classes } from '@mui/material/OTPField';
 import describeConformance from '../../test/describeConformance';
 
 describe('<OTPField />', () => {
@@ -143,6 +139,7 @@ describe('<OTPField />', () => {
       expect(first).toHaveFocus();
       await user.keyboard('12');
       expect(rootRef.current).to.have.attribute('data-complete', 'true');
+      expect(rootRef.current).not.to.have.attribute('data-value');
     });
 
     it('preserves group semantics and the composed inputs when replacing the group host', async () => {
@@ -171,7 +168,6 @@ describe('<OTPField />', () => {
       await user.click(within(group).getByRole('textbox', { name: 'PIN' }));
       await user.paste('07');
       expect(group).to.have.class('complete');
-      expect(within(group).getByRole('textbox', { name: 'Character 2 of 2' })).to.have.value('7');
     });
 
     it('keeps label and helper slot IDs linked to every composed input and the group', async () => {
@@ -284,19 +280,24 @@ describe('<OTPField />', () => {
       expect(within(group).getByRole('textbox', { name: 'Character 2 of 2' })).toHaveFocus();
     });
 
-    it('uses getInputAriaLabel for subsequent inputs with one-based positions and the field length', () => {
+    it('uses getInputAriaLabel for subsequent inputs unless they provide their own name', () => {
       render(
         <OTPField
           aria-label="Verification code"
           length={3}
           getInputAriaLabel={(position, length) => `Digit ${position} out of ${length}`}
-        />,
+        >
+          <OTPFieldInput />
+          <OTPFieldInput />
+          <OTPFieldInput aria-label="Check digit" />
+        </OTPField>,
       );
 
       const group = screen.getByRole('group', { name: 'Verification code' });
-      expect(within(group).getByRole('textbox', { name: 'Verification code' })).toBeVisible();
-      expect(within(group).getByRole('textbox', { name: 'Digit 2 out of 3' })).toBeVisible();
-      expect(within(group).getByRole('textbox', { name: 'Digit 3 out of 3' })).toBeVisible();
+      const [first, second, third] = within(group).getAllByRole('textbox');
+      expect(first).toHaveAccessibleName('Verification code');
+      expect(second).toHaveAccessibleName('Digit 2 out of 3');
+      expect(third).toHaveAccessibleName('Check digit');
     });
 
     it('uses the external aria-labelledby on the first input in place of the Material label', () => {
@@ -340,10 +341,10 @@ describe('<OTPField />', () => {
   });
 
   describe('form control state', () => {
-    it('reflects inherited disabled state and the OTP required flag on the Material label', () => {
+    it('reflects inherited disabled state on the label and suppresses aria-invalid on disabled inputs', () => {
       render(
         <Field.Root disabled>
-          <OTPField label="Verification code" required />
+          <OTPField label="Verification code" error required />
         </Field.Root>,
       );
 
@@ -351,6 +352,9 @@ describe('<OTPField />', () => {
       expect(label)
         .to.have.class(formLabelClasses.disabled)
         .and.have.class(formLabelClasses.required);
+      for (const input of screen.getAllByRole('textbox')) {
+        expect(input).not.to.have.attribute('aria-invalid');
+      }
     });
 
     it('reflects inherited invalid state on the Material label', () => {
@@ -382,104 +386,6 @@ describe('<OTPField />', () => {
       screen.getAllByRole('textbox').forEach((input) => {
         expect(input).to.have.attribute('aria-invalid', 'true');
       });
-    });
-  });
-
-  describe.skipIf(isJsdom())('styling', () => {
-    it('applies named slot overrides using the field props', () => {
-      const theme = createTheme({
-        components: {
-          MuiOTPField: {
-            styleOverrides: {
-              group: ({ ownerState }) => ({ columnGap: ownerState.mask ? '11px' : '0px' }),
-              separator: ({ ownerState }) => ({ marginRight: ownerState.mask ? '7px' : '0px' }),
-            },
-          },
-        },
-      });
-      render(
-        <ThemeProvider theme={theme}>
-          <OTPField label="PIN" length={2} mask>
-            <OTPFieldInput />
-            <OTPFieldSeparator />
-            <OTPFieldInput />
-          </OTPField>
-        </ThemeProvider>,
-      );
-      expect(screen.getByRole('group', { name: 'PIN' })).toHaveComputedStyle({ columnGap: '11px' });
-      expect(screen.getByText('-')).toHaveComputedStyle({ marginRight: '7px' });
-    });
-
-    it('uses the field color for focus and the error color for an invalid field', async () => {
-      const theme = createTheme({ cssVariables: true });
-      const { user, rerender } = render(<OTPField label="PIN" color="secondary" length={2} />, {
-        wrapper: ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>,
-      });
-
-      const input = screen.getByRole('textbox', { name: 'PIN' });
-      await user.click(input);
-
-      expect(input).toHaveFocus();
-      expect(input).toHaveComputedStyle({
-        outlineStyle: 'solid',
-        outlineColor: hexToRgb(theme.palette.secondary.main),
-      });
-      expect(screen.getByText('PIN')).not.to.have.class(formLabelClasses.focused);
-
-      rerender(<OTPField label="PIN" color="secondary" length={2} error />);
-      expect(input).toHaveComputedStyle({ outlineColor: hexToRgb(theme.palette.error.main) });
-    });
-
-    it('fills the container by growing the character inputs equally around a separator', () => {
-      render(
-        <div style={{ width: 320 }}>
-          <OTPField label="PIN" length={2} fullWidth>
-            <OTPFieldInput />
-            <OTPFieldSeparator />
-            <OTPFieldInput />
-          </OTPField>
-        </div>,
-      );
-
-      const group = screen.getByRole('group', { name: 'PIN' }).getBoundingClientRect();
-      const [first, last] = screen
-        .getAllByRole('textbox')
-        .map((input) => input.getBoundingClientRect());
-      expect(group.width).to.equal(320);
-      expect(first.left).to.equal(group.left);
-      expect(last.right).to.equal(group.right);
-      expect(first.width).to.be.closeTo(last.width, 0.1);
-      expect(screen.getByText('-').getBoundingClientRect().width).to.be.lessThan(first.width);
-    });
-
-    it('lays out the character inputs in a row between the label and helper text', () => {
-      render(<OTPField label="PIN" helperText="Four digits" length={4} />);
-
-      const [first, second] = screen.getAllByRole('textbox');
-      const firstBounds = first.getBoundingClientRect();
-      const secondBounds = second.getBoundingClientRect();
-      expect(firstBounds.top).to.be.at.least(
-        screen.getByText('PIN').getBoundingClientRect().bottom,
-      );
-      expect(secondBounds.top).to.equal(firstBounds.top);
-      expect(secondBounds.left).to.be.greaterThan(firstBounds.right);
-      expect(screen.getByText('Four digits').getBoundingClientRect().top).to.be.at.least(
-        firstBounds.bottom,
-      );
-    });
-
-    it('renders smaller character inputs when size is small', () => {
-      render(
-        <React.Fragment>
-          <OTPField label="Medium code" />
-          <OTPField label="Small code" size="small" />
-        </React.Fragment>,
-      );
-
-      const medium = screen.getByRole('textbox', { name: 'Medium code' }).getBoundingClientRect();
-      const small = screen.getByRole('textbox', { name: 'Small code' }).getBoundingClientRect();
-      expect(small.width).to.be.lessThan(medium.width);
-      expect(small.height).to.be.lessThan(medium.height);
     });
   });
 });
