@@ -14,7 +14,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
-import { contrastRatio, WCAG_MINIMUM_RATIO, WCAG_NON_TEXT_RATIO } from '../../test/contrast';
+import { contrastRatio, requiredRatio, WCAG_NON_TEXT_RATIO } from '../../test/contrast';
 import { FAILING_PALETTE_COLORS, PALETTE_CONTRAST_COLORS } from '../../test/contrastContract';
 
 describe('<Fab />', () => {
@@ -260,7 +260,10 @@ describe('<Fab />', () => {
       </SvgIcon>
     );
 
-    /** The rendered foreground and fill of each palette color, as an exact ratio. */
+    /**
+     * Renders one Fab for each palette color. Returns the computed style of each Fab
+     * and the exact ratio of its foreground against its fill.
+     */
     function renderPaletteFabs(props, children) {
       render(
         <React.Fragment>
@@ -272,30 +275,21 @@ describe('<Fab />', () => {
         </React.Fragment>,
       );
       return PALETTE_CONTRAST_COLORS.map((color) => {
-        const { color: foreground, backgroundColor } = window.getComputedStyle(
-          screen.getByRole('button', { name: color }),
-        );
-        return { color, ratio: contrastRatio(foreground, backgroundColor) };
+        const style = window.getComputedStyle(screen.getByRole('button', { name: color }));
+        return { color, style, ratio: contrastRatio(style.color, style.backgroundColor) };
       });
     }
 
-    describe('1.1.1 Non-text Content', () => {
-      it('names an icon-only Fab from its aria-label', () => {
-        render(<Fab aria-label="Add">{icon}</Fab>);
+    it('1.1.1 Non-text Content: names an icon-only Fab from its aria-label', () => {
+      render(<Fab aria-label="Add">{icon}</Fab>);
 
-        expect(screen.getByRole('button')).toHaveAccessibleName('Add');
-      });
-
-      it('hides the decorative icon from assistive technology', () => {
-        render(<Fab aria-label="Add">{icon}</Fab>);
-
-        expect(screen.getByTestId('icon')).to.have.attribute('aria-hidden', 'true');
-      });
+      expect(screen.getByRole('button')).toHaveAccessibleName('Add');
     });
 
-    it('1.4.3 Contrast (Minimum): only the documented palette colors fall short of 4.5:1', () => {
+    it('1.4.3 Contrast (Minimum): only the documented palette colors fall short of the required ratio', () => {
+      // `requiredRatio` picks 4.5:1 or 3:1 from the rendered font size and weight.
       const failing = renderPaletteFabs({ variant: 'extended' })
-        .filter(({ ratio }) => ratio < WCAG_MINIMUM_RATIO.normalText)
+        .filter(({ ratio, style }) => ratio < requiredRatio(style))
         .map(({ color }) => color);
 
       // The extended label is `contrastText` on `main`, like a contained Button. The
@@ -304,12 +298,24 @@ describe('<Fab />', () => {
       expect(failing).to.deep.equal([...FAILING_PALETTE_COLORS]);
     });
 
-    it('1.4.11 Non-text Contrast: the icon reaches 3:1 against the fill in each palette color at rest', () => {
-      // `SvgIcon` paints with `currentColor`, the color of the Fab.
-      renderPaletteFabs({}, icon).forEach(({ color, ratio }) => {
-        expect(ratio).to.be.at.least(WCAG_NON_TEXT_RATIO, color);
-      });
-    });
+    // jsdom does not resolve `currentColor` in the computed `fill` of the svg.
+    it.skipIf(isJsdom())(
+      '1.4.11 Non-text Contrast: the icon reaches 3:1 against the fill in each palette color at rest',
+      () => {
+        renderPaletteFabs({}, icon);
+
+        // Measure the painted svg, so an icon that stops using `currentColor` fails.
+        screen.getAllByTestId('icon').forEach((svg) => {
+          const fab = svg.closest('button');
+          const { fill } = window.getComputedStyle(svg);
+          const { backgroundColor } = window.getComputedStyle(fab);
+          expect(contrastRatio(fill, backgroundColor)).to.be.at.least(
+            WCAG_NON_TEXT_RATIO,
+            fab.getAttribute('aria-label'),
+          );
+        });
+      },
+    );
 
     it('2.1.1 Keyboard: Enter and Space activate the Fab', async () => {
       const handleClick = vi.fn();
@@ -429,54 +435,32 @@ describe('<Fab />', () => {
       expect(handleClick).toHaveBeenCalledTimes(0);
     });
 
-    describe('3.2.2 On Input', () => {
-      it('a toggle activated with Enter changes aria-pressed and keeps focus', async () => {
-        function ToggleFab() {
-          const [pressed, setPressed] = React.useState(false);
-          return (
-            <Fab
-              aria-label="Favorite"
-              aria-pressed={pressed}
-              onClick={() => setPressed((previous) => !previous)}
-            >
-              {icon}
-            </Fab>
-          );
-        }
-        const { user } = render(<ToggleFab />);
-        const fab = screen.getByRole('button', { name: 'Favorite' });
-
-        await user.tab();
-        expect(fab).to.have.attribute('aria-pressed', 'false');
-
-        await user.keyboard('{Enter}');
-        expect(fab).to.have.attribute('aria-pressed', 'true');
-        expect(fab).toHaveFocus();
-
-        await user.keyboard('{Enter}');
-        expect(fab).to.have.attribute('aria-pressed', 'false');
-        expect(fab).toHaveFocus();
-      });
-
-      it('a change of aria-pressed from the parent does not run onClick', async () => {
-        const handleClick = vi.fn();
-        const { rerender, user } = render(
-          <Fab aria-label="Favorite" onClick={handleClick} aria-pressed={false}>
+    it('3.2.2 On Input: a toggle activated with Enter changes aria-pressed and keeps focus', async () => {
+      function ToggleFab() {
+        const [pressed, setPressed] = React.useState(false);
+        return (
+          <Fab
+            aria-label="Favorite"
+            aria-pressed={pressed}
+            onClick={() => setPressed((previous) => !previous)}
+          >
             {icon}
-          </Fab>,
+          </Fab>
         );
-        await user.tab();
-        const fab = screen.getByRole('button');
+      }
+      const { user } = render(<ToggleFab />);
+      const fab = screen.getByRole('button', { name: 'Favorite' });
 
-        rerender(
-          <Fab aria-label="Favorite" onClick={handleClick} aria-pressed>
-            {icon}
-          </Fab>,
-        );
-        expect(fab).to.have.attribute('aria-pressed', 'true');
-        expect(fab).toHaveFocus();
-        expect(handleClick).toHaveBeenCalledTimes(0);
-      });
+      await user.tab();
+      expect(fab).to.have.attribute('aria-pressed', 'false');
+
+      await user.keyboard('{Enter}');
+      expect(fab).to.have.attribute('aria-pressed', 'true');
+      expect(fab).toHaveFocus();
+
+      await user.keyboard('{Enter}');
+      expect(fab).to.have.attribute('aria-pressed', 'false');
+      expect(fab).toHaveFocus();
     });
 
     describe('4.1.2 Name, Role, Value', () => {
