@@ -149,7 +149,7 @@ describe('docs demo theming', () => {
       <DemoContext.Provider
         value={{
           productDisplayName: 'Material UI',
-          csb: { primaryPackage: '@mui/material' },
+          csb: {},
         }}
       >
         <ThemeProvider theme={outerTheme}>

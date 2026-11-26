@@ -268,7 +268,6 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
 }
 
 const CSB_CONFIG: SandboxConfig = {
-  primaryPackage: '@mui/material',
   fallbackDependency: { name: '@mui/material', version: 'latest' },
   getRootIndex: getMaterialRootIndex,
 };

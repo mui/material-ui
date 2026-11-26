@@ -182,15 +182,15 @@ describe('DemoToolbar', () => {
     });
   });
 
-  it('uses one roving tab stop across all toolbar controls', () => {
-    renderToolbar();
+  it('uses one roving tab stop across all toolbar controls', async () => {
+    const { user } = renderToolbar();
     const toolbar = screen.getByRole('toolbar');
     const buttons = Array.from(toolbar.querySelectorAll('button'));
 
     const expand = screen.getByRole('button', { name: 'Show source' });
     expect(buttons.filter((button) => button.tabIndex === 0)).to.deep.equal([expand]);
     act(() => expand.focus());
-    fireEvent.keyDown(expand, { key: 'ArrowRight' });
+    await user.keyboard('{ArrowRight}');
     expect(document.activeElement).to.equal(buttons[1]);
     expect(buttons[1].tabIndex).to.equal(0);
     expect(expand.tabIndex).to.equal(-1);
@@ -231,12 +231,12 @@ describe('DemoToolbar', () => {
 
     expect(typescript).to.have.attribute('aria-pressed', 'true');
     act(() => typescript.focus());
-    fireEvent.keyDown(typescript, { key: 'ArrowLeft' });
+    await user.keyboard('{ArrowLeft}');
     expect(document.activeElement).to.equal(javascript);
     await user.click(javascript);
     expect(selections).to.deep.equal(['js']);
 
-    fireEvent.keyDown(javascript, { key: 'ArrowRight' });
+    await user.keyboard('{ArrowRight}');
     expect(document.activeElement).to.equal(typescript);
   });
 

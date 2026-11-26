@@ -26,10 +26,9 @@ export interface SandboxConfig {
   getRootIndex?: (codeVariant: CodeVariant) => string;
 
   /**
-   * Primary npm package for this product, used in sandbox generation.
-   * e.g., "@mui/material", "@mui/joy", "@mui/x-data-grid"
+   * @deprecated Not read anymore.
    */
-  primaryPackage: string;
+  primaryPackage?: string;
 
   /**
    * Default dependency to add when generating sandbox (e.g., '@mui/material' for StyledEngineProvider)
