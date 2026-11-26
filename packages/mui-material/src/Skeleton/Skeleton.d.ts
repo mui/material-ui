@@ -57,6 +57,10 @@ export interface SkeletonTypeMap<
 }
 
 /**
+ * ## ARIA
+ *
+ * If the skeleton is a placeholder for a particular region of a page, you should set the
+ * `aria-busy` attribute to `true` on that region until it has finished loading.
  *
  * Demos:
  *

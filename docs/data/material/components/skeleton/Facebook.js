@@ -14,7 +14,7 @@ function Media(props) {
   const { loading = false } = props;
 
   return (
-    <Card sx={{ maxWidth: 345, m: 2 }}>
+    <Card sx={{ maxWidth: 345, m: 2 }} aria-busy={loading}>
       <CardHeader
         avatar={
           loading ? (
