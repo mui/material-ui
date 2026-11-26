@@ -129,7 +129,7 @@ Tested by: unit `Fab.test.js`
 - An icon-only Fab has no visible text. Its accessible name comes from `aria-label`, `aria-labelledby`, a `Tooltip` title, or `titleAccess` on the icon. The author must supply it, and the component does not warn when it is missing.
 - An extended Fab takes its name from its visible label.
 - `SvgIcon` and `Icon` children are `aria-hidden`, unless `SvgIcon` sets `titleAccess`. The author must hide an icon of another type.
-- A unit test confirms that `aria-label` names the Fab and that the icon is hidden. axe-core `button-name` confirms that each demo has a name, and `aria-command-name` confirms the non-native fixture. Both rules are listed under 4.1.2.
+- A unit test confirms that `aria-label` names the Fab. The `SvgIcon` tests cover the default `aria-hidden`. axe-core `button-name` confirms that each demo has a name, and `aria-command-name` confirms the non-native fixture. Both rules are listed under 4.1.2.
 
 **Manual testing steps**
 
@@ -189,7 +189,7 @@ Tested by: unit `Fab.test.js` · axe-core `color-contrast` ❌
 
 <!-- 1.4.3:start -->
 
-- An extended Fab renders `contrastText` on `main`, like a contained Button. `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. A unit test confirms that only these colors fail, from the [palette contrast contract](../../test/contrastContract.ts). axe-core `color-contrast` records the failure.
+- An extended Fab renders `contrastText` on `main`, like a contained Button. `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. A unit test picks the threshold from the rendered font size and weight. It confirms that only these colors fail, from the [palette contrast contract](../../test/contrastContract.ts). axe-core `color-contrast` records the failure.
 - On hover, the fill changes to `dark`. Each color then reaches `4.5:1`, except `warning` at `3.79:1`.
 - On keyboard focus and on press, the ripple paints `contrastText` at `30%` over the label. Each palette color is then less than `4.5:1`: `2.23:1` (`warning`) to `3.57:1` (`secondary`) on focus, and up to `4.16:1` on a mouse press. This also applies to a contained Button.
 - The `focusVisible` theme ring does not remove the focus ripple. To keep the label on the plain fill, set `disableFocusRipple` with the ring.
@@ -236,7 +236,7 @@ Tested by: unit `Fab.test.js`
 
 <!-- 1.4.11:start -->
 
-- The icon is `contrastText` on `main`. A unit test confirms that it reaches `3:1` against the fill at rest, in each of the six palette colors (`primary` to `warning`). `warning` is the lowest, at `3.11:1`.
+- The icon is `contrastText` on `main`. A browser unit test reads the computed `fill` of the svg. It confirms that the icon reaches `3:1` against the fill at rest, in each of the six palette colors (`primary` to `warning`). `warning` is the lowest, at `3.11:1`.
 - The focus indicator is the focus ripple: `contrastText` at `30%` opacity over the fill. It is `1.39:1` (`warning`) to `1.85:1` (`default`) against the fill, which is less than `3:1`. The box-shadow does not change on focus.
 - On the ripple, the icon is less than `3:1` in `warning` (`2.23:1`), `info` (`2.54:1`), `primary` (`2.80:1`), and `success` (`2.92:1`).
 - The `focusVisible` theme ring does not remove the focus ripple. Set `disableFocusRipple` with the ring, so that the icon stays on the plain fill.
@@ -478,7 +478,6 @@ Tested by: unit `Fab.test.js`
 <!-- 3.2.2:start -->
 
 - A unit test activates a toggle Fab with <kbd>Enter</kbd>. `aria-pressed` changes, and focus stays on the Fab.
-- A second unit test changes `aria-pressed` from the parent. Focus stays, and `onClick` does not run.
 
 <!-- 3.2.2:end -->
 
