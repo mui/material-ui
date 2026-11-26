@@ -1,24 +1,40 @@
 import * as React from 'react';
-import AccordionActions, { AccordionActionsProps } from '@mui/material/AccordionActions';
-import AccordionDetails, { AccordionDetailsProps } from '@mui/material/AccordionDetails';
-import AlertTitle, { AlertTitleProps } from '@mui/material/AlertTitle';
-import Card, { CardProps } from '@mui/material/Card';
-import CardActions, { CardActionsProps } from '@mui/material/CardActions';
-import CardContent, { CardContentProps } from '@mui/material/CardContent';
-import DialogActions, { DialogActionsProps } from '@mui/material/DialogActions';
-import DialogContent, { DialogContentProps } from '@mui/material/DialogContent';
-import DialogContentText, { DialogContentTextProps } from '@mui/material/DialogContentText';
-import DialogTitle, { DialogTitleProps } from '@mui/material/DialogTitle';
-import FormGroup, { FormGroupProps } from '@mui/material/FormGroup';
-import ListItemAvatar, { ListItemAvatarProps } from '@mui/material/ListItemAvatar';
-import ListItemIcon, { ListItemIconProps } from '@mui/material/ListItemIcon';
-import ListItemSecondaryAction, {
-  ListItemSecondaryActionProps,
-} from '@mui/material/ListItemSecondaryAction';
-import TableBody, { TableBodyProps } from '@mui/material/TableBody';
-import TableContainer, { TableContainerProps } from '@mui/material/TableContainer';
-import TableFooter, { TableFooterProps } from '@mui/material/TableFooter';
-import TableHead, { TableHeadProps } from '@mui/material/TableHead';
+import type { AccordionActionsProps } from '@mui/material/AccordionActions';
+import AccordionActions from '@mui/material/AccordionActions';
+import type { AccordionDetailsProps } from '@mui/material/AccordionDetails';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import type { AlertTitleProps } from '@mui/material/AlertTitle';
+import AlertTitle from '@mui/material/AlertTitle';
+import type { CardProps } from '@mui/material/Card';
+import Card from '@mui/material/Card';
+import type { CardActionsProps } from '@mui/material/CardActions';
+import CardActions from '@mui/material/CardActions';
+import type { CardContentProps } from '@mui/material/CardContent';
+import CardContent from '@mui/material/CardContent';
+import type { DialogActionsProps } from '@mui/material/DialogActions';
+import DialogActions from '@mui/material/DialogActions';
+import type { DialogContentProps } from '@mui/material/DialogContent';
+import DialogContent from '@mui/material/DialogContent';
+import type { DialogContentTextProps } from '@mui/material/DialogContentText';
+import DialogContentText from '@mui/material/DialogContentText';
+import type { DialogTitleProps } from '@mui/material/DialogTitle';
+import DialogTitle from '@mui/material/DialogTitle';
+import type { FormGroupProps } from '@mui/material/FormGroup';
+import FormGroup from '@mui/material/FormGroup';
+import type { ListItemAvatarProps } from '@mui/material/ListItemAvatar';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import type { ListItemIconProps } from '@mui/material/ListItemIcon';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import type { ListItemSecondaryActionProps } from '@mui/material/ListItemSecondaryAction';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import type { TableBodyProps } from '@mui/material/TableBody';
+import TableBody from '@mui/material/TableBody';
+import type { TableContainerProps } from '@mui/material/TableContainer';
+import TableContainer from '@mui/material/TableContainer';
+import type { TableFooterProps } from '@mui/material/TableFooter';
+import TableFooter from '@mui/material/TableFooter';
+import type { TableHeadProps } from '@mui/material/TableHead';
+import TableHead from '@mui/material/TableHead';
 
 function expectType<Expected, Actual extends Expected>(actual: Actual) {}
 
@@ -93,6 +109,9 @@ function CallbackRefs() {
       <FormGroup ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
       <ListItemAvatar ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
       <ListItemIcon ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
+      <AlertTitle ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
+      <DialogTitle ref={(node) => expectType<HTMLElement | null, typeof node>(node)} />
+      <DialogContentText ref={(node) => expectType<HTMLElement | null, typeof node>(node)} />
       <Card ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
       <CardContent ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
       <TableContainer ref={(node) => expectType<HTMLDivElement | null, typeof node>(node)} />
