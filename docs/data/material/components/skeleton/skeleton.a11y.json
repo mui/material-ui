@@ -1,0 +1,158 @@
+{
+  "Animations": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      }
+    }
+  },
+  "SkeletonA11yAnimationMatrix": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      }
+    }
+  },
+  "SkeletonA11yStates": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "pass",
+        "tags": ["wcag2aa"]
+      },
+      "duplicate-id-aria": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      }
+    }
+  },
+  "SkeletonColor": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      }
+    }
+  },
+  "SkeletonTypography": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "pass",
+        "tags": ["wcag2aa"]
+      }
+    }
+  },
+  "Variants": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      }
+    }
+  }
+}

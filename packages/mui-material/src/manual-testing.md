@@ -162,6 +162,16 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **3.3.2 Labels or Instructions** — every group has a visible label or instruction. A group with no visible label fails.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the group exposes its `radiogroup` role, an author-supplied name, and the current selected value with change notification.
 
+## Skeleton
+
+5 checks · full procedures in [`Skeleton/accessibility.md`](./Skeleton/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the placeholders and any wrapped children are not exposed, and the region carries the busy state when the author sets `aria-busy`.
+- [ ] 🔍 **1.4.11 Non-text Contrast** — the placeholder is decorative and not required to understand the content, so it is not held to `3:1`. Its default fill is below `3:1` (about `1.28:1` light, `1.44:1` dark) by design.
+- [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the user can pause, stop or hide the motion, or it stops within five seconds. The component supplies no such control; `animation={false}`, `motion.reducedMotion`, or removing the placeholder once content arrives is what keeps it conformant.
+- [ ] 🔍 **2.3.1 Three Flashes or Below Threshold** — no part flashes more than three times per second.
+- [ ] 🔍 **4.1.3 Status Messages** — the loaded content is announced without the user moving focus to it. It is not by default; set `aria-busy` on the region and add a polite live region in the application to convey it.
+
 ## Switch
 
 8 checks · full procedures in [`Switch/accessibility.md`](./Switch/accessibility.md)

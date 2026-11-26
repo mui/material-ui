@@ -1,6 +1,6 @@
 {
   "standard": "WCAG 2.2 Level A and AA",
-  "componentCount": 14,
+  "componentCount": 15,
   "totals": {
     "rated": 32,
     "supports": 26,
@@ -139,7 +139,7 @@
       "level": "A",
       "conformance": "Partially Supports",
       "flagged": true,
-      "affected": ["Button", "CircularProgress", "IconButton", "LinearProgress"]
+      "affected": ["Button", "CircularProgress", "IconButton", "LinearProgress", "Skeleton"]
     },
     {
       "number": "2.3.1",
@@ -275,7 +275,14 @@
       "level": "AA",
       "conformance": "Partially Supports",
       "flagged": true,
-      "affected": ["Button", "CircularProgress", "IconButton", "LinearProgress", "TextField"]
+      "affected": [
+        "Button",
+        "CircularProgress",
+        "IconButton",
+        "LinearProgress",
+        "Skeleton",
+        "TextField"
+      ]
     }
   ],
   "components": [
@@ -2338,6 +2345,95 @@
         "doesNotSupport": 0,
         "verified": 4,
         "automated": 2
+      }
+    },
+    {
+      "component": "Skeleton",
+      "counts": {
+        "supports": 4,
+        "partiallySupports": 2,
+        "doesNotSupport": 0,
+        "notApplicable": 49,
+        "flagged": 4,
+        "rated": 6
+      },
+      "gaps": [
+        {
+          "number": "2.2.2",
+          "name": "Pause, Stop, Hide",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "4.1.3",
+          "name": "Status Messages",
+          "conformance": "Partially Supports"
+        }
+      ],
+      "criteria": [
+        {
+          "number": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Hybrid",
+          "flagged": false
+        },
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Shared",
+          "group": "Automated",
+          "flagged": false
+        },
+        {
+          "number": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "2.2.2",
+          "name": "Pause, Stop, Hide",
+          "level": "A",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "2.3.1",
+          "name": "Three Flashes or Below Threshold",
+          "level": "A",
+          "conformance": "Supports",
+          "responsibility": "Component",
+          "group": "Manual",
+          "flagged": true
+        },
+        {
+          "number": "4.1.3",
+          "name": "Status Messages",
+          "level": "AA",
+          "conformance": "Partially Supports",
+          "responsibility": "Shared",
+          "group": "Manual",
+          "flagged": true
+        }
+      ],
+      "summary": {
+        "rated": 6,
+        "levelA": 3,
+        "levelAA": 3,
+        "supports": 4,
+        "partiallySupports": 2,
+        "doesNotSupport": 0,
+        "verified": 2,
+        "automated": 1
       }
     },
     {

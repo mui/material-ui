@@ -193,6 +193,7 @@ Edit the JSON files, not this table.
 | [LinearProgress](./LinearProgress/accessibility.md)       | 8           | 3                     | 0                   | 44                | —           | 5/11       |
 | [Radio](./Radio/accessibility.md)                         | 24          | 1                     | 0                   | 30                | —           | 2/25       |
 | [RadioGroup](./RadioGroup/accessibility.md)               | 7           | 0                     | 0                   | 30                | 18          | 3/7        |
+| [Skeleton](./Skeleton/accessibility.md)                   | 4           | 2                     | 0                   | 49                | —           | 4/6        |
 | [Switch](./Switch/accessibility.md)                       | 24          | 1                     | 0                   | 30                | —           | 2/25       |
 | [TextField](./TextField/accessibility.md)                 | 25          | 3                     | 0                   | 27                | —           | 4/28       |
 | [ToggleButton](./ToggleButton/accessibility.md)           | 21          | 3                     | 0                   | 31                | —           | 2/24       |
