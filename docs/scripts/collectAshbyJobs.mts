@@ -243,7 +243,11 @@ function remarkNormalizeAshbyJob({ applyUrl }: { applyUrl?: string } = {}) {
     }
 
     for (const [index, child] of tree.children.entries()) {
-      if (normalizeExistingApplyLinks(child) && existingApplyLinkBlockIndex === -1) {
+      if (
+        normalizeExistingApplyLinks(child) &&
+        existingApplyLinkBlockIndex === -1 &&
+        child.type === 'paragraph'
+      ) {
         existingApplyLinkBlockIndex = index;
       }
     }

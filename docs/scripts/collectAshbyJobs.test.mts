@@ -105,6 +105,25 @@ describe('collectAshbyJobs', () => {
         ].join('\n'),
       );
     });
+    it('preserves mixed sections when an application link is nested inside a list', () => {
+      const applyUrl = 'https://jobs.ashbyhq.com/MUI/5678/application?utm_source=ZNRrPGBkqO';
+      const html =
+        '<h2>Requirements</h2><ul><li><p>TypeScript</p></li><li><p>React</p></li><li><p><a href="https://jobs.ashbyhq.com/MUI/5678/application">Apply here</a></p></li></ul>';
+
+      expect(htmlToMarkdown(html, { applyUrl })).to.equal(
+        [
+          '## Requirements',
+          '',
+          '- TypeScript',
+          '- React',
+          `- [Apply here](${applyUrl})`,
+          '',
+          '## How to apply',
+          '',
+          `[Apply now for this position 📮](${applyUrl})`,
+        ].join('\n'),
+      );
+    });
   });
 
   describe('isActiveAshbyJob', () => {
