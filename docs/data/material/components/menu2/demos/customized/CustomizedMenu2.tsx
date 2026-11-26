@@ -23,7 +23,6 @@ const StyledPopup = styled((props: PopupProps) => (
     '& .MuiSvgIcon-root': {
       fontSize: 18,
       color: theme.palette.text.secondary,
-      marginRight: theme.spacing(1.5),
     },
     '&:active': {
       backgroundColor: alpha(
@@ -50,19 +49,10 @@ export default function CustomizedMenu2() {
         }
       />
       <StyledPopup>
-        <MenuItem>
-          <EditIcon />
-          Edit
-        </MenuItem>
-        <MenuItem>
-          <FileCopyIcon />
-          Duplicate
-        </MenuItem>
+        <MenuItem startAdornment={<EditIcon />}>Edit</MenuItem>
+        <MenuItem startAdornment={<FileCopyIcon />}>Duplicate</MenuItem>
         <MenuSeparator />
-        <MenuItem>
-          <ArchiveIcon />
-          Archive
-        </MenuItem>
+        <MenuItem startAdornment={<ArchiveIcon />}>Archive</MenuItem>
       </StyledPopup>
     </Menu>
     // @focus-end

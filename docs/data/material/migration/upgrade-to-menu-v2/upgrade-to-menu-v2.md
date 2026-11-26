@@ -46,6 +46,19 @@ Apps that don't import Menu v2 don't bundle Base UI.
 
 ## How to upgrade
 
+:::warning
+Menu v2 uses a different API approach: build each menu only from Menu v2 parts.
+Do not put classic Menu and List components, such as `@mui/material/MenuItem`, `MenuList`, `Divider`, and `ListSubheader`, inside a Menu v2 menu:
+
+- A classic `MenuItem` inside `MenuPopup` throws an error, also when you pass it to `render`.
+- Menu v2 does not register other interactive components, such as `ListItemButton`, as items.
+  Arrow keys and typeahead skip them, and a click on them does not close the menu.
+- `Divider` and `ListSubheader` do not get the menu spacing or the group label relationship.
+
+To use another component as a part, pass it to the `render` prop of that part.
+Menu v2 items also throw an error inside the classic `Menu`.
+:::
+
 ### Static menu lists
 
 For always-visible lists, such as [Menu List composition](/material-ui/react-menu/#composition-with-menu-list), keep `@mui/material/MenuList` and `@mui/material/MenuItem`.
@@ -75,6 +88,7 @@ Each part is the default export of its own subpath:
 
 Other parts follow the `@mui/material/Unstable_Menu2<Part>` pattern, such as `Unstable_Menu2Separator`.
 The examples omit `2` from local names, but not from import paths.
+In the Menu v2 code, `MenuItem` is `Unstable_Menu2Item`, not `@mui/material/MenuItem`.
 
 ### 2. Replace the anchor state with a trigger
 
@@ -307,6 +321,7 @@ See [Transitions](/material-ui/react-menu2/#transitions).
 
 ### 6. Update the items
 
+Replace each classic component in the menu with a Menu v2 part or prop.
 Separators, groups, links, and checked items become dedicated parts:
 
 - `<Divider />` between items becomes `MenuSeparator`, which controls its own margins.
@@ -397,9 +412,8 @@ Move icons and shortcut hints to the item props:
 ```
 
 `<ListItemText inset>` becomes `inset` on the item.
-`ListItemIcon` and `ListItemText` children still render, but with their List styles.
-`ListItemText` adds vertical margins, and `ListItemText inset` adds a 56px left padding.
-Move them to the props to keep the menu layout.
+Do not keep `ListItemIcon` and `ListItemText` as item children.
+They keep their List styles: `ListItemText` adds vertical margins, and `ListItemText inset` adds a 56px left padding.
 
 ### 7. Update the theme keys
 

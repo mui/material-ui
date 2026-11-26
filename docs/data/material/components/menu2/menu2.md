@@ -39,6 +39,11 @@ Each component is the default export of its own `@mui/material/Unstable_Menu2*` 
 The examples use local names such as `Menu` and `MenuItem`.
 The import paths, theme keys, and CSS classes keep their `Menu2` names.
 
+Build each menu only from these parts.
+Do not put classic Menu and List components, such as `@mui/material/MenuItem`, `Divider`, and `ListSubheader`, inside a Menu v2 menu.
+To use another component as a part, pass it to the `render` prop of that part.
+See [Render and root slots](#render-and-root-slots).
+
 ## Why a new menu component
 
 Submenus are [one of the most requested Menu features since 2018](https://github.com/mui/material-ui/issues/11723), but the current modal-based Menu can't support them.
