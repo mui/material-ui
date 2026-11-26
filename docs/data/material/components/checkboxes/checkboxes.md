@@ -84,7 +84,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"component": "file://./demos/customized/index.ts"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/checkbox).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://www.mui-treasury.com/primitive/checkbox).
 
 ## When to use
 

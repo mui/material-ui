@@ -17,7 +17,7 @@ Diamond sponsors are those who've pledged $1,500/month or more to the MUI organi
 
 ## Gold sponsors
 
-via [Open Collective](https://opencollective.com/mui-org) or via [the for-profit](https://www.patreon.com/oliviertassinari)
+via [Open Collective](https://opencollective.com/mui-org) or via [the for-profit](https://www.patreon.com/cw/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=288 3x" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
@@ -35,8 +35,6 @@ For example, it could be because the service breaks another service's Terms of s
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="socialwick.com/followers" href="https://www.socialwick.com/instagram/followers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Buy Instagram followers.">SocialWick</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="follower24.de" href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Social media success.">Follower24</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="views4you.com" href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Maximize Social Media Impact.">Views4You</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="instant-famous.com" href="https://instant-famous.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Grow Your Social Network.">InstantFamous</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tokboostly.com" href="https://tokboostly.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Premium TikTok Growth.">TokBoostly</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="socialboosting.com" href="https://www.socialboosting.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instagram & TikTok followers, likes, views.">SocialBoosting</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="echofollowers.com" href="https://echofollowers.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="TikTok growth services.">EchoFollowers</a>
 </p>

@@ -791,3 +791,31 @@ function handleInputChange(
   reason: AutocompleteInputChangeReason,
 ) {}
 <Autocomplete options={['one']} onInputChange={handleInputChange} renderInput={() => null} />;
+
+function CustomChip(props: { customChipProp: number; children?: React.ReactNode }) {
+  return <span>{props.customChipProp}</span>;
+}
+
+<UncastStyledAutocomplete
+  {...rawWrapperProps}
+  slotProps={{ chip: { size: 'small' }, listbox: { sx: { maxHeight: 200 } } }}
+/>;
+<UncastStyledAutocomplete
+  {...rawWrapperProps}
+  // @ts-expect-error Uncast styled wrappers keep typed default Chip slot props.
+  slotProps={{ chip: { clickable: 'invalid' } }}
+/>;
+
+<Autocomplete<Option, true, false, false, typeof CustomChip>
+  multiple
+  options={options}
+  renderInput={() => null}
+  slotProps={{ chip: { customChipProp: 1 } }}
+/>;
+<Autocomplete<Option, true, false, false, typeof CustomChip>
+  multiple
+  options={options}
+  renderInput={() => null}
+  // @ts-expect-error Custom ChipComponent prop types must still apply when specified.
+  slotProps={{ chip: { customChipProp: 'invalid' } }}
+/>;
