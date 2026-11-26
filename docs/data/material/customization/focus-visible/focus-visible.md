@@ -75,12 +75,14 @@ Components with their own focus box-shadow compose both layers — for example, 
 :::
 
 :::warning
-Use a single box-shadow layer. A comma-separated value is not supported: only the first layer is inset on the inner focus indicator components, so every layer after it stays outset and is clipped away.
+Use a single box-shadow layer. A comma-separated value is not supported: only the first layer is inset on the inner focus indicator components, so every layer after it stays outset and is clipped away. To use several layers on those components, set them in [`insetOverrides`](#customizing-the-inner-focus-indicator).
 
 For a two-color ring, stack `outlineColor` and `boxShadow` as shown above rather than stacking two box-shadow layers.
 :::
 
 {{"component": "file://./demos/box-shadow/index.ts"}}
+
+To draw a different box-shadow on the inner focus indicator components, see [Customizing the inner focus indicator](#customizing-the-inner-focus-indicator).
 
 ### Replace outline with box-shadow
 
@@ -97,6 +99,67 @@ createTheme({
 
 :::success
 Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [forced-colors mode](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) the browser strips the box-shadow and forces the outline to a system color, so a transparent outline reappears as the indicator. `outline: 'none'` removes it, leaving no keyboard focus indicator at all.
+:::
+
+### Customizing the inner focus indicator
+
+Starting from v9.6, use `insetOverrides` to change the indicator of the [inner focus indicator](#inner-focus-indicator) components.
+It takes CSS properties, and those components merge them over the rest of `focusVisible`:
+
+```js
+createTheme({
+  focusVisible: {
+    outlineWidth: 2,
+    outlineOffset: 1,
+    boxShadow: '0 0 0 1px #fff',
+    insetOverrides: {
+      boxShadow: 'inset 0 0 0 3px #fff',
+    },
+  },
+});
+```
+
+{{"component": "file://./demos/inset-overrides/index.ts"}}
+
+Without `insetOverrides`, the inner focus indicator components use `outlineOffset: -outlineWidth`, so the outline sits just inside the edge.
+They also draw the `boxShadow` inset.
+With a keyword `outlineWidth` (`thin`, `medium`, or `thick`), they use the negative `outlineOffset` instead.
+
+These components set the whole indicator in their own focus selector, so a style override of another component does not change it.
+For example, a `MuiButtonBase` override does not reach `MenuItem`, and a `MuiIconButton` override does not reach the `TablePagination` action buttons.
+To change their indicator, use `insetOverrides` or the style overrides of each component.
+
+:::info
+`Tab` draws the outline at least 6px inside its edge, so an outline up to 4px wide does not overlap the selected tab indicator.
+Only the outline moves: an inset `boxShadow` from `insetOverrides` stays at the edge, so on `Tab` it sits outside the outline.
+To draw a different indicator on `Tab`, use `theme.applyFocusVisible()` in a `MuiTab` style override, as described in [Choosing the indicator of a component](#choosing-the-indicator-of-a-component).
+:::
+
+### Choosing the indicator of a component
+
+Each component already draws its indicator outside or inside its edge, based on where it usually sits.
+When a component sits somewhere else, use `theme.applyFocusVisible('outset')` or `theme.applyFocusVisible('inset')` in its focus selector to draw the other indicator.
+`'outset'` returns `theme.focusVisible`, and `'inset'` returns it with `insetOverrides` merged over it.
+Call it on the theme, as `theme.applyFocusVisible()`. A destructured method doesn't work.
+
+For example, a menu with padding leaves room to draw the indicator of `MenuItem` outside:
+
+{{"component": "file://./demos/offset/index.ts"}}
+
+The same method draws the inner indicator on a custom component inside a clipping container:
+
+```js
+const Item = styled('div')(({ theme }) => ({
+  '&:focus-visible': theme.applyFocusVisible('inset'),
+}));
+```
+
+`'outset'` only replaces the properties that `theme.focusVisible` sets.
+If `insetOverrides` sets another property, such as `borderRadius`, set its outside value in the same override.
+
+:::warning
+Move the indicator outside only when the container leaves room for it.
+Otherwise, the container clips the indicator, or the indicator overlaps neighboring elements.
 :::
 
 ## Full focus visible demo

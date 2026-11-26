@@ -17,7 +17,6 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { getTransitionStyles } from '../transitions/utils';
-import { outsetFocusRing } from '../styles/focusVisible';
 
 function Identity(x) {
   return x;
@@ -283,7 +282,7 @@ export const SliderThumb = styled('span', {
       },
     },
     ...(theme.focusVisible && {
-      [`&.${sliderClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
+      [`&.${sliderClasses.focusVisible}`]: theme.focusVisible,
     }),
     variants: [
       {
@@ -877,10 +876,11 @@ Slider.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -981,10 +981,8 @@ Slider.propTypes /* remove-proptypes */ = {
    * The size of the slider.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['small', 'medium']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}
