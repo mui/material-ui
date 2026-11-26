@@ -335,6 +335,7 @@ describe('<Link />', () => {
 
         await user.tab();
         await user.keyboard('{Enter}');
+        expect(handleClick.callCount).to.equal(1);
         await user.keyboard(' ');
         expect(handleClick.callCount).to.equal(2);
       });
