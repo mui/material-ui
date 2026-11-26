@@ -272,19 +272,22 @@ Tested by: unit `Button.test.js`
 <!-- 2.4.3:start -->
 
 - The component sits in natural DOM order with no positive `tabIndex`, and disabled or loading buttons leave the order, so it is one correct focus stop.
-- A focused button that turns `loading` becomes disabled. Chromium then moves focus to the page body, so the next <kbd>Tab</kbd> starts again from the top of the page. The unit tests run in jsdom too, which keeps focus on the button, so they do not show this.
+- A focused button that turns `loading` becomes disabled, and the browser moves focus to the page body. The browser keeps the position of the button, so the next <kbd>Tab</kbd> goes to the element after it. Chromium, Firefox, and WebKit all do this.
+- Until the next <kbd>Tab</kbd>, no element shows focus, key handlers on the button do not run, and a screen reader can lose its position on the page. No unit test covers this.
 - Order across controls is the surrounding layout's responsibility.
 - Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (default `tabIndex` is `0`; disabled and loading buttons leave the order).
 
 **Manual testing steps**
 
-1. Press <kbd>Tab</kbd> to a button that turns `loading` when you activate it.
-2. Press <kbd>Enter</kbd>.
-3. Press <kbd>Tab</kbd> again, and note which element gets focus.
+1. In Chrome DevTools, add a Console live expression for `document.activeElement`.
+2. Press <kbd>Tab</kbd> to a button that turns `loading` when you activate it.
+3. Press <kbd>Enter</kbd>, and note the element that the live expression shows while the button is `loading`.
+4. Press <kbd>Tab</kbd>, and note which element gets focus.
+5. With a screen reader on, do steps 2 and 3 again, and note what the screen reader announces.
 
 <!-- 2.4.3:end -->
 
-**Pass:** <!-- 2.4.3:pass:start -->focus moves to the next element after the button.<!-- 2.4.3:pass:end -->
+**Pass:** <!-- 2.4.3:pass:start -->focus stays on the button while it is `loading`, and the screen reader stays on the button. The next Tab press moves focus to the element after the button.<!-- 2.4.3:pass:end -->
 
 #### 2.4.4 Link Purpose (In Context) · A
 
