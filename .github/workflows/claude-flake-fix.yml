@@ -28,7 +28,7 @@ jobs:
       contents: write # push the fix branch (publish job)
       pull-requests: write # open the draft PR (publish job)
       issues: write # tracking issue report (publish job)
-    uses: mui/mui-public/.github/workflows/claude-flake-fix-workflow.yml@45a1c506a5ffb59e938aea61647ccb4a8dc4f362 # master
+    uses: mui/mui-public/.github/workflows/claude-flake-fix-workflow.yml@d8dbf9990bf4e33fc33bcb6f9fa692c54e4cfb4b # master
     with:
       dry-run: ${{ inputs.dry-run || false }}
       model: ${{ inputs.model }} # blank falls through to mui-public's central default

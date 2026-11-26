@@ -9,16 +9,11 @@ packages:
 engineStrict: true
 updateNotifier: false
 autoDedupe: true
-# Peer suffixes list only name@version, so a peer's own peers (e.g. the optional yaml of vite)
-# do not split one package into several lockfile entries.
-dedupePeers: true
 blockExoticSubdeps: true
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@mui/*'
   - '@base-ui/*'
-  # Renovate security update: postcss@8.5.23
-  - postcss@8.5.23
 # Drop exemptions from minimumReleaseAgeExclude once the lockfile stops resolving them,
 # so the security-update entries Renovate adds do not accumulate.
 minimumReleaseAgeExcludePrune: true
@@ -42,14 +37,13 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
-    '@mui/internal-docs-infra': '0.13.1-canary.33'
+    '@mui/internal-docs-infra': '0.13.1-canary.38'
 
 overrides:
-  '@mui/internal-docs-infra': '0.13.1-canary.33'
   # Bundled twice in the docs build
   'docs>react-is': '19.3.1'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
-  caniuse-lite: '^1.0.30001823'
+  caniuse-lite: '^1.0.30001826'
   '@types/node': '22.20.5'
   cross-fetch: '^4.1.0'
   '@pigment-css/react': '0.0.31'
