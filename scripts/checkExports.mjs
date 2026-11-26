@@ -35,44 +35,89 @@ const PACKAGES = {
   '@mui/types': { dir: 'packages/mui-types', pathOnly: [] },
 };
 
-function link(target, linkPath) {
-  if (fs.existsSync(linkPath)) {
-    return;
+// Finds `name` the way Node does from inside `fromDir`, so pnpm's sibling layout works.
+function findPackage(fromDir, name) {
+  for (let dir = fromDir; ; dir = path.dirname(dir)) {
+    if (path.basename(dir) !== 'node_modules') {
+      const candidate = path.join(dir, 'node_modules', name);
+      if (fs.existsSync(path.join(candidate, 'package.json'))) {
+        return fs.realpathSync(candidate);
+      }
+    }
+    if (path.dirname(dir) === dir) {
+      return null;
+    }
   }
-  fs.mkdirSync(path.dirname(linkPath), { recursive: true });
-  fs.symlinkSync(target, linkPath, 'dir');
 }
 
-// A consumer with every @mui package linked to its build output, and their third-party deps linked
-// from the workspace, so that TS resolves imports the way it would for a published install.
-function createConsumer() {
-  const consumerDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mui-check-exports-'));
+// A consumer with every @mui package linked to its build output, and all of their third-party deps
+// (transitively) linked from the workspace, so that TS resolves imports the way it would for a
+// published install. Returns the deps that more than one version was found for.
+function createConsumer(consumerDir) {
   const nodeModules = path.join(consumerDir, 'node_modules');
+  const linked = new Map(); // name -> real path
+  const conflicts = {};
+  const link = (name, target) => {
+    if (linked.has(name)) {
+      if (linked.get(name) !== target) {
+        conflicts[name] ??= new Set([linked.get(name)]);
+        conflicts[name].add(target);
+      }
+      return false;
+    }
+    linked.set(name, target);
+    fs.mkdirSync(path.dirname(path.join(nodeModules, name)), { recursive: true });
+    fs.symlinkSync(target, path.join(nodeModules, name), 'dir');
+    return true;
+  };
+
+  const queue = [];
   for (const [name, { dir }] of Object.entries(PACKAGES)) {
     const buildDir = path.join(workspaceRoot, dir, 'build');
     if (!fs.existsSync(path.join(buildDir, 'package.json'))) {
       throw new Error(`${name} isn't built (${path.relative(workspaceRoot, buildDir)} is missing)`);
     }
-    link(buildDir, path.join(nodeModules, name));
+    link(name, buildDir);
+    // Deps of a workspace package are installed next to its source, not its build output.
+    queue.push({ pkgJsonDir: buildDir, resolveFrom: path.join(workspaceRoot, dir) });
   }
-  for (const { dir } of Object.values(PACKAGES)) {
-    const depsDir = path.join(workspaceRoot, dir, 'node_modules');
-    if (!fs.existsSync(depsDir)) {
-      continue;
-    }
-    for (const entry of fs.readdirSync(depsDir)) {
-      if (entry.startsWith('.') || entry === '@mui') {
+  while (queue.length > 0) {
+    const { pkgJsonDir, resolveFrom } = queue.shift();
+    const pkg = JSON.parse(fs.readFileSync(path.join(pkgJsonDir, 'package.json'), 'utf8'));
+    const deps = Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies });
+    for (const dep of deps) {
+      if (PACKAGES[dep]) {
         continue;
       }
-      const names = entry.startsWith('@')
-        ? fs.readdirSync(path.join(depsDir, entry)).map((scoped) => `${entry}/${scoped}`)
-        : [entry];
-      for (const name of names) {
-        link(fs.realpathSync(path.join(depsDir, name)), path.join(nodeModules, name));
+      const target = findPackage(resolveFrom, dep);
+      if (target && link(dep, target)) {
+        queue.push({ pkgJsonDir: target, resolveFrom: target });
       }
     }
   }
-  return consumerDir;
+  return Object.fromEntries(Object.entries(conflicts).map(([name, paths]) => [name, [...paths]]));
+}
+
+// Every module specifier used by a declaration file: imports, re-exports and `import('...')` types.
+function moduleSpecifiers(sourceFile) {
+  const specifiers = [];
+  (function visit(node) {
+    if (
+      (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+      node.moduleSpecifier &&
+      ts.isStringLiteral(node.moduleSpecifier)
+    ) {
+      specifiers.push(node.moduleSpecifier);
+    } else if (
+      ts.isImportTypeNode(node) &&
+      ts.isLiteralTypeNode(node.argument) &&
+      ts.isStringLiteral(node.argument.literal)
+    ) {
+      specifiers.push(node.argument.literal);
+    }
+    ts.forEachChild(node, visit);
+  })(sourceFile);
+  return specifiers;
 }
 
 function checkPackage(consumerDir, pkgName, pathOnlyList) {
@@ -81,9 +126,17 @@ function checkPackage(consumerDir, pkgName, pathOnlyList) {
   const pkg = JSON.parse(fs.readFileSync(path.join(pkgDir, 'package.json'), 'utf8'));
 
   // 1. Public subpaths with types, straight from the published exports map (wildcards already expanded by the build).
+  // `null` entries block a path, so they're skipped.
   const subpaths = Object.entries(pkg.exports)
-    .filter(([k, v]) => !k.includes('*') && typeof v === 'object')
+    .filter(
+      ([k, v]) =>
+        !k.includes('*') &&
+        v !== null &&
+        typeof v === 'object' &&
+        JSON.stringify(v).includes('"types"'),
+    )
     .map(([k]) => k);
+  const stalePathOnly = [...pathOnly].filter((sub) => !subpaths.includes(sub));
 
   // 2. One ESM entry; TS resolves each specifier through `exports` like a consumer would.
   const specifier = (sub) => (sub === '.' ? pkgName : `${pkgName}/${sub.slice(2)}`);
@@ -103,6 +156,36 @@ function checkPackage(consumerDir, pkgName, pathOnlyList) {
     types: ['react'],
   });
   const checker = program.getTypeChecker();
+
+  // An import that doesn't resolve turns into `any` without a diagnostic (skipLibCheck), which would
+  // hide whatever it was meant to export. So every import in a loaded declaration file has to resolve.
+  const unresolvedImports = new Set();
+  const options = program.getCompilerOptions();
+  const host = ts.createCompilerHost(options);
+  for (const sourceFile of program.getSourceFiles()) {
+    if (
+      sourceFile.fileName === entryFile ||
+      /[\\/]typescript[\\/]lib[\\/]/.test(sourceFile.fileName)
+    ) {
+      continue;
+    }
+    for (const literal of moduleSpecifiers(sourceFile)) {
+      const mode = ts.getModeForUsageLocation(sourceFile, literal, options);
+      const { resolvedModule } = ts.resolveModuleName(
+        literal.text,
+        sourceFile.fileName,
+        options,
+        host,
+        undefined,
+        undefined,
+        mode,
+      );
+      if (!resolvedModule) {
+        const file = path.relative(path.join(consumerDir, 'node_modules'), sourceFile.fileName);
+        unresolvedImports.add(`${file}: '${literal.text}'`);
+      }
+    }
+  }
 
   function resolve(s) {
     let t = s;
@@ -144,6 +227,8 @@ function checkPackage(consumerDir, pkgName, pathOnlyList) {
     return {
       entries: modules.size,
       unresolvedEntries,
+      unresolvedImports: [...unresolvedImports],
+      stalePathOnly,
       unreachable: {},
       sameNameDifferentSymbol: [],
     };
@@ -186,7 +271,14 @@ function checkPackage(consumerDir, pkgName, pathOnlyList) {
       }
     }
   }
-  return { entries: modules.size, unresolvedEntries, unreachable, sameNameDifferentSymbol };
+  return {
+    entries: modules.size,
+    unresolvedEntries,
+    unresolvedImports: [...unresolvedImports],
+    stalePathOnly,
+    unreachable,
+    sameNameDifferentSymbol,
+  };
 }
 
 const requested = process.argv.slice(2);
@@ -196,12 +288,18 @@ for (const name of requested) {
   }
 }
 
-const consumerDir = createConsumer();
+const consumerDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mui-check-exports-'));
 try {
+  const conflicts = createConsumer(consumerDir);
+  for (const [name, paths] of Object.entries(conflicts)) {
+    console.warn(`⚠ ${name} has more than one version, checking against ${paths[0]}`);
+  }
   for (const name of requested.length > 0 ? requested : Object.keys(PACKAGES)) {
     const result = checkPackage(consumerDir, name, PACKAGES[name].pathOnly);
     const failed =
       result.unresolvedEntries.length > 0 ||
+      result.unresolvedImports.length > 0 ||
+      result.stalePathOnly.length > 0 ||
       Object.keys(result.unreachable).length > 0 ||
       result.sameNameDifferentSymbol.length > 0;
     if (failed) {
