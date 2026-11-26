@@ -16,7 +16,7 @@ const theme = createTheme({ focusVisible: true });
 
 The default focus indicator is a two-pixel solid outline with `palette.primary.main` color, offset by two pixels:
 
-{{"demo": "FocusVisibleDefault.js"}}
+{{"component": "file://./demos/default/index.ts"}}
 
 :::info
 
@@ -29,7 +29,7 @@ CSS `outline` is the most common indicator found in the web standard that works 
 
 Some components, for example `Tab`, render the focus indicator from the inside to avoid `overflow`-clipped container or overlapping with other elements.
 
-{{"demo": "FocusVisibleInner.js"}}
+{{"component": "file://./demos/inner/index.ts"}}
 
 To see the full list of components that show inner focus indicator, check out the [full demo](#full-focus-visible-demo) below.
 
@@ -37,7 +37,7 @@ To see the full list of components that show inner focus indicator, check out th
 
 Components that support keyboard focus visible will show another layer of box-shadow indicator when they render within `AppBar`, `Alert`, and `SnackbarContent`. This comes by default when the focus visible feature is enabled, unless a custom box-shadow is provided.
 
-{{"demo": "FocusVisibleColoredSurface.js"}}
+{{"component": "file://./demos/colored-surface/index.ts"}}
 
 ## Customization
 
@@ -52,7 +52,7 @@ To customize the outline, for example changing the color, pass an object with sp
 createTheme({ focusVisible: { outlineColor: '#9c27b0' } });
 ```
 
-{{"demo": "FocusVisibleRecolor.js"}}
+{{"component": "file://./demos/recolor/index.ts"}}
 
 ### Use box-shadow as a second layer
 
@@ -80,7 +80,7 @@ Use a single box-shadow layer. A comma-separated value is not supported: only th
 For a two-color ring, stack `outlineColor` and `boxShadow` as shown above rather than stacking two box-shadow layers.
 :::
 
-{{"demo": "FocusVisibleBoxShadow.js"}}
+{{"component": "file://./demos/box-shadow/index.ts"}}
 
 To draw a different box-shadow on the inner focus indicator components, see [Customizing the inner focus indicator](#customizing-the-inner-focus-indicator).
 
@@ -119,7 +119,7 @@ createTheme({
 });
 ```
 
-{{"demo": "FocusVisibleInsetOverrides.js"}}
+{{"component": "file://./demos/inset-overrides/index.ts"}}
 
 Without `insetOverrides`, the inner focus indicator components use `outlineOffset: -outlineWidth`, so the outline sits just inside the edge.
 They also draw the `boxShadow` inset.
@@ -144,7 +144,7 @@ Call it on the theme, as `theme.applyFocusVisible()`. A destructured method does
 
 For example, a menu with padding leaves room to draw the indicator of `MenuItem` outside:
 
-{{"demo": "FocusVisibleOffset.js"}}
+{{"component": "file://./demos/offset/index.ts"}}
 
 The same method draws the inner indicator on a custom component inside a clipping container:
 
@@ -166,7 +166,7 @@ Otherwise, the container clips the indicator, or the indicator overlaps neighbor
 
 The complete set of components that render the focus indicator when `focusVisible` is enabled. Use the keyboard (<kbd>Tab</kbd> and arrow keys) to move focus and reveal the ring.
 
-{{"demo": "FullFocusVisibleDemo.js"}}
+{{"component": "file://./demos/full/index.ts"}}
 
 ## Caveats
 
@@ -180,7 +180,7 @@ The indicator hugs whatever box the svg renders at, so smaller replacement icons
 [`SvgIcon`](/material-ui/icons/#svgicon) is recommended to wrap custom svgs to get consistent styles.
 :::
 
-{{"demo": "FocusVisibleCustomIcons.js"}}
+{{"component": "file://./demos/custom-icons/index.ts"}}
 
 ### Component focus-visible styles are replaced by the theme
 

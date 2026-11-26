@@ -1,8 +1,0 @@
-<Toast.Provider limit={3}>
-  <ShowSnackbarButton />
-  <Toast.Portal>
-    <Viewport>
-      <Snackbars />
-    </Viewport>
-  </Toast.Portal>
-</Toast.Provider>
