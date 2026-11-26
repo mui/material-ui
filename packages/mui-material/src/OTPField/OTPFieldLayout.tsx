@@ -35,7 +35,9 @@ interface OTPFieldLayoutProps {
     React.HTMLAttributes<HTMLDivElement>;
 }
 
-const OTPFieldRoot = styled(FormControl, { name: 'MuiOTPField', slot: 'Root' })({});
+const OTPFieldRoot = styled(FormControl, { name: 'MuiOTPField', slot: 'Root' })({
+  maxWidth: '100%',
+});
 const OTPFieldLabel = styled(FormLabel, { name: 'MuiOTPField', slot: 'Label' })({});
 const OTPFieldFormHelperText = styled(FormHelperText, {
   name: 'MuiOTPField',
