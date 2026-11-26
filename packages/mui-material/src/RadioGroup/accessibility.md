@@ -58,6 +58,7 @@ Tested by: unit `RadioGroup.test.js`
 
 - RadioGroup sets `role="radiogroup"` on its `FormGroup` root (`RadioGroup.js`) and shares one `name`, generated with `useId` when none is passed, through `RadioGroupContext`, so the native radios form one programmatically grouped set. Covered by axe-core and unit tests.
 - The group's accessible name and any description are the author's to set: `aria-labelledby` to a `FormLabel` for the name, and `aria-describedby` for `FormHelperText`. Without them the grouping is exposed but unnamed and undescribed.
+- RadioGroup has no `required` prop and does not take `required` from a `FormControl`. Set `aria-required="true"` on the RadioGroup to expose a required group. The [FormLabel report](../FormLabel/accessibility.md#known-gaps) rates this gap under 1.3.1.
 
 **Manual testing steps**
 
