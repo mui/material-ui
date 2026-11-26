@@ -88,14 +88,21 @@ describe('collectAshbyJobs', () => {
       );
     });
 
-    it('does not duplicate the application link if it is already present', () => {
+    it('normalizes an existing application link to include utm_source and ensures the How to apply heading exists', () => {
       const applyUrl = 'https://jobs.ashbyhq.com/MUI/5678/application?utm_source=ZNRrPGBkqO';
-      const html = `<h2>How to apply</h2><p><a href="https://jobs.ashbyhq.com/MUI/5678/application">Apply here</a></p>`;
+      const html =
+        '<h2>Overview</h2><p>Join us.</p><p><a href="https://jobs.ashbyhq.com/MUI/5678/application">Apply here</a></p>';
 
       expect(htmlToMarkdown(html, { applyUrl })).to.equal(
-        ['## How to apply', '', '[Apply here](https://jobs.ashbyhq.com/MUI/5678/application)'].join(
-          '\n',
-        ),
+        [
+          '## Overview',
+          '',
+          'Join us.',
+          '',
+          '## How to apply',
+          '',
+          `[Apply here](${applyUrl})`,
+        ].join('\n'),
       );
     });
   });

@@ -214,46 +214,44 @@ function remarkNormalizeAshbyJob({ applyUrl }: { applyUrl?: string } = {}) {
     }
 
     const targetApplyUrl = applyUrl;
-    let hasApplyLink = false;
-    function checkApplyLink(node: MdastNode) {
+    let existingApplyLinkBlockIndex = -1;
+
+    function normalizeExistingApplyLinks(node: MdastNode): boolean {
+      let found = false;
       if (node.type === 'link' && node.url) {
         try {
           const expected = new URL(targetApplyUrl);
           const actual = new URL(node.url);
           if (actual.origin === expected.origin && actual.pathname === expected.pathname) {
-            hasApplyLink = true;
-            return;
+            node.url = targetApplyUrl;
+            found = true;
           }
         } catch {
           if (node.url === targetApplyUrl) {
-            hasApplyLink = true;
-            return;
+            found = true;
           }
         }
       }
       if (Array.isArray(node.children)) {
         for (const child of node.children) {
-          checkApplyLink(child);
-          if (hasApplyLink) {
-            return;
+          if (normalizeExistingApplyLinks(child)) {
+            found = true;
           }
         }
       }
-    }
-    checkApplyLink(tree);
-    if (hasApplyLink) {
-      return;
+      return found;
     }
 
-    const applyParagraph: MdastNode = {
-      type: 'paragraph',
-      children: [
-        {
-          type: 'link',
-          url: applyUrl,
-          children: [{ type: 'text', value: 'Apply now for this position 📮' }],
-        },
-      ],
+    for (const [index, child] of tree.children.entries()) {
+      if (normalizeExistingApplyLinks(child) && existingApplyLinkBlockIndex === -1) {
+        existingApplyLinkBlockIndex = index;
+      }
+    }
+
+    const howToApplyHeading: MdastNode = {
+      type: 'heading',
+      depth: 2,
+      children: [{ type: 'text', value: 'How to apply' }],
     };
 
     const howToApplyIndex = tree.children.findIndex(
@@ -263,19 +261,31 @@ function remarkNormalizeAshbyJob({ applyUrl }: { applyUrl?: string } = {}) {
           .trim()
           .toLowerCase() === 'how to apply',
     );
+
+    if (existingApplyLinkBlockIndex !== -1) {
+      if (howToApplyIndex === -1) {
+        tree.children.splice(existingApplyLinkBlockIndex, 0, howToApplyHeading);
+      }
+      return;
+    }
+
+    const applyParagraph: MdastNode = {
+      type: 'paragraph',
+      children: [
+        {
+          type: 'link',
+          url: targetApplyUrl,
+          children: [{ type: 'text', value: 'Apply now for this position 📮' }],
+        },
+      ],
+    };
+
     if (howToApplyIndex !== -1) {
       tree.children.splice(howToApplyIndex + 1, 0, applyParagraph);
       return;
     }
 
-    const howToApplyNodes: MdastNode[] = [
-      {
-        type: 'heading',
-        depth: 2,
-        children: [{ type: 'text', value: 'How to apply' }],
-      },
-      applyParagraph,
-    ];
+    const howToApplyNodes: MdastNode[] = [howToApplyHeading, applyParagraph];
 
     const insertIndex = tree.children.findIndex(
       (node) =>
