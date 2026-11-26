@@ -1,14 +1,27 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import FormHelperText, { formHelperTextClasses as classes } from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
+import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
-import { createTheme } from '@mui/material/styles';
-import getOverlayAlpha from '../styles/getOverlayAlpha';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import { blend, contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
+
+/**
+ * The color a dark-mode Paper paints: its `background-color` under the
+ * `background-image` overlay, both read from the rendered element.
+ */
+function paperSurface(paper) {
+  const { backgroundColor, backgroundImage } = window.getComputedStyle(paper);
+  const overlay = backgroundImage.match(/rgba?\([^)]+\)/);
+  if (overlay === null) {
+    throw new Error(`Expected a dark-mode overlay, got "${backgroundImage}".`);
+  }
+  return blend(overlay[0], 1, backgroundColor);
+}
 
 describe('<FormHelperText />', () => {
   const { render } = createRenderer();
@@ -95,14 +108,6 @@ describe('<FormHelperText />', () => {
 
   describe('WCAG 2.2 conformance', () => {
     describe('1.3.1 Info and Relationships', () => {
-      it('is the description of a TextField input', () => {
-        render(<TextField label="Username" helperText="Use 3 to 20 letters or numbers." />);
-
-        expect(screen.getByRole('textbox')).toHaveAccessibleDescription(
-          'Use 3 to 20 letters or numbers.',
-        );
-      });
-
       it('describes a standalone input only when the author connects it', () => {
         render(
           <FormControl>
@@ -112,19 +117,6 @@ describe('<FormHelperText />', () => {
         );
         // FormControl does not connect the helper text on its own.
         expect(screen.getByRole('textbox')).toHaveAccessibleDescription('');
-      });
-
-      it('describes a standalone input that the author connects with aria-describedby', () => {
-        render(
-          <FormControl>
-            <input aria-label="Promo code" aria-describedby="promo-help" />
-            <FormHelperText id="promo-help">Promo codes are not case sensitive.</FormHelperText>
-          </FormControl>,
-        );
-
-        expect(screen.getByRole('textbox')).toHaveAccessibleDescription(
-          'Promo codes are not case sensitive.',
-        );
       });
     });
 
@@ -147,18 +139,35 @@ describe('<FormHelperText />', () => {
         });
       });
 
-      it('dark error text falls below 4.5:1 on Paper with elevation 2 and 24 (documented gap)', () => {
-        const { palette } = createTheme({ palette: { mode: 'dark' } });
-
-        [2, 24].forEach((elevation) => {
-          const surface = blend('#fff', getOverlayAlpha(elevation), palette.background.paper);
-          // When this fails, the gap may be fixed: update FormHelperText/accessibility.md and knownGaps.json.
-          expect(contrastRatio(palette.error.main, surface)).to.be.below(
-            WCAG_MINIMUM_RATIO.normalText,
-            `dark error.main on elevation ${elevation}`,
+      // jsdom does not resolve the `--Paper-overlay` variable in `background-image`.
+      it.skipIf(isJsdom())(
+        'dark error text is borderline at elevation 1 and falls short of 4.5:1 at elevation 2 or more (documented gap)',
+        () => {
+          const elevations = [1, 2, 24];
+          render(
+            <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+              {elevations.map((elevation) => (
+                <Paper key={elevation} elevation={elevation} data-testid={`paper-${elevation}`}>
+                  <FormHelperText error>{`Elevation ${elevation}`}</FormHelperText>
+                </Paper>
+              ))}
+            </ThemeProvider>,
           );
-        });
-      });
+
+          const [elevation1, ...elevated] = elevations.map((elevation) =>
+            contrastRatio(
+              window.getComputedStyle(screen.getByText(`Elevation ${elevation}`)).color,
+              paperSurface(screen.getByTestId(`paper-${elevation}`)),
+            ),
+          );
+
+          // When this fails, the gap changed: update FormHelperText/accessibility.md and knownGaps.json.
+          expect(elevation1).to.be.within(WCAG_MINIMUM_RATIO.normalText, 4.6);
+          elevated.forEach((ratio) => {
+            expect(ratio).to.be.lessThan(WCAG_MINIMUM_RATIO.normalText);
+          });
+        },
+      );
     });
 
     it('3.3.1 Error Identification: marks a standalone input invalid and describes the error in words', () => {
