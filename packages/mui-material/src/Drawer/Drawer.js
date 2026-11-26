@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { useRtl } from '@mui/system/RtlProvider';
 import Modal from '../Modal';
 import Slide from '../Slide';
@@ -190,7 +191,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     className,
     elevation = 16,
     hideBackdrop = false,
-    ModalProps = {},
     onClose,
     open = false,
     transitionDuration = defaultTransitionDuration,
@@ -239,6 +239,22 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     },
   };
 
+  // The Modal receives the Drawer's own backdrop props. A nested `slotProps.root.slotProps.backdrop`
+  // is merged with them instead of replacing them.
+  const rootSlotPropsWithBackdrop = (rootOwnerState) => {
+    const resolvedRootSlotProps = resolveComponentProps(slotProps.root, rootOwnerState);
+    return {
+      ...resolvedRootSlotProps,
+      slotProps: {
+        ...resolvedRootSlotProps?.slotProps,
+        backdrop: mergeSlotProps(
+          resolvedRootSlotProps?.slotProps?.backdrop,
+          externalForwardedProps.slotProps.backdrop,
+        ),
+      },
+    };
+  };
+
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref: handleRef,
     elementType: DrawerRoot,
@@ -247,8 +263,11 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     ownerState,
     externalForwardedProps: {
       ...externalForwardedProps,
+      slotProps: {
+        ...externalForwardedProps.slotProps,
+        root: rootSlotPropsWithBackdrop,
+      },
       ...other,
-      ...ModalProps,
     },
     additionalProps: {
       closeAfterTransition: true,
@@ -257,9 +276,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       hideBackdrop,
       slots: {
         backdrop: externalForwardedProps.slots.backdrop,
-      },
-      slotProps: {
-        backdrop: externalForwardedProps.slotProps.backdrop,
       },
     },
   });
@@ -355,12 +371,6 @@ Drawer.propTypes /* remove-proptypes */ = {
    * @default false
    */
   hideBackdrop: PropTypes.bool,
-  /**
-   * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
-   * @default {}
-   * @deprecated Use `slotProps.root` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ModalProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.

@@ -4,6 +4,7 @@ import { spy, stub } from 'sinon';
 import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
+import { backdropClasses } from '@mui/material/Backdrop';
 import { modalClasses } from '@mui/material/Modal';
 import { getAnchor, isHorizontal } from './Drawer';
 import describeConformance from '../../test/describeConformance';
@@ -474,6 +475,24 @@ describe('<Drawer />', () => {
 
       expect(screen.getByTestId('drawer-root')).to.have.class(modalClasses.root);
       expect(screen.getByTestId('content')).not.to.equal(null);
+    });
+
+    it('should merge slotProps.root.slotProps.backdrop with the own backdrop props of the Drawer', () => {
+      render(
+        <Drawer
+          open
+          slotProps={{
+            backdrop: { className: 'own-backdrop' },
+            root: { slotProps: { backdrop: { 'data-testid': 'nested-backdrop' } } },
+          }}
+        >
+          <div />
+        </Drawer>,
+      );
+
+      const backdrop = screen.getByTestId('nested-backdrop');
+      expect(backdrop).to.have.class('own-backdrop');
+      expect(backdrop).to.have.class(backdropClasses.root);
     });
   });
 

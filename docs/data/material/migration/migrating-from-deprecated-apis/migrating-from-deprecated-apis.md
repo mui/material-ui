@@ -1227,17 +1227,6 @@ The Drawer's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop
  />
 ```
 
-### ModalProps
-
-The Drawer's `ModalProps` prop was deprecated in favor of `slotProps.root`:
-
-```diff
- <Drawer
--  ModalProps={modalProps}
-+  slotProps={{ root: modalProps }}
- />
-```
-
 ### PaperProps
 
 The Drawer's `PaperProps` prop was deprecated in favor of `slotProps.paper`:

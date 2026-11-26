@@ -114,12 +114,6 @@ export interface DrawerProps
    */
   elevation?: number | undefined;
   /**
-   * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
-   * @default {}
-   * @deprecated Use `slotProps.root` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ModalProps?: Partial<ModalProps> | undefined;
-  /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
