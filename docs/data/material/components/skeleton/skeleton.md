@@ -105,7 +105,22 @@ The background color of the skeleton uses the least amount of luminance to be vi
 
 ### ARIA
 
-None.
+Skeletons have no accessible content, so screen readers skip them.
+When skeletons are used as placeholders for a region of the page, set `aria-busy="true"` on that region while it loads, and remove it (or set it to `false`) once the content is displayed.
+This tells assistive technologies that the region is being updated, so they can wait until it has finished loading before exposing its content.
+
+```jsx
+<Box aria-busy={loading}>
+  {loading ? (
+    <Skeleton variant="rectangular" width={210} height={118} />
+  ) : (
+    <img alt={item.title} src={item.src} />
+  )}
+</Box>
+```
+
+`aria-busy` on its own doesn't tell screen reader users that anything is loading.
+To announce it, you can also render a visually hidden "Loading…" message in an element with `role="status"`.
 
 ### Keyboard
 
