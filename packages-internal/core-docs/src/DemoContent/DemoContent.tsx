@@ -184,6 +184,7 @@ export default function DemoContent(props: DemoContentProps) {
       exportConfig,
     }),
   );
+
   const [sourceElement, setSourceElement] = React.useState<HTMLDivElement | null>(null);
 
   useIdleEditor(sourceElement, demo.prepareEditor, demo.editable ? 'idle' : 'disabled');

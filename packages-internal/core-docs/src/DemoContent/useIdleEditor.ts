@@ -71,6 +71,7 @@ export function useIdleEditor(
           const handle = window.requestIdleCallback(initialize, {
             timeout: EDITOR_IDLE_TIMEOUT_MS,
           });
+
           cancelIdle = () => window.cancelIdleCallback(handle);
         } else {
           const handle = setTimeout(initialize, 0);
