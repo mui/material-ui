@@ -1,7 +1,8 @@
 ---
 description: Sync mui.com/careers open roles and job description pages from the Ashby job board API.
 on:
-  schedule: daily
+  schedule:
+    - cron: '17 7 * * 1' # Mondays 07:17 UTC
   workflow_dispatch:
 # One run at a time: a second run starting while another is still publishing would propose the same
 # changes again or race on the open sync PR branch.
