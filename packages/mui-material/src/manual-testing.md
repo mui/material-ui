@@ -51,6 +51,19 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused summary shows a visible indicator.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and state are correct for the native and non-native summaries.
 
+## Alert
+
+8 checks · full procedures in [`Alert/accessibility.md`](./Alert/accessibility.md)
+
+- [ ] 🔁 **1.1.1 Non-text Content** — the severity is available as text, not only through the icon and the color.
+- [ ] 🔁 **1.3.1 Info and Relationships** — the role and text match the visual structure.
+- [ ] 🔁 **1.4.1 Use of Color** — the severity is conveyed by something other than hue, such as the icon's shape or the text.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — the text is at least `4.5:1` against its background for every severity and variant in use, in both modes. The default `filled` `warning` and `info` (light) are the known failures.
+- [ ] 🔁 **1.4.11 Non-text Contrast** — the severity icon is at least `3:1` against its background for every severity in use. The default `warning` icon (light, `standard` and `outlined`) is the known failure.
+- [ ] 🔁 **2.4.7 Focus Visible** — a visible focus indicator appears on the close button when it is reached by keyboard, in every variant.
+- [ ] 🔁 **4.1.2 Name, Role, Value** — the close button announces a name and the `button` role, and the alert exposes the role the author chose.
+- [ ] 🔁 **4.1.3 Status Messages** — an alert that appears is announced without moving focus, and one that is already on the page does not interrupt the user. Use `role="status"` for non-urgent messages.
+
 ## Avatar
 
 7 checks · full procedures in [`Avatar/accessibility.md`](./Avatar/accessibility.md)

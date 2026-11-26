@@ -1,0 +1,9 @@
+{
+  "axe": "docs/data/material/components/alert/alert.a11y.json",
+  "criteria": {
+    "1.1.1": { "conformance": "Partially Supports", "flagged": true },
+    "1.4.3": { "conformance": "Partially Supports", "responsibility": "Component" },
+    "4.1.3": { "conformance": "Supports", "responsibility": "Component", "group": "Hybrid" }
+  },
+  "notApplicable": ["1.4.5", "2.4.6", "2.5.3", "3.2.2", "3.2.4", "3.3.2"]
+}
