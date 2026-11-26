@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -28,6 +27,76 @@ const STRIP_IF_EMPTY_TAGS = new Set([
   'blockquote',
 ]);
 
+export interface Role {
+  title: string;
+  description: string;
+  url: string;
+}
+
+export interface RoleCategory {
+  title: string;
+  roles: Role[];
+}
+
+export type OpenRolesData = RoleCategory[];
+
+export interface ActiveOpenRole extends Role {
+  category: string;
+  slug: string | null;
+}
+
+export interface AshbyJob {
+  id: string;
+  title: string;
+  department?: string | null;
+  team?: string | null;
+  location?: string | null;
+  isRemote?: boolean;
+  employmentType?: string | null;
+  publishedAt?: string | null;
+  isListed?: boolean;
+  jobUrl?: string | null;
+  descriptionHtml?: string | null;
+}
+
+export interface ExistingRole {
+  slug: string;
+  title: string | null;
+  description: string | null;
+  ashbyId: string | null;
+  rawMarkdown: string;
+  hasJsPage: boolean;
+  activeInOpenRoles: boolean;
+}
+
+export interface JobMatch<
+  TJob extends Pick<AshbyJob, 'id' | 'title'> = AshbyJob,
+  TRole extends Pick<ExistingRole, 'ashbyId' | 'title' | 'slug'> = ExistingRole,
+> {
+  job: TJob;
+  existing: TRole | null;
+  matchType: 'ashbyId' | 'title' | null;
+  suggestedSlug: string;
+}
+
+interface HastNode {
+  type: string;
+  tagName?: string;
+  value?: string;
+  properties?: { className?: string[] };
+  children?: HastNode[];
+}
+
+interface MdastNode {
+  type: string;
+  depth?: number;
+  ordered?: boolean;
+  spread?: boolean;
+  url?: string;
+  value?: string;
+  children?: MdastNode[];
+}
+
 function getCareersPaths() {
   const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
   return {
@@ -36,7 +105,7 @@ function getCareersPaths() {
   };
 }
 
-function applyMuiNonBreakingSpaces(text) {
+function applyMuiNonBreakingSpaces(text: string): string {
   return text
     .replace(/\u00A0/g, ' ')
     .replace(/\bMaterial UI\b/g, 'Material\u00A0UI')
@@ -51,8 +120,8 @@ function applyMuiNonBreakingSpaces(text) {
  * unwraps `<u>` tags (used around link labels).
  */
 function rehypeCleanAshbyHtml() {
-  function transformChildren(children) {
-    const cleaned = [];
+  function transformChildren(children: HastNode[]): HastNode[] {
+    const cleaned: HastNode[] = [];
     for (const child of children) {
       if (child.type === 'element') {
         if (child.tagName === 'u') {
@@ -61,8 +130,9 @@ function rehypeCleanAshbyHtml() {
         }
         child.children = transformChildren(child.children ?? []);
         if (
+          child.tagName &&
           STRIP_IF_EMPTY_TAGS.has(child.tagName) &&
-          hastToString(child)
+          hastToString(child as never)
             .replace(/\u00A0/g, ' ')
             .trim() === '' &&
           !child.children.some((nested) => nested.type === 'element' && nested.tagName === 'img')
@@ -75,11 +145,15 @@ function rehypeCleanAshbyHtml() {
     return cleaned;
   }
 
-  function isWhitespaceText(node) {
-    return node.type === 'text' && node.value.replace(/\u00A0/g, ' ').trim() === '';
+  function isWhitespaceText(node: HastNode): boolean {
+    return (
+      node.type === 'text' &&
+      typeof node.value === 'string' &&
+      node.value.replace(/\u00A0/g, ' ').trim() === ''
+    );
   }
 
-  return (tree) => {
+  return (tree: HastNode) => {
     const children = transformChildren(tree.children ?? []);
     while (
       children.length > 0 &&
@@ -104,8 +178,8 @@ function rehypeCleanAshbyHtml() {
  * Remark plugin that normalizes non-breaking spaces in text nodes (applying MUI brand NBSPs),
  * tightens list items (spread: false), and inserts the `## How to apply` section.
  */
-function remarkNormalizeAshbyJob({ applyUrl } = {}) {
-  function visitMdast(node) {
+function remarkNormalizeAshbyJob({ applyUrl }: { applyUrl?: string } = {}) {
+  function visitMdast(node: MdastNode) {
     if (node.type === 'text' && typeof node.value === 'string') {
       node.value = applyMuiNonBreakingSpaces(node.value);
     }
@@ -119,22 +193,25 @@ function remarkNormalizeAshbyJob({ applyUrl } = {}) {
     }
   }
 
-  return (tree) => {
+  return (tree: MdastNode) => {
     visitMdast(tree);
 
-    if (!applyUrl) {
+    if (!applyUrl || !Array.isArray(tree.children)) {
       return;
     }
 
     const hasHowToApply = tree.children.some(
       (node) =>
-        node.type === 'heading' && mdastToString(node).trim().toLowerCase() === 'how to apply',
+        node.type === 'heading' &&
+        mdastToString(node as never)
+          .trim()
+          .toLowerCase() === 'how to apply',
     );
     if (hasHowToApply) {
       return;
     }
 
-    const howToApplyNodes = [
+    const howToApplyNodes: MdastNode[] = [
       {
         type: 'heading',
         depth: 2,
@@ -155,7 +232,9 @@ function remarkNormalizeAshbyJob({ applyUrl } = {}) {
     const insertIndex = tree.children.findIndex(
       (node) =>
         node.type === 'paragraph' &&
-        mdastToString(node).trim().startsWith("Don't meet every requirement?"),
+        mdastToString(node as never)
+          .trim()
+          .startsWith("Don't meet every requirement?"),
     );
 
     if (insertIndex !== -1) {
@@ -166,7 +245,7 @@ function remarkNormalizeAshbyJob({ applyUrl } = {}) {
   };
 }
 
-export function normalizeTitle(title) {
+export function normalizeTitle(title: string | null | undefined): string {
   return String(title ?? '')
     .toLowerCase()
     .replace(/[\u2013\u2014]+/g, ' ')
@@ -174,7 +253,7 @@ export function normalizeTitle(title) {
     .trim();
 }
 
-export function slugifyTitle(title) {
+export function slugifyTitle(title: string | null | undefined): string {
   return String(title ?? '')
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -186,12 +265,15 @@ export function slugifyTitle(title) {
 /**
  * Converts Ashby's job `descriptionHtml` into clean Markdown using unified/rehype/remark.
  */
-export function htmlToMarkdown(html, { applyUrl } = {}) {
+export function htmlToMarkdown(
+  html: string | null | undefined,
+  { applyUrl }: { applyUrl?: string } = {},
+): string {
   const file = unified()
     .use(rehypeParse, { fragment: true })
-    .use(rehypeCleanAshbyHtml)
+    .use(rehypeCleanAshbyHtml as never)
     .use(rehypeRemark)
-    .use(remarkNormalizeAshbyJob, { applyUrl })
+    .use(remarkNormalizeAshbyJob as never, { applyUrl })
     .use(remarkStringify, {
       bullet: '-',
       emphasis: '*',
@@ -208,7 +290,17 @@ export function htmlToMarkdown(html, { applyUrl } = {}) {
 /**
  * Builds a complete career role Markdown document from Ashby `descriptionHtml`.
  */
-export function buildRoleMarkdown({ title, description, descriptionHtml, applyUrl }) {
+export function buildRoleMarkdown({
+  title,
+  description,
+  descriptionHtml,
+  applyUrl,
+}: {
+  title: string;
+  description?: string | null;
+  descriptionHtml?: string | null;
+  applyUrl?: string;
+}): string {
   const parts = [`# ${title}`];
   if (description) {
     parts.push(`<p class="description">${description}</p>`);
@@ -220,7 +312,7 @@ export function buildRoleMarkdown({ title, description, descriptionHtml, applyUr
   return `${parts.join('\n\n')}\n`;
 }
 
-function normalizeUrlForComparison(rawUrl) {
+function normalizeUrlForComparison(rawUrl: string): string {
   try {
     const parsed = new URL(rawUrl);
     if (parsed.pathname === '/') {
@@ -232,15 +324,15 @@ function normalizeUrlForComparison(rawUrl) {
   }
 }
 
-function canonicalizeMdast(node) {
+function canonicalizeMdast(node: MdastNode): MdastNode | null {
   if (node.type === 'html') {
     return null;
   }
   if (node.type === 'text') {
-    const value = node.value.replace(/[\u00A0\s]+/g, ' ');
+    const value = (node.value ?? '').replace(/[\u00A0\s]+/g, ' ');
     return { type: 'text', value };
   }
-  const canonical = { type: node.type };
+  const canonical: MdastNode = { type: node.type };
   if (node.depth !== undefined) {
     canonical.depth = node.depth;
   }
@@ -254,7 +346,7 @@ function canonicalizeMdast(node) {
     canonical.value = node.value;
   }
   if (Array.isArray(node.children)) {
-    const children = [];
+    const children: MdastNode[] = [];
     for (const child of node.children) {
       const normalized = canonicalizeMdast(child);
       if (!normalized) {
@@ -262,16 +354,16 @@ function canonicalizeMdast(node) {
       }
       const prev = children[children.length - 1];
       if (normalized.type === 'text' && prev?.type === 'text') {
-        prev.value = `${prev.value}${normalized.value}`.replace(/\s+/g, ' ');
+        prev.value = `${prev.value ?? ''}${normalized.value ?? ''}`.replace(/\s+/g, ' ');
       } else {
         children.push(normalized);
       }
     }
     if (children.length > 0 && children[0].type === 'text') {
-      children[0].value = children[0].value.trimStart();
+      children[0].value = (children[0].value ?? '').trimStart();
     }
     if (children.length > 0 && children[children.length - 1].type === 'text') {
-      children[children.length - 1].value = children[children.length - 1].value.trimEnd();
+      children[children.length - 1].value = (children[children.length - 1].value ?? '').trimEnd();
     }
     canonical.children = children;
   }
@@ -282,19 +374,25 @@ function canonicalizeMdast(node) {
  * Compares existing and generated role Markdown semantically (ignoring soft line-breaks,
  * `<p class="description">`, HTML comments, and root trailing slashes on URLs).
  */
-export function hasMeaningfulMarkdownChanges(existingMarkdown, generatedMarkdown) {
+export function hasMeaningfulMarkdownChanges(
+  existingMarkdown: string | null | undefined,
+  generatedMarkdown: string | null | undefined,
+): boolean {
   const parser = unified().use(remarkParse);
-  const existingAst = canonicalizeMdast(parser.parse(existingMarkdown ?? ''));
-  const generatedAst = canonicalizeMdast(parser.parse(generatedMarkdown ?? ''));
+  const existingAst = canonicalizeMdast(parser.parse(existingMarkdown ?? '') as MdastNode);
+  const generatedAst = canonicalizeMdast(parser.parse(generatedMarkdown ?? '') as MdastNode);
   return JSON.stringify(existingAst) !== JSON.stringify(generatedAst);
 }
 
 /**
  * Flattens `docs/data/careers/openRoles.json` into category names and active role entries.
  */
-export function extractActiveOpenRoles(openRolesData) {
-  const categories = [];
-  const activeOpenRoles = [];
+export function extractActiveOpenRoles(openRolesData: OpenRolesData): {
+  categories: string[];
+  activeOpenRoles: ActiveOpenRole[];
+} {
+  const categories: string[] = [];
+  const activeOpenRoles: ActiveOpenRole[] = [];
 
   for (const category of openRolesData) {
     categories.push(category.title);
@@ -316,7 +414,7 @@ export function extractActiveOpenRoles(openRolesData) {
   return { categories, activeOpenRoles };
 }
 
-function extractAshbyIdFromUrl(rawUrl) {
+function extractAshbyIdFromUrl(rawUrl: string): string | null {
   try {
     const parsed = new URL(rawUrl);
     if (parsed.hostname !== 'jobs.ashbyhq.com') {
@@ -336,29 +434,33 @@ function extractAshbyIdFromUrl(rawUrl) {
  * Parses an existing `docs/pages/careers/<slug>.md` file with remark + rehype to extract its
  * title, `<p class="description">` text, and Ashby job UUID.
  */
-export function parseRoleMarkdown(markdown) {
-  const mdast = unified().use(remarkParse).parse(markdown);
-  let title = null;
-  let description = null;
-  let ashbyId = null;
+export function parseRoleMarkdown(markdown: string): {
+  title: string | null;
+  description: string | null;
+  ashbyId: string | null;
+} {
+  const mdast = unified().use(remarkParse).parse(markdown) as MdastNode;
+  let title: string | null = null;
+  let description: string | null = null;
+  let ashbyId: string | null = null;
 
-  function visit(node) {
+  function visit(node: MdastNode) {
     if (node.type === 'heading' && node.depth === 1 && title === null) {
-      title = mdastToString(node).trim();
-    } else if (node.type === 'html' && description === null) {
-      const hast = unified().use(rehypeParse, { fragment: true }).parse(node.value);
-      for (const child of hast.children) {
+      title = mdastToString(node as never).trim();
+    } else if (node.type === 'html' && description === null && node.value) {
+      const hast = unified().use(rehypeParse, { fragment: true }).parse(node.value) as HastNode;
+      for (const child of hast.children ?? []) {
         if (
           child.type === 'element' &&
           child.tagName === 'p' &&
           Array.isArray(child.properties?.className) &&
           child.properties.className.includes('description')
         ) {
-          description = hastToString(child).trim();
+          description = hastToString(child as never).trim();
           break;
         }
       }
-    } else if (node.type === 'link' && ashbyId === null) {
+    } else if (node.type === 'link' && ashbyId === null && node.url) {
       const id = extractAshbyIdFromUrl(node.url);
       if (id) {
         ashbyId = id;
@@ -376,7 +478,11 @@ export function parseRoleMarkdown(markdown) {
   return { title, description, ashbyId };
 }
 
-async function readExistingRoles(careersDirectory, activeOpenSlugs, entries) {
+async function readExistingRoles(
+  careersDirectory: string,
+  activeOpenSlugs: Set<string>,
+  entries: string[],
+): Promise<ExistingRole[]> {
   const mdFiles = entries
     .filter((file) => file.endsWith('.md') && file !== 'ROLE_TEMPLATE.md')
     .sort();
@@ -401,7 +507,10 @@ async function readExistingRoles(careersDirectory, activeOpenSlugs, entries) {
   );
 }
 
-export function isActiveAshbyJob(job, now = Date.now()) {
+export function isActiveAshbyJob(
+  job: Pick<AshbyJob, 'id' | 'isListed' | 'publishedAt'> | null | undefined,
+  now = Date.now(),
+): boolean {
   if (!job || job.isListed !== true) {
     return false;
   }
@@ -418,15 +527,22 @@ export function isActiveAshbyJob(job, now = Date.now()) {
   return true;
 }
 
-export function matchJobs(jobs, roles, entries) {
+export function matchJobs<
+  TJob extends Pick<AshbyJob, 'id' | 'title'>,
+  TRole extends Pick<ExistingRole, 'ashbyId' | 'title' | 'slug'>,
+>(jobs: TJob[], roles: TRole[], entries: string[]): JobMatch<TJob, TRole>[] {
   const activeIds = new Set(jobs.map((job) => job.id.toLowerCase()));
-  const rolesById = new Map(roles.map((role) => [role.ashbyId, role]));
+  const rolesById = new Map(
+    roles
+      .filter((role): role is TRole & { ashbyId: string } => Boolean(role.ashbyId))
+      .map((role) => [role.ashbyId, role]),
+  );
   const unmatchedJobs = jobs.filter((job) => !rolesById.has(job.id.toLowerCase()));
-  const unmatchedRoles = roles.filter((role) => !activeIds.has(role.ashbyId));
+  const unmatchedRoles = roles.filter((role) => !role.ashbyId || !activeIds.has(role.ashbyId));
   const reserved = new Set(entries.map((entry) => path.parse(entry).name.toLowerCase()));
 
-  return jobs
-    .toSorted((a, b) => a.id.localeCompare(b.id))
+  return [...jobs]
+    .sort((a, b) => a.id.localeCompare(b.id))
     .map((job) => {
       const byId = rolesById.get(job.id.toLowerCase());
       if (byId) {
@@ -434,7 +550,7 @@ export function matchJobs(jobs, roles, entries) {
       }
 
       const title = normalizeTitle(job.title);
-      const sameTitle = (item) => normalizeTitle(item.title) === title;
+      const sameTitle = (item: { title: string | null }) => normalizeTitle(item.title) === title;
       const candidates = unmatchedRoles.filter(sameTitle);
       if (title && candidates.length === 1 && unmatchedJobs.filter(sameTitle).length === 1) {
         const [existing] = candidates;
@@ -459,21 +575,23 @@ export async function collectCareersData() {
   if (!response.ok) {
     throw new Error(`Ashby API request failed: HTTP ${response.status} ${await response.text()}`);
   }
-  const payload = await response.json();
+  const payload = (await response.json()) as { jobs?: AshbyJob[] };
   if (!Array.isArray(payload.jobs)) {
     throw new Error('Ashby API response is missing a jobs array');
   }
 
   const { careersDirectory, openRolesPath } = getCareersPaths();
-  const openRolesData = JSON.parse(await fs.readFile(openRolesPath, 'utf8'));
+  const openRolesData: OpenRolesData = JSON.parse(await fs.readFile(openRolesPath, 'utf8'));
   const { categories, activeOpenRoles } = extractActiveOpenRoles(openRolesData);
 
-  const activeOpenSlugs = new Set(activeOpenRoles.map((role) => role.slug).filter(Boolean));
+  const activeOpenSlugs = new Set(
+    activeOpenRoles.map((role) => role.slug).filter((slug): slug is string => Boolean(slug)),
+  );
   const entries = await fs.readdir(careersDirectory);
   const existingRolesFull = await readExistingRoles(careersDirectory, activeOpenSlugs, entries);
   const listedJobs = payload.jobs.filter((job) => isActiveAshbyJob(job));
   const matches = matchJobs(listedJobs, existingRolesFull, entries);
-  const activeMatchedSlugs = new Set();
+  const activeMatchedSlugs = new Set<string>();
 
   const activeJobs = matches.map(({ job, existing, matchType, suggestedSlug }) => {
     const applyUrl = `https://jobs.ashbyhq.com/MUI/${job.id}/application?utm_source=${ASHBY_UTM_SOURCE}`;
@@ -541,30 +659,8 @@ export async function collectCareersData() {
 }
 
 async function main() {
-  const args = process.argv.slice(2);
-  let outFile = process.env.OUT_FILE ?? null;
-
-  for (let i = 0; i < args.length; i += 1) {
-    if (args[i] === '--out' && args[i + 1]) {
-      outFile = args[i + 1];
-      i += 1;
-    }
-  }
-
   const data = await collectCareersData();
-  const serialized = `${JSON.stringify(data, null, 2)}\n`;
-
-  if (outFile) {
-    await fs.mkdir(path.dirname(outFile), { recursive: true });
-    await fs.writeFile(outFile, serialized, 'utf8');
-    const { activeJobsCount, matchedByIdCount, newJobsCount, rolesToDeactivateCount } =
-      data.summary;
-    console.log(
-      `Collected ${activeJobsCount} active Ashby jobs (${matchedByIdCount} matched by ID, ${newJobsCount} new), ${rolesToDeactivateCount} roles to deactivate -> ${outFile}`,
-    );
-  } else {
-    process.stdout.write(serialized);
-  }
+  process.stdout.write(`${JSON.stringify(data, null, 2)}\n`);
 }
 
 if (

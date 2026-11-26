@@ -1,29 +1,16 @@
-import { beforeAll, describe, expect, it } from 'vitest';
-import { isJsdom } from '@mui/internal-test-utils/env';
+import { describe, expect, it } from 'vitest';
+import {
+  buildRoleMarkdown,
+  extractActiveOpenRoles,
+  hasMeaningfulMarkdownChanges,
+  htmlToMarkdown,
+  isActiveAshbyJob,
+  matchJobs,
+  parseRoleMarkdown,
+  slugifyTitle,
+} from './collectAshbyJobs.mts';
 
-describe.skipIf(!isJsdom())('collectAshbyJobs', () => {
-  let buildRoleMarkdown;
-  let extractActiveOpenRoles;
-  let hasMeaningfulMarkdownChanges;
-  let htmlToMarkdown;
-  let isActiveAshbyJob;
-  let matchJobs;
-  let parseRoleMarkdown;
-  let slugifyTitle;
-
-  beforeAll(async () => {
-    ({
-      buildRoleMarkdown,
-      extractActiveOpenRoles,
-      hasMeaningfulMarkdownChanges,
-      htmlToMarkdown,
-      isActiveAshbyJob,
-      matchJobs,
-      parseRoleMarkdown,
-      slugifyTitle,
-    } = await import('./collectAshbyJobs'));
-  });
-
+describe('collectAshbyJobs', () => {
   describe('htmlToMarkdown', () => {
     it('converts Ashby ProseMirror HTML to clean Markdown and inserts How to apply', () => {
       const html = [

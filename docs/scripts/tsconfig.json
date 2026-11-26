@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["*.ts"],
+  "include": ["*.ts", "collectAshbyJobs.mts"],
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,

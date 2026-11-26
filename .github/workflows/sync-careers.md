@@ -84,9 +84,7 @@ steps:
   # Fetch active jobs from Ashby and deterministically convert their HTML descriptions to Markdown,
   # matching existing roles by Ashby job ID or title.
   - name: Collect active Ashby job listings
-    env:
-      OUT_FILE: /tmp/gh-aw/agent/ashby-jobs.json
-    run: node docs/scripts/collectAshbyJobs.mjs
+    run: node docs/scripts/collectAshbyJobs.mts > /tmp/gh-aw/agent/ashby-jobs.json
 safe-outputs:
   # Publish via the Code Infra - Auditor App so opened PRs trigger required GitHub Actions checks.
   environment:
@@ -117,7 +115,7 @@ Keep the MUI careers listings (`docs/data/careers/openRoles.json`) and individua
 
 ## Inputs
 
-- `/tmp/gh-aw/agent/ashby-jobs.json`: generated deterministically before this step by `docs/scripts/collectAshbyJobs.mjs`. Contains:
+- `/tmp/gh-aw/agent/ashby-jobs.json`: generated deterministically before this step by `docs/scripts/collectAshbyJobs.mts`. Contains:
   - `activeJobs`: currently listed, published jobs from Ashby, each with:
     - metadata (`id`, `title`, `department`, `team`, `location`, `isRemote`, `employmentType`, `applyUrl`),
     - deterministic matching (`existingSlug`, `matchType` of `'ashbyId' | 'title' | null`, `suggestedSlug`, `existingDescription`, `existingHasJsPage`, `isCurrentlyActiveInOpenRoles`),
