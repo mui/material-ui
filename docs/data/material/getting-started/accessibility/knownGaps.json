@@ -10,21 +10,18 @@
     "criteria": ["1.4.3", "1.4.11"],
     "affected": [
       "Avatar",
-      "Button",
+      { "component": "Button", "note": "`info`, `warning`; `error` in dark mode" },
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
-      { "component": "FormLabel", "note": "focused `info`, `warning`" },
+      {
+        "component": "FormLabel",
+        "note": "focused `info`, `warning`; `error` on a dark Paper with elevation 2 or more"
+      },
       "LinearProgress",
       "Switch",
       "TextField",
       "ToggleButton"
     ],
-    "workaround": "Override the affected palette entries"
-  },
-  {
-    "gap": "In dark mode, the elevation overlay lowers the contrast of `error` text below 4.5:1 on a Paper with elevation 2 or more, such as a Menu or a Dialog",
-    "criteria": ["1.4.3"],
-    "affected": ["FormLabel", "TextField"],
-    "workaround": "Set a lighter `error.main` for dark mode, or show error text on a surface with elevation 0 or 1"
+    "workaround": "Override the affected palette entries. In dark mode, set a lighter `error.main`, or keep `error` text on a surface with elevation 0 or 1. Elevation does not help the label of a `filled` TextField"
   },
   {
     "gap": "The selected state of colored Toggle Buttons is conveyed almost entirely by hue",
