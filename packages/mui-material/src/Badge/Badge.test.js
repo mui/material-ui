@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
+import { createTheme, getContrastRatio } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 function findBadgeRoot(container) {
@@ -384,5 +385,93 @@ describe('<Badge />', () => {
     expect(findBadge(container)).to.have.class(classes.colorSecondary);
     expect(findBadge(container)).to.have.class(classes.dot);
     expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
+  });
+
+  // Deterministic checks for the WCAG success criteria the report rates as
+  // automatable. See packages/mui-material/src/Badge/accessibility.md.
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('hides the badge content from assistive technology', () => {
+        const { container } = render(
+          <button type="button" aria-label="show 4 unread messages">
+            <Badge badgeContent={4}>
+              <span>Mail</span>
+            </Badge>
+          </button>,
+        );
+
+        expect(container.querySelector(`.${classes.badge}`)).to.have.attribute(
+          'aria-hidden',
+          'true',
+        );
+        expect(container.querySelector(`.${classes.badge}`)).to.have.text('4');
+      });
+
+      it('keeps the overflow content and the dot variant hidden too', () => {
+        const { container: overflow } = render(
+          <Badge badgeContent={100}>
+            <span />
+          </Badge>,
+        );
+        const { container: dot } = render(
+          <Badge variant="dot">
+            <span />
+          </Badge>,
+        );
+
+        expect(overflow.querySelector(`.${classes.badge}`)).to.have.text('99+');
+        expect(overflow.querySelector(`.${classes.badge}`)).to.have.attribute(
+          'aria-hidden',
+          'true',
+        );
+        expect(dot.querySelector(`.${classes.badge}`)).to.have.attribute('aria-hidden', 'true');
+        expect(dot.querySelector(`.${classes.badge}`)).to.have.text('');
+      });
+
+      it('adds no role or accessible name of its own', () => {
+        const { container } = render(
+          <Badge badgeContent={4}>
+            <span />
+          </Badge>,
+        );
+        const root = findBadgeRoot(container);
+
+        expect(root).not.to.have.attribute('role');
+        expect(root.getAttributeNames().filter((name) => name.startsWith('aria-'))).to.deep.equal(
+          [],
+        );
+      });
+
+      it('leaves the author-supplied name of the badged element as the only name', () => {
+        render(
+          <button type="button" aria-label="show 4 unread messages">
+            <Badge badgeContent={4}>
+              <span />
+            </Badge>
+          </button>,
+        );
+
+        expect(screen.getByRole('button', { name: 'show 4 unread messages' })).not.to.equal(null);
+      });
+    });
+
+    describe('1.4.3 Contrast (Minimum)', () => {
+      it('pins the default palette badge colors below 4.5:1', () => {
+        const colors = ['primary', 'secondary', 'error', 'warning', 'info', 'success'];
+        const below = [];
+        ['light', 'dark'].forEach((mode) => {
+          const { palette } = createTheme({ palette: { mode } });
+          colors.forEach((color) => {
+            if (getContrastRatio(palette[color].contrastText, palette[color].main) < 4.5) {
+              below.push(`${color} ${mode}`);
+            }
+          });
+        });
+
+        // The badge text is 12px at weight 500, so it needs 4.5:1. Update the
+        // report's 1.4.3 gap when this list changes.
+        expect(below).to.deep.equal(['warning light', 'info light', 'error dark']);
+      });
+    });
   });
 });

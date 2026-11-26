@@ -22,7 +22,7 @@ Run the rows matching what you touched, for the component you touched.
 | :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
 | Styling, theme, or palette           | 1.4.1 Use of Color; 1.4.3 Contrast (Minimum); 1.4.4 Resize Text; 1.4.5 Images of Text; 1.4.11 Non-text Contrast                 |
 | DOM structure, roles, or ARIA        | 1.1.1 Non-text Content; 1.3.1 Info and Relationships; 1.3.2 Meaningful Sequence; 4.1.2 Name, Role, Value; 4.1.3 Status Messages |
-| Keyboard, focus, or pointer handling | 2.4.4 Link Purpose (In Context); 2.4.6 Headings and Labels; 2.4.7 Focus Visible                                                 |
+| Keyboard, focus, or pointer handling | 2.4.4 Link Purpose (In Context); 2.4.6 Headings and Labels; 2.4.7 Focus Visible; 2.5.3 Label in Name                            |
 | Labels, errors, or validation        | 3.3.2 Labels or Instructions                                                                                                    |
 | Motion or timing                     | 2.2.2 Pause, Stop, Hide                                                                                                         |
 | Other                                | 2.3.1 Three Flashes or Below Threshold                                                                                          |
@@ -62,6 +62,17 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔍 **1.4.4 Resize Text** — initials and fallback text stay fully visible at 200% page zoom. The container scales with the page.
 - [ ] 🔍 **1.4.5 Images of Text** — avatar initials and fallback are real text; the component renders no image of text.
 - [ ] 🔍 **1.4.11 Non-text Contrast** — any icon that conveys meaning meets `3:1` against its background; the decorative container shape and `Person` placeholder are exempt, and the boundary stays visible in forced-colors mode.
+
+## Badge
+
+6 checks · full procedures in [`Badge/accessibility.md`](./Badge/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the count or state is announced as part of the name of the element it badges, and an invisible badge is never announced.
+- [ ] 🔁 **1.4.1 Use of Color** — a badge and its meaning survive without color, and no two meanings differ only by hue.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — the text is at least `4.5:1` against the badge color, for every color in use and in both modes. The default `warning` and `info` (light) and `error` (dark) are the known failures.
+- [ ] 🔁 **1.4.11 Non-text Contrast** — the badge fill is at least `3:1` against the page and against the element it overlaps. Every default palette color clears the page.
+- [ ] 🔁 **2.5.3 Label in Name** — the control's accessible name contains its visible text, count included.
+- [ ] 🔍 **4.1.3 Status Messages** — a count change that matters is announced without the user moving focus to the badge. It is not by default; add a polite live region in the application to convey it.
 
 ## Button
 

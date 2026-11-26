@@ -1,0 +1,35 @@
+{
+  "axe": "docs/data/material/components/badges/badges.a11y.json",
+  "criteria": {
+    "1.1.1": { "responsibility": "Author" },
+    "1.3.1": {
+      "conformance": "Partially Supports",
+      "flagged": true
+    },
+    "1.4.3": { "conformance": "Partially Supports", "responsibility": "Component" },
+    "1.4.11": { "conformance": "Supports" },
+    "2.5.3": {
+      "conformance": "Partially Supports",
+      "group": "Hybrid",
+      "flagged": true
+    },
+    "4.1.3": {}
+  },
+  "notApplicable": [
+    "1.3.2",
+    "1.4.5",
+    "2.1.1",
+    "2.1.2",
+    "2.4.3",
+    "2.4.6",
+    "2.4.7",
+    "2.4.11",
+    "2.5.2",
+    "2.5.8",
+    "3.2.1",
+    "3.2.2",
+    "3.2.4",
+    "3.3.2",
+    "4.1.2"
+  ]
+}
