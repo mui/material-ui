@@ -96,7 +96,6 @@ Tested by: unit `FormGroup.test.js`
 - Inside `FormControl component="fieldset"` with `FormLabel component="legend"`, the `fieldset` is the group, and the legend is its name. FormGroup adds nothing to this pattern.
 - A group without a `fieldset` or a role has no name. This is the author's responsibility.
 - FormControl does not connect a FormHelperText to the group. The author adds `aria-describedby`. In the error state, the checkboxes get no `aria-invalid`, because Checkbox and Switch take only `disabled` from FormControl.
-- ARIA does not allow `aria-label` on an element with no role, and assistive technology can ignore it. The FormControlLabelPosition docs demos use this pattern. axe-core `aria-prohibited-attr` reports it only as `incomplete`, and no fixture exercises it.
 - In the ScrollPlayground Popper demo, each FormGroup starts with a Typography heading (`h6`), for example "Prevent Overflow". No `fieldset` or `aria-labelledby` connects the heading to the group, so the group has no name. This is a demo issue.
 
 **Manual testing steps**
@@ -157,7 +156,7 @@ Tested by: unit `FormGroup.test.js`
 
 <!-- 2.4.3:start -->
 
-- The controls are tab stops in DOM order, also with `row`. A test in a real browser confirms that a row group shows its controls from left to right in tab order.
+- The controls are tab stops in DOM order, also with `row`. A test in a real browser confirms that the tab order of a row group goes from left to right.
 
 <!-- 2.4.3:end -->
 
@@ -187,7 +186,7 @@ Tested by: unit `FormGroup.test.js`
 - **3.3.1 Error Identification (A), 3.3.3 Error Suggestion (AA), 3.3.4 Error Prevention (Legal, Financial, Data) (AA).** Collects and validates no input; these belong to the form or process.
 - **3.3.7 Redundant Entry (A).** Captures no previously entered data to repopulate.
 - **3.3.8 Accessible Authentication (Minimum) (AA).** No authentication step; the duty falls on the credential fields.
-- **4.1.2 Name, Role, Value (A).** <!-- 4.1.2:start -->FormGroup sets no role, and its own markup supplies no name. The group role and name pattern is rated under 1.3.1.<!-- 4.1.2:end -->
+- **4.1.2 Name, Role, Value (A).** <!-- 4.1.2:start -->FormGroup is a container, not a user interface component, so 4.1.2 does not apply. With `role="group"`, the role and name of the group are rated under 1.3.1.<!-- 4.1.2:end -->
 - **4.1.3 Status Messages (AA).** Emits no status messages; state changes are covered by 4.1.2.
 
 ## Level AAA
