@@ -270,10 +270,15 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
 
     rovingContainerProps.onKeyDown(event);
 
-    if (event.key.length === 1) {
-      const criteria = textCriteriaRef.current;
+    const criteria = textCriteriaRef.current;
+    const currTime = performance.now();
+    // Space continues an active type-ahead search but doesn't start one
+    const isTypeaheadKey =
+      event.key.length === 1 &&
+      (event.key !== ' ' || (criteria.keys.length > 0 && currTime - criteria.lastTime <= 500));
+
+    if (isTypeaheadKey) {
       const lowerKey = event.key.toLowerCase();
-      const currTime = performance.now();
 
       if (criteria.keys.length > 0) {
         // Reset

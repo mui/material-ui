@@ -32,6 +32,8 @@ const OPENING_MOUSE_UP_BOUNDARY_OFFSET = 2;
 const SELECTED_MOUSE_UP_DELAY = 400;
 const UNSELECTED_MOUSE_UP_DELAY = 200;
 const TYPEAHEAD_RESET_MS = 750;
+// Same as MenuList's type-ahead reset delay
+const MENU_TYPEAHEAD_RESET_MS = 500;
 const SPACE = ' ';
 const ARROW_UP = 'ArrowUp';
 const ARROW_DOWN = 'ArrowDown';
@@ -213,6 +215,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     previousSearchIndex: null,
     matchedIndex: null,
   });
+  const menuTypeaheadLastTimeRef = React.useRef(null);
   const selectedMouseUpTimer = useTimeout();
   const unselectedMouseUpTimer = useTimeout();
   const typeaheadResetTimer = useTimeout();
@@ -652,11 +655,26 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleItemKeyDown = (child) => (event) => {
     child?.props?.onKeyDown?.(event);
 
+    // MenuList leaves modified keys to the caller
+    if (event.key.length !== 1 || event.ctrlKey || event.metaKey || event.altKey) {
+      return;
+    }
+
+    // Space within MenuList's type-ahead search continues the search instead of choosing
+    const currTime = performance.now();
+    const lastTime = menuTypeaheadLastTimeRef.current;
+    const isMenuTypeaheadActive =
+      lastTime !== null && currTime - lastTime <= MENU_TYPEAHEAD_RESET_MS;
+
+    if (event.key !== SPACE || isMenuTypeaheadActive) {
+      menuTypeaheadLastTimeRef.current = currTime;
+    }
+
     if (event.key === SPACE && event.target === event.currentTarget && !event.defaultPrevented) {
       // Prevent the browser from scrolling the page
       event.preventDefault();
       // Ignore auto-repeated keydowns to avoid toggling multiple times
-      if (!event.repeat) {
+      if (!isMenuTypeaheadActive && !event.repeat) {
         // Trigger via click so that onClick receives a click event,
         // consistent with Enter and pointer interactions.
         event.currentTarget.click();
