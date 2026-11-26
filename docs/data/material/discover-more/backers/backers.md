@@ -17,7 +17,7 @@ Diamond sponsors are those who've pledged $1,500/month or more to the MUI organi
 
 ## Gold sponsors
 
-via [Open Collective](https://opencollective.com/mui-org) or via [the for-profit](https://www.patreon.com/oliviertassinari)
+via [Open Collective](https://opencollective.com/mui-org) or via [the for-profit](https://www.patreon.com/cw/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=288 3x" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
