@@ -79,13 +79,15 @@ On iOS, also set `disableDiscovery`: Safari doesn't fire click events on the chi
 The Modal used internally by the Swipeable Drawer has the `keepMounted` prop set by default.
 This means that the contents of the drawer are always present in the DOM.
 
-You can change this default behavior with the `ModalProps` prop, but you may encounter issues with `keepMounted: false` in React 18.
+You can change this default behavior with the `slotProps.root` prop, but you may encounter issues with `keepMounted: false` in React 18.
 
 ```jsx
 <Drawer
   variant="temporary"
-  ModalProps={{
-    keepMounted: false,
+  slotProps={{
+    root: {
+      keepMounted: false,
+    },
   }}
 />
 ```

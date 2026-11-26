@@ -274,7 +274,7 @@
  *
  * `content-visibility: auto` lets the browser skip laying out and painting a
  * code block's highlighted spans while it sits far from the viewport — a large
- * saving on docs pages stacked with demos. For a skipped block to still
+ * saving on docs pages with many code blocks. For a skipped block to still
  * reserve the correct vertical space (so the scrollbar doesn't jump as blocks
  * are skipped and un-skipped), `contain-intrinsic-size` must match the rendered
  * height. That height is `lines * line-height`, and `<Pre>` carries the line
@@ -294,7 +294,8 @@
  * render code blocks as before.
  * ------------------------------------------------------------------- */
 @supports (contain-intrinsic-size: calc(attr(data-total-lines type(<number>), 0) * 1px)) {
-  pre > code[data-total-lines] {
+  /* Demo source needs intrinsic width before reveal to reserve its scrollbar. */
+  pre > code[data-total-lines]:not([data-code-open] *) {
     content-visibility: auto;
 
     /* Expanded / non-collapsible: reserve every line. */

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Theme, ThemeOptions } from '@mui/material/styles';
-import { styled, alpha, extendTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -516,13 +516,12 @@ export function buildTheme(): ThemeOptions {
 
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
-export const defaultTheme = extendTheme({
+export const defaultTheme = createTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'data-mui-color-scheme',
+  cssVariables: { colorSchemeSelector: 'data-mui-color-scheme' },
 });
-export const customTheme = extendTheme({
-  cssVarPrefix: 'muidocs',
-  colorSchemeSelector: 'data-mui-color-scheme',
+export const customTheme = createTheme({
+  cssVariables: { cssVarPrefix: 'muidocs', colorSchemeSelector: 'data-mui-color-scheme' },
   colorSchemes: {
     light: {
       palette: lightPalette,

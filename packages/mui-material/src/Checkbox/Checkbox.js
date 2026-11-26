@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
-import { outsetFocusRing } from '../styles/focusVisible';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -60,7 +59,6 @@ const CheckboxRoot = styled(SwitchBase, {
     color: (theme.vars || theme).palette.text.secondary,
     ...(theme.focusVisible && {
       [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
-        ...outsetFocusRing,
         borderRadius: (theme.vars || theme).shape.borderRadius,
         ...theme.focusVisible,
       },
@@ -233,10 +231,11 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+      PropTypes.string,
+    ]),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -289,10 +288,8 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}

@@ -197,6 +197,23 @@ describe('grid generator', () => {
       });
     });
 
+    it('resolves a registered spacing key like sx/Stack do', () => {
+      const keyedSpacing = (value) => (value === 'small' ? '12px' : spacing(value));
+      keyedSpacing.keys = new Set(['small']);
+
+      expect(
+        generateGridRowSpacingStyles({
+          theme: { breakpoints, spacing: keyedSpacing },
+          ownerState: { container: true, rowSpacing: 'small' },
+        }),
+      ).to.deep.equal({
+        '--Grid-rowSpacing': '12px',
+        '> *': {
+          '--Grid-parent-rowSpacing': '12px',
+        },
+      });
+    });
+
     it('supports responsive', () => {
       expect(
         generateGridRowSpacingStyles({

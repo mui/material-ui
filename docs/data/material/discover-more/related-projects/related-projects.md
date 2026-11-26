@@ -58,7 +58,3 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material UI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
-
-### Notification
-
-- [notistack](https://github.com/iamhosseindhv/notistack): Display multiple snackbars that can be stacked and queued—this tool makes it simpler to handle the open and close states.
