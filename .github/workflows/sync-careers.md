@@ -33,8 +33,6 @@ timeout-minutes: 30
 # pointing outside those folders (github/gh-aw#80360).
 checkout:
   pull-request: false
-  # Fetch this workflow's pull request branches so later runs can update an open sync PR.
-  fetch: ['code-infra-auditor/*']
 tools:
   timeout: 600
   github:
@@ -56,22 +54,33 @@ steps:
       # The agent runs pnpm in this job; don't let it modify dependency caches that later
       # workflows might restore.
       package-manager-cache: false
-  # Look up any open sync PR authored by the App configured in safe-outputs below; done here
-  # because the agent's gh calls only see content from trusted authors, which excludes that App.
-  - name: Find open careers sync pull requests
+  - name: Install dependencies
+    run: pnpm install --frozen-lockfile
+  - name: Read careers files from the open sync draft
     env:
       GH_TOKEN: ${{ github.token }}
     run: |
       set -euo pipefail
       mkdir -p /tmp/gh-aw/agent
       gh pr list --repo "$GITHUB_REPOSITORY" --state open --author app/code-infra-auditor \
-          --limit 20 --json number,title,headRefName,body \
-        | jq '[.[] | select(.title == "[website] Sync careers from Ashby")
-            | { number, title, branch: .headRefName, body }]' \
+          --base "$GITHUB_REF_NAME" --search 'in:title "[website] Sync careers from Ashby"' \
+          --json number,title,headRefOid \
+        | jq '[.[] | select(.title == "[website] Sync careers from Ashby")]' \
           > /tmp/gh-aw/agent/open-prs.json
-      echo "Open careers sync pull requests: $(jq -c 'map("#\(.number)")' /tmp/gh-aw/agent/open-prs.json)"
-  - name: Install dependencies
-    run: pnpm install --frozen-lockfile
+      count=$(jq length /tmp/gh-aw/agent/open-prs.json)
+      if (( count > 1 )); then
+        echo "::error::Multiple careers sync drafts are open. Resolve them before syncing."
+        exit 1
+      fi
+      if (( count == 1 )); then
+        number=$(jq -r '.[0].number' /tmp/gh-aw/agent/open-prs.json)
+        head=$(jq -r '.[0].headRefOid' /tmp/gh-aw/agent/open-prs.json)
+        git fetch --depth=1 origin "refs/pull/$number/head"
+        test "$(git rev-parse FETCH_HEAD)" = "$head"
+        paths=(docs/data/careers docs/pages/careers)
+        git ls-tree -r "$head" -- "${paths[@]}" | awk '$1 != "100644" { exit 1 }'
+        git restore --source="$head" -- "${paths[@]}"
+      fi
   # Fetch active jobs from Ashby and deterministically convert their HTML descriptions to Markdown,
   # matching existing roles by Ashby job ID or title.
   - name: Collect active Ashby job listings
@@ -83,11 +92,11 @@ safe-outputs:
   environment:
     name: code-infra-auditor
     deployment: false
-  github-app:
-    client-id: ${{ secrets.CODE_INFRA_AUDITOR_CLIENT_ID }}
-    private-key: ${{ secrets.CODE_INFRA_AUDITOR_PRIVATE_KEY }}
   allowed-domains: [default-safe-outputs, mui.com, '*.mui.com', jobs.ashbyhq.com]
   create-pull-request:
+    github-app:
+      client-id: ${{ secrets.CODE_INFRA_AUDITOR_CLIENT_ID }}
+      private-key: ${{ secrets.CODE_INFRA_AUDITOR_PRIVATE_KEY }}
     max: 1
     title-prefix: '[website] '
     labels: [website]
@@ -100,20 +109,6 @@ safe-outputs:
       - 'docs/pages/careers/**'
     protected-files:
       policy: blocked
-  push-to-pull-request-branch:
-    target: '*'
-    required-title-prefix: '[website] Sync careers from Ashby'
-    required-labels: [website]
-    max: 1
-    if-no-changes: ignore
-    protected-files:
-      policy: blocked
-  update-pull-request:
-    target: '*'
-    required-title-prefix: '[website] Sync careers from Ashby'
-    required-labels: [website]
-    title: false
-    max: 1
 ---
 
 # Sync mui.com/careers from Ashby
@@ -131,11 +126,7 @@ Keep the MUI careers listings (`docs/data/careers/openRoles.json`) and individua
   - `rolesToDeactivate`: roles currently listed in `docs/data/careers/openRoles.json` that are no longer active on Ashby.
   - `existingRoles`: index of all existing `docs/pages/careers/*.md` files (`slug`, `title`, `ashbyId`, `hasJsPage`, `activeInOpenRoles`).
   - `categories`: category titles currently defined in `docs/data/careers/openRoles.json`.
-- `/tmp/gh-aw/agent/open-prs.json`: any already-open `[website] Sync careers from Ashby` pull request (its `number`, `branch`, and `body`).
-
-## Step 1: Check for an open sync PR
-
-If `/tmp/gh-aw/agent/open-prs.json` contains an open PR, `git switch` to its `branch` before inspecting or editing files so you build on top of it (never revert or rewrite commits a human added on that branch). Otherwise, work off the default branch.
+- `/tmp/gh-aw/agent/open-prs.json`: the matching open draft, if any. The collector and working tree already use its careers files. If a draft exists, inspect those files and report any remaining changes with `report_incomplete`, naming the PR and roles. Use `noop` if it is current. Stop without editing files or opening another PR.
 
 ## Step 2: Reconcile active Ashby jobs
 
@@ -143,10 +134,7 @@ For each job in `activeJobs`:
 
 ### 2a. Confirm the slug
 
-- If `existingSlug` is non-null (`matchType` is `'ashbyId'` or `'title'`), **use `existingSlug`**.
-- Otherwise (`existingSlug` is null):
-  - Check `existingRoles` to see if a renamed/reopened role already has an `.md` file that clearly represents the same role; if so, reuse that slug.
-  - Otherwise, start from `suggestedSlug` and shorten/refine it only if a cleaner kebab-case slug better matches the style of `docs/pages/careers/` (for example, `business-operations` rather than `director-of-business-operations`). Do not include random IDs or dates.
+Use `suggestedSlug` for each job. The collector reserves existing page names and assigns a distinct slug to every new posting.
 
 ### 2b. Create or update `docs/pages/careers/<slug>.md`
 
@@ -196,19 +184,16 @@ Otherwise, run the repository's quick checks on the changed files:
 
 State the exact commands you ran and their outcomes in the PR description.
 
-## Step 5: Open or update the pull request
+## Step 5: Open the pull request
 
-- **If an open sync PR exists** (`open-prs.json` is non-empty):
-  - If there are new changes compared to the branch, commit them, call `push_to_pull_request_branch` with the PR number, and call `update_pull_request` with the PR number and updated summary (preserving any notes a human added).
-  - If the branch already reflects the current Ashby state, call `noop` with a short reason.
-- **Otherwise**:
-  - Call `create_pull_request` titled `Sync careers from Ashby` (the `[website] ` prefix is added automatically).
-  - In the PR body, clearly list:
-    - **Added roles** (title, slug, Ashby link, category)
-    - **Updated roles** (title, slug, brief summary of what changed)
-    - **Removed from open roles** (title, slug)
-    - **Validation run**
-  - Do not add a sign-off or attribution line.
+Call `create_pull_request` titled `Sync careers from Ashby` (the `[website] ` prefix is added automatically). In the PR body, list:
+
+- **Added roles** (title, slug, Ashby link, category)
+- **Updated roles** (title, slug, brief summary of what changed)
+- **Removed from open roles** (title, slug)
+- **Validation run**
+
+Do not add a sign-off or attribution line.
 
 ## Guardrails
 

@@ -7,6 +7,7 @@ describe.skipIf(!isJsdom())('collectAshbyJobs', () => {
   let hasMeaningfulMarkdownChanges;
   let htmlToMarkdown;
   let isActiveAshbyJob;
+  let matchJobs;
   let parseRoleMarkdown;
   let slugifyTitle;
 
@@ -17,6 +18,7 @@ describe.skipIf(!isJsdom())('collectAshbyJobs', () => {
       hasMeaningfulMarkdownChanges,
       htmlToMarkdown,
       isActiveAshbyJob,
+      matchJobs,
       parseRoleMarkdown,
       slugifyTitle,
     } = await import('./collectAshbyJobs'));
@@ -168,6 +170,29 @@ describe.skipIf(!isJsdom())('collectAshbyJobs', () => {
           slug: 'operations-engineer',
         },
       ]);
+    });
+  });
+
+  describe('matchJobs', () => {
+    it('reserves exact matches and existing page names before assigning new slugs', () => {
+      const jobs = ['c', 'b', 'a'].map((id) => ({ id, title: 'Engineer' }));
+      const role = { ashbyId: 'b', title: 'Engineer', slug: 'engineer' };
+      const matches = matchJobs(jobs, [role], ['engineer.md', 'engineer-2.js']);
+      expect(
+        matches.map(({ job, matchType, suggestedSlug }) => [job.id, matchType, suggestedSlug]),
+      ).to.deep.equal([
+        ['a', null, 'engineer-3'],
+        ['b', 'ashbyId', 'engineer'],
+        ['c', null, 'engineer-4'],
+      ]);
+    });
+
+    it('uses a title fallback only for an unambiguous remaining pair', () => {
+      const job = { id: 'new', title: 'Engineer' };
+      const role = { ashbyId: 'old', title: job.title, slug: 'previous' };
+      expect(matchJobs([job], [role], ['previous.md'])[0].existing).to.equal(role);
+      expect(matchJobs([job, { ...job, id: 'second' }], [role], [])[0].existing).to.equal(null);
+      expect(matchJobs([job], [role, { ...role, slug: 'other' }], [])[0].existing).to.equal(null);
     });
   });
 

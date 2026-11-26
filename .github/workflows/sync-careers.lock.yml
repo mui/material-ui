@@ -1,5 +1,5 @@
-# gh-aw-metadata: {"schema_version":"v4","frontmatter_hash":"03702a882ec38eed1585f7ad9dc2bd8961c3f18a7aa286972643d74ac67ef4e4","body_hash":"a8be78daf3ae157addfa67ef675a1a974c18fa168eeb240d175bc332f4d49704","compiler_version":"v1.2.2","strict":true,"agent_id":"claude","agent_model":"claude-opus-5-5","engine_versions":{"claude":"2.1.317"}}
-# gh-aw-manifest: {"version":1,"secrets":["CODE_INFRA_AUDITOR_CLIENT_ID","CODE_INFRA_AUDITOR_PRIVATE_KEY","COPILOT_GITHUB_TOKEN","GH_AW_CI_TRIGGER_TOKEN","GH_AW_DEFAULT_OTLP_ENDPOINT","GH_AW_DEFAULT_OTLP_HEADERS","GH_AW_GITHUB_MCP_SERVER_TOKEN","GH_AW_GITHUB_TOKEN","GITHUB_TOKEN"],"actions":[{"repo":"actions/checkout","sha":"3d3c42e5aac5ba805825da76410c181273ba90b1","version":"v7.0.1"},{"repo":"actions/create-github-app-token","sha":"64ab729a6294000f5aa4a4bc0b73d1f32bc45510","version":"v3.3.0"},{"repo":"actions/download-artifact","sha":"9000827ccba6bdab643e8b6fd33ac0654aef8333","version":"v8.0.2"},{"repo":"actions/github-script","sha":"3a2844b7e9c422d3c10d287c895573f7108da1b3","version":"v9.0.0"},{"repo":"actions/setup-node","sha":"949feb2413d6458794dcd2491c4babbbce0c15c1","version":"v7.1.0"},{"repo":"actions/upload-artifact","sha":"cf430e030ddbb5b0abf93d22962f4752f3646cd9","version":"v7.0.2"},{"repo":"github/gh-aw-actions/setup","sha":"53d0749e19424a918acd82b4d140264ce48f2f14","version":"v1.2.2"},{"repo":"pnpm/action-setup","sha":"73e46992e05b19abd31f2f3c20e0e7370d762115","version":"v6.1.1"}],"containers":[{"image":"ghcr.io/github/gh-aw-firewall/agent:0.29.11","digest":"sha256:8774a73c351395b41d2ad0af4ddb4689007c67de3cd08bd9f43bb8a0e300690e","pinned_image":"ghcr.io/github/gh-aw-firewall/agent:0.29.11@sha256:8774a73c351395b41d2ad0af4ddb4689007c67de3cd08bd9f43bb8a0e300690e"},{"image":"ghcr.io/github/gh-aw-firewall/api-proxy:0.29.11","digest":"sha256:88d2d0e315a504d93fd4fb8847fd0f6b7f4469f41a6fc6047b3dc9654c56ab2c","pinned_image":"ghcr.io/github/gh-aw-firewall/api-proxy:0.29.11@sha256:88d2d0e315a504d93fd4fb8847fd0f6b7f4469f41a6fc6047b3dc9654c56ab2c"},{"image":"ghcr.io/github/gh-aw-firewall/cli-proxy:0.29.11","digest":"sha256:97782bc0d8ff7f80f19ae2fdc5e1668517aa732a6fa077e64b8d3919238496d2","pinned_image":"ghcr.io/github/gh-aw-firewall/cli-proxy:0.29.11@sha256:97782bc0d8ff7f80f19ae2fdc5e1668517aa732a6fa077e64b8d3919238496d2"},{"image":"ghcr.io/github/gh-aw-firewall/squid:0.29.11","digest":"sha256:861739ecf924dd2db5e5fb652db2ad82aaafd1615623297ddabc8f41a36b2847","pinned_image":"ghcr.io/github/gh-aw-firewall/squid:0.29.11@sha256:861739ecf924dd2db5e5fb652db2ad82aaafd1615623297ddabc8f41a36b2847"},{"image":"ghcr.io/github/gh-aw-mcpg:v0.5.6","digest":"sha256:342cd624e1f179d91be2de7a146fc4f387092e62e6c8a47506d7932e113d2311","pinned_image":"ghcr.io/github/gh-aw-mcpg:v0.5.6@sha256:342cd624e1f179d91be2de7a146fc4f387092e62e6c8a47506d7932e113d2311"},{"image":"ghcr.io/github/gh-aw-node","digest":"sha256:8735428c2d4e602f90781ba0c571c400e8ff93c7ee1508a75d71f87e34e415cc","pinned_image":"ghcr.io/github/gh-aw-node@sha256:8735428c2d4e602f90781ba0c571c400e8ff93c7ee1508a75d71f87e34e415cc"},{"image":"ghcr.io/github/github-mcp-server:v2.1.0","digest":"sha256:f6056fc10bfffcc8c81a6417a2e9ca12808647e8dd6049642a4feaadee0e0f8a","pinned_image":"ghcr.io/github/github-mcp-server:v2.1.0@sha256:f6056fc10bfffcc8c81a6417a2e9ca12808647e8dd6049642a4feaadee0e0f8a"}],"mcp_servers":[{"name":"safeoutputs","tools":["create_pull_request","noop","push_to_pull_request_branch","report_incomplete","report_missing_data","report_missing_tool","update_pull_request"]}],"threat_detection":{"mode":"enabled"},"admission":false,"agent_metadata":{}}
+# gh-aw-metadata: {"schema_version":"v4","frontmatter_hash":"6a3b65596795aef19bcbcea37d6d028c0cb54550631fb8d62913f3e7f521dc07","body_hash":"a03c6e77982b9c6a942e4c4b01beea2d732892f269f1aee9ec8646c5deb34594","compiler_version":"v1.2.2","strict":true,"agent_id":"claude","agent_model":"claude-opus-5-5","engine_versions":{"claude":"2.1.317"}}
+# gh-aw-manifest: {"version":1,"secrets":["CODE_INFRA_AUDITOR_CLIENT_ID","CODE_INFRA_AUDITOR_PRIVATE_KEY","COPILOT_GITHUB_TOKEN","GH_AW_CI_TRIGGER_TOKEN","GH_AW_DEFAULT_OTLP_ENDPOINT","GH_AW_DEFAULT_OTLP_HEADERS","GH_AW_GITHUB_MCP_SERVER_TOKEN","GH_AW_GITHUB_TOKEN","GITHUB_TOKEN"],"actions":[{"repo":"actions/checkout","sha":"3d3c42e5aac5ba805825da76410c181273ba90b1","version":"v7.0.1"},{"repo":"actions/create-github-app-token","sha":"64ab729a6294000f5aa4a4bc0b73d1f32bc45510","version":"v3.3.0"},{"repo":"actions/download-artifact","sha":"9000827ccba6bdab643e8b6fd33ac0654aef8333","version":"v8.0.2"},{"repo":"actions/github-script","sha":"3a2844b7e9c422d3c10d287c895573f7108da1b3","version":"v9.0.0"},{"repo":"actions/setup-node","sha":"949feb2413d6458794dcd2491c4babbbce0c15c1","version":"v7.1.0"},{"repo":"actions/upload-artifact","sha":"cf430e030ddbb5b0abf93d22962f4752f3646cd9","version":"v7.0.2"},{"repo":"github/gh-aw-actions/setup","sha":"53d0749e19424a918acd82b4d140264ce48f2f14","version":"v1.2.2"},{"repo":"pnpm/action-setup","sha":"73e46992e05b19abd31f2f3c20e0e7370d762115","version":"v6.1.1"}],"containers":[{"image":"ghcr.io/github/gh-aw-firewall/agent:0.29.11","digest":"sha256:8774a73c351395b41d2ad0af4ddb4689007c67de3cd08bd9f43bb8a0e300690e","pinned_image":"ghcr.io/github/gh-aw-firewall/agent:0.29.11@sha256:8774a73c351395b41d2ad0af4ddb4689007c67de3cd08bd9f43bb8a0e300690e"},{"image":"ghcr.io/github/gh-aw-firewall/api-proxy:0.29.11","digest":"sha256:88d2d0e315a504d93fd4fb8847fd0f6b7f4469f41a6fc6047b3dc9654c56ab2c","pinned_image":"ghcr.io/github/gh-aw-firewall/api-proxy:0.29.11@sha256:88d2d0e315a504d93fd4fb8847fd0f6b7f4469f41a6fc6047b3dc9654c56ab2c"},{"image":"ghcr.io/github/gh-aw-firewall/cli-proxy:0.29.11","digest":"sha256:97782bc0d8ff7f80f19ae2fdc5e1668517aa732a6fa077e64b8d3919238496d2","pinned_image":"ghcr.io/github/gh-aw-firewall/cli-proxy:0.29.11@sha256:97782bc0d8ff7f80f19ae2fdc5e1668517aa732a6fa077e64b8d3919238496d2"},{"image":"ghcr.io/github/gh-aw-firewall/squid:0.29.11","digest":"sha256:861739ecf924dd2db5e5fb652db2ad82aaafd1615623297ddabc8f41a36b2847","pinned_image":"ghcr.io/github/gh-aw-firewall/squid:0.29.11@sha256:861739ecf924dd2db5e5fb652db2ad82aaafd1615623297ddabc8f41a36b2847"},{"image":"ghcr.io/github/gh-aw-mcpg:v0.5.6","digest":"sha256:342cd624e1f179d91be2de7a146fc4f387092e62e6c8a47506d7932e113d2311","pinned_image":"ghcr.io/github/gh-aw-mcpg:v0.5.6@sha256:342cd624e1f179d91be2de7a146fc4f387092e62e6c8a47506d7932e113d2311"},{"image":"ghcr.io/github/gh-aw-node","digest":"sha256:8735428c2d4e602f90781ba0c571c400e8ff93c7ee1508a75d71f87e34e415cc","pinned_image":"ghcr.io/github/gh-aw-node@sha256:8735428c2d4e602f90781ba0c571c400e8ff93c7ee1508a75d71f87e34e415cc"},{"image":"ghcr.io/github/github-mcp-server:v2.1.0","digest":"sha256:f6056fc10bfffcc8c81a6417a2e9ca12808647e8dd6049642a4feaadee0e0f8a","pinned_image":"ghcr.io/github/github-mcp-server:v2.1.0@sha256:f6056fc10bfffcc8c81a6417a2e9ca12808647e8dd6049642a4feaadee0e0f8a"}],"mcp_servers":[{"name":"safeoutputs","tools":["create_pull_request","noop","report_incomplete","report_missing_data","report_missing_tool"]}],"threat_detection":{"mode":"enabled"},"admission":false,"agent_metadata":{}}
 # This file was automatically generated by gh-aw (v1.2.2). DO NOT EDIT. To debug this workflow, load the skill at https://github.com/github/gh-aw/blob/main/debug.md
 #
 #    ___                   _   _
@@ -297,12 +297,12 @@ jobs:
           GH_AW_OTLP_LOGS_ENABLED: ""
           GH_AW_OTLP_LOGS_MAX_BYTES: ""
           GH_AW_PROMPT: ${{ runner.temp }}/gh-aw/aw-prompts/prompt.txt
-          GH_AW_PROMPT_CONFIG: "{\"items\":[{\"content_env\":\"GH_AW_PROMPT_CONTENT_0000\"},{\"file\":\"xpia.md\"},{\"file\":\"temp_folder_prompt.md\"},{\"file\":\"markdown.md\"},{\"file\":\"safe_outputs_mcp_transport_prompt.md\"},{\"file\":\"safe_outputs_prompt.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0001\"},{\"file\":\"safe_outputs_create_pull_request.md\"},{\"file\":\"safe_outputs_push_to_pr_branch.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0002\"},{\"file\":\"mcp_cli_tools_with_safeoutputs_prompt.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0003\"},{\"file\":\"cli_proxy_with_safeoutputs_prompt.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0004\"},{\"author_file\":\".github/workflows/sync-careers.md\"}],\"system_item_count\":14}"
+          GH_AW_PROMPT_CONFIG: "{\"items\":[{\"content_env\":\"GH_AW_PROMPT_CONTENT_0000\"},{\"file\":\"xpia.md\"},{\"file\":\"temp_folder_prompt.md\"},{\"file\":\"markdown.md\"},{\"file\":\"safe_outputs_mcp_transport_prompt.md\"},{\"file\":\"safe_outputs_prompt.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0001\"},{\"file\":\"safe_outputs_create_pull_request.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0002\"},{\"file\":\"mcp_cli_tools_with_safeoutputs_prompt.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0003\"},{\"file\":\"cli_proxy_with_safeoutputs_prompt.md\"},{\"content_env\":\"GH_AW_PROMPT_CONTENT_0004\"},{\"author_file\":\".github/workflows/sync-careers.md\"}],\"system_item_count\":13}"
           GH_AW_PROMPT_CONTENT_0000: |
             <system>
           GH_AW_PROMPT_CONTENT_0001: |
             <safe-output-tools>
-            Tools: create_pull_request, update_pull_request, push_to_pull_request_branch, report_missing_tool, report_missing_data, noop(max:2)
+            Tools: create_pull_request, report_missing_tool, report_missing_data, noop(max:2)
           GH_AW_PROMPT_CONTENT_0002: |
             </safe-output-tools>
           GH_AW_PROMPT_CONTENT_0003: |+
@@ -332,7 +332,7 @@ jobs:
             - **workflow-run-id**: __GH_AW_GITHUB_RUN_ID__
             {{/if}}
             - **checkouts**: The following repositories have been checked out and are available in the workspace:
-              - repo `__GH_AW_GITHUB_REPOSITORY__` → `__GH_AW_GITHUB_WORKSPACE__` (cwd) [shallow clone, fetch-depth=1 (default)] [additional refs fetched: code-infra-auditor/*]
+              - repo `__GH_AW_GITHUB_REPOSITORY__` → `__GH_AW_GITHUB_WORKSPACE__` (cwd) [shallow clone, fetch-depth=1 (default)]
               - **Note**: The workspace path reported above may contain a separate shallow, credential-free checkout of the host repository. Use the exact checkout path shown for the repository you need. Before concluding that a branch is unavailable, confirm your working directory matches that path and inspect refs there. If the branch is not present in that checkout and is not listed as an additional fetched ref, it has NOT been checked out. For private repositories you cannot fetch it. If the branch is required and not available, exit with an error and ask the user to add it to the `fetch:` option of the `checkout:` configuration (e.g., `fetch: ["refs/pulls/open/*"]` for all open PR refs, or `fetch: ["main", "feature/my-branch"]` for specific branches).
               - **Warning: No git credentials are available to the agent.** Credentials are
                 intentionally removed after the checkout step for security. This means any git
@@ -615,32 +615,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Fetch additional refs
-        env:
-          GH_AW_FETCH_TOKEN: ${{ secrets.GH_AW_GITHUB_MCP_SERVER_TOKEN || secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
-        run: |
-          set -o pipefail
-          header=$(printf "x-access-token:%s" "${GH_AW_FETCH_TOKEN}" | base64 -w 0)
-          refspecs=('+refs/heads/code-infra-auditor/*:refs/remotes/origin/code-infra-auditor/*')
-          for refspec in "${refspecs[@]}"; do
-            source_ref=${refspec%%:*}
-            source_ref=${source_ref#+}
-            if matched=$(git -c "http.extraheader=Authorization: Basic ${header}" ls-remote --exit-code origin "$source_ref" | {
-              found=0
-              while read -r _ remote_ref; do
-                # Match the configured ref glob, not a literal string.
-                # shellcheck disable=SC2254
-                case "$remote_ref" in ($source_ref) found=1 ;; esac
-              done
-              printf '%s' "$found"
-            }); then
-              if [ "$matched" -eq 0 ]; then continue; fi
-              git -c "http.extraheader=Authorization: Basic ${header}" fetch origin --depth=1 "$refspec"
-            else
-              status=$?
-              if [ "$status" -ne 2 ]; then exit "$status"; fi
-            fi
-          done
       - name: Initialize agent execution evidence
         run: |
           mkdir -p "/tmp/gh-aw"
@@ -667,12 +641,12 @@ jobs:
         with:
           node-version-file: package.json
           package-manager-cache: false
-      - env:
-          GH_TOKEN: ${{ github.token }}
-        name: Find open careers sync pull requests
-        run: "set -euo pipefail\nmkdir -p /tmp/gh-aw/agent\ngh pr list --repo \"$GITHUB_REPOSITORY\" --state open --author app/code-infra-auditor \\\n    --limit 20 --json number,title,headRefName,body \\\n  | jq '[.[] | select(.title == \"[website] Sync careers from Ashby\")\n      | { number, title, branch: .headRefName, body }]' \\\n    > /tmp/gh-aw/agent/open-prs.json\necho \"Open careers sync pull requests: $(jq -c 'map(\"#\\(.number)\")' /tmp/gh-aw/agent/open-prs.json)\"\n"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        name: Read careers files from the open sync draft
+        run: "set -euo pipefail\nmkdir -p /tmp/gh-aw/agent\ngh pr list --repo \"$GITHUB_REPOSITORY\" --state open --author app/code-infra-auditor \\\n    --base \"$GITHUB_REF_NAME\" --search 'in:title \"[website] Sync careers from Ashby\"' \\\n    --json number,title,headRefOid \\\n  | jq '[.[] | select(.title == \"[website] Sync careers from Ashby\")]' \\\n    > /tmp/gh-aw/agent/open-prs.json\ncount=$(jq length /tmp/gh-aw/agent/open-prs.json)\nif (( count > 1 )); then\n  echo \"::error::Multiple careers sync drafts are open. Resolve them before syncing.\"\n  exit 1\nfi\nif (( count == 1 )); then\n  number=$(jq -r '.[0].number' /tmp/gh-aw/agent/open-prs.json)\n  head=$(jq -r '.[0].headRefOid' /tmp/gh-aw/agent/open-prs.json)\n  git fetch --depth=1 origin \"refs/pull/$number/head\"\n  test \"$(git rev-parse FETCH_HEAD)\" = \"$head\"\n  paths=(docs/data/careers docs/pages/careers)\n  git ls-tree -r \"$head\" -- \"${paths[@]}\" | awk '$1 != \"100644\" { exit 1 }'\n  git restore --source=\"$head\" -- \"${paths[@]}\"\nfi\n"
       - env:
           OUT_FILE: /tmp/gh-aw/agent/ashby-jobs.json
         name: Collect active Ashby job listings
@@ -731,7 +705,7 @@ jobs:
         env:
           GH_AW_FILE_ROOT: "${{ runner.temp }}/gh-aw"
           GH_AW_FILE_CONFIG: "{\"files\":[{\"path\":\"safeoutputs/config.json\",\"content_env\":\"GH_AW_SAFE_OUTPUTS_CONFIG\"}]}"
-          GH_AW_SAFE_OUTPUTS_CONFIG: "{\"create_pull_request\":{\"allowed_files\":[\"docs/data/careers/**\",\"docs/pages/careers/**\"],\"branch_prefix\":\"code-infra-auditor/\",\"draft\":true,\"labels\":[\"website\"],\"max\":1,\"max_patch_files\":100,\"max_patch_size\":4096,\"protect_top_level_dot_folders\":true,\"protected_files\":[\"package.json\",\"bun.lockb\",\"bunfig.toml\",\"deno.json\",\"deno.jsonc\",\"deno.lock\",\"global.json\",\"NuGet.Config\",\"Directory.Packages.props\",\"mix.exs\",\"mix.lock\",\"go.mod\",\"go.sum\",\"stack.yaml\",\"stack.yaml.lock\",\"pom.xml\",\"build.gradle\",\"build.gradle.kts\",\"settings.gradle\",\"settings.gradle.kts\",\"gradle.properties\",\"package-lock.json\",\"yarn.lock\",\"pnpm-lock.yaml\",\"npm-shrinkwrap.json\",\"requirements.txt\",\"Pipfile\",\"Pipfile.lock\",\"pyproject.toml\",\"setup.py\",\"setup.cfg\",\"Gemfile\",\"Gemfile.lock\",\"uv.lock\",\"CODEOWNERS\",\"DESIGN.md\",\"README.md\",\"CONTRIBUTING.md\",\"SECURITY.md\",\"CODE_OF_CONDUCT.md\",\"CLAUDE.md\",\"AGENTS.md\"],\"protected_files_policy\":\"blocked\",\"title_prefix\":\"[website] \"},\"create_report_incomplete_issue\":{},\"noop\":{\"max\":2,\"report-as-issue\":\"false\"},\"push_to_pull_request_branch\":{\"if_no_changes\":\"ignore\",\"max\":1,\"max_patch_size\":4096,\"protect_top_level_dot_folders\":true,\"protected_files\":[\"package.json\",\"bun.lockb\",\"bunfig.toml\",\"deno.json\",\"deno.jsonc\",\"deno.lock\",\"global.json\",\"NuGet.Config\",\"Directory.Packages.props\",\"mix.exs\",\"mix.lock\",\"go.mod\",\"go.sum\",\"stack.yaml\",\"stack.yaml.lock\",\"pom.xml\",\"build.gradle\",\"build.gradle.kts\",\"settings.gradle\",\"settings.gradle.kts\",\"gradle.properties\",\"package-lock.json\",\"yarn.lock\",\"pnpm-lock.yaml\",\"npm-shrinkwrap.json\",\"requirements.txt\",\"Pipfile\",\"Pipfile.lock\",\"pyproject.toml\",\"setup.py\",\"setup.cfg\",\"Gemfile\",\"Gemfile.lock\",\"uv.lock\",\"CODEOWNERS\",\"DESIGN.md\",\"README.md\",\"CONTRIBUTING.md\",\"SECURITY.md\",\"CODE_OF_CONDUCT.md\",\"CLAUDE.md\",\"AGENTS.md\"],\"protected_files_policy\":\"blocked\",\"required_labels\":[\"website\"],\"target\":\"*\",\"title_prefix\":\"[website] Sync careers from Ashby\"},\"report_incomplete\":{},\"report_missing_data\":{},\"report_missing_tool\":{},\"update_pull_request\":{\"allow_body\":true,\"allow_title\":false,\"max\":1,\"required_labels\":[\"website\"],\"required_title_prefix\":\"[website] Sync careers from Ashby\",\"target\":\"*\",\"update_branch\":false,\"update_branch_stacks\":true}}"
+          GH_AW_SAFE_OUTPUTS_CONFIG: "{\"create_pull_request\":{\"allowed_files\":[\"docs/data/careers/**\",\"docs/pages/careers/**\"],\"branch_prefix\":\"code-infra-auditor/\",\"draft\":true,\"labels\":[\"website\"],\"max\":1,\"max_patch_files\":100,\"max_patch_size\":4096,\"protect_top_level_dot_folders\":true,\"protected_files\":[\"package.json\",\"bun.lockb\",\"bunfig.toml\",\"deno.json\",\"deno.jsonc\",\"deno.lock\",\"global.json\",\"NuGet.Config\",\"Directory.Packages.props\",\"mix.exs\",\"mix.lock\",\"go.mod\",\"go.sum\",\"stack.yaml\",\"stack.yaml.lock\",\"pom.xml\",\"build.gradle\",\"build.gradle.kts\",\"settings.gradle\",\"settings.gradle.kts\",\"gradle.properties\",\"package-lock.json\",\"yarn.lock\",\"pnpm-lock.yaml\",\"npm-shrinkwrap.json\",\"requirements.txt\",\"Pipfile\",\"Pipfile.lock\",\"pyproject.toml\",\"setup.py\",\"setup.cfg\",\"Gemfile\",\"Gemfile.lock\",\"uv.lock\",\"CODEOWNERS\",\"DESIGN.md\",\"README.md\",\"CONTRIBUTING.md\",\"SECURITY.md\",\"CODE_OF_CONDUCT.md\",\"CLAUDE.md\",\"AGENTS.md\"],\"protected_files_policy\":\"blocked\",\"title_prefix\":\"[website] \"},\"create_report_incomplete_issue\":{},\"noop\":{\"max\":2,\"report-as-issue\":\"false\"},\"report_incomplete\":{},\"report_missing_data\":{},\"report_missing_tool\":{}}"
         with:
           script: |
             const path = require('path');
@@ -745,9 +719,7 @@ jobs:
           GH_AW_TOOLS_META_JSON: |
             {
               "description_suffixes": {
-                "create_pull_request": " CONSTRAINTS: Maximum 1 pull request(s) can be created. Branch name will be prefixed with \"code-infra-auditor/\". Title will be prefixed with \"[website] \". Labels [\"website\"] will be automatically added. PRs will be created as drafts.",
-                "push_to_pull_request_branch": " CONSTRAINTS: Maximum 1 push(es) can be made. The target pull request title must start with \"[website] Sync careers from Ashby\".",
-                "update_pull_request": " CONSTRAINTS: Maximum 1 pull request(s) can be updated. Target: *. Only PRs with labels [website] can be updated. Only PRs with title prefix \"[website] Sync careers from Ashby\" can be updated."
+                "create_pull_request": " CONSTRAINTS: Maximum 1 pull request(s) can be created. Branch name will be prefixed with \"code-infra-auditor/\". Title will be prefixed with \"[website] \". Labels [\"website\"] will be automatically added. PRs will be created as drafts."
               },
               "repo_params": {},
               "dynamic_tools": []
@@ -824,29 +796,6 @@ jobs:
                   }
                 }
               },
-              "push_to_pull_request_branch": {
-                "defaultMax": 1,
-                "fields": {
-                  "branch": {
-                    "type": "string",
-                    "sanitize": true,
-                    "maxLength": 256
-                  },
-                  "message": {
-                    "required": true,
-                    "type": "string",
-                    "sanitize": true,
-                    "maxLength": 65000
-                  },
-                  "pull_request_number": {
-                    "issueOrPRNumber": true
-                  },
-                  "repo": {
-                    "type": "string",
-                    "maxLength": 256
-                  }
-                }
-              },
               "report_incomplete": {
                 "defaultMax": 5,
                 "fields": {
@@ -908,50 +857,6 @@ jobs:
                     "maxLength": 128
                   }
                 }
-              },
-              "update_pull_request": {
-                "defaultMax": 1,
-                "fields": {
-                  "body": {
-                    "type": "string",
-                    "sanitize": true,
-                    "maxLength": 65000
-                  },
-                  "draft": {
-                    "type": "boolean"
-                  },
-                  "operation": {
-                    "type": "string",
-                    "enum": [
-                      "replace",
-                      "append",
-                      "prepend",
-                      "replace-island"
-                    ]
-                  },
-                  "pr": {
-                    "issueOrPRNumber": true
-                  },
-                  "pr_number": {
-                    "issueOrPRNumber": true
-                  },
-                  "pull_request_number": {
-                    "issueOrPRNumber": true
-                  },
-                  "repo": {
-                    "type": "string",
-                    "maxLength": 256
-                  },
-                  "title": {
-                    "type": "string",
-                    "sanitize": true,
-                    "maxLength": 256
-                  },
-                  "update_branch": {
-                    "type": "boolean"
-                  }
-                },
-                "customValidation": "requiresOneOf:title,body,update_branch"
               }
             }
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -1581,21 +1486,6 @@ jobs:
           GH_AW_INFO_AWF_VERSION: "v0.29.11"
           GH_AW_INFO_ENGINE_ID: "claude"
           GH_AW_SETUP_AW_CONTEXT: ${{ inputs.aw_context }}
-      - name: Generate GitHub App token
-        id: safe-outputs-app-token
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
-        with:
-          client-id: ${{ secrets.CODE_INFRA_AUDITOR_CLIENT_ID }}
-          private-key: ${{ secrets.CODE_INFRA_AUDITOR_PRIVATE_KEY }}
-          skip-token-revoke: false
-          owner: ${{ github.repository_owner }}
-          repositories: ${{ github.event.repository.name }}
-          github-api-url: ${{ github.api_url }}
-          permission-actions: read
-          permission-checks: read
-          permission-contents: write
-          permission-issues: write
-          permission-pull-requests: write
       - name: Download agent output artifact
         id: download-agent-output
         continue-on-error: true
@@ -1657,7 +1547,7 @@ jobs:
           GH_AW_AMBIENT_CONTEXT: ${{ needs.agent.outputs.ambient_context }}
           GH_AW_WORKFLOW_ID: "sync-careers"
         with:
-          github-token: ${{ steps.safe-outputs-app-token.outputs.token }}
+          github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const path = require('path');
             const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
@@ -1677,7 +1567,7 @@ jobs:
           GH_AW_DETECTION_REASON: ${{ needs.detection.outputs.detection_reason }}
           GH_AW_DETECTION_THREAT_KINDS: ${{ needs.detection.outputs.detection_threat_kinds }}
         with:
-          github-token: ${{ steps.safe-outputs-app-token.outputs.token }}
+          github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const path = require('path');
             const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
@@ -1696,7 +1586,7 @@ jobs:
           GH_AW_ENGINE_ID: "claude"
           GH_AW_ENGINE_MODEL: "claude-opus-5-5"
         with:
-          github-token: ${{ steps.safe-outputs-app-token.outputs.token }}
+          github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const path = require('path');
             const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
@@ -1715,7 +1605,7 @@ jobs:
           GH_AW_ENGINE_ID: "claude"
           GH_AW_ENGINE_MODEL: "claude-opus-5-5"
         with:
-          github-token: ${{ steps.safe-outputs-app-token.outputs.token }}
+          github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const path = require('path');
             const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
@@ -1757,8 +1647,6 @@ jobs:
           GH_AW_ENGINE_API_HOSTS: "api.anthropic.com"
           GH_AW_CODE_PUSH_FAILURE_ERRORS: ${{ needs.safe_outputs.outputs.code_push_failure_errors }}
           GH_AW_CODE_PUSH_FAILURE_COUNT: ${{ needs.safe_outputs.outputs.code_push_failure_count }}
-          GH_AW_SAFE_OUTPUTS_APP_TOKEN_MINTING_FAILED: ${{ needs.safe_outputs.outputs.app_token_minting_failed }}
-          GH_AW_CONCLUSION_APP_TOKEN_MINTING_FAILED: ${{ steps.safe-outputs-app-token.outcome == 'failure' }}
           GH_AW_LOCKDOWN_CHECK_FAILED: ${{ needs.activation.outputs.lockdown_check_failed }}
           GH_AW_OAUTH_TOKEN_CHECK_FAILED: ${{ needs.activation.outputs.oauth_token_check_failed }}
           GH_AW_STALE_LOCK_FILE_FAILED: ${{ needs.activation.outputs.stale_lock_file_failed }}
@@ -1775,7 +1663,7 @@ jobs:
           GH_AW_MISSING_DATA_REPORT_AS_FAILURE: "true"
           GH_AW_TIMEOUT_MINUTES: "30"
         with:
-          github-token: ${{ steps.safe-outputs-app-token.outputs.token || github.token }}
+          github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const path = require('path');
             const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
@@ -1794,7 +1682,7 @@ jobs:
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_REPORT_FAILED_JOBS: "true"
         with:
-          github-token: ${{ steps.safe-outputs-app-token.outputs.token || github.token }}
+          github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const path = require('path');
             const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');
@@ -2293,7 +2181,6 @@ jobs:
       GH_AW_WORKFLOW_SOURCE_URL: "${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}/.github/workflows/sync-careers.md"
     outputs:
       activation_comment_links: ${{ steps.process_safe_outputs.outputs.activation_comment_links }}
-      app_token_minting_failed: ${{ steps.safe-outputs-app-token.outcome == 'failure' }}
       code_push_failure_count: ${{ steps.process_safe_outputs.outputs.code_push_failure_count }}
       code_push_failure_errors: ${{ steps.process_safe_outputs.outputs.code_push_failure_errors }}
       create_discussion_error_count: ${{ steps.process_safe_outputs.outputs.create_discussion_error_count }}
@@ -2309,8 +2196,6 @@ jobs:
       process_safe_outputs_items_warnings: ${{ steps.process_safe_outputs.outputs.items_warnings }}
       process_safe_outputs_processed_count: ${{ steps.process_safe_outputs.outputs.processed_count }}
       process_safe_outputs_status: ${{ steps.process_safe_outputs.outputs.status }}
-      push_commit_sha: ${{ steps.process_safe_outputs.outputs.push_commit_sha }}
-      push_commit_url: ${{ steps.process_safe_outputs.outputs.push_commit_url }}
     steps:
       - name: Setup Scripts
         id: setup
@@ -2352,8 +2237,30 @@ jobs:
         with:
           name: agent
           path: /tmp/gh-aw/
-      - name: Generate GitHub App token
-        id: safe-outputs-app-token
+      - name: Checkout repository (gh-aw default)
+        if: (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'create_pull_request')
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+          token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+      - name: Configure Git credentials
+        if: (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'create_pull_request')
+        env:
+          GH_AW_GIT_REPOSITORY: ${{ github.repository }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GIT_TOKEN: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+        run: bash "${RUNNER_TEMP}/gh-aw/actions/configure_git_credentials.sh"
+      - name: Configure GH_HOST for enterprise compatibility
+        id: ghes-host-config
+        shell: bash
+        run: | # zizmor: ignore[github-env] - GITHUB_SERVER_URL is set by GitHub Actions, not user input.
+          # Derive GH_HOST from GITHUB_SERVER_URL so the gh CLI targets the correct
+          # GitHub instance (GHES/GHEC). On github.com this is a harmless no-op.
+          GH_HOST="${GITHUB_SERVER_URL#https://}"
+          GH_HOST="${GH_HOST#http://}"
+          echo "GH_HOST=${GH_HOST}" >> "$GITHUB_ENV"
+      - name: Generate GitHub App token (create-pull-request)
+        id: create-pull-request-app-token
         uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           client-id: ${{ secrets.CODE_INFRA_AUDITOR_CLIENT_ID }}
@@ -2365,55 +2272,6 @@ jobs:
           permission-contents: write
           permission-issues: write
           permission-pull-requests: write
-      - name: Checkout repository (gh-aw default)
-        if: (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'create_pull_request') || (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'push_to_pull_request_branch')
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: true
-          token: ${{ steps.safe-outputs-app-token.outputs.token }}
-      - name: Fetch additional refs
-        if: (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'create_pull_request') || (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'push_to_pull_request_branch')
-        env:
-          GH_AW_FETCH_TOKEN: ${{ secrets.GH_AW_GITHUB_MCP_SERVER_TOKEN || secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
-        run: |
-          set -o pipefail
-          header=$(printf "x-access-token:%s" "${GH_AW_FETCH_TOKEN}" | base64 -w 0)
-          refspecs=('+refs/heads/code-infra-auditor/*:refs/remotes/origin/code-infra-auditor/*')
-          for refspec in "${refspecs[@]}"; do
-            source_ref=${refspec%%:*}
-            source_ref=${source_ref#+}
-            if matched=$(git -c "http.extraheader=Authorization: Basic ${header}" ls-remote --exit-code origin "$source_ref" | {
-              found=0
-              while read -r _ remote_ref; do
-                # Match the configured ref glob, not a literal string.
-                # shellcheck disable=SC2254
-                case "$remote_ref" in ($source_ref) found=1 ;; esac
-              done
-              printf '%s' "$found"
-            }); then
-              if [ "$matched" -eq 0 ]; then continue; fi
-              git -c "http.extraheader=Authorization: Basic ${header}" fetch origin --depth=1 "$refspec"
-            else
-              status=$?
-              if [ "$status" -ne 2 ]; then exit "$status"; fi
-            fi
-          done
-      - name: Configure Git credentials
-        if: (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'create_pull_request') || (!cancelled()) && needs.agent.result != 'skipped' && contains(needs.agent.outputs.output_types, 'push_to_pull_request_branch')
-        env:
-          GH_AW_GIT_REPOSITORY: ${{ github.repository }}
-          GITHUB_SERVER_URL: ${{ github.server_url }}
-          GIT_TOKEN: ${{ steps.safe-outputs-app-token.outputs.token }}
-        run: bash "${RUNNER_TEMP}/gh-aw/actions/configure_git_credentials.sh"
-      - name: Configure GH_HOST for enterprise compatibility
-        id: ghes-host-config
-        shell: bash
-        run: | # zizmor: ignore[github-env] - GITHUB_SERVER_URL is set by GitHub Actions, not user input.
-          # Derive GH_HOST from GITHUB_SERVER_URL so the gh CLI targets the correct
-          # GitHub instance (GHES/GHEC). On github.com this is a harmless no-op.
-          GH_HOST="${GITHUB_SERVER_URL#https://}"
-          GH_HOST="${GH_HOST#http://}"
-          echo "GH_HOST=${GH_HOST}" >> "$GITHUB_ENV"
       - name: Process Safe Outputs
         id: process_safe_outputs
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -2425,12 +2283,11 @@ jobs:
           GH_AW_ALLOWED_DOMAINS: "*.githubusercontent.com,*.mui.com,127.0.0.1,::1,api.npms.io,app.renovatebot.com,appveyor.com,archive.ubuntu.com,azure.archive.ubuntu.com,badgen.net,bun.sh,cdn.jsdelivr.net,circleci.com,codacy.com,codeclimate.com,codecov.io,codeload.github.com,coveralls.io,crl.geotrust.com,crl.globalsign.com,crl.identrust.com,crl.sectigo.com,crl.thawte.com,crl.usertrust.com,crl.verisign.com,crl3.digicert.com,crl4.digicert.com,crls.ssl.com,deb.nodesource.com,deepsource.io,deno.land,docs.github.com,drone.io,esm.sh,get.pnpm.io,github-cloud.githubusercontent.com,github-cloud.s3.amazonaws.com,github.blog,github.com,github.githubassets.com,googleapis.deno.dev,googlechromelabs.github.io,img.shields.io,jobs.ashbyhq.com,json-schema.org,json.schemastore.org,jsr.io,keyserver.ubuntu.com,lfs.github.com,localhost,mui.com,nodejs.org,npm.pkg.github.com,npmjs.com,npmjs.org,objects.githubusercontent.com,ocsp.digicert.com,ocsp.geotrust.com,ocsp.globalsign.com,ocsp.identrust.com,ocsp.sectigo.com,ocsp.ssl.com,ocsp.thawte.com,ocsp.usertrust.com,ocsp.verisign.com,patch-diff.githubusercontent.com,patchdiff.githubusercontent.com,raw.githubusercontent.com,readthedocs.io,readthedocs.org,registry.bower.io,registry.npmjs.com,registry.npmjs.org,registry.yarnpkg.com,renovatebot.com,repo.yarnpkg.com,s.symcb.com,s.symcd.com,security.ubuntu.com,semaphoreci.com,shields.io,skimdb.npmjs.com,snyk.io,sonarcloud.io,sonarqube.com,storage.googleapis.com,travis-ci.com,ts-crl.ws.symantec.com,ts-ocsp.ws.symantec.com,www.npmjs.com,www.npmjs.org,yarnpkg.com"
           GITHUB_SERVER_URL: ${{ github.server_url }}
           GITHUB_API_URL: ${{ github.api_url }}
-          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_pull_request\":{\"allowed_files\":[\"docs/data/careers/**\",\"docs/pages/careers/**\"],\"branch_prefix\":\"code-infra-auditor/\",\"draft\":true,\"labels\":[\"website\"],\"max\":1,\"max_patch_files\":100,\"max_patch_size\":4096,\"protect_top_level_dot_folders\":true,\"protected_files\":[\"package.json\",\"bun.lockb\",\"bunfig.toml\",\"deno.json\",\"deno.jsonc\",\"deno.lock\",\"global.json\",\"NuGet.Config\",\"Directory.Packages.props\",\"mix.exs\",\"mix.lock\",\"go.mod\",\"go.sum\",\"stack.yaml\",\"stack.yaml.lock\",\"pom.xml\",\"build.gradle\",\"build.gradle.kts\",\"settings.gradle\",\"settings.gradle.kts\",\"gradle.properties\",\"package-lock.json\",\"yarn.lock\",\"pnpm-lock.yaml\",\"npm-shrinkwrap.json\",\"requirements.txt\",\"Pipfile\",\"Pipfile.lock\",\"pyproject.toml\",\"setup.py\",\"setup.cfg\",\"Gemfile\",\"Gemfile.lock\",\"uv.lock\",\"CODEOWNERS\",\"DESIGN.md\",\"README.md\",\"CONTRIBUTING.md\",\"SECURITY.md\",\"CODE_OF_CONDUCT.md\",\"CLAUDE.md\",\"AGENTS.md\"],\"protected_files_policy\":\"blocked\",\"title_prefix\":\"[website] \"},\"create_report_incomplete_issue\":{},\"noop\":{\"max\":2,\"report-as-issue\":\"false\"},\"push_to_pull_request_branch\":{\"if_no_changes\":\"ignore\",\"max\":1,\"max_patch_size\":4096,\"protect_top_level_dot_folders\":true,\"protected_files\":[\"package.json\",\"bun.lockb\",\"bunfig.toml\",\"deno.json\",\"deno.jsonc\",\"deno.lock\",\"global.json\",\"NuGet.Config\",\"Directory.Packages.props\",\"mix.exs\",\"mix.lock\",\"go.mod\",\"go.sum\",\"stack.yaml\",\"stack.yaml.lock\",\"pom.xml\",\"build.gradle\",\"build.gradle.kts\",\"settings.gradle\",\"settings.gradle.kts\",\"gradle.properties\",\"package-lock.json\",\"yarn.lock\",\"pnpm-lock.yaml\",\"npm-shrinkwrap.json\",\"requirements.txt\",\"Pipfile\",\"Pipfile.lock\",\"pyproject.toml\",\"setup.py\",\"setup.cfg\",\"Gemfile\",\"Gemfile.lock\",\"uv.lock\",\"CODEOWNERS\",\"DESIGN.md\",\"README.md\",\"CONTRIBUTING.md\",\"SECURITY.md\",\"CODE_OF_CONDUCT.md\",\"CLAUDE.md\",\"AGENTS.md\"],\"protected_files_policy\":\"blocked\",\"required_labels\":[\"website\"],\"target\":\"*\",\"title_prefix\":\"[website] Sync careers from Ashby\"},\"report_incomplete\":{},\"report_missing_data\":{},\"report_missing_tool\":{},\"update_pull_request\":{\"allow_body\":true,\"allow_title\":false,\"max\":1,\"required_labels\":[\"website\"],\"required_title_prefix\":\"[website] Sync careers from Ashby\",\"target\":\"*\",\"update_branch\":false,\"update_branch_stacks\":true}}"
+          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_pull_request\":{\"allowed_files\":[\"docs/data/careers/**\",\"docs/pages/careers/**\"],\"branch_prefix\":\"code-infra-auditor/\",\"draft\":true,\"github-token\":\"${{ steps.create-pull-request-app-token.outputs.token }}\",\"labels\":[\"website\"],\"max\":1,\"max_patch_files\":100,\"max_patch_size\":4096,\"protect_top_level_dot_folders\":true,\"protected_files\":[\"package.json\",\"bun.lockb\",\"bunfig.toml\",\"deno.json\",\"deno.jsonc\",\"deno.lock\",\"global.json\",\"NuGet.Config\",\"Directory.Packages.props\",\"mix.exs\",\"mix.lock\",\"go.mod\",\"go.sum\",\"stack.yaml\",\"stack.yaml.lock\",\"pom.xml\",\"build.gradle\",\"build.gradle.kts\",\"settings.gradle\",\"settings.gradle.kts\",\"gradle.properties\",\"package-lock.json\",\"yarn.lock\",\"pnpm-lock.yaml\",\"npm-shrinkwrap.json\",\"requirements.txt\",\"Pipfile\",\"Pipfile.lock\",\"pyproject.toml\",\"setup.py\",\"setup.cfg\",\"Gemfile\",\"Gemfile.lock\",\"uv.lock\",\"CODEOWNERS\",\"DESIGN.md\",\"README.md\",\"CONTRIBUTING.md\",\"SECURITY.md\",\"CODE_OF_CONDUCT.md\",\"CLAUDE.md\",\"AGENTS.md\"],\"protected_files_policy\":\"blocked\",\"title_prefix\":\"[website] \"},\"create_report_incomplete_issue\":{},\"noop\":{\"max\":2,\"report-as-issue\":\"false\"},\"report_incomplete\":{},\"report_missing_data\":{},\"report_missing_tool\":{}}"
           GH_AW_CI_TRIGGER_TOKEN: ${{ secrets.GH_AW_CI_TRIGGER_TOKEN }}
-          GITHUB_TOKEN: ${{ steps.safe-outputs-app-token.outputs.token }}
-          GH_AW_GITHUB_TOKEN_SOURCE: "app"
+          GH_AW_GITHUB_TOKEN_SOURCE: ${{ secrets.GH_AW_GITHUB_TOKEN != '' && 'pat' || 'github_actions' }}
         with:
-          github-token: ${{ steps.safe-outputs-app-token.outputs.token }}
+          github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const path = require('path');
             const actionsDir = path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions');

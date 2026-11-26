@@ -376,8 +376,7 @@ export function parseRoleMarkdown(markdown) {
   return { title, description, ashbyId };
 }
 
-async function readExistingRoles(careersDirectory, activeOpenSlugs) {
-  const entries = await fs.readdir(careersDirectory);
+async function readExistingRoles(careersDirectory, activeOpenSlugs, entries) {
   const mdFiles = entries
     .filter((file) => file.endsWith('.md') && file !== 'ROLE_TEMPLATE.md')
     .sort();
@@ -419,6 +418,39 @@ export function isActiveAshbyJob(job, now = Date.now()) {
   return true;
 }
 
+export function matchJobs(jobs, roles, entries) {
+  const activeIds = new Set(jobs.map((job) => job.id.toLowerCase()));
+  const rolesById = new Map(roles.map((role) => [role.ashbyId, role]));
+  const unmatchedJobs = jobs.filter((job) => !rolesById.has(job.id.toLowerCase()));
+  const unmatchedRoles = roles.filter((role) => !activeIds.has(role.ashbyId));
+  const reserved = new Set(entries.map((entry) => path.parse(entry).name.toLowerCase()));
+
+  return jobs
+    .toSorted((a, b) => a.id.localeCompare(b.id))
+    .map((job) => {
+      const byId = rolesById.get(job.id.toLowerCase());
+      if (byId) {
+        return { job, existing: byId, matchType: 'ashbyId', suggestedSlug: byId.slug };
+      }
+
+      const title = normalizeTitle(job.title);
+      const sameTitle = (item) => normalizeTitle(item.title) === title;
+      const candidates = unmatchedRoles.filter(sameTitle);
+      if (title && candidates.length === 1 && unmatchedJobs.filter(sameTitle).length === 1) {
+        const [existing] = candidates;
+        return { job, existing, matchType: 'title', suggestedSlug: existing.slug };
+      }
+
+      const base = slugifyTitle(job.title) || 'role';
+      let suggestedSlug = base;
+      for (let suffix = 2; reserved.has(suggestedSlug); suffix += 1) {
+        suggestedSlug = `${base}-${suffix}`;
+      }
+      reserved.add(suggestedSlug);
+      return { job, existing: null, matchType: null, suggestedSlug };
+    });
+}
+
 export async function collectCareersData() {
   const response = await fetch(ASHBY_API_URL, {
     headers: { Accept: 'application/json' },
@@ -437,37 +469,14 @@ export async function collectCareersData() {
   const { categories, activeOpenRoles } = extractActiveOpenRoles(openRolesData);
 
   const activeOpenSlugs = new Set(activeOpenRoles.map((role) => role.slug).filter(Boolean));
-  const existingRolesFull = await readExistingRoles(careersDirectory, activeOpenSlugs);
-  const roleByAshbyId = new Map();
-  const roleByNormalizedTitle = new Map();
-  for (const role of existingRolesFull) {
-    if (role.ashbyId) {
-      roleByAshbyId.set(role.ashbyId, role);
-    }
-    if (role.title) {
-      const normalized = normalizeTitle(role.title);
-      if (normalized && !roleByNormalizedTitle.has(normalized)) {
-        roleByNormalizedTitle.set(normalized, role);
-      }
-    }
-  }
-
+  const entries = await fs.readdir(careersDirectory);
+  const existingRolesFull = await readExistingRoles(careersDirectory, activeOpenSlugs, entries);
   const listedJobs = payload.jobs.filter((job) => isActiveAshbyJob(job));
+  const matches = matchJobs(listedJobs, existingRolesFull, entries);
   const activeMatchedSlugs = new Set();
 
-  const activeJobs = listedJobs.map((job) => {
-    const id = String(job.id).toLowerCase();
+  const activeJobs = matches.map(({ job, existing, matchType, suggestedSlug }) => {
     const applyUrl = `https://jobs.ashbyhq.com/MUI/${job.id}/application?utm_source=${ASHBY_UTM_SOURCE}`;
-
-    let existing = roleByAshbyId.get(id) ?? null;
-    let matchType = existing ? 'ashbyId' : null;
-    if (!existing) {
-      const titleMatch = roleByNormalizedTitle.get(normalizeTitle(job.title)) ?? null;
-      if (titleMatch) {
-        existing = titleMatch;
-        matchType = 'title';
-      }
-    }
 
     if (existing) {
       activeMatchedSlugs.add(existing.slug);
@@ -498,7 +507,7 @@ export async function collectCareersData() {
       applyUrl,
       existingSlug: existing?.slug ?? null,
       matchType,
-      suggestedSlug: existing?.slug ?? slugifyTitle(job.title),
+      suggestedSlug,
       existingTitle: existing?.title ?? null,
       existingDescription: existing?.description ?? null,
       existingHasJsPage,
