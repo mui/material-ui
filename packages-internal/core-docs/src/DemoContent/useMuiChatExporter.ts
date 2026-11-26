@@ -1,9 +1,7 @@
 import * as React from 'react';
-import {
-  flattenCodeVariant,
-  getFilenameFromVariant,
-  type ExportConfig,
-} from '@mui/internal-docs-infra/useDemo';
+import { flattenCodeVariant, getFilenameFromVariant } from '@mui/internal-docs-infra/useDemo';
+import type { ExportConfig } from '@mui/internal-docs-infra/useDemo';
+import type { applyCodeTransform } from '@mui/internal-docs-infra/pipeline/loadIsomorphicCodeVariant';
 import type {
   ContentProps,
   VariantCode,
@@ -12,8 +10,7 @@ import type {
 import DemoContext from '../DemoContext';
 import PageContext from '../PageContext';
 
-type ApplyCodeTransform =
-  typeof import('@mui/internal-docs-infra/pipeline/loadIsomorphicCodeVariant').applyCodeTransform;
+type ApplyCodeTransform = typeof applyCodeTransform;
 
 interface MuiChatConfig {
   baseUrl: string;

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
+import type * as JsxRuntime from 'react/jsx-runtime';
 import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -73,7 +74,7 @@ describe('docs demo theming', () => {
     };
     const runtimeWindow = window as typeof window & {
       React?: typeof React;
-      jsx?: typeof import('react/jsx-runtime');
+      jsx?: typeof JsxRuntime;
       getInjectTheme?: typeof getInjectTheme;
     };
     runtimeWindow.getInjectTheme = getInjectTheme;
