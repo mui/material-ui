@@ -867,7 +867,7 @@ importers:
         version: 10.0.0-alpha.0(stylis@4.2.0)
       '@mui/utils':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta || ^10.0.0-alpha
-        version: 9.5.0(@types/react@19.3.0)(react@19.3.1)
+        version: 10.0.0-alpha.0(@types/react@19.3.0)(react@19.3.1)
       '@types/stylis':
         specifier: ^4.2.7
         version: 4.2.7
@@ -3970,6 +3970,14 @@ packages:
       '@types/react':
         optional: true
 
+  '@mui/types@10.0.0-alpha.0':
+    resolution: {integrity: sha512-0UCQpSk/WBmb9WjiSTUmMPzGxagMif6uXyxJ1yMprgtQuwAd8jINUNULIXEjAjOR7anAajFk3psGzKMla5x/AQ==}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   '@mui/types@7.2.24':
     resolution: {integrity: sha512-3c8tRt/CbWZ+pEg7QpSwbdxOk36EfmhbKf6AGZsD1EcLDLTSZoxxJ86FVtcjxvjuhdyBiWKSTGZFaXCnidO2kw==}
     peerDependencies:
@@ -3982,6 +3990,16 @@ packages:
     resolution: {integrity: sha512-O0S6xS80qEQqW2CYNrd4GlBEQ1xpMOHZ5b4zO/DaLu6NZmtthM6smEg0Gz/u9gX5vL+8NB3EiBIxmxSCcG590Q==}
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@mui/utils@10.0.0-alpha.0':
+    resolution: {integrity: sha512-XrmOB/xyOfck6heoB35IFdq4ZxCXnUSBvLA8zQhDcrKw6VuQhpybiFU7DrD8HW3OvZ14Exn1xF6zX80KT0kIcQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -14060,6 +14078,12 @@ snapshots:
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0)
       '@types/react': 19.3.0
 
+  '@mui/types@10.0.0-alpha.0(@types/react@19.3.0)':
+    dependencies:
+      '@babel/runtime': 8.1.0
+    optionalDependencies:
+      '@types/react': 19.3.0
+
   '@mui/types@7.2.24(@types/react@19.3.0)':
     optionalDependencies:
       '@types/react': 19.3.0
@@ -14067,6 +14091,18 @@ snapshots:
   '@mui/types@9.5.0(@types/react@19.3.0)':
     dependencies:
       '@babel/runtime': 8.1.0
+    optionalDependencies:
+      '@types/react': 19.3.0
+
+  '@mui/utils@10.0.0-alpha.0(@types/react@19.3.0)(react@19.3.1)':
+    dependencies:
+      '@babel/runtime': 8.1.0
+      '@mui/types': 10.0.0-alpha.0(@types/react@19.3.0)
+      '@types/prop-types': 15.7.15
+      clsx: 2.1.1
+      prop-types: 15.8.1
+      react: 19.3.1
+      react-is: 19.3.1
     optionalDependencies:
       '@types/react': 19.3.0
 
