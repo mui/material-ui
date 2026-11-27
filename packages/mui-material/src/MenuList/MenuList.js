@@ -274,9 +274,15 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
       return;
     }
 
-    rovingContainerProps.onKeyDown(event);
-
     const criteria = textCriteriaRef.current;
+    if (!event.defaultPrevented) {
+      rovingContainerProps.onKeyDown(event);
+      // Handling ArrowUp, ArrowDown, Home, or End ends the current typeahead query.
+      if (event.defaultPrevented) {
+        criteria.keys = [];
+      }
+    }
+
     const currTime = performance.now();
     const hasActiveQuery = criteria.keys.length > 0 && currTime - criteria.lastTime <= 500;
     // Leave a standalone Space to the list's keydown handler for option activation.

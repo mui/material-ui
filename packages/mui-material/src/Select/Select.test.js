@@ -569,6 +569,47 @@ describe('<Select />', () => {
       expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
     });
 
+    it.each([
+      ['ArrowUp', 'Editor'],
+      ['ArrowDown', 'Viewer'],
+      ['Home', 'Admin'],
+      ['End', 'Owner'],
+    ])('selects with Space immediately after typeahead and %s', async (key, expected) => {
+      const { user } = render(
+        <Select defaultOpen defaultValue="">
+          {['Admin', 'Editor', 'User', 'Viewer', 'Owner'].map((label) => (
+            <MenuItem key={label} value={label}>
+              {label}
+            </MenuItem>
+          ))}
+        </Select>,
+      );
+
+      await user.keyboard('u');
+      expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
+      await user.keyboard(`{${key}}`);
+      expect(screen.getByRole('option', { name: expected })).toHaveFocus();
+      await user.keyboard(' ');
+      expect(screen.getByRole('combobox')).to.have.text(expected);
+    });
+
+    it('starts a new query after navigation and preserves it through Shift', async () => {
+      const { user } = render(
+        <Select defaultOpen defaultValue="">
+          {['Admin', 'User', 'Owner', 'Operator', 'Publisher'].map((label) => (
+            <MenuItem key={label} value={label}>
+              {label}
+            </MenuItem>
+          ))}
+        </Select>,
+      );
+
+      await user.keyboard('u{ArrowUp}o');
+      expect(screen.getByRole('option', { name: 'Owner' })).toHaveFocus();
+      await user.keyboard('{Shift>}P{/Shift}');
+      expect(screen.getByRole('option', { name: 'Operator' })).toHaveFocus();
+    });
+
     it('lets the themed list key handler cancel option activation', async () => {
       const onKeyDown = vi.fn((event) => event.preventDefault());
       const theme = createTheme({
