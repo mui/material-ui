@@ -586,12 +586,17 @@ async function main() {
         ]) {
           // eslint-disable-next-line no-await-in-loop
           const style = await page.addStyleTag({ content: css });
-          // eslint-disable-next-line no-await-in-loop
-          if (!(await truncated(page, 0))) {
-            throw new Error(`Chip label no longer truncates with ${css}; the gap may be fixed`);
+          // Remove the style also when the check throws. The page is pooled, and
+          // the style would change the tests that use the page later.
+          try {
+            // eslint-disable-next-line no-await-in-loop
+            if (!(await truncated(page, 0))) {
+              throw new Error(`Chip label no longer truncates with ${css}; the gap may be fixed`);
+            }
+          } finally {
+            // eslint-disable-next-line no-await-in-loop
+            await style.evaluate((node) => node.remove());
           }
-          // eslint-disable-next-line no-await-in-loop
-          await style.evaluate((node) => node.remove());
         }
       });
 
