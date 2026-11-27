@@ -40,7 +40,7 @@ Here is a [more detailed guide](/material-ui/integrations/routing/#link).
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)
 
 - When providing the content for the link, avoid generic descriptions like "click here" or "go to".
-  Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
+  Instead, use [specific descriptions](https://developer.chrome.com/docs/lighthouse/seo/link-text).
 - For the best user experience, links should stand out from the text on the page. For instance, you can keep the default `underline="always"` behavior.
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
   The demo below illustrates how to properly link with a `<button>`:

@@ -1,8 +1,19 @@
 [
   {
-    "gap": "By default, the keyboard focus indicator is the ripple or a background tint, with untested contrast",
+    "gap": "By default, the keyboard focus indicator is the ripple or a background tint, and its contrast can fall below 3:1",
     "criteria": ["1.4.11"],
-    "affected": ["AccordionSummary", "Button", "Checkbox", "Radio", "Switch", "ToggleButton"],
+    "affected": [
+      "AccordionSummary",
+      "Button",
+      "ButtonGroup",
+      "Checkbox",
+      "Chip",
+      { "component": "Fab", "note": "the ring needs `disableFocusRipple`" },
+      { "component": "IconButton", "note": "the ring needs `disableFocusRipple` too" },
+      "Radio",
+      "Switch",
+      "ToggleButton"
+    ],
     "workaround": "Enable `focusVisible` in your theme — see below"
   },
   {
@@ -10,14 +21,34 @@
     "criteria": ["1.4.3", "1.4.11"],
     "affected": [
       "Avatar",
-      "Button",
+      { "component": "Button", "note": "`info`, `warning`; `error` in dark mode" },
+      {
+        "component": "Chip",
+        "note": "`info`, `warning`, focused or hovered `outlined`"
+      },
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
+      {
+        "component": "Fab",
+        "note": "`info`, `warning`; label on the focus ripple: use `disableFocusRipple` with the ring"
+      },
+      {
+        "component": "FormLabel",
+        "note": "focused `info`, `warning`; `error` on a dark Paper with elevation 2 or more"
+      },
+      { "component": "IconButton", "note": "`info`, `warning`" },
       "LinearProgress",
+      { "component": "Link", "note": "link text, 1.4.3 only" },
       "Switch",
       "TextField",
       "ToggleButton"
     ],
-    "workaround": "Override the affected palette entries"
+    "workaround": "Override the affected palette entries. In dark mode, set a lighter `error.main`, or keep `error` text on a surface with elevation 0 or 1. Elevation does not help the label of a `filled` TextField"
+  },
+  {
+    "gap": "A horizontal group does not wrap, so a wide group can scroll horizontally at 320 px",
+    "criteria": ["1.4.10"],
+    "affected": ["ButtonGroup", "ToggleButtonGroup"],
+    "workaround": "Set `orientation=\"vertical\"` on small screens"
   },
   {
     "gap": "The selected state of colored Toggle Buttons is conveyed almost entirely by hue",
@@ -26,11 +57,54 @@
     "workaround": "Add a non-color cue to the selected state, such as an icon"
   },
   {
+    "gap": "A Chip label does not wrap, so a long label ends with an ellipsis and hides text",
+    "criteria": ["1.4.10", "1.4.12"],
+    "affected": ["Chip"],
+    "workaround": "Let the label wrap with `height: 'auto'` and `whiteSpace: 'normal'`, as in the multiline demo"
+  },
+  {
+    "gap": "A deletable Chip does not expose its delete action, and a disabled delete-only Chip stays focusable and does not expose its disabled state",
+    "criteria": ["1.1.1", "4.1.2"],
+    "affected": [{ "component": "Chip", "note": "`onDelete`; delete-only ignores Enter, Space" }],
+    "workaround": "Describe the delete key with `aria-describedby`, and set `skipFocusWhenDisabled` on disabled chips"
+  },
+  {
+    "gap": "Deleting a Chip with the keyboard moves focus to the page body",
+    "criteria": ["2.4.3"],
+    "affected": [{ "component": "Chip", "note": "`onDelete`" }],
+    "workaround": "Move focus to the next chip, or to the input, in the `onDelete` handler"
+  },
+  {
+    "gap": "The Chip delete icon is smaller than 24 by 24 CSS px, and its contrast is below 3:1",
+    "criteria": ["1.4.11", "2.5.8"],
+    "affected": [{ "component": "Chip", "note": "16 px `small`, 22 px `medium`" }],
+    "workaround": "Enlarge the icon, and give it a darker color, with `sx` on `.MuiChip-deleteIcon`"
+  },
+  {
+    "gap": "The extended Fab has a fixed height, so a label that wraps can spill out of it",
+    "criteria": ["1.4.10", "1.4.12"],
+    "affected": [{ "component": "Fab", "note": "`extended`" }],
+    "workaround": "Keep labels short, or set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`"
+  },
+  {
+    "gap": "A required checkbox, radio, or switch group exposes no required state to assistive technology, because Checkbox, Radio, and Switch do not take `required` from FormControl and RadioGroup has no `required` prop",
+    "criteria": ["1.3.1"],
+    "affected": [{ "component": "FormLabel", "note": "`required` group legend" }],
+    "workaround": "Set `aria-required` on a RadioGroup. Set `required` on a single Checkbox or Switch, or on its FormControlLabel, which forwards it to the control. For a checkbox group, state the requirement in the legend text"
+  },
+  {
+    "gap": "Links without an underline rely on color, and several link colors are below 3:1 against body text",
+    "criteria": ["1.4.1"],
+    "affected": [{ "component": "Link", "note": "`underline=\"none\"`, `underline=\"hover\"`" }],
+    "workaround": "Keep the default `underline=\"always\"` for links in body text"
+  },
+  {
     "gap": "Dynamic state changes are not announced",
     "criteria": ["4.1.3"],
     "affected": [
       { "component": "Button", "note": "`loading`" },
       "CircularProgress",
+      { "component": "IconButton", "note": "`loading`" },
       "LinearProgress",
       { "component": "TextField", "note": "error" }
     ],
@@ -40,9 +114,20 @@
     "gap": "Indefinite animation cannot be paused",
     "criteria": ["2.2.2"],
     "affected": [
+      { "component": "Button", "note": "`loading`" },
       { "component": "CircularProgress", "note": "`indeterminate`" },
+      { "component": "IconButton", "note": "`loading`" },
       { "component": "LinearProgress", "note": "`indeterminate`, `query`, `buffer`" }
     ],
     "workaround": "Show it only while an operation is in flight"
+  },
+  {
+    "gap": "A focused button that turns `loading` loses keyboard focus to the page",
+    "criteria": ["2.4.3"],
+    "affected": [
+      { "component": "Button", "note": "`loading`" },
+      { "component": "IconButton", "note": "`loading`" }
+    ],
+    "workaround": "Move focus to a nearby element before you set `loading`, and back when it ends"
   }
 ]

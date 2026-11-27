@@ -13,20 +13,37 @@ export const CSS_LAYOUT_SUITES = [
   {
     component: 'Avatar',
     route: '/docs-components-avatars/LetterAvatars',
-    // 1.4.4 is asserted here as *text-only* resize, which the Avatar report
-    // explicitly treats as out of scope: its fixed 40px box scales under
-    // full-page zoom (the mechanism the criterion assumes) but not under
-    // text-only zoom, which the report calls an author concern. Left rated
-    // Manual rather than silently downgraded. See Avatar/accessibility.md.
-    skipCriteria: ['1.4.4'],
+    // The fixed 40px box scales under page zoom, which decides 1.4.4, but not
+    // under text-only resize. The report states the text-only result.
+    textOnlyResize: false,
   },
   { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
+  { component: 'ButtonGroup', route: '/docs-components-button-group/VariantButtonGroup' },
   { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
+  { component: 'Chip', route: '/docs-components-chips/ChipsArray' },
   {
     component: 'CircularProgress',
     route: '/docs-components-progress/CircularDeterminate',
     // The spinner renders no text, so the report rates 1.4.4 and 1.4.12 not applicable.
     skipCriteria: ['1.4.4', '1.4.12'],
+  },
+  // The badge count is the only documented text inside an IconButton.
+  { component: 'IconButton', route: '/docs-components-buttons/IconButtonWithBadge' },
+  {
+    component: 'Fab',
+    route: '/docs-components-floating-action-button/FloatingActionButtonExtendedSize',
+  },
+  {
+    // FormGroup has no docs page of its own, so the layout suite runs on its a11y fixture.
+    component: 'FormGroup',
+    route: '/a11y-checkboxes/FormGroupA11yStates',
+    // FormGroup renders no text, so the report rates 1.4.4 and 1.4.12 not applicable.
+    skipCriteria: ['1.4.4', '1.4.12'],
+  },
+  {
+    // FormLabel has no docs page of its own, so the layout suite runs on its a11y fixture.
+    component: 'FormLabel',
+    route: '/a11y-form-label/FormLabelA11yStates',
   },
   {
     component: 'LinearProgress',
@@ -34,6 +51,7 @@ export const CSS_LAYOUT_SUITES = [
     // The bar renders no text, so the report rates 1.4.4 and 1.4.12 not applicable.
     skipCriteria: ['1.4.4', '1.4.12'],
   },
+  { component: 'Link', route: '/docs-components-links/Links' },
   { component: 'Radio', route: '/docs-components-radio-buttons/RadioButtonsGroup' },
   { component: 'Switch', route: '/docs-components-switches/BasicSwitches' },
   { component: 'TextField', route: '/docs-components-text-fields/BasicTextFields' },
@@ -60,9 +78,34 @@ export const FOCUS_VISIBLE_TARGETS = [
     selector: '.MuiButton-root',
   },
   {
+    component: 'ButtonGroup',
+    route: '/docs-components-button-group/BasicButtonGroup',
+    selector: '.MuiButtonGroup-grouped',
+  },
+  {
     component: 'Checkbox',
     route: '/docs-components-checkboxes/Checkboxes',
     selector: '.MuiCheckbox-root',
+  },
+  {
+    component: 'Chip',
+    route: '/docs-components-chips/ClickableChips',
+    selector: '.MuiChip-clickable',
+  },
+  {
+    component: 'Fab',
+    route: '/docs-components-floating-action-button/FloatingActionButtons',
+    selector: '.MuiFab-root',
+  },
+  {
+    component: 'IconButton',
+    route: '/docs-components-buttons/IconButtons',
+    selector: '.MuiIconButton-root',
+  },
+  {
+    component: 'Link',
+    route: '/docs-components-links/Links',
+    selector: '.MuiLink-root',
   },
   {
     component: 'Radio',

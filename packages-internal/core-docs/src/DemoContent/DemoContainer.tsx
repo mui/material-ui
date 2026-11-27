@@ -72,8 +72,8 @@ export const DemoRoot = styled('div')(({ theme }) => ({
     marginLeft: 0,
     marginRight: 0,
   },
-  // Keep each demo as an independent layout and style boundary.
-  contain: 'layout style',
+  // Layout containment shifts fixed-position overlays inside demos.
+  contain: 'style',
 
   // Square the toolbar against any visible source window, matching master's
   // `openDemoSource` styling for focused snippets and expanded source.

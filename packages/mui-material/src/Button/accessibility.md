@@ -6,16 +6,18 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 24    |
-| ⚠️ Partially Supports | 3     |
+| ✅ Supports           | 23    |
+| ⚠️ Partially Supports | 5     |
 | ❌ Does Not Support   | 0     |
-| ➖ Not Applicable     | 28    |
-| 🚩 Flagged            | 7/27  |
+| ➖ Not Applicable     | 27    |
+| 🚩 Flagged            | 9/28  |
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant. For `contained`, the white label comes from the `contrastText` choice: dark text on the same `main` clears 4.5:1. In dark mode, the `contained` `error` label falls short on every surface, and the `text` and `outlined` `error` labels fall short on a Paper with elevation 2 or more.<!-- 1.4.3:gap:end -->
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.<!-- 1.4.11:gap:end -->
+- ⚠️ **2.2.2 Pause, Stop, Hide.** <!-- 2.2.2:gap:start -->The `loading` spinner turns until `loading` ends, and the user cannot pause it.<!-- 2.2.2:gap:end -->
+- ⚠️ **2.4.3 Focus Order.** <!-- 2.4.3:gap:start -->A focused button that turns `loading` becomes disabled, and the browser moves focus to the page body.<!-- 2.4.3:gap:end -->
 - ⚠️ **4.1.3 Status Messages.** <!-- 4.1.3:gap:start -->The `loading` state adds no live region, so the change may go unannounced.<!-- 4.1.3:gap:end -->
 
 ## Success criteria
@@ -74,6 +76,25 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 <!-- 1.4.5:end -->
 
 **Pass:** <!-- 1.4.5:pass:start -->no button renders its label as an image of text (a logo with an accessible name is exempt).<!-- 1.4.5:pass:end -->
+
+#### 2.2.2 Pause, Stop, Hide · A
+
+`🚩` · `⚠️ Partially Supports` · `◐ Shared`
+
+<!-- 2.2.2:start -->
+
+- While `loading`, the button shows a spinning `CircularProgress`. It turns until the application sets `loading` to `false`, and the user cannot pause it. The application can set `loading` without user input.
+- If the spinner shows for more than five seconds next to other content, this criterion applies. The essential exception does not apply, because the rest of the page stays interactive.
+- The IconButton report has the same gap.
+
+**Manual testing steps**
+
+1. Set `loading` on a button for a task that takes more than five seconds.
+2. Look for a way to pause or hide the spinner.
+
+<!-- 2.2.2:end -->
+
+**Pass:** <!-- 2.2.2:pass:start -->the spinner shows for less than five seconds, or the user can pause or hide it. With the default styles, the user cannot pause it. Keep `loading` short, or show the progress elsewhere.<!-- 2.2.2:pass:end -->
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
@@ -212,15 +233,24 @@ The shortfalls, measured from the default light palette (all pairs against `#fff
 
 Every other `variant` × `color` combination clears `4.5:1`; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
 
+The `text`/`outlined` shortfalls come from the `main` color itself. The `contained` ones do not: `getContrastText()` picks white because it reaches the default `contrastThreshold` of 3, without comparing it to dark text, which reaches `6.02:1` on `warning` and `4.95:1` on `info`. A `contrastThreshold` of `4.5` switches both to dark text, but `contrastText` is computed from `main` only: on the hover background (`info.dark`, `#01579b`) the dark `info` label drops to `2.68:1`.
+
+In the default dark palette, only `error` (`#f44336`) falls short:
+
+- `contained`: the `#fff` label is `3.68:1` on every surface.
+- `text` and `outlined`: the label uses `error.main`. It is about `5.09:1` on the page background (`#121212`). The elevation overlay of a Paper lightens the surface. On a Paper with elevation 2 or more, such as a Menu or Dialog, the label falls below `4.5:1`: about `4.3:1` at elevation 2 and `3.14:1` at elevation 24.
+- The other dark palette colors reach `4.5:1` in every variant, up to elevation 24.
+
 **Manual testing steps**
 
 1. With a contrast checker (the color picker in browser DevTools shows a ratio), check each button's label against its background, across the color and variant combinations in use.
 2. Repeat with the pointer hovering and held down, since `:hover` and `:active` change the background.
 3. Check any custom theme colors the product uses.
+4. In dark mode, repeat the check for `error` buttons on each Paper surface in use, such as a Menu or Dialog.
 
 <!-- 1.4.3:end -->
 
-**Pass:** <!-- 1.4.3:pass:start -->at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning` are the known failures.<!-- 1.4.3:pass:end -->
+**Pass:** <!-- 1.4.3:pass:start -->at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning`, and `error` in dark mode, are the known failures.<!-- 1.4.3:pass:end -->
 
 #### 1.4.11 Non-text Contrast · AA
 
@@ -241,6 +271,32 @@ Every other `variant` × `color` combination clears `4.5:1`; the closest pass is
 <!-- 1.4.11:end -->
 
 **Pass:** <!-- 1.4.11:pass:start -->border, focus indicator, and any meaningful icon are each at least `3:1`. Disabled and purely decorative parts are exempt.<!-- 1.4.11:pass:end -->
+
+#### 2.4.3 Focus Order · A
+
+`🚩` · `⚠️ Partially Supports` · `◐ Shared`
+
+Tested by: unit `Button.test.js`
+
+<!-- 2.4.3:start -->
+
+- The component sits in natural DOM order with no positive `tabIndex`, and disabled or loading buttons leave the order, so it is one correct focus stop.
+- A focused button that turns `loading` becomes disabled, and the browser moves focus to the page body. The browser keeps the position of the button, so the next <kbd>Tab</kbd> goes to the element after it. Chromium, Firefox, and WebKit all do this.
+- Until the next <kbd>Tab</kbd>, no element shows focus, key handlers on the button do not run, and a screen reader can lose its position on the page. No unit test covers this.
+- Order across controls is the surrounding layout's responsibility.
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (default `tabIndex` is `0`; disabled and loading buttons leave the order).
+
+**Manual testing steps**
+
+1. In Chrome DevTools, add a Console live expression for `document.activeElement`.
+2. Press <kbd>Tab</kbd> to a button that turns `loading` when you activate it.
+3. Press <kbd>Enter</kbd>, and note the element that the live expression shows while the button is `loading`.
+4. Press <kbd>Tab</kbd>, and note which element gets focus.
+5. With a screen reader on, do steps 2 and 3 again, and note what the screen reader announces.
+
+<!-- 2.4.3:end -->
+
+**Pass:** <!-- 2.4.3:pass:start -->focus stays on the button while it is `loading`, and the screen reader stays on the button. The next Tab press moves focus to the element after the button.<!-- 2.4.3:pass:end -->
 
 #### 2.4.4 Link Purpose (In Context) · A
 
@@ -408,20 +464,6 @@ Tested by: unit `Button.test.js`
 
 <!-- 2.1.2:end -->
 
-#### 2.4.3 Focus Order · A
-
-`✅ Supports` · `◐ Shared`
-
-Tested by: unit `Button.test.js`
-
-<!-- 2.4.3:start -->
-
-- The component sits in natural DOM order with no positive `tabIndex`, and disabled or loading buttons leave the order, so it is one correct focus stop.
-- Order across controls is the surrounding layout's responsibility.
-- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (default `tabIndex` is `0`; disabled and loading buttons leave the order).
-
-<!-- 2.4.3:end -->
-
 #### 2.5.2 Pointer Cancellation · A
 
 `✅ Supports` · `● Component`
@@ -497,7 +539,6 @@ Tested by: unit `Button.test.js`
 - **1.4.13 Content on Hover or Focus (AA).** Shows no additional content on hover or focus; a `Tooltip` wrapper would own this.
 - **2.1.4 Character Key Shortcuts (A).** <!-- 2.1.4:start -->The only keys are <kbd>Enter</kbd> and <kbd>Space</kbd> which are not shortcuts.<!-- 2.1.4:end -->
 - **2.2.1 Timing Adjustable (A).** Sets no time limit.
-- **2.2.2 Pause, Stop, Hide (A).** <!-- 2.2.2:start -->The loading spinner is user-triggered, and the button is disabled while loading.<!-- 2.2.2:end -->
 - **2.3.1 Three Flashes or Below Threshold (A).** Nothing flashes.
 - **2.4.1 Bypass Blocks (A), 2.4.2 Page Titled (A), 2.4.5 Multiple Ways (AA).** Page or site structure, not a single component.
 - **2.5.1 Pointer Gestures (A), 2.5.4 Motion Actuation (A).** Activates on a simple click; reads no device motion.

@@ -9,7 +9,7 @@ export default function FormControlLabelPosition() {
     // @focus-start @padding 2
     <FormControl component="fieldset">
       <FormLabel component="legend">Label placement</FormLabel>
-      <FormGroup aria-label="position" row>
+      <FormGroup row>
         <FormControlLabel
           value="bottom"
           control={<Switch color="primary" />}
