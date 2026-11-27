@@ -43,6 +43,23 @@ describe('@mui/codemod', () => {
         const expected = read('./top-level-imports.test/expected.js');
         expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
+
+      it('should not transform imports from a different package', () => {
+        const source = "import Button from '@mui/materialXjs/Button';";
+
+        const actual = transform(
+          {
+            source,
+            path: 'example.js',
+          },
+          { jscodeshift },
+          {
+            importModule: '@mui/material.js',
+          },
+        );
+
+        expect(trim(actual)).to.equal(trim(source));
+      });
     });
   });
 });
