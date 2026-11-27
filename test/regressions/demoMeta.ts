@@ -9,7 +9,7 @@
  *
  * Whole-slug exclusions where *no* tool wants anything live in the
  * `index.jsx` glob — dropping them from the bundle entirely, not just from
- * the tools.
+ * the tools. `REACT_FLOOR_RULES` skips a route in every test on an older React.
  */
 
 import { minimatch } from 'minimatch';
@@ -32,13 +32,17 @@ export interface ScreenshotRule {
    * at the default.
    */
   viewportWidth?: number;
+}
+
+export interface ReactFloorRule {
+  /** Minimatch glob against the route's source path (see {@link getMinReactMajor}). */
+  test: string;
   /**
-   * Skip the demo when the run's React major is below this. For demos whose
-   * third-party dependencies need a newer React than MUI itself supports —
-   * the nightly `test_regressions-react@18` job installs React 18 across the
+   * Skip the route in every test when the run's React major is below this. The
+   * nightly `react@17` and `react@18` jobs install that React across the
    * workspace via pnpm overrides, past any peer range that says otherwise.
    */
-  minReactMajor?: number;
+  minReactMajor: number;
 }
 
 export interface A11yRule {
@@ -112,9 +116,9 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'docs/data/material/components/snackbars/CustomizedSnackbars', enabled: false }, // Redundant
   { test: 'docs/data/material/components/snackbars/DirectionSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/FabIntegrationSnackbar', enabled: false }, // Needs interaction
-  { test: 'docs/data/material/components/snackbars/IntegrationNotistack', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/PositionedSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/SimpleSnackbar', enabled: false }, // Needs interaction
+  { test: 'docs/data/material/components/snackbars/StackedSnackbars', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/TransitionsSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/stack/InteractiveStack', enabled: false }, // Redundant
   { test: 'docs/data/material/components/steppers/HorizontalNonLinearStepper', enabled: false }, // Redundant
@@ -133,18 +137,6 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   // their live-docs desktop layout. Last-match-wins so this overrides the
   // broader product*/** width above.
   { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
-
-  // The template mounts react-router's data router (`createHashRouter` +
-  // `RouterProvider`), which calls `useOptimistic` — React 19 only.
-  // react-router@8 peers on `react >= 19.2.7`, so under the nightly
-  // `test_regressions-react@18` override the whole demo throws on render and
-  // the harness waits out its timeout on a testcase element that never
-  // appears. It is the only demo mounting a data router; the other
-  // react-router demos use `MemoryRouter`/`Link` and are unaffected.
-  {
-    test: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
-    minReactMajor: 19,
-  },
 
   // Composites whose Data Grid loads its rows asynchronously via `useDemoData`
   // — `aria-busy` only tracks fonts, not the grid data, so without this the
@@ -179,6 +171,60 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
     enabled: true,
   }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
+];
+
+/**
+ * Routes that call a React API newer than the oldest supported React. Without
+ * a rule, a route renders on every React version.
+ */
+export const REACT_FLOOR_RULES: ReactFloorRule[] = [
+  // The template mounts react-router's data router (`createHashRouter` +
+  // `RouterProvider`), which calls `useOptimistic` — React 19 only.
+  // react-router@8 peers on `react >= 19.2.7`, so under the nightly
+  // `test_regressions-react@18` override the whole demo throws on render and
+  // the harness waits out its timeout on a testcase element that never
+  // appears. It is the only demo mounting a data router; the other
+  // react-router demos use `MemoryRouter`/`Link` and are unaffected.
+  {
+    test: 'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
+    minReactMajor: 19,
+  },
+  // These demos and fixtures call `React.useId`.
+  {
+    test: 'docs/data/material/components/accordion/{AccordionExpandDefault,AccordionExpandIcon,AccordionTransition,AccordionUsage,DisabledAccordion}',
+    minReactMajor: 18,
+  },
+  { test: 'docs/data/material/components/autocomplete/GoogleMaps', minReactMajor: 18 },
+  { test: 'docs/data/material/components/number-field/*', minReactMajor: 18 },
+  {
+    test: 'docs/data/material/components/progress/{LinearWithAriaValueText,LinearWithValueLabel}',
+    minReactMajor: 18,
+  },
+  {
+    test: 'docs/data/material/components/radio-buttons/{ControlledRadioButtonsGroup,CustomizedRadios,ErrorRadios,FormControlLabelPlacement,RadioButtonsGroup,RowRadioButtonsGroup}',
+    minReactMajor: 18,
+  },
+  {
+    test: 'docs/data/material/components/selects/{CustomizedSelects,DialogSelect,GroupedSelect,MultipleSelectNative,NativeSelectDemo,SelectLabels}',
+    minReactMajor: 18,
+  },
+  { test: 'docs/data/material/components/slider/TrackFalseSlider', minReactMajor: 18 },
+  { test: 'docs/data/material/components/table/CollapsibleTable', minReactMajor: 18 },
+  {
+    test: 'docs/data/material/components/text-fields/{ComposedTextField,CustomizedInputsStyled,FormattedInputs,InputAdornments,InputWithIcon}',
+    minReactMajor: 18,
+  },
+  { test: 'test/regressions/a11y/fixtures/accordion/*', minReactMajor: 18 },
+  {
+    test: 'test/regressions/a11y/fixtures/progress/{CircularProgressA11ySemanticStates,LinearProgressA11ySemanticStates}',
+    minReactMajor: 18,
+  },
+  // These demos use a dependency that calls `React.useSyncExternalStore`:
+  // `@tanstack/react-query`, `react-window`, and `@docsearch/react`.
+  { test: 'docs/data/material/components/autocomplete/InfiniteLoading', minReactMajor: 18 },
+  { test: 'docs/data/material/components/lists/VirtualizedList', minReactMajor: 18 },
+  { test: 'test/regressions/fixtures/AppSearch/*', minReactMajor: 18 },
+  { test: 'test/regressions/fixtures/Autocomplete/Virtualize', minReactMajor: 18 },
 ];
 
 // Accordion docs demos + a11y fixtures enrolled for axe assertions (the cluster:
@@ -225,7 +271,8 @@ const CIRCULARPROGRESS_A11Y_DEMOS = [
   'CircularUnderLoad',
 ];
 
-// Button docs demos enrolled for axe assertions; IconButton/ButtonBase demos are excluded.
+// Button docs demos enrolled for axe assertions. The IconButton demos have their own
+// list below, and neither list enrolls the ButtonBase demo.
 const BUTTON_A11Y_DEMOS = [
   'BasicButtons',
   'TextButtons',
@@ -238,6 +285,16 @@ const BUTTON_A11Y_DEMOS = [
   'InputFileUpload',
   'LoadingButtons',
   'CustomizedButtons',
+];
+
+// IconButton docs demos enrolled for axe assertions. They share the `buttons` slug, so
+// `IconButton/accessibility.json` names them in `axeDemos` to keep them out of Button's report.
+const ICON_BUTTON_A11Y_DEMOS = [
+  'IconButtons',
+  'IconButtonColors',
+  'IconButtonSizes',
+  'IconButtonWithBadge',
+  'LoadingIconButton',
 ];
 
 // Radio docs demos enrolled for axe assertions. FormControlLabelPlacement is left out: its axe
@@ -369,6 +426,18 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/buttons/{${ICON_BUTTON_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures for IconButton, recorded into `buttons.a11y.json` like the
+  // Button fixtures above.
+  {
+    test: 'test/regressions/a11y/fixtures/buttons/{IconButtonA11yNonNative,IconButtonA11ySemanticStates}',
+    enabled: true,
+    assertions: 'all',
   },
   // IndeterminateCheckbox needs no skip: the component sets the native
   // `.indeterminate` property and no aria-checked attribute (#49053), so
@@ -544,4 +613,19 @@ export function getConfig<T extends { test: string }>(
     }
   }
   return undefined;
+}
+
+const REGRESSION_ROUTE_REGEX = /^\/regression-([^/]+)\/(.+)$/;
+
+/**
+ * The lowest React major that can render a VRT route, from
+ * {@link REACT_FLOOR_RULES}. Rules match the source path from {@link parseRoute},
+ * or `test/regressions/fixtures/{Suite}/{Name}` for `/regression-*` routes.
+ */
+export function getMinReactMajor(route: string): number {
+  const regressionMatch = route.match(REGRESSION_ROUTE_REGEX);
+  const routePath = regressionMatch
+    ? `test/regressions/fixtures/${regressionMatch[1]}/${regressionMatch[2]}`
+    : parseRoute(route)?.path;
+  return (routePath && getConfig(REACT_FLOOR_RULES, routePath)?.minReactMajor) || 0;
 }
