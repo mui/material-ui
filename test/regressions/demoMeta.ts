@@ -228,6 +228,7 @@ export const REACT_FLOOR_RULES: ReactFloorRule[] = [
     test: 'test/regressions/a11y/fixtures/progress/{CircularProgressA11ySemanticStates,LinearProgressA11ySemanticStates}',
     minReactMajor: 18,
   },
+  { test: 'test/regressions/fixtures/NumberField/*', minReactMajor: 18 },
   // These demos use a dependency that calls `React.useSyncExternalStore`:
   // `@tanstack/react-query`, `react-window`, and `@docsearch/react`.
   { test: 'docs/data/material/components/autocomplete/InfiniteLoading', minReactMajor: 18 },

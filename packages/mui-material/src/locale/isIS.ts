@@ -45,6 +45,15 @@ export const isIS: Localization = {
         openText: 'Opna',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Hækka' },
+          decrementButton: { 'aria-label': 'Lækka' },
+          htmlInput: { 'aria-roledescription': 'Talnareitur' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Loka',

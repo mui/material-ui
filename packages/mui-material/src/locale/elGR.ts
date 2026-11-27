@@ -46,6 +46,15 @@ export const elGR: Localization = {
         openText: 'Άνοιγμα',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Αύξηση' },
+          decrementButton: { 'aria-label': 'Μείωση' },
+          htmlInput: { 'aria-roledescription': 'Αριθμητικό πεδίο' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Κλείσιμο',

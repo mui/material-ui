@@ -45,6 +45,15 @@ export const caES: Localization = {
         openText: 'Obert',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Augmenta' },
+          decrementButton: { 'aria-label': 'Disminueix' },
+          htmlInput: { 'aria-roledescription': 'Camp numèric' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Tancat',

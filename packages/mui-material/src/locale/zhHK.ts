@@ -44,6 +44,15 @@ export const zhHK: Localization = {
         openText: '開啟',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': '增加' },
+          decrementButton: { 'aria-label': '減少' },
+          htmlInput: { 'aria-roledescription': '數字輸入欄' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: '關閉',

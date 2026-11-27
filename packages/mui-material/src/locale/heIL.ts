@@ -45,6 +45,15 @@ export const heIL: Localization = {
         openText: 'פתח',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'הגדלה' },
+          decrementButton: { 'aria-label': 'הקטנה' },
+          htmlInput: { 'aria-roledescription': 'שדה מספרי' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'סגור',

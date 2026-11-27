@@ -56,6 +56,15 @@ export const ruRU: Localization = {
         openText: 'Открыть',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Увеличить' },
+          decrementButton: { 'aria-label': 'Уменьшить' },
+          htmlInput: { 'aria-roledescription': 'Числовое поле' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Закрыть',

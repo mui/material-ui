@@ -49,6 +49,15 @@ export const msMS: Localization = {
         openText: 'Buka',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Tambah' },
+          decrementButton: { 'aria-label': 'Kurangkan' },
+          htmlInput: { 'aria-roledescription': 'Medan nombor' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'tutup',

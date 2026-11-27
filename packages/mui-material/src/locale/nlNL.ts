@@ -45,6 +45,15 @@ export const nlNL: Localization = {
         openText: 'Openen',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Verhogen' },
+          decrementButton: { 'aria-label': 'Verlagen' },
+          htmlInput: { 'aria-roledescription': 'Getalveld' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Sluiten',

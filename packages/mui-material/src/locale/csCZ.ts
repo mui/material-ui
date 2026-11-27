@@ -53,6 +53,15 @@ export const csCZ: Localization = {
         openText: 'Otevřít',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Zvýšit' },
+          decrementButton: { 'aria-label': 'Snížit' },
+          htmlInput: { 'aria-roledescription': 'Číselné pole' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zavřít',

@@ -42,6 +42,15 @@ export const huHU: Localization = {
         openText: 'Megnyitás',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Növelés' },
+          decrementButton: { 'aria-label': 'Csökkentés' },
+          htmlInput: { 'aria-roledescription': 'Számmező' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Bezárás',

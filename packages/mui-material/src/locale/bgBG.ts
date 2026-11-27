@@ -42,6 +42,15 @@ export const bgBG: Localization = {
         openText: 'Отвори',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Увеличаване' },
+          decrementButton: { 'aria-label': 'Намаляване' },
+          htmlInput: { 'aria-roledescription': 'Числово поле' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Затвори',

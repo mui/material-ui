@@ -42,6 +42,15 @@ export const hyAM: Localization = {
         openText: 'Բացել',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Ավելացնել' },
+          decrementButton: { 'aria-label': 'Նվազեցնել' },
+          htmlInput: { 'aria-roledescription': 'Թվային դաշտ' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Փակել',

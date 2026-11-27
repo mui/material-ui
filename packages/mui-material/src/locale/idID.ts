@@ -42,6 +42,15 @@ export const idID: Localization = {
         openText: 'Buka',
       },
     },
+    MuiNumberField: {
+      defaultProps: {
+        slotProps: {
+          incrementButton: { 'aria-label': 'Naikkan' },
+          decrementButton: { 'aria-label': 'Turunkan' },
+          htmlInput: { 'aria-roledescription': 'Kolom angka' },
+        },
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Tutup',
