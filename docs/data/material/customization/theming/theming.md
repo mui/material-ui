@@ -125,6 +125,9 @@ You can extend the outer theme by providing a function:
 
 {{"component": "file://./demos/theme-nesting-extend/index.ts"}}
 
+With CSS theme variables, a nested provider renders a `div` with `display: contents`, and sets the variables that differ from the outer theme on it, including when the theme is a function.
+See [Nested and multiple theme providers](/material-ui/customization/css-theme-variables/configuration/#nested-and-multiple-theme-providers) for details.
+
 ## CSS theme variables
 
 To generate CSS variables from the theme, set `cssVariables` to `true` in the theme configuration and pass it to the `ThemeProvider`:
@@ -165,21 +168,8 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 
 #### Arguments
 
-1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
-
-:::warning
-Only the first argument (`options`) is processed by the `createTheme()` function.
-While passing multiple arguments currently works for backward compatibility, this behavior may be removed in future versions.
-To ensure your code remains forward-compatible, you should manually deep merge the theme objects and pass the result as a single object to `createTheme()`.
-:::
-
-```js
-import { deepmerge } from '@mui/utils';
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme(deepmerge(options1, options2));
-```
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts. It can also be a theme created by `createTheme()`, see the theme composition example below.
+2. `...args` (_object[]_): Deep merge the arguments into the created theme, which is then created again with the values they change, so they're processed like `options`.
 
 #### Returns
 
@@ -211,6 +201,7 @@ When the value for a theme option is dependent on another theme option, you shou
 import { createTheme } from '@mui/material/styles';
 
 let theme = createTheme({
+  cssVariables: true,
   palette: {
     primary: {
       main: '#0052cc',
@@ -231,6 +222,11 @@ theme = createTheme(theme, {
 ```
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
+
+`createTheme(theme, …)` creates the theme again with the values the new options change, so `info.light`, `info.dark`, and `info.contrastText` are generated from the new `main` color, like in a single call.
+
+A copy of the theme with changed values is created again the same way, like `createTheme({ ...theme, palette: { ...theme.palette, info } })`.
+Changes made to the theme itself, like `theme.palette.info.main = '#edf2ff'`, are ignored.
 
 **WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
@@ -408,10 +404,12 @@ It should preferably be used at **the root of your component tree**.
 
 #### Props
 
-| Name             | Type                                     | Description                                                                                                                                                                                               |
-| :--------------- | :--------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
-| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+| Name          | Type                                      | Description                                                                                                                                                                                                                                                |
+| :------------ | :---------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children      | node                                      | Your component tree.                                                                                                                                                                                                                                       |
+| theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func  | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme.                                                  |
+| isolated      | bool                                      | With CSS theme variables, if `true`, the provider doesn't follow an outer provider: it sets its variables on its element and has its own mode. See [Isolated providers](/material-ui/customization/css-theme-variables/configuration/#isolated-providers). |
+| render        | union:&nbsp;element&nbsp;&#124;&nbsp;func | The element that wraps the children. With CSS theme variables, a nested provider renders a `div` with `display: contents` by default. See [Choosing the element](/material-ui/customization/css-theme-variables/configuration/#choosing-the-element).      |
 
 #### Examples
 

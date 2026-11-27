@@ -22,4 +22,10 @@ describe('prepareTypographyVars', () => {
       subtitle2: '500 0.875rem/1.57 "Roboto", "Helvetica", "Arial", sans-serif',
     });
   });
+
+  it('should skip a variant set to `null`', () => {
+    expect(prepareTypographyVars({ h1: null, h2: { fontSize: '1rem' } })).to.deep.equal({
+      h2: '1rem',
+    });
+  });
 });

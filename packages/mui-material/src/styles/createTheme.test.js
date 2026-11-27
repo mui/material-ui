@@ -13,9 +13,10 @@ import MenuItem from '@mui/material/MenuItem';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import OutlinedInput, { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import SystemThemeProvider from '@mui/system/ThemeProvider';
-import { ThemeProvider, THEME_ID, createTheme, styled } from '@mui/material/styles';
+import { ThemeProvider, THEME_ID, createTheme, styled, useTheme } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
+import responsiveFontSizes from './responsiveFontSizes';
 
 const lightPalette = createPalette({ mode: 'light' });
 const darkPalette = createPalette({ mode: 'dark' });
@@ -264,7 +265,6 @@ describe('createTheme', () => {
 
     it('should generate variables for a palette color added in a second call', () => {
       let theme = createTheme({ cssVariables: true });
-      // `cssVariables` isn't stored on the theme, so it's passed again
       theme = createTheme(
         { ...theme, cssVariables: true },
         {
@@ -314,6 +314,938 @@ describe('createTheme', () => {
 
       expect(theme.palette.primary.mainChannel).to.equal('255 0 0');
       expect(theme.palette.dividerChannel).to.equal('0 255 0');
+    });
+
+    describe('composition', () => {
+      // The CSS variables of the palette of the default color scheme, by name.
+      function getPaletteVars(theme) {
+        const vars = {};
+        theme.generateStyleSheets().forEach((sheet) => {
+          Object.entries(sheet).forEach(([selector, declarations]) => {
+            if (selector.split(', ').includes(':root')) {
+              Object.entries(declarations).forEach(([name, value]) => {
+                if (name.startsWith('--mui-palette-')) {
+                  vars[name] = value;
+                }
+              });
+            }
+          });
+        });
+        return vars;
+      }
+
+      function expectPaletteVarsToMatch(theme) {
+        const vars = getPaletteVars(theme);
+        expect(Object.keys(vars).length).to.be.greaterThan(0);
+        Object.entries(vars).forEach(([name, value]) => {
+          const path = name.slice('--mui-palette-'.length).split('-');
+          expect(
+            path.reduce((node, key) => node?.[key], theme.palette),
+            name,
+          ).to.equal(value);
+        });
+      }
+
+      it('should keep CSS variables when a theme is passed back without `cssVariables`', () => {
+        const theme = createTheme(createTheme({ cssVariables: true }), {
+          palette: { primary: { main: '#ff0000' } },
+        });
+
+        expect(theme.vars.palette.primary.main).to.equal(
+          'var(--mui-palette-primary-main, #ff0000)',
+        );
+        expectPaletteVarsToMatch(theme);
+        expect(theme.generateStyleSheets()).to.deep.equal(
+          createTheme({
+            cssVariables: true,
+            palette: { primary: { main: '#ff0000' } },
+          }).generateStyleSheets(),
+        );
+      });
+
+      it('should generate the tokens of a color changed in a second call again', () => {
+        const options = {
+          cssVariables: true,
+          palette: { primary: { main: '#0052cc' }, secondary: { main: '#edf2ff' } },
+        };
+        let theme = createTheme(options);
+        theme = createTheme(theme, { palette: { info: { main: theme.palette.secondary.main } } });
+        const expected = createTheme({
+          ...options,
+          palette: { ...options.palette, info: { main: '#edf2ff' } },
+        });
+
+        expect(theme.palette.info.main).to.equal('#edf2ff');
+        expect(theme.palette.LinearProgress.infoBg).to.equal(
+          expected.palette.LinearProgress.infoBg,
+        );
+        expectPaletteVarsToMatch(theme);
+        expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should merge the palette of a second call into the palette of the default color scheme', () => {
+        const options = {
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: { palette: { primary: { main: '#ff0000' } } }, dark: true },
+        };
+        const expected = createTheme({
+          ...options,
+          colorSchemes: {
+            light: { palette: { primary: { main: '#ff0000' }, info: { main: '#00ff00' } } },
+            dark: true,
+          },
+        });
+
+        [
+          createTheme(options, { palette: { info: { main: '#00ff00' } } }),
+          createTheme(createTheme(options), { palette: { info: { main: '#00ff00' } } }),
+        ].forEach((theme) => {
+          expect(theme.palette.primary.main).to.equal('#ff0000');
+          expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+        });
+      });
+
+      it('should not change when the options it was created from change', () => {
+        const options = { cssVariables: true, palette: { primary: { main: '#ff0000' } } };
+        const theme = createTheme(options);
+        options.palette.primary.main = '#00ff00';
+
+        expect(createTheme(theme).palette.primary.main).to.equal('#ff0000');
+      });
+
+      it('should generate the tokens of a color changed in a copy of the theme again', () => {
+        const base = createTheme({ cssVariables: true });
+        const theme = createTheme({
+          ...base,
+          palette: { ...base.palette, primary: { ...base.palette.primary, main: '#ff0000' } },
+        });
+        const expected = createTheme({
+          cssVariables: true,
+          palette: { primary: { main: '#ff0000' } },
+        });
+
+        expect(theme.palette.primary.mainChannel).to.equal('255 0 0');
+        expect(theme.palette.LinearProgress.primaryBg).to.equal(
+          expected.palette.LinearProgress.primaryBg,
+        );
+        expect(theme.palette.Slider.primaryTrack).to.equal(expected.palette.Slider.primaryTrack);
+        expectPaletteVarsToMatch(theme);
+        expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should only change the default color scheme of a theme with light and dark color schemes', () => {
+        const options = {
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        };
+        const theme = createTheme(createTheme(options), {
+          palette: { primary: { main: '#ff0000' } },
+        });
+        const expected = createTheme({
+          ...options,
+          colorSchemes: {
+            light: { palette: { primary: { main: '#ff0000' } } },
+            dark: true,
+          },
+        });
+
+        expect(theme.colorSchemes.dark.palette.primary.main).to.equal(
+          expected.colorSchemes.dark.palette.primary.main,
+        );
+        expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should generate the tokens of a color changed in a color scheme in a second call again', () => {
+        const options = {
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        };
+        const argument = { colorSchemes: { dark: { palette: { primary: { main: '#ff0000' } } } } };
+
+        const expected = createTheme({
+          ...options,
+          colorSchemes: { light: true, dark: { palette: { primary: { main: '#ff0000' } } } },
+        });
+
+        [createTheme(createTheme(options), argument), createTheme(options, argument)].forEach(
+          (theme) => {
+            expect(theme.colorSchemes.dark.palette.primary.mainChannel).to.equal('255 0 0');
+            expect(theme.colorSchemes.dark.palette.LinearProgress.primaryBg).to.equal(
+              expected.colorSchemes.dark.palette.LinearProgress.primaryBg,
+            );
+            expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+          },
+        );
+      });
+
+      it('should give the same theme when it is passed back unchanged', () => {
+        [
+          [{ cssVariables: true }],
+          [{ cssVariables: true, palette: { mode: 'dark', primary: { main: '#ff0000' } } }],
+          [
+            {
+              cssVariables: { colorSchemeSelector: 'class' },
+              colorSchemes: { light: true, dark: { palette: { secondary: { main: '#00ff00' } } } },
+            },
+          ],
+          [
+            {
+              cssVariables: true,
+              colorSchemes: { light: true, dark: true },
+              defaultColorScheme: 'dark',
+            },
+          ],
+          [{ cssVariables: true, typography: { fontFamily: 'Inter' }, spacing: 4 }],
+          [{ cssVariables: true }, { palette: { primary: { main: '#ff0000' } } }],
+        ].forEach((args) => {
+          const theme = createTheme(...args);
+          // Without the functions, which are created again
+          const expected = JSON.parse(JSON.stringify(theme));
+
+          [
+            createTheme(theme),
+            createTheme({ ...theme }),
+            createTheme({ ...theme, cssVariables: true }),
+            createTheme(createTheme(theme)),
+          ].forEach((composed) => {
+            expect(JSON.parse(JSON.stringify(composed))).to.deep.equal(expected);
+            expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+            expect(composed.spacing(2)).to.equal(theme.spacing(2));
+          });
+        });
+      });
+
+      it('should keep the CSS variables options', () => {
+        [
+          { nativeColor: true },
+          { disableCssColorScheme: true },
+          { cssVarPrefix: 'custom', colorSchemeSelector: 'data' },
+        ].forEach((cssVariables) => {
+          const theme = createTheme({ cssVariables, colorSchemes: { light: true, dark: true } });
+          const expected = theme.generateStyleSheets();
+
+          expect(createTheme(theme).generateStyleSheets()).to.deep.equal(expected);
+          expect(createTheme({ ...theme }).generateStyleSheets()).to.deep.equal(expected);
+          expect(createTheme({ ...theme, cssVariables: true }).generateStyleSheets()).to.deep.equal(
+            expected,
+          );
+        });
+      });
+
+      it('should keep a token changed in a copy of the theme', () => {
+        const base = createTheme({ cssVariables: true });
+        const copy = {
+          ...base,
+          palette: {
+            ...base.palette,
+            LinearProgress: { ...base.palette.LinearProgress, primaryBg: '#ffc0cb' },
+          },
+        };
+        const theme = createTheme(copy, { palette: { primary: { main: '#ff0000' } } });
+
+        expect(theme.palette.LinearProgress.primaryBg).to.equal('#ffc0cb');
+        expectPaletteVarsToMatch(theme);
+      });
+
+      it('should generate the typography variables from the merged typography', () => {
+        const base = createTheme({ cssVariables: true });
+        const expected = createTheme({
+          cssVariables: true,
+          typography: { h1: { fontSize: '5rem' } },
+        });
+
+        expect(
+          createTheme(base, { typography: { h1: { fontSize: '5rem' } } }).generateStyleSheets(),
+        ).to.deep.equal(expected.generateStyleSheets());
+        expect(
+          createTheme({
+            ...base,
+            typography: { ...base.typography, h1: { ...base.typography.h1, fontSize: '5rem' } },
+          }).generateStyleSheets(),
+        ).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should keep the spacing variable', () => {
+        const theme = createTheme({ cssVariables: true, spacing: 4 });
+
+        [createTheme({ ...theme }), createTheme({ ...theme, cssVariables: true })].forEach(
+          (composed) => {
+            expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+            expect(composed.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 4px))');
+          },
+        );
+      });
+
+      it('should create a color scheme added in a second call like one in the options', () => {
+        [{ dark: true }, { dark: { palette: { primary: { main: '#ff0000' } } } }].forEach(
+          (colorSchemes) => {
+            const expected = createTheme({
+              cssVariables: true,
+              colorSchemes: { light: true, ...colorSchemes },
+            }).generateStyleSheets();
+
+            [
+              createTheme({ cssVariables: true }, { colorSchemes }),
+              createTheme(createTheme({ cssVariables: true }), { colorSchemes }),
+            ].forEach((theme) => {
+              expect(theme.colorSchemeSelector).to.equal('media');
+              expect(theme.generateStyleSheets()).to.deep.equal(expected);
+            });
+          },
+        );
+      });
+
+      it('should generate the tokens of a custom color scheme added in a second call', () => {
+        // A custom color scheme has a complete palette
+        const expected = createTheme({
+          cssVariables: true,
+          colorSchemes: { light: true, custom: { palette: createPalette({ mode: 'dark' }) } },
+        });
+        const theme = createTheme(
+          { cssVariables: true },
+          { colorSchemes: { custom: { palette: createPalette({ mode: 'dark' }) } } },
+        );
+
+        expect(theme.colorSchemes.custom.palette.primary.mainChannel).to.equal('144 202 249');
+        expect(JSON.parse(JSON.stringify(theme.colorSchemes.custom))).to.deep.equal(
+          JSON.parse(JSON.stringify(expected.colorSchemes.custom)),
+        );
+      });
+
+      it('should keep a color scheme enabled again in a second call', () => {
+        const options = {
+          cssVariables: true,
+          colorSchemes: { light: true, dark: { palette: { primary: { main: '#ff0000' } } } },
+        };
+        const theme = createTheme(options);
+        const colorSchemes = { light: true, dark: true };
+
+        [
+          createTheme(options, { colorSchemes }),
+          createTheme(theme, { colorSchemes }),
+          createTheme({ ...theme, colorSchemes: { ...theme.colorSchemes, dark: true } }),
+        ].forEach((composed) => {
+          expect(composed.colorSchemes.dark.palette.primary.main).to.equal('#ff0000');
+          expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+        });
+      });
+
+      it('should remove a color scheme turned off in a second call', () => {
+        const options = { cssVariables: true, colorSchemes: { light: true, dark: true } };
+        const expected = createTheme({ cssVariables: true }).generateStyleSheets();
+
+        [
+          createTheme(options, { colorSchemes: { dark: false } }),
+          createTheme(createTheme(options), { colorSchemes: { dark: false } }),
+        ].forEach((theme) => {
+          expect(Object.keys(theme.colorSchemes)).to.deep.equal(['light']);
+          expect(theme.generateStyleSheets()).to.deep.equal(expected);
+        });
+      });
+
+      it('should use the color scheme selector of a second call', () => {
+        const options = { cssVariables: true, colorSchemes: { light: true, dark: true } };
+        const theme = createTheme(options, { colorSchemeSelector: 'class' });
+        const expected = createTheme({
+          ...options,
+          cssVariables: { colorSchemeSelector: 'class' },
+        });
+
+        expect(theme.getColorSchemeSelector('dark')).to.equal('.dark &');
+        expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should keep the spacing of a second call', () => {
+        const theme = createTheme({ cssVariables: true, spacing: 4 }, { spacing: 6 });
+        const expected = createTheme({ cssVariables: true, spacing: 6 }).generateStyleSheets();
+
+        expect(theme.generateStyleSheets()).to.deep.equal(expected);
+        expect(createTheme(theme).generateStyleSheets()).to.deep.equal(expected);
+      });
+
+      it('should keep a channel given for a color given again in a second call', () => {
+        const theme = createTheme({
+          cssVariables: { nativeColor: true, colorSchemeSelector: 'class' },
+          colorSchemes: {
+            light: true,
+            dark: {
+              palette: {
+                primary: {
+                  main: 'var(--brand-primary)',
+                  mainChannel: 'var(--brand-primary-channel)',
+                },
+              },
+            },
+          },
+        });
+        const composed = createTheme(theme, {
+          colorSchemes: { dark: { palette: { primary: { main: 'var(--brand-primary)' } } } },
+        });
+
+        expect(composed.colorSchemes.dark.palette.primary.mainChannel).to.equal(
+          'var(--brand-primary-channel)',
+        );
+        expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+      });
+
+      it('should give the same theme when it comes from a `ThemeProvider`', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+          spacing: 4,
+        });
+
+        [false, true].forEach((forceThemeRerender) => {
+          let providedTheme;
+          function Capture() {
+            providedTheme = useTheme();
+            return null;
+          }
+          render(
+            <ThemeProvider
+              theme={theme}
+              forceThemeRerender={forceThemeRerender}
+              defaultMode="dark"
+              storageManager={null}
+            >
+              <Capture />
+            </ThemeProvider>,
+          );
+          const composed = createTheme(providedTheme);
+
+          expect(composed.palette.background.default).to.equal('#fff');
+          expect(composed.colorSchemes.dark.palette.background.default).to.equal('#121212');
+          expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+          expect(composed.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 4px))');
+        });
+      });
+
+      it('should keep a palette changed in a copy of a theme from a `ThemeProvider`', () => {
+        // Like the "Nesting the theme" demo.
+        const options = {
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: { palette: { secondary: { main: '#ff9800' } } }, dark: true },
+        };
+        const theme = createTheme(options);
+
+        [false, true].forEach((forceThemeRerender) => {
+          let providedTheme;
+          function Capture() {
+            providedTheme = useTheme();
+            return null;
+          }
+          render(
+            <ThemeProvider
+              theme={theme}
+              forceThemeRerender={forceThemeRerender}
+              defaultMode="dark"
+              storageManager={null}
+            >
+              <Capture />
+            </ThemeProvider>,
+          );
+          // The change goes to the color scheme that the provided palette comes from:
+          // the default one, or the one in use with `forceThemeRerender`.
+          const scheme = forceThemeRerender ? 'dark' : 'light';
+          // The color of the other color scheme, so that only the provider tells them apart.
+          const main =
+            theme.colorSchemes[forceThemeRerender ? 'light' : 'dark'].palette.primary.main;
+          const composed = createTheme({
+            ...providedTheme,
+            palette: { ...providedTheme.palette, primary: { main } },
+          });
+          const expected = createTheme(options, {
+            colorSchemes: { [scheme]: { palette: { primary: { main } } } },
+          });
+
+          expect(composed.colorSchemes[scheme].palette.primary.main).to.equal(main);
+          expect(composed.colorSchemes.light.palette.secondary.main).to.equal('#ff9800');
+          expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+        });
+      });
+
+      it('should give a color changed in a copy of the theme to its default color scheme', () => {
+        const options = { cssVariables: true, colorSchemes: { light: true, dark: true } };
+        const theme = createTheme(options);
+        // The primary color of the dark color scheme
+        const main = theme.colorSchemes.dark.palette.primary.main;
+        const composed = createTheme({ ...theme, palette: { primary: { main } } });
+        const expected = createTheme({
+          ...options,
+          colorSchemes: { light: { palette: { primary: { main } } }, dark: true },
+        });
+
+        expect(composed.colorSchemes.light.palette.primary.main).to.equal(main);
+        expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should give the palette of a second call to the default color scheme it sets', () => {
+        const options = { cssVariables: true, colorSchemes: { light: true, dark: true } };
+        [
+          { defaultColorScheme: 'dark', palette: { primary: { main: '#ff0000' } } },
+          { palette: { mode: 'dark', primary: { main: '#ff0000' } } },
+        ].forEach((argument) => {
+          const expected = createTheme({ ...options, ...argument });
+
+          [
+            createTheme(options, argument),
+            createTheme(createTheme(options), argument),
+            // A copy has the `defaultColorScheme` of the theme, so only one that sets it again
+            ...(argument.defaultColorScheme
+              ? [createTheme({ ...createTheme(options), ...argument })]
+              : []),
+          ].forEach((theme) => {
+            expect(theme.defaultColorScheme).to.equal('dark');
+            expect(theme.colorSchemes.dark.palette.primary.main).to.equal('#ff0000');
+            expect(theme.colorSchemes.light.palette.primary.main).to.equal(
+              expected.colorSchemes.light.palette.primary.main,
+            );
+            expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+          });
+        });
+      });
+
+      it('should keep a function changed in a copy of the theme', () => {
+        const theme = createTheme({
+          cssVariables: true,
+          components: { MuiButton: { styleOverrides: { root: () => ({ color: 'red' }) } } },
+        });
+        const components = { MuiButton: { styleOverrides: { root: () => ({ color: 'blue' }) } } };
+
+        [createTheme({ ...theme, components }), createTheme(theme, { components })].forEach(
+          (composed) => {
+            expect(composed.components.MuiButton.styleOverrides.root({})).to.deep.equal({
+              color: 'blue',
+            });
+          },
+        );
+      });
+
+      it('should remove a value dropped in a copy of the theme', () => {
+        const options = {
+          cssVariables: true,
+          colorSchemes: {
+            light: {
+              palette: {
+                primary: { main: '#ff0000', light: '#ff8080' },
+                brand: { main: '#123456' },
+              },
+            },
+            dark: true,
+          },
+          components: { MuiButton: { styleOverrides: { root: { color: 'red' } } } },
+        };
+        const theme = createTheme(options);
+        const { components, ...withoutComponents } = theme;
+        const { brand, ...paletteWithoutBrand } = theme.palette;
+
+        [
+          createTheme({ ...theme, components: {} }),
+          createTheme({ ...theme, components: { ...theme.components, MuiButton: undefined } }),
+          createTheme(withoutComponents),
+        ].forEach((composed) => {
+          expect(composed.components?.MuiButton).to.equal(undefined);
+        });
+
+        const withoutDark = createTheme({
+          ...theme,
+          colorSchemes: { light: theme.colorSchemes.light },
+        });
+        const withoutBrand = createTheme({ ...theme, palette: paletteWithoutBrand });
+        expect(withoutBrand.palette.brand).to.equal(undefined);
+        expect(withoutBrand.generateStyleSheets()).to.deep.equal(
+          createTheme({
+            ...options,
+            colorSchemes: {
+              ...options.colorSchemes,
+              light: { palette: { primary: options.colorSchemes.light.palette.primary } },
+            },
+          }).generateStyleSheets(),
+        );
+
+        expect(Object.keys(withoutDark.colorSchemes)).to.deep.equal(['light']);
+        expect(withoutDark.generateStyleSheets()).to.deep.equal(
+          createTheme({
+            ...options,
+            colorSchemes: { light: options.colorSchemes.light },
+          }).generateStyleSheets(),
+        );
+
+        // The `light` color given in the options is generated again from the new `main` color.
+        const primary = { main: '#00ff00' };
+        const composed = createTheme({ ...theme, palette: { ...theme.palette, primary } });
+        const expected = createTheme({
+          ...options,
+          colorSchemes: {
+            ...options.colorSchemes,
+            light: { palette: { ...options.colorSchemes.light.palette, primary } },
+          },
+        });
+        expect(composed.palette.primary.light).to.equal(expected.palette.primary.light);
+        expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should process the extra arguments like the options', () => {
+        const argument = {
+          palette: { primary: { main: '#ff0000' } },
+          typography: { fontFamily: 'serif' },
+          breakpoints: { values: { xs: 0, sm: 500, md: 900, lg: 1200, xl: 1536 } },
+        };
+        const expected = createTheme({ cssVariables: true, ...argument });
+
+        [
+          createTheme({ cssVariables: true }, argument),
+          createTheme(createTheme({ cssVariables: true }), argument),
+        ].forEach((theme) => {
+          expect(theme.palette.primary.light).to.equal(expected.palette.primary.light);
+          expect(theme.typography.h1.fontFamily).to.equal('serif');
+          expect(theme.breakpoints.up('sm')).to.equal('@media (min-width:500px)');
+          expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+        });
+      });
+
+      it('should keep the color scheme values edited in a copy of the theme', () => {
+        const options = {
+          cssVariables: true,
+          colorSchemes: { dark: true },
+          defaultColorScheme: 'dark',
+        };
+        const theme = createTheme(options);
+        const overlays = [...theme.overlays];
+        overlays[1] = 'red';
+        const composed = createTheme({
+          ...theme,
+          opacity: { ...theme.opacity, inputPlaceholder: 0.9 },
+          overlays,
+        });
+        const expected = createTheme({
+          ...options,
+          colorSchemes: { dark: { opacity: { inputPlaceholder: 0.9 }, overlays } },
+        });
+
+        expect(composed.opacity.inputPlaceholder).to.equal(0.9);
+        expect(composed.overlays).to.deep.equal(overlays);
+        expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should give the color scheme values of a second call to the default color scheme', () => {
+        const expected = createTheme({
+          cssVariables: true,
+          colorSchemes: { light: { opacity: { inputPlaceholder: 0.9 } } },
+        });
+
+        [
+          createTheme({ cssVariables: true }, { opacity: { inputPlaceholder: 0.9 } }),
+          createTheme(createTheme({ cssVariables: true }), { opacity: { inputPlaceholder: 0.9 } }),
+        ].forEach((theme) => {
+          expect(theme.opacity.inputPlaceholder).to.equal(0.9);
+          expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+        });
+      });
+
+      it('should only generate font variables for the typography variants of a second call', () => {
+        const expected = createTheme({ cssVariables: true });
+        const { subtitle1, ...fontWithoutSubtitle1 } = expected.font;
+
+        expect(
+          createTheme({ cssVariables: true }, { typography: { subtitle1: null } }).font,
+        ).to.deep.equal(fontWithoutSubtitle1);
+
+        const theme = createTheme(
+          { cssVariables: true },
+          { typography: { allVariants: { color: 'red' } } },
+        );
+        expect(theme.font).to.deep.equal(expected.font);
+        expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should take the options that a builder takes whole from a copy of the theme', () => {
+        const theme = createTheme({ cssVariables: true });
+        const { breakpoints, mixins, unstable_sxConfig: sxConfig } = theme;
+        const transform = (value) => value;
+        const composed = createTheme({
+          ...theme,
+          breakpoints: { ...breakpoints, values: { ...breakpoints.values, sm: 500 } },
+          mixins: { ...mixins, toolbar: { ...mixins.toolbar, minHeight: 60 } },
+          unstable_sxConfig: { ...sxConfig, bgcolor: { ...sxConfig.bgcolor, transform } },
+        });
+
+        expect(composed.breakpoints.keys).to.deep.equal(['xs', 'sm', 'md', 'lg', 'xl']);
+        expect(composed.breakpoints.up('sm')).to.equal('@media (min-width:500px)');
+        expect(composed.breakpoints.up('md')).to.equal('@media (min-width:900px)');
+        expect(composed.mixins.toolbar).to.deep.equal({ ...mixins.toolbar, minHeight: 60 });
+        expect(composed.unstable_sxConfig.bgcolor).to.deep.equal({
+          ...sxConfig.bgcolor,
+          transform,
+        });
+      });
+
+      it('should generate the toolbar of a copy of the theme with changed breakpoints again', () => {
+        const theme = createTheme({ cssVariables: true });
+        const { breakpoints } = theme;
+        const composed = createTheme({
+          ...theme,
+          breakpoints: { ...breakpoints, values: { ...breakpoints.values, sm: 500 } },
+        });
+
+        expect(composed.mixins.toolbar).to.have.property('@media (min-width:500px)');
+      });
+
+      it('should keep the main color of a color changed in a copy of the theme or a second call', () => {
+        const theme = createTheme({
+          cssVariables: true,
+          colorSchemes: { light: true, dark: true },
+        });
+        const { primary } = theme.palette;
+        const darkPrimary = theme.colorSchemes.dark.palette.primary;
+
+        [
+          createTheme({
+            ...theme,
+            palette: { ...theme.palette, primary: { ...primary, dark: '#000' } },
+          }),
+          createTheme(theme, { palette: { primary: { dark: '#000' } } }),
+        ].forEach((composed) => {
+          expect(composed.palette.primary).to.deep.include({
+            main: primary.main,
+            light: primary.light,
+            dark: '#000',
+          });
+        });
+
+        const composed = createTheme(theme, {
+          colorSchemes: { dark: { palette: { primary: { contrastText: '#fff' } } } },
+        });
+        expect(composed.colorSchemes.dark.palette.primary).to.deep.include({
+          main: darkPrimary.main,
+          contrastText: '#fff',
+        });
+      });
+
+      it('should throw for a CSS variable main color of a copy of the theme or a second call, like for options', () => {
+        const message = "can't be generated from `var(--brand)`";
+        const palette = { primary: { main: 'var(--brand)' } };
+        const theme = createTheme({ cssVariables: true });
+
+        expect(() => createTheme({ cssVariables: true, palette })).toThrowMinified(message);
+        expect(() => createTheme({ cssVariables: true }, { palette })).toThrowMinified(message);
+        expect(() => createTheme(theme, { palette })).toThrowMinified(message);
+        expect(() =>
+          createTheme({
+            ...theme,
+            palette: {
+              ...theme.palette,
+              primary: { ...theme.palette.primary, main: 'var(--brand)' },
+            },
+          }),
+        ).toThrowMinified(message);
+
+        const nativeTheme = createTheme({ cssVariables: { nativeColor: true } });
+        expect(createTheme(nativeTheme, { palette }).palette.primary.main).to.equal('var(--brand)');
+      });
+
+      it('should apply the changes of a copy of the theme or a second call to a typography function', () => {
+        const typography = () => ({ fontSize: 12, fontFamily: 'serif' });
+        const theme = createTheme({ cssVariables: true, typography });
+
+        [
+          createTheme(theme, { typography: { h2: { fontWeight: 100 } } }),
+          createTheme({
+            ...theme,
+            typography: { ...theme.typography, h2: { ...theme.typography.h2, fontWeight: 100 } },
+          }),
+        ].forEach((composed) => {
+          expect(composed.typography.fontSize).to.equal(12);
+          expect(composed.typography.h1.fontFamily).to.equal('serif');
+          expect(composed.typography.h2.fontWeight).to.equal(100);
+        });
+        expect(createTheme(responsiveFontSizes(theme)).typography.h1.fontFamily).to.equal('serif');
+      });
+
+      it('should accept the extra arguments it accepts without CSS variables', () => {
+        const options = {
+          cssVariables: true,
+          components: { MuiButton: { defaultProps: { disableRipple: true } } },
+        };
+        const expected = createTheme(options);
+
+        expect(createTheme(options, null).generateStyleSheets()).to.deep.equal(
+          expected.generateStyleSheets(),
+        );
+        expect(createTheme(expected, undefined).components).to.deep.equal(expected.components);
+        expect(
+          createTheme(options, { components: { MuiButton: undefined } }).components,
+        ).to.deep.equal({});
+      });
+
+      it('should keep a React element of a copy of the theme', () => {
+        function Icon() {
+          return null;
+        }
+        const theme = createTheme({
+          cssVariables: true,
+          components: { MuiCheckbox: { defaultProps: { icon: <span /> } } },
+        });
+        const icon = <Icon />;
+        const composed = createTheme({
+          ...theme,
+          components: { MuiCheckbox: { defaultProps: { icon } } },
+        });
+
+        expect(composed.components.MuiCheckbox.defaultProps.icon).to.equal(icon);
+      });
+
+      it('should give a palette changed with the default color scheme of a copy of a theme from a `ThemeProvider` to the new default', () => {
+        const options = {
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        };
+        const theme = createTheme(options);
+        let providedTheme;
+        function Capture() {
+          providedTheme = useTheme();
+          return null;
+        }
+        render(
+          <ThemeProvider theme={theme} defaultMode="dark" storageManager={null}>
+            <Capture />
+          </ThemeProvider>,
+        );
+        const composed = createTheme({
+          ...providedTheme,
+          defaultColorScheme: 'dark',
+          palette: { ...providedTheme.palette, primary: { main: '#ff0000' } },
+        });
+        const expected = createTheme({
+          ...options,
+          defaultColorScheme: 'dark',
+          colorSchemes: { light: true, dark: { palette: { primary: { main: '#ff0000' } } } },
+        });
+
+        expect(composed.colorSchemes.dark.palette.primary.main).to.equal('#ff0000');
+        expect(composed.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+      });
+
+      it('should keep the arrays and `allVariants` of a theme from a `ThemeProvider`', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+          defaultColorScheme: 'dark',
+          typography: { allVariants: { color: 'red' } },
+        });
+        let providedTheme;
+        function Capture() {
+          providedTheme = useTheme();
+          return null;
+        }
+        render(
+          <ThemeProvider theme={theme} forceThemeRerender defaultMode="light" storageManager={null}>
+            <Capture />
+          </ThemeProvider>,
+        );
+        const composed = createTheme(providedTheme);
+
+        expect(composed.colorSchemes.light.overlays).to.deep.equal([]);
+        expect(composed.typography.h1.color).to.equal('red');
+        expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+      });
+
+      it('should keep the default color scheme of a copy of the theme without `palette.mode`', () => {
+        const theme = createTheme({ cssVariables: true, palette: { mode: 'dark' } });
+        const { mode, ...palette } = theme.palette;
+        const composed = createTheme({ ...theme, palette });
+
+        expect(composed.defaultColorScheme).to.equal('dark');
+        expect(composed.palette.mode).to.equal('dark');
+        expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+      });
+
+      it('should make the color scheme of the `palette.mode` of a second call the default one', () => {
+        const options = { cssVariables: true, palette: { secondary: { main: '#00ff00' } } };
+        const argument = { palette: { mode: 'dark', primary: { main: '#ff0000' } } };
+        const expected = createTheme({
+          cssVariables: true,
+          palette: { mode: 'dark', secondary: { main: '#00ff00' }, primary: { main: '#ff0000' } },
+        });
+
+        [createTheme(options, argument), createTheme(createTheme(options), argument)].forEach(
+          (theme) => {
+            expect(Object.keys(theme.colorSchemes)).to.deep.equal(['dark']);
+            expect(theme.generateStyleSheets()).to.deep.equal(expected.generateStyleSheets());
+          },
+        );
+
+        const both = createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } });
+        const dark = createTheme(both, { palette: { mode: 'dark' } });
+        expect(dark.defaultColorScheme).to.equal('dark');
+        expect(createTheme(dark, { palette: { mode: 'light' } }).defaultColorScheme).to.equal(
+          'light',
+        );
+      });
+
+      it('should give the color scheme of a second call to the `palette` option of its default color scheme', () => {
+        const options = { cssVariables: true, palette: { mode: 'dark' } };
+        const argument = { colorSchemes: { dark: { palette: { primary: { main: '#ff0000' } } } } };
+        const expected = createTheme({
+          cssVariables: true,
+          palette: { mode: 'dark', primary: { main: '#ff0000' } },
+        });
+
+        expect(createTheme(options, argument).generateStyleSheets()).to.deep.equal(
+          expected.generateStyleSheets(),
+        );
+      });
+
+      it('should keep a light color scheme added because it is the default one', () => {
+        const theme = createTheme({ cssVariables: true, colorSchemes: { dark: true } });
+
+        [
+          createTheme({ ...theme, defaultColorScheme: 'dark' }),
+          createTheme(theme, { defaultColorScheme: 'dark' }),
+        ].forEach((composed) => {
+          expect(Object.keys(composed.colorSchemes).sort()).to.deep.equal(['dark', 'light']);
+          expect(composed.defaultColorScheme).to.equal('dark');
+        });
+      });
+
+      it('should use the CSS variables options of a second call over the `cssVariables` option', () => {
+        const theme = createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        });
+
+        expect(createTheme(theme, { colorSchemeSelector: 'data' }).colorSchemeSelector).to.equal(
+          'data',
+        );
+      });
+
+      it('should generate the tokens of a custom color scheme changed in a second call again', () => {
+        const options = {
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, custom: { palette: createPalette({ mode: 'dark' }) } },
+        };
+        const argument = {
+          colorSchemes: { custom: { palette: { primary: { main: '#ff0000' } } } },
+        };
+
+        [createTheme(options, argument), createTheme(createTheme(options), argument)].forEach(
+          (theme) => {
+            expect(theme.colorSchemes.custom.palette.primary.mainChannel).to.equal('255 0 0');
+          },
+        );
+      });
+
+      it('should ignore `vars` and `cssVariables: true` in a copy of the theme', () => {
+        const theme = createTheme({ cssVariables: { nativeColor: true } });
+        const composed = createTheme({
+          ...theme,
+          cssVariables: true,
+          vars: { ...theme.vars, palette: { ...theme.vars.palette, primary: {} } },
+        });
+
+        expect(composed.vars).to.deep.equal(theme.vars);
+        expect(composed.generateStyleSheets()).to.deep.equal(theme.generateStyleSheets());
+      });
     });
 
     describe('spacing', () => {

@@ -37,6 +37,59 @@ The Khmer locale is now exported as `kmKH` instead of `khKH`, to match the ISO 6
 Numbers in `TablePagination` are now formatted with the `km-KH` locale.
 Previously, `Intl.NumberFormat` didn't recognize `kh-KH` and fell back to the runtime's default locale.
 
+### Nested ThemeProviders with CSS theme variables
+
+A nested `ThemeProvider` whose theme uses CSS theme variables now applies its theme, including when the theme is a function.
+Previously, its variables were ignored when it had the same `cssVarPrefix` as the outer theme, so its subtree kept the outer theme's colors.
+
+It renders a `div` with `display: contents` and sets the variables that differ from the outer theme on it.
+The `div` doesn't change the layout, but it's in the DOM.
+Where a `div` isn't valid, or where CSS selectors like `>`, `:first-of-type`, and `:nth-child()` depend on the DOM structure, use the `render` prop to choose the element:
+
+```diff
+ <ul>
+-  <ThemeProvider theme={itemTheme}>
+-    <li>…</li>
+-  </ThemeProvider>
++  <ThemeProvider theme={itemTheme} render={<li />}>
++    …
++  </ThemeProvider>
+ </ul>
+```
+
+The `disableNestedContext` prop is deprecated in favor of `isolated`:
+
+```diff
+-<ThemeProvider theme={widgetTheme} disableNestedContext>
++<ThemeProvider theme={widgetTheme} isolated>
+```
+
+An isolated provider sets its variables on its element instead of `:root`, so it no longer overwrites the page's variables.
+Its mode is only stored when you pass a `modeStorageKey`, `colorSchemeStorageKey`, or `storageManager`, so it no longer overwrites the page's stored mode.
+
+Two `ThemeProvider`s that aren't nested in each other still overwrite each other's variables on `:root`, and now log a warning in development.
+Add the `isolated` prop to the one that shouldn't apply to the whole page, like an embedded widget.
+
+A nested `ThemeProvider` follows the outer mode, so its `defaultMode` and storage props, like `modeStorageKey`, don't apply, and now log a warning in development.
+Add the `isolated` prop to give a section its own mode.
+
+A nested theme with a single color scheme now keeps it whatever the outer mode is.
+A theme created without `colorSchemes` only has the light one, so its subtree now stays light on a dark page.
+To follow the outer mode, give it both color schemes:
+
+```diff
+ const promoTheme = createTheme({
+   cssVariables: true,
+-  palette: { primary: { main: '#9c27b0' } },
++  colorSchemes: {
++    light: { palette: { primary: { main: '#9c27b0' } } },
++    dark: { palette: { primary: { main: '#ce93d8' } } },
++  },
+ });
+```
+
+See [Nested and multiple theme providers](/material-ui/customization/css-theme-variables/configuration/#nested-and-multiple-theme-providers) for details.
+
 ### Spacing uses CSS gap
 
 Stack, DialogActions, CardActions and AccordionActions now space their children with the CSS `gap` property instead of a margin on each child after the first.
@@ -169,7 +222,7 @@ If you rendered `CssVarsProvider` without one, pass a theme with CSS variables:
 +</ThemeProvider>
 ```
 
-With TypeScript, the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, and `forceThemeRerender` props of `ThemeProvider` are only typed with the CSS theme variables [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript).
+With TypeScript, the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, `forceThemeRerender`, and `isolated` props of `ThemeProvider` are only typed with the CSS theme variables [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript).
 If you pass any of them, import it in a file included in your `tsconfig.json`:
 
 ```ts
@@ -232,3 +285,29 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### createTheme arguments
+
+The extra arguments of `createTheme()` are deep merged into the created theme, which is then created again with the values they change, so they're processed like the options.
+Previously, the created theme was returned with them merged in as they were, and the values that depend on them weren't generated again.
+For example, `info.light`, `info.dark`, and `info.contrastText` now follow the `main` color of a second call:
+
+```js
+theme = createTheme(theme, {
+  palette: { info: { main: theme.palette.secondary.main } },
+});
+```
+
+To keep a previous value, pass it in the argument too, like `light: theme.palette.info.light`.
+
+As with the options, a `palette.mode` in an argument makes that color scheme the default one.
+A `main` color that can't be read, like `var(--brand)`, throws an error unless the argument also has its `light`, `dark`, and `contrastText`, or the theme uses [native color](/material-ui/customization/css-theme-variables/native-color/).
+
+A theme passed back to `createTheme()` is created again from its options and the values changed in a copy of it, like `{ ...theme, palette: { ...theme.palette, primary } }`.
+Changes made to the theme itself are ignored, so make them in a copy, or pass them as an argument:
+
+```diff
+-theme.palette.primary.main = red[500];
+-theme = createTheme(theme);
++theme = createTheme(theme, { palette: { primary: { main: red[500] } } });
+```

@@ -208,6 +208,17 @@ describe('densityScale', () => {
       expect(vars.spacing).to.equal('var(--mui-spacing)');
     });
 
+    test('adds the steps and sizing constants to the variables that nested providers scope', () => {
+      const input = createTheme({ cssVariables: true });
+      const theme = applyDensity(input, { spacing: { small: 6 }, touchTarget: 24 });
+      const { root } = (theme as any).generateCssVarsByColorScheme();
+
+      expect(root).to.include({ '--mui-spacing-small': '6px', '--mui-touchTarget': '24px' });
+      expect((input as any).generateCssVarsByColorScheme().root).not.to.have.property(
+        '--mui-spacing-small',
+      );
+    });
+
     test('respects cssVarPrefix, including an empty one', () => {
       const app = applyDensity(createTheme({ cssVariables: { cssVarPrefix: 'app' } }));
       const bare = applyDensity(createTheme({ cssVariables: { cssVarPrefix: '' } }));

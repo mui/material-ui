@@ -1,5 +1,6 @@
-import type { Overlays, StorageManager } from '@mui/material/styles';
-import { createTheme, ThemeProvider, styled, useTheme } from '@mui/material/styles';
+import type { Overlays, StorageManager, ThemeProviderRender } from '@mui/material/styles';
+import { createTheme, ThemeProvider, styled, useTheme, useThemeScope } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const customTheme = createTheme({
@@ -77,3 +78,24 @@ const storageManager: StorageManager = () => {
 };
 
 <ThemeProvider theme={customTheme} storageManager={storageManager} />;
+
+// The element of the provider: an element, a component with its own children, or a function.
+<ThemeProvider theme={customTheme} render={<li />} />;
+<ThemeProvider theme={customTheme} render={<Button>Text</Button>} />;
+<ThemeProvider
+  theme={customTheme}
+  render={(props, state) => <section {...props} data-mode={state.mode} />}
+/>;
+
+const tableBody: ThemeProviderRender = <tbody />;
+<ThemeProvider theme={customTheme} render={tableBody} />;
+
+// @ts-expect-error the props of the element go on the `render` element.
+<ThemeProvider theme={customTheme} className="section" />;
+
+<ThemeProvider theme={customTheme} isolated defaultMode="dark" />;
+
+function TestUseThemeScope() {
+  const themeScope = useThemeScope();
+  return <div {...themeScope}>test</div>;
+}

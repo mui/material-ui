@@ -74,6 +74,17 @@ export function internal_useNonce(): string | undefined {
   return __unsafe_useEmotionCache()?.nonce;
 }
 
+/**
+ * For internal usage in `@mui/system` package.
+ * Returns the Emotion cache in context. A subtree with its own cache inserts its styles somewhere else,
+ * like a shadow root, or writes them differently, like with other plugins,
+ * so it can't share a stylesheet with the rest of the tree.
+ */
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_useStyleCache(): object | null {
+  return __unsafe_useEmotionCache();
+}
+
 export { ThemeContext, keyframes, css } from '@emotion/react';
 export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';

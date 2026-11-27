@@ -153,6 +153,9 @@ This means the scale can be read, and overridden, from plain CSS, including for 
 }
 ```
 
+A nested `ThemeProvider` with its own enhanced theme also changes the density of its children, since it sets the variables that differ from the outer theme on its element.
+See [Nested and multiple theme providers](/material-ui/customization/css-theme-variables/configuration/#nested-and-multiple-theme-providers).
+
 The two sizing constants also ship as variables:
 
 ```css
@@ -161,10 +164,6 @@ The two sizing constants also ship as variables:
   --mui-iconSize: 14px;
 }
 ```
-
-:::warning
-A nested `ThemeProvider` doesn't apply its own scale when its theme uses CSS variables with the same `cssVarPrefix` as the outer theme. The nested provider skips its style sheet, so the components inside it read the outer theme's variables. To change the density of one part of the page, override the variables on a wrapper element as shown above, or give the inner theme a different `cssVarPrefix`.
-:::
 
 Because they size a box rather than space one, they are not spacing keys. Read them off the theme instead:
 

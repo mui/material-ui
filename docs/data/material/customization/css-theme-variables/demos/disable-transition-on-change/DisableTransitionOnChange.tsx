@@ -39,7 +39,7 @@ export default function DisableTransitionOnChange() {
   return (
     <ThemeProvider
       theme={theme}
-      disableNestedContext
+      isolated
       disableTransitionOnChange={disableTransition}
     >
       <Stack
