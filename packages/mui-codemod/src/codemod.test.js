@@ -35,5 +35,45 @@ describe('@mui/codemod', () => {
         }
       },
     );
+
+    it('should keep the line endings of each file', () => {
+      const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'mui-codemod-'));
+      const files = {
+        'changed-lf.js': "import Button from '@mui/material/Button';\n\nexport default Button;\n",
+        'changed-crlf.js':
+          "import Button from '@mui/material/Button';\r\n\r\nexport default Button;\r\n",
+        'unchanged-lf.js': 'export default 1;\n',
+        'unchanged-crlf.js': 'export default 1;\r\n',
+      };
+      Object.entries(files).forEach(([name, contents]) => {
+        fs.writeFileSync(path.join(directory, name), contents);
+      });
+      const read = (name) => fs.readFileSync(path.join(directory, name), 'utf8');
+
+      try {
+        const { stdout } = spawnSync(
+          process.execPath,
+          [path.join(__dirname, 'codemod.js'), 'v5.0.0/top-level-imports', directory],
+          {
+            cwd: os.tmpdir(),
+            env: { ...process.env, NODE_PATH: '' },
+            encoding: 'utf8',
+          },
+        );
+
+        expect(stdout).to.include('2 ok');
+        expect(stdout).to.include('2 unmodified');
+        expect(read('changed-lf.js')).to.equal(
+          "import { Button } from '@mui/material';\n\nexport default Button;\n",
+        );
+        expect(read('changed-crlf.js')).to.equal(
+          "import { Button } from '@mui/material';\r\n\r\nexport default Button;\r\n",
+        );
+        expect(read('unchanged-lf.js')).to.equal(files['unchanged-lf.js']);
+        expect(read('unchanged-crlf.js')).to.equal(files['unchanged-crlf.js']);
+      } finally {
+        fs.rmSync(directory, { recursive: true });
+      }
+    });
   });
 });
