@@ -196,8 +196,8 @@ catalogs:
       specifier: ^11.14.1
       version: 11.14.1
     '@mui/internal-docs-infra':
-      specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857
-      version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857
+      specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04
+      version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04
     stylis:
       specifier: 4.2.0
       version: 4.2.0
@@ -253,7 +253,7 @@ importers:
         version: 0.1.1-canary.37(870674c9c4dd2a179a3a80a02fbb3da8)
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -457,7 +457,7 @@ importers:
         version: link:../packages-internal/core-docs/build
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages-internal/markdown
@@ -863,7 +863,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@11.0.0)
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -998,7 +998,7 @@ importers:
         version: 8.1.2
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils/build
@@ -3761,8 +3761,8 @@ packages:
       typescript:
         optional: true
 
-  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857':
-    resolution: {integrity: sha512-Xg2vOYodbE+p54jJLV3gJ5iM5DAkuE6qodjL6nYshy1HfVSZYlejYD+qh3bm/sa00MpLFRjrHDhtn+y4IFzYkw==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857}
+  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04':
+    resolution: {integrity: sha512-JURsMkAs1V6qedqPEdPgp6m4TBx7aP5t/RtMV8FBvgXE9kndeoMkpEJQ6DYHg+tMlFLTPc+BXeHEmpCQoENIQA==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04}
     version: 0.13.0
     engines: {node: '>=22.18.0'}
     hasBin: true
@@ -14090,7 +14090,7 @@ snapshots:
       - vitest
       - vue-tsc
 
-  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@96b9c857(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))':
+  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04(@types/react@19.3.0)(eslint@10.15.0(jiti@2.7.0)(supports-color@11.0.0))(next@16.4.6(@babel/core@8.1.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.65.1)(@types/node@22.20.5)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(prettier@3.10.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@11.0.0)(webpack@5.109.2(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.33)(uglify-js@3.19.3))':
     dependencies:
       '@babel/runtime': 8.1.3
       '@csstools/postcss-light-dark-function': 3.0.9(postcss@8.5.33)
