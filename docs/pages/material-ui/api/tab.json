@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "true" },
     "icon": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" } },
     "iconPosition": {
       "type": {

@@ -11,7 +11,7 @@
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "true" },
     "edge": {
       "type": {
         "name": "enum",

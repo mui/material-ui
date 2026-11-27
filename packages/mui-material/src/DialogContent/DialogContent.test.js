@@ -50,16 +50,17 @@ describe('<DialogContent />', () => {
       });
     });
 
-    it.skipIf(isJsdom())(
-      'does not render the theme ring when focusVisible is not enabled',
-      async () => {
-        render(<DialogContent tabIndex={0} data-testid="content" />);
-        const content = screen.getByTestId('content');
+    it.skipIf(isJsdom())('does not render the theme ring when focusVisible is false', async () => {
+      render(
+        <ThemeProvider theme={createTheme({ focusVisible: false })}>
+          <DialogContent tabIndex={0} data-testid="content" />
+        </ThemeProvider>,
+      );
+      const content = screen.getByTestId('content');
 
-        await keyboardFocus(content);
+      await keyboardFocus(content);
 
-        expect(content).not.toHaveComputedStyle({ outlineStyle: 'solid' });
-      },
-    );
+      expect(content).not.toHaveComputedStyle({ outlineStyle: 'solid' });
+    });
   });
 });

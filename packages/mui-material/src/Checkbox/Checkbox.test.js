@@ -268,7 +268,7 @@ describe('<Checkbox />', () => {
   });
 
   it('should have a ripple', async () => {
-    render(<Checkbox TouchRippleProps={{ className: 'touch-ripple' }} />);
+    render(<Checkbox disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }} />);
     const checkbox = screen.getByRole('checkbox').parentElement;
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).not.to.equal(null);

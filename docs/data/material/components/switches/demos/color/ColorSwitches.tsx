@@ -10,7 +10,7 @@ const PinkSwitch = styled(Switch)(({ theme }) => ({
     },
   },
   '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-    backgroundColor: pink[600],
+    backgroundColor: alpha(pink[600], 0.5),
   },
 }));
 

@@ -7,7 +7,7 @@ const theme = createTheme({
     MuiButtonBase: {
       defaultProps: {
         // The default props to change
-        disableRipple: true, // No more ripple, on the whole application 💣!
+        disableRipple: false, // The ripple is back, on the whole application 🌊!
       },
     },
   },
@@ -17,7 +17,7 @@ export default function DefaultProps() {
   return (
     // @focus-start @padding 2
     <ThemeProvider theme={theme}>
-      <Button>This button has disabled ripples.</Button>
+      <Button>This button has ripples.</Button>
     </ThemeProvider>
     // @focus-end
   );

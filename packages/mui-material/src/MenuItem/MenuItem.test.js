@@ -41,7 +41,10 @@ describe('<MenuItem />', () => {
   it('has a ripple when clicked', async () => {
     render(
       <MenuList>
-        <MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />
+        <MenuItem
+          disableRipple={false}
+          TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}
+        />
       </MenuList>,
     );
     const menuitem = screen.getByRole('menuitem');

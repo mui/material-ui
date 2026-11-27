@@ -51,7 +51,6 @@ export default function DensityRecipesDemo() {
       enhanceDensity(
         createTheme({
           colorSchemes,
-          focusVisible: true,
           typography: recipe.typography,
         }),
         recipe.scale,

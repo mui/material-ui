@@ -5,10 +5,8 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 
 const theme = createTheme({
-  focusVisible: true,
   colorSchemes: { light: true, dark: true },
   components: {
-    MuiButtonBase: { defaultProps: { disableRipple: true } },
     MuiMenuItem: {
       styleOverrides: {
         root: ({ theme }) => ({

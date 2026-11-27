@@ -61,7 +61,7 @@ export function isOutlineColorFromResolvedRing(
 }
 
 /**
- * Resolve the opt-in outer ring. `outlineColor` is the caller's default — a hex, the palette var,
+ * Resolve the outer ring. `outlineColor` is the caller's default — a hex, the palette var,
  * or a scheme's primary — overridden by a user-provided `outlineColor`.
  */
 export function resolveFocusVisible(
@@ -82,17 +82,22 @@ export function resolveFocusVisible(
   return ring as React.CSSProperties;
 }
 
+/**
+ * Resolve the `focusVisible` input onto the theme. The ring is on unless the input is `false`.
+ */
 export function attachFocusVisible(
   theme: FocusVisibleTheme,
   input: FocusVisibleInput,
   outlineColor: string,
 ) {
-  if (input == null || input === false) {
+  if (input === false) {
+    theme.focusVisible = false;
     delete theme.unstable_focusVisibleInsetOverrides;
     return;
   }
-  const { insetOverrides } = input === true ? ({} as FocusVisibleOptions) : input;
-  theme.focusVisible = resolveFocusVisible(input, outlineColor);
+  const ringInput = input ?? true;
+  const { insetOverrides } = ringInput === true ? ({} as FocusVisibleOptions) : ringInput;
+  theme.focusVisible = resolveFocusVisible(ringInput, outlineColor);
   if (insetOverrides) {
     theme.unstable_focusVisibleInsetOverrides = deepmerge(
       theme.unstable_focusVisibleInsetOverrides ?? {},

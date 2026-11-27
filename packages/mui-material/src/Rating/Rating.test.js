@@ -389,8 +389,12 @@ describe('<Rating />', () => {
       });
     });
 
-    it.skipIf(isJsdom())('falls back to the legacy outline when unset', () => {
-      const { container } = render(<Rating defaultValue={3} name="rating-focus-visible-legacy" />);
+    it.skipIf(isJsdom())('falls back to the legacy outline when focusVisible is false', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: false })}>
+          <Rating defaultValue={3} name="rating-focus-visible-legacy" />
+        </ThemeProvider>,
+      );
 
       const checkedRadio = screen
         .getAllByRole('radio')
@@ -430,10 +434,12 @@ describe('<Rating />', () => {
     });
 
     it.skipIf(isJsdom())(
-      'falls back to the legacy outline on the empty-value label when unset',
+      'falls back to the legacy outline on the empty-value label when focusVisible is false',
       () => {
         const { container } = render(
-          <Rating value={null} name="rating-empty-focus-visible-legacy" />,
+          <ThemeProvider theme={createTheme({ focusVisible: false })}>
+            <Rating value={null} name="rating-empty-focus-visible-legacy" />
+          </ThemeProvider>,
         );
 
         const noValueRadio = screen.getAllByRole('radio').find((radio) => radio.checked);

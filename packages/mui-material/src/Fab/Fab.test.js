@@ -101,7 +101,7 @@ describe('<Fab />', () => {
   });
 
   it('should have a ripple', async () => {
-    const { container } = render(<Fab>Fab</Fab>);
+    const { container } = render(<Fab disableRipple={false}>Fab</Fab>);
     await ripple.startTouch(screen.getByRole('button'));
     expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
@@ -116,6 +116,7 @@ describe('<Fab />', () => {
   it.skipIf(isJsdom())('should have a focusRipple', async function test() {
     render(
       <Fab
+        disableRipple={false}
         TouchRippleProps={{
           classes: { ripplePulsate: 'pulsate-focus-visible' },
         }}
@@ -137,6 +138,7 @@ describe('<Fab />', () => {
         TouchRippleProps={{
           classes: { ripplePulsate: 'pulsate-focus-visible' },
         }}
+        disableRipple={false}
         disableFocusRipple
       >
         Fab

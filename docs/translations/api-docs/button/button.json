@@ -15,7 +15,7 @@
       "description": "If <code>true</code>, the  keyboard focus ripple is disabled."
     },
     "disableRipple": {
-      "description": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class."
+      "description": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ If the theme turns <code>focusVisible</code> off, there is no styling for :focus-visible without a ripple. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class."
     },
     "endIcon": { "description": "Element placed after the children." },
     "fullWidth": {

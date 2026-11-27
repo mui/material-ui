@@ -232,3 +232,55 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### Focus ring on by default
+
+The theme's [focus ring](/material-ui/customization/focus-visible/) is now on by default, so components draw an outline when they receive keyboard focus.
+Before, it was off unless the theme set `focusVisible: true`.
+
+With the ring on, Chip, MenuItem, ListItemButton, AccordionSummary, PaginationItem, CardActionArea, Autocomplete options and the Slider thumb no longer change their background on keyboard focus, because the ring replaces it.
+
+If your app styles keyboard focus itself, it now shows both. To keep only your styles, turn the ring off:
+
+```diff
+-const theme = createTheme();
++const theme = createTheme({ focusVisible: false });
+```
+
+To keep the ring visible on the Switch track, the track is now translucent through its `backgroundColor` instead of `opacity`.
+A style override that sets the track's `backgroundColor` now shows that color at full strength, so a checked track colored like the thumb hides the thumb.
+Add the transparency to the color:
+
+```diff
+ '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+-  backgroundColor: pink[600],
++  backgroundColor: alpha(pink[600], 0.5),
+ },
+```
+
+### Ripple off by default
+
+The `disableRipple` prop of ButtonBase now defaults to `true`, so ButtonBase and the components built on it no longer show the ripple.
+Keyboard focus shows the [focus ring](#focus-ring-on-by-default) instead of the focus ripple.
+Hover styles don't change: IconButton, Checkbox and Radio keep their hover background unless you set `disableRipple` on them.
+
+To bring the ripple back, set the default prop in the theme:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: false,
+      },
+    },
+  },
+});
+```
+
+If your theme already sets `disableRipple: true` there, you can remove it.
+
+Tests that query the ripple, for example `.MuiTouchRipple-root`, need the same setting or `disableRipple={false}` on the component.
+
+If your theme turns the focus ring off with `focusVisible: false`, most buttons have no keyboard focus style left.
+Bring the ripple back as shown above, or style the `.Mui-focusVisible` class.

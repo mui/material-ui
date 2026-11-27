@@ -754,7 +754,11 @@ describe('<Button />', () => {
   });
 
   it('should have a ripple', async () => {
-    render(<Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>);
+    render(
+      <Button disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }}>
+        Hello World
+      </Button>,
+    );
 
     const button = screen.getByRole('button');
     await ripple.startTouch(button);
@@ -783,7 +787,10 @@ describe('<Button />', () => {
   // JSDOM doesn't support :focus-visible
   it.skipIf(isJsdom())('should have a focusRipple', async function test() {
     render(
-      <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
+      <Button
+        disableRipple={false}
+        TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
+      >
         Hello World
       </Button>,
     );
@@ -800,6 +807,7 @@ describe('<Button />', () => {
   it.skipIf(isJsdom())('can disable the focusRipple', async function test() {
     render(
       <Button
+        disableRipple={false}
         disableFocusRipple
         TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
       >

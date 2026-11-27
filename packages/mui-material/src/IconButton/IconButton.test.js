@@ -36,7 +36,9 @@ describe('<IconButton />', () => {
 
   it('should have a ripple', async () => {
     const { container } = render(
-      <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
+      <IconButton disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }}>
+        book
+      </IconButton>,
     );
     await ripple.startTouch(screen.getByRole('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
@@ -50,6 +52,19 @@ describe('<IconButton />', () => {
     );
     await ripple.startTouch(screen.getByRole('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  it.skipIf(isJsdom())('keeps the hover effect while the ripple is off by default', () => {
+    render(
+      <React.Fragment>
+        <IconButton>book</IconButton>
+        <IconButton disableRipple>book</IconButton>
+      </React.Fragment>,
+    );
+    const [defaultButton, disableRippleButton] = screen.getAllByRole('button');
+    const hoverBg = (element) => getComputedStyle(element).getPropertyValue('--IconButton-hoverBg');
+    expect(hoverBg(defaultButton)).not.to.equal('');
+    expect(hoverBg(disableRippleButton)).to.equal('');
   });
 
   describe('prop: size', () => {

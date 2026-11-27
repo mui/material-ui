@@ -69,6 +69,7 @@ describe('<SwitchBase />', () => {
         checkedIcon="checked"
         icon="unchecked"
         type="checkbox"
+        disableRipple={false}
         TouchRippleProps={{ 'data-testid': 'TouchRipple' }}
       />,
     );

@@ -430,6 +430,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 
 export function getThemedComponents(): ThemeOptions {
   return {
+    // The components below draw their own keyboard focus outline.
+    focusVisible: false,
     components: {
       MuiAlert: {
         styleOverrides: {
