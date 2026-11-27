@@ -232,3 +232,54 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### Collapse and TableCell types
+
+`Collapse` and `TableCell` are now typed as `OverridableComponent`.
+This change affects TypeScript usage in the following ways:
+
+- Components created with `styled(Collapse)` or `styled(TableCell)` no longer accept the `component` prop unless you cast the returned component back with `as typeof Collapse` or `as typeof TableCell`:
+
+  ```diff
+   const StyledTableCell = styled(TableCell)({
+     // your custom styles go here
+  -});
+  +}) as typeof TableCell;
+
+   const StyledCollapse = styled(Collapse)({
+     // your custom styles go here
+  -});
+  +}) as typeof Collapse;
+  ```
+
+  See [Complications with the `component` prop](/material-ui/guides/typescript/#complications-with-the-component-prop) in the TypeScript guide for more details.
+
+- The `ref` prop is now typed to the default root element (`HTMLDivElement` for `Collapse` and `HTMLTableDataCellElement` for `TableCell`) instead of `Ref<unknown>`.
+  Update refs typed as `HTMLElement` or `unknown`, including custom `Transition` wrappers passed to `Dialog`:
+
+  ```diff
+   const Transition = React.forwardRef(function Transition(
+     props: TransitionProps & {
+       children: React.ReactElement<any, any>;
+     },
+  -  ref: React.Ref<unknown>,
+  +  ref: React.Ref<HTMLDivElement>,
+   ) {
+     return <Collapse ref={ref} {...props} />;
+   });
+  ```
+
+- Props are now checked against the element or component passed to `component`, so attributes that it doesn't accept are rejected.
+  For example, `<TableCell component="div" />` no longer accepts `colSpan`.
+  Likewise, `<TableCell component="th" />` no longer accepts `width`, `height`, or `valign`, which React's types allow on `td` but not on `th`.
+  Remove those attributes, or use `sx` or `style` for sizing and alignment.
+
+- `React.ComponentProps<typeof Collapse>` and `React.ComponentProps<typeof TableCell>` no longer include the `component` prop.
+  Use `CollapseProps` and `TableCellProps` instead:
+
+  ```diff
+  -type CustomTableCellProps = React.ComponentProps<typeof TableCell>;
+  +import type { TableCellProps } from '@mui/material/TableCell';
+  +
+  +type CustomTableCellProps = TableCellProps;
+  ```

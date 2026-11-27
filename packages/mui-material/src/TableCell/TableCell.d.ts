@@ -2,21 +2,13 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableCellClasses } from './tableCellClasses';
 
 export interface TableCellPropsSizeOverrides {}
 export interface TableCellPropsVariantOverrides {}
 
-/**
- * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
- * on the context it is used in. Where context literally is the
- * React `context`.
- *
- * Since it is not decided via prop, we have create loose typings
- * here.
- */
-export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align'> {
+export interface TableCellOwnProps {
   /**
    * Set the text-align on the table cell content.
    *
@@ -33,11 +25,6 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TableCellClasses> | undefined;
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component?: React.ElementType<TableCellBaseProps> | undefined;
   /**
    * Sets the padding applied to the cell.
    * The prop defaults to the value (`'default'`) inherited from the parent Table component.
@@ -73,6 +60,14 @@ export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableCellElement> &
 
 export type SortDirection = 'asc' | 'desc' | false;
 
+export interface TableCellTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'td',
+> {
+  props: AdditionalProps & TableCellOwnProps;
+  defaultComponent: RootComponent;
+}
+
 /**
  * The component renders a `<th>` element when the parent context is a header
  * or otherwise a `<td>` element.
@@ -85,4 +80,13 @@ export type SortDirection = 'asc' | 'desc' | false;
  *
  * - [TableCell API](https://next.mui.com/material-ui/api/table-cell/)
  */
-export default function TableCell(props: TableCellProps): React.JSX.Element;
+declare const TableCell: OverridableComponent<TableCellTypeMap>;
+
+export type TableCellProps<
+  RootComponent extends React.ElementType = TableCellTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableCellTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType | undefined;
+};
+
+export default TableCell;

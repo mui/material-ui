@@ -153,7 +153,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
  */
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
-export interface TablePaginationOwnProps extends TablePaginationBaseProps {
+export interface TablePaginationOwnProps extends Omit<TablePaginationBaseProps, 'ref'> {
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.
