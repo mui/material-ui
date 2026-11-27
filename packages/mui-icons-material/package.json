@@ -4,7 +4,6 @@
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
   "license": "MIT",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -29,7 +28,7 @@
   "scripts": {
     "build": "rimraf build && shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:pkg-json",
     "build:pkg-json": "node ./scripts/merge-package-json.mjs",
-    "build:lib": "code-infra build --flat --hasLargeFiles --skipMainCheck --buildTypes false --no-expand",
+    "build:lib": "code-infra build-new --buildTypes false --no-expand && node ./scripts/strip-icon-banners.mjs",
     "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib && rimraf build",
     "build:copy-files": "shx cp README.md ../../CHANGELOG.md ../../LICENSE build",
     "build:typings": "node ./scripts/create-typings.mjs",
@@ -77,6 +76,7 @@
     ".": "./src/index.js",
     "./*": "./src/*.js",
     "./index*": null,
+    "./utils/createSvgIcon": "./src/utils/createSvgIcon.js",
     "./utils/*": null
   }
 }
