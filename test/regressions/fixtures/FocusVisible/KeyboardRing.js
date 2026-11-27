@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import Chip from '@mui/material/Chip';
 import Fab from '@mui/material/Fab';
 import IconButton from '@mui/material/IconButton';
 import Radio from '@mui/material/Radio';
@@ -46,6 +47,7 @@ export default function KeyboardRing() {
           <AddIcon />
         </Fab>
         <Checkbox />
+        <Chip label="Chip" onClick={() => {}} />
         <IconButton aria-label="Delete">
           <DeleteIcon />
         </IconButton>

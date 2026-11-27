@@ -238,7 +238,7 @@ export function renderDocsRollup(totals) {
   const headline =
     totals.doesNotSupport === 0
       ? '**No component records a ❌ Does Not Support rating for any Level A or AA criterion.**'
-      : `**${totals.doesNotSupport} criteria record a ❌ Does Not Support rating in at least one component.**`;
+      : `**${totals.doesNotSupport} ${totals.doesNotSupport === 1 ? 'criterion records' : 'criteria record'} a ❌ Does Not Support rating in at least one component.**`;
   return [
     headline,
     '',
@@ -252,13 +252,13 @@ export function renderDocsRollup(totals) {
  */
 export function renderDocsTable(reports) {
   const header = [
-    '| Component | Level A | Level AA | Rated | ✅ Supports | ⚠️ Partially Supports | Verified | Automated |',
-    '| :-------- | ------: | -------: | ----: | ----------: | --------------------: | -------: | --------: |',
+    '| Component | Level A | Level AA | Rated | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | Verified | Automated |',
+    '| :-------- | ------: | -------: | ----: | ----------: | --------------------: | ------------------: | -------: | --------: |',
   ];
 
   const rows = reports.map(({ component, summary }) => {
     const link = `[${component}](${REPORT_BASE}/${component}/accessibility.md)`;
-    return `| ${link} | ${summary.levelA} | ${summary.levelAA} | ${summary.rated} | ${summary.supports} | ${summary.partiallySupports} | ${summary.verified}/${summary.rated} | ${summary.automated} |`;
+    return `| ${link} | ${summary.levelA} | ${summary.levelAA} | ${summary.rated} | ${summary.supports} | ${summary.partiallySupports} | ${summary.doesNotSupport} | ${summary.verified}/${summary.rated} | ${summary.automated} |`;
   });
 
   return [...header, ...rows].join('\n');

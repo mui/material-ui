@@ -308,6 +308,22 @@ const BUTTON_GROUP_A11Y_DEMOS = [
   'SplitButton',
 ];
 
+// Chip docs demos enrolled for axe assertions. ChipsPlayground needs Redux isolation.
+const CHIP_A11Y_DEMOS = [
+  'BasicChips',
+  'ClickableChips',
+  'DeletableChips',
+  'ClickableAndDeletableChips',
+  'ClickableLinkChips',
+  'CustomDeleteIconChips',
+  'AvatarChips',
+  'IconChips',
+  'ColorChips',
+  'SizesChips',
+  'MultilineChips',
+  'ChipsArray',
+];
+
 // Fab docs demos enrolled for axe assertions. FloatingActionButtonZoom is excluded:
 // most of its content is a Tabs component.
 const FAB_A11Y_DEMOS = [
@@ -572,6 +588,28 @@ export const A11Y_RULES: A11yRule[] = [
   // label is a documented gap (1.4.3) in `packages/mui-material/src/FormLabel/accessibility.md`.
   {
     test: 'test/regressions/a11y/fixtures/form-label/FormLabelA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/chips/{${CHIP_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures under `test/regressions/a11y/fixtures/chips/`; the suite
+  // name maps their results into the same `chips.a11y.json`.
+  {
+    test: 'test/regressions/a11y/fixtures/chips/{ChipA11ySemanticStates,ChipA11yLongLabel}',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `color-contrast` is recorded but not asserted. These are documented gaps
+  // in `packages/mui-material/src/Chip/accessibility.md`: the `info` and `warning`
+  // labels (1.4.3). axe also fails the faded label of a disabled delete-only chip,
+  // because the chip has no `aria-disabled` (4.1.2).
+  {
+    test: 'test/regressions/a11y/fixtures/chips/{ChipA11yColorMatrix,ChipA11yKnownGaps}',
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
