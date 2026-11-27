@@ -722,7 +722,8 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  ModalProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({}),
+  ModalProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({}),
   /**
    * Callback fired when the component requests to be closed.
    *
