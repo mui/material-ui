@@ -40,7 +40,8 @@ const cases = [
   { name: 'button-barrel', parts: ['Button'], barrel: true },
   { name: 'classic-menu', parts: classic },
   { name: 'classic-menu-barrel', parts: classic, barrel: true },
-  { name: 'classic-menu-high-contrast', parts: classic, highContrast: true },
+  { name: 'classic-menu-high-contrast', parts: classic, helper: 'enhanceHighContrast' },
+  { name: 'classic-menu-density', parts: classic, helper: 'unstable_enhanceDensity' },
   ...(hasMenu2
     ? [
         { name: 'menu2', parts: menu2 },
@@ -52,18 +53,15 @@ const cases = [
 ];
 
 const results = {};
-for (const { name, parts, barrel, highContrast } of cases) {
+for (const { name, parts, barrel, helper } of cases) {
   const entry = '\0menu2-bundle-entry';
   const componentImports = barrel
     ? `import { ${parts.join(', ')} } from '@mui/material';`
     : parts.map((part) => `import ${part} from '@mui/material/${part}';`).join('\n');
-  const code = [
-    componentImports,
-    highContrast && "import { enhanceHighContrast } from '@mui/material/styles';",
-  ]
+  const code = [componentImports, helper && `import { ${helper} } from '@mui/material/styles';`]
     .filter(Boolean)
     .join('\n');
-  const liveImports = [...parts, ...(highContrast ? ['enhanceHighContrast'] : [])];
+  const liveImports = [...parts, ...(helper ? [helper] : [])];
   // eslint-disable-next-line no-await-in-loop -- Build one scenario at a time to limit memory use.
   const output = await build({
     configFile: false,

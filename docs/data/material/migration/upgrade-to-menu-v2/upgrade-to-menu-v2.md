@@ -55,7 +55,7 @@ Do not put classic Menu and List components, such as `@mui/material/MenuItem`, `
   Arrow keys and typeahead skip them, and a click on them does not close the menu.
 - `Divider` and `ListSubheader` do not get the menu spacing or the group label relationship.
 
-To use another component as a part, pass it to the `render` prop of that part.
+To use another component, such as a router link, pass it to the `render` prop of a part.
 Menu v2 items also throw an error inside the classic `Menu`.
 :::
 

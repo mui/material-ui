@@ -41,7 +41,8 @@ The import paths, theme keys, and CSS classes keep their `Menu2` names.
 
 Build each menu only from these parts.
 Do not put classic Menu and List components, such as `@mui/material/MenuItem`, `Divider`, and `ListSubheader`, inside a Menu v2 menu.
-To use another component as a part, pass it to the `render` prop of that part.
+A classic `MenuItem` throws an error, also when you pass it to `render`.
+To use another component, such as a router link, pass it to the `render` prop of a part.
 See [Render and root slots](#render-and-root-slots).
 
 ## Why a new menu component
@@ -219,6 +220,10 @@ Set `openOnHover` on `MenuTrigger` to open the menu when the pointer rests on th
 {{"component": "file://./demos/hover/index.ts"}}
 
 A menu that opens on hover isn't modal, so the rest of the page stays interactive.
+
+On React 17, a `MenuTrigger` with `openOnHover` needs a unique `id` from the first render, such as a string literal.
+An `id` that an effect sets later, such as one from `unstable_useId`, does not work.
+Without such an `id`, the menu does not open on hover.
 
 ## Controlled menu
 

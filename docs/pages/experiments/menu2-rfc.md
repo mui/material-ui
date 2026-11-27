@@ -231,7 +231,7 @@ Other behavior and caveats:
 - **Popup owner state:** popup `slotProps` and theme callbacks receive only the props, as [open question 1](#open-questions) describes. Their `side` and `align` are the requested values, not the values after a collision flip. For the resolved placement, use the `data-side` and `data-align` attributes or the popup `render` state.
 - **Column offsets:** inset group labels, inset separators, and the checkbox and radio indicators use fixed offsets for the default 36px column. They do not follow a changed `startAdornment` width, so change them in the theme too. A shared CSS variable can follow in a separate PR.
 - **Base UI parts outside the API:** Menu2 does not expose the Base UI `Menu.Arrow` part, the filter parts (`Menu.FilterProvider` and `Menu.Input`), or the `onItemHighlighted` callback. Menu2 has no standalone list. For a list that is always visible, keep `MenuList` and `MenuItem`.
-- **Hover open on React 17:** in Base UI 1.9.0 on React 17, a `Menu2Trigger` with `openOnHover` and no `id` does not open on hover. Base UI creates the trigger ID in an effect, so the trigger element mounts again, and the hover listeners stay on the removed element. Set an `id` on `Menu2Trigger`. React 18 and later do not have this problem.
+- **Hover open on React 17:** in Base UI 1.9.0 on React 17, a `Menu2Trigger` with `openOnHover` and no `id` does not open on hover. Base UI creates the trigger ID in an effect, so the trigger element mounts again, and the hover listeners stay on the removed element. Set a unique `id` on `Menu2Trigger` from the first render. An `id` that an effect sets later, such as one from `unstable_useId`, also remounts the trigger. React 18 and later do not have this problem.
 - **React 17 without a bundler:** the Base UI 1.9.0 ESM files import `react/jsx-runtime` without a file extension. React 17 has no `exports` map, so Node cannot resolve this import in ESM code that runs without a bundler, such as some server code. Bundlers resolve it.
 
 ### Compatibility
@@ -470,7 +470,7 @@ This example follows the system preference. The playground also shows the theme 
 
 ### Bundle cost
 
-These measurements compare `7a793d8033` with the merge base `3d182746fe`, using the same installed dependencies and build tools.
+These measurements compare `4a2609702e` with the merge base `9769f52fee`, using the same installed dependencies and build tools.
 They include the explicit Root/Trigger/Popup API and exclude the removed Material detached-trigger API.
 Both revisions use production ESM builds, Node.js 24.16.0, Vite 8.3.8, and gzip level 9.
 React, React DOM, `@emotion/react`, and `@emotion/styled` are external.
@@ -479,30 +479,33 @@ These are import bundles, not complete applications. Sizes use decimal kB.
 
 Each menu case includes Button. The classic case adds Menu and MenuItem; the Menu2 case adds Menu2, Menu2Trigger, Menu2Popup, and Menu2Item.
 The submenu case also adds Menu2Submenu, Menu2SubmenuTrigger, and Menu2SubmenuPopup.
-The high-contrast case adds `enhanceHighContrast` from `@mui/material/styles` to the classic imports.
+The high-contrast case adds `enhanceHighContrast` from `@mui/material/styles` to the classic imports, and the density case adds `unstable_enhanceDensity`.
 The table uses component subpath imports. The Menu2 imports use the `Unstable_` prefix.
 
 | Imports                             | Minified kB | Gzip kB |
 | :---------------------------------- | ----------: | ------: |
-| Classic Menu, merge base            |     128.146 |  41.015 |
-| Classic Menu, this PR               |     128.524 |  41.117 |
-| Classic + high contrast, merge base |     137.384 |  42.890 |
-| Classic + high contrast, this PR    |     140.792 |  43.522 |
-| Menu2                               |     245.964 |  80.587 |
-| Menu2 with submenu                  |     255.115 |  83.027 |
-| Classic Menu and Menu2              |     274.178 |  89.517 |
-| Classic Menu and Menu2 with submenu |     283.317 |  91.931 |
+| Classic Menu, merge base            |     128.153 |  41.007 |
+| Classic Menu, this PR               |     128.531 |  41.111 |
+| Classic + high contrast, merge base |     137.391 |  42.884 |
+| Classic + high contrast, this PR    |     140.799 |  43.516 |
+| Classic + density, merge base       |     162.719 |  48.153 |
+| Classic + density, this PR          |     164.008 |  48.387 |
+| Menu2                               |     246.848 |  80.889 |
+| Menu2 with submenu                  |     256.032 |  83.325 |
+| Classic Menu and Menu2              |     275.066 |  89.807 |
+| Classic Menu and Menu2 with submenu |     284.230 |  92.249 |
 
-The classic subpath case grows by **102 B gzip**. Named barrel imports grow by **136 B gzip**.
+The classic subpath case grows by **104 B gzip**. Named barrel imports grow by **136 B gzip**.
 This growth comes from the `ModalManager` scroll lock that Menu2 shares with Modal.
 Button-only imports stay within 1 B gzip through either import path.
 With `enhanceHighContrast`, the classic case grows by **632 B gzip**, including the new Menu2 styles in the helper.
+With `unstable_enhanceDensity`, it grows by **234 B gzip**, including the new Menu2 styles in the helper.
 None of these classic-only cases retains Base UI or Floating UI modules.
 These are total PR costs for the measured imports, not a guarantee for every classic component.
 
-Menu2 is not a size reduction: it costs **39.470 kB gzip** more than the classic case.
-Adding Menu2 alongside classic Menu costs **48.400 kB gzip** in this fixture.
-Adding submenu support to the Menu2 case costs a further **2.440 kB gzip**.
+Menu2 is not a size reduction: it costs **39.778 kB gzip** more than the classic case.
+Adding Menu2 alongside classic Menu costs **48.696 kB gzip** in this fixture.
+Adding submenu support to the Menu2 case costs a further **2.436 kB gzip**.
 Application results depend on the components and dependencies already in use.
 
 Run `pnpm -r --filter @mui/material... build`, then `pnpm exec node test/bundle-size/menu2.mjs` to repeat the comparison.
