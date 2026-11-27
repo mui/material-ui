@@ -67,7 +67,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 <!-- 1.4.4:start -->
 
-- Under 200% page zoom, the chip, its container, and the label scale together, so a label that fits at 100% still fits. Page zoom decides the 1.4.4 rating (WCAG technique G142). The automated page-zoom check comes with the layout suite change in #49550, so this report confirms it with a manual step until then.
+- Under 200% page zoom, the chip, its container, and the label scale together, so a label that fits at 100% still fits. Page zoom decides the 1.4.4 rating (WCAG technique G142). A manual step confirms it.
 - Under text-only resize, the label grows but a px-wide container does not. The label does not wrap, so it ends with an ellipsis. In the `ChipA11yLongLabel` fixture, a label fits its 240 px container at 100% (177 px). At a 200% text size, 219 px of the 331 px label is visible. A Playwright test confirms this.
 - To make long labels safe under text-only resize, let the label wrap with `height: 'auto'` on the chip, and `display: 'block'` and `whiteSpace: 'normal'` on the label, as the MultilineChips demo does.
 
