@@ -52,7 +52,6 @@ overrides:
   '@pigment-css/vite-plugin': '0.0.31'
 
 allowBuilds:
-  '@vvago/vale': true
   esbuild: true
   nx: true
   sharp: true
