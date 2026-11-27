@@ -193,6 +193,7 @@ Edit the JSON files, not this table.
 | [CircularProgress](./CircularProgress/accessibility.md)   | 8           | 3                     | 0                   | 44                | —           | 5/11       |
 | [Fab](./Fab/accessibility.md)                             | 20          | 5                     | 0                   | 30                | —           | 6/25       |
 | [FormGroup](./FormGroup/accessibility.md)                 | 7           | 0                     | 0                   | 48                | —           | 3/7        |
+| [FormHelperText](./FormHelperText/accessibility.md)       | 11          | 2                     | 0                   | 42                | —           | 3/13       |
 | [FormLabel](./FormLabel/accessibility.md)                 | 11          | 2                     | 0                   | 42                | —           | 3/13       |
 | [IconButton](./IconButton/accessibility.md)               | 22          | 5                     | 0                   | 28                | —           | 9/27       |
 | [LinearProgress](./LinearProgress/accessibility.md)       | 8           | 3                     | 0                   | 44                | —           | 5/11       |

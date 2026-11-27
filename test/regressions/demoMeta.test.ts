@@ -256,6 +256,33 @@ describe('getConfig', () => {
     );
   });
 
+  it('asserts every rule on the standalone FormHelperText fixture', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yStates',
+      ),
+    ).to.deep.equal({
+      test: 'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yStates',
+      enabled: true,
+      assertions: 'all',
+    });
+  });
+
+  it('records the TextField-variant FormHelperText contrast without asserting it', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yVariants',
+      ),
+    ).to.deep.equal({
+      test: 'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yVariants',
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
   it('asserts every rule on the FormGroup fixture', () => {
     expect(
       getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates'),

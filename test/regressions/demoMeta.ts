@@ -577,6 +577,25 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // A11y-only fixture under `test/regressions/a11y/fixtures/form-helper-text/`.
+  // FormHelperText has no docs page, so the fixture owns the `form-helper-text` slug.
+  {
+    test: 'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yStates',
+    enabled: true,
+    assertions: 'all',
+  },
+  // `color-contrast` is recorded but not asserted. The red label of the filled
+  // error field is a known TextField 1.4.3 failure that this fixture shows. axe
+  // also returns `incomplete` for the empty outlined input (no value to test),
+  // and for the other outlined input and the `standard` label, which the notched
+  // outline and the floating label overlap. The stored result does not name the
+  // failing element.
+  {
+    test: 'test/regressions/a11y/fixtures/form-helper-text/FormHelperTextA11yVariants',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
   // A11y-only fixtures under `test/regressions/a11y/fixtures/form-label/`.
   // FormLabel has no docs page, so the fixtures own the `form-label` slug.
   {

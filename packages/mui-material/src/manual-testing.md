@@ -23,7 +23,7 @@ Run the rows matching what you touched, for the component you touched.
 | Styling, theme, or palette           | 1.4.1 Use of Color; 1.4.3 Contrast (Minimum); 1.4.5 Images of Text; 1.4.10 Reflow; 1.4.11 Non-text Contrast; 1.4.12 Text Spacing                |
 | DOM structure, roles, or ARIA        | 1.1.1 Non-text Content; 1.3.1 Info and Relationships; 1.3.2 Meaningful Sequence; 4.1.2 Name, Role, Value; 4.1.3 Status Messages                 |
 | Keyboard, focus, or pointer handling | 2.1.1 Keyboard; 2.4.3 Focus Order; 2.4.4 Link Purpose (In Context); 2.4.6 Headings and Labels; 2.4.7 Focus Visible; 2.5.8 Target Size (Minimum) |
-| Labels, errors, or validation        | 3.3.2 Labels or Instructions                                                                                                                    |
+| Labels, errors, or validation        | 3.3.1 Error Identification; 3.3.2 Labels or Instructions                                                                                        |
 | Motion or timing                     | 2.2.2 Pause, Stop, Hide                                                                                                                         |
 | Other                                | 2.3.1 Three Flashes or Below Threshold                                                                                                          |
 
@@ -161,6 +161,17 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔍 **1.3.2 Meaningful Sequence** — the reading order matches the visual order.
 - [ ] 🔍 **2.4.6 Headings and Labels** — each group name tells the purpose of the set, for example "Toppings".
 - [ ] 🔁 **3.3.2 Labels or Instructions** — each group that asks one question has a visible label and clear instructions.
+
+## FormHelperText
+
+6 checks · full procedures in [`FormHelperText/accessibility.md`](./FormHelperText/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader reads the helper text as the description, after the name of the field.
+- [ ] 🔁 **1.4.1 Use of Color** — the error message shows the error in words, not only in red.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — the resting and error helper text is at least `4.5:1` on its actual background. Expected result: dark error text on a Paper with elevation 2 or more falls short.
+- [ ] 🔁 **3.3.1 Error Identification** — the helper text names the error in words, for example "Enter a valid email address."
+- [ ] 🔁 **3.3.2 Labels or Instructions** — each field that needs a format or a rule has helper text that explains it.
+- [ ] 🔁 **4.1.3 Status Messages** — the screen reader announces the new error. Expected result from the source: it does not.
 
 ## FormLabel
 
