@@ -40,9 +40,16 @@ function calculateCurrentX(anchor, touches, doc) {
 }
 
 function calculateCurrentY(anchor, touches, containerWindow) {
-  return anchor === 'bottom'
-    ? containerWindow.innerHeight - touches[0].clientY
-    : touches[0].clientY;
+  if (anchor !== 'bottom') {
+    return touches[0].clientY;
+  }
+
+  const visualViewport = containerWindow.visualViewport;
+  const viewportBottom = visualViewport
+    ? visualViewport.height + visualViewport.offsetTop
+    : containerWindow.innerHeight;
+
+  return viewportBottom - touches[0].clientY;
 }
 
 function getMaxTranslate(horizontalSwipe, paperInstance) {
@@ -62,10 +69,12 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
 /**
  * @param {Element | null} element
  * @param {Element} rootNode
+ * @param {boolean} [horizontalSwipe]
  */
-function getDomTreeShapes(element, rootNode) {
+function getDomTreeShapes(element, rootNode, horizontalSwipe = true) {
   // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
   const domTreeShapes = [];
+  const overflowHiddenProperty = horizontalSwipe ? 'overflow-x' : 'overflow-y';
 
   while (element) {
     const style = ownerWindow(rootNode).getComputedStyle(element);
@@ -73,13 +82,14 @@ function getDomTreeShapes(element, rootNode) {
     if (
       // Ignore the scroll children if the element is absolute positioned.
       style.getPropertyValue('position') === 'absolute' ||
-      // Ignore the scroll children if the element has an overflowX hidden
-      style.getPropertyValue('overflow-x') === 'hidden'
+      // Ignore the scroll children if the element has overflow hidden on the swipe axis
+      style.getPropertyValue(overflowHiddenProperty) === 'hidden'
     ) {
       // noop
     } else if (
-      (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||
-      (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)
+      horizontalSwipe
+        ? element.clientWidth > 0 && element.scrollWidth > element.clientWidth
+        : element.clientHeight > 0 && element.scrollHeight > element.clientHeight
     ) {
       // Ignore the nodes that have no width.
       // Keep elements with a scroll
@@ -381,7 +391,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     const target = getEventTarget(nativeEvent);
 
     if (open && contains(paperRef.current, target) && claimedSwipeInstance === null) {
-      const domTreeShapes = getDomTreeShapes(target, paperRef.current);
+      const domTreeShapes = getDomTreeShapes(target, paperRef.current, horizontalSwipe);
       const hasNativeHandler = computeHasNativeHandler({
         domTreeShapes,
         start: horizontalSwipe ? swipeInstance.current.startX : swipeInstance.current.startY,
@@ -600,6 +610,47 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       setMaybeSwiping(false);
     }
   }, [open]);
+
+  React.useEffect(() => {
+    if (!open || anchor !== 'bottom') {
+      return undefined;
+    }
+
+    const containerWindow = ownerWindow(paperRef.current);
+    const visualViewport = containerWindow.visualViewport;
+    if (!visualViewport) {
+      return undefined;
+    }
+
+    let activePaper = null;
+    const syncViewport = () => {
+      activePaper = paperRef.current;
+      if (!activePaper) {
+        return;
+      }
+
+      const viewportOffset =
+        containerWindow.innerHeight - visualViewport.height - visualViewport.offsetTop;
+      const bottom = Math.max(0, Math.round(viewportOffset));
+      const maxHeight = Math.max(240, Math.floor(visualViewport.height * 0.92));
+
+      activePaper.style.bottom = bottom > 0 ? `${bottom}px` : '';
+      activePaper.style.maxHeight = bottom > 0 ? `${maxHeight}px` : '';
+    };
+
+    syncViewport();
+    visualViewport.addEventListener('resize', syncViewport);
+    visualViewport.addEventListener('scroll', syncViewport);
+
+    return () => {
+      visualViewport.removeEventListener('resize', syncViewport);
+      visualViewport.removeEventListener('scroll', syncViewport);
+      if (activePaper) {
+        activePaper.style.bottom = '';
+        activePaper.style.maxHeight = '';
+      }
+    };
+  }, [open, anchor]);
 
   const [SwipeAreaSlot, swipeAreaSlotProps] = useSlot('swipeArea', {
     ref: swipeAreaRef,
