@@ -45,6 +45,12 @@ export const kuLatn: Localization = {
         openText: 'Veke',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Tîpa ${formatNumber(position)} ji ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Bigre',

@@ -34,6 +34,11 @@ export interface Localization {
               >;
             }
           | undefined;
+        MuiOTPField?:
+          | {
+              defaultProps: Pick<ComponentsPropsList['MuiOTPField'], 'getAriaLabel'>;
+            }
+          | undefined;
         // The core package has no dependencies on the @mui/lab components.
         // We can't use ComponentsPropsList, we have to duplicate and inline the definitions.
         MuiPagination?:

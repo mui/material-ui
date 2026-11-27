@@ -45,6 +45,12 @@ export const trTR: Localization = {
         openText: 'Aç',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `${formatNumber(length)} karakterden ${formatNumber(position)}. karakter`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Kapat',

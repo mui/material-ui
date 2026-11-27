@@ -314,6 +314,19 @@ async function main() {
       });
     });
 
+    describe.each([
+      { demo: 'OTPFieldColors', label: 'Secondary', input: '1' },
+      { demo: 'ValidationOTPField', label: 'Device code', input: '1x' },
+    ])('OTPField/$demo', ({ demo, label, input }) => {
+      const route = `/docs-components-otp-field/${demo}`;
+      test.runIf(routes.includes(route))(`captures ${route} while editing`, async ({ pooled }) => {
+        const { page } = pooled;
+        const testcase = await renderFixture(page, route);
+        await page.getByRole('textbox', { name: label, exact: true }).pressSequentially(input);
+        await takeScreenshot(page, { testcase, route: `${route}Focused` });
+      });
+    });
+
     describe('Rating', () => {
       test('should handle focus-visible correctly', async ({ pooled }) => {
         const { page } = pooled;

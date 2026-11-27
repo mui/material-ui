@@ -45,6 +45,12 @@ export const viVN: Localization = {
         openText: 'Mở',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Ký tự ${formatNumber(position)} trên ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Đóng',

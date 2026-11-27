@@ -45,6 +45,12 @@ export const ptPT: Localization = {
         openText: 'Abrir',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Caráter ${formatNumber(position)} de ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Fechar',

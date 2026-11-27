@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('bg-BG');
 
 export const bgBG: Localization = {
   components: {
@@ -40,6 +43,12 @@ export const bgBG: Localization = {
         loadingText: 'Зареждане…',
         noOptionsText: 'Няма налични опции',
         openText: 'Отвори',
+      },
+    },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Знак ${formatNumber(position)} от ${formatNumber(length)}`,
       },
     },
     MuiAlert: {

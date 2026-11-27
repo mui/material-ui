@@ -45,6 +45,12 @@ export const roRO: Localization = {
         openText: 'Deschide',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Caracterul ${formatNumber(position)} din ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Închide',

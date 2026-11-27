@@ -45,6 +45,12 @@ export const svSE: Localization = {
         openText: 'Öppna',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Tecken ${formatNumber(position)} av ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Stäng',

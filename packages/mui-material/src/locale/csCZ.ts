@@ -53,6 +53,12 @@ export const csCZ: Localization = {
         openText: 'Otevřít',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Znak ${formatNumber(position)} z ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zavřít',

@@ -56,6 +56,12 @@ export const ruRU: Localization = {
         openText: 'Открыть',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Символ ${formatNumber(position)} из ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Закрыть',

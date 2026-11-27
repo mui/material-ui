@@ -45,6 +45,12 @@ export const deDE: Localization = {
         openText: 'Öffnen',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Zeichen ${formatNumber(position)} von ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Schließen',

@@ -1,0 +1,136 @@
+{
+  "props": {
+    "aria-describedby": { "type": { "name": "string" } },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "autoComplete": { "type": { "name": "string" }, "default": "'one-time-code'" },
+    "autoFocus": { "type": { "name": "bool" } },
+    "autoSubmit": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "defaultValue": { "type": { "name": "string" }, "default": "''" },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "form": { "type": { "name": "string" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "default": "function defaultGetAriaLabel(position: number, length: number) {\n  return `Character ${position} of ${length}`;\n}"
+    },
+    "helperText": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "inputMode": {
+      "type": {
+        "name": "enum",
+        "description": "'decimal'<br>&#124;&nbsp;'email'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'numeric'<br>&#124;&nbsp;'search'<br>&#124;&nbsp;'tel'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;'url'"
+      }
+    },
+    "inputRef": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
+    },
+    "label": { "type": { "name": "node" } },
+    "length": { "type": { "name": "number" }, "default": "6" },
+    "mask": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
+    "normalizeValue": { "type": { "name": "func" } },
+    "onValueChange": { "type": { "name": "func" } },
+    "onValueComplete": { "type": { "name": "func" } },
+    "onValueInvalid": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "required": { "type": { "name": "bool" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ formHelperText?: func<br>&#124;&nbsp;object, group?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      }
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ formHelperText?: elementType, group?: elementType, label?: elementType, root?: elementType }"
+      }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "validationType": {
+      "type": {
+        "name": "enum",
+        "description": "'alpha'<br>&#124;&nbsp;'alphanumeric'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'numeric'"
+      },
+      "default": "'numeric'"
+    },
+    "value": { "type": { "name": "string" } }
+  },
+  "name": "OTPField",
+  "imports": [
+    "import OTPField from '@mui/material/OTPField';",
+    "import { OTPField } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The outer field container.",
+      "default": "FormControl",
+      "class": "MuiOTPField-root"
+    },
+    {
+      "name": "label",
+      "description": "The visible field label.",
+      "default": "FormLabel",
+      "class": "MuiOTPField-label"
+    },
+    {
+      "name": "group",
+      "description": "The host for the character inputs and separators.",
+      "default": "'div'",
+      "class": "MuiOTPField-group"
+    },
+    {
+      "name": "formHelperText",
+      "description": "The supporting or error text.",
+      "default": "FormHelperText",
+      "class": "MuiOTPField-formHelperText"
+    }
+  ],
+  "classes": [
+    {
+      "key": "input",
+      "className": "MuiOTPField-input",
+      "description": "Styles applied to each character input.",
+      "isGlobal": false
+    },
+    {
+      "key": "separator",
+      "className": "MuiOTPField-separator",
+      "description": "Styles applied to each decorative separator.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiOTPField",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/OTPField/OTPField.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-otp-field/\">OTP Field</a></li></ul>"
+}

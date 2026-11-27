@@ -49,6 +49,12 @@ export const mkMK: Localization = {
         openText: 'Отвори',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Знак ${formatNumber(position)} од ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Затвори',

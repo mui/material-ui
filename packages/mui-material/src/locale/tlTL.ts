@@ -46,6 +46,12 @@ export const tlTL: Localization = {
         openText: 'Bukas',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Ika-${formatNumber(position)} na karakter sa ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Isara',

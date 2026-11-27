@@ -45,6 +45,12 @@ export const arSD: Localization = {
         openText: 'فتح',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `الحرف ${formatNumber(position)} من ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'إغلاق',

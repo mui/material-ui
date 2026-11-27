@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('id-ID');
 
 export const idID: Localization = {
   components: {
@@ -40,6 +43,12 @@ export const idID: Localization = {
         loadingText: 'Memuat…',
         noOptionsText: 'Tidak ada opsi',
         openText: 'Buka',
+      },
+    },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Karakter ${formatNumber(position)} dari ${formatNumber(length)}`,
       },
     },
     MuiAlert: {

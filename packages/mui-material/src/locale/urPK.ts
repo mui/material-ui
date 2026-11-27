@@ -45,6 +45,12 @@ export const urPK: Localization = {
         openText: 'کھولیں',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `کل ${formatNumber(length)} حروف میں سے حرف نمبر ${formatNumber(position)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'بند کریں',

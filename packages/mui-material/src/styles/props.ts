@@ -69,6 +69,7 @@ import type { MobileStepperProps } from '../MobileStepper';
 import type { ModalProps } from '../Modal';
 import type { NativeSelectProps } from '../NativeSelect';
 import type { UseMediaQueryOptions } from '../useMediaQuery';
+import type { OTPFieldProps } from '../OTPField';
 import type { OutlinedInputProps } from '../OutlinedInput';
 import type { PaginationProps } from '../Pagination';
 import type { PaginationItemProps } from '../PaginationItem';
@@ -194,6 +195,7 @@ export interface ComponentsPropsList {
   MuiMobileStepper: MobileStepperProps;
   MuiModal: ModalProps;
   MuiNativeSelect: NativeSelectProps;
+  MuiOTPField: OTPFieldProps;
   MuiOutlinedInput: OutlinedInputProps;
   MuiPagination: PaginationProps;
   MuiPaginationItem: PaginationItemProps;

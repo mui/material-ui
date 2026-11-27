@@ -102,6 +102,7 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'docs/data/material/components/modal/SpringModal', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/modal/TransitionsModal', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/no-ssr/FrameDeferring', enabled: false }, // Needs interaction
+  { test: 'docs/data/material/components/otp-field/BasicOTPField', viewportWidth: 320 },
   { test: 'docs/data/material/components/popover/AnchorPlayground', enabled: false }, // Redux isolation
   { test: 'docs/data/material/components/popover/BasicPopover', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/popover/PopoverPopupState', enabled: false }, // Needs interaction

@@ -45,6 +45,12 @@ export const kkKZ: Localization = {
         openText: 'Ашу',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `${formatNumber(length)} таңбаның ішіндегі ${formatNumber(position)}-таңба`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Жабу',

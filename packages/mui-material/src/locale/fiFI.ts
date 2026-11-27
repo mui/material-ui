@@ -45,6 +45,12 @@ export const fiFI: Localization = {
         openText: 'Avaa',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Merkki ${formatNumber(position)}, yhteensä ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Sulje',

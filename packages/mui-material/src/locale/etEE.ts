@@ -45,6 +45,12 @@ export const etEE: Localization = {
         openText: 'Ava',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `${formatNumber(position)}. märk ${formatNumber(length)}-st`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Sulge',

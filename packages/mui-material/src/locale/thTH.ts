@@ -45,6 +45,12 @@ export const thTH: Localization = {
         openText: 'เปิด',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `อักขระที่ ${formatNumber(position)} จาก ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'ปิด',

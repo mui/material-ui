@@ -53,6 +53,12 @@ export const skSK: Localization = {
         openText: 'Otvoriť',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `Znak ${formatNumber(position)} z ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Zavrieť',

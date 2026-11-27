@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('hu-HU');
 
 export const huHU: Localization = {
   components: {
@@ -40,6 +43,12 @@ export const huHU: Localization = {
         loadingText: 'Töltés…',
         noOptionsText: 'Nincs találat',
         openText: 'Megnyitás',
+      },
+    },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `${formatNumber(position)}. karakter, összesen ${formatNumber(length)}`,
       },
     },
     MuiAlert: {

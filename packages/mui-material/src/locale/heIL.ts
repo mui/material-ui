@@ -45,6 +45,12 @@ export const heIL: Localization = {
         openText: 'פתח',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getAriaLabel: (position, length) =>
+          `תו ${formatNumber(position)} מתוך ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'סגור',
