@@ -454,13 +454,13 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
           const incrementKeys = [isRtl ? 'ArrowLeft' : 'ArrowRight', 'ArrowUp', 'PageUp', 'End'];
 
           if (decrementKeys.includes(event.key)) {
-            if (currentMarkIndex === 0) {
+            if (event.key === 'Home' || currentMarkIndex === 0) {
               newValue = marksValues[0];
             } else {
               newValue = marksValues[currentMarkIndex - 1];
             }
           } else if (incrementKeys.includes(event.key)) {
-            if (currentMarkIndex === marksValues.length - 1) {
+            if (event.key === 'End' || currentMarkIndex === marksValues.length - 1) {
               newValue = maxMarksValue;
             } else {
               newValue = marksValues[currentMarkIndex + 1];
