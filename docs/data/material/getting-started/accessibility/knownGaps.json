@@ -19,11 +19,15 @@
     "criteria": ["1.4.3", "1.4.11"],
     "affected": [
       "Avatar",
-      "Button",
+      { "component": "Button", "note": "`info`, `warning`; `error` in dark mode" },
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
       {
         "component": "Fab",
         "note": "`info`, `warning`; label on the focus ripple: use `disableFocusRipple` with the ring"
+      },
+      {
+        "component": "FormLabel",
+        "note": "focused `info`, `warning`; `error` on a dark Paper with elevation 2 or more"
       },
       { "component": "IconButton", "note": "`info`, `warning`" },
       "LinearProgress",
@@ -32,7 +36,7 @@
       "TextField",
       "ToggleButton"
     ],
-    "workaround": "Override the affected palette entries"
+    "workaround": "Override the affected palette entries. In dark mode, set a lighter `error.main`, or keep `error` text on a surface with elevation 0 or 1. Elevation does not help the label of a `filled` TextField"
   },
   {
     "gap": "The selected state of colored Toggle Buttons is conveyed almost entirely by hue",
@@ -45,6 +49,12 @@
     "criteria": ["1.4.10", "1.4.12"],
     "affected": [{ "component": "Fab", "note": "`extended`" }],
     "workaround": "Keep labels short, or set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`"
+  },
+  {
+    "gap": "A required checkbox, radio, or switch group exposes no required state to assistive technology, because Checkbox, Radio, and Switch do not take `required` from FormControl and RadioGroup has no `required` prop",
+    "criteria": ["1.3.1"],
+    "affected": [{ "component": "FormLabel", "note": "`required` group legend" }],
+    "workaround": "Set `aria-required` on a RadioGroup. Set `required` on a single Checkbox or Switch, or on its FormControlLabel, which forwards it to the control. For a checkbox group, state the requirement in the legend text"
   },
   {
     "gap": "Links without an underline rely on color, and several link colors are below 3:1 against body text",
