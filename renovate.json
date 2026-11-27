@@ -1,10 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>mui/mui-public//renovate/experimental"],
+  "extends": ["github>mui/mui-public//renovate/default"],
   "schedule": "* 0-4 * * 7",
   "lockFileMaintenance": {
-    "description": "Match the schedule above, so the lockfile refresh lands in the weekly npm non-major group PR.",
-    "schedule": "* 0-4 * * 7"
+    "schedule": "* 0-4 1 * *"
   },
   "customManagers": [
     {
@@ -95,6 +94,12 @@
       "matchFileNames": ["test/typescriptMinimum/package.json"],
       "matchPackageNames": ["typescript"],
       "allowedVersions": ">=5.0.0 <6.0.0"
+    },
+    {
+      "description": "Keep the docs stylis on the version that @emotion/cache pins. A newer stylis prefixer throws on the styles that Emotion's stylis parses.",
+      "matchFileNames": ["pnpm-workspace.yaml"],
+      "matchPackageNames": ["stylis"],
+      "enabled": false
     }
   ]
 }

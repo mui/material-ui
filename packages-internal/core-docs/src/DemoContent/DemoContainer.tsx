@@ -72,8 +72,8 @@ export const DemoRoot = styled('div')(({ theme }) => ({
     marginLeft: 0,
     marginRight: 0,
   },
-  // Keep each demo as an independent layout and style boundary.
-  contain: 'layout style',
+  // Layout containment shifts fixed-position overlays inside demos.
+  contain: 'style',
 
   // Square the toolbar against any visible source window, matching master's
   // `openDemoSource` styling for focused snippets and expanded source.
@@ -615,17 +615,20 @@ export function DemoContainer(props: DemoContainerProps) {
   // demo element directly, while the live `DemoContent` and the SSR
   // `DemoContentLoading` skeleton still share the exact same theming.
   const themedName = name ?? 'demo';
-  const themedPreview = (
-    <DemoErrorBoundary key={previewEpoch} name={themedName} onReset={onReset}>
-      <DemoComponentTheme
-        isolated={isolated}
-        iframe={iframe}
-        iframeStyle={iframe ? previewStyle : undefined}
-        name={themedName}
-      >
-        {preview}
-      </DemoComponentTheme>
-    </DemoErrorBoundary>
+  const themedPreview = React.useMemo(
+    () => (
+      <DemoErrorBoundary key={previewEpoch} name={themedName} onReset={onReset}>
+        <DemoComponentTheme
+          isolated={isolated}
+          iframe={iframe}
+          iframeStyle={iframe ? previewStyle : undefined}
+          name={themedName}
+        >
+          {preview}
+        </DemoComponentTheme>
+      </DemoErrorBoundary>
+    ),
+    [previewEpoch, themedName, onReset, isolated, iframe, previewStyle, preview],
   );
 
   const tabsAndCode = (

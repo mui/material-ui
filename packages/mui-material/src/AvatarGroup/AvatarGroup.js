@@ -236,10 +236,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'circular'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circular', 'rounded', 'square']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['circular', 'rounded', 'square']), PropTypes.string]),
 };
 
 export default AvatarGroup;

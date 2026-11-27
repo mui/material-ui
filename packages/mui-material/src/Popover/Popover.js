@@ -264,7 +264,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         const diff = left - marginThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
-      } else if (right > widthThreshold) {
+      } else if (marginThreshold != null && right > widthThreshold) {
         const diff = right - widthThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
@@ -552,10 +552,8 @@ Popover.propTypes /* remove-proptypes */ = {
    * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.func]),
   /**
    * If `true`, the modal will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.

@@ -5,6 +5,9 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/m
 <Drawer BackdropComponent={Backdrop} BackdropProps={{ transitionDuration: 300 }} />;
 <SwipeableDrawer BackdropComponent={Backdrop} BackdropProps={{ transitionDuration: 300 }} />;
 
+<Drawer ModalProps={{ keepMounted: true }} />;
+<SwipeableDrawer ModalProps={{ keepMounted: true }} />;
+
 <Drawer PaperProps={{ elevation: 20 }} />;
 <SwipeableDrawer PaperProps={{ elevation: 20 }} />;
 
@@ -17,6 +20,7 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/m
 <MyDrawer
   BackdropComponent={Backdrop}
   BackdropProps={{ transitionDuration: 300 }}
+  ModalProps={{ keepMounted: true }}
   PaperProps={{ elevation: 20 }}
   SlideProps={{ direction: 'right' }}
   TransitionComponent={CustomTransition}
@@ -24,6 +28,7 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/m
 <MySwipeableDrawer
   BackdropComponent={Backdrop}
   BackdropProps={{ transitionDuration: 300 }}
+  ModalProps={{ keepMounted: true }}
   PaperProps={{ elevation: 20 }}
   SlideProps={{ direction: 'right' }}
   TransitionComponent={CustomTransition}

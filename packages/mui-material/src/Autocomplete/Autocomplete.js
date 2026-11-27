@@ -23,7 +23,6 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
-import { applyInsetFocusVisible } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -370,12 +369,9 @@ const AutocompleteListbox = styled('ul', {
         pointerEvents: 'none',
       },
       [`&.${autocompleteClasses.focusVisible}`]: theme.focusVisible
-        ? {
-            // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
-            // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
-            ...applyInsetFocusVisible(1),
-            ...theme.focusVisible,
-          }
+        ? // Options are plain <li> (not ButtonBase), so add the ring here, keyed to the
+          // keyboard-navigation state. It insets: the listbox scrolls and would clip an outset ring.
+          theme.applyFocusVisible('inset')
         : {
             backgroundColor: (theme.vars || theme).palette.action.focus,
           },
@@ -1282,24 +1278,23 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium']),
-    PropTypes.string,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['small', 'medium']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */
+    .shape({
+      chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
   /**
    * The components used for each slot inside.
    * @default {}
