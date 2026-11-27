@@ -232,6 +232,30 @@ describe('getConfig', () => {
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 
+  it('asserts every rule on the Chip demos and records only the documented contrast gaps', () => {
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/chips/BasicChips')).to.deep.include(
+      {
+        enabled: true,
+        assertions: 'all',
+      },
+    );
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/chips/BasicChips'),
+    ).not.to.have.property('skipAssertions');
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/chips/AvatarChips'),
+    ).not.to.have.property('skipAssertions');
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/chips/ChipA11ySemanticStates'),
+    ).not.to.have.property('skipAssertions');
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/chips/ChipA11yKnownGaps'),
+    ).to.deep.include({ skipAssertions: ['color-contrast'] });
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/chips/ChipsPlayground')).to.equal(
+      undefined,
+    );
+  });
+
   it('asserts every rule on the standalone FormHelperText fixture', () => {
     expect(
       getConfig(
