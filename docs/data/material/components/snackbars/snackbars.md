@@ -67,6 +67,25 @@ Use `slots.transition` and `slotProps.transition` to change the transition of th
 
 ## Customization
 
+### Portal placement
+
+By default, a Snackbar renders in its parent's DOM hierarchy, including during server rendering.
+Set `disablePortal={false}` to render it through a [Portal](/material-ui/react-portal/):
+
+```jsx
+<Snackbar open message="Changes saved" disablePortal={false} />
+```
+
+When the active Modal has an accessible modal dialog surface, such as a Dialog or temporary Drawer, the portaled Snackbar renders inside that surface.
+Otherwise, it renders into `document.body`.
+It stays with the Modal until the Modal finishes closing.
+Automatic placement changes preserve the React state of the Snackbar's children.
+
+Pass a `container` element or callback to choose a destination and override automatic placement.
+The `container` prop applies only when the Portal is enabled.
+When using a custom container with an open modal dialog, put it inside that dialog's accessible content.
+Portal content does not render on the server.
+
 ### Preventing default click away event
 
 If you would like to prevent the default onClickAway behavior, you can set the event's `defaultMuiPrevented` property to `true`:
@@ -104,6 +123,18 @@ When a Snackbar is open inside a [Dialog](/material-ui/react-dialog/), handle th
 Once the Snackbar is closed, the next press of <kbd class="key">Escape</kbd> closes the Dialog.
 
 {{"component": "file://./demos/dialog-snackbar/index.ts"}}
+
+### Application-level notifications
+
+An application-level Snackbar can be a sibling of a Dialog in the React tree.
+Set `disablePortal={false}` to place its alert and actions inside the active Dialog's accessible content and focus trap.
+A plain Portal into `document.body` leaves the notification outside that modal content.
+Snackbar coordinates placement with the active Modal and keeps the same portal host when the destination changes, so its children keep their React state.
+
+The demo below keeps the dialog open after submission.
+Press <kbd class="key">Escape</kbd> once to dismiss the notification and again to close the dialog.
+
+{{"component": "file://./demos/portaled-dialog-snackbar/index.ts"}}
 
 ### Consecutive Snackbars
 

@@ -116,6 +116,7 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'docs/data/material/components/snackbars/CustomizedSnackbars', enabled: false }, // Redundant
   { test: 'docs/data/material/components/snackbars/DirectionSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/FabIntegrationSnackbar', enabled: false }, // Needs interaction
+  { test: 'docs/data/material/components/snackbars/PortaledDialogSnackbar', enabled: false }, // Needs interaction; open UI covered by dedicated fixtures
   { test: 'docs/data/material/components/snackbars/PositionedSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/SimpleSnackbar', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/snackbars/StackedSnackbars', enabled: false }, // Needs interaction
@@ -357,6 +358,11 @@ const TEXTFIELD_A11Y_DEMOS = [
  * incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
+  {
+    test: 'test/regressions/a11y/fixtures/snackbars/PortaledDialogSnackbar',
+    enabled: true,
+    assertions: 'all',
+  },
   {
     test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars}',
     enabled: true,

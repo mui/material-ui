@@ -3,6 +3,12 @@ import type { SnackbarProps } from '@mui/material/Snackbar';
 import Snackbar from '@mui/material/Snackbar';
 import { expectType } from '@mui/types';
 
+<Snackbar container={document.body} disablePortal={false} />;
+<Snackbar container={() => document.body} disablePortal={false} />;
+<Snackbar disablePortal />;
+// @ts-expect-error container must resolve to an element
+<Snackbar container="body" />;
+
 // slotProps.transition should reject unknown props
 <Snackbar
   slotProps={{

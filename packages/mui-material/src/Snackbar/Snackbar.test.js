@@ -9,7 +9,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Snackbar />', () => {
-  const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
+  const { clock, render: clientRender, renderToString } = createRenderer({ clock: 'fake' });
   /**
    * @type  {typeof plainRender extends (...args: infer T) => any ? T : never} args
    *
@@ -63,6 +63,151 @@ describe('<Snackbar />', () => {
       // skip `clickAwayListener` because it does not have any element.
     },
   }));
+
+  describe('portal', () => {
+    it('renders inline by default and forwards refs to the root', () => {
+      const ref = React.createRef();
+      const slotRef = React.createRef();
+      const { container } = render(
+        <Snackbar open message="message" ref={ref} slotProps={{ root: { ref: slotRef } }} />,
+      );
+
+      expect(ref.current).to.equal(screen.getByRole('alert').parentElement);
+      expect(slotRef.current).to.equal(ref.current);
+      expect(ref.current.parentElement).to.equal(container);
+    });
+
+    it('renders in the document body and forwards refs to the root', () => {
+      const ref = React.createRef();
+      const slotRef = React.createRef();
+      const { container } = render(
+        <Snackbar
+          open
+          disablePortal={false}
+          message="message"
+          ref={ref}
+          slotProps={{ root: { ref: slotRef } }}
+        />,
+      );
+
+      expect(ref.current).to.equal(screen.getByRole('alert').parentElement);
+      expect(slotRef.current).to.equal(ref.current);
+      expect(ref.current.parentElement.parentElement).to.equal(document.body);
+      expect(container).not.to.contain(ref.current);
+    });
+
+    it('renders inline when disablePortal is true', () => {
+      const { container } = render(<Snackbar open disablePortal message="message" />);
+
+      expect(container).to.contain(screen.getByRole('alert'));
+    });
+
+    it('accepts a container callback that resolves a ref', () => {
+      const containerRef = React.createRef();
+      render(
+        <React.Fragment>
+          <div ref={containerRef} />
+          <Snackbar
+            open
+            disablePortal={false}
+            container={() => containerRef.current}
+            message="message"
+          />
+        </React.Fragment>,
+      );
+
+      expect(screen.getByRole('alert').parentElement.parentElement.parentElement).to.equal(
+        containerRef.current,
+      );
+    });
+
+    it('preserves state and focus when a new container callback resolves the same element', () => {
+      function CounterAction() {
+        const [count, setCount] = React.useState(0);
+        return <button onClick={() => setCount(count + 1)}>Undo {count}</button>;
+      }
+
+      function Test({ revision }) {
+        const containerRef = React.useRef(null);
+        return (
+          <React.Fragment>
+            <div ref={containerRef} data-testid="notification-container" />
+            <Snackbar
+              open
+              disablePortal={false}
+              container={() => containerRef.current}
+              message={`Task ${revision}`}
+              action={<CounterAction />}
+              transitionDuration={0}
+            />
+          </React.Fragment>
+        );
+      }
+
+      const { setProps } = render(<Test revision={0} />);
+      const action = screen.getByRole('button', { name: 'Undo 0' });
+      const host = screen.getByRole('alert').parentElement.parentElement;
+      fireEvent.click(action);
+      act(() => action.focus());
+
+      setProps({ revision: 1 });
+
+      expect(screen.getByRole('button', { name: 'Undo 1' })).to.equal(action);
+      expect(action).toHaveFocus();
+      expect(screen.getByRole('alert').parentElement.parentElement).to.equal(host);
+      expect(host.parentElement).to.equal(screen.getByTestId('notification-container'));
+    });
+
+    it('keeps the theme direction when rendered in a portal', () => {
+      const theme = createTheme({ direction: 'rtl' });
+      render(
+        <ThemeProvider theme={theme}>
+          <Snackbar open disablePortal={false} message="message" />
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('alert').parentElement).to.have.attribute('dir', 'rtl');
+    });
+
+    it('lets an explicit dir override the theme direction', () => {
+      const theme = createTheme({ direction: 'rtl' });
+      render(
+        <ThemeProvider theme={theme}>
+          <Snackbar open disablePortal={false} dir="ltr" message="message" />
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('alert').parentElement).to.have.attribute('dir', 'ltr');
+    });
+
+    it('inherits DOM direction by default', () => {
+      render(
+        <div dir="rtl">
+          <Snackbar open message="message" />
+        </div>,
+      );
+
+      const root = screen.getByRole('alert').parentElement;
+      expect(root).not.to.have.attribute('dir');
+      expect(root.parentElement).to.have.attribute('dir', 'rtl');
+    });
+
+    describe.skipIf(!isJsdom())('server-side', () => {
+      it('renders nothing in portal mode', () => {
+        const { container } = renderToString(
+          <Snackbar open disablePortal={false} message="message" />,
+        );
+
+        expect(container).to.have.text('');
+      });
+
+      it('renders its content by default', () => {
+        const { container } = renderToString(<Snackbar open message="message" />);
+
+        expect(container).to.have.text('message');
+      });
+    });
+  });
 
   describe('prop: onClose', () => {
     it('should be call when clicking away', () => {
@@ -346,7 +491,7 @@ describe('<Snackbar />', () => {
         const handleClose = spy();
         const autoHideDuration = 2e3;
 
-        const { container } = render(
+        render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -363,7 +508,7 @@ describe('<Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(screen.getByRole('alert'));
 
         if (userInteraction.type === 'keyboard') {
           expect(handleFocus.callCount).to.equal(1);
@@ -372,7 +517,7 @@ describe('<Snackbar />', () => {
         }
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(screen.getByRole('alert'));
 
         if (userInteraction.type === 'keyboard') {
           expect(handleBlur.callCount).to.equal(1);
@@ -392,7 +537,7 @@ describe('<Snackbar />', () => {
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
 
-        const { container } = render(
+        render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -406,9 +551,9 @@ describe('<Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(screen.getByRole('alert'));
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(screen.getByRole('alert'));
 
         expect(handleClose.callCount).to.equal(0);
 
@@ -422,7 +567,7 @@ describe('<Snackbar />', () => {
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
 
-        const { container } = render(
+        render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -436,9 +581,9 @@ describe('<Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(screen.getByRole('alert'));
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(screen.getByRole('alert'));
 
         expect(handleClose.callCount).to.equal(0);
 
@@ -452,7 +597,7 @@ describe('<Snackbar />', () => {
         const handleClose = spy();
         const autoHideDuration = 6e3;
         const resumeHideDuration = 0;
-        const { setProps, container } = render(
+        const { setProps } = render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -467,9 +612,9 @@ describe('<Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(screen.getByRole('alert'));
         clock.tick(100);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(screen.getByRole('alert'));
         clock.tick(resumeHideDuration);
 
         expect(handleClose.callCount).to.equal(1);
@@ -559,7 +704,7 @@ describe('<Snackbar />', () => {
       const { container, setProps } = render(<Snackbar open={false} message="Hello, World!" />);
       expect(container).to.have.text('');
       setProps({ open: true });
-      expect(container).to.have.text('Hello, World!');
+      expect(screen.getByRole('alert')).to.have.text('Hello, World!');
     });
   });
 
@@ -567,8 +712,8 @@ describe('<Snackbar />', () => {
     it('should render the children', () => {
       const nodeRef = React.createRef();
       const children = <div ref={nodeRef} />;
-      const { container } = render(<Snackbar open>{children}</Snackbar>);
-      expect(container).to.contain(nodeRef.current);
+      render(<Snackbar open>{children}</Snackbar>);
+      expect(document.body).to.contain(nodeRef.current);
     });
   });
 
@@ -588,8 +733,8 @@ describe('<Snackbar />', () => {
       function Transition() {
         return <div className="cloned-element-class" ref={transitionRef} />;
       }
-      const { container } = render(<Snackbar open slots={{ transition: Transition }} />);
-      expect(container).to.contain(transitionRef.current);
+      render(<Snackbar open slots={{ transition: Transition }} />);
+      expect(document.body).to.contain(transitionRef.current);
     });
   });
 

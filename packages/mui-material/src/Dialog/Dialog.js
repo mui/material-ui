@@ -16,6 +16,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
 import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
+import SnackbarContainer from '../utils/SnackbarContainer';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -369,6 +370,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
         <ContainerSlot onMouseDown={handleMouseDown} {...containerSlotProps}>
           <PaperSlot as={PaperComponent} {...paperSlotProps}>
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
+            <SnackbarContainer />
           </PaperSlot>
         </ContainerSlot>
       </TransitionSlot>

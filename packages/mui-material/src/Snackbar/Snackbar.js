@@ -1,7 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useRtl } from '@mui/system/RtlProvider';
 import composeClasses from '@mui/utils/composeClasses';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import useSnackbar from './useSnackbar';
 import ClickAwayListener from '../ClickAwayListener';
 import { styled, useTheme } from '../zero-styled';
@@ -12,6 +14,7 @@ import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 import useSlot from '../utils/useSlot';
+import SnackbarPortal from '../utils/SnackbarPortal';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, anchorOrigin } = ownerState;
@@ -96,6 +99,8 @@ const SnackbarRoot = styled('div', {
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
   const theme = useTheme();
+  const isRtl = useRtl();
+  const defaultDirection = isRtl ? 'rtl' : 'ltr';
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
@@ -107,6 +112,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     autoHideDuration = null,
     children,
     className,
+    container,
+    disablePortal = true,
     disableWindowBlurListener = false,
     message,
     onBlur,
@@ -126,6 +133,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ...props,
     anchorOrigin: { vertical, horizontal },
     autoHideDuration,
+    disablePortal,
     disableWindowBlurListener,
     transitionDuration,
   };
@@ -146,6 +154,9 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     className: [classes.root, className],
     elementType: SnackbarRoot,
     getSlotProps: getRootProps,
+    additionalProps: {
+      dir: disablePortal ? undefined : defaultDirection,
+    },
     externalForwardedProps: {
       ...externalForwardedProps,
       ...other,
@@ -209,16 +220,18 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   }
 
   return (
-    <ClickAwaySlot
-      {...clickAwayListenerProps}
-      {...(slots.clickAwayListener && { ownerState: clickAwayOwnerStateProp })}
-    >
-      <Root {...rootProps}>
-        <TransitionSlot {...transitionProps}>
-          {children || <ContentSlot {...contentSlotProps} />}
-        </TransitionSlot>
-      </Root>
-    </ClickAwaySlot>
+    <SnackbarPortal container={container} disablePortal={disablePortal}>
+      <ClickAwaySlot
+        {...clickAwayListenerProps}
+        {...(slots.clickAwayListener && { ownerState: clickAwayOwnerStateProp })}
+      >
+        <Root {...rootProps}>
+          <TransitionSlot {...transitionProps}>
+            {children || <ContentSlot {...contentSlotProps} />}
+          </TransitionSlot>
+        </Root>
+      </ClickAwaySlot>
+    </SnackbarPortal>
   );
 });
 
@@ -258,6 +271,19 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   className: PropTypes.string,
+  /**
+   * An HTML element or function that returns one. When `disablePortal` is `false`, the portal children are appended to it.
+   * The callback runs in a React layout effect, so it can return an element from a ref.
+   * By default, enabled portals render inside the active modal dialog, or in `document.body` when no dialog is active.
+   */
+  container: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([HTMLElementType, PropTypes.func]),
+  /**
+   * If `true`, the snackbar stays in its parent's DOM hierarchy.
+   * Set to `false` to render in a portal. Without a `container`, the portal follows the active modal dialog.
+   * @default true
+   */
+  disablePortal: PropTypes.bool,
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false

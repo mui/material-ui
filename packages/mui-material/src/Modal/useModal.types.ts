@@ -129,4 +129,8 @@ export interface UseModalReturnValue {
    * If `true`, the component's child is transition component.
    */
   hasTransition: boolean;
+  /**
+   * If `true`, this document contains a Snackbar that opted into portal placement.
+   */
+  hasPortaledSnackbar: boolean;
 }

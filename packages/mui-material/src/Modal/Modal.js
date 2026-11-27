@@ -14,6 +14,7 @@ import Backdrop from '../Backdrop';
 import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
 import useSlot from '../utils/useSlot';
+import SnackbarPortalContext from '../utils/SnackbarPortalContext';
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -121,6 +122,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     isTopModal,
     exited,
     hasTransition,
+    hasPortaledSnackbar,
   } = useModal({
     ...propsWithDefaults,
     rootRef: ref,
@@ -187,20 +189,22 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   return (
-    <Portal ref={portalRef} container={portalContainer} disablePortal={disablePortal}>
-      <RootSlot {...rootProps}>
-        {!hideBackdrop ? <BackdropSlot {...backdropProps} /> : null}
-        <FocusTrap
-          disableEnforceFocus={disableEnforceFocus}
-          disableAutoFocus={disableAutoFocus}
-          disableRestoreFocus={disableRestoreFocus}
-          isEnabled={isTopModal}
-          open={open}
-        >
-          {React.cloneElement(children, childProps)}
-        </FocusTrap>
-      </RootSlot>
-    </Portal>
+    <SnackbarPortalContext.Provider value={hasPortaledSnackbar}>
+      <Portal ref={portalRef} container={portalContainer} disablePortal={disablePortal}>
+        <RootSlot {...rootProps}>
+          {!hideBackdrop ? <BackdropSlot {...backdropProps} /> : null}
+          <FocusTrap
+            disableEnforceFocus={disableEnforceFocus}
+            disableAutoFocus={disableAutoFocus}
+            disableRestoreFocus={disableRestoreFocus}
+            isEnabled={isTopModal}
+            open={open}
+          >
+            {React.cloneElement(children, childProps)}
+          </FocusTrap>
+        </RootSlot>
+      </Portal>
+    </SnackbarPortalContext.Provider>
   );
 });
 

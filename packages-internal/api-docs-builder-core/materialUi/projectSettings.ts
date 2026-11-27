@@ -40,8 +40,9 @@ export const projectSettings: ProjectSettings = {
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
     return (
-      filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider|RovingToggleButton)/) !==
-      null
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|RovingToggleButton|SnackbarContainer|SnackbarPortal)/,
+      ) !== null
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs',

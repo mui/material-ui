@@ -12,6 +12,12 @@
     },
     "children": { "description": "Replace the <code>SnackbarContent</code> component." },
     "classes": { "description": "Override or extend the styles applied to the component." },
+    "container": {
+      "description": "An HTML element or function that returns one. When <code>disablePortal</code> is <code>false</code>, the portal children are appended to it. The callback runs in a React layout effect, so it can return an element from a ref. By default, enabled portals render inside the active modal dialog, or in <code>document.body</code> when no dialog is active."
+    },
+    "disablePortal": {
+      "description": "If <code>true</code>, the snackbar stays in its parent&#39;s DOM hierarchy. Set to <code>false</code> to render in a portal. Without a <code>container</code>, the portal follows the active modal dialog."
+    },
     "disableWindowBlurListener": {
       "description": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused."
     },
