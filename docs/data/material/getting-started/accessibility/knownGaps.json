@@ -41,7 +41,7 @@
     "workaround": "Add a non-color cue to the selected state, such as an icon"
   },
   {
-    "gap": "The extended Fab has a fixed height, so a label that wraps spills out of it",
+    "gap": "The extended Fab has a fixed height, so a label that wraps can spill out of it",
     "criteria": ["1.4.10", "1.4.12"],
     "affected": [{ "component": "Fab", "note": "`extended`" }],
     "workaround": "Keep labels short, or set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`"

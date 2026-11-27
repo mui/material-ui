@@ -115,9 +115,9 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces "button", "link", the disabled state, and the pressed state where they apply.
 - [ ] 🔁 **1.4.1 Use of Color** — the purpose of each Fab stays clear without color.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — the label is at least `4.5:1` in the resting, hover, focused, and pressed states. `info` and `warning` fail at rest, and each palette color fails on the ripple.
-- [ ] 🔁 **1.4.10 Reflow** — the full label stays inside the Fab. A label that wraps fails with the default styles.
+- [ ] 🔁 **1.4.10 Reflow** — the full label stays inside the Fab. A label that wraps onto three lines fails with the default styles.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — the icon and the focus indicator are at least `3:1`. Disabled Fabs are exempt. The default focus ripple fails. The `focusVisible` theme ring with `disableFocusRipple` fixes it on a light page. On a colored or dark page, measure the ring.
-- [ ] 🔁 **1.4.12 Text Spacing** — the full label stays inside the Fab. A label that wraps to two lines fails in the `medium` and `small` sizes with the default styles.
+- [ ] 🔁 **1.4.12 Text Spacing** — the full label stays inside the Fab. A label that wraps onto three lines fails in every size with the default styles.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where each link goes.
 - [ ] 🔁 **2.4.6 Headings and Labels** — each name tells the action, for example "Compose message", not "Add icon".
 - [ ] 🔁 **2.4.7 Focus Visible** — each Fab shows a visible indicator on keyboard focus. With `disableRipple` and the default theme, no indicator shows, and the author must add one. The `focusVisible` theme ring fixes it.

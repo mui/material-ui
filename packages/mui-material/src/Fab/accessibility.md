@@ -15,9 +15,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Known gaps
 
 - ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->Extended labels in `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. On keyboard focus, the focus ripple behind the label lowers each palette color to `2.23:1` (`warning`) to `3.57:1` (`secondary`), and `primary` to `2.80:1`. A press lowers them to `4.16:1` or less. Use `disableFocusRipple` with the `focusVisible` theme ring.<!-- 1.4.3:gap:end -->
-- ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->The extended Fab has a fixed height. At 320 CSS px, a label that wraps is taller than the Fab and spills out of it.<!-- 1.4.10:gap:end -->
+- ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->The extended Fab has a fixed height. At 320 CSS px, a label that wraps onto three lines spills out of every size. Two lines reach the edges of the `small` Fab.<!-- 1.4.10:gap:end -->
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default focus indicator is the focus ripple, at `1.39:1` to `1.85:1` against the fill. On the ripple, `primary`, `info`, `success`, and `warning` icons are less than `3:1`. The `focusVisible` theme ring does not remove the ripple, so also set `disableFocusRipple`.<!-- 1.4.11:gap:end -->
-- ⚠️ **1.4.12 Text Spacing.** <!-- 1.4.12:gap:start -->The extended Fab has a fixed height. The WCAG letter and word spacing can make a one-line label wrap. Two lines are taller than the `medium` and `small` Fabs, so the label spills out.<!-- 1.4.12:gap:end -->
+- ⚠️ **1.4.12 Text Spacing.** <!-- 1.4.12:gap:start -->The extended Fab has a fixed height. The WCAG letter and word spacing can make a label wrap onto one more line. Two lines stay inside the Fab. Three lines spill out of every size.<!-- 1.4.12:gap:end -->
 
 ## Success criteria
 
@@ -216,17 +216,19 @@ Tested by: Playwright
 <!-- 1.4.10:start -->
 
 - A circular Fab has a fixed size of 40 to 56 CSS px. An extended Fab is as wide as its label. A Playwright test confirms that the extended-size demo does not scroll horizontally at 320 px.
-- At 320 px, a label wider than the viewport wraps. Two lines at line-height 1.75 are 49 px high. The fixed height does not grow, so the label spills out of the Fab, as under text-only resize in 1.4.4.
+- At 320 px, a label wider than the viewport wraps. The fixed height does not grow.
+- Two lines at line-height 1.75 have line boxes of 49 px, but the uppercase glyphs are only about 35 px high. They stay inside the `large` (48 px) and `medium` (40 px) Fabs. They reach the edges of the `small` Fab (34 px).
+- Three lines of glyphs are about 59 px high. They spill out of every size by 5 to 13 px at the top and at the bottom, as under text-only resize in 1.4.4.
 
 **Manual testing steps**
 
 1. Set the viewport width to 320 CSS px.
-2. Render an extended Fab with a label that wraps.
+2. Render an extended Fab with a label that wraps onto three lines.
 3. Make sure that the full label stays inside the Fab.
 
 <!-- 1.4.10:end -->
 
-**Pass:** <!-- 1.4.10:pass:start -->the full label stays inside the Fab. A label that wraps fails with the default styles.<!-- 1.4.10:pass:end -->
+**Pass:** <!-- 1.4.10:pass:start -->the full label stays inside the Fab. A label that wraps onto three lines fails with the default styles.<!-- 1.4.10:pass:end -->
 
 #### 1.4.11 Non-text Contrast · AA
 
@@ -265,19 +267,22 @@ Tested by: Playwright
 
 - A Playwright test applies the WCAG text-spacing values to the extended-size demo. Its short labels do not overflow.
 - The label already has line-height 1.75, so the WCAG value of 1.5 does not make it taller.
-- The letter and word spacing make the label wider, so a one-line label can wrap. Two lines are 42 px high at line-height 1.5, and 49 px at 1.75. This is more than the `medium` (40 px) and `small` (34 px) heights, so the text spills out of the Fab.
-- The second column of the `FabA11yLongLabel` fixture shows this. Each label fits on one line at the default spacing, and wraps to two lines with the WCAG values.
-- The Playwright check measures the text, not the line boxes. Two lines of text are about 37 px high. They leave the `small` Fab by about 2 px, and they stay inside the `medium` Fab by about 1 px. Thus the check flags only the `small` Fab for a label of two lines.
+- The letter and word spacing make the label wider, so a label can wrap onto one more line. The fixed height does not grow.
+- With two lines, the line boxes are 42 px high, but the uppercase glyphs are only about 31 px high. The glyphs stay inside every size. In the `small` Fab (34 px), about 1 px stays free at the top and at the bottom.
+- With three lines, the glyphs are about 52 px high. They spill out of the `large` (48 px), `medium` (40 px), and `small` Fabs by 2 to 10 px at the top and at the bottom.
+- Thus a label that has two lines at the default spacing can fail: with the WCAG values, it wraps onto three lines.
+- The second column of the `FabA11yLongLabel` fixture shows the two-line case. Each label fits on one line at the default spacing, and wraps to two lines with the WCAG values.
+- The Playwright check measures text boxes, which are taller than the glyphs: 37 px for two lines. Thus it reports the `small` Fab for a label of two lines, although the glyphs stay inside.
 
 **Manual testing steps**
 
-1. Render a `small` extended Fab whose label fits on one line, in a container a little wider than the Fab.
+1. Render an extended Fab whose label has two lines, in a container a little wider than the label.
 2. Apply the WCAG text-spacing values, for example with a text-spacing bookmarklet.
 3. Make sure that the full label stays inside the Fab.
 
 <!-- 1.4.12:end -->
 
-**Pass:** <!-- 1.4.12:pass:start -->the full label stays inside the Fab. A label that wraps to two lines fails in the `medium` and `small` sizes with the default styles.<!-- 1.4.12:pass:end -->
+**Pass:** <!-- 1.4.12:pass:start -->the full label stays inside the Fab. A label that wraps onto three lines fails in every size with the default styles.<!-- 1.4.12:pass:end -->
 
 #### 2.4.4 Link Purpose (In Context) · A
 

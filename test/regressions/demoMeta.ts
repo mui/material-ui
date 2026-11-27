@@ -456,10 +456,9 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // Under text spacing and 200% text, the labels spill out of the fixed-height
-  // extended Fab, the documented 1.4.4/1.4.10/1.4.12 gap. axe cannot resolve the
-  // background of the spilled text, so `color-contrast` is recorded as incomplete
-  // without failing CI.
+  // With 200% text, the labels spill out of the fixed-height extended Fab, the
+  // documented 1.4.4/1.4.10/1.4.12 gap. axe cannot resolve the background of the
+  // spilled text, so `color-contrast` is recorded as incomplete without failing CI.
   {
     test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
     enabled: true,
