@@ -5,11 +5,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import Fab from '@mui/material/Fab';
 import IconButton from '@mui/material/IconButton';
 import Radio from '@mui/material/Radio';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import ToggleButton from '@mui/material/ToggleButton';
+import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 // The other FocusVisible fixtures pin the `Mui-focusVisible` class for the
@@ -40,6 +42,9 @@ export default function KeyboardRing() {
         <Button variant="contained" disableElevation>
           Contained
         </Button>
+        <Fab aria-label="Add" color="primary">
+          <AddIcon />
+        </Fab>
         <Checkbox />
         <IconButton aria-label="Delete">
           <DeleteIcon />
