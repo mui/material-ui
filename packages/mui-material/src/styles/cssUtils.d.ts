@@ -27,6 +27,7 @@ export interface ResponsivePropertyParams {
   max: number;
   unit?: string | undefined;
   breakpoints?: number[] | undefined;
+  breakpointUnit?: string | undefined;
   transform?: ((value: number) => number) | undefined;
 }
 export function responsiveProperty(params: ResponsivePropertyParams): CSSProperties;
