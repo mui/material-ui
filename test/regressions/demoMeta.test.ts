@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import { A11Y_RULES, SCREENSHOT_RULES, getConfig, getMinReactMajor, parseRoute } from './demoMeta';
 
 describe('parseRoute', () => {
   it('parses an a11y fixture route into its a11y/fixtures path, suite as slug', () => {
@@ -119,13 +119,39 @@ describe('getConfig', () => {
   });
 
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
-    // Button a11y enrolment covers @mui/material/Button, not IconButton.
+    // The buttons enrolments cover Button and IconButton, not ButtonBase.
     expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
       undefined,
     );
-    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/IconButtons')).to.equal(
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ButtonBaseDemo')).to.equal(
       undefined,
     );
+  });
+
+  it('asserts every rule on the enrolled IconButton demos and fixtures', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/IconButtons'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/LoadingIconButton'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/buttons/IconButtonA11ySemanticStates'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('asserts every rule on the enrolled Link demos and records the text-block gaps', () => {
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/links/ButtonLink')).to.deep.equal({
+      test: 'docs/data/material/components/links/{Links,UnderlineLink,ButtonLink}',
+      enabled: true,
+      assertions: 'all',
+    });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/links/LinkA11yInTextBlock'),
+    ).to.deep.include({ skipAssertions: ['color-contrast', 'link-in-text-block'] });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/links/LinkA11yInTextBlockDark'),
+    ).to.deep.include({ skipAssertions: ['link-in-text-block'] });
   });
 
   it('returns the radio a11y rule for a brace-glob enrolment', () => {
@@ -274,20 +300,21 @@ describe('getConfig (accordion a11y)', () => {
   });
 });
 
-describe('minReactMajor', () => {
+describe('getMinReactMajor', () => {
   it('marks the crud-dashboard template as needing React 19', () => {
     expect(
-      getConfig(
-        SCREENSHOT_RULES,
-        'docs/data/material/getting-started/templates/crud-dashboard/CrudDashboard',
-      ),
-    ).to.deep.include({ minReactMajor: 19 });
+      getMinReactMajor('/docs-getting-started-templates-crud-dashboard/CrudDashboard'),
+    ).to.equal(19);
   });
 
-  it('leaves demos without the field unconstrained', () => {
-    expect(
-      getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
-    ).to.not.have.property('minReactMajor');
+  it('matches a11y fixture and regression fixture routes by their source path', () => {
+    expect(getMinReactMajor('/a11y-accordion/AccordionA11yNonNative')).to.equal(18);
+    expect(getMinReactMajor('/regression-AppSearch/SearchModal')).to.equal(18);
+  });
+
+  it('leaves routes without a rule unconstrained', () => {
+    expect(getMinReactMajor('/docs-components-autocomplete/Asynchronous')).to.equal(0);
+    expect(getMinReactMajor('/regression-Rating/FocusVisibleRating')).to.equal(0);
   });
 });
 

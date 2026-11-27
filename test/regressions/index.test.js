@@ -5,7 +5,14 @@ import { chromium } from '@playwright/test';
 import { describe, test as base, afterAll } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
 import { CSS_LAYOUT_SUITES, FOCUS_VISIBLE_TARGETS } from './a11y/criteriaSuites';
-import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import {
+  A11Y_RULES,
+  DEFAULT_VIEWPORT,
+  SCREENSHOT_RULES,
+  getConfig,
+  getMinReactMajor,
+  parseRoute,
+} from './demoMeta';
 import { RECENT_SEARCHES, stubAlgoliaSearch, unstubAlgoliaSearch } from './algoliaSearchStub';
 import { favoriteSearchesKey, QUERY, recentSearchesKey } from './docsearchFixtureData';
 
@@ -92,6 +99,9 @@ async function main() {
     (await probePage.evaluate(() => window.muiFixture.reactVersion)).split('.')[0],
   );
   pool.release(probePage);
+  // Every test below skips the routes that this React version cannot render.
+  const routesBelowReactFloor = routes.filter((route) => reactMajor < getMinReactMajor(route));
+  routes = routes.filter((route) => !routesBelowReactFloor.includes(route));
 
   const test = base.extend({
     // eslint-disable-next-line no-empty-pattern
@@ -193,13 +203,30 @@ async function main() {
       await browser.close();
     });
 
+    test('updates devtools visibility after router and hash navigation', async ({ pooled }) => {
+      const { page } = pooled;
+      await page.evaluate(() => {
+        window.location.hash = '#dev';
+      });
+      await page.waitForSelector('#tests', { state: 'attached' });
+
+      await renderFixture(page, '/regression-Rating/FocusVisibleRating');
+      await page.waitForSelector('#tests', { state: 'detached' });
+
+      await page.evaluate(() => {
+        window.location.hash = '#dev';
+      });
+      await page.waitForSelector('#tests', { state: 'attached' });
+      await page.getByRole('link', { name: 'Hide devtools' }).click();
+      await page.waitForSelector('#tests', { state: 'detached' });
+    });
+
     describe.concurrent('routes', () => {
       routes.forEach((route) => {
         const parsed = parseRoute(route);
         const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
         const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
-        const meetsReactFloor = reactMajor >= (screenshotRule?.minReactMajor ?? 0);
-        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) && meetsReactFloor : true;
+        const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
         const runA11y = a11yRule?.enabled === true;
         if (!runScreenshot && !runA11y) {
           return;
@@ -272,12 +299,26 @@ async function main() {
           },
         );
       });
+
+      // The a11y reporter keeps the committed results of these routes.
+      routesBelowReactFloor.forEach((route) => {
+        const parsed = parseRoute(route);
+        if (parsed && getConfig(A11Y_RULES, parsed.path)?.enabled) {
+          // eslint-disable-next-line vitest/no-disabled-tests -- The skip is permanent on this React version.
+          test.skip(
+            `runs a11y on ${route}`,
+            { meta: { a11yKept: { slug: parsed.slug, demo: parsed.demo } } },
+            () => {},
+          );
+        }
+      });
     });
 
     describe('Rating', () => {
       test('should handle focus-visible correctly', async ({ pooled }) => {
         const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/FocusVisibleRating');
+        await startTabNavigationAt(testcase);
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
           testcase,
@@ -293,6 +334,7 @@ async function main() {
       test('should handle focus-visible with precise ratings correctly', async ({ pooled }) => {
         const { page } = pooled;
         const testcase = await renderFixture(page, '/regression-Rating/PreciseFocusVisibleRating');
+        await startTabNavigationAt(testcase);
         await page.keyboard.press('Tab');
         await takeScreenshot(page, {
           testcase,
@@ -311,7 +353,8 @@ async function main() {
       // `AGENTS.md` reaches this test. Without it a scoped run refreshes only
       // the closed-button capture the route loop generates, and leaves the
       // three below stale.
-      test(`should render /regression-AppSearch/${fixture} correctly`, async ({ pooled }) => {
+      const route = `/regression-AppSearch/${fixture}`;
+      test.runIf(routes.includes(route))(`should render ${route} correctly`, async ({ pooled }) => {
         const { page } = pooled;
         // Seed from here rather than from the fixture. The `pooled` fixture
         // clears storage on acquisition, and navigating to a route the pooled
@@ -324,7 +367,7 @@ async function main() {
           },
           [recentSearchesKey, favoriteSearchesKey, RECENT_SEARCHES],
         );
-        await renderFixture(page, `/regression-AppSearch/${fixture}`);
+        await renderFixture(page, route);
         // The modal portals to `document.body`, so it lands outside the
         // testcase element and has to be screenshotted on its own.
         await page.getByRole('button', { name: /search/i }).click();
@@ -417,16 +460,19 @@ async function main() {
         });
       });
 
-      test('should style virtualized listbox correctly', async ({ pooled }) => {
-        const { page } = pooled;
-        const testcase = await renderFixture(page, '/regression-Autocomplete/Virtualize');
-        await page.getByRole('combobox').click();
-        await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize2' });
-        await page.hover('[role="option"]');
-        await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize3' });
-        await page.click('[role="option"]');
-        await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize4' });
-      });
+      test.skipIf(reactMajor < getMinReactMajor('/regression-Autocomplete/Virtualize'))(
+        'should style virtualized listbox correctly',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          const testcase = await renderFixture(page, '/regression-Autocomplete/Virtualize');
+          await page.getByRole('combobox').click();
+          await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize2' });
+          await page.hover('[role="option"]');
+          await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize3' });
+          await page.click('[role="option"]');
+          await takeScreenshot(page, { testcase, route: '/regression-Autocomplete/Virtualize4' });
+        },
+      );
     });
 
     describe('Switch', () => {
@@ -619,11 +665,11 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
   CSS_LAYOUT_SUITES.forEach(({ component, route, skipCriteria = [] }) => {
     // A slug only enters the demo bundle once its component is enrolled, so skip
     // entries this build doesn't contain rather than waiting for a fixture that
-    // was never bundled.
+    // was never bundled. `routes` also leaves out routes below their React floor.
     if (!routes.includes(route)) {
       // The slug enters the bundle only when its component enrolls (see fixtures.js).
       describe(`${component} layout criteria`, () => {
-        test.skip(`route not bundled: ${route}`, () => {});
+        test.skip(`route not bundled or below its React floor: ${route}`, () => {});
       });
       return;
     }
@@ -694,6 +740,27 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
 }
 
 /**
+ * Makes the next Tab move focus to the first tab stop in `elm`.
+ *
+ * Tab moves from the sequential focus navigation starting point, and pooled
+ * pages keep it between tests along with the rest of the document. An earlier
+ * test can leave it after the fixtures: the devtools test clicks "Hide
+ * devtools", which is then removed, and the next Tab moves focus out of the
+ * page. Focusing an element moves the starting point to it, so focus `elm`
+ * and blur it again. This also blurs whatever an earlier test left focused.
+ *
+ * @param {import('@playwright/test').ElementHandle} elm
+ */
+async function startTabNavigationAt(elm) {
+  await elm.evaluate((element) => {
+    element.setAttribute('tabindex', '-1');
+    element.focus({ preventScroll: true });
+    element.blur();
+    element.removeAttribute('tabindex');
+  });
+}
+
+/**
  * Registers 2.4.7 Focus Visible, which axe has no rule for and jsdom cannot
  * answer: several components carry a `skipIf(isJsdom())` unit test for it that
  * therefore never runs.
@@ -718,6 +785,7 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
     { component: 'Button (outlined)', route: RING_ROUTE, selector: '.MuiButton-outlined' },
     { component: 'Button (contained)', route: RING_ROUTE, selector: '.MuiButton-contained' },
     { component: 'Checkbox', route: RING_ROUTE, selector: '.MuiCheckbox-root' },
+    { component: 'IconButton', route: RING_ROUTE, selector: '.MuiIconButton-root' },
     { component: 'Radio', route: RING_ROUTE, selector: '.MuiRadio-root' },
     { component: 'Switch', route: RING_ROUTE, selector: '.MuiSwitch-root' },
     { component: 'ToggleButton', route: RING_ROUTE, selector: '.MuiToggleButton-root' },
@@ -769,6 +837,7 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
         throw new Error(`${component}: no element matched ${selector} on ${route}`);
       }
 
+      await startTabNavigationAt(testcase);
       const unfocused = await shotAround(page, handle);
       if (!(await tabTo(page, selector, maxTabs))) {
         throw new Error(`${component}: could not reach ${selector} with the Tab key`);

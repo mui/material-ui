@@ -84,4 +84,4 @@ To customize a Card's styles when it's in an active state, you can attach a `dat
 
 {{"component": "file://./demos/select-action/index.ts", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/card).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://www.mui-treasury.com/primitive/card).

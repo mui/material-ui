@@ -15,7 +15,6 @@ import useButtonBase from './useButtonBase';
 import useLazyRipple from '../useLazyRipple';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
-import { outsetFocusRing } from '../styles/focusVisible';
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, focusVisible, focusVisibleClassName, suppressFocusVisible, classes } =
@@ -74,7 +73,6 @@ export const ButtonBaseRoot = styled('button', {
       {
         props: { internalDisabledThemeFocusVisible: false },
         style: theme.focusVisible && {
-          ...outsetFocusRing,
           [`&.${buttonBaseClasses.focusVisible}`]: theme.focusVisible,
         },
       },
@@ -104,7 +102,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     // replaces internal handling in Chip, other components can opt-in individually to use this in the future
     focusableWhenDisabled,
     // escape hatch to suppress the focusVisible state and callback
-    // used by anchored <Menu>s to to suppress focus visible styling when opened with a pointer
+    // used by anchored <Menu>s to suppress focus visible styling when opened with a pointer
     suppressFocusVisible = false,
     // private prop to allow native vs non-native button props to be resolved before mount
     internalNativeButton: internalNativeButtonProp,

@@ -86,7 +86,7 @@ Notice that the `"standard"` variant is easier to customize, since it does not w
 
 {{"component": "file://./demos/customized/index.ts"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/select).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://www.mui-treasury.com/primitive/select).
 
 ## Multiple select
 

@@ -51,7 +51,7 @@ export default theme;
 ### The server-side
 
 The following is the outline for what the server-side is going to look like.
-We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server.
+We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware/) using [app.use](https://expressjs.com/en/api/) to handle all requests that come into the server.
 If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
 
 ```js title="server.js"
