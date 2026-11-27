@@ -92,6 +92,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Thai                    | th-TH               | `thTH`      |
 | Turkish                 | tr-TR               | `trTR`      |
 | Tagalog                 | tl-TL               | `tlTL`      |
+| Tajik                   | tg-TJ               | `tgTJ`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
 | Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Uzbek                   | uz-UZ               | `uzUZ`      |
