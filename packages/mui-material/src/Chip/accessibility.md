@@ -6,8 +6,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 16    |
-| ⚠️ Partially Supports | 7     |
+| ✅ Supports           | 14    |
+| ⚠️ Partially Supports | 9     |
 | ❌ Does Not Support   | 1     |
 | ➖ Not Applicable     | 31    |
 | 🚩 Flagged            | 9/24  |
@@ -15,13 +15,15 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Known gaps
 
 - ⚠️ **1.1.1 Non-text Content.** <!-- 1.1.1:gap:start -->The delete icon tells sighted users that the chip can be deleted. No text gives this information to a screen-reader user.<!-- 1.1.1:gap:end -->
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` labels are less than `4.5:1` in the `filled` and `outlined` variants. On a focused `outlined` chip, all colors except `secondary` are less than `4.5:1`. On a hovered clickable `outlined` chip, `primary` is also less than `4.5:1`.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` labels are less than `4.5:1` in the `filled` and `outlined` variants. On a focused `outlined` chip, `primary`, `error`, `info`, `success`, and `warning` fall below `4.5:1`. On a hovered clickable `outlined` chip, `primary` is also less than `4.5:1`.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.4 Resize Text.** <!-- 1.4.4:gap:start -->A long label that fits at 100% can end with an ellipsis at 200% page zoom or 200% text size.<!-- 1.4.4:gap:end -->
 - ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->The label does not wrap. At 320 CSS px, a label that fits a wide layout ends with an ellipsis.<!-- 1.4.10:gap:end -->
 - ❌ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default delete icon is `1.86:1` on a `filled` chip and `1.88:1` on an `outlined` chip. The focused background is `1.61:1` against the page.<!-- 1.4.11:gap:end -->
 - ⚠️ **1.4.12 Text Spacing.** <!-- 1.4.12:gap:start -->The label does not wrap. With the WCAG text-spacing values, a label that fits at default spacing can end with an ellipsis.<!-- 1.4.12:gap:end -->
+- ⚠️ **2.1.1 Keyboard.** <!-- 2.1.1:gap:start -->With `clickable={false}` and only an `onClick` handler, the default root responds to a pointer click but has no keyboard equivalent.<!-- 2.1.1:gap:end -->
 - ⚠️ **2.4.3 Focus Order.** <!-- 2.4.3:gap:start -->The component does not move focus after a deletion. In the ChipsArray demo, a keyboard deletion moves focus to the page body.<!-- 2.4.3:gap:end -->
 - ⚠️ **2.5.8 Target Size (Minimum).** <!-- 2.5.8:gap:start -->The delete icon is 22 px on a `medium` chip. It is 16 px on a `small` chip. On a clickable and deletable chip, the chip itself is a target, so the spacing exception does not apply.<!-- 2.5.8:gap:end -->
-- ⚠️ **4.1.2 Name, Role, Value.** <!-- 4.1.2:gap:start -->The component does not set `aria-disabled` on a disabled delete-only chip, and the chip stays focusable. A delete-only chip has the button role, but <kbd>Enter</kbd> and <kbd>Space</kbd> do nothing.<!-- 4.1.2:gap:end -->
+- ⚠️ **4.1.2 Name, Role, Value.** <!-- 4.1.2:gap:start -->The component does not set `aria-disabled` on a disabled delete-only chip, and the chip stays focusable. A delete-only chip has the button role, but <kbd>Enter</kbd> and <kbd>Space</kbd> do nothing. With `clickable={false}` and only an `onClick` handler, the default root has no button role.<!-- 4.1.2:gap:end -->
 
 ## Success criteria
 
@@ -125,8 +127,8 @@ Tested by: unit `Chip.test.js`
 
 - The default delete icon is an `SvgIcon` with `aria-hidden="true"`, and it is not focusable. A unit test confirms `aria-hidden`. A pointer user clicks it. A keyboard user presses <kbd>Backspace</kbd> or <kbd>Delete</kbd> on the focused chip.
 - The icon tells sighted users that the chip can be deleted. No text gives this information to a screen-reader user.
-- A custom `deleteIcon` keeps its own attributes. Use an `SvgIcon`, or set `aria-hidden` on it.
-- An `icon` is hidden. An `avatar` is not hidden, so its letter or its image `alt` becomes part of the name. Set `alt=""` on an image avatar when the label already gives the name.
+- A custom `deleteIcon` or leading `icon` keeps its accessibility attributes. An `SvgIcon` is hidden by default. Supplying `titleAccess` can add the icon title to the chip's accessible name. Set `aria-hidden="true"` on a decorative custom icon.
+- An avatar's letter or image `alt` can also become part of the name. Set `alt=""` on an image avatar when the label already gives the name.
 
 **Manual testing steps**
 
@@ -189,7 +191,7 @@ Tested by: unit `Chip.test.js` · axe-core `color-contrast` ❌
 - A `filled` chip renders `contrastText` on `main`. An `outlined` chip renders `main` on the page. In both variants, `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`.
 - Unit tests compare the results with the [palette contrast contract](../../test/contrastContract.ts). Only these colors fail. axe-core `color-contrast` fails on the color fixture.
 - The `default` color is `text.primary` on `action.selected`, about `13.9:1`.
-- On a focused `outlined` chip, the background is `main` at `focusOpacity` (`0.12`) on the page, and the label stays `main`. Only `secondary` stays at `4.5:1` or more: `primary` `3.93:1`, `secondary` `5.21:1`, `error` `4.15:1`, `info` `3.33:1`, `success` `4.37:1`, `warning` `2.73:1`. A unit test confirms this set.
+- On a focused `outlined` chip, the `default` label uses `text.primary` on `action.focus` and measures about `12.8:1` on white. For the six palette colors, the label stays `main` and the background uses `main` at `focusOpacity` (`0.12`). The ratios are `4.5:1` or higher for `secondary` (`5.21:1`) and lower for `primary` (`3.93:1`), `error` (`4.15:1`), `info` (`3.33:1`), `success` (`4.37:1`), and `warning` (`2.73:1`). A unit test covers all seven colors.
 - On a hovered clickable `outlined` chip, the background is `main` at `hoverOpacity` (`0.04`). `primary` (`4.37:1`), `info` (`3.67:1`), and `warning` (`2.98:1`) are less than `4.5:1`. `secondary` is `5.92:1`, `error` is `4.69:1`, and `success` is `4.87:1`.
 - A disabled chip is an inactive component, so it is exempt. This includes a disabled delete-only chip, because <kbd>Backspace</kbd> and <kbd>Delete</kbd> do nothing on it. axe-core still fails its faded label (`2.14:1`), because the chip has no `aria-disabled`. See 4.1.2.
 - All values are for the light palette.
@@ -202,7 +204,7 @@ Tested by: unit `Chip.test.js` · axe-core `color-contrast` ❌
 
 <!-- 1.4.3:end -->
 
-**Pass:** <!-- 1.4.3:pass:start -->each label is at least `4.5:1` at rest, on hover, and on focus. `info` and `warning` fail. On an `outlined` chip, all focused labels except `secondary` fail, and the hovered `primary` label fails.<!-- 1.4.3:pass:end -->
+**Pass:** <!-- 1.4.3:pass:start -->each label is at least `4.5:1` at rest, on hover, and on focus. `info` and `warning` fail at rest. On an `outlined` chip, `primary`, `error`, `info`, `success`, and `warning` fail on focus. `primary`, `info`, and `warning` fail on hover.<!-- 1.4.3:pass:end -->
 
 #### 1.4.10 Reflow · AA
 
@@ -278,13 +280,14 @@ Tested by: Playwright · axe-core `avoid-inline-spacing` ✅
 
 #### 2.1.1 Keyboard · A
 
-`✅ Supports` · `● Component`
+`⚠️ Partially Supports` · `● Component`
 
 Tested by: unit `Chip.test.js`, `ButtonBase.test.js`
 
 <!-- 2.1.1:start -->
 
 - A clickable chip activates with <kbd>Enter</kbd> and <kbd>Space</kbd>. A deletable chip calls `onDelete` on the release of <kbd>Backspace</kbd> or <kbd>Delete</kbd>. Unit tests confirm both. The author's `onDelete` removes the chip.
+- With `clickable={false}` and only an `onClick` handler, Chip renders a `div` that handles pointer clicks. Tab skips it. Omit `clickable={false}` to give the action keyboard support.
 
 **Manual testing steps**
 
@@ -292,10 +295,11 @@ Tested by: unit `Chip.test.js`, `ButtonBase.test.js`
 2. Press <kbd>Backspace</kbd> or <kbd>Delete</kbd>.
 3. Press <kbd>Tab</kbd> to a clickable chip.
 4. Press <kbd>Enter</kbd>, then <kbd>Space</kbd>.
+5. Repeat with a chip that has `clickable={false}` and only an `onClick` handler. Compare pointer and keyboard activation.
 
 <!-- 2.1.1:end -->
 
-**Pass:** <!-- 2.1.1:pass:start -->the deletable chip is removed, and the clickable chip activates on each key.<!-- 2.1.1:pass:end -->
+**Pass:** <!-- 2.1.1:pass:start -->the delete keys remove a deletable chip, and every pointer action has a keyboard equivalent. A chip with `clickable={false}` and only an `onClick` handler fails on its default root.<!-- 2.1.1:pass:end -->
 
 #### 2.4.3 Focus Order · A
 
@@ -306,17 +310,18 @@ Tested by: unit `Chip.test.js`
 <!-- 2.4.3:start -->
 
 - A static chip is not a tab stop. A clickable or deletable chip is one tab stop in DOM order, and a disabled clickable chip leaves the tab order. Unit tests confirm this.
-- When a chip is deleted, the author's `onDelete` handler removes it. The component does not move focus. In the ChipsArray demo, a keyboard deletion moves focus to the page body. The author must move focus, for example to the next chip.
+- In the ChipsArray demo, deleting jQuery moves focus to the page body. The next <kbd>Tab</kbd> reaches Polymer in Chromium and Firefox. In WebKit it returns to Angular, the first chip. Move focus to a nearby chip or control when removing the focused chip.
 
 **Manual testing steps**
 
-1. In the ChipsArray demo, press <kbd>Tab</kbd> to a chip.
-2. Press <kbd>Backspace</kbd> to delete it.
-3. Write down which element has focus.
+1. In DevTools, add a live expression for `document.activeElement`.
+2. In the ChipsArray demo, press <kbd>Tab</kbd> to jQuery, the second chip.
+3. Press <kbd>Backspace</kbd> to delete it and record which element has focus.
+4. Press <kbd>Tab</kbd> again and record which chip receives focus.
 
 <!-- 2.4.3:end -->
 
-**Pass:** <!-- 2.4.3:pass:start -->focus moves to a nearby chip or control, not to the top of the page. The ChipsArray demo fails.<!-- 2.4.3:pass:end -->
+**Pass:** <!-- 2.4.3:pass:start -->focus moves to a nearby chip or control after deletion, and Tab continues from there. In ChipsArray focus moves to the body.<!-- 2.4.3:pass:end -->
 
 #### 2.4.4 Link Purpose (In Context) · A
 
@@ -343,7 +348,7 @@ Tested by: axe-core `link-name` ✅
 
 <!-- 2.4.6:start -->
 
-- The label of a chip is its accessible name. Whether it describes the chip is an authoring concern.
+- The label contributes to the accessible name. Choose a label that describes the item or action.
 
 **Manual testing steps**
 
@@ -404,10 +409,11 @@ Tested by: unit `Chip.test.js` · axe-core `aria-allowed-attr` ✅, `aria-comman
 
 <!-- 4.1.2:start -->
 
-- A clickable chip has the button role, and its label is the name. A disabled clickable chip has `aria-disabled="true"`. Unit tests confirm this.
+- A clickable chip on its default root has the button role, and its label contributes to the name. A disabled clickable chip has `aria-disabled="true"`. Unit tests confirm this.
 - The component does not set `aria-disabled` on a disabled delete-only chip, and the chip stays focusable. <kbd>Backspace</kbd> and <kbd>Delete</kbd> do nothing on it. A unit test confirms this gap.
 - `skipFocusWhenDisabled` removes a disabled chip from the tab order. The state is still not exposed.
 - A delete-only chip has the button role, but <kbd>Enter</kbd> and <kbd>Space</kbd> do nothing.
+- With `clickable={false}` and only an `onClick` handler, the default root exposes no button role for the action.
 
 **Manual testing steps**
 
@@ -415,30 +421,30 @@ Tested by: unit `Chip.test.js` · axe-core `aria-allowed-attr` ✅, `aria-comman
 2. Press <kbd>Tab</kbd> past a static chip. Make sure that focus does not stop on it.
 3. Press <kbd>Tab</kbd> to a clickable chip, a deletable chip, and a disabled deletable chip.
 4. Listen to the name, role, and state of each.
+5. Use the screen reader's reading commands to find a chip with `clickable={false}` and only an `onClick` handler. Check whether it exposes a button role.
 
 <!-- 4.1.2:end -->
 
-**Pass:** <!-- 4.1.2:pass:start -->each chip announces its label and "button". The disabled chip announces "disabled". The disabled delete-only chip fails.<!-- 4.1.2:pass:end -->
+**Pass:** <!-- 4.1.2:pass:start -->each action exposes its name, role, and disabled state where applicable. A disabled delete-only chip lacks its disabled state. A chip with `clickable={false}` and only an `onClick` handler lacks a button role on its default root.<!-- 4.1.2:pass:end -->
 
 ### ⚙️ Automated
 
 #### 1.4.4 Resize Text · AA
 
-`✅ Supports` · `◐ Shared`
+`⚠️ Partially Supports` · `◐ Shared`
 
 Tested by: Playwright
 
 <!-- 1.4.4:start -->
 
-- Under 200% page zoom, the chip, its container, and the label scale together, so a label that fits at 100% still fits. A Playwright test confirms this on the ChipsArray demo. Page zoom decides the 1.4.4 rating (WCAG technique G142).
-- The page zoom check and the 1.4.10 reflow check cover 1.4.4 together. The page zoom viewport (500 × 350 px) is wider than the 320 px reflow viewport. So the page zoom check adds the clipping check, and the reflow check covers the narrow width.
-- Another Playwright test confirms that the ChipsArray demo, with short labels, survives a 200% text-only resize.
+- The short labels in ChipsArray stay visible at 200% page zoom and at 200% text size.
+- Page zoom halves the available width in CSS pixels. The long label in `ChipA11yLongLabel` fits at 640 CSS px. At 320 CSS px, equivalent to 200% page zoom from that width, only 283 px of the 353 px label is visible. The multiline version still fits.
 - Under text-only resize, the label grows but a px-wide container does not. The label does not wrap, so it ends with an ellipsis. In the `ChipA11yLongLabel` fixture, a label fits its 240 px container at 100% (177 px). At a 200% text size, 219 px of the 331 px label is visible. A Playwright test confirms this.
 - To make long labels safe under text-only resize, let the label wrap with `height: 'auto'` on the chip, and `display: 'block'` and `whiteSpace: 'normal'` on the label, as the MultilineChips demo does.
 
 <!-- 1.4.4:end -->
 
-**Pass:** <!-- 1.4.4:pass:start -->the full label stays visible at 200% page zoom.<!-- 1.4.4:pass:end -->
+**Pass:** <!-- 1.4.4:pass:start -->the full label stays visible when enlarged to 200%. A long, single-line label can lose text under both page zoom and text-only resize.<!-- 1.4.4:pass:end -->
 
 #### 2.1.2 No Keyboard Trap · A
 
@@ -472,7 +478,7 @@ Tested by: unit `Chip.test.js`
 
 <!-- 2.5.3:start -->
 
-- The label is the accessible name. A unit test confirms this.
+- The accessible name includes the visible label. A unit test covers both a text label and a chip whose leading icon adds its title to the name.
 
 <!-- 2.5.3:end -->
 
@@ -530,6 +536,7 @@ Tested by: unit `Chip.test.js`
 
 - **Scope.** The Chip component in isolation, rendered through its documented API.
 - **Automated.** axe-core in the Playwright test harness, on the Chip demos and fixtures in [`chips.a11y.json`](../../../../docs/data/material/components/chips/chips.a11y.json). Interaction and contrast tests are in `Chip.test.js` and `ButtonBase.test.js`.
-- **Assistive-technology review.** Not done yet. The flagged criteria come from a review of the source. A review with NVDA, JAWS, and VoiceOver must still confirm them.
+- **Focus order.** The keyboard deletion check in ChipsArray was run in Chromium, Firefox, and WebKit.
+- **Assistive-technology review.** Screen-reader checks with NVDA, JAWS, and VoiceOver are pending.
 
 <!-- scope:end -->

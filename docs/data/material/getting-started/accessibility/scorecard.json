@@ -3,8 +3,8 @@
   "componentCount": 21,
   "totals": {
     "rated": 32,
-    "supports": 20,
-    "partiallySupports": 11,
+    "supports": 18,
+    "partiallySupports": 13,
     "doesNotSupport": 1,
     "flagged": 16
   },
@@ -80,9 +80,9 @@
       "number": "1.4.4",
       "name": "Resize Text",
       "level": "AA",
-      "conformance": "Supports",
+      "conformance": "Partially Supports",
       "flagged": false,
-      "affected": []
+      "affected": ["Chip", "Fab"]
     },
     {
       "number": "1.4.5",
@@ -112,6 +112,7 @@
         "Button",
         "ButtonGroup",
         "Checkbox",
+        "Chip",
         "CircularProgress",
         "Fab",
         "IconButton",
@@ -134,9 +135,9 @@
       "number": "2.1.1",
       "name": "Keyboard",
       "level": "A",
-      "conformance": "Supports",
+      "conformance": "Partially Supports",
       "flagged": false,
-      "affected": []
+      "affected": ["Chip"]
     },
     {
       "number": "2.1.2",
@@ -1583,8 +1584,8 @@
     {
       "component": "Chip",
       "counts": {
-        "supports": 16,
-        "partiallySupports": 7,
+        "supports": 14,
+        "partiallySupports": 9,
         "doesNotSupport": 1,
         "notApplicable": 31,
         "flagged": 9,
@@ -1602,6 +1603,11 @@
           "conformance": "Partially Supports"
         },
         {
+          "number": "1.4.4",
+          "name": "Resize Text",
+          "conformance": "Partially Supports"
+        },
+        {
           "number": "1.4.10",
           "name": "Reflow",
           "conformance": "Partially Supports"
@@ -1614,6 +1620,11 @@
         {
           "number": "1.4.12",
           "name": "Text Spacing",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "2.1.1",
+          "name": "Keyboard",
           "conformance": "Partially Supports"
         },
         {
@@ -1691,7 +1702,7 @@
           "number": "1.4.4",
           "name": "Resize Text",
           "level": "AA",
-          "conformance": "Supports",
+          "conformance": "Partially Supports",
           "responsibility": "Shared",
           "group": "Automated",
           "flagged": false
@@ -1736,7 +1747,7 @@
           "number": "2.1.1",
           "name": "Keyboard",
           "level": "A",
-          "conformance": "Supports",
+          "conformance": "Partially Supports",
           "responsibility": "Component",
           "group": "Hybrid",
           "flagged": false
@@ -1854,8 +1865,8 @@
         "rated": 24,
         "levelA": 13,
         "levelAA": 11,
-        "supports": 16,
-        "partiallySupports": 7,
+        "supports": 14,
+        "partiallySupports": 9,
         "doesNotSupport": 1,
         "verified": 15,
         "automated": 5
@@ -2003,8 +2014,8 @@
     {
       "component": "Fab",
       "counts": {
-        "supports": 21,
-        "partiallySupports": 4,
+        "supports": 20,
+        "partiallySupports": 5,
         "doesNotSupport": 0,
         "notApplicable": 30,
         "flagged": 6,
@@ -2014,6 +2025,11 @@
         {
           "number": "1.4.3",
           "name": "Contrast (Minimum)",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
           "conformance": "Partially Supports"
         },
         {
@@ -2091,7 +2107,7 @@
           "number": "1.4.4",
           "name": "Resize Text",
           "level": "AA",
-          "conformance": "Supports",
+          "conformance": "Partially Supports",
           "responsibility": "Shared",
           "group": "Automated",
           "flagged": false
@@ -2263,8 +2279,8 @@
         "rated": 25,
         "levelA": 14,
         "levelAA": 11,
-        "supports": 21,
-        "partiallySupports": 4,
+        "supports": 20,
+        "partiallySupports": 5,
         "doesNotSupport": 0,
         "verified": 19,
         "automated": 9
