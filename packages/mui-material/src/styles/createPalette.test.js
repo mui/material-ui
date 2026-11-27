@@ -71,6 +71,22 @@ describe('createPalette()', () => {
     });
   });
 
+  it('should keep the main color when a tonalOffset object value is 0', () => {
+    const palette = createPalette({
+      primary: { main: deepOrange[500] },
+      tonalOffset: {
+        light: 0,
+        dark: 0,
+      },
+    });
+
+    expect(palette.primary).to.deep.include({
+      main: deepOrange[500],
+      light: lighten(deepOrange[500], 0),
+      dark: darken(deepOrange[500], 0),
+    });
+  });
+
   it('should calculate contrastText using the provided contrastThreshold', () => {
     const palette = createPalette({ contrastThreshold: 7 });
     expect(

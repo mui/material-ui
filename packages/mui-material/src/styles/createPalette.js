@@ -84,8 +84,8 @@ function getDark() {
 export const dark = getDark();
 
 function addLightOrDark(intent, direction, shade, tonalOffset) {
-  const tonalOffsetLight = tonalOffset.light || tonalOffset;
-  const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+  const tonalOffsetLight = tonalOffset.light ?? tonalOffset;
+  const tonalOffsetDark = tonalOffset.dark ?? tonalOffset * 1.5;
 
   if (!intent[direction]) {
     if (intent.hasOwnProperty(shade)) {
@@ -99,8 +99,8 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
 }
 
 function mixLightOrDark(colorSpace, intent, direction, shade, tonalOffset) {
-  const tonalOffsetLight = tonalOffset.light || tonalOffset;
-  const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+  const tonalOffsetLight = tonalOffset.light ?? tonalOffset;
+  const tonalOffsetDark = tonalOffset.dark ?? tonalOffset * 1.5;
 
   if (!intent[direction]) {
     if (intent.hasOwnProperty(shade)) {
