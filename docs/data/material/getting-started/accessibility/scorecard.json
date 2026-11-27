@@ -3,8 +3,8 @@
   "componentCount": 16,
   "totals": {
     "rated": 32,
-    "supports": 26,
-    "partiallySupports": 6,
+    "supports": 25,
+    "partiallySupports": 7,
     "doesNotSupport": 0,
     "flagged": 14
   },
@@ -85,9 +85,9 @@
       "number": "1.4.10",
       "name": "Reflow",
       "level": "AA",
-      "conformance": "Supports",
+      "conformance": "Partially Supports",
       "flagged": false,
-      "affected": []
+      "affected": ["ButtonGroup", "ToggleButtonGroup"]
     },
     {
       "number": "1.4.11",
@@ -1168,15 +1168,20 @@
     {
       "component": "ButtonGroup",
       "counts": {
-        "supports": 9,
-        "partiallySupports": 1,
+        "supports": 7,
+        "partiallySupports": 2,
         "doesNotSupport": 0,
         "notApplicable": 27,
-        "inherited": 18,
+        "inherited": 19,
         "flagged": 3,
-        "rated": 10
+        "rated": 9
       },
       "gaps": [
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "conformance": "Partially Supports"
+        },
         {
           "number": "1.4.11",
           "name": "Non-text Contrast",
@@ -1191,6 +1196,12 @@
         {
           "number": "2.2.2",
           "name": "Pause, Stop, Hide",
+          "conformance": "Partially Supports",
+          "from": "Button"
+        },
+        {
+          "number": "2.4.3",
+          "name": "Focus Order",
           "conformance": "Partially Supports",
           "from": "Button"
         },
@@ -1233,7 +1244,7 @@
           "number": "1.4.10",
           "name": "Reflow",
           "level": "AA",
-          "conformance": "Supports",
+          "conformance": "Partially Supports",
           "responsibility": "Shared",
           "group": "Automated",
           "flagged": false
@@ -1251,15 +1262,6 @@
           "number": "1.4.12",
           "name": "Text Spacing",
           "level": "AA",
-          "conformance": "Supports",
-          "responsibility": "Shared",
-          "group": "Automated",
-          "flagged": false
-        },
-        {
-          "number": "2.4.3",
-          "name": "Focus Order",
-          "level": "A",
           "conformance": "Supports",
           "responsibility": "Shared",
           "group": "Automated",
@@ -1294,14 +1296,14 @@
         }
       ],
       "summary": {
-        "rated": 10,
-        "levelA": 4,
+        "rated": 9,
+        "levelA": 3,
         "levelAA": 6,
-        "supports": 9,
-        "partiallySupports": 1,
+        "supports": 7,
+        "partiallySupports": 2,
         "doesNotSupport": 0,
-        "verified": 7,
-        "automated": 4
+        "verified": 6,
+        "automated": 3
       }
     },
     {
@@ -3537,8 +3539,8 @@
     {
       "component": "ToggleButtonGroup",
       "counts": {
-        "supports": 4,
-        "partiallySupports": 0,
+        "supports": 3,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
         "notApplicable": 31,
         "inherited": 20,
@@ -3546,6 +3548,11 @@
         "rated": 4
       },
       "gaps": [
+        {
+          "number": "1.4.10",
+          "name": "Reflow",
+          "conformance": "Partially Supports"
+        },
         {
           "number": "1.4.1",
           "name": "Use of Color",
@@ -3579,7 +3586,7 @@
           "number": "1.4.10",
           "name": "Reflow",
           "level": "AA",
-          "conformance": "Supports",
+          "conformance": "Partially Supports",
           "responsibility": "Shared",
           "group": "Automated",
           "flagged": false
@@ -3607,8 +3614,8 @@
         "rated": 4,
         "levelA": 2,
         "levelAA": 2,
-        "supports": 4,
-        "partiallySupports": 0,
+        "supports": 3,
+        "partiallySupports": 1,
         "doesNotSupport": 0,
         "verified": 3,
         "automated": 1

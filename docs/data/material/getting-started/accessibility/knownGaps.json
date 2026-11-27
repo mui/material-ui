@@ -31,6 +31,12 @@
     "workaround": "Override the affected palette entries"
   },
   {
+    "gap": "A horizontal group does not wrap, so a wide group can scroll horizontally at 320 px",
+    "criteria": ["1.4.10"],
+    "affected": ["ButtonGroup", "ToggleButtonGroup"],
+    "workaround": "Set `orientation=\"vertical\"` on small screens"
+  },
+  {
     "gap": "The selected state of colored Toggle Buttons is conveyed almost entirely by hue",
     "criteria": ["1.4.1"],
     "affected": [{ "component": "ToggleButton", "note": "`primary`, `error`, `info`, `success`" }],

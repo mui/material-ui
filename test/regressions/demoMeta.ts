@@ -453,10 +453,12 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // A11y-only fixtures under `test/regressions/a11y/fixtures/button-group/`; the
-  // suite name maps their results into the same `button-group.a11y.json`.
+  // An a11y-only fixture under `test/regressions/a11y/fixtures/button-group/`; the
+  // suite name maps its results into the same `button-group.a11y.json`.
+  // `ButtonGroupA11yWideGroup` is not enrolled. It has only plain buttons, and
+  // it exists only for the 320 px screenshot.
   {
-    test: 'test/regressions/a11y/fixtures/button-group/{ButtonGroupA11ySemanticStates,ButtonGroupA11yWideGroup}',
+    test: 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11ySemanticStates',
     enabled: true,
     assertions: 'all',
   },

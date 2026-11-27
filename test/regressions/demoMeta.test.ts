@@ -118,10 +118,10 @@ describe('getConfig', () => {
     });
   });
 
-  it('records the wide ButtonGroup fixture at 320 px', () => {
+  it('records the wide ButtonGroup fixture at 320 px, without axe', () => {
     expect(
       getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup'),
-    ).to.deep.include({ enabled: true, assertions: 'all' });
+    ).to.equal(undefined);
     expect(
       getConfig(
         SCREENSHOT_RULES,

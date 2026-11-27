@@ -113,11 +113,8 @@ async function run(argv) {
     version,
     summary: summarize(report.criteria),
   }));
-  const byComponent = new Map(reports.map((report) => [report.component, report]));
   fail([
-    ...reports.flatMap((report) =>
-      validateReport(report, check, defaults, byComponent.get(report.data.inherits)),
-    ),
+    ...reports.flatMap((report) => validateReport(report, check, defaults)),
     ...validateKnownGaps(knownGaps, reports, check),
   ]);
   const criteria = rollUpCriteria(reports);

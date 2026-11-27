@@ -305,16 +305,14 @@ export function validateKnownGaps(knownGaps, reports, check) {
 /**
  * Returns every problem in one resolved report, prefixed with the component
  * name. With `check`, the prose the report needs must also be written.
- * `parent` is the resolved report that `inherits` names, if any.
  */
-export function validateReport(report, check, defaults, parent) {
-  const { component, data, regions } = report;
+export function validateReport(report, check, defaults) {
+  const { component, data, regions, parentRates } = report;
   const violations = [];
 
   // An inheriting component can opt out of a default not-applicable criterion
   // only when its parent rates that criterion.
-  if (parent) {
-    const parentRates = new Set(parent.criteria.map(({ number }) => number));
+  if (data.inherits) {
     for (const number of data.notApplicable ?? []) {
       if (defaults.data.criteria[number]?.notApplicable && !parentRates.has(number)) {
         violations.push(`notApplicable: ${number} is already not applicable by default`);

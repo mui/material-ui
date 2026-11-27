@@ -114,6 +114,8 @@ function resolveReport(source, defaults, resolveParent) {
         .map(({ number }) => parentRated.get(number))
         .filter((criterion) => criterion.conformance !== 'Supports'),
     },
+    // The criteria that the parent rates. `validateReport` reads it, so the two cannot drift.
+    parentRates,
     playwright: [...playwright],
     unaccounted: WCAG_CRITERIA.filter(
       ({ number }) =>
