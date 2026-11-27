@@ -225,6 +225,25 @@ describe('ModalManager', () => {
       expect(container1.style.paddingRight).to.equal('20px');
     });
 
+    it('should keep the scroll container while a modal holds the lock', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      document.documentElement.style.overflowY = 'scroll';
+      modalManager.add(modal1, document.body);
+      modalManager.mount(modal1, {});
+      // The lock sets `overflow: hidden` on html, so a new resolution would return body.
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(document.documentElement.style.overflow).to.equal('hidden');
+      expect(document.body.style.overflow).to.equal('');
+
+      modalManager.remove(modal1);
+      modalManager.remove(modal2);
+      expect(document.documentElement.style.overflow).to.equal('');
+      expect(document.documentElement.style.overflowY).to.equal('scroll');
+      document.documentElement.style.removeProperty('overflow-y');
+    });
+
     it('should resolve the scroll container again after the lock is released', () => {
       const modal1 = getDummyModal();
       const modal2 = getDummyModal();

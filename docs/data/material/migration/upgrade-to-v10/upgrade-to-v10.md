@@ -232,3 +232,19 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### Scroll lock of stacked modals
+
+Each modal now decides its own scroll lock.
+Previously, the first modal that opened in a container decided the lock for all the modals above it.
+
+A Menu, Select, Popover, or temporary Drawer inside a Dialog or Drawer with `disableScrollLock` now locks the page while it is open.
+With classic scrollbars, the parent can move by up to the scrollbar width while the child holds the lock.
+
+To keep the page scrollable, set `disableScrollLock` on the child too:
+
+```diff
+ <Dialog disableScrollLock>
+-  <Select>
++  <Select MenuProps={{ disableScrollLock: true }}>
+```
