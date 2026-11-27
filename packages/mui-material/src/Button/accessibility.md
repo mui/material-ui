@@ -264,7 +264,7 @@ The `secondary` value on a Drawer is a borderline calculated result: it is withi
 
 1. With a contrast checker (the color picker in browser DevTools shows a ratio), check each button's label against its background, across the color and variant combinations in use.
 2. Repeat with the pointer hovering and held down, since `:hover` and `:active` change the background.
-3. Check any custom theme colors the product uses.
+3. Check any custom theme colors the product uses, and test each `color="inherit"` button against its actual parent.
 4. In dark mode, repeat the check at rest and on hover on each Paper surface in use, such as a Menu or Dialog.
 
 <!-- 1.4.3:end -->
