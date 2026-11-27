@@ -31,6 +31,8 @@ import cardContentClasses from '../CardContent/cardContentClasses';
 import dividerClasses from '../Divider/dividerClasses';
 import listItemTextClasses from '../ListItemText/listItemTextClasses';
 
+const themeInputsKey = Symbol.for('mui.material.themeInputs');
+
 type ThemeComponents = NonNullable<Theme['components']>;
 
 type ThemeComponentName = Exclude<keyof ThemeComponents, 'mergeClassNameAndStyle'>;
@@ -99,6 +101,16 @@ export default function enhanceDensity<T extends EnhanceableTheme>(
   }
   const enhanced = applyDensity(theme, scale);
   emitComponentDensity(enhanced);
+  const inputs = (theme as any)[themeInputsKey];
+  if (inputs) {
+    // A theme created again from this one, like `createTheme(theme, locale)`, is enhanced again.
+    const { enhance } = inputs;
+    (enhanced as any)[themeInputsKey] = {
+      ...inputs,
+      theme: enhanced,
+      enhance: (created: any) => enhanceDensity(enhance ? enhance(created) : created, scale),
+    };
+  }
   return enhanced;
 }
 

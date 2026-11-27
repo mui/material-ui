@@ -23,5 +23,6 @@
   "22": "MUI: `vars` is a private field used for CSS variables support.\nPlease use another name or follow the [docs](https://next.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.",
   "23": "MUI: No TabContext provided. TabList must be used within a TabContext. Wrap your Tabs with <TabContext value={...}>. See https://mui.com/material-ui/react-tabs/#experimental-api for more info.",
   "24": "MUI: No TabContext provided. TabPanel must be used within a TabContext. Wrap your TabPanel with <TabContext value={...}>. See https://mui.com/material-ui/react-tabs/#experimental-api for more info.",
-  "25": "MUI: The `colorSchemes.%s` option is either missing or invalid. Ensure the default color scheme is defined in colorSchemes with a valid palette configuration."
+  "25": "MUI: The `colorSchemes.%s` option is either missing or invalid. Ensure the default color scheme is defined in colorSchemes with a valid palette configuration.",
+  "26": "MUI: The color%s provided to augmentColor(color) is invalid.\nThe missing `light`, `dark` or `contrastText` can't be generated from `%s`.\nProvide them, or set `nativeColor: true` in the `cssVariables` option to generate them with CSS.\nWithout `nativeColor`, these formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()."
 }

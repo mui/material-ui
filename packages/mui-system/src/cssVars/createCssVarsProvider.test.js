@@ -797,6 +797,33 @@ describe('createCssVarsProvider', () => {
       expect(container.firstChild.textContent).to.equal('light, dark, dim');
     });
 
+    it('gives the arrays of the color scheme in use as they are', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: createCssVarsTheme({ colorSchemes: { light: {}, dark: {} } }),
+        defaultColorScheme: { light: 'light', dark: 'dark' },
+      });
+      let theme;
+      function Capture() {
+        theme = useTheme();
+        return null;
+      }
+      render(
+        <CssVarsProvider
+          theme={createCssVarsTheme({
+            defaultColorScheme: 'dark',
+            overlays: ['a', 'b'],
+            colorSchemes: { light: { overlays: [] }, dark: { overlays: ['a', 'b'] } },
+          })}
+          defaultMode="light"
+          forceThemeRerender
+        >
+          <Capture />
+        </CssVarsProvider>,
+      );
+
+      expect(theme.overlays).to.deep.equal([]);
+    });
+
     it('able to override css variable prefix', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: createCssVarsTheme({

@@ -92,6 +92,8 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       fontWeightBold,
+      // Kept, so that the typography can be created again from it.
+      ...(allVariants !== undefined && { allVariants }),
       ...variants,
     },
     other,

@@ -182,6 +182,27 @@ describe('createPalette()', () => {
       );
     });
 
+    it('throws an exception when the missing colors of a color cannot be generated', () => {
+      const message = [
+        'MUI: The color (primary) provided to augmentColor(color) is invalid.',
+        "The missing `light`, `dark` or `contrastText` can't be generated from `var(--brand)`.",
+        'Provide them, or set `nativeColor: true` in the `cssVariables` option to generate them with CSS.',
+      ].join('\n');
+
+      expect(() => createPalette({ primary: { main: 'var(--brand)' } })).toThrowMinified(message);
+      expect(() =>
+        createPalette({ primary: { main: 'var(--brand)', light: '#fff', dark: '#000' } }),
+      ).toThrowMinified(message);
+      expect(() =>
+        createPalette({
+          primary: { main: 'var(--brand)', light: '#fff', dark: '#000', contrastText: '#fff' },
+        }),
+      ).not.to.throw();
+      expect(() =>
+        createPalette({ colorSpace: 'oklch', primary: { main: 'var(--brand)' } }),
+      ).not.to.throw();
+    });
+
     it('logs an error when the contrast ratio does not reach AA', () => {
       let getContrastText;
       expect(() => {

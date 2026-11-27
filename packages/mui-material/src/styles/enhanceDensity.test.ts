@@ -78,6 +78,26 @@ describe('enhanceDensity', () => {
     expect(JSON.stringify(input)).to.equal(before);
   });
 
+  test('a theme created again from an enhanced one is enhanced again', () => {
+    const theme = enhanceDensity(createTheme({ cssVariables: true }), { touchTarget: 40 });
+    const locale = {
+      components: { MuiTablePagination: { defaultProps: { labelRowsPerPage: 'x' } } },
+    };
+
+    [
+      createTheme(theme, locale),
+      createTheme({ ...theme, ...locale }),
+      createTheme(createTheme(theme, { palette: { primary: { main: '#ff0000' } } })),
+    ].forEach((composed) => {
+      expect(composed.spacing('small')).to.equal(theme.spacing('small'));
+      expect((composed as typeof theme).touchTarget).to.equal(theme.touchTarget);
+      expect(composed.components!.MuiButton).to.deep.equal(theme.components!.MuiButton);
+    });
+    expect(createTheme(theme, locale).generateStyleSheets()).to.deep.equal(
+      theme.generateStyleSheets(),
+    );
+  });
+
   test('an rtl theme only flips the sign of the inline offsets', () => {
     const ltr = leaves(enhanceDensity(createTheme()).components);
     const rtl = leaves(enhanceDensity(createTheme({ direction: 'rtl' })).components);

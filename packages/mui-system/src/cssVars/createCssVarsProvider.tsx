@@ -15,6 +15,13 @@ import useCurrentColorScheme from './useCurrentColorScheme';
 import type { Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 
+/**
+ * The key, on the theme this provider gives, of the color scheme whose values it merged at the top
+ * level. `Symbol.for()` keeps the key the same across copies of the package, and `createTheme()`
+ * of `@mui/material` reads it.
+ */
+const themeColorSchemeKey = Symbol.for('mui.themeColorScheme');
+
 export interface ColorSchemeContextValue<
   SupportedColorScheme extends string,
 > extends Result<SupportedColorScheme> {
@@ -334,7 +341,11 @@ export default function createCssVarsProvider<
         if (scheme && typeof scheme === 'object') {
           // 4.1 Merge the selected color scheme to the theme
           Object.keys(scheme).forEach((schemeKey) => {
-            if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
+            if (
+              scheme[schemeKey] &&
+              typeof scheme[schemeKey] === 'object' &&
+              !Array.isArray(scheme[schemeKey])
+            ) {
               // shallow merge the 1st level structure of the theme.
               theme[schemeKey] = {
                 ...theme[schemeKey],
@@ -344,6 +355,9 @@ export default function createCssVarsProvider<
               theme[schemeKey] = scheme[schemeKey];
             }
           });
+          // 4.2 Record which color scheme the values at the top level come from, so that a theme
+          // created from a copy of this one can give a changed value to that color scheme.
+          theme[themeColorSchemeKey] = calculatedColorScheme;
         }
       }
 
