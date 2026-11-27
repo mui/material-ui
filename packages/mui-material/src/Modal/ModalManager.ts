@@ -126,92 +126,83 @@ function syncAriaHidden(containerInfo: Container): void {
   containerInfo.hiddenSet = next;
 }
 
-function handleContainer(containerInfo: Container, props: ManagedModalProps) {
-  const restoreStyle: Array<{
-    /**
-     * CSS property name (HYPHEN CASE) to be modified.
-     */
-    property: string;
-    el: HTMLElement | SVGElement;
-    value: string;
-  }> = [];
-  const container = containerInfo.container;
+type RestoreStyle = Array<{
+  /**
+   * CSS property name (HYPHEN CASE) to be modified.
+   */
+  property: string;
+  el: HTMLElement | SVGElement;
+  value: string;
+}>;
 
-  if (!props.disableScrollLock) {
-    let scrollContainer: HTMLElement;
-
-    if (container.parentNode instanceof DocumentFragment) {
-      scrollContainer = ownerDocument(container).body;
+function restoreStyles(restoreStyle: RestoreStyle) {
+  restoreStyle.forEach(({ value, el, property }) => {
+    if (value) {
+      el.style.setProperty(property, value);
     } else {
-      // Support html overflow-y: auto for scroll stability between pages
-      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-      const parent = container.parentElement;
-      const containerWindow = ownerWindow(container);
-      scrollContainer =
-        parent?.nodeName === 'HTML' &&
-        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
-          ? parent
-          : container;
+      el.style.removeProperty(property);
     }
+  });
+}
 
-    if (isOverflowing(scrollContainer)) {
-      // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
-
-      restoreStyle.push({
-        value: scrollContainer.style.paddingRight,
-        property: 'padding-right',
-        el: scrollContainer,
-      });
-      // Use computed style, here to get the real padding to add our scrollbar width.
-      scrollContainer.style.paddingRight = `${getPaddingRight(scrollContainer) + scrollbarSize}px`;
-
-      // .mui-fixed is a global helper.
-      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
-      [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
-        restoreStyle.push({
-          value: element.style.paddingRight,
-          property: 'padding-right',
-          el: element,
-        });
-        element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
-      });
-    }
-
-    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
-    // screensize shrink.
-    restoreStyle.push(
-      {
-        value: scrollContainer.style.overflow,
-        property: 'overflow',
-        el: scrollContainer,
-      },
-      {
-        value: scrollContainer.style.overflowX,
-        property: 'overflow-x',
-        el: scrollContainer,
-      },
-      {
-        value: scrollContainer.style.overflowY,
-        property: 'overflow-y',
-        el: scrollContainer,
-      },
-    );
-
-    scrollContainer.style.overflow = 'hidden';
+function getScrollContainer(container: HTMLElement): HTMLElement {
+  if (container.parentNode instanceof DocumentFragment) {
+    return ownerDocument(container).body;
   }
 
-  const restore = () => {
-    restoreStyle.forEach(({ value, el, property }) => {
-      if (value) {
-        el.style.setProperty(property, value);
-      } else {
-        el.style.removeProperty(property);
-      }
-    });
-  };
+  // Support html overflow-y: auto for scroll stability between pages
+  // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+  const parent = container.parentElement;
+  const containerWindow = ownerWindow(container);
+  return parent?.nodeName === 'HTML' &&
+    containerWindow.getComputedStyle(parent).overflowY === 'scroll'
+    ? parent
+    : container;
+}
 
-  return restore;
+function padFixedElements(doc: Document, scrollbarSize: number) {
+  const restoreStyle: RestoreStyle = [];
+
+  // .mui-fixed is a global helper.
+  const fixedElements = doc.querySelectorAll('.mui-fixed');
+  [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
+    restoreStyle.push({
+      value: element.style.paddingRight,
+      property: 'padding-right',
+      el: element,
+    });
+    element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
+  });
+
+  return () => restoreStyles(restoreStyle);
+}
+
+// Styles that several owners share. The first owner applies them, and the last owner restores them.
+interface SharedStyles<Owner> {
+  owners: Set<Owner>;
+  restore: () => void;
+}
+
+function acquireStyles<Key, Owner>(
+  map: Map<Key, SharedStyles<Owner>>,
+  key: Key,
+  owner: Owner,
+  apply: () => () => void,
+) {
+  let styles = map.get(key);
+  if (!styles) {
+    styles = { owners: new Set(), restore: apply() };
+    map.set(key, styles);
+  }
+  styles.owners.add(owner);
+}
+
+function releaseStyles<Key, Owner>(map: Map<Key, SharedStyles<Owner>>, key: Key, owner: Owner) {
+  const styles = map.get(key);
+  if (styles?.owners.delete(owner) && styles.owners.size === 0) {
+    map.delete(key);
+    styles.restore();
+  }
 }
 
 interface Modal {
@@ -223,7 +214,8 @@ interface Container {
   container: HTMLElement;
   hiddenSet: Set<Element>;
   modals: Modal[];
-  restore: null | (() => void);
+  // Kept while the container holds the lock, because the lock changes what the resolution reads.
+  scrollContainer?: HTMLElement | undefined;
 }
 
 /**
@@ -237,6 +229,12 @@ export class ModalManager {
   private containers: Container[] = [];
 
   private modals: Modal[] = [];
+
+  // Modals in different containers can lock the same scroll container.
+  private scrollLocks = new Map<HTMLElement, SharedStyles<Modal>>();
+
+  // The scroll locks of a document share the padding of its `.mui-fixed` elements.
+  private fixedPaddings = new Map<Document, SharedStyles<HTMLElement>>();
 
   add(modal: Modal, container: HTMLElement): number {
     let modalIndex = this.modals.indexOf(modal);
@@ -263,7 +261,6 @@ export class ModalManager {
     const containerInfo: Container = {
       modals: [modal],
       container,
-      restore: null,
       hiddenSet: new Set(),
     };
     this.containers.push(containerInfo);
@@ -276,8 +273,85 @@ export class ModalManager {
     const containerIndex = this.containers.findIndex((item) => item.modals.includes(modal));
     const containerInfo = this.containers[containerIndex];
 
-    if (!containerInfo.restore) {
-      containerInfo.restore = handleContainer(containerInfo, props);
+    // With `disablePortal`, the portal ref can run before `add()`.
+    if (!containerInfo) {
+      return;
+    }
+
+    if (props.disableScrollLock) {
+      this.releaseScrollLock(containerInfo, modal);
+      return;
+    }
+
+    containerInfo.scrollContainer ??= getScrollContainer(containerInfo.container);
+    const { scrollContainer } = containerInfo;
+    acquireStyles(this.scrollLocks, scrollContainer, modal, () => this.lockScroll(scrollContainer));
+  }
+
+  private lockScroll(scrollContainer: HTMLElement) {
+    const restoreStyle: RestoreStyle = [];
+    const doc = ownerDocument(scrollContainer);
+
+    if (isOverflowing(scrollContainer)) {
+      // Compute the size before applying overflow hidden to avoid any scroll jumps.
+      const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
+
+      restoreStyle.push({
+        value: scrollContainer.style.paddingRight,
+        property: 'padding-right',
+        el: scrollContainer,
+      });
+      // Use computed style, here to get the real padding to add our scrollbar width.
+      scrollContainer.style.paddingRight = `${getPaddingRight(scrollContainer) + scrollbarSize}px`;
+
+      // Skip a zero size, so that a later lock that measures a scrollbar pads the fixed elements.
+      if (scrollbarSize > 0) {
+        acquireStyles(this.fixedPaddings, doc, scrollContainer, () =>
+          padFixedElements(doc, scrollbarSize),
+        );
+      }
+    }
+
+    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+    // screensize shrink.
+    restoreStyle.push(
+      {
+        value: scrollContainer.style.overflow,
+        property: 'overflow',
+        el: scrollContainer,
+      },
+      {
+        value: scrollContainer.style.overflowX,
+        property: 'overflow-x',
+        el: scrollContainer,
+      },
+      {
+        value: scrollContainer.style.overflowY,
+        property: 'overflow-y',
+        el: scrollContainer,
+      },
+    );
+
+    scrollContainer.style.overflow = 'hidden';
+
+    return () => {
+      restoreStyles(restoreStyle);
+      releaseStyles(this.fixedPaddings, doc, scrollContainer);
+    };
+  }
+
+  private releaseScrollLock(containerInfo: Container, modal: Modal) {
+    const { scrollContainer } = containerInfo;
+    if (!scrollContainer) {
+      return;
+    }
+
+    releaseStyles(this.scrollLocks, scrollContainer, modal);
+
+    // Resolve it again for the next lock, because the overflow of html can change in between.
+    const owners = this.scrollLocks.get(scrollContainer)?.owners;
+    if (!containerInfo.modals.some((item) => owners?.has(item))) {
+      containerInfo.scrollContainer = undefined;
     }
   }
 
@@ -294,13 +368,11 @@ export class ModalManager {
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);
     this.modals.splice(modalIndex, 1);
 
+    // Restore the scroll even when modals without the lock stay open.
+    this.releaseScrollLock(containerInfo, modal);
+
     // If that was the last modal in a container, clean up the container.
     if (containerInfo.modals.length === 0) {
-      // The modal might be closed before it had the chance to be mounted in the DOM.
-      if (containerInfo.restore) {
-        containerInfo.restore();
-      }
-
       if (modal.modalRef) {
         // In case the modal wasn't in the DOM yet.
         ariaHidden(modal.modalRef, ariaHiddenState);

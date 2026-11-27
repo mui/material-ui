@@ -636,6 +636,179 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
     });
 
+    it('should keep the lock when the top of two modals that open together closes', () => {
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.first}>
+              <div>Hello</div>
+            </Modal>
+            <Modal open={props.second}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+      TestCase.propTypes = {
+        first: PropTypes.bool,
+        second: PropTypes.bool,
+      };
+
+      const { setProps } = render(<TestCase first={false} second={false} />);
+
+      setProps({ first: true, second: true });
+
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ first: true, second: false });
+
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ first: false, second: false });
+
+      expect(document.body.style).to.have.property('overflow', '');
+    });
+
+    it('should lock the scroll when only the second modal locks it', () => {
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open disableScrollLock>
+              <div>Hello</div>
+            </Modal>
+            <Modal open={props.open}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+      TestCase.propTypes = {
+        open: PropTypes.bool,
+      };
+
+      const { setProps } = render(<TestCase open={false} />);
+
+      expect(document.body.style).to.have.property('overflow', '');
+
+      setProps({ open: true });
+
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ open: false });
+
+      expect(document.body.style).to.have.property('overflow', '');
+    });
+
+    it('should restore the scroll when the modal with the lock closes first', () => {
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.first}>
+              <div>Hello</div>
+            </Modal>
+            <Modal open={props.second} disableScrollLock>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+      TestCase.propTypes = {
+        first: PropTypes.bool,
+        second: PropTypes.bool,
+      };
+
+      const { setProps } = render(<TestCase first second={false} />);
+
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ second: true });
+
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ first: false, second: true });
+
+      expect(document.body.style).to.have.property('overflow', '');
+    });
+
+    it('should update the lock when disableScrollLock changes while open', () => {
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.first}>
+              <div>Hello</div>
+            </Modal>
+            <Modal open disableScrollLock={props.disableScrollLock}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
+      TestCase.propTypes = {
+        disableScrollLock: PropTypes.bool,
+        first: PropTypes.bool,
+      };
+
+      const { setProps } = render(<TestCase first disableScrollLock />);
+
+      setProps({ first: true, disableScrollLock: false });
+      setProps({ first: false, disableScrollLock: false });
+
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ first: false, disableScrollLock: true });
+
+      expect(document.body.style).to.have.property('overflow', '');
+    });
+
+    ['the same render', 'separate renders'].forEach((sequence) => {
+      it(`should restore the body after a body modal and a shadow root modal open in ${sequence}`, () => {
+        const host = document.createElement('div');
+        document.body.appendChild(host);
+        const shadowContainer = document.createElement('div');
+        host.attachShadow({ mode: 'open' }).appendChild(shadowContainer);
+        const fixedNode = document.createElement('div');
+        fixedNode.classList.add('mui-fixed');
+        fixedNode.style.paddingRight = '8px';
+        document.body.appendChild(fixedNode);
+
+        function TestCase(props) {
+          return (
+            <React.Fragment>
+              <Modal open={props.first}>
+                <div>Hello</div>
+              </Modal>
+              <Modal open={props.second} container={shadowContainer}>
+                <div>World</div>
+              </Modal>
+            </React.Fragment>
+          );
+        }
+        TestCase.propTypes = {
+          first: PropTypes.bool,
+          second: PropTypes.bool,
+        };
+
+        const { setProps } = render(<TestCase first={false} second={false} />);
+
+        if (sequence === 'separate renders') {
+          setProps({ first: true, second: false });
+        }
+        setProps({ first: true, second: true });
+        setProps({ first: false, second: true });
+
+        expect(document.body.style).to.have.property('overflow', 'hidden');
+
+        setProps({ first: false, second: false });
+
+        expect(document.body.style).to.have.property('overflow', '');
+        expect(document.body.style).to.have.property('padding-right', '');
+        expect(fixedNode.style).to.have.property('padding-right', '8px');
+
+        document.body.removeChild(fixedNode);
+        document.body.removeChild(host);
+      });
+    });
+
     it('should open and close with Transitions', () => {
       function TestCase(props) {
         return (

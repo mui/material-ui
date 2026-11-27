@@ -179,6 +179,139 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('');
     });
 
+    it('should lock the scroll for a modal above a modal without the lock', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, { disableScrollLock: true });
+      expect(container1.style.overflow).to.equal('');
+      modalManager.add(modal2, container1);
+      modalManager.mount(modal2, {});
+      expect(container1.style.overflow).to.equal('hidden');
+      modalManager.remove(modal2);
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+      modalManager.remove(modal1);
+      expect(container1.style.overflow).to.equal('');
+    });
+
+    it('should restore the scroll when the last modal with the lock is removed', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, {});
+      modalManager.add(modal2, container1);
+      modalManager.mount(modal2, { disableScrollLock: true });
+      expect(container1.style.overflow).to.equal('hidden');
+      modalManager.remove(modal1);
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+      modalManager.remove(modal2);
+      expect(container1.style.overflow).to.equal('');
+    });
+
+    it('should keep the lock while a modal with the lock stays', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, {});
+      modalManager.add(modal2, container1);
+      modalManager.mount(modal2, {});
+      modalManager.mount(modal2, {});
+      modalManager.remove(modal1);
+      expect(container1.style.overflow).to.equal('hidden');
+      modalManager.remove(modal2);
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+    });
+
+    it('should keep the scroll container while a modal holds the lock', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      document.documentElement.style.overflowY = 'scroll';
+      modalManager.add(modal1, document.body);
+      modalManager.mount(modal1, {});
+      // The lock sets `overflow: hidden` on html, so a new resolution would return body.
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(document.documentElement.style.overflow).to.equal('hidden');
+      expect(document.body.style.overflow).to.equal('');
+
+      modalManager.remove(modal1);
+      modalManager.remove(modal2);
+      expect(document.documentElement.style.overflow).to.equal('');
+      expect(document.documentElement.style.overflowY).to.equal('scroll');
+      document.documentElement.style.removeProperty('overflow-y');
+    });
+
+    it('should resolve the scroll container again after the lock is released', () => {
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, document.body);
+      modalManager.mount(modal1, { disableScrollLock: true });
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(document.body.style.overflow).to.equal('hidden');
+      modalManager.remove(modal2);
+
+      // For example, a media query changes the overflow of html while modal1 stays open.
+      document.documentElement.style.overflowY = 'scroll';
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(document.documentElement.style.overflow).to.equal('hidden');
+      expect(document.body.style.overflow).to.equal('');
+
+      modalManager.remove(modal2);
+      modalManager.remove(modal1);
+      expect(document.documentElement.style.overflowY).to.equal('scroll');
+      document.documentElement.style.removeProperty('overflow-y');
+    });
+
+    it('should pad the fixed elements once for two overflowing containers', () => {
+      fixedNode.style.paddingRight = '8px';
+      const container2 = document.createElement('div');
+      Object.defineProperty(container2, 'scrollHeight', { value: 100, writable: false });
+      Object.defineProperty(container2, 'clientHeight', { value: 90, writable: false });
+      document.body.appendChild(container2);
+
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, {});
+      modalManager.add(modal2, container2);
+      modalManager.mount(modal2, {});
+      expect(fixedNode.style.paddingRight).to.equal(`${8 + getScrollbarSize(window)}px`);
+      modalManager.remove(modal1);
+      expect(fixedNode.style.paddingRight).to.equal(`${8 + getScrollbarSize(window)}px`);
+      modalManager.remove(modal2);
+      expect(fixedNode.style.paddingRight).to.equal('8px');
+
+      document.body.removeChild(container2);
+    });
+
+    it('should pad the fixed elements when a later lock measures a scrollbar', () => {
+      fixedNode.style.paddingRight = '8px';
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
+
+      // The page has no scrollbar when the first lock measures it.
+      const innerWidth = window.innerWidth;
+      window.innerWidth = document.documentElement.clientWidth;
+      modalManager.add(modal1, container1);
+      modalManager.mount(modal1, {});
+      window.innerWidth = innerWidth;
+      expect(fixedNode.style.paddingRight).to.equal('8px');
+
+      modalManager.add(modal2, document.body);
+      modalManager.mount(modal2, {});
+      expect(fixedNode.style.paddingRight).to.equal(`${8 + getScrollbarSize(window)}px`);
+
+      modalManager.remove(modal2);
+      modalManager.remove(modal1);
+      expect(fixedNode.style.paddingRight).to.equal('8px');
+      expect(document.body.style.paddingRight).to.equal('');
+    });
+
     describe('shadow dom', () => {
       let shadowContainer: HTMLDivElement;
       let container2: HTMLDivElement;
@@ -216,6 +349,25 @@ describe('ModalManager', () => {
         expect(document.body.style.paddingRight).to.equal('20px');
 
         document.body.style.paddingRight = initialBodyPaddingRight;
+      });
+
+      it('should keep the body locked until the body modal and the shadow root modal close', () => {
+        const modal1 = getDummyModal();
+        const modal2 = getDummyModal();
+
+        document.body.appendChild(shadowContainer);
+        modalManager.add(modal1, document.body);
+        modalManager.mount(modal1, {});
+        modalManager.add(modal2, container2);
+        modalManager.mount(modal2, {});
+        expect(document.body.style.overflow).to.equal('hidden');
+
+        modalManager.remove(modal1);
+        expect(document.body.style.overflow).to.equal('hidden');
+        modalManager.remove(modal2);
+        expect(document.body.style.overflow).to.equal('');
+        expect(document.body.style.paddingRight).to.equal('');
+        expect(fixedNode.style.paddingRight).to.equal('');
       });
     });
 

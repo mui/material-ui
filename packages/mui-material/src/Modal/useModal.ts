@@ -95,8 +95,14 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
     if (open && isTopModal()) {
       handleMounted();
-    } else if (modalRef.current) {
-      ariaHidden(modalRef.current, ariaHiddenProp);
+    } else {
+      // A modal below another one that opens in the same commit also needs the scroll lock.
+      if (open) {
+        manager.mount(getModal(), { disableScrollLock });
+      }
+      if (modalRef.current) {
+        ariaHidden(modalRef.current, ariaHiddenProp);
+      }
     }
   });
 
@@ -117,6 +123,13 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
       handleClose();
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
+
+  // Take or release the scroll lock when `disableScrollLock` changes while the modal is open.
+  React.useEffect(() => {
+    if (open && mountNodeRef.current) {
+      manager.mount(modal.current, { disableScrollLock });
+    }
+  }, [open, disableScrollLock]);
 
   const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
     otherHandlers.onKeyDown?.(event);
