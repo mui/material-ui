@@ -16,6 +16,9 @@
     "1.4.3": {
       "responsibility": "Component"
     },
+    "1.4.4": {
+      "conformance": "Partially Supports"
+    },
     "1.4.11": {
       "conformance": "Does Not Support"
     },
@@ -28,6 +31,7 @@
       "group": "Hybrid"
     },
     "2.1.1": {
+      "conformance": "Partially Supports",
       "group": "Hybrid"
     },
     "2.4.3": {

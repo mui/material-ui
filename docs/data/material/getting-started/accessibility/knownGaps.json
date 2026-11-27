@@ -61,9 +61,15 @@
   },
   {
     "gap": "A Chip label does not wrap, so a long label ends with an ellipsis and hides text",
-    "criteria": ["1.4.10", "1.4.12"],
+    "criteria": ["1.4.4", "1.4.10", "1.4.12"],
     "affected": ["Chip"],
     "workaround": "Let the label wrap with `height: 'auto'` and `whiteSpace: 'normal'`, as in the multiline demo"
+  },
+  {
+    "gap": "A Chip with `clickable={false}` and only an `onClick` handler renders a `div` that keyboard users cannot reach",
+    "criteria": ["2.1.1", "4.1.2"],
+    "affected": ["Chip"],
+    "workaround": "Omit `clickable={false}` so that `onClick` enables the button role and keyboard handling"
   },
   {
     "gap": "A deletable Chip does not expose its delete action, and a disabled delete-only Chip stays focusable and does not expose its disabled state",
@@ -85,7 +91,7 @@
   },
   {
     "gap": "The extended Fab has a fixed height, so a label that wraps can spill out of it",
-    "criteria": ["1.4.10", "1.4.12"],
+    "criteria": ["1.4.4", "1.4.10", "1.4.12"],
     "affected": [{ "component": "Fab", "note": "`extended`" }],
     "workaround": "Keep labels short, or set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`"
   },

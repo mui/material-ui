@@ -189,9 +189,9 @@ Edit the JSON files, not this table.
 | [Button](./Button/accessibility.md)                       | 23          | 5                     | 0                   | 27                | —           | 9/28       |
 | [ButtonGroup](./ButtonGroup/accessibility.md)             | 7           | 2                     | 0                   | 27                | 19          | 3/9        |
 | [Checkbox](./Checkbox/accessibility.md)                   | 24          | 1                     | 0                   | 30                | —           | 3/25       |
-| [Chip](./Chip/accessibility.md)                           | 16          | 7                     | 1                   | 31                | —           | 9/24       |
+| [Chip](./Chip/accessibility.md)                           | 14          | 9                     | 1                   | 31                | —           | 9/24       |
 | [CircularProgress](./CircularProgress/accessibility.md)   | 8           | 3                     | 0                   | 44                | —           | 5/11       |
-| [Fab](./Fab/accessibility.md)                             | 21          | 4                     | 0                   | 30                | —           | 6/25       |
+| [Fab](./Fab/accessibility.md)                             | 20          | 5                     | 0                   | 30                | —           | 6/25       |
 | [FormGroup](./FormGroup/accessibility.md)                 | 7           | 0                     | 0                   | 48                | —           | 3/7        |
 | [FormLabel](./FormLabel/accessibility.md)                 | 11          | 2                     | 0                   | 42                | —           | 3/13       |
 | [IconButton](./IconButton/accessibility.md)               | 22          | 5                     | 0                   | 28                | —           | 9/27       |

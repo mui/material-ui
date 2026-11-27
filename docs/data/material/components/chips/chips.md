@@ -100,6 +100,8 @@ gain depth while clicked or touched.
 
 ## Accessibility
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (for example when tabbing) releasing (`keyup` event) `Backspace` or `Delete` calls the `onDelete` handler.
+An enabled Chip with `onClick` or `onDelete` is a tab stop by default. It has the button role unless it renders as a link.
+If the Chip only has an `onClick` handler, omit `clickable={false}` to keep its default root accessible by keyboard.
+When an enabled deletable Chip has focus, releasing `Backspace` or `Delete` calls `onDelete`.
 After a deletion, move focus to the next chip or to a nearby control, because the deleted chip leaves the page.
 To remove a disabled deletable Chip from the tab order, set `skipFocusWhenDisabled`.

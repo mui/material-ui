@@ -205,6 +205,7 @@ export function rollUpCriteria(reports) {
 
   for (const report of reports) {
     for (const criterion of report.criteria) {
+      const affected = ['Partially Supports', 'Does Not Support'].includes(criterion.conformance);
       const existing = byNumber.get(criterion.number);
       if (!existing) {
         byNumber.set(criterion.number, {
@@ -213,12 +214,12 @@ export function rollUpCriteria(reports) {
           level: criterion.level,
           conformance: criterion.conformance,
           flagged: criterion.flagged,
-          affected: criterion.conformance === 'Partially Supports' ? [report.component] : [],
+          affected: affected ? [report.component] : [],
         });
         continue;
       }
 
-      if (criterion.conformance === 'Partially Supports') {
+      if (affected) {
         existing.affected.push(report.component);
       }
       existing.flagged = existing.flagged || criterion.flagged;
