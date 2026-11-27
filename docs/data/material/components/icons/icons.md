@@ -333,4 +333,4 @@ import { visuallyHidden } from '@mui/utils';
 
 #### Reference
 
-- https://www.tpgi.com/using-aria-enhance-svg-accessibility/
+- https://vispero.com/resources/using-aria-enhance-svg-accessibility/

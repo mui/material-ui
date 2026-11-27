@@ -98,7 +98,7 @@ export const paddingKeys = new Set([
 
 const spacingKeys = new Set([...marginKeys, ...paddingKeys]);
 
-export function createUnaryUnit<Spacing>(
+function createBaseUnit<Spacing>(
   theme: { spacing: Spacing },
   themeKey: string,
   defaultValue: Spacing,
@@ -199,6 +199,53 @@ export function createUnaryUnit<Spacing>(
   return (() => undefined) as any;
 }
 
+const transformersByTheme = new WeakMap<
+  object,
+  { scale: SpacingTransformer; byProp: Record<string, SpacingTransformer> }
+>();
+
+function isSeparateKeyedScale(
+  scale: SpacingTransformer | undefined,
+  base: unknown,
+): scale is SpacingTransformer & { keys: ReadonlySet<string> } {
+  return typeof scale === 'function' && !!scale.keys && base !== scale;
+}
+
+export function createUnaryUnit<Spacing>(
+  theme: { spacing: Spacing },
+  themeKey: string,
+  defaultValue: Spacing,
+  propName: string,
+): Spacing extends number
+  ? (abs: SpacingValueType) => number | number
+  : Spacing extends any[]
+    ? <Index extends number>(abs: Index | string) => Spacing[Index] | string
+    : Spacing extends (...args: unknown[]) => unknown
+      ? Spacing
+      : () => undefined {
+  const base = createBaseUnit(theme, themeKey, defaultValue, propName);
+  const scale = (theme as any)?.[themeKey] as SpacingTransformer | undefined;
+
+  if (isSeparateKeyedScale(scale, base)) {
+    let cache = transformersByTheme.get(theme);
+    if (!cache || cache.scale !== scale) {
+      cache = { scale, byProp: {} };
+      transformersByTheme.set(theme, cache);
+    }
+    if (!cache.byProp[propName]) {
+      const keyed = ((value: SpacingValueType) =>
+        typeof value === 'string' && scale.keys.has(value)
+          ? scale(value)
+          : (base as SpacingTransformer)(value)) as SpacingTransformer;
+      keyed.keys = scale.keys;
+      cache.byProp[propName] = keyed;
+    }
+    return cache.byProp[propName] as any;
+  }
+
+  return base;
+}
+
 export function createUnarySpacing<Spacing>(theme: {
   spacing: Spacing;
 }): Spacing extends number
@@ -211,12 +258,24 @@ export function createUnarySpacing<Spacing>(theme: {
   return createUnaryUnit(theme, 'spacing', 8 as any, 'spacing') as any;
 }
 
+/**
+ * A spacing transformer, optionally advertising the named scale values it can
+ * resolve (registered through `SpacingKeyOverrides`). Without `keys` the
+ * behavior is unchanged: every string is raw CSS.
+ */
+export type SpacingTransformer = ((prop: SpacingValueType) => SpacingValueType) & {
+  keys?: ReadonlySet<string> | undefined;
+};
+
 export function getValue(
-  transformer: (prop: SpacingValueType) => SpacingValueType,
+  transformer: SpacingTransformer,
   propValue: SpacingValueType,
 ): SpacingValueType {
-  if (typeof propValue === 'string' || propValue == null) {
+  if (propValue == null) {
     return propValue;
+  }
+  if (typeof propValue === 'string') {
+    return transformer.keys?.has(propValue) ? transformer(propValue) : propValue;
   }
   return transformer(propValue);
 }

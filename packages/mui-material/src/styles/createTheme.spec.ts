@@ -1,6 +1,7 @@
-import type { ThemeOptions, FocusVisible } from '@mui/material/styles';
+import type { ThemeOptions, FocusVisible, CssVarsTheme } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { buttonClasses } from '@mui/material/Button';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const theme = createTheme();
 
@@ -355,6 +356,66 @@ const theme = createTheme();
   });
 }
 
+// focusVisible insetOverrides
+{
+  createTheme({
+    focusVisible: {
+      outlineOffset: 1,
+      boxShadow: '0 0 0 1px #fff',
+      insetOverrides: { outlineOffset: -2, boxShadow: 'inset 0 0 0 3px #fff' },
+    },
+  });
+  createTheme({ focusVisible: { insetOverrides: { borderRadius: 4, outlineColor: 'red' } } });
+
+  createTheme({
+    // @ts-expect-error insetOverrides takes CSS properties
+    focusVisible: { insetOverrides: { outlineOffset: true } },
+  });
+
+  const insetOverrides: React.CSSProperties | undefined =
+    createTheme().unstable_focusVisibleInsetOverrides;
+  createTheme({ focusVisible: { insetOverrides } });
+}
+
+// theme.applyFocusVisible
+{
+  const ringTheme = createTheme({ focusVisible: true });
+  // @ts-expect-error the position is required
+  ringTheme.applyFocusVisible();
+  ringTheme.applyFocusVisible('inset');
+  ringTheme.applyFocusVisible('outset');
+  createTheme({ cssVariables: true }).applyFocusVisible('inset');
+
+  createTheme({
+    components: {
+      MuiMenuItem: {
+        styleOverrides: {
+          root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outset') }),
+        },
+      },
+    },
+  });
+
+  // @ts-expect-error the position is `inset` or `outset`, not a number
+  ringTheme.applyFocusVisible(-1);
+
+  const { applyFocusVisible } = ringTheme;
+  // @ts-expect-error a destructured call has no theme to read the ring from
+  applyFocusVisible('inset');
+
+  const cssVarsTheme = {} as CssVarsTheme;
+  cssVarsTheme.applyFocusVisible('inset');
+  createTheme({ focusVisible: cssVarsTheme.focusVisible });
+
+  ringTheme.components = {
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ theme: t }) => ({ '&.Mui-focusVisible': t.applyFocusVisible('outset') }),
+      },
+    },
+  };
+}
+
 // `theme.vars.zIndex`, `theme.vars.opacity` and the action opacities are typed as CSS variable strings
 {
   const varsTheme = createTheme({ cssVariables: true });
@@ -363,4 +424,32 @@ const theme = createTheme();
   const hoverOpacityVar: string = varsTheme.vars.palette.action.hoverOpacity;
   // Non-opacity action colors are unchanged
   const activeColor: string = varsTheme.vars.palette.action.active;
+}
+
+// CSS theme variables
+{
+  const cssVarsTheme = createTheme({ cssVariables: true });
+
+  cssVarsTheme.getCssVar('palette-primary-main');
+  cssVarsTheme.getCssVar('palette-Alert-errorColor');
+  cssVarsTheme.getCssVar('opacity-inputPlaceholder');
+  cssVarsTheme.getCssVar('zIndex-appBar');
+  cssVarsTheme.getCssVar('shape-borderRadius');
+  cssVarsTheme.getCssVar('shadows-0');
+  cssVarsTheme.getCssVar('overlays-0');
+
+  // @ts-expect-error: getCssVar requires a CSS variable name.
+  cssVarsTheme.getCssVar();
+  // @ts-expect-error: An empty string is not a theme CSS variable name.
+  cssVarsTheme.getCssVar('');
+  // @ts-expect-error: custom-color is not a declared theme CSS variable.
+  cssVarsTheme.getCssVar('custom-color');
+  // @ts-expect-error: An empty string is not a valid fallback CSS variable name.
+  cssVarsTheme.getCssVar('palette-primary-main', '');
+
+  // dark only application
+  createTheme({ cssVariables: true, colorSchemes: { dark: true }, defaultColorScheme: 'dark' });
+
+  // built-in light and dark modes
+  createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } });
 }

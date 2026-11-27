@@ -15,14 +15,15 @@ A ButtonGroup puts several Buttons in one set. This report rates only what the g
 | ✅ Supports              | 9     |
 | ⚠️ Partially Supports    | 1     |
 | ❌ Does Not Support      | 0     |
-| ➖ Not Applicable        | 28    |
-| ↗ Inherited (see Button) | 17    |
+| ➖ Not Applicable        | 27    |
+| ↗ Inherited (see Button) | 18    |
 | 🚩 Flagged               | 3/10  |
 
 ## Known gaps
 
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The buttons keep the Button focus ripple as their default focus indicator. Its contrast can fall below `3:1`. `disableRipple` or `disableFocusRipple` on the group removes it from each button.<!-- 1.4.11:gap:end -->
 - Inherits ⚠️ **1.4.3 Contrast (Minimum)** from [Button](../Button/accessibility.md).
+- Inherits ⚠️ **2.2.2 Pause, Stop, Hide** from [Button](../Button/accessibility.md).
 - Inherits ⚠️ **4.1.3 Status Messages** from [Button](../Button/accessibility.md).
 
 ## Success criteria
@@ -224,6 +225,7 @@ Tested by: unit `ButtonGroup.test.js`
 - **1.4.5 Images of Text (AA).**
 - **2.1.1 Keyboard (A).**
 - **2.1.2 No Keyboard Trap (A).**
+- **2.2.2 Pause, Stop, Hide (A).**
 - **2.4.4 Link Purpose (In Context) (A).** <!-- 2.4.4:start -->A grouped Button with `href`. The `ButtonGroupA11ySemanticStates` fixture has one, and axe-core `link-name` passes on it.<!-- 2.4.4:end -->
 - **2.4.11 Focus Not Obscured (Minimum) (AA).**
 - **2.5.2 Pointer Cancellation (A).**
@@ -244,7 +246,6 @@ Tested by: unit `ButtonGroup.test.js`
 - **1.4.13 Content on Hover or Focus (AA).** Shows no additional content on hover or focus; a `Tooltip` wrapper would own this.
 - **2.1.4 Character Key Shortcuts (A).** Binds no single-character keyboard shortcut.
 - **2.2.1 Timing Adjustable (A).** Sets no time limit.
-- **2.2.2 Pause, Stop, Hide (A).** No auto-starting moving, blinking, or auto-updating content.
 - **2.3.1 Three Flashes or Below Threshold (A).** Nothing flashes.
 - **2.4.1 Bypass Blocks (A), 2.4.2 Page Titled (A), 2.4.5 Multiple Ways (AA).** Page or site structure, not a single component.
 - **2.5.1 Pointer Gestures (A), 2.5.4 Motion Actuation (A).** Activates on a simple click; reads no device motion.

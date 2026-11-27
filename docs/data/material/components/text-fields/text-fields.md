@@ -215,7 +215,7 @@ const theme = createTheme({
 
 The token doesn't affect the text color: the autofilled text and caret stay white in the dark color scheme.
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/text-field).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://www.mui-treasury.com/primitive/text-field).
 
 ## `useFormControl`
 

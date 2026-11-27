@@ -49,7 +49,7 @@ export interface ApplyStyles<K extends string> {
  * @example
  * 3. theming a component:
  * ```jsx
- *   extendTheme({
+ *   createTheme({
  *     components: {
  *       MuiButton: {
  *         styleOverrides: {
@@ -78,7 +78,7 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
     if (!theme.colorSchemes?.[key] || typeof theme.getColorSchemeSelector !== 'function') {
       return {};
     }
-    // If CssVarsProvider is used as a provider, returns '*:where({selector}) &'
+    // With CSS theme variables, returns '*:where({selector}) &'
     let selector = theme.getColorSchemeSelector(key);
     if (selector === '&') {
       return styles;

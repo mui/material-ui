@@ -7,6 +7,7 @@
       "Button",
       "ButtonGroup",
       "Checkbox",
+      { "component": "IconButton", "note": "the ring needs `disableFocusRipple` too" },
       "Radio",
       "Switch",
       "ToggleButton"
@@ -20,6 +21,7 @@
       "Avatar",
       "Button",
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
+      { "component": "IconButton", "note": "`info`, `warning`" },
       "LinearProgress",
       "Switch",
       "TextField",
@@ -39,6 +41,7 @@
     "affected": [
       { "component": "Button", "note": "`loading`" },
       "CircularProgress",
+      { "component": "IconButton", "note": "`loading`" },
       "LinearProgress",
       { "component": "TextField", "note": "error" }
     ],
@@ -48,9 +51,20 @@
     "gap": "Indefinite animation cannot be paused",
     "criteria": ["2.2.2"],
     "affected": [
+      { "component": "Button", "note": "`loading`" },
       { "component": "CircularProgress", "note": "`indeterminate`" },
+      { "component": "IconButton", "note": "`loading`" },
       { "component": "LinearProgress", "note": "`indeterminate`, `query`, `buffer`" }
     ],
     "workaround": "Show it only while an operation is in flight"
+  },
+  {
+    "gap": "A focused button that turns `loading` loses keyboard focus to the page",
+    "criteria": ["2.4.3"],
+    "affected": [
+      { "component": "Button", "note": "`loading`" },
+      { "component": "IconButton", "note": "`loading`" }
+    ],
+    "workaround": "Move focus to a nearby element before you set `loading`, and back when it ends"
   }
 ]
