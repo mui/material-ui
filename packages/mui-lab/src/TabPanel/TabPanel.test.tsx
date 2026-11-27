@@ -55,6 +55,72 @@ describe('<TabPanel />', () => {
     expect(screen.queryByTestId('child')).not.to.equal(null);
   });
 
+  describe.each([false, true])('hidden classes with keepMounted=%s', (keepMounted) => {
+    it('follows the active context value', () => {
+      const { setProps } = render(
+        <TabContext value="0">
+          <TabPanel
+            data-testid="tabpanel"
+            value="0"
+            keepMounted={keepMounted}
+            classes={{ hidden: 'custom-hidden' }}
+          />
+        </TabContext>,
+      );
+
+      const tabPanel = screen.getByTestId('tabpanel');
+
+      expect(tabPanel).to.have.property('hidden', false);
+      expect(tabPanel).not.to.have.class(classes.hidden);
+      expect(tabPanel).not.to.have.class('custom-hidden');
+
+      setProps({ value: '1' });
+
+      expect(tabPanel).to.have.property('hidden', true);
+      expect(tabPanel).to.have.class(classes.hidden);
+      expect(tabPanel).to.have.class('custom-hidden');
+
+      setProps({ value: '0' });
+
+      expect(tabPanel).to.have.property('hidden', false);
+      expect(tabPanel).not.to.have.class(classes.hidden);
+      expect(tabPanel).not.to.have.class('custom-hidden');
+    });
+
+    it.each([true, false, undefined])('respects an explicit hidden=%s', (hidden) => {
+      const { setProps } = render(
+        <TabContext value="0">
+          <TabPanel
+            data-testid="tabpanel"
+            value="0"
+            keepMounted={keepMounted}
+            hidden={hidden}
+            classes={{ hidden: 'custom-hidden' }}
+          />
+        </TabContext>,
+      );
+
+      const tabPanel = screen.getByTestId('tabpanel');
+
+      expect(tabPanel).to.have.property('hidden', hidden === true);
+      expect(tabPanel.classList.contains(classes.hidden)).to.equal(hidden === true);
+      expect(tabPanel.classList.contains('custom-hidden')).to.equal(hidden === true);
+
+      setProps({ value: '1' });
+
+      expect(tabPanel).to.have.property('hidden', hidden === true);
+      expect(tabPanel.classList.contains(classes.hidden)).to.equal(hidden === true);
+      expect(tabPanel.classList.contains('custom-hidden')).to.equal(hidden === true);
+    });
+  });
+
+  it('throws when no TabContext is provided', () => {
+    expect(() => render(<TabPanel value="0" />)).to.throw(
+      TypeError,
+      'MUI: No TabContext provided.',
+    );
+  });
+
   it('is accessible when TabPanel#value === TabContext#value', () => {
     render(
       <TabContext value="0">
