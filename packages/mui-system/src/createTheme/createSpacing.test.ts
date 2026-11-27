@@ -52,6 +52,12 @@ describe('createSpacing', () => {
     expect(spacing(1, 'auto', 2, 3)).to.equal('0.25rem auto 0.5rem 0.75rem');
   });
 
+  it('should negate a CSS function value of a spacing array with calc()', () => {
+    const spacing = createSpacing([0, 'clamp(0.5rem, 1vw, 1rem)']);
+    expect(spacing(1)).to.equal('clamp(0.5rem, 1vw, 1rem)');
+    expect(spacing(-1)).to.equal('calc(-1 * clamp(0.5rem, 1vw, 1rem))');
+  });
+
   it('should support valid CSS unit', () => {
     const spacing = createSpacing();
     expect(spacing('16px')).to.equal('16px');

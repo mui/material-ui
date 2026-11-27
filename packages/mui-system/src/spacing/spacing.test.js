@@ -296,6 +296,22 @@ describe('system spacing', () => {
       expect(output).to.deep.equal({ padding: 'calc(-1 * var(--mui-spacing-2))' });
     });
 
+    it('should negate CSS function values of a spacing array with calc()', () => {
+      const output = spacing({
+        theme: {
+          spacing: [0, 'clamp(0.5rem, 1vw, 1rem)', 'calc(1rem + 2px)', 'max(1rem, 2vw)'],
+        },
+        mt: -1,
+        mr: -2,
+        mb: -3,
+      });
+      expect(output).to.deep.equal({
+        marginTop: 'calc(-1 * clamp(0.5rem, 1vw, 1rem))',
+        marginRight: 'calc(-1 * calc(1rem + 2px))',
+        marginBottom: 'calc(-1 * max(1rem, 2vw))',
+      });
+    });
+
     it('should support CSS variables array with zero value', () => {
       const output = spacing({
         theme: {

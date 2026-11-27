@@ -175,7 +175,8 @@ function createBaseUnit<Spacing>(
         return -transformed;
       }
 
-      if (typeof transformed === 'string' && transformed.startsWith('var(')) {
+      // A CSS function such as `var()`, `calc()` or `clamp()` can't be negated with a leading `-`.
+      if (typeof transformed === 'string' && transformed.includes('(')) {
         return `calc(-1 * ${transformed})`;
       }
 
