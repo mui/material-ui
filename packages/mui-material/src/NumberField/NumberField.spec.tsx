@@ -266,6 +266,12 @@ function ValueCallbacks(props: NumberFieldProps) {
 // @ts-expect-error Placing both controls at the start is not supported.
 <NumberField controlsPosition="start" />;
 
+<NumberField startAdornment={<span>$</span>} endAdornment="USD" />;
+// @ts-expect-error Set startAdornment directly on NumberField.
+<NumberField slotProps={{ input: { startAdornment: '$' } }} />;
+// @ts-expect-error Set endAdornment directly on NumberField.
+<NumberField slotProps={{ input: () => ({ title: 'Amount', endAdornment: 'USD' }) }} />;
+
 // Root and visible-input refs expose different DOM elements.
 <NumberField
   ref={(node) => {
@@ -292,7 +298,6 @@ function ValueCallbacks(props: NumberFieldProps) {
     },
     input: {
       ref: React.createRef<HTMLDivElement>(),
-      startAdornment: <span>$</span>,
     },
     htmlInput: {
       ref: (input) => {
@@ -445,31 +450,6 @@ function ValueCallbacks(props: NumberFieldProps) {
 <NumberField classes={{ scrubbing: 'active-scrub' }} />;
 // @ts-expect-error Scrubbing is derived owner state, not a public prop.
 <NumberField scrubbing />;
-
-<NumberField slots={{ scrubAreaAdornment: 'div' }} />;
-<NumberField slotProps={{ scrubAreaAdornment: { render: <section />, sx: { gap: 1 } } }} />;
-<NumberField
-  scrubAreaPosition="end"
-  slotProps={{
-    scrubAreaAdornment: (ownerState) => {
-      expectType<'start' | 'end', typeof ownerState.position>(ownerState.position);
-      expectType<boolean, typeof ownerState.disabled>(ownerState.disabled);
-      return {
-        ref: React.createRef<HTMLDivElement>(),
-        render: (props, state) => {
-          expectType<BaseNumberField.Root.State, typeof state>(state);
-          return <section {...props} />;
-        },
-      };
-    },
-  }}
-/>;
-// @ts-expect-error Use render to change the scrub area's adornment element.
-<NumberField slotProps={{ scrubAreaAdornment: { component: 'section' } }} />;
-// @ts-expect-error The adornment position is supplied by scrubAreaPosition.
-<NumberField slotProps={{ scrubAreaAdornment: { position: 'start' } }} />;
-// @ts-expect-error render takes an element or callback, not a tag name.
-<NumberField slotProps={{ scrubAreaAdornment: { render: 'section' } }} />;
 
 // Every callback receives NumberField owner state rather than an individual Base UI state.
 <NumberField

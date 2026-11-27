@@ -91,13 +91,18 @@ describe('<NumberField />', () => {
       incrementButton: createCallback(),
       decrementButton: createCallback(),
       scrubArea: createCallback(),
-      scrubAreaAdornment: createCallback(),
       scrubAreaCursor: createCallback(),
     };
   };
 
   describeConformance(
-    <NumberField variant="standard" label="Amount" helperText="Helper text" />,
+    <NumberField
+      variant="standard"
+      label="Amount"
+      helperText="Helper text"
+      startAdornment="$"
+      endAdornment="USD"
+    />,
     () => ({
       classes,
       inheritComponent: FormControl,
@@ -109,6 +114,8 @@ describe('<NumberField />', () => {
       testDeepOverrides: [
         { slotName: 'incrementButton', slotClassName: classes.incrementButton },
         { slotName: 'decrementButton', slotClassName: classes.decrementButton },
+        { slotName: 'startAdornment', slotClassName: classes.startAdornment },
+        { slotName: 'endAdornment', slotClassName: classes.endAdornment },
       ],
       slots: {
         controls: {
@@ -1376,20 +1383,8 @@ describe('<NumberField />', () => {
               label="Amount"
               controlsPosition={controlsPosition}
               scrubAreaPosition={scrubAreaPosition}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <button type="button">Start action</button>
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <button type="button">End action</button>
-                    </InputAdornment>
-                  ),
-                },
-              }}
+              startAdornment={<button type="button">Start action</button>}
+              endAdornment={<button type="button">End action</button>}
             />,
           );
 
@@ -1442,29 +1437,30 @@ describe('<NumberField />', () => {
             label="Amount"
             defaultValue={5}
             controlsPosition={controlsPosition}
-            slotProps={{
-              input: {
-                startAdornment: <input aria-label="Prefix" />,
-                endAdornment: <input aria-label="Suffix" />,
-              },
-            }}
+            startAdornment={<input aria-label="Prefix" />}
+            endAdornment={<input aria-label="Suffix" />}
           />
         );
       }
 
       const { user, rerender } = render(<Test controlsPosition="end" />);
       const input = screen.getByRole('textbox', { name: 'Amount' });
+      const prefix = screen.getByRole('textbox', { name: 'Prefix' });
+      const suffix = screen.getByRole('textbox', { name: 'Suffix' });
 
       await user.clear(input);
       await user.keyboard('8');
-      await user.type(screen.getByRole('textbox', { name: 'Prefix' }), '$');
-      await user.type(screen.getByRole('textbox', { name: 'Suffix' }), 'kg');
+      await user.type(prefix, '$');
+      await user.type(suffix, 'kg');
 
       const moveAndCheckControls = async (
         position: NonNullable<NumberFieldProps['controlsPosition']>,
+        focusedInput: HTMLElement,
       ) => {
+        await user.click(focusedInput);
         rerender(<Test controlsPosition={position} />);
 
+        expect(focusedInput).toHaveFocus();
         expect(screen.getByRole('textbox', { name: 'Amount' })).to.equal(input);
         expect(input).to.have.value('8');
         expect(screen.getByRole('textbox', { name: 'Prefix' })).to.have.value('$');
@@ -1499,10 +1495,10 @@ describe('<NumberField />', () => {
         expect(input).to.have.value('8');
       };
 
-      await moveAndCheckControls('stacked');
-      await moveAndCheckControls('split');
-      await moveAndCheckControls('end');
-      await moveAndCheckControls(false);
+      await moveAndCheckControls('stacked', suffix);
+      await moveAndCheckControls('split', prefix);
+      await moveAndCheckControls('end', input);
+      await moveAndCheckControls(false, suffix);
     });
   });
 
@@ -1576,7 +1572,7 @@ describe('<NumberField />', () => {
     });
   });
 
-  describe('adornment slots', () => {
+  describe('controls slot', () => {
     it('resolves refs independently for split controls', () => {
       const refs = {
         start: React.createRef<HTMLDivElement>(),
@@ -1594,45 +1590,41 @@ describe('<NumberField />', () => {
       expect(refs.end.current).to.contain(screen.getByRole('button', { name: 'Increase' }));
     });
 
-    it.each(['controls', 'scrubAreaAdornment'] as const)(
-      'preserves styles, ref and live render state for slotProps.%s',
-      async (slot) => {
-        const ref = React.createRef<HTMLDivElement>();
-        const renderAdornment: BaseNumberField.Group.Props['render'] = (props, state) => (
-          <section {...props} data-render-value={state.value} />
-        );
-        const theme = createTheme({
-          components: { MuiNumberField: { styleOverrides: { [slot]: { paddingBottom: 9 } } } },
-        });
-        const { user } = render(
-          <ThemeProvider theme={theme}>
-            <NumberField
-              defaultValue={5}
-              scrubAreaPosition="end"
-              slotProps={{
-                [slot]: ({ position }: Pick<InputAdornmentProps, 'position'>) => ({
-                  title: `${position} adornment`,
-                  ref,
-                  sx: { paddingTop: '7px' },
-                  render: renderAdornment,
-                }),
-              }}
-            />
-          </ThemeProvider>,
-        );
-        const adornment = screen.getByTitle('end adornment');
+    it('preserves styles, ref and live render state for slotProps.controls', async () => {
+      const ref = React.createRef<HTMLDivElement>();
+      const renderAdornment: BaseNumberField.Group.Props['render'] = (props, state) => (
+        <section {...props} data-render-value={state.value} />
+      );
+      const theme = createTheme({
+        components: { MuiNumberField: { styleOverrides: { controls: { paddingBottom: 9 } } } },
+      });
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <NumberField
+            defaultValue={5}
+            slotProps={{
+              controls: ({ position }) => ({
+                title: `${position} adornment`,
+                ref,
+                sx: { paddingTop: '7px' },
+                render: renderAdornment,
+              }),
+            }}
+          />
+        </ThemeProvider>,
+      );
+      const adornment = screen.getByTitle('end adornment');
 
-        expect(adornment.tagName).to.equal('SECTION');
-        expect(adornment).to.have.class(classes[slot]);
-        expect(adornment).to.have.class('MuiInputAdornment-positionEnd');
-        expect(ref.current).to.equal(adornment);
-        expect(getComputedStyle(adornment).paddingTop).to.equal('7px');
-        expect(getComputedStyle(adornment).paddingBottom).to.equal('9px');
+      expect(adornment.tagName).to.equal('SECTION');
+      expect(adornment).to.have.class(classes.controls);
+      expect(adornment).to.have.class('MuiInputAdornment-positionEnd');
+      expect(ref.current).to.equal(adornment);
+      expect(getComputedStyle(adornment).paddingTop).to.equal('7px');
+      expect(getComputedStyle(adornment).paddingBottom).to.equal('9px');
 
-        await user.click(screen.getByRole('button', { name: 'Increase' }));
-        expect(adornment).to.have.attribute('data-render-value', '6');
-      },
-    );
+      await user.click(screen.getByRole('button', { name: 'Increase' }));
+      expect(adornment).to.have.attribute('data-render-value', '6');
+    });
 
     it('lets a replacement slot bypass render while preserving the owned buttons', async () => {
       const renderControls = vi.fn(() => <section />);
@@ -2592,22 +2584,22 @@ describe('<NumberField />', () => {
   // Scrubbing is optional and shares the input adornments with controls and consumer
   // content. Cover composition, slot plumbing, and drag interactions through the Material wrapper.
   describe('scrub area', () => {
-    // Enable the optional adornment for the standard slot API checks.
-    describeConformance(<NumberField scrubAreaPosition="start" />, () => ({
-      classes,
-      inheritComponent: FormControl,
-      render,
-      muiName: 'MuiNumberField',
-      refInstanceof: window.HTMLDivElement,
-      only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
-      slots: {
-        scrubAreaAdornment: {
-          expectedClassName: classes.scrubAreaAdornment,
-          testWithComponent: TestAdornment,
-          testWithElement: 'div',
-        },
+    it.skipIf(isJsdom())(
+      'aligns the end scrub handle with the split controls in a filled field',
+      () => {
+        const { container } = render(
+          <NumberField
+            label="Quantity"
+            variant="filled"
+            controlsPosition="split"
+            scrubAreaPosition="end"
+          />,
+        );
+        const handle = container.querySelector(`.${classes.scrubArea}`)!.getBoundingClientRect();
+        const button = screen.getByRole('button', { name: 'Increase' }).getBoundingClientRect();
+        expect(handle.top + handle.height / 2).to.be.closeTo(button.top + button.height / 2, 0.5);
       },
-    }));
+    );
 
     it('resolves scrub slot props only when a scrub area is enabled', () => {
       const slotProps = {
@@ -2617,7 +2609,6 @@ describe('<NumberField />', () => {
       const { container, rerender } = render(<NumberField slotProps={slotProps} />);
 
       expect(container.querySelector(`.${classes.scrubArea}`)).to.equal(null);
-      expect(container.querySelector(`.${classes.scrubAreaAdornment}`)).to.equal(null);
       expect(slotProps.scrubArea).not.toHaveBeenCalled();
       expect(slotProps.scrubAreaCursor).not.toHaveBeenCalled();
 
@@ -2836,16 +2827,13 @@ describe('<NumberField />', () => {
         await waitFor(() => expectScrubbing(false));
       });
 
-      it('preserves scrubbing through a custom handle and replacement adornment', async () => {
-        const renderAdornment = vi.fn(() => <section />);
+      it('preserves scrubbing through a custom handle', async () => {
         const { container, user } = render(
           <NumberField
             label="Amount"
             defaultValue={5}
             scrubAreaPosition="start"
-            slots={{ scrubAreaAdornment: TestAdornment }}
             slotProps={{
-              scrubAreaAdornment: { render: renderAdornment },
               scrubArea: {
                 direction: 'vertical',
                 render: (props, state) => <div {...props} data-render-value={state.value} />,
@@ -2855,9 +2843,6 @@ describe('<NumberField />', () => {
         );
         const input = screen.getByRole('textbox', { name: 'Amount' });
         const scrub = container.querySelector(`.${classes.scrubArea}`)!;
-
-        expect(scrub.parentElement).to.equal(screen.getByTestId('custom'));
-        expect(renderAdornment).toHaveBeenCalledTimes(0);
 
         await user.pointer({ keys: '[MouseLeft>]', target: scrub });
         movePointer(0, -4);
@@ -2948,14 +2933,14 @@ describe('<NumberField />', () => {
       });
     });
 
-    // NumberField's composed start adornments must initialize label shrink on the
-    // server, including adornments returned by consumer slot callbacks.
+    // NumberField's composed start adornments must initialize label shrink on the server.
     describe('adornments', () => {
       it.each([
         { props: { scrubAreaPosition: 'start' }, shrink: true },
         { props: { scrubAreaPosition: 'end' }, shrink: false },
         { props: { controlsPosition: 'split' }, shrink: true },
         { props: { controlsPosition: 'stacked' }, shrink: false },
+        { props: { startAdornment: '' }, shrink: false },
       ] as const)(
         'preserves label shrink=$shrink through hydration with $props',
         ({ props, shrink }) => {
@@ -2964,10 +2949,9 @@ describe('<NumberField />', () => {
         },
       );
 
-      it('resolves shared slot callbacks once for server-rendered adornments and helper text', () => {
-        const adornment = <InputAdornment position="start">$</InputAdornment>;
+      it('resolves slot callbacks once alongside a server-rendered start adornment', () => {
         const getInputProps = vi.fn((ownerState: NumberFieldOwnerState) => ({
-          startAdornment: ownerState.disabled ? adornment : undefined,
+          className: ownerState.disabled ? 'disabled-input' : undefined,
         }));
         const getInputLabelProps = vi.fn((ownerState: NumberFieldOwnerState) => ({
           className: ownerState.disabled ? 'disabled-label' : undefined,
@@ -2977,6 +2961,7 @@ describe('<NumberField />', () => {
           <NumberField
             label="Amount"
             helperText="Enter the quantity"
+            startAdornment={0}
             disabled
             slotProps={{
               input: getInputProps,
@@ -2989,31 +2974,24 @@ describe('<NumberField />', () => {
         expect(getInputProps).toHaveBeenCalledTimes(1);
         expect(getInputLabelProps).toHaveBeenCalledTimes(1);
         expect(getHelperTextProps).toHaveBeenCalledTimes(1);
-        const adornmentNode = screen.getByText('$');
+        const adornmentNode = screen.getByText('0');
         const input = screen.getByRole('textbox', { name: 'Amount' });
-        expect(input.closest('.MuiInputBase-root')).to.contain(adornmentNode);
+        expect(input.closest('.disabled-input')).to.contain(adornmentNode);
         expect(screen.getByText('Amount', { selector: 'label' })).to.have.class('disabled-label');
         expect(input).toHaveAccessibleDescription('Enter the quantity');
 
         expectStableHydration(hydrate, { displayValue: '', shrink: true });
-        expect(screen.getByText('$')).to.equal(adornmentNode);
+        expect(screen.getByText('0')).to.equal(adornmentNode);
       });
 
       it('does not shrink an empty server-rendered label with a falsy start and an end adornment', () => {
         const { hydrate } = renderToString(
-          <NumberField
-            label="Amount"
-            slotProps={{
-              input: {
-                startAdornment: false,
-                endAdornment: <InputAdornment position="end">kg</InputAdornment>,
-              },
-            }}
-          />,
+          <NumberField label="Amount" startAdornment={false} endAdornment="kg" />,
         );
         const adornmentNode = screen.getByText('kg');
-        const input = screen.getByRole('textbox', { name: 'Amount' });
-        expect(input.closest('.MuiInputBase-root')).to.contain(adornmentNode);
+        const group = screen.getByRole('group');
+        expect(group.querySelector(`.${classes.startAdornment}`)).to.equal(null);
+        expect(group.querySelector(`.${classes.endAdornment}`)).to.contain(adornmentNode);
 
         expectStableHydration(hydrate, { displayValue: '', shrink: false });
         expect(screen.getByText('kg')).to.equal(adornmentNode);

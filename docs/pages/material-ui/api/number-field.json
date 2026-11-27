@@ -20,6 +20,7 @@
     },
     "defaultValue": { "type": { "name": "number" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "form": { "type": { "name": "string" } },
     "format": { "type": { "name": "object" } },
@@ -77,19 +78,20 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ controls?: func<br>&#124;&nbsp;object, decrementButton?: func<br>&#124;&nbsp;object, formHelperText?: func<br>&#124;&nbsp;object, htmlInput?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, inputLabel?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrubArea?: func<br>&#124;&nbsp;object, scrubAreaAdornment?: func<br>&#124;&nbsp;object, scrubAreaCursor?: func<br>&#124;&nbsp;object }"
+        "description": "{ controls?: func<br>&#124;&nbsp;object, decrementButton?: func<br>&#124;&nbsp;object, formHelperText?: func<br>&#124;&nbsp;object, htmlInput?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, inputLabel?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrubArea?: func<br>&#124;&nbsp;object, scrubAreaCursor?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaAdornment?: elementType, scrubAreaCursor?: elementType }"
+        "description": "{ controls?: elementType, decrementButton?: elementType, formHelperText?: elementType, htmlInput?: elementType, incrementButton?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, scrubArea?: elementType, scrubAreaCursor?: elementType }"
       },
       "default": "{}"
     },
     "smallStep": { "type": { "name": "number" }, "default": "0.1" },
     "snapOnStep": { "type": { "name": "bool" }, "default": "false" },
+    "startAdornment": { "type": { "name": "node" } },
     "step": {
       "type": { "name": "union", "description": "'any'<br>&#124;&nbsp;number" },
       "default": "1"
@@ -171,19 +173,26 @@
       "class": "MuiNumberField-scrubArea"
     },
     {
-      "name": "scrubAreaAdornment",
-      "description": "The component that wraps the scrub area in an input adornment.",
-      "default": "InputAdornment",
-      "class": "MuiNumberField-scrubAreaAdornment"
-    },
-    {
       "name": "scrubAreaCursor",
       "description": "The component that renders the custom cursor while dragging the scrub area.",
       "default": "'span'",
       "class": "MuiNumberField-scrubAreaCursor"
     }
   ],
-  "classes": [],
+  "classes": [
+    {
+      "key": "endAdornment",
+      "className": "MuiNumberField-endAdornment",
+      "description": "Styles applied to the wrapper around the end adornment content.",
+      "isGlobal": false
+    },
+    {
+      "key": "startAdornment",
+      "className": "MuiNumberField-startAdornment",
+      "description": "Styles applied to the wrapper around the start adornment content.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiNumberField",

@@ -19,14 +19,16 @@ export interface NumberFieldClasses {
   scrubbing: string;
   /** Styles applied to each controls adornment. */
   controls: string;
+  /** Styles applied to the wrapper around the start adornment content. */
+  startAdornment: string;
+  /** Styles applied to the wrapper around the end adornment content. */
+  endAdornment: string;
   /** Styles applied to the increment button. */
   incrementButton: string;
   /** Styles applied to the decrement button. */
   decrementButton: string;
   /** Styles applied to the scrub area. */
   scrubArea: string;
-  /** Styles applied to the scrub area's adornment. */
-  scrubAreaAdornment: string;
   /** Styles applied to the scrub area cursor. */
   scrubAreaCursor: string;
 }
@@ -45,10 +47,11 @@ const numberFieldClasses: NumberFieldClasses = generateUtilityClasses('MuiNumber
   'formHelperText',
   'scrubbing',
   'controls',
+  'startAdornment',
+  'endAdornment',
   'incrementButton',
   'decrementButton',
   'scrubArea',
-  'scrubAreaAdornment',
   'scrubAreaCursor',
 ]);
 

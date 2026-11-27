@@ -1,5 +1,6 @@
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import InputAdornment from '../InputAdornment';
 import ImportExportIcon from '../internal/svg-icons/ImportExport';
 import OpenInFullIcon from '../internal/svg-icons/OpenInFull';
 import { styled } from '../zero-styled';
@@ -7,7 +8,7 @@ import memoTheme from '../utils/memoTheme';
 import useSlot from '../utils/useSlot';
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
 import type { NumberFieldClasses } from './numberFieldClasses';
-import NumberFieldAdornmentSlot from './NumberFieldAdornmentSlot';
+import filledSplitEndAdornmentOffset from './utils/filledSplitEndAdornmentOffset';
 import RenderElement from './RenderElement';
 import { omitNullishEventHandlers } from './utils';
 
@@ -15,9 +16,13 @@ interface NumberFieldScrubAreaSlotProps {
   position: 'start' | 'end';
   baseState: BaseNumberField.Root.State;
   ownerState: NumberFieldOwnerState;
-  classes: Pick<NumberFieldClasses, 'scrubArea' | 'scrubAreaCursor' | 'scrubAreaAdornment'>;
+  classes: Pick<NumberFieldClasses, 'scrubArea' | 'scrubAreaCursor'>;
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
+
+const ScrubAreaContainer = styled(InputAdornment)<{ ownerState: NumberFieldOwnerState }>({
+  variants: [filledSplitEndAdornmentOffset],
+});
 
 const NumberFieldScrubArea = styled('span', {
   name: 'MuiNumberField',
@@ -141,14 +146,7 @@ function NumberFieldScrubAreaSlot(props: NumberFieldScrubAreaSlotProps) {
   const scrubAreaProps = omitNullishEventHandlers(restScrubAreaProps);
 
   return (
-    <NumberFieldAdornmentSlot
-      slotName="scrubAreaAdornment"
-      position={position}
-      className={classes.scrubAreaAdornment}
-      baseState={baseState}
-      materialProps={ownerState}
-      externalForwardedProps={externalForwardedProps}
-    >
+    <ScrubAreaContainer position={position} ownerState={ownerState}>
       <BaseNumberField.ScrubArea
         direction={direction}
         pixelSensitivity={pixelSensitivity}
@@ -170,7 +168,7 @@ function NumberFieldScrubAreaSlot(props: NumberFieldScrubAreaSlotProps) {
           }
         />
       </BaseNumberField.ScrubArea>
-    </NumberFieldAdornmentSlot>
+    </ScrubAreaContainer>
   );
 }
 

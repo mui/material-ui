@@ -1,7 +1,7 @@
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import type { NumberFieldOwnerState, NumberFieldProps } from '../NumberField.types';
 import type { NumberFieldClasses } from '../numberFieldClasses';
-import Adornment from '../NumberFieldAdornmentSlot';
+import NumberFieldControlsSlot from '../NumberFieldControlsSlot';
 
 interface GetControlElementsOptions {
   IncrementButton: React.ReactNode;
@@ -41,31 +41,31 @@ function getControlElements({
       break;
     case 'split':
       startControls = (
-        <Adornment slotName="controls" position="start" {...controlProps}>
+        <NumberFieldControlsSlot position="start" {...controlProps}>
           {DecrementButton}
-        </Adornment>
+        </NumberFieldControlsSlot>
       );
       endControls = (
-        <Adornment slotName="controls" position="end" {...controlProps}>
+        <NumberFieldControlsSlot position="end" {...controlProps}>
           {IncrementButton}
-        </Adornment>
+        </NumberFieldControlsSlot>
       );
       break;
     case 'stacked':
       endControls = (
-        <Adornment slotName="controls" position="end" {...controlProps}>
+        <NumberFieldControlsSlot position="end" {...controlProps}>
           {IncrementButton}
           {DecrementButton}
-        </Adornment>
+        </NumberFieldControlsSlot>
       );
       break;
     case 'end':
     default:
       endControls = (
-        <Adornment slotName="controls" position="end" {...controlProps}>
+        <NumberFieldControlsSlot position="end" {...controlProps}>
           {DecrementButton}
           {IncrementButton}
-        </Adornment>
+        </NumberFieldControlsSlot>
       );
   }
 

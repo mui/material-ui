@@ -114,10 +114,7 @@ Its position is independent of `controlsPosition`.
 
 {{"component": "file://./demos/scrub-area-placement/index.ts"}}
 
-Use `slots.scrubAreaAdornment` or `slotProps.scrubAreaAdornment` to customize the InputAdornment around the handle.
-Slot-prop callbacks receive `ownerState.position` (`'start'` or `'end'`).
-
-Material slot-prop callbacks also receive the live boolean `ownerState.scrubbing`.
+Slot-prop callbacks receive the live boolean `ownerState.scrubbing`.
 The root has the `MuiNumberField-scrubbing` class while the user drags the handle.
 
 ### Direction and sensitivity
@@ -133,17 +130,18 @@ Use `slotProps.scrubArea.teleportDistance` to set how far the cursor can move fr
 
 Use `slotProps.scrubArea` to customize the handle and `slotProps.scrubAreaCursor` to customize the cursor displayed during dragging.
 Both slots support custom content through `children` and styles through `sx`.
+The example uses `ownerState.scrubbing` in `slotProps.scrubArea` to highlight the handle during a drag.
 The custom cursor appears during mouse dragging when pointer lock is available.
 It is not shown in Safari or during touch interactions.
 
 {{"component": "file://./demos/scrub-area-customization/index.ts"}}
 
-The example also styles `scrubAreaAdornment`, the wrapper around the handle, using the live `ownerState.scrubbing` flag.
-
 ## Input adornments
 
-Use `slotProps.input` to add an [`InputAdornment`](/material-ui/api/input-adornment/) alongside the built-in controls.
-This example adds a button to clear the value.
+Use `startAdornment` or `endAdornment` to place text, an icon, or a button next to the input.
+Pass the content directly, as in `startAdornment="$"` and `endAdornment="/hr"` for an hourly rate.
+When the same side also has a scrub handle or stepper buttons, the adornment sits closest to the input.
+Adornments sit outside the editable value. To format the value itself according to the locale, use the [`format` prop](#formatting-and-localization).
 
 {{"component": "file://./demos/adornments/index.ts"}}
 
@@ -180,7 +178,7 @@ The example below uses a controlled value and restores it in `onReset` so the Re
 ## Controlling the input
 
 Use `slotProps.htmlInput` for native input attributes, event handlers, and refs.
-Use `slotProps.input` for Material input customization, such as adornments, wrapper styles, or the outlined variant's `notchedOutline` slot.
+Use `slotProps.input` to customize the Material input wrapper, such as its styles or the outlined variant's `notchedOutline` slot.
 NumberField displays its formatted value in a single-line text input.
 Set `value` or `defaultValue` on NumberField itself.
 
@@ -265,9 +263,10 @@ The following shows its slots with a scrub handle at the start and controls at t
 root (FormControl)
 ├── inputLabel (InputLabel, optional)
 ├── input (OutlinedInput, FilledInput, or Input)
-│   ├── scrubAreaAdornment (InputAdornment, optional)
-│   │   └── scrubArea (span)
+│   ├── scrubArea (span, optional)
+│   ├── startAdornment content (InputAdornment, optional)
 │   ├── htmlInput (input)
+│   ├── endAdornment content (InputAdornment, optional)
 │   └── controls (InputAdornment, optional)
 │       ├── decrementButton (IconButton)
 │       └── incrementButton (IconButton)

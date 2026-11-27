@@ -21,6 +21,9 @@
       "description": "The initial numeric value for an uncontrolled field. Omit this prop to start with an empty field. Use <code>value</code> for a controlled field."
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "endAdornment": {
+      "description": "Content displayed immediately after the input, such as a unit or a clear button."
+    },
     "error": { "description": "If <code>true</code>, the field is displayed in an error state." },
     "form": {
       "description": "The <code>id</code> of the form that owns the field. Use this prop when the field is rendered outside the form."
@@ -102,6 +105,9 @@
     "snapOnStep": {
       "description": "If <code>true</code>, stepping snaps the value to intervals starting at <code>min</code>, or <code>0</code> if <code>min</code> is omitted. Modifier keys use the corresponding <code>smallStep</code> or <code>largeStep</code> intervals."
     },
+    "startAdornment": {
+      "description": "Content displayed immediately before the input, such as a currency symbol."
+    },
     "step": {
       "description": "The amount to increment or decrement with the buttons, arrow keys, mouse wheel, or scrub area. Set <code>min</code> explicitly to enable step validation on form submission. Set to <code>&quot;any&quot;</code> to disable step validation; interactive stepping then uses <code>1</code>, while the Alt and Shift keys still use <code>smallStep</code> and <code>largeStep</code>."
     },
@@ -113,7 +119,16 @@
     },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "endAdornment": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the wrapper around the end adornment content"
+    },
+    "startAdornment": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the wrapper around the start adornment content"
+    }
+  },
   "slotDescriptions": {
     "controls": "The component that renders each group of stepper buttons.",
     "decrementButton": "The component that renders the decrement button.",
@@ -124,7 +139,6 @@
     "inputLabel": "The component that renders the input&#39;s label.",
     "root": "The component that renders the root. While scrubbing, the root has the <code>MuiNumberField-scrubbing</code> class. Use <code>&amp;.MuiNumberField-scrubbing</code> in <code>styleOverrides.root</code> to style that state.",
     "scrubArea": "The component that renders the drag handle for adjusting the value.",
-    "scrubAreaAdornment": "The component that wraps the scrub area in an input adornment.",
     "scrubAreaCursor": "The component that renders the custom cursor while dragging the scrub area."
   }
 }

@@ -15,10 +15,12 @@ import OutlinedInput from '../OutlinedInput';
 import type { OutlinedInputProps } from '../OutlinedInput';
 import FilledInput from '../FilledInput';
 import Input from '../Input';
+import InputAdornment from '../InputAdornment';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputBaseClasses from '../InputBase/inputBaseClasses';
 import NumberFieldScrubAreaSlot from './NumberFieldScrubAreaSlot';
-import { getControlElements } from './utils';
+import { getControlElements, isRenderableNode } from './utils';
+import filledSplitEndAdornmentOffset from './utils/filledSplitEndAdornmentOffset';
 import type { ResolvedInputSlotProps } from './utils/resolveInputProps';
 import IconButton from '../IconButton';
 import type { IconButtonProps } from '../IconButton';
@@ -42,11 +44,20 @@ interface NumberFieldInputProps {
   externalForwardedProps: {
     slots: NonNullable<NumberFieldProps['slots']>;
     slotProps: Omit<NumberFieldSlotProps, 'input'> & {
-      // NumberField resolves this shared callback before passing props to the adapters.
       input?: ResolvedInputSlotProps | undefined;
     };
   };
 }
+
+const NumberFieldStartAdornment = styled(InputAdornment, {
+  name: 'MuiNumberField',
+  slot: 'startAdornment',
+})<{ ownerState: NumberFieldOwnerState }>({});
+
+const NumberFieldEndAdornment = styled(InputAdornment, {
+  name: 'MuiNumberField',
+  slot: 'endAdornment',
+})<{ ownerState: NumberFieldOwnerState }>({ variants: [filledSplitEndAdornmentOffset] });
 
 const inputStyles = {
   variants: [
@@ -250,7 +261,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     ...restIncrementButtonProps
   } = incrementButtonProps as NumberFieldButtonSlotProps;
 
-  const scrubAreaAdornment = ownerState.scrubAreaPosition !== false && (
+  const scrubArea = ownerState.scrubAreaPosition !== false && (
     <NumberFieldScrubAreaSlot
       position={ownerState.scrubAreaPosition}
       baseState={baseState}
@@ -295,8 +306,24 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     />
   );
 
-  const consumerStartAdornment = materialInputProps.startAdornment;
-  const consumerEndAdornment = materialInputProps.endAdornment;
+  const consumerStartAdornment = isRenderableNode(ownerState.startAdornment) && (
+    <NumberFieldStartAdornment
+      position="start"
+      className={classes.startAdornment}
+      ownerState={ownerState}
+    >
+      {ownerState.startAdornment}
+    </NumberFieldStartAdornment>
+  );
+  const consumerEndAdornment = isRenderableNode(ownerState.endAdornment) && (
+    <NumberFieldEndAdornment
+      position="end"
+      className={classes.endAdornment}
+      ownerState={ownerState}
+    >
+      {ownerState.endAdornment}
+    </NumberFieldEndAdornment>
+  );
 
   const { startControls, endControls } = getControlElements({
     IncrementButton: incrementButton,
@@ -307,8 +334,8 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
     externalForwardedProps,
   });
 
-  const startScrubArea = ownerState.scrubAreaPosition === 'start' && scrubAreaAdornment;
-  const endScrubArea = ownerState.scrubAreaPosition === 'end' && scrubAreaAdornment;
+  const startScrubArea = ownerState.scrubAreaPosition === 'start' && scrubArea;
+  const endScrubArea = ownerState.scrubAreaPosition === 'end' && scrubArea;
 
   // Keep the consumer adornment mounted when controls move. An empty fragment would shrink the label.
   const startAdornment =
@@ -318,9 +345,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
         {startScrubArea}
         {consumerStartAdornment}
       </React.Fragment>
-    ) : (
-      consumerStartAdornment
-    );
+    ) : null;
   const endAdornment =
     endControls || endScrubArea || consumerEndAdornment ? (
       <React.Fragment>
@@ -328,9 +353,7 @@ function NumberFieldInputSlot(props: NumberFieldInputProps) {
         {endScrubArea}
         {endControls}
       </React.Fragment>
-    ) : (
-      consumerEndAdornment
-    );
+    ) : null;
 
   // Keep Material styling and native behavior aligned with Base UI's resolved state.
   const inputStateProps = {

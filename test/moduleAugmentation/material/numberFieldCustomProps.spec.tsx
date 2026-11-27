@@ -38,9 +38,6 @@ declare module '@mui/material/NumberField' {
   interface NumberFieldScrubAreaSlotPropsOverrides {
     customScrubProp?: 'area';
   }
-  interface NumberFieldScrubAreaAdornmentSlotPropsOverrides {
-    customAdornmentProp?: 'adornment';
-  }
   interface NumberFieldScrubAreaCursorSlotPropsOverrides {
     customCursorProp?: 'cursor';
   }
@@ -84,11 +81,6 @@ declare module '@mui/material/FormControl' {
       render: <button type="button" aria-label="Decrease" />,
     }),
     scrubArea: { customScrubProp: 'area', render: <div />, sx: { padding: 1 } },
-    scrubAreaAdornment: ({ position }) => ({
-      customAdornmentProp: 'adornment',
-      title: position,
-      render: <section />,
-    }),
     scrubAreaCursor: { customCursorProp: 'cursor', render: <div />, sx: { color: 'red' } },
   }}
 />;
@@ -97,8 +89,6 @@ declare module '@mui/material/FormControl' {
 <NumberField slotProps={{ input: { customInputProp: 1 } }} />;
 // @ts-expect-error Controls slot extensions retain their declared value types.
 <NumberField slotProps={{ controls: { customControlsProp: 'other' } }} />;
-// @ts-expect-error Adornment slot extensions retain their declared value types.
-<NumberField slotProps={{ scrubAreaAdornment: { customAdornmentProp: 'other' } }} />;
 // @ts-expect-error Native slot extensions retain their declared value types.
 <NumberField slotProps={{ htmlInput: { customNativeProp: 'other' } }} />;
 // @ts-expect-error Increment and decrement extensions remain independent.
@@ -124,7 +114,7 @@ createTheme({
         inputLabel: { paddingTop: 7 },
         formHelperText: { marginLeft: 9 },
         controls: { gap: 2 },
-        scrubAreaAdornment: { gap: 2 },
+        scrubArea: { padding: 2 },
         incrementButton: { padding: 1 },
         decrementButton: { padding: 1 },
       },

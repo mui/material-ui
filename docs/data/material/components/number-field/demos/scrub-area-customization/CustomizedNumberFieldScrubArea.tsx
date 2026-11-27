@@ -10,18 +10,13 @@ export default function CustomizedNumberFieldScrubArea() {
       defaultValue={5}
       scrubAreaPosition="start"
       slotProps={{
-        scrubAreaAdornment: ({ scrubbing }) => ({
-          sx: {
-            borderRadius: 1,
-            bgcolor: scrubbing ? 'action.selected' : 'transparent',
-          },
-        }),
-        scrubArea: {
+        scrubArea: ({ scrubbing }) => ({
           children: <DragIndicatorIcon fontSize="small" />,
           sx: {
             color: 'primary.main',
+            bgcolor: scrubbing ? 'action.selected' : 'transparent',
           },
-        },
+        }),
         scrubAreaCursor: {
           children: <SwapHorizIcon fontSize="small" />,
           sx: {

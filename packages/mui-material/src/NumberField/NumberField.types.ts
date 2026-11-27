@@ -78,11 +78,6 @@ export interface NumberFieldSlots {
    */
   scrubArea: React.ElementType;
   /**
-   * The component that wraps the scrub area in an input adornment.
-   * @default InputAdornment
-   */
-  scrubAreaAdornment: React.ElementType;
-  /**
    * The component that renders the custom cursor while dragging the scrub area.
    * @default 'span'
    */
@@ -101,19 +96,12 @@ export interface NumberFieldInputLabelSlotPropsOverrides {}
 export interface NumberFieldDecrementButtonSlotPropsOverrides {}
 export interface NumberFieldIncrementButtonSlotPropsOverrides {}
 export interface NumberFieldScrubAreaSlotPropsOverrides {}
-export interface NumberFieldScrubAreaAdornmentSlotPropsOverrides {}
 export interface NumberFieldScrubAreaCursorSlotPropsOverrides {}
 
 type NumberFieldInputSlotProps<Props, Overrides> = SlotComponentProps<
   React.FunctionComponent<Props>,
   Overrides & OwnedInputProps,
   NumberFieldOwnerState
->;
-
-type NumberFieldAdornmentSlotProps<Overrides> = SlotComponentProps<
-  React.ElementType<Omit<InputAdornmentProps, 'component' | 'position'>>,
-  Overrides & Pick<useRender.ComponentProps<'div', BaseNumberField.Root.State>, 'render'>,
-  NumberFieldOwnerState & Pick<InputAdornmentProps, 'position'>
 >;
 
 export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
@@ -126,7 +114,12 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
      * With split controls, the callback receives `ownerState.position` for each side.
      * Use `render` to change the element while preserving Material styling.
      */
-    controls: NumberFieldAdornmentSlotProps<NumberFieldControlsSlotPropsOverrides>;
+    controls: SlotComponentProps<
+      React.ElementType<Omit<InputAdornmentProps, 'component' | 'position'>>,
+      NumberFieldControlsSlotPropsOverrides &
+        Pick<useRender.ComponentProps<'div', BaseNumberField.Root.State>, 'render'>,
+      NumberFieldOwnerState & Pick<InputAdornmentProps, 'position'>
+    >;
     /**
      * Props forwarded to the decrement button slot.
      * By default, the available props are based on the [IconButton](https://mui.com/material-ui/api/icon-button/#props) component.
@@ -186,6 +179,8 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
     input: NumberFieldInputSlotProps<
       Overwrite<InputPropsType, MaterialInputEvents>,
       NumberFieldInputSlotPropsOverrides & {
+        startAdornment?: undefined;
+        endAdornment?: undefined;
         multiline?: undefined;
         rows?: undefined;
         minRows?: undefined;
@@ -232,13 +227,6 @@ export type NumberFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotPro
         > & { sx?: SxProps<Theme> | undefined },
       NumberFieldOwnerState
     >;
-    /**
-     * Props forwarded to the scrub area's InputAdornment wrapper.
-     * NumberField supplies its position and scrub area content.
-     * Slot-prop callbacks receive `ownerState.position` (`'start'` or `'end'`).
-     * Use `render` to change the element while preserving Material styling.
-     */
-    scrubAreaAdornment: NumberFieldAdornmentSlotProps<NumberFieldScrubAreaAdornmentSlotPropsOverrides>;
     /**
      * Props forwarded to the custom cursor displayed while scrubbing.
      * By default, the available props are based on the native `<span>` element.
@@ -310,6 +298,10 @@ export interface BaseNumberFieldProps extends StandardProps<
    * @default false
    */
   disabled?: boolean | undefined;
+  /**
+   * Content displayed immediately after the input, such as a unit or a clear button.
+   */
+  endAdornment?: React.ReactNode | undefined;
   /**
    * If `true`, the field is displayed in an error state.
    * @default false
@@ -447,6 +439,10 @@ export interface BaseNumberFieldProps extends StandardProps<
    * @default false
    */
   snapOnStep?: BaseNumberField.Root.Props['snapOnStep'] | undefined;
+  /**
+   * Content displayed immediately before the input, such as a currency symbol.
+   */
+  startAdornment?: React.ReactNode | undefined;
   /**
    * The amount to increment or decrement with the buttons, arrow keys, mouse wheel, or scrub area.
    * Set `min` explicitly to enable step validation on form submission.

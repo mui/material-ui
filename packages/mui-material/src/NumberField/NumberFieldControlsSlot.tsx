@@ -1,15 +1,14 @@
 import * as React from 'react';
 import type { NumberField as BaseNumberField } from '@base-ui/react/number-field';
-
-import InputAdornment, { inputAdornmentClasses } from '../InputAdornment';
+import InputAdornment from '../InputAdornment';
 import type { InputAdornmentProps } from '../InputAdornment';
 import { styled } from '../zero-styled';
 import useSlot from '../utils/useSlot';
 import type { NumberFieldOwnerState, NumberFieldProps } from './NumberField.types';
+import filledSplitEndAdornmentOffset from './utils/filledSplitEndAdornmentOffset';
 import RenderElement from './RenderElement';
 
-interface NumberFieldAdornmentProps {
-  slotName: 'controls' | 'scrubAreaAdornment';
+interface NumberFieldControlsSlotProps {
   position: InputAdornmentProps['position'];
   children: React.ReactNode;
   className: string;
@@ -18,22 +17,12 @@ interface NumberFieldAdornmentProps {
   externalForwardedProps: Pick<NumberFieldProps, 'slots' | 'slotProps'>;
 }
 
-// Filled start adornments have a top offset. Match it on both end adornments in split mode.
-const splitEndAdornment = {
-  props: { controlsPosition: 'split', position: 'end' },
-  style: {
-    [`&:where(.${inputAdornmentClasses.filled}:not(.${inputAdornmentClasses.hiddenLabel}))`]: {
-      marginTop: 16,
-    },
-  },
-} as const;
-
 const NumberFieldControls = styled(InputAdornment, {
   name: 'MuiNumberField',
   slot: 'controls',
 })<{ ownerState: NumberFieldOwnerState }>({
   variants: [
-    splitEndAdornment,
+    filledSplitEndAdornmentOffset,
     {
       props: ({ ownerState }: { ownerState: NumberFieldOwnerState }) =>
         ownerState.controlsPosition === 'stacked',
@@ -54,51 +43,33 @@ const NumberFieldControls = styled(InputAdornment, {
   ],
 });
 
-const NumberFieldScrubAreaAdornment = styled(InputAdornment, {
-  name: 'MuiNumberField',
-  slot: 'scrubAreaAdornment',
-})<{ ownerState: NumberFieldOwnerState }>({ variants: [splitEndAdornment] });
-
 /**
- * Shared InputAdornment adapter for the controls and scrub area adornment slots.
- * Both use the same prop, ref, position and render handling, with separate styled roots.
- *
  * @ignore - internal component.
  */
-function NumberFieldAdornmentSlot(props: NumberFieldAdornmentProps) {
-  const {
-    slotName,
-    position,
-    children,
-    className,
-    baseState,
-    materialProps,
-    externalForwardedProps,
-  } = props;
+export default function NumberFieldControlsSlot(props: NumberFieldControlsSlotProps) {
+  const { position, children, className, baseState, materialProps, externalForwardedProps } = props;
   const ownerState = { ...materialProps, position };
-  const [AdornmentSlot, adornmentSlotProps] = useSlot(slotName, {
-    elementType: slotName === 'controls' ? NumberFieldControls : NumberFieldScrubAreaAdornment,
+  const [ControlsSlot, controlsSlotProps] = useSlot('controls', {
+    elementType: NumberFieldControls,
     externalForwardedProps,
     ownerState,
     className,
     additionalProps: { position },
   });
-  const { render, ...adornmentProps } = adornmentSlotProps;
+  const { render, ...controlsProps } = controlsSlotProps;
 
   return (
-    <AdornmentSlot
-      {...adornmentProps}
+    <ControlsSlot
+      {...controlsProps}
       position={position}
       {...(render &&
-        !externalForwardedProps.slots?.[slotName] && {
+        !externalForwardedProps.slots?.controls && {
           component: RenderElement,
           render,
           renderState: baseState,
         })}
     >
       {children}
-    </AdornmentSlot>
+    </ControlsSlot>
   );
 }
-
-export default NumberFieldAdornmentSlot;

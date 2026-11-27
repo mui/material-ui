@@ -14,6 +14,7 @@ import InputLabel from '../InputLabel';
 import type { InputLabelProps } from '../InputLabel';
 import FormHelperText from '../FormHelperText';
 import RenderElement from './RenderElement';
+import { isRenderableNode } from './utils';
 
 interface NumberFieldRootProps {
   baseProps: HTMLProps;
@@ -107,15 +108,10 @@ const NumberFieldRootSlot = React.forwardRef(
     const { render: formHelperTextRender, ...formHelperTextProps } = formHelperTextSlotProps;
 
     // FormControl needs the adornment before effects run to initialize label shrink.
-    const resolvedInputSlotProps = externalForwardedProps.slotProps?.input;
-    const startAdornment =
-      resolvedInputSlotProps && 'startAdornment' in resolvedInputSlotProps
-        ? resolvedInputSlotProps.startAdornment
-        : undefined;
     const adornedStart =
       ownerState.controlsPosition === 'split' ||
       ownerState.scrubAreaPosition === 'start' ||
-      Boolean(startAdornment);
+      isRenderableNode(ownerState.startAdornment);
 
     return (
       <RootSlot {...rootProps} disabled={ownerState.disabled} required={ownerState.required}>

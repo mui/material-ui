@@ -39,6 +39,7 @@ const NumberField = React.forwardRef(function NumberField(
     controlsPosition = 'end',
     defaultValue,
     disabled = false,
+    endAdornment,
     error = false,
     form,
     format,
@@ -67,6 +68,7 @@ const NumberField = React.forwardRef(function NumberField(
     smallStep,
     step,
     snapOnStep = false,
+    startAdornment,
     value,
     variant = 'outlined',
     ...other
@@ -96,6 +98,7 @@ const NumberField = React.forwardRef(function NumberField(
     color,
     controlsPosition,
     disabled,
+    endAdornment,
     error,
     fullWidth,
     id,
@@ -106,6 +109,7 @@ const NumberField = React.forwardRef(function NumberField(
     scrubAreaPosition,
     size,
     snapOnStep,
+    startAdornment,
     variant,
   };
 
@@ -270,6 +274,10 @@ NumberField.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * Content displayed immediately after the input, such as a unit or a clear button.
+   */
+  endAdornment: PropTypes.node,
+  /**
    * If `true`, the field is displayed in an error state.
    * @default false
    */
@@ -421,7 +429,6 @@ NumberField.propTypes /* remove-proptypes */ = {
       inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       scrubArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      scrubAreaAdornment: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       scrubAreaCursor: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     }),
   /**
@@ -438,7 +445,6 @@ NumberField.propTypes /* remove-proptypes */ = {
     inputLabel: PropTypes.elementType,
     root: PropTypes.elementType,
     scrubArea: PropTypes.elementType,
-    scrubAreaAdornment: PropTypes.elementType,
     scrubAreaCursor: PropTypes.elementType,
   }),
   /**
@@ -452,6 +458,10 @@ NumberField.propTypes /* remove-proptypes */ = {
    * @default false
    */
   snapOnStep: PropTypes.bool,
+  /**
+   * Content displayed immediately before the input, such as a currency symbol.
+   */
+  startAdornment: PropTypes.node,
   /**
    * The amount to increment or decrement with the buttons, arrow keys, mouse wheel, or scrub area.
    * Set `min` explicitly to enable step validation on form submission.
