@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { NativeCodeSource } from '@mui/internal-docs-infra/NativeCodeSource';
 import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
 import type { ContentFrameProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import type { DemoOptions } from './DemoContent';
@@ -41,7 +42,13 @@ const FrameView = React.memo(function FrameView({
 
 export default function DemoContentFrame(props: DemoFrameProps) {
   const [frame] = React.useState(createFrameStore);
-  const loading = useDemoLoading(props, useCodeFallback(props));
+
+  const loading = useDemoLoading(
+    props,
+    useCodeFallback(props, {
+      SourceComponent: props.hideToolbar || props.disableLiveEdit ? undefined : NativeCodeSource,
+    }),
+  );
 
   // Only the view subscribes; chrome updates must not rerender their publisher.
   return (

@@ -20,7 +20,7 @@ export function useDemoLoading(
   props: DemoContentLoadingProps,
   fallback: UseCodeFallbackResult,
 ): DemoContainerProps {
-  const { code: fallbackCode, focusedLines = 0, collapsible = false } = fallback;
+  const { code: fallbackCode, selectedFile, focusedLines = 0, collapsible = false } = fallback;
   const {
     hideToolbar,
     initialExpanded,
@@ -111,11 +111,16 @@ export function useDemoLoading(
 
     const tabs = expanded && fileCount > 1 ? <DemoFileTabBarSkeleton aria-hidden /> : null;
 
-    const code = fallbackCode ? (
-      <CodeSource expanded={expanded}>
-        <pre>{fallbackCode}</pre>
-      </CodeSource>
-    ) : null;
+    const code =
+      selectedFile || fallbackCode ? (
+        <CodeSource expanded={expanded}>
+          {selectedFile ? (
+            React.cloneElement(selectedFile, { expanded })
+          ) : (
+            <pre>{fallbackCode}</pre>
+          )}
+        </CodeSource>
+      ) : null;
 
     return {
       anchorId,
@@ -155,6 +160,7 @@ export function useDemoLoading(
     rootFileName,
     fileCount,
     fallbackCode,
+    selectedFile,
     sourceVisible,
     sourceAnchorIds,
   ]);

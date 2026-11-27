@@ -15,7 +15,6 @@ import { DemoAnchorLink, DemoFileTabBar } from './DemoContainer';
 import { DemoFrameContent } from './DemoFrameContext';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 import { CodeSource, FileTab } from './CodeSource';
-import { useIdleEditor } from './useIdleEditor';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
 import {
   createDemoUseOptions,
@@ -184,10 +183,6 @@ export default function DemoContent(props: DemoContentProps) {
       exportConfig,
     }),
   );
-
-  const [sourceElement, setSourceElement] = React.useState<HTMLDivElement | null>(null);
-
-  useIdleEditor(sourceElement, demo.prepareEditor, demo.editable ? 'idle' : 'disabled');
 
   useTypescriptRef.current = demo.selectedTransform !== 'js';
   const [previewEpoch, remountPreview] = React.useReducer((epoch: number) => epoch + 1, 0);
@@ -459,38 +454,27 @@ export default function DemoContent(props: DemoContentProps) {
 
   const tabs =
     hasMultipleFiles && demo.expanded ? (
-      <DemoFileTabBar activateOnFocus>
-        {demo.files.map((file) => (
-          <FileTab key={file.name} value={file.name}>
-            {file.name}
-          </FileTab>
-        ))}
-      </DemoFileTabBar>
+      <Tabs.Root
+        value={demo.selectedFileName}
+        onValueChange={(value) => {
+          if (typeof value === 'string') {
+            demo.selectFileName(value);
+          }
+        }}
+      >
+        <DemoFileTabBar activateOnFocus>
+          {demo.files.map((file) => (
+            <FileTab key={file.name} value={file.name}>
+              {file.name}
+            </FileTab>
+          ))}
+        </DemoFileTabBar>
+      </Tabs.Root>
     ) : null;
 
   const code = hideToolbar ? null : (
-    <CodeSource ref={setSourceElement} expanded={demo.expanded}>
-      {demo.selectedFile}
-    </CodeSource>
+    <CodeSource expanded={demo.expanded}>{demo.selectedFile}</CodeSource>
   );
-
-  // When the demo has multiple files, wrap the tabs + code region in a
-  // `Tabs.Root` so the `Tabs.List` / `Tabs.Tab` parts wired through
-  // `DemoFileTabBar` / `FileTab` get their shared state.
-  const renderTabsAndCode = hasMultipleFiles
-    ? (children: React.ReactNode) => (
-        <Tabs.Root
-          value={demo.selectedFileName}
-          onValueChange={(value) => {
-            if (typeof value === 'string') {
-              demo.selectFileName(value);
-            }
-          }}
-        >
-          {children}
-        </Tabs.Root>
-      )
-    : undefined;
 
   const afterCode = hideToolbar ? null : (
     <React.Fragment>
@@ -537,7 +521,6 @@ export default function DemoContent(props: DemoContentProps) {
       code={code}
       codeId={demoSourceId}
       afterCode={afterCode}
-      renderTabsAndCode={renderTabsAndCode}
     />
   );
 }

@@ -1,5 +1,6 @@
 import type { UseDemoOpts } from '@mui/internal-docs-infra/useDemo';
 import type { Code } from '@mui/internal-docs-infra/CodeHighlighter/types';
+import { NativeCodeSource } from '@mui/internal-docs-infra/NativeCodeSource';
 import type { buildExportConfig } from './exportConfig';
 import { codeSandboxTsconfigOverride } from './exportConfig';
 
@@ -22,6 +23,7 @@ export function createDemoUseOptions({
     export: exportConfig,
     exportCodeSandbox: codeSandboxTsconfigOverride,
     disabled: disableLiveEdit,
+    SourceComponent: disableLiveEdit ? undefined : NativeCodeSource,
     actionSource: 'initial',
     selectedTransform,
     onSelectedTransformChange,

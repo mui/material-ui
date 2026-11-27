@@ -137,20 +137,19 @@ describe.skipIf(isJsdom())('DemoContent source visibility', () => {
     };
   });
 
-  it('prepares visible source without focusing or remounting the preview', async () => {
+  it('renders a ready source input without focusing or remounting the preview', async () => {
     const { container } = render(<Demo initialView="expanded" />);
     const preview = screen.getByRole('button', { name: 'Count 0' });
+    const editor = screen.getByRole('textbox');
+
+    expect(editor).not.toBe(document.activeElement);
 
     // eslint-disable-next-line testing-library/no-unnecessary-act -- Vitest browser actions do not wrap React updates.
     await act(async () => {
       await userEvent.click(preview);
     });
 
-    expect(container.querySelector('textarea')).toBeNull();
-    const focusBefore = document.activeElement;
-    const editor = await screen.findByRole('textbox', {}, { timeout: 10000 });
-
-    expect(document.activeElement).toBe(focusBefore);
+    expect(container.querySelector('textarea')).toBe(editor);
     expect(screen.getByRole('button', { name: 'Count 1' })).toBe(preview);
     expect(editor).not.toBe(document.activeElement);
   });
