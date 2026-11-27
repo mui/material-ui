@@ -124,7 +124,11 @@ export default async function create(
       ],
       server: {
         deps: {
-          inline: ['@mui/internal-test-utils'],
+          inline: [
+            '@mui/internal-test-utils',
+            // React 17 has no `exports` map, so Node cannot resolve `react/jsx-runtime` from Base UI's ESM.
+            ...(REACT_MAJOR < 18 ? ['@base-ui/react', '@base-ui/utils'] : []),
+          ],
         },
       },
       environment: jsdom ? 'jsdom' : 'node',

@@ -1,0 +1,363 @@
+'use client';
+import * as React from 'react';
+import clsx from 'clsx';
+import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import type { SxProps } from '@mui/system';
+import { mergeProps } from '@base-ui/react/merge-props';
+import type { ComponentRenderFn, HTMLProps } from '@base-ui/react/types';
+import type { Theme } from '../styles';
+import mergeSlotProps from '../utils/mergeSlotProps';
+import useSlot from '../utils/useSlot';
+import type { Menu2RootSlotProps, Menu2RootSlots, StateClassName } from './menu2Utils';
+import {
+  getMenu2RootRender,
+  mergeStateClassName,
+  suppressButtonBaseKeyboardActivation,
+} from './menu2Utils';
+
+export interface Menu2ItemRootSlotProps<OwnerState extends object, RenderState extends object> {
+  /**
+   * The props that Base UI passes to the `render` function of the item.
+   */
+  baseProps: HTMLProps;
+  /**
+   * The owner state, merged with the live Base UI state.
+   */
+  ownerState: OwnerState;
+  /**
+   * The styled default root.
+   */
+  elementType: React.ElementType;
+  /**
+   * The element that the default root renders when `component` is not set.
+   * @default 'div'
+   */
+  defaultComponent?: React.ElementType | undefined;
+  component?: React.ElementType | undefined;
+  disableRipple?: boolean | undefined;
+  internalRender?:
+    React.ReactElement | ComponentRenderFn<Omit<HTMLProps, 'color'>, RenderState> | undefined;
+  /**
+   * The Base UI state that `render` receives.
+   */
+  internalRenderState?: RenderState | undefined;
+  nativeButton?: boolean | undefined;
+  slots?: Menu2RootSlots | undefined;
+  slotProps?: Menu2RootSlotProps<OwnerState, 'a' | 'div'> | undefined;
+  sx?: SxProps<Theme> | undefined;
+  startIndicator?: React.ReactNode;
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
+  endIndicator?: React.ReactNode;
+}
+
+// Resolve root slots with live Base UI state, like the default root styles.
+export function Menu2ItemRootSlot<OwnerState extends object, RenderState extends object>(
+  props: Menu2ItemRootSlotProps<OwnerState, RenderState>,
+) {
+  const {
+    baseProps,
+    component,
+    defaultComponent = 'div',
+    disableRipple,
+    elementType,
+    endAdornment,
+    endIndicator,
+    internalRender,
+    internalRenderState,
+    nativeButton,
+    ownerState,
+    slotProps,
+    slots,
+    startAdornment,
+    startIndicator,
+    sx,
+  } = props;
+  const rootSlotProps = mergeSlotProps(resolveComponentProps(slotProps?.root, ownerState), { sx });
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType,
+    externalForwardedProps: { slots, slotProps: { root: rootSlotProps } },
+    ownerState,
+    className: undefined,
+    ref: null,
+    // Base UI lets an external handler cancel its internal handler.
+    getSlotProps: (handlers): HTMLProps => mergeProps(baseProps, handlers),
+    // Only the default root uses ButtonBase and the Material render adapter.
+    internalForwardedProps: {
+      component: component ?? defaultComponent,
+      ...(internalRender && { internalRender, internalRenderState }),
+      // Leave the ButtonBase theme default intact when the prop is omitted.
+      ...(disableRipple !== undefined && { disableRipple }),
+      ...(nativeButton !== undefined && { nativeButton }),
+    },
+  });
+
+  return getMenu2RootRender(RootSlot, ownerState, {
+    ...rootProps,
+    // Base UI owns the Enter and Space activation of the item.
+    ...suppressButtonBaseKeyboardActivation(rootProps),
+    children: (
+      <React.Fragment>
+        {startIndicator}
+        {startAdornment}
+        {rootProps.children}
+        {endAdornment}
+        {endIndicator}
+      </React.Fragment>
+    ),
+  });
+}
+
+export function getMenu2ItemOwnerState(
+  props: Menu2ItemVisualProps<unknown> & {
+    checked?: boolean | undefined;
+    disabled?: boolean | undefined;
+  },
+): Menu2ItemBaseOwnerState {
+  return {
+    checked: props.checked,
+    disabled: props.disabled ?? false,
+    divider: props.divider ?? false,
+    disableGutters: props.disableGutters ?? false,
+    inset: props.inset ?? false,
+  };
+}
+
+function hasAdornment(node: React.ReactNode) {
+  return node != null && typeof node !== 'boolean' && node !== '';
+}
+
+export interface Menu2ItemAdornmentOptions<OwnerState> {
+  startAdornment: React.ReactNode;
+  endAdornment: React.ReactNode;
+  inset: boolean;
+  classes: { startAdornment?: string | undefined; endAdornment?: string | undefined };
+  ownerState: OwnerState;
+  StartAdornment: React.ElementType;
+  EndAdornment: React.ElementType;
+}
+
+// `inset` renders an empty start adornment to keep the column.
+export function getMenu2ItemAdornments<OwnerState>(options: Menu2ItemAdornmentOptions<OwnerState>) {
+  const { classes, endAdornment, EndAdornment, inset, ownerState, startAdornment, StartAdornment } =
+    options;
+  const hasStartAdornment = hasAdornment(startAdornment);
+
+  return {
+    startAdornment:
+      hasStartAdornment || inset ? (
+        <StartAdornment className={classes.startAdornment} ownerState={ownerState}>
+          {hasStartAdornment ? startAdornment : null}
+        </StartAdornment>
+      ) : null,
+    endAdornment: hasAdornment(endAdornment) ? (
+      <EndAdornment className={classes.endAdornment} ownerState={ownerState}>
+        {endAdornment}
+      </EndAdornment>
+    ) : null,
+  };
+}
+
+export function useMenu2ItemUtilityClasses<Classes extends object>(
+  ownerState: Omit<Menu2ItemBaseOwnerState, 'disabled' | 'inset'> & {
+    disabled?: boolean | undefined;
+    inset?: boolean | undefined;
+    classes?: Partial<Classes> | undefined;
+    checked?: boolean | undefined;
+    open?: boolean | undefined;
+  },
+  getUtilityClass: (slot: string) => string,
+) {
+  const { disabled, divider, disableGutters, inset, checked, open, classes } = ownerState;
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      !disableGutters && 'gutters',
+      divider && 'divider',
+      inset && 'inset',
+      checked && 'checked',
+      open && 'open',
+    ],
+    highlighted: ['highlighted'],
+    disabled: ['disabled'],
+    startAdornment: ['startAdornment'],
+    endAdornment: ['endAdornment'],
+    checked: ['checked'],
+    open: ['open'],
+  };
+
+  return {
+    ...classes,
+    ...composeClasses(slots, getUtilityClass, classes as Record<string, string> | undefined),
+  } as Classes;
+}
+
+export function getMenu2ItemClassName<State extends Menu2BaseItemState>(
+  classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
+  ownerState: Partial<Menu2ItemBaseOwnerState>,
+  state: State,
+) {
+  return clsx(
+    classes.root,
+    state.highlighted && classes.highlighted,
+    state.disabled && !ownerState.disabled && classes.disabled,
+  );
+}
+
+export function mergeMenu2ItemClassName<State extends Menu2BaseItemState>(
+  className: StateClassName<State>,
+  classes: Partial<Record<'root' | 'highlighted' | 'disabled', string>>,
+  ownerState: Partial<Menu2ItemBaseOwnerState>,
+) {
+  return mergeStateClassName(className, (state) =>
+    getMenu2ItemClassName(classes, ownerState, state),
+  );
+}
+
+// The owner state from the props. Each part adds the live Base UI state.
+export interface Menu2ItemBaseOwnerState {
+  checked?: boolean | undefined;
+  disabled: boolean;
+  divider: boolean;
+  disableGutters: boolean;
+  inset: boolean;
+}
+
+export interface Menu2ItemVisualProps<Classes, Slots = never, SlotProps = never> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<Classes> | undefined;
+  /**
+   * The components used for each slot inside.
+   */
+  slots?: Slots | undefined;
+  /**
+   * The props used for each slot inside.
+   */
+  slotProps?: SlotProps | undefined;
+  /**
+   * If `true`, the left and right padding is removed.
+   * @default false
+   */
+  disableGutters?: boolean | undefined;
+  /**
+   * If `true`, a 1px light border is added to the bottom of the menu item.
+   * @default false
+   */
+  divider?: boolean | undefined;
+  /**
+   * Content after the label, such as a keyboard shortcut.
+   */
+  endAdornment?: React.ReactNode;
+  /**
+   * If `true`, the item keeps an empty start adornment column.
+   * Its label then aligns with the labels of items that have a start adornment.
+   * It has no effect when `startAdornment` is set.
+   * @default false
+   */
+  inset?: boolean | undefined;
+  /**
+   * Content before the label, such as an icon.
+   */
+  startAdornment?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme> | undefined;
+}
+
+export interface Menu2ItemBaseProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Whether the component renders a native `<button>` element.
+   * Inferred from a button element passed to `render`.
+   * Set to `true` for a custom component or render function that returns a button.
+   */
+  nativeButton?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default true
+   */
+  closeOnClick?: boolean | undefined;
+}
+
+export interface Menu2LinkItemBaseProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * The URL that the link item points to.
+   */
+  href?: string | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * Whether to close the menu when the item is clicked.
+   * @default false
+   */
+  closeOnClick?: boolean | undefined;
+}
+
+export interface Menu2SubmenuTriggerBaseProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the component should ignore user interaction.
+   * @default false
+   */
+  disabled?: boolean | undefined;
+  /**
+   * Whether the component renders a native `<button>` element.
+   * Inferred from a button element passed to `render`.
+   * Set to `true` for a custom component or render function that returns a button.
+   */
+  nativeButton?: boolean | undefined;
+  /**
+   * Overrides the text label to use when the item is matched during keyboard text navigation.
+   */
+  label?: string | undefined;
+  /**
+   * How long to wait before the submenu may be opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 100
+   */
+  delay?: number | undefined;
+  /**
+   * How long to wait before closing the submenu that was opened on hover, in milliseconds.
+   *
+   * Requires the `openOnHover` prop.
+   * @default 0
+   */
+  closeDelay?: number | undefined;
+  /**
+   * Whether the submenu should also open when the trigger is hovered.
+   * @default true
+   */
+  openOnHover?: boolean | undefined;
+}
+
+export interface Menu2BaseItemState {
+  disabled?: boolean | undefined;
+  highlighted?: boolean | undefined;
+}

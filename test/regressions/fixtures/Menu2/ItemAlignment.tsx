@@ -1,0 +1,198 @@
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import * as React from 'react';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import { prefixer } from 'stylis';
+import { StyleSheetManager } from 'styled-components';
+import rtlPlugin from '@mui/stylis-plugin-rtl';
+import FormatPaintIcon from '@mui/icons-material/FormatPaint';
+import Box from '@mui/material/Box';
+import { listItemIconClasses } from '@mui/material/ListItemIcon';
+import Typography from '@mui/material/Typography';
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const cacheRtl = createCache({
+  key: 'menu2-rtl',
+  stylisPlugins: [prefixer, rtlPlugin],
+});
+
+const wideIndicator = (
+  <svg width="56" height="20" viewBox="0 0 56 20" aria-hidden="true">
+    <rect width="56" height="20" rx="3" fill="currentColor" />
+  </svg>
+);
+
+interface MixedMenuProps {
+  direction: 'ltr' | 'rtl';
+  dark: boolean;
+}
+
+function MixedMenu({ direction, dark }: MixedMenuProps) {
+  const [anchor, setAnchor] = React.useState<HTMLDivElement | null>(null);
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        direction,
+        spacing: dark ? 12 : 8,
+        palette: { mode: dark ? 'dark' : 'light' },
+      }),
+    [direction, dark],
+  );
+
+  const menu = (
+    <ThemeProvider theme={theme}>
+      <Box
+        ref={setContainer}
+        dir={direction}
+        sx={{ width: 240, height: 440, bgcolor: 'background.default', color: 'text.primary' }}
+      >
+        <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
+          {direction.toUpperCase()} / {dark ? 'dark / spacing 12' : 'light'}
+        </Box>
+        <Menu2 open={Boolean(anchor && container)} modal={false}>
+          <Menu2Popup
+            anchor={anchor}
+            container={container}
+            sideOffset={8}
+            slots={{ transition: null }}
+            slotProps={{ root: { sx: { width: 224 } } }}
+          >
+            <Menu2Item startAdornment={<FormatPaintIcon fontSize="small" />}>
+              Paint format
+            </Menu2Item>
+            <Menu2CheckboxItem defaultChecked>Show labels</Menu2CheckboxItem>
+            <Menu2CheckboxItem>Show guide lines</Menu2CheckboxItem>
+            <Menu2RadioGroup defaultValue="list">
+              <Menu2RadioItem value="list">List view</Menu2RadioItem>
+              <Menu2RadioItem value="grid">Grid view</Menu2RadioItem>
+              <Menu2RadioItem value="wide" slotProps={{ indicator: { children: wideIndicator } }}>
+                <Typography variant="inherit" noWrap>
+                  Keep this wide radio indicator at its full size
+                </Typography>
+              </Menu2RadioItem>
+            </Menu2RadioGroup>
+            <Menu2Item inset>Reset layout</Menu2Item>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>More layouts</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Compact layout</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+            <Menu2CheckboxItem defaultChecked>
+              <Typography variant="inherit" noWrap>
+                Keep this long menu label on one line
+              </Typography>
+            </Menu2CheckboxItem>
+            <Menu2CheckboxItem
+              defaultChecked
+              slotProps={{ indicator: { children: wideIndicator } }}
+            >
+              <Typography variant="inherit" noWrap>
+                Keep this wide custom indicator at its full size
+              </Typography>
+            </Menu2CheckboxItem>
+          </Menu2Popup>
+        </Menu2>
+      </Box>
+    </ThemeProvider>
+  );
+
+  if (direction === 'rtl') {
+    return (
+      <StyleSheetManager stylisPlugins={[rtlPlugin]}>
+        <CacheProvider value={cacheRtl}>{menu}</CacheProvider>
+      </StyleSheetManager>
+    );
+  }
+
+  return menu;
+}
+
+const wideIconColumnStyles = { [`& .${listItemIconClasses.root}`]: { minWidth: 56 } };
+
+function WideIconColumnMenu({ direction }: Pick<MixedMenuProps, 'direction'>) {
+  const [anchor, setAnchor] = React.useState<HTMLDivElement | null>(null);
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        direction,
+        components: {
+          MuiMenu2Item: { styleOverrides: { root: wideIconColumnStyles } },
+          MuiMenu2CheckboxItem: { styleOverrides: { root: wideIconColumnStyles } },
+          MuiMenu2RadioItem: { styleOverrides: { root: wideIconColumnStyles } },
+          MuiMenu2SubmenuTrigger: { styleOverrides: { root: wideIconColumnStyles } },
+        },
+      }),
+    [direction],
+  );
+
+  const menu = (
+    <ThemeProvider theme={theme}>
+      <Box ref={setContainer} dir={direction} sx={{ width: 240, height: 220 }}>
+        <Box ref={setAnchor} sx={{ mx: '8px', pt: '8px', width: 224, typography: 'caption' }}>
+          {direction.toUpperCase()} / 56 px icon column
+        </Box>
+        <Menu2 open={Boolean(anchor && container)} modal={false}>
+          <Menu2Popup
+            anchor={anchor}
+            container={container}
+            sideOffset={8}
+            slots={{ transition: null }}
+            slotProps={{ root: { sx: { width: 224 } } }}
+          >
+            <Menu2Item startAdornment={<FormatPaintIcon fontSize="small" />}>
+              Paint format
+            </Menu2Item>
+            <Menu2CheckboxItem defaultChecked>Show labels</Menu2CheckboxItem>
+            <Menu2RadioGroup defaultValue="list">
+              <Menu2RadioItem value="list">List view</Menu2RadioItem>
+            </Menu2RadioGroup>
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger startAdornment={<FormatPaintIcon fontSize="small" />}>
+                More layouts
+              </Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Compact layout</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>
+          </Menu2Popup>
+        </Menu2>
+      </Box>
+    </ThemeProvider>
+  );
+
+  if (direction === 'rtl') {
+    return (
+      <StyleSheetManager stylisPlugins={[rtlPlugin]}>
+        <CacheProvider value={cacheRtl}>{menu}</CacheProvider>
+      </StyleSheetManager>
+    );
+  }
+
+  return menu;
+}
+
+export default function ItemAlignment() {
+  return (
+    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 240px)', width: 960 }}>
+      {(['ltr', 'rtl'] as const).flatMap((direction) =>
+        [false, true].map((dark) => (
+          <MixedMenu key={`${direction}-${dark}`} direction={direction} dark={dark} />
+        )),
+      )}
+      {(['ltr', 'rtl'] as const).map((direction) => (
+        <WideIconColumnMenu key={`wide-${direction}`} direction={direction} />
+      ))}
+    </Box>
+  );
+}

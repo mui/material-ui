@@ -66,6 +66,18 @@ import Slider from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
 import Check from '@mui/icons-material/Check';
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu2Submenu from '@mui/material/Unstable_Menu2Submenu';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 import enhanceDensity from './enhanceDensity';
@@ -129,6 +141,14 @@ const ramp = (density: Density, size: string | undefined) => {
 
 const rampToTargetSize = (density: Density, size: string | undefined) =>
   Math.max(24, ramp(density, size));
+
+const openMenu2 = (children: React.ReactNode) => (
+  <Menu2 defaultOpen modal={false}>
+    <Menu2Popup anchor={document.body} transitionDuration={0}>
+      {children}
+    </Menu2Popup>
+  </Menu2>
+);
 
 const CONTROLS: Record<string, Spec> = {
   Button: {
@@ -457,6 +477,29 @@ const CONTROLS: Record<string, Spec> = {
     selector: '.MuiListItemIcon-root',
     axis: 'minWidth',
     height: (density) => density.iconSize,
+  },
+  Menu2Item: {
+    render: () => openMenu2(<Menu2Item>Item</Menu2Item>),
+    selector: '.MuiMenu2Item-root',
+    axis: 'minHeight',
+    height: (density) => Math.max(28, density.touchTarget),
+  },
+  Menu2CheckboxItem: {
+    render: () => openMenu2(<Menu2CheckboxItem>Bold</Menu2CheckboxItem>),
+    selector: '.MuiMenu2CheckboxItem-indicator',
+    axis: 'minWidth',
+    height: (density) => density.iconSize + density.step.xSmall,
+  },
+  Menu2RadioItem: {
+    render: () =>
+      openMenu2(
+        <Menu2RadioGroup defaultValue="left">
+          <Menu2RadioItem value="left">Left</Menu2RadioItem>
+        </Menu2RadioGroup>,
+      ),
+    selector: '.MuiMenu2RadioItem-indicator',
+    axis: 'minWidth',
+    height: (density) => density.iconSize + density.step.xSmall,
   },
 };
 
@@ -1838,6 +1881,33 @@ describe.skipIf(isJsdom())('density contract', () => {
       ),
     };
 
+    test('Menu2 aligns an inset from the MuiDivider and MuiListSubheader theme defaults', () => {
+      renderIn(
+        enhanceDensity(
+          createTheme({
+            components: {
+              MuiDivider: { defaultProps: { variant: 'inset' } },
+              MuiListSubheader: { defaultProps: { inset: true } },
+            },
+          }),
+        ),
+        openMenu2(
+          <Menu2Group>
+            <Menu2GroupLabel data-testid="label">Edit</Menu2GroupLabel>
+            <Menu2Item data-testid="icon" startAdornment={<Check fontSize="small" />}>
+              Copy
+            </Menu2Item>
+            <Menu2Separator />
+          </Menu2Group>,
+        ),
+      );
+      const iconText = textBox(query('[data-testid="icon"]')).left;
+      expectNoDrift({
+        'group label': drift(textBox(query('[data-testid="label"]')).left - iconText),
+        separator: drift(rect('.MuiMenu2Separator-root').left - iconText),
+      });
+    });
+
     DENSITIES.forEach((density) => {
       test(`${density.id}: an inset divider starts where the text above it starts`, () => {
         renderIn(
@@ -1858,6 +1928,65 @@ describe.skipIf(isJsdom())('density contract', () => {
                 textBox(query('.MuiListItemText-primary', inCase(name))).left,
             ),
           ),
+        );
+      });
+
+      test(`${density.id}: Menu2 group labels, inset rows, indicators and inset separators line up`, () => {
+        renderIn(
+          THEMES[density.id],
+          openMenu2(
+            <React.Fragment>
+              <Menu2Group>
+                <Menu2GroupLabel data-testid="label">Edit</Menu2GroupLabel>
+                <Menu2Item data-testid="plain">Undo</Menu2Item>
+                <Menu2Item data-testid="icon" startAdornment={<Check fontSize="small" />}>
+                  Copy
+                </Menu2Item>
+                <Menu2Item data-testid="inset" inset>
+                  Paste
+                </Menu2Item>
+                <Menu2CheckboxItem data-testid="checkbox">Bold</Menu2CheckboxItem>
+              </Menu2Group>
+              <Menu2Separator variant="inset" />
+              <Menu2Group>
+                <Menu2GroupLabel data-testid="inset-label" inset>
+                  Align
+                </Menu2GroupLabel>
+                <Menu2RadioGroup defaultValue="left">
+                  <Menu2RadioItem data-testid="radio" value="left">
+                    Left
+                  </Menu2RadioItem>
+                </Menu2RadioGroup>
+              </Menu2Group>
+            </React.Fragment>,
+          ),
+        );
+        const textLeft = (testId: string) => textBox(query(`[data-testid="${testId}"]`)).left;
+        const iconText = textLeft('icon');
+        expectNoDrift({
+          'group label': drift(textLeft('label') - textLeft('plain')),
+          'inset group label': drift(textLeft('inset-label') - iconText),
+          'inset item': drift(textLeft('inset') - iconText),
+          'checkbox item': drift(textLeft('checkbox') - iconText),
+          'radio item': drift(textLeft('radio') - iconText),
+          'inset separator': drift(rect('.MuiMenu2Separator-root').left - iconText),
+        });
+      });
+
+      test(`${density.id}: the Menu2 submenu chevron gap follows xSmall`, () => {
+        renderIn(
+          THEMES[density.id],
+          openMenu2(
+            <Menu2Submenu>
+              <Menu2SubmenuTrigger>More</Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup>
+                <Menu2Item>Item</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2Submenu>,
+          ),
+        );
+        expect(parseFloat(css('.MuiMenu2SubmenuTrigger-indicator').paddingLeft)).to.equal(
+          density.step.xSmall,
         );
       });
 
@@ -1962,6 +2091,18 @@ describe.skipIf(isJsdom())('density contract', () => {
   });
 
   describe('user overrides win wherever they win on master', () => {
+    test('a MuiMenu2Item root padding override, as on MenuItem', () => {
+      renderIn(
+        enhanceDensity(
+          createTheme({
+            components: { MuiMenu2Item: { styleOverrides: { root: { paddingLeft: 21 } } } },
+          }),
+        ),
+        openMenu2(<Menu2Item>Item</Menu2Item>),
+      );
+      expect(css('.MuiMenu2Item-root').paddingLeft).to.equal('21px');
+    });
+
     test('slot styleOverrides', () => {
       render(sideBySide(withUser({ components: USER_COMPONENTS as any }), overrideCases()));
       expect(userWins('master')).to.deep.equal(winsExcept(MASTER_LOSES_WITHOUT_LAYERS));

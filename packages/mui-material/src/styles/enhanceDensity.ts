@@ -416,6 +416,46 @@ function emitComponentDensity<T extends EnhanceableTheme>(enhanced: DensityEnhan
     [`& .${listItemIconClasses.root}`]: { minWidth: iconSize },
   });
 
+  // Menu2 item roots share the MuiMenu2Item styles. The start column holds the icon
+  // and its gap, so inset labels and separators start where the item text starts.
+  const menu2Column = `calc(${iconSize} + ${spacing('xSmall')})`;
+  const menu2TextStart = `calc(${spacing('xSmall')} + ${menu2Column})`;
+  // A root variant, not the gutters slot, so a user root padding override still wins.
+  addStyleOverride(enhanced.components, 'MuiMenu2Item', 'root', {
+    minHeight: menuItemHeight,
+    paddingBlock: spacing('xxSmall'),
+    [smUp]: { minHeight: menuItemHeight },
+    variants: [{ props: { disableGutters: false }, style: { paddingInline: spacing('xSmall') } }],
+  });
+  addStyleOverride(enhanced.components, 'MuiMenu2Item', 'startAdornment', {
+    minWidth: menu2Column,
+  });
+  addStyleOverride(enhanced.components, 'MuiMenu2Item', 'endAdornment', {
+    paddingLeft: spacing('medium'),
+  });
+  addStyleOverride(enhanced.components, 'MuiMenu2CheckboxItem', 'indicator', {
+    minWidth: menu2Column,
+  });
+  addStyleOverride(enhanced.components, 'MuiMenu2RadioItem', 'indicator', {
+    minWidth: menu2Column,
+  });
+  addStyleOverride(enhanced.components, 'MuiMenu2SubmenuTrigger', 'indicator', {
+    paddingLeft: spacing('xSmall'),
+  });
+  // The menu role is on the popup surface, so the MuiList menu rule does not match.
+  addStyleOverride(enhanced.components, 'MuiMenu2Popup', 'list', {
+    '--_subheaderInline': spacing('xSmall'),
+  });
+  addStyleOverride(enhanced.components, 'MuiMenu2GroupLabel', 'root', {
+    variants: [
+      { props: { inset: true }, style: { paddingLeft: menu2TextStart } },
+      { props: { inset: true, disableGutters: true }, style: { paddingLeft: menu2Column } },
+    ],
+  });
+  addStyleOverride(enhanced.components, 'MuiMenu2Separator', 'root', {
+    variants: [{ props: { variant: 'inset' }, style: { marginLeft: menu2TextStart } }],
+  });
+
   addStyleOverride(enhanced.components, 'MuiTooltip', 'tooltip', {
     variants: [
       {
