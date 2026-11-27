@@ -205,6 +205,58 @@ function getDescription(markdown) {
   return matches[1].trim().replace(/`/g, '');
 }
 
+/**
+ * Parse the tab title from a `<codeblock>` fence header.
+ * Accepts a single unquoted word (`npm`) or a quoted multi-word title (`"Claude Code"`).
+ * @param {string} language
+ * @param {string} meta - Remainder of the fence line after the language.
+ * @returns {string}
+ */
+function parseCodeblockTabTitle(language, meta) {
+  const trimmed = meta.trim();
+  const fencePreview = `\`\`\`${language}${meta}`;
+
+  if (!trimmed) {
+    throw new Error(
+      [
+        'docs-infra: Missing codeblock tab title.',
+        `The fence ${fencePreview} is missing a tab title.`,
+        'Add a single-word title (e.g. ```bash npm) or a quoted multi-word title (e.g. ```bash "Claude Code").',
+        '',
+      ].join('\n'),
+    );
+  }
+
+  const quotedMatch = trimmed.match(/^(["'])([\s\S]*?)\1$/);
+  if (quotedMatch) {
+    const title = quotedMatch[2];
+    if (title.length === 0) {
+      throw new Error(
+        [
+          'docs-infra: Empty codeblock tab title.',
+          `The fence ${fencePreview} has an empty quoted tab title.`,
+          'Provide a non-empty title (e.g. ```bash "Claude Code").',
+          '',
+        ].join('\n'),
+      );
+    }
+    return title;
+  }
+
+  if (/^\S+$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  throw new Error(
+    [
+      'docs-infra: Invalid codeblock tab title.',
+      `The fence ${fencePreview} has a tab title that could not be parsed.`,
+      'Use a single word (e.g. ```bash Claude) or quote multi-word titles (e.g. ```bash "Claude Code").',
+      '',
+    ].join('\n'),
+  );
+}
+
 function getCodeblock(content) {
   if (!content.startsWith('<codeblock')) {
     return undefined;
@@ -214,13 +266,13 @@ function getCodeblock(content) {
   const storageKey = content.match(
     /^<codeblock (?!<codeblock )[^>]*storageKey=["|'](?!storageKey=["|'])(\S*)["|'].*>/m,
   )?.[1];
-  const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
-    ([, language, tab, code]) => ({ language, tab, code }),
-  );
-
-  const blocksData = blocks.filter(
-    (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
-  );
+  const blocksData = [...content.matchAll(/^```(\S*)([^\n]*)\n(.*?)\n```/gmsu)]
+    .map(([, language, meta, code]) => ({
+      language,
+      tab: parseCodeblockTabTitle(language, meta),
+      code,
+    }))
+    .filter((block) => !emptyRegExp.test(block.code));
 
   return {
     type: 'codeblock',

@@ -9,6 +9,11 @@ const pages: MuiPage[] = [
     children: [
       { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
+      {
+        pathname: '/material-ui/getting-started/coding-agents',
+        newFeature: true,
+        title: 'Coding Agents',
+      },
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/mcp', newFeature: true, title: 'MCP' },
       { pathname: '/material-ui/llms.txt', newFeature: true, title: 'llms.txt' },
