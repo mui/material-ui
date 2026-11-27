@@ -376,7 +376,7 @@ Tested by: Playwright
 <!-- 1.4.4:start -->
 
 - The label and the icon use `rem`, and the extended Fab has a fixed px height (48, 40, or 34 px). Under 200% page zoom, the height and the label scale together, so the label stays inside the Fab. Page zoom decides the 1.4.4 rating (WCAG technique G142). A Playwright test confirms this on the extended-size demo.
-- The Fab root does not hide its overflow, so the test compares the label text with the box of the Fab. It fails when the text leaves the Fab on any side. A second Playwright test confirms on the `FabA11yLongLabel` fixture that this check detects a label that spills out.
+- The Fab root does not hide its overflow, so the test compares the label text with the box of the Fab. It fails when the label leaves the Fab at the left or right, or when a label that wraps leaves it at the top or bottom. A second Playwright test confirms on the `FabA11yLongLabel` fixture that this check detects a label that spills out.
 - The page zoom check and the 1.4.10 reflow check cover 1.4.4 together. The page zoom viewport (500 × 350 px) is wider than the 320 px reflow viewport. So the page zoom check adds the clipping check, and the reflow check covers the narrow width.
 - Under text-only resize, the label grows but the height does not. A label that wraps then grows taller than the Fab, and the spilled `contrastText` can be invisible on the page. The third column of the `FabA11yLongLabel` fixture shows this: it doubles the rem sizes, and each label wraps to two or three lines of 49 px. Three lines are 147 px high, so they spill about 50 px above and below the 48 px Fab.
 - Another Playwright test confirms that the extended-size demo, with short labels, survives a 200% text-only resize.

@@ -662,6 +662,12 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
       // wrapped label above and below an extended Fab. Only the text nodes of
       // the element itself count: a positioned child, such as a floating label,
       // is outside its parent by design.
+      //
+      // The range measures line boxes, which are taller than the glyphs. One
+      // line can thus be taller than a small fixed box while its glyphs stay
+      // inside, such as the count in a Badge at a 200% text size. So above and
+      // below the box, only text that wraps counts. To the left and right, any
+      // text counts.
       const spilled = withText
         .filter((node) => !hidesOverflow(node))
         .filter((node) => {
@@ -672,7 +678,14 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
             }
             const range = document.createRange();
             range.selectNodeContents(child);
-            return escapes(range.getBoundingClientRect(), box);
+            const text = range.getBoundingClientRect();
+            if (text.left < box.left - 0.5 || text.right > box.right + 0.5) {
+              return true;
+            }
+            const lineTops = new Set(
+              Array.from(range.getClientRects(), (line) => Math.round(line.top)),
+            );
+            return lineTops.size > 1 && escapes(text, box);
           });
         })
         .map((node) => node.getAttribute('class'));
