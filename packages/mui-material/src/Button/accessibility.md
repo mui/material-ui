@@ -14,7 +14,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant. In dark mode, the `contained` `error` label falls short on every surface, and the `text` and `outlined` `error` labels fall short on a Paper with elevation 2 or more. On hover, the `primary` `text` and `outlined` labels fall short too. In dark mode, hover also lowers `secondary`, `error`, `info`, and `success` below 4.5:1 in some variants and on some Paper surfaces.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant. For `contained`, the white label comes from the `contrastText` choice: dark text on the same `main` clears 4.5:1. In dark mode, the `contained` `error` label falls short on every surface, and the `text` and `outlined` `error` labels fall short on a Paper with elevation 2 or more. On hover, the `primary` `text` and `outlined` labels fall short too. In dark mode, hover also lowers `secondary`, `error`, `info`, and `success` below 4.5:1 in some variants and on some Paper surfaces.<!-- 1.4.3:gap:end -->
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.<!-- 1.4.11:gap:end -->
 - ⚠️ **2.2.2 Pause, Stop, Hide.** <!-- 2.2.2:gap:start -->The `loading` spinner turns until `loading` ends, and the user cannot pause it.<!-- 2.2.2:gap:end -->
 - ⚠️ **2.4.3 Focus Order.** <!-- 2.4.3:gap:start -->A focused button that turns `loading` becomes disabled, and the browser moves focus to the page body.<!-- 2.4.3:gap:end -->
@@ -233,6 +233,8 @@ The resting shortfalls, measured from the default light palette (all pairs again
 | `text`/`outlined` `color="info"` label    | `#0288d1`  | `#fff`     | 3.86:1 |    4.5:1 |
 
 Every other `variant` × `color` combination clears `4.5:1` at rest; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
+
+The `text`/`outlined` shortfalls come from the `main` color itself. The `contained` ones do not: `getContrastText()` picks white because it reaches the default `contrastThreshold` of 3, without comparing it to dark text, which reaches `6.02:1` on `warning` and `4.95:1` on `info`. A `contrastThreshold` of `4.5` switches both to dark text, but `contrastText` is computed from `main` only: on the hover background (`info.dark`, `#01579b`) the dark `info` label drops to `2.68:1`.
 
 In the default dark palette, only `error` (`#f44336`) falls short at rest:
 

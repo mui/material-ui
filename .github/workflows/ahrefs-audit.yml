@@ -22,7 +22,7 @@ jobs:
       id-token: write # Anthropic WIF
       issues: write # failure reports
       pull-requests: write # draft fix PRs
-    uses: mui/mui-public/.github/workflows/ahrefs-audit-workflow.lock.yml@62d3ee50b8c03a237b186efc05cbba1bbc8186ba # master
+    uses: mui/mui-public/.github/workflows/ahrefs-audit-workflow.lock.yml@54994858a4669d5d5a3553f29573524a882eb421 # master
     with:
       project_id: '3524616' # MUI Core
       # mui.com is built from several repos; these are the paths others build, one per line.
