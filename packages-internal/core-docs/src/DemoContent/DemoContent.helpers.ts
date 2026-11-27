@@ -1,5 +1,6 @@
 import type { UseDemoOpts } from '@mui/internal-docs-infra/useDemo';
 import type { Code } from '@mui/internal-docs-infra/CodeHighlighter/types';
+import { NativeCodeSource } from '@mui/internal-docs-infra/NativeCodeSource';
 import type { buildExportConfig } from './exportConfig';
 import { codeSandboxTsconfigOverride } from './exportConfig';
 
@@ -22,7 +23,7 @@ export function createDemoUseOptions({
     export: exportConfig,
     exportCodeSandbox: codeSandboxTsconfigOverride,
     disabled: disableLiveEdit,
-    resetOnExpand: true,
+    SourceComponent: disableLiveEdit ? undefined : NativeCodeSource,
     actionSource: 'initial',
     selectedTransform,
     onSelectedTransformChange,
@@ -100,24 +101,4 @@ export function getDemoEditingDependencies(code: Code | undefined) {
 export function resetDemo(resetSource: (() => void) | undefined, remountPreview: () => void) {
   resetSource?.();
   remountPreview();
-}
-
-export function expandDemo(expand: () => void, remountPreview: () => void) {
-  expand();
-  remountPreview();
-}
-
-export function toggleDemoExpanded(
-  expanded: boolean,
-  expand: () => void,
-  setExpanded: (expanded: boolean) => void,
-  remountPreview: () => void,
-  onCollapse?: () => void,
-) {
-  if (expanded) {
-    setExpanded(false);
-    onCollapse?.();
-  } else {
-    expandDemo(expand, remountPreview);
-  }
 }

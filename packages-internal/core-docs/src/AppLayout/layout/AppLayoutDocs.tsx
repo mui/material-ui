@@ -19,7 +19,15 @@ import type { TocItem } from '../../TableOfContents';
 // to shift highlighted/focus frames left when collapsed. This mirrors the
 // `emphasisOptions` configured for the build-time loader in next.config.ts
 // so runtime-highlighted source (e.g. on variant switch) behaves the same.
-const sourceEnhancers = [createEnhanceCodeEmphasis({ emitFrameIndent: true })];
+const DEMO_FOCUS_MAX_LINES = 16;
+
+const sourceEnhancers = [
+  createEnhanceCodeEmphasis({
+    emitFrameIndent: true,
+    focusFramesMaxSize: DEMO_FOCUS_MAX_LINES,
+    oversizedFocus: 'hide',
+  }),
+];
 
 interface MainProps {
   disableToc: boolean;

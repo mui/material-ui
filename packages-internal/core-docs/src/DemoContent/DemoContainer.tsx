@@ -545,11 +545,7 @@ export interface DemoContainerProps {
   codeId?: string;
   /** Slot rendered after the code panel (AI hero, ads, etc.). */
   afterCode?: React.ReactNode;
-  /**
-   * Optional render wrapper for the tabs + code region. Used by the live
-   * demo to inject a `<Tabs.Root>` provider connecting `DemoFileTabBar` and
-   * the code panel; the loading skeleton omits it.
-   */
+  /** Optional wrapper around the tabs and source. */
   renderTabsAndCode?: (children: React.ReactNode) => React.ReactNode;
 }
 

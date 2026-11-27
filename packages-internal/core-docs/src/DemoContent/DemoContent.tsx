@@ -18,12 +18,10 @@ import { CodeSource, FileTab } from './CodeSource';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
 import {
   createDemoUseOptions,
-  expandDemo,
   getDemoEditingDependencies,
   hasJavascriptTransform,
   resetDemo,
   resolveDemoSourceView,
-  toggleDemoExpanded,
 } from './DemoContent.helpers';
 import { buildDemoDeploymentLinks } from './demoDeploymentLinks';
 import {
@@ -185,6 +183,7 @@ export default function DemoContent(props: DemoContentProps) {
       exportConfig,
     }),
   );
+
   useTypescriptRef.current = demo.selectedTransform !== 'js';
   const [previewEpoch, remountPreview] = React.useReducer((epoch: number) => epoch + 1, 0);
   const handleReset = React.useCallback(() => {
@@ -285,8 +284,8 @@ export default function DemoContent(props: DemoContentProps) {
     };
   }, [aiSuggestion, demoName, props.code, demo.selectedVariant, demo.selectedFileName, demo.slug]);
 
-  const expandedRef = React.useRef(demo.expanded);
-  expandedRef.current = demo.expanded;
+  const { expanded, setExpanded } = demo;
+
   const editingDependencies = React.useMemo(
     () => getDemoEditingDependencies(props.code),
     [props.code],
@@ -298,28 +297,18 @@ export default function DemoContent(props: DemoContentProps) {
     }
     expandSource();
   }, [codeController, disableLiveEdit, editingDependencies, expandSource]);
-  const handleExpand = React.useCallback(() => {
-    expandDemo(expandWithEditingPreload, remountPreview);
-  }, [expandWithEditingPreload]);
-  // The collapsed preview projects the unedited main file, so restore both the
-  // file selection and the original source when the viewer closes.
-  const resetSourceFile = React.useCallback(() => {
-    const mainFileName = demo.files[0]?.name;
-    if (mainFileName && demo.selectedFileName !== mainFileName) {
-      demo.selectFileName(mainFileName);
-    }
-    resetDemo(demo.reset, remountPreview);
-  }, [demo]);
+
   const handleToggleFrames = React.useCallback(() => {
     setAdShown(true);
-    toggleDemoExpanded(
-      expandedRef.current,
-      expandWithEditingPreload,
-      demo.setExpanded,
-      remountPreview,
-      resetSourceFile,
-    );
-  }, [expandWithEditingPreload, demo.setExpanded, resetSourceFile]);
+
+    if (expanded) {
+      setExpanded(false);
+
+      return;
+    }
+
+    expandWithEditingPreload();
+  }, [expanded, setExpanded, expandWithEditingPreload]);
 
   // GA event label — the canonical demo slug is used since it uniquely
   // identifies a demo within a page and is stable across renders.
@@ -345,9 +334,13 @@ export default function DemoContent(props: DemoContentProps) {
 
   // The root file is the selected variant's entry file (`VariantCode.fileName`,
   // e.g. `ButtonBaseDemo.tsx`).
-  const rootVariantCode = props.code?.[demo.selectedVariant];
-  const rootFileName =
-    rootVariantCode && typeof rootVariantCode !== 'string' ? rootVariantCode.fileName : undefined;
+  const rootVariant = initialCodeRef.current?.[demo.selectedVariant];
+  const rootCode = rootVariant && typeof rootVariant !== 'string' ? rootVariant : undefined;
+  const rootFileName = rootCode?.fileName;
+
+  const hasCollapsedSource =
+    demo.selectedFileOriginalName === rootFileName &&
+    (!rootCode?.sourceProjection || hasSourceFocus);
 
   // The demo's deep-link anchor: the root file's base name (e.g. `#ContainedButtons`
   // from `ContainedButtons.tsx`), matching the existing/shipped slugs in `master`
@@ -370,9 +363,9 @@ export default function DemoContent(props: DemoContentProps) {
     }
     appliedHashRef.current = hash;
     // Landing on a source link reveals the source and selects its language.
-    handleExpand();
+    expandWithEditingPreload();
     selectTransform(sourceAnchorTransform(hash));
-  }, [hash, sourceAnchorIds, handleExpand, selectTransform]);
+  }, [hash, sourceAnchorIds, expandWithEditingPreload, selectTransform]);
 
   // The main `#<DemoName>` anchor is rendered by `DemoContainer` (via the
   // `anchorId` prop) so the loading skeleton emits it too. Here we only add the
@@ -461,36 +454,27 @@ export default function DemoContent(props: DemoContentProps) {
 
   const tabs =
     hasMultipleFiles && demo.expanded ? (
-      <DemoFileTabBar activateOnFocus>
-        {demo.files.map((file) => (
-          <FileTab key={file.name} value={file.name}>
-            {file.name}
-          </FileTab>
-        ))}
-      </DemoFileTabBar>
+      <Tabs.Root
+        value={demo.selectedFileName}
+        onValueChange={(value) => {
+          if (typeof value === 'string') {
+            demo.selectFileName(value);
+          }
+        }}
+      >
+        <DemoFileTabBar activateOnFocus>
+          {demo.files.map((file) => (
+            <FileTab key={file.name} value={file.name}>
+              {file.name}
+            </FileTab>
+          ))}
+        </DemoFileTabBar>
+      </Tabs.Root>
     ) : null;
 
   const code = hideToolbar ? null : (
     <CodeSource expanded={demo.expanded}>{demo.selectedFile}</CodeSource>
   );
-
-  // When the demo has multiple files, wrap the tabs + code region in a
-  // `Tabs.Root` so the `Tabs.List` / `Tabs.Tab` parts wired through
-  // `DemoFileTabBar` / `FileTab` get their shared state.
-  const renderTabsAndCode = hasMultipleFiles
-    ? (children: React.ReactNode) => (
-        <Tabs.Root
-          value={demo.selectedFileName}
-          onValueChange={(value) => {
-            if (typeof value === 'string') {
-              demo.selectFileName(value);
-            }
-          }}
-        >
-          {children}
-        </Tabs.Root>
-      )
-    : undefined;
 
   const afterCode = hideToolbar ? null : (
     <React.Fragment>
@@ -532,12 +516,11 @@ export default function DemoContent(props: DemoContentProps) {
       onToolbarKeyDown={handleToolbarKeyDown}
       onToolbarFocus={handleToolbarFocus}
       expanded={demo.expanded}
-      sourceVisible={sourceVisible}
+      sourceVisible={sourceVisible && (demo.expanded || hasCollapsedSource)}
       tabs={tabs}
       code={code}
       codeId={demoSourceId}
       afterCode={afterCode}
-      renderTabsAndCode={renderTabsAndCode}
     />
   );
 }

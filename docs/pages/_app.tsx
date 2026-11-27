@@ -310,6 +310,10 @@ export default function MyApp(props: AppProps) {
   } = useProductData(pageProps);
   const demoDisplayName = useDemoDisplayName();
 
+  React.useEffect(() => {
+    void import('@mui/internal-core-docs/ThemeContext/syntax.css');
+  }, []);
+
   return (
     <DocsApp
       {...props}

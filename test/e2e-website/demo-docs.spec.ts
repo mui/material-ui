@@ -131,10 +131,8 @@ test.describe('Demo docs', () => {
       await expect(page.getByTestId('focused-message')).toHaveText('Edited helper');
 
       await demo.locator('button[data-ga-event-action="expand"]').click();
-      await expect(page.getByTestId('focused-message')).toHaveText('Ready helper');
-      await editSelectedFile(demo, (source) =>
-        source.replace("getMessage('Ready')", "getMessage('Edited')"),
-      );
+      await expect(page.getByTestId('focused-message')).toHaveText('Edited helper');
+      await expect(await getSelectedFileEditor(demo)).toHaveValue(/getMessage\('Edited'\)/);
       await demo.getByRole('tab', { name: 'message.ts' }).click();
       await editSelectedFile(demo, (source) => source.replace('helper', 'module'));
       await expect(page.getByTestId('focused-message')).toHaveText('Edited module');
@@ -144,7 +142,7 @@ test.describe('Demo docs', () => {
       await expect(page.getByTestId('focused-preview')).toHaveCSS('color', 'rgb(120, 40, 20)');
     });
 
-    test('expansion discards edits from every file', async ({ page }) => {
+    test('preserves edits in every file until reset', async ({ page }) => {
       await page.goto(validationPage);
       const demo = getDemo(page, 'FocusedLiveEdit');
       const sourceToggle = demo.locator('button[data-ga-event-action="expand"]');
@@ -158,17 +156,68 @@ test.describe('Demo docs', () => {
       await demo.getByRole('tab', { name: 'FocusedLiveEdit.module.css' }).click();
       await editSelectedFile(demo, (source) => source.replace('rgb(20 70 120)', 'rgb(120 40 20)'));
 
-      await sourceToggle.click(); // Collapse without resetting edits.
-      await sourceToggle.click(); // Re-expansion resets every file.
-      await expect(page.getByTestId('focused-message')).toHaveText('Ready helper');
-      await expect(page.getByTestId('focused-preview')).toHaveCSS('color', 'rgb(20, 70, 120)');
+      const preview = page.getByTestId('focused-preview');
+      const editedColor = 'rgb(120, 40, 20)';
+      const editedMessage = 'Edited module';
+
+      await expect(page.getByTestId('focused-message')).toHaveText(editedMessage);
+      await expect(preview).toHaveCSS('color', editedColor);
+      const editedPreview = await preview.elementHandle();
+
+      await sourceToggle.click();
+      await expect(demo.locator('pre:visible, textarea:visible')).toHaveCount(0);
+      await expect(page.getByTestId('focused-message')).toHaveText(editedMessage);
+      expect(await editedPreview!.evaluate((node) => node.isConnected)).toBe(true);
+
+      await sourceToggle.click();
+      await expect(page.getByTestId('focused-message')).toHaveText(editedMessage);
+      await expect(preview).toHaveCSS('color', editedColor);
+      expect(await editedPreview!.evaluate((node) => node.isConnected)).toBe(true);
+      await expect(demo.getByRole('tab', { name: 'FocusedLiveEdit.module.css' })).toHaveAttribute(
+        'aria-selected',
+        'true',
+      );
+      await expect(await getSelectedFileEditor(demo)).toHaveValue(/rgb\(120 40 20\)/);
 
       await demo.getByRole('tab', { name: 'FocusedLiveEdit.tsx' }).click();
-      await expect(await getSelectedFileEditor(demo)).toHaveValue(
-        /\n {6}<span data-testid="focused-message"/,
-      );
+      await expect(await getSelectedFileEditor(demo)).toHaveValue(/getMessage\('Edited'\)/);
+      await demo.getByRole('tab', { name: 'message.ts' }).click();
+      await expect(await getSelectedFileEditor(demo)).toHaveValue(/module/);
+
+      await demo.getByRole('button', { name: 'Reset demo' }).click();
+
+      await expect(page.getByTestId('focused-message')).toHaveText('Ready helper');
+      await expect(preview).toHaveCSS('color', 'rgb(20, 70, 120)');
+      expect(await editedPreview!.evaluate((node) => node.isConnected)).toBe(false);
+      await demo.getByRole('tab', { name: 'FocusedLiveEdit.tsx' }).click();
+      await expect(await getSelectedFileEditor(demo)).toHaveValue(/getMessage\('Ready'\)/);
       await demo.getByRole('tab', { name: 'message.ts' }).click();
       await expect(await getSelectedFileEditor(demo)).toHaveValue(/helper/);
+      await demo.getByRole('tab', { name: 'FocusedLiveEdit.module.css' }).click();
+      await expect(await getSelectedFileEditor(demo)).toHaveValue(/rgb\(20 70 120\)/);
+    });
+
+    test('hides helper source while collapsed without changing the selected file', async ({
+      page,
+    }) => {
+      await page.goto(validationPage);
+      const demo = getDemo(page, 'FocusedLiveEdit');
+
+      await demo.getByRole('button', { name: 'Expand code' }).click();
+      await demo.getByRole('tab', { name: 'message.ts' }).click();
+      await expect(demo.locator('pre').first()).toContainText('function getMessage');
+      await demo.getByRole('button', { name: 'Collapse code' }).click();
+
+      await expect(demo.locator('pre:visible, textarea:visible')).toHaveCount(0);
+      await expect(demo.getByRole('tab')).toHaveCount(0);
+
+      await demo.getByRole('button', { name: 'Expand code' }).click();
+
+      await expect(demo.getByRole('tab', { name: 'message.ts' })).toHaveAttribute(
+        'aria-selected',
+        'true',
+      );
+      await expect(demo.locator('pre').first()).toContainText('function getMessage');
     });
 
     test('reset remounts component state', async ({ page }) => {

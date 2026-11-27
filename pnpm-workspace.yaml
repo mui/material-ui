@@ -9,7 +9,8 @@ packages:
 engineStrict: true
 updateNotifier: false
 autoDedupe: true
-blockExoticSubdeps: true
+# Temporary for preview dependencies from https://github.com/mui/mui-public/pull/2125.
+blockExoticSubdeps: false
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@mui/*'
@@ -37,9 +38,10 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
-    '@mui/internal-docs-infra': '0.13.1-canary.38'
+    '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@3a6cdd04'
 
 overrides:
+  '@mui/internal-docs-infra>@mui/internal-typescript-api-extractor': 0.1.1-canary.3
   # Bundled twice in the docs build
   'docs>react-is': '19.3.1'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).

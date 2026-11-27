@@ -68,11 +68,6 @@ function withNormalizedDemoOptions<T extends React.ComponentType<any>>(Demo: T):
   return Object.assign(NormalizedDemo, Demo) as T;
 }
 
-// `'interaction'`: the textarea editor, the emphasis enhancer, the main-thread
-// TextMate engine (with its 194kB WASM) and the highlighter worker load on the
-// reader's first hover, focus or click on a code block. `'eager'` warmed all of
-// them on mount for every demo on the page, which put the engine boot on the
-// main thread ~4s into every page load, engaged or not.
 const EDIT_ACTIVATION = 'interaction';
 
 const demoFactoryOptions = {
