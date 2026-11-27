@@ -56,7 +56,7 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.
    */
-  children?: React.ReactNode;
+  children?: null | undefined;
   /**
    * Override or extend the styles applied to the component.
    */

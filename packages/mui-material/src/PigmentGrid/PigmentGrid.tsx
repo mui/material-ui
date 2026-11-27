@@ -158,21 +158,19 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * The number of columns.
    * @default 12
    */
-  columns: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]),
+  columns: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number, PropTypes.object]),
   /**
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  columnSpacing: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
@@ -184,48 +182,45 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['row', 'row-reverse']),
-    PropTypes.arrayOf(PropTypes.oneOf(['row', 'row-reverse'])),
-    PropTypes.object,
-  ]),
+  direction: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.oneOf(['row', 'row-reverse']),
+      PropTypes.arrayOf(PropTypes.oneOf(['row', 'row-reverse'])),
+      PropTypes.object,
+    ]),
   /**
    * Defines the offset of the grid.
    */
-  offset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]),
+  offset: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number, PropTypes.object]),
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  rowSpacing: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   /**
    * Defines the column size of the grid.
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]),
+  size: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number, PropTypes.object]),
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  spacing: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired),
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
