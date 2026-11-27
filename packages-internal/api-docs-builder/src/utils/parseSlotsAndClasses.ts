@@ -83,9 +83,23 @@ export default function parseSlotsAndClasses({
     slotSymbols,
   );
 
-  const nonSlotClassDefinitions = classDefinitions.filter(
-    (classDefinition) => !Object.keys(slots).includes(classDefinition.key),
-  );
+  const themeClassKeys = new Map<string, Set<string> | null>();
+  const nonSlotClassDefinitions = classDefinitions
+    .filter((classDefinition) => !Object.keys(slots).includes(classDefinition.key))
+    .map((classDefinition) => {
+      if (classDefinition.isGlobal) {
+        return classDefinition;
+      }
+      // Inherited classes, such as `MuiDrawer-paper`, use the theme keys of their owner.
+      const ownerName = /^(Mui\w+)-/.exec(classDefinition.className)?.[1] ?? muiName;
+      if (!themeClassKeys.has(ownerName)) {
+        themeClassKeys.set(ownerName, getThemeClassKeys(typescriptProject, ownerName));
+      }
+      const keys = themeClassKeys.get(ownerName);
+      return keys && !keys.has(classDefinition.key)
+        ? { ...classDefinition, isStyleOverridesKey: false as const }
+        : classDefinition;
+    });
 
   const getMissingDescriptionErrors = (
     kind: string,
@@ -142,6 +156,34 @@ export default function parseSlotsAndClasses({
       ),
     ],
   };
+}
+
+/**
+ * Gets the `styleOverrides` keys that the theme types accept for a component.
+ * Returns `null` when the project has no theme types or does not register the component.
+ */
+function getThemeClassKeys(project: TypeScriptProject, muiName: string): Set<string> | null {
+  const classKeysSymbol = project.exports.ComponentNameToClassKey;
+  const componentsSymbol = project.exports.Components;
+  if (!classKeysSymbol || !componentsSymbol) {
+    return null;
+  }
+
+  const classKeys = project.checker.getDeclaredTypeOfSymbol(classKeysSymbol).getProperty(muiName);
+  if (!classKeys) {
+    // A registered component without class keys has no `styleOverrides`.
+    const component = project.checker
+      .getDeclaredTypeOfSymbol(componentsSymbol)
+      .getProperty(muiName);
+    return component ? new Set() : null;
+  }
+
+  const type = project.checker.getTypeOfSymbol(classKeys);
+  return new Set(
+    (type.isUnion() ? type.types : [type])
+      .filter((member) => member.isStringLiteral())
+      .map((member) => (member as ts.StringLiteralType).value),
+  );
 }
 
 /**

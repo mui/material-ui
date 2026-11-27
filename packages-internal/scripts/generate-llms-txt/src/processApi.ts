@@ -31,6 +31,7 @@ interface ApiClass {
   className: string;
   description: string;
   isGlobal: boolean;
+  isStyleOverridesKey?: false;
 }
 
 interface ApiInheritance {
@@ -224,8 +225,10 @@ function generateClassesTable(classes: ApiClass[], origin?: string): string {
   table += '|--------------|-----------|-------------|\n';
 
   for (const cls of classes) {
-    const globalClass = cls.isGlobal ? `\`.${cls.className}\`` : '-';
-    const ruleName = cls.isGlobal ? '-' : cls.key;
+    // Show the class name when the theme `styleOverrides` do not accept the key.
+    const hasRuleName = !cls.isGlobal && cls.isStyleOverridesKey !== false;
+    const globalClass = hasRuleName ? '-' : `\`.${cls.className}\``;
+    const ruleName = hasRuleName ? cls.key : '-';
     const description = htmlToMarkdown(cls.description, origin);
     table += `| ${globalClass} | ${ruleName} | ${description} |\n`;
   }

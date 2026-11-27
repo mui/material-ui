@@ -210,6 +210,29 @@ describe('processApi', () => {
       expect(result).to.include('| - | root | Styles applied to the root element. |');
     });
 
+    it('should not show a rule name for a class that styleOverrides do not accept', () => {
+      const apiJson = {
+        name: 'Component',
+        imports: ["import Component from '@mui/material/Component';"],
+        props: {},
+        classes: [
+          {
+            key: 'highlighted',
+            className: 'MuiComponent-highlighted',
+            description: 'Styles applied to the root element if highlighted.',
+            isGlobal: false,
+            isStyleOverridesKey: false as const,
+          },
+        ],
+      };
+
+      const result = processApiJson(apiJson);
+
+      expect(result).to.include(
+        '| `.MuiComponent-highlighted` | - | Styles applied to the root element if highlighted. |',
+      );
+    });
+
     it('should handle inheritance', () => {
       const apiJson = {
         name: 'Accordion',

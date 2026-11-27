@@ -6,6 +6,7 @@ export type ClassDefinition = {
   hash: string;
   description?: string;
   isGlobal?: boolean;
+  isStyleOverridesKey?: boolean;
   isDeprecated?: boolean;
   deprecationInfo?: string;
 };

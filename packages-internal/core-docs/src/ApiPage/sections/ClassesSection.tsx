@@ -75,6 +75,12 @@ export function ClassesSection(props: ClassesSectionProps) {
     return null;
   }
 
+  // Hide the rule names and the theme hint when no class is a `styleOverrides` key.
+  const hasStyleOverridesKeys =
+    !formattedClasses.some((item) => item.isStyleOverridesKey === false) ||
+    formattedClasses.some((item) => !item.isGlobal && item.isStyleOverridesKey !== false);
+  const showClassKeys = displayClassKeys && hasStyleOverridesKeys;
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
@@ -87,15 +93,15 @@ export function ClassesSection(props: ClassesSectionProps) {
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
-        <ClassesTable classes={formattedClasses} displayClassKeys={displayClassKeys} />
+        <ClassesTable classes={formattedClasses} displayClassKeys={showClassKeys} />
       ) : (
         <ClassesList
           classes={formattedClasses}
           displayOption={displayOption}
-          displayClassKeys={displayClassKeys}
+          displayClassKeys={showClassKeys}
         />
       )}
-      {styleOverridesLink && (
+      {styleOverridesLink && hasStyleOverridesKeys && (
         <React.Fragment>
           <br />
           <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
