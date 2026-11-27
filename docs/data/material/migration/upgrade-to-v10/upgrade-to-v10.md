@@ -123,3 +123,112 @@ Remove the prop, along with the `GlobalStyles` for the auto-fill keyframes it re
    ...
  </ThemeProvider>
 ```
+
+### BottomNavigationAction children type
+
+The `children` prop of BottomNavigationAction is now typed as `null | undefined`, the same as Tab and Chip.
+It was typed as `React.ReactNode`, but the component never rendered it and warned when it was passed.
+Remove `children` and use the `label` and `icon` props instead, or the `component` prop if you need a different structure:
+
+```diff
+-<BottomNavigationAction value="recents">Recents</BottomNavigationAction>
++<BottomNavigationAction value="recents" label="Recents" />
+```
+
+### CssVarsProvider removed
+
+The deprecated `CssVarsProvider` and `Experimental_CssVarsProvider` components have been removed.
+Use `ThemeProvider` instead, which accepts the same props:
+
+```diff
+-import { CssVarsProvider } from '@mui/material/styles';
++import { ThemeProvider } from '@mui/material/styles';
+
+-<CssVarsProvider theme={theme}>
++<ThemeProvider theme={theme}>
+   ...
+-</CssVarsProvider>
++</ThemeProvider>
+```
+
+If you created the theme with `extendTheme()`, see [extendTheme removed](#extendtheme-removed).
+
+`ThemeProvider` requires a `theme` prop.
+If you rendered `CssVarsProvider` without one, pass a theme with CSS variables:
+
+```diff
+-import { CssVarsProvider } from '@mui/material/styles';
++import { ThemeProvider, createTheme } from '@mui/material/styles';
++
++const theme = createTheme({ cssVariables: true });
+
+-<CssVarsProvider>
++<ThemeProvider theme={theme}>
+   ...
+-</CssVarsProvider>
++</ThemeProvider>
+```
+
+With TypeScript, the `colorSchemeNode`, `disableNestedContext`, `disableStyleSheetGeneration`, and `forceThemeRerender` props of `ThemeProvider` are only typed with the CSS theme variables [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript).
+If you pass any of them, import it in a file included in your `tsconfig.json`:
+
+```ts
+import type {} from '@mui/material/themeCssVarsAugmentation';
+```
+
+### getInitColorSchemeScript removed
+
+The deprecated `getInitColorSchemeScript()` function has been removed.
+Render the `InitColorSchemeScript` component instead, and pass the same options as props:
+
+```diff
+-import { getInitColorSchemeScript } from '@mui/material/styles';
++import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+
+-{getInitColorSchemeScript({ attribute: 'class' })}
++<InitColorSchemeScript attribute="class" />
+```
+
+Without an `attribute`, `getInitColorSchemeScript()` set `data-color-scheme`, while `InitColorSchemeScript` sets `data-mui-color-scheme`.
+If your `colorSchemeSelector` relies on `data-color-scheme`, pass `attribute="data-color-scheme"`.
+
+### extendTheme removed
+
+The `extendTheme()` function and its deprecated `experimental_extendTheme` alias have been removed.
+Use `createTheme()` instead, and always pass the `cssVariables` option: without it, `createTheme()` doesn't generate CSS variables.
+
+```diff
+-import { extendTheme } from '@mui/material/styles';
++import { createTheme } from '@mui/material/styles';
+
+-const theme = extendTheme({
+-  colorSchemeSelector: 'class',
+-  colorSchemes: { light: true, dark: true },
+-});
++const theme = createTheme({
++  cssVariables: { colorSchemeSelector: 'class' },
++  colorSchemes: { light: true, dark: true },
++});
+```
+
+The options that go into `cssVariables` are `colorSchemeSelector`, `cssVarPrefix`, `disableCssColorScheme`, `nativeColor`, `rootSelector`, and `shouldSkipGeneratingVar`.
+If you didn't pass any of them, use `cssVariables: true`.
+
+With TypeScript, `extendTheme()` returned a theme with the CSS variables types, but `createTheme()` returns `Theme`.
+To keep `theme.vars` and `theme.getCssVar()` typed, add the [module augmentation](/material-ui/customization/css-theme-variables/usage/#typescript) in any file included in your `tsconfig.json`:
+
+```ts
+import type {} from '@mui/material/themeCssVarsAugmentation';
+```
+
+If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
+`extendTheme()` used the first color scheme as the default, while `createTheme()` adds a `light` scheme and uses it:
+
+```diff
+-extendTheme({ colorSchemes: { dark: true } });
++createTheme({ cssVariables: true, colorSchemes: { dark: true }, defaultColorScheme: 'dark' });
+```
+
+`extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
+Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
+Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
