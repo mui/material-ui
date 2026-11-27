@@ -4,9 +4,10 @@ import Avatar from '@mui/material/Avatar';
 
 const noop = () => {};
 
-// Documented gaps: the letter avatar is 3.30:1, and a disabled delete-only chip
-// is not exposed as disabled, so axe rates its faded label as an active control.
-// The avatar has two letters: axe marks one-letter text as incomplete, not as a fail.
+// Documented gap: a disabled delete-only chip has no `aria-disabled`, so axe
+// rates its faded label as an active control (4.1.2).
+// The avatar chip records that the letter avatar passes `color-contrast`.
+// The avatar has two letters: axe marks one-letter text as incomplete, not as a pass.
 export default function ChipA11yKnownGaps() {
   return (
     <Stack direction="row" spacing={1}>

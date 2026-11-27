@@ -238,7 +238,7 @@ export function renderDocsRollup(totals) {
   const headline =
     totals.doesNotSupport === 0
       ? '**No component records a ❌ Does Not Support rating for any Level A or AA criterion.**'
-      : `**${totals.doesNotSupport} criteria record a ❌ Does Not Support rating in at least one component.**`;
+      : `**${totals.doesNotSupport} ${totals.doesNotSupport === 1 ? 'criterion records' : 'criteria record'} a ❌ Does Not Support rating in at least one component.**`;
   return [
     headline,
     '',
