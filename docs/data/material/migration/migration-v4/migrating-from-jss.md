@@ -184,12 +184,6 @@ For example:
  }
 ```
 
-:::success
-[This jss-to-styled tool](https://siriwatk.dev/tool/jss-to-styled) helps convert JSS to multiple styled components without increasing CSS specificity.
-
-This tool is _not_ maintained by MUI.
-:::
-
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
 :::error
