@@ -27,7 +27,7 @@
   "themeDefaultProps": false,
   "muiName": "MuiAlertTitle",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.js",
+  "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.tsx",
   "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
   "demos": "<ul><li><a href=\"/material-ui/react-alert/\">Alert</a></li></ul>"
 }

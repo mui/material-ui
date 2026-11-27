@@ -25,7 +25,7 @@
   "themeDefaultProps": true,
   "muiName": "MuiCard",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/Card/Card.js",
+  "filename": "/packages/mui-material/src/Card/Card.tsx",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
   "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>"
 }

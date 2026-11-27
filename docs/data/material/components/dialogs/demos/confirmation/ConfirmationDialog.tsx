@@ -40,7 +40,7 @@ export interface ConfirmationDialogRawProps {
 function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
   const { onClose, value: valueProp, open, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
-  const radioGroupRef = React.useRef<HTMLElement>(null);
+  const radioGroupRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (!open) {
