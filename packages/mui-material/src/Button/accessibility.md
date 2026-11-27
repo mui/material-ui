@@ -14,7 +14,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant. On hover, the `primary` `text` and `outlined` labels fall short too. In dark mode, hover also lowers `secondary`, `error`, `info`, and `success` below 4.5:1 in some variants and on some Paper surfaces.<!-- 1.4.3:gap:end -->
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.<!-- 1.4.11:gap:end -->
 - ⚠️ **2.2.2 Pause, Stop, Hide.** <!-- 2.2.2:gap:start -->The `loading` spinner turns until `loading` ends, and the user cannot pause it.<!-- 2.2.2:gap:end -->
 - ⚠️ **2.4.3 Focus Order.** <!-- 2.4.3:gap:start -->A focused button that turns `loading` becomes disabled, and the browser moves focus to the page body.<!-- 2.4.3:gap:end -->
@@ -218,11 +218,12 @@ Tested by: axe-core `color-contrast` ❌
 <!-- 1.4.3:start -->
 
 - `info` and `warning` buttons do not meet `4.5:1` in any variant.
-- axe-core `color-contrast` checks the default state.
-- `:hover` and `:active` colors need a visual check.
+- On hover, the `text` and `outlined` variants add a tint of the label color to the background, so the label contrast drops. The default Button (`text`, `primary`) falls below `4.5:1` on hover.
+- axe-core `color-contrast` checks the resting state only. The hover ratios below come from the palette and the hover styles.
+- The `:active` ripple needs a visual check.
 - Disabled buttons are exempt.
 
-The shortfalls, measured from the default light palette (all pairs against `#fff`):
+The resting shortfalls, measured from the default light palette (all pairs against `#fff`):
 
 | Combination                               | Foreground | Background |  Ratio | Required |
 | :---------------------------------------- | :--------- | :--------- | -----: | -------: |
@@ -231,17 +232,38 @@ The shortfalls, measured from the default light palette (all pairs against `#fff
 | `text`/`outlined` `color="warning"` label | `#ed6c02`  | `#fff`     | 3.11:1 |    4.5:1 |
 | `text`/`outlined` `color="info"` label    | `#0288d1`  | `#fff`     | 3.86:1 |    4.5:1 |
 
-Every other `variant` × `color` combination clears `4.5:1`; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
+Every other `variant` × `color` combination clears `4.5:1` at rest; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
+
+On hover, the `text` and `outlined` background is `palette[color].main` at `action.hoverOpacity` over the surface: `0.04` in light mode and `0.08` in dark mode. The `contained` background changes to `palette[color].dark`. The hover shortfalls that the table above does not list:
+
+| Combination                                     | Foreground            | Background |  Ratio | Required |
+| :---------------------------------------------- | :-------------------- | :--------- | -----: | -------: |
+| light `text`/`outlined` `color="primary"` label | `#1976d2`             | `#f6fafd`  | 4.37:1 |    4.5:1 |
+| dark `contained` `color="secondary"`            | `rgba(0, 0, 0, 0.87)` | `#ab47bc`  | 4.01:1 |    4.5:1 |
+
+In light mode, `secondary`, `error`, and `success` keep `4.5:1` on hover, and `info` and `warning` drop further, to `3.67:1` and `2.98:1`. The light `contained` hover background is darker, so the white label gains contrast.
+
+In dark mode, the elevation overlay of a Paper makes the surface lighter, so the `text` and `outlined` hover ratio depends on the surface:
+
+| Label color             | Page (`#121212`) | Paper, elevation 1 | Menu, elevation 8 | Drawer, elevation 16 | Dialog, elevation 24 |
+| :---------------------- | ---------------: | -----------------: | ----------------: | -------------------: | -------------------: |
+| `secondary` (`#ce93d8`) |           6.99:1 |             6.10:1 |            4.93:1 |               4.49:1 |               4.22:1 |
+| `error` (`#f44336`)     |           4.75:1 |             4.19:1 |            3.42:1 |               3.12:1 |               2.94:1 |
+| `info` (`#29b6f6`)      |           7.28:1 |             6.36:1 |            5.15:1 |               4.69:1 |               4.41:1 |
+| `success` (`#66bb6a`)   |           7.07:1 |             6.17:1 |            4.99:1 |               4.54:1 |               4.27:1 |
+
+`primary` and `warning` stay above `5:1` on hover on every surface. The other dark `contained` colors reach `4.5:1` on hover.
 
 **Manual testing steps**
 
 1. With a contrast checker (the color picker in browser DevTools shows a ratio), check each button's label against its background, across the color and variant combinations in use.
 2. Repeat with the pointer hovering and held down, since `:hover` and `:active` change the background.
 3. Check any custom theme colors the product uses.
+4. In dark mode, repeat the hover check on each Paper surface in use, such as a Menu or Dialog.
 
 <!-- 1.4.3:end -->
 
-**Pass:** <!-- 1.4.3:pass:start -->at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning` are the known failures.<!-- 1.4.3:pass:end -->
+**Pass:** <!-- 1.4.3:pass:start -->at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt. The known failures are `info` and `warning`, and on hover also `primary` and some dark-mode colors.<!-- 1.4.3:pass:end -->
 
 #### 1.4.11 Non-text Contrast · AA
 

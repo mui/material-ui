@@ -18,7 +18,10 @@
     "criteria": ["1.4.3", "1.4.11"],
     "affected": [
       "Avatar",
-      "Button",
+      {
+        "component": "Button",
+        "note": "`info`, `warning`; on hover, `primary` and dark-mode `secondary`, `error`, `info`, `success`"
+      },
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
       { "component": "IconButton", "note": "`info`, `warning`" },
       "LinearProgress",
