@@ -597,6 +597,70 @@ describe('<Select />', () => {
     });
   });
 
+  describe('open typeahead', () => {
+    beforeEach(() => {
+      clock.restore();
+    });
+
+    async function openWithKeyboard(user) {
+      await user.tab();
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
+    }
+
+    it('continues the search with Space instead of choosing an option', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultValue="" onChange={onChange}>
+          <MenuItem value="night">Night shift</MenuItem>
+          <MenuItem value="off">Day off</MenuItem>
+          <MenuItem value="day">Day shift</MenuItem>
+        </Select>,
+      );
+      await openWithKeyboard(user);
+
+      await user.keyboard('day s');
+
+      expect(screen.getByRole('option', { name: 'Day shift' })).toHaveFocus();
+      expect(onChange.mock.calls.length).to.equal(0);
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('does not start a search with the Space that toggles an option', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select multiple defaultValue={[]} onChange={onChange}>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">User</MenuItem>
+        </Select>,
+      );
+      await openWithKeyboard(user);
+
+      await user.keyboard(' u');
+
+      expect(onChange.mock.calls.length).to.equal(1);
+      expect(onChange.mock.calls[0][0].target.value).to.deep.equal(['admin']);
+      expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
+    });
+
+    ['Control', 'Alt', 'Meta'].forEach((modifier) => {
+      it(`does not choose an option on ${modifier}+Space`, async () => {
+        const onChange = vi.fn();
+        const { user } = render(
+          <Select defaultValue="" onChange={onChange}>
+            <MenuItem value="one">One</MenuItem>
+          </Select>,
+        );
+        await openWithKeyboard(user);
+
+        await user.keyboard(`{${modifier}>} {/${modifier}}`);
+
+        expect(onChange.mock.calls.length).to.equal(0);
+        expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
+      });
+    });
+  });
+
   describe('closed typeahead', () => {
     beforeEach(() => {
       clock.restore();
