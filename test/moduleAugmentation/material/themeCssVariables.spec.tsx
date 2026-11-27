@@ -1,5 +1,5 @@
 // testing docs/src/pages/customization/theme-components/theme-components.md
-import { styled, extendTheme } from '@mui/material/styles';
+import { styled, createTheme } from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
 declare module '@mui/material/styles' {
@@ -25,7 +25,8 @@ const StyledComponent2 = styled('button')(({ theme }) => ({
   background: theme.vars.palette.gradient.default2,
 }));
 
-const theme = extendTheme({
+const theme = createTheme({
+  cssVariables: true,
   colorSchemes: {
     light: {
       palette: {

@@ -22,6 +22,25 @@ fn({
 fn({
   MuiDrawer: {
     defaultProps: {
+      ModalProps: {
+        keepMounted: true,
+      },
+    },
+  },
+});
+fn({
+  MuiSwipeableDrawer: {
+    defaultProps: {
+      ModalProps: {
+        keepMounted: true,
+      },
+    },
+  },
+});
+
+fn({
+  MuiDrawer: {
+    defaultProps: {
       PaperProps: {
         elevation: 20,
       },

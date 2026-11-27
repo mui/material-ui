@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
-import { ThemeProvider, CssVarsProvider, hexToRgb } from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
 
@@ -79,14 +79,14 @@ describe('<AppBar />', () => {
   });
 
   it.skipIf(isJsdom())(
-    'should inherit Paper background color with CssVarsProvider',
+    'should inherit Paper background color with CSS theme variables',
     function test() {
       render(
-        <CssVarsProvider>
+        <ThemeProvider theme={createTheme({ cssVariables: true })}>
           <AppBar data-testid="root" color="inherit">
             Hello World
           </AppBar>
-        </CssVarsProvider>,
+        </ThemeProvider>,
       );
 
       const appBar = screen.getByTestId('root');
