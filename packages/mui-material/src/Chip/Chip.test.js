@@ -511,6 +511,22 @@ describe('<Chip />', () => {
   });
 
   describe('2.1.1 Keyboard: reacts to keyboard chip', () => {
+    it('skips a pointer-only chip with clickable={false} in the tab order (documented gap)', async () => {
+      const handleClick = spy();
+      const { user } = render(
+        <React.Fragment>
+          <Chip label="Filter" onClick={handleClick} clickable={false} />
+          <button type="button">After</button>
+        </React.Fragment>,
+      );
+
+      expect(screen.queryByRole('button', { name: 'Filter' })).to.equal(null);
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      await user.click(screen.getByText('Filter'));
+      expect(handleClick.callCount).to.equal(1);
+    });
+
     it('should call onKeyDown when a key is pressed', () => {
       const handleKeydown = stub().callsFake((event) => event.key);
       render(<Chip onClick={() => {}} onKeyDown={handleKeydown} />);
@@ -894,10 +910,11 @@ describe('<Chip />', () => {
         ]);
       });
 
-      it('focused outlined labels fall short of 4.5:1 in every palette color except secondary', () => {
+      it('focused outlined labels meet 4.5:1 in default and secondary', () => {
+        const colors = ['default', ...PALETTE_CONTRAST_COLORS];
         render(
           <React.Fragment>
-            {PALETTE_CONTRAST_COLORS.map((color) => (
+            {colors.map((color) => (
               <Chip
                 key={color}
                 label={color}
@@ -909,10 +926,10 @@ describe('<Chip />', () => {
             ))}
           </React.Fragment>,
         );
-        const failing = PALETTE_CONTRAST_COLORS.filter((color) => {
+        const failing = colors.filter((color) => {
           const chip = screen.getByRole('button', { name: color });
           const { color: textColor, backgroundColor } = window.getComputedStyle(chip);
-          // The focus tint is `main` at `focusOpacity`, so composite it over the paper.
+          // Composite the translucent focus background over the paper.
           const fill = blend(backgroundColor, 1, theme.palette.background.paper);
           return contrastRatio(textColor, fill) < WCAG_MINIMUM_RATIO.normalText;
         });
@@ -1007,10 +1024,16 @@ describe('<Chip />', () => {
       expect(handleClick.callCount).to.equal(1);
     });
 
-    it('2.5.3 Label in Name: the accessible name is the visible label', () => {
-      render(<Chip label="Design" onDelete={() => {}} />);
+    it('2.5.3 Label in Name: the accessible name includes the visible label', () => {
+      render(
+        <React.Fragment>
+          <Chip label="Design" onDelete={() => {}} />
+          <Chip icon={<CheckBox titleAccess="Selected" />} label="Filter" onClick={() => {}} />
+        </React.Fragment>,
+      );
 
-      expect(screen.getByRole('button')).toHaveAccessibleName('Design');
+      expect(screen.getByRole('button', { name: 'Design' })).toBeVisible();
+      expect(screen.getByRole('button', { name: /^Selected\s*Filter$/ })).toBeVisible();
     });
 
     it('3.2.1 On Focus: moving keyboard focus to the chip does not activate or delete it', async () => {
