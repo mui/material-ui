@@ -218,7 +218,7 @@ Tested by: axe-core `color-contrast` ❌
 <!-- 1.4.3:start -->
 
 - `info` and `warning` buttons do not meet `4.5:1` in any variant.
-- On hover, the `text` and `outlined` variants add a tint of the label color to the background, so the label contrast drops. The default Button (`text`, `primary`) falls below `4.5:1` on hover.
+- In light mode, the default Button (`text`, `primary`) tints its background with the label color on hover, reducing contrast below `4.5:1`.
 - axe-core `color-contrast` checks the resting state only. The hover ratios below come from the palette and the hover styles.
 - The `:active` ripple needs a visual check.
 - Disabled buttons are exempt.
@@ -232,7 +232,7 @@ The resting shortfalls, measured from the default light palette (all pairs again
 | `text`/`outlined` `color="warning"` label | `#ed6c02`  | `#fff`     | 3.11:1 |    4.5:1 |
 | `text`/`outlined` `color="info"` label    | `#0288d1`  | `#fff`     | 3.86:1 |    4.5:1 |
 
-Every other `variant` × `color` combination clears `4.5:1` at rest; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
+Every other combination of variant and named palette color clears `4.5:1` at rest. The closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
 
 The `text`/`outlined` shortfalls come from the `main` color itself. The `contained` ones do not: `getContrastText()` picks white because it reaches the default `contrastThreshold` of 3, without comparing it to dark text, which reaches `6.02:1` on `warning` and `4.95:1` on `info`. A `contrastThreshold` of `4.5` switches both to dark text, but `contrastText` is computed from `main` only: on the hover background (`info.dark`, `#01579b`) the dark `info` label drops to `2.68:1`.
 
@@ -242,7 +242,9 @@ In the default dark palette, only `error` (`#f44336`) falls short at rest:
 - `text` and `outlined`: the label uses `error.main`. It is about `5.09:1` on the page background (`#121212`). The elevation overlay of a Paper lightens the surface. On a Paper with elevation 2 or more, such as a Menu or Dialog, the label falls below `4.5:1`: about `4.3:1` at elevation 2 and `3.14:1` at elevation 24.
 - The other dark palette colors reach `4.5:1` at rest in every variant, up to elevation 24.
 
-On hover, the `text` and `outlined` background is `palette[color].main` at `action.hoverOpacity` over the surface: `0.04` in light mode and `0.08` in dark mode. The `contained` background changes to `palette[color].dark`. The hover shortfalls that the resting results above do not include:
+For the six named palette colors, `text` and `outlined` buttons tint the surface on hover with `palette[color].main` at `action.hoverOpacity` (`0.04` in light mode and `0.08` in dark mode). A `contained` button uses `palette[color].dark` on hover. With `color="inherit"`, the label takes its color from its parent, and a `contained` button uses a gray hover background in the default theme.
+
+The following combinations pass at rest and fall below `4.5:1` on hover.
 
 | Combination                                     | Foreground            | Background |  Ratio | Required |
 | :---------------------------------------------- | :-------------------- | :--------- | -----: | -------: |
