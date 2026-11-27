@@ -80,6 +80,20 @@ describe('<ToggleButtonGroup />', () => {
       ]);
     });
 
+    it('should have one tab stop when a button other than the first is selected', () => {
+      render(
+        <ToggleButtonGroup value="three" exclusive>
+          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="two">Two</ToggleButton>
+          <ToggleButton value="three">Three</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      expect(screen.getAllByRole('button').map((button) => button.tabIndex)).to.deep.equal([
+        0, -1, -1,
+      ]);
+    });
+
     it('should navigate horizontally and wrap focus', async () => {
       const { user } = render(
         <ToggleButtonGroup>
