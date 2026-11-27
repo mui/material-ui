@@ -15,7 +15,6 @@ import { HighlightedCode } from '../HighlightedCode';
 import { CodeTab, CodeTabList } from '../HighlightedCodeWithTabs';
 import { DemoSandbox } from './DemoSandbox';
 import { DemoToolbarRoot } from './DemoToolbarRoot';
-import { DemoAiSuggestionHero } from './DemoAiSuggestionHero';
 import { DemoEditor } from './DemoEditor';
 import { DemoEditorError } from './DemoEditorError';
 import { ReactRunner } from './ReactRunner';
@@ -181,9 +180,8 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const DemoRoot = styled('div', {
-  shouldForwardProp: (prop) =>
-    prop !== 'hideToolbar' && prop !== 'bg' && prop !== 'hasAiSuggestion',
-})<{ hideToolbar?: boolean; bg?: string | boolean; hasAiSuggestion?: boolean }>(({ theme }) => ({
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+})<{ hideToolbar?: boolean; bg?: string | boolean }>(({ theme }) => ({
   position: 'relative',
   margin: 'auto',
   display: 'flex',
@@ -391,7 +389,6 @@ export interface DemoProps {
     maxWidth?: number;
     height?: number;
     disableLiveEdit?: boolean;
-    aiSuggestion?: string;
     hideEditButton?: boolean;
     anchorId?: string | null;
   };
@@ -613,12 +610,7 @@ export function Demo(props: DemoProps) {
   return (
     <Root>
       {anchorName !== null && <AnchorLink id={anchorName} />}
-      <DemoRoot
-        hideToolbar={demoOptions.hideToolbar}
-        bg={demoOptions.bg}
-        id={demoId}
-        hasAiSuggestion={Boolean(demoOptions.aiSuggestion)}
-      >
+      <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
         <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
@@ -721,10 +713,6 @@ export function Demo(props: DemoProps) {
                         '& .MuiCode-copy': {
                           display: 'none',
                         },
-                        '& pre': {
-                          borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
-                          borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
-                        },
                       }}
                     />
                   ) : (
@@ -755,8 +743,8 @@ export function Demo(props: DemoProps) {
                       sx={
                         {
                           '& .scrollContainer': {
-                            borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
-                            borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
+                            borderBottomLeftRadius: 12,
+                            borderBottomRightRadius: 12,
                           },
                         } as any
                       }
@@ -768,28 +756,6 @@ export function Demo(props: DemoProps) {
               ))}
             </Collapse>
           </Tabs.Root>
-          {/* AI Suggestion Hero UI */}
-          {demoOptions.aiSuggestion ? (
-            <DemoAiSuggestionHero
-              suggestion={demoOptions.aiSuggestion}
-              params={{
-                name: demoName,
-                description: demoOptions.aiSuggestion,
-                initialMessage: demoOptions.aiSuggestion,
-                files: [
-                  {
-                    path: demo.moduleTS!,
-                    content: demo.rawTS!,
-                    isEntry: true,
-                  },
-                  ...(demo.relativeModules?.TS ?? []).map((module) => ({
-                    path: module.module,
-                    content: module.raw,
-                  })),
-                ],
-              }}
-            />
-          ) : null}
           {adVisibility ? <AdCarbonInline /> : null}
         </React.Fragment>
       )}

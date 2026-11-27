@@ -7,7 +7,7 @@ describe('demo sandbox dependencies', () => {
       name.endsWith('/AdapterLuxon') ? { luxon: 'latest' } : null,
     );
     const config = buildExportConfig({
-      csbConfig: { primaryPackage: '@mui/x-date-pickers', postProcessImport },
+      csbConfig: { postProcessImport },
       useTypescriptRef: { current: true },
     });
 
@@ -34,7 +34,7 @@ describe('demo sandbox dependencies', () => {
       lodash: 'latest',
     }));
     const config = buildExportConfig({
-      csbConfig: { primaryPackage: '@mui/x-charts', includePeerDependencies },
+      csbConfig: { includePeerDependencies },
       useTypescriptRef: { current: true },
     });
 

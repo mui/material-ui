@@ -187,12 +187,6 @@ export default function DemoModeToggleCustomTheme(props) {
 
 {{"component": "file://./demos/in-docs/index.ts", "disableLiveEdit": true}}
 
-### "aiSuggestion": string
-
-When set, renders a "Customize with AI" hero with the provided prompt.
-
-{{"component": "file://./demos/in-docs/index.ts", "aiSuggestion": "Make this Alert more prominent"}}
-
 ## Other options
 
 These options don't have a visual variant worth showcasing, but they are supported:

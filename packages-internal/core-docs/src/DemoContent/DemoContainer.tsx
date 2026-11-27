@@ -543,7 +543,7 @@ export interface DemoContainerProps {
   code?: React.ReactNode;
   /** ID assigned to the source region for toolbar `aria-controls`. */
   codeId?: string;
-  /** Slot rendered after the code panel (AI hero, ads, etc.). */
+  /** Slot rendered after the code panel (ads). */
   afterCode?: React.ReactNode;
   /**
    * Optional render wrapper for the tabs + code region. Used by the live

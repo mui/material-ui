@@ -556,9 +556,8 @@ export default function BasicButtons() {
       await page.keyboard.press('End');
       await expect(more).toBeFocused();
 
-      // The MUI Chat action is the toolbar's first control.
       await page.keyboard.press('Home');
-      await expect(demo.getByRole('button', { name: 'Edit in Chat' })).toBeFocused();
+      await expect(expand).toBeFocused();
     });
 
     test('resets focus to the demo start', async ({ page }) => {

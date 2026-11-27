@@ -10,7 +10,6 @@ import { useCodeVariant, useNoSsrCodeVariant, useSetCodeVariant } from '../codeV
 import DemoContext from '../DemoContext';
 import { AdCarbonInline } from '../Ad/AdCarbon';
 import { CODE_VARIANTS, stylingSolutionMapping } from '../constants/constants';
-import { DemoAiSuggestionHero } from './DemoAiSuggestionHero';
 import { DemoAnchorLink, DemoFileTabBar } from './DemoContainer';
 import { DemoFrameContent } from './DemoFrameContext';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
@@ -32,7 +31,6 @@ import {
   sourceAnchorTransform,
   toJavascriptFileName,
 } from './sourceAnchors';
-import { useMuiChatExporter } from './useMuiChatExporter';
 import { buildExportConfig } from './exportConfig';
 
 // ---------------------------------------------------------------------------
@@ -64,8 +62,6 @@ export interface DemoOptions {
    * target options directly, only `docs/pages/experiments` still sets it.
    */
   defaultCodeOpen?: boolean;
-  /** Prompt string shown in the "Customize with AI" hero. When unset, the hero is omitted. */
-  aiSuggestion?: string;
   /** Hide the "Edit this page" button in the toolbar. */
   hideEditButton?: boolean;
   /** Override the anchor `id` used for deep-links. `null` disables anchors entirely. */
@@ -90,7 +86,6 @@ export default function DemoContent(props: DemoContentProps) {
     initialExpanded,
     disableLiveEdit,
     disableAd: demoDisableAd,
-    aiSuggestion,
     anchorId: anchorIdOption,
     hideEditButton,
     bg,
@@ -191,13 +186,6 @@ export default function DemoContent(props: DemoContentProps) {
     resetDemo(demo.reset, remountPreview);
   }, [demo.reset]);
 
-  const openMuiChat = useMuiChatExporter({
-    props,
-    selectedVariant: demo.selectedVariant,
-    selectedTransform: demo.selectedTransform,
-    exportConfig,
-  });
-
   const t = useTranslate();
 
   const toggleRef = React.useRef<HTMLButtonElement>(null);
@@ -252,38 +240,6 @@ export default function DemoContent(props: DemoContentProps) {
   // opens it — matching master, where only the toggle sets `showAd`.
   const [adShown, setAdShown] = React.useState(false);
   const showAd = adShown && !pageDisableAd && !demoDisableAd;
-
-  // Build the file list for the AI hero from the current variant's source
-  // and extra files. Pass whichever variant is selected — the underlying chat
-  // API only needs a self-contained snapshot.
-  const aiSuggestionParams = React.useMemo(() => {
-    if (!aiSuggestion) {
-      return null;
-    }
-    const variantCode = props.code?.[demo.selectedVariant];
-    if (!variantCode || typeof variantCode === 'string') {
-      return null;
-    }
-    const entrypoint = demo.selectedFileName ?? demoName ?? 'index';
-    const files: Array<{ path: string; content: string; isEntry?: boolean }> = [];
-    if (typeof variantCode.source === 'string') {
-      files.push({ path: entrypoint, content: variantCode.source, isEntry: true });
-    }
-    const extra = variantCode.extraFiles;
-    if (extra) {
-      for (const [name, file] of Object.entries(extra)) {
-        if (file && typeof file === 'object' && typeof file.source === 'string') {
-          files.push({ path: name, content: file.source });
-        }
-      }
-    }
-    return {
-      name: demoName ?? demo.slug ?? 'Demo',
-      description: aiSuggestion,
-      initialMessage: aiSuggestion,
-      files,
-    };
-  }, [aiSuggestion, demoName, props.code, demo.selectedVariant, demo.selectedFileName, demo.slug]);
 
   const expandedRef = React.useRef(demo.expanded);
   expandedRef.current = demo.expanded;
@@ -443,7 +399,6 @@ export default function DemoContent(props: DemoContentProps) {
       variants={demo.variants}
       selectedVariant={demo.selectedVariant}
       onSelectVariant={demo.selectVariant}
-      openMuiChat={openMuiChat}
       hideEditButton={hideEditButton}
       onOpenStackBlitz={demo.openStackBlitz}
       onOpenCodeSandbox={demo.openCodeSandbox}
@@ -492,14 +447,7 @@ export default function DemoContent(props: DemoContentProps) {
       )
     : undefined;
 
-  const afterCode = hideToolbar ? null : (
-    <React.Fragment>
-      {aiSuggestion && aiSuggestionParams ? (
-        <DemoAiSuggestionHero suggestion={aiSuggestion} params={aiSuggestionParams} />
-      ) : null}
-      {showAd ? <AdCarbonInline /> : null}
-    </React.Fragment>
-  );
+  const afterCode = !hideToolbar && showAd ? <AdCarbonInline /> : null;
 
   // Build the inner-sandbox style only when a constraint is set so the common
   // case keeps the preview area's flex-child layout untouched.

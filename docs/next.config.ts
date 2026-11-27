@@ -306,8 +306,6 @@ export default withDeploymentConfig({
     NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
     // MUI Core related
     GITHUB_AUTH: process.env.GITHUB_AUTH,
-    MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',
-    MUI_CHAT_SCOPES: 'material-ui', // Use comma separated list of `productId` (see `_app.js`) to enable MUI Chat on demos
   },
   // Ensure CSS from the Data Grid packages is included in the build:
   // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605

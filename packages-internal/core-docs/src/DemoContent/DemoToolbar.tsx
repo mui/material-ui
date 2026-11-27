@@ -18,7 +18,6 @@ import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 import copy from 'clipboard-copy';
 import { useTranslate } from '../i18n';
-import { OpenInMUIChatButton } from './OpenInMUIChatButton';
 import type { DemoDeploymentLinks } from './demoDeploymentLinks';
 
 export type { DemoDeploymentLinks } from './demoDeploymentLinks';
@@ -136,7 +135,7 @@ function isFocusableToolbarButton(button: HTMLElement): boolean {
 
 /**
  * The initial stop is baked into the markup (`tabIndex={-1}` on every control
- * but the first), so nothing runs on mount: `checkVisibility` forces a style
+ * but the always-rendered show-source toggle), so nothing runs on mount: `checkVisibility` forces a style
  * flush per button, and a page hydrates dozens of toolbars. The visible set is
  * only resolved once focus enters the toolbar.
  */
@@ -244,7 +243,6 @@ export interface DemoToolbarProps {
   variants: readonly string[];
   selectedVariant: string;
   onSelectVariant: (variant: string) => void;
-  openMuiChat?: () => Promise<void>;
   hideEditButton?: boolean;
   onOpenStackBlitz: () => void;
   onOpenCodeSandbox: () => void;
@@ -297,7 +295,6 @@ export function DemoToolbar(props: DemoToolbarProps) {
     variants,
     selectedVariant,
     onSelectVariant,
-    openMuiChat,
     hideEditButton,
     onOpenStackBlitz,
     onOpenCodeSandbox,
@@ -387,15 +384,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        {/* Open in MUI Chat */}
-        <OpenInMUIChatButton
-          openMuiChat={openMuiChat}
-          data-ga-event-category="mui-chat"
-          data-ga-event-label={gaLabel}
-          data-ga-event-action="open-in-mui-chat"
-        />
-
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
         {/* JS/TS toggle (only relevant when code is open). */}
         <ToggleButtonGroup
           ref={languageToggleRef}
@@ -460,7 +449,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
         ) : null}
 
         <ToolbarButton
-          tabIndex={-1}
+          tabIndex={0}
           ref={toggleRef}
           onClick={onToggleExpand}
           aria-controls={demoSourceId}

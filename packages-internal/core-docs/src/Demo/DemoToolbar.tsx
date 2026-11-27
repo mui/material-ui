@@ -13,13 +13,11 @@ import Menu from '@mui/material/Menu';
 import MDMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Tooltip from '@mui/material/Tooltip';
-import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { CODE_VARIANTS, stylingSolutionMapping } from '../constants';
 import { useSetCodeVariant } from '../codeVariant';
 import { useTranslate } from '../i18n';
-import { OpenInMUIChatButton } from './OpenInMUIChatButton';
 import { useDemoContext } from '../DemoContext';
 import * as codeSandbox from '../sandbox/CodeSandbox';
 import * as stackBlitz from '../sandbox/StackBlitz';
@@ -269,7 +267,6 @@ export function DemoToolbar(props: DemoToolbarProps) {
     codeVariant,
     copyButtonOnClick,
     copyIcon,
-    hasNonSystemDemos,
     demo,
     demoData,
     demoId,
@@ -360,24 +357,15 @@ export function DemoToolbar(props: DemoToolbarProps) {
     [codeOpen],
   );
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
-    defaultActiveIndex: 0,
+    defaultActiveIndex: 3,
     isFocusableControl,
   });
 
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
-        <OpenInMUIChatButton
-          data-ga-event-category="mui-chat"
-          data-ga-event-label={demo.gaLabel}
-          data-ga-event-action="open-in-mui-chat"
-          demoData={demoData as unknown as SandboxDemoData}
-        />
         <Fade in={codeOpen}>
-          <Box sx={{ display: 'flex', ml: 1 }}>
-            {hasNonSystemDemos && (
-              <Divider orientation="vertical" variant="middle" sx={{ mx: 1, height: '24px' }} />
-            )}
+          <Box sx={{ display: 'flex' }}>
             <ToggleButtonGroup
               sx={{ margin: '8px 0' }}
               exclusive
