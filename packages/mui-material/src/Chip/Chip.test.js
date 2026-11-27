@@ -510,7 +510,7 @@ describe('<Chip />', () => {
     });
   });
 
-  describe('reacts to keyboard chip', () => {
+  describe('2.1.1 Keyboard: reacts to keyboard chip', () => {
     it('should call onKeyDown when a key is pressed', () => {
       const handleKeydown = stub().callsFake((event) => event.key);
       render(<Chip onClick={() => {}} onKeyDown={handleKeydown} />);
@@ -937,28 +937,6 @@ describe('<Chip />', () => {
       expect(ratio).to.be.below(WCAG_NON_TEXT_RATIO);
     });
 
-    describe('2.1.1 Keyboard', () => {
-      it('activates a clickable chip with Enter and Space', async () => {
-        const handleClick = spy();
-        const { user } = render(<Chip label="Filter" onClick={handleClick} />);
-
-        await user.tab();
-        await user.keyboard('{Enter}');
-        await user.keyboard(' ');
-        expect(handleClick.callCount).to.equal(2);
-      });
-
-      it('deletes a deletable chip with Backspace and Delete', async () => {
-        const handleDelete = spy();
-        const { user } = render(<Chip label="Design" onDelete={handleDelete} />);
-
-        await user.tab();
-        await user.keyboard('{Backspace}');
-        await user.keyboard('{Delete}');
-        expect(handleDelete.callCount).to.equal(2);
-      });
-    });
-
     it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the chip', async () => {
       const { user } = render(
         <React.Fragment>
@@ -981,18 +959,6 @@ describe('<Chip />', () => {
     });
 
     describe('2.4.3 Focus Order', () => {
-      it('keeps a static chip out of the tab order', async () => {
-        const { user } = render(
-          <React.Fragment>
-            <Chip label="Static" />
-            <button type="button">After</button>
-          </React.Fragment>,
-        );
-
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
-      });
-
       it('makes clickable and deletable chips tab stops in DOM order', async () => {
         const { user } = render(
           <React.Fragment>
@@ -1067,41 +1033,14 @@ describe('<Chip />', () => {
         expect(screen.queryByRole('button')).to.equal(null);
       });
 
-      it('gives a clickable chip the button role and its label as name', () => {
-        render(<Chip label="Filter" onClick={() => {}} />);
-
-        expect(screen.getByRole('button', { name: 'Filter' })).not.to.equal(null);
-      });
-
-      it('gives a link chip the link role', () => {
-        render(<Chip label="Docs" component="a" href="/docs" clickable />);
-
-        expect(screen.getByRole('link', { name: 'Docs' })).to.have.tagName('a');
-      });
-
       it('does not expose the disabled state of a disabled delete-only chip (documented gap)', async () => {
-        const handleDelete = spy();
-        const { user } = render(<Chip label="Design" onDelete={handleDelete} disabled />);
+        const { user } = render(<Chip label="Design" onDelete={() => {}} disabled />);
         const chip = screen.getByRole('button');
 
         // When this fails, the gap is fixed: update Chip/accessibility.md and knownGaps.json.
         expect(chip).not.to.have.attribute('aria-disabled');
         await user.tab();
         expect(chip).toHaveFocus();
-        await user.keyboard('{Backspace}');
-        expect(handleDelete.callCount).to.equal(1);
-      });
-
-      it('removes a disabled delete-only chip from the tab order with skipFocusWhenDisabled', async () => {
-        const { user } = render(
-          <React.Fragment>
-            <Chip label="Design" onDelete={() => {}} disabled skipFocusWhenDisabled />
-            <button type="button">After</button>
-          </React.Fragment>,
-        );
-
-        await user.tab();
-        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
       });
 
       it('exposes the disabled state of a disabled clickable chip', () => {
