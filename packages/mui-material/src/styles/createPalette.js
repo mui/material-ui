@@ -337,10 +337,10 @@ export default function createPalette(palette) {
       success: augmentColor({ color: success, name: 'success' }),
       // The grey colors.
       grey,
-      // Used by `getContrastText()` to maximize the contrast between
-      // the background and the text.
+      // Used by `getContrastText()`: the minimum contrast ratio at which white text is used.
       contrastThreshold,
-      // Takes a background color and returns the text color that maximizes the contrast.
+      // Takes a background color and returns white text if it reaches `contrastThreshold`,
+      // dark text otherwise. The two are not compared. Uses `contrastColor()` when `colorSpace` is set.
       getContrastText,
       // Generate a rich color object.
       augmentColor,

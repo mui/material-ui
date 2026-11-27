@@ -98,7 +98,9 @@ const theme = createTheme({
 
 ### Contrast threshold
 
-The `contrastText` token is calculated using the `contrastThreshold` value, to maximize the contrast between the background and the text.
+The `contrastText` token is calculated using the `contrastThreshold` value.
+It's white when white text on the background reaches the threshold, and dark (`rgba(0, 0, 0, 0.87)`) otherwise.
+The two are not compared, so the result is not always the color with more contrast.
 
 A higher contrast threshold value increases the point at which a background color is considered light, and thus given a dark `contrastText`.
 Note that the contrast threshold follows a non-linear curve, and defaults to a value of 3 which indicates a minimum contrast ratio of 3:1.
@@ -310,7 +312,9 @@ const theme = createTheme({
 
 :::warning
 The `contrastThreshold` parameter can produce counterproductive results.\
-Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/wcag-3-and-apca-sle13GMW2Brp) this new algorithm).
+Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/wcag-3-and-apca-sle13GMW2Brp) this new algorithm).\
+`contrastText` is calculated against `main` only, so also check states that use the `dark` token as background.
+For example, with a threshold of 4.5 the default `info` color gets dark text, which has a 2.68:1 contrast ratio on a hovered contained Button.
 :::
 
 ### Windows High Contrast mode
