@@ -7,11 +7,7 @@
 @import 'tailwindcss';
 ```
 
-Pages Router + GlobalStyles (first child of `AppCacheProvider`):
-
-```jsx
-<GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-```
+Put it at the top of the global CSS file in every setup (Next.js App Router, Pages Router, Vite), and load that file before Material UI inserts its styles.
 
 ## VS Code `settings.json` (IntelliSense for `slotProps`)
 
@@ -30,7 +26,6 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
-  important: '#__next', // or '#root' for Vite
   // ...
 };
 ```
@@ -39,5 +34,5 @@ See [Interoperability—Tailwind CSS v3](https://mui.com/material-ui/integratio
 
 ## Related skills
 
-- material-ui-nextjs: `AppRouterCacheProvider`, `enableCssLayer`, Pages `emotionCache`
+- material-ui-nextjs: `AppRouterCacheProvider`, Pages Router `AppCacheProvider` and `documentGetInitialProps`
 - material-ui-theming: `cssVariables: true` for `--mui-*` token bridging

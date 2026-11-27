@@ -85,15 +85,10 @@ You should pass the nonce in the `<style>` tags on the server.
 
 Then, you must pass this nonce to Emotion's cache so it can add it to subsequent `<style>`.
 
-:::warning
-If you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from Emotion and add the `prepend: true` option.
-:::
-
 ```js
 const cache = createCache({
   key: 'my-prefix-key',
   nonce: nonce,
-  prepend: true,
 });
 
 function App(props) {
@@ -118,13 +113,12 @@ For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs
 
 ```tsx
 import {
-  DocumentHeadTags,
   documentGetInitialProps,
   createEmotionCache,
 } from '@mui/material-nextjs/v15-pagesRouter';
 // other imports
 
-type Props = DocumentInitialProps & DocumentHeadTagsProps & { nonce?: string };
+type Props = DocumentInitialProps & { nonce?: string };
 
 export default function MyDocument(props: Props) {
   const { nonce } = props;
@@ -134,7 +128,6 @@ export default function MyDocument(props: Props) {
       <Head>
         {/*...*/}
         <meta name="csp-nonce" content={nonce} />
-        <DocumentHeadTags {...props} nonce={nonce} />
       </Head>
       <body>
         {/*...*/}

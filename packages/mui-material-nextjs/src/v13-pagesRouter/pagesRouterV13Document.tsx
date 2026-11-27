@@ -40,19 +40,6 @@ export function createGetInitialProps(plugins: Plugin[]) {
   };
 }
 
-export interface DocumentHeadTagsProps {
-  emotionStyleTags: React.ReactElement<unknown>[];
-}
-
-export function DocumentHeadTags(props: DocumentHeadTagsProps) {
-  return (
-    <React.Fragment>
-      <meta name="emotion-insertion-point" content="" />
-      {props.emotionStyleTags}
-    </React.Fragment>
-  );
-}
-
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
 export async function documentGetInitialProps(
@@ -101,12 +88,9 @@ export async function documentGetInitialProps(
         },
       resolveProps: async (initialProps) => {
         const { styles } = extractCriticalToChunks(initialProps.html);
-        return {
-          ...initialProps,
-          emotionStyleTags: styles.map((style) => {
-            if (!style.css.trim()) {
-              return null;
-            }
+        const emotionStyleTags = styles
+          .filter((style) => style.css.trim())
+          .map((style) => {
             const isLayerOrderRule = style.css.startsWith('@layer') && !style.css.includes('{');
             return (
               <style
@@ -119,10 +103,15 @@ export async function documentGetInitialProps(
                 nonce={cache.nonce}
               />
             );
-          }),
+          });
+        return {
+          ...initialProps,
+          // Next.js renders `styles` at the end of the `<head>`, after the app's CSS. The first style
+          // that names a layer fixes its place, so the layer order that the app's CSS declares wins.
+          styles: [...React.Children.toArray(initialProps.styles), ...emotionStyleTags],
         };
       },
     },
     ...(options?.plugins ?? []),
-  ])(ctx) as Promise<DocumentInitialProps & DocumentHeadTagsProps>;
+  ])(ctx);
 }

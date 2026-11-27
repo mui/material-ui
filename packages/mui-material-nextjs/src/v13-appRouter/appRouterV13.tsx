@@ -11,21 +11,15 @@ export type AppRouterCacheProviderProps = {
   /**
    * These are the options passed to createCache() from 'import createCache from "@emotion/cache"'.
    */
-  options?:
-    | (Partial<OptionsOfCreateCache> & {
-        /**
-         * If `true`, the generated styles are wrapped within `@layer mui`.
-         * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind CSS, plain CSS etc.
-         */
-        enableCssLayer?: boolean | undefined;
-      })
-    | undefined;
+  options?: Partial<OptionsOfCreateCache> | undefined;
   /**
    * By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"'.
    */
   CacheProvider?: React.ElementType<{ value: EmotionCache }> | undefined;
   children: React.ReactNode;
 };
+
+let warnedEnableCssLayer = false;
 
 /**
  * Emotion works OK without this provider but it's recommended to use this provider to improve performance.
@@ -46,6 +40,19 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     }
   }
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
+  if (process.env.NODE_ENV !== 'production') {
+    // JavaScript apps get no type error.
+    if (options && 'enableCssLayer' in options && !warnedEnableCssLayer) {
+      warnedEnableCssLayer = true;
+      console.error(
+        [
+          'MUI: The `enableCssLayer` option of `AppRouterCacheProvider` was removed in v10.',
+          "Material UI's styles are always in the `mui` layer, so remove the option.",
+          'See https://mui.com/material-ui/migration/upgrade-to-v10/#enablecsslayer-removed',
+        ].join('\n'),
+      );
+    }
+  }
 
   const [registry] = React.useState(() => {
     const cache = createCache({ ...options, key: options?.key ?? 'mui' });
@@ -55,9 +62,6 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     let inserted: { name: string; isGlobal: boolean }[] = [];
     // Override the insert method to support streaming SSR with flush().
     cache.insert = (...args) => {
-      if (options?.enableCssLayer && !args[1].styles.match(/^@layer\s[^{]*$/)) {
-        args[1].styles = `@layer mui {${args[1].styles}}`;
-      }
       const [selector, serialized] = args;
       if (cache.inserted[serialized.name] === undefined) {
         inserted.push({
