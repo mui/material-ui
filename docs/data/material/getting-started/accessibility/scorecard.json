@@ -1649,7 +1649,7 @@
           "name": "Reflow",
           "level": "AA",
           "conformance": "Partially Supports",
-          "responsibility": "Shared",
+          "responsibility": "Component",
           "group": "Hybrid",
           "flagged": false
         },
@@ -1667,7 +1667,7 @@
           "name": "Text Spacing",
           "level": "AA",
           "conformance": "Partially Supports",
-          "responsibility": "Shared",
+          "responsibility": "Component",
           "group": "Hybrid",
           "flagged": false
         },
