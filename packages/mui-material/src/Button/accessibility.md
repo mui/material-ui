@@ -14,7 +14,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->`info` and `warning` buttons fall short of 4.5:1 in every variant. In dark mode, the `contained` `error` label falls short on every surface, and the `text` and `outlined` `error` labels fall short on a Paper with elevation 2 or more.<!-- 1.4.3:gap:end -->
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->Focus-indicator, border, and icon contrast are untested; `disableRipple`/`disableFocusRipple` remove the `text`/`outlined` focus indicator, and `disableElevation` removes the `contained` one, unless the theme enables `focusVisible`.<!-- 1.4.11:gap:end -->
 - ⚠️ **2.2.2 Pause, Stop, Hide.** <!-- 2.2.2:gap:start -->The `loading` spinner turns until `loading` ends, and the user cannot pause it.<!-- 2.2.2:gap:end -->
 - ⚠️ **2.4.3 Focus Order.** <!-- 2.4.3:gap:start -->A focused button that turns `loading` becomes disabled, and the browser moves focus to the page body.<!-- 2.4.3:gap:end -->
@@ -233,15 +233,22 @@ The shortfalls, measured from the default light palette (all pairs against `#fff
 
 Every other `variant` × `color` combination clears `4.5:1`; the closest pass is `primary` at `4.6:1`. The button label (14px, weight 500) does not qualify as WCAG large text, so the `3:1` threshold never applies here.
 
+In the default dark palette, only `error` (`#f44336`) falls short:
+
+- `contained`: the `#fff` label is `3.68:1` on every surface.
+- `text` and `outlined`: the label uses `error.main`. It is about `5.09:1` on the page background (`#121212`). The elevation overlay of a Paper lightens the surface. On a Paper with elevation 2 or more, such as a Menu or Dialog, the label falls below `4.5:1`: about `4.3:1` at elevation 2 and `3.14:1` at elevation 24.
+- The other dark palette colors reach `4.5:1` in every variant, up to elevation 24.
+
 **Manual testing steps**
 
 1. With a contrast checker (the color picker in browser DevTools shows a ratio), check each button's label against its background, across the color and variant combinations in use.
 2. Repeat with the pointer hovering and held down, since `:hover` and `:active` change the background.
 3. Check any custom theme colors the product uses.
+4. In dark mode, repeat the check for `error` buttons on each Paper surface in use, such as a Menu or Dialog.
 
 <!-- 1.4.3:end -->
 
-**Pass:** <!-- 1.4.3:pass:start -->at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning` are the known failures.<!-- 1.4.3:pass:end -->
+**Pass:** <!-- 1.4.3:pass:start -->at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning`, and `error` in dark mode, are the known failures.<!-- 1.4.3:pass:end -->
 
 #### 1.4.11 Non-text Contrast · AA
 

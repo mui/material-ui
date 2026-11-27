@@ -1,12 +1,32 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import FormLabel, { formLabelClasses as classes } from '@mui/material/FormLabel';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
-import { hexToRgb } from '@mui/material/styles';
+import Checkbox from '@mui/material/Checkbox';
+import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Switch from '@mui/material/Switch';
+import { createTheme, hexToRgb, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '../styles/defaultTheme';
 import describeConformance from '../../test/describeConformance';
+import { blend, contrastRatio, WCAG_MINIMUM_RATIO } from '../../test/contrast';
+import { FAILING_PALETTE_COLORS, PALETTE_CONTRAST_COLORS } from '../../test/contrastContract';
+
+/**
+ * The color a dark-mode Paper paints: its `background-color` under the
+ * `background-image` overlay, both read from the rendered element.
+ */
+function paperSurface(paper) {
+  const { backgroundColor, backgroundImage } = window.getComputedStyle(paper);
+  const overlay = backgroundImage.match(/rgba?\([^)]+\)/);
+  if (overlay === null) {
+    throw new Error(`Expected a dark-mode overlay, got "${backgroundImage}".`);
+  }
+  return blend(overlay[0], 1, backgroundColor);
+}
 
 describe('<FormLabel />', () => {
   const { render } = createRenderer();
@@ -186,6 +206,136 @@ describe('<FormLabel />', () => {
       expect(screen.getByTestId('FormLabel')).toHaveComputedStyle({
         color: defaultTheme.palette.text.disabled,
       });
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('renders a legend element that names the fieldset group', () => {
+        render(
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Notification method</FormLabel>
+            <input type="radio" name="method" aria-label="Email" />
+          </FormControl>,
+        );
+
+        const group = screen.getByRole('group');
+        const legend = screen.getByText('Notification method');
+        expect(legend).to.have.tagName('legend');
+        expect(legend.parentElement).to.equal(group);
+        expect(group).toHaveAccessibleName('Notification method');
+      });
+
+      it('forwards htmlFor as the for attribute of the label', () => {
+        render(
+          <React.Fragment>
+            <FormLabel htmlFor="full-name">Full name</FormLabel>
+            <input id="full-name" />
+          </React.Fragment>,
+        );
+
+        const label = screen.getByText('Full name');
+        expect(label).to.have.tagName('label');
+        expect(label).to.have.attribute('for', 'full-name');
+        expect(screen.getByRole('textbox')).toHaveAccessibleName('Full name');
+      });
+
+      // When one of these fails, the gap is fixed: update FormLabel/accessibility.md and knownGaps.json.
+      [
+        { name: 'Checkbox', Control: Checkbox, role: 'checkbox' },
+        { name: 'Radio', Control: Radio, role: 'radio' },
+        { name: 'Switch', Control: Switch, role: 'switch' },
+      ].forEach(({ name, Control, role }) => {
+        it(`does not pass the required state to a ${name} (documented gap)`, () => {
+          render(
+            <FormControl component="fieldset" required>
+              <FormLabel component="legend">Terms</FormLabel>
+              <Control slotProps={{ input: { 'aria-label': 'Accept' } }} />
+            </FormControl>,
+          );
+
+          expect(screen.getByRole(role)).not.to.have.attribute('required');
+        });
+      });
+
+      it('does not pass the required state to a RadioGroup (documented gap)', () => {
+        render(
+          <FormControl component="fieldset" required>
+            <FormLabel component="legend">Plan</FormLabel>
+            <RadioGroup>
+              <Radio value="basic" slotProps={{ input: { 'aria-label': 'Basic' } }} />
+            </RadioGroup>
+          </FormControl>,
+        );
+
+        expect(screen.getByRole('radiogroup')).not.to.have.attribute('aria-required');
+      });
+    });
+
+    describe('1.4.3 Contrast (Minimum)', () => {
+      it('focused labels fall short of 4.5:1 only in the documented palette colors', () => {
+        const theme = createTheme();
+        render(
+          <React.Fragment>
+            {PALETTE_CONTRAST_COLORS.map((color) => (
+              <FormLabel key={color} color={color} focused>
+                {color}
+              </FormLabel>
+            ))}
+          </React.Fragment>,
+        );
+
+        // A focused label is `main` on the page background.
+        const failing = PALETTE_CONTRAST_COLORS.filter((color) => {
+          const { color: textColor } = window.getComputedStyle(screen.getByText(color));
+          return (
+            contrastRatio(textColor, theme.palette.background.default) <
+            WCAG_MINIMUM_RATIO.normalText
+          );
+        });
+        expect(failing).to.deep.equal([...FAILING_PALETTE_COLORS]);
+      });
+
+      // jsdom does not resolve the `--Paper-overlay` variable in `background-image`.
+      it.skipIf(isJsdom())(
+        'the dark-mode error label is borderline at elevation 1 and falls short of 4.5:1 at elevation 2 or more',
+        () => {
+          const elevations = [1, 2, 24];
+          render(
+            <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+              {elevations.map((elevation) => (
+                <Paper key={elevation} elevation={elevation} data-testid={`paper-${elevation}`}>
+                  <FormLabel error>{`Elevation ${elevation}`}</FormLabel>
+                </Paper>
+              ))}
+            </ThemeProvider>,
+          );
+
+          const [elevation1, ...elevated] = elevations.map((elevation) =>
+            contrastRatio(
+              window.getComputedStyle(screen.getByText(`Elevation ${elevation}`)).color,
+              paperSurface(screen.getByTestId(`paper-${elevation}`)),
+            ),
+          );
+
+          // When this fails, the gap changed: update FormLabel/accessibility.md and knownGaps.json.
+          expect(elevation1).to.be.within(WCAG_MINIMUM_RATIO.normalText, 4.6);
+          elevated.forEach((ratio) => {
+            expect(ratio).to.be.lessThan(WCAG_MINIMUM_RATIO.normalText);
+          });
+        },
+      );
+    });
+
+    it('2.5.3 Label in Name: the accessible name of the field is the visible label', () => {
+      render(
+        <FormControl required>
+          <FormLabel htmlFor="email">Email address</FormLabel>
+          <input id="email" />
+        </FormControl>,
+      );
+
+      expect(screen.getByRole('textbox')).toHaveAccessibleName('Email address');
     });
   });
 });
