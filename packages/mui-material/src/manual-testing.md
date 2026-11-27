@@ -72,7 +72,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning`, and `error` in dark mode, are the known failures.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — border, focus indicator, and any meaningful icon are each at least `3:1`. Disabled and purely decorative parts are exempt.
 - [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the spinner shows for less than five seconds, or the user can pause or hide it. With the default styles, the user cannot pause it. Keep `loading` short, or show the progress elsewhere.
-- [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button.
+- [ ] 🔁 **2.4.3 Focus Order** — focus stays on the button while it is `loading`, and the screen reader stays on the button. The next Tab press moves focus to the element after the button.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where the link goes. Replace vague labels like "Learn more" or "click here".
 - [ ] 🔁 **2.4.6 Headings and Labels** — every label describes its action ("Submit order", not "OK").
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused button shows a visible indicator. Under `disableRipple`, `disableFocusRipple`, and `disableElevation`, the indicator comes from the `focusVisible` theme ring or from author styles.
@@ -144,7 +144,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — the text is at least `4.5:1`. `info` and `warning` are the known failures.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — each icon and the focus indicator are at least `3:1`. Disabled buttons are exempt. The default focus ripple fails. To fix it, enable the `focusVisible` theme ring and set `disableFocusRipple`.
 - [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the spinner shows for less than five seconds, or the user can pause or hide it. With the default styles, the user cannot pause it. Keep `loading` short, or show the progress elsewhere.
-- [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button.
+- [ ] 🔁 **2.4.3 Focus Order** — focus stays on the button while it is `loading`, and the screen reader stays on the button. The next Tab press moves focus to the element after the button.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where each link goes, for example "Open settings" and not "Link".
 - [ ] 🔁 **2.4.6 Headings and Labels** — each label tells the action, for example "Delete file", not "delete icon".
 - [ ] 🔁 **2.4.7 Focus Visible** — each icon button shows a visible indicator on keyboard focus. With `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.
