@@ -27,6 +27,7 @@
       },
       { "component": "IconButton", "note": "`info`, `warning`" },
       "LinearProgress",
+      { "component": "Link", "note": "link text, 1.4.3 only" },
       "Switch",
       "TextField",
       "ToggleButton"
@@ -44,6 +45,12 @@
     "criteria": ["1.4.10", "1.4.12"],
     "affected": [{ "component": "Fab", "note": "`extended`" }],
     "workaround": "Keep labels short, or set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`"
+  },
+  {
+    "gap": "Links without an underline rely on color, and several link colors are below 3:1 against body text",
+    "criteria": ["1.4.1"],
+    "affected": [{ "component": "Link", "note": "`underline=\"none\"`, `underline=\"hover\"`" }],
+    "workaround": "Keep the default `underline=\"always\"` for links in body text"
   },
   {
     "gap": "Dynamic state changes are not announced",
