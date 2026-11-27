@@ -488,6 +488,9 @@ jobs:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
       - run:
+          name: Are all subpath exports reachable from the root?
+          command: node scripts/checkExports.mjs
+      - run:
           name: test exported typescript
           command: pnpm --filter ./test/moduleResolution typescript:all
       - store_artifacts:
