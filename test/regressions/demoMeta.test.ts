@@ -140,6 +140,20 @@ describe('getConfig', () => {
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 
+  it('asserts every rule on the enrolled Link demos and records the text-block gaps', () => {
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/links/ButtonLink')).to.deep.equal({
+      test: 'docs/data/material/components/links/{Links,UnderlineLink,ButtonLink}',
+      enabled: true,
+      assertions: 'all',
+    });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/links/LinkA11yInTextBlock'),
+    ).to.deep.include({ skipAssertions: ['color-contrast', 'link-in-text-block'] });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/links/LinkA11yInTextBlockDark'),
+    ).to.deep.include({ skipAssertions: ['link-in-text-block'] });
+  });
+
   it('returns the radio a11y rule for a brace-glob enrolment', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/RadioButtonsGroup'),
@@ -147,6 +161,19 @@ describe('getConfig', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/UseRadioGroup'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('asserts every rule on the FormLabel fixtures and records the focused-color gap', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/form-label/FormLabelA11yStates'),
+    ).to.deep.equal({
+      test: 'test/regressions/a11y/fixtures/form-label/{FormLabelA11yStates,FormLabelA11yColorMatrixDark}',
+      enabled: true,
+      assertions: 'all',
+    });
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/form-label/FormLabelA11yColorMatrix'),
+    ).to.deep.include({ skipAssertions: ['color-contrast'] });
   });
 
   it('returns undefined for a radio demo outside the enrolment', () => {

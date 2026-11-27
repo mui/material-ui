@@ -143,6 +143,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - `FormControlLabel` associates the label through a real `<label>`, and `FormControl component="fieldset"` with `FormLabel component="legend"` names a group.
 - axe-core's ARIA rules (`aria-allowed-attr`, `aria-valid-attr-value`, `aria-prohibited-attr`, `form-field-multiple-labels`) pass across the demos.
 - Two relationships are the author's responsibility. `FormHelperText` is a bare `<p>` with no `aria-describedby`, so helper and error text are not associated with the control, and a tri-state "select all" parent is not linked to its children. The author must associate them with `aria-describedby` and the appropriate group markup.
+- Checkbox does not take `required` from a `FormControl`. In a `required` group, assistive technology then gets no required state. The [FormLabel report](../FormLabel/accessibility.md#known-gaps) rates this gap under 1.3.1.
 
 **Manual testing steps**
 

@@ -161,6 +161,7 @@ Tested by: axe-core `form-field-multiple-labels` ✅
 
 - The native `<input type="radio">` exposes role and checked state; `required` and `disabled` map to the native attributes; `FormControlLabel` associates the label through a real `<label>`; and a shared `name` ties the options into one native group. Covered by axe-core. The group's `role="radiogroup"` relationship is rated in the [RadioGroup report](../RadioGroup/accessibility.md).
 - Two relationships are the author's to connect. `FormHelperText` is a bare `<p>` with no `aria-describedby`, so helper and error text (as in `ErrorRadios`) are not tied to the control. Add `aria-describedby` in the application.
+- Radio does not take `required` from a `FormControl`. In a `required` group, assistive technology then gets no required state. The [FormLabel report](../FormLabel/accessibility.md#known-gaps) rates this gap under 1.3.1.
 
 **Manual testing steps**
 
