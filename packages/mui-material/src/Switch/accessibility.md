@@ -160,6 +160,7 @@ Tested by: axe-core `form-field-multiple-labels` ✅
 - The native `<input type="checkbox">` with `role="switch"` exposes the role and the on/off state, and `required` and `disabled` map to the native attributes.
 - `FormControlLabel` associates the label through a real `<label>`, and `FormControl component="fieldset"` with `FormLabel component="legend"` names a group; covered by axe-core.
 - `FormHelperText` is a bare `<p>` with no `aria-describedby`, so associating the helper or error text with the control is the author's responsibility.
+- Switch does not take `required` from a `FormControl`. In a `required` group, assistive technology then gets no required state. The [FormLabel report](../FormLabel/accessibility.md#known-gaps) rates this gap under 1.3.1.
 
 **Manual testing steps**
 
