@@ -70,7 +70,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.1.1 Non-text Content** — every button's announced name matches its purpose, and decorative icons are silent.
 - [ ] 🔁 **1.3.1 Info and Relationships** — role and state match the visual presentation for every variant.
 - [ ] 🔁 **1.4.1 Use of Color** — meaning/purpose of the Button can be understood without color.
-- [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning` are the known failures.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning`, and `error` in dark mode, are the known failures.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — border, focus indicator, and any meaningful icon are each at least `3:1`. Disabled and purely decorative parts are exempt.
 - [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the spinner shows for less than five seconds, or the user can pause or hide it. With the default styles, the user cannot pause it. Keep `loading` short, or show the progress elsewhere.
 - [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button.
@@ -107,6 +107,17 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every name describes its operation.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and value are correct for every variant, and the track is silent.
 - [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not by default; add a polite live region in the application to convey it.
+
+## FormLabel
+
+6 checks · full procedures in [`FormLabel/accessibility.md`](./FormLabel/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces the legend as the group name, and the label as the name of the field.
+- [ ] 🔁 **1.4.1 Use of Color** — a text message or an icon, not only the red label, shows the error.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — each label is at least `4.5:1` in light and dark mode.
+- [ ] 🔁 **2.4.6 Headings and Labels** — each label tells what to enter, for example "Email address".
+- [ ] 🔁 **3.3.2 Labels or Instructions** — the asterisk shows. The screen reader announces "required" for each field. It does not announce "star".
+- [ ] 🔁 **4.1.2 Name, Role, Value** — each field announces the text of its FormLabel as its name.
 
 ## IconButton
 
@@ -195,7 +206,7 @@ Run the rows matching what you touched, for the component you touched.
 
 - [ ] 🔁 **1.3.1 Info and Relationships** — label, description, required, and invalid relationships are programmatically determinable.
 - [ ] 🔁 **1.4.1 Use of Color** — the error state is conveyed by more than color (the `helperText` message), not the red alone.
-- [ ] 🔁 **1.4.3 Contrast (Minimum)** — label, value, placeholder, and error text meet `4.5:1` (`3:1` for large text) against the actual background. The placeholder, focused `warning`, and filled-surface error text are the known failures.
+- [ ] 🔁 **1.4.3 Contrast (Minimum)** — label, value, placeholder, and error text meet `4.5:1` (`3:1` for large text) against the actual background. The placeholder, focused `warning`, filled-surface error text, and dark-mode error text are the known failures.
 - [ ] 🔍 **1.4.11 Non-text Contrast** — the resting boundary and the focus indicator are each `3:1` against adjacent colors. Today the resting `outlined` border is the known failure.
 - [ ] 🔁 **2.4.6 Headings and Labels** — every provided label describes its field.
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused field shows a visible indicator.
