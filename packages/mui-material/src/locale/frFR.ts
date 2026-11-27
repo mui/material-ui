@@ -47,7 +47,7 @@ export const frFR: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Caractère ${formatNumber(position)} sur ${formatNumber(length)}`,
       },
     },

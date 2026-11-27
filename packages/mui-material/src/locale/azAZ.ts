@@ -56,7 +56,7 @@ export const azAZ: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Simvol ${formatNumber(position)} (cəmi ${formatNumber(length)})`,
       },
     },

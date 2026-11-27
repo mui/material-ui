@@ -58,7 +58,7 @@ export const beBY: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Сімвал ${formatNumber(position)} з ${formatNumber(length)}`,
       },
     },

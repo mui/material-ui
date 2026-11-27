@@ -58,7 +58,7 @@ export const ukUA: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Символ ${formatNumber(position)} із ${formatNumber(length)}`,
       },
     },

@@ -6,6 +6,7 @@ import type {
   OTPFieldChangeEventDetails,
   OTPFieldCompleteEventDetails,
   OTPFieldInvalidEventDetails,
+  OTPFieldOwnerState,
   OTPFieldProps,
 } from '@mui/material/OTPField';
 
@@ -38,6 +39,11 @@ function Test() {
         inputRef={(node) => expectType<HTMLInputElement | null, typeof node>(node)}
         value="0012"
         validationType="alphanumeric"
+        getAriaLabel={(position, length) => {
+          expectType<number, typeof position>(position);
+          expectType<number, typeof length>(length);
+          return '';
+        }}
         onValueChange={(code, details) => {
           expectType<string, typeof code>(code);
           expectType<OTPFieldChangeEventDetails, typeof details>(details);
@@ -54,9 +60,13 @@ function Test() {
         slotProps={{
           root: { fullWidth: true, sx: { mt: 1 } },
           group: {
-            className: (state) => {
-              expectType<BaseOTPField.Root.State, typeof state>(state);
-              return state.complete ? 'complete' : undefined;
+            className: (ownerState) => {
+              expectType<OTPFieldOwnerState, typeof ownerState>(ownerState);
+              return ownerState.length === 4 ? 'complete' : undefined;
+            },
+            style: (ownerState) => {
+              expectType<OTPFieldOwnerState, typeof ownerState>(ownerState);
+              return { opacity: ownerState.fullWidth ? 1 : 0.5 };
             },
           },
           label: ({ required }) => ({ required }),

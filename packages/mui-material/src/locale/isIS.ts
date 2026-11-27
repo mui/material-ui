@@ -47,7 +47,7 @@ export const isIS: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Stafur ${formatNumber(position)} af ${formatNumber(length)}`,
       },
     },

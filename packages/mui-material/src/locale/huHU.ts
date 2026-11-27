@@ -47,7 +47,7 @@ export const huHU: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `${formatNumber(position)}. karakter, összesen ${formatNumber(length)}`,
       },
     },

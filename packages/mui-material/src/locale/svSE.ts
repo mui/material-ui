@@ -47,7 +47,7 @@ export const svSE: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Tecken ${formatNumber(position)} av ${formatNumber(length)}`,
       },
     },

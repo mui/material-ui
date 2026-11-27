@@ -47,7 +47,7 @@ export const etEE: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `${formatNumber(position)}. märk ${formatNumber(length)}-st`,
       },
     },

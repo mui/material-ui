@@ -47,7 +47,7 @@ export const kuCKB: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `پیتی ${formatNumber(position)} لە ${formatNumber(length)}`,
       },
     },

@@ -47,7 +47,7 @@ export const trTR: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `${formatNumber(length)} karakterden ${formatNumber(position)}. karakter`,
       },
     },

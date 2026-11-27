@@ -45,7 +45,7 @@ const OTPFieldInput = React.forwardRef(function OTPFieldInput(
         const label = first
           ? field.ariaLabel
           : (inputProps['aria-label'] ??
-            (labelledBy ? undefined : ownerState.getInputAriaLabel(state.index + 1, state.length)));
+            (labelledBy ? undefined : ownerState.getAriaLabel(state.index + 1, state.length)));
 
         return (
           <OTPFieldInputElement

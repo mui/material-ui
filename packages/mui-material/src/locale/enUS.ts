@@ -37,7 +37,7 @@ export const enUS: Localization = {
       openText: 'Open',
     }},
     MuiOTPField: { defaultProps: {
-      getInputAriaLabel: (position, length) => `Character ${position} of ${length}`,
+      getAriaLabel: (position, length) => `Character ${position} of ${length}`,
     }},
     MuiAlert: { defaultProps: {
       closeText: 'Close',

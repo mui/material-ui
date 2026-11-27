@@ -47,7 +47,7 @@ export const bgBG: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Знак ${formatNumber(position)} от ${formatNumber(length)}`,
       },
     },

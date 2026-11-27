@@ -47,7 +47,7 @@ export const hyAM: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Նիշ ${formatNumber(position)}՝ ${formatNumber(length)}-ից`,
       },
     },

@@ -47,7 +47,7 @@ export const thTH: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `อักขระที่ ${formatNumber(position)} จาก ${formatNumber(length)}`,
       },
     },

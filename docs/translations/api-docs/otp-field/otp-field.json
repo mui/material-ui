@@ -29,7 +29,7 @@
     "fullWidth": {
       "description": "If <code>true</code>, the field fills its container and the character inputs share the available width equally."
     },
-    "getInputAriaLabel": {
+    "getAriaLabel": {
       "description": "Accessible name for a character after the first. Positions start at one. For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "helperText": { "description": "The supporting or error text displayed below the inputs." },
@@ -60,15 +60,13 @@
     },
     "readOnly": { "description": "Keep the field focusable while preventing edits." },
     "render": {
-      "description": "Replaces the outer field element while preserving its styles and behavior. Accepts an element or a function that receives the root props and Base UI field state."
+      "description": "Replaces the outer field element while preserving its styles and behavior. Accepts an element or a function that receives the root props and field state."
     },
     "required": { "description": "Require a complete code before form submission." },
     "size": {
       "description": "The size of the field. Augment <code>OTPFieldPropsSizeOverrides</code> to add a custom size."
     },
-    "slotProps": {
-      "description": "Props for the Material slots and their corresponding Base UI parts."
-    },
+    "slotProps": { "description": "Props for the field slots." },
     "slots": { "description": "Components used to render the field&#39;s slots." },
     "sx": { "description": "System styles for the outer root element." },
     "validationType": { "description": "The set of characters accepted in the code." },
@@ -88,7 +86,7 @@
   },
   "slotDescriptions": {
     "formHelperText": "The supporting or error text.",
-    "group": "The host for Base UI OTPField.Root.",
+    "group": "The host for the character inputs and separators.",
     "label": "The visible field label.",
     "root": "The outer field container."
   }

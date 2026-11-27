@@ -47,7 +47,7 @@ export const kuLatn: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Tîpa ${formatNumber(position)} ji ${formatNumber(length)}`,
       },
     },

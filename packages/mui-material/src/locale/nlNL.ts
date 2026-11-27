@@ -47,7 +47,7 @@ export const nlNL: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Teken ${formatNumber(position)} van ${formatNumber(length)}`,
       },
     },

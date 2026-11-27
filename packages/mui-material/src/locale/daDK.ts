@@ -47,7 +47,7 @@ export const daDK: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Tegn ${formatNumber(position)} af ${formatNumber(length)}`,
       },
     },

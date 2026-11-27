@@ -113,7 +113,7 @@ The field's `ref` points to the outer container. Use `inputRef` to focus the fir
 Use `render` on `OTPField` to change its outer element and keep its Material styles and `FormControl` context.
 The `group`, `label`, and `formHelperText` slots also accept `render` through `slotProps`.
 
-A `slotProps` callback receives Material field props such as `size` and `error`. A slot's `render(props, state)` callback receives live Base UI state such as `complete`. The group's `className` and `style` callbacks also receive that live state.
+A `slotProps` callback receives Material owner state such as `size` and `error`. A slot's `render(props, state)` callback receives live field state such as `complete`.
 Spread the render callback's props onto the returned element and forward its ref. Both composed children also accept `render` directly. For `OTPFieldInput`, forward the props and ref to a native `<input>` to preserve focus, editing, and paste.
 
 This example renders the outer element as a `<section>` and uses the helper text's render callback to announce when the code is complete.
@@ -135,19 +135,6 @@ This theme sets the size to small, changes the focus color to secondary, and use
 
 See [themed components](/material-ui/customization/theme-components/) for more details.
 
-### Data attributes
-
-Base UI exposes state on the following elements. Import the attribute constants from `@mui/material/OTPField` if you use them in CSS selectors.
-
-| Part                | Export                            |
-| :------------------ | :-------------------------------- |
-| `group` slot        | `OTPFieldRootDataAttributes`      |
-| `OTPFieldInput`     | `OTPFieldInputDataAttributes`     |
-| `OTPFieldSeparator` | `OTPFieldSeparatorDataAttributes` |
-
-`data-complete` appears on the group when all characters are entered. Use `&[data-filled]` in `styleOverrides.input` to style each filled character. A separator exposes `data-orientation`, which defaults to `vertical`.
-See the [Base UI OTP Field reference](https://base-ui.com/react/components/otp-field#api-reference) for the full list of attributes.
-
 ## Anatomy
 
 The following tree shows a four-character field with a separator between the two pairs of inputs.
@@ -164,7 +151,7 @@ root (FormControl)
 └── formHelperText (FormHelperText, optional)
 ```
 
-The `group` slot hosts Base UI's `OTPField.Root`. Base UI also renders a visually hidden input alongside the outer container for native validation and form submission.
+The `group` slot hosts the character inputs. A visually hidden input alongside the outer container submits the whole code as one form value.
 
 ## Accessibility
 
@@ -176,7 +163,7 @@ The helper text describes the group and each character input. Use `aria-describe
 When customizing a label or helper, set its ID through `slotProps.label.id` or `slotProps.formHelperText.id` and forward the supplied attributes so these links stay intact.
 
 Subsequent inputs announce their position, such as "Character 2 of 6." The [theme locale](/material-ui/guides/localization/#locale-text) supplies these labels.
-Use `getInputAriaLabel(position, length)` to customize them for one field, or set `components.MuiOTPField.defaultProps.getInputAriaLabel` across your app. Positions start at one.
+Use `getAriaLabel(position, length)` to customize them for one field, or set `components.MuiOTPField.defaultProps.getAriaLabel` across your app. Positions start at one.
 To name just one character after the first, pass `aria-label` to its `OTPFieldInput`.
 
 ### Keyboard and focus

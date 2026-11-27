@@ -58,7 +58,7 @@ export const ruRU: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Символ ${formatNumber(position)} из ${formatNumber(length)}`,
       },
     },

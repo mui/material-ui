@@ -47,7 +47,7 @@ export const psAF: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `توری ${formatNumber(position)} له ${formatNumber(length)} څخه`,
       },
     },

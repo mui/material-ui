@@ -47,7 +47,7 @@ export const koKR: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `전체 ${formatNumber(length)}자 중 ${formatNumber(position)}번째 문자`,
       },
     },

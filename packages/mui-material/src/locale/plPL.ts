@@ -58,7 +58,7 @@ export const plPL: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Znak ${formatNumber(position)} z ${formatNumber(length)}`,
       },
     },

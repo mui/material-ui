@@ -47,7 +47,7 @@ export const urPK: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `کل ${formatNumber(length)} حروف میں سے حرف نمبر ${formatNumber(position)}`,
       },
     },

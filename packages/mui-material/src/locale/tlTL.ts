@@ -48,7 +48,7 @@ export const tlTL: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Ika-${formatNumber(position)} na karakter sa ${formatNumber(length)}`,
       },
     },

@@ -47,7 +47,7 @@ export const caES: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Caràcter ${formatNumber(position)} de ${formatNumber(length)}`,
       },
     },

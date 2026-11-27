@@ -47,7 +47,7 @@ export const arSA: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `الحرف ${formatNumber(position)} من ${formatNumber(length)}`,
       },
     },

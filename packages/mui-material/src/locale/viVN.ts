@@ -47,7 +47,7 @@ export const viVN: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Ký tự ${formatNumber(position)} trên ${formatNumber(length)}`,
       },
     },

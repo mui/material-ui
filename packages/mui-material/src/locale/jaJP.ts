@@ -47,7 +47,7 @@ export const jaJP: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `全${formatNumber(length)}文字中${formatNumber(position)}文字目`,
       },
     },

@@ -47,7 +47,7 @@ export const esES: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Carácter ${formatNumber(position)} de ${formatNumber(length)}`,
       },
     },

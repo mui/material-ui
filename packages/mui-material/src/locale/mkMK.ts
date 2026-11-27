@@ -51,7 +51,7 @@ export const mkMK: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Знак ${formatNumber(position)} од ${formatNumber(length)}`,
       },
     },

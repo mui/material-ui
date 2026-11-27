@@ -47,7 +47,7 @@ export const nnNO: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Teikn ${formatNumber(position)} av ${formatNumber(length)}`,
       },
     },

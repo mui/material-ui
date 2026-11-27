@@ -47,7 +47,7 @@ export const deDE: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Zeichen ${formatNumber(position)} von ${formatNumber(length)}`,
       },
     },

@@ -25,7 +25,7 @@ function useUtilityClasses(classes: OTPFieldProps['classes']) {
   return composeClasses(slots, getOTPFieldUtilityClass, classes);
 }
 
-function defaultGetInputAriaLabel(position: number, length: number) {
+function defaultGetAriaLabel(position: number, length: number) {
   return `Character ${position} of ${length}`;
 }
 
@@ -60,7 +60,7 @@ const OTPField = React.forwardRef(function OTPField(
     error = false,
     form,
     fullWidth = false,
-    getInputAriaLabel = defaultGetInputAriaLabel,
+    getAriaLabel = defaultGetAriaLabel,
     helperText,
     id: idProp,
     inputMode,
@@ -135,7 +135,7 @@ const OTPField = React.forwardRef(function OTPField(
           disabled: baseState.disabled,
           error: error || baseState.valid === false,
           fullWidth,
-          getInputAriaLabel,
+          getAriaLabel,
           helperText,
           id,
           inputRef,
@@ -247,11 +247,11 @@ OTPField.propTypes /* remove-proptypes */ = {
   /**
    * Accessible name for a character after the first. Positions start at one.
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
-   * @default function defaultGetInputAriaLabel(position: number, length: number) {
+   * @default function defaultGetAriaLabel(position: number, length: number) {
    *   return `Character ${position} of ${length}`;
    * }
    */
-  getInputAriaLabel: PropTypes.func,
+  getAriaLabel: PropTypes.func,
   /**
    * The supporting or error text displayed below the inputs.
    */
@@ -322,7 +322,7 @@ OTPField.propTypes /* remove-proptypes */ = {
   readOnly: PropTypes.bool,
   /**
    * Replaces the outer field element while preserving its styles and behavior.
-   * Accepts an element or a function that receives the root props and Base UI field state.
+   * Accepts an element or a function that receives the root props and field state.
    */
   render: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
@@ -336,7 +336,7 @@ OTPField.propTypes /* remove-proptypes */ = {
   size: PropTypes /* @typescript-to-proptypes-ignore */
     .oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   /**
-   * Props for the Material slots and their corresponding Base UI parts.
+   * Props for the field slots.
    */
   slotProps: PropTypes.shape({
     formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

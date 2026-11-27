@@ -47,7 +47,7 @@ export const ptBR: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Caractere ${formatNumber(position)} de ${formatNumber(length)}`,
       },
     },

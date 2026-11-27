@@ -142,18 +142,21 @@ describe('<OTPField />', () => {
       expect(rootRef.current).not.to.have.attribute('data-value');
     });
 
-    it('preserves group semantics and the composed inputs when replacing the group host', async () => {
+    it('passes ownerState to group className and style callbacks when replacing the group host', async () => {
       const groupRef = React.createRef<HTMLDivElement>();
       const { user } = render(
         <OTPField
           label="PIN"
           length={2}
+          size="small"
+          fullWidth
           slots={{ group: 'section' }}
           slotProps={{
             group: {
               ref: groupRef,
               render: <aside />,
-              className: (state) => (state.complete ? 'complete' : undefined),
+              className: (ownerState) => (ownerState.size === 'small' ? 'compact' : undefined),
+              style: (ownerState) => ({ opacity: ownerState.fullWidth ? 0.5 : 1 }),
             },
           }}
         >
@@ -165,9 +168,30 @@ describe('<OTPField />', () => {
       const group = screen.getByRole('group', { name: 'PIN' });
       expect(group.tagName).to.equal('SECTION');
       expect(groupRef.current).to.equal(group);
+      expect(group).to.have.class('compact');
+      expect(group.style.opacity).to.equal('0.5');
       await user.click(within(group).getByRole('textbox', { name: 'PIN' }));
       await user.paste('07');
-      expect(group).to.have.class('complete');
+    });
+
+    it('passes Base UI state to the group render callback', async () => {
+      const { user } = render(
+        <OTPField
+          label="PIN"
+          length={2}
+          slotProps={{
+            group: {
+              render: (props, state) => <fieldset {...props} data-complete={state.complete} />,
+            },
+          }}
+        />,
+      );
+
+      const group = screen.getByRole('group', { name: 'PIN' });
+      expect(group).to.have.attribute('data-complete', 'false');
+      await user.click(within(group).getByRole('textbox', { name: 'PIN' }));
+      await user.paste('07');
+      expect(group).to.have.attribute('data-complete', 'true');
     });
 
     it('keeps label and helper slot IDs linked to every composed input and the group', async () => {
@@ -280,12 +304,12 @@ describe('<OTPField />', () => {
       expect(within(group).getByRole('textbox', { name: 'Character 2 of 2' })).toHaveFocus();
     });
 
-    it('uses getInputAriaLabel for subsequent inputs unless they provide their own name', () => {
+    it('uses getAriaLabel for subsequent inputs unless they provide their own name', () => {
       render(
         <OTPField
           aria-label="Verification code"
           length={3}
-          getInputAriaLabel={(position, length) => `Digit ${position} out of ${length}`}
+          getAriaLabel={(position, length) => `Digit ${position} out of ${length}`}
         >
           <OTPFieldInput />
           <OTPFieldInput />

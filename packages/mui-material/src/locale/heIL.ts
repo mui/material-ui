@@ -47,7 +47,7 @@ export const heIL: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `תו ${formatNumber(position)} מתוך ${formatNumber(length)}`,
       },
     },

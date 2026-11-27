@@ -47,7 +47,7 @@ export const idID: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Karakter ${formatNumber(position)} dari ${formatNumber(length)}`,
       },
     },

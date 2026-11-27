@@ -51,7 +51,7 @@ export const msMS: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Aksara ${formatNumber(position)} daripada ${formatNumber(length)}`,
       },
     },

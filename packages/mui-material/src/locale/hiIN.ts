@@ -47,7 +47,7 @@ export const hiIN: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `वर्ण ${formatNumber(position)}, कुल ${formatNumber(length)}`,
       },
     },

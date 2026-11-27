@@ -82,7 +82,7 @@ export interface OTPFieldSlots {
    */
   label: React.ElementType;
   /**
-   * The host for Base UI OTPField.Root.
+   * The host for the character inputs and separators.
    * @default 'div'
    */
   group: React.ElementType;
@@ -99,7 +99,7 @@ export interface OTPFieldPropsSizeOverrides {}
 export interface OTPFieldOwnerState extends OTPFieldProps {
   color: NonNullable<OTPFieldProps['color']>;
   fullWidth: boolean;
-  getInputAriaLabel: NonNullable<OTPFieldProps['getInputAriaLabel']>;
+  getAriaLabel: NonNullable<OTPFieldProps['getAriaLabel']>;
   length: number;
   size: NonNullable<OTPFieldProps['size']>;
   error: boolean;
@@ -108,7 +108,7 @@ export interface OTPFieldOwnerState extends OTPFieldProps {
   required: boolean;
 }
 
-type GroupProps = Omit<RootProps, keyof OTPFieldBehaviorProps | 'role'>;
+type GroupProps = Omit<RootProps, keyof OTPFieldBehaviorProps | 'role' | 'className' | 'style'>;
 type LayoutSlotProps<Props, Overrides> = SlotComponentProps<
   React.FC<Props>,
   // Keep functions out of the object form so slot callbacks have their return value checked.
@@ -118,7 +118,13 @@ type LayoutSlotProps<Props, Overrides> = SlotComponentProps<
 
 export interface OTPFieldRootSlotPropsOverrides {}
 export interface OTPFieldLabelSlotPropsOverrides {}
-export interface OTPFieldGroupSlotPropsOverrides {}
+export interface OTPFieldGroupSlotPropsOverrides {
+  className?: string | ((ownerState: OTPFieldOwnerState) => string | undefined) | undefined;
+  style?:
+    | React.CSSProperties
+    | ((ownerState: OTPFieldOwnerState) => React.CSSProperties | undefined)
+    | undefined;
+}
 export interface OTPFieldFormHelperTextSlotPropsOverrides {}
 
 export type OTPFieldSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -185,11 +191,11 @@ export interface OTPFieldProps
   /**
    * Accessible name for a character after the first. Positions start at one.
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
-   * @default function defaultGetInputAriaLabel(position: number, length: number) {
+   * @default function defaultGetAriaLabel(position: number, length: number) {
    *   return `Character ${position} of ${length}`;
    * }
    */
-  getInputAriaLabel?: ((position: number, length: number) => string) | undefined;
+  getAriaLabel?: ((position: number, length: number) => string) | undefined;
   /** The supporting or error text displayed below the inputs. */
   helperText?: React.ReactNode;
   /** A ref to the first visible character input. */
@@ -198,7 +204,7 @@ export interface OTPFieldProps
   label?: React.ReactNode;
   /**
    * Replaces the outer field element while preserving its styles and behavior.
-   * Accepts an element or a function that receives the root props and Base UI field state.
+   * Accepts an element or a function that receives the root props and field state.
    */
   render?: RootProps['render'] | undefined;
   /**
@@ -206,7 +212,7 @@ export interface OTPFieldProps
    * @default 'medium'
    */
   size?: OverridableStringUnion<'small' | 'medium', OTPFieldPropsSizeOverrides> | undefined;
-  /** Props for the Material slots and their corresponding Base UI parts. */
+  /** Props for the field slots. */
   slotProps?: OTPFieldSlotsAndSlotProps['slotProps'] | undefined;
   /** Components used to render the field's slots. */
   slots?: OTPFieldSlotsAndSlotProps['slots'] | undefined;

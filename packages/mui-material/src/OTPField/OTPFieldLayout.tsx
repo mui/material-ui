@@ -125,8 +125,6 @@ function OTPFieldLayout({
       (id && `${id}-helper-text`))
     : undefined;
 
-  // The slotProps callback receives Material ownerState. Its className and style callbacks
-  // receive live Base UI state, including whether the code is complete.
   const {
     render: groupRender,
     className,
@@ -135,8 +133,8 @@ function OTPFieldLayout({
   } = resolveComponentProps(slotProps?.group, ownerState) ?? {};
   const resolvedGroupProps = {
     ...otherGroupProps,
-    className: resolveComponentProps(className, baseState),
-    style: resolveComponentProps(style, baseState),
+    className: resolveComponentProps(className, ownerState),
+    style: resolveComponentProps(style, ownerState),
   };
   const [GroupSlot, groupSlotProps] = useSlot('group', {
     elementType: OTPFieldGroup,

@@ -55,7 +55,7 @@ export const hrHR: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Znak ${formatNumber(position)} od ${formatNumber(length)}`,
       },
     },

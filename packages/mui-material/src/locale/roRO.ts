@@ -47,7 +47,7 @@ export const roRO: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Caracterul ${formatNumber(position)} din ${formatNumber(length)}`,
       },
     },

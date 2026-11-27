@@ -46,7 +46,7 @@ export const zhTW: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `第 ${formatNumber(position)} 個字元，共 ${formatNumber(length)} 個`,
       },
     },

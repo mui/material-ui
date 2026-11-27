@@ -51,7 +51,7 @@ export const neNP: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `कुल ${formatNumber(length)} मध्ये वर्ण नम्बर ${formatNumber(position)}`,
       },
     },

@@ -47,7 +47,7 @@ export const kmKH: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `តួអក្សរទី ${formatNumber(position)} ក្នុងចំណោម ${formatNumber(length)}`,
       },
     },

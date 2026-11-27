@@ -47,7 +47,7 @@ export const fiFI: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Merkki ${formatNumber(position)}, yhteensä ${formatNumber(length)}`,
       },
     },

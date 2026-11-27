@@ -47,7 +47,7 @@ export const itIT: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Carattere ${formatNumber(position)} di ${formatNumber(length)}`,
       },
     },

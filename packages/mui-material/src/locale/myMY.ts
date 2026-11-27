@@ -51,7 +51,7 @@ export const myMY: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `စာလုံး ${formatNumber(length)} လုံးအနက် ${formatNumber(position)} လုံးမြောက်`,
       },
     },

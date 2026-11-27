@@ -52,7 +52,7 @@ export const faIR: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `نویسهٔ ${formatNumber(position)} از ${formatNumber(length)}`,
       },
     },

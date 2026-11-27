@@ -47,7 +47,7 @@ export const bnBD: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `${formatNumber(length)}টির মধ্যে ${formatNumber(position)} নম্বর অক্ষর`,
       },
     },

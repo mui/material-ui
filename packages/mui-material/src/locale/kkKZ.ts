@@ -47,7 +47,7 @@ export const kkKZ: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `${formatNumber(length)} таңбаның ішіндегі ${formatNumber(position)}-таңба`,
       },
     },

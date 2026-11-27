@@ -48,7 +48,7 @@ export const elGR: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `Χαρακτήρας ${formatNumber(position)} από ${formatNumber(length)}`,
       },
     },

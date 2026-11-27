@@ -20,9 +20,9 @@
     "error": { "type": { "name": "bool" }, "default": "false" },
     "form": { "type": { "name": "string" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
-    "getInputAriaLabel": {
+    "getAriaLabel": {
       "type": { "name": "func" },
-      "default": "function defaultGetInputAriaLabel(position: number, length: number) {\n  return `Character ${position} of ${length}`;\n}"
+      "default": "function defaultGetAriaLabel(position: number, length: number) {\n  return `Character ${position} of ${length}`;\n}"
     },
     "helperText": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
@@ -101,7 +101,7 @@
     },
     {
       "name": "group",
-      "description": "The host for Base UI OTPField.Root.",
+      "description": "The host for the character inputs and separators.",
       "default": "'div'",
       "class": "MuiOTPField-group"
     },

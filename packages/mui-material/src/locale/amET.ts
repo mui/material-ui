@@ -47,7 +47,7 @@ export const amET: Localization = {
     },
     MuiOTPField: {
       defaultProps: {
-        getInputAriaLabel: (position, length) =>
+        getAriaLabel: (position, length) =>
           `ከ${formatNumber(length)} ቁምፊዎች ውስጥ ${formatNumber(position)}ኛው ቁምፊ`,
       },
     },
