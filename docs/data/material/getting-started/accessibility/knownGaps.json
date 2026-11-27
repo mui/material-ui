@@ -27,6 +27,7 @@
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
       { "component": "IconButton", "note": "`info`, `warning`" },
       "LinearProgress",
+      { "component": "Link", "note": "link text, 1.4.3 only" },
       "Switch",
       "TextField",
       "ToggleButton"
@@ -62,6 +63,12 @@
     "criteria": ["1.4.11", "2.5.8"],
     "affected": [{ "component": "Chip", "note": "16 px `small`, 22 px `medium`" }],
     "workaround": "Enlarge the icon, and give it a darker color, with `sx` on `.MuiChip-deleteIcon`"
+  },
+  {
+    "gap": "Links without an underline rely on color, and several link colors are below 3:1 against body text",
+    "criteria": ["1.4.1"],
+    "affected": [{ "component": "Link", "note": "`underline=\"none\"`, `underline=\"hover\"`" }],
+    "workaround": "Keep the default `underline=\"always\"` for links in body text"
   },
   {
     "gap": "Dynamic state changes are not announced",
