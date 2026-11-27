@@ -252,13 +252,13 @@ export function renderDocsRollup(totals) {
  */
 export function renderDocsTable(reports) {
   const header = [
-    '| Component | Level A | Level AA | Rated | ✅ Supports | ⚠️ Partially Supports | Verified | Automated |',
-    '| :-------- | ------: | -------: | ----: | ----------: | --------------------: | -------: | --------: |',
+    '| Component | Level A | Level AA | Rated | ✅ Supports | ⚠️ Partially Supports | ❌ Does Not Support | Verified | Automated |',
+    '| :-------- | ------: | -------: | ----: | ----------: | --------------------: | ------------------: | -------: | --------: |',
   ];
 
   const rows = reports.map(({ component, summary }) => {
     const link = `[${component}](${REPORT_BASE}/${component}/accessibility.md)`;
-    return `| ${link} | ${summary.levelA} | ${summary.levelAA} | ${summary.rated} | ${summary.supports} | ${summary.partiallySupports} | ${summary.verified}/${summary.rated} | ${summary.automated} |`;
+    return `| ${link} | ${summary.levelA} | ${summary.levelAA} | ${summary.rated} | ${summary.supports} | ${summary.partiallySupports} | ${summary.doesNotSupport} | ${summary.verified}/${summary.rated} | ${summary.automated} |`;
   });
 
   return [...header, ...rows].join('\n');

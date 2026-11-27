@@ -61,26 +61,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Pass:** <!-- 1.3.3:pass:start -->no instruction refers to a chip by color or position alone.<!-- 1.3.3:pass:end -->
 
-#### 1.4.4 Resize Text · AA
-
-`✅ Supports` · `◐ Shared`
-
-<!-- 1.4.4:start -->
-
-- Under 200% page zoom, the chip, its container, and the label scale together, so a label that fits at 100% still fits. Page zoom decides the 1.4.4 rating (WCAG technique G142). A manual step confirms it.
-- Under text-only resize, the label grows but a px-wide container does not. The label does not wrap, so it ends with an ellipsis. In the `ChipA11yLongLabel` fixture, a label fits its 240 px container at 100% (177 px). At a 200% text size, 219 px of the 331 px label is visible. A Playwright test confirms this.
-- To make long labels safe under text-only resize, let the label wrap with `height: 'auto'` on the chip, and `display: 'block'` and `whiteSpace: 'normal'` on the label, as the MultilineChips demo does.
-
-**Manual testing steps**
-
-1. Render a chip with a label that just fits its container.
-2. Set the browser zoom to 200%.
-3. Make sure that the full label stays visible.
-
-<!-- 1.4.4:end -->
-
-**Pass:** <!-- 1.4.4:pass:start -->the full label stays visible at 200% page zoom.<!-- 1.4.4:pass:end -->
-
 #### 1.4.5 Images of Text · AA
 
 `✅ Supports` · `○ Author`
@@ -441,6 +421,24 @@ Tested by: unit `Chip.test.js` · axe-core `aria-allowed-attr` ✅, `aria-comman
 **Pass:** <!-- 4.1.2:pass:start -->each chip announces its label and "button". The disabled chip announces "disabled". The disabled delete-only chip fails.<!-- 4.1.2:pass:end -->
 
 ### ⚙️ Automated
+
+#### 1.4.4 Resize Text · AA
+
+`✅ Supports` · `◐ Shared`
+
+Tested by: Playwright
+
+<!-- 1.4.4:start -->
+
+- Under 200% page zoom, the chip, its container, and the label scale together, so a label that fits at 100% still fits. A Playwright test confirms this on the ChipsArray demo. Page zoom decides the 1.4.4 rating (WCAG technique G142).
+- The page zoom check and the 1.4.10 reflow check cover 1.4.4 together. The page zoom viewport (500 × 350 px) is wider than the 320 px reflow viewport. So the page zoom check adds the clipping check, and the reflow check covers the narrow width.
+- Another Playwright test confirms that the ChipsArray demo, with short labels, survives a 200% text-only resize.
+- Under text-only resize, the label grows but a px-wide container does not. The label does not wrap, so it ends with an ellipsis. In the `ChipA11yLongLabel` fixture, a label fits its 240 px container at 100% (177 px). At a 200% text size, 219 px of the 331 px label is visible. A Playwright test confirms this.
+- To make long labels safe under text-only resize, let the label wrap with `height: 'auto'` on the chip, and `display: 'block'` and `whiteSpace: 'normal'` on the label, as the MultilineChips demo does.
+
+<!-- 1.4.4:end -->
+
+**Pass:** <!-- 1.4.4:pass:start -->the full label stays visible at 200% page zoom.<!-- 1.4.4:pass:end -->
 
 #### 2.1.2 No Keyboard Trap · A
 

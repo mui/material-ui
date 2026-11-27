@@ -19,13 +19,7 @@ export const CSS_LAYOUT_SUITES = [
   },
   { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
   { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
-  {
-    component: 'Chip',
-    route: '/docs-components-chips/ChipsArray',
-    // This suite tests 1.4.4 as text-only resize. The Chip report rates 1.4.4 on
-    // page zoom (G142), so it stays Manual until the page-zoom check in #49550.
-    skipCriteria: ['1.4.4'],
-  },
+  { component: 'Chip', route: '/docs-components-chips/ChipsArray' },
   {
     component: 'CircularProgress',
     route: '/docs-components-progress/CircularDeterminate',

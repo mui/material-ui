@@ -1543,7 +1543,7 @@
           "level": "AA",
           "conformance": "Supports",
           "responsibility": "Shared",
-          "group": "Manual",
+          "group": "Automated",
           "flagged": false
         },
         {
@@ -1708,7 +1708,7 @@
         "partiallySupports": 7,
         "doesNotSupport": 1,
         "verified": 15,
-        "automated": 4
+        "automated": 5
       }
     },
     {
