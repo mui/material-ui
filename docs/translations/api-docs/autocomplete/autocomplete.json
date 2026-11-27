@@ -79,7 +79,7 @@
       }
     },
     "getOptionKey": {
-      "description": "Used to determine the key for a given option. This can be useful when the labels of options are not unique (since labels are used as keys by default).",
+      "description": "Used to determine the key for a given option. This can be useful when the labels of options are not unique (since labels are used as keys by default).<br>It also identifies an option when <code>options</code> change: if the user highlighted an option, the option with the same key keeps the highlight. When provided, it takes priority over <code>isOptionEqualToValue</code> and the label for this.",
       "typeDescriptions": {
         "option": { "name": "option", "description": "The option to get the key for." }
       }
@@ -88,7 +88,7 @@
       "description": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string."
     },
     "getOptionValue": {
-      "description": "Used to determine the selected value for a given option.<br>When provided, the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> value use the returned type instead of the option type. The returned value must be a unique, non-null primitive. When <code>freeSolo</code> is enabled, it must not return a string because strings are reserved for free-solo values.",
+      "description": "Used to determine the selected value for a given option.<br>When provided, the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> value use the returned type instead of the option type. The returned value must be a unique, non-null primitive. When <code>freeSolo</code> is enabled, it must not return a string because strings are reserved for free-solo values.<br>When <code>options</code> change and <code>getOptionKey</code> is not provided, it is also used to keep a user-chosen highlight: a new option keeps the highlight when <code>isOptionEqualToValue</code> (strict equality by default) matches it against the value of the previously highlighted option.",
       "typeDescriptions": {
         "option": { "name": "option", "description": "The option to get the value for." }
       }
@@ -110,7 +110,7 @@
     },
     "inputValue": { "description": "The input value." },
     "isOptionEqualToValue": {
-      "description": "Used to determine if the option represents the given value. Uses strict equality against the option by default, or against the value returned by <code>getOptionValue</code> when that prop is provided. ⚠️ Both arguments need to be handled, an option can only match with one value.",
+      "description": "Used to determine if the option represents the given value. Uses strict equality against the option by default, or against the value returned by <code>getOptionValue</code> when that prop is provided. ⚠️ Both arguments need to be handled, an option can only match with one value.<br>When <code>options</code> change and <code>getOptionKey</code> is not provided, it also decides which option keeps a user-chosen highlight. If this prop or <code>getOptionValue</code> is provided, a new option keeps the highlight when it matches the previously highlighted option, mapped through <code>getOptionValue</code> when that prop is provided. Otherwise, options are matched by label.",
       "typeDescriptions": {
         "option": { "name": "option", "description": "The option to test." },
         "value": {

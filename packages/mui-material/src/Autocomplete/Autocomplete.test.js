@@ -774,6 +774,227 @@ describe('<Autocomplete />', () => {
       expect(getActiveDescendant(textbox)).to.equal(focusedOption);
     });
 
+    describe('keeps the user highlight on the same option when options change', () => {
+      const checkHighlightedIndex = (index) => {
+        const focused = screen.getByRole('listbox').querySelector(`.${classes.focused}`);
+        expect(focused).not.to.equal(null);
+        expect(focused).to.have.attribute('data-option-index', String(index));
+        expect(getActiveDescendant(screen.getByRole('combobox'))).to.equal(focused);
+      };
+      const byId = (option, value) => option.id === value.id;
+
+      it('matches by getOptionKey when labels are duplicated and the options are reordered', async () => {
+        const handleChange = spy();
+        const view = render(
+          <Autocomplete
+            open
+            options={[
+              { id: 1, name: 'Alice' },
+              { id: 9, name: 'John Smith' },
+              { id: 7, name: 'John Smith' },
+            ]}
+            getOptionKey={(option) => option.id}
+            getOptionLabel={(option) => option.name}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+
+        await view.user.keyboard('{ArrowDown}{ArrowDown}');
+        checkHighlightedIndex(1);
+
+        view.setProps({
+          options: [
+            { id: 1, name: 'Alice' },
+            { id: 7, name: 'John Smith' },
+            { id: 9, name: 'John Smith' },
+          ],
+        });
+        checkHighlightedIndex(2);
+
+        await view.user.keyboard('{Enter}');
+        expect(handleChange.callCount).to.equal(1);
+        expect(handleChange.args[0][1].id).to.equal(9);
+      });
+
+      it('matches by isOptionEqualToValue when the highlighted option label changes', async () => {
+        const handleChange = spy();
+        const view = render(
+          <Autocomplete
+            open
+            options={[
+              { id: 1, name: 'Apple', stock: 5 },
+              { id: 2, name: 'Apricot', stock: 3 },
+            ]}
+            getOptionLabel={(option) => `${option.name} (${option.stock} in stock)`}
+            isOptionEqualToValue={byId}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+
+        await view.user.keyboard('{ArrowDown}{ArrowDown}');
+        view.setProps({
+          options: [
+            { id: 1, name: 'Apple', stock: 5 },
+            { id: 2, name: 'Apricot', stock: 2 },
+          ],
+        });
+        checkHighlightedIndex(1);
+
+        // a second refetch in a row
+        view.setProps({
+          options: [
+            { id: 1, name: 'Apple', stock: 5 },
+            { id: 2, name: 'Apricot', stock: 1 },
+          ],
+        });
+        checkHighlightedIndex(1);
+
+        await view.user.keyboard('{Enter}');
+        expect(handleChange.args[0][1].id).to.equal(2);
+      });
+
+      it('compares against the mapped value when getOptionValue is provided', async () => {
+        const handleChange = spy();
+        const view = render(
+          <Autocomplete
+            open
+            options={[
+              { id: 1, name: 'Apple' },
+              { id: 2, name: 'Apricot' },
+            ]}
+            getOptionValue={(option) => option.id}
+            isOptionEqualToValue={(option, value) => option.id === value}
+            getOptionLabel={(option) => option.name}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+
+        await view.user.keyboard('{ArrowDown}{ArrowDown}');
+        view.setProps({
+          options: [
+            { id: 3, name: 'Avocado' },
+            { id: 1, name: 'Apple' },
+            { id: 2, name: 'Apricot (ripe)' },
+          ],
+        });
+        checkHighlightedIndex(2);
+
+        await view.user.keyboard('{Enter}');
+        expect(handleChange.args[0][1]).to.equal(2);
+      });
+
+      it('keeps a user highlight when autoHighlight is set', async () => {
+        const view = render(
+          <Autocomplete
+            open
+            autoHighlight
+            options={[
+              { id: 1, name: 'Ent' },
+              { id: 2, name: 'Flu' },
+              { id: 3, name: 'Pediatrician' },
+            ]}
+            getOptionLabel={(option) => option.name}
+            isOptionEqualToValue={byId}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+
+        await view.user.keyboard('{ArrowDown}');
+        view.setProps({
+          options: [
+            { id: 3, name: 'Pediatrician' },
+            { id: 1, name: 'Ent' },
+            { id: 2, name: 'Flu' },
+          ],
+        });
+        checkHighlightedIndex(2);
+      });
+
+      it('keeps a mouse highlight', () => {
+        const view = render(
+          <Autocomplete
+            open
+            options={[
+              { id: 1, name: 'Apple' },
+              { id: 2, name: 'Apricot' },
+              { id: 3, name: 'Avocado' },
+            ]}
+            getOptionLabel={(option) => option.name}
+            isOptionEqualToValue={byId}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+
+        fireEvent.mouseMove(screen.getAllByRole('option')[1]);
+        view.setProps({
+          options: [
+            { id: 3, name: 'Avocado' },
+            { id: 1, name: 'Apple' },
+            { id: 2, name: 'Apricot' },
+          ],
+        });
+        checkHighlightedIndex(2);
+      });
+
+      it('keeps the highlight with disableCloseOnSelect', async () => {
+        const view = render(
+          <Autocomplete
+            open
+            disableCloseOnSelect
+            options={[
+              { id: 1, name: 'Apple', stock: 5 },
+              { id: 2, name: 'Apricot', stock: 3 },
+            ]}
+            getOptionLabel={(option) => `${option.name} (${option.stock} in stock)`}
+            isOptionEqualToValue={byId}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+
+        await view.user.keyboard('{ArrowDown}{ArrowDown}');
+        view.setProps({
+          options: [
+            { id: 1, name: 'Apple', stock: 5 },
+            { id: 2, name: 'Apricot', stock: 2 },
+          ],
+        });
+        checkHighlightedIndex(1);
+      });
+
+      it('resets the highlight when the highlighted option is removed', async () => {
+        const handleChange = spy();
+        const view = render(
+          <Autocomplete
+            open
+            options={[
+              { id: 1, name: 'Ent' },
+              { id: 2, name: 'Flu' },
+              { id: 3, name: 'Pediatrician' },
+            ]}
+            getOptionLabel={(option) => option.name}
+            isOptionEqualToValue={byId}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        );
+
+        await view.user.keyboard('{ArrowDown}{ArrowDown}');
+        view.setProps({
+          options: [
+            { id: 3, name: 'Pediatrician' },
+            { id: 1, name: 'Ent' },
+          ],
+        });
+        checkHighlightIs(screen.getByRole('listbox'), null);
+
+        await view.user.keyboard('{Enter}');
+        expect(handleChange.callCount).to.equal(0);
+      });
+    });
+
     it('should not update the highlight when multiple open and value change', () => {
       const view = render(
         <Autocomplete

@@ -10,12 +10,14 @@ import usePreviousProps from '@mui/utils/usePreviousProps';
 import useTimeout from '@mui/utils/useTimeout';
 import useOptionValue from './utils/useOptionValue';
 
-function areArraysSame({ array1, array2, parser = (value) => value }) {
+const USER_HIGHLIGHT_REASONS = ['keyboard', 'mouse', 'touch'];
+
+function areArraysSame({ array1, array2, isSame }) {
   return (
     array1 &&
     array2 &&
     array1.length === array2.length &&
-    array1.every((prevOption, index) => parser(prevOption) === parser(array2[index]))
+    array1.every((prevOption, index) => isSame(prevOption, array2[index]))
   );
 }
 
@@ -317,6 +319,7 @@ function useAutocomplete(props) {
     value,
     inputValue,
     hasSelectedOption,
+    options,
   });
 
   React.useEffect(() => {
@@ -507,7 +510,7 @@ function useAutocomplete(props) {
       highlightedIndexRef.current = index;
       highlightReasonRef.current = reason ?? null;
 
-      if (onHighlightChange && ['mouse', 'keyboard', 'touch'].includes(reason)) {
+      if (onHighlightChange && USER_HIGHLIGHT_REASONS.includes(reason)) {
         onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
       }
 
@@ -600,10 +603,26 @@ function useAutocomplete(props) {
     },
   );
 
+  const isSameOptionIdentity = (a, b) => {
+    if (getOptionKey) {
+      return getOptionKey(a) === getOptionKey(b);
+    }
+    if (isOptionEqualToValueProp || getOptionValueProp) {
+      return isOptionEqualToValue(a, getOptionValue(b));
+    }
+    return getOptionLabel(a) === getOptionLabel(b);
+  };
+
+  const hasNewOptionsProp =
+    previousProps.options !== undefined && previousProps.options !== options;
+  const compareFilteredOption = hasNewOptionsProp
+    ? isSameOptionIdentity
+    : (a, b) => getOptionLabel(a) === getOptionLabel(b);
+
   const filteredOptionsChanged = !areArraysSame({
     array1: previousProps.filteredOptions,
     array2: filteredOptions,
-    parser: getOptionLabel,
+    isSame: compareFilteredOption,
   });
 
   const getPreviousHighlightedOptionIndex = () => {
@@ -626,29 +645,31 @@ function useAutocomplete(props) {
 
     if (
       highlightedIndexRef.current !== -1 &&
-      !areArraysSame({
-        array1: previousProps.filteredOptions,
-        array2: filteredOptions,
-        parser: getOptionLabel,
-      }) &&
+      // Auto highlights aren't preserved, so they move to the new first option (#46489).
+      USER_HIGHLIGHT_REASONS.includes(highlightReasonRef.current) &&
       previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
           previousProps.value.every((val, i) => isSameValue(value[i], val))
         : isSameValue(previousProps.value, value))
     ) {
-      const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
+      if (!filteredOptionsChanged) {
+        return hasNewOptionsProp ? highlightedIndexRef.current : -1;
+      }
+
+      const previousHighlightedOption =
+        previousProps.filteredOptions?.[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
         return filteredOptions.findIndex((option) => {
-          return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
+          return compareFilteredOption(option, previousHighlightedOption);
         });
       }
     }
     return -1;
   };
 
-  const syncHighlightedIndex = React.useCallback(() => {
+  const runHighlightSync = useEventCallback(() => {
     if (!popupOpen) {
       return;
     }
@@ -722,21 +743,26 @@ function useAutocomplete(props) {
 
     // Restore the focus to the previous index.
     setHighlightedIndex({ index: highlightedIndexRef.current });
+  });
+
+  const syncHighlightedIndex = React.useCallback(
+    () => runHighlightSync(),
     // Ignore filteredOptions (and options, isOptionEqualToValue, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    // Only sync the highlighted index when the option switch between empty and not
-    filteredOptions.length,
-    // Don't sync the highlighted index with the value when multiple
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    multiple ? false : value,
-    changeHighlightedIndex,
-    setHighlightedIndex,
-    setHighlightedIndexFromSync,
-    popupOpen,
-    inputValue,
-    multiple,
-  ]);
+    [
+      // Only sync the highlighted index when the option switch between empty and not
+      filteredOptions.length,
+      // Don't sync the highlighted index with the value when multiple
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      multiple ? false : value,
+      changeHighlightedIndex,
+      setHighlightedIndex,
+      setHighlightedIndexFromSync,
+      popupOpen,
+      inputValue,
+      multiple,
+    ],
+  );
 
   const handleListboxRef = useEventCallback((node) => {
     setRef(listboxRef, node);
@@ -778,10 +804,17 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    if (filteredOptionsChanged || (popupOpen && !disableCloseOnSelect)) {
+    if (filteredOptionsChanged || hasNewOptionsProp || (popupOpen && !disableCloseOnSelect)) {
       syncHighlightedIndex();
     }
-  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
+  }, [
+    syncHighlightedIndex,
+    filteredOptionsChanged,
+    hasNewOptionsProp,
+    popupOpen,
+    disableCloseOnSelect,
+    options,
+  ]);
 
   // Listen for browser window blur to detect when the user switches tabs or windows.
   // This helps prevent the popup from reopening automatically when the window regains focus.
