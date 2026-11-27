@@ -553,7 +553,7 @@ async function main() {
       });
     });
     describe('Chip', () => {
-      // A tripwire for the text-only resize limitation (1.4.4) and the 1.4.10 and
+      // A tripwire for the 1.4.4 Resize Text, 1.4.10 Reflow, and
       // 1.4.12 gaps: the label does not wrap, so text that fits ends with an ellipsis. When
       // this fails, Chip wraps its label: update Chip/accessibility.md and knownGaps.json.
       const ROUTE = '/a11y-chips/ChipA11yLongLabel';
@@ -600,19 +600,22 @@ async function main() {
         }
       });
 
-      test('known gap: a label that fits a wide viewport is truncated at 320 CSS px', async ({
+      test('known gap: 200% page zoom from 640 to 320 CSS px truncates a long label', async ({
         pooled,
       }) => {
         const { page } = pooled;
-        await renderFixture(page, ROUTE);
-        if (await truncated(page, 1)) {
-          throw new Error('ChipA11yLongLabel no longer fits at the default viewport');
-        }
-        await page.setViewportSize({ width: 320, height: 512 });
+        await page.setViewportSize({ width: 640, height: 1024 });
         try {
           await renderFixture(page, ROUTE);
+          if (await truncated(page, 1)) {
+            throw new Error('ChipA11yLongLabel no longer fits at 640 CSS px');
+          }
+          await page.setViewportSize({ width: 320, height: 512 });
           if (!(await truncated(page, 1))) {
             throw new Error('Chip label no longer truncates at 320 CSS px; the gap may be fixed');
+          }
+          if (await truncated(page, 2)) {
+            throw new Error('The multiline Chip workaround clips the label at 320 CSS px');
           }
         } finally {
           await page.setViewportSize(DEFAULT_VIEWPORT);
@@ -802,8 +805,7 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
 
       // 200% page zoom halves the CSS viewport. It decides the 1.4.4 rating
       // (WCAG technique G142). The text-only check below is stricter.
-      // This viewport is wider than the 1.4.10 one, so this check adds the clipping test.
-      // The reports state that the two checks cover 1.4.4 together.
+      // 320 CSS px is 200% zoom from 640 px, so content lost at the 1.4.10 width also fails 1.4.4.
       test.runIf(covers('1.4.4'))(
         '1.4.4 Resize Text: content survives 200% page zoom',
         async ({ pooled }) => {
@@ -893,7 +895,7 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     });
   });
 
-  // A tripwire for the Fab 1.4.10 and 1.4.12 gap, and the proof that `spilled`
+  // A tripwire for the Fab 1.4.4, 1.4.10, and 1.4.12 gap, and the proof that `spilled`
   // sees a label that leaves a fixed-height box. The fixture applies the WCAG
   // text spacing and the 200% text size itself. When this fails, the extended Fab
   // grows with its label: update Fab/accessibility.md and knownGaps.json.

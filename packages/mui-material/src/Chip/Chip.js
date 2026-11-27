@@ -584,7 +584,8 @@ Chip.propTypes /* remove-proptypes */ = {
    * If `false`, the chip will not appear clickable, even if onClick prop is defined.
    * This can be used, for example,
    * along with the component prop to indicate an anchor Chip is clickable.
-   * Note: this controls the UI and does not affect the onClick event.
+   * Note: this does not affect the onClick event. Without `onDelete`, `false` also
+   * removes the button role and keyboard access from the default root.
    */
   clickable: PropTypes.bool,
   /**
