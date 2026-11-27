@@ -694,7 +694,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       // the option handler's defaultPrevented value as the event bubbles to the list.
       event.defaultMuiPrevented = true;
       // A stopped keydown never reaches the list. The option can still perform its default action.
-      if (event.isPropagationStopped()) {
+      if (event.isPropagationStopped?.() ?? event.cancelBubble) {
         activateOptionOnSpace(event);
       }
     }

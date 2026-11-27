@@ -772,15 +772,47 @@ describe('<Select />', () => {
       },
     );
 
-    it('leaves a focused aria-disabled option unselected', async () => {
+    it('selects an option that stops propagation of a native Space keydown', async () => {
+      function NativeKeyDownOption({ onKeyDown, ...props }) {
+        return (
+          <MenuItem
+            {...props}
+            ref={(node) => {
+              if (node) {
+                node.onkeydown = onKeyDown;
+              }
+            }}
+          />
+        );
+      }
+
       const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultOpen defaultValue="" onChange={onChange}>
+          <NativeKeyDownOption value="1" onKeyDown={(event) => event.stopPropagation()}>
+            One
+          </NativeKeyDownOption>
+        </Select>,
+      );
+
+      expect(screen.getByRole('option')).toHaveFocus();
+      await user.keyboard(' ');
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not dispatch a click on a focused aria-disabled option when Space is pressed', async () => {
+      const onChange = vi.fn();
+      const onListClick = vi.fn();
 
       const { user } = render(
         <Select
           defaultOpen
           defaultValue=""
           onChange={onChange}
-          MenuProps={{ slotProps: { list: { disabledItemsFocusable: true } } }}
+          MenuProps={{
+            slotProps: { list: { disabledItemsFocusable: true, onClick: onListClick } },
+          }}
         >
           <MenuItem value="1" disabled>
             One
@@ -791,6 +823,7 @@ describe('<Select />', () => {
       expect(screen.getByRole('option')).toHaveFocus();
       await user.keyboard(' ');
 
+      expect(onListClick).toHaveBeenCalledTimes(0);
       expect(onChange).toHaveBeenCalledTimes(0);
     });
   });
