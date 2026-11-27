@@ -18,6 +18,7 @@ export const CSS_LAYOUT_SUITES = [
     textOnlyResize: false,
   },
   { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
+  { component: 'ButtonGroup', route: '/docs-components-button-group/VariantButtonGroup' },
   { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
   {
     component: 'CircularProgress',
@@ -74,6 +75,11 @@ export const FOCUS_VISIBLE_TARGETS = [
     component: 'Button',
     route: '/docs-components-buttons/BasicButtons',
     selector: '.MuiButton-root',
+  },
+  {
+    component: 'ButtonGroup',
+    route: '/docs-components-button-group/BasicButtonGroup',
+    selector: '.MuiButtonGroup-grouped',
   },
   {
     component: 'Checkbox',

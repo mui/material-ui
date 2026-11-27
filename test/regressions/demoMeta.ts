@@ -168,6 +168,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   {
+    test: 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup',
+    enabled: true,
+    viewportWidth: 320,
+  }, // Visual record of a wide horizontal group, clipped at 320 CSS px (1.4.10)
+  {
     test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
     enabled: true,
   }, // Fab labels fit at default, then wrap under text spacing and 200% text (1.4.4, 1.4.10, 1.4.12)
@@ -289,6 +294,18 @@ const BUTTON_A11Y_DEMOS = [
   'InputFileUpload',
   'LoadingButtons',
   'CustomizedButtons',
+];
+
+// ButtonGroup docs demos enrolled for axe assertions. SplitButton renders only the
+// closed menu button; the open menu needs interaction.
+const BUTTON_GROUP_A11Y_DEMOS = [
+  'BasicButtonGroup',
+  'VariantButtonGroup',
+  'GroupSizesColors',
+  'GroupOrientation',
+  'DisableElevation',
+  'LoadingButtonGroup',
+  'SplitButton',
 ];
 
 // Fab docs demos enrolled for axe assertions. FloatingActionButtonZoom is excluded:
@@ -441,6 +458,20 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
     skipAssertions: ['color-contrast'],
+  },
+  {
+    test: `docs/data/material/components/button-group/{${BUTTON_GROUP_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // An a11y-only fixture under `test/regressions/a11y/fixtures/button-group/`; the
+  // suite name maps its results into the same `button-group.a11y.json`.
+  // `ButtonGroupA11yWideGroup` is not enrolled. It has only plain buttons, and
+  // it exists only for the 320 px screenshot.
+  {
+    test: 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11ySemanticStates',
+    enabled: true,
+    assertions: 'all',
   },
   {
     test: `docs/data/material/components/floating-action-button/{${FAB_A11Y_DEMOS.join(',')}}`,
