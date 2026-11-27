@@ -339,8 +339,7 @@ const CHECKBOX_A11Y_DEMOS = [
 ];
 
 // Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
-// excluded: its `aria-label` on a role-less FormGroup div trips
-// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+// not enrolled. It shows label placement only, which the other demos cover.
 const SWITCH_A11Y_DEMOS = [
   'BasicSwitches',
   'SwitchLabels',
@@ -493,6 +492,14 @@ export const A11Y_RULES: A11yRule[] = [
   // axe's aria-conditional-attr passes.
   {
     test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixture for FormGroup, recorded into `checkboxes.a11y.json`. FormGroup has no
+  // docs page of its own, and the Checkbox page documents it. `FormGroup/accessibility.json`
+  // names the fixture in `axeDemos` to keep it out of the Checkbox report.
+  {
+    test: 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates',
     enabled: true,
     assertions: 'all',
   },

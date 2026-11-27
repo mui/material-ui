@@ -190,6 +190,7 @@ Edit the JSON files, not this table.
 | [Checkbox](./Checkbox/accessibility.md)                   | 24          | 1                     | 0                   | 30                | —           | 3/25       |
 | [CircularProgress](./CircularProgress/accessibility.md)   | 8           | 3                     | 0                   | 44                | —           | 5/11       |
 | [Fab](./Fab/accessibility.md)                             | 21          | 4                     | 0                   | 30                | —           | 6/25       |
+| [FormGroup](./FormGroup/accessibility.md)                 | 7           | 0                     | 0                   | 48                | —           | 3/7        |
 | [FormLabel](./FormLabel/accessibility.md)                 | 11          | 2                     | 0                   | 42                | —           | 3/13       |
 | [IconButton](./IconButton/accessibility.md)               | 22          | 5                     | 0                   | 28                | —           | 9/27       |
 | [LinearProgress](./LinearProgress/accessibility.md)       | 8           | 3                     | 0                   | 44                | —           | 5/11       |

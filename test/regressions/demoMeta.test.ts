@@ -208,6 +208,16 @@ describe('getConfig', () => {
     ).to.deep.include({ enabled: true, assertions: 'all' });
   });
 
+  it('asserts every rule on the FormGroup fixture', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates'),
+    ).to.deep.equal({
+      test: 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates',
+      enabled: true,
+      assertions: 'all',
+    });
+  });
+
   it('asserts every rule on the FormLabel fixtures and records the focused-color gap', () => {
     expect(
       getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/form-label/FormLabelA11yStates'),

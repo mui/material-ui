@@ -123,6 +123,15 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **2.4.7 Focus Visible** — each Fab shows a visible indicator on keyboard focus. With `disableRipple` and the default theme, no indicator shows, and the author must add one. The `focusVisible` theme ring fixes it.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the name, role, and state are correct for each kind. The disabled one announces "disabled", and the `href` one "link".
 
+## FormGroup
+
+4 checks · full procedures in [`FormGroup/accessibility.md`](./FormGroup/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces the group name once when focus enters the group.
+- [ ] 🔍 **1.3.2 Meaningful Sequence** — the reading order matches the visual order.
+- [ ] 🔍 **2.4.6 Headings and Labels** — each group name tells the purpose of the set, for example "Toppings".
+- [ ] 🔁 **3.3.2 Labels or Instructions** — each group that asks one question has a visible label and clear instructions.
+
 ## FormLabel
 
 6 checks · full procedures in [`FormLabel/accessibility.md`](./FormLabel/accessibility.md)
