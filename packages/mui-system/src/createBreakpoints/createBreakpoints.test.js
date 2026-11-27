@@ -81,6 +81,10 @@ describe('createBreakpoints', () => {
     it('should work for the largest of custom breakpoints', () => {
       expect(customBreakpoints.down('desktop')).to.equal('@media (max-width:1279.95px)');
     });
+
+    it('should keep the unit of a string value', () => {
+      expect(breakpoints.down('40em')).to.equal('@media (max-width:39.95em)');
+    });
   });
 
   describe('between', () => {
@@ -105,6 +109,12 @@ describe('createBreakpoints', () => {
     it('should work for custom breakpoints', () => {
       expect(customBreakpoints.between('tablet', 'laptop')).to.equal(
         '@media (min-width:640px) and (max-width:1023.95px)',
+      );
+    });
+
+    it('should keep the unit of string values', () => {
+      expect(breakpoints.between('40em', '60em')).to.equal(
+        '@media (min-width:40em) and (max-width:59.95em)',
       );
     });
   });

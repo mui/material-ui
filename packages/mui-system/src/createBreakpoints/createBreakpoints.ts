@@ -69,36 +69,38 @@ export default function createBreakpoints(breakpoints: BreakpointsOptions): Brea
   const sortedValues = sortBreakpointsValues(values as Record<string, number>);
   const keys = Object.keys(sortedValues);
 
-  function up(key: Breakpoint | number) {
-    const value =
-      typeof (values as any)[key as any] === 'number' ? (values as any)[key as any] : key;
-    // A string that has its own unit, such as `40em`, is used as is.
+  function getValue(key: Breakpoint | number): string | number {
+    const value = (values as any)[key as any];
+    return typeof value === 'number' || typeof value === 'string' ? value : key;
+  }
+
+  function formatValue(value: string | number, subtractStep = false) {
     if (typeof value === 'string' && Number.isNaN(Number(value))) {
-      return `@media (min-width:${value})`;
+      const match = value.match(/^(-?[\d.]+)([a-z%]*)$/);
+      if (match) {
+        return `${Number(match[1]) - (subtractStep ? step / 100 : 0)}${match[2]}`;
+      }
+      return value;
     }
-    return `@media (min-width:${value}${unit})`;
+    return `${subtractStep ? (value as number) - step / 100 : value}${unit}`;
+  }
+
+  function up(key: Breakpoint | number) {
+    return `@media (min-width:${formatValue(getValue(key))})`;
   }
 
   function down(key: Breakpoint | number) {
-    const value =
-      typeof (values as any)[key as any] === 'number' ? (values as any)[key as any] : key;
-    return `@media (max-width:${(value as number) - step / 100}${unit})`;
+    return `@media (max-width:${formatValue(getValue(key), true)})`;
   }
 
   function between(start: Breakpoint | number, end: Breakpoint | number) {
     const endIndex = keys.indexOf(end as string);
+    const endValue = endIndex !== -1 ? getValue(keys[endIndex] as Breakpoint) : end;
 
-    return (
-      `@media (min-width:${
-        typeof (values as any)[start as any] === 'number' ? (values as any)[start as any] : start
-      }${unit}) and ` +
-      `(max-width:${
-        (endIndex !== -1 && typeof (values as any)[keys[endIndex]] === 'number'
-          ? (values as any)[keys[endIndex]]
-          : (end as number)) -
-        step / 100
-      }${unit})`
-    );
+    return `@media (min-width:${formatValue(getValue(start))}) and (max-width:${formatValue(
+      endValue,
+      true,
+    )})`;
   }
 
   function only(key: Breakpoint): string {
