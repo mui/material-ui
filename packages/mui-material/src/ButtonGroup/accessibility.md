@@ -12,18 +12,20 @@ A ButtonGroup puts several Buttons in one set. This report rates only what the g
 
 | Result                   | Count |
 | :----------------------- | :---- |
-| ✅ Supports              | 9     |
-| ⚠️ Partially Supports    | 1     |
+| ✅ Supports              | 7     |
+| ⚠️ Partially Supports    | 2     |
 | ❌ Does Not Support      | 0     |
 | ➖ Not Applicable        | 27    |
-| ↗ Inherited (see Button) | 18    |
-| 🚩 Flagged               | 3/10  |
+| ↗ Inherited (see Button) | 19    |
+| 🚩 Flagged               | 3/9   |
 
 ## Known gaps
 
-- ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The buttons keep the Button focus ripple as their default focus indicator. Its contrast can fall below `3:1`. `disableRipple` or `disableFocusRipple` on the group removes it from each button.<!-- 1.4.11:gap:end -->
+- ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->A horizontal group does not wrap. A wide group makes the page scroll horizontally at 320 px. Set `orientation="vertical"` on small screens.<!-- 1.4.10:gap:end -->
+- ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The buttons keep the Button focus ripple as their default focus indicator. Its contrast can fall below `3:1`. Enable `focusVisible` in the theme to get a ring. Avoid `disableRipple` and `disableFocusRipple` on the group, because they remove the indicator from every button.<!-- 1.4.11:gap:end -->
 - Inherits ⚠️ **1.4.3 Contrast (Minimum)** from [Button](../Button/accessibility.md).
 - Inherits ⚠️ **2.2.2 Pause, Stop, Hide** from [Button](../Button/accessibility.md).
+- Inherits ⚠️ **2.4.3 Focus Order** from [Button](../Button/accessibility.md).
 - Inherits ⚠️ **4.1.3 Status Messages** from [Button](../Button/accessibility.md).
 
 ## Success criteria
@@ -180,7 +182,7 @@ Tested by: Playwright
 
 #### 1.4.10 Reflow · AA
 
-`✅ Supports` · `◐ Shared`
+`⚠️ Partially Supports` · `◐ Shared`
 
 Tested by: Playwright
 
@@ -188,7 +190,7 @@ Tested by: Playwright
 
 - A horizontal group is an `inline-flex` row that does not wrap. When the group is too wide, each button wraps its label first. When that is not enough, the group overflows its container, and the page scrolls horizontally.
 - A Playwright test confirms that the three-button variant demo does not scroll at 320 px. A screenshot records the `ButtonGroupA11yWideGroup` fixture, with five buttons, at 320 px. The test viewer hides horizontal overflow, so the screenshot shows the group clipped at the right edge.
-- The number of buttons is an author decision. To fix a wide group, set `orientation="vertical"` on small screens, for example with `useMediaQuery`.
+- The component does not reflow a wide horizontal group, so the rating is Partially Supports. To fix a wide group, set `orientation="vertical"` on small screens, for example with `useMediaQuery`.
 
 <!-- 1.4.10:end -->
 
@@ -204,18 +206,6 @@ Tested by: Playwright
 
 <!-- 1.4.12:end -->
 
-#### 2.4.3 Focus Order · A
-
-`✅ Supports` · `◐ Shared`
-
-Tested by: unit `ButtonGroup.test.js`
-
-<!-- 2.4.3:start -->
-
-- Each button is a tab stop in DOM order. `orientation` changes only the layout, so the order is the same in both orientations. A disabled group removes its buttons from the tab order. Unit tests confirm this. For the manual check, see 1.3.2.
-
-<!-- 2.4.3:end -->
-
 ## Inherited from Button
 
 - **1.1.1 Non-text Content (A).**
@@ -226,6 +216,7 @@ Tested by: unit `ButtonGroup.test.js`
 - **2.1.1 Keyboard (A).**
 - **2.1.2 No Keyboard Trap (A).**
 - **2.2.2 Pause, Stop, Hide (A).**
+- **2.4.3 Focus Order (A).** <!-- 2.4.3:start -->Each button is a tab stop in DOM order, in both orientations. A disabled group removes its buttons from the tab order. Unit tests in `ButtonGroup.test.js` confirm this.<!-- 2.4.3:end -->
 - **2.4.4 Link Purpose (In Context) (A).** <!-- 2.4.4:start -->A grouped Button with `href`. The `ButtonGroupA11ySemanticStates` fixture has one, and axe-core `link-name` passes on it.<!-- 2.4.4:end -->
 - **2.4.11 Focus Not Obscured (Minimum) (AA).**
 - **2.5.2 Pointer Cancellation (A).**
