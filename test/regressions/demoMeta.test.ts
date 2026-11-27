@@ -175,9 +175,7 @@ describe('getConfig', () => {
     ).not.to.have.property('skipAssertions');
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/chips/AvatarChips'),
-    ).to.deep.include({
-      skipAssertions: ['color-contrast'],
-    });
+    ).not.to.have.property('skipAssertions');
     expect(
       getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/chips/ChipA11ySemanticStates'),
     ).not.to.have.property('skipAssertions');

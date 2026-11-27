@@ -295,7 +295,6 @@ const CHIP_A11Y_DEMOS = [
   'ClickableAndDeletableChips',
   'ClickableLinkChips',
   'CustomDeleteIconChips',
-  // A later rule overrides AvatarChips to skip `color-contrast`.
   'AvatarChips',
   'IconChips',
   'ColorChips',
@@ -500,15 +499,6 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
-  // `color-contrast` returns incomplete: axe cannot resolve the label background
-  // next to the image avatar, and it does not rate the one-letter avatar text.
-  // `ChipA11yKnownGaps` records the letter avatar fail with a two-letter avatar.
-  {
-    test: 'docs/data/material/components/chips/AvatarChips',
-    enabled: true,
-    assertions: 'all',
-    skipAssertions: ['color-contrast'],
-  },
   // A11y-only fixtures under `test/regressions/a11y/fixtures/chips/`; the suite
   // name maps their results into the same `chips.a11y.json`.
   {
@@ -517,9 +507,9 @@ export const A11Y_RULES: A11yRule[] = [
     assertions: 'all',
   },
   // `color-contrast` is recorded but not asserted. These are documented gaps
-  // (1.4.3, 4.1.2) in `packages/mui-material/src/Chip/accessibility.md`: `info`
-  // and `warning` labels, the letter avatar, and a disabled delete-only chip,
-  // which axe sees as an active control.
+  // in `packages/mui-material/src/Chip/accessibility.md`: the `info` and `warning`
+  // labels (1.4.3). axe also fails the faded label of a disabled delete-only chip,
+  // because the chip has no `aria-disabled` (4.1.2).
   {
     test: 'test/regressions/a11y/fixtures/chips/{ChipA11yColorMatrix,ChipA11yKnownGaps}',
     enabled: true,
