@@ -118,6 +118,75 @@ describe('getConfig', () => {
     });
   });
 
+  it('records the wide ButtonGroup fixture at 320 px, without axe', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup'),
+    ).to.equal(undefined);
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup',
+      ),
+    ).to.deep.include({ enabled: true, viewportWidth: 320 });
+  });
+
+  it('asserts every rule on the enrolled ButtonGroup demos and fixture', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/button-group/SplitButton'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/button-group/ButtonGroupA11ySemanticStates',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('asserts every rule on the enrolled Fab demos and fixtures', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/floating-action-button/FloatingActionButtons',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/floating-action-button/FabA11ySemanticStates',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/floating-action-button/FabA11yColorMatrix',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all', skipAssertions: ['color-contrast'] });
+  });
+
+  it('records the Fab long-label fixture and keeps its screenshot', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all', skipAssertions: ['color-contrast'] });
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
+      ),
+    ).to.deep.include({ enabled: true });
+  });
+
+  it('leaves the FloatingActionButtonZoom demo unenrolled', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/floating-action-button/FloatingActionButtonZoom',
+      ),
+    ).to.equal(undefined);
+  });
+
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
     // The buttons enrolments cover Button and IconButton, not ButtonBase.
     expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
@@ -161,6 +230,16 @@ describe('getConfig', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/radio-buttons/UseRadioGroup'),
     ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('asserts every rule on the FormGroup fixture', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates'),
+    ).to.deep.equal({
+      test: 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates',
+      enabled: true,
+      assertions: 'all',
+    });
   });
 
   it('asserts every rule on the FormLabel fixtures and records the focused-color gap', () => {

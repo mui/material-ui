@@ -114,7 +114,7 @@ async function run(argv) {
     summary: summarize(report.criteria),
   }));
   fail([
-    ...reports.flatMap((report) => validateReport(report, check)),
+    ...reports.flatMap((report) => validateReport(report, check, defaults)),
     ...validateKnownGaps(knownGaps, reports, check),
   ]);
   const criteria = rollUpCriteria(reports);

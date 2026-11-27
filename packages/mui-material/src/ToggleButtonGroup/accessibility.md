@@ -14,8 +14,8 @@ Unlike a radio group, ToggleButtonGroup adds no roving tab order and no arrow-ke
 
 | Result                          | Count |
 | :------------------------------ | :---- |
-| ✅ Supports                     | 4     |
-| ⚠️ Partially Supports           | 0     |
+| ✅ Supports                     | 3     |
+| ⚠️ Partially Supports           | 1     |
 | ❌ Does Not Support             | 0     |
 | ➖ Not Applicable               | 31    |
 | ↗ Inherited (see Toggle Button) | 20    |
@@ -23,6 +23,7 @@ Unlike a radio group, ToggleButtonGroup adds no roving tab order and no arrow-ke
 
 ## Known gaps
 
+- ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->A horizontal group does not wrap. A wide group makes the page scroll horizontally at 320 px. Set `orientation="vertical"` on small screens.<!-- 1.4.10:gap:end -->
 - Inherits ⚠️ **1.4.1 Use of Color** from [Toggle Button](../ToggleButton/accessibility.md).
 - Inherits ⚠️ **1.4.3 Contrast (Minimum)** from [Toggle Button](../ToggleButton/accessibility.md).
 - Inherits ⚠️ **1.4.11 Non-text Contrast** from [Toggle Button](../ToggleButton/accessibility.md).
@@ -97,14 +98,14 @@ Tested by: unit `ToggleButtonGroup.test.js` · axe-core `aria-allowed-attr` ✅,
 
 #### 1.4.10 Reflow · AA
 
-`✅ Supports` · `◐ Shared`
+`⚠️ Partially Supports` · `◐ Shared`
 
 Tested by: Playwright
 
 <!-- 1.4.10:start -->
 
 - Each toggle sizes to its content, but the group owns the layout: a horizontal group is `display: inline-flex` and does not wrap (`ToggleButtonGroup.js`), so a wide row of toggles can overflow horizontally at 320 CSS pixels.
-- The component provides `orientation="vertical"` as the escape hatch; the author keeps the group within 320 pixels by switching orientation or limiting the number of toggles. Covered by a Playwright test at a 320px viewport.
+- The component does not reflow a wide horizontal group, so the rating is Partially Supports. To fix a wide group, set `orientation="vertical"` on small screens, or use fewer toggles. A Playwright test checks the demos at a 320px viewport.
 
 <!-- 1.4.10:end -->
 

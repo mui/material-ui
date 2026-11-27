@@ -168,6 +168,15 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'test/regressions/a11y/fixtures/buttons/ButtonA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   { test: 'test/regressions/a11y/fixtures/accordion/AccordionA11yTextSpacing', enabled: true }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
   {
+    test: 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup',
+    enabled: true,
+    viewportWidth: 320,
+  }, // Visual record of a wide horizontal group, clipped at 320 CSS px (1.4.10)
+  {
+    test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
+    enabled: true,
+  }, // Fab labels fit at default, then wrap under text spacing and 200% text (1.4.4, 1.4.10, 1.4.12)
+  {
     test: 'test/regressions/a11y/fixtures/toggle-button/ToggleButtonA11yTextSpacing',
     enabled: true,
   }, // Visual regression for text spacing (1.4.12); adds no unique axe coverage
@@ -287,6 +296,26 @@ const BUTTON_A11Y_DEMOS = [
   'CustomizedButtons',
 ];
 
+// ButtonGroup docs demos enrolled for axe assertions. SplitButton renders only the
+// closed menu button; the open menu needs interaction.
+const BUTTON_GROUP_A11Y_DEMOS = [
+  'BasicButtonGroup',
+  'VariantButtonGroup',
+  'GroupSizesColors',
+  'GroupOrientation',
+  'DisableElevation',
+  'LoadingButtonGroup',
+  'SplitButton',
+];
+
+// Fab docs demos enrolled for axe assertions. FloatingActionButtonZoom is excluded:
+// most of its content is a Tabs component.
+const FAB_A11Y_DEMOS = [
+  'FloatingActionButtons',
+  'FloatingActionButtonExtendedSize',
+  'FloatingActionButtonSize',
+];
+
 // IconButton docs demos enrolled for axe assertions. They share the `buttons` slug, so
 // `IconButton/accessibility.json` names them in `axeDemos` to keep them out of Button's report.
 const ICON_BUTTON_A11Y_DEMOS = [
@@ -327,8 +356,7 @@ const CHECKBOX_A11Y_DEMOS = [
 ];
 
 // Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
-// excluded: its `aria-label` on a role-less FormGroup div trips
-// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+// not enrolled. It shows label placement only, which the other demos cover.
 const SWITCH_A11Y_DEMOS = [
   'BasicSwitches',
   'SwitchLabels',
@@ -432,6 +460,53 @@ export const A11Y_RULES: A11yRule[] = [
     skipAssertions: ['color-contrast'],
   },
   {
+    test: `docs/data/material/components/button-group/{${BUTTON_GROUP_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // An a11y-only fixture under `test/regressions/a11y/fixtures/button-group/`; the
+  // suite name maps its results into the same `button-group.a11y.json`.
+  // `ButtonGroupA11yWideGroup` is not enrolled. It has only plain buttons, and
+  // it exists only for the 320 px screenshot.
+  {
+    test: 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11ySemanticStates',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: `docs/data/material/components/floating-action-button/{${FAB_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixtures live under `test/regressions/a11y/fixtures/floating-action-button/`
+  // (no docs page consumes them); the suite name maps their results into the
+  // same `floating-action-button.a11y.json` as the docs demos above.
+  {
+    test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11ySemanticStates',
+    enabled: true,
+    assertions: 'all',
+  },
+  // With 200% text, the labels spill out of the fixed-height extended Fab, the
+  // documented 1.4.4/1.4.10/1.4.12 gap. axe cannot resolve the background of the
+  // spilled text, so `color-contrast` is recorded as incomplete without failing CI.
+  {
+    test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11yLongLabel',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  // `color-contrast` is a documented gap, not a regression: an extended Fab
+  // renders `contrastText` on `main`, like a contained Button, so `info` and
+  // `warning` labels fall short of 4.5:1. The failure is recorded in
+  // `floating-action-button.a11y.json` and documented in
+  // `packages/mui-material/src/Fab/accessibility.md` § 1.4.3.
+  {
+    test: 'test/regressions/a11y/fixtures/floating-action-button/FabA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
+  {
     test: `docs/data/material/components/buttons/{${ICON_BUTTON_A11Y_DEMOS.join(',')}}`,
     enabled: true,
     assertions: 'all',
@@ -448,6 +523,14 @@ export const A11Y_RULES: A11yRule[] = [
   // axe's aria-conditional-attr passes.
   {
     test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  // A11y-only fixture for FormGroup, recorded into `checkboxes.a11y.json`. FormGroup has no
+  // docs page of its own, and the Checkbox page documents it. `FormGroup/accessibility.json`
+  // names the fixture in `axeDemos` to keep it out of the Checkbox report.
+  {
+    test: 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates',
     enabled: true,
     assertions: 'all',
   },
