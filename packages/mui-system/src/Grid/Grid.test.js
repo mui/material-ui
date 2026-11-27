@@ -179,7 +179,39 @@ describe('System <Grid />', () => {
     });
   });
 
+  describe('prop: direction', () => {
+    it('should apply a breakpoint class for each value of a responsive array', () => {
+      const { container } = render(<Grid container direction={['column', 'row']} />);
+      expect(container.firstChild).to.have.class('MuiGrid-direction-xs-column');
+      expect(container.firstChild).to.have.class('MuiGrid-direction-sm-row');
+      expect(container.firstChild).not.to.have.class('MuiGrid-direction-0-column');
+    });
+  });
+
   describe('Custom breakpoints', () => {
+    it('should apply the direction class of the smallest custom breakpoint', () => {
+      const { container } = render(
+        <ThemeProvider
+          theme={createTheme({
+            breakpoints: {
+              values: {
+                mobile: 0,
+                tablet: 640,
+              },
+            },
+          })}
+        >
+          <Grid container direction={['column', 'row']} />
+          <Grid container direction="column" />
+        </ThemeProvider>,
+      );
+
+      expect(container.children[0]).to.have.class('MuiGrid-direction-mobile-column');
+      expect(container.children[0]).to.have.class('MuiGrid-direction-tablet-row');
+      expect(container.children[1]).to.have.class('MuiGrid-direction-mobile-column');
+      expect(container.children[1]).not.to.have.class('MuiGrid-direction-xs-column');
+    });
+
     it('should apply the custom breakpoint class', () => {
       const { container } = render(
         <ThemeProvider

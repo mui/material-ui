@@ -65,7 +65,7 @@ export default function createGrid(
         'root',
         container && 'container',
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
-        ...generateDirectionClasses(direction),
+        ...generateDirectionClasses(direction, theme.breakpoints.keys),
         ...generateSizeClassNames(size),
         ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : []),
       ],

@@ -1,3 +1,4 @@
+import { breakpointKeys } from '../createBreakpoints/createBreakpoints';
 import type { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import type { Spacing } from '../createTheme/createSpacing';
 import { getValue } from '../spacing';
@@ -216,13 +217,24 @@ export const generateSpacingClassNames = (
 
 export const generateDirectionClasses = (
   direction: ResponsiveStyleValue<GridDirection> | undefined,
+  keys: readonly string[] = breakpointKeys,
 ): string[] => {
   if (direction === undefined) {
     return [];
+  }
+  if (Array.isArray(direction)) {
+    // A responsive array is indexed by breakpoint, as in the styles.
+    const classNames: string[] = [];
+    direction.forEach((value, index) => {
+      if (value != null && keys[index]) {
+        classNames.push(`direction-${keys[index]}-${value}`);
+      }
+    });
+    return classNames;
   }
   if (typeof direction === 'object') {
     return Object.entries(direction).map(([key, value]) => `direction-${key}-${value}`);
   }
 
-  return [`direction-xs-${String(direction)}`];
+  return [`direction-${keys[0]}-${String(direction)}`];
 };
