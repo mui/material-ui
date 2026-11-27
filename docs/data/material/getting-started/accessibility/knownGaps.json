@@ -40,7 +40,7 @@
       "TextField",
       "ToggleButton"
     ],
-    "workaround": "Override the affected palette entries. In dark mode, set a lighter `error.main`, or keep `error` text on a surface with elevation 0 or 1. Elevation does not help the label of a `filled` TextField"
+    "workaround": "Override the affected palette entries. In dark mode, set a lighter `error.main`, or keep `error` text on a surface with elevation 0 or 1. A `text` or `outlined` Button needs elevation 0 to pass on hover. Elevation does not help a `contained` Button or the label of a `filled` TextField"
   },
   {
     "gap": "A horizontal group does not wrap, so a wide group can scroll horizontally at 320 px",

@@ -247,7 +247,7 @@ On hover, the `text` and `outlined` background is `palette[color].main` at `acti
 | light `text`/`outlined` `color="primary"` label | `#1976d2`             | `#f6fafd`  | 4.37:1 |    4.5:1 |
 | dark `contained` `color="secondary"`            | `rgba(0, 0, 0, 0.87)` | `#ab47bc`  | 4.01:1 |    4.5:1 |
 
-In light mode, `secondary`, `error`, and `success` keep `4.5:1` on hover, and `info` and `warning` drop further, to `3.67:1` and `2.98:1`. The light `contained` hover background is darker, so the white label gains contrast.
+In light mode, the `text` and `outlined` labels of `secondary`, `error`, and `success` keep `4.5:1` on hover. The `info` and `warning` labels drop further, to `3.67:1` and `2.98:1`. The light `contained` hover background is darker, so the white label gains contrast: `info` passes at `7.40:1`, and `warning` still fails at `3.79:1`.
 
 In dark mode, the elevation overlay of a Paper makes the surface lighter, so the `text` and `outlined` hover ratio depends on the surface:
 
@@ -258,7 +258,7 @@ In dark mode, the elevation overlay of a Paper makes the surface lighter, so the
 | `info` (`#29b6f6`)      |           7.28:1 |             6.36:1 |            5.15:1 |               4.69:1 |               4.41:1 |
 | `success` (`#66bb6a`)   |           7.07:1 |             6.17:1 |            4.99:1 |               4.54:1 |               4.27:1 |
 
-`primary` and `warning` stay above `5:1` on hover on every surface. The other dark `contained` colors reach `4.5:1` on hover.
+The `secondary` value on a Drawer is a borderline calculated result: it is within rounding of `4.5:1`, and a rendered page can pass. Elevation 24 is the clear failure. `primary` and `warning` stay above `5:1` on hover on every surface. The other dark `contained` colors reach `4.5:1` on hover.
 
 **Manual testing steps**
 
