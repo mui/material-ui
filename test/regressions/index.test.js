@@ -671,7 +671,8 @@ async function main() {
 function registerCssLayoutSuites({ test, renderFixture, routes }) {
   /**
    * Reports the document's horizontal overflow after applying `css`, plus any
-   * element whose own content escapes its box. Both are the failure modes the
+   * element whose own content escapes its box: `clipped` when the box hides its
+   * overflow, `spilled` when it does not. These are the failure modes the
    * reflow, resize-text, and text-spacing criteria care about.
    */
   async function measureOverflow(page, css) {
@@ -686,43 +687,79 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
       const root = document.documentElement;
       const horizontalOverflow = root.scrollWidth - root.clientWidth;
 
-      // These criteria are about losing *text*, so only elements that hide
-      // overflow and actually render text count. Measuring the text range
-      // rather than scrollWidth avoids flagging boxes that deliberately clip
-      // decoration — a Switch root clipping its ripple loses no content.
-      const clipped = Array.from(document.querySelectorAll('[class*="Mui"]'))
-        .filter((node) => {
-          const { overflowX, overflowY, visibility, display } = window.getComputedStyle(node);
-          if (overflowX !== 'hidden' && overflowY !== 'hidden') {
-            return false;
-          }
-          // Deliberately hidden content — a collapsed Accordion panel — is not
-          // clipped content: these criteria are about what is on screen.
-          if (visibility === 'hidden' || display === 'none') {
-            return false;
-          }
-          const box = node.getBoundingClientRect();
-          if (box.width === 0 || box.height === 0) {
-            return false;
-          }
-          return node.textContent.trim() !== '';
-        })
+      const escapes = (text, box) =>
+        text.left < box.left - 0.5 ||
+        text.right > box.right + 0.5 ||
+        text.top < box.top - 0.5 ||
+        text.bottom > box.bottom + 0.5;
+      const hidesOverflow = (node) => {
+        const { overflowX, overflowY } = window.getComputedStyle(node);
+        return overflowX === 'hidden' || overflowY === 'hidden';
+      };
+
+      // These criteria are about losing *text*, so only elements that actually
+      // render text count.
+      const withText = Array.from(document.querySelectorAll('[class*="Mui"]')).filter((node) => {
+        const { visibility, display } = window.getComputedStyle(node);
+        // Deliberately hidden content — a collapsed Accordion panel — is not
+        // clipped content: these criteria are about what is on screen.
+        if (visibility === 'hidden' || display === 'none') {
+          return false;
+        }
+        const box = node.getBoundingClientRect();
+        if (box.width === 0 || box.height === 0) {
+          return false;
+        }
+        return node.textContent.trim() !== '';
+      });
+
+      // Measuring the text range rather than scrollWidth avoids flagging boxes
+      // that deliberately clip decoration — a Switch root clipping its ripple
+      // loses no content.
+      const clipped = withText
+        .filter(hidesOverflow)
         .filter((node) => {
           const range = document.createRange();
           range.selectNodeContents(node);
-          const text = range.getBoundingClientRect();
+          return escapes(range.getBoundingClientRect(), node.getBoundingClientRect());
+        })
+        .map((node) => node.getAttribute('class'));
+
+      // A box that shows its overflow hides no text, but text that leaves a
+      // fixed-size box can land on a background that makes it unreadable — a
+      // wrapped label above and below an extended Fab. Only the text nodes of
+      // the element itself count: a positioned child, such as a floating label,
+      // is outside its parent by design.
+      //
+      // The range measures line boxes, which are taller than the glyphs. One
+      // line can thus be taller than a small fixed box while its glyphs stay
+      // inside, such as the count in a Badge at a 200% text size. So above and
+      // below the box, only text that wraps counts. To the left and right, any
+      // text counts.
+      const spilled = withText
+        .filter((node) => !hidesOverflow(node))
+        .filter((node) => {
           const box = node.getBoundingClientRect();
-          return (
-            text.left < box.left - 0.5 ||
-            text.right > box.right + 0.5 ||
-            text.top < box.top - 0.5 ||
-            text.bottom > box.bottom + 0.5
-          );
+          return Array.from(node.childNodes).some((child) => {
+            if (child.nodeType !== Node.TEXT_NODE || child.textContent.trim() === '') {
+              return false;
+            }
+            const range = document.createRange();
+            range.selectNodeContents(child);
+            const text = range.getBoundingClientRect();
+            if (text.left < box.left - 0.5 || text.right > box.right + 0.5) {
+              return true;
+            }
+            const lineTops = new Set(
+              Array.from(range.getClientRects(), (line) => Math.round(line.top)),
+            );
+            return lineTops.size > 1 && escapes(text, box);
+          });
         })
         .map((node) => node.getAttribute('class'));
 
       style.remove();
-      return { horizontalOverflow, clipped: clipped.slice(0, 3) };
+      return { horizontalOverflow, clipped: clipped.slice(0, 3), spilled: spilled.slice(0, 3) };
     }, css);
   }
 
@@ -730,7 +767,7 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     '* { line-height: 1.5 !important; letter-spacing: 0.12em !important;' +
     ' word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }';
 
-  CSS_LAYOUT_SUITES.forEach(({ component, route, skipCriteria = [] }) => {
+  CSS_LAYOUT_SUITES.forEach(({ component, route, skipCriteria = [], textOnlyResize = true }) => {
     // A slug only enters the demo bundle once its component is enrolled, so skip
     // entries this build doesn't contain rather than waiting for a fixture that
     // was never bundled. `routes` also leaves out routes below their React floor.
@@ -763,12 +800,48 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
         },
       );
 
+      // 200% page zoom halves the CSS viewport. It decides the 1.4.4 rating
+      // (WCAG technique G142). The text-only check below is stricter.
+      // This viewport is wider than the 1.4.10 one, so this check adds the clipping test.
+      // The reports state that the two checks cover 1.4.4 together.
       test.runIf(covers('1.4.4'))(
-        '1.4.4 Resize Text: content survives a 200% text size',
+        '1.4.4 Resize Text: content survives 200% page zoom',
+        async ({ pooled }) => {
+          const { page } = pooled;
+          await page.setViewportSize({
+            width: DEFAULT_VIEWPORT.width / 2,
+            height: DEFAULT_VIEWPORT.height / 2,
+          });
+          try {
+            await renderFixture(page, route);
+            const { horizontalOverflow, clipped, spilled } = await measureOverflow(page, '');
+            if (horizontalOverflow > 1) {
+              throw new Error(
+                `${component} overflows horizontally by ${horizontalOverflow}px at 200% page zoom`,
+              );
+            }
+            if (clipped.length > 0) {
+              throw new Error(
+                `${component} clips its own content at 200% page zoom: ${clipped.join(', ')}`,
+              );
+            }
+            if (spilled.length > 0) {
+              throw new Error(
+                `${component} text spills out of its box at 200% page zoom: ${spilled.join(', ')}`,
+              );
+            }
+          } finally {
+            await page.setViewportSize(DEFAULT_VIEWPORT);
+          }
+        },
+      );
+
+      test.runIf(covers('1.4.4') && textOnlyResize)(
+        '1.4.4 Resize Text: content survives a 200% text-only resize',
         async ({ pooled }) => {
           const { page } = pooled;
           await renderFixture(page, route);
-          const { horizontalOverflow, clipped } = await measureOverflow(
+          const { horizontalOverflow, clipped, spilled } = await measureOverflow(
             page,
             'html { font-size: 200% !important; }',
           );
@@ -780,6 +853,11 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
           if (clipped.length > 0) {
             throw new Error(`${component} clips its own content at 200%: ${clipped.join(', ')}`);
           }
+          if (spilled.length > 0) {
+            throw new Error(
+              `${component} text spills out of its box at 200%: ${spilled.join(', ')}`,
+            );
+          }
         },
       );
 
@@ -788,7 +866,10 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
         async ({ pooled }) => {
           const { page } = pooled;
           await renderFixture(page, route);
-          const { horizontalOverflow, clipped } = await measureOverflow(page, TEXT_SPACING_CSS);
+          const { horizontalOverflow, clipped, spilled } = await measureOverflow(
+            page,
+            TEXT_SPACING_CSS,
+          );
           if (horizontalOverflow > 1) {
             throw new Error(
               `${component} overflows horizontally by ${horizontalOverflow}px under the` +
@@ -801,8 +882,30 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
                 ` ${clipped.join(', ')}`,
             );
           }
+          if (spilled.length > 0) {
+            throw new Error(
+              `${component} text spills out of its box under the WCAG text-spacing overrides:` +
+                ` ${spilled.join(', ')}`,
+            );
+          }
         },
       );
+    });
+  });
+
+  // A tripwire for the Fab 1.4.10 and 1.4.12 gap, and the proof that `spilled`
+  // sees a label that leaves a fixed-height box. The fixture applies the WCAG
+  // text spacing and the 200% text size itself. When this fails, the extended Fab
+  // grows with its label: update Fab/accessibility.md and knownGaps.json.
+  const FAB_LONG_LABEL_ROUTE = '/a11y-floating-action-button/FabA11yLongLabel';
+  describe.runIf(routes.includes(FAB_LONG_LABEL_ROUTE))('Fab long label', () => {
+    test('known gap: a label that wraps spills out of the extended Fab', async ({ pooled }) => {
+      const { page } = pooled;
+      await renderFixture(page, FAB_LONG_LABEL_ROUTE);
+      const { spilled } = await measureOverflow(page, '');
+      if (!spilled.some((className) => className.includes('MuiFab-root'))) {
+        throw new Error('No label spills out of a Fab in FabA11yLongLabel; the gap may be fixed');
+      }
     });
   });
 }
@@ -852,6 +955,7 @@ function registerFocusVisibleSuites({ test, renderFixture, routes }) {
     { component: 'Button (text)', route: RING_ROUTE, selector: '.MuiButton-text' },
     { component: 'Button (outlined)', route: RING_ROUTE, selector: '.MuiButton-outlined' },
     { component: 'Button (contained)', route: RING_ROUTE, selector: '.MuiButton-contained' },
+    { component: 'Fab', route: RING_ROUTE, selector: '.MuiFab-root' },
     { component: 'Checkbox', route: RING_ROUTE, selector: '.MuiCheckbox-root' },
     { component: 'Chip', route: RING_ROUTE, selector: '.MuiChip-clickable' },
     { component: 'IconButton', route: RING_ROUTE, selector: '.MuiIconButton-root' },
