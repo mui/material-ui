@@ -1,0 +1,49 @@
+name: Agentic workflows
+
+# GitHub Actions only runs the compiled `*.lock.yml` of a GitHub Agentic Workflows (gh-aw) `*.md`
+# workflow. Recompile them and fail when the committed lock files are out of date, so a forgotten
+# `gh aw compile` shows up in review instead of on the next run.
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/*.md'
+      - '.github/workflows/*.lock.yml'
+      - '.github/aw/**'
+
+permissions: {}
+
+jobs:
+  compiled:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install the gh-aw version the lock files were compiled with
+        run: |
+          set -euo pipefail
+          # Lock files compiled with another version show up as a diff after recompiling.
+          version=$(sed -n '1s/^# gh-aw-metadata: //p' .github/workflows/*.lock.yml \
+            | jq -r '.compiler_version // empty' | head -n1)
+          if [ -z "$version" ]; then
+            echo "::error::No lock file records a gh-aw version. Run \`gh aw compile\` and commit the result."
+            exit 1
+          fi
+          gh extension install github/gh-aw --pin "$version"
+      - name: Recompile
+        run: gh aw compile --strict
+      - name: Check the lock files are up to date
+        run: |
+          # Includes untracked files, for a new workflow committed without its lock file.
+          changes=$(git status --porcelain -- .github)
+          if [ -n "$changes" ]; then
+            printf '%s\n' "$changes"
+            git diff -- .github
+            echo "::error::Lock files are out of date. Run \`gh aw compile\` and commit the result."
+            exit 1
+          fi
