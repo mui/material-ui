@@ -1952,6 +1952,78 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     );
   });
 
+  describe('bounds changes during a drag', () => {
+    ['pointer', 'touch'].forEach((inputMethod) => {
+      [false, true].forEach((controlled) => {
+        [false, true].forEach((range) => {
+          [
+            { bounds: { max: 40 }, expectedValue: range ? [20, 40] : 40 },
+            { bounds: { min: 80 }, expectedValue: range ? [80, 80] : 80 },
+          ].forEach(({ bounds, expectedValue }) => {
+            const bound = Object.keys(bounds)[0];
+
+            it(`clamps the committed ${controlled ? 'controlled' : 'uncontrolled'} ${range ? 'range' : 'single'} value when ${bound} changes during a ${inputMethod} drag`, () => {
+              const handleChange = spy();
+              const handleChangeCommitted = spy();
+              const initialValue = range ? [20, 35] : 35;
+
+              function TestSlider(props) {
+                const [value, setValue] = React.useState(initialValue);
+
+                return (
+                  <Slider
+                    {...(controlled ? { value } : { defaultValue: initialValue })}
+                    onChange={(event, newValue) => {
+                      handleChange(event, newValue);
+                      setValue(newValue);
+                    }}
+                    onChangeCommitted={handleChangeCommitted}
+                    {...props}
+                  />
+                );
+              }
+
+              const { container, setProps } = render(<TestSlider />);
+              const sliderRoot = container.firstChild;
+              stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
+                width: 100,
+                height: 10,
+                bottom: 10,
+                left: 0,
+              }));
+
+              if (inputMethod === 'pointer') {
+                fireEvent.pointerDown(sliderRoot, { buttons: 1, clientX: 35, pointerId: 1 });
+                fireEvent.pointerMove(document.body, { buttons: 1, clientX: 65, pointerId: 1 });
+              } else {
+                fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 35 }]));
+                fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 65 }]));
+              }
+
+              expect(handleChange.callCount).to.equal(1);
+              expect(handleChange.args[0][1]).to.deep.equal(range ? [20, 65] : 65);
+              setProps(bounds);
+              expect(
+                screen.getAllByRole('slider').map((input) => input.valueAsNumber),
+              ).to.deep.equal(range ? expectedValue : [expectedValue]);
+              expect(handleChangeCommitted.callCount).to.equal(0);
+
+              if (inputMethod === 'pointer') {
+                fireEvent.pointerUp(document.body, { clientX: 65, pointerId: 1 });
+              } else {
+                fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 65 }]));
+              }
+
+              expect(handleChangeCommitted.callCount).to.equal(1);
+              expect(handleChangeCommitted.args[0][1]).to.deep.equal(expectedValue);
+              expect(handleChange.callCount).to.equal(1);
+            });
+          });
+        });
+      });
+    });
+  });
+
   it('should not pass a stale value to onChangeCommitted on touch after an external change', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
