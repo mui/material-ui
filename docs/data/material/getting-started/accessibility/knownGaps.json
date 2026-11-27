@@ -6,6 +6,7 @@
       "AccordionSummary",
       "Button",
       "Checkbox",
+      { "component": "Fab", "note": "the ring needs `disableFocusRipple`" },
       { "component": "IconButton", "note": "the ring needs `disableFocusRipple` too" },
       "Radio",
       "Switch",
@@ -20,6 +21,10 @@
       "Avatar",
       { "component": "Button", "note": "`info`, `warning`; `error` in dark mode" },
       { "component": "CircularProgress", "note": "`warning` with `enableTrackSlot`" },
+      {
+        "component": "Fab",
+        "note": "`info`, `warning`; label on the focus ripple: use `disableFocusRipple` with the ring"
+      },
       {
         "component": "FormLabel",
         "note": "focused `info`, `warning`; `error` on a dark Paper with elevation 2 or more"
@@ -38,6 +43,12 @@
     "criteria": ["1.4.1"],
     "affected": [{ "component": "ToggleButton", "note": "`primary`, `error`, `info`, `success`" }],
     "workaround": "Add a non-color cue to the selected state, such as an icon"
+  },
+  {
+    "gap": "The extended Fab has a fixed height, so a label that wraps can spill out of it",
+    "criteria": ["1.4.10", "1.4.12"],
+    "affected": [{ "component": "Fab", "note": "`extended`" }],
+    "workaround": "Keep labels short, or set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`"
   },
   {
     "gap": "A required checkbox, radio, or switch group exposes no required state to assistive technology, because Checkbox, Radio, and Switch do not take `required` from FormControl and RadioGroup has no `required` prop",
