@@ -72,13 +72,24 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — at least `4.5:1`, or `3:1` for large text, in the resting, hover, and active states. Disabled is exempt; `info` and `warning`, and `error` in dark mode, are the known failures.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — border, focus indicator, and any meaningful icon are each at least `3:1`. Disabled and purely decorative parts are exempt.
 - [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the spinner shows for less than five seconds, or the user can pause or hide it. With the default styles, the user cannot pause it. Keep `loading` short, or show the progress elsewhere.
-- [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button.
+- [ ] 🔁 **2.4.3 Focus Order** — focus stays on the button while it is `loading`, and the screen reader stays on the button. The next Tab press moves focus to the element after the button.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where the link goes. Replace vague labels like "Learn more" or "click here".
 - [ ] 🔁 **2.4.6 Headings and Labels** — every label describes its action ("Submit order", not "OK").
 - [ ] 🔁 **2.4.7 Focus Visible** — every keyboard-focused button shows a visible indicator. Under `disableRipple`, `disableFocusRipple`, and `disableElevation`, the indicator comes from the `focusVisible` theme ring or from author styles.
 - [ ] 🔁 **3.3.2 Labels or Instructions** — the label clearly tells the user what to upload, not just "Upload".
 - [ ] 🔁 **4.1.2 Name, Role, Value** — name, role, and state are correct for every variant, and state changes are announced.
 - [ ] 🔍 **4.1.3 Status Messages** — the change is announced without the user moving focus to it. It is not, because the component adds no live region; wrap the status in `role="status"` to fix it.
+
+## ButtonGroup
+
+6 checks · full procedures in [`ButtonGroup/accessibility.md`](./ButtonGroup/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces the group role and name, and the name and role of the button. A group with no name is announced as a group.
+- [ ] 🔍 **1.3.2 Meaningful Sequence** — focus and the reading order move in the reading direction in a horizontal group, and from top to bottom in a vertical group.
+- [ ] 🔍 **1.4.11 Non-text Contrast** — each button can be identified by its label, and the focus indicator is at least `3:1`.
+- [ ] 🔍 **2.4.6 Headings and Labels** — each group name tells the purpose of the set, for example "Text alignment", not "Basic button group".
+- [ ] 🔁 **2.4.7 Focus Visible** — the focus indicator of each button is fully visible, and the adjacent buttons do not cover the ring.
+- [ ] 🔁 **4.1.2 Name, Role, Value** — the arrow button announces its name, that it opens a menu, and "collapsed" or "expanded".
 
 ## Checkbox
 
@@ -123,6 +134,15 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **2.4.7 Focus Visible** — each Fab shows a visible indicator on keyboard focus. With `disableRipple` and the default theme, no indicator shows, and the author must add one. The `focusVisible` theme ring fixes it.
 - [ ] 🔁 **4.1.2 Name, Role, Value** — the name, role, and state are correct for each kind. The disabled one announces "disabled", and the `href` one "link".
 
+## FormGroup
+
+4 checks · full procedures in [`FormGroup/accessibility.md`](./FormGroup/accessibility.md)
+
+- [ ] 🔁 **1.3.1 Info and Relationships** — the screen reader announces the group name once when focus enters the group.
+- [ ] 🔍 **1.3.2 Meaningful Sequence** — the reading order matches the visual order.
+- [ ] 🔍 **2.4.6 Headings and Labels** — each group name tells the purpose of the set, for example "Toppings".
+- [ ] 🔁 **3.3.2 Labels or Instructions** — each group that asks one question has a visible label and clear instructions.
+
 ## FormHelperText
 
 6 checks · full procedures in [`FormHelperText/accessibility.md`](./FormHelperText/accessibility.md)
@@ -155,7 +175,7 @@ Run the rows matching what you touched, for the component you touched.
 - [ ] 🔁 **1.4.3 Contrast (Minimum)** — the text is at least `4.5:1`. `info` and `warning` are the known failures.
 - [ ] 🔁 **1.4.11 Non-text Contrast** — each icon and the focus indicator are at least `3:1`. Disabled buttons are exempt. The default focus ripple fails. To fix it, enable the `focusVisible` theme ring and set `disableFocusRipple`.
 - [ ] 🔍 **2.2.2 Pause, Stop, Hide** — the spinner shows for less than five seconds, or the user can pause or hide it. With the default styles, the user cannot pause it. Keep `loading` short, or show the progress elsewhere.
-- [ ] 🔁 **2.4.3 Focus Order** — focus moves to the next element after the button.
+- [ ] 🔁 **2.4.3 Focus Order** — focus stays on the button while it is `loading`, and the screen reader stays on the button. The next Tab press moves focus to the element after the button.
 - [ ] 🔁 **2.4.4 Link Purpose (In Context)** — a user can tell where each link goes, for example "Open settings" and not "Link".
 - [ ] 🔁 **2.4.6 Headings and Labels** — each label tells the action, for example "Delete file", not "delete icon".
 - [ ] 🔁 **2.4.7 Focus Visible** — each icon button shows a visible indicator on keyboard focus. With `disableRipple`, the indicator comes from the `focusVisible` theme ring or from author styles.

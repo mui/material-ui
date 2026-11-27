@@ -18,6 +18,7 @@ export const CSS_LAYOUT_SUITES = [
     textOnlyResize: false,
   },
   { component: 'Button', route: '/docs-components-buttons/BasicButtons' },
+  { component: 'ButtonGroup', route: '/docs-components-button-group/VariantButtonGroup' },
   { component: 'Checkbox', route: '/docs-components-checkboxes/Checkboxes' },
   {
     component: 'CircularProgress',
@@ -30,6 +31,13 @@ export const CSS_LAYOUT_SUITES = [
   {
     component: 'Fab',
     route: '/docs-components-floating-action-button/FloatingActionButtonExtendedSize',
+  },
+  {
+    // FormGroup has no docs page of its own, so the layout suite runs on its a11y fixture.
+    component: 'FormGroup',
+    route: '/a11y-checkboxes/FormGroupA11yStates',
+    // FormGroup renders no text, so the report rates 1.4.4 and 1.4.12 not applicable.
+    skipCriteria: ['1.4.4', '1.4.12'],
   },
   {
     // FormHelperText has no docs page of its own, so the layout suite runs on its a11y fixture.
@@ -72,6 +80,11 @@ export const FOCUS_VISIBLE_TARGETS = [
     component: 'Button',
     route: '/docs-components-buttons/BasicButtons',
     selector: '.MuiButton-root',
+  },
+  {
+    component: 'ButtonGroup',
+    route: '/docs-components-button-group/BasicButtonGroup',
+    selector: '.MuiButtonGroup-grouped',
   },
   {
     component: 'Checkbox',

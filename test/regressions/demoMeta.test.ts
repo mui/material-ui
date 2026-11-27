@@ -118,6 +118,30 @@ describe('getConfig', () => {
     });
   });
 
+  it('records the wide ButtonGroup fixture at 320 px, without axe', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup'),
+    ).to.equal(undefined);
+    expect(
+      getConfig(
+        SCREENSHOT_RULES,
+        'test/regressions/a11y/fixtures/button-group/ButtonGroupA11yWideGroup',
+      ),
+    ).to.deep.include({ enabled: true, viewportWidth: 320 });
+  });
+
+  it('asserts every rule on the enrolled ButtonGroup demos and fixture', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/button-group/SplitButton'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'test/regressions/a11y/fixtures/button-group/ButtonGroupA11ySemanticStates',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
   it('asserts every rule on the enrolled Fab demos and fixtures', () => {
     expect(
       getConfig(
@@ -232,6 +256,16 @@ describe('getConfig', () => {
       enabled: true,
       assertions: 'all',
       skipAssertions: ['color-contrast'],
+    });
+  });
+
+  it('asserts every rule on the FormGroup fixture', () => {
+    expect(
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates'),
+    ).to.deep.equal({
+      test: 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates',
+      enabled: true,
+      assertions: 'all',
     });
   });
 
