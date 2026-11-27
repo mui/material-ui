@@ -38,15 +38,32 @@ const ARROW_DOWN = 'ArrowDown';
 const ENTER = 'Enter';
 
 /**
- * Activates the focused option when typeahead and the list's onKeyDown leave Space unhandled.
  * Dispatches a click so keyboard selection follows the same path as pointer selection.
  */
-function handleOptionSpaceKeyDown(event) {
-  const { currentTarget: list, target: option } = event;
-  if (event.ctrlKey || event.metaKey || event.altKey || option.getAttribute('role') !== 'option') {
+function activateOptionOnSpace(event) {
+  const option = event.target;
+
+  if (
+    event.defaultPrevented ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.altKey ||
+    option.getAttribute('role') !== 'option' ||
+    option.getAttribute('aria-disabled') === 'true'
+  ) {
     return;
   }
 
+  event.preventDefault();
+
+  if (!event.repeat) {
+    option.click();
+  }
+}
+
+/** Handles Space on this Select's options after typeahead and the list's onKeyDown have run. */
+function handleOptionSpaceKeyDown(event) {
+  const { currentTarget: list, target: option } = event;
   // A portaled menu can bubble here from outside the list. An inline nested menu has
   // its own list inside this one.
   const ownerList = option.closest('[role="listbox"], [role="menu"]');
@@ -54,10 +71,7 @@ function handleOptionSpaceKeyDown(event) {
     return;
   }
 
-  event.preventDefault();
-  if (!event.repeat) {
-    option.click();
-  }
+  activateOptionOnSpace(event);
 }
 
 /**
@@ -679,6 +693,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       // ButtonBase normally calls preventDefault() on Space. Skip that step to preserve
       // the option handler's defaultPrevented value as the event bubbles to the list.
       event.defaultMuiPrevented = true;
+      // A stopped keydown never reaches the list. The option can still perform its default action.
+      if (event.isPropagationStopped()) {
+        activateOptionOnSpace(event);
+      }
     }
   };
 
