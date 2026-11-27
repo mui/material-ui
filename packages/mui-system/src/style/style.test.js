@@ -77,6 +77,24 @@ describe('style', () => {
     });
   });
 
+  it('should use a theme value of 0', () => {
+    const zIndex = style({
+      prop: 'zIndex',
+      themeKey: 'zIndex',
+    });
+
+    const output = zIndex({
+      theme: {
+        zIndex: { base: 0 },
+      },
+      zIndex: 'base',
+    });
+
+    expect(output).to.deep.equal({
+      zIndex: 0,
+    });
+  });
+
   const border = style({
     prop: 'border',
     themeKey: 'borders',
