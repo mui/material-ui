@@ -17,7 +17,10 @@
       "responsibility": "Component"
     },
     "1.4.4": {
-      "group": "Hybrid"
+      "group": "Manual"
+    },
+    "1.4.11": {
+      "conformance": "Does Not Support"
     },
     "1.4.10": {
       "conformance": "Partially Supports",

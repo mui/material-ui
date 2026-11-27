@@ -4,8 +4,8 @@
   "totals": {
     "rated": 32,
     "supports": 21,
-    "partiallySupports": 11,
-    "doesNotSupport": 0,
+    "partiallySupports": 10,
+    "doesNotSupport": 1,
     "flagged": 16
   },
   "criteria": [
@@ -93,14 +93,13 @@
       "number": "1.4.11",
       "name": "Non-text Contrast",
       "level": "AA",
-      "conformance": "Partially Supports",
+      "conformance": "Does Not Support",
       "flagged": true,
       "affected": [
         "AccordionSummary",
         "Avatar",
         "Button",
         "Checkbox",
-        "Chip",
         "CircularProgress",
         "IconButton",
         "LinearProgress",
@@ -1424,8 +1423,8 @@
       "component": "Chip",
       "counts": {
         "supports": 16,
-        "partiallySupports": 8,
-        "doesNotSupport": 0,
+        "partiallySupports": 7,
+        "doesNotSupport": 1,
         "notApplicable": 31,
         "flagged": 9,
         "rated": 24
@@ -1449,7 +1448,7 @@
         {
           "number": "1.4.11",
           "name": "Non-text Contrast",
-          "conformance": "Partially Supports"
+          "conformance": "Does Not Support"
         },
         {
           "number": "1.4.12",
@@ -1533,7 +1532,7 @@
           "level": "AA",
           "conformance": "Supports",
           "responsibility": "Shared",
-          "group": "Hybrid",
+          "group": "Manual",
           "flagged": false
         },
         {
@@ -1558,7 +1557,7 @@
           "number": "1.4.11",
           "name": "Non-text Contrast",
           "level": "AA",
-          "conformance": "Partially Supports",
+          "conformance": "Does Not Support",
           "responsibility": "Component",
           "group": "Hybrid",
           "flagged": true
@@ -1695,8 +1694,8 @@
         "levelA": 13,
         "levelAA": 11,
         "supports": 16,
-        "partiallySupports": 8,
-        "doesNotSupport": 0,
+        "partiallySupports": 7,
+        "doesNotSupport": 1,
         "verified": 15,
         "automated": 4
       }
