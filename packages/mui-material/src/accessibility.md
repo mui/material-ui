@@ -187,7 +187,7 @@ Edit the JSON files, not this table.
 | [AccordionSummary](./AccordionSummary/accessibility.md)   | 23          | 1                     | 0                   | 31                | —           | 3/24       |
 | [Avatar](./Avatar/accessibility.md)                       | 9           | 2                     | 0                   | 44                | —           | 5/11       |
 | [Button](./Button/accessibility.md)                       | 23          | 5                     | 0                   | 27                | —           | 9/28       |
-| [ButtonGroup](./ButtonGroup/accessibility.md)             | 9           | 1                     | 0                   | 27                | 18          | 3/10       |
+| [ButtonGroup](./ButtonGroup/accessibility.md)             | 7           | 2                     | 0                   | 27                | 19          | 3/9        |
 | [Checkbox](./Checkbox/accessibility.md)                   | 24          | 1                     | 0                   | 30                | —           | 3/25       |
 | [CircularProgress](./CircularProgress/accessibility.md)   | 8           | 3                     | 0                   | 44                | —           | 5/11       |
 | [IconButton](./IconButton/accessibility.md)               | 22          | 5                     | 0                   | 28                | —           | 9/27       |
@@ -198,7 +198,7 @@ Edit the JSON files, not this table.
 | [Switch](./Switch/accessibility.md)                       | 24          | 1                     | 0                   | 30                | —           | 2/25       |
 | [TextField](./TextField/accessibility.md)                 | 25          | 3                     | 0                   | 27                | —           | 4/28       |
 | [ToggleButton](./ToggleButton/accessibility.md)           | 21          | 3                     | 0                   | 31                | —           | 2/24       |
-| [ToggleButtonGroup](./ToggleButtonGroup/accessibility.md) | 4           | 0                     | 0                   | 31                | 20          | 1/4        |
+| [ToggleButtonGroup](./ToggleButtonGroup/accessibility.md) | 3           | 1                     | 0                   | 31                | 20          | 1/4        |
 
 <!-- scorecard:end -->
 
