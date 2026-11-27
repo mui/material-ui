@@ -259,7 +259,7 @@ Tested by: unit `Chip.test.js`
   - Palette `filled`: `contrastText` at `70%` on `main`, `2.22:1` (`warning`) to `3.83:1` (`secondary`).
   - Palette `outlined`: `main` at `70%`, `2.23:1` to `3.57:1`.
 - A unit test confirms that the default delete icon is less than `3:1`.
-- On keyboard focus, the chip background gets darker. The focused `default` fill is `1.61:1` against the page. On an `outlined` chip, the focus tint is about `1.14:1` to `1.21:1` against the page.
+- On keyboard focus, the chip background gets darker. The focused `default` fill is `1.61:1` against the page. On an `outlined` chip, the focus tint against the page is `1.32:1` for `default`, and about `1.14:1` to `1.21:1` for the palette colors.
 - The rating is Does Not Support, because most of the functionality fails: the delete icon fails in 8 of the 14 combinations, including both `default` ones, and the default focus indicator fails.
 - The `outlined` border is `grey[400]` (`1.88:1` against white), or `main` at `70%` (`2.23:1` to `3.57:1`). The label identifies the chip, so the border does not need `3:1`.
 - With `focusVisible: true` on the theme, keyboard focus draws the theme outline ring instead. A Playwright test confirms the ring.
