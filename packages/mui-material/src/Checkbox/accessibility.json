@@ -1,4 +1,15 @@
 {
   "axe": "docs/data/material/components/checkboxes/checkboxes.a11y.json",
+  "axeDemos": [
+    "CheckboxLabels",
+    "Checkboxes",
+    "CheckboxesGroup",
+    "ColorCheckboxes",
+    "ControlledCheckbox",
+    "CustomizedCheckbox",
+    "IconCheckboxes",
+    "IndeterminateCheckbox",
+    "SizeCheckboxes"
+  ],
   "criteria": { "2.5.8": { "responsibility": "Shared" }, "3.3.2": { "flagged": true } }
 }

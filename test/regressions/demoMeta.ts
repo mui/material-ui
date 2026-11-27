@@ -447,6 +447,14 @@ export const A11Y_RULES: A11yRule[] = [
     enabled: true,
     assertions: 'all',
   },
+  // A11y-only fixture for FormGroup, recorded into `checkboxes.a11y.json`. FormGroup has no
+  // docs page of its own, and the Checkbox page documents it. `FormGroup/accessibility.json`
+  // names the fixture in `axeDemos` to keep it out of the Checkbox report.
+  {
+    test: 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates',
+    enabled: true,
+    assertions: 'all',
+  },
   {
     test: `docs/data/material/components/progress/{${[
       ...LINEARPROGRESS_A11Y_DEMOS,
@@ -471,13 +479,6 @@ export const A11Y_RULES: A11yRule[] = [
   // share that file because the reporter keys results by the docs slug.
   {
     test: 'test/regressions/a11y/fixtures/progress/{LinearProgressA11ySemanticStates,LinearProgressA11yColorMatrix,CircularProgressA11ySemanticStates,CircularProgressA11yColorMatrix}',
-    enabled: true,
-    assertions: 'all',
-  },
-  // A11y-only fixture under `test/regressions/a11y/fixtures/form-group/`.
-  // FormGroup has no docs page, so the fixture owns the `form-group` slug.
-  {
-    test: 'test/regressions/a11y/fixtures/form-group/FormGroupA11yStates',
     enabled: true,
     assertions: 'all',
   },

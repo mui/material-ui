@@ -101,9 +101,9 @@ Tested by: unit `FormGroup.test.js`
 **Manual testing steps**
 
 1. Start a screen reader (NVDA with Chrome, or VoiceOver with Safari). In Safari, turn on "Press Tab to highlight each item".
-2. In a FormGroup inside `FormControl component="fieldset"` with a legend, press <kbd>Tab</kbd> into the group.
-3. Listen to the announcement.
-4. Do the test again with a FormGroup that has no `fieldset`.
+2. Render a FormGroup with `role="group"` and `aria-labelledby` that points to a visible label. The "Share with" group of the `FormGroupA11yStates` fixture is an example.
+3. Press <kbd>Tab</kbd> into the group.
+4. Listen to the announcement.
 
 <!-- 1.3.1:end -->
 
@@ -205,7 +205,7 @@ None. FormGroup adds no behavior that a Level AAA criterion tests.
 <!-- scope:start -->
 
 - **Scope.** The FormGroup component, with and without a `fieldset`, rendered through its documented API.
-- **Automated.** axe-core in the Playwright test harness, on the FormGroup fixture in [`form-group.a11y.json`](../../../../docs/data/material/components/form-group/form-group.a11y.json). Tests are in `FormGroup.test.js`.
+- **Automated.** axe-core in the Playwright test harness, on the `FormGroupA11yStates` fixture in [`checkboxes.a11y.json`](../../../../docs/data/material/components/checkboxes/checkboxes.a11y.json). Tests are in `FormGroup.test.js`.
 - **Assistive-technology review.** Not done yet. The flagged criteria come from a review of the source. A review with NVDA, JAWS, and VoiceOver must still confirm them.
 
 <!-- scope:end -->

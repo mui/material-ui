@@ -151,9 +151,9 @@ describe('getConfig', () => {
 
   it('asserts every rule on the FormGroup fixture', () => {
     expect(
-      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/form-group/FormGroupA11yStates'),
+      getConfig(A11Y_RULES, 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates'),
     ).to.deep.equal({
-      test: 'test/regressions/a11y/fixtures/form-group/FormGroupA11yStates',
+      test: 'test/regressions/a11y/fixtures/checkboxes/FormGroupA11yStates',
       enabled: true,
       assertions: 'all',
     });
