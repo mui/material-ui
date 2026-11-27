@@ -49,6 +49,12 @@ export const neNP: Localization = {
         openText: 'खोल्नुहोस्',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `कुल ${formatNumber(length)} मध्ये वर्ण नम्बर ${formatNumber(position)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'बन्द गर्नुहोस्',

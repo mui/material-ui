@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
+import OTPField from '@mui/material/OTPField';
 import TablePagination from '@mui/material/TablePagination';
 import * as locales from '@mui/material/locale';
 
@@ -14,6 +15,7 @@ describe('locale', () => {
       render(
         <ThemeProvider theme={createTheme({ cssVariables }, locales.deDE)}>
           <Alert onClose={() => {}}>message</Alert>
+          <OTPField label="Bestätigungscode" length={4} />
           <TablePagination
             component="div"
             count={100}
@@ -25,6 +27,9 @@ describe('locale', () => {
       );
 
       expect(screen.getByRole('button', { name: 'Schließen' })).not.to.equal(null);
+      const [first, second] = screen.getAllByRole('textbox');
+      expect(first).toHaveAccessibleName('Bestätigungscode');
+      expect(second).toHaveAccessibleName('Zeichen 2 von 4');
       expect(screen.getByText('Zeilen pro Seite:')).not.to.equal(null);
       expect(screen.getByRole('button', { name: 'Zur nächsten Seite' })).not.to.equal(null);
     });

@@ -45,6 +45,12 @@ export const itIT: Localization = {
         openText: 'Apri',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Carattere ${formatNumber(position)} di ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Chiudi',

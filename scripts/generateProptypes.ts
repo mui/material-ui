@@ -68,6 +68,8 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
   MenuItem: ['dense'],
+  OTPFieldInput: ['className', 'style'],
+  OTPFieldSeparator: ['render', 'style'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
   Checkbox: ['defaultChecked'],

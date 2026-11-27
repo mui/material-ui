@@ -1,0 +1,95 @@
+{
+  "componentDescription": "A field for entering a one-time password, one character per input.",
+  "propDescriptions": {
+    "aria-describedby": {
+      "description": "Identifies the element (or elements) that describes the object."
+    },
+    "aria-label": { "description": "Defines a string value that labels the current element." },
+    "aria-labelledby": {
+      "description": "Identifies the element (or elements) that labels the current element."
+    },
+    "autoComplete": {
+      "description": "The autocomplete hint for the first character input and the form input."
+    },
+    "autoFocus": { "description": "Focus the first character input on mount." },
+    "autoSubmit": { "description": "Submit the associated form when the code becomes complete." },
+    "children": {
+      "description": "Character inputs and optional decorative separators. When omitted, the field renders one OTPFieldInput per character."
+    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "color": {
+      "description": "The theme palette color of the focused character&#39;s outline. To use a <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">custom palette color</a> in TypeScript, augment <code>OTPFieldPropsColorOverrides</code>."
+    },
+    "defaultValue": { "description": "The initial code for an uncontrolled field." },
+    "disabled": {
+      "description": "Disable all the character inputs and omit the code from form submission."
+    },
+    "error": { "description": "Display the field in an error state." },
+    "form": { "description": "The ID of the form that owns the field." },
+    "fullWidth": {
+      "description": "If <code>true</code>, the field fills its container and the character inputs share the available width equally."
+    },
+    "getInputAriaLabel": {
+      "description": "Accessible name for a character after the first. Positions start at one. For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
+    },
+    "helperText": { "description": "The supporting or error text displayed below the inputs." },
+    "id": {
+      "description": "The ID of the first character input. Subsequent input IDs are derived from it."
+    },
+    "inputMode": {
+      "description": "The virtual keyboard hint. Defaults to the keyboard for the validation type."
+    },
+    "inputRef": { "description": "A ref to the first visible character input." },
+    "label": { "description": "The label associated with the first character input." },
+    "length": {
+      "description": "The number of characters in the code. When passing children, match the number of OTPFieldInput elements."
+    },
+    "mask": { "description": "Mask the characters as they are entered." },
+    "name": { "description": "The name used to submit the field value as one string." },
+    "normalizeValue": {
+      "description": "Normalize the filtered code before it is stored. The function should be idempotent."
+    },
+    "onValueChange": {
+      "description": "Called with the new code and the change details. The change can be canceled."
+    },
+    "onValueComplete": {
+      "description": "Called when the code becomes complete or a complete code is pasted, before optional form submission."
+    },
+    "onValueInvalid": {
+      "description": "Called with the attempted input when filtering or normalization rejects characters."
+    },
+    "readOnly": { "description": "Keep the field focusable while preventing edits." },
+    "render": {
+      "description": "Replaces the outer field element while preserving its styles and behavior. Accepts an element or a function that receives the root props and Base UI field state."
+    },
+    "required": { "description": "Require a complete code before form submission." },
+    "size": {
+      "description": "The size of the field. Augment <code>OTPFieldPropsSizeOverrides</code> to add a custom size."
+    },
+    "slotProps": {
+      "description": "Props for the Material slots and their corresponding Base UI parts."
+    },
+    "slots": { "description": "Components used to render the field&#39;s slots." },
+    "sx": { "description": "System styles for the outer root element." },
+    "validationType": { "description": "The set of characters accepted in the code." },
+    "value": {
+      "description": "The code when controlling the field. Use an empty string for an empty field."
+    }
+  },
+  "classDescriptions": {
+    "input": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "each character input"
+    },
+    "separator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "each decorative separator"
+    }
+  },
+  "slotDescriptions": {
+    "formHelperText": "The supporting or error text.",
+    "group": "The host for Base UI OTPField.Root.",
+    "label": "The visible field label.",
+    "root": "The outer field container."
+  }
+}

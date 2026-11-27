@@ -1,0 +1,16 @@
+{
+  "componentDescription": "A single character in an OTPField.",
+  "propDescriptions": {
+    "className": {
+      "description": "CSS class applied to the element, or a function that returns a class based on the component&#39;s state."
+    },
+    "render": {
+      "description": "Allows you to replace the component&#39;s HTML element with a different tag, or compose it with another component.<br>Accepts a <code>ReactElement</code> or a function that returns the element to render."
+    },
+    "style": {
+      "description": "Style applied to the element, or a function that returns a style object based on the component&#39;s state."
+    },
+    "sx": { "description": "System styles for this character input." }
+  },
+  "classDescriptions": {}
+}

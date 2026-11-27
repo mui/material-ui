@@ -45,6 +45,12 @@ export const kmKH: Localization = {
         openText: 'បើក',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `តួអក្សរទី ${formatNumber(position)} ក្នុងចំណោម ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'បិទ',

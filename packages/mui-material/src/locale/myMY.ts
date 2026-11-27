@@ -49,6 +49,12 @@ export const myMY: Localization = {
         openText: 'ဖွင့်သည်။',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `စာလုံး ${formatNumber(length)} လုံးအနက် ${formatNumber(position)} လုံးမြောက်`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'ပိတ်လိုက်',

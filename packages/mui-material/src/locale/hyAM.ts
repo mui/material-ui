@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('hy-AM');
 
 export const hyAM: Localization = {
   components: {
@@ -40,6 +43,12 @@ export const hyAM: Localization = {
         loadingText: 'Բեռնում…',
         noOptionsText: 'Տարբերակներ չկան',
         openText: 'Բացել',
+      },
+    },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Նիշ ${formatNumber(position)}՝ ${formatNumber(length)}-ից`,
       },
     },
     MuiAlert: {

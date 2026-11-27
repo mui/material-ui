@@ -45,6 +45,12 @@ export const kuCKB: Localization = {
         openText: 'کردنەوە',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `پیتی ${formatNumber(position)} لە ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'داخستن',

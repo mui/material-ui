@@ -44,6 +44,12 @@ export const zhHK: Localization = {
         openText: '開啟',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `第 ${formatNumber(position)} 個字元，共 ${formatNumber(length)} 個`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: '關閉',

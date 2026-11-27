@@ -56,6 +56,12 @@ export const ukUA: Localization = {
         openText: 'Розгорнути',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Символ ${formatNumber(position)} із ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Згорнути',

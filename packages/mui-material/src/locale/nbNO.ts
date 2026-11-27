@@ -45,6 +45,12 @@ export const nbNO: Localization = {
         openText: 'Åpne',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Tegn ${formatNumber(position)} av ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Lukk',

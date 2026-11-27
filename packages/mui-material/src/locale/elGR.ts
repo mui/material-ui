@@ -46,6 +46,12 @@ export const elGR: Localization = {
         openText: 'Άνοιγμα',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Χαρακτήρας ${formatNumber(position)} από ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Κλείσιμο',

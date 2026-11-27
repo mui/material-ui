@@ -50,6 +50,12 @@ export const faIR: Localization = {
         openText: 'بازکردن',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `نویسهٔ ${formatNumber(position)} از ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'بستن',

@@ -238,6 +238,9 @@ export * from './NativeSelect';
 export { default as NoSsr } from './NoSsr';
 export * from './NoSsr';
 
+export { default as OTPField } from './OTPField';
+export * from './OTPField';
+
 export { default as OutlinedInput } from './OutlinedInput';
 export * from './OutlinedInput';
 

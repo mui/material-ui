@@ -45,6 +45,12 @@ export const nlNL: Localization = {
         openText: 'Openen',
       },
     },
+    MuiOTPField: {
+      defaultProps: {
+        getInputAriaLabel: (position, length) =>
+          `Teken ${formatNumber(position)} van ${formatNumber(length)}`,
+      },
+    },
     MuiAlert: {
       defaultProps: {
         closeText: 'Sluiten',
