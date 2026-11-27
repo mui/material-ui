@@ -8,6 +8,7 @@ import {
   screen,
   flushEffects,
   isJsdom,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
@@ -88,6 +89,61 @@ describe('<SpeedDial />', () => {
     );
 
     expect(actionRef.current).to.equal(screen.getByRole('menuitem'));
+  });
+
+  it('should apply function-form action fab slot props with the ownerState of the action', () => {
+    const actionRef = React.createRef();
+
+    render(
+      <SpeedDial {...defaultProps}>
+        <SpeedDialAction
+          icon={icon}
+          slotProps={{
+            fab: (ownerState) => ({
+              ref: actionRef,
+              'data-open': ownerState.open,
+              'data-tooltip-placement': ownerState.tooltipPlacement,
+            }),
+            tooltip: { title: 'Action' },
+          }}
+        />
+      </SpeedDial>,
+    );
+
+    const action = screen.getByRole('menuitem');
+    expect(action).to.have.attribute('data-open', 'true');
+    expect(action).to.have.attribute('data-tooltip-placement', 'left');
+    expect(actionRef.current).to.equal(action);
+  });
+
+  it('should navigate with arrow keys to actions with function-form fab slot props', async () => {
+    clock.restore();
+    const actionRefs = [React.createRef(), React.createRef()];
+
+    const { user } = render(
+      <SpeedDial {...defaultProps}>
+        {actionRefs.map((actionRef, index) => (
+          <SpeedDialAction
+            key={index}
+            icon={icon}
+            slotProps={{ fab: () => ({ ref: actionRef }), tooltip: { title: `action${index}` } }}
+          />
+        ))}
+      </SpeedDial>,
+    );
+
+    const fab = screen.getByRole('button');
+    await act(async () => {
+      fab.focus();
+    });
+
+    await user.keyboard('{ArrowUp}');
+    expect(actionRefs[0].current).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(actionRefs[1].current).toHaveFocus();
+
+    await flushEffects();
   });
 
   it('should pass the open prop to its children', () => {
@@ -490,6 +546,30 @@ describe('<SpeedDial />', () => {
   });
 
   describe('dial focus with slotProps.fab', () => {
+    it('runs cleanup for a ref returned by a fab slot callback', () => {
+      const registeredButtons = new Set();
+      const buttonRef = (button) => {
+        if (button) {
+          registeredButtons.add(button);
+          return () => {
+            registeredButtons.delete(button);
+          };
+        }
+        return undefined;
+      };
+      const { unmount } = render(
+        <SpeedDial ariaLabel="actions" open>
+          <SpeedDialAction slotProps={{ fab: () => ({ ref: buttonRef }) }} />
+        </SpeedDial>,
+      );
+
+      expect(registeredButtons.has(screen.getByRole('menuitem'))).to.equal(true);
+
+      unmount();
+
+      expect(registeredButtons.size).to.equal(0);
+    });
+
     let actionButtons;
     let fabButton;
 
@@ -847,18 +927,22 @@ describe('<SpeedDial />', () => {
       expect(screen.getByRole('menu').id).not.to.contain('derivedFromLabel');
     });
 
-    it('generates the same ids after server-side rendering and hydration', () => {
-      function App() {
-        return <TwoSpeedDials />;
-      }
+    // React 17 has no `React.useId`, so the server cannot render the client ids.
+    it.skipIf(reactMajor < 18)(
+      'generates the same ids after server-side rendering and hydration',
+      () => {
+        function App() {
+          return <TwoSpeedDials />;
+        }
 
-      const { container, hydrate } = renderToString(<App />);
-      const serverIds = getIds(container);
-      expect(serverIds.length).to.be.greaterThan(0);
+        const { container, hydrate } = renderToString(<App />);
+        const serverIds = getIds(container);
+        expect(serverIds.length).to.be.greaterThan(0);
 
-      hydrate();
+        hydrate();
 
-      expect(getIds(container)).to.deep.equal(serverIds);
-    });
+        expect(getIds(container)).to.deep.equal(serverIds);
+      },
+    );
   });
 });

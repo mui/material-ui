@@ -15,18 +15,18 @@
     "directory": "packages-internal/api-docs-builder"
   },
   "dependencies": {
-    "@babel/core": "^8.1.0",
+    "@babel/core": "^8.1.2",
     "@babel/preset-typescript": "^8.0.7",
-    "@babel/traverse": "^8.1.0",
+    "@babel/traverse": "^8.1.2",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "@typescript/typescript6": "^6.0.2",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.52.0",
+    "es-toolkit": "^1.53.2",
     "fast-glob": "^3.3.3",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "react-docgen": "^8.0.4",
-    "recast": "^0.24.0",
+    "recast": "^0.24.3",
     "remark": "^15.0.1",
     "unist-util-visit": "^5.2.0"
   },

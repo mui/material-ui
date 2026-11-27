@@ -92,6 +92,48 @@ describe('integration test with stylis', () => {
     );
   });
 
+  it('flips container queries', () => {
+    expect(
+      stylis(
+        `@container sidebar (min-width: 300px) {
+          .a {
+            margin-left: 16px;
+          }
+        }
+        @container (min-width: 300px) {
+          .b {
+            margin-left: 16px;
+          }
+        }
+        @media (min-width: 500px) {
+          @container (min-width: 300px) {
+            .c {
+              margin-left: 16px;
+            }
+          }
+        }
+      `,
+      ),
+    ).to.equal(
+      `@container sidebar (min-width: 300px){.a{margin-right:16px;}}@container (min-width: 300px){.b{margin-right:16px;}}@media (min-width: 500px){@container (min-width: 300px){.c{margin-right:16px;}}}`,
+    );
+  });
+
+  it('flips container queries nested in supports queries only once', () => {
+    expect(
+      stylis(
+        `@supports (display: flex) {
+          @container (min-width: 300px) {
+            .a {
+              margin-left: 16px;
+            }
+          }
+        }
+      `,
+      ),
+    ).to.equal(`@supports (display: flex){@container (min-width: 300px){.a{margin-right:16px;}}}`);
+  });
+
   it('works in tandem with prefixer', () => {
     expect(
       stylis(

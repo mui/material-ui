@@ -19,7 +19,6 @@ import {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
-import { applyInsetFocusVisible } from '../styles/focusVisible';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline } = ownerState;
@@ -74,7 +73,7 @@ const InputRoot = styled(InputBaseRoot, {
           props: ({ ownerState }) => ownerState.disableUnderline && theme.focusVisible,
           style: {
             // prevent indicator too close to the label in TextField
-            ...applyInsetFocusVisible(1),
+            [`&.${inputClasses.focused}`]: theme.applyFocusVisible('inset'),
             paddingInline: 4,
           },
         },
@@ -216,10 +215,8 @@ Input.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
   /**
    * The default value. Use when the component is not controlled.
    */

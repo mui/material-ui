@@ -294,10 +294,8 @@ Alert.propTypes /* remove-proptypes */ = {
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['error', 'info', 'success', 'warning']), PropTypes.string]),
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -331,10 +329,8 @@ Alert.propTypes /* remove-proptypes */ = {
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  severity: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['error', 'info', 'success', 'warning']), PropTypes.string]),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -371,10 +367,8 @@ Alert.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'standard'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['filled', 'outlined', 'standard']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['filled', 'outlined', 'standard']), PropTypes.string]),
 };
 
 export default Alert;
