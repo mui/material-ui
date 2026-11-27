@@ -805,8 +805,7 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
 
       // 200% page zoom halves the CSS viewport. It decides the 1.4.4 rating
       // (WCAG technique G142). The text-only check below is stricter.
-      // This viewport is wider than the 1.4.10 one, so this check adds the clipping test.
-      // The reports state that the two checks cover 1.4.4 together.
+      // 320 CSS px is 200% zoom from 640 px, so content lost at the 1.4.10 width also fails 1.4.4.
       test.runIf(covers('1.4.4'))(
         '1.4.4 Resize Text: content survives 200% page zoom',
         async ({ pooled }) => {
@@ -896,7 +895,7 @@ function registerCssLayoutSuites({ test, renderFixture, routes }) {
     });
   });
 
-  // A tripwire for the Fab 1.4.10 and 1.4.12 gap, and the proof that `spilled`
+  // A tripwire for the Fab 1.4.4, 1.4.10, and 1.4.12 gap, and the proof that `spilled`
   // sees a label that leaves a fixed-height box. The fixture applies the WCAG
   // text spacing and the 200% text size itself. When this fails, the extended Fab
   // grows with its label: update Fab/accessibility.md and knownGaps.json.

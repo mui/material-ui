@@ -81,7 +81,7 @@
       "level": "AA",
       "conformance": "Partially Supports",
       "flagged": false,
-      "affected": ["Chip"]
+      "affected": ["Chip", "Fab"]
     },
     {
       "number": "1.4.5",
@@ -2006,8 +2006,8 @@
     {
       "component": "Fab",
       "counts": {
-        "supports": 21,
-        "partiallySupports": 4,
+        "supports": 20,
+        "partiallySupports": 5,
         "doesNotSupport": 0,
         "notApplicable": 30,
         "flagged": 6,
@@ -2017,6 +2017,11 @@
         {
           "number": "1.4.3",
           "name": "Contrast (Minimum)",
+          "conformance": "Partially Supports"
+        },
+        {
+          "number": "1.4.4",
+          "name": "Resize Text",
           "conformance": "Partially Supports"
         },
         {
@@ -2094,7 +2099,7 @@
           "number": "1.4.4",
           "name": "Resize Text",
           "level": "AA",
-          "conformance": "Supports",
+          "conformance": "Partially Supports",
           "responsibility": "Shared",
           "group": "Automated",
           "flagged": false
@@ -2266,8 +2271,8 @@
         "rated": 25,
         "levelA": 14,
         "levelAA": 11,
-        "supports": 21,
-        "partiallySupports": 4,
+        "supports": 20,
+        "partiallySupports": 5,
         "doesNotSupport": 0,
         "verified": 19,
         "automated": 9

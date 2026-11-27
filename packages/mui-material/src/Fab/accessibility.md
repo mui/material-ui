@@ -6,8 +6,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 21    |
-| ⚠️ Partially Supports | 4     |
+| ✅ Supports           | 20    |
+| ⚠️ Partially Supports | 5     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
 | 🚩 Flagged            | 6/25  |
@@ -15,6 +15,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Known gaps
 
 - ⚠️ **1.4.3 Contrast (Minimum).** <!-- 1.4.3:gap:start -->Extended labels in `info` (`3.86:1`) and `warning` (`3.11:1`) are less than `4.5:1`. On keyboard focus, the focus ripple behind the label lowers each palette color to `2.23:1` (`warning`) to `3.57:1` (`secondary`), and `primary` to `2.80:1`. A press lowers them to `4.16:1` or less. Use `disableFocusRipple` with the `focusVisible` theme ring.<!-- 1.4.3:gap:end -->
+- ⚠️ **1.4.4 Resize Text.** <!-- 1.4.4:gap:start -->The extended Fab has a fixed height. A long label that fits on one line at 100% can wrap and spill out at 200% page zoom or 200% text size.<!-- 1.4.4:gap:end -->
 - ⚠️ **1.4.10 Reflow.** <!-- 1.4.10:gap:start -->The extended Fab has a fixed height. At 320 CSS px, a label that wraps onto three lines spills out of every size. Two lines reach the edges of the `small` Fab.<!-- 1.4.10:gap:end -->
 - ⚠️ **1.4.11 Non-text Contrast.** <!-- 1.4.11:gap:start -->The default focus indicator is the focus ripple, at `1.39:1` to `1.85:1` against the fill. On the ripple, `primary`, `info`, `success`, and `warning` icons are less than `3:1`. The `focusVisible` theme ring does not remove the ripple, so also set `disableFocusRipple`.<!-- 1.4.11:gap:end -->
 - ⚠️ **1.4.12 Text Spacing.** <!-- 1.4.12:gap:start -->The extended Fab has a fixed height. The WCAG letter and word spacing can make a label wrap onto one more line. Two lines stay inside the Fab. Three lines spill out of every size.<!-- 1.4.12:gap:end -->
@@ -374,22 +375,22 @@ In NVDA, move the cursor with the arrow keys. In VoiceOver, use <kbd>VO</kbd>+<k
 
 #### 1.4.4 Resize Text · AA
 
-`✅ Supports` · `◐ Shared`
+`⚠️ Partially Supports` · `◐ Shared`
 
 Tested by: Playwright
 
 <!-- 1.4.4:start -->
 
-- The label and the icon use `rem`, and the extended Fab has a fixed px height (48, 40, or 34 px). Under 200% page zoom, the height and the label scale together, so the label stays inside the Fab. Page zoom decides the 1.4.4 rating (WCAG technique G142). A Playwright test confirms this on the extended-size demo.
+- The label and the icon use `rem`, and the extended Fab has a fixed px height (48, 40, or 34 px). Under 200% page zoom, the height and the label scale together. Page zoom decides the 1.4.4 rating (WCAG technique G142). A Playwright test confirms that the short labels of the extended-size demo stay inside the Fab.
 - The Fab root does not hide its overflow, so the test compares the label text with the box of the Fab. It fails when the label leaves the Fab at the left or right, or when a label that wraps leaves it at the top or bottom. A second Playwright test confirms on the `FabA11yLongLabel` fixture that this check detects a label that spills out.
-- The page zoom check and the 1.4.10 reflow check cover 1.4.4 together. The page zoom viewport (500 × 350 px) is wider than the 320 px reflow viewport. So the page zoom check adds the clipping check, and the reflow check covers the narrow width.
+- Page zoom halves the available width in CSS pixels. The label "Share this page with everyone on your design team" fits on one line at 640 CSS px. At 320 CSS px, equivalent to 200% page zoom from that width, it wraps onto three lines in the `medium` and `large` Fabs. The glyphs spill out of both, as in 1.4.10.
 - Under text-only resize, the label grows but the height does not. A label that wraps then grows taller than the Fab, and the spilled `contrastText` can be invisible on the page. The third column of the `FabA11yLongLabel` fixture shows this: it doubles the rem sizes, and each label wraps onto two or three lines. Three lines of uppercase glyphs are about 118 px high. They spill about 35 px above and below the `large` Fab (48 px), and about 42 px above and below the `small` Fab (34 px). Two lines are about 70 px high, and they spill about 15 px above and below the `medium` Fab (40 px).
 - Another Playwright test confirms that the extended-size demo, with short labels, survives a 200% text-only resize.
-- To make long labels safe under text-only resize, set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`. Then the Fab grows with its label.
+- To make long labels safe under page zoom and text-only resize, set `height: 'auto'`, `minHeight: 48`, and vertical padding with `sx`. Then the Fab grows with its label.
 
 <!-- 1.4.4:end -->
 
-**Pass:** <!-- 1.4.4:pass:start -->the full label stays readable inside the Fab at 200% page zoom.<!-- 1.4.4:pass:end -->
+**Pass:** <!-- 1.4.4:pass:start -->the full label stays readable inside the Fab when enlarged to 200%. A long label can spill out under both page zoom and text-only resize.<!-- 1.4.4:pass:end -->
 
 #### 2.1.1 Keyboard · A
 
