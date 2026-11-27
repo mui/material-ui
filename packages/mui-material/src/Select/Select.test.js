@@ -11,6 +11,7 @@ import {
   waitFor,
 } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Menu from '@mui/material/Menu';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
@@ -526,55 +527,305 @@ describe('<Select />', () => {
     expect(callOrder).to.deep.equal(['keydown', 'change']);
   });
 
-  it('should not select an option when space is pressed on a non-target element', async () => {
-    const handleChange = spy();
-    const handleKeyDown = spy();
-
-    render(
-      <Select value="" onChange={handleChange}>
-        <MenuItem value="1" onKeyDown={handleKeyDown}>
-          <span>One</span>
-        </MenuItem>
-      </Select>,
-    );
-
-    const trigger = screen.getByRole('combobox');
-    fireEvent.mouseDown(trigger);
-
-    const option = screen.getByRole('option');
-    const innerSpan = option.querySelector('span');
-
-    await act(async () => {
-      // Dispatch directly to bypass testing-library's active-element guard so that
-      // event.target (span) !== event.currentTarget (li) inside the React handler.
-      innerSpan.dispatchEvent(
-        new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }),
-      );
+  describe('Space in the open listbox', () => {
+    beforeEach(() => {
+      clock.restore();
+      vi.useFakeTimers({ toFake: ['performance'] });
     });
 
-    expect(handleChange.callCount).to.equal(0);
-  });
+    it('uses Space in a query and selects with Space after the query expires', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultOpen defaultValue="" onChange={onChange}>
+          <MenuItem value="night">Night shift</MenuItem>
+          <MenuItem value="off">Day off</MenuItem>
+          <MenuItem value="day">Day shift</MenuItem>
+        </Select>,
+      );
 
-  it('should not select an option when onKeyDown calls preventDefault', () => {
-    const handleChange = spy();
-    const handleKeyDown = spy((event) => event.preventDefault());
+      await user.keyboard('day s');
+      expect(screen.getByRole('option', { name: 'Day shift' })).toHaveFocus();
 
-    render(
-      <Select value="" onChange={handleChange}>
-        <MenuItem value="1" onKeyDown={handleKeyDown}>
-          One
-        </MenuItem>
-      </Select>,
+      // No option starts with "day s ". Space still belongs to the query.
+      await user.keyboard(' ');
+      expect(onChange.mock.calls.length).to.equal(0);
+
+      clock.tick(501);
+      await user.keyboard(' ');
+      expect(screen.getByRole('combobox')).to.have.text('Day shift');
+      expect(onChange.mock.calls.length).to.equal(1);
+    });
+
+    it('starts a fresh query after Space toggles an option', async () => {
+      const { user } = render(
+        <Select multiple defaultOpen defaultValue={[]}>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">User</MenuItem>
+        </Select>,
+      );
+
+      await user.keyboard(' u');
+      expect(screen.getByRole('option', { selected: true })).to.have.text('Admin');
+      expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
+    });
+
+    it.each([
+      ['ArrowUp', 'Editor'],
+      ['ArrowDown', 'Viewer'],
+      ['Home', 'Admin'],
+      ['End', 'Owner'],
+    ])('selects with Space immediately after typeahead and %s', async (key, expected) => {
+      const { user } = render(
+        <Select defaultOpen defaultValue="">
+          {['Admin', 'Editor', 'User', 'Viewer', 'Owner'].map((label) => (
+            <MenuItem key={label} value={label}>
+              {label}
+            </MenuItem>
+          ))}
+        </Select>,
+      );
+
+      await user.keyboard('u');
+      expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
+      await user.keyboard(`{${key}}`);
+      expect(screen.getByRole('option', { name: expected })).toHaveFocus();
+      await user.keyboard(' ');
+      expect(screen.getByRole('combobox')).to.have.text(expected);
+    });
+
+    it('starts a new query after navigation and preserves it through Shift', async () => {
+      const { user } = render(
+        <Select defaultOpen defaultValue="">
+          {['Admin', 'User', 'Owner', 'Operator', 'Publisher'].map((label) => (
+            <MenuItem key={label} value={label}>
+              {label}
+            </MenuItem>
+          ))}
+        </Select>,
+      );
+
+      await user.keyboard('u{ArrowUp}o');
+      expect(screen.getByRole('option', { name: 'Owner' })).toHaveFocus();
+      await user.keyboard('{Shift>}P{/Shift}');
+      expect(screen.getByRole('option', { name: 'Operator' })).toHaveFocus();
+    });
+
+    it('lets the themed list key handler cancel option activation', async () => {
+      const onKeyDown = vi.fn((event) => event.preventDefault());
+      const theme = createTheme({
+        components: { MuiMenu: { defaultProps: { slotProps: { list: { onKeyDown } } } } },
+      });
+      const onChange = vi.fn();
+      const { user } = render(
+        <ThemeProvider theme={theme}>
+          <Select defaultOpen defaultValue="" onChange={onChange}>
+            <MenuItem value="admin">Admin</MenuItem>
+          </Select>
+        </ThemeProvider>,
+      );
+
+      await user.keyboard(' ');
+      expect(onKeyDown.mock.calls.length).to.equal(1);
+      expect(onChange.mock.calls.length).to.equal(0);
+    });
+
+    it.each(['Control', 'Meta', 'Alt'])('leaves %s+Space to the caller', async (modifier) => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select multiple defaultOpen defaultValue={[]} onChange={onChange}>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">User</MenuItem>
+        </Select>,
+      );
+
+      await user.keyboard(`{${modifier}>} {/${modifier}}u`);
+      expect(onChange.mock.calls.length).to.equal(0);
+      expect(screen.getByRole('option', { name: 'User' })).toHaveFocus();
+    });
+
+    it.each([false, true])(
+      'leaves Space in a nested menu to that menu (disablePortal=%s)',
+      async (disablePortal) => {
+        const onClick = vi.fn();
+        const { user } = render(
+          <Select defaultOpen defaultValue="">
+            <MenuItem value="outer">
+              Outer option
+              <Menu
+                open
+                disablePortal={disablePortal}
+                anchorReference="none"
+                slotProps={{ list: { role: 'listbox' } }}
+              >
+                <li role="option" aria-selected="false" tabIndex={-1} onClick={onClick}>
+                  Inner option
+                </li>
+              </Menu>
+            </MenuItem>
+          </Select>,
+        );
+
+        const option = screen.getByText('Inner option');
+        await act(async () => option.focus());
+        expect(option).toHaveFocus();
+        await user.keyboard(' ');
+        expect(onClick.mock.calls.length).to.equal(0);
+      },
     );
 
-    const trigger = screen.getByRole('combobox');
-    fireEvent.mouseDown(trigger);
+    it('starts a new query when a kept-mounted listbox reopens', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultValue="" onChange={onChange} MenuProps={{ keepMounted: true }}>
+          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">User</MenuItem>
+        </Select>,
+      );
 
-    const option = screen.getByRole('option');
-    fireEvent.keyDown(option, { key: ' ' });
+      await user.tab();
+      await user.keyboard('{ArrowDown}u{Escape}{ArrowDown} ');
+      expect(onChange.mock.calls.length).to.equal(1);
+    });
 
-    expect(handleKeyDown.callCount).to.equal(1);
-    expect(handleChange.callCount).to.equal(0);
+    it('should not select an option when space is pressed on a non-target element', async () => {
+      const handleChange = spy();
+      const handleKeyDown = spy();
+
+      render(
+        <Select value="" onChange={handleChange}>
+          <MenuItem value="1" onKeyDown={handleKeyDown}>
+            <span>One</span>
+          </MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      fireEvent.mouseDown(trigger);
+
+      const option = screen.getByRole('option');
+      const innerSpan = option.querySelector('span');
+
+      await act(async () => {
+        // Dispatch directly to bypass testing-library's active-element guard so that
+        // event.target (span) !== event.currentTarget (li) inside the React handler.
+        innerSpan.dispatchEvent(
+          new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }),
+        );
+      });
+
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('should not select an option when onKeyDown calls preventDefault', () => {
+      const handleChange = spy();
+      const handleKeyDown = spy((event) => event.preventDefault());
+
+      render(
+        <Select value="" onChange={handleChange}>
+          <MenuItem value="1" onKeyDown={handleKeyDown}>
+            One
+          </MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      fireEvent.mouseDown(trigger);
+
+      const option = screen.getByRole('option');
+      fireEvent.keyDown(option, { key: ' ' });
+
+      expect(handleKeyDown.callCount).to.equal(1);
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it.each([false, true])(
+      'lets an option stop Space propagation and choose whether to prevent activation (preventDefault=%s)',
+      async (preventDefault) => {
+        const onChange = vi.fn();
+        const onListKeyDown = vi.fn();
+        const { user } = render(
+          <Select
+            defaultOpen
+            defaultValue=""
+            onChange={onChange}
+            MenuProps={{ slotProps: { list: { onKeyDown: onListKeyDown } } }}
+          >
+            <MenuItem
+              value="1"
+              onKeyDown={(event) => {
+                event.stopPropagation();
+                if (preventDefault) {
+                  event.preventDefault();
+                }
+              }}
+            >
+              One
+            </MenuItem>
+          </Select>,
+        );
+
+        expect(screen.getByRole('option')).toHaveFocus();
+        await user.keyboard(' ');
+
+        expect(onListKeyDown).toHaveBeenCalledTimes(0);
+        expect(onChange).toHaveBeenCalledTimes(preventDefault ? 0 : 1);
+      },
+    );
+
+    it('selects an option that stops propagation of a native Space keydown', async () => {
+      function NativeKeyDownOption({ onKeyDown, ...props }) {
+        return (
+          <MenuItem
+            {...props}
+            ref={(node) => {
+              if (node) {
+                node.onkeydown = onKeyDown;
+              }
+            }}
+          />
+        );
+      }
+
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultOpen defaultValue="" onChange={onChange}>
+          <NativeKeyDownOption value="1" onKeyDown={(event) => event.stopPropagation()}>
+            One
+          </NativeKeyDownOption>
+        </Select>,
+      );
+
+      expect(screen.getByRole('option')).toHaveFocus();
+      await user.keyboard(' ');
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not dispatch a click on a focused aria-disabled option when Space is pressed', async () => {
+      const onChange = vi.fn();
+      const onListClick = vi.fn();
+
+      const { user } = render(
+        <Select
+          defaultOpen
+          defaultValue=""
+          onChange={onChange}
+          MenuProps={{
+            slotProps: { list: { disabledItemsFocusable: true, onClick: onListClick } },
+          }}
+        >
+          <MenuItem value="1" disabled>
+            One
+          </MenuItem>
+        </Select>,
+      );
+
+      expect(screen.getByRole('option')).toHaveFocus();
+      await user.keyboard(' ');
+
+      expect(onListClick).toHaveBeenCalledTimes(0);
+      expect(onChange).toHaveBeenCalledTimes(0);
+    });
   });
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {

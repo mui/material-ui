@@ -38,6 +38,43 @@ const ARROW_DOWN = 'ArrowDown';
 const ENTER = 'Enter';
 
 /**
+ * Dispatches a click so keyboard selection follows the same path as pointer selection.
+ */
+function activateOptionOnSpace(event) {
+  const option = event.target;
+
+  if (
+    event.defaultPrevented ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.altKey ||
+    option.getAttribute('role') !== 'option' ||
+    option.getAttribute('aria-disabled') === 'true'
+  ) {
+    return;
+  }
+
+  event.preventDefault();
+
+  if (!event.repeat) {
+    option.click();
+  }
+}
+
+/** Handles Space on this Select's options after typeahead and the list's onKeyDown have run. */
+function handleOptionSpaceKeyDown(event) {
+  const { currentTarget: list, target: option } = event;
+  // A portaled menu can bubble here from outside the list. An inline nested menu has
+  // its own list inside this one.
+  const ownerList = option.closest('[role="listbox"], [role="menu"]');
+  if (!list.contains(option) || (ownerList !== list && list.contains(ownerList))) {
+    return;
+  }
+
+  activateOptionOnSpace(event);
+}
+
+/**
  * Returns true when a native mouse event should be treated as happening inside
  * the element, even if a portal or backdrop retargeted the event away from it.
  *
@@ -652,14 +689,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const handleItemKeyDown = (child) => (event) => {
     child?.props?.onKeyDown?.(event);
 
-    if (event.key === SPACE && event.target === event.currentTarget && !event.defaultPrevented) {
-      // Prevent the browser from scrolling the page
-      event.preventDefault();
-      // Ignore auto-repeated keydowns to avoid toggling multiple times
-      if (!event.repeat) {
-        // Trigger via click so that onClick receives a click event,
-        // consistent with Enter and pointer interactions.
-        event.currentTarget.click();
+    if (event.key === SPACE && event.target === event.currentTarget) {
+      // ButtonBase normally calls preventDefault() on Space. Skip that step to preserve
+      // the option handler's defaultPrevented value as the event bubbles to the list.
+      event.defaultMuiPrevented = true;
+      // A stopped keydown never reaches the list. The option can still perform its default action.
+      if (event.isPropagationStopped?.() ?? event.cancelBubble) {
+        activateOptionOnSpace(event);
       }
     }
   };
@@ -916,6 +952,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             horizontal: 'center',
           }}
           {...MenuProps}
+          internalOnOptionSpaceKeyDown={handleOptionSpaceKeyDown}
           slotProps={{
             ...MenuProps.slotProps,
             list: {

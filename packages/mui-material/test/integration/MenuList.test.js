@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 
 describe('<MenuList> integration', () => {
-  const { clock, render } = createRenderer();
+  const { clock, render } = createRenderer({ clockOptions: { toFake: ['performance'] } });
 
   it('the MenuItems have the `menuitem` role', () => {
     render(
@@ -779,6 +779,58 @@ describe('<MenuList> integration', () => {
         clock.tick(501);
         fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
         expect(screen.getByText('Ordinary')).toHaveFocus();
+      });
+
+      it('includes Space in an active query', async () => {
+        const { user } = render(
+          <MenuList autoFocus>
+            <MenuItem>Newark</MenuItem>
+            <MenuItem>New York</MenuItem>
+            <MenuItem>York</MenuItem>
+          </MenuList>,
+        );
+
+        await user.keyboard('new');
+        expect(screen.getByRole('menuitem', { name: 'Newark' })).toHaveFocus();
+        await user.keyboard(' ');
+        expect(screen.getByRole('menuitem', { name: 'New York' })).toHaveFocus();
+        await user.keyboard('y');
+        expect(screen.getByRole('menuitem', { name: 'New York' })).toHaveFocus();
+      });
+
+      it('keeps a standalone Space out of the next query', async () => {
+        const { user } = render(
+          <MenuList autoFocus>
+            <MenuItem>Admin</MenuItem>
+            <MenuItem>User</MenuItem>
+          </MenuList>,
+        );
+
+        await user.keyboard(' u');
+        expect(screen.getByRole('menuitem', { name: 'User' })).toHaveFocus();
+      });
+
+      it('starts a new query when focus re-enters the list', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <MenuList autoFocus>
+              <MenuItem>Water</MenuItem>
+              <MenuItem>Wolf</MenuItem>
+              <MenuItem>Orange</MenuItem>
+            </MenuList>
+            <button type="button">Outside</button>
+          </React.Fragment>,
+        );
+
+        await user.keyboard('w');
+        const water = screen.getByRole('menuitem', { name: 'Water' });
+        expect(water).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Outside' })).toHaveFocus();
+        await user.tab({ shift: true });
+        expect(water).toHaveFocus();
+        await user.keyboard('o');
+        expect(screen.getByRole('menuitem', { name: 'Orange' })).toHaveFocus();
       });
     });
 

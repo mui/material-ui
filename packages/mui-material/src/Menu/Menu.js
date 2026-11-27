@@ -69,6 +69,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     children,
     className,
     disableAutoFocusItem = false,
+    // Private callback for standalone Space on a Select option.
+    // eslint-disable-next-line react/prop-types
+    internalOnOptionSpaceKeyDown,
     onClose,
     open,
     PopoverClasses,
@@ -148,6 +151,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       onKeyDown: (event) => {
         handleListKeyDown(event);
         handlers.onKeyDown?.(event);
+        // Run Select's fallback last so both typeahead and the list slot's onKeyDown can consume Space.
+        if (event.key === ' ' && !event.defaultPrevented) {
+          internalOnOptionSpaceKeyDown?.(event);
+        }
       },
     }),
     ownerState,
