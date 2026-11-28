@@ -332,6 +332,84 @@ describe('<Modal />', () => {
     });
   });
 
+  describe('closing before the transition mounts', () => {
+    clock.withFakeTimers();
+
+    it.each([false, true])('cleans up with keepMounted=%s', (keepMounted) => {
+      const handleEnter = spy();
+      const handleExited = spy();
+
+      function TestCase() {
+        const [open, setOpen] = React.useState(true);
+        React.useEffect(() => {
+          setOpen(false);
+        }, []);
+
+        return (
+          <Modal
+            open={open}
+            closeAfterTransition
+            keepMounted={keepMounted}
+            data-testid="modal"
+            onTransitionExited={handleExited}
+          >
+            <Fade in={open} onEnter={handleEnter}>
+              <div>Content</div>
+            </Fade>
+          </Modal>
+        );
+      }
+
+      const { container } = render(<TestCase />);
+
+      expect(handleEnter.callCount).to.equal(0);
+      expect(handleExited.callCount).to.equal(0);
+      expect(container).not.to.have.attribute('aria-hidden');
+      expect(document.body.style.overflow).to.equal('');
+      if (keepMounted) {
+        expect(screen.getByTestId('modal')).toHaveComputedStyle({ visibility: 'hidden' });
+      } else {
+        expect(screen.queryByTestId('modal')).to.equal(null);
+      }
+    });
+
+    it('waits for an exit once the transition mounts even if it skips entering', () => {
+      const handleEnter = spy();
+      const handleExited = spy();
+
+      function TestCase({ open }) {
+        return (
+          <Modal open={open} closeAfterTransition data-testid="modal">
+            <Fade
+              in={open}
+              appear={false}
+              timeout={100}
+              onEnter={handleEnter}
+              onExited={handleExited}
+            >
+              <div>Content</div>
+            </Fade>
+          </Modal>
+        );
+      }
+
+      const { setProps } = render(<TestCase open />);
+      expect(handleEnter.callCount).to.equal(0);
+      expect(screen.getByTestId('modal')).not.to.equal(null);
+
+      setProps({ open: false });
+      expect(screen.getByTestId('modal')).not.to.equal(null);
+      expect(document.body.style.overflow).to.equal('hidden');
+
+      act(() => {
+        clock.tick(100);
+      });
+      expect(handleExited.callCount).to.equal(1);
+      expect(screen.queryByTestId('modal')).to.equal(null);
+      expect(document.body.style.overflow).to.equal('');
+    });
+  });
+
   describe('prop: keepMounted', () => {
     it('should keep the children in the DOM', () => {
       render(

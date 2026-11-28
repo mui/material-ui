@@ -188,6 +188,27 @@ describe('<Drawer />', () => {
     });
 
     describe('scroll lock', () => {
+      it('should release the modal when closed before the slide mounts', () => {
+        function TestCase() {
+          const [open, setOpen] = React.useState(true);
+          React.useEffect(() => {
+            setOpen(false);
+          }, []);
+
+          return (
+            <Drawer open={open} data-testid="drawer">
+              Content
+            </Drawer>
+          );
+        }
+
+        const { container } = render(<TestCase />);
+
+        expect(screen.queryByTestId('drawer')).to.equal(null);
+        expect(container).not.to.have.attribute('aria-hidden');
+        expect(document.body.style.overflow).to.equal('');
+      });
+
       it('should keep the scroll locked until the exit transition completes by default', () => {
         const transitionDuration = 123;
         const { setProps } = render(
