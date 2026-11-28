@@ -37,7 +37,7 @@
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:*",
     "clsx": "^2.1.1",
-    "csstype": "^3.2.3",
+    "csstype": "^3.2.4",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
@@ -46,11 +46,11 @@
     "@emotion/styled": "11.14.1",
     "@mui/system": "workspace:*",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.3.0",
+    "@types/react": "19.3.2",
     "@types/sinon": "22.0.2",
     "react": "19.3.1",
     "sinon": "22.1.0",
-    "styled-components": "6.6.0"
+    "styled-components": "6.7.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
