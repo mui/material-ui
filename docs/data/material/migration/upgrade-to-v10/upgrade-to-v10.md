@@ -238,9 +238,11 @@ Remove the top-level `palette` to keep the previous result, or move its values i
 The deprecated `ModalProps` prop of Drawer and SwipeableDrawer has been removed.
 Use `slotProps.root` instead.
 The root slot is the Modal, and it is only rendered for `variant="temporary"`, so it applies in the same cases as `ModalProps` did.
-Props nested inside `ModalProps`, such as `slots` and `slotProps.backdrop`, are applied when moved to `slotProps.root`.
+`slots.backdrop` and `slotProps.backdrop` nested inside `ModalProps` were previously ignored. They take effect once moved to `slotProps.root`.
+`slotProps.root.slots` no longer drops the Drawer's `slots.backdrop`.
 A `slotProps.root.slotProps.backdrop` is merged with the backdrop props of the Drawer, such as its `transitionDuration`.
 
+The codemod also covers `ModalProps` in the theme's `defaultProps`.
 Use the [drawer-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-props) below to migrate the code:
 
 ```bash

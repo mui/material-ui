@@ -797,6 +797,41 @@ describe('<SwipeableDrawer />', () => {
 
       expect(screen.queryByTestId('content')).to.equal(null);
     });
+
+    it('should add className only once when slotProps.root is a callback', () => {
+      render(
+        <SwipeableDrawer
+          open
+          onOpen={() => {}}
+          onClose={() => {}}
+          className="my-drawer"
+          slotProps={{
+            root: () => ({ 'data-testid': 'drawer-root' }),
+            paper: { component: FakePaper },
+          }}
+        >
+          <div />
+        </SwipeableDrawer>,
+      );
+
+      const classNames = screen.getByTestId('drawer-root').getAttribute('class').split(' ');
+      expect(classNames.filter((name) => name === 'my-drawer')).to.have.length(1);
+    });
+
+    it('should let keepMounted from a slotProps.root callback override the default', () => {
+      render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          slotProps={{ root: () => ({ keepMounted: false }), paper: { component: FakePaper } }}
+        >
+          <div data-testid="content" />
+        </SwipeableDrawer>,
+      );
+
+      expect(screen.queryByTestId('content')).to.equal(null);
+    });
   });
 
   describe('disableSwipeToOpen', () => {

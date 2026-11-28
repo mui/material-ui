@@ -239,18 +239,23 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     },
   };
 
-  // The Modal receives the Drawer's own backdrop props. A nested `slotProps.root.slotProps.backdrop`
-  // is merged with them instead of replacing them.
+  // The Modal receives the Drawer's own backdrop slot and props. Nested `slotProps.root.slots`
+  // and `slotProps.root.slotProps.backdrop` are merged with them instead of replacing them.
   const rootSlotPropsWithBackdrop = (rootOwnerState) => {
     const resolvedRootSlotProps = resolveComponentProps(slotProps.root, rootOwnerState);
+    const nestedBackdrop = resolvedRootSlotProps?.slotProps?.backdrop;
+    const ownBackdrop = externalForwardedProps.slotProps.backdrop;
     return {
       ...resolvedRootSlotProps,
+      slots: { backdrop: slots.backdrop, ...resolvedRootSlotProps?.slots },
       slotProps: {
         ...resolvedRootSlotProps?.slotProps,
-        backdrop: mergeSlotProps(
-          resolvedRootSlotProps?.slotProps?.backdrop,
-          externalForwardedProps.slotProps.backdrop,
-        ),
+        // Resolve both sides first: merging a callback would add the root `className` to the backdrop.
+        backdrop: (backdropOwnerState) =>
+          mergeSlotProps(
+            resolveComponentProps(nestedBackdrop, backdropOwnerState),
+            resolveComponentProps(ownBackdrop, backdropOwnerState),
+          ),
       },
     };
   };
@@ -274,9 +279,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       open,
       onClose,
       hideBackdrop,
-      slots: {
-        backdrop: externalForwardedProps.slots.backdrop,
-      },
     },
   });
 

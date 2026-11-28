@@ -2,6 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import contains from '../utils/contains';
@@ -627,13 +628,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         slots={slots}
         slotProps={{
           ...slotProps,
-          root: mergeSlotProps(slotProps.root, {
-            // Ensures that paperRef.current will be defined inside the touch start event handler
-            // See https://github.com/mui/material-ui/issues/30414 for more information
-            ...(variant === 'temporary' && {
-              keepMounted: true,
+          // Resolve a callback first: merging it would add the root `className` a second time.
+          root: (rootOwnerState) =>
+            mergeSlotProps(resolveComponentProps(slotProps.root, rootOwnerState), {
+              // Ensures that paperRef.current will be defined inside the touch start event handler
+              // See https://github.com/mui/material-ui/issues/30414 for more information
+              ...(variant === 'temporary' && {
+                keepMounted: true,
+              }),
             }),
-          }),
           backdrop: mergeSlotProps(slotProps.backdrop, {
             ref: backdropRef,
           }),
