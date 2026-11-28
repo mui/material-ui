@@ -122,3 +122,42 @@ function FocusHandlerTest() {
     slotProps={{ formHelperText: { component: HelperText } }}
   />;
 }
+
+// https://github.com/mui/material-ui/issues/33742
+function SelectOnChangeTypeTest() {
+  const selectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    expectType<string, typeof event.target.value>(event.target.value);
+  };
+  const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    expectType<string, typeof event.target.value>(event.target.value);
+  };
+  const textareaHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    expectType<string, typeof event.target.value>(event.target.value);
+  };
+
+  const selectOutlined = <TextField select onChange={selectHandler} />;
+  const selectFilled = <TextField select variant="filled" onChange={selectHandler} />;
+  const selectStandard = <TextField select variant="standard" onChange={selectHandler} />;
+  const selectInferred = (
+    <TextField
+      select
+      onChange={(event) => {
+        const value = event.target.value;
+        expectType<string, typeof value>(value);
+      }}
+    />
+  );
+  const inputField = <TextField onChange={inputHandler} />;
+  const multilineField = <TextField multiline onChange={textareaHandler} />;
+
+  return (
+    <React.Fragment>
+      {selectOutlined}
+      {selectFilled}
+      {selectStandard}
+      {selectInferred}
+      {inputField}
+      {multilineField}
+    </React.Fragment>
+  );
+}

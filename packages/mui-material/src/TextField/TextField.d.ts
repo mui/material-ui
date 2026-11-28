@@ -246,6 +246,10 @@ export interface BaseTextFieldProps extends StandardProps<
   value?: unknown;
 }
 
+export type TextFieldChangeEventHandler = React.ChangeEventHandler<
+  HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+>;
+
 export interface StandardTextFieldProps
   extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<StandardInputProps> {
   /**
@@ -254,7 +258,7 @@ export interface StandardTextFieldProps
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
-  onChange?: StandardInputProps['onChange'] | undefined;
+  onChange?: TextFieldChangeEventHandler | undefined;
   /**
    * The variant to use.
    * @default 'outlined'
@@ -270,7 +274,7 @@ export interface FilledTextFieldProps
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
-  onChange?: FilledInputProps['onChange'] | undefined;
+  onChange?: TextFieldChangeEventHandler | undefined;
   /**
    * The variant to use.
    * @default 'outlined'
@@ -286,7 +290,7 @@ export interface OutlinedTextFieldProps
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
-  onChange?: OutlinedInputProps['onChange'] | undefined;
+  onChange?: TextFieldChangeEventHandler | undefined;
   /**
    * The variant to use.
    * @default 'outlined'
