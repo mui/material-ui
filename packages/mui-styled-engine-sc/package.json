@@ -32,16 +32,16 @@
   "dependencies": {
     "@babel/runtime": "^7.29.7 || ^8.0.5",
     "@types/hoist-non-react-statics": "^3.3.7",
-    "csstype": "^3.2.3",
+    "csstype": "^3.2.4",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.3.0",
+    "@types/react": "19.3.2",
     "@types/react-dom": "19.3.0",
     "react": "19.3.1",
-    "styled-components": "6.6.0"
+    "styled-components": "6.7.0"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

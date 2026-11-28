@@ -46,7 +46,7 @@
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:^",
-    "@types/react": "19.3.0",
+    "@types/react": "19.3.2",
     "chalk": "6.0.1",
     "cross-fetch": "4.1.0",
     "es-toolkit": "1.53.2",

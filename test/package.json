@@ -4,7 +4,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "8.1.2",
+    "@babel/runtime": "8.1.3",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@fontsource/inter": "5.3.0",
@@ -18,7 +18,7 @@
     "@mui/utils": "workspace:^",
     "@tailwindcss/vite": "4.3.5",
     "@testing-library/dom": "10.4.2",
-    "@types/react": "19.3.0",
+    "@types/react": "19.3.2",
     "@types/react-is": "19.3.0",
     "@types/sinon": "22.0.2",
     "docs": "workspace:^",
@@ -28,10 +28,10 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-is": "19.3.1",
-    "react-router": "8.5.1",
-    "react-window": "2.5.3",
+    "react-router": "8.5.3",
+    "react-window": "2.5.4",
     "sinon": "22.1.0",
-    "styled-components": "6.6.0",
+    "styled-components": "6.7.0",
     "stylis": "4.4.0",
     "tailwindcss": "4.3.5",
     "yargs": "18.2.0"

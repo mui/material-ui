@@ -7,7 +7,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
     "@mui/material": "workspace:^",
-    "@types/react": "19.3.0",
+    "@types/react": "19.3.2",
     "react": "19.3.1",
     "typescript": "5.9.3"
   }
