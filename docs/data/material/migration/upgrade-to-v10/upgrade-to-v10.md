@@ -232,3 +232,26 @@ If `colorSchemes` has no `light` scheme, set `defaultColorScheme` too.
 `extendTheme()` ignored a top-level `palette`, but `createTheme()` applies it and replaces the palette of the default color scheme.
 Its `mode` also sets the default color scheme: with `palette: { mode: 'dark' }`, the theme defaults to `dark`, and has no `light` scheme unless `colorSchemes` defines one.
 Remove the top-level `palette` to keep the previous result, or move its values into `colorSchemes`.
+
+### Drawer ModalProps removed
+
+The deprecated `ModalProps` prop of Drawer and SwipeableDrawer has been removed.
+Use `slotProps.root` instead.
+The root slot is the Modal, and it is only rendered for `variant="temporary"`, so it applies in the same cases as `ModalProps` did.
+`slots.backdrop` and `slotProps.backdrop` nested inside `ModalProps` were previously ignored. They take effect once moved to `slotProps.root`.
+`slotProps.root.slots` no longer drops the Drawer's `slots.backdrop`.
+A `slotProps.root.slotProps.backdrop` is merged with the backdrop props of the Drawer, such as its `transitionDuration`.
+
+The codemod also covers `ModalProps` in the theme's `defaultProps`.
+Use the [drawer-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-props) below to migrate the code:
+
+```bash
+npx @mui/codemod@latest deprecations/drawer-props <path>
+```
+
+```diff
+ <Drawer
+-  ModalProps={{ keepMounted: true }}
++  slotProps={{ root: { keepMounted: true } }}
+ />
+```

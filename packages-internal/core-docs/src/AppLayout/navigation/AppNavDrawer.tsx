@@ -518,10 +518,10 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
             open={mobileOpen}
             onOpen={onOpen}
             onClose={onClose}
-            ModalProps={{
-              keepMounted: true,
-            }}
             slotProps={{
+              root: {
+                keepMounted: true,
+              },
               paper: {
                 component: AppNavPaperComponent,
               },

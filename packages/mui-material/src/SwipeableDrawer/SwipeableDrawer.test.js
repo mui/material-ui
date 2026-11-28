@@ -591,13 +591,13 @@ describe('<SwipeableDrawer />', () => {
             onClose={() => {}}
             open={false}
             swipeAreaWidth={20}
-            ModalProps={{
-              keepMounted: true,
-              sx: {
-                transform: `translateY(${handleHeight}px) !important`,
-              },
-            }}
             slotProps={{
+              root: {
+                keepMounted: true,
+                sx: {
+                  transform: `translateY(${handleHeight}px) !important`,
+                },
+              },
               paper: { component: FakePaper },
               swipeArea: {
                 style: {
@@ -664,16 +664,15 @@ describe('<SwipeableDrawer />', () => {
             onClose={() => {}}
             open={false}
             swipeAreaWidth={20}
-            ModalProps={{
-              keepMounted: true,
-              sx: {
-                '& > *': {
-                  pointerEvents: 'auto',
+            slotProps={{
+              root: {
+                keepMounted: true,
+                sx: {
+                  '& > *': {
+                    pointerEvents: 'auto',
+                  },
                 },
               },
-            }}
-            slotProps={{
-              root: {},
               paper: { component: FakePaper },
               swipeArea: {
                 style: {
@@ -766,6 +765,73 @@ describe('<SwipeableDrawer />', () => {
       </SwipeableDrawer>,
     );
     expect(ref.current).not.to.equal(null);
+  });
+
+  describe('prop: slotProps.root', () => {
+    it('should keep the temporary drawer mounted by default', () => {
+      render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          slotProps={{ paper: { component: FakePaper } }}
+        >
+          <div data-testid="content" />
+        </SwipeableDrawer>,
+      );
+
+      expect(screen.getByTestId('content')).not.to.equal(null);
+    });
+
+    it('should let slotProps.root.keepMounted override the default', () => {
+      render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          slotProps={{ root: { keepMounted: false }, paper: { component: FakePaper } }}
+        >
+          <div data-testid="content" />
+        </SwipeableDrawer>,
+      );
+
+      expect(screen.queryByTestId('content')).to.equal(null);
+    });
+
+    it('should add className only once when slotProps.root is a callback', () => {
+      render(
+        <SwipeableDrawer
+          open
+          onOpen={() => {}}
+          onClose={() => {}}
+          className="my-drawer"
+          slotProps={{
+            root: () => ({ 'data-testid': 'drawer-root' }),
+            paper: { component: FakePaper },
+          }}
+        >
+          <div />
+        </SwipeableDrawer>,
+      );
+
+      const classNames = screen.getByTestId('drawer-root').getAttribute('class').split(' ');
+      expect(classNames.filter((name) => name === 'my-drawer')).to.have.length(1);
+    });
+
+    it('should let keepMounted from a slotProps.root callback override the default', () => {
+      render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          slotProps={{ root: () => ({ keepMounted: false }), paper: { component: FakePaper } }}
+        >
+          <div data-testid="content" />
+        </SwipeableDrawer>,
+      );
+
+      expect(screen.queryByTestId('content')).to.equal(null);
+    });
   });
 
   describe('disableSwipeToOpen', () => {
@@ -942,8 +1008,7 @@ describe('<SwipeableDrawer />', () => {
         <SwipeableDrawer
           onOpen={() => {}}
           onClose={() => {}}
-          ModalProps={{ container }}
-          slotProps={{ paper: { component: FakePaper } }}
+          slotProps={{ root: { container }, paper: { component: FakePaper } }}
           {...props}
         >
           {children}

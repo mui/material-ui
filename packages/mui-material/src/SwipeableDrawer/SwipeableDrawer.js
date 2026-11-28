@@ -2,6 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import contains from '../utils/contains';
@@ -158,7 +159,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     hysteresis = 0.52,
     allowSwipeInChildren = false,
     minFlingVelocity = 450,
-    ModalProps: ModalPropsProp = {},
     onClose,
     onOpen,
     open = false,
@@ -620,14 +620,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       <Drawer
         open={variant === 'temporary' && maybeSwiping ? true : open}
         variant={variant}
-        ModalProps={{
-          // Ensures that paperRef.current will be defined inside the touch start event handler
-          // See https://github.com/mui/material-ui/issues/30414 for more information
-          ...(variant === 'temporary' && {
-            keepMounted: true,
-          }),
-          ...ModalPropsProp,
-        }}
         hideBackdrop={hideBackdrop}
         anchor={anchor}
         transitionDuration={calculatedDurationRef.current || transitionDuration}
@@ -636,6 +628,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         slots={slots}
         slotProps={{
           ...slotProps,
+          // Resolve a callback first: merging it would add the root `className` a second time.
+          root: (rootOwnerState) =>
+            mergeSlotProps(resolveComponentProps(slotProps.root, rootOwnerState), {
+              // Ensures that paperRef.current will be defined inside the touch start event handler
+              // See https://github.com/mui/material-ui/issues/30414 for more information
+              ...(variant === 'temporary' && {
+                keepMounted: true,
+              }),
+            }),
           backdrop: mergeSlotProps(slotProps.backdrop, {
             ref: backdropRef,
           }),
@@ -719,11 +720,6 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    * @default 450
    */
   minFlingVelocity: PropTypes.number,
-  /**
-   * @ignore
-   */
-  ModalProps: PropTypes /* @typescript-to-proptypes-ignore */
-    .shape({}),
   /**
    * Callback fired when the component requests to be closed.
    *

@@ -426,8 +426,10 @@ function DrawerTest() {
         open={open.top}
         onClose={(event) => log(event)}
         onClick={(event) => log(event)}
-        ModalProps={{
-          hideBackdrop: true,
+        slotProps={{
+          root: {
+            hideBackdrop: true,
+          },
         }}
       >
         List
@@ -477,8 +479,10 @@ function SwipeableDrawerTest() {
         onClose={(event) => log(event)}
         onClick={(event) => log(event)}
         onOpen={(event) => log(event)}
-        ModalProps={{
-          hideBackdrop: true,
+        slotProps={{
+          root: {
+            hideBackdrop: true,
+          },
         }}
       >
         List

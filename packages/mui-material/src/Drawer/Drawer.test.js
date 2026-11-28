@@ -4,6 +4,7 @@ import { spy, stub } from 'sinon';
 import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
+import { backdropClasses } from '@mui/material/Backdrop';
 import { modalClasses } from '@mui/material/Modal';
 import { getAnchor, isHorizontal } from './Drawer';
 import describeConformance from '../../test/describeConformance';
@@ -474,6 +475,91 @@ describe('<Drawer />', () => {
 
       expect(screen.getByTestId('drawer-root')).to.have.class(modalClasses.root);
       expect(screen.getByTestId('content')).not.to.equal(null);
+    });
+
+    it('should merge slotProps.root.slotProps.backdrop with the own backdrop props of the Drawer', () => {
+      render(
+        <Drawer
+          open
+          slotProps={{
+            backdrop: { className: 'own-backdrop' },
+            root: { slotProps: { backdrop: { 'data-testid': 'nested-backdrop' } } },
+          }}
+        >
+          <div />
+        </Drawer>,
+      );
+
+      const backdrop = screen.getByTestId('nested-backdrop');
+      expect(backdrop).to.have.class('own-backdrop');
+      expect(backdrop).to.have.class(backdropClasses.root);
+    });
+
+    it.skipIf(isJsdom())(
+      'should keep the transitionDuration on a backdrop with nested slotProps',
+      function test() {
+        render(
+          <Drawer
+            open
+            transitionDuration={854}
+            slotProps={{ root: { slotProps: { backdrop: { 'data-testid': 'nested-backdrop' } } } }}
+          >
+            <div />
+          </Drawer>,
+        );
+
+        expect(screen.getByTestId('nested-backdrop')).toHaveComputedStyle({
+          transitionDuration: '0.854s',
+        });
+      },
+    );
+
+    it('should keep a custom slots.backdrop when slotProps.root.slots is set', () => {
+      render(
+        <Drawer open slots={{ backdrop: CustomBackdrop }} slotProps={{ root: { slots: {} } }}>
+          <div />
+        </Drawer>,
+      );
+
+      expect(screen.getByTestId('custom')).to.have.class(modalClasses.backdrop);
+    });
+
+    it('should prefer slotProps.root.slots.backdrop over slots.backdrop', () => {
+      const NestedBackdrop = React.forwardRef(
+        ({ transitionDuration, ownerState, ...props }, ref) => (
+          <i ref={ref} {...props} data-testid="nested-custom" />
+        ),
+      );
+
+      render(
+        <Drawer
+          open
+          slots={{ backdrop: CustomBackdrop }}
+          slotProps={{ root: { slots: { backdrop: NestedBackdrop } } }}
+        >
+          <div />
+        </Drawer>,
+      );
+
+      expect(screen.getByTestId('nested-custom')).to.have.class(modalClasses.backdrop);
+      expect(screen.queryByTestId('custom')).to.equal(null);
+    });
+
+    it('should not add the root classes to a backdrop with nested callback slotProps', () => {
+      render(
+        <Drawer
+          open
+          className="drawer-class"
+          slotProps={{ root: { slotProps: { backdrop: () => ({}) } } }}
+        >
+          <div />
+        </Drawer>,
+      );
+
+      const backdrop = document.querySelector(`.${backdropClasses.root}`);
+      expect(backdrop).not.to.have.class(classes.root);
+      expect(backdrop).not.to.have.class(classes.modal);
+      expect(backdrop).not.to.have.class('drawer-class');
     });
   });
 
