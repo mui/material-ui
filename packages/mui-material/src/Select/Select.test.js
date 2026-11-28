@@ -1874,21 +1874,18 @@ describe('<Select />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/38700
-    it.skipIf(isJsdom())(
-      'should merge `slotProps.paper` with the default Paper props',
-      function test() {
-        render(
-          <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
-            <MenuItem value="10">Ten</MenuItem>
-          </Select>,
-        );
+    it('should merge `slotProps.paper` with the default Paper props', function test() {
+      render(
+        <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
 
-        const paper = screen.getByTestId('paper');
-        const selectButton = screen.getByRole('combobox', { hidden: true });
+      const paper = screen.getByTestId('paper');
+      const selectButton = screen.getByRole('combobox', { hidden: true });
 
-        expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
-      },
-    );
+      expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
+    });
 
     // https://github.com/mui/material-ui/issues/46273
     it('should merge `slotProps.list` with default List props', () => {
@@ -2258,10 +2255,7 @@ describe('<Select />', () => {
     });
 
     describe('errors', () => {
-      // can't catch render errors in the browser for unknown reason
-      // tried try-catch + error boundary + window onError preventDefault
-      // TODO is this fixed?
-      it.skipIf(!isJsdom())('should throw if non array', function test() {
+      it('should throw if non array', function test() {
         const errorRef = React.createRef();
         expect(() => {
           render(

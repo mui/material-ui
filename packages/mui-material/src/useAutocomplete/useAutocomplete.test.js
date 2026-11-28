@@ -287,7 +287,6 @@ describe('useAutocomplete', () => {
 
   // can't catch render errors in the browser for unknown reason
   // tried try-catch + error boundary + window onError preventDefault
-  // TODO is this fixed?
   it.skipIf(!isJsdom())('should warn if the input is not bound', async () => {
     function Test(props) {
       const { options } = props;

@@ -193,22 +193,6 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
       };
     }
 
-    // TODO: 'core' is a productCategoryId, not a productId — this branch may be dead code.
-    if ((productId as string) === 'core') {
-      return {
-        metadata: '',
-        name: 'MUI Core',
-        logo: MuiLogomarkIcon,
-        logoSvg: muiSvgLogomarkString,
-        wordmarkSvg: muiSvgLogotypeString,
-        versions: buildProductVersions(
-          fetchedVersions,
-          'material-ui',
-          `v${materialPkgJson.version}`,
-        ),
-      };
-    }
-
     if (productId === 'docs-infra') {
       return {
         metadata: '',
