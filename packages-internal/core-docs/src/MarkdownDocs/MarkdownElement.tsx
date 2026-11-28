@@ -860,16 +860,15 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
       }
     }, []);
 
-    const more: React.ComponentProps<typeof Root> = {};
-
-    if (typeof renderedMarkdown === 'string') {
-      // workaround for https://github.com/react/react/issues/17170
-      // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
-      more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
-    }
-
     return (
-      <Root className={clsx('markdown-body', className)} {...more} {...other} ref={handleRef} />
+      <Root
+        className={clsx('markdown-body', className)}
+        dangerouslySetInnerHTML={
+          typeof renderedMarkdown === 'string' ? { __html: renderedMarkdown } : undefined
+        }
+        {...other}
+        ref={handleRef}
+      />
     );
   },
 );

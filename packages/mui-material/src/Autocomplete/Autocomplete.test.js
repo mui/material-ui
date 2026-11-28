@@ -372,38 +372,35 @@ describe('<Autocomplete />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/34998
-    it.skipIf(isJsdom())(
-      'should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted',
-      function test() {
-        render(
-          <Autocomplete
-            open
-            options={['one', 'two', 'three', 'four', 'five']}
-            renderInput={(params) => <TextField {...params} />}
-            slotProps={{ listbox: { style: { padding: 0, maxHeight: '100px' } } }}
-            slots={{
-              popper: (props) => {
-                const { disablePortal, anchorEl, open, ...other } = props;
-                return <Box {...other} />;
-              },
-            }}
-          />,
-        );
-        const textbox = screen.getByRole('combobox');
-        act(() => {
-          textbox.focus();
-        });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', function test() {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { style: { padding: 0, maxHeight: '100px' } } }}
+          slots={{
+            popper: (props) => {
+              const { disablePortal, anchorEl, open, ...other } = props;
+              return <Box {...other} />;
+            },
+          }}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
-        checkHighlightIs(screen.getByRole('listbox'), 'one');
-        expect(screen.getByRole('listbox')).to.have.property('scrollTop', 0);
-      },
-    );
+      checkHighlightIs(screen.getByRole('listbox'), 'one');
+      expect(screen.getByRole('listbox')).to.have.property('scrollTop', 0);
+    });
 
     it('should keep the current highlight if possible', () => {
       render(
@@ -1460,28 +1457,24 @@ describe('<Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
-    it.skipIf(isJsdom())(
-      'should fail validation if a required field has no value',
-      async function test() {
-        const handleSubmit = spy((event) => event.preventDefault());
-        const view = render(
-          <form onSubmit={handleSubmit}>
-            <Autocomplete
-              multiple
-              options={['one', 'two']}
-              renderInput={(params) => <TextField {...params} required />}
-              value={[]}
-            />
-            <button type="submit">Submit</button>
-          </form>,
-        );
+    it('should fail validation if a required field has no value', async function test() {
+      const handleSubmit = spy((event) => event.preventDefault());
+      const view = render(
+        <form onSubmit={handleSubmit}>
+          <Autocomplete
+            multiple
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} required />}
+            value={[]}
+          />
+          <button type="submit">Submit</button>
+        </form>,
+      );
 
-        await view.user.click(screen.getByRole('button', { name: 'Submit' }));
+      await view.user.click(screen.getByRole('button', { name: 'Submit' }));
 
-        expect(handleSubmit.callCount).to.equal(0);
-      },
-    );
+      expect(handleSubmit.callCount).to.equal(0);
+    });
 
     // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
     // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
