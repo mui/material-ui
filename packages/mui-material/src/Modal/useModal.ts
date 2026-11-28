@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import ownerDocument from '@mui/utils/ownerDocument';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import createChainedFunction from '@mui/utils/createChainedFunction';
@@ -46,9 +47,18 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const mountNodeRef = React.useRef<HTMLElement>(null);
   const lastMountNodeRef = React.useRef<HTMLElement>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
-  const handleRef = useForkRef(modalRef, rootRef);
-  const [exited, setExited] = React.useState(!open);
   const hasTransition = getHasTransition(children);
+  const [modalNode, setModalNode] = React.useState<Element | null>(null);
+  const handleRef = useForkRef(modalRef, rootRef, hasTransition ? setModalNode : null);
+  const [exited, setExited] = React.useState(true);
+
+  useEnhancedEffect(() => {
+    // A portal may not mount until after the modal closes. Only wait for an exit
+    // if the transition was mounted while open, even if it skipped entering.
+    if (open && hasTransition && modalRef.current) {
+      setExited(false);
+    }
+  }, [open, hasTransition, modalNode]);
 
   let ariaHiddenProp = true;
   if (parameters['aria-hidden'] === 'false' || parameters['aria-hidden'] === false) {
@@ -113,10 +123,10 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   React.useEffect(() => {
     if (open) {
       handleOpen();
-    } else if (!hasTransition || !closeAfterTransition) {
+    } else if (!hasTransition || !closeAfterTransition || exited) {
       handleClose();
     }
-  }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
+  }, [open, handleClose, hasTransition, closeAfterTransition, exited, handleOpen]);
 
   const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
     otherHandlers.onKeyDown?.(event);
