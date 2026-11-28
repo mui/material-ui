@@ -2258,10 +2258,7 @@ describe('<Select />', () => {
     });
 
     describe('errors', () => {
-      // can't catch render errors in the browser for unknown reason
-      // tried try-catch + error boundary + window onError preventDefault
-      // TODO is this fixed?
-      it.skipIf(!isJsdom())('should throw if non array', function test() {
+      it('should throw if non array', function test() {
         const errorRef = React.createRef();
         expect(() => {
           render(

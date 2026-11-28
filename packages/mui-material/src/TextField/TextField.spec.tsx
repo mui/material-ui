@@ -46,19 +46,6 @@ import type { FormHelperTextProps } from '@mui/material/FormHelperText';
       slotProps={{ input: { classes: { inputTypeSearch: 'search-input' } } }}
     />
   );
-  const standardOutlinedClassname = (
-    <TextField
-      variant="standard"
-      slotProps={{
-        input: {
-          // notchedOutline is only used with variant "outlined"
-          // FIXME this no longer generates an error in TS 3.2, see https://github.com/Microsoft/TypeScript/issues/28926
-          // classes: { inputTypeSearch: 'search-input', notchedOutline: 'notched-outline' }, // @ts-expect-error
-        },
-      }}
-    />
-  );
-
   const filled = (
     <TextField
       variant="filled"
